@@ -1,0 +1,40 @@
+{
+  "name": "success-os",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vinext dev --hostname 0.0.0.0",
+    "build": "vinext build && node scripts/copy-hosting.mjs",
+    "start": "vinext start --hostname 0.0.0.0",
+    "dev:vinext": "vinext dev --port 3001",
+    "build:vinext": "vinext build",
+    "start:vinext": "wrangler dev --config dist/server/wrangler.json",
+    "deploy:vinext": "vinext-cloudflare deploy --config dist/server/wrangler.json",
+    "protect:manifest": "node scripts/content-protection-manifest.mjs",
+    "validate:links": "node scripts/validate-internal-links.mjs",
+    "validate:journey": "node scripts/validate-journey.mjs",
+    "validate:content": "node scripts/validate-content-quality.mjs",
+    "validate:curricula": "node scripts/validate-national-curricula.mjs",
+    "validate:ai": "node scripts/validate-ai-orchestrator.mjs",
+    "validate:books": "node scripts/validate-book-engine.mjs",
+    "validate:jordan": "node scripts/validate-jordan-curriculum.mjs",
+    "validate:generated-books": "node scripts/validate-generated-books.mjs",
+    "validate:master-directive": "node scripts/validate-master-directive.mjs",
+    "validate:knowledge": "node scripts/validate-knowledge-engine.mjs"
+  },
+  "dependencies": {
+    "@vinext/cloudflare": "0.2.1",
+    "@vitejs/plugin-react": "latest",
+    "@vitejs/plugin-rsc": "^0.5.27",
+    "react": "latest",
+    "react-dom": "latest",
+    "react-server-dom-webpack": "^19.2.7",
+    "vinext": "0.2.1",
+    "vite": "latest"
+  },
+  "devDependencies": {
+    "@cloudflare/vite-plugin": "^1.44.0",
+    "wrangler": "^4.110.0"
+  }
+}

@@ -1,0 +1,5 @@
+import { InnerNav } from '../components';
+
+const flow=[['1','رفع أو تسجيل','ملف مملوك أو مرخص'],['2','تفريغ وفهرسة','نص، فصول، مصطلحات'],['3','ربط المعرفة','مفاهيم ومعايير ومتطلبات'],['4','توليد النشاط','أسئلة وتلميحات ولحظات توقف'],['5','مراجعة بشرية','اعتماد المعلم قبل النشر'],['6','قياس التعلم','مشاهدة + فهم + دليل إتقان']];
+
+export default function VideoPage(){return <div className="os-page"><InnerNav/><main className="os-page-content"><header className="video-hero"><div><span>VIDEO INTELLIGENCE</span><h1>الفيديو يتحول من مشاهدة إلى رحلة تعلم</h1><p>نستخرج البنية والمفاهيم، نربطها بالمنهاج، ثم نضيف نقاط توقف وأسئلة وتلميحات—بعد مراجعة المعلم وضمن حقوق النشر.</p></div><div className="video-frame"><i>▶</i><b>Molar Mass</b><small>03:24 / 12:08</small><div><em style={{width:'31%'}}></em></div></div></header><div className="flow-grid">{flow.map(([n,title,text])=><article className="os-card flow-card" key={n}><b>{n}</b><h2>{title}</h2><p>{text}</p></article>)}</div><div className="rights-note"><b>قاعدة أساسية:</b> لا تتم معالجة مادة للنشر إلا إذا كانت مملوكة أو مرخصة، مع حفظ المصدر والإصدار والمراجع المسؤول.</div></main></div>}

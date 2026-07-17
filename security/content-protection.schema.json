@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://success4sureacademy.com/schemas/content-protection-v1.json",
+  "title": "SUCCESS OS Protected Content Manifest",
+  "type": "object",
+  "required": ["schemaVersion", "assetId", "title", "assetType", "owner", "sha256", "rights", "protection", "createdAt"],
+  "properties": {
+    "schemaVersion": {"const": "1.0"},
+    "assetId": {"type": "string", "minLength": 8},
+    "title": {"type": "string"},
+    "assetType": {"enum": ["lesson", "summary", "video", "exam", "quiz", "question-bank", "attachment", "other"]},
+    "owner": {"type": "string"},
+    "sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "sourceAssetId": {"type": ["string", "null"]},
+    "rights": {
+      "type": "object",
+      "required": ["basis", "allowedUses"],
+      "properties": {
+        "basis": {"enum": ["owned", "teacher-licensed", "open-license", "partner-license", "internal-reference"]},
+        "licenseReference": {"type": ["string", "null"]},
+        "territories": {"type": "array", "items": {"type": "string"}},
+        "allowedUses": {"type": "array", "items": {"enum": ["view", "download", "adapt", "ai-process", "publish", "commercial"]}}
+      }
+    },
+    "protection": {
+      "type": "object",
+      "required": ["profile", "downloadAllowed", "dynamicWatermark", "auditRequired"],
+      "properties": {
+        "profile": {"enum": ["internal", "protected", "high", "exam", "licensed-download"]},
+        "downloadAllowed": {"type": "boolean"},
+        "dynamicWatermark": {"type": "boolean"},
+        "auditRequired": {"type": "boolean"},
+        "expiresAt": {"type": ["string", "null"], "format": "date-time"},
+        "maxDevices": {"type": ["integer", "null"], "minimum": 1}
+      }
+    },
+    "review": {
+      "type": "object",
+      "properties": {
+        "teacherApprovedBy": {"type": ["string", "null"]},
+        "academicApprovedBy": {"type": ["string", "null"]},
+        "approvedAt": {"type": ["string", "null"], "format": "date-time"}
+      }
+    },
+    "createdAt": {"type": "string", "format": "date-time"}
+  },
+  "additionalProperties": false
+}

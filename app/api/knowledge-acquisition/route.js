@@ -1,0 +1,3 @@
+import {buildKnowledgeDossier,knowledgeEngineStatus,verifyResearchPacket} from '../../lib/ai/knowledge-acquisition-engine';
+export async function GET(){return Response.json(knowledgeEngineStatus())}
+export async function POST(request){try{const body=await request.json();if(body.action==='verify')return Response.json(verifyResearchPacket(body));const dossier=await buildKnowledgeDossier(body,{force:Boolean(body.force)});return Response.json(dossier,{status:dossier.persistence.configured?200:202,headers:{'Cache-Control':'no-store'}})}catch(error){return Response.json({error:error.message||'KNOWLEDGE_ACQUISITION_FAILED',details:error.details||null},{status:error.message==='INSUFFICIENT_VERIFIED_RESEARCH'?422:500})}}

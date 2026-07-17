@@ -1,0 +1,6 @@
+const text=v=>typeof v==='string'&&v.trim().length>0;
+export function inspectLesson(lesson={}){
+ const activity=lesson.challenge||lesson.game,checks={title:text(lesson.title),objectives:Array.isArray(lesson.objectives)&&lesson.objectives.length>=3&&lesson.objectives.every(text),segments:Array.isArray(lesson.segments)&&lesson.segments.length>=4&&lesson.segments.every(x=>text(x?.title)&&text(x?.narration)),summary:text(lesson.summary)&&lesson.summary.length>=40,assessment:Array.isArray(lesson.quiz)&&lesson.quiz.length>=1&&lesson.quiz.every(q=>text(q?.q)&&Array.isArray(q.options)&&q.options.length===4&&Number.isInteger(q.answer)&&q.answer>=0&&q.answer<4),activity:text(activity?.name)&&text(activity?.problem||activity?.rules),provenance:Array.isArray(lesson.sources)&&lesson.sources.length>=2&&lesson.sources.every(s=>text(s?.name)&&text(s?.url))};
+ const passed=Object.values(checks).every(Boolean);return {passed,score:Math.round(Object.values(checks).filter(Boolean).length/Object.keys(checks).length*100),checks,reviewRequired:true};
+}
+export function qualityGateLesson(lesson={}){const quality=inspectLesson(lesson);return {...lesson,quality,status:'script-ready',reviewStatus:'draft_pending_academic_review',publication:{eligible:false,reason:quality.passed?'بانتظار اعتماد المراجع الأكاديمي':'فشلت بعض فحوص الاكتمال الآلية'}}}

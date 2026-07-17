@@ -1,0 +1,1 @@
+'use client';import {useEffect} from 'react';export default function Page(){useEffect(()=>location.replace('/school-finder'),[]);return <main className="route-transition"><h1>فتح المدارس…</h1></main>}

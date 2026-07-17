@@ -1,0 +1,5 @@
+import {buildBookDraft,bookEngineStatus,verifyBookSources} from '../../lib/ai/book-engine';
+import {buildCoverageRepairPlan,curriculumDashboardRow,verifyCurriculumCoverage} from '../../lib/ai/curriculum-coverage';
+
+export async function GET(){return Response.json(bookEngineStatus(),{headers:{'Cache-Control':'no-store'}})}
+export async function POST(request){try{const body=await request.json();if(body.action==='verify-sources')return Response.json(verifyBookSources(body));if(body.action==='verify-coverage')return Response.json(verifyCurriculumCoverage(body));if(body.action==='repair-plan')return Response.json(buildCoverageRepairPlan(body.report,body.options));if(body.action==='dashboard-row')return Response.json(curriculumDashboardRow(body));const draft=await buildBookDraft(body,{force:Boolean(body.force)});return Response.json(draft,{status:draft.persistence.configured?200:202,headers:{'Cache-Control':'no-store'}})}catch(error){return Response.json({error:error.message||'BOOK_ENGINE_FAILED',details:error.details||null,sourceReport:error.sourceReport||null,attempts:error.attempts||[]},{status:error.message==='BOOK_PREREQUISITES_NOT_VERIFIED'?400:502})}}

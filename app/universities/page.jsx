@@ -1,0 +1,1 @@
+'use client';import {useEffect} from 'react';export default function Page(){useEffect(()=>location.replace('/admissions'),[]);return <main className="route-transition"><h1>فتح الجامعات والكليات…</h1></main>}

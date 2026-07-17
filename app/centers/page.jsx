@@ -1,0 +1,1 @@
+'use client';import {useEffect} from 'react';export default function Page(){useEffect(()=>location.replace('/partner-search?portal=center'),[]);return <main className="route-transition"><h1>فتح المراكز التعليمية…</h1></main>}
