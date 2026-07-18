@@ -177,7 +177,7 @@ function appendActivity(entry) {
   writeJson(file, doc);
 }
 
-function countByStatus(items, status) {
+function _countByStatus(items, status) {
   return list(items).filter((i) => i.status === status).length;
 }
 

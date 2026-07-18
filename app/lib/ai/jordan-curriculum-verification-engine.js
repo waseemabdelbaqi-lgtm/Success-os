@@ -18,10 +18,7 @@ import {
   isExcludedInternationalLabel,
   isJordanNationalBookId,
 } from '../../data/jordan-national-knowledge-sources.js';
-import {
-  knowledgeRoot,
-  readJordanKnowledgeDatabase,
-} from './jordan-national-knowledge-engine.js';
+import { readJordanKnowledgeDatabase } from './jordan-national-knowledge-engine.js';
 import {
   loadLibraryBook,
   saveLibraryBook,

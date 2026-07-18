@@ -66,10 +66,6 @@ function list(value) {
   return Array.isArray(value) ? value : [];
 }
 
-function unique(values) {
-  return new Set(values.filter(Boolean)).size;
-}
-
 function platformSurfaceChecks() {
   const files = {
     library: path.join(ROOT(), 'app', 'student', 'books', 'page.tsx'),

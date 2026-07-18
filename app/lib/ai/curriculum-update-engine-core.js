@@ -225,7 +225,7 @@ export function createCurriculumUpdateEngine(config) {
     return snapshot;
   }
 
-  function loadLatestSnapshot() {
+  function _loadLatestSnapshot() {
     return readJson(path.join(root(), 'snapshots', 'latest.json'));
   }
 

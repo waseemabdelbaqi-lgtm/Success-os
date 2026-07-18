@@ -50,7 +50,7 @@ function readJson(file) {
   }
 }
 
-function appendJsonl(file, row) {
+function _appendJsonl(file, row) {
   fs.mkdirSync(path.dirname(file), { recursive: true });
   fs.appendFileSync(file, `${JSON.stringify(row)}\n`, 'utf8');
 }
@@ -78,7 +78,7 @@ function edgeId(from, type, to) {
   return `kg:edge:${kgSlug(from)}:${kgSlug(type)}:${kgSlug(to)}`.slice(0, 200);
 }
 
-function safeFile(id) {
+function _safeFile(id) {
   return String(id || '')
     .replace(/[<>:"/\\|?*]/g, '_')
     .slice(0, 160);
@@ -195,7 +195,7 @@ export function createEducationalKnowledgeGraph(config) {
   /**
    * Build graph from a normalized payload.
    */
-  function buildFromPayload(payload, options = {}) {
+  function buildFromPayload(payload, _options = {}) {
     ensureDirs(root());
     const graph = emptyGraph();
     const stats = {
@@ -340,7 +340,7 @@ export function createEducationalKnowledgeGraph(config) {
               );
               trackE(link(graph, topicId, 'belongs_to', lesson.id, { officialSource: source }));
 
-              list(lesson.subtopics || lesson.concepts?.slice(0, 3)).forEach((st, i) => {
+              list(lesson.subtopics || lesson.concepts?.slice(0, 3)).forEach((st, _i) => {
                 const label = typeof st === 'string' ? st : st.label;
                 if (!text(label)) return;
                 const sid = `${topicId}:sub:${kgSlug(label)}`;

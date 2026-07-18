@@ -1,58 +1,53 @@
-'use client';
+"use client";
 
-import Link from 'next/link';
-import { FormEvent, useEffect, useMemo, useState } from 'react';
+import Link from "next/link";
+import { useEffect, useMemo, useState, type FormEvent } from "react";
 import {
   CONTROL_CENTER_GROUPS,
   CONTROL_CENTER_ROLES,
   SERVICE_JOURNEYS,
   isControlCenterRoleId,
   type ControlCenterRoleId,
-} from '@/components/control-center/phase11/control-center-role-data';
+} from "@/components/control-center/phase11/control-center-role-data";
 
 export function ControlCenter2050() {
-  const [role, setRole] = useState<ControlCenterRoleId>('owner');
+  const [role, setRole] = useState<ControlCenterRoleId>("owner");
   const [assistant, setAssistant] = useState(true);
-  const [question, setQuestion] = useState('');
-  const [reply, setReply] = useState('');
+  const [question, setQuestion] = useState("");
+  const [reply, setReply] = useState("");
   const [dark, setDark] = useState(false);
   const [activeNav, setActiveNav] = useState(0);
 
   useEffect(() => {
-    const requested = new URLSearchParams(window.location.search).get('role');
+    const requested = new URLSearchParams(window.location.search).get("role");
     if (isControlCenterRoleId(requested)) setRole(requested);
   }, []);
 
   const current = CONTROL_CENTER_ROLES[role];
   const [icon, title, name, subtitle, nav, stats, tasks, ai, hint] = current;
 
-  const activity = useMemo(
-    () =>
-      role === 'social'
-        ? [
-            [
-              'تحقق مطلوب',
-              'منحة جامعة بيكنت — 4,500$',
-              'لا يوجد مصدر رسمي مرفق',
-            ],
-            ['عميل محتمل', 'استفسار EST مصر', 'من Instagram'],
-            ['محتوى', 'ريل AP Chemistry جاهز', 'بانتظار اعتماد'],
-          ]
-        : [
-            ['تحديث', 'تم تحديث مؤشر الأداء', 'قبل 8 دقائق'],
-            ['موافقة', 'عنصر جديد ينتظر قرارك', 'قبل 21 دقيقة'],
-            ['تنبيه', 'مهمة تجاوزت موعدها', 'قبل ساعة'],
-          ],
-    [role],
-  );
+  const activity = useMemo((): Array<[string, string, string]> => {
+    if (role === "social") {
+      return [
+        ["تحقق مطلوب", "منحة جامعة بيكنت — 4,500$", "لا يوجد مصدر رسمي مرفق"],
+        ["عميل محتمل", "استفسار EST مصر", "من Instagram"],
+        ["محتوى", "ريل AP Chemistry جاهز", "بانتظار اعتماد"],
+      ];
+    }
+    return [
+      ["تحديث", "تم تحديث مؤشر الأداء", "قبل 8 دقائق"],
+      ["موافقة", "عنصر جديد ينتظر قرارك", "قبل 21 دقيقة"],
+      ["تنبيه", "مهمة تجاوزت موعدها", "قبل ساعة"],
+    ];
+  }, [role]);
 
   function selectRole(next: ControlCenterRoleId) {
     setRole(next);
-    setReply('');
+    setReply("");
     setActiveNav(0);
     const url = new URL(window.location.href);
-    url.searchParams.set('role', next);
-    window.history.replaceState({}, '', url);
+    url.searchParams.set("role", next);
+    window.history.replaceState({}, "", url);
   }
 
   function ask(event: FormEvent<HTMLFormElement>) {
@@ -61,19 +56,19 @@ export function ControlCenter2050() {
     setReply(
       `حسب صلاحية ${title}: سأستخدم بيانات هذا الدور فقط وأعرض المصدر وأي قرار يحتاج موافقة بشرية.`,
     );
-    setQuestion('');
+    setQuestion("");
   }
 
   return (
-    <div className={`p11-shell p11-cc ${dark ? 'p11-dark' : ''}`} dir="rtl">
+    <div className={`p11-shell p11-cc ${dark ? "p11-dark" : ""}`} dir="rtl">
       <aside className="p11-sidebar p11-cc-side">
-        <a className="p11-cc-brand" href="/">
+        <Link className="p11-cc-brand" href="/">
           <span>S</span>
           <div>
             <b>SUCCESS OS</b>
             <small>CONTROL CENTER 2050</small>
           </div>
-        </a>
+        </Link>
 
         {CONTROL_CENTER_GROUPS.map(([label, items]) => (
           <div className="p11-cc-role-group" key={label}>
@@ -82,7 +77,7 @@ export function ControlCenter2050() {
               <button
                 key={id}
                 type="button"
-                className={`p11-nav-item ${role === id ? 'active' : ''}`}
+                className={`p11-nav-item ${role === id ? "active" : ""}`}
                 onClick={() => selectRole(id)}
               >
                 <span aria-hidden>{CONTROL_CENTER_ROLES[id][0]}</span>
@@ -110,7 +105,7 @@ export function ControlCenter2050() {
             className="p11-btn-gold w-full"
             onClick={() => setDark((value) => !value)}
           >
-            {dark ? 'الوضع الفاتح' : 'الوضع الداكن'}
+            {dark ? "الوضع الفاتح" : "الوضع الداكن"}
           </button>
         </div>
       </aside>
@@ -137,7 +132,7 @@ export function ControlCenter2050() {
             <button
               key={item}
               type="button"
-              className={index === activeNav ? 'active' : ''}
+              className={index === activeNav ? "active" : ""}
               onClick={() => setActiveNav(index)}
             >
               {item}
@@ -153,8 +148,8 @@ export function ControlCenter2050() {
                 <small>{subtitle}</small>
                 <h2>أهلا، {name}</h2>
                 <p>
-                  هذه المساحة تعرض ما يحتاجه هذا الدور فقط، مع إجراءات ومساعد ذكي
-                  مخصص.
+                  هذه المساحة تعرض ما يحتاجه هذا الدور فقط، مع إجراءات ومساعد
+                  ذكي مخصص.
                 </p>
               </div>
             </div>
@@ -186,18 +181,15 @@ export function ControlCenter2050() {
               </header>
               {tasks.map((task, index) => (
                 <div className="p11-cc-task" key={task}>
-                  <button
-                    type="button"
-                    className={index === 0 ? 'urgent' : ''}
-                  >
-                    {index === 0 ? '!' : '✓'}
+                  <button type="button" className={index === 0 ? "urgent" : ""}>
+                    {index === 0 ? "!" : "✓"}
                   </button>
                   <div>
                     <b>{task}</b>
                     <small>
                       {index === 0
-                        ? 'أولوية عالية • اليوم'
-                        : 'ضمن خطة هذا الأسبوع'}
+                        ? "أولوية عالية • اليوم"
+                        : "ضمن خطة هذا الأسبوع"}
                     </small>
                   </div>
                   <span>←</span>
@@ -210,9 +202,9 @@ export function ControlCenter2050() {
                 <div>
                   <small>مباشر</small>
                   <h3>
-                    {role === 'social'
-                      ? 'مركز التحقق والنشر'
-                      : 'آخر ما يحدث في مساحتك'}
+                    {role === "social"
+                      ? "مركز التحقق والنشر"
+                      : "آخر ما يحدث في مساحتك"}
                   </h3>
                 </div>
               </header>
@@ -225,7 +217,7 @@ export function ControlCenter2050() {
                   </div>
                 </div>
               ))}
-              {role === 'social' ? (
+              {role === "social" ? (
                 <div className="p11-cc-verify">
                   <b>لا ينشر الإعلان بعد</b>
                   <p>
