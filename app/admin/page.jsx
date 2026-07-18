@@ -1,4 +1,66 @@
 import { InnerNav } from '../components';
 
-const queues=[['مراجعة المحتوى','12','مصدر وحقوق وجودة'],['تحقق المعلمين','4','هوية ومؤهلات وخلفية'],['تنبيهات السلامة','2','أولوية عالية'],['اعتراضات الدفع','1','بانتظار استجابة']];
-export default function AdminPage(){return <div className="os-page"><InnerNav/><main className="os-page-content"><div className="os-page-head"><span className="tag">ADMIN & SAFETY OPERATIONS</span><h1>مركز تشغيل يضع الثقة قبل النمو</h1><p>قوائم مراجعة وموافقات وسجل تدقيق واستجابة للحوادث، مع فصل الصلاحيات وعدم الاعتماد على الذكاء وحده.</p></div><div className="admin-grid">{queues.map(([title,n,text])=><article className="os-card admin-card" key={title}><span>{n}</span><h2>{title}</h2><p>{text}</p><button>فتح قائمة المراجعة</button></article>)}<article className="os-card admin-card"><span>JO</span><h2>تغطية المنهاج الأردني</h2><p>الصفوف والمواد والوحدات والدروس ونسبة التحقق.</p><a className="button" href="/admin/jordan-curriculum">فتح لوحة الأردن</a></article></div><section className="os-card audit-log"><header><h2>آخر أحداث التدقيق</h2><b>سجل غير قابل للتعديل</b></header>{[['محتوى','تم اعتماد درس الكتلة المولية','مراجع بشري • قبل 12 دقيقة'],['صلاحية','تم تحديث موافقة ولي أمر','نظام الهوية • قبل 31 دقيقة'],['AI','تم تصعيد إجابة لمعلم الفيزياء','محرك السلامة • قبل ساعة'],['تحقق','اكتمل فحص مؤهل معلم','فريق التحقق • اليوم']].map(([type,event,meta])=><div key={event}><span>{type}</span><b>{event}</b><small>{meta}</small></div>)}</section></main></div>}
+export default function AdminPage() {
+  return (
+    <div className="os-page phase11-legacy-page">
+      <InnerNav />
+      <main className="os-page-content">
+        <div className="os-page-head">
+          <span className="tag">ADMIN & SAFETY OPERATIONS</span>
+          <h1>مركز تشغيل يضع الثقة قبل النمو</h1>
+          <p>
+            قوائم مراجعة وموافقات وسجل تدقيق واستجابة للحوادث، مع فصل الصلاحيات وعدم الاعتماد على
+            الذكاء وحده.
+          </p>
+        </div>
+
+        <section className="os-card admin-card" style={{ marginBottom: '1rem' }}>
+          <span>ADMIN-01</span>
+          <h2>Enterprise Admin Dashboard</h2>
+          <p>
+            Live enterprise control center — users, finance, academic metrics, CRUD modules, and
+            permissions. All statistics load from the database (no hardcoded KPIs).
+          </p>
+          <a className="button" href="/dashboard/admin">
+            Open Enterprise Admin →
+          </a>
+        </section>
+
+        <div className="admin-grid">
+          <article className="os-card admin-card">
+            <span>JO</span>
+            <h2>تغطية المنهاج الأردني</h2>
+            <p>الصفوف والمواد والوحدات والدروس ونسبة التحقق.</p>
+            <a className="button" href="/admin/jordan-curriculum">
+              فتح لوحة الأردن
+            </a>
+          </article>
+          <article className="os-card admin-card">
+            <span>JO-01.4</span>
+            <h2>Knowledge Graph</h2>
+            <p>Educational relationships for Grade 1.</p>
+            <a className="button" href="/admin/jordan-grade1-knowledge-graph">
+              Open Knowledge Graph
+            </a>
+          </article>
+          <article className="os-card admin-card">
+            <span>JO-01.2</span>
+            <h2>Grade 1 Ecosystem</h2>
+            <p>Complete learning ecosystem production status.</p>
+            <a className="button" href="/admin/jordan-grade1-learning-ecosystem">
+              Open G1 Ecosystem
+            </a>
+          </article>
+          <article className="os-card admin-card">
+            <span>JO-10</span>
+            <h2>National Registry</h2>
+            <p>Jordan National Education Registry.</p>
+            <a className="button" href="/admin/jordan-national-education-registry">
+              Open Registry
+            </a>
+          </article>
+        </div>
+      </main>
+    </div>
+  );
+}

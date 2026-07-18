@@ -7,7 +7,7 @@ const maps={
  english:['القراءة والفهم','المفردات في السياق','بناء الجملة','الأزمنة','الكتابة الوصفية','الكتابة التفسيرية','الكتابة الحجاجية','الاستماع','المحادثة','تحليل النص','البحث والتوثيق','مشروع اللغة']
 };
 const apPhysics1=['Kinematics','Force and Translational Dynamics','Work, Energy, and Power','Linear Momentum','Torque and Rotational Dynamics','Energy and Momentum of Rotating Systems','Oscillations','Fluids'];
-export function courseUnitsFor({subject='',system=''}){
+export function courseUnitsFor({subject=''}={}){
  const s=subject.toLowerCase();
  if(/ap physics 1|physics 1/.test(s))return apPhysics1;
  if(/فيز|physics/.test(s))return maps.physics;

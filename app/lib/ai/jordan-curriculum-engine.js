@@ -1,6 +1,8 @@
-import {jordanAuthority,jordanGradeRegistry,jordanGrade} from '../../data/jordan-curriculum';
-import {buildBookDraft} from './book-engine';
-import {buildCoverageRepairPlan,curriculumDashboardRow,verifyCurriculumCoverage} from './curriculum-coverage';
+import {jordanAuthority,jordanGradeRegistry,jordanGrade} from '../../data/jordan-curriculum.js';
+import {buildBookDraft} from './book-engine.js';
+import {buildCoverageRepairPlan,curriculumDashboardRow,verifyCurriculumCoverage} from './curriculum-coverage.js';
+import {assertJordanBookGenerationAllowed} from './jordan-national-knowledge-engine.js';
+import {assertJordanReferenceLibraryReady} from './jordan-educational-reference-library-engine.js';
 
 const clean=x=>String(x||'').trim();
 export function jordanAdminSnapshot({baselines=[],books=[]}={}){
@@ -29,6 +31,10 @@ export function jordanWorkQueue({baselines=[],books=[]}={}){
 }
 
 export async function buildJordanBook(input,options={}){
+ // PHASE JO-01 — hard gate: knowledge DB must be ≥98% before any Jordan book build.
+ assertJordanBookGenerationAllowed({action:'buildJordanBook',grade:input?.identity?.grade,subject:input?.identity?.subject});
+ // PHASE JO-05 — verified reference library required before generation.
+ assertJordanReferenceLibraryReady({action:'buildJordanBook',grade:input?.identity?.grade,subject:input?.identity?.subject});
  const grade=jordanGrade(input?.identity?.grade);
  const errors={};
  if(!grade)errors.grade='unsupported Jordan grade';

@@ -1,0 +1,95 @@
+name: CI
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main, develop]
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  NEXT_PUBLIC_APP_NAME: Success OS
+  NEXT_PUBLIC_APP_URL: http://localhost:3000
+  NEXT_PUBLIC_APP_ENV: test
+  NEXT_PUBLIC_FIREBASE_API_KEY: ci-placeholder-api-key
+  NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN: success-os-ci.firebaseapp.com
+  NEXT_PUBLIC_FIREBASE_PROJECT_ID: success-os-ci
+  NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET: success-os-ci.appspot.com
+  NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID: "123456789012"
+  NEXT_PUBLIC_FIREBASE_APP_ID: 1:123456789012:web:abcdef123456
+  FIREBASE_PROJECT_ID: success-os-ci
+  FIREBASE_CLIENT_EMAIL: firebase-adminsdk-ci@success-os-ci.iam.gserviceaccount.com
+  FIREBASE_PRIVATE_KEY: "-----BEGIN PRIVATE KEY-----\nCI_PLACEHOLDER\n-----END PRIVATE KEY-----\n"
+  AUTH_SESSION_COOKIE_NAME: __session
+  AUTH_SESSION_COOKIE_MAX_AGE: "432000"
+  AUTH_SESSION_META_SECRET: "ci-placeholder-session-meta-secret-32chars"
+  AUTH_SECURE_COOKIES: "false"
+  FEATURE_AUTH_ENABLED: "true"
+  FEATURE_ANALYTICS_ENABLED: "false"
+  LOG_LEVEL: warn
+
+jobs:
+  quality:
+    name: Lint, Typecheck, and Build
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: npm
+
+      - name: Install dependencies
+        run: |
+          if [ -f package-lock.json ]; then
+            npm ci
+          else
+            npm install
+          fi
+
+      - name: Run ESLint
+        run: npm run lint
+
+      - name: Run Prettier check
+        run: npm run format:check
+
+      - name: Run TypeScript
+        run: npm run typecheck
+
+      - name: Build application
+        run: npm run build
+
+  security:
+    name: Dependency audit
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: npm
+
+      - name: Install dependencies
+        run: |
+          if [ -f package-lock.json ]; then
+            npm ci
+          else
+            npm install
+          fi
+
+      - name: Run npm audit
+        run: npm audit --audit-level=high
+        continue-on-error: true

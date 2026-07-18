@@ -1,0 +1,52 @@
+# SUCCESS OS environment template
+# Copy to .env.local. Never commit real secrets.
+
+# Application
+NEXT_PUBLIC_APP_NAME=Success OS
+NEXT_PUBLIC_APP_URL=http://localhost:3000
+NEXT_PUBLIC_APP_ENV=development
+
+# Firebase client configuration (public)
+NEXT_PUBLIC_FIREBASE_API_KEY=
+NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=
+NEXT_PUBLIC_FIREBASE_PROJECT_ID=
+NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET=
+NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=
+NEXT_PUBLIC_FIREBASE_APP_ID=
+NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID=
+
+# Firebase Admin SDK (server only)
+FIREBASE_PROJECT_ID=
+FIREBASE_CLIENT_EMAIL=
+# Preserve escaped newlines: -----BEGIN PRIVATE KEY-----\n...\n-----END PRIVATE KEY-----\n
+FIREBASE_PRIVATE_KEY=
+FIREBASE_DATABASE_URL=
+
+# Authentication and session security
+AUTH_SESSION_COOKIE_NAME=__session
+AUTH_SESSION_COOKIE_MAX_AGE=432000
+# Required: generate at least 32 cryptographically random characters.
+AUTH_SESSION_META_SECRET=
+# Must be true in production HTTPS environments.
+AUTH_SECURE_COOKIES=false
+
+# OAuth providers
+NEXT_PUBLIC_APPLE_SIGNIN_ENABLED=false
+
+# Feature flags
+# Keep false until Firebase and protected-route E2E tests pass.
+FEATURE_AUTH_ENABLED=false
+FEATURE_ANALYTICS_ENABLED=false
+
+# Logging
+LOG_LEVEL=info
+
+# Optional local Firebase Auth emulator
+# NEXT_PUBLIC_FIREBASE_AUTH_EMULATOR_HOST=127.0.0.1:9099
+
+# Planned integrations are intentionally not active in the current code.
+# Add provider-specific secrets only with their adapter implementation:
+# AI_PROVIDER_PRIMARY=
+# AI_PROVIDER_FALLBACKS=
+# PAYMENT_PROVIDER=
+# NOTIFICATION_PROVIDER=

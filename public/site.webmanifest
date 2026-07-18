@@ -1,0 +1,16 @@
+{
+  "name": "Success OS",
+  "short_name": "Success OS",
+  "description": "A production-grade personal operating system for goal achievement.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#fafafa",
+  "theme_color": "#18181b",
+  "icons": [
+    {
+      "src": "/icons/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}

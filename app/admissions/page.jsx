@@ -28,7 +28,7 @@ export default function AdmissionsPage(){
   const toggleSave=id=>setSaved(s=>{const next=s.includes(id)?s.filter(x=>x!==id):[...s,id];localStorage.setItem('success-os-university-compare',JSON.stringify(next));return next});
   const chooseStudyCountry=v=>{setStudyCountry(v);setCity('الكل')};
 
-  return <div className="os-page"><InnerNav active="admissions"/><main className="os-page-content admission-match-page">
+  return <div className="os-page phase11-legacy-page"><InnerNav active="admissions"/><main className="os-page-content admission-match-page">
     <header className="admissions-hero admission-premium-hero"><div><span>GLOBAL ADMISSION & RECOGNITION MATCH</span><h1>قبول جامعي مرتبط بجنسيتك ومؤهلك</h1><p>نطابق دولة الطالب وشهادته ونظامه التعليمي مع متطلبات المؤسسة، ثم نفصل بوضوح بين أهلية القبول وترخيص المؤسسة والاعتراف بالدرجة في دولة الطالب.</p></div><div className="admission-orbit"><b>21K</b><small>مرجع WHED عالمي</small><i>{globalInstitutions.length}</i><em>مؤسسة مفصلة في فهرس الإطلاق</em></div></header>
 
     <section className="admission-safety"><span>◎</span><div><b>تنبيه الاعتراف حسب دولتك</b><p>هذه النتائج مخصصة لحالتك، لكنها ليست قرار معادلة. كلمة «مؤسسة معترف بها في بلدها» لا تعني أن كل برنامج أو فرع أو دراسة أونلاين معترف بها في {nationality}.</p></div><a href={countryAuthorities[nationality]?.url||'https://www.whed.net/home.php'} target="_blank" rel="noreferrer">الجهة المختصة ↗</a></section>

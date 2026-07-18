@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://success-os.app/sitemap.xml

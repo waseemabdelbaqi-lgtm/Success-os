@@ -16,7 +16,7 @@ export default function SubjectCatalog(){
  const selectSubject=value=>{setSubject(value);setService('')};
  const recorded=service==='حصص مسجلة',live=service&& !recorded;
  const complete=country&&system&&stage&&grade&&semester&&subject&&service&&(recorded||(providerCountry&&city&&currency&&maxPrice&&rating));
- return <div className="os-page"><InnerNav active="subjects"/><main className="os-page-content subject-page">
+ return <div className="os-page phase11-legacy-page"><InnerNav active="subjects"/><main className="os-page-content subject-page">
   <header className="subject-hero"><span>COUNTRY → SYSTEM → STAGE → GRADE → SUBJECT → LESSON TYPE</span><h1>اختر المادة ثم نوع الحصة</h1><p>تظهر الحصص البشرية أولًا، وتظهر فلاتر المعلم والمركز تلقائيًا عند اختيار الحصص المباشرة.</p></header>
   <section className="directory-filter subject-filter"><header><div><small>DEPENDENT CURRICULUM FILTERS</small><h2>حدد المسار بالترتيب</h2></div><button onClick={reset}>مسح الفلاتر</button></header><div>
    <label>1. الدولة<select value={country} onChange={e=>selectCountry(e.target.value)}>{countries.map(x=><option value={x.code} key={x.code}>{x.name}</option>)}</select></label>

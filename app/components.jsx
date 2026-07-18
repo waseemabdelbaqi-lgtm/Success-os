@@ -2,7 +2,7 @@
 import {useState} from 'react';
 
 export function Brand() {
-  return <a className="os-brand brand-image" href="/" aria-label="SUCCESS 4 SURE"><span className="brand-art"><img src="/brand/success4sure-logo-navy.webp" alt="SUCCESS 4 SURE"/></span></a>;
+  return <a className="os-brand brand-image" href="/" aria-label="SUCCESS 4 SURE"><span className="success-wordmark"><i>⌁</i><b>SUCCESS</b><small>4SURE</small></span></a>;
 }
 
 const links = [
@@ -12,7 +12,17 @@ const links = [
 ];
 
 export function Sidebar({ active='dashboard' }) {
-  return <aside className="os-sidebar"><Brand/><div className="os-side-label">مساحتي التعليمية</div><nav className="os-nav">{links.map(([href,icon,label])=><a key={label} href={href} className={href.includes(active)?'active':''}><span>{icon}</span>{label}</a>)}</nav><div className="os-side-label">الحساب</div><nav className="os-nav"><a href="/notifications"><span>◎</span>الإشعارات</a><a href="/profile"><span>⚙</span>إعدادات الحساب</a></nav><div className="os-support"><strong>تحتاج مساعدة؟</strong><p>فريق Success 4 Sure جاهز لمساعدتك في التعلم أو الحجز.</p><a href="mailto:info@success4sureacademy.com">تواصل معنا ←</a></div></aside>;
+  return <aside className="os-sidebar phase11-private-side"><Brand/><div className="os-side-label">مساحتي التعليمية</div><nav className="os-nav">{links.map(([href,icon,label])=><a key={label} href={href} className={href.includes(active)?'active':''}><span>{icon}</span>{label}</a>)}</nav><div className="os-side-label">الحساب</div><nav className="os-nav"><a href="/notifications"><span>◎</span>الإشعارات</a><a href="/profile"><span>⚙</span>إعدادات الحساب</a></nav><div className="os-support"><strong>تحتاج مساعدة؟</strong><p>فريق Success 4 Sure جاهز لمساعدتك في التعلم أو الحجز.</p><a href="mailto:info@success4sureacademy.com">تواصل معنا ←</a></div></aside>;
+}
+
+/** Shared private-shell wrapper — Phase 11 styling, unchanged structure. */
+export function PrivateShell({ active='dashboard', children }) {
+  return <div className="os-shell phase11-private-shell"><Sidebar active={active}/><main className="os-main"><Topbar/>{children}</main></div>;
+}
+
+/** Shared legacy-page marker class for Phase 11 adapters. */
+export function LegacyPage({ active, children }) {
+  return <div className="os-page phase11-legacy-page"><InnerNav active={active}/>{children}</div>;
 }
 
 export function Topbar() {

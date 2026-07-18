@@ -159,3 +159,7 @@
 .video-production-state{margin:16px 0;padding:15px 18px;border-radius:12px;background:#fff5dc;color:#604812;font-weight:800}.human-video-request{background:#071b2f!important;color:#fff!important;border:1px solid #d8bb75!important}.lesson-not-produced .human-video-request{margin-inline-start:10px}
 .curriculum-verification{grid-column:1/-1;margin-top:16px;padding:16px 18px;border-radius:16px;display:flex;align-items:center;gap:14px;flex-wrap:wrap;background:rgba(12,35,62,.72);border:1px solid rgba(91,220,255,.28)}
 .curriculum-verification b{font-size:17px;color:#72e6ff}.curriculum-verification p{margin:0;flex:1;min-width:260px;color:#e7f3ff}.curriculum-verification a{min-height:48px;display:inline-flex;align-items:center;padding:0 16px;border-radius:12px;background:#9f001b;color:#fff;font-weight:800}.curriculum-verification.is-review{border-color:rgba(255,184,77,.46);background:rgba(77,45,10,.5)}.curriculum-verification.is-review b{color:#ffc76b}
+.material-book-actions{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:14px}
+.material-open-book{display:inline-flex;align-items:center;min-height:46px;padding:0 16px;border-radius:12px;background:#8b1e1e;color:#fff!important;font-weight:800;text-decoration:none}
+.material-open-subject{display:inline-flex;align-items:center;min-height:46px;padding:0 14px;border-radius:12px;border:1px solid #d4af37;color:#fff!important;background:#ffffff18;font-weight:700;text-decoration:none}
+.material-book-actions small{color:#f2d77c;font-weight:700}

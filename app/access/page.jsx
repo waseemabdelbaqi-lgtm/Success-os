@@ -240,7 +240,7 @@ export default function AccessPage() {
     runAI("journey");
   }
   return (
-    <div className="os-page">
+    <div className="os-page phase11-legacy-page">
       <InnerNav active="access" />
       <main className="os-page-content portal-world">
         <header className="gateway-title">

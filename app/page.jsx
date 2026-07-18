@@ -130,11 +130,12 @@ function Icon({name}) {
 
 function Logo({dark=false}) {
   return <a className={`logo brand-image ${dark ? 'dark' : ''}`} href="#top" aria-label="SUCCESS 4 SURE home">
-    <span className="brand-art"><img src="/brand/success4sure-logo-navy.webp" alt="SUCCESS 4 SURE"/></span>
+    <span className="success-wordmark"><i>⌁</i><b>SUCCESS</b><small>4SURE</small></span>
   </a>;
 }
 
-export default function HomePage({ initialLang = 'ar' }) {
+export default function HomePage() {
+  const initialLang = 'ar';
   const [lang, setLang] = useState(initialLang);
   const [menu, setMenu] = useState(false);
   const [modal, setModal] = useState(false);
@@ -182,7 +183,7 @@ export default function HomePage({ initialLang = 'ar' }) {
   const partnerGateways=['teacher','center','school','university','employer'];
   const searchRoutes={teacher:'/teachers',center:'/partner-search?portal=center',school:'/school-finder',university:'/admissions',employer:'/jobs'};
 
-  return <div id="top" className="app">
+  return <div id="top" className="app phase11-landing">
     <header className="nav-shell">
       <nav className="nav container">
         <Logo />

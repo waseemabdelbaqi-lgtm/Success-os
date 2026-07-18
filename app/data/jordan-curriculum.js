@@ -8,9 +8,10 @@ export const jordanAuthority={
  sources:[
   {name:'NCCD official portal',url:'https://www.nccd.gov.jo/Default/AR#carouselContainer',authorityType:'official-authority',usage:'official-discovery-and-indexing-only',license:'official-framework-reference'},
   {name:'NCCD textbook catalogue',url:'https://www.nccd.gov.jo/Ar/Pages/textbooks',authorityType:'official-authority',usage:'structure-and-outcomes-only',license:'official-framework-reference'},
+  {name:'Darsak Platform',url:'https://darsak.gov.jo/',authorityType:'official-digital-platform',usage:'digital-lesson-structure-reference-never-copy',license:'official-framework-reference'},
   {name:'MOE curricula and textbooks administration',url:'https://moe.gov.jo/ar/%D8%A5%D8%AF%D8%A7%D8%B1%D8%A9-%D8%A7%D9%84%D9%85%D9%86%D8%A7%D9%87%D8%AC-%D9%88%D8%A7%D9%84%D9%83%D8%AA%D8%A8-%D8%A7%D9%84%D9%85%D8%AF%D8%B1%D8%B3%D9%8A%D8%A9',authorityType:'ministry',usage:'structure-and-outcomes-only',license:'official-framework-reference'},
   {name:'MOE approved textbook editions 2025–2026',url:'https://moe.gov.jo/ar/node/79818',authorityType:'ministry',usage:'edition-verification-only',license:'official-framework-reference'}
- ],lastReviewed:'2026-07-16'
+ ],lastReviewed:'2026-07-18'
 };
 
 const grades=[

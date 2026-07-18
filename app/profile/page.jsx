@@ -60,7 +60,7 @@ export default function ProfilePage() {
       university: "institution",
     }[role] || role;
   return (
-    <div className="os-page">
+    <div className="os-page phase11-legacy-page">
       <InnerNav active="profile" />
       <main className="os-page-content profile-page">
         <header className="profile-hero">

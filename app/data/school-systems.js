@@ -2,7 +2,7 @@ const ISO_CODES=`AD AE AF AG AI AL AM AO AR AS AT AU AW AX AZ BA BB BD BE BF BG 
 const regionNames=new Intl.DisplayNames(['ar'],{type:'region'});
 export const countries=ISO_CODES.map(code=>({code,name:regionNames.of(code)||code})).sort((a,b)=>a.name.localeCompare(b.name,'ar'));
 
-import {nationalGrades,nationalProfile,nationalSemesters,nationalStages,nationalStatus,nationalSubjects} from './national-curricula';
+import {nationalGrades,nationalProfile,nationalSemesters,nationalStages,nationalStatus,nationalSubjects} from './national-curricula.js';
 const primary=['اللغة الرسمية','اللغة الإنجليزية','الرياضيات','العلوم','الدراسات الاجتماعية','الحاسوب','الفنون','التربية الرياضية'];
 const lower=['اللغة الرسمية','اللغة الإنجليزية','الرياضيات','الفيزياء','الكيمياء','الأحياء','التاريخ','الجغرافيا','الحاسوب'];
 const upper=['اللغة الرسمية','اللغة الإنجليزية','الرياضيات','الفيزياء','الكيمياء','الأحياء','علوم الأرض والبيئة','التاريخ','الجغرافيا','الاقتصاد','الحاسوب'];

@@ -73,7 +73,7 @@ export default function StartJourney(){
   setTimeout(()=>{setBusy(false);setStep(s=>Math.min(s+1,8))},220)
  }
  function confirm(){if(busy)return;setBusy(true);setTimeout(()=>{try{const saved=JSON.parse(localStorage.getItem('success-os-requests')||'[]');localStorage.setItem('success-os-requests',JSON.stringify([{id:`J-${Date.now()}`,portal,intent:form.intent,studentType:form.studentType,choice,basePrice,platformFee,partnerPayout,totalPrice,target,filters:form.filters,status:'بانتظار الدفع',created:new Date().toISOString()},...saved]))}catch{}setBusy(false);setStep(8)},320)}
- return <div className="os-page" lang={lang} dir={lang==='ar'?'rtl':'ltr'}><InnerNav active="access"/><main className="os-page-content start-journey-page">
+ return <div className="os-page phase11-legacy-page" lang={lang} dir={lang==='ar'?'rtl':'ltr'}><InnerNav active="access"/><main className="os-page-content start-journey-page">
   <div className="journey-language"><b>اللغة / Language</b><button className={lang==='ar'?'active':''} onClick={()=>setLang('ar')}>العربية</button><button className={lang==='en'?'active':''} onClick={()=>setLang('en')}>English</button></div>
   <header className="journey-launch-hero"><div><small>ONE CONTROLLED JOURNEY</small><h1>ابدأ رحلتك بخطوات واضحة</h1><p>ثماني مراحل مترابطة تحفظ اختياراتك وتوصلك إلى اللوحة المناسبة دون روابط وهمية.</p></div><aside><img src="/media/success-future-gateways.webp" alt="بوابات SUCCESS OS"/></aside></header>
   <nav className="journey-progress" aria-label="مراحل الرحلة">{steps.map((x,i)=><span className={step===i+1?'active':step>i+1?'done':''} key={x}><b>{i+1}</b>{x}</span>)}</nav>
