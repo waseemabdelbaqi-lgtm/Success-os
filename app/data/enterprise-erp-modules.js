@@ -49,6 +49,17 @@ export const ENTERPRISE_ERP_NAV = Object.freeze([
   // Workflow
   { id: 'tasks', label: 'Tasks & Workflow', href: '/dashboard/admin/tasks', icon: 'list', group: 'ops', crud: true },
   { id: 'teams', label: 'Teams', href: '/dashboard/admin/teams', icon: 'users', group: 'ops', crud: true },
+  // Business Automation Engine (central nervous system)
+  { id: 'business-automation', label: 'Business Automation Engine', href: '/dashboard/admin/business-automation', icon: 'spark', group: 'ops', crud: true },
+  { id: 'approval-center', label: 'Approval Center', href: '/dashboard/admin/approval-center', icon: 'lock', group: 'ops', crud: true },
+  { id: 'automation-workflows', label: 'Automation Workflows', href: '/dashboard/admin/automation-workflows', icon: 'list', group: 'ops', crud: true },
+  { id: 'automation-runs', label: 'Automation Runs', href: '/dashboard/admin/automation-runs', icon: 'list', group: 'ops', crud: true },
+  { id: 'automation-rules', label: 'Smart Rules', href: '/dashboard/admin/automation-rules', icon: 'sliders', group: 'ops', crud: true },
+  { id: 'automation-schedules', label: 'Automation Scheduler', href: '/dashboard/admin/automation-schedules', icon: 'gear', group: 'ops', crud: true },
+  { id: 'automation-templates', label: 'Automation Templates', href: '/dashboard/admin/automation-templates', icon: 'file', group: 'ops', crud: true },
+  { id: 'automation-inbox', label: 'Internal Inbox', href: '/dashboard/admin/automation-inbox', icon: 'bell', group: 'ops', crud: true },
+  { id: 'automation-escalations', label: 'Escalations', href: '/dashboard/admin/automation-escalations', icon: 'life-ring', group: 'ops', crud: true },
+  { id: 'automation-integrations', label: 'Automation Integrations', href: '/dashboard/admin/automation-integrations', icon: 'share', group: 'ops', crud: true },
   // Money engines
   { id: 'commission-rules', label: 'Commission Engine', href: '/dashboard/admin/commission-rules', icon: 'percent', group: 'ops', crud: true },
   { id: 'payment-splits', label: 'Payment Splits', href: '/dashboard/admin/payment-splits', icon: 'currency', group: 'ops', crud: true },
@@ -76,6 +87,7 @@ export const ENTERPRISE_ERP_NAV = Object.freeze([
 
 export const ENTERPRISE_ERP_NAV_GROUPS = Object.freeze({
   hr: 'Human Resources',
+  ops: 'Operations & Automation',
 });
 
 export const ENTERPRISE_ERP_MODULES = Object.freeze({
@@ -893,6 +905,183 @@ export const ENTERPRISE_ERP_MODULES = Object.freeze({
       { key: 'country', label: 'Country', type: 'text', required: true },
       { key: 'permission', label: 'Permission', type: 'text', required: true },
       { key: 'status', label: 'Status', type: 'select', options: ['active', 'inactive'] },
+    ],
+  }),
+  'business-automation': crudSchema({
+    id: 'business-automation',
+    label: 'Business Automation Engine',
+    collection: 'automation-workflows',
+    searchable: ['name', 'key', 'status'],
+    actions: ['add', 'edit', 'delete'],
+    columns: [
+      { key: 'name', label: 'Workflow' },
+      { key: 'key', label: 'Key' },
+      { key: 'status', label: 'Status' },
+      { key: 'updatedAt', label: 'Updated' },
+    ],
+    fields: [
+      { key: 'name', label: 'Name', type: 'text', required: true },
+      { key: 'key', label: 'Key', type: 'text', required: true },
+      { key: 'status', label: 'Status', type: 'select', options: ['active', 'inactive'] },
+    ],
+  }),
+  'approval-center': crudSchema({
+    id: 'approval-center',
+    label: 'Approval Center',
+    collection: 'automation-approvals',
+    searchable: ['approvalType', 'title', 'status'],
+    actions: ['approve', 'reject'],
+    columns: [
+      { key: 'approvalType', label: 'Type' },
+      { key: 'title', label: 'Title' },
+      { key: 'status', label: 'Status' },
+      { key: 'createdAt', label: 'Requested' },
+    ],
+    fields: [
+      { key: 'approvalType', label: 'Type', type: 'text', required: true },
+      { key: 'title', label: 'Title', type: 'text', required: true },
+      { key: 'status', label: 'Status', type: 'select', options: ['pending', 'approved', 'rejected'] },
+    ],
+  }),
+  'automation-workflows': crudSchema({
+    id: 'automation-workflows',
+    label: 'Automation Workflows',
+    searchable: ['name', 'key', 'status'],
+    columns: [
+      { key: 'name', label: 'Name' },
+      { key: 'key', label: 'Key' },
+      { key: 'mode', label: 'Mode' },
+      { key: 'status', label: 'Status' },
+    ],
+    fields: [
+      { key: 'name', label: 'Name', type: 'text', required: true },
+      { key: 'key', label: 'Key', type: 'text', required: true },
+      { key: 'mode', label: 'Mode', type: 'select', options: ['sequential', 'parallel', 'conditional'] },
+      { key: 'status', label: 'Status', type: 'select', options: ['active', 'inactive'] },
+    ],
+  }),
+  'automation-runs': crudSchema({
+    id: 'automation-runs',
+    label: 'Automation Runs',
+    searchable: ['workflowName', 'trigger', 'status'],
+    actions: ['export'],
+    columns: [
+      { key: 'workflowName', label: 'Workflow' },
+      { key: 'trigger', label: 'Trigger' },
+      { key: 'status', label: 'Status' },
+      { key: 'executionMs', label: 'Duration ms' },
+      { key: 'user', label: 'User' },
+    ],
+    fields: [
+      { key: 'workflowName', label: 'Workflow', type: 'text' },
+      { key: 'status', label: 'Status', type: 'select', options: ['completed', 'failed', 'waiting_approval'] },
+    ],
+  }),
+  'automation-rules': crudSchema({
+    id: 'automation-rules',
+    label: 'Smart Rules',
+    searchable: ['name', 'eventKey', 'status'],
+    columns: [
+      { key: 'name', label: 'Rule' },
+      { key: 'eventKey', label: 'Event' },
+      { key: 'status', label: 'Status' },
+    ],
+    fields: [
+      { key: 'name', label: 'Name', type: 'text', required: true },
+      { key: 'key', label: 'Key', type: 'text', required: true },
+      { key: 'eventKey', label: 'Event key', type: 'text', required: true },
+      { key: 'status', label: 'Status', type: 'select', options: ['active', 'inactive'] },
+    ],
+  }),
+  'automation-schedules': crudSchema({
+    id: 'automation-schedules',
+    label: 'Automation Scheduler',
+    searchable: ['name', 'cadence', 'cron'],
+    columns: [
+      { key: 'name', label: 'Job' },
+      { key: 'cadence', label: 'Cadence' },
+      { key: 'cron', label: 'Cron' },
+      { key: 'timezone', label: 'Timezone' },
+      { key: 'status', label: 'Status' },
+    ],
+    fields: [
+      { key: 'name', label: 'Name', type: 'text', required: true },
+      { key: 'cadence', label: 'Cadence', type: 'select', options: ['daily', 'weekly', 'monthly', 'yearly', 'cron'] },
+      { key: 'cron', label: 'Cron', type: 'text' },
+      { key: 'timezone', label: 'Timezone', type: 'text' },
+      { key: 'status', label: 'Status', type: 'select', options: ['active', 'inactive'] },
+    ],
+  }),
+  'automation-templates': crudSchema({
+    id: 'automation-templates',
+    label: 'Automation Templates',
+    searchable: ['name', 'channel', 'lang'],
+    columns: [
+      { key: 'name', label: 'Template' },
+      { key: 'channel', label: 'Channel' },
+      { key: 'lang', label: 'Lang' },
+      { key: 'status', label: 'Status' },
+    ],
+    fields: [
+      { key: 'name', label: 'Name', type: 'text', required: true },
+      { key: 'key', label: 'Key', type: 'text', required: true },
+      { key: 'channel', label: 'Channel', type: 'select', options: ['email', 'sms', 'whatsapp', 'push', 'certificate', 'contract', 'invoice', 'receipt', 'report'] },
+      { key: 'lang', label: 'Language', type: 'select', options: ['ar', 'en'] },
+      { key: 'subject', label: 'Subject', type: 'text' },
+      { key: 'body', label: 'Body', type: 'textarea' },
+      { key: 'status', label: 'Status', type: 'select', options: ['active', 'inactive'] },
+    ],
+  }),
+  'automation-inbox': crudSchema({
+    id: 'automation-inbox',
+    label: 'Internal Inbox',
+    collection: 'automation-messages',
+    searchable: ['title', 'department', 'type'],
+    columns: [
+      { key: 'type', label: 'Type' },
+      { key: 'department', label: 'Department' },
+      { key: 'title', label: 'Title' },
+      { key: 'status', label: 'Status' },
+    ],
+    fields: [
+      { key: 'type', label: 'Type', type: 'select', options: ['inbox', 'department', 'announcement', 'approval_note', 'task_discussion'] },
+      { key: 'department', label: 'Department', type: 'text' },
+      { key: 'title', label: 'Title', type: 'text', required: true },
+      { key: 'body', label: 'Body', type: 'textarea' },
+      { key: 'status', label: 'Status', type: 'select', options: ['unread', 'read'] },
+    ],
+  }),
+  'automation-escalations': crudSchema({
+    id: 'automation-escalations',
+    label: 'Escalations',
+    searchable: ['reason', 'entityType', 'status'],
+    columns: [
+      { key: 'reason', label: 'Reason' },
+      { key: 'entityType', label: 'Entity' },
+      { key: 'target', label: 'Target' },
+      { key: 'status', label: 'Status' },
+    ],
+    fields: [
+      { key: 'reason', label: 'Reason', type: 'text', required: true },
+      { key: 'entityType', label: 'Entity type', type: 'text' },
+      { key: 'target', label: 'Target', type: 'text' },
+      { key: 'status', label: 'Status', type: 'select', options: ['open', 'resolved'] },
+    ],
+  }),
+  'automation-integrations': crudSchema({
+    id: 'automation-integrations',
+    label: 'Automation Integrations',
+    searchable: ['name', 'key', 'status'],
+    columns: [
+      { key: 'name', label: 'Provider' },
+      { key: 'key', label: 'Key' },
+      { key: 'status', label: 'Status' },
+      { key: 'connected', label: 'Connected' },
+    ],
+    fields: [
+      { key: 'name', label: 'Name', type: 'text', required: true },
+      { key: 'key', label: 'Key', type: 'text', required: true },
+      { key: 'status', label: 'Status', type: 'select', options: ['ready', 'connected', 'planned', 'error'] },
     ],
   }),
 });
