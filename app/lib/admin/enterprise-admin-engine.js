@@ -13,6 +13,8 @@ import {
   ENTERPRISE_ADMIN_VERSION,
   ENTERPRISE_ADMIN_NAV,
   ENTERPRISE_ADMIN_NAV_GROUPS,
+  ENTERPRISE_ADMIN_NAV_GROUPS_AR,
+  ENTERPRISE_ADMIN_GROUP_ORDER,
   getModuleSchema,
 } from '../../data/enterprise-admin-nav.js';
 import {
@@ -881,5 +883,7 @@ export function getEnterpriseAdminMeta() {
     version: ENTERPRISE_ADMIN_VERSION,
     nav: ENTERPRISE_ADMIN_NAV,
     navGroups: ENTERPRISE_ADMIN_NAV_GROUPS,
+    navGroupsAr: ENTERPRISE_ADMIN_NAV_GROUPS_AR,
+    groupOrder: ENTERPRISE_ADMIN_GROUP_ORDER,
   };
 }

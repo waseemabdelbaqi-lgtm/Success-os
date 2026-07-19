@@ -32,51 +32,55 @@ function crudSchema({
 
 /** Additional sidebar items (appended after existing nav). */
 export const ENTERPRISE_ERP_NAV = Object.freeze([
-  // HR suite
-  { id: 'hr-departments', label: 'Departments', href: '/dashboard/admin/hr-departments', icon: 'badge', group: 'hr', crud: true },
-  { id: 'hr-positions', label: 'Positions', href: '/dashboard/admin/hr-positions', icon: 'badge', group: 'hr', crud: true },
-  { id: 'hr-contracts', label: 'Employment Contracts', href: '/dashboard/admin/hr-contracts', icon: 'file', group: 'hr', crud: true },
-  { id: 'hr-payroll', label: 'Payroll', href: '/dashboard/admin/hr-payroll', icon: 'currency', group: 'hr', crud: true },
-  { id: 'hr-attendance', label: 'Attendance', href: '/dashboard/admin/hr-attendance', icon: 'list', group: 'hr', crud: true },
-  { id: 'hr-leave', label: 'Leave Management', href: '/dashboard/admin/hr-leave', icon: 'list', group: 'hr', crud: true },
-  { id: 'hr-performance', label: 'Performance Evaluation', href: '/dashboard/admin/hr-performance', icon: 'chart', group: 'hr', crud: true },
-  { id: 'hr-bonuses', label: 'Bonuses', href: '/dashboard/admin/hr-bonuses', icon: 'award', group: 'hr', crud: true },
-  { id: 'hr-penalties', label: 'Penalties', href: '/dashboard/admin/hr-penalties', icon: 'list', group: 'hr', crud: true },
-  { id: 'hr-notes', label: 'Internal Notes', href: '/dashboard/admin/hr-notes', icon: 'file', group: 'hr', crud: true },
-  { id: 'hr-documents', label: 'Employee Documents', href: '/dashboard/admin/hr-documents', icon: 'file', group: 'hr', crud: true },
-  { id: 'hr-signatures', label: 'Digital Signatures', href: '/dashboard/admin/hr-signatures', icon: 'lock', group: 'hr', crud: true },
-  { id: 'hr-bank-accounts', label: 'Bank Accounts', href: '/dashboard/admin/hr-bank-accounts', icon: 'currency', group: 'hr', crud: true },
-  // Workflow
-  { id: 'tasks', label: 'Tasks & Workflow', href: '/dashboard/admin/tasks', icon: 'list', group: 'ops', crud: true },
-  { id: 'teams', label: 'Teams', href: '/dashboard/admin/teams', icon: 'users', group: 'ops', crud: true },
-  // Money engines
-  { id: 'commission-rules', label: 'Commission Engine', href: '/dashboard/admin/commission-rules', icon: 'percent', group: 'ops', crud: true },
-  { id: 'payment-splits', label: 'Payment Splits', href: '/dashboard/admin/payment-splits', icon: 'currency', group: 'ops', crud: true },
-  { id: 'payouts', label: 'Payouts', href: '/dashboard/admin/payouts', icon: 'currency', group: 'ops', crud: true },
-  { id: 'invoices', label: 'Invoices', href: '/dashboard/admin/invoices', icon: 'file', group: 'ops', crud: true },
-  { id: 'receipts', label: 'Receipts', href: '/dashboard/admin/receipts', icon: 'file', group: 'ops', crud: true },
-  { id: 'ledger', label: 'Accounting Ledger', href: '/dashboard/admin/ledger', icon: 'list', group: 'ops', crud: true },
-  { id: 'refunds', label: 'Refunds', href: '/dashboard/admin/refunds', icon: 'currency', group: 'ops', crud: true },
-  { id: 'expenses', label: 'Expenses', href: '/dashboard/admin/expenses', icon: 'currency', group: 'ops', crud: true },
-  { id: 'settlements', label: 'Settlements', href: '/dashboard/admin/settlements', icon: 'currency', group: 'ops', crud: true },
-  // Partner depth
-  { id: 'partner-contracts', label: 'Partner Contracts', href: '/dashboard/admin/partner-contracts', icon: 'handshake', group: 'ops', crud: true },
-  { id: 'partner-subscriptions', label: 'Partner Subscriptions', href: '/dashboard/admin/partner-subscriptions', icon: 'handshake', group: 'ops', crud: true },
-  // Social / notify
-  { id: 'social-accounts', label: 'Social Accounts', href: '/dashboard/admin/social-accounts', icon: 'share', group: 'growth', crud: true },
-  { id: 'social-campaigns', label: 'Social Campaigns', href: '/dashboard/admin/social-campaigns', icon: 'megaphone', group: 'growth', crud: true },
-  { id: 'social-posts', label: 'Scheduled Posts', href: '/dashboard/admin/social-posts', icon: 'share', group: 'growth', crud: true },
-  { id: 'notification-jobs', label: 'Notification Jobs', href: '/dashboard/admin/notification-jobs', icon: 'bell', group: 'system', crud: true },
-  // Protection
-  { id: 'recycle-bin', label: 'Recycle Bin', href: '/dashboard/admin/recycle-bin', icon: 'trash', group: 'system', crud: true },
-  { id: 'temporary-permissions', label: 'Temporary Permissions', href: '/dashboard/admin/temporary-permissions', icon: 'lock', group: 'system', crud: true },
-  { id: 'department-permissions', label: 'Department Permissions', href: '/dashboard/admin/department-permissions', icon: 'lock', group: 'system', crud: true },
-  { id: 'country-permissions', label: 'Country Permissions', href: '/dashboard/admin/country-permissions', icon: 'globe', group: 'system', crud: true },
+  // Human Resources
+  { id: 'hr-departments', label: 'Departments', labelAr: 'الأقسام', href: '/dashboard/admin/hr-departments', icon: 'badge', group: 'hr', crud: true },
+  { id: 'hr-positions', label: 'Positions', labelAr: 'المناصب', href: '/dashboard/admin/hr-positions', icon: 'badge', group: 'hr', crud: true },
+  { id: 'hr-contracts', label: 'Employment Contracts', labelAr: 'عقود العمل', href: '/dashboard/admin/hr-contracts', icon: 'file', group: 'hr', crud: true },
+  { id: 'hr-payroll', label: 'Payroll', labelAr: 'الرواتب', href: '/dashboard/admin/hr-payroll', icon: 'currency', group: 'hr', crud: true },
+  { id: 'hr-attendance', label: 'Attendance', labelAr: 'الحضور', href: '/dashboard/admin/hr-attendance', icon: 'list', group: 'hr', crud: true },
+  { id: 'hr-leave', label: 'Leave Management', labelAr: 'الإجازات', href: '/dashboard/admin/hr-leave', icon: 'list', group: 'hr', crud: true },
+  { id: 'hr-performance', label: 'Performance Evaluation', labelAr: 'تقييم الأداء', href: '/dashboard/admin/hr-performance', icon: 'chart', group: 'hr', crud: true },
+  { id: 'hr-bonuses', label: 'Bonuses', labelAr: 'المكافآت', href: '/dashboard/admin/hr-bonuses', icon: 'award', group: 'hr', crud: true },
+  { id: 'hr-penalties', label: 'Penalties', labelAr: 'الجزاءات', href: '/dashboard/admin/hr-penalties', icon: 'list', group: 'hr', crud: true },
+  { id: 'hr-notes', label: 'Internal Notes', labelAr: 'ملاحظات داخلية', href: '/dashboard/admin/hr-notes', icon: 'file', group: 'hr', crud: true },
+  { id: 'hr-documents', label: 'Employee Documents', labelAr: 'وثائق الموظفين', href: '/dashboard/admin/hr-documents', icon: 'file', group: 'hr', crud: true },
+  { id: 'hr-signatures', label: 'Digital Signatures', labelAr: 'التوقيع الرقمي', href: '/dashboard/admin/hr-signatures', icon: 'lock', group: 'hr', crud: true },
+  { id: 'hr-bank-accounts', label: 'Bank Accounts', labelAr: 'الحسابات البنكية', href: '/dashboard/admin/hr-bank-accounts', icon: 'currency', group: 'hr', crud: true },
+
+  // Tasks & teams
+  { id: 'tasks', label: 'Tasks & Workflow', labelAr: 'المهام وسير العمل', href: '/dashboard/admin/tasks', icon: 'list', group: 'workflow', crud: true },
+  { id: 'teams', label: 'Teams', labelAr: 'الفرق', href: '/dashboard/admin/teams', icon: 'users', group: 'workflow', crud: true },
+
+  // Finance & accounting
+  { id: 'commission-rules', label: 'Commission Engine', labelAr: 'محرك العمولات', href: '/dashboard/admin/commission-rules', icon: 'percent', group: 'finance', crud: true },
+  { id: 'payment-splits', label: 'Payment Splits', labelAr: 'تقسيم المدفوعات', href: '/dashboard/admin/payment-splits', icon: 'currency', group: 'finance', crud: true },
+  { id: 'payouts', label: 'Payouts', labelAr: 'عمليات الصرف', href: '/dashboard/admin/payouts', icon: 'currency', group: 'finance', crud: true },
+  { id: 'invoices', label: 'Invoices', labelAr: 'الفواتير', href: '/dashboard/admin/invoices', icon: 'file', group: 'finance', crud: true },
+  { id: 'receipts', label: 'Receipts', labelAr: 'الإيصالات', href: '/dashboard/admin/receipts', icon: 'file', group: 'finance', crud: true },
+  { id: 'ledger', label: 'Accounting Ledger', labelAr: 'دفتر الحسابات', href: '/dashboard/admin/ledger', icon: 'list', group: 'finance', crud: true },
+  { id: 'refunds', label: 'Refunds', labelAr: 'المرتجعات', href: '/dashboard/admin/refunds', icon: 'currency', group: 'finance', crud: true },
+  { id: 'expenses', label: 'Expenses', labelAr: 'المصروفات', href: '/dashboard/admin/expenses', icon: 'currency', group: 'finance', crud: true },
+  { id: 'settlements', label: 'Settlements', labelAr: 'التسويات', href: '/dashboard/admin/settlements', icon: 'currency', group: 'finance', crud: true },
+
+  // Partners
+  { id: 'partner-contracts', label: 'Partner Contracts', labelAr: 'عقود الشركاء', href: '/dashboard/admin/partner-contracts', icon: 'handshake', group: 'partners', crud: true },
+  { id: 'partner-subscriptions', label: 'Partner Subscriptions', labelAr: 'اشتراكات الشركاء', href: '/dashboard/admin/partner-subscriptions', icon: 'handshake', group: 'partners', crud: true },
+
+  // Marketing & media
+  { id: 'social-accounts', label: 'Social Accounts', labelAr: 'حسابات التواصل', href: '/dashboard/admin/social-accounts', icon: 'share', group: 'marketing', crud: true },
+  { id: 'social-campaigns', label: 'Social Campaigns', labelAr: 'حملات التواصل', href: '/dashboard/admin/social-campaigns', icon: 'megaphone', group: 'marketing', crud: true },
+  { id: 'social-posts', label: 'Scheduled Posts', labelAr: 'المنشورات المجدولة', href: '/dashboard/admin/social-posts', icon: 'share', group: 'marketing', crud: true },
+
+  // System & permissions
+  { id: 'notification-jobs', label: 'Notification Jobs', labelAr: 'مهام الإشعارات', href: '/dashboard/admin/notification-jobs', icon: 'bell', group: 'system', crud: true },
+  { id: 'recycle-bin', label: 'Recycle Bin', labelAr: 'سلة المحذوفات', href: '/dashboard/admin/recycle-bin', icon: 'trash', group: 'system', crud: true },
+  { id: 'temporary-permissions', label: 'Temporary Permissions', labelAr: 'صلاحيات مؤقتة', href: '/dashboard/admin/temporary-permissions', icon: 'lock', group: 'system', crud: true },
+  { id: 'department-permissions', label: 'Department Permissions', labelAr: 'صلاحيات الأقسام', href: '/dashboard/admin/department-permissions', icon: 'lock', group: 'system', crud: true },
+  { id: 'country-permissions', label: 'Country Permissions', labelAr: 'صلاحيات الدول', href: '/dashboard/admin/country-permissions', icon: 'globe', group: 'system', crud: true },
 ]);
 
-export const ENTERPRISE_ERP_NAV_GROUPS = Object.freeze({
-  hr: 'Human Resources',
-});
+/** ERP-only group overrides — core groups live in enterprise-admin-nav. */
+export const ENTERPRISE_ERP_NAV_GROUPS = Object.freeze({});
 
 export const ENTERPRISE_ERP_MODULES = Object.freeze({
   'hr-departments': crudSchema({
