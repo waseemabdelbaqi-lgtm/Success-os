@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>معاينة لوحات المستخدمين · SUCCESS OS</title>
+  <style>
+    :root {
+      --bg: #f4f7f6;
+      --card: #ffffff;
+      --text: #14201d;
+      --muted: #5b6b66;
+      --accent: #0f766e;
+      --line: #d7e3df;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Tahoma, Arial, sans-serif;
+      background: linear-gradient(180deg, #eef7f4 0%, var(--bg) 40%, #f8faf9 100%);
+      color: var(--text);
+      min-height: 100vh;
+      padding: 28px 16px 48px;
+    }
+    .wrap { max-width: 820px; margin: 0 auto; }
+    h1 { margin: 0 0 8px; font-size: 1.8rem; }
+    p { color: var(--muted); line-height: 1.7; }
+    .note {
+      background: #ecfdf5;
+      border: 1px solid #a7f3d0;
+      border-radius: 14px;
+      padding: 12px 14px;
+      margin: 18px 0 22px;
+      color: #065f46;
+      font-size: 0.95rem;
+    }
+    ol { list-style: none; padding: 0; margin: 0; display: grid; gap: 12px; }
+    li {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 14px 16px;
+      display: flex;
+      gap: 12px;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      box-shadow: 0 8px 24px rgba(15, 118, 110, 0.05);
+    }
+    .meta { min-width: 220px; }
+    .label { font-weight: 700; margin-bottom: 4px; }
+    .path {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 0.85rem;
+      color: var(--muted);
+      direction: ltr;
+      text-align: right;
+      word-break: break-all;
+    }
+    a.btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--accent);
+      color: #fff;
+      text-decoration: none;
+      border-radius: 999px;
+      padding: 10px 16px;
+      font-weight: 700;
+      min-width: 120px;
+    }
+    a.btn.secondary {
+      background: #fff;
+      color: var(--accent);
+      border: 1px solid var(--accent);
+    }
+    .actions { display: flex; gap: 8px; flex-wrap: wrap; }
+    .footer {
+      margin-top: 24px;
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>روابط معاينة لوحات المستخدمين</h1>
+    <p>
+      هذه الصفحة ثابتة للمعاينة السريعة. اضغط «فتح» لدخول اللوحة، ثم عدّل الصلاحيات من الأدمن لاحقًا.
+    </p>
+    <div class="note">
+      افتح هذه الصفحة من معاينة المنفذ <strong>3000</strong> داخل Cursor:
+      <span class="path">/preview-dashboards.html</span>
+    </div>
+
+    <ol>
+      <li>
+        <div class="meta">
+          <div class="label">1) الأدمن / المشرف</div>
+          <div class="path">/dashboard/admin</div>
+        </div>
+        <div class="actions">
+          <a class="btn" href="/dashboard/admin">فتح</a>
+          <a class="btn secondary" href="/dashboard/admin/permissions">الصلاحيات</a>
+        </div>
+      </li>
+      <li>
+        <div class="meta">
+          <div class="label">2) الموظفون</div>
+          <div class="path">/dashboard/employee</div>
+        </div>
+        <a class="btn" href="/dashboard/employee">فتح</a>
+      </li>
+      <li>
+        <div class="meta">
+          <div class="label">3) المعلمون</div>
+          <div class="path">/dashboard/teacher</div>
+        </div>
+        <a class="btn" href="/dashboard/teacher">فتح</a>
+      </li>
+      <li>
+        <div class="meta">
+          <div class="label">4) المراكز التعليمية</div>
+          <div class="path">/dashboard/educational-center</div>
+        </div>
+        <a class="btn" href="/dashboard/educational-center">فتح</a>
+      </li>
+      <li>
+        <div class="meta">
+          <div class="label">5) المدارس</div>
+          <div class="path">/dashboard/school</div>
+        </div>
+        <a class="btn" href="/dashboard/school">فتح</a>
+      </li>
+      <li>
+        <div class="meta">
+          <div class="label">6) الكليات</div>
+          <div class="path">/dashboard/college</div>
+        </div>
+        <a class="btn" href="/dashboard/college">فتح</a>
+      </li>
+      <li>
+        <div class="meta">
+          <div class="label">7) الجامعات</div>
+          <div class="path">/dashboard/university</div>
+        </div>
+        <a class="btn" href="/dashboard/university">فتح</a>
+      </li>
+      <li>
+        <div class="meta">
+          <div class="label">8) شركات التوظيف</div>
+          <div class="path">/dashboard/recruitment-company</div>
+        </div>
+        <a class="btn" href="/dashboard/recruitment-company">فتح</a>
+      </li>
+      <li>
+        <div class="meta">
+          <div class="label">9) الباحثون عن العمل</div>
+          <div class="path">/dashboard/job-seeker</div>
+        </div>
+        <a class="btn" href="/dashboard/job-seeker">فتح</a>
+      </li>
+      <li>
+        <div class="meta">
+          <div class="label">10) طالب مدرسة</div>
+          <div class="path">/dashboard/school-student</div>
+        </div>
+        <a class="btn" href="/dashboard/school-student">فتح</a>
+      </li>
+      <li>
+        <div class="meta">
+          <div class="label">11) طالب جامعة</div>
+          <div class="path">/dashboard/university-student</div>
+        </div>
+        <a class="btn" href="/dashboard/university-student">فتح</a>
+      </li>
+    </ol>
+
+    <div class="footer">
+      <a class="btn secondary" href="/dashboard/links">صفحة الروابط داخل التطبيق</a>
+      <a class="btn secondary" href="/dashboard/admin/permissions">توزيع الصلاحيات</a>
+      <a class="btn secondary" href="/">الرئيسية</a>
+    </div>
+  </div>
+</body>
+</html>

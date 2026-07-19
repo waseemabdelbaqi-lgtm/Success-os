@@ -11,7 +11,12 @@ export default function DashboardLinksPage(): ReactNode {
     <main className="mx-auto max-w-3xl px-4 py-10" dir="rtl">
       <h1 className="text-3xl font-semibold text-zinc-900">روابط لوحات المستخدمين</h1>
       <p className="mt-2 text-sm text-zinc-600">
-        اضغط فتح اللوحة — الروابط نسبية وتعمل من نفس السيرفر الحالي بدون localhost.
+        اضغط فتح اللوحة — الروابط نسبية وتعمل من معاينة المنفذ 3000 داخل Cursor.
+        للمعاينة السريعة الثابتة استخدم أيضًا{" "}
+        <a className="font-semibold text-[#0f766e] underline" href="/preview-dashboards.html">
+          /preview-dashboards.html
+        </a>
+        .
       </p>
 
       <ol className="mt-8 space-y-3">
