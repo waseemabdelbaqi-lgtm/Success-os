@@ -39,6 +39,43 @@ function nowIso() {
   return new Date().toISOString();
 }
 
+/** Map module mutations → Automation Engine events (single source of business flow). */
+const MODULE_EVENT_MAP = Object.freeze({
+  students: { create: 'student.created' },
+  teachers: { create: 'teacher.registration', approve: 'teacher.approved' },
+  schools: { create: 'school.registration' },
+  universities: { create: 'university.registration' },
+  'educational-centers': { create: 'educational_center.registration' },
+  employers: { create: 'employer.registration' },
+  'recruitment-companies': { create: 'recruitment_company.registration' },
+  employees: { create: 'employee.hiring' },
+  admissions: { create: 'student.admission' },
+  scholarships: { create: 'scholarship.request' },
+  'study-abroad': { create: 'study_abroad.request' },
+  courses: { create: 'course.publish', approve: 'course.publish' },
+  'recorded-lessons': { create: 'lesson.publish', approve: 'lesson.publish' },
+  books: { create: 'book.publish', approve: 'book.publish' },
+  'live-classes': { create: 'video.publish', approve: 'video.publish' },
+  refunds: { create: 'refund.request' },
+  'commission-rules': { create: 'commission.change', edit: 'commission.change' },
+  payouts: { create: 'finance.transfer' },
+  'hr-payroll': { create: 'payroll.run' },
+  'hr-contracts': { create: 'contract.create' },
+  'partner-contracts': { create: 'contract.create' },
+  settings: { edit: 'settings.change', update: 'settings.change' },
+  'system-configuration': { edit: 'settings.change', update: 'settings.change' },
+});
+
+function bridgeModuleEvent(moduleId, action, row, user) {
+  const eventKey = MODULE_EVENT_MAP[moduleId]?.[action];
+  if (!eventKey) return;
+  import('./enterprise-automation-engine.js')
+    .then(({ emitAutomationEvent }) =>
+      emitAutomationEvent(eventKey, { ...row, moduleId, action }, { user: user || 'admin' }),
+    )
+    .catch(() => {});
+}
+
 function list(v) {
   return Array.isArray(v) ? v : [];
 }
@@ -501,6 +538,7 @@ export function mutateModule(moduleId, action, payload = {}) {
       user: payload._actor || 'admin',
       newValue: row,
     });
+    bridgeModuleEvent(moduleId, 'create', row, payload._actor || 'admin');
     return { ok: true, item: row };
   }
 
@@ -668,6 +706,9 @@ export function mutateModule(moduleId, action, payload = {}) {
     };
     writeCollection(collectionName, { items });
     erpAppendAudit({ action: 'approval', moduleId, entityId: payload.id, newValue: { status: items[idx].status } });
+    if (action === 'approve') {
+      bridgeModuleEvent(moduleId, 'approve', items[idx], payload._actor || 'admin');
+    }
     return { ok: true, item: items[idx] };
   }
 

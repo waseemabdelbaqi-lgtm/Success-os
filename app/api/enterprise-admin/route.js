@@ -20,6 +20,13 @@ import {
   processSuccessfulPayment,
   PAYOUT_METHODS,
 } from '../../lib/admin/enterprise-payment-engine.js';
+import {
+  AUTOMATION_MODULE_IDS,
+  ensureAutomationEngine,
+  getAutomationDashboard,
+  listAutomationModule,
+  mutateAutomationCenter,
+} from '../../lib/admin/enterprise-automation-engine.js';
 
 const ELEVATED = new Set(['super_admin', 'owner', 'admin']);
 
@@ -100,6 +107,23 @@ export async function GET(request) {
     return Response.json({ methods: PAYOUT_METHODS }, { headers: { 'Cache-Control': 'no-store' } });
   }
 
+  if (view === 'automation') {
+    ensureAutomationEngine();
+    return Response.json(getAutomationDashboard(), { headers: { 'Cache-Control': 'no-store' } });
+  }
+
+  if (view === 'automation-module') {
+    ensureAutomationEngine();
+    const moduleId = searchParams.get('module') || 'business-automation';
+    return Response.json(
+      listAutomationModule(moduleId, {
+        q: searchParams.get('q') || '',
+        status: searchParams.get('status') || '',
+      }),
+      { headers: { 'Cache-Control': 'no-store' } },
+    );
+  }
+
   if (view === 'export') {
     const moduleId = searchParams.get('module');
     if (!moduleId) {
@@ -124,6 +148,13 @@ export async function GET(request) {
       async start(controller) {
         const send = async () => {
           const home = await buildHomeDashboard();
+          let automation = null;
+          try {
+            ensureAutomationEngine();
+            automation = getAutomationDashboard().stats;
+          } catch {
+            automation = null;
+          }
           controller.enqueue(
             encoder.encode(
               `data: ${JSON.stringify({
@@ -131,6 +162,7 @@ export async function GET(request) {
                 users: home.users,
                 finance: home.finance,
                 performance: home.performance,
+                automation,
               })}\n\n`,
             ),
           );
@@ -186,7 +218,54 @@ export async function POST(request) {
     }
 
     if (action === 'processPayment') {
-      return Response.json(processSuccessfulPayment(payload || body, { user: body.user || 'system' }));
+      const paymentResult = processSuccessfulPayment(payload || body, { user: body.user || 'system' });
+      // Central nervous system: every payment completion emits automation events.
+      try {
+        ensureAutomationEngine();
+        await mutateAutomationCenter(
+          'emitEvent',
+          {
+            eventKey: 'payment.completed',
+            payload: {
+              ...(payload || body),
+              paymentResult,
+            },
+          },
+          { user: body.user || 'system' },
+        );
+      } catch {
+        /* payment succeeds even if automation emit fails */
+      }
+      return Response.json(paymentResult);
+    }
+
+    const automationOnlyActions = new Set([
+      'emitEvent',
+      'runWorkflow',
+      'tickScheduler',
+      'sweepEscalations',
+      'setConfig',
+      'createMessage',
+      'saveWorkflow',
+      'saveRule',
+      'saveSchedule',
+      'saveTemplate',
+      'saveIntegration',
+      'seed',
+    ]);
+    const automationApprovalModule = moduleId === 'approval-center' || moduleId === 'business-automation';
+    if (
+      action?.startsWith('automation') ||
+      automationOnlyActions.has(action) ||
+      (AUTOMATION_MODULE_IDS.includes(moduleId) && !['approve', 'reject'].includes(action)) ||
+      (automationApprovalModule && ['approve', 'reject'].includes(action))
+    ) {
+      ensureAutomationEngine();
+      const result = await mutateAutomationCenter(action, payload || body, {
+        user: body.user || 'owner',
+        note: body.note || payload?.note || '',
+      });
+      return Response.json(result, { status: result.ok === false ? 400 : 200 });
     }
 
     if (moduleId === 'payouts' && ['approve', 'reject', 'markTransferred'].includes(action)) {

@@ -231,6 +231,26 @@ export function processSuccessfulPayment(input = {}, meta = {}) {
     newValue: { paymentId, platformCommission, partnerShare, netAmount },
   });
 
+  // Fire-and-forget into Business Automation Engine (no duplicated payment logic).
+  import('./enterprise-automation-engine.js')
+    .then(({ emitAutomationEvent }) =>
+      emitAutomationEvent(
+        'payment.completed',
+        {
+          paymentId,
+          grossAmount: gross,
+          amount: afterDiscounts,
+          currency,
+          partnerId: input.partnerId || null,
+          partnerType: input.partnerType || null,
+          invoiceNumber: invoice.number,
+          receiptNumber: receipt.number,
+        },
+        { user: meta.user || 'system' },
+      ),
+    )
+    .catch(() => {});
+
   return {
     ok: true,
     paymentId,

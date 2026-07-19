@@ -74,6 +74,7 @@ export default function EnterpriseAdminHomePage() {
                   users: { ...prev.users, ...patch.users },
                   finance: { ...prev.finance, ...patch.finance },
                   performance: { ...prev.performance, ...patch.performance },
+                  automation: patch.automation || prev.automation || null,
                 }
               : prev,
           );
@@ -172,6 +173,33 @@ export default function EnterpriseAdminHomePage() {
       </div>
 
       {error ? <p style={{ color: '#b91c1c' }}>{error}</p> : null}
+
+      <div
+        style={{
+          border: '1px solid #a7f3d0',
+          background: '#ecfdf5',
+          borderRadius: 14,
+          padding: 14,
+          marginBottom: 16,
+        }}
+      >
+        <div style={{ fontWeight: 700, marginBottom: 6 }}>Business Automation Engine</div>
+        <p style={{ margin: '0 0 10px', color: '#065f46', fontSize: 13 }}>
+          Central nervous system — workflows, approvals, smart rules, scheduler, templates, escalations.
+          Every module event can trigger automation without code changes.
+        </p>
+        <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
+          <a href="/dashboard/admin/business-automation" style={{ background: '#0f766e', color: '#fff', padding: '8px 12px', borderRadius: 999, textDecoration: 'none', fontWeight: 700 }}>
+            Open Automation Engine
+          </a>
+          <a href="/dashboard/admin/approval-center" style={{ background: '#fff', color: '#0f766e', border: '1px solid #0f766e', padding: '8px 12px', borderRadius: 999, textDecoration: 'none', fontWeight: 700 }}>
+            Approval Center
+          </a>
+          <a href="/dashboard/admin/automation-runs" style={{ background: '#fff', color: '#0f766e', border: '1px solid #0f766e', padding: '8px 12px', borderRadius: 999, textDecoration: 'none', fontWeight: 700 }}>
+            Execution Log
+          </a>
+        </div>
+      </div>
 
       <h2 style={{ fontSize: 16 }}>Users & organizations</h2>
       <div style={{ display: 'grid', gap: 10, gridTemplateColumns: 'repeat(auto-fit,minmax(150px,1fr))', marginBottom: 16 }}>
