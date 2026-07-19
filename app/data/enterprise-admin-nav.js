@@ -46,7 +46,7 @@ const ENTERPRISE_ADMIN_NAV_CORE = [
   { id: 'partners', label: 'Partners', href: '/dashboard/admin/partners', icon: 'handshake', group: 'ops', crud: true },
   { id: 'support-center', label: 'Support Center', href: '/dashboard/admin/support-center', icon: 'life-ring', group: 'ops' },
   { id: 'notifications', label: 'Notifications', href: '/dashboard/admin/notifications', icon: 'bell', group: 'system', crud: true },
-  { id: 'reports', label: 'Reports', href: '/dashboard/admin/reports', icon: 'chart', group: 'system' },
+  { id: 'reports', label: 'Reports & BI', href: '/dashboard/admin/business-intelligence', icon: 'chart', group: 'system' },
   { id: 'permissions', label: 'Permissions', href: '/dashboard/admin/permissions', icon: 'lock', group: 'system', crud: true },
   { id: 'settings', label: 'Settings', href: '/dashboard/admin/settings', icon: 'gear', group: 'system' },
   { id: 'system-configuration', label: 'System Configuration', href: '/dashboard/admin/system-configuration', icon: 'sliders', group: 'system' },

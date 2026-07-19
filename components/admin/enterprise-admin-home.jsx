@@ -173,6 +173,33 @@ export default function EnterpriseAdminHomePage() {
 
       {error ? <p style={{ color: '#b91c1c' }}>{error}</p> : null}
 
+      <div
+        style={{
+          border: '1px solid #93c5fd',
+          background: '#eff6ff',
+          borderRadius: 14,
+          padding: 14,
+          marginBottom: 16,
+        }}
+      >
+        <div style={{ fontWeight: 700, marginBottom: 6 }}>Business Intelligence & Decision Engine</div>
+        <p style={{ margin: '0 0 10px', color: '#1e3a8a', fontSize: 13 }}>
+          Real-time analytics across every module — executive, students, teachers, partners, finance, HR,
+          marketing, AI, geo, forecasts, KPIs, and alerts. No static reports.
+        </p>
+        <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
+          <a href="/dashboard/admin/business-intelligence" style={{ background: '#1d4ed8', color: '#fff', padding: '8px 12px', borderRadius: 999, textDecoration: 'none', fontWeight: 700 }}>
+            Open BI Platform
+          </a>
+          <a href="/dashboard/admin/bi-reports" style={{ background: '#fff', color: '#1d4ed8', border: '1px solid #1d4ed8', padding: '8px 12px', borderRadius: 999, textDecoration: 'none', fontWeight: 700 }}>
+            Report Builder
+          </a>
+          <a href="/dashboard/admin/bi-alerts" style={{ background: '#fff', color: '#1d4ed8', border: '1px solid #1d4ed8', padding: '8px 12px', borderRadius: 999, textDecoration: 'none', fontWeight: 700 }}>
+            Alert Center
+          </a>
+        </div>
+      </div>
+
       <h2 style={{ fontSize: 16 }}>Users & organizations</h2>
       <div style={{ display: 'grid', gap: 10, gridTemplateColumns: 'repeat(auto-fit,minmax(150px,1fr))', marginBottom: 16 }}>
         {userCards.map(([label, value]) => (

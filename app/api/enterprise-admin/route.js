@@ -20,6 +20,12 @@ import {
   processSuccessfulPayment,
   PAYOUT_METHODS,
 } from '../../lib/admin/enterprise-payment-engine.js';
+import {
+  BI_MODULE_IDS,
+  ensureBiEngine,
+  getBiDashboard,
+  mutateBiCenter,
+} from '../../lib/admin/enterprise-bi-engine.js';
 
 const ELEVATED = new Set(['super_admin', 'owner', 'admin']);
 
@@ -98,6 +104,11 @@ export async function GET(request) {
 
   if (view === 'payout-methods') {
     return Response.json({ methods: PAYOUT_METHODS }, { headers: { 'Cache-Control': 'no-store' } });
+  }
+
+  if (view === 'bi') {
+    ensureBiEngine();
+    return Response.json(getBiDashboard(), { headers: { 'Cache-Control': 'no-store' } });
   }
 
   if (view === 'export') {
@@ -203,6 +214,29 @@ export async function POST(request) {
       action === 'updateRolePermissions'
     ) {
       return Response.json(mutatePermissions(action, payload || body));
+    }
+
+    const biActions = new Set([
+      'refresh',
+      'snapshot',
+      'evaluateAlerts',
+      'buildReport',
+      'exportReport',
+      'saveReport',
+      'saveKpi',
+      'saveAlert',
+      'setConfig',
+      'forecast',
+      'geo',
+      'kpis',
+      'runScheduledReports',
+    ]);
+    if (action?.startsWith('bi') || biActions.has(action) || BI_MODULE_IDS.includes(moduleId)) {
+      ensureBiEngine();
+      if (biActions.has(action) || action?.startsWith('bi')) {
+        const result = await mutateBiCenter(action, payload || body, { user: body.user || 'owner' });
+        return Response.json(result, { status: result.ok === false ? 400 : 200 });
+      }
     }
 
     if (!moduleId) {
