@@ -187,23 +187,14 @@ export default function EnterpriseAdminHomePage() {
           أنشئ الصلاحيات من الأدمن، وافتح لوحة كل دور لترى الوحدات التي فُتحت تلقائيًا.
         </p>
         <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
+          <a className="button" href="/dashboard/links">
+            روابط جميع اللوحات
+          </a>
           <a className="button" href="/dashboard/user-dashboards">
             دليل لوحات المستخدمين
           </a>
           <a className="button" href="/dashboard/admin/permissions">
             توزيع الصلاحيات
-          </a>
-          <a className="button" href="/dashboard/teacher">
-            لوحة المعلم
-          </a>
-          <a className="button" href="/dashboard/parent">
-            لوحة ولي الأمر
-          </a>
-          <a className="button" href="/dashboard/school">
-            لوحة المدرسة
-          </a>
-          <a className="button" href="/dashboard/employer">
-            لوحة صاحب العمل
           </a>
         </div>
       </section>

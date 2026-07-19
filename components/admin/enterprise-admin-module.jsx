@@ -596,6 +596,9 @@ function dashboardPathForRoleKey(roleKey) {
   if (roleKey === 'university_manager') return '/dashboard/university';
   if (roleKey === 'center_manager') return '/dashboard/educational-center';
   if (roleKey === 'jobseeker') return '/dashboard/job-seeker';
+  if (roleKey === 'recruitment_company') return '/dashboard/recruitment-company';
+  if (roleKey === 'school_student') return '/dashboard/school-student';
+  if (roleKey === 'university_student') return '/dashboard/university-student';
   return `/dashboard/${String(roleKey).replace(/_/g, '-')}`;
 }
 

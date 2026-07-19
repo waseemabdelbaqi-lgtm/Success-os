@@ -10,6 +10,7 @@ import {
 } from '../../data/enterprise-admin-rbac.js';
 import {
   USER_CONTROL_DASHBOARD_ROLES,
+  PUBLIC_DASHBOARD_LINKS,
   filterModulesByPermissions,
   getRoleDashboardDefinition,
 } from '../../data/role-dashboard-modules.js';
@@ -22,6 +23,11 @@ const ROLE_KEY_ALIASES = Object.freeze({
   educational_center: ['educational_center', 'center_manager'],
   job_seeker: ['job_seeker', 'jobseeker'],
   social_media_manager: ['social_media_manager', 'marketing'],
+  recruitment_company: ['recruitment_company'],
+  employee: ['employee'],
+  college: ['college'],
+  school_student: ['school_student', 'student'],
+  university_student: ['university_student', 'student'],
   super_admin: ['super_admin'],
 });
 
@@ -123,16 +129,17 @@ export function buildRoleControlDashboard(roleKey, options = {}) {
       permissions: mod.permissions,
       unlocked: false,
     })),
-    dashboardPath:
-      roleKey === 'student'
-        ? '/student/dashboard'
-        : roleKey === 'admin'
-          ? '/dashboard/admin'
-          : `/dashboard/${String(roleKey).replace(/_/g, '-')}`,
+    dashboardPath: resolveDashboardPath(roleKey),
     managedByAdmin: true,
     permissionsHref: '/dashboard/admin/permissions',
     generatedAt: new Date().toISOString(),
   };
+}
+
+function resolveDashboardPath(roleKey) {
+  if (roleKey === 'student') return '/student/dashboard';
+  if (roleKey === 'admin' || roleKey === 'super_admin') return '/dashboard/admin';
+  return `/dashboard/${String(roleKey).replace(/_/g, '-')}`;
 }
 
 /**
@@ -156,6 +163,10 @@ export function listUserControlDashboards(options = {}) {
         roleSource: dash.role?.source || null,
       };
     }),
+    publicLinks: PUBLIC_DASHBOARD_LINKS.map((item) => ({
+      ...item,
+      absoluteHint: item.href,
+    })),
     permissionsHref: '/dashboard/admin/permissions',
     generatedAt: new Date().toISOString(),
   };

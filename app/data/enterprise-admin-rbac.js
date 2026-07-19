@@ -130,8 +130,8 @@ export const ENTERPRISE_ADMIN_DEFAULT_ROLES = Object.freeze([
   {
     key: 'employee',
     name: 'Employee',
-    description: 'Internal staff',
-    permissions: ['tasks.read', 'tasks.write', 'hr.read', 'notifications.send'],
+    description: 'Internal employee control dashboard',
+    permissions: ['tasks.read', 'tasks.write', 'hr.read', 'notifications.send', 'content.read'],
   },
   {
     key: 'academic_director',
@@ -297,6 +297,23 @@ export const ENTERPRISE_ADMIN_DEFAULT_ROLES = Object.freeze([
     ],
   },
   {
+    key: 'college',
+    name: 'College',
+    description: 'College institution control dashboard',
+    permissions: [
+      'orgs.read',
+      'orgs.write',
+      'students.read',
+      'students.write',
+      'teachers.read',
+      'academic.read',
+      'academic.write',
+      'partners.read',
+      'reports.view',
+      'reports.export',
+    ],
+  },
+  {
     key: 'university',
     name: 'University',
     description: 'University institution control dashboard',
@@ -325,6 +342,18 @@ export const ENTERPRISE_ADMIN_DEFAULT_ROLES = Object.freeze([
       'partners.read',
       'reports.view',
     ],
+  },
+  {
+    key: 'school_student',
+    name: 'School Student',
+    description: 'School learner control dashboard',
+    permissions: ['academic.read', 'content.read', 'students.read'],
+  },
+  {
+    key: 'university_student',
+    name: 'University Student',
+    description: 'University learner control dashboard',
+    permissions: ['academic.read', 'content.read', 'students.read', 'partners.read'],
   },
   {
     key: 'social_media_manager',
