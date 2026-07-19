@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import { redirect } from "next/navigation";
 import { requireRoleAccess } from "@/components/auth/role-guard";
 import { RoleControlDashboard } from "@/components/dashboard/role-control-dashboard";
-import { permissionService } from "@/services/auth/permission.service";
+import { buildRoleControlDashboard } from "@/app/lib/admin/role-permission-bridge";
 import { getRoleLabel, roleFromSlug, USER_ROLES } from "@/types/roles";
 import { STUDENT_ROUTES } from "@/lib/student-portal/constants";
 
@@ -36,14 +36,32 @@ export default async function RoleDashboardPage({
     redirect("/dashboard/admin");
   }
 
-  const userResult = await permissionService.getAuthenticatedUser();
-  const user = userResult.ok ? userResult.data : null;
+  let userEmail: string | null = null;
+  let userName: string | null = null;
+
+  if (process.env.FEATURE_AUTH_ENABLED === "true") {
+    try {
+      const { permissionService } = await import(
+        "@/services/auth/permission.service"
+      );
+      const userResult = await permissionService.getAuthenticatedUser();
+      if (userResult.ok && userResult.data) {
+        userEmail = userResult.data.email;
+        userName = userResult.data.displayName;
+      }
+    } catch {
+      // Preview without session remains available.
+    }
+  }
+
+  const initialData = buildRoleControlDashboard(role, { lang: "ar" });
 
   return (
     <RoleControlDashboard
       role={role}
-      userEmail={user?.email}
-      userName={user?.displayName}
+      userEmail={userEmail}
+      userName={userName}
+      initialData={initialData}
     />
   );
 }

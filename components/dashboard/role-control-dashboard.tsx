@@ -4,8 +4,6 @@ import Link from "next/link";
 import { useCallback, useEffect, useState, type ReactNode } from "react";
 import type { UserRole } from "@/types/roles";
 import { ROLE_DEFINITIONS } from "@/types/roles";
-import { EmailVerificationBanner } from "@/components/auth/email-verification";
-
 type DashboardModule = {
   id: string;
   title: string;
@@ -41,16 +39,18 @@ type RoleControlDashboardProps = {
   role: UserRole;
   userEmail?: string | null;
   userName?: string | null;
+  initialData?: DashboardPayload | null;
 };
 
 export function RoleControlDashboard({
   role,
   userEmail,
   userName,
+  initialData = null,
 }: RoleControlDashboardProps): ReactNode {
   const definition = ROLE_DEFINITIONS[role];
   const [lang, setLang] = useState<"ar" | "en">("ar");
-  const [data, setData] = useState<DashboardPayload | null>(null);
+  const [data, setData] = useState<DashboardPayload | null>(initialData);
   const [error, setError] = useState("");
 
   const load = useCallback(async () => {
@@ -64,17 +64,17 @@ export function RoleControlDashboard({
   }, [role, lang]);
 
   useEffect(() => {
-    load().catch((reason: unknown) =>
-      setError(reason instanceof Error ? reason.message : "LOAD_FAILED"),
-    );
-  }, [load]);
+    load().catch((reason: unknown) => {
+      if (!initialData) {
+        setError(reason instanceof Error ? reason.message : "LOAD_FAILED");
+      }
+    });
+  }, [load, initialData]);
 
   const isAr = lang === "ar";
 
   return (
     <div className="phase11-role-dashboard space-y-8" dir={isAr ? "rtl" : "ltr"}>
-      <EmailVerificationBanner />
-
       <div className="flex flex-wrap items-start justify-between gap-4">
         <div className="space-y-2">
           <p className="text-sm font-medium uppercase tracking-[0.2em] text-zinc-500">
