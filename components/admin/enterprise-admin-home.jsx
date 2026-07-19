@@ -173,6 +173,41 @@ export default function EnterpriseAdminHomePage() {
 
       {error ? <p style={{ color: '#b91c1c' }}>{error}</p> : null}
 
+      <section
+        style={{
+          border: '1px solid #d1fae5',
+          background: '#ecfdf5',
+          borderRadius: 12,
+          padding: 14,
+          marginBottom: 16,
+        }}
+      >
+        <h2 style={{ margin: 0, fontSize: 16 }}>لوحات تحكم المستخدمين وتوزيع الصلاحيات</h2>
+        <p style={{ margin: '6px 0 10px', color: '#065f46', fontSize: 13 }}>
+          أنشئ الصلاحيات من الأدمن، وافتح لوحة كل دور لترى الوحدات التي فُتحت تلقائيًا.
+        </p>
+        <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
+          <a className="button" href="/dashboard/user-dashboards">
+            دليل لوحات المستخدمين
+          </a>
+          <a className="button" href="/dashboard/admin/permissions">
+            توزيع الصلاحيات
+          </a>
+          <a className="button" href="/dashboard/teacher">
+            لوحة المعلم
+          </a>
+          <a className="button" href="/dashboard/parent">
+            لوحة ولي الأمر
+          </a>
+          <a className="button" href="/dashboard/school">
+            لوحة المدرسة
+          </a>
+          <a className="button" href="/dashboard/employer">
+            لوحة صاحب العمل
+          </a>
+        </div>
+      </section>
+
       <h2 style={{ fontSize: 16 }}>Users & organizations</h2>
       <div style={{ display: 'grid', gap: 10, gridTemplateColumns: 'repeat(auto-fit,minmax(150px,1fr))', marginBottom: 16 }}>
         {userCards.map(([label, value]) => (

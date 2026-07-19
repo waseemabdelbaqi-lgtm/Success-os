@@ -1,0 +1,595 @@
+/**
+ * Role control-dashboard modules.
+ * Each module is shown only when the role has at least one required permission
+ * from the Enterprise Admin permissions matrix.
+ */
+
+/** @typedef {{ id: string, title: string, titleAr: string, description: string, descriptionAr: string, href?: string, permissions: string[] }} RoleModule */
+
+/** @type {Record<string, { label: string, labelAr: string, modules: RoleModule[] }>} */
+export const ROLE_DASHBOARD_CATALOG = Object.freeze({
+  teacher: {
+    label: 'Teacher',
+    labelAr: 'المعلم',
+    modules: [
+      {
+        id: 'my-classes',
+        title: 'My Classes',
+        titleAr: 'حصصي',
+        description: 'Live and scheduled classes.',
+        descriptionAr: 'الحصص المباشرة والمجدولة.',
+        href: '/class-booking',
+        permissions: ['academic.read', 'tasks.read'],
+      },
+      {
+        id: 'students',
+        title: 'Students',
+        titleAr: 'الطلاب',
+        description: 'View assigned learners and progress.',
+        descriptionAr: 'عرض الطلاب المعيّنين وتقدمهم.',
+        href: '/student-portal',
+        permissions: ['students.read'],
+      },
+      {
+        id: 'grading',
+        title: 'Grading',
+        titleAr: 'التقييم والدرجات',
+        description: 'Enter grades and feedback.',
+        descriptionAr: 'إدخال الدرجات والملاحظات.',
+        href: '/assessment',
+        permissions: ['academic.read', 'content.write'],
+      },
+      {
+        id: 'content',
+        title: 'Lesson Content',
+        titleAr: 'محتوى الدروس',
+        description: 'Create and update lesson materials.',
+        descriptionAr: 'إنشاء وتحديث مواد الدروس.',
+        href: '/content-studio',
+        permissions: ['content.read', 'content.write'],
+      },
+      {
+        id: 'tasks',
+        title: 'Tasks',
+        titleAr: 'المهام',
+        description: 'Teaching workflow and approvals.',
+        descriptionAr: 'سير عمل التدريس والموافقات.',
+        permissions: ['tasks.read', 'tasks.write'],
+      },
+      {
+        id: 'reports',
+        title: 'Teaching Reports',
+        titleAr: 'تقارير التدريس',
+        description: 'Class and performance summaries.',
+        descriptionAr: 'ملخصات الحصص والأداء.',
+        permissions: ['reports.view'],
+      },
+    ],
+  },
+
+  parent: {
+    label: 'Parent',
+    labelAr: 'ولي الأمر',
+    modules: [
+      {
+        id: 'children',
+        title: 'My Children',
+        titleAr: 'أبنائي',
+        description: 'Linked student profiles.',
+        descriptionAr: 'ملفات الأبناء المرتبطة.',
+        href: '/parent',
+        permissions: ['students.read'],
+      },
+      {
+        id: 'progress',
+        title: 'Learning Progress',
+        titleAr: 'التقدم الدراسي',
+        description: 'Mastery, attendance, and milestones.',
+        descriptionAr: 'الإتقان والحضور والإنجازات.',
+        href: '/passport',
+        permissions: ['academic.read', 'students.read'],
+      },
+      {
+        id: 'support',
+        title: 'Support',
+        titleAr: 'الدعم',
+        description: 'Contact teachers and support center.',
+        descriptionAr: 'التواصل مع المعلمين ومركز الدعم.',
+        href: '/notifications',
+        permissions: ['support.read'],
+      },
+    ],
+  },
+
+  school: {
+    label: 'School',
+    labelAr: 'المدرسة',
+    modules: [
+      {
+        id: 'institution',
+        title: 'Institution Profile',
+        titleAr: 'ملف المؤسسة',
+        description: 'School identity and settings.',
+        descriptionAr: 'هوية المدرسة وإعداداتها.',
+        href: '/schools',
+        permissions: ['orgs.read', 'orgs.write'],
+      },
+      {
+        id: 'students',
+        title: 'Students',
+        titleAr: 'الطلاب',
+        description: 'Enrollment and student records.',
+        descriptionAr: 'التسجيل وسجلات الطلاب.',
+        permissions: ['students.read', 'students.write'],
+      },
+      {
+        id: 'teachers',
+        title: 'Teachers',
+        titleAr: 'المعلمون',
+        description: 'Staff assignments and schedules.',
+        descriptionAr: 'تعيينات المعلمين والجداول.',
+        href: '/teachers',
+        permissions: ['teachers.read', 'teachers.assign'],
+      },
+      {
+        id: 'academic',
+        title: 'Academic Programs',
+        titleAr: 'البرامج الأكاديمية',
+        description: 'Subjects, classes, and curriculum.',
+        descriptionAr: 'المواد والصفوف والمناهج.',
+        href: '/curriculum-lab',
+        permissions: ['academic.read'],
+      },
+      {
+        id: 'reports',
+        title: 'School Reports',
+        titleAr: 'تقارير المدرسة',
+        description: 'Operational and academic reports.',
+        descriptionAr: 'تقارير تشغيلية وأكاديمية.',
+        permissions: ['reports.view', 'reports.export'],
+      },
+    ],
+  },
+
+  university: {
+    label: 'University',
+    labelAr: 'الجامعة',
+    modules: [
+      {
+        id: 'institution',
+        title: 'University Profile',
+        titleAr: 'ملف الجامعة',
+        description: 'Programs and campus identity.',
+        descriptionAr: 'البرامج وهوية الجامعة.',
+        href: '/universities',
+        permissions: ['orgs.read', 'orgs.write'],
+      },
+      {
+        id: 'admissions',
+        title: 'Admissions',
+        titleAr: 'القبول',
+        description: 'Applications and eligibility.',
+        descriptionAr: 'الطلبات والأهلية.',
+        href: '/admissions',
+        permissions: ['students.read', 'academic.read'],
+      },
+      {
+        id: 'programs',
+        title: 'Degree Programs',
+        titleAr: 'البرامج الدراسية',
+        description: 'Degree pathways and subjects.',
+        descriptionAr: 'مسارات الدرجات والمواد.',
+        href: '/programs',
+        permissions: ['academic.read', 'academic.write'],
+      },
+      {
+        id: 'partners',
+        title: 'Partners',
+        titleAr: 'الشركاء',
+        description: 'Institutional partnerships.',
+        descriptionAr: 'الشراكات المؤسسية.',
+        href: '/partners',
+        permissions: ['partners.read'],
+      },
+      {
+        id: 'reports',
+        title: 'University Reports',
+        titleAr: 'تقارير الجامعة',
+        description: 'Admissions and academic analytics.',
+        descriptionAr: 'تحليلات القبول والأكاديميا.',
+        permissions: ['reports.view', 'reports.export'],
+      },
+    ],
+  },
+
+  educational_center: {
+    label: 'Educational Center',
+    labelAr: 'المركز التعليمي',
+    modules: [
+      {
+        id: 'center',
+        title: 'Center Profile',
+        titleAr: 'ملف المركز',
+        description: 'Center operations overview.',
+        descriptionAr: 'نظرة عامة على تشغيل المركز.',
+        href: '/centers',
+        permissions: ['orgs.read', 'orgs.write'],
+      },
+      {
+        id: 'courses',
+        title: 'Courses',
+        titleAr: 'الدورات',
+        description: 'Course catalog and schedules.',
+        descriptionAr: 'كتالوج الدورات والجداول.',
+        href: '/programs',
+        permissions: ['academic.read', 'content.read'],
+      },
+      {
+        id: 'learners',
+        title: 'Learners',
+        titleAr: 'المتعلمون',
+        description: 'Center student roster.',
+        descriptionAr: 'قائمة طلاب المركز.',
+        permissions: ['students.read'],
+      },
+      {
+        id: 'teachers',
+        title: 'Instructors',
+        titleAr: 'المدربون',
+        description: 'Instructor assignments.',
+        descriptionAr: 'تعيينات المدربين.',
+        href: '/teachers',
+        permissions: ['teachers.read'],
+      },
+    ],
+  },
+
+  employer: {
+    label: 'Employer',
+    labelAr: 'صاحب العمل',
+    modules: [
+      {
+        id: 'jobs',
+        title: 'Job Posts',
+        titleAr: 'الوظائف',
+        description: 'Create and manage openings.',
+        descriptionAr: 'إنشاء وإدارة الشواغر.',
+        href: '/jobs',
+        permissions: ['orgs.read', 'users.read', 'partners.read'],
+      },
+      {
+        id: 'candidates',
+        title: 'Candidates',
+        titleAr: 'المرشحون',
+        description: 'Review applications and talent.',
+        descriptionAr: 'مراجعة الطلبات والمواهب.',
+        href: '/jobseeker-portal',
+        permissions: ['users.read'],
+      },
+      {
+        id: 'partners',
+        title: 'Recruitment Partners',
+        titleAr: 'شركاء التوظيف',
+        description: 'Partner agencies and pipelines.',
+        descriptionAr: 'وكالات التوظيف والمسارات.',
+        permissions: ['partners.read'],
+      },
+    ],
+  },
+
+  job_seeker: {
+    label: 'Job Seeker',
+    labelAr: 'الباحث عن عمل',
+    modules: [
+      {
+        id: 'search',
+        title: 'Job Search',
+        titleAr: 'البحث عن عمل',
+        description: 'Browse openings and filters.',
+        descriptionAr: 'تصفح الفرص والفلاتر.',
+        href: '/jobs',
+        permissions: ['orgs.read', 'partners.read', 'users.read', 'academic.read', 'content.read'],
+      },
+      {
+        id: 'applications',
+        title: 'My Applications',
+        titleAr: 'طلباتي',
+        description: 'Track submitted applications.',
+        descriptionAr: 'متابعة الطلبات المقدمة.',
+        href: '/jobseeker-portal',
+        permissions: ['users.read', 'orgs.read'],
+      },
+      {
+        id: 'learning',
+        title: 'Skills Learning',
+        titleAr: 'تعلم المهارات',
+        description: 'Courses linked to career goals.',
+        descriptionAr: 'دورات مرتبطة بأهدافك المهنية.',
+        href: '/start-journey',
+        permissions: ['academic.read', 'content.read'],
+      },
+    ],
+  },
+
+  student: {
+    label: 'Student',
+    labelAr: 'الطالب',
+    modules: [
+      {
+        id: 'learning',
+        title: 'Learning Home',
+        titleAr: 'منزل التعلم',
+        description: 'Continue lessons and plans.',
+        descriptionAr: 'متابعة الدروس والخطط.',
+        href: '/student/dashboard',
+        permissions: ['academic.read', 'content.read'],
+      },
+      {
+        id: 'books',
+        title: 'Book Library',
+        titleAr: 'مكتبة الكتب',
+        description: 'Digital books and subjects.',
+        descriptionAr: 'الكتب الرقمية والمواد.',
+        href: '/student/books',
+        permissions: ['content.read', 'academic.read'],
+      },
+      {
+        id: 'passport',
+        title: 'Education Passport',
+        titleAr: 'الجواز التعليمي',
+        description: 'Evidence and achievements.',
+        descriptionAr: 'الأدلة والإنجازات.',
+        href: '/passport',
+        permissions: ['academic.read'],
+      },
+    ],
+  },
+
+  owner: {
+    label: 'Owner',
+    labelAr: 'المالك',
+    modules: [
+      {
+        id: 'admin',
+        title: 'Enterprise Admin',
+        titleAr: 'لوحة المشرف',
+        description: 'Full operations control center.',
+        descriptionAr: 'مركز التحكم التشغيلي الكامل.',
+        href: '/dashboard/admin',
+        permissions: ['platform.manage', 'users.read', 'permissions.manage'],
+      },
+      {
+        id: 'finance',
+        title: 'Finance Overview',
+        titleAr: 'نظرة المالية',
+        description: 'Revenue and payouts.',
+        descriptionAr: 'الإيرادات وعمليات الصرف.',
+        href: '/dashboard/admin/finance',
+        permissions: ['finance.read'],
+      },
+      {
+        id: 'permissions',
+        title: 'Permission Distribution',
+        titleAr: 'توزيع الصلاحيات',
+        description: 'Assign capabilities to every role.',
+        descriptionAr: 'توزيع القدرات على كل دور.',
+        href: '/dashboard/admin/permissions',
+        permissions: ['permissions.manage'],
+      },
+      {
+        id: 'reports',
+        title: 'Executive Reports',
+        titleAr: 'تقارير تنفيذية',
+        description: 'Cross-platform analytics.',
+        descriptionAr: 'تحليلات عبر المنصة.',
+        href: '/dashboard/admin/reports',
+        permissions: ['reports.view', 'reports.export'],
+      },
+    ],
+  },
+
+  admin: {
+    label: 'Admin',
+    labelAr: 'المشرف',
+    modules: [
+      {
+        id: 'enterprise',
+        title: 'Enterprise Admin',
+        titleAr: 'لوحة المشرف',
+        description: 'Users, finance, and modules.',
+        descriptionAr: 'المستخدمون والمالية والوحدات.',
+        href: '/dashboard/admin',
+        permissions: ['users.read', 'permissions.manage'],
+      },
+      {
+        id: 'permissions',
+        title: 'Permissions',
+        titleAr: 'الصلاحيات',
+        description: 'Distribute role capabilities.',
+        descriptionAr: 'توزيع قدرات الأدوار.',
+        href: '/dashboard/admin/permissions',
+        permissions: ['permissions.manage'],
+      },
+      {
+        id: 'users',
+        title: 'User Management',
+        titleAr: 'إدارة المستخدمين',
+        description: 'Students, teachers, and orgs.',
+        descriptionAr: 'الطلاب والمعلمون والمؤسسات.',
+        href: '/dashboard/admin/students',
+        permissions: ['users.read', 'users.write'],
+      },
+    ],
+  },
+
+  content_creator: {
+    label: 'Content Creator',
+    labelAr: 'منشئ المحتوى',
+    modules: [
+      {
+        id: 'studio',
+        title: 'Content Studio',
+        titleAr: 'استوديو المحتوى',
+        description: 'Draft and publish lessons.',
+        descriptionAr: 'صياغة ونشر الدروس.',
+        href: '/content-studio',
+        permissions: ['content.read', 'content.write'],
+      },
+      {
+        id: 'academic',
+        title: 'Curriculum Alignment',
+        titleAr: 'محاذاة المنهاج',
+        description: 'Map content to curriculum.',
+        descriptionAr: 'ربط المحتوى بالمنهاج.',
+        href: '/curriculum-lab',
+        permissions: ['academic.read'],
+      },
+      {
+        id: 'tasks',
+        title: 'Production Tasks',
+        titleAr: 'مهام الإنتاج',
+        description: 'Assigned content jobs.',
+        descriptionAr: 'مهام المحتوى المعيّنة.',
+        permissions: ['tasks.read'],
+      },
+    ],
+  },
+
+  social_media_manager: {
+    label: 'Social Media Manager',
+    labelAr: 'مدير التواصل',
+    modules: [
+      {
+        id: 'campaigns',
+        title: 'Campaigns',
+        titleAr: 'الحملات',
+        description: 'Plan and review campaigns.',
+        descriptionAr: 'تخطيط ومراجعة الحملات.',
+        href: '/dashboard/admin/social-campaigns',
+        permissions: ['social.read', 'social.write', 'marketing.read'],
+      },
+      {
+        id: 'posts',
+        title: 'Scheduled Posts',
+        titleAr: 'المنشورات المجدولة',
+        description: 'Publishing calendar.',
+        descriptionAr: 'تقويم النشر.',
+        href: '/dashboard/admin/social-posts',
+        permissions: ['social.read', 'social.publish'],
+      },
+      {
+        id: 'content',
+        title: 'Content Library',
+        titleAr: 'مكتبة المحتوى',
+        description: 'Assets ready for social.',
+        descriptionAr: 'أصول جاهزة للتواصل.',
+        href: '/content-studio',
+        permissions: ['content.read', 'content.write'],
+      },
+    ],
+  },
+
+  customer_support: {
+    label: 'Customer Support',
+    labelAr: 'دعم العملاء',
+    modules: [
+      {
+        id: 'tickets',
+        title: 'Support Queue',
+        titleAr: 'قائمة الدعم',
+        description: 'Open tickets and requests.',
+        descriptionAr: 'التذاكر والطلبات المفتوحة.',
+        href: '/dashboard/admin/support-center',
+        permissions: ['support.read', 'support.write'],
+      },
+      {
+        id: 'users',
+        title: 'User Lookup',
+        titleAr: 'البحث عن مستخدم',
+        description: 'Find accounts needing help.',
+        descriptionAr: 'العثور على حسابات تحتاج مساعدة.',
+        permissions: ['users.read'],
+      },
+      {
+        id: 'notify',
+        title: 'Notifications',
+        titleAr: 'الإشعارات',
+        description: 'Send support updates.',
+        descriptionAr: 'إرسال تحديثات الدعم.',
+        href: '/notifications',
+        permissions: ['notifications.send'],
+      },
+    ],
+  },
+
+  academic_director: {
+    label: 'Academic Director',
+    labelAr: 'المدير الأكاديمي',
+    modules: [
+      {
+        id: 'programs',
+        title: 'Academic Programs',
+        titleAr: 'البرامج الأكاديمية',
+        description: 'Curriculum oversight.',
+        descriptionAr: 'الإشراف على المناهج.',
+        href: '/curriculum-lab',
+        permissions: ['academic.read', 'academic.write'],
+      },
+      {
+        id: 'content-review',
+        title: 'Content Review',
+        titleAr: 'مراجعة المحتوى',
+        description: 'Approve publishable lessons.',
+        descriptionAr: 'اعتماد الدروس القابلة للنشر.',
+        href: '/content-studio',
+        permissions: ['content.read', 'content.write', 'content.publish'],
+      },
+      {
+        id: 'teachers',
+        title: 'Teachers',
+        titleAr: 'المعلمون',
+        description: 'Faculty quality and coverage.',
+        descriptionAr: 'جودة المعلمين والتغطية.',
+        href: '/teachers',
+        permissions: ['teachers.read', 'teachers.assign'],
+      },
+      {
+        id: 'reports',
+        title: 'Academic Reports',
+        titleAr: 'تقارير أكاديمية',
+        description: 'Quality and mastery reports.',
+        descriptionAr: 'تقارير الجودة والإتقان.',
+        permissions: ['reports.view', 'reports.export'],
+      },
+    ],
+  },
+});
+
+/** Roles that get a dedicated control dashboard (beyond enterprise admin). */
+export const USER_CONTROL_DASHBOARD_ROLES = Object.freeze([
+  'teacher',
+  'parent',
+  'school',
+  'university',
+  'educational_center',
+  'employer',
+  'job_seeker',
+  'student',
+  'owner',
+  'admin',
+  'content_creator',
+  'social_media_manager',
+  'customer_support',
+  'academic_director',
+]);
+
+export function getRoleDashboardDefinition(roleKey) {
+  return ROLE_DASHBOARD_CATALOG[roleKey] || null;
+}
+
+export function filterModulesByPermissions(modules, permissions) {
+  const set = new Set(permissions || []);
+  return (modules || []).filter((mod) =>
+    (mod.permissions || []).some((p) => set.has(p)),
+  );
+}
