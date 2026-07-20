@@ -15,5 +15,10 @@
       ]
     }
   ],
-  "crons": []
+  "crons": [
+    {
+      "path": "/api/dynamic-platform?view=tick",
+      "schedule": "0 */6 * * *"
+    }
+  ]
 }

@@ -1,8 +1,28 @@
 'use client';
 
 import { useCallback, useEffect, useMemo, useState } from 'react';
+import { EnterpriseDynamicPlatformCenter } from './enterprise-dynamic-platform-center';
 
 const emptyForm = {};
+
+const DPE_CENTER_MODULES = new Set([
+  'dynamic-platform',
+  'dpe-pages',
+  'dpe-labels',
+  'dpe-navigation',
+  'dpe-buttons',
+  'dpe-forms',
+  'dpe-filters',
+  'dpe-journeys',
+  'dpe-dashboards',
+  'dpe-tables',
+  'dpe-settings',
+  'dpe-flags',
+  'dpe-notifications',
+  'dpe-workflows',
+  'dpe-branding',
+  'dpe-quality',
+]);
 
 export function EnterpriseAdminModulePage({ moduleId }) {
   const [data, setData] = useState(null);
@@ -21,9 +41,11 @@ export function EnterpriseAdminModulePage({ moduleId }) {
   const isFinance = moduleId === 'finance';
   const isCommission = moduleId === 'commission-rules';
   const isPaymentSplits = moduleId === 'payment-splits';
+  const isDpeCenter = DPE_CENTER_MODULES.has(moduleId);
 
   const load = useCallback(async () => {
     setError('');
+    if (isDpeCenter) return;
     if (isPermissions) {
       const res = await fetch('/api/enterprise-admin?view=permissions', { cache: 'no-store' });
       setPermMatrix(await res.json());
@@ -46,7 +68,7 @@ export function EnterpriseAdminModulePage({ moduleId }) {
     const res = await fetch(`/api/enterprise-admin?${params}`, { cache: 'no-store' });
     if (!res.ok) throw new Error('Failed to load module');
     setData(await res.json());
-  }, [moduleId, q, status, isPermissions, isFinance, isCommission]);
+  }, [moduleId, q, status, isPermissions, isFinance, isCommission, isDpeCenter]);
 
   useEffect(() => {
     load().catch((e) => setError(e.message || 'load failed'));
@@ -104,6 +126,10 @@ export function EnterpriseAdminModulePage({ moduleId }) {
         onToggle={(key, permission) => runAction('togglePermission', { key, permission })}
       />
     );
+  }
+
+  if (isDpeCenter) {
+    return <EnterpriseDynamicPlatformCenter />;
   }
 
   return (
