@@ -29,7 +29,20 @@ export default function StartJourney(){
  const router=useRouter();
  const [step,setStep]=useState(1),[portal,setPortal]=useState(''),[form,setForm]=useState(defaults),[errors,setErrors]=useState({}),[busy,setBusy]=useState(false),[qa,setQa]=useState(false),[choice,setChoice]=useState(''),[lang,setLang]=useState('ar');
  const [partnerProducts,setPartnerProducts]=useState([]);
- useEffect(()=>{try{const saved=JSON.parse(sessionStorage.getItem('success-os-journey')||'null');if(saved){setPortal(saved.portal||'');setForm(saved.form||defaults);setStep(saved.step||1);setChoice(saved.choice||'')}const p=new URLSearchParams(location.search).get('portal');if(p&&portals.some(x=>x[0]===p)){setPortal(p);setStep(needsIntent.has(p)||p==='student'?2:3)}}catch{}},[]);
+ useEffect(()=>{try{
+  const params=new URLSearchParams(location.search);
+  const p=params.get('portal');
+  const intent=params.get('intent');
+  const saved=JSON.parse(sessionStorage.getItem('success-os-journey')||'null');
+  // Student gateway enters the portal directly — purchase wizard uses intent=purchase
+  if((p==='student'||saved?.portal==='student')&&intent!=='purchase'&&!saved?.form?.filters?.['نوع الخدمة']){
+   try{if(p==='student')sessionStorage.removeItem('success-os-journey')}catch{}
+   router.replace('/student-portal');
+   return;
+  }
+  if(saved){setPortal(saved.portal||'');setForm(saved.form||defaults);setStep(saved.step||1);setChoice(saved.choice||'')}
+  if(p&&portals.some(x=>x[0]===p)){setPortal(p);setStep(needsIntent.has(p)||p==='student'?2:3)}
+ }catch{}},[router]);
  useEffect(()=>{try{sessionStorage.setItem('success-os-journey',JSON.stringify({portal,form,step,choice}))}catch{}},[portal,form,step,choice]);
  useEffect(()=>{try{setPartnerProducts(JSON.parse(localStorage.getItem('success-os-partner-products')||'[]'))}catch{}},[]);
  const studentCore=form.studentType==='university'?universityStudentCore:form.studentType==='courses'?courseStudentCore:schoolStudentCore;
@@ -59,7 +72,10 @@ export default function StartJourney(){
  },[portal,isRecorded,form.filters,partnerProducts]);
  const selectedResult=results.find(x=>x.title===choice),basePrice=selectedResult?.price||0,platformFee=basePrice*.10,partnerPayout=basePrice-platformFee,totalPrice=basePrice;
  const query=useMemo(()=>{const p=new URLSearchParams({from:'journey',country:form.country,name:form.name,studentType:form.studentType||'',...form.filters});return `${target}${target.includes('?')?'&':'?'}${p}`},[target,form]);
- function choosePortal(id){setPortal(id);setForm(defaults);setChoice('');setErrors({});setStep(needsIntent.has(id)||id==='student'?2:3)}
+ function choosePortal(id){
+  if(id==='student'){router.push('/student-portal');return}
+  setPortal(id);setForm(defaults);setChoice('');setErrors({});setStep(needsIntent.has(id)?2:3)
+ }
  function setFilter(label,value){const index=fields.indexOf(label),next={...form.filters,[label]:value};fields.slice(index+1).forEach(key=>delete next[key]);setForm({...form,filters:next});setChoice('')}
  function valid(){const e={};if(step===2&&portal==='student'&&!form.studentType)e.studentType='اختر طالب مدرسة أو طالب جامعة أو دورات';if(step>=3&&!form.name.trim())e.name='اكتب الاسم للمتابعة';if(step>=3&&!form.country.trim())e.country='حدد الدولة';if(step===4)fields.forEach(label=>{if(!form.filters[label])e[label]=`حدد ${label}`});if(step===5&&!choice)e.choice='اختر نتيجة واحدة للمتابعة';setErrors(e);return !Object.keys(e).length}
  function next(){
@@ -78,7 +94,6 @@ export default function StartJourney(){
   <header className="journey-launch-hero"><div><small>ONE CONTROLLED JOURNEY</small><h1>ابدأ رحلتك بخطوات واضحة</h1><p>ثماني مراحل مترابطة تحفظ اختياراتك وتوصلك إلى اللوحة المناسبة دون روابط وهمية.</p></div><aside><img src="/media/success-future-gateways.webp" alt="بوابات SUCCESS OS"/></aside></header>
   <nav className="journey-progress" aria-label="مراحل الرحلة">{steps.map((x,i)=><span className={step===i+1?'active':step>i+1?'done':''} key={x}><b>{i+1}</b>{x}</span>)}</nav>
   {step===1&&<Panel n="01" title="من أنت؟" cls="journey-portal-picker"><div>{portals.map(([id,icon,title,text])=><button onClick={()=>choosePortal(id)} key={id}><span>{icon}</span><b>{title}</b><p>{text}</p><i>←</i></button>)}</div></Panel>}
-  {step===2&&portal==='student'&&<Panel n="02" title="اختر مسارك" text="ثلاث رحلات مستقلة حسب احتياج الطالب." cls="journey-request-picker"><div><button className={form.studentType==='school'?'active':''} onClick={()=>{setForm({...form,studentType:'school',filters:{}});setErrors({})}}>طالب مدرسة<span>✓</span></button><button className={form.studentType==='university'?'active':''} onClick={()=>{setForm({...form,studentType:'university',filters:{}});setErrors({})}}>طالب جامعة<span>✓</span></button><button className={form.studentType==='courses'?'active':''} onClick={()=>{setForm({...form,studentType:'courses',filters:{}});setErrors({})}}>دورات محلية وعالمية<span>✓</span></button></div>{errors.studentType&&<em className="field-error">{errors.studentType}</em>}<Actions back={()=>setStep(1)} next={next} busy={busy}/></Panel>}
   {step===2&&portal!=='student'&&<Panel n="02" title={`ماذا تريد من بوابة ${selected?.[2]}؟`} cls="journey-request-picker"><div><button className={form.intent==='search'?'active':''} onClick={()=>setForm({...form,intent:'search'})}>ابحث عن {selected?.[2]}<span>✓</span></button><button className={form.intent==='join'?'active':''} onClick={()=>setForm({...form,intent:'join'})}>انضم إلينا كشريك<span>✓</span></button></div><Actions back={()=>setStep(1)} next={next} busy={busy}/></Panel>}
   {step===3&&<Panel n="03" title={`معلومات ${form.studentType==='university'?'طالب الجامعة':form.studentType==='school'?'طالب المدرسة':form.studentType==='courses'?'طالب الدورات':'أساسية'}`} cls="journey-filter-step"><div><Field label="الاسم" value={form.name} error={errors.name} onChange={v=>setForm({...form,name:v})}/><Field label="الدولة" value={form.country} error={errors.country} choices={countries.map(x=>({value:x.code,label:x.name}))} onChange={v=>setForm({...form,country:v,filters:{}})}/></div><Actions back={()=>setStep(needsIntent.has(portal)||portal==='student'?2:1)} next={next} busy={busy}/></Panel>}
   {step===4&&<Panel n="04" title={`فلاتر ${selected?.[2]}`} text={portal==='student'?(isRecorded?'يظهر التسجيل البشري فقط إذا رفعه معلم أو مركز. عند عدم وجوده يظهر المعلم المساعد.':isLive?'نعرض مركز النجاح الأكيد ومعلميه أولًا، ثم المعلمين والمراكز الأعلى تقييمًا حسب السعر والموقع.':'اختر المادة ثم نوع الحصة المطلوبة.'):'تغيير أي اختيار يعيد الحقول التابعة فقط.'} cls="journey-filter-step"><div>{fields.map((label,index)=><Field key={label} label={label} value={form.filters[label]||''} error={errors[label]} placeholder={label==='الحد الأعلى للسعر'?'أدخل أقصى سعر':label==='المدينة'?'اكتب المدينة':'الكل'} choices={choicesFor(label)} disabled={index>0&&!form.filters[fields[index-1]]} onChange={v=>{setErrors({});setFilter(label,v)}}/>)}</div>{isRecorded&&<aside className="recorded-ai-note"><b>المعلم المساعد عند عدم وجود تسجيل بشري</b><p>إذا لم يرفع معلم أو مركز تسجيلًا لهذه المادة، يظهر المعلم المساعد لإنتاج حصص المادة كاملة، ثم تنتقل الرحلة إلى الشراء وبعدها إلى لوحة الطالب.</p></aside>}<Actions back={()=>setStep(3)} next={next} busy={busy}/></Panel>}
