@@ -173,6 +173,33 @@ export default function EnterpriseAdminHomePage() {
 
       {error ? <p style={{ color: '#b91c1c' }}>{error}</p> : null}
 
+      <div
+        style={{
+          border: '1px solid #fda4af',
+          background: '#fff1f2',
+          borderRadius: 14,
+          padding: 14,
+          marginBottom: 16,
+        }}
+      >
+        <div style={{ fontWeight: 700, marginBottom: 6 }}>Communication & Collaboration Platform</div>
+        <p style={{ margin: '0 0 10px', color: '#9f1239', fontSize: 13 }}>
+          Encrypted messaging, video meetings, help desk, announcements, documents, calendar, parent
+          comms, and AI assistant — synchronized in real time with existing roles and permissions.
+        </p>
+        <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
+          <a href="/dashboard/admin/communication-platform" style={{ background: '#e11d48', color: '#fff', padding: '8px 12px', borderRadius: 999, textDecoration: 'none', fontWeight: 700 }}>
+            Open Communication Platform
+          </a>
+          <a href="/dashboard/admin/comm-helpdesk" style={{ background: '#fff', color: '#e11d48', border: '1px solid #e11d48', padding: '8px 12px', borderRadius: 999, textDecoration: 'none', fontWeight: 700 }}>
+            Help Desk
+          </a>
+          <a href="/dashboard/admin/comm-meetings" style={{ background: '#fff', color: '#e11d48', border: '1px solid #e11d48', padding: '8px 12px', borderRadius: 999, textDecoration: 'none', fontWeight: 700 }}>
+            Meetings
+          </a>
+        </div>
+      </div>
+
       <h2 style={{ fontSize: 16 }}>Users & organizations</h2>
       <div style={{ display: 'grid', gap: 10, gridTemplateColumns: 'repeat(auto-fit,minmax(150px,1fr))', marginBottom: 16 }}>
         {userCards.map(([label, value]) => (

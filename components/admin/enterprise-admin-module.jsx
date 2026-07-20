@@ -1,8 +1,26 @@
 'use client';
 
 import { useCallback, useEffect, useMemo, useState } from 'react';
+import { EnterpriseCommunicationCenter } from './enterprise-communication-center';
 
 const emptyForm = {};
+
+const COMM_CENTER_MODULES = new Set([
+  'communication-platform',
+  'comm-messaging',
+  'comm-meetings',
+  'comm-calls',
+  'comm-announcements',
+  'comm-helpdesk',
+  'comm-notifications',
+  'comm-documents',
+  'comm-calendar',
+  'comm-collaboration',
+  'comm-parents',
+  'comm-ai',
+  'comm-search',
+  'comm-security',
+]);
 
 export function EnterpriseAdminModulePage({ moduleId }) {
   const [data, setData] = useState(null);
@@ -21,9 +39,11 @@ export function EnterpriseAdminModulePage({ moduleId }) {
   const isFinance = moduleId === 'finance';
   const isCommission = moduleId === 'commission-rules';
   const isPaymentSplits = moduleId === 'payment-splits';
+  const isCommCenter = COMM_CENTER_MODULES.has(moduleId);
 
   const load = useCallback(async () => {
     setError('');
+    if (isCommCenter) return;
     if (isPermissions) {
       const res = await fetch('/api/enterprise-admin?view=permissions', { cache: 'no-store' });
       setPermMatrix(await res.json());
@@ -46,7 +66,7 @@ export function EnterpriseAdminModulePage({ moduleId }) {
     const res = await fetch(`/api/enterprise-admin?${params}`, { cache: 'no-store' });
     if (!res.ok) throw new Error('Failed to load module');
     setData(await res.json());
-  }, [moduleId, q, status, isPermissions, isFinance, isCommission]);
+  }, [moduleId, q, status, isPermissions, isFinance, isCommission, isCommCenter]);
 
   useEffect(() => {
     load().catch((e) => setError(e.message || 'load failed'));
@@ -104,6 +124,10 @@ export function EnterpriseAdminModulePage({ moduleId }) {
         onToggle={(key, permission) => runAction('togglePermission', { key, permission })}
       />
     );
+  }
+
+  if (isCommCenter) {
+    return <EnterpriseCommunicationCenter />;
   }
 
   return (
