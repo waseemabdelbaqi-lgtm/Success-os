@@ -68,8 +68,35 @@ function convertCurrency(amount, from, to, rates) {
 
 /**
  * After a successful payment, calculate full split and persist artifacts.
+ * Requires idempotencyKey for safe retries (Security Trust Engine).
  */
 export function processSuccessfulPayment(input = {}, meta = {}) {
+  const idempotencyKey = input.idempotencyKey || meta.idempotencyKey;
+  if (!idempotencyKey) {
+    return { ok: false, error: 'IDEMPOTENCY_KEY_REQUIRED' };
+  }
+
+  // Lazy import to avoid circular deps at module load
+  const { withIdempotency, requireFinancialControls, getSecurityFlag } = require('./enterprise-security-trust-engine.js');
+  if (typeof getSecurityFlag === 'function' && getSecurityFlag('payment_hold')) {
+    return { ok: false, error: 'PAYMENT_HOLD_ACTIVE' };
+  }
+  const gate = requireFinancialControls('payment', {
+    amount: input.grossAmount,
+    idempotencyKey,
+    mfaVerified: meta.mfaVerified || input.mfaVerified,
+    dualApproved: meta.dualApproved || input.dualApproved,
+  });
+  if (!gate.ok) return gate;
+
+  const wrapped = withIdempotency(idempotencyKey, 'payment', () =>
+    processSuccessfulPaymentInner(input, meta),
+  );
+  if (!wrapped.ok) return wrapped;
+  return { ...wrapped.result, replay: wrapped.replay };
+}
+
+function processSuccessfulPaymentInner(input = {}, meta = {}) {
   ensureCommissionDefaults();
   const currency = input.currency || ensureCommissionDefaults().defaultCurrency || 'USD';
   const gross = money(input.grossAmount);
@@ -114,6 +141,7 @@ export function processSuccessfulPayment(input = {}, meta = {}) {
     partnerType: input.partnerType || null,
     gateway: input.gateway || null,
     status: 'completed',
+    idempotencyKey: input.idempotencyKey || meta.idempotencyKey || null,
     meta: input.meta || {},
   };
 
@@ -250,6 +278,15 @@ function sumExpenses() {
 }
 
 export function mutatePayout(action, payload = {}, meta = {}) {
+  try {
+    const { getSecurityFlag } = require('./enterprise-security-trust-engine.js');
+    if (getSecurityFlag('payout_hold') && ['approve', 'markTransferred'].includes(action)) {
+      return { ok: false, error: 'PAYOUT_HOLD_ACTIVE' };
+    }
+  } catch {
+    /* security engine optional during early boot */
+  }
+
   const doc = erpReadCollection('payouts');
   const items = erpList(doc.items);
   const idx = items.findIndex((p) => p.id === payload.id);
@@ -257,6 +294,18 @@ export function mutatePayout(action, payload = {}, meta = {}) {
   const before = items[idx];
 
   if (action === 'approve') {
+    try {
+      const { requireFinancialControls } = require('./enterprise-security-trust-engine.js');
+      const gate = requireFinancialControls('payout', {
+        amount: before.netAmount || payload.netAmount || payload.amount,
+        idempotencyKey: payload.idempotencyKey || `payout-approve-${payload.id}`,
+        mfaVerified: meta.mfaVerified || payload.mfaVerified,
+        dualApproved: meta.dualApproved || payload.dualApproved,
+      });
+      if (!gate.ok) return gate;
+    } catch {
+      /* ignore */
+    }
     items[idx] = {
       ...before,
       approval: 'approved',
