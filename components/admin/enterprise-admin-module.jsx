@@ -1,8 +1,23 @@
 'use client';
 
 import { useCallback, useEffect, useMemo, useState } from 'react';
+import { EnterpriseMultiTenantCenter } from './enterprise-multi-tenant-center';
 
 const emptyForm = {};
+
+const MT_CENTER_MODULES = new Set([
+  'multi-tenant-platform',
+  'mt-tenants',
+  'mt-white-label',
+  'mt-modules',
+  'mt-subscriptions',
+  'mt-billing',
+  'mt-limits',
+  'mt-isolation',
+  'mt-tenant-admin',
+  'mt-analytics',
+  'mt-security',
+]);
 
 export function EnterpriseAdminModulePage({ moduleId }) {
   const [data, setData] = useState(null);
@@ -21,9 +36,11 @@ export function EnterpriseAdminModulePage({ moduleId }) {
   const isFinance = moduleId === 'finance';
   const isCommission = moduleId === 'commission-rules';
   const isPaymentSplits = moduleId === 'payment-splits';
+  const isMtCenter = MT_CENTER_MODULES.has(moduleId);
 
   const load = useCallback(async () => {
     setError('');
+    if (isMtCenter) return;
     if (isPermissions) {
       const res = await fetch('/api/enterprise-admin?view=permissions', { cache: 'no-store' });
       setPermMatrix(await res.json());
@@ -46,7 +63,7 @@ export function EnterpriseAdminModulePage({ moduleId }) {
     const res = await fetch(`/api/enterprise-admin?${params}`, { cache: 'no-store' });
     if (!res.ok) throw new Error('Failed to load module');
     setData(await res.json());
-  }, [moduleId, q, status, isPermissions, isFinance, isCommission]);
+  }, [moduleId, q, status, isPermissions, isFinance, isCommission, isMtCenter]);
 
   useEffect(() => {
     load().catch((e) => setError(e.message || 'load failed'));
@@ -104,6 +121,10 @@ export function EnterpriseAdminModulePage({ moduleId }) {
         onToggle={(key, permission) => runAction('togglePermission', { key, permission })}
       />
     );
+  }
+
+  if (isMtCenter) {
+    return <EnterpriseMultiTenantCenter />;
   }
 
   return (
