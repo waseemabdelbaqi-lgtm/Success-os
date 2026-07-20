@@ -20,6 +20,12 @@ import {
   processSuccessfulPayment,
   PAYOUT_METHODS,
 } from '../../lib/admin/enterprise-payment-engine.js';
+import {
+  GIP_MODULE_IDS,
+  ensureGipEngine,
+  getGipDashboard,
+  mutateGipCenter,
+} from '../../lib/admin/enterprise-gip-engine.js';
 
 const ELEVATED = new Set(['super_admin', 'owner', 'admin']);
 
@@ -98,6 +104,11 @@ export async function GET(request) {
 
   if (view === 'payout-methods') {
     return Response.json({ methods: PAYOUT_METHODS }, { headers: { 'Cache-Control': 'no-store' } });
+  }
+
+  if (view === 'gip' || view === 'integrations') {
+    ensureGipEngine();
+    return Response.json(getGipDashboard(), { headers: { 'Cache-Control': 'no-store' } });
   }
 
   if (view === 'export') {
@@ -191,6 +202,39 @@ export async function POST(request) {
 
     if (moduleId === 'payouts' && ['approve', 'reject', 'markTransferred'].includes(action)) {
       return Response.json(mutatePayout(action, payload || {}, { user: body.user || 'admin' }));
+    }
+
+    const gipActions = new Set([
+      'install',
+      'uninstall',
+      'enable',
+      'disable',
+      'setEnabled',
+      'updateVersion',
+      'upsertSecret',
+      'rotateSecret',
+      'registerWebhook',
+      'validateWebhook',
+      'invoke',
+      'healthCheck',
+      'setConfig',
+      'monitoring',
+      'sync',
+    ]);
+    if (
+      action?.startsWith('gip') ||
+      gipActions.has(action) ||
+      GIP_MODULE_IDS.includes(moduleId)
+    ) {
+      ensureGipEngine();
+      if (gipActions.has(action) || action?.startsWith('gip')) {
+        const result = await mutateGipCenter(action, payload || body, {
+          user: body.user || 'owner',
+          role: body.role || 'owner',
+          moduleId: moduleId || 'gip',
+        });
+        return Response.json(result, { status: result.ok === false ? 400 : 200 });
+      }
     }
 
     if (
