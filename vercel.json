@@ -15,5 +15,10 @@
       ]
     }
   ],
-  "crons": []
+  "crons": [
+    {
+      "path": "/api/marketplace?view=tick",
+      "schedule": "*/15 * * * *"
+    }
+  ]
 }

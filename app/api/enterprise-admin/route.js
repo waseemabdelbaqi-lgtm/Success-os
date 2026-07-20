@@ -20,6 +20,12 @@ import {
   processSuccessfulPayment,
   PAYOUT_METHODS,
 } from '../../lib/admin/enterprise-payment-engine.js';
+import {
+  MARKETPLACE_MODULE_IDS,
+  ensureMarketplaceEngine,
+  getMarketplaceDashboard,
+  mutateMarketplaceCenter,
+} from '../../lib/admin/enterprise-marketplace-engine.js';
 
 const ELEVATED = new Set(['super_admin', 'owner', 'admin']);
 
@@ -98,6 +104,11 @@ export async function GET(request) {
 
   if (view === 'payout-methods') {
     return Response.json({ methods: PAYOUT_METHODS }, { headers: { 'Cache-Control': 'no-store' } });
+  }
+
+  if (view === 'marketplace') {
+    ensureMarketplaceEngine();
+    return Response.json(getMarketplaceDashboard(), { headers: { 'Cache-Control': 'no-store' } });
   }
 
   if (view === 'export') {
@@ -203,6 +214,37 @@ export async function POST(request) {
       action === 'updateRolePermissions'
     ) {
       return Response.json(mutatePermissions(action, payload || body));
+    }
+
+    const marketActions = new Set([
+      'syncListings',
+      'search',
+      'upsertAvailability',
+      'createBooking',
+      'addToCart',
+      'applyPromo',
+      'checkout',
+      'orderAction',
+      'createReview',
+      'reviewAction',
+      'createSubscription',
+      'recommend',
+      'createDispute',
+      'decideDispute',
+      'createListing',
+      'createAffiliate',
+      'setConfig',
+      'analytics',
+    ]);
+    if (action?.startsWith('market') || marketActions.has(action) || MARKETPLACE_MODULE_IDS.includes(moduleId)) {
+      ensureMarketplaceEngine();
+      if (marketActions.has(action) || action?.startsWith('market')) {
+        const result = await mutateMarketplaceCenter(action, payload || body, {
+          user: body.user || 'owner',
+          role: body.role || 'owner',
+        });
+        return Response.json(result, { status: result.ok === false ? 400 : 200 });
+      }
     }
 
     if (!moduleId) {
