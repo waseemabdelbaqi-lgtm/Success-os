@@ -271,7 +271,7 @@ export default function HomePage() {
             <article><span>03</span><i>⌁</i><b>{lang==='en'?'Experience & skills':'الخبرة والمهارات'}</b><p>{lang==='en'?'Projects, courses, certificates and verified evidence.':'مشاريع، دورات، شهادات وأدلة مهارية موثقة.'}</p><a href="/programs">{lang==='en'?'Build skills':'ابنِ مهاراتك'} ←</a></article>
             <article><span>04</span><i>↗</i><b>{lang==='en'?'Employment & growth':'التوظيف والنمو'}</b><p>{lang==='en'?'Matched roles, applications and continuous development.':'وظائف مطابقة، تقديم وتطوير مستمر.'}</p><a href="/jobs">{lang==='en'?'View opportunities':'شاهد الفرص'} ←</a></article>
           </div>
-          <footer><a className="button dark" href="/start-journey">{lang==='en'?'Start now':'ابدأ الآن'} ←</a><a href="/trust">{lang==='en'?'Safety and verification':'الأمان والتحقق'}</a></footer>
+          <footer><a className="button dark" href="/student-portal">{lang==='en'?'Enter student portal':'ادخل بوابة الطالب'} ←</a><a href="/trust">{lang==='en'?'Safety and verification':'الأمان والتحقق'}</a></footer>
         </div>
       </section>
 
