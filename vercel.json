@@ -15,5 +15,10 @@
       ]
     }
   ],
-  "crons": []
+  "crons": [
+    {
+      "path": "/api/data-platform?view=tick",
+      "schedule": "*/15 * * * *"
+    }
+  ]
 }
