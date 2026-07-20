@@ -173,6 +173,65 @@ export default function EnterpriseAdminHomePage() {
 
       {error ? <p style={{ color: '#b91c1c' }}>{error}</p> : null}
 
+      <div
+        style={{
+          border: '1px solid #99f6e4',
+          background: '#f0fdfa',
+          borderRadius: 14,
+          padding: 14,
+          marginBottom: 16,
+        }}
+      >
+        <div style={{ fontWeight: 700, marginBottom: 6 }}>Global Integration Platform</div>
+        <p style={{ margin: '0 0 10px', color: '#0f766e', fontSize: 13 }}>
+          Unified Integration Hub for payments, communications, video, AI, storage, auth, maps, and
+          more — install, enable, monitor, and replace without changing business modules.
+        </p>
+        <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
+          <a
+            href="/dashboard/admin/global-integration-platform"
+            style={{
+              background: '#0f766e',
+              color: '#fff',
+              padding: '8px 12px',
+              borderRadius: 999,
+              textDecoration: 'none',
+              fontWeight: 700,
+            }}
+          >
+            Open GIP
+          </a>
+          <a
+            href="/dashboard/admin/gip-marketplace"
+            style={{
+              background: '#fff',
+              color: '#0f766e',
+              border: '1px solid #0f766e',
+              padding: '8px 12px',
+              borderRadius: 999,
+              textDecoration: 'none',
+              fontWeight: 700,
+            }}
+          >
+            Marketplace
+          </a>
+          <a
+            href="/dashboard/admin/gip-monitoring"
+            style={{
+              background: '#fff',
+              color: '#0f766e',
+              border: '1px solid #0f766e',
+              padding: '8px 12px',
+              borderRadius: 999,
+              textDecoration: 'none',
+              fontWeight: 700,
+            }}
+          >
+            Monitoring
+          </a>
+        </div>
+      </div>
+
       <h2 style={{ fontSize: 16 }}>Users & organizations</h2>
       <div style={{ display: 'grid', gap: 10, gridTemplateColumns: 'repeat(auto-fit,minmax(150px,1fr))', marginBottom: 16 }}>
         {userCards.map(([label, value]) => (

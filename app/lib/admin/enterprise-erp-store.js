@@ -288,4 +288,13 @@ export const ERP_COLLECTION_NAMES = Object.freeze([
   'temporary-permissions',
   'department-permissions',
   'country-permissions',
+  // Global Integration Platform
+  'gip-connectors',
+  'gip-secrets',
+  'gip-webhooks',
+  'gip-calls',
+  'gip-health',
+  'gip-marketplace-installs',
+  'gip-audit',
+  'gip-rate-buckets',
 ]);
