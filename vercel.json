@@ -15,5 +15,10 @@
       ]
     }
   ],
-  "crons": []
+  "crons": [
+    {
+      "path": "/api/ai-agents?view=tick",
+      "schedule": "*/15 * * * *"
+    }
+  ]
 }

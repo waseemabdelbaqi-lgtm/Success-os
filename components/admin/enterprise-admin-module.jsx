@@ -1,8 +1,31 @@
 'use client';
 
 import { useCallback, useEffect, useMemo, useState } from 'react';
+import { EnterpriseAiAgentsCenter } from './enterprise-ai-agents-center';
 
 const emptyForm = {};
+
+const AI_CENTER_MODULES = new Set([
+  'ai-agents-os',
+  'ai-orchestrator',
+  'ai-student',
+  'ai-parent',
+  'ai-teacher',
+  'ai-school',
+  'ai-university',
+  'ai-employer',
+  'ai-hr',
+  'ai-finance',
+  'ai-support',
+  'ai-content-agents',
+  'ai-marketing',
+  'ai-sales',
+  'ai-legal',
+  'ai-owner',
+  'ai-memory',
+  'ai-governance',
+  'ai-providers',
+]);
 
 export function EnterpriseAdminModulePage({ moduleId }) {
   const [data, setData] = useState(null);
@@ -21,9 +44,11 @@ export function EnterpriseAdminModulePage({ moduleId }) {
   const isFinance = moduleId === 'finance';
   const isCommission = moduleId === 'commission-rules';
   const isPaymentSplits = moduleId === 'payment-splits';
+  const isAiCenter = AI_CENTER_MODULES.has(moduleId);
 
   const load = useCallback(async () => {
     setError('');
+    if (isAiCenter) return;
     if (isPermissions) {
       const res = await fetch('/api/enterprise-admin?view=permissions', { cache: 'no-store' });
       setPermMatrix(await res.json());
@@ -46,7 +71,7 @@ export function EnterpriseAdminModulePage({ moduleId }) {
     const res = await fetch(`/api/enterprise-admin?${params}`, { cache: 'no-store' });
     if (!res.ok) throw new Error('Failed to load module');
     setData(await res.json());
-  }, [moduleId, q, status, isPermissions, isFinance, isCommission]);
+  }, [moduleId, q, status, isPermissions, isFinance, isCommission, isAiCenter]);
 
   useEffect(() => {
     load().catch((e) => setError(e.message || 'load failed'));
@@ -104,6 +129,10 @@ export function EnterpriseAdminModulePage({ moduleId }) {
         onToggle={(key, permission) => runAction('togglePermission', { key, permission })}
       />
     );
+  }
+
+  if (isAiCenter) {
+    return <EnterpriseAiAgentsCenter />;
   }
 
   return (

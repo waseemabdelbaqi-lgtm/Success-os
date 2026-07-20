@@ -20,6 +20,12 @@ import {
   processSuccessfulPayment,
   PAYOUT_METHODS,
 } from '../../lib/admin/enterprise-payment-engine.js';
+import {
+  AI_AGENTS_MODULE_IDS,
+  ensureAiAgentsEngine,
+  getAiAgentsDashboard,
+  mutateAiAgentsCenter,
+} from '../../lib/admin/enterprise-ai-agents-engine.js';
 
 const ELEVATED = new Set(['super_admin', 'owner', 'admin']);
 
@@ -98,6 +104,11 @@ export async function GET(request) {
 
   if (view === 'payout-methods') {
     return Response.json({ methods: PAYOUT_METHODS }, { headers: { 'Cache-Control': 'no-store' } });
+  }
+
+  if (view === 'ai-agents') {
+    ensureAiAgentsEngine();
+    return Response.json(getAiAgentsDashboard(), { headers: { 'Cache-Control': 'no-store' } });
   }
 
   if (view === 'export') {
@@ -191,6 +202,30 @@ export async function POST(request) {
 
     if (moduleId === 'payouts' && ['approve', 'reject', 'markTransferred'].includes(action)) {
       return Response.json(mutatePayout(action, payload || {}, { user: body.user || 'admin' }));
+    }
+
+    const aiActions = new Set([
+      'orchestrate',
+      'runAgent',
+      'chat',
+      'writeMemory',
+      'decideReview',
+      'upsertPrompt',
+      'assignModel',
+      'setAgentStatus',
+      'setConfig',
+      'analytics',
+      'sync',
+    ]);
+    if (action?.startsWith('ai') || aiActions.has(action) || AI_AGENTS_MODULE_IDS.includes(moduleId)) {
+      ensureAiAgentsEngine();
+      if (aiActions.has(action) || action?.startsWith('ai')) {
+        const result = await mutateAiAgentsCenter(action, payload || body, {
+          user: body.user || 'owner',
+          role: body.role || 'owner',
+        });
+        return Response.json(result, { status: result.ok === false ? 400 : 200 });
+      }
     }
 
     if (
