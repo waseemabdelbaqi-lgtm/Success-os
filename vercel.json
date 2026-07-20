@@ -15,5 +15,10 @@
       ]
     }
   ],
-  "crons": []
+  "crons": [
+    {
+      "path": "/api/security?view=tick",
+      "schedule": "*/15 * * * *"
+    }
+  ]
 }

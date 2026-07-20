@@ -69,6 +69,7 @@ export const ENTERPRISE_ADMIN_NAV_GROUPS = Object.freeze({
   ops: 'Operations',
   ...ENTERPRISE_ERP_NAV_GROUPS,
   system: 'System',
+  security: 'Security & Trust',
 });
 
 /** Module column + action schemas for dynamic tables. */

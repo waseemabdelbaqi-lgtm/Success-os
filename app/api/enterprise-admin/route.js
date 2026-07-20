@@ -24,7 +24,11 @@ import {
 const ELEVATED = new Set(['super_admin', 'owner', 'admin']);
 
 async function assertEnterpriseAdminAccess() {
+  const isProduction = process.env.NEXT_PUBLIC_APP_ENV === 'production';
   if (process.env.FEATURE_AUTH_ENABLED !== 'true') {
+    if (isProduction) {
+      return Response.json({ error: 'AUTH_REQUIRED_IN_PRODUCTION' }, { status: 401 });
+    }
     return null;
   }
 
