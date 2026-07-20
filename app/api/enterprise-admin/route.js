@@ -20,6 +20,12 @@ import {
   processSuccessfulPayment,
   PAYOUT_METHODS,
 } from '../../lib/admin/enterprise-payment-engine.js';
+import {
+  DPE_MODULE_IDS,
+  ensureDynamicPlatformEngine,
+  getDynamicPlatformDashboard,
+  mutateDynamicPlatformCenter,
+} from '../../lib/admin/enterprise-dynamic-platform-engine.js';
 
 const ELEVATED = new Set(['super_admin', 'owner', 'admin']);
 
@@ -98,6 +104,11 @@ export async function GET(request) {
 
   if (view === 'payout-methods') {
     return Response.json({ methods: PAYOUT_METHODS }, { headers: { 'Cache-Control': 'no-store' } });
+  }
+
+  if (view === 'dynamic-platform' || view === 'dpe') {
+    ensureDynamicPlatformEngine();
+    return Response.json(getDynamicPlatformDashboard(), { headers: { 'Cache-Control': 'no-store' } });
   }
 
   if (view === 'export') {
@@ -191,6 +202,41 @@ export async function POST(request) {
 
     if (moduleId === 'payouts' && ['approve', 'reject', 'markTransferred'].includes(action)) {
       return Response.json(mutatePayout(action, payload || {}, { user: body.user || 'admin' }));
+    }
+
+    const dpeExclusive = new Set([
+      'upsertPage',
+      'publishPage',
+      'upsertLabel',
+      'resolveLabel',
+      'upsertNav',
+      'resolveNav',
+      'upsertForm',
+      'upsertFilter',
+      'applyFilterDependency',
+      'setFlag',
+      'evaluateFlag',
+      'upsertSetting',
+      'resolveSetting',
+      'updateBranding',
+      'qualityAudit',
+      'resolveContext',
+    ]);
+    const dpeScoped = new Set(['softDelete', 'restore', 'setConfig', 'sync']);
+    const isDpeModule = DPE_MODULE_IDS.includes(moduleId);
+    const isDpeAction =
+      action?.startsWith('dpe') ||
+      dpeExclusive.has(action) ||
+      (isDpeModule && dpeScoped.has(action));
+    if (isDpeModule || isDpeAction) {
+      ensureDynamicPlatformEngine();
+      if (isDpeAction) {
+        const result = await mutateDynamicPlatformCenter(action, payload || body, {
+          user: body.user || 'owner',
+          role: body.role || 'owner',
+        });
+        return Response.json(result, { status: result.ok === false ? 400 : 200 });
+      }
     }
 
     if (
