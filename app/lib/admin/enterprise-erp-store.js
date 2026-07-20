@@ -288,4 +288,14 @@ export const ERP_COLLECTION_NAMES = Object.freeze([
   'temporary-permissions',
   'department-permissions',
   'country-permissions',
+  // AI Agents Operating System
+  'ai-agents',
+  'ai-agent-runs',
+  'ai-memories',
+  'ai-prompts',
+  'ai-model-assignments',
+  'ai-governance',
+  'ai-human-reviews',
+  'ai-usage',
+  'ai-audit',
 ]);
