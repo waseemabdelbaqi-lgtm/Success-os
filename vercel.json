@@ -15,5 +15,10 @@
       ]
     }
   ],
-  "crons": []
+  "crons": [
+    {
+      "path": "/api/multi-tenant?view=tick",
+      "schedule": "0 * * * *"
+    }
+  ]
 }

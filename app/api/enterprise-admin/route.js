@@ -20,6 +20,12 @@ import {
   processSuccessfulPayment,
   PAYOUT_METHODS,
 } from '../../lib/admin/enterprise-payment-engine.js';
+import {
+  MT_MODULE_IDS,
+  ensureMultiTenantEngine,
+  getMultiTenantDashboard,
+  mutateMultiTenantCenter,
+} from '../../lib/admin/enterprise-multi-tenant-engine.js';
 
 const ELEVATED = new Set(['super_admin', 'owner', 'admin']);
 
@@ -98,6 +104,11 @@ export async function GET(request) {
 
   if (view === 'payout-methods') {
     return Response.json({ methods: PAYOUT_METHODS }, { headers: { 'Cache-Control': 'no-store' } });
+  }
+
+  if (view === 'multi-tenant' || view === 'tenants') {
+    ensureMultiTenantEngine();
+    return Response.json(getMultiTenantDashboard(), { headers: { 'Cache-Control': 'no-store' } });
   }
 
   if (view === 'export') {
@@ -191,6 +202,41 @@ export async function POST(request) {
 
     if (moduleId === 'payouts' && ['approve', 'reject', 'markTransferred'].includes(action)) {
       return Response.json(mutatePayout(action, payload || {}, { user: body.user || 'admin' }));
+    }
+
+    const mtExclusiveActions = new Set([
+      'createTenant',
+      'updateTenant',
+      'updateWhiteLabel',
+      'setModules',
+      'setLimits',
+      'changePlan',
+      'softDelete',
+      'recordUsage',
+      'createInvoice',
+      'payInvoice',
+      'billingTick',
+      'impersonate',
+      'endImpersonation',
+      'resolveContext',
+      'tenantAdminDashboard',
+    ]);
+    const mtScopedActions = new Set(['suspend', 'activate', 'restore', 'setConfig', 'analytics', 'sync']);
+    const isMtModule = MT_MODULE_IDS.includes(moduleId);
+    const isMtAction =
+      action?.startsWith('mt') ||
+      action?.startsWith('tenant') ||
+      mtExclusiveActions.has(action) ||
+      (isMtModule && mtScopedActions.has(action));
+    if (isMtModule || isMtAction) {
+      ensureMultiTenantEngine();
+      if (isMtAction) {
+        const result = await mutateMultiTenantCenter(action, payload || body, {
+          user: body.user || 'owner',
+          role: body.role || 'owner',
+        });
+        return Response.json(result, { status: result.ok === false ? 400 : 200 });
+      }
     }
 
     if (

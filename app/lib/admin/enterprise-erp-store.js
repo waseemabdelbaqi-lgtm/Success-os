@@ -288,4 +288,14 @@ export const ERP_COLLECTION_NAMES = Object.freeze([
   'temporary-permissions',
   'department-permissions',
   'country-permissions',
+  // Multi-Tenant & White Label
+  'mt-tenants',
+  'mt-subscriptions',
+  'mt-invoices',
+  'mt-usage',
+  'mt-module-overrides',
+  'mt-branding',
+  'mt-impersonations',
+  'mt-tenant-data',
+  'mt-audit',
 ]);
