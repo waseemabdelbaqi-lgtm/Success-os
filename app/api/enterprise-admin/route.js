@@ -20,6 +20,12 @@ import {
   processSuccessfulPayment,
   PAYOUT_METHODS,
 } from '../../lib/admin/enterprise-payment-engine.js';
+import {
+  COMMUNICATION_MODULE_IDS,
+  ensureCommunicationEngine,
+  getCommunicationDashboard,
+  mutateCommunicationCenter,
+} from '../../lib/admin/enterprise-communication-engine.js';
 
 const ELEVATED = new Set(['super_admin', 'owner', 'admin']);
 
@@ -98,6 +104,11 @@ export async function GET(request) {
 
   if (view === 'payout-methods') {
     return Response.json({ methods: PAYOUT_METHODS }, { headers: { 'Cache-Control': 'no-store' } });
+  }
+
+  if (view === 'communication') {
+    ensureCommunicationEngine();
+    return Response.json(getCommunicationDashboard(), { headers: { 'Cache-Control': 'no-store' } });
   }
 
   if (view === 'export') {
@@ -203,6 +214,41 @@ export async function POST(request) {
       action === 'updateRolePermissions'
     ) {
       return Response.json(mutatePermissions(action, payload || body));
+    }
+
+    const commActions = new Set([
+      'sendMessage',
+      'createChannel',
+      'createMeeting',
+      'joinMeeting',
+      'endMeeting',
+      'startCall',
+      'endCall',
+      'announce',
+      'createTicket',
+      'ticketAction',
+      'notify',
+      'uploadDocument',
+      'documentAction',
+      'calendarEvent',
+      'createNote',
+      'parentMessage',
+      'aiAssist',
+      'search',
+      'sweepSla',
+      'setConfig',
+      'trustDevice',
+      'revokeDevice',
+    ]);
+    if (action?.startsWith('comm') || commActions.has(action) || COMMUNICATION_MODULE_IDS.includes(moduleId)) {
+      ensureCommunicationEngine();
+      if (commActions.has(action) || action?.startsWith('comm')) {
+        const result = await mutateCommunicationCenter(action, payload || body, {
+          user: body.user || 'owner',
+          role: body.role || 'owner',
+        });
+        return Response.json(result, { status: result.ok === false ? 400 : 200 });
+      }
     }
 
     if (!moduleId) {
