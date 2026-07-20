@@ -173,6 +173,54 @@ export default function EnterpriseAdminHomePage() {
 
       {error ? <p style={{ color: '#b91c1c' }}>{error}</p> : null}
 
+      <section
+        style={{
+          border: '1px solid #a5f3fc',
+          borderRadius: 14,
+          padding: 14,
+          marginBottom: 16,
+          background: 'linear-gradient(135deg, #ecfeff 0%, #fff 60%)',
+        }}
+      >
+        <div style={{ display: 'flex', justifyContent: 'space-between', gap: 12, flexWrap: 'wrap', alignItems: 'center' }}>
+          <div>
+            <h2 style={{ margin: 0, fontSize: 16 }}>Enterprise Data Platform & Digital Twin</h2>
+            <p style={{ margin: '4px 0 0', fontSize: 13, color: '#0e7490' }}>
+              Unified knowledge graph · event stream · feature store · twins · Owner intelligence. Existing modules preserved as producers/consumers.
+            </p>
+          </div>
+          <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
+            <a
+              href="/dashboard/admin/data-platform"
+              style={{
+                background: '#0e7490',
+                color: '#fff',
+                padding: '8px 12px',
+                borderRadius: 999,
+                textDecoration: 'none',
+                fontWeight: 700,
+              }}
+            >
+              Open Data Platform
+            </a>
+            <a
+              href="/dashboard/admin/edp-intelligence"
+              style={{
+                background: '#fff',
+                color: '#0e7490',
+                border: '1px solid #0e7490',
+                padding: '8px 12px',
+                borderRadius: 999,
+                textDecoration: 'none',
+                fontWeight: 600,
+              }}
+            >
+              Owner Intelligence
+            </a>
+          </div>
+        </div>
+      </section>
+
       <h2 style={{ fontSize: 16 }}>Users & organizations</h2>
       <div style={{ display: 'grid', gap: 10, gridTemplateColumns: 'repeat(auto-fit,minmax(150px,1fr))', marginBottom: 16 }}>
         {userCards.map(([label, value]) => (

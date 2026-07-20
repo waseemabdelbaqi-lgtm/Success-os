@@ -59,6 +59,14 @@ export const ENTERPRISE_ADMIN_PERMISSION_FLAGS = Object.freeze([
   'audit.read',
   'data.restore',
   'data.permanent_delete',
+  'data.platform.read',
+  'data.platform.write',
+  'data.graph',
+  'data.twins',
+  'data.features',
+  'data.quality',
+  'data.simulation',
+  'data.intelligence',
 ]);
 
 /** Default enterprise roles (configurable; stored copy can diverge). */

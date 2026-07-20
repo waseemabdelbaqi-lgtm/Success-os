@@ -1,8 +1,30 @@
 'use client';
 
 import { useCallback, useEffect, useMemo, useState } from 'react';
+import { EnterpriseDataPlatformCenter } from './enterprise-data-platform-center';
 
 const emptyForm = {};
+
+const EDP_CENTER_MODULES = new Set([
+  'data-platform',
+  'edp-graph',
+  'edp-learning',
+  'edp-skills',
+  'edp-twins',
+  'edp-personalization',
+  'edp-recommendations',
+  'edp-predictions',
+  'edp-decisions',
+  'edp-governance',
+  'edp-events',
+  'edp-features',
+  'edp-quality',
+  'edp-search',
+  'edp-semantic',
+  'edp-ai-pipeline',
+  'edp-simulation',
+  'edp-intelligence',
+]);
 
 export function EnterpriseAdminModulePage({ moduleId }) {
   const [data, setData] = useState(null);
@@ -21,9 +43,11 @@ export function EnterpriseAdminModulePage({ moduleId }) {
   const isFinance = moduleId === 'finance';
   const isCommission = moduleId === 'commission-rules';
   const isPaymentSplits = moduleId === 'payment-splits';
+  const isEdpCenter = EDP_CENTER_MODULES.has(moduleId);
 
   const load = useCallback(async () => {
     setError('');
+    if (isEdpCenter) return;
     if (isPermissions) {
       const res = await fetch('/api/enterprise-admin?view=permissions', { cache: 'no-store' });
       setPermMatrix(await res.json());
@@ -46,7 +70,7 @@ export function EnterpriseAdminModulePage({ moduleId }) {
     const res = await fetch(`/api/enterprise-admin?${params}`, { cache: 'no-store' });
     if (!res.ok) throw new Error('Failed to load module');
     setData(await res.json());
-  }, [moduleId, q, status, isPermissions, isFinance, isCommission]);
+  }, [moduleId, q, status, isPermissions, isFinance, isCommission, isEdpCenter]);
 
   useEffect(() => {
     load().catch((e) => setError(e.message || 'load failed'));
@@ -91,6 +115,10 @@ export function EnterpriseAdminModulePage({ moduleId }) {
     () => schema?.label || moduleId.replace(/-/g, ' '),
     [schema, moduleId],
   );
+
+  if (isEdpCenter) {
+    return <EnterpriseDataPlatformCenter />;
+  }
 
   if (isPermissions) {
     return (
