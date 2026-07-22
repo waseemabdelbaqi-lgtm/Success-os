@@ -183,7 +183,12 @@ export default function HomePage() {
   const partnerGateways=['teacher','center','school','university','employer'];
   const searchRoutes={teacher:'/teachers',center:'/partner-search?portal=center',school:'/school-finder',university:'/admissions',employer:'/jobs'};
 
-  return <div id="top" className="app phase11-landing">
+  const hubNodes = lang === 'en'
+    ? [['n1','👨‍🎓','Students'],['n2','👩‍🏫','Teachers'],['n3','👪','Parents'],['n4','💼','Careers'],['n5','🏫','Schools'],['n6','🎓','Universities'],['n7','⌁','AI Assist']]
+    : [['n1','👨‍🎓','طلاب'],['n2','👩‍🏫','معلمون'],['n3','👪','أولياء'],['n4','💼','مهن'],['n5','🏫','مدارس'],['n6','🎓','جامعات'],['n7','⌁','ذكاء']];
+  const metricIcons = ['◈','◎','✦','⌁'];
+
+  return <div id="top" className="app phase11-landing sos-landing">
     <header className="nav-shell">
       <nav className="nav container">
         <Logo />
@@ -202,14 +207,15 @@ export default function HomePage() {
     </header>
 
     <main>
-      <section className="portal-first-stage">
-        <div className="portal-first-backdrop"><img src="/media/success-future-gateways.webp" alt="بوابات SUCCESS OS المستقبلية"/></div>
-        <div className="container portal-first-content"><header><small>YOUR JOURNEY STARTS HERE</small><h1>{lang==='en'?'Choose your gateway. Reach your goal.':'اختر بوابتك. واصل إلى هدفك.'}</h1><p>{lang==='en'?'A clear beginning for every learner, educator, institution and opportunity.':'بداية واضحة لكل طالب ومعلم ومؤسسة وفرصة، ثم فلاتر تقودك مباشرة إلى طلبك.'}</p></header><div className="portal-first-grid">{gateways.map(([number,icon,label,,,description,id],i)=><a href={`/start-journey?portal=${id}`} style={{'--portal-pos':`${(i%4)*30}% ${i<4?'20%':'78%'}`}} key={id}><span className="portal-image"></span><small>{number}</small><b>{icon} {label}</b><p>{description}</p></a>)}</div><a className="portal-start-button" href="/start-journey"><span>{lang==='en'?'Start the journey':'ابدأ الرحلة'}</span><b>←</b></a></div>
-      </section>
-      <section className="hero">
+      <a className="sos-announce" href="/start-journey">
+        <span aria-hidden="true">📣</span>
+        <div>{lang==='en' ? <>New scholarships available — <em>start your SUCCESS OS journey today</em></> : <>منح جديدة متاحة — <em>ابدأ رحلتك مع SUCCESS OS اليوم</em></>}</div>
+      </a>
+
+      <section className="hero sos-hero">
         <div className="hero-grid container">
           <div className="hero-copy reveal">
-            <div className="eyebrow"><span></span>{t.eyebrow}</div>
+            <div className="eyebrow"><span></span>{lang==='en'?'AI-Powered Education Operating System':'نظام تشغيل التعليم بالذكاء الاصطناعي'}</div>
             <h1>{t.heroA}<br/><span>{t.heroB}</span></h1>
             <div className="official-slogan">SUCCESS OS — {t.slogan}</div>
             <p>{t.heroText}</p>
@@ -217,24 +223,40 @@ export default function HomePage() {
               <a className="button" href="#gateways">{t.explore}<b>→</b></a>
               <a className="button ghost" href="#ai"><Icon name="spark"/>{t.tutor}</a>
             </div>
+            <div className="sos-hero-metrics">
+              {t.stats.map(([n,l], i) => (
+                <div key={l}><i aria-hidden="true">{metricIcons[i]}</i><div><strong>{n}</strong><small>{l}</small></div></div>
+              ))}
+            </div>
             <div className="founder-note"><span className="avatar">S4S</span><div><strong>{t.trust}</strong><small>{t.trustSub}</small></div></div>
           </div>
-          <div className="hero-visual reveal delay">
-            <div className="orbital one"></div><div className="orbital two"></div>
-            <div className="success-3d-world"><i className="ring-a"></i><i className="ring-b"></i><strong>S</strong><span>LEARN • BUILD • SUCCEED</span></div>
-            <div className="dashboard-card">
-              <div className="dash-top"><div><small>{t.today}</small><strong>{t.continue}</strong></div><span>↗</span></div>
-              <div className="progress"><i style={{width:'68%'}}></i></div><small>{t.mins}</small>
-              <div className="dash-grid">
-                <div className="mastery-ring"><div><b>72%</b><small>{t.mastery}</small></div></div>
-                <div className="dash-metrics"><div><small>{t.streak}</small><strong>🔥 {t.days}</strong></div><div><small>{t.next}</small><strong>{t.nextVal}</strong></div></div>
-              </div>
+          <div className="hero-visual reveal delay" aria-hidden="true">
+            <div className="sos-hub">
+              <i className="sos-hub-ring r1"></i>
+              <i className="sos-hub-ring r2"></i>
+              <div className="sos-hub-core"><b>S</b><small>SUCCESS OS</small></div>
+              {hubNodes.map(([cls, icon, label]) => (
+                <div className={`sos-hub-node ${cls}`} key={cls}><span>{icon}</span><small>{label}</small></div>
+              ))}
             </div>
-            <div className="float-card tutor-float"><span><Icon name="spark"/></span><div><small>AI TUTOR</small><b>{lang === 'en' ? 'Ready when you are' : 'جاهز وقت ما تحتاج'}</b></div></div>
-            <div className="float-card pass-float"><span><Icon name="passport"/></span><div><small>EDUCATION PASSPORT</small><b>{lang === 'en' ? 'New skill verified' : 'تم توثيق مهارة جديدة'}</b></div></div>
           </div>
         </div>
-        <div className="stats container">{t.stats.map(([n,l]) => <div key={l}><strong>{n}</strong><span>{l}</span></div>)}</div>
+        <div className="sos-stats-band">
+          <div className="stats container">{t.stats.map(([n,l]) => <div key={l}><strong>{n}</strong><span>{l}</span></div>)}</div>
+        </div>
+      </section>
+
+      <section className="portal-first-stage" id="explore-portals">
+        <div className="portal-first-backdrop"><img src="/media/success-future-gateways.webp" alt="بوابات SUCCESS OS المستقبلية"/></div>
+        <div className="container portal-first-content">
+          <header>
+            <small>{lang==='en'?'EXPLORE BY PORTAL':'استكشف حسب البوابة'}</small>
+            <h1>{lang==='en'?'Choose your gateway. Reach your goal.':'اختر بوابتك. واصل إلى هدفك.'}</h1>
+            <p>{lang==='en'?'A clear beginning for every learner, educator, institution and opportunity.':'بداية واضحة لكل طالب ومعلم ومؤسسة وفرصة، ثم فلاتر تقودك مباشرة إلى طلبك.'}</p>
+          </header>
+          <div className="portal-first-grid">{gateways.map(([number,icon,label,,,description,id],i)=><a href={`/start-journey?portal=${id}`} style={{'--portal-pos':`${(i%4)*30}% ${i<4?'20%':'78%'}`}} key={id}><span className="portal-image"></span><small>{number}</small><b>{icon} {label}</b><p>{description}</p></a>)}</div>
+          <a className="portal-start-button" href="/start-journey"><span>{lang==='en'?'Start the journey':'ابدأ الرحلة'}</span><b>←</b></a>
+        </div>
       </section>
 
       <section className="home-gateway organized" id="gateways">
