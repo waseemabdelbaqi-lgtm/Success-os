@@ -1,0 +1,1384 @@
+/**
+ * SUCCESS OS — Official Visual Design System
+ * Source of truth: Success OS platform visual reference (enterprise-futuristic).
+ * Visual-only overrides. Does not change routes, forms, permissions, or journeys.
+ */
+
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Noto+Kufi+Arabic:wght@400;500;600;700;800&family=Source+Sans+3:wght@400;500;600;700;800&display=swap');
+
+:root {
+  /* Brand */
+  --sos-burgundy: #9e1722;
+  --sos-burgundy-deep: #4b0a11;
+  --sos-burgundy-mid: #7a121c;
+  --sos-burgundy-soft: #c43a45;
+  --sos-burgundy-tint: #fff4f4;
+  --sos-burgundy-mist: #f8eef0;
+  --sos-gold: #d4af37;
+  --sos-gold-soft: #f2d77c;
+  --sos-gold-deep: #9a711a;
+  --sos-gold-glow: rgba(212, 175, 55, 0.35);
+
+  /* Surfaces */
+  --sos-bg: #f7f4f1;
+  --sos-bg-elevated: #fffcfa;
+  --sos-surface: #ffffff;
+  --sos-surface-muted: #f3eeea;
+  --sos-line: #eadde0;
+  --sos-line-strong: #dcc8cc;
+  --sos-ink: #1a1212;
+  --sos-ink-soft: #3d2e31;
+  --sos-muted: #6b5a52;
+  --sos-muted-light: #8a7872;
+
+  /* Effects */
+  --sos-radius: 22px;
+  --sos-radius-sm: 14px;
+  --sos-radius-pill: 999px;
+  --sos-shadow: 0 22px 55px rgba(75, 10, 17, 0.08);
+  --sos-shadow-lg: 0 32px 70px rgba(75, 10, 17, 0.14);
+  --sos-glow-burgundy: 0 14px 36px rgba(158, 23, 34, 0.28);
+  --sos-glow-gold: 0 0 28px rgba(212, 175, 55, 0.35);
+
+  /* Typography */
+  --sos-font-display: var(--font-sos-display), 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+  --sos-font-body: var(--font-sos-body), 'Source Sans 3', 'Noto Kufi Arabic', sans-serif;
+  --sos-font-arabic: 'Noto Kufi Arabic', var(--font-sos-body), 'Source Sans 3', sans-serif;
+
+  /* Legacy token remaps — force entire platform onto Success OS palette */
+  --navy: var(--sos-burgundy-deep);
+  --navy2: var(--sos-burgundy-mid);
+  --blue: var(--sos-burgundy);
+  --teal: var(--sos-burgundy);
+  --mint: var(--sos-burgundy-tint);
+  --sky: var(--sos-burgundy-mist);
+  --ink: var(--sos-ink);
+  --muted: var(--sos-muted);
+  --line: var(--sos-line);
+  --white: #fff;
+  --bg: var(--sos-bg);
+  --shadow: var(--sos-shadow);
+  --gold: var(--sos-gold);
+  --ivory: var(--sos-bg-elevated);
+  --s4s: var(--sos-burgundy);
+  --s4s-dark: var(--sos-burgundy-deep);
+  --s4s-soft: var(--sos-burgundy-tint);
+  --s4s-gray: var(--sos-muted-light);
+  --success-red: var(--sos-burgundy);
+  --success-red-dark: var(--sos-burgundy-deep);
+  --success-gold: var(--sos-gold);
+  --p11-maroon: var(--sos-burgundy);
+  --p11-maroon-deep: var(--sos-burgundy-deep);
+  --p11-maroon-soft: var(--sos-burgundy-soft);
+  --p11-gold: var(--sos-gold);
+  --p11-gold-light: var(--sos-gold-soft);
+  --p11-gold-deep: var(--sos-gold-deep);
+  --p11-ivory: var(--sos-bg-elevated);
+  --p11-offwhite: var(--sos-bg);
+  --p11-gray: var(--sos-surface-muted);
+  --p11-ink: var(--sos-ink);
+  --p11-muted: var(--sos-muted);
+  --p11-glass: rgba(255, 255, 255, 0.88);
+  --p11-glass-border: rgba(212, 175, 55, 0.28);
+  --p11-shadow: var(--sos-shadow);
+  --font-p11-display: var(--sos-font-display);
+  --font-p11-body: var(--sos-font-body);
+  --ea-accent: var(--sos-burgundy);
+  --ea-card: var(--sos-surface);
+  --ea-bg: var(--sos-bg);
+  --ea-border: var(--sos-line);
+  --future-cyan: var(--sos-gold);
+  --future-blue: var(--sos-burgundy-deep);
+  --future-panel: var(--sos-surface);
+  --future-line: var(--sos-line);
+}
+
+/* ─── Base ─────────────────────────────────────────────── */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  color: var(--sos-ink);
+  font-family: var(--sos-font-body);
+  background:
+    radial-gradient(ellipse 70% 40% at 8% -5%, rgba(212, 175, 55, 0.12), transparent 50%),
+    radial-gradient(ellipse 50% 35% at 100% 0%, rgba(158, 23, 34, 0.08), transparent 45%),
+    linear-gradient(180deg, #fffcfa 0%, var(--sos-bg) 40%, #f3eeea 100%);
+  -webkit-font-smoothing: antialiased;
+}
+
+html[dir='rtl'] body {
+  font-family: var(--sos-font-arabic);
+}
+
+h1,
+h2,
+h3,
+.hero h1,
+.section h2,
+.cta-card h2,
+.portal-first-content h1,
+.gateway-title h1,
+.os-page h1,
+.os-content > header h1,
+.auth-story h1 {
+  font-family: var(--sos-font-display) !important;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--sos-ink);
+}
+
+html[dir='rtl'] h1,
+html[dir='rtl'] h2,
+html[dir='rtl'] h3 {
+  font-family: var(--sos-font-arabic) !important;
+  font-weight: 800;
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 3px solid rgba(212, 175, 55, 0.55);
+  outline-offset: 3px;
+}
+
+/* ─── Brand wordmark ───────────────────────────────────── */
+.success-wordmark {
+  color: var(--sos-burgundy) !important;
+  font-family: var(--sos-font-display) !important;
+}
+
+.success-wordmark i {
+  color: var(--sos-gold) !important;
+}
+
+.success-wordmark small {
+  color: var(--sos-gold-deep) !important;
+}
+
+.brand-art {
+  background: linear-gradient(145deg, #fff, var(--sos-burgundy-tint)) !important;
+  border-color: rgba(158, 23, 34, 0.22) !important;
+  box-shadow: 0 10px 28px rgba(75, 10, 17, 0.12) !important;
+}
+
+.logo.dark .success-wordmark,
+.logo.dark {
+  color: var(--sos-burgundy-deep);
+}
+
+/* ─── Buttons (visual only — same elements/hrefs) ──────── */
+.button,
+.mint-button,
+.portal-start-button,
+.os-primary,
+.portal-submit,
+.apply-button,
+.p11-btn-primary {
+  background: linear-gradient(145deg, var(--sos-burgundy-soft), var(--sos-burgundy)) !important;
+  color: #fff !important;
+  border-radius: var(--sos-radius-pill) !important;
+  box-shadow: var(--sos-glow-burgundy) !important;
+  border: 0 !important;
+  font-weight: 700;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+}
+
+.button:hover,
+.mint-button:hover,
+.portal-start-button:hover,
+.os-primary:hover,
+.p11-btn-primary:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.05);
+  box-shadow: 0 18px 40px rgba(158, 23, 34, 0.36) !important;
+}
+
+.button.ghost,
+.button.clear {
+  background: rgba(255, 255, 255, 0.92) !important;
+  color: var(--sos-burgundy) !important;
+  border: 1.5px solid var(--sos-line-strong) !important;
+  box-shadow: 0 8px 22px rgba(75, 10, 17, 0.06) !important;
+}
+
+.button.dark {
+  background: linear-gradient(145deg, var(--sos-burgundy-mid), var(--sos-burgundy-deep)) !important;
+  color: #fff !important;
+}
+
+.signin {
+  color: var(--sos-burgundy) !important;
+  border: 1.5px solid var(--sos-line-strong);
+  border-radius: var(--sos-radius-pill);
+  padding: 10px 18px;
+  background: #fff;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.signin:hover {
+  border-color: var(--sos-burgundy);
+  background: var(--sos-burgundy-tint);
+}
+
+/* ─── Public navigation ────────────────────────────────── */
+.nav-shell {
+  position: absolute;
+  z-index: 20;
+  inset: 0 0 auto;
+  background: linear-gradient(180deg, rgba(255, 252, 250, 0.96), rgba(255, 252, 250, 0.72)) !important;
+  backdrop-filter: blur(16px) saturate(1.1);
+  border-bottom: 1px solid rgba(158, 23, 34, 0.08);
+}
+
+.nav {
+  border-bottom: 0 !important;
+}
+
+.nav-links a,
+.nav-actions .lang,
+.nav-shell .lang {
+  color: var(--sos-ink-soft) !important;
+  font-weight: 600;
+}
+
+.nav-links a:hover,
+.lang:hover,
+.signin:hover {
+  color: var(--sos-burgundy) !important;
+}
+
+.nav-links a[href='#top'],
+.nav-links a:first-child {
+  position: relative;
+}
+
+.nav-links.open {
+  background: #fffcfa !important;
+  border: 1px solid var(--sos-line) !important;
+  box-shadow: var(--sos-shadow-lg) !important;
+}
+
+.nav-links.open a,
+.nav-links.open .lang {
+  color: var(--sos-ink) !important;
+}
+
+.menu-button span {
+  background: var(--sos-burgundy) !important;
+}
+
+.world-lang-button {
+  background: #fff !important;
+  color: var(--sos-ink-soft) !important;
+  border: 1px solid var(--sos-line) !important;
+  border-radius: var(--sos-radius-pill) !important;
+}
+
+/* ─── Homepage landing ─────────────────────────────────── */
+.phase11-landing.app,
+.phase11-landing {
+  background:
+    radial-gradient(ellipse 70% 40% at 8% 0%, rgba(212, 175, 55, 0.12), transparent 50%),
+    radial-gradient(ellipse 50% 35% at 100% 8%, rgba(158, 23, 34, 0.08), transparent 45%),
+    linear-gradient(160deg, #fffcfa, var(--sos-bg) 55%, #f0ebe6) !important;
+  color: var(--sos-ink) !important;
+}
+
+.portal-first-stage {
+  position: relative;
+  padding: 140px 0 72px;
+  overflow: hidden;
+}
+
+.portal-first-backdrop {
+  opacity: 0.22;
+  filter: saturate(0.85) contrast(1.05);
+}
+
+.portal-first-backdrop img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+
+.portal-first-content > header small {
+  color: var(--sos-burgundy) !important;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  font-size: 11px;
+}
+
+.portal-first-content > header h1 {
+  color: var(--sos-burgundy-deep) !important;
+  font-size: clamp(40px, 5.2vw, 68px);
+}
+
+.portal-first-content > header p {
+  color: var(--sos-muted) !important;
+  max-width: 640px;
+  line-height: 1.8;
+}
+
+.portal-first-grid > a {
+  background: linear-gradient(160deg, #fff, #fff8f6) !important;
+  border: 1px solid var(--sos-line) !important;
+  border-radius: var(--sos-radius) !important;
+  box-shadow: var(--sos-shadow) !important;
+  color: var(--sos-ink) !important;
+}
+
+.portal-first-grid > a:hover {
+  border-color: rgba(158, 23, 34, 0.45) !important;
+  box-shadow: var(--sos-shadow-lg), 0 0 0 1px rgba(212, 175, 55, 0.25) !important;
+  transform: translateY(-6px);
+}
+
+.portal-first-grid > a > small {
+  background: var(--sos-burgundy-tint) !important;
+  color: var(--sos-burgundy) !important;
+}
+
+.portal-start-button b {
+  background: #fff !important;
+  color: var(--sos-burgundy) !important;
+}
+
+/* Hero — light composition matching reference */
+.hero {
+  color: var(--sos-ink) !important;
+  padding: 72px 0 0 !important;
+  background:
+    radial-gradient(circle at 78% 28%, rgba(212, 175, 55, 0.16), transparent 28%),
+    radial-gradient(circle at 18% 20%, rgba(158, 23, 34, 0.08), transparent 32%),
+    linear-gradient(180deg, #fffcfa 0%, #f8f2ef 100%) !important;
+}
+
+.hero:before {
+  background-image: none !important;
+  background: radial-gradient(circle at 85% 40%, rgba(158, 23, 34, 0.06), transparent 40%) !important;
+  mask-image: none !important;
+}
+
+.eyebrow {
+  color: var(--sos-burgundy) !important;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+}
+
+.eyebrow > span {
+  background: var(--sos-gold) !important;
+}
+
+.eyebrow.light,
+.eyebrow.mint {
+  color: var(--sos-gold-soft) !important;
+}
+
+.hero h1 {
+  color: var(--sos-burgundy-deep) !important;
+  font-size: clamp(44px, 5.4vw, 72px) !important;
+}
+
+.hero h1 span {
+  background: linear-gradient(100deg, var(--sos-burgundy) 10%, var(--sos-burgundy-soft) 55%, var(--sos-gold-deep)) !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  color: transparent !important;
+}
+
+.hero-copy > p {
+  color: var(--sos-muted) !important;
+}
+
+.official-slogan {
+  color: var(--sos-gold-deep) !important;
+  border-color: rgba(212, 175, 55, 0.35) !important;
+  background: rgba(255, 255, 255, 0.7);
+}
+
+.founder-note .avatar {
+  background: var(--sos-burgundy) !important;
+  color: #fff !important;
+}
+
+.founder-note small {
+  color: var(--sos-muted) !important;
+}
+
+.orbital {
+  border-color: rgba(158, 23, 34, 0.14) !important;
+}
+
+.success-3d-world {
+  background: radial-gradient(
+    circle at 35% 28%,
+    #fff 0 3%,
+    #f4b8bc 5%,
+    var(--sos-burgundy) 32%,
+    var(--sos-burgundy-deep) 70%
+  ) !important;
+  box-shadow:
+    0 50px 80px rgba(75, 10, 17, 0.35),
+    0 0 60px rgba(212, 175, 55, 0.2),
+    inset -25px -30px 55px rgba(30, 0, 5, 0.35),
+    inset 18px 20px 50px rgba(255, 255, 255, 0.16) !important;
+}
+
+.success-3d-world strong {
+  color: #fff !important;
+  text-shadow: 0 8px 18px rgba(35, 0, 3, 0.45) !important;
+}
+
+.success-3d-world span {
+  color: var(--sos-gold-soft) !important;
+}
+
+.success-3d-world .ring-b {
+  border-color: rgba(212, 175, 55, 0.35) !important;
+}
+
+.dashboard-card,
+.hero-visual .dashboard-card {
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.98), rgba(255, 244, 244, 0.94)) !important;
+  border: 1px solid rgba(212, 175, 55, 0.35) !important;
+  box-shadow: var(--sos-shadow-lg) !important;
+  color: var(--sos-ink) !important;
+}
+
+.progress i {
+  background: linear-gradient(90deg, var(--sos-burgundy), var(--sos-gold)) !important;
+}
+
+.mastery-ring {
+  background: conic-gradient(var(--sos-burgundy) 0 72%, #efe6e7 72%) !important;
+}
+
+.float-card > span {
+  background: var(--sos-burgundy-tint) !important;
+  color: var(--sos-burgundy) !important;
+}
+
+.stats {
+  margin-top: 28px;
+  border-radius: 28px 28px 0 0;
+  background: linear-gradient(135deg, var(--sos-burgundy-deep), #2a0610) !important;
+  border-top: 0 !important;
+  box-shadow: 0 -12px 40px rgba(75, 10, 17, 0.2);
+}
+
+.stats div {
+  border-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+.stats strong {
+  color: var(--sos-gold-soft) !important;
+}
+
+.stats span {
+  color: #e8cfd2 !important;
+}
+
+/* Gateways / portal cards */
+.home-gateway {
+  background:
+    radial-gradient(circle at 5% 8%, rgba(212, 175, 55, 0.1), transparent 24%),
+    linear-gradient(180deg, #fffcfa, #f3eeea) !important;
+}
+
+.home-gateway header small,
+.home-gateway header h2 {
+  color: var(--sos-burgundy-deep) !important;
+}
+
+.home-gateway header p {
+  color: var(--sos-muted) !important;
+}
+
+.home-gateway header > a {
+  color: var(--sos-burgundy) !important;
+}
+
+.gateway-join-steps {
+  background: rgba(255, 255, 255, 0.85) !important;
+  border: 1px solid rgba(212, 175, 55, 0.28) !important;
+}
+
+.gateway-join-steps b {
+  background: var(--sos-burgundy) !important;
+  color: #fff !important;
+}
+
+.gateway-join-card {
+  background: linear-gradient(145deg, #fff, #fff8f6) !important;
+  border: 1px solid var(--sos-line) !important;
+  border-radius: var(--sos-radius) !important;
+  box-shadow: var(--sos-shadow) !important;
+  color: var(--sos-ink) !important;
+}
+
+.gateway-join-card:before {
+  background: radial-gradient(circle, rgba(158, 23, 34, 0.14), transparent) !important;
+}
+
+.gateway-join-card:hover {
+  border-color: rgba(158, 23, 34, 0.4) !important;
+  box-shadow: var(--sos-shadow-lg) !important;
+}
+
+.gateway-card-head > span {
+  background: linear-gradient(145deg, var(--sos-burgundy-deep), var(--sos-burgundy)) !important;
+  color: #fff !important;
+  box-shadow: 0 10px 24px rgba(75, 10, 17, 0.2) !important;
+}
+
+.gateway-card-copy em {
+  color: var(--sos-gold-deep) !important;
+}
+
+.gateway-join-card > a,
+.gateway-card-actions a:last-child {
+  background: var(--sos-burgundy) !important;
+  color: #fff !important;
+  border-radius: var(--sos-radius-pill) !important;
+}
+
+.gateway-card-actions a:first-child {
+  background: #fff !important;
+  color: var(--sos-burgundy) !important;
+  border: 1px solid var(--sos-line) !important;
+  border-radius: var(--sos-radius-pill) !important;
+}
+
+.gateway-university {
+  background: linear-gradient(145deg, var(--sos-burgundy-deep), var(--sos-burgundy)) !important;
+  border-color: var(--sos-burgundy-mid) !important;
+  color: #fff !important;
+}
+
+.gateway-university .gateway-card-copy p,
+.gateway-university .gateway-card-copy em {
+  color: #f0d8da !important;
+}
+
+.gateway-help,
+.work-with-us-network {
+  background:
+    radial-gradient(circle at 50% 45%, rgba(212, 175, 55, 0.14), transparent 35%),
+    linear-gradient(145deg, var(--sos-burgundy-deep), var(--sos-burgundy-mid)) !important;
+  border-color: rgba(212, 175, 55, 0.28) !important;
+}
+
+.network-core {
+  background: radial-gradient(circle at 35% 30%, #fff, #f4b8bc 8%, var(--sos-burgundy) 48%, var(--sos-burgundy-deep)) !important;
+  box-shadow: 0 24px 50px rgba(75, 10, 17, 0.35), var(--sos-glow-gold) !important;
+}
+
+.knowledge-entry {
+  background: #fff !important;
+}
+
+.knowledge-entry header small {
+  color: var(--sos-burgundy) !important;
+}
+
+.knowledge-entry-grid > a {
+  background: linear-gradient(155deg, #fff, #f8eeee) !important;
+  border: 1px solid var(--sos-line) !important;
+  color: var(--sos-ink) !important;
+}
+
+.knowledge-entry-grid > a:nth-child(2) {
+  background: linear-gradient(155deg, var(--sos-burgundy-deep), var(--sos-burgundy)) !important;
+  color: #fff !important;
+}
+
+.home-core-summary {
+  background:
+    radial-gradient(circle at 18% 25%, rgba(212, 175, 55, 0.16), transparent 24%),
+    radial-gradient(circle at 82% 68%, rgba(158, 23, 34, 0.2), transparent 24%),
+    linear-gradient(145deg, #2a0610, var(--sos-burgundy-deep) 52%, #1a0408) !important;
+  border-top: 1px solid rgba(212, 175, 55, 0.25) !important;
+}
+
+.home-core-summary:before {
+  background-image: linear-gradient(rgba(212, 175, 55, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(212, 175, 55, 0.05) 1px, transparent 1px) !important;
+}
+
+.home-core-summary:after {
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--sos-gold) 12%,
+    var(--sos-gold-soft) 42%,
+    var(--sos-burgundy-soft) 90%,
+    transparent
+  ) !important;
+  box-shadow: 0 0 10px var(--sos-gold), 0 0 32px rgba(212, 175, 55, 0.45) !important;
+}
+
+.home-core-summary header small {
+  color: var(--sos-gold-soft) !important;
+}
+
+.home-core-grid article {
+  border-color: rgba(212, 175, 55, 0.35) !important;
+  background: linear-gradient(145deg, rgba(75, 10, 17, 0.92), rgba(42, 6, 16, 0.96)) !important;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.28) !important;
+}
+
+.home-core-grid span {
+  border-color: var(--sos-gold) !important;
+  background: var(--sos-burgundy) !important;
+  box-shadow: 0 0 20px rgba(212, 175, 55, 0.35) !important;
+}
+
+.home-core-grid i,
+.home-core-grid article > a {
+  color: var(--sos-gold-soft) !important;
+  filter: none !important;
+}
+
+.cta-card {
+  background:
+    radial-gradient(circle at 85% 15%, rgba(212, 175, 55, 0.22), transparent 26%),
+    linear-gradient(135deg, var(--sos-burgundy-deep), var(--sos-burgundy-mid)) !important;
+  border-radius: 28px !important;
+}
+
+footer {
+  background: #1a0408 !important;
+}
+
+.footer-col a:hover {
+  color: var(--sos-gold) !important;
+}
+
+.home-shield {
+  border-color: var(--sos-line) !important;
+  background: #fff !important;
+}
+
+.home-shield > span {
+  background: var(--sos-burgundy-deep) !important;
+}
+
+.home-shield small,
+.home-shield a {
+  color: var(--sos-burgundy) !important;
+}
+
+/* ─── Kill dark cyan “future” shell — light Success OS ─── */
+.os-page,
+.os-shell {
+  color: var(--sos-ink) !important;
+  background:
+    radial-gradient(ellipse 70% 40% at 0% 0%, rgba(212, 175, 55, 0.1), transparent 40%),
+    radial-gradient(ellipse 50% 30% at 100% 0%, rgba(158, 23, 34, 0.07), transparent 42%),
+    linear-gradient(180deg, #fffcfa 0%, var(--sos-bg) 40%, #f3eeea 100%) !important;
+}
+
+.os-page:before,
+.os-shell:before {
+  background-image: none !important;
+  background: radial-gradient(circle at 90% 10%, rgba(158, 23, 34, 0.05), transparent 40%) !important;
+  mask-image: none !important;
+}
+
+.os-page-content,
+.os-main,
+.os-content {
+  color: var(--sos-ink) !important;
+}
+
+.os-page-content > header,
+.os-content > header {
+  color: var(--sos-ink) !important;
+}
+
+.os-page-content > header p,
+.os-content > header p {
+  color: var(--sos-muted) !important;
+}
+
+.os-page-content > header small,
+.os-content > header small,
+.os-page-content > header > span,
+.os-content > header > span {
+  color: var(--sos-burgundy) !important;
+}
+
+.os-inner-nav {
+  background: rgba(255, 252, 250, 0.92) !important;
+  border-bottom: 1px solid var(--sos-line) !important;
+  box-shadow: 0 10px 30px rgba(75, 10, 17, 0.06) !important;
+}
+
+.os-inner-nav:after {
+  background: radial-gradient(circle at 86% 0, rgba(158, 23, 34, 0.1), transparent 25%) !important;
+}
+
+.os-inner-nav-links a {
+  color: var(--sos-ink-soft) !important;
+}
+
+.os-inner-nav-links a:hover,
+.os-inner-nav-links a.active {
+  background: var(--sos-burgundy-tint) !important;
+  color: var(--sos-burgundy) !important;
+  box-shadow: inset 0 0 0 1px rgba(158, 23, 34, 0.15) !important;
+}
+
+.os-page article,
+.os-content article {
+  background: linear-gradient(145deg, #fff, #fff8f6) !important;
+  color: var(--sos-ink) !important;
+  border: 1px solid var(--sos-line) !important;
+  border-radius: var(--sos-radius) !important;
+  box-shadow: var(--sos-shadow) !important;
+}
+
+.os-page article p,
+.os-content article p,
+.os-page article small,
+.os-content article small {
+  color: var(--sos-muted) !important;
+}
+
+.os-page article:hover,
+.os-content article:hover {
+  border-color: rgba(158, 23, 34, 0.35) !important;
+  box-shadow: var(--sos-shadow-lg) !important;
+}
+
+.os-page .directory-filter,
+.os-content .directory-filter,
+.os-page section[class*='filter'],
+.os-content section[class*='filter'] {
+  background: #fff !important;
+  border: 1px solid var(--sos-line) !important;
+  border-top: 4px solid var(--sos-burgundy) !important;
+  box-shadow: var(--sos-shadow) !important;
+  color: var(--sos-ink) !important;
+}
+
+.os-page label,
+.os-content label {
+  color: var(--sos-ink-soft) !important;
+}
+
+.os-page input:not([type='checkbox']):not([type='radio']),
+.os-page select,
+.os-page textarea,
+.os-content input:not([type='checkbox']):not([type='radio']),
+.os-content select,
+.os-content textarea {
+  background: #fff !important;
+  border-color: var(--sos-line) !important;
+  color: var(--sos-ink) !important;
+}
+
+.os-page input::placeholder,
+.os-content input::placeholder,
+.os-page textarea::placeholder,
+.os-content textarea::placeholder {
+  color: var(--sos-muted-light);
+}
+
+.os-page select option,
+.os-content select option {
+  background: #fff;
+  color: var(--sos-ink);
+}
+
+.os-page button:not(.page-guide-launch):not(.os-icon-button),
+.os-content button:not(.page-guide-launch):not(.os-icon-button) {
+  background: linear-gradient(135deg, var(--sos-burgundy-soft), var(--sos-burgundy)) !important;
+  color: #fff !important;
+  border-color: transparent !important;
+  box-shadow: var(--sos-glow-burgundy) !important;
+  border-radius: var(--sos-radius-pill) !important;
+}
+
+.os-page a:not(.os-brand):not(.os-primary),
+.os-content a {
+  color: var(--sos-burgundy);
+}
+
+.os-page .verified,
+.os-content .verified {
+  background: rgba(158, 23, 34, 0.1) !important;
+  color: var(--sos-burgundy) !important;
+}
+
+.os-page .pending,
+.os-content .pending {
+  background: rgba(212, 175, 55, 0.16) !important;
+  color: var(--sos-gold-deep) !important;
+}
+
+/* Sidebar shells */
+.os-sidebar,
+.cc-side {
+  background: linear-gradient(180deg, #fff, #fff8f0) !important;
+  border-color: var(--sos-line) !important;
+  color: var(--sos-ink) !important;
+  box-shadow: 8px 0 30px rgba(75, 10, 17, 0.05);
+}
+
+.os-brand,
+.cc-brand {
+  color: var(--sos-burgundy-deep) !important;
+}
+
+.os-brand-mark,
+.cc-brand > span,
+.os-brand-mark {
+  background: linear-gradient(145deg, var(--sos-burgundy-soft), var(--sos-burgundy)) !important;
+  color: #fff !important;
+}
+
+.os-sidebar .os-side-label,
+.cc-role-group > small {
+  color: var(--sos-muted) !important;
+}
+
+.os-nav a,
+.cc-role-group button {
+  color: var(--sos-ink-soft) !important;
+  border: 1px solid transparent;
+}
+
+.os-nav a:hover,
+.os-nav a.active,
+.cc-role-group button.active,
+.cc-role-group button:hover {
+  background: linear-gradient(135deg, var(--sos-burgundy-soft), var(--sos-burgundy)) !important;
+  color: #fff !important;
+  border-color: transparent !important;
+}
+
+.os-support {
+  background: linear-gradient(145deg, var(--sos-burgundy-tint), #fff) !important;
+  border: 1px solid var(--sos-line) !important;
+}
+
+.os-support p {
+  color: var(--sos-muted) !important;
+}
+
+.os-topbar {
+  background: rgba(255, 252, 250, 0.9) !important;
+  border-color: var(--sos-line) !important;
+  backdrop-filter: blur(16px);
+}
+
+.os-search {
+  background: #fff !important;
+  border: 1px solid var(--sos-line) !important;
+}
+
+.os-user strong {
+  color: var(--sos-ink);
+}
+
+.os-user small {
+  color: var(--sos-muted);
+}
+
+.os-main {
+  background: transparent !important;
+}
+
+.os-page .directory-empty,
+.os-content .directory-empty {
+  background: rgba(255, 255, 255, 0.9) !important;
+  color: var(--sos-muted);
+  border-color: var(--sos-line) !important;
+}
+
+.os-page .journey-progress,
+.os-page .journey-request-picker,
+.os-page .journey-filter-step {
+  background: #fff !important;
+  color: var(--sos-ink);
+  border-color: var(--sos-line) !important;
+}
+
+.os-page .journey-request-picker button {
+  background: #fff !important;
+  border-color: var(--sos-line) !important;
+  color: var(--sos-ink) !important;
+}
+
+.os-page .journey-request-picker button.active,
+.journey-progress span.active b,
+.library-mode-bar button.active {
+  background: linear-gradient(135deg, var(--sos-burgundy-deep), var(--sos-burgundy)) !important;
+  border-color: var(--sos-burgundy) !important;
+  color: #fff !important;
+}
+
+.os-page .journey-portal-picker button {
+  background: linear-gradient(145deg, #fff, #fff8f6) !important;
+  color: var(--sos-ink) !important;
+  border-color: var(--sos-line) !important;
+}
+
+.os-page .journey-portal-picker p {
+  color: var(--sos-muted) !important;
+}
+
+/* Auth */
+.auth-page,
+.phase11-auth,
+.phase11-auth.auth-page {
+  background:
+    radial-gradient(ellipse at top, rgba(212, 175, 55, 0.12), transparent 40%),
+    linear-gradient(160deg, var(--sos-bg), #fffcfa) !important;
+}
+
+.auth-story {
+  background:
+    radial-gradient(circle at 18% 12%, rgba(255, 255, 255, 0.14), transparent 27%),
+    linear-gradient(140deg, var(--sos-burgundy-deep), var(--sos-burgundy)) !important;
+}
+
+.auth-panel > header button.active {
+  color: var(--sos-burgundy) !important;
+  border-bottom-color: var(--sos-burgundy) !important;
+}
+
+.auth-roles button.active {
+  border-color: var(--sos-burgundy) !important;
+  background: var(--sos-burgundy-tint) !important;
+  color: var(--sos-burgundy) !important;
+}
+
+.auth-panel form > button {
+  background: var(--sos-burgundy) !important;
+  border-radius: var(--sos-radius-pill) !important;
+}
+
+.auth-panel > a {
+  color: var(--sos-burgundy);
+}
+
+/* Heroes across public pages */
+.gateway-title,
+.world-hero,
+.curriculum-hero,
+.jobs-hero,
+.profile-hero,
+.notification-hero,
+.sources-hero,
+.degree-hero,
+.subject-hero,
+.calendar-hero,
+.rankings-hero,
+.university-subjects-hero,
+.studio-hero,
+.registry-hero,
+.security-hero,
+.blueprint-hero,
+.trust-hero,
+.eco-hero,
+.partner-search-hero,
+.journey-launch-hero {
+  background:
+    radial-gradient(circle at 88% 12%, rgba(212, 175, 55, 0.2), transparent 28%),
+    linear-gradient(135deg, var(--sos-burgundy-deep), var(--sos-burgundy)) !important;
+  color: #fff !important;
+}
+
+.world-hero > div:first-child > span,
+.curriculum-hero > span,
+.jobs-hero span,
+.profile-hero small,
+.notification-hero span,
+.gateway-title > span,
+.blueprint-hero span,
+.trust-hero span {
+  color: var(--sos-gold-soft) !important;
+}
+
+/* Cards / tables / filters on product surfaces */
+.degree-filter,
+.subject-filter,
+.calendar-toolbar,
+.ranking-table,
+.ranking-layout > aside,
+.university-filter,
+.studio-upload,
+.studio-preview,
+.registry-grid article,
+.track-grid > article,
+.job-grid article,
+.degree-results article,
+.subject-grid article,
+.calendar-list article,
+.university-field-grid > article,
+.protection-status > div,
+.asset-policy,
+.security-layers article {
+  background: #fff !important;
+  border-color: var(--sos-line) !important;
+  box-shadow: var(--sos-shadow) !important;
+  color: var(--sos-ink) !important;
+}
+
+.rankings-tabs button.active,
+.asset-tabs button.active,
+.profile-switch button.active,
+.seven-portals button.active {
+  background: var(--sos-burgundy) !important;
+  color: #fff !important;
+  border-color: var(--sos-burgundy) !important;
+}
+
+.jobs-hero > a,
+.profile-hero > a {
+  background: #fff !important;
+  color: var(--sos-burgundy) !important;
+}
+
+.job-grid header > span,
+.track-grid header > span,
+.feature-icon,
+.ai-avatar,
+.float-card > span {
+  background: var(--sos-burgundy-tint) !important;
+  color: var(--sos-burgundy) !important;
+}
+
+.feature-card:before {
+  background: var(--sos-burgundy-tint) !important;
+}
+
+.card-2,
+.path-card,
+.ai-section {
+  background: linear-gradient(145deg, var(--sos-burgundy-deep), var(--sos-burgundy-mid)) !important;
+}
+
+.section-head > p,
+.program-copy > p,
+.teacher-copy > p,
+.passport-copy > p,
+.ai-copy > p {
+  color: var(--sos-muted);
+}
+
+.journey {
+  background: var(--sos-bg) !important;
+}
+
+.teachers {
+  background: linear-gradient(180deg, #fffcfa, #fff) !important;
+}
+
+.passport-card {
+  background:
+    radial-gradient(circle at 100% 0, rgba(212, 175, 55, 0.25), transparent 34%),
+    linear-gradient(135deg, var(--sos-burgundy-deep), var(--sos-burgundy-mid)) !important;
+}
+
+.pc-mastery em,
+.skill-bars b {
+  background: linear-gradient(90deg, var(--sos-burgundy), var(--sos-gold)) !important;
+}
+
+.modal {
+  border: 1px solid var(--sos-line);
+  box-shadow: var(--sos-shadow-lg);
+}
+
+.role-grid button.selected {
+  border-color: var(--sos-burgundy) !important;
+  background: var(--sos-burgundy-tint) !important;
+  box-shadow: 0 0 0 2px rgba(158, 23, 34, 0.12) !important;
+}
+
+.role-grid button > span {
+  background: var(--sos-burgundy-tint) !important;
+  color: var(--sos-burgundy) !important;
+}
+
+.language-sheet > div {
+  background: linear-gradient(180deg, #fffcfa, #fff8f0) !important;
+  border: 1px solid rgba(212, 175, 55, 0.35) !important;
+}
+
+.language-sheet section button.active {
+  border-color: var(--sos-burgundy) !important;
+  background: var(--sos-burgundy-tint) !important;
+}
+
+/* Knowledge / subject hubs — lighten cyan overrides */
+.global-knowledge-page,
+.subject-hub-page,
+.knowledge-principle,
+.knowledge-hierarchy,
+.knowledge-workflow,
+.knowledge-actions,
+.knowledge-module-grid article,
+.subject-channel-nav button,
+.subject-hub-intro,
+.generated-course-map,
+.subject-smart-book,
+.assessment-profile,
+.library-mode-bar,
+.no-human-classes {
+  color: var(--sos-ink) !important;
+}
+
+.knowledge-principle,
+.knowledge-hierarchy,
+.knowledge-workflow,
+.knowledge-actions,
+.subject-hub-intro,
+.generated-course-map,
+.subject-smart-book,
+.library-mode-bar,
+.assessment-profile {
+  background: #fff !important;
+  border-color: var(--sos-line) !important;
+  box-shadow: var(--sos-shadow) !important;
+}
+
+.knowledge-principle > span,
+.subject-channel-nav button > span,
+.subject-smart-book > article > span,
+.book-quiz-head > span,
+.generated-course-map article > span,
+.knowledge-workflow article b {
+  background: var(--sos-burgundy) !important;
+  color: #fff !important;
+}
+
+.subject-channel-nav button {
+  background: #fff !important;
+  border-color: var(--sos-line) !important;
+  color: var(--sos-ink) !important;
+}
+
+.subject-channel-nav button.active {
+  background: linear-gradient(135deg, var(--sos-burgundy-deep), var(--sos-burgundy)) !important;
+  border-color: var(--sos-burgundy) !important;
+  color: #fff !important;
+  box-shadow: var(--sos-glow-burgundy) !important;
+}
+
+.knowledge-module-grid article,
+.human-class-library article {
+  background: linear-gradient(145deg, #fff, #fff8f6) !important;
+  border: 1px solid var(--sos-line) !important;
+}
+
+.knowledge-module-grid article small,
+.human-class-library article > span,
+.generated-course-map article em,
+.knowledge-hierarchy span b {
+  color: var(--sos-burgundy) !important;
+}
+
+.knowledge-hierarchy span {
+  background: var(--sos-burgundy-tint) !important;
+  border-color: var(--sos-line) !important;
+}
+
+.knowledge-actions aside a {
+  border-color: var(--sos-line) !important;
+  color: var(--sos-burgundy) !important;
+}
+
+.no-human-classes {
+  background: rgba(212, 175, 55, 0.1) !important;
+  border-color: rgba(212, 175, 55, 0.4) !important;
+  color: var(--sos-gold-deep) !important;
+}
+
+.assessment-profile {
+  background: linear-gradient(135deg, #fff, var(--sos-burgundy-tint)) !important;
+  border-color: rgba(212, 175, 55, 0.35) !important;
+}
+
+.assessment-profile small {
+  color: var(--sos-gold-deep) !important;
+}
+
+.assessment-profile p {
+  color: var(--sos-muted) !important;
+}
+
+.assessment-profile aside span {
+  background: var(--sos-burgundy-tint) !important;
+  border-color: var(--sos-line) !important;
+  color: var(--sos-burgundy) !important;
+}
+
+/* Security page alignment */
+.security-hero {
+  background:
+    radial-gradient(circle at 80% 15%, rgba(212, 175, 55, 0.22), transparent 27%),
+    linear-gradient(135deg, var(--sos-burgundy-deep), var(--sos-burgundy)) !important;
+}
+
+.shield-3d {
+  background: linear-gradient(145deg, #f8d9dc, var(--sos-burgundy) 35%, var(--sos-burgundy-deep) 80%) !important;
+}
+
+.leak-response,
+.degree-checklist,
+.uni-production-callout {
+  background: linear-gradient(135deg, var(--sos-burgundy-deep), var(--sos-burgundy-mid)) !important;
+}
+
+/* Control Center / product shells */
+.cc {
+  background: var(--sos-bg) !important;
+  color: var(--sos-ink) !important;
+  font-family: var(--sos-font-body) !important;
+}
+
+.cc-side {
+  background: linear-gradient(180deg, #fff, #fff8f0) !important;
+  color: var(--sos-ink) !important;
+}
+
+.cc-brand > span {
+  background: linear-gradient(145deg, var(--sos-burgundy-soft), var(--sos-burgundy)) !important;
+  color: #fff !important;
+}
+
+.cc-brand,
+.cc-brand b {
+  color: var(--sos-burgundy-deep) !important;
+}
+
+/* Enterprise Admin CSS hooks */
+[data-ea-theme='light'] {
+  --ea-bg: var(--sos-bg);
+  --ea-card: #fff;
+  --ea-border: var(--sos-line);
+  --ea-accent: var(--sos-burgundy);
+  --ea-text: var(--sos-ink);
+  --ea-muted: var(--sos-muted);
+}
+
+[data-ea-theme='dark'] {
+  --ea-bg: #1a0408;
+  --ea-card: #2a0c12;
+  --ea-border: #4a1a22;
+  --ea-accent: var(--sos-burgundy-soft);
+  --ea-text: #f8ead8;
+  --ea-muted: #c4b4a8;
+}
+
+/* Student / role portals */
+.phase11-student-portal.brand-surface,
+.phase11-role-dashboard,
+.phase11-marketing.brand-surface {
+  background:
+    radial-gradient(circle at 10% 0%, rgba(212, 175, 55, 0.14), transparent 28rem),
+    radial-gradient(circle at 92% 12%, rgba(158, 23, 34, 0.09), transparent 32rem),
+    linear-gradient(135deg, #fffcfa 0%, #fff7f2 55%, #f5ebe6 100%) !important;
+}
+
+.phase11-student-portal .luxury-card,
+.phase11-marketing .luxury-card,
+.phase11-auth .auth-card {
+  border: 1px solid rgba(212, 175, 55, 0.28) !important;
+  background: rgba(255, 255, 255, 0.9) !important;
+  box-shadow: var(--sos-shadow) !important;
+  border-radius: var(--sos-radius) !important;
+}
+
+/* Motion — presence, not noise */
+@keyframes sosRise {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes sosPulseGold {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.35);
+  }
+  50% {
+    box-shadow: 0 0 0 10px rgba(212, 175, 55, 0);
+  }
+}
+
+@keyframes sosHubGlow {
+  0%,
+  100% {
+    filter: drop-shadow(0 0 12px rgba(212, 175, 55, 0.25));
+  }
+  50% {
+    filter: drop-shadow(0 0 22px rgba(212, 175, 55, 0.45));
+  }
+}
+
+.reveal {
+  animation: sosRise 0.75s ease both;
+}
+
+.success-3d-world,
+.network-core {
+  animation: sosHubGlow 4.5s ease-in-out infinite;
+}
+
+.portal-start-button,
+.os-primary,
+.button:not(.ghost):not(.clear) {
+  animation: none;
+}
+
+.gateway-join-card,
+.portal-first-grid > a,
+.knowledge-entry-grid > a {
+  transition: transform 0.28s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.28s ease, border-color 0.28s ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal,
+  .success-3d-world,
+  .network-core {
+    animation: none !important;
+  }
+}
+
+/* Responsive polish */
+@media (max-width: 900px) {
+  .hero {
+    padding-top: 48px !important;
+  }
+
+  .nav-links.open {
+    background: #fffcfa !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .stats {
+    border-radius: 20px 20px 0 0;
+  }
+
+  .portal-first-stage {
+    padding-top: 110px;
+  }
+}

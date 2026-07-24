@@ -665,8 +665,8 @@ function PermissionsPanel({ matrix, busy, error, onReload, onCreate, onToggle })
                 textAlign: 'left',
                 padding: 8,
                 marginBottom: 4,
-                background: selectedKey === r.key ? '#ecfdf5' : 'transparent',
-                border: '1px solid #e5e7eb',
+                background: selectedKey === r.key ? '#fff4f4' : 'transparent',
+                border: '1px solid #eadde0',
                 borderRadius: 8,
               }}
             >
