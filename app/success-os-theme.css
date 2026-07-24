@@ -1382,3 +1382,70 @@ footer {
     padding-top: 110px;
   }
 }
+
+/* Cursor auth (register / forgot / verify) — match brand without changing forms */
+.phase11-auth {
+  background:
+    radial-gradient(ellipse at top, rgba(212, 175, 55, 0.12), transparent 42%),
+    linear-gradient(160deg, var(--sos-bg), #fffcfa) !important;
+  color: var(--sos-ink);
+  font-family: var(--sos-font-body);
+}
+
+.phase11-auth h1 {
+  font-family: var(--sos-font-display) !important;
+  color: var(--sos-burgundy-deep) !important;
+}
+
+.phase11-auth .rounded-2xl,
+.phase11-auth [class*='rounded-2xl'] {
+  border-color: var(--sos-line) !important;
+  box-shadow: var(--sos-shadow) !important;
+  background: #fff !important;
+}
+
+.phase11-auth a[class*='text-zinc-900'],
+.phase11-auth a.font-medium {
+  color: var(--sos-burgundy) !important;
+}
+
+.phase11-auth button[type='submit'],
+.phase11-auth button.bg-zinc-900,
+.phase11-auth [class*='bg-zinc-900'] {
+  background: linear-gradient(145deg, var(--sos-burgundy-soft), var(--sos-burgundy)) !important;
+  color: #fff !important;
+  border-radius: var(--sos-radius-pill) !important;
+  border-color: transparent !important;
+}
+
+.phase11-auth input,
+.phase11-auth select {
+  border-radius: 12px !important;
+  border-color: var(--sos-line) !important;
+}
+
+.phase11-auth input:focus,
+.phase11-auth select:focus {
+  border-color: var(--sos-burgundy) !important;
+  box-shadow: 0 0 0 3px rgba(158, 23, 34, 0.12) !important;
+}
+
+/* Brand surface / luxury cards across portals */
+.brand-surface {
+  background:
+    radial-gradient(circle at 10% 0%, rgba(212, 175, 55, 0.14), transparent 28rem),
+    radial-gradient(circle at 92% 12%, rgba(158, 23, 34, 0.09), transparent 32rem),
+    linear-gradient(135deg, #fffcfa 0%, #fff7f2 55%, #f5ebe6 100%) !important;
+}
+
+.luxury-card,
+.luxury-card-hover {
+  border: 1px solid rgba(212, 175, 55, 0.28) !important;
+  background: rgba(255, 255, 255, 0.92) !important;
+  box-shadow: var(--sos-shadow) !important;
+  border-radius: var(--sos-radius) !important;
+}
+
+.gold-text {
+  color: var(--sos-gold-deep) !important;
+}
