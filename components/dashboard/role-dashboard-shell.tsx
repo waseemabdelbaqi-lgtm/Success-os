@@ -31,13 +31,13 @@ export function RoleDashboardShell({
       <EmailVerificationBanner />
 
       <div className="space-y-2">
-        <p className="text-sm font-medium uppercase tracking-[0.2em] text-zinc-500">
+        <p className="text-sm font-medium uppercase tracking-[0.2em] text-[#9e1722]">
           {CATEGORY_LABELS[definition.category] ?? definition.category}
         </p>
-        <h1 className="text-3xl font-semibold tracking-tight text-zinc-950">
+        <h1 className="text-3xl font-semibold tracking-tight text-[#4b0a11]">
           {definition.label} Dashboard
         </h1>
-        <p className="max-w-2xl text-zinc-600">{definition.description}</p>
+        <p className="max-w-2xl text-[#6b5a52]">{definition.description}</p>
       </div>
 
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -50,16 +50,16 @@ export function RoleDashboardShell({
         />
       </div>
 
-      <section className="rounded-2xl border border-zinc-200 bg-white p-6 shadow-sm">
-        <h2 className="text-lg font-semibold text-zinc-900">Your permissions</h2>
-        <p className="mt-1 text-sm text-zinc-500">
+      <section className="rounded-2xl border border-[#eadde0] bg-white p-6 shadow-[0_14px_34px_rgba(75,10,17,0.06)]">
+        <h2 className="text-lg font-semibold text-[#4b0a11]">Your permissions</h2>
+        <p className="mt-1 text-sm text-[#6b5a52]">
           These permissions control what you can access within Success OS.
         </p>
         <div className="mt-4 flex flex-wrap gap-2">
           {permissions.map((permission) => (
             <span
               key={permission}
-              className="rounded-full bg-zinc-100 px-3 py-1 text-xs font-medium text-zinc-700"
+              className="rounded-full bg-[#fff4f4] px-3 py-1 text-xs font-medium text-[#9e1722]"
             >
               {permission}
             </span>
@@ -67,9 +67,9 @@ export function RoleDashboardShell({
         </div>
       </section>
 
-      <section className="rounded-2xl border border-dashed border-zinc-300 bg-zinc-50 p-6">
-        <h2 className="text-sm font-medium text-zinc-700">Feature modules</h2>
-        <p className="mt-1 text-sm text-zinc-500">
+      <section className="rounded-2xl border border-dashed border-[#dcc8cc] bg-[#fff8f6] p-6">
+        <h2 className="text-sm font-medium text-[#4b0a11]">Feature modules</h2>
+        <p className="mt-1 text-sm text-[#6b5a52]">
           Role-specific features for {definition.label} will be mounted here in
           upcoming development phases. The permission system and route protection
           are fully active.
@@ -89,10 +89,10 @@ function DashboardCard({
   subtitle: string;
 }): ReactNode {
   return (
-    <div className="rounded-2xl border border-zinc-200 bg-white p-5 shadow-sm">
-      <p className="text-sm text-zinc-500">{title}</p>
-      <p className="mt-1 text-xl font-semibold text-zinc-900">{value}</p>
-      <p className="mt-0.5 truncate text-xs text-zinc-400">{subtitle}</p>
+    <div className="rounded-2xl border border-[#eadde0] bg-white p-5 shadow-[0_14px_34px_rgba(75,10,17,0.06)]">
+      <p className="text-sm text-[#6b5a52]">{title}</p>
+      <p className="mt-1 text-xl font-semibold text-[#1a1212]">{value}</p>
+      <p className="mt-0.5 truncate text-xs text-[#8a7872]">{subtitle}</p>
     </div>
   );
 }

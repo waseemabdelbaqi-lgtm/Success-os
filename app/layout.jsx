@@ -6,6 +6,7 @@ import './cursor-tailwind.css';
 import './phase11.css';
 import './success-os-theme.css';
 import './landing-page.css';
+import './portals-theme.css';
 
 const display = Cormorant_Garamond({
   subsets: ['latin'],

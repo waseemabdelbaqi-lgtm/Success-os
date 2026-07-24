@@ -1,0 +1,338 @@
+/**
+ * SUCCESS OS — Portals & internal surfaces
+ * Next visual pass: replace leftover teal/navy hex from product.css
+ * Visual only. Routes, buttons, forms, journeys unchanged.
+ */
+
+/* ─── Hex remaps on shared portal chrome ───────────────── */
+.os-shell,
+.os-page,
+.phase11-private-shell,
+.phase11-legacy-page,
+.cc,
+.phase11-role-dashboard,
+.jobseeker-only-page,
+.parent-grid,
+.teacher-market-head,
+.profile-page,
+.jobs-page,
+.curriculum-page,
+.world-page,
+.notification-page {
+  --portal-teal: var(--sos-burgundy, #9e1722);
+  --portal-navy: var(--sos-burgundy-deep, #4b0a11);
+  --portal-mint: var(--sos-burgundy-tint, #fff4f4);
+  --portal-mint-ink: var(--sos-burgundy, #9e1722);
+  --portal-glow: rgba(158, 23, 34, 0.18);
+}
+
+/* PrivateShell accents still hard-coded teal in product.css */
+.os-brand-mark,
+.cc-brand > span {
+  background: linear-gradient(145deg, #c43a45, #9e1722) !important;
+  color: #fff !important;
+}
+
+.os-nav a:hover,
+.os-nav a.active {
+  background: rgba(158, 23, 34, 0.12) !important;
+  color: var(--sos-burgundy-deep, #4b0a11) !important;
+}
+
+.os-nav a.active span,
+.os-nav a:hover span {
+  color: var(--sos-burgundy, #9e1722) !important;
+}
+
+.os-user-avatar,
+.profile-avatar,
+.teacher-avatar,
+.os-atom,
+.job-grid header > span,
+.track-grid header > span,
+.home-role-grid span,
+.seven-portals button > span,
+.global-university-source > div > span {
+  background: linear-gradient(145deg, #c43a45, #9e1722) !important;
+  color: #fff !important;
+}
+
+.os-primary,
+.jobs-hero > a,
+.profile-hero > a,
+.curriculum-filter a,
+.jobs-toolbar a,
+.global-university-source a:first-child {
+  background: linear-gradient(145deg, #c43a45, #9e1722) !important;
+  color: #fff !important;
+  border-radius: 999px !important;
+}
+
+.os-progress-line,
+.os-score-ring,
+.os-progress i {
+  background: linear-gradient(90deg, #9e1722, #d4af37) !important;
+}
+
+.os-hero-card {
+  border-color: rgba(212, 175, 55, 0.35) !important;
+  box-shadow: 0 22px 55px rgba(75, 10, 17, 0.12) !important;
+}
+
+/* Mint chips → burgundy tint */
+.job-grid .verified,
+.home-role-grid span,
+.profile-layout > aside a,
+[class*='mint'],
+.eafff8-fallback {
+  background: #fff4f4 !important;
+  color: #9e1722 !important;
+}
+
+.home-role-grid a:hover,
+.gateway-join-card:hover {
+  border-color: rgba(158, 23, 34, 0.45) !important;
+}
+
+.home-gateway header > a,
+.profile-layout > aside a,
+.job-grid a,
+.track-grid footer a {
+  color: #9e1722 !important;
+}
+
+/* Portal heroes already overridden in theme — tighten mint labels */
+.gateway-title > span,
+.world-hero > div:first-child > span,
+.curriculum-hero > span,
+.jobs-hero span,
+.profile-hero small,
+.notification-hero span,
+.blueprint-hero span,
+.trust-hero span,
+.teacher-market-head > div > span,
+.video-hero > div > span,
+.eco-hero span,
+.network-copy small,
+.global-university-source small {
+  color: #f2d77c !important;
+}
+
+.notification-hero > div:last-child b,
+.world-hero > div:last-child b {
+  color: #f2d77c !important;
+}
+
+.official-slogan {
+  border-color: rgba(212, 175, 55, 0.35) !important;
+  color: #9a711a !important;
+}
+
+/* Student / parent / jobseeker portal modules */
+.student-simple-hero,
+.student-portal-hero,
+.human-gate,
+.career-separation,
+.career-scope,
+.career-steps,
+.parent-summary,
+.parent-controls,
+.parent-metrics,
+.portal-stats,
+.portal-stat,
+.student-row {
+  border-color: #eadde0 !important;
+}
+
+.student-simple-hero,
+.student-portal-hero,
+.human-gate,
+.career-separation {
+  background: linear-gradient(145deg, #fff, #fff8f6) !important;
+  box-shadow: 0 18px 44px rgba(75, 10, 17, 0.07) !important;
+  border-radius: 22px !important;
+}
+
+.parent-grid article,
+.parent-metrics > div,
+.portal-stat,
+.career-steps article {
+  background: #fff !important;
+  border: 1px solid #eadde0 !important;
+  border-radius: 18px !important;
+  box-shadow: 0 12px 30px rgba(75, 10, 17, 0.05) !important;
+}
+
+.parent-grid article h3,
+.career-steps h3,
+.student-row strong {
+  color: #4b0a11 !important;
+}
+
+/* Teacher marketplace */
+.teacher-market-head {
+  background:
+    radial-gradient(circle at 88% 12%, rgba(212, 175, 55, 0.2), transparent 28%),
+    linear-gradient(135deg, #4b0a11, #9e1722) !important;
+  color: #fff !important;
+  border-radius: 24px !important;
+}
+
+.teacher-grid article,
+.teacher-card {
+  background: #fff !important;
+  border: 1px solid #eadde0 !important;
+  border-radius: 20px !important;
+  box-shadow: 0 16px 40px rgba(75, 10, 17, 0.06) !important;
+}
+
+/* Profile / jobs / curriculum cards */
+.profile-layout > aside,
+.profile-layout > section,
+.job-grid article,
+.track-grid > article,
+.calendar-list article {
+  border-color: #eadde0 !important;
+  box-shadow: 0 14px 36px rgba(75, 10, 17, 0.05) !important;
+}
+
+.profile-switch button.active,
+.seven-portals button.active,
+.notification-rolebar button.active {
+  background: #9e1722 !important;
+  border-color: #9e1722 !important;
+  color: #fff !important;
+}
+
+.global-university-source {
+  background: linear-gradient(135deg, #4b0a11, #7a121c) !important;
+}
+
+/* Control center legacy shell */
+.cc-side {
+  background: linear-gradient(180deg, #fff, #fff8f0) !important;
+  color: #1a1212 !important;
+}
+
+.cc-brand,
+.cc-brand b {
+  color: #4b0a11 !important;
+}
+
+.cc-role-group button:hover,
+.cc-role-group button.active {
+  background: linear-gradient(135deg, #c43a45, #9e1722) !important;
+  color: #fff !important;
+}
+
+.cc-welcome,
+.cc-bot-button,
+.cc-assistant {
+  border-color: #eadde0 !important;
+}
+
+.cc-bot-button {
+  background: linear-gradient(145deg, #c43a45, #9e1722) !important;
+  color: #fff !important;
+}
+
+/* Role dashboards (zinc → brand) */
+.phase11-role-dashboard {
+  background:
+    radial-gradient(circle at 0% 0%, rgba(212, 175, 55, 0.12), transparent 30rem),
+    #f7f4f1 !important;
+  color: #1a1212 !important;
+  font-family: var(--sos-font-body, 'Source Sans 3', sans-serif);
+}
+
+.phase11-role-dashboard h1,
+.phase11-role-dashboard h2 {
+  color: #4b0a11 !important;
+  font-family: var(--sos-font-display, Georgia, serif) !important;
+}
+
+.phase11-role-dashboard .text-zinc-900,
+.phase11-role-dashboard .text-zinc-950,
+.phase11-role-dashboard [class*='text-zinc-900'],
+.phase11-role-dashboard [class*='text-zinc-950'] {
+  color: #1a1212 !important;
+}
+
+.phase11-role-dashboard .text-zinc-500,
+.phase11-role-dashboard .text-zinc-600,
+.phase11-role-dashboard .text-zinc-700,
+.phase11-role-dashboard [class*='text-zinc-5'],
+.phase11-role-dashboard [class*='text-zinc-6'],
+.phase11-role-dashboard [class*='text-zinc-7'] {
+  color: #6b5a52 !important;
+}
+
+.phase11-role-dashboard .bg-zinc-50,
+.phase11-role-dashboard .bg-zinc-100,
+.phase11-role-dashboard [class*='bg-zinc-50'],
+.phase11-role-dashboard [class*='bg-zinc-100'] {
+  background: #fff4f4 !important;
+}
+
+.phase11-role-dashboard .border-zinc-200,
+.phase11-role-dashboard .border-zinc-300,
+.phase11-role-dashboard [class*='border-zinc-'] {
+  border-color: #eadde0 !important;
+}
+
+.phase11-role-dashboard .rounded-2xl,
+.phase11-role-dashboard .rounded-xl {
+  box-shadow: 0 14px 34px rgba(75, 10, 17, 0.06);
+}
+
+.phase11-role-dashboard a,
+.phase11-role-dashboard button {
+  border-radius: 999px;
+}
+
+/* Site header chrome used on some internal pages */
+header .bg-zinc-900,
+.site-header .bg-zinc-900,
+a.bg-zinc-900,
+button.bg-zinc-900 {
+  background: linear-gradient(145deg, #c43a45, #9e1722) !important;
+  color: #fff !important;
+}
+
+a.text-zinc-700:hover,
+a.text-zinc-600:hover,
+.font-medium.text-zinc-700:hover {
+  color: #9e1722 !important;
+}
+
+/* Replace remaining teal glow backgrounds on cards */
+.gateway-join-card:before,
+.eco-hero,
+.work-with-us-network {
+  /* keep structure; glow color handled by success-os-theme for network */
+}
+
+.gateway-join-card:before {
+  background: radial-gradient(circle, rgba(158, 23, 34, 0.16), transparent) !important;
+}
+
+.home-role-grid a:hover {
+  box-shadow: 0 16px 35px rgba(75, 10, 17, 0.1) !important;
+}
+
+/* Admissions / guest accents */
+.guest-hero,
+.admissions-hero {
+  background:
+    radial-gradient(circle at 88% 12%, rgba(212, 175, 55, 0.2), transparent 28%),
+    linear-gradient(135deg, #4b0a11, #9e1722) !important;
+  color: #fff !important;
+}
+
+/* Mobile polish */
+@media (max-width: 760px) {
+  .os-sidebar,
+  .cc-side {
+    box-shadow: 12px 0 36px rgba(75, 10, 17, 0.12);
+  }
+}
