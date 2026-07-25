@@ -1,132 +1,147 @@
-"use client";
-
 import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { useEffect, useState, useTransition } from "react";
-import { filterInstitutions } from "@/src/actions/admission";
-import { AdmissionLayout } from "@/src/app/layout";
-import InstitutionCard from "@/src/components/InstitutionCard";
-import { NotificationsPanel } from "@/src/components/admission-funnel/notifications-panel";
-import { Badge } from "@/src/components/ui/badge";
-import { Button } from "@/src/components/ui/button";
-import { Card, CardContent } from "@/src/components/ui/card";
-import { readAdmissionProfile } from "@/src/lib/admission/profile-session";
-import type { AdmissionProfileInput, Institution } from "@/src/types/admission";
+import { redirect } from "next/navigation";
+import InstitutionCard from "@/components/InstitutionCard";
+import { getOrScrapeCriteria } from "@/actions/fetchAdmissionCriteria";
+import { createClient } from "@/utils/supabase/server";
+import { FALLBACK_INSTITUTIONS } from "@/src/lib/admission/fallback-data";
 
 /**
- * صفحة الفلترة الذكية وعرض الجامعات المتوافقة
+ * لوحة الاكتشاف الذكية — قلب منصة التقديم الموحد.
+ * تُعرض عبر `/admission` (ومسار `/?nationality&gpa` يُحوَّل إليها عبر middleware).
  */
-export default function AdmissionMatchesPage() {
-  const router = useRouter();
-  const [profile, setProfile] = useState<AdmissionProfileInput | null>(null);
-  const [matches, setMatches] = useState<Institution[]>([]);
-  const [mode, setMode] = useState<"supabase" | "preview" | null>(null);
-  const [error, setError] = useState<string | null>(null);
-  const [pending, startTransition] = useTransition();
+export type DiscoverySearchParams = Promise<{
+  nationality?: string;
+  gpa?: string;
+}>;
 
-  useEffect(() => {
-    const saved = readAdmissionProfile();
-    if (!saved) {
-      router.replace("/onboard");
-      return;
-    }
-    setProfile(saved);
-    startTransition(async () => {
-      const res = await filterInstitutions(saved);
-      if (!res.ok) {
-        setError(res.error);
-        return;
-      }
-      setMatches(res.data.institutions);
-      setMode(res.data.mode);
-    });
-  }, [router]);
+type InstitutionRow = {
+  id: string;
+  name: string;
+  type: string;
+  logo_url?: string | null;
+  is_partner: boolean;
+};
 
-  if (!profile) {
-    return (
-      <AdmissionLayout>
-        <div className="mx-auto max-w-lg px-4 py-20 text-sm text-[#73636a]">Loading profile…</div>
-      </AdmissionLayout>
-    );
+async function loadInstitutions(): Promise<InstitutionRow[]> {
+  try {
+    const supabase = await createClient();
+    const { data } = await supabase
+      .from("institutions")
+      .select("id, name, type, logo_url, is_partner");
+    if (data?.length) return data as InstitutionRow[];
+  } catch {
+    // preview catalogue
+  }
+  return FALLBACK_INSTITUTIONS.map((inst) => ({
+    id: inst.id,
+    name: inst.name,
+    type: inst.type,
+    logo_url: inst.logo_url,
+    is_partner: inst.is_partner,
+  }));
+}
+
+export default async function DiscoveryPage({
+  searchParams,
+}: {
+  searchParams: DiscoverySearchParams;
+}) {
+  const params = await searchParams;
+
+  if (!params.nationality || !params.gpa) {
+    redirect("/onboard");
   }
 
-  return (
-    <AdmissionLayout>
-      <div className="mx-auto w-full max-w-6xl space-y-6 px-4 py-8 sm:px-6">
-        <header className="rounded-3xl bg-gradient-to-br from-[#4b0a11] via-[#7f121b] to-[#9e1722] px-6 py-8 text-white shadow-lg sm:px-10">
-          <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#f2dadd]">
-            SUCCESS OS · Step 2
-          </p>
-          <h1 className="mt-3 font-[family-name:var(--font-sos-display)] text-3xl font-semibold sm:text-4xl">
-            Matching institutions
-          </h1>
-          <p className="mt-3 max-w-2xl text-sm text-[#f2dadd]">
-            Showing options for <strong>{profile.nationality}</strong> · GPA {profile.gpa} ·{" "}
-            {profile.targetDegree} · {profile.major}
-            {mode ? ` · data: ${mode}` : ""}
-          </p>
-          <div className="mt-5">
-            <Button asChild variant="secondary" size="sm">
-              <Link href="/onboard">Edit profile</Link>
-            </Button>
-          </div>
-        </header>
+  const studentNationality = params.nationality;
+  const studentGpa = parseFloat(params.gpa);
+  if (!Number.isFinite(studentGpa)) {
+    redirect("/onboard");
+  }
 
-        <div className="grid gap-6 lg:grid-cols-[1fr_280px]">
-          <section className="space-y-4" aria-live="polite">
-            <div className="flex items-center justify-between gap-3">
-              <h2 className="text-xl font-bold text-[#301218]">Results</h2>
-              <Badge variant="muted">{pending ? "…" : `${matches.length} matches`}</Badge>
-            </div>
-            {error ? (
-              <p className="text-sm font-medium text-[#9e1722]" role="alert">
-                {error}
-              </p>
-            ) : null}
-            {!pending && matches.length === 0 ? (
-              <Card>
-                <CardContent className="py-8 text-sm text-[#73636a]">
-                  No institutions match this profile.{" "}
-                  <Link className="font-bold text-[#9e1722] underline" href="/onboard">
-                    Adjust filters
-                  </Link>
-                </CardContent>
-              </Card>
-            ) : (
-              <div className="grid gap-4 md:grid-cols-2">
-                {matches.map((inst) => (
-                  <InstitutionCard
-                    key={inst.id}
-                    id={inst.id}
-                    name={inst.name}
-                    type={inst.type}
-                    logo_url={inst.logo_url}
-                    is_partner={inst.is_partner}
-                    matchedCriteria={
-                      inst.criteria
-                        ? {
-                            min_gpa: inst.criteria.min_gpa,
-                            requirements_text: inst.criteria.requirements_text,
-                          }
-                        : null
-                    }
-                    userId={profile.userId}
-                    customerEmail={profile.email}
-                    fullName={profile.fullName}
-                    nationality={profile.nationality}
-                    gpa={profile.gpa}
-                    targetDegree={profile.targetDegree}
-                    major={profile.major}
-                  />
-                ))}
-              </div>
-            )}
-          </section>
-          <aside className="lg:sticky lg:top-6 lg:self-start">
-            <NotificationsPanel />
-          </aside>
+  const institutions = await loadInstitutions();
+
+  // وكيل الشروط الذكي لكل مؤسسة (Cache → Tavily → OpenAI → Save)
+  const processed = await Promise.all(
+    institutions.map(async (inst) => {
+      const matchedCriteria = await getOrScrapeCriteria(
+        inst.id,
+        inst.name,
+        studentNationality,
+      );
+      return { ...inst, matchedCriteria };
+    }),
+  );
+
+  const filtered = processed.filter((inst) => {
+    if (inst.matchedCriteria) {
+      return studentGpa >= Number(inst.matchedCriteria.min_gpa);
+    }
+    return true;
+  });
+
+  return (
+    <main className="min-h-screen bg-[#fff8f8] px-4 py-12 sm:px-6 lg:px-8" dir="rtl">
+      <div className="mx-auto max-w-7xl">
+        <div className="mb-10 flex flex-col justify-between gap-4 rounded-2xl bg-gradient-to-br from-[#4b0a11] via-[#7f121b] to-[#9e1722] p-8 text-white shadow-xl sm:flex-row sm:items-center">
+          <div>
+            <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#f2dadd]">
+              SUCCESS OS · التقديم الموحد
+            </p>
+            <h1 className="mt-2 font-[family-name:var(--font-sos-display)] text-2xl font-black sm:text-3xl">
+              🤖 فحص شروط القبول الذكي والمباشر
+            </h1>
+            <p className="mt-2 max-w-xl text-sm text-[#f2dadd]">
+              نجمع شروط القبول من المصادر الرسمية (Tavily) ونلخّصها بالعربية (OpenAI) لجنسيتك:{" "}
+              <span className="font-bold text-amber-200">{studentNationality}</span>
+              {" · "}معدل{" "}
+              <span className="font-bold text-amber-200">{studentGpa}</span>
+              {" · "}
+              <span className="font-bold text-amber-200">{filtered.length}</span> مؤسسة متوافقة.
+            </p>
+          </div>
+          <Link
+            href="/onboard"
+            className="self-start rounded-xl border border-white/10 bg-white/10 px-4 py-2.5 text-center text-xs text-white transition-all hover:bg-white/20 sm:self-center"
+          >
+            🔄 تغيير الجنسية أو المعدل
+          </Link>
         </div>
+
+        {filtered.length > 0 ? (
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+            {filtered.map((inst) => (
+              <InstitutionCard
+                key={inst.id}
+                id={inst.id}
+                name={inst.name}
+                type={inst.type as "university" | "college" | "school"}
+                logo_url={inst.logo_url ?? undefined}
+                is_partner={inst.is_partner}
+                matchedCriteria={
+                  inst.matchedCriteria
+                    ? {
+                        min_gpa: Number(inst.matchedCriteria.min_gpa),
+                        requirements_text: inst.matchedCriteria.requirements_text,
+                      }
+                    : null
+                }
+              />
+            ))}
+          </div>
+        ) : (
+          <div className="rounded-2xl border border-[#ead9db] bg-white py-20 text-center shadow-inner">
+            <p className="font-medium text-[#73636a]">
+              عذراً، الشروط المستخرجة لهذه الجنسية تتطلب معدلاً أعلى من معدلك الحالي.
+            </p>
+            <Link
+              href="/onboard"
+              className="mt-4 inline-block text-sm font-bold text-[#9e1722] underline"
+            >
+              تعديل المعدل أو الجنسية
+            </Link>
+          </div>
+        )}
       </div>
-    </AdmissionLayout>
+    </main>
   );
 }

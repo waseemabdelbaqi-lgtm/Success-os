@@ -122,7 +122,13 @@ export default function ApplyPage({ params, searchParams }: PageProps) {
     query.unlock_token,
   ]);
 
-  // التأكد من أن الطالب قادم من بوابة دفع ناجحة عبر Stripe
+  // بوابة أمنية صارمة: بدون success=true / paid=1 يُمنع الوصول ويُعاد للرئيسية
+  useEffect(() => {
+    if (!paidOk) {
+      router.replace("/");
+    }
+  }, [paidOk, router]);
+
   if (!paidOk) {
     return (
       <div
@@ -134,13 +140,14 @@ export default function ApplyPage({ params, searchParams }: PageProps) {
           <h2 className="mb-2 text-xl font-bold text-[#301218]">وصول غير مصرح به</h2>
           <p className="mb-6 text-sm text-[#73636a]">
             يجب إتمام رسوم الخدمة البالغة 5 دولار أولاً قبل رفع المستندات وتعبئة بيانات التقديم.
+            جاري إعادتك للصفحة الرئيسية…
           </p>
           <button
             type="button"
-            onClick={() => router.push("/admission")}
+            onClick={() => router.push("/")}
             className="rounded-xl bg-[#9e1722] px-6 py-2.5 text-sm font-medium text-white transition-colors hover:bg-[#7f121b]"
           >
-            العودة للمؤسسات ودفع الرسوم
+            العودة للرئيسية ودفع الرسوم
           </button>
         </div>
       </div>

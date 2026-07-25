@@ -5,8 +5,8 @@ import { writeAdmissionProfile } from "@/src/lib/admission/profile-session";
 import type { AdmissionProfileInput } from "@/src/types/admission";
 
 /**
- * استمارة إدخال بيانات الطالب الأولية (الجنسية والمعدل)
- * توجّه الطالب إلى لوحة الاكتشاف مع فلترة تلقائية عبر query params.
+ * شاشة تعريف مبسّطة — الجنسية والمعدل فقط.
+ * عند الإرسال: تُمرَّر البيانات عبر الرابط إلى لوحة الاكتشاف.
  */
 export default function OnboardPage() {
   const router = useRouter();
@@ -16,7 +16,6 @@ export default function OnboardPage() {
     const formData = new FormData(event.currentTarget);
     const nationality = String(formData.get("nationality") || "").trim();
     const gpa = String(formData.get("gpa") || "").trim();
-
     if (!nationality || !gpa) return;
 
     const profile: AdmissionProfileInput = {
@@ -25,15 +24,12 @@ export default function OnboardPage() {
       gpa: Number(gpa),
       targetDegree: "bachelor",
       major: "General",
-      preferredStudyCountry: "",
-      email: "",
-      phone: "",
     };
     writeAdmissionProfile(profile);
 
-    // توجيه الطالب إلى لوحة العرض مع تمرير بياناته عبر الرابط لفلترة الجامعات تلقائياً
+    // مواصفات المنصة: /?nationality=X&gpa=Y → middleware يحوّل إلى /admission
     router.push(
-      `/admission?nationality=${encodeURIComponent(nationality)}&gpa=${encodeURIComponent(gpa)}`,
+      `/?nationality=${encodeURIComponent(nationality)}&gpa=${encodeURIComponent(gpa)}`,
     );
   };
 
@@ -49,14 +45,14 @@ export default function OnboardPage() {
             مرحباً بك في منصة التقديم الموحد
           </h1>
           <p className="mt-1 text-sm text-[#73636a]">
-            أدخل بياناتك لعرض الجامعات المتاحة لجنسيتك ومعدلك فوراً.
+            أدخل جنسيتك ومعدلك فقط — سنعرض لك الجامعات المتوافقة فوراً مع شروط قبول حية.
           </p>
         </div>
 
         <form onSubmit={handleStart} className="space-y-4">
           <div>
             <label className="mb-1 block text-sm font-semibold text-[#4d3439]">
-              جنسيتك الحالية:
+              جنسيتك الحالية
             </label>
             <select
               name="nationality"
@@ -73,7 +69,7 @@ export default function OnboardPage() {
 
           <div>
             <label className="mb-1 block text-sm font-semibold text-[#4d3439]">
-              معدلك الدراسي الأكاديمي (مثال: 3.5):
+              معدلك الأكاديمي (مثال: 3.5)
             </label>
             <input
               type="number"

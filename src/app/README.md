@@ -1,33 +1,31 @@
-# Admission funnel — `src/` layout
+# SUCCESS OS — University Admission Funnel (`src/`)
 
-Next.js prioritizes root `./app` over `./src/app`. This tree is the **source of truth**;
-thin re-exports under root `app/` mount the routes.
+Ultra-simplified Arabic admission platform: onboard → smart discovery → $5 Stripe unlock → dual-route apply.
 
-```
-src/
-├── app/
-│   ├── layout.tsx                 # AdmissionLayout shell
-│   ├── page.tsx                   # Smart filter / matching institutions → /admission
-│   ├── onboard/page.tsx           → /onboard
-│   ├── apply/[institutionId]/page.tsx → /apply/:id (locked until $5)
-│   └── api/
-│       ├── checkout/route.ts      → /api/checkout
-│       └── webhook/stripe/route.ts → /api/webhook/stripe
-├── actions/
-│   └── submitApplication.ts       # Dual-route Server Action
-├── components/
-│   ├── ui/
-│   ├── InstitutionCard.tsx
-│   └── PaymentModal.tsx
-└── utils/
-    └── supabase/
-        ├── client.ts
-        └── server.ts
-```
+## Routes (mounted from root `app/`)
 
-## User journey
+| URL | Source | Role |
+|-----|--------|------|
+| `/onboard` | `src/app/onboard/page.tsx` | Nationality + GPA only |
+| `/?nationality&gpa` | middleware → `/admission` | Spec-compatible dashboard entry |
+| `/admission` | `src/app/page.tsx` | Discovery board + live criteria |
+| `/apply/[institutionId]` | `src/app/apply/...` | PDF upload (gated by payment) |
+| `/api/checkout` | `src/app/api/checkout` | Stripe $5 session |
+| `/api/webhook/stripe` | `src/app/api/webhook/stripe` | Mark payment completed |
 
-1. `/onboard` — nationality, GPA, degree, major  
-2. `/admission` — filtered institutions + nationality criteria · **Apply Now** opens PaymentModal  
-3. Stripe / preview unlock → `/apply/[institutionId]`  
-4. `submitApplication` — partner notification **or** Resend email with PDFs  
+> Root `/` without query params remains the marketing homepage (`app/page.jsx`).
+
+## Core actions
+
+- `src/actions/fetchAdmissionCriteria.ts` — cache → Tavily → OpenAI → save
+- `src/actions/submitApplication.ts` — Route A partner notifications / Route B Resend email
+
+## Schema
+
+See `supabase/migrations/20260725_admission_funnel.sql`:
+`profiles`, `institutions`, `admission_criteria`, `payments`, `applications`, `notifications`.
+
+## Env
+
+Copy from `.env.example`: Supabase, Stripe, `TAVILY_API_KEY`, `OPENAI_API_KEY`, Resend.
+Without live keys the funnel runs in **preview mode** (mock criteria + preview checkout).
