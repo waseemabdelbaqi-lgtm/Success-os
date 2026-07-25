@@ -2,8 +2,8 @@ import { InnerNav } from "../components";
 import OnboardPage from "@/src/app/onboard/page";
 
 export const metadata = {
-  title: "Student onboarding",
-  description: "Enter nationality, GPA, degree, and major to start your admission funnel.",
+  title: "ابدأ التقديم | SUCCESS OS",
+  description: "أدخل جنسيتك ومعدلك لعرض المؤسسات المتوافقة فوراً.",
 };
 
 export default function OnboardRoutePage() {

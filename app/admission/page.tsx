@@ -41,6 +41,10 @@ function normalizeNationalityKey(value: string): string {
     egypt: "egypt",
     jordanian: "jordan",
     jordan: "jordan",
+    syrian: "syria",
+    syria: "syria",
+    saudi: "saudi",
+    "saudi arabian": "saudi",
   };
   return aliases[normalized] || normalized;
 }

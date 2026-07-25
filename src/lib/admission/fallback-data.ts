@@ -133,6 +133,10 @@ function pickCriteria(institutionId: string, nationality: string) {
     egypt: "egypt",
     jordanian: "jordan",
     jordan: "jordan",
+    syrian: "syria",
+    syria: "syria",
+    saudi: "saudi",
+    "saudi arabian": "saudi",
   };
   const key = aliases[normalized] || normalized;
   return (
