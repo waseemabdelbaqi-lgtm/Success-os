@@ -1,4 +1,104 @@
 'use client';
-import {useState} from 'react';import {Sidebar,Topbar} from '../components';
-const formats=[['online-private','أونلاين خاص','طالب واحد • رابط مباشر'],['inperson-private','وجاهي خاص','المعلم والطالب في موقع متفق عليه'],['inperson-group','وجاهي مجموعة','مجموعة صغيرة وسعر مشجع'],['online-group','أونلاين مجموعة','مجموعة مباشرة عبر المنصة']];
-export default function ClassBooking(){const [form,setForm]=useState({country:'الأردن',system:'American / AP',grade:'Grade 11',subject:'Physics',format:'online-private',date:'',budget:''}),[done,setDone]=useState(false);const change=e=>setForm({...form,[e.target.name]:e.target.value});const submit=e=>{e.preventDefault();const request={id:`CLS-${Date.now().toString().slice(-6)}`,type:'حجز حصة مباشرة',title:`${form.subject} • ${formats.find(x=>x[0]===form.format)?.[1]}`,status:'بانتظار مطابقة المعلم',created:new Date().toLocaleDateString('ar-JO')};const list=JSON.parse(localStorage.getItem('success-os-student-requests')||'[]');localStorage.setItem('success-os-student-requests',JSON.stringify([request,...list]));setDone(true)};return <div className="os-shell phase11-private-shell"><Sidebar active="student-portal"/><main className="os-main"><Topbar/><div className="os-content student-service-page"><header><small>LIVE CLASS BOOKING</small><h1>احجز الحصة المناسبة</h1><p>اختر المنهاج والمادة ونوع الحصة، ثم نطابقك مع معلم موثق حسب الدولة والميزانية.</p></header>{!done?<form className="student-service-form" onSubmit={submit}><label>الدولة<select name="country" value={form.country} onChange={change}><option>الأردن</option><option>الإمارات</option><option>السعودية</option><option>مصر</option><option>أونلاين عالمي</option></select></label><label>النظام<select name="system" value={form.system} onChange={change}><option>American / AP</option><option>British / IGCSE / A Level</option><option>IB</option><option>EST / ACT</option><option>وطني</option></select></label><label>الصف<input name="grade" value={form.grade} onChange={change}/></label><label>المادة<input name="subject" value={form.subject} onChange={change}/></label><div className="service-choice-grid">{formats.map(([id,title,text])=><button type="button" className={form.format===id?'active':''} onClick={()=>setForm({...form,format:id})} key={id}><b>{title}</b><span>{text}</span></button>)}</div><label>التاريخ المفضل<input type="date" name="date" value={form.date} onChange={change}/></label><label>الميزانية للحصة<input name="budget" value={form.budget} onChange={change} placeholder="مثال: 20 دينار"/></label><button className="service-submit">ابحث عن معلم وموعد</button></form>:<section className="service-success"><span>✓</span><h2>تم إنشاء طلب الحصة</h2><p>سنرسل المطابقات والمواعيد داخل إشعارات الطالب.</p><a href="/student-requests">متابعة الطلب</a></section>}</div></main></div>}
+import {useEffect,useState} from 'react';
+import {Sidebar,Topbar} from '../components';
+
+const formats=[
+  ['online-private','أونلاين خاص','طالب واحد • رابط مباشر'],
+  ['inperson-private','وجاهي خاص','المعلم والطالب في موقع متفق عليه'],
+  ['inperson-group','وجاهي مجموعة','مجموعة صغيرة وسعر مشجع'],
+  ['online-group','أونلاين مجموعة','مجموعة مباشرة عبر المنصة'],
+];
+
+export default function ClassBooking(){
+  const [form,setForm]=useState({
+    country:'الأردن',
+    system:'American / AP',
+    grade:'Grade 11',
+    subject:'Physics',
+    teacher:'',
+    format:'online-private',
+    date:'',
+    budget:'',
+  });
+  const [done,setDone]=useState(false);
+
+  useEffect(()=>{
+    const q=new URLSearchParams(location.search);
+    setForm(f=>({
+      ...f,
+      teacher:q.get('teacher')||f.teacher,
+      subject:q.get('subject')||f.subject,
+      format:q.get('mode')?.includes('أونلاين')?'online-private':q.get('mode')?.includes('هجين')?'inperson-private':f.format,
+    }));
+  },[]);
+
+  const change=e=>setForm({...form,[e.target.name]:e.target.value});
+
+  const submit=e=>{
+    e.preventDefault();
+    const request={
+      id:`CLS-${Date.now().toString().slice(-6)}`,
+      type:'حجز حصة مباشرة',
+      title:`${form.subject} • ${formats.find(x=>x[0]===form.format)?.[1]}${form.teacher?` • ${form.teacher}`:''}`,
+      status:'بانتظار مطابقة المعلم',
+      created:new Date().toLocaleDateString('ar-JO'),
+      teacher:form.teacher,
+      subject:form.subject,
+    };
+    const list=JSON.parse(localStorage.getItem('success-os-student-requests')||'[]');
+    localStorage.setItem('success-os-student-requests',JSON.stringify([request,...list]));
+    setDone(true);
+  };
+
+  return (
+    <div className="os-shell phase11-private-shell">
+      <Sidebar active="student-portal"/>
+      <main className="os-main">
+        <Topbar/>
+        <div className="os-content student-service-page">
+          <header>
+            <small>LIVE CLASS BOOKING</small>
+            <h1>احجز الحصة المناسبة</h1>
+            <p>اختر المنهاج والمادة ونوع الحصة، ثم نطابقك مع معلم موثق حسب الدولة والميزانية.</p>
+          </header>
+          {!done?(
+            <form className="student-service-form" onSubmit={submit}>
+              <label>الدولة
+                <select name="country" value={form.country} onChange={change}>
+                  <option>الأردن</option><option>الإمارات</option><option>السعودية</option><option>مصر</option><option>أونلاين عالمي</option>
+                </select>
+              </label>
+              <label>النظام
+                <select name="system" value={form.system} onChange={change}>
+                  <option>American / AP</option><option>British / IGCSE / A Level</option><option>IB</option><option>EST / ACT</option><option>وطني</option>
+                </select>
+              </label>
+              <label>الصف<input name="grade" value={form.grade} onChange={change}/></label>
+              <label>المادة<input name="subject" value={form.subject} onChange={change}/></label>
+              <label>المعلم المفضل<input name="teacher" value={form.teacher} onChange={change} placeholder="اختياري — من سوق المعلمين"/></label>
+              <div className="service-choice-grid">
+                {formats.map(([id,title,text])=>(
+                  <button type="button" className={form.format===id?'active':''} onClick={()=>setForm({...form,format:id})} key={id}>
+                    <b>{title}</b><span>{text}</span>
+                  </button>
+                ))}
+              </div>
+              <label>التاريخ المفضل<input type="date" name="date" value={form.date} onChange={change}/></label>
+              <label>الميزانية للحصة<input name="budget" value={form.budget} onChange={change} placeholder="مثال: 20 دينار"/></label>
+              <button className="service-submit" type="submit">ابحث عن معلم وموعد</button>
+            </form>
+          ):(
+            <section className="service-success">
+              <span>✓</span>
+              <h2>تم إنشاء طلب الحصة</h2>
+              <p>سنرسل المطابقات والمواعيد داخل إشعارات الطالب{form.teacher?` • تفضيل المعلم: ${form.teacher}`:''}.</p>
+              <a href="/student-requests">متابعة الطلب</a>
+              <a href="/notifications">الإشعارات</a>
+              <a href="/teachers">معلمون آخرون</a>
+            </section>
+          )}
+        </div>
+      </main>
+    </div>
+  );
+}
