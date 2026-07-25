@@ -47,8 +47,10 @@ export const countryAuthorities = {
   'كوريا الجنوبية':{authority:'Study in Korea / Ministry of Education',url:'https://www.studyinkorea.go.kr/',note:'تحقق من المؤسسة والبرنامج ومتطلبات اللغة والتأشيرة.'},
   'الصين':{authority:'Ministry of Education of China',url:'http://en.moe.gov.cn/',note:'تحقق من المؤسسة والبرنامج ومسار قبول الطالب الدولي.'},
   'جنوب أفريقيا':{authority:'Department of Higher Education and Training',url:'https://www.dhet.gov.za/',note:'تحقق من المؤسسة ونقاط APS ومتطلبات التأشيرة للطالب الدولي.'},
-  'نيجيريا':{authority:'National Universities Commission',url:'https://www.nuc.edu.ng/',note:'تحقق من اعتماد الجامعة لدى NUC ومسار JAMB أو القبول الدولي.'},
-  'كينيا':{authority:'Commission for University Education',url:'https://www.cue.or.ke/',note:'تحقق من اعتماد المؤسسة ومتطلبات KUCCPS أو المسار الدولي.'}
+  'نيجيريا':{authority:'National Universities Commission',url:'https://www.nuc.edu.ng/',note:'تحقق من اعتماد الجامعة لدى NUC ومسار JAMB المحلي أو Foreign centres.'},
+  'كينيا':{authority:'Commission for University Education',url:'https://www.cue.or.ke/',note:'تحقق من اعتماد المؤسسة؛ KUCCPS للدرجات يشترط مواطنة كينية غالباً.'},
+  'البرازيل':{authority:'Ministério da Educação (MEC)',url:'https://www.gov.br/mec/pt-br',note:'ENEM/SiSU للمواطنين؛ PEC-G للأجانب المؤهلين عبر السفارة — مساران منفصلان بالجنسية.'},
+  'السويد':{authority:'Swedish Council for Higher Education (UHR)',url:'https://www.uhr.se/en/',note:'الرسوم الدراسية مرتبطة بجنسية EU/EEA/سويسرا مقابل الدول الثالثة عبر universityadmissions.se.'},
 };
 
 const allSystems = qualificationSystems.map(x=>x.id);
@@ -150,8 +152,16 @@ export const globalInstitutions = [
    international:['تقييم مؤهل أجنبي','IELTS إن لزم','تمويل وتأشيرة دراسة'],
  }),
  U('uon','كينيا','نيروبي','University of Nairobi','جامعة',['وجاهي'],['هندسة','علوم','أعمال','طب وصحة'],'https://www.uonbi.ac.ke/admission',{
-   local:['KCSE','KUCCPS'],
-   international:['شهادة ثانوية معادلة','جواز','إثبات لغة'],
+   local:['KCSE','KUCCPS (مواطن كيني)'],
+   international:['تقديم دولي مباشر','معادلة KNQA/KNEC','Student Pass'],
+ }),
+ U('usp','البرازيل','ساو باولو','Universidade de São Paulo','جامعة',['وجاهي'],['هندسة','علوم','طب وصحة','آداب'],'https://www.usp.br/',{
+   local:['ENEM / Vestibular','SiSU عند الانطباق'],
+   international:['PEC-G عبر السفارة أو مسار دولي للمؤسسة','Celpe-Bras غالباً'],
+ }),
+ U('ki','السويد','ستوكهولم','Karolinska Institutet','جامعة',['وجاهي'],['طب وصحة','علوم'],'https://education.ki.se/bachelors-masters-studies/tuition-fees',{
+   local:['universityadmissions.se','إثبات جنسية EU/EEA/سويسرا للإعفاء من الرسوم'],
+   international:['universityadmissions.se','رسوم تقديم ودراسية','تصريح إقامة طالب'],
  }),
 
  // Oceania
@@ -221,7 +231,10 @@ export const globalInstitutions = [
  }),
  U('amu','مصر','القاهرة','جامعة الأزهر','جامعة',['وجاهي'],['طب وصحة','هندسة','آداب','علوم'],'https://www.azhar.edu.eg/'),
  U('witwatersrand','جنوب أفريقيا','جوهانسبرغ','University of the Witwatersrand','جامعة',['وجاهي'],['هندسة','طب وصحة','علوم','أعمال'],'https://www.wits.ac.za/undergraduate/apply-to-wits/'),
- U('ui','نيجيريا','Ibadan','University of Ibadan','جامعة',['وجاهي'],['علوم','طب وصحة','آداب','أعمال'],'https://www.ui.edu.ng/'),
+ U('ui','نيجيريا','Ibadan','University of Ibadan','جامعة',['وجاهي'],['علوم','طب وصحة','آداب','أعمال'],'https://www.ui.edu.ng/',{
+   local:['WAEC/NECO','JAMB UTME','CAPS'],
+   international:['Foreign UTME/DE أو قبول دولي','جواز','تمويل'],
+ }),
 ];
 
 export function institutionsForRegion(regionId){

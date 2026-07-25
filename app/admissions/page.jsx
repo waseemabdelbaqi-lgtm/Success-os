@@ -27,6 +27,8 @@ import {
 import {
   compareNationalityTracks,
   exampleAlternateNationality,
+  nationalityMatrixRows,
+  nationalityTracksSummary,
   resolveNationalityTrack,
 } from '../data/nationality-admission-tracks';
 
@@ -106,6 +108,8 @@ export default function AdmissionsPage() {
     const other = exampleAlternateNationality(studyCountry, nationality);
     return compareNationalityTracks(studyCountry, nationality, other);
   }, [studyCountry, nationality]);
+  const nationalityMatrix = useMemo(() => nationalityMatrixRows(), []);
+  const tracksSummary = useMemo(() => nationalityTracksSummary(), []);
   const docPack = applicantType === 'local' ? ADMISSION_DOC_PACKS.local : ADMISSION_DOC_PACKS.international;
 
   const pool = useMemo(() => {
@@ -323,6 +327,49 @@ export default function AdmissionsPage() {
             </button>
           ))}
         </nav>
+
+        <section className="admission-nationality-matrix" aria-label="مصفوفة الجنسية ودولة الدراسة">
+          <header>
+            <div>
+              <small>NATIONALITY × DESTINATION</small>
+              <h2>نفس الدولة — جنسيتان = مساران</h2>
+              <p>
+                {tracksSummary.principleAr} تغطية بحثية: {tracksSummary.destinations} دولة دراسة و{' '}
+                {tracksSummary.tracks} مساراً (حدّث {tracksSummary.researchedAt}).
+              </p>
+            </div>
+          </header>
+          <div className="admission-nationality-matrix-scroll">
+            <table>
+              <thead>
+                <tr>
+                  <th>دولة الدراسة</th>
+                  <th>مواطن الدولة</th>
+                  <th>جنسية أخرى (مثال)</th>
+                </tr>
+              </thead>
+              <tbody>
+                {nationalityMatrix.map((row) => (
+                  <tr key={row.destination} className={row.differs ? 'differs' : 'same'}>
+                    <td>
+                      <b>{row.destination}</b>
+                      <small>{row.trackCount} مسارات</small>
+                    </td>
+                    <td>
+                      <b>{row.citizen.titleAr}</b>
+                      <small>{row.citizen.channelAr}</small>
+                    </td>
+                    <td>
+                      <em>{row.other.nationality}</em>
+                      <b>{row.other.titleAr}</b>
+                      <small>{row.other.channelAr}</small>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </section>
 
         <section className="admission-portals-band">
           <header>

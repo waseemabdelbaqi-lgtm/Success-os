@@ -266,6 +266,13 @@
     "Details": "Provides corporate training courses, industry recognized qualifications, and live workplace seminars."
   },
   {
+    "Name": "JAMB e-Facility",
+    "Website": "https://efacility.jamb.gov.ng/",
+    "Type": "Centralized Admission Portal",
+    "Scope": "Nigeria",
+    "Details": "Joint Admissions and Matriculation Board portal for UTME/DE registration in Nigeria and designated foreign centres, plus CAPS admission processing."
+  },
+  {
     "Name": "Keystone Academic Courses",
     "Website": "https://keystonestudies.com",
     "Type": "University Search Directory",
@@ -278,6 +285,13 @@
     "Type": "Training Center & College Prep",
     "Scope": "Global",
     "Details": "Free open-source academic repository specializing in K-12 and collegiate foundations."
+  },
+  {
+    "Name": "KUCCPS",
+    "Website": "https://www.kuccps.net/",
+    "Type": "Centralized Admission Portal",
+    "Scope": "Kenya",
+    "Details": "Kenya Universities and Colleges Central Placement Service — primarily for Kenyan citizens with KCSE; non-citizens generally apply directly to universities for degree programmes."
   },
   {
     "Name": "Kursfinder",
@@ -343,6 +357,13 @@
     "Details": "Official national platform to register for first year higher education in France."
   },
   {
+    "Name": "PEC-G Brazil",
+    "Website": "https://www.gov.br/mre/en/subjects/culture-and-education/educational-themes/study-opportunities-for-international-applicants/pec-g/about-the-program",
+    "Type": "Centralized Admission Portal",
+    "Scope": "Brazil",
+    "Details": "Brazilian government undergraduate exchange programme for eligible foreign nationals (not Brazilians) via embassies/consulates — separate from ENEM/SiSU domestic admission."
+  },
+  {
     "Name": "PhDsportal",
     "Website": "https://www.phdsportal.com/",
     "Type": "University Search Directory",
@@ -383,6 +404,13 @@
     "Type": "Centralized Admission Portal",
     "Scope": "Australia (SA & NT)",
     "Details": "Processes applications for tertiary courses in South Australia and Northern Territory."
+  },
+  {
+    "Name": "SiSU Brazil",
+    "Website": "https://www.gov.br/mec/pt-br/sisu",
+    "Type": "Centralized Admission Portal",
+    "Scope": "Brazil",
+    "Details": "Sistema de Seleção Unificada using ENEM scores for admission to Brazilian public higher education — the main domestic channel for Brazilian secondary-school leavers."
   },
   {
     "Name": "Skillshare",
@@ -462,6 +490,13 @@
     "Details": "Official Ministry of Education portal for international academic applications, scholarships and educational visas to Saudi universities."
   },
   {
+    "Name": "Study in Sweden",
+    "Website": "https://studyinsweden.se/",
+    "Type": "University Search Directory",
+    "Scope": "Sweden",
+    "Details": "Official Swedish Institute gateway for international students covering programmes, fees by citizenship, scholarships and residence permits."
+  },
+  {
     "Name": "Study in Türkiye",
     "Website": "https://www.studyinturkiye.gov.tr/",
     "Type": "University Search Directory",
@@ -516,6 +551,13 @@
     "Type": "Centralized Admission Portal",
     "Scope": "Germany",
     "Details": "Central evaluation service used by about 180 German universities for international applications, including VPD preliminary review documentation."
+  },
+  {
+    "Name": "University Admissions Sweden",
+    "Website": "https://www.universityadmissions.se/",
+    "Type": "Centralized Admission Portal",
+    "Scope": "Sweden",
+    "Details": "Sweden's national application portal (antagning.se / universityadmissions.se). EU/EEA/Swiss citizens study tuition-free; most non-EU/EEA applicants pay application and tuition fees."
   },
   {
     "Name": "University of California Admissions",

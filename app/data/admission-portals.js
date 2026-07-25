@@ -70,6 +70,10 @@ const SCOPE_AR = {
   'South Korea': 'كوريا الجنوبية',
   India: 'الهند',
   Japan: 'اليابان',
+  Nigeria: 'نيجيريا',
+  Kenya: 'كينيا',
+  Sweden: 'السويد',
+  Brazil: 'البرازيل',
 };
 
 function scopeBuckets(scope) {
@@ -86,6 +90,7 @@ function scopeBuckets(scope) {
     s.includes('france') ||
     s.includes('netherlands') ||
     s.includes('denmark') ||
+    s.includes('sweden') ||
     s.includes('europe')
   ) {
     return ['europe', 'global'];
@@ -118,6 +123,7 @@ function scopeBuckets(scope) {
   if (s.includes('south africa') || s.includes('nigeria') || s.includes('kenya')) {
     return ['africa'];
   }
+  if (s.includes('brazil')) return ['americas'];
   if (s.includes('ireland')) return ['europe', 'global'];
   return ['global'];
 }
@@ -306,6 +312,32 @@ const COUNTRY_PORTAL_IDS = {
   ],
   'الجزائر': [
     'study-in-algeria',
+    'applyboard',
+    'top-universities',
+    'world-higher-education-database',
+  ],
+  'نيجيريا': [
+    'jamb-e-facility',
+    'applyboard',
+    'top-universities',
+    'world-higher-education-database',
+  ],
+  'كينيا': [
+    'kuccps',
+    'applyboard',
+    'top-universities',
+    'world-higher-education-database',
+  ],
+  'السويد': [
+    'university-admissions-sweden',
+    'study-in-sweden',
+    'bachelorsportal',
+    'top-universities',
+    'world-higher-education-database',
+  ],
+  'البرازيل': [
+    'sisu-brazil',
+    'pec-g-brazil',
     'applyboard',
     'top-universities',
     'world-higher-education-database',

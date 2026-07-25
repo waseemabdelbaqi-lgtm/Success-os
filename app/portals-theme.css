@@ -910,6 +910,87 @@ html[data-os-theme='dark'] .os-content {
   margin: 8px 0 0;
 }
 
+.admission-nationality-matrix {
+  margin: 16px 0 8px;
+  padding: 20px;
+  border-radius: 20px;
+  border: 1px solid rgba(158, 23, 34, 0.14);
+  background:
+    radial-gradient(circle at 12% 20%, rgba(255, 214, 186, 0.55), transparent 42%),
+    linear-gradient(155deg, #fff8f2 0%, #f3e4e0 100%);
+}
+
+.admission-nationality-matrix > header {
+  margin-bottom: 14px;
+}
+
+.admission-nationality-matrix > header small {
+  color: #9e1722;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+}
+
+.admission-nationality-matrix > header h2 {
+  margin: 6px 0 8px;
+  color: #3a0c12;
+  font-size: clamp(1.25rem, 2.4vw, 1.65rem);
+}
+
+.admission-nationality-matrix > header p {
+  margin: 0;
+  color: #4b0a11;
+  line-height: 1.75;
+  max-width: 70ch;
+}
+
+.admission-nationality-matrix-scroll {
+  overflow-x: auto;
+  border-radius: 14px;
+  border: 1px solid rgba(75, 10, 17, 0.1);
+  background: rgba(255, 255, 255, 0.72);
+}
+
+.admission-nationality-matrix table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 720px;
+}
+
+.admission-nationality-matrix th,
+.admission-nationality-matrix td {
+  text-align: right;
+  padding: 12px 14px;
+  vertical-align: top;
+  border-bottom: 1px solid rgba(75, 10, 17, 0.08);
+}
+
+.admission-nationality-matrix th {
+  background: rgba(158, 23, 34, 0.08);
+  color: #6d121b;
+  font-size: 13px;
+}
+
+.admission-nationality-matrix td b {
+  display: block;
+  color: #2e060a;
+  font-size: 13px;
+  line-height: 1.45;
+}
+
+.admission-nationality-matrix td small,
+.admission-nationality-matrix td em {
+  display: block;
+  margin-top: 4px;
+  color: #6d3a40;
+  font-size: 12px;
+  line-height: 1.55;
+  font-style: normal;
+}
+
+.admission-nationality-matrix tr.differs td:nth-child(3) {
+  background: rgba(158, 23, 34, 0.04);
+}
+
 .admission-portals-band {
   margin: 16px 0 8px;
   padding: 20px;

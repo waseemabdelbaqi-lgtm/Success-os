@@ -11,6 +11,7 @@ import {
   DESTINATION_TRACKS,
   compareNationalityTracks,
   exampleAlternateNationality,
+  nationalityMatrixRows,
   nationalityTracksSummary,
   resolveNationalityTrack,
 } from '@/app/data/nationality-admission-tracks';
@@ -61,6 +62,7 @@ export async function GET(request: Request) {
     docPacks: ADMISSION_DOC_PACKS,
     regionPlaybooks: REGION_PLAYBOOKS,
     nationalityTracks: DESTINATION_TRACKS,
+    nationalityMatrix: nationalityMatrixRows(),
     resolvedTrack: resolved,
     nationalityContrast: contrast,
   });

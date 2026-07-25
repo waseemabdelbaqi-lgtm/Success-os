@@ -72,6 +72,7 @@ export const ETUDES_EN_FRANCE_RESIDENCE = Object.freeze({
   'نيجيريا': 'Nigeria',
   'كينيا': 'Kenya',
   'جنوب أفريقيا': 'South Africa',
+  'البرازيل': 'Brazil',
   // additional named in Campus France list (Arabic label may be absent in registry)
   Bahrain: true,
   Senegal: true,
@@ -1154,6 +1155,216 @@ export const DESTINATION_TRACKS = Object.freeze({
       portals: [],
     },
   ],
+
+  'نيجيريا': [
+    {
+      id: 'ng-nigerian-jamb-local',
+      titleAr: 'نيجيري — WAEC/NECO + JAMB UTME محلي + CAPS',
+      match: ({ nationality }) => nationality === 'نيجيريا',
+      whenAr:
+        'المواطنون النيجيريون داخل البلاد يسجّلون عادة عبر مراكز CBT المحلية لـ UTME/DE بعد إنشاء ملف في JAMB e-Facility، ثم يتابعون العروض عبر CAPS وقد يلزم Post-UTME/فحص الجامعة.',
+      channelAr: 'JAMB e-Facility (مراكز محلية) → CAPS → Post-UTME/الجامعة',
+      docs: ['WAEC أو NECO (أو معادل مقبول)', 'تسجيل UTME/DE عبر JAMB', 'متابعة CAPS', 'Post-UTME إن طلبته الجامعة'],
+      feesAr: 'رسوم تسجيل وقبول محلية بالنيرة وفق جداول JAMB/الجامعة.',
+      visaAr: 'غير مطلوب للمواطن النيجيري المقيم.',
+      caveats: [
+        'القبول النهائي عبر CAPS — عروض خارج النظام قد لا تعترف بها JAMB.',
+        'تحقق من اعتماد الجامعة لدى NUC قبل الدفع.',
+      ],
+      sources: [
+        { label: 'JAMB e-Facility', url: 'https://efacility.jamb.gov.ng/' },
+        { label: 'NUC', url: 'https://www.nuc.edu.ng/' },
+      ],
+      portals: ['jamb-e-facility'],
+    },
+    {
+      id: 'ng-foreign-jamb-centres',
+      titleAr: 'أجنبي / من الخارج — JAMB Foreign UTME/DE أو قبول دولي للجامعة',
+      match: () => true,
+      whenAr:
+        'المرشحون من المراكز الأجنبية (أجانب ونيجيريون في الخارج) يسجّلون عبر مسار Foreign UTME/DE في e-Facility ويدفعون رسماً بالدولار في مراكز محددة (سفارات/قنصليات). بعض الجامعات تشغّل أيضاً مكتباً دولياً مباشراً — لكن الالتحاق النظامي لكثير من البرامج يمر عبر JAMB/CAPS.',
+      channelAr: 'JAMB Foreign centres عبر e-Facility أو مكتب القبول الدولي للجامعة + CAPS عند الانطباق',
+      docs: [
+        'جواز غير نيجيري (أو نيجيري في الخارج)',
+        'شهادة ثانوية معادلة',
+        'تسجيل Foreign UTME/DE إن لزم',
+        'تمويل + تأشيرة دراسة عند الحاجة',
+      ],
+      feesAr: 'رسوم تسجيل أجنبية (غالباً بالدولار) + رسوم جامعية قد تختلف عن المحلي.',
+      visaAr: 'تأشيرة/تصريح دراسة لغير المقيمين قبل أو عند الالتحاق.',
+      caveats: [
+        'مراكز الامتحان الأجنبية محدودة جغرافياً وتتغير سنوياً — راجع إعلان JAMB للسنة.',
+        'لا تخلط مسار CBT المحلي مع Foreign registration.',
+      ],
+      sources: [
+        { label: 'JAMB e-Facility', url: 'https://efacility.jamb.gov.ng/' },
+        { label: 'NUC', url: 'https://www.nuc.edu.ng/' },
+      ],
+      portals: ['jamb-e-facility'],
+    },
+  ],
+
+  'كينيا': [
+    {
+      id: 'ke-kenyan-kuccps',
+      titleAr: 'كيني — KUCCPS (مواطنة + KCSE)',
+      match: ({ nationality }) => nationality === 'كينيا',
+      whenAr:
+        'التوزيع عبر KUCCPS للجامعات والكليات يشترط عموماً أن يكون المتقدم مواطناً كينياً وأن يكون قد أدى KCSE ويستوفي الحد الأدنى للبرنامج. المواطنون يستفيدون أيضاً من مسارات التمويل/الرعاية الحكومية المرتبطة بالتوزيع.',
+      channelAr: 'بوابة طلاب KUCCPS (students.kuccps.net)',
+      docs: ['جنسية كينية', 'نتائج KCSE', 'طلب توزيع KUCCPS', 'متطلبات البرنامج'],
+      feesAr: 'رسوم مواطنين / رعاية حكومية عند الانطباق — أقل عادة من المسار الدولي الخاص.',
+      visaAr: 'غير مطلوب للمواطن.',
+      caveats: [
+        'ازدواج الجنسية: إن كنت كينياً قدّم كمواطن عبر KUCCPS عند الأهلية.',
+        'الشهادات الأجنبية للكينيين تحتاج غالباً معادلة KNEC/KNQA قبل المعالجة.',
+      ],
+      sources: [
+        { label: 'KUCCPS placement eligibility', url: 'https://kuccps.net/Placem' },
+        { label: 'KUCCPS FAQ', url: 'https://www.kuccps.net/node/139' },
+        { label: 'CUE', url: 'https://www.cue.or.ke/' },
+      ],
+      portals: ['kuccps'],
+    },
+    {
+      id: 'ke-non-citizen-direct',
+      titleAr: 'غير كيني — تقديم مباشر للجامعة + معادلة + Student Pass',
+      match: () => true,
+      whenAr:
+        'غير المواطنين غير مؤهلين عموماً لتوزيع الدرجة الجامعية عبر KUCCPS (استثناءات ضيقة لدبلومات معلمي ابتدائي/طفولة مبكرة وبرامج KMTC). مسار البكالوريوس للأجانب: تقديم مباشر لمكتب القبول الدولي + معادلة المؤهل (KNQA/KNEC) + Student Pass عبر الهجرة.',
+      channelAr: 'مكتب القبول الدولي للجامعة (ليس KUCCPS للدرجة) + eFNS Student Pass',
+      docs: [
+        'جواز يثبت جنسية غير كينية',
+        'شهادة ثانوية + معادلة KNQA/KNEC',
+        'طلب الجامعة الدولي ورسوم التقديم',
+        'تمويل + Student Pass',
+      ],
+      feesAr: 'رسوم دولية؛ قد تختلف رسوم التقديم لغير شرق أفريقيا (مثال شائع: رسوم أعلى لغير East African).',
+      visaAr: 'Student Pass عبر بوابة الهجرة بعد القبول.',
+      caveats: [
+        'لا تعتمد على KUCCPS إن لم تكن مواطناً كينياً لبرنامج درجة جامعية.',
+        'تحقق من اعتماد المؤسسة لدى CUE.',
+      ],
+      sources: [
+        { label: 'KUCCPS — non-Kenyan eligibility', url: 'https://kuccps.net/Placem' },
+        { label: 'Kenyatta University international admissions', url: 'https://international.ku.ac.ke/international-student-admissions/' },
+        { label: 'CUE', url: 'https://www.cue.or.ke/' },
+      ],
+      portals: ['kuccps'],
+    },
+  ],
+
+  'البرازيل': [
+    {
+      id: 'br-brazilian-enem-sisu',
+      titleAr: 'برازيلي — ENEM → SiSU (قبول محلي للجامعات العامة)',
+      match: ({ nationality }) => nationality === 'البرازيل',
+      whenAr:
+        'المواطنون البرازيليون يلتحقون عادة بالتعليم العالي العام عبر درجات ENEM ثم الاختيار في SiSU (أو مسارات محلية أخرى مثل فيستيبولار حسب المؤسسة). هذا المسار منفصل تماماً عن برامج التبادل للأجانب.',
+      channelAr: 'ENEM → SiSU / Vestibular المؤسسة',
+      docs: ['شهادة Ensino Médio برازيلية', 'تسجيل ENEM', 'اختيار SiSU أو امتحان المؤسسة'],
+      feesAr: 'الجامعات العامة الاتحادية/الولائية غالباً بدون رسوم دراسية للمقبولين المحليين؛ تكاليف معيشة منفصلة.',
+      visaAr: 'غير مطلوب للمواطن.',
+      caveats: ['قواعد الحصص الاجتماعية/العرقية والسياسات المحلية تنطبق على المسار البرازيلي وليس على PEC-G.'],
+      sources: [
+        { label: 'SiSU (MEC)', url: 'https://www.gov.br/mec/pt-br/sisu' },
+        { label: 'INEP / ENEM', url: 'https://www.gov.br/inep/pt-br/areas-de-atuacao/avaliacao-e-exames-educacionais/enem' },
+      ],
+      portals: ['sisu-brazil'],
+    },
+    {
+      id: 'br-foreign-pec-g',
+      titleAr: 'أجنبي (دول مشاركة) — PEC-G عبر السفارة + Celpe-Bras',
+      match: () => true,
+      whenAr:
+        'برنامج PEC-G الحكومي يقدّم مقاعد بكالوريوس مجانية للأجانب من دول مشاركة: يشترط ألا تكون برازيلياً ولا مولوداً لأبوين برازيليين، وأن تقيم خارج البرازيل، وأن تكمل الثانوية خارج البرازيل. التقديم عبر السفارة/القنصلية — وليس عبر SiSU/ENEM. إثبات البرتغالية (Celpe-Bras أو مسار PEC-PLE) إلزامي وفق الإعلان السنوي.',
+      channelAr: 'سفارة/قنصلية البرازيل → PEC-G / PEC-PLE (MEC + MRE)',
+      docs: [
+        'جنسية دولة مشاركة + إقامة خارج البرازيل',
+        'شهادة ثانوية من خارج البرازيل (معدل غالباً ≥ 60%)',
+        'Celpe-Bras أو تسجيله / أو PEC-PLE',
+        'كفالة مالية للمعيشة (البرنامج مجاني دراسياً لكن المعيشة على الطالب)',
+      ],
+      feesAr: 'مقعد دراسي مجاني في المؤسسات المشاركة؛ لا رسوم قبول عبر البرنامج — المعيشة والتمويل الشخصي مطلوبان.',
+      visaAr: 'تأشيرة طالب بعد القبول؛ الالتزام بالعودة بعد التخرج وفق قواعد البرنامج.',
+      caveats: [
+        'البرازيليون ومزدوجو الجنسية البرازيلية مستبعدون صراحة من PEC-G.',
+        'قائمة الدول والمقاعد تتغير كل إعلان — راجع موقع Itamaraty/MEC للسنة.',
+      ],
+      sources: [
+        {
+          label: 'PEC-G about the program (MRE)',
+          url: 'https://www.gov.br/mre/en/subjects/culture-and-education/educational-themes/study-opportunities-for-international-applicants/pec-g/about-the-program',
+        },
+        {
+          label: 'PEC-G selection process',
+          url: 'https://www.gov.br/mre/en/subjects/culture-and-education/educational-themes/study-opportunities-for-international-applicants/pec-g/pec-g-selection-process',
+        },
+      ],
+      portals: ['pec-g-brazil'],
+    },
+  ],
+
+  'السويد': [
+    {
+      id: 'se-eu-eea-swiss-free',
+      titleAr: 'سويدي / EU-EEA / سويسرا — بدون رسوم دراسية (+ universityadmissions.se)',
+      match: ({ nationality }) => isEuEea(nationality) || nationality === 'السويد',
+      whenAr:
+        'مواطنو السويد والاتحاد الأوروبي والمنطقة الاقتصادية الأوروبية وسويسرا لا يدفعون رسوم دراسية للدورات من الدورة الأولى والثانية في الجامعات السويدية، ويتقدمون عبر universityadmissions.se مع توثيق الجنسية عند الحاجة للإعفاء من الرسوم.',
+      channelAr: 'universityadmissions.se / antagning.se',
+      docs: [
+        'شهادة ثانوية مؤهلة / معادل',
+        'إثبات جنسية EU/EEA/سويسرا عند طلب الإعفاء',
+        'لغة إنجليزية (و/أو سويدية حسب البرنامج)',
+      ],
+      feesAr: 'بدون رسوم دراسية عادة؛ قد تُدفع رسوم مواد إلزامية بسيطة فقط.',
+      visaAr: 'مواطنو EU/EEA: حق إقامة للدراسة وفق قواعد حرية الحركة؛ السويدي لا يحتاج تصريحاً.',
+      caveats: [
+        'وثّق جنسيتك في ملف القبول حتى لا تُصنَّف خطأً كدافع رسوم.',
+        'بعض البرامج المهنية لها متطلبات إضافية وطنية.',
+      ],
+      sources: [
+        { label: 'University Admissions Sweden', url: 'https://www.universityadmissions.se/' },
+        {
+          label: 'UHR ordinance on fees (2010:543)',
+          url: 'https://www.uhr.se/en/start/laws-and-regulations/Laws-and-regulations/Ordinance-on-application-fees-and-tuition-fees-at-higher-education-institutions/',
+        },
+        { label: 'Karolinska Institutet — tuition fees', url: 'https://education.ki.se/bachelors-masters-studies/tuition-fees' },
+      ],
+      portals: ['university-admissions-sweden', 'study-in-sweden'],
+    },
+    {
+      id: 'se-non-eu-fees-permit',
+      titleAr: 'من خارج EU/EEA/سويسرا — رسوم تقديم + دراسية + تصريح إقامة',
+      match: () => true,
+      whenAr:
+        'مواطنو الدول الثالثة يدفعون عادة رسوم تقديم 900 كرونة سويدية عبر universityadmissions.se ورسوماً دراسية تحددها الجامعة. بعد القبول يجب دفع القسط الأول قبل أن تبدأ Migrationsverket بمعالجة تصريح إقامة الطالب.',
+      channelAr: 'universityadmissions.se → دفع الرسوم → تصريح إقامة طالب (Migrationsverket)',
+      docs: [
+        'جواز دولة ثالثة',
+        'شهادة ثانوية + ترجمة إن لزم',
+        'إثبات لغة',
+        'دفع رسوم التقديم ثم القسط الدراسي',
+        'طلب تصريح إقامة طالب + تمويل',
+      ],
+      feesAr: 'رسوم تقديم 900 SEK + رسوم دراسية حسب البرنامج؛ منح Study in Sweden/الجامعة قد تغطي جزءاً.',
+      visaAr: 'تصريح إقامة للدراسات عبر مصلحة الهجرة السويدية بعد إثبات الدفع والقبول.',
+      caveats: [
+        'الجنسية تحكم الرسوم — ليست لغة الدراسة أو بلد الشهادة وحدهما.',
+        'استثناءات ضيقة (إقامة دائمة سويدية، أفراد عائلة EU…) وفق المرسوم — تحقق من universityadmissions.se.',
+      ],
+      sources: [
+        { label: 'University Admissions Sweden', url: 'https://www.universityadmissions.se/' },
+        {
+          label: 'UHR ordinance on fees (2010:543)',
+          url: 'https://www.uhr.se/en/start/laws-and-regulations/Laws-and-regulations/Ordinance-on-application-fees-and-tuition-fees-at-higher-education-institutions/',
+        },
+        { label: 'Study in Sweden', url: 'https://studyinsweden.se/' },
+      ],
+      portals: ['university-admissions-sweden', 'study-in-sweden'],
+    },
+  ],
 });
 
 /**
@@ -1277,8 +1488,46 @@ export function exampleAlternateNationality(studyCountry, currentNationality) {
     'جنوب أفريقيا': 'الأردن',
     ماليزيا: 'الأردن',
     سنغافورة: 'الأردن',
+    نيجيريا: 'الأردن',
+    كينيا: 'الأردن',
+    البرازيل: 'الأردن',
+    السويد: 'الأردن',
   };
   return alts[studyCountry] || 'الأردن';
+}
+
+/** Side-by-side citizen vs alternate nationality for every researched destination. */
+export function nationalityMatrixRows() {
+  return Object.keys(DESTINATION_TRACKS).map((destination) => {
+    const citizen = resolveNationalityTrack({
+      studyCountry: destination,
+      nationality: destination,
+      applicantType: 'local',
+    });
+    const otherNationality = exampleAlternateNationality(destination, destination);
+    const other = resolveNationalityTrack({
+      studyCountry: destination,
+      nationality: otherNationality,
+      applicantType: 'international',
+    });
+    return {
+      destination,
+      trackCount: (DESTINATION_TRACKS[destination] || []).length,
+      citizen: {
+        nationality: destination,
+        id: citizen.id,
+        titleAr: citizen.titleAr,
+        channelAr: citizen.channelAr,
+      },
+      other: {
+        nationality: otherNationality,
+        id: other.id,
+        titleAr: other.titleAr,
+        channelAr: other.channelAr,
+      },
+      differs: citizen.id !== other.id,
+    };
+  });
 }
 
 export function nationalityTracksSummary() {
@@ -1310,6 +1559,12 @@ export function nationalityTracksSummary() {
       'https://www.studyinjapan.go.jp/',
       'https://studyinalgeria.dz/pages/17155',
       'https://mb.usaf.ac.za/',
+      'https://efacility.jamb.gov.ng/',
+      'https://kuccps.net/Placem',
+      'https://www.gov.br/mre/en/subjects/culture-and-education/educational-themes/study-opportunities-for-international-applicants/pec-g/about-the-program',
+      'https://www.gov.br/mec/pt-br/sisu',
+      'https://www.universityadmissions.se/',
+      'https://www.uhr.se/en/start/laws-and-regulations/Laws-and-regulations/Ordinance-on-application-fees-and-tuition-fees-at-higher-education-institutions/',
     ],
   };
 }
