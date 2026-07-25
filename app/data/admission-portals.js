@@ -62,6 +62,9 @@ const SCOPE_AR = {
   Turkey: 'تركيا',
   Qatar: 'قطر',
   Jordan: 'الأردن',
+  Egypt: 'مصر',
+  Ireland: 'أيرلندا',
+  'United Arab Emirates': 'الإمارات',
   India: 'الهند',
   Japan: 'اليابان',
 };
@@ -91,10 +94,14 @@ function scopeBuckets(scope) {
     s.includes('turkey') ||
     s.includes('qatar') ||
     s.includes('türkiye') ||
-    s.includes('jordan')
+    s.includes('jordan') ||
+    s.includes('egypt') ||
+    s.includes('united arab emirates') ||
+    s.includes('uae')
   ) {
     return ['mena'];
   }
+  if (s.includes('ireland')) return ['europe', 'global'];
   return ['global'];
 }
 
@@ -245,6 +252,24 @@ const COUNTRY_PORTAL_IDS = {
   'الأردن': [
     'study-in-jordan',
     'applyboard',
+    'top-universities',
+    'world-higher-education-database',
+  ],
+  'مصر': [
+    'study-in-egypt',
+    'applyboard',
+    'top-universities',
+    'world-higher-education-database',
+  ],
+  'الإمارات': [
+    'napo-uae',
+    'applyboard',
+    'top-universities',
+    'world-higher-education-database',
+  ],
+  'أيرلندا': [
+    'cao-ireland',
+    'bachelorsportal',
     'top-universities',
     'world-higher-education-database',
   ],

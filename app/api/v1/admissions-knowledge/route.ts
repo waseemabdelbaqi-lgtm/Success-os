@@ -9,6 +9,8 @@ import {
 } from '@/app/data/admissions-knowledge';
 import {
   DESTINATION_TRACKS,
+  compareNationalityTracks,
+  exampleAlternateNationality,
   nationalityTracksSummary,
   resolveNationalityTrack,
 } from '@/app/data/nationality-admission-tracks';
@@ -38,6 +40,15 @@ export async function GET(request: Request) {
         })
       : null;
 
+  const contrast =
+    studyCountry && nationality
+      ? compareNationalityTracks(
+          studyCountry,
+          nationality,
+          exampleAlternateNationality(studyCountry, nationality),
+        )
+      : null;
+
   return NextResponse.json({
     ok: true,
     summary: {
@@ -51,5 +62,6 @@ export async function GET(request: Request) {
     regionPlaybooks: REGION_PLAYBOOKS,
     nationalityTracks: DESTINATION_TRACKS,
     resolvedTrack: resolved,
+    nationalityContrast: contrast,
   });
 }

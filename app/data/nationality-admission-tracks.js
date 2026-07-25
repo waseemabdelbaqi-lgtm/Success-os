@@ -527,6 +527,193 @@ export const DESTINATION_TRACKS = Object.freeze({
       portals: ['uac', 'applyboard'],
     },
   ],
+
+  'الإمارات': [
+    {
+      id: 'ae-emirati-napo',
+      titleAr: 'مواطن إماراتي / ابنة أم إماراتية (خريج الصف 12 لنفس السنة) — NAPO',
+      match: ({ nationality }) => nationality === 'الإمارات',
+      whenAr:
+        'حسب سياسة جامعات اتحادية مثل خليفة: المواطنون الإماراتيون وأبناء الأمهات الإماراتيات المتخرجون من الصف 12 في سنة التقديم يتقدمون عبر بوابة NAPO التابعة لوزارة التعليم العالي والبحث العلمي — وليس عبر بوابة الجامعة المباشرة.',
+      channelAr: 'NAPO (mohesr.gov.ae) ثم تحويل الملف للجامعة',
+      docs: [
+        'هوية إماراتية / خلاصة القيد',
+        'جواز ورقم الموحّد',
+        'شهادات الصفوف ومعادلة المدارس الخاصة إن لزم',
+        'EmSAT أو بدائل لغة حسب الجامعة',
+      ],
+      feesAr: 'مسارات مواطنين غالباً مدعومة / منح مؤسسية حسب الأهلية.',
+      visaAr: 'غير مطلوب للمواطن.',
+      caveats: [
+        'خريجو السنوات السابقة من المواطنين قد يُحوَّلون لتقديم مباشر عبر بوابة الجامعة (كما توضّح خليفة).',
+        'تحقق من جامعة الهدف: ليست كل المؤسسات تستخدم NAPO بنفس الشكل.',
+      ],
+      sources: [
+        { label: 'NAPO service card', url: 'https://www.mohesr.gov.ae/en/EServices/ServiceCard/pages/napo.aspx' },
+        { label: 'Khalifa University UG admissions FAQ', url: 'https://www.ku.ac.ae/faqs/how-can-i-apply-to-khalifa-university-to-study-a-bachelors-degree' },
+      ],
+      portals: ['napo-uae'],
+    },
+    {
+      id: 'ae-expat-international',
+      titleAr: 'مقيم/وافد أو طالب دولي غير إماراتي — تقديم الجامعة',
+      match: () => true,
+      whenAr:
+        'غير المواطنين (والمقيمون الأجانب والطلاب من خارج الدولة) يتقدمون عادة مباشرة عبر بوابة الجامعة الدولية، مع معادلة الشهادة وإثبات لغة (EmSAT English / IELTS / TOEFL) وتأشيرة إقامة طالب.',
+      channelAr: 'بوابة القبول الدولية للجامعة (مثال: ugapply.ku.ac.ae لخليفة)',
+      docs: [
+        'جواز + إقامة سارية للمقيمين',
+        'شهادة ثانوية + معادلة وزارة التربية إن طُلبت',
+        'إثبات لغة',
+        'صورة شخصية ومستندات إضافية حسب الجامعة',
+      ],
+      feesAr: 'رسوم دولية / مقيمين أعلى من مسارات المواطنين غالباً.',
+      visaAr: 'تأشيرة/إقامة طالب لغير المقيمين؛ المقيم يحدّث وضع الإقامة.',
+      caveats: ['المواعيد تختلف: مسار NAPO للمواطنين قد يفتح قبل مسار الوافدين.'],
+      sources: [
+        { label: 'Khalifa University UG admissions', url: 'https://www.ku.ac.ae/undergraduate-admissions' },
+        { label: 'UAEU Admission', url: 'https://www.uaeu.ac.ae/en/admission/' },
+      ],
+      portals: ['napo-uae', 'applyboard'],
+    },
+  ],
+
+  'مصر': [
+    {
+      id: 'eg-egyptian-coordination',
+      titleAr: 'مصري — التنسيق الإلكتروني / الثانوية العامة',
+      match: ({ nationality }) => nationality === 'مصر',
+      whenAr:
+        'المصريون الحاصلون على الثانوية العامة (أو شهادات معادلة ضمن قواعد التنسيق) يتقدمون عبر مكتب التنسيق/القواعد الوزارية للجامعات الحكومية — مسار منفصل تماماً عن الوافدين.',
+      channelAr: 'التنسيق الإلكتروني لوزارة التعليم العالي',
+      docs: ['شهادة الثانوية العامة', 'بطاقة التنسيق', 'رغبات الكليات', 'اختبارات القدرات إن لزم'],
+      feesAr: 'رسوم حكومية للمصريين وفق النظام.',
+      visaAr: 'غير مطلوب للمواطن.',
+      caveats: ['قواعد التنسيق السنوية تصدر بقرار وزاري — راجع إعلان السنة.'],
+      sources: [
+        { label: 'SCU / وزارة التعليم العالي', url: 'https://scu.eg/' },
+      ],
+      portals: ['study-in-egypt'],
+    },
+    {
+      id: 'eg-non-egyptian-study-in-egypt',
+      titleAr: 'غير مصري (وافد) — منصة ادرس في مصر',
+      match: () => true,
+      whenAr:
+        'يشترط أن يكون المتقدم غير مصري. التقديم عبر منصة Study in Egypt الرسمية، ثم ترشيح أولي، ثم تسليم أصول موثّقة للإدارة المركزية لشؤون الطلاب الوافدين في القاهرة. الاسم يجب أن يطابق جواز السفر.',
+      channelAr: 'https://admission.study-in-egypt.gov.eg/',
+      docs: [
+        'حساب على منصة ادرس في مصر',
+        'صورة شهادة الثانوية / المعادلة',
+        'صورة جواز ساري',
+        'صورة شخصية',
+        'نتيجة قدرات إن طُلبت',
+        'أصول موثّقة للإدارة المركزية بعد الترشيح',
+      ],
+      feesAr: 'رسوم خدمات تنسيق/تسجيل معلنة للمنصة + رسوم البرنامج الدولي.',
+      visaAr: 'إقامة دراسية لغير المقيمين بعد القبول.',
+      caveats: [
+        'الجنسية شرط أهلية صريح: «يجب أن يكون الطالب غير مصري».',
+        'لا تخلط بين تنسيق المصريين ومنصة الوافدين.',
+      ],
+      sources: [
+        { label: 'Study in Egypt portal', url: 'https://admission.study-in-egypt.gov.eg/' },
+        { label: 'Assiut University — expatriate rules', url: 'https://b.aun.edu.eg/student/undergraduate/rules' },
+      ],
+      portals: ['study-in-egypt'],
+    },
+  ],
+
+  'أيرلندا': [
+    {
+      id: 'ie-eu-fee-cao',
+      titleAr: 'وضع رسوم EU — تقديم عبر CAO',
+      match: ({ nationality }) =>
+        isEuEea(nationality) || ['أيرلندا', 'المملكة المتحدة'].includes(nationality),
+      whenAr:
+        'متقدمو البكالوريوس ذوو وضع رسوم EU يتقدمون عبر CAO. جواز/جنسية EU أو UK لا يكفي وحده: يجب استيفاء اختبار الجنسية أو الإقامة الضريبية (غالباً 3 من آخر 5 سنوات في EU/EEA/UK/سويسرا) أو قاعدة Quinn (5 سنوات تعليم أساسي/ثانوي في المنطقة).',
+      channelAr: 'CAO (cao.ie)',
+      docs: [
+        'Leaving Certificate أو معادل EU/EFTA/UK',
+        'طلب CAO',
+        'مستندات إثبات الإقامة الضريبية عند تقييم الرسوم',
+      ],
+      feesAr: 'غالباً مساهمة طلابية (~€3000) ضمن Free Fees Initiative إن انطبقت — أقل بكثير من non-EU.',
+      visaAr: 'مواطنو EU/EEA/UK ضمن قواعد الإقامة لا يحتاجون تأشيرة طالب كغير الأوروبيين.',
+      caveats: [
+        'قبول عرض non-EU قد يثبّت التصنيف طوال البرنامج (سياسة Trinity وغيرها).',
+        'تحقق من جامعة الهدف قبل اختيار مسار CAO مقابل التقديم المباشر.',
+      ],
+      sources: [
+        { label: 'CAO', url: 'https://www.cao.ie/' },
+        { label: 'Trinity — EU fees eligibility', url: 'https://www.tcd.ie/academicregistry/fees-and-payments/eu-eligibility-fees/' },
+        { label: 'CAO EU/EFTA/UK guidelines 2026', url: 'https://www2.cao.ie/downloads/documents/2026/Guidelines-EU-EFTA-UK-2026.pdf' },
+      ],
+      portals: ['cao-ireland'],
+    },
+    {
+      id: 'ie-non-eu-direct',
+      titleAr: 'وضع non-EU — تقديم مباشر للجامعة',
+      match: () => true,
+      whenAr:
+        'غير المؤهلين لرسوم EU للبكالوريوس يتقدمون مباشرة لبوابة الجامعة الدولية (وليس CAO عادة)، برسوم أعلى وتأشيرة طالب وتمويل.',
+      channelAr: 'بوابة الجامعة الدولية مباشرة',
+      docs: ['شهادة ثانوية معادلة', 'IELTS/TOEFL', 'جواز وتمويل', 'طلب الجامعة'],
+      feesAr: 'رسوم international أعلى بكثير من مسار EU.',
+      visaAr: 'Irish study visa بعد القبول.',
+      caveats: ['لا تغيّر وضع الرسوم بسهولة بعد قبولك كـ non-EU على نفس البرنامج.'],
+      sources: [
+        { label: 'Trinity — EU fees eligibility', url: 'https://www.tcd.ie/academicregistry/fees-and-payments/eu-eligibility-fees/' },
+        { label: 'QQI / IRQ', url: 'https://irq.ie/' },
+      ],
+      portals: ['cao-ireland', 'applyboard'],
+    },
+  ],
+
+  'الهند': [
+    {
+      id: 'in-indian-national-exams',
+      titleAr: 'مواطن هندي — اختبارات وطنية (JEE / NEET / CUET…)',
+      match: ({ nationality }) => nationality === 'الهند',
+      whenAr:
+        'المواطنون الهنود يدخلون التخصصات التنافسية عبر اختبارات وطنية: JEE للهندسة، NEET للطب، CUET لجامعات مركزية، وغيرها — حسب البرنامج.',
+      channelAr: 'بوابات الاختبار الوطنية + counselling / الجامعة',
+      docs: ['Class XII', 'تسجيل الاختبار الوطني', 'مستندات الفئة/الحصة إن انطبقت'],
+      feesAr: 'رسوم محلية / حصص وطنية حسب المؤسسة.',
+      visaAr: 'غير مطلوب للمواطن.',
+      caveats: ['NRI حامل جواز هندي يعيش بالخارج قد يبقى على مسار مواطن مع حصص NRI في بعض الكليات.'],
+      sources: [
+        { label: 'UGC', url: 'https://www.ugc.gov.in/' },
+        { label: 'Study in India', url: 'https://www.studyinindia.gov.in/' },
+      ],
+      portals: ['study-in-india-portal'],
+    },
+    {
+      id: 'in-foreign-international-track',
+      titleAr: 'أجنبي / مسار دولي — Study in India أو قبول مؤسسي (بدون نفس الاختبارات غالباً)',
+      match: () => true,
+      whenAr:
+        'الأجانب غالباً على مسارات دولية منفصلة (Study in India / مكتب دولي) بمعايير سجل أكاديمي أو SAT، دون إلزام بنفس JEE/CUET في كثير من البرامج. NRI/OCI قد يجلسون لاختبارات وطنية أو حصص DASA/NRI حسب الحالة — تحقق من الفئة جوازك/OCI.',
+      channelAr: 'studyinindia.gov.in و/أو القبول الدولي لكل جامعة / DASA لبعض المعاهد',
+      docs: [
+        'جواز أجنبي أو مستند OCI/NRI',
+        'Class XII أو معادل + AIU عند الطلب',
+        'إنجليزي (TOEFL/IELTS) إن طُلب',
+        'SAT لبعض المسارات الدولية',
+      ],
+      feesAr: 'رسوم أجانب أعلى؛ خصومات SAARC في بعض مخططات DASA.',
+      visaAr: 'Student Visa + تسجيل FRRO بعد الوصول لغير OCI.',
+      caveats: [
+        'OCI/NRI ≠ أجنبي بالكامل — الأهلية للامتحانات والحصص تختلف.',
+        'الطب (NEET) له قواعد خاصة للفئات الأجنبية/NRI.',
+      ],
+      sources: [
+        { label: 'Study in India', url: 'https://www.studyinindia.gov.in/' },
+        { label: 'College Board — Study in India', url: 'https://international.collegeboard.org/students/study-in-india' },
+      ],
+      portals: ['study-in-india-portal'],
+    },
+  ],
 });
 
 /**
@@ -604,6 +791,46 @@ export function resolveNationalityTrack({
   };
 }
 
+/** Compare how two nationalities are routed for the same study destination. */
+export function compareNationalityTracks(studyCountry, nationalityA, nationalityB) {
+  const a = resolveNationalityTrack({ studyCountry, nationality: nationalityA });
+  const b = resolveNationalityTrack({ studyCountry, nationality: nationalityB });
+  if (!a || !b) return null;
+  return {
+    studyCountry,
+    sameTrack: a.id === b.id,
+    a: { nationality: nationalityA, id: a.id, titleAr: a.titleAr, channelAr: a.channelAr },
+    b: { nationality: nationalityB, id: b.id, titleAr: b.titleAr, channelAr: b.channelAr },
+    principleAr:
+      a.id === b.id
+        ? 'نفس تصنيف المسار تقريباً — تحقق مع ذلك من الرسوم والإقامة وبلد الشهادة.'
+        : 'مساران مختلفان لنفس دولة الدراسة بسبب اختلاف الجنسية — هذا متوقع حسب القواعد الرسمية.',
+  };
+}
+
+/** Example alternate nationality to demonstrate the split in the UI. */
+export function exampleAlternateNationality(studyCountry, currentNationality) {
+  if (!studyCountry) return 'الأردن';
+  if (currentNationality !== studyCountry) return studyCountry;
+  const alts = {
+    ألمانيا: 'الأردن',
+    فرنسا: 'الأردن',
+    هولندا: 'مصر',
+    'المملكة المتحدة': 'الأردن',
+    كندا: 'الأردن',
+    'الولايات المتحدة': 'الأردن',
+    الأردن: 'مصر',
+    السعودية: 'مصر',
+    تركيا: 'الأردن',
+    الإمارات: 'الأردن',
+    مصر: 'الأردن',
+    أيرلندا: 'الأردن',
+    الهند: 'الأردن',
+    أستراليا: 'الأردن',
+  };
+  return alts[studyCountry] || 'الأردن';
+}
+
 export function nationalityTracksSummary() {
   const destinations = Object.keys(DESTINATION_TRACKS);
   return {
@@ -622,6 +849,10 @@ export function nationalityTracksSummary() {
       'https://studyinsaudi.sa/en',
       'https://www.studyinturkiye.gov.tr/',
       'https://commonslibrary.parliament.uk/research-briefings/cbp-10708/',
+      'https://www.tcd.ie/academicregistry/fees-and-payments/eu-eligibility-fees/',
+      'https://admission.study-in-egypt.gov.eg/',
+      'https://www.mohesr.gov.ae/en/EServices/ServiceCard/pages/napo.aspx',
+      'https://www.studyinindia.gov.in/',
     ],
   };
 }

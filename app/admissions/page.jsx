@@ -24,7 +24,11 @@ import {
   clusterForField,
   playbookForRegion,
 } from '../data/admissions-knowledge';
-import { resolveNationalityTrack } from '../data/nationality-admission-tracks';
+import {
+  compareNationalityTracks,
+  exampleAlternateNationality,
+  resolveNationalityTrack,
+} from '../data/nationality-admission-tracks';
 
 const STEPS = [
   ['region', 'القارة'],
@@ -97,6 +101,11 @@ export default function AdmissionsPage() {
         : null,
     [studyCountry, nationality, qualificationCountry, applicantType],
   );
+  const nationalityContrast = useMemo(() => {
+    if (!studyCountry || !nationality) return null;
+    const other = exampleAlternateNationality(studyCountry, nationality);
+    return compareNationalityTracks(studyCountry, nationality, other);
+  }, [studyCountry, nationality]);
   const docPack = applicantType === 'local' ? ADMISSION_DOC_PACKS.local : ADMISSION_DOC_PACKS.international;
 
   const pool = useMemo(() => {
@@ -558,6 +567,24 @@ export default function AdmissionsPage() {
                     </a>
                   ))}
                 </div>
+                {nationalityContrast && !nationalityContrast.sameTrack && (
+                  <div className="admission-nationality-contrast">
+                    <b>نفس دولة الدراسة — جنسية مختلفة = مسار مختلف</b>
+                    <p>{nationalityContrast.principleAr}</p>
+                    <ul>
+                      <li>
+                        <b>{nationalityContrast.a.nationality}:</b> {nationalityContrast.a.titleAr}
+                        <br />
+                        <small>{nationalityContrast.a.channelAr}</small>
+                      </li>
+                      <li>
+                        <b>{nationalityContrast.b.nationality}:</b> {nationalityContrast.b.titleAr}
+                        <br />
+                        <small>{nationalityContrast.b.channelAr}</small>
+                      </li>
+                    </ul>
+                  </div>
+                )}
               </aside>
             )}
             <footer className="admission-wizard-actions">

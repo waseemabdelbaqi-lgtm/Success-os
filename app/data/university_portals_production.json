@@ -98,6 +98,13 @@
     "Details": "Open-enrollment network for institutional professional development courses."
   },
   {
+    "Name": "CAO Ireland",
+    "Website": "https://www.cao.ie/",
+    "Type": "Centralized Admission Portal",
+    "Scope": "Ireland",
+    "Details": "Central Applications Office for undergraduate EU-fee applicants to Irish higher education; non-EU undergraduates usually apply directly to universities."
+  },
+  {
     "Name": "CaoKao Hub (Chinaschools)",
     "Website": "https://chinaschoolguide.com",
     "Type": "University Search Directory",
@@ -287,6 +294,13 @@
     "Details": "Specialized global indexing platform for postgraduate master degrees and tracking."
   },
   {
+    "Name": "NAPO UAE",
+    "Website": "https://www.mohesr.gov.ae/en/EServices/ServiceCard/pages/napo.aspx",
+    "Type": "Centralized Admission Portal",
+    "Scope": "United Arab Emirates",
+    "Details": "National Admissions and Placement Office channel used by UAE Nationals and children of Emirati mothers graduating Grade 12 for selected federal/partner university placements."
+  },
+  {
     "Name": "OEDb (Online Education Database)",
     "Website": "https://www.oedb.org/",
     "Type": "Online Degree Directory",
@@ -390,6 +404,13 @@
     "Type": "Centralized Admission Portal",
     "Scope": "Netherlands",
     "Details": "Official national enrollment portal for Dutch higher education institutions."
+  },
+  {
+    "Name": "Study in Egypt",
+    "Website": "https://admission.study-in-egypt.gov.eg/",
+    "Type": "Centralized Admission Portal",
+    "Scope": "Egypt",
+    "Details": "Official Egyptian Ministry platform for non-Egyptian (expatriate) students applying to Egyptian universities and institutes."
   },
   {
     "Name": "Study in India Portal",

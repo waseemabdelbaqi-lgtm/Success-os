@@ -877,6 +877,18 @@ html[data-os-theme='dark'] .os-content {
   color: #2e060a;
 }
 
+.admission-nationality-contrast {
+  margin-top: 14px;
+  padding: 12px 14px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.72);
+  border: 1px dashed rgba(158, 23, 34, 0.28);
+}
+
+.admission-nationality-contrast ul {
+  margin: 8px 0 0;
+}
+
 .admission-portals-band {
   margin: 16px 0 8px;
   padding: 20px;
