@@ -75,6 +75,9 @@ export const countryAuthorities = {
   'لوكسمبورغ':{authority:'University of Luxembourg',url:'https://www.uni.lu/en/admissions/admission-criteria/',note:'رسوم موحّدة تقريباً؛ الجنسية تغيّر مواعيد المعادلة ومتطلبات الإقامة.'},
   'قبرص':{authority:'Department of Higher Education Cyprus',url:'https://highereducation.ac.cy/en/spoudes-cyprus/oikonomikes-paroches',note:'EU: الحكومة تغطي بكالوريوس العام باليونانية؛ غير EU يدفع ≈ €6834/سنة + إقامة.'},
   'آيسلندا':{authority:'University of Iceland / Directorate of Immigration',url:'https://english.hi.is/study/apply/university-fees',note:'EEA: رسوم تسجيل فقط؛ غير EEA رسوم معالجة + إقامة؛ tuition محتمل من 2027.'},
+  'ليختنشتاين':{authority:'University of Liechtenstein',url:'https://www.uni.li/en/studies/plan-your-studies/study-costs-und-funding',note:'EU/EEA/سويسرا أو Matura أوروبية: CHF 950/فصل؛ غيرهم CHF 1,250 + تأشيرة.'},
+  'جورجيا':{authority:'NAEC / Georgian universities',url:'https://admissions.iliauni.edu.ge/en/tuition-fees-and-funding-opportunities/',note:'مواطن: امتحانات وطنية ≈ 2250 GEL؛ أجنبي: قبول مباشر بالدولار + إقامة.'},
+  'تايلاند':{authority:'Council of University Presidents / Chulalongkorn',url:'https://www.chula.ac.th/en/academics/admissions/undergraduate-admission/',note:'تايلاندي: TCAS ورسوم Thai أدنى؛ أجنبي: قبول دولي ورسوم Foreign + تأشيرة ED.'},
 };
 
 const allSystems = qualificationSystems.map(x=>x.id);
@@ -487,6 +490,85 @@ export const globalInstitutions = [
  }),
  U('iis','آيسلندا','ريكيافيك','International School of Iceland','مدرسة',['وجاهي'],['IB','ابتدائي','ثانوي'],'https://www.isi.is/admissions',{
    degree:'تعليم مدرسي K-12',contactEmail:'admissions@isi.is',
+ }),
+ U('unili','ليختنشتاين','فادوز','University of Liechtenstein','جامعة',['وجاهي'],['أعمال','قانون','عمارة وتصميم','حوسبة'],'https://uni.li/en/studies/application-and-admission',{
+   local:['CHF 950 لـ EU/EEA/سويسرا أو Matura أوروبية','تقديم الجامعة'],
+   international:['CHF 1,250 لغير المعايير','تأشيرة/إقامة عبر القناة السويسرية'],
+   platformMember:true,contactEmail:'studium@uni.li',
+ }),
+ U('ufl','ليختنشتاين','تريسن','Private University in the Principality of Liechtenstein','جامعة',['وجاهي'],['طب وصحة','علوم'],'https://www.ufl.li/en/',{
+   contactEmail:'info@ufl.li',
+ }),
+ U('unili-sob','ليختنشتاين','فادوز','University of Liechtenstein — School of Business','كلية',['وجاهي'],['أعمال','إدارة','مالية'],'https://www.uni.li/en/studies/application-and-admission',{
+   degree:'برامج أعمال جامعية',
+   platformMember:true,contactEmail:'studium@uni.li',
+ }),
+ U('mlg','ليختنشتاين','فادوز','Liechtensteinisches Gymnasium','مدرسة',['وجاهي'],['Matura','ثانوي'],'https://www.lg.li/',{
+   degree:'تعليم مدرسي ثانوي / Matura',contactEmail:'info@lg.li',
+ }),
+ U('tsu-ge','جورجيا','تبليسي','Ivane Javakhishvili Tbilisi State University','جامعة',['وجاهي'],['علوم','طب وصحة','قانون','آداب'],'https://www.tsu.ge/en/prospective-students',{
+   local:['امتحانات وطنية موحدة','رسوم/منح دولة'],
+   international:['قبول دولي مباشر','رسوم دولار','إقامة طالب'],
+   platformMember:true,contactEmail:'international@tsu.ge',
+ }),
+ U('iliauni','جورجيا','تبليسي','Ilia State University','جامعة',['وجاهي'],['علوم','آداب','أعمال','طب وصحة'],'https://admissions.iliauni.edu.ge/en/tuition-fees-and-funding-opportunities/',{
+   local:['UNE + ≈ 2250 GEL أو منحة دولة'],
+   international:['قبول دولي','تمويل وتأمين','إقامة'],
+   platformMember:true,contactEmail:'admissions@iliauni.edu.ge',
+ }),
+ U('gtu','جورجيا','تبليسي','Georgian Technical University','جامعة',['وجاهي'],['هندسة','حوسبة','علوم'],'https://gtu.ge/Eng/',{
+   contactEmail:'international@gtu.ge',
+ }),
+ U('cu-ge','جورجيا','تبليسي','Caucasus University','جامعة',['وجاهي'],['أعمال','قانون','طب وصحة','حوسبة'],'https://cu.edu.ge/en',{
+   contactEmail:'admissions@cu.edu.ge',
+ }),
+ U('ibsu','جورجيا','تبليسي','International Black Sea University','جامعة',['وجاهي'],['أعمال','حوسبة','علوم اجتماعية','تعليم'],'https://ibsu.edu.ge/en/entrant/tuition-fees/',{
+   local:['امتحانات وطنية — رسوم GEL'],
+   international:['جدول International بالدولار'],
+   contactEmail:'admissions@ibsu.edu.ge',
+ }),
+ U('gau','جورجيا','تبليسي','Georgian American University','جامعة',['وجاهي'],['طب وصحة','أعمال','قانون','حوسبة'],'https://gau.edu.ge/',{
+   contactEmail:'admissions@gau.edu.ge',
+ }),
+ U('bsu-ge','جورجيا','باتومي','Batumi Shota Rustaveli State University','جامعة',['وجاهي'],['طب وصحة','علوم','أعمال','آداب'],'https://www.bsu.edu.ge/sub-34/page/1902/index.html?lang=en',{
+   local:['برامج جورجية ≈ 2250 GEL'],
+   international:['طب إنجليزي برسوم دولار'],
+   contactEmail:'international@bsu.edu.ge',
+ }),
+ U('freeuni','جورجيا','تبليسي','Free University of Tbilisi','كلية جامعية',['وجاهي'],['أعمال','قانون','علوم اجتماعية'],'https://freeuni.edu.ge/en/',{
+   degree:'بكالوريوس ودراسات عليا',
+   platformMember:true,contactEmail:'admissions@freeuni.edu.ge',
+ }),
+ U('qsi-tbilisi','جورجيا','تبليسي','QSI International School of Tbilisi','مدرسة',['وجاهي'],['American Curriculum','ابتدائي','ثانوي'],'https://tbilisi.qsi.org/admissions',{
+   degree:'تعليم مدرسي K-12',contactEmail:'tbilisi@qsi.org',
+ }),
+ U('chula','تايلاند','بانكوك','Chulalongkorn University','جامعة',['وجاهي'],['طب وصحة','هندسة','أعمال','علوم'],'https://www.chula.ac.th/en/academics/admissions/undergraduate-admission/',{
+   local:['TCAS للبرامج التايلاندية','رسوم Thai أدنى في البرامج الدولية'],
+   international:['تقديم دولي','رسوم Foreign أعلى','تأشيرة ED'],
+   platformMember:true,contactEmail:'int.admit@chula.ac.th',
+ }),
+ U('mahidol','تايلاند','ناخون باتوم','Mahidol University','جامعة',['وجاهي'],['طب وصحة','علوم','هندسة','أعمال'],'https://www.mahidol.ac.th/en/',{
+   platformMember:true,contactEmail:'interadmission@mahidol.ac.th',
+ }),
+ U('tu-th','تايلاند','بانكوك','Thammasat University','جامعة',['وجاهي'],['قانون','أعمال','علوم اجتماعية','هندسة'],'https://tu.ac.th/en',{
+   contactEmail:'interadmission@tu.ac.th',
+ }),
+ U('cmu-th','تايلاند','شيانغ ماي','Chiang Mai University','جامعة',['وجاهي'],['طب وصحة','هندسة','علوم','آداب'],'https://www.cmu.ac.th/en/',{
+   contactEmail:'interadmission@cmu.ac.th',
+ }),
+ U('kmutt','تايلاند','بانكوك','King Mongkut\'s University of Technology Thonburi','جامعة',['وجاهي'],['هندسة','حوسبة','علوم'],'https://www.kmutt.ac.th/',{
+   contactEmail:'admission@kmutt.ac.th',
+ }),
+ U('au-th','تايلاند','بانكوك','Assumption University','جامعة',['وجاهي'],['أعمال','حوسبة','آداب','اتصال'],'https://www.au.edu/',{
+   contactEmail:'abac@au.edu',
+ }),
+ U('kmitl','تايلاند','بانكوك','King Mongkut\'s Institute of Technology Ladkrabang','كلية جامعية',['وجاهي'],['هندسة','حوسبة','عمارة وتصميم'],'https://www.kmitl.ac.th/',{
+   degree:'بكالوريوس ودراسات عليا',
+   platformMember:true,contactEmail:'inter@kmitl.ac.th',
+ }),
+ U('patana','تايلاند','بانكوك','Bangkok Patana School','مدرسة',['وجاهي'],['IB','British Curriculum','ابتدائي','ثانوي'],'https://www.patana.ac.th/admissions',{
+   degree:'تعليم مدرسي K-12',
+   platformMember:true,contactEmail:'admissions@patana.ac.th',
  }),
  U('sapienza','إيطاليا','روما','Sapienza Università di Roma','جامعة',['وجاهي'],['هندسة','طب وصحة','علوم','آداب'],'https://www.uniroma1.it/en/pagina/admission',{
    local:['دبلوم ثانوي إيطالي أو معادل','تسجيل مباشر'],

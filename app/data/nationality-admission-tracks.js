@@ -2976,6 +2976,257 @@ export const DESTINATION_TRACKS = Object.freeze({
       ],
     },
   ],
+
+  'ليختنشتاين': [
+    {
+      id: 'li-eu-eea-swiss-matura-chf950',
+      titleAr: 'ليختنشتايني / EU-EEA / سويسرا / Matura أوروبية — CHF 950',
+      match: ({ nationality, residenceCountry, qualificationCountry }) =>
+        nationality === 'ليختنشتاين' ||
+        isEuEea(nationality) ||
+        residenceCountry === 'ليختنشتاين' ||
+        isEuEea(qualificationCountry) ||
+        qualificationCountry === 'سويسرا',
+      whenAr:
+        'حسب لائحة الرسوم في Universität Liechtenstein: CHF 950/فصل لمواطني EU/EEA وسويسرا، ولحملة إقامة دائمة/استقرار في ليختنشتاين، ولمن حصل على شهادة الثانوية (Matura) من دولة EU/EEA أو سويسرا. بلا تأشيرة لـ EU/EEA/سويسرا.',
+      channelAr: 'تقديم Universität Liechtenstein مباشرة (+ رسوم معالجة قبول CHF 100 لأول مرة)',
+      docs: [
+        'شهادة ثانوية / Matura معادلة',
+        'إثبات جنسية EU/EEA/سويسرا أو إقامة ليختنشتاين أو Matura من EU/EEA/سويسرا',
+        'لغة ألمانية أو إنجليزية حسب البرنامج',
+        'رسوم معالجة قبول CHF 100 إن لم يسبق التسجيل',
+      ],
+      feesAr: 'CHF 950/فصل دراسي (منها CHF 10 لاتحاد الطلبة) + رسوم إدارية عند القبول.',
+      visaAr: 'لا تأشيرة لـ EU/EEA/سويسرا؛ تسجيل إقامة إن تجاوزت المدة القصيرة.',
+      caveats: [
+        'المعيشة ≈ CHF 1,500/شهر حسب تقدير الجامعة.',
+        'التأمين الصحي إلزامي بعد 3 أشهر — EHIC قد يكفي لمواطني EU.',
+      ],
+      sources: [
+        {
+          label: 'University of Liechtenstein — study costs & funding',
+          url: 'https://www.uni.li/en/studies/plan-your-studies/study-costs-und-funding',
+        },
+        {
+          label: 'University of Liechtenstein — application & admission',
+          url: 'https://uni.li/en/studies/application-and-admission',
+        },
+      ],
+      portals: [],
+      universities: [
+        'University of Liechtenstein',
+        'Private University in the Principality of Liechtenstein (UFL)',
+      ],
+    },
+    {
+      id: 'li-third-country-chf1250-visa',
+      titleAr: 'دول ثالثة — CHF 1,250/فصل + تأشيرة/إقامة عبر القناة السويسرية',
+      match: () => true,
+      whenAr:
+        'من لا يستوفي معايير EU/EEA/سويسرا أو الإقامة الدائمة أو Matura الأوروبية يدفع CHF 1,250/فصل. غير الأوروبيين يحتاجون عادة تأشيرة وطنية/إقامة للدراسة تُعالَج عبر تمثيل سويسرا لأن ليختنشتاين في منطقة شنغن عبر اتفاقات مع سويسرا.',
+      channelAr: 'تقديم الجامعة → قبول → تأشيرة/إقامة (سفارة/قنصلية سويسرا المختصة)',
+      docs: [
+        'جواز دولة ثالثة',
+        'قبول الجامعة',
+        'إثبات تمويل وتأمين',
+        'رسوم معالجة قبول CHF 100',
+        'طلب تأشيرة/إقامة طالب',
+      ],
+      feesAr: 'CHF 1,250/فصل + رسوم قبول إدارية؛ معيشة ≈ CHF 1,500/شهر.',
+      visaAr: 'تأشيرة/تصريح إقامة طالب عبر القناة السويسرية لغير EU/EEA.',
+      caveats: ['مواعيد الهجرة أطول من مواعيد القبول الأكاديمي — ابدأ مبكراً.'],
+      sources: [
+        {
+          label: 'University of Liechtenstein — study costs & funding',
+          url: 'https://www.uni.li/en/studies/plan-your-studies/study-costs-und-funding',
+        },
+        {
+          label: 'University of Liechtenstein — application & admission',
+          url: 'https://uni.li/en/studies/application-and-admission',
+        },
+      ],
+      portals: [],
+      universities: [
+        'University of Liechtenstein',
+        'Private University in the Principality of Liechtenstein (UFL)',
+      ],
+    },
+  ],
+
+  'جورجيا': [
+    {
+      id: 'ge-citizen-une-state-grant',
+      titleAr: 'مواطن جورجي — الامتحانات الوطنية الموحدة + منح الدولة',
+      match: ({ nationality }) => nationality === 'جورجيا',
+      whenAr:
+        'حسب Ilia State University وNAEC: المواطن الجورجي يلتحق بالبكالوريوس عبر الامتحانات الوطنية الموحدة (Unified National Examinations). الرسوم الرسمية في الجامعات العامة ≈ 2250 GEL/سنة، وقد تكون بعض البرامج ممولة بالكامل من الدولة حسب نتيجة الامتحان واختيار البرنامج.',
+      channelAr: 'التسجيل في الامتحانات الوطنية الموحدة (NAEC) → اختيار الجامعة/البرنامج',
+      docs: [
+        'شهادة ثانوية جورجية',
+        'تسجيل وامتحان وطني موحد',
+        'اختيار رغبات البرامج',
+        'وثائق الهوية الجورجية',
+      ],
+      feesAr: '≈ 2250 GEL/سنة في العامة كحد مرجعي؛ منح دولة كاملة/جزئية حسب النتيجة والبرنامج.',
+      visaAr: 'لا تأشيرة للمواطن الجورجي.',
+      caveats: [
+        'البرامج بالإنجليزية والطب قد تكون برسوم مختلفة حتى للمواطنين.',
+        'القبول عبر الامتحان الوطني مسار منفصل عن القبول الدولي المباشر.',
+      ],
+      sources: [
+        {
+          label: 'Ilia State University — tuition & funding',
+          url: 'https://admissions.iliauni.edu.ge/en/tuition-fees-and-funding-opportunities/',
+        },
+        {
+          label: 'Batumi State University — tuition fees',
+          url: 'https://www.bsu.edu.ge/sub-34/page/1902/index.html?lang=en',
+        },
+      ],
+      portals: [],
+      universities: [
+        'Ivane Javakhishvili Tbilisi State University',
+        'Ilia State University',
+        'Georgian Technical University',
+        'Batumi Shota Rustaveli State University',
+        'Caucasus University',
+      ],
+    },
+    {
+      id: 'ge-international-direct-usd-visa',
+      titleAr: 'طالب أجنبي — قبول مباشر بالدولار + إقامة طالب',
+      match: () => true,
+      whenAr:
+        'الأجانب لا يدخلون عادة عبر الامتحانات الوطنية الموحدة؛ يتقدمون مباشرة للجامعة بمسار دولي برسوم بالدولار (غالباً ≈ $2,500–$6,000+/سنة حسب البرنامج؛ الطب أعلى). يلزم تأمين صحي وإثبات تمويل وإقامة طالب عبر Agency of Migration.',
+      channelAr: 'تقديم الجامعة الدولي مباشرة → قبول → إقامة طالب',
+      docs: [
+        'جواز أجنبي',
+        'شهادة ثانوية معادلة/مترجمة',
+        'إثبات لغة إنجليزية أو جورجية حسب البرنامج',
+        'تأمين صحي',
+        'إثبات تمويل',
+        'طلب إقامة طالب',
+      ],
+      feesAr: 'رسوم دولية بالدولار حسب الجامعة/البرنامج (مرجع شائع $2,500–$6,000+؛ الطب أعلى).',
+      visaAr: 'إقامة طالب / تأشيرة دراسة حسب الجنسية — عبر وكالة الهجرة الجورجية بعد القبول.',
+      caveats: [
+        'جداول الرسوم تختلف كثيراً بين العامة والخاصة وبين الطب وغير الطب.',
+        'لا تفترض أن منحة الدولة الجورجية تنطبق على الأجانب.',
+      ],
+      sources: [
+        {
+          label: 'Ilia State University — tuition & funding',
+          url: 'https://admissions.iliauni.edu.ge/en/tuition-fees-and-funding-opportunities/',
+        },
+        {
+          label: 'International Black Sea University — tuition',
+          url: 'https://ibsu.edu.ge/en/entrant/tuition-fees/',
+        },
+        {
+          label: 'SEU Georgia — international admission guidelines',
+          url: 'https://seu.edu.ge/',
+        },
+      ],
+      portals: [],
+      universities: [
+        'Ivane Javakhishvili Tbilisi State University',
+        'Ilia State University',
+        'Georgian Technical University',
+        'Caucasus University',
+        'International Black Sea University',
+        'Georgian American University',
+      ],
+    },
+  ],
+
+  'تايلاند': [
+    {
+      id: 'th-thai-tcas-lower-university-fee',
+      titleAr: 'مواطن تايلاندي — TCAS / رسوم جامعية أدنى',
+      match: ({ nationality }) => nationality === 'تايلاند',
+      whenAr:
+        'حسب Chulalongkorn University: الطلاب التايلانديون يلتحقون بالبرامج التايلاندية عبر نظام القبول المركزي TCAS (مجلس رؤساء الجامعات). حتى في بعض البرامج الدولية يبقى مكوّن «رسوم الجامعة» أدنى للمواطن التايلاندي من الأجنبي (مثال JIPP: 26,500 مقابل 82,700 بات/فصل لرسوم الجامعة).',
+      channelAr: 'TCAS للبرامج التايلاندية / تقديم البرنامج الدولي مع جدول رسوم Thai',
+      docs: [
+        'شهادة Mathayom 6 أو معادل تايلاندي',
+        'تسجيل TCAS أو تقديم البرنامج',
+        'اختبارات القبول الوطنية/الجامعية حسب المسار',
+        'هوية تايلاندية',
+      ],
+      feesAr: 'رسوم Thai (جامعة + برنامج) أدنى غالباً من جدول Foreign في البرامج الدولية.',
+      visaAr: 'لا تأشيرة طالب للمواطن التايلاندي.',
+      caveats: [
+        'البرامج الدولية لها جولات Early/Admission منفصلة وقد تشترط إنجليزية/SAT حتى للتايلانديين.',
+        'تحقق من جدول Thai مقابل Foreign لكل برنامج.',
+      ],
+      sources: [
+        {
+          label: 'Chulalongkorn — undergraduate admissions',
+          url: 'https://www.chula.ac.th/en/academics/admissions/undergraduate-admission/',
+        },
+        {
+          label: 'Chula Faculty of Psychology JIPP — Thai vs Non-Thai fees',
+          url: 'https://www.psy.chula.ac.th/en/undergraduate/jipp/overview/',
+        },
+        {
+          label: 'Chula Registrar — international tuition groups',
+          url: 'https://www.reg.chula.ac.th/admissions/english/',
+        },
+      ],
+      portals: [],
+      universities: [
+        'Chulalongkorn University',
+        'Mahidol University',
+        'Thammasat University',
+        'Chiang Mai University',
+        'King Mongkut\'s University of Technology Thonburi',
+      ],
+    },
+    {
+      id: 'th-non-thai-intl-higher-fee-ed-visa',
+      titleAr: 'غير تايلاندي — قبول دولي + رسوم Foreign + تأشيرة ED',
+      match: () => true,
+      whenAr:
+        'غير التايلانديين يتقدمون لمسارات دولية بمتطلبات لغة/اختبارات (IELTS/TOEFL/SAT/CU-AAT…) وجدول رسوم Foreign أعلى لرسوم الجامعة. بعد القبول يلزم غالباً تأشيرة Non-Immigrant ED وإقامة طالب؛ شهادة الثانوية الأجنبية قد تحتاج معادلة من الجامعة (مثل HSCES في Chula).',
+      channelAr: 'تقديم البرنامج الدولي مباشرة → قبول → تأشيرة ED / إقامة',
+      docs: [
+        'جواز غير تايلاندي',
+        'شهادة ثانوية + معادلة إن طُلبت',
+        'إثبات إنجليزي واختبارات قبول',
+        'تمويل',
+        'تأشيرة ED / تصريح إقامة طالب',
+      ],
+      feesAr: 'جدول Foreign — مثال Chula JIPP: رسوم جامعة 82,700 بات/فصل للأجنبي مقابل 26,500 للتايلاندي (+ رسوم البرنامج).',
+      visaAr: 'تأشيرة Non-Immigrant ED ثم تمديد/إقامة طالب داخل تايلاند.',
+      caveats: [
+        'بعض الإعلانات تفصل University Fee وProgram Fee حسب الجنسية صراحة.',
+        'لا تعتمد جدول Thai إذا كنت أجنبياً.',
+      ],
+      sources: [
+        {
+          label: 'Chulalongkorn — undergraduate admissions',
+          url: 'https://www.chula.ac.th/en/academics/admissions/undergraduate-admission/',
+        },
+        {
+          label: 'Chula Faculty of Psychology JIPP — Thai vs Non-Thai fees',
+          url: 'https://www.psy.chula.ac.th/en/undergraduate/jipp/overview/',
+        },
+        {
+          label: 'Chula Registrar — international tuition',
+          url: 'https://www.reg.chula.ac.th/admissions/english/',
+        },
+      ],
+      portals: [],
+      universities: [
+        'Chulalongkorn University',
+        'Mahidol University',
+        'Thammasat University',
+        'Chiang Mai University',
+        'King Mongkut\'s University of Technology Thonburi',
+        'Assumption University',
+      ],
+    },
+  ],
 });
 
 /**
@@ -3128,6 +3379,9 @@ export function exampleAlternateNationality(studyCountry, currentNationality) {
     لوكسمبورغ: 'الأردن',
     قبرص: 'الأردن',
     آيسلندا: 'الأردن',
+    ليختنشتاين: 'الأردن',
+    جورجيا: 'الأردن',
+    تايلاند: 'الأردن',
   };
   return alts[studyCountry] || 'الأردن';
 }
