@@ -7,6 +7,7 @@ import {
   countriesForRegion,
   countryAuthorities,
   globalInstitutions,
+  institutionsForCountry,
   qualificationSystems,
   recognitionFor,
   requirementsForApplicant,
@@ -110,6 +111,10 @@ export default function AdmissionsPage() {
   }, [studyCountry, nationality]);
   const nationalityMatrix = useMemo(() => nationalityMatrixRows(), []);
   const tracksSummary = useMemo(() => nationalityTracksSummary(), []);
+  const studyCountryUniversities = useMemo(
+    () => (studyCountry ? institutionsForCountry(studyCountry) : []),
+    [studyCountry],
+  );
   const docPack = applicantType === 'local' ? ADMISSION_DOC_PACKS.local : ADMISSION_DOC_PACKS.international;
 
   const pool = useMemo(() => {
@@ -344,16 +349,23 @@ export default function AdmissionsPage() {
               <thead>
                 <tr>
                   <th>دولة الدراسة</th>
+                  <th>جامعات في الفهرس</th>
                   <th>مواطن الدولة</th>
                   <th>جنسية أخرى (مثال)</th>
                 </tr>
               </thead>
               <tbody>
-                {nationalityMatrix.map((row) => (
+                {nationalityMatrix.map((row) => {
+                  const unis = institutionsForCountry(row.destination);
+                  return (
                   <tr key={row.destination} className={row.differs ? 'differs' : 'same'}>
                     <td>
                       <b>{row.destination}</b>
                       <small>{row.trackCount} مسارات</small>
+                    </td>
+                    <td>
+                      <b>{unis.length} جامعة</b>
+                      <small>{unis.slice(0, 3).map((u) => u.name).join(' · ') || '—'}</small>
                     </td>
                     <td>
                       <b>{row.citizen.titleAr}</b>
@@ -365,7 +377,8 @@ export default function AdmissionsPage() {
                       <small>{row.other.channelAr}</small>
                     </td>
                   </tr>
-                ))}
+                  );
+                })}
               </tbody>
             </table>
           </div>
@@ -624,6 +637,30 @@ export default function AdmissionsPage() {
                     </a>
                   ))}
                 </div>
+                {(nationalityTrack.universities?.length || studyCountryUniversities.length > 0) && (
+                  <div className="admission-track-universities">
+                    <b>جامعات مرتبطة بهذا المسار / الدولة</b>
+                    <ul>
+                      {(nationalityTrack.universities?.length
+                        ? nationalityTrack.universities
+                        : studyCountryUniversities.map((u) => u.name)
+                      ).slice(0, 8).map((name) => (
+                        <li key={name}>{name}</li>
+                      ))}
+                    </ul>
+                    {studyCountryUniversities.length > 0 && (
+                      <small>
+                        في فهرس SUCCESS OS: {studyCountryUniversities.length} مؤسسة في {studyCountry}
+                        {studyCountryUniversities.length > 3
+                          ? ` — منها: ${studyCountryUniversities
+                              .slice(0, 3)
+                              .map((u) => u.name)
+                              .join('، ')}`
+                          : ''}
+                      </small>
+                    )}
+                  </div>
+                )}
                 {nationalityContrast && !nationalityContrast.sameTrack && (
                   <div className="admission-nationality-contrast">
                     <b>نفس دولة الدراسة — جنسية مختلفة = مسار مختلف</b>

@@ -448,11 +448,25 @@
     "Details": "Official gateway for information and procedures related to foreign student admission into Algerian higher education institutions."
   },
   {
+    "Name": "Study in Austria",
+    "Website": "https://studyinaustria.at/",
+    "Type": "University Search Directory",
+    "Scope": "Austria",
+    "Details": "Official OeAD gateway for studying in Austria, including tuition rules that differ for EU/EEA vs third-country nationals."
+  },
+  {
     "Name": "Study in Egypt",
     "Website": "https://admission.study-in-egypt.gov.eg/",
     "Type": "Centralized Admission Portal",
     "Scope": "Egypt",
     "Details": "Official Egyptian Ministry platform for non-Egyptian (expatriate) students applying to Egyptian universities and institutes."
+  },
+  {
+    "Name": "Study in Flanders",
+    "Website": "https://www.studyinflanders.be/",
+    "Type": "University Search Directory",
+    "Scope": "Belgium",
+    "Details": "Official gateway for higher education in Flanders/Brussels with EU vs non-EU fee and visa guidance."
   },
   {
     "Name": "Study in India Portal",
@@ -546,11 +560,25 @@
     "Details": "The mandatory centralized admissions system for all UK university courses."
   },
   {
+    "Name": "UNEDasiss",
+    "Website": "https://unedasiss.uned.es/",
+    "Type": "Centralized Admission Portal",
+    "Scope": "Spain",
+    "Details": "UNED accreditation service for international access to Spanish universities. Pathways differ for EU education systems vs non-EU systems requiring Bachillerato homologation."
+  },
+  {
     "Name": "uni-assist",
     "Website": "https://www.uni-assist.de/en/",
     "Type": "Centralized Admission Portal",
     "Scope": "Germany",
     "Details": "Central evaluation service used by about 180 German universities for international applications, including VPD preliminary review documentation."
+  },
+  {
+    "Name": "Universitaly",
+    "Website": "https://www.universitaly.it/studenti-stranieri",
+    "Type": "Centralized Admission Portal",
+    "Scope": "Italy",
+    "Details": "Italian Ministry portal for international pre-enrolment. Mandatory for non-EU students residing abroad who need a study visa; EU citizens and legal residents apply directly to universities."
   },
   {
     "Name": "University Admissions Sweden",
@@ -579,6 +607,13 @@
     "Type": "Centralized Admission Portal",
     "Scope": "Australia (Victoria)",
     "Details": "Centralized admissions center for universities in Victoria."
+  },
+  {
+    "Name": "Wallonie-Bruxelles Campus",
+    "Website": "https://www.studyinbelgium.be/",
+    "Type": "University Search Directory",
+    "Scope": "Belgium",
+    "Details": "Official campus portal for the French-speaking Community of Belgium covering programmes, fees and admission for international students."
   },
   {
     "Name": "World Higher Education Database",

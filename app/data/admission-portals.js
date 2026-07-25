@@ -74,6 +74,10 @@ const SCOPE_AR = {
   Kenya: 'كينيا',
   Sweden: 'السويد',
   Brazil: 'البرازيل',
+  Italy: 'إيطاليا',
+  Austria: 'النمسا',
+  Spain: 'إسبانيا',
+  Belgium: 'بلجيكا',
 };
 
 function scopeBuckets(scope) {
@@ -91,6 +95,10 @@ function scopeBuckets(scope) {
     s.includes('netherlands') ||
     s.includes('denmark') ||
     s.includes('sweden') ||
+    s.includes('italy') ||
+    s.includes('austria') ||
+    s.includes('spain') ||
+    s.includes('belgium') ||
     s.includes('europe')
   ) {
     return ['europe', 'global'];
@@ -339,6 +347,31 @@ const COUNTRY_PORTAL_IDS = {
     'sisu-brazil',
     'pec-g-brazil',
     'applyboard',
+    'top-universities',
+    'world-higher-education-database',
+  ],
+  'إيطاليا': [
+    'universitaly',
+    'bachelorsportal',
+    'top-universities',
+    'world-higher-education-database',
+  ],
+  'النمسا': [
+    'study-in-austria',
+    'bachelorsportal',
+    'top-universities',
+    'world-higher-education-database',
+  ],
+  'إسبانيا': [
+    'unedasiss',
+    'bachelorsportal',
+    'top-universities',
+    'world-higher-education-database',
+  ],
+  'بلجيكا': [
+    'study-in-flanders',
+    'wallonie-bruxelles-campus',
+    'bachelorsportal',
     'top-universities',
     'world-higher-education-database',
   ],

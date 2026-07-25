@@ -1365,6 +1365,213 @@ export const DESTINATION_TRACKS = Object.freeze({
       portals: ['university-admissions-sweden', 'study-in-sweden'],
     },
   ],
+
+  'إيطاليا': [
+    {
+      id: 'it-eu-or-resident-direct',
+      titleAr: 'إيطالي / EU-EEA / سويسرا / مقيم قانوني — تقديم مباشر للجامعة (بدون Universitaly)',
+      match: ({ nationality, residenceCountry }) =>
+        nationality === 'إيطاليا' ||
+        isEuEea(nationality) ||
+        residenceCountry === 'إيطاليا',
+      whenAr:
+        'المواطنون الإيطاليون ومواطنو الاتحاد الأوروبي / المنطقة الاقتصادية وسويسرا وسان مارينو والكرسي الرسولي، وكذلك غير الأوروبيين المقيمين قانونياً في إيطاليا، يتقدمون مباشرة للجامعة دون إجراء ما قبل التسجيل عبر Universitaly ودون حصص الأجانب طالبي التأشيرة.',
+      channelAr: 'بوابة الجامعة مباشرة (immatricolazione) — لا Universitaly للفيزا',
+      docs: [
+        'شهادة ثانوية إيطالية أو مؤهل أجنبي مقبول لدى الجامعة',
+        'طلب التسجيل الجامعي حسب المواعيد',
+        'إثبات لغة إيطالية/إنجليزية حسب البرنامج',
+      ],
+      feesAr: 'رسوم جامعية حسب الجامعة والدخل (ISEE للمقيمين)؛ ليست رسوم «دولي» منفصلة كالفيزا-طلاب.',
+      visaAr: 'EU/EEA: تسجيل إقامة؛ الإيطالي لا يحتاج تأشيرة. المقيم القانوني يستخدم تصريحه الحالي.',
+      caveats: [
+        'ازدواج جنسية يشمل EU يعفيك عادة من Universitaly.',
+        'برامج محدودة العدد (طب…) لها اختبارات وطنية منفصلة.',
+      ],
+      sources: [
+        { label: 'Universitaly — studenti stranieri', url: 'https://www.universitaly.it/studenti-stranieri' },
+        { label: 'University of Milan — international enrolment', url: 'https://www.unimi.it/en/international/coming-abroad/enrol-programme/international-enrolment-degree-programmes' },
+      ],
+      portals: ['universitaly'],
+      universities: ['Sapienza Università di Roma', 'Politecnico di Milano', 'Università di Bologna', 'University of Milan'],
+    },
+    {
+      id: 'it-non-eu-abroad-universitaly',
+      titleAr: 'غير أوروبي مقيم خارج إيطاليا — ما قبل تسجيل Universitaly + تأشيرة دراسة',
+      match: () => true,
+      whenAr:
+        'غير الأوروبيين المقيمين خارج إيطاليا ملزمون بتقديم طلب ما قبل التسجيل (pre-enrolment) عبر بوابة Universitaly الرسمية لوزارة الجامعة والبحث، ثم متابعة التأشيرة لدى القنصلية ضمن المواعيد الوزارية، وغالباً ضمن حصص الأجانب للبرنامج.',
+      channelAr: 'قبول الجامعة → Universitaly pre-enrolment → تأشيرة دراسة قنصلية',
+      docs: [
+        'جواز دولة ثالثة + إقامة خارج إيطاليا',
+        'قبول/تقييم الجامعة',
+        'طلب Universitaly',
+        'تأشيرة دراسة + permesso di soggiorno بعد الوصول',
+        'اختبار إيطالية للبرامج بالإيطالية إن انطبق',
+      ],
+      feesAr: 'رسوم جامعية حسب المؤسسة + تكاليف التأشيرة/الإقامة؛ المواعيد أبكر من مسار EU.',
+      visaAr: 'تأشيرة دراسة إلزامية؛ مواعيد وزارية (مثال 2026/27: طلبات التأشيرة حتى 30 نوفمبر 2026).',
+      caveats: [
+        'موافقة Universitaly/الجامعة لا تضمن التأشيرة — القرار للقنصلية.',
+        'لا تبدأ Universitaly قبل قبول/عرض الجامعة حيث يُطلب ذلك.',
+      ],
+      sources: [
+        { label: 'Universitaly — studenti stranieri', url: 'https://www.universitaly.it/studenti-stranieri' },
+        { label: 'University of Turin — Universitaly FAQ', url: 'https://en.unito.it/studying-unito/international-degree-seeking-students/faqs/faqs-visa-and-pre-enrolment-universitaly' },
+      ],
+      portals: ['universitaly'],
+      universities: ['Sapienza Università di Roma', 'Politecnico di Milano', 'Università di Bologna', 'University of Padua'],
+    },
+  ],
+
+  'النمسا': [
+    {
+      id: 'at-eu-eea-fee-exempt',
+      titleAr: 'نمساوي / EU-EEA — إعفاء من الرسوم ضمن المدة النظامية (+ فصلان تسامح)',
+      match: ({ nationality }) => nationality === 'النمسا' || isEuEea(nationality),
+      whenAr:
+        'في الجامعات الحكومية النمساوية، المواطنون النمساويون ومواطنو EU/EEA (ومن في حكمهم) لا يدفعون رسوماً دراسية أثناء المدة النظامية للبرنامج + فصلين تسامح؛ بعدها ≈ 363.36 يورو/فصل. رسوم اتحاد الطلاب ÖH إلزامية للجميع.',
+      channelAr: 'تقديم الجامعة / u:find حسب المؤسسة',
+      docs: ['شهادة ثانوية نمساوية أو معادل', 'إثبات جنسية EU/EEA', 'لغة ألمانية/إنجليزية حسب البرنامج'],
+      feesAr: 'بدون رسوم دراسية ضمن المدة النظامية+تسامح؛ ثم ≈ €363.36/فصل + ÖH.',
+      visaAr: 'EU/EEA: تسجيل إقامة؛ النمساوي لا يحتاج تصريح طالب.',
+      caveats: ['جامعات العلوم التطبيقية (FH) قد تفرض رسوماً مختلفة — تحقق من المؤسسة.'],
+      sources: [
+        { label: 'Study in Austria — tuition', url: 'https://studyinaustria.at/en/tuition' },
+        { label: 'oesterreich.gv.at — university fees', url: 'https://www.oesterreich.gv.at/en/themen/bildung_und_ausbildung/hochschulen/universitaet/Seite.160104' },
+        { label: 'TU Wien — tuition fee', url: 'https://www.tuwien.at/en/studies/admission/students-union-fee-and-tuition-fee/tuition-fee' },
+      ],
+      portals: ['study-in-austria'],
+      universities: ['University of Vienna', 'TU Wien', 'University of Innsbruck', 'Universität Graz'],
+    },
+    {
+      id: 'at-third-country-tuition',
+      titleAr: 'دولة ثالثة — رسوم أعلى من الفصل الأول + تصريح إقامة طالب',
+      match: () => true,
+      whenAr:
+        'طلاب الدول الثالثة الحاصلون على تصريح إقامة طالب يدفعون عموماً رسوماً أعلى من الفصل الأول (حوالي €726.72–€751.92/فصل وفق الجهة/السنة) إضافة إلى ÖH، مع تقديم مباشر للجامعة ومتطلبات لغة وتمويل.',
+      channelAr: 'تقديم الجامعة الدولي → Residence Permit – Student',
+      docs: ['جواز دولة ثالثة', 'شهادة ثانوية معادلة', 'لغة', 'تمويل', 'تصريح إقامة طالب'],
+      feesAr: '≈ €726–€752/فصل دراسي (+ ÖH) في الجامعات الحكومية غالباً.',
+      visaAr: 'تصريح إقامة طالب قبل أو عند بدء الدراسة وفق قواعد الهجرة.',
+      caveats: ['بعض الجنسيات/المنح قد تُعفى جزئياً — راجع الجامعة وOeAD.'],
+      sources: [
+        { label: 'Study in Austria — tuition', url: 'https://studyinaustria.at/en/tuition' },
+        { label: 'BMFWF — tuition fees', url: 'https://www.bmfwf.gv.at/en/science/studying/tuition-fees.html' },
+      ],
+      portals: ['study-in-austria'],
+      universities: ['University of Vienna', 'TU Wien', 'University of Innsbruck'],
+    },
+  ],
+
+  'إسبانيا': [
+    {
+      id: 'es-spanish-bachillerato-pau',
+      titleAr: 'إسباني / نظام Bachillerato إسباني — PAU/EBAU ثم الجامعة',
+      match: ({ nationality, qualificationCountry }) =>
+        nationality === 'إسبانيا' || qualificationCountry === 'إسبانيا',
+      whenAr:
+        'خريجو النظام التعليمي الإسباني (Bachillerato) يدخلون عبر اختبار القبول الجامعي PAU/EBAU (Selectividad) ثم التقديم للجامعات العامة/الخاصة وفق درجات القطع — مسار منفصل عن اعتماد UNEDasiss للأجانب.',
+      channelAr: 'PAU/EBAU → تقديم الجامعة الإسبانية',
+      docs: ['Bachillerato إسباني', 'PAU/EBAU', 'طلب الجامعة'],
+      feesAr: 'رسوم جامعات عامة حسب الإقليم؛ أسعار مقيمين عادة أقل من غير المقيمين من خارج الاتحاد في بعض الأقاليم.',
+      visaAr: 'غير مطلوب للمواطن الإسباني.',
+      caveats: ['الإسباني بشهادة أجنبية قد يُحوَّل لمسار UNEDasiss — بلد الشهادة مهم.'],
+      sources: [
+        { label: 'UNEDasiss FAQs', url: 'https://unedasiss.uned.es/faqs%26idioma%3Den' },
+      ],
+      portals: ['unedasiss'],
+      universities: ['Universidad Complutense de Madrid', 'Universitat de Barcelona', 'Universidad Autónoma de Madrid', 'Universidad de Valencia'],
+    },
+    {
+      id: 'es-eu-unedasiss',
+      titleAr: 'نظام تعليمي EU / اتفاقيات — اعتماد UNEDasiss (بدون معادلة كاملة غالباً)',
+      match: ({ nationality, qualificationCountry }) =>
+        isEuEea(nationality) || isEuEea(qualificationCountry),
+      whenAr:
+        'حسب UNEDasiss الرسمي: مسارات القبول الدولي تختلف بين طلاب أنظمة الاتحاد الأوروبي (أو دول باتفاقيات متبادلة) وبين غيرهم. مسار EU غالباً اعتماد رقمي + PCE اختيارية لتحسين الدرجة، دون اشتراط معادلة Bachillerato كخطوة أولى إلزامية كغير EU.',
+      channelAr: 'UNEDasiss → الجامعة (تحقق إن كانت تقبل الاعتماد)',
+      docs: ['شهادة ثانوية من نظام EU/اتفاقية', 'طلب اعتماد UNEDasiss', 'PCE إن رغبت برفع الدرجة', 'طلب الجامعة'],
+      feesAr: 'رسوم عامة؛ مواطنو EU لا يحتاجون تأشيرة دراسة من نوع الدول الثالثة.',
+      visaAr: 'EU/EEA: حرية تنقل/تسجيل؛ ليس مسار تأشيرة طالب للدول الثالثة.',
+      caveats: ['ليست كل الجامعات تقبل UNEDasiss — أكّد مع الجامعة المستهدفة.'],
+      sources: [
+        { label: 'UNEDasiss FAQs — EU vs other', url: 'https://unedasiss.uned.es/faqs%26idioma%3Den' },
+      ],
+      portals: ['unedasiss'],
+      universities: ['Universidad Complutense de Madrid', 'Universitat de Barcelona', 'Universidad Autónoma de Madrid'],
+    },
+    {
+      id: 'es-non-eu-homologation-unedasiss',
+      titleAr: 'خارج EU/بدون اتفاقية — معادلة Bachillerato + UNEDasiss/PCE + تأشيرة',
+      match: () => true,
+      whenAr:
+        'طلاب الأنظمة خارج الاتحاد/بدون اتفاقية يبدأون عادة بطلب معادلة الشهادة الثانوية لـ Bachillerato لدى وزارة التعليم الإسبانية، ثم اعتماد UNEDasiss وغالباً أربع مواد PCE على الأقل، مع تأشيرة دراسة لغير المقيمين.',
+      channelAr: 'معادلة وزارة التعليم → UNEDasiss + PCE → الجامعة + تأشيرة',
+      docs: [
+        'جواز دولة ثالثة',
+        'طلب homologación لـ Bachillerato',
+        'اعتماد UNEDasiss',
+        'PCE (يُنصح بأربع مواد على الأقل)',
+        'تمويل وتأشيرة دراسة',
+      ],
+      feesAr: 'رسوم جامعية + رسوم اعتماد/امتحانات UNED؛ قد تختلف معاملة الرسوم حسب الإقليم والإقامة.',
+      visaAr: 'تأشيرة دراسة إسبانية لغير المقيمين من الدول الثالثة.',
+      caveats: [
+        'المعادلة قد تستغرق وقتاً طويلاً — يمكن اعتماد مؤقت أثناء المعالجة في بعض الحالات.',
+        'بلد النظام التعليمي أهم من الجنسية وحدها؛ لكن التأشيرة والرسوم تتأثران بالجنسية/الإقامة.',
+      ],
+      sources: [
+        { label: 'UNEDasiss FAQs — non-EU start', url: 'https://unedasiss.uned.es/faqs%26idioma%3Den' },
+      ],
+      portals: ['unedasiss'],
+      universities: ['Universidad Complutense de Madrid', 'Universitat de Barcelona', 'Universidad de Valencia'],
+    },
+  ],
+
+  'بلجيكا': [
+    {
+      id: 'be-eu-eea-lower-fees',
+      titleAr: 'بلجيكي / EU-EEA / سويسرا — رسوم أدنى وبدون تأشيرة طالب',
+      match: ({ nationality }) => nationality === 'بلجيكا' || isEuEea(nationality),
+      whenAr:
+        'التعليم اختصاص المجتمعات (فلاندرز/والونيا/الألمانية). مواطنو EU/EEA/سويسرا يدفعون عادة الرسوم القانونية الأدنى (مثال فلاندرز ≈ €1,157 لعام 2025–26) ويتقدمون مباشرة للمؤسسة بمواعيد أوسع غالباً، دون تأشيرة D.',
+      channelAr: 'تقديم الجامعة / University College حسب المجتمع اللغوي',
+      docs: ['شهادة ثانوية / معادل', 'إثبات جنسية EU/EEA', 'لغة هولندية أو فرنسية أو إنجليزية حسب البرنامج'],
+      feesAr: 'رسوم قانونية EU أقل بكثير من غير EU (تختلف فلاندرز عن والونيا).',
+      visaAr: 'لا تأشيرة طالب لدول EU/EEA/سويسرا.',
+      caveats: ['تحقق من مجتمع المؤسسة (Flemish / French-speaking) لأن الرسوم والمواعيد تختلف.'],
+      sources: [
+        { label: 'Belgium.be — coming to study', url: 'https://www.belgium.be/en/education/coming_to_study_in_belgium' },
+        { label: 'European Education Area — Flanders fees', url: 'https://education.ec.europa.eu/study-in-europe/countries/belgium/flanders' },
+      ],
+      portals: ['study-in-flanders', 'wallonie-bruxelles-campus'],
+      universities: ['KU Leuven', 'Ghent University', 'UCLouvain', 'Université libre de Bruxelles'],
+    },
+    {
+      id: 'be-non-eu-higher-fees-visa',
+      titleAr: 'غير EU — رسوم أعلى + معادلة + تأشيرة D',
+      match: () => true,
+      whenAr:
+        'غير الأوروبيين يواجهون رسوماً أعلى (في فلاندرز قد تصل إلى عدة آلاف يورو حسب البرنامج؛ في والونيا تُضاف مساهمة إضافية كبيرة غالباً)، ومواعيد تقديم أبكر، ومعادلة للشهادة الثانوية عند البكالوريوس، ثم تأشيرة إقامة طويلة من نوع D.',
+      channelAr: 'تقديم المؤسسة مبكراً → معادلة إن لزم → تأشيرة D / إقامة طالب',
+      docs: [
+        'جواز دولة ثالثة',
+        'شهادة ثانوية + معادلة (CESS معادل) للبكالوريوس',
+        'إثبات تمويل وتأمين صحي',
+        'تأشيرة D بعد القبول',
+      ],
+      feesAr: 'أعلى من رسوم EU — مثال فلاندرز €1,200–€8,000 حسب البرنامج؛ والونيا غالباً رسوم+مساهمة إضافية.',
+      visaAr: 'تأشيرة طويلة الأمد (D) للدراسة ثم تسجيل البلدية.',
+      caveats: ['بعض جنسيات الدول النامية قد تُعامل برسوم أقرب لـ EU في والونيا — راجع المؤسسة.'],
+      sources: [
+        { label: 'IBZ — study visa D', url: 'https://dofi.ibz.be/en/themes/third-country-nationals/study/higher-education/recognised-higher-education-public/initial' },
+        { label: 'European Education Area — Flanders', url: 'https://education.ec.europa.eu/study-in-europe/countries/belgium/flanders' },
+      ],
+      portals: ['study-in-flanders', 'wallonie-bruxelles-campus'],
+      universities: ['KU Leuven', 'Ghent University', 'UCLouvain', 'Université libre de Bruxelles'],
+    },
+  ],
 });
 
 /**
@@ -1492,6 +1699,10 @@ export function exampleAlternateNationality(studyCountry, currentNationality) {
     كينيا: 'الأردن',
     البرازيل: 'الأردن',
     السويد: 'الأردن',
+    إيطاليا: 'الأردن',
+    النمسا: 'الأردن',
+    إسبانيا: 'الأردن',
+    بلجيكا: 'الأردن',
   };
   return alts[studyCountry] || 'الأردن';
 }
@@ -1565,6 +1776,11 @@ export function nationalityTracksSummary() {
       'https://www.gov.br/mec/pt-br/sisu',
       'https://www.universityadmissions.se/',
       'https://www.uhr.se/en/start/laws-and-regulations/Laws-and-regulations/Ordinance-on-application-fees-and-tuition-fees-at-higher-education-institutions/',
+      'https://www.universitaly.it/studenti-stranieri',
+      'https://studyinaustria.at/en/tuition',
+      'https://unedasiss.uned.es/faqs%26idioma%3Den',
+      'https://www.belgium.be/en/education/coming_to_study_in_belgium',
+      'https://education.ec.europa.eu/study-in-europe/countries/belgium/flanders',
     ],
   };
 }
