@@ -7,30 +7,30 @@ import type {
 
 type PreviewApplication = {
   id: string;
+  user_id: string;
   institution_id: string;
   payment_id: string;
   status: string;
   route: "partner" | "email";
   personal: ApplicationPersonal;
   profile: AdmissionProfileInput;
-  transcript_path: string;
-  passport_path: string;
+  transcript_file_url: string;
+  passport_file_url: string;
   message?: string;
   created_at: string;
 };
 
 type PreviewNotification = {
   id: string;
-  audience: "student" | "institution";
+  user_id: string;
   title: string;
-  body: string;
-  application_id: string;
+  message: string;
+  is_read: boolean;
   created_at: string;
-  read: boolean;
 };
 
 const g = globalThis as unknown as {
-  __sosAdmissionPayments?: Map<string, PaymentRecord & { unlock_token: string }>;
+  __sosAdmissionPayments?: Map<string, PaymentRecord>;
   __sosAdmissionApps?: Map<string, PreviewApplication>;
   __sosAdmissionNotes?: PreviewNotification[];
   __sosAdmissionFiles?: Map<string, { name: string; type: string; dataBase64: string }>;
@@ -53,18 +53,17 @@ function files() {
   return g.__sosAdmissionFiles;
 }
 
-export function previewCreatePayment(institutionId: string) {
+export function previewCreatePayment(institutionId: string, userId?: string) {
   const id = randomUUID();
-  const unlock = randomUUID().replace(/-/g, "");
-  const row = {
+  const sessionId = `preview_cs_${id}`;
+  const row: PaymentRecord = {
     id,
+    user_id: userId || null,
     institution_id: institutionId,
-    amount_cents: 500,
-    currency: "usd",
-    status: "pending" as const,
-    stripe_session_id: `preview_cs_${id}`,
-    unlock_token: unlock,
-    paid_at: null,
+    amount: 5,
+    status: "pending",
+    stripe_session_id: sessionId,
+    unlock_token: sessionId,
   };
   payments().set(id, row);
   return row;
@@ -73,8 +72,7 @@ export function previewCreatePayment(institutionId: string) {
 export function previewMarkPaidBySession(sessionId: string) {
   for (const row of payments().values()) {
     if (row.stripe_session_id === sessionId) {
-      row.status = "paid";
-      row.paid_at = new Date().toISOString();
+      row.status = "completed";
       payments().set(row.id, row);
       return row;
     }
@@ -85,8 +83,7 @@ export function previewMarkPaidBySession(sessionId: string) {
 export function previewMarkPaidById(paymentId: string) {
   const row = payments().get(paymentId);
   if (!row) return null;
-  row.status = "paid";
-  row.paid_at = new Date().toISOString();
+  row.status = "completed";
   payments().set(paymentId, row);
   return row;
 }
@@ -108,6 +105,7 @@ export function previewGetFile(path: string) {
 }
 
 export function previewSaveApplication(input: {
+  userId: string;
   institutionId: string;
   paymentId: string;
   route: "partner" | "email";
@@ -120,14 +118,15 @@ export function previewSaveApplication(input: {
   const id = randomUUID();
   const row: PreviewApplication = {
     id,
+    user_id: input.userId,
     institution_id: input.institutionId,
     payment_id: input.paymentId,
-    status: input.route === "partner" ? "pending" : "emailed",
+    status: "submitted",
     route: input.route,
     personal: input.personal,
     profile: input.profile,
-    transcript_path: input.transcriptPath,
-    passport_path: input.passportPath,
+    transcript_file_url: input.transcriptPath,
+    passport_file_url: input.passportPath,
     message: input.message,
     created_at: new Date().toISOString(),
   };
@@ -135,12 +134,14 @@ export function previewSaveApplication(input: {
   return row;
 }
 
-export function previewPushNotifications(rows: Omit<PreviewNotification, "id" | "created_at" | "read">[]) {
+export function previewPushNotifications(
+  rows: Array<{ user_id: string; title: string; message: string }>,
+) {
   const created = rows.map((r) => ({
     ...r,
     id: randomUUID(),
     created_at: new Date().toISOString(),
-    read: false,
+    is_read: false,
   }));
   notes().unshift(...created);
   return created;

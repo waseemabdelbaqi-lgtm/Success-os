@@ -1,14 +1,11 @@
-export type InstitutionKind = "university" | "college" | "school";
+export type InstitutionType = "university" | "college" | "school";
 export type TargetDegree = "bachelor" | "master" | "phd" | "diploma" | "school";
-export type PaymentStatus = "pending" | "paid" | "failed" | "refunded";
+export type PaymentStatus = "pending" | "completed" | "failed";
 export type ApplicationRoute = "partner" | "email";
-export type ApplicationStatus =
-  | "pending"
-  | "submitted"
-  | "under_review"
-  | "accepted"
-  | "rejected"
-  | "emailed";
+export type ApplicationStatus = "submitted" | "under_review" | "accepted" | "rejected";
+
+/** @deprecated use InstitutionType */
+export type InstitutionKind = InstitutionType;
 
 export interface AdmissionProfileInput {
   fullName: string;
@@ -19,45 +16,40 @@ export interface AdmissionProfileInput {
   targetDegree: TargetDegree;
   major: string;
   preferredStudyCountry?: string;
+  /** Supabase auth user id when signed in */
+  userId?: string;
 }
 
-export interface AdmissionsCriteria {
+export interface AdmissionCriteria {
   id?: string;
   institution_id?: string;
   nationality: string;
-  title: string;
-  channel?: string | null;
-  fees_note?: string | null;
-  visa_note?: string | null;
-  docs: string[];
-  summary?: string | null;
+  min_gpa: number;
+  requirements_text: string;
 }
 
 export interface Institution {
   id: string;
-  slug: string;
   name: string;
-  kind: InstitutionKind;
-  country: string;
-  city?: string | null;
-  majors: string[];
-  degrees: string[];
-  is_partner: boolean;
+  type: InstitutionType;
   official_email: string;
-  website?: string | null;
-  min_gpa?: number | null;
-  criteria?: AdmissionsCriteria | null;
+  is_partner: boolean;
+  logo_url?: string | null;
+  country?: string | null;
+  majors?: string[];
+  /** Criteria matched to the student's nationality (or All) */
+  criteria?: AdmissionCriteria | null;
 }
 
 export interface PaymentRecord {
   id: string;
+  user_id?: string | null;
   institution_id: string;
-  amount_cents: number;
-  currency: string;
+  amount: number;
   status: PaymentStatus;
-  stripe_session_id?: string | null;
+  stripe_session_id: string;
+  /** Client unlock key — mirrors stripe_session_id in this schema */
   unlock_token?: string | null;
-  paid_at?: string | null;
 }
 
 export interface ApplicationPersonal {

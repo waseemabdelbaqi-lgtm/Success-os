@@ -10,7 +10,6 @@ export async function POST(request: Request) {
   const signature = request.headers.get("stripe-signature");
 
   if (!isStripeConfigured()) {
-    // Preview webhook: accept JSON with session id
     try {
       const body = JSON.parse(payload) as { sessionId?: string };
       if (body.sessionId) {
@@ -39,11 +38,7 @@ export async function POST(request: Request) {
   }
 
   if (event.type === "checkout.session.completed") {
-    const session = event.data.object as {
-      id: string;
-      payment_intent?: string | null;
-      metadata?: { payment_id?: string };
-    };
+    const session = event.data.object as { id: string };
 
     const supabase = getSupabaseServerClient();
     if (!supabase) {
@@ -51,18 +46,20 @@ export async function POST(request: Request) {
       return NextResponse.json({ received: true, mode: "preview" });
     }
 
-    const paymentId = session.metadata?.payment_id;
-    const update = {
-      status: "paid" as const,
-      paid_at: new Date().toISOString(),
-      stripe_payment_intent_id:
-        typeof session.payment_intent === "string" ? session.payment_intent : null,
-    };
+    await supabase
+      .from("payments")
+      .update({ status: "completed" })
+      .eq("stripe_session_id", session.id);
+  }
 
-    if (paymentId) {
-      await supabase.from("payments").update(update).eq("id", paymentId);
-    } else {
-      await supabase.from("payments").update(update).eq("stripe_session_id", session.id);
+  if (event.type === "checkout.session.expired") {
+    const session = event.data.object as { id: string };
+    const supabase = getSupabaseServerClient();
+    if (supabase) {
+      await supabase
+        .from("payments")
+        .update({ status: "failed" })
+        .eq("stripe_session_id", session.id);
     }
   }
 

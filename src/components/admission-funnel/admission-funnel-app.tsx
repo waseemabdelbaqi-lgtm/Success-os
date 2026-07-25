@@ -111,7 +111,7 @@ export function AdmissionFunnelApp() {
           institutionId?: string;
           status?: string;
         };
-        if (data.paymentId && data.unlockToken && data.status === "paid") {
+        if (data.paymentId && data.unlockToken && data.status === "completed") {
           setPaymentId(data.paymentId);
           setUnlockToken(data.unlockToken);
           const instId = institution_id || data.institutionId || "";
@@ -287,6 +287,7 @@ export function AdmissionFunnelApp() {
       <PaymentDialog
         open={payOpen}
         institution={selected}
+        profile={profile}
         customerEmail={profile.email}
         onOpenChange={setPayOpen}
         onUnlocked={({ paymentId: pid, unlockToken: token, institutionId }) => {

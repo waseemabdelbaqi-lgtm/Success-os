@@ -51,13 +51,25 @@ export function useAdmissionNotifications(refreshKey = 0) {
             event: "INSERT",
             schema: "public",
             table: "notifications",
-            filter: "audience=eq.student",
           },
           (payload) => {
-            const row = payload.new as AdmissionNotification;
+            const row = payload.new as {
+              id: string;
+              title: string;
+              message: string;
+              created_at: string;
+              is_read: boolean;
+            };
+            const mapped: AdmissionNotification = {
+              id: row.id,
+              title: row.title,
+              body: row.message,
+              created_at: row.created_at,
+              read: row.is_read,
+            };
             setItems((prev) => {
-              if (prev.some((p) => p.id === row.id)) return prev;
-              return [row, ...prev];
+              if (prev.some((p) => p.id === mapped.id)) return prev;
+              return [mapped, ...prev];
             });
           },
         )

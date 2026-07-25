@@ -1,147 +1,147 @@
-import type { Institution } from "@/src/types/admission";
-import type { AdmissionProfileInput } from "@/src/types/admission";
+import type { AdmissionProfileInput, Institution } from "@/src/types/admission";
 
 /**
- * Offline / preview catalogue used when Supabase env vars are absent.
- * Mirrors seeded rows in supabase/migrations/20260725_admission_funnel.sql
- * and maps onto the existing SUCCESS OS nationality research where possible.
+ * Offline / preview catalogue — mirrors seeded rows in
+ * supabase/migrations/20260725_admission_funnel.sql
  */
 export const FALLBACK_INSTITUTIONS: Institution[] = [
   {
     id: "00000000-0000-4000-8000-000000000001",
-    slug: "tum",
     name: "Technical University of Munich",
-    kind: "university",
+    type: "university",
     country: "Germany",
-    city: "Munich",
-    majors: ["Engineering", "Computing", "Sciences", "هندسة", "حوسبة", "علوم"],
-    degrees: ["bachelor", "master", "phd"],
+    majors: ["Engineering", "Computing", "Sciences"],
     is_partner: true,
     official_email: "studium@tum.de",
-    website: "https://www.tum.de",
-    min_gpa: 3.0,
   },
   {
     id: "00000000-0000-4000-8000-000000000002",
-    slug: "rwth",
     name: "RWTH Aachen University",
-    kind: "university",
+    type: "university",
     country: "Germany",
-    city: "Aachen",
-    majors: ["Engineering", "Computing", "Sciences", "هندسة", "حوسبة", "علوم"],
-    degrees: ["bachelor", "master", "phd"],
+    majors: ["Engineering", "Computing", "Sciences"],
     is_partner: false,
     official_email: "international@rwth-aachen.de",
-    website: "https://www.rwth-aachen.de",
-    min_gpa: 2.8,
   },
   {
     id: "00000000-0000-4000-8000-000000000003",
-    slug: "ju",
     name: "University of Jordan",
-    kind: "university",
+    type: "university",
     country: "Jordan",
-    city: "Amman",
-    majors: ["Engineering", "Business", "Medicine", "Sciences", "هندسة", "أعمال", "طب وصحة", "علوم"],
-    degrees: ["bachelor", "master", "phd"],
+    majors: ["Engineering", "Business", "Medicine", "Sciences"],
     is_partner: true,
     official_email: "admission@ju.edu.jo",
-    website: "https://www.ju.edu.jo",
-    min_gpa: 2.5,
   },
   {
     id: "00000000-0000-4000-8000-000000000004",
-    slug: "fontys",
     name: "Fontys University of Applied Sciences",
-    kind: "college",
+    type: "college",
     country: "Netherlands",
-    city: "Eindhoven",
-    majors: ["Engineering", "Computing", "Business", "Design", "هندسة", "حوسبة", "أعمال"],
-    degrees: ["bachelor", "diploma"],
+    majors: ["Engineering", "Computing", "Business", "Design"],
     is_partner: true,
     official_email: "international@fontys.nl",
-    website: "https://fontys.edu",
-    min_gpa: 2.5,
   },
   {
     id: "00000000-0000-4000-8000-000000000005",
-    slug: "patana",
     name: "Bangkok Patana School",
-    kind: "school",
+    type: "school",
     country: "Thailand",
-    city: "Bangkok",
     majors: ["IB", "British Curriculum"],
-    degrees: ["school"],
     is_partner: true,
     official_email: "admissions@patana.ac.th",
-    website: "https://www.patana.ac.th",
-    min_gpa: 0,
   },
 ];
 
-const CRITERIA: Record<string, Record<string, Institution["criteria"]>> = {
-  tum: {
-    Jordan: {
+const CRITERIA: Record<string, Array<{ nationality: string; min_gpa: number; requirements_text: string }>> = {
+  "00000000-0000-4000-8000-000000000001": [
+    {
       nationality: "Jordan",
-      title: "Non-EU international track",
-      channel: "uni-assist / direct",
-      fees_note: "No tuition at most public unis; semester fee applies",
-      visa_note: "National D visa / residence",
-      docs: ["Secondary certificate", "Passport", "Proof of funds", "Language proof"],
-      summary: "Jordanian nationals follow the international / uni-assist path for TUM.",
+      min_gpa: 3.0,
+      requirements_text:
+        "Non-EU international track via uni-assist/direct. Docs: secondary certificate, passport, proof of funds, German or English language proof.",
     },
-    Germany: {
-      nationality: "Germany",
-      title: "Domestic / EU track",
-      channel: "Hochschulstart or direct",
-      fees_note: "Semester contribution only",
-      visa_note: "No student visa for EU/DE",
-      docs: ["Abitur or equivalent", "ID"],
-      summary: "German / EU applicants use domestic channels.",
+    {
+      nationality: "All",
+      min_gpa: 3.0,
+      requirements_text:
+        "International applicants: secondary certificate, passport, language proof, proof of funds.",
     },
-  },
-  rwth: {
-    Jordan: {
+  ],
+  "00000000-0000-4000-8000-000000000002": [
+    {
       nationality: "Jordan",
-      title: "Non-EU international track",
-      channel: "Direct international office",
-      fees_note: "Semester fee + living costs",
-      visa_note: "Student residence permit",
-      docs: ["Secondary certificate", "Passport", "Language proof"],
-      summary: "Non-partner route — applications are emailed to RWTH admissions.",
+      min_gpa: 2.8,
+      requirements_text:
+        "Non-EU track via RWTH international office. Non-partner — applications emailed to admissions.",
     },
-  },
-  ju: {
-    Jordan: {
+    {
+      nationality: "All",
+      min_gpa: 2.8,
+      requirements_text: "International GPA floor 2.8. Language proof and passport required.",
+    },
+  ],
+  "00000000-0000-4000-8000-000000000003": [
+    {
       nationality: "Jordan",
-      title: "Unified admission (Jordanian)",
-      channel: "Unified Admission Unit",
-      fees_note: "Public tuition bands",
-      visa_note: "N/A",
-      docs: ["Tawjihi", "National ID"],
-      summary: "Jordanian citizens use the national unified admission path.",
+      min_gpa: 2.5,
+      requirements_text: "Jordanian unified admission path. Docs: Tawjihi, national ID.",
     },
-    Egypt: {
+    {
       nationality: "Egypt",
-      title: "International / non-Jordanian",
-      channel: "studyinjordan.jo",
-      fees_note: "International fee schedule",
-      visa_note: "Study residency",
-      docs: ["Secondary certificate", "Passport", "Equivalency"],
-      summary: "Non-Jordanian applicants use the international unified portal.",
+      min_gpa: 2.5,
+      requirements_text:
+        "Non-Jordanian path via studyinjordan.jo. Docs: secondary certificate, passport, equivalency.",
     },
-  },
+    {
+      nationality: "All",
+      min_gpa: 2.5,
+      requirements_text: "Minimum GPA 2.5. Passport and recognized secondary certificate required.",
+    },
+  ],
+  "00000000-0000-4000-8000-000000000004": [
+    {
+      nationality: "All",
+      min_gpa: 2.5,
+      requirements_text: "Applied sciences bachelor/diploma. English proficiency, passport, transcripts.",
+    },
+  ],
+  "00000000-0000-4000-8000-000000000005": [
+    {
+      nationality: "All",
+      min_gpa: 0,
+      requirements_text: "K–12 international school admissions. Passport and prior school records.",
+    },
+  ],
 };
+
+function degreeMatchesType(degree: string, type: Institution["type"]) {
+  if (degree === "school") return type === "school";
+  if (degree === "diploma") return type === "college" || type === "university";
+  return type === "university" || type === "college";
+}
+
+function pickCriteria(institutionId: string, nationality: string) {
+  const rows = CRITERIA[institutionId] || [];
+  return (
+    rows.find((c) => c.nationality === nationality) ||
+    rows.find((c) => c.nationality === "All") ||
+    null
+  );
+}
 
 export function filterFallbackInstitutions(profile: AdmissionProfileInput): Institution[] {
   const major = profile.major.toLowerCase();
   const degree = profile.targetDegree;
   const country = (profile.preferredStudyCountry || "").toLowerCase();
   const nationality = profile.nationality;
+  const gpa = Number(profile.gpa);
 
   return FALLBACK_INSTITUTIONS.filter((inst) => {
-    if (country && !inst.country.toLowerCase().includes(country) && inst.country.toLowerCase() !== country) {
-      // allow Arabic country labels loosely
+    if (!degreeMatchesType(degree, inst.type)) return false;
+    if (inst.type === "school" && degree !== "school") return false;
+    if (degree === "school" && inst.type !== "school") return false;
+
+    if (country && inst.country) {
       const map: Record<string, string> = {
         ألمانيا: "germany",
         الاردن: "jordan",
@@ -149,35 +149,34 @@ export function filterFallbackInstitutions(profile: AdmissionProfileInput): Inst
         هولندا: "netherlands",
         تايلاند: "thailand",
       };
-      const mapped = map[profile.preferredStudyCountry || ""] || "";
-      if (mapped && inst.country.toLowerCase() !== mapped) return false;
-      if (!mapped && profile.preferredStudyCountry) {
-        if (!inst.country.toLowerCase().includes(country)) return false;
+      const mapped = map[profile.preferredStudyCountry || ""] || country;
+      if (!inst.country.toLowerCase().includes(mapped) && inst.country.toLowerCase() !== mapped) {
+        return false;
       }
     }
-    if (degree === "school") return inst.kind === "school";
-    if (degree === "diploma") return inst.kind === "college" || inst.kind === "university";
-    if (inst.kind === "school") return false;
-    if (!inst.degrees.includes(degree) && degree) return false;
-    if (Number(profile.gpa) < Number(inst.min_gpa || 0)) return false;
-    return inst.majors.some(
-      (m) => m.toLowerCase().includes(major) || major.includes(m.toLowerCase()),
-    );
+
+    const criteria = pickCriteria(inst.id, nationality);
+    if (!criteria) return false;
+    if (gpa < criteria.min_gpa) return false;
+
+    const majors = inst.majors || [];
+    if (majors.length && degree !== "school") {
+      return majors.some(
+        (m) => m.toLowerCase().includes(major) || major.includes(m.toLowerCase()),
+      );
+    }
+    return true;
   })
-    .map((inst) => ({
-      ...inst,
-      criteria:
-        CRITERIA[inst.slug]?.[nationality] ||
-        CRITERIA[inst.slug]?.Jordan ||
-        {
-          nationality,
-          title: `${nationality} applicant track`,
-          channel: inst.is_partner ? "SUCCESS OS partner channel" : "Official email",
-          fees_note: "Confirm on institution site",
-          visa_note: nationality === inst.country ? "Usually not required" : "Student visa likely",
-          docs: ["Passport", "Transcripts", "Language proof"],
-          summary: `Admission conditions for ${nationality} applicants at ${inst.name}.`,
+    .map((inst) => {
+      const criteria = pickCriteria(inst.id, nationality)!;
+      return {
+        ...inst,
+        criteria: {
+          nationality: criteria.nationality,
+          min_gpa: criteria.min_gpa,
+          requirements_text: criteria.requirements_text,
         },
-    }))
+      };
+    })
     .sort((a, b) => Number(b.is_partner) - Number(a.is_partner));
 }

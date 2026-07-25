@@ -16,41 +16,24 @@ export function InstitutionCard({ institution, onApply }: Props) {
     <Card className="flex h-full flex-col">
       <CardHeader>
         <div className="flex flex-wrap items-center gap-2">
-          <Badge variant="muted">{institution.kind}</Badge>
+          <Badge variant="muted">{institution.type}</Badge>
           <Badge variant={institution.is_partner ? "partner" : "email"}>
             {institution.is_partner ? "Partner · in-app route" : "Non-partner · email route"}
           </Badge>
         </div>
         <CardTitle className="mt-2">{institution.name}</CardTitle>
         <p className="text-sm text-[#73636a]">
-          {institution.city ? `${institution.city}, ` : ""}
-          {institution.country}
-          {institution.min_gpa ? ` · min GPA ${institution.min_gpa}` : ""}
+          {institution.country || "International"}
+          {criteria ? ` · min GPA ${criteria.min_gpa}` : ""}
         </p>
       </CardHeader>
       <CardContent className="flex-1 space-y-3 text-sm">
         {criteria ? (
           <div className="rounded-xl bg-[#fff8f8] p-3">
-            <p className="font-bold text-[#9e1722]">{criteria.title}</p>
-            <p className="mt-1 text-[#4d3439]">{criteria.summary}</p>
-            <dl className="mt-3 grid gap-2 text-[13px]">
-              <div>
-                <dt className="font-bold text-[#7a6368]">Channel</dt>
-                <dd>{criteria.channel || "—"}</dd>
-              </div>
-              <div>
-                <dt className="font-bold text-[#7a6368]">Fees</dt>
-                <dd>{criteria.fees_note || "—"}</dd>
-              </div>
-              <div>
-                <dt className="font-bold text-[#7a6368]">Visa</dt>
-                <dd>{criteria.visa_note || "—"}</dd>
-              </div>
-              <div>
-                <dt className="font-bold text-[#7a6368]">Documents</dt>
-                <dd>{(criteria.docs || []).join(" · ") || "—"}</dd>
-              </div>
-            </dl>
+            <p className="font-bold text-[#9e1722]">
+              Criteria for {criteria.nationality === "All" ? "all nationalities" : criteria.nationality}
+            </p>
+            <p className="mt-2 leading-relaxed text-[#4d3439]">{criteria.requirements_text}</p>
           </div>
         ) : null}
       </CardContent>

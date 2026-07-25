@@ -33,14 +33,20 @@ supabase/migrations/
   20260725_admission_funnel.sql
 ```
 
+## Database tables (spec)
+
+`profiles` · `institutions` (`type`) · `admission_criteria` · `payments` (`status`: pending/completed/failed, `amount` 5.00) · `applications` · `notifications` (`message`, `is_read`)
+
+Realtime is enabled on `notifications` and `applications` (correct `replica identity` + `supabase_realtime` publication).
+
 ## Workflow wiring
 
 | Step | Implementation |
 |---|---|
-| 1 Smart filter | `filterInstitutions` Server Action + `OnboardingForm` / `InstitutionCard` |
-| 2 Stripe $5 | Blocking `PaymentDialog` → `POST /api/checkout` → webhook unlocks form |
-| 3 Application | `ApplicationForm` + Storage upload (`admission-documents`) |
-| 4 Dual route | `submitApplication`: partner → DB + Realtime notifications; non-partner → Resend HTML + PDF attachments |
+| 1 Smart filter | `filterInstitutions` + nationality/`All` criteria + min GPA |
+| 2 Stripe $5 | Blocking `PaymentDialog` → `POST /api/checkout` → webhook sets `payments.status = completed` |
+| 3 Application | `ApplicationForm` + Storage (`passport_file_url` / `transcript_file_url`) |
+| 4 Dual route | Partner → `applications` + Realtime notification; non-partner → Resend HTML + PDFs |
 
 ## Env vars
 

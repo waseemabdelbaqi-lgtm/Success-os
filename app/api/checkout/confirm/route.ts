@@ -12,6 +12,7 @@ export const runtime = "nodejs";
 /**
  * Client-side success return helper.
  * Prefer the Stripe webhook for production; this confirms unlock after redirect.
+ * Unlock token = stripe_session_id (matches payments schema).
  */
 export async function POST(request: Request) {
   const body = (await request.json()) as {
@@ -28,7 +29,7 @@ export async function POST(request: Request) {
         ok: true,
         mode: "preview",
         paymentId: row?.id,
-        unlockToken: row?.unlock_token,
+        unlockToken: row?.stripe_session_id,
         status: row?.status,
         institutionId: row?.institution_id,
       });
@@ -39,7 +40,7 @@ export async function POST(request: Request) {
         ok: true,
         mode: "preview",
         paymentId: row?.id,
-        unlockToken: row?.unlock_token,
+        unlockToken: row?.stripe_session_id,
         status: row?.status,
         institutionId: row?.institution_id,
       });
@@ -51,19 +52,10 @@ export async function POST(request: Request) {
     const stripe = getStripe();
     const session = await stripe.checkout.sessions.retrieve(body.sessionId);
     if (session.payment_status === "paid") {
-      const paymentId = session.metadata?.payment_id;
-      const q = paymentId
-        ? supabase.from("payments").update({
-            status: "paid",
-            paid_at: new Date().toISOString(),
-            stripe_session_id: session.id,
-          }).eq("id", paymentId)
-        : supabase.from("payments").update({
-            status: "paid",
-            paid_at: new Date().toISOString(),
-          }).eq("stripe_session_id", session.id);
-
-      await q;
+      await supabase
+        .from("payments")
+        .update({ status: "completed" })
+        .eq("stripe_session_id", session.id);
     }
   }
 
@@ -80,7 +72,7 @@ export async function POST(request: Request) {
     ok: true,
     mode: "stripe",
     paymentId: payment.id,
-    unlockToken: payment.unlock_token,
+    unlockToken: payment.stripe_session_id,
     status: payment.status,
     institutionId: payment.institution_id,
   });

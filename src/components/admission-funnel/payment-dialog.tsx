@@ -11,11 +11,12 @@ import {
   DialogTitle,
 } from "@/src/components/ui/dialog";
 import { ADMISSION_FEE_USD } from "@/src/lib/admission/constants";
-import type { Institution } from "@/src/types/admission";
+import type { AdmissionProfileInput, Institution } from "@/src/types/admission";
 
 type Props = {
   open: boolean;
   institution: Institution | null;
+  profile?: AdmissionProfileInput;
   customerEmail?: string;
   onOpenChange: (open: boolean) => void;
   onUnlocked: (payload: {
@@ -28,6 +29,7 @@ type Props = {
 export function PaymentDialog({
   open,
   institution,
+  profile,
   customerEmail,
   onOpenChange,
   onUnlocked,
@@ -45,7 +47,13 @@ export function PaymentDialog({
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           institutionId: institution.id,
-          customerEmail,
+          customerEmail: customerEmail || profile?.email,
+          userId: profile?.userId,
+          fullName: profile?.fullName,
+          nationality: profile?.nationality,
+          gpa: profile?.gpa,
+          targetDegree: profile?.targetDegree,
+          major: profile?.major,
         }),
       });
       const data = (await res.json()) as {
@@ -60,7 +68,6 @@ export function PaymentDialog({
       }
 
       if (data.mode === "preview" && data.paymentId && data.unlockToken) {
-        // Preview: confirm payment immediately, then unlock
         await fetch("/api/checkout/confirm", {
           method: "POST",
           headers: { "Content-Type": "application/json" },

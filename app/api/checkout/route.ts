@@ -1,6 +1,5 @@
 import { NextResponse } from "next/server";
-import { randomUUID } from "crypto";
-import { ADMISSION_FEE_CENTS, getStripe, isStripeConfigured } from "@/src/lib/stripe";
+import { ADMISSION_FEE_CENTS, ADMISSION_FEE_USD, getStripe, isStripeConfigured } from "@/src/lib/stripe";
 import { previewCreatePayment } from "@/src/lib/admission/preview-store";
 import { getSupabaseServerClient } from "@/src/lib/supabase/server";
 
@@ -8,9 +7,15 @@ export const runtime = "nodejs";
 
 type CheckoutBody = {
   institutionId?: string;
+  userId?: string;
   successUrl?: string;
   cancelUrl?: string;
   customerEmail?: string;
+  fullName?: string;
+  nationality?: string;
+  gpa?: number;
+  targetDegree?: string;
+  major?: string;
 };
 
 export async function POST(request: Request) {
@@ -36,17 +41,29 @@ export async function POST(request: Request) {
 
   // Preview mode when Stripe or Supabase is not configured
   if (!isStripeConfigured() || !supabase) {
-    const payment = previewCreatePayment(institutionId);
-    const previewUrl = `${origin}/admission-funnel?paid=1&preview=1&payment_id=${payment.id}&unlock_token=${payment.unlock_token}&institution_id=${institutionId}`;
+    const payment = previewCreatePayment(institutionId, body.userId);
+    const previewUrl = `${origin}/admission-funnel?paid=1&preview=1&payment_id=${payment.id}&unlock_token=${encodeURIComponent(payment.stripe_session_id)}&institution_id=${institutionId}`;
     return NextResponse.json({
       mode: "preview",
       paymentId: payment.id,
-      unlockToken: payment.unlock_token,
+      unlockToken: payment.stripe_session_id,
       sessionId: payment.stripe_session_id,
       url: previewUrl,
+      amount: ADMISSION_FEE_USD,
       amountCents: ADMISSION_FEE_CENTS,
       currency: "usd",
     });
+  }
+
+  const userId = body.userId?.trim();
+  if (!userId) {
+    return NextResponse.json(
+      {
+        error:
+          "userId is required for Stripe checkout (profiles.id = auth.users.id). Sign in, or use preview mode without Stripe keys.",
+      },
+      { status: 400 },
+    );
   }
 
   const { data: institution, error: instErr } = await supabase
@@ -62,21 +79,24 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Institution not found" }, { status: 404 });
   }
 
-  const unlockToken = randomUUID().replace(/-/g, "");
-  const { data: payment, error: payErr } = await supabase
-    .from("payments")
-    .insert({
-      institution_id: institutionId,
-      amount_cents: ADMISSION_FEE_CENTS,
-      currency: "usd",
-      status: "pending",
-      unlock_token: unlockToken,
-    })
-    .select("id,unlock_token")
-    .single();
+  // Ensure profile row exists (required FK for payments.user_id)
+  const { error: profileErr } = await supabase.from("profiles").upsert({
+    id: userId,
+    full_name: body.fullName || "Applicant",
+    nationality: body.nationality || "All",
+    gpa: Number(body.gpa ?? 0),
+    target_degree: body.targetDegree || "bachelor",
+    major: body.major || null,
+    email: body.customerEmail || null,
+  });
 
-  if (payErr || !payment) {
-    return NextResponse.json({ error: payErr?.message || "Could not create payment" }, { status: 500 });
+  if (profileErr) {
+    return NextResponse.json(
+      {
+        error: `Could not upsert profile: ${profileErr.message}. Ensure auth.users contains this user id.`,
+      },
+      { status: 400 },
+    );
   }
 
   const stripe = getStripe();
@@ -95,29 +115,47 @@ export async function POST(request: Request) {
           unit_amount: ADMISSION_FEE_CENTS,
           product_data: {
             name: "SUCCESS OS — Admission application fee",
-            description: `Fixed $5 USD unlock fee for ${institution.name}`,
+            description: `Fixed $${ADMISSION_FEE_USD} USD unlock fee for ${institution.name}`,
           },
         },
       },
     ],
     metadata: {
-      payment_id: payment.id,
       institution_id: institutionId,
-      unlock_token: payment.unlock_token,
+      user_id: userId,
     },
   });
 
-  await supabase
+  if (!session.id) {
+    return NextResponse.json({ error: "Stripe session missing id" }, { status: 500 });
+  }
+
+  const { data: payment, error: payErr } = await supabase
     .from("payments")
-    .update({ stripe_session_id: session.id })
-    .eq("id", payment.id);
+    .insert({
+      user_id: userId,
+      institution_id: institutionId,
+      stripe_session_id: session.id,
+      status: "pending",
+      amount: ADMISSION_FEE_USD,
+    })
+    .select("id,stripe_session_id")
+    .single();
+
+  if (payErr || !payment) {
+    return NextResponse.json(
+      { error: payErr?.message || "Could not create payment" },
+      { status: 500 },
+    );
+  }
 
   return NextResponse.json({
     mode: "stripe",
     paymentId: payment.id,
-    unlockToken: payment.unlock_token,
+    unlockToken: payment.stripe_session_id,
     sessionId: session.id,
     url: session.url,
+    amount: ADMISSION_FEE_USD,
     amountCents: ADMISSION_FEE_CENTS,
     currency: "usd",
   });
