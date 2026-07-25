@@ -66,6 +66,8 @@ const SCOPE_AR = {
   Ireland: 'أيرلندا',
   'United Arab Emirates': 'الإمارات',
   Morocco: 'المغرب',
+  Algeria: 'الجزائر',
+  'South Korea': 'كوريا الجنوبية',
   India: 'الهند',
   Japan: 'اليابان',
 };
@@ -89,7 +91,16 @@ function scopeBuckets(scope) {
     return ['europe', 'global'];
   }
   if (s.includes('australia')) return ['oceania'];
-  if (s.includes('china') || s.includes('india') || s.includes('japan')) return ['asia'];
+  if (
+    s.includes('china') ||
+    s.includes('india') ||
+    s.includes('japan') ||
+    s.includes('korea') ||
+    s.includes('malaysia') ||
+    s.includes('singapore')
+  ) {
+    return ['asia'];
+  }
   if (
     s.includes('saudi') ||
     s.includes('turkey') ||
@@ -99,9 +110,13 @@ function scopeBuckets(scope) {
     s.includes('egypt') ||
     s.includes('united arab emirates') ||
     s.includes('uae') ||
-    s.includes('morocco')
+    s.includes('morocco') ||
+    s.includes('algeria')
   ) {
     return ['mena'];
+  }
+  if (s.includes('south africa') || s.includes('nigeria') || s.includes('kenya')) {
+    return ['africa'];
   }
   if (s.includes('ireland')) return ['europe', 'global'];
   return ['global'];
@@ -283,6 +298,18 @@ const COUNTRY_PORTAL_IDS = {
   ],
   'الهند': ['study-in-india-portal', 'applyboard', 'top-universities', 'world-higher-education-database'],
   'اليابان': ['study-in-japan-portal', 'applyboard', 'top-universities', 'world-higher-education-database'],
+  'كوريا الجنوبية': [
+    'study-in-korea',
+    'applyboard',
+    'top-universities',
+    'world-higher-education-database',
+  ],
+  'الجزائر': [
+    'study-in-algeria',
+    'applyboard',
+    'top-universities',
+    'world-higher-education-database',
+  ],
 };
 
 export function portalsForRegion(regionId) {

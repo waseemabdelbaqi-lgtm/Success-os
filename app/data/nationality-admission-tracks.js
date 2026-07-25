@@ -916,6 +916,244 @@ export const DESTINATION_TRACKS = Object.freeze({
       portals: [],
     },
   ],
+
+  'كوريا الجنوبية': [
+    {
+      id: 'kr-korean-domestic',
+      titleAr: 'كوري — قبول محلي (CSAT / سجلات مدرسية)',
+      match: ({ nationality }) => nationality === 'كوريا الجنوبية',
+      whenAr:
+        'المواطنون الكوريون يتقدمون عبر مسارات القبول المحلية للجامعات الكورية (امتحان CSAT/수능 و/أو قبول مبكر بالسجلات) — وليس عبر مسار الطالب الدولي D-2.',
+      channelAr: 'بوابة القبول المحلية للجامعة / النظام الوطني',
+      docs: ['شهادة ثانوية كورية', 'نتائج CSAT أو ملف السوسّي حسب المسار', 'طلب الجامعة'],
+      feesAr: 'رسوم محلية للكوريين.',
+      visaAr: 'غير مطلوب للمواطن.',
+      caveats: [],
+      sources: [
+        { label: 'Study in Korea (gov)', url: 'https://www.studyinkorea.go.kr/' },
+      ],
+      portals: [],
+    },
+    {
+      id: 'kr-international-d2',
+      titleAr: 'أجنبي — قبول دولي + خطاب قبول قياسي + تأشيرة D-2',
+      match: () => true,
+      whenAr:
+        'الأجانب يتقدمون عبر مكاتب القبول الدولي (Study in Korea / بوابة الجامعة). بعد القبول يصدر Standard Admission Letter ثم تأشيرة طالب D-2 للدرجات النظامية (D-4 للتدريب غير الدراسي). TOPIK غالباً مطلوب للبرامج الكورية؛ البرامج الإنجليزية تطلب IELTS/TOEFL.',
+      channelAr: 'studyinkorea.go.kr / بوابة الجامعة الدولية → D-2',
+      docs: [
+        'جواز أجنبي',
+        'شهادة وكشف علامات + تصديق',
+        'TOPIK أو IELTS/TOEFL حسب لغة البرنامج',
+        'إثبات تمويل',
+        'خطاب قبول قياسي للتأشيرة',
+      ],
+      feesAr: 'رسوم دولية؛ منح GKS حكومية متاحة تنافسياً.',
+      visaAr: 'D-2 للدرجة؛ تُطلب عبر السفارة بعد خطاب القبول.',
+      caveats: ['بدون جنسية كورية/إقامة مناسبة لا يُستخدم مسار القبول المحلي.'],
+      sources: [
+        { label: 'Study in Korea — visa & stay', url: 'https://www.studyinkorea.go.kr/ko/plan/visaAndStay.do' },
+        { label: 'GOV.KR — foreigners university', url: 'https://www.gov.kr/portal/foreigner/en/m040101' },
+      ],
+      portals: ['study-in-korea'],
+    },
+  ],
+
+  'اليابان': [
+    {
+      id: 'jp-japanese-national',
+      titleAr: 'ياباني — امتحانات القبول المحلية',
+      match: ({ nationality }) => nationality === 'اليابان',
+      whenAr:
+        'المواطنون اليابانيون (ومن يحملون الجنسية اليابانية ضمن ازدواج) يتبعون نظام القبول المحلي للجامعات — وليس مسار «International Student» المعتمد على EJU.',
+      channelAr: 'امتحانات القبول الجامعية اليابانية / تقديم الجامعة',
+      docs: ['شهادة ثانوية يابانية', 'امتحانات القبول حسب الجامعة', 'طلب الالتحاق'],
+      feesAr: 'رسوم محلية.',
+      visaAr: 'غير مطلوب للمواطن.',
+      caveats: ['ازدواج يشمل جنسية يابانية غالباً يخرجك من فئة international student في كثير من الجامعات.'],
+      sources: [
+        { label: 'Study in Japan', url: 'https://www.studyinjapan.go.jp/' },
+        { label: 'MEXT', url: 'https://www.mext.go.jp/en/' },
+      ],
+      portals: ['study-in-japan-portal'],
+    },
+    {
+      id: 'jp-foreign-eju',
+      titleAr: 'أجنبي (بدون جنسية يابانية) — EJU / قبول دولي + إقامة Student',
+      match: () => true,
+      whenAr:
+        'كثير من الجامعات تشترط صراحة «جنسية أجنبية» وأهلية للحصول على إقامة Student، وتستخدم EJU (امتحان قبول الأجانب). بعض الجامعات تستثني المقيم الدائم/الخاص من مسار international. تحقق من دليل كل جامعة.',
+      channelAr: 'EJU + تقديم الجامعة الدولي / Study in Japan',
+      docs: [
+        'جواز يثبت جنسية أجنبية',
+        '12 سنة دراسية أو معادل',
+        'نتائج EJU و/أو JLPT حسب الجامعة',
+        'إثبات تمويل وقدرة الحصول على إقامة Student',
+      ],
+      feesAr: 'رسوم دولية؛ منح MEXT متاحة.',
+      visaAr: 'إقامة Student بعد القبول.',
+      caveats: ['EJU مصمم لغير اليابانيين — المواطن الياباني لا يسلكه عادة.'],
+      sources: [
+        { label: 'Study in Japan', url: 'https://www.studyinjapan.go.jp/' },
+        { label: 'JASSO / EJU info hubs', url: 'https://www.jasso.go.jp/' },
+      ],
+      portals: ['study-in-japan-portal'],
+    },
+  ],
+
+  'الجزائر': [
+    {
+      id: 'dz-algerian-bac',
+      titleAr: 'جزائري ببكالوريا جزائرية — توجيه وطني',
+      match: ({ nationality }) => nationality === 'الجزائر',
+      whenAr:
+        'الحاصلون على البكالوريا الجزائرية يتقدمون عبر منصة التوجيه/التسجيل المسبق الوطنية حسب المنشور الوزاري السنوي. الجزائري حامل بكالوريا أجنبية له مسار معادلات منفصل على منصات MESRS قبل التوجيه.',
+      channelAr: 'توجيه MESRS الإلكتروني (progres) للمنشور السنوي',
+      docs: ['بكالوريا جزائرية', 'تسجيل مسبق وبطاقة رغبات', 'شروط المعدلات حسب الشعبة'],
+      feesAr: 'مسارات عمومية وفق النظام الوطني.',
+      visaAr: 'غير مطلوب للمواطن.',
+      caveats: [
+        'جزائري + بكالوريا أجنبية: اطلب المعادلة أولاً عبر mesrs.dz ثم منصة bac-etrangers — ليس نفس مسار الأجانب الدبلوماسي بالكامل.',
+      ],
+      sources: [
+        { label: 'MESRS', url: 'https://www.mesrs.dz/' },
+        { label: 'Plateforme bac étrangers (MESRS)', url: 'https://progres.mesrs.dz/bac-etrangers/pages/procedure/procedures.xhtml' },
+      ],
+      portals: [],
+    },
+    {
+      id: 'dz-foreign-study-in-algeria',
+      titleAr: 'أجنبي — اعتماد/معادلة + حصص التعاون أو Study in Algeria',
+      match: () => true,
+      whenAr:
+        'الطلاب الأجانب يخضعون لمرسوم/إجراءات قبول الأجانب (مقاعد سنوية ورسوم). يلزم غالباً معادلة الشهادة وموافقة وزارية/مؤسسية؛ المسار ليس التوجيه الوطني للمواطنين. راجع studyinalgeria.dz والحصص الثنائية.',
+      channelAr: 'studyinalgeria.dz / القناة الدبلوماسية + معادلة MESRS',
+      docs: [
+        'شهادة جنسية + جواز',
+        'بكالوريا وكشف علامات للتصديق/المعادلة',
+        'ملف قبول حسب الدورة (ليسانس/ماستر/دكتوراه)',
+        'شهادة طبية ومستندات الإقامة',
+      ],
+      feesAr: 'رسوم دراسية للأجانب وفق المرسوم والمؤسسة.',
+      visaAr: 'تأشيرة/إقامة دراسية بعد القبول.',
+      caveats: ['الأجنبي حامل بكالوريا أجنبية ≠ توجيه المواطنين — مسار إداري مختلف.'],
+      sources: [
+        { label: 'Study in Algeria', url: 'https://studyinalgeria.dz/pages/17155' },
+        { label: 'MESRS équivalences', url: 'https://www.mesrs.dz/les-equivalences' },
+      ],
+      portals: ['study-in-algeria'],
+    },
+  ],
+
+  'جنوب أفريقيا': [
+    {
+      id: 'za-south-african-nsc',
+      titleAr: 'جنوب أفريقي — NSC + APS (+ سياسات redress للمواطنين)',
+      match: ({ nationality }) => nationality === 'جنوب أفريقيا',
+      whenAr:
+        'المواطنون بـ National Senior Certificate يُقيَّمون بـ APS ومتطلبات المواد. سياسات التمييز الإيجابي/السياق (مثل UCT redress) تُطبَّق أساساً على المتقدمين الجنوب أفريقيين وليس الدوليين.',
+      channelAr: 'تقديم الجامعة + NSC/IEB',
+      docs: ['NSC أو معادل محلي', 'حساب APS', 'NBT إن طلبتها الجامعة/التخصص'],
+      feesAr: 'رسوم محلية؛ بدون international levy عادة.',
+      visaAr: 'غير مطلوب للمواطن.',
+      caveats: ['المقيم الدائم قد يُعامل ضمن فئات خاصة — تحقق من الجامعة.'],
+      sources: [
+        { label: 'Wits entry requirements', url: 'https://www.wits.ac.za/undergraduate/entry-requirements/' },
+        { label: 'UCT NSC admissions guidelines', url: 'https://uct.ac.za/sites/default/files/media/documents/2025_National-Senior-Certificate-NSC_Guidelines-for-Admissions.pdf' },
+      ],
+      portals: [],
+    },
+    {
+      id: 'za-international-exemption-visa',
+      titleAr: 'أجنبي / غير مواطن — إعفاء USAf + تأشيرة دراسة + تأمين طبي محلي',
+      match: () => true,
+      whenAr:
+        'غير الحاصلين على NSC جنوب أفريقي يحتاجون غالباً شهادة إعفاء/معادلة من Universities South Africa (USAf). للتسجيل يلزم تأشيرة دراسة مصدّقة للمؤسسة + تأمين طبي مسجّل في جنوب أفريقيا. كثير من الجامعات تفرض international levy حتى على مواطني SADC.',
+      channelAr: 'تقديم الجامعة الدولي → mb.usaf.ac.za للإعفاء → تأشيرة دراسة',
+      docs: [
+        'جواز غير جنوب أفريقي',
+        'شهادة ثانوية أجنبية + طلب إعفاء USAf',
+        'عرض قبول',
+        'تأشيرة دراسة + تأمين طبي SA + إثبات تمويل',
+      ],
+      feesAr: 'رسوم + international levy شائع لغير المواطنين.',
+      visaAr: 'Study visa عبر السفارة/VFS قبل الدخول غالباً.',
+      caveats: ['سياسات redress السياقية للمواطنين لا تُنقل تلقائياً للدولي.'],
+      sources: [
+        { label: 'USAf Matriculation Board', url: 'https://mb.usaf.ac.za/' },
+        { label: 'DHET', url: 'https://www.dhet.gov.za/' },
+      ],
+      portals: [],
+    },
+  ],
+
+  'ماليزيا': [
+    {
+      id: 'my-malaysian-upu',
+      titleAr: 'ماليزي — UPU / مسارات محلية',
+      match: ({ nationality }) => nationality === 'ماليزيا',
+      whenAr: 'المواطنون الماليزيون يلتحقون غالباً عبر UPU أو مسارات محلية (STPM/Matrikulasi/أساس) للجامعات الحكومية.',
+      channelAr: 'UPU / تطبيق الجامعة المحلية',
+      docs: ['شهادة ثانوية ماليزية أو مسار أساس', 'طلب UPU', 'متطلبات التخصص'],
+      feesAr: 'رسوم مواطنين أقل من الدولي.',
+      visaAr: 'غير مطلوب للمواطن.',
+      caveats: [],
+      sources: [
+        { label: 'MQA / MQR', url: 'https://www2.mqa.gov.my/mqr/' },
+      ],
+      portals: [],
+    },
+    {
+      id: 'my-international-student-pass',
+      titleAr: 'أجنبي — قبول دولي + Student Pass',
+      match: () => true,
+      whenAr: 'الأجانب يتقدمون مباشرة للجامعة الدولية ويحتاجون Student Pass عبر المؤسسة بعد القبول، مع تحقق البرنامج في MQR.',
+      channelAr: 'بوابة الجامعة الدولية + Student Pass',
+      docs: ['جواز', 'شهادة ثانوية', 'إنجليزي', 'تمويل', 'Student Pass'],
+      feesAr: 'رسوم دولية أعلى.',
+      visaAr: 'Student Pass برعاية الجامعة.',
+      caveats: ['تحقق من اعتماد البرنامج في Malaysian Qualifications Register.'],
+      sources: [
+        { label: 'MQA / MQR', url: 'https://www2.mqa.gov.my/mqr/' },
+      ],
+      portals: ['applyboard'],
+    },
+  ],
+
+  'سنغافورة': [
+    {
+      id: 'sg-singaporean-local',
+      titleAr: 'سنغافوري / مقيم دائم — قبول محلي',
+      match: ({ nationality }) => nationality === 'سنغافورة',
+      whenAr: 'المواطنون والمقيمون الدائمون يتقدمون بمسارات محلية (A Levels/IB/Poly) لجامعات مثل NUS/NTU برسوم محلية مدعومة.',
+      channelAr: 'بوابة الجامعة للمسار المحلي',
+      docs: ['A Levels أو IB أو Poly', 'طلب الجامعة'],
+      feesAr: 'رسوم مواطنين/PR أقل بكثير من الدولي.',
+      visaAr: 'غير مطلوب للمواطن/PR.',
+      caveats: [],
+      sources: [
+        { label: 'MOE Singapore post-secondary', url: 'https://www.moe.gov.sg/post-secondary/overview' },
+        { label: 'NUS Admissions', url: 'https://nus.edu.sg/oam/admissions' },
+      ],
+      portals: [],
+    },
+    {
+      id: 'sg-international',
+      titleAr: 'أجنبي — قبول دولي + Student’s Pass',
+      match: () => true,
+      whenAr: 'الأجانب على حصص دولية تنافسية جداً، برسوم أعلى وStudent’s Pass بعد القبول.',
+      channelAr: 'بوابة الجامعة الدولية + ICA Student’s Pass',
+      docs: ['شهادة ثانوية قوية', 'IELTS/TOEFL إن لزم', 'جواز وتمويل', 'Student’s Pass'],
+      feesAr: 'رسوم دولية مرتفعة.',
+      visaAr: 'Student’s Pass.',
+      caveats: ['المنافسة على المقاعد الدولية عالية جداً.'],
+      sources: [
+        { label: 'NUS Admissions', url: 'https://nus.edu.sg/oam/admissions' },
+        { label: 'MOE Singapore', url: 'https://www.moe.gov.sg/post-secondary/overview' },
+      ],
+      portals: [],
+    },
+  ],
 });
 
 /**
@@ -1033,6 +1271,12 @@ export function exampleAlternateNationality(studyCountry, currentNationality) {
     الصين: 'الأردن',
     المغرب: 'الأردن',
     سويسرا: 'الأردن',
+    'كوريا الجنوبية': 'الأردن',
+    اليابان: 'الأردن',
+    الجزائر: 'الأردن',
+    'جنوب أفريقيا': 'الأردن',
+    ماليزيا: 'الأردن',
+    سنغافورة: 'الأردن',
   };
   return alts[studyCountry] || 'الأردن';
 }
@@ -1062,6 +1306,10 @@ export function nationalityTracksSummary() {
       'https://www.qu.edu.qa/en-us/students/admission/undergraduate/admission-requirements/Pages/high-school-applicants.aspx',
       'https://www.swissuniversities.ch/en/topics/studying/admission-to-universities',
       'https://www.amci.ma/',
+      'https://www.studyinkorea.go.kr/',
+      'https://www.studyinjapan.go.jp/',
+      'https://studyinalgeria.dz/pages/17155',
+      'https://mb.usaf.ac.za/',
     ],
   };
 }

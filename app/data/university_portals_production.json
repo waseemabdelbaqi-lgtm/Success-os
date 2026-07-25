@@ -413,6 +413,13 @@
     "Details": "Official national enrollment portal for Dutch higher education institutions."
   },
   {
+    "Name": "Study in Algeria",
+    "Website": "https://studyinalgeria.dz/",
+    "Type": "Centralized Admission Portal",
+    "Scope": "Algeria",
+    "Details": "Official gateway for information and procedures related to foreign student admission into Algerian higher education institutions."
+  },
+  {
     "Name": "Study in Egypt",
     "Website": "https://admission.study-in-egypt.gov.eg/",
     "Type": "Centralized Admission Portal",
@@ -439,6 +446,13 @@
     "Type": "Centralized Admission Portal",
     "Scope": "Jordan",
     "Details": "Official MOHE unified electronic admission system for international non-Jordanian students at Jordanian public universities (private optional)."
+  },
+  {
+    "Name": "Study in Korea",
+    "Website": "https://www.studyinkorea.go.kr/",
+    "Type": "University Search Directory",
+    "Scope": "South Korea",
+    "Details": "Korean government portal for international students covering universities, scholarships, and D-2/D-4 student visa guidance."
   },
   {
     "Name": "Study in Saudi Arabia",
