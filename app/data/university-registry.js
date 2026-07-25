@@ -67,6 +67,9 @@ export const countryAuthorities = {
   'سلوفاكيا':{authority:'Study in Slovakia / Ministry of Education',url:'https://education.ec.europa.eu/study-in-europe/country-profiles/slovakia',note:'سلوفاكية بدوام كامل في العامة غالباً مجانية لكل الجنسيات؛ الإنجليزية برسوم؛ التأشيرة لغير EU.'},
   'كرواتيا':{authority:'Study in Croatia / gov.hr',url:'https://gov.hr/en/international-students-studying-in-croatia/1078',note:'EU بنفس دعم الرسوم كالكرواتيين؛ الدول الثالثة بحصص أجانب ورسوم مؤسسية وتأشيرة.'},
   'بلغاريا':{authority:'Ministry of Education and Science',url:'https://education.ec.europa.eu/study-in-europe/country-profiles/bulgaria',note:'EU/EEA/سويسرا برسوم المواطنين؛ غير EU برسوم أعلى وتأشيرة D.'},
+  'سلوفينيا':{authority:'Study in Slovenia',url:'https://studyinslovenia.si/',note:'EU/EEA/سويسرا معفيون من رسوم الدوام الكامل غالباً؛ غير EU يدفعون + إقامة طالب.'},
+  'إستونيا':{authority:'Study in Estonia',url:'https://www.studyinestonia.ee/',note:'إستونية بدوام كامل مجانية غالباً لكل الجنسيات؛ الإنجليزية برسوم؛ التأشيرة لغير EU.'},
+  'ليتوانيا':{authority:'Study in Lithuania / LAMA BPO',url:'https://studyin.lt/',note:'EU/EEA مؤهلون لمقاعد حكومية؛ غير EU تمويل ذاتي وتأشيرة وطنية عادة.'},
 };
 
 const allSystems = qualificationSystems.map(x=>x.id);
@@ -328,6 +331,62 @@ export const globalInstitutions = [
  }),
  U('acs-sofia','بلغاريا','صوفيا','American College of Sofia','مدرسة',['وجاهي'],['American Curriculum','ثانوي'],'https://www.acs.bg/admissions',{
    degree:'تعليم مدرسي ثانوي',contactEmail:'admissions@acs.bg',
+ }),
+ U('uni-lj','سلوفينيا','ليوبليانا','University of Ljubljana','جامعة',['وجاهي'],['طب وصحة','هندسة','علوم','آداب'],'https://www.uni-lj.si/en/study/application-and-enrolment',{
+   local:['eVŠ','إعفاء رسوم دوام كامل لـ EU/EEA'],
+   international:['رسوم لغير EU','تصريح إقامة'],
+   platformMember:true,contactEmail:'admissions@uni-lj.si',
+ }),
+ U('uni-mb','سلوفينيا','ماريبور','University of Maribor','جامعة',['وجاهي'],['هندسة','علوم','أعمال','طب وصحة'],'https://www.um.si/en/study/application/',{
+   contactEmail:'admissions@um.si',
+ }),
+ U('upr','سلوفينيا','كوبر','University of Primorska','جامعة',['وجاهي'],['علوم','أعمال','آداب','سياحة'],'https://www.upr.si/en/study/application-and-enrolment/',{
+   platformMember:true,contactEmail:'international@upr.si',
+ }),
+ U('ung','سلوفينيا','نوفا جوريتسا','University of Nova Gorica','جامعة',['وجاهي'],['علوم','هندسة','آداب'],'https://www.ung.si/en/study/application/',{
+   contactEmail:'students@ung.si',
+ }),
+ U('qsi-lj','سلوفينيا','ليوبليانا','QSI International School of Ljubljana','مدرسة',['وجاهي'],['American Curriculum','ابتدائي','ثانوي'],'https://ljubljana.qsischool.org/admissions',{
+   degree:'تعليم مدرسي K-12',contactEmail:'ljubljana@qsi.org',
+ }),
+ U('ut','إستونيا','تارتو','University of Tartu','جامعة',['وجاهي'],['علوم','طب وصحة','آداب','قانون'],'https://ut.ee/en/admissions',{
+   local:['DreamApply','إستونية مجانية بدوام كامل غالباً'],
+   international:['إنجليزية برسوم','تأشيرة D لغير EU'],
+   platformMember:true,contactEmail:'admissions@ut.ee',
+ }),
+ U('taltech','إستونيا','تالين','Tallinn University of Technology','جامعة',['وجاهي'],['هندسة','حوسبة','علوم','أعمال'],'https://taltech.ee/en/admission',{
+   platformMember:true,contactEmail:'admissions@taltech.ee',
+ }),
+ U('tlu','إستونيا','تالين','Tallinn University','جامعة',['وجاهي'],['تعليم','آداب','علوم اجتماعية','حوسبة'],'https://www.tlu.ee/en/admissions',{
+   contactEmail:'admissions@tlu.ee',
+ }),
+ U('emu','إستونيا','تارتو','Estonian University of Life Sciences','جامعة',['وجاهي'],['زراعة','علوم','طب بيطري','هندسة'],'https://www.emu.ee/en/admissions/',{
+   contactEmail:'admissions@emu.ee',
+ }),
+ U('istes','إستونيا','تالين','International School of Tallinn','مدرسة',['وجاهي'],['IB','ابتدائي','ثانوي'],'https://ist.ee/admissions/',{
+   degree:'تعليم مدرسي K-12',
+   platformMember:true,contactEmail:'admissions@ist.ee',
+ }),
+ U('vu','ليتوانيا','فيلنيوس','Vilnius University','جامعة',['وجاهي'],['طب وصحة','علوم','آداب','قانون'],'https://www.vu.lt/en/studies/admission',{
+   local:['LAMA BPO لمقاعد EU المموّلة','تقديم الجامعة'],
+   international:['تمويل ذاتي','تأشيرة وطنية لغير EU'],
+   platformMember:true,contactEmail:'admissions@cr.vu.lt',
+ }),
+ U('ktu','ليتوانيا','كاوناس','Kaunas University of Technology','جامعة',['وجاهي'],['هندسة','حوسبة','علوم','أعمال'],'https://admissions.ktu.edu/',{
+   platformMember:true,contactEmail:'international@ktu.lt',
+ }),
+ U('vilniustech','ليتوانيا','فيلنيوس','Vilnius Gediminas Technical University','جامعة',['وجاهي'],['هندسة','عمارة وتصميم','حوسبة'],'https://vilniustech.lt/en/studies/admission/',{
+   contactEmail:'admissions@vilniustech.lt',
+ }),
+ U('vdu','ليتوانيا','كاوناس','Vytautas Magnus University','جامعة',['وجاهي'],['آداب','علوم اجتماعية','أعمال','علوم'],'https://www.vdu.lt/en/studies/admission/',{
+   contactEmail:'studies@vdu.lt',
+ }),
+ U('kolegija','ليتوانيا','فيلنيوس','Vilnius College of Technologies and Design','كلية',['وجاهي'],['تصميم','هندسة','حوسبة'],'https://en.vtdko.lt/admissions',{
+   degree:'بكالوريوس تطبيقي',contactEmail:'admissions@vtdko.lt',
+ }),
+ U('aisv','ليتوانيا','فيلنيوس','American International School of Vilnius','مدرسة',['وجاهي'],['American Curriculum','IB','ابتدائي','ثانوي'],'https://www.aisv.lt/admissions',{
+   degree:'تعليم مدرسي K-12',
+   platformMember:true,contactEmail:'admissions@aisv.lt',
  }),
  U('sapienza','إيطاليا','روما','Sapienza Università di Roma','جامعة',['وجاهي'],['هندسة','طب وصحة','علوم','آداب'],'https://www.uniroma1.it/en/pagina/admission',{
    local:['دبلوم ثانوي إيطالي أو معادل','تسجيل مباشر'],

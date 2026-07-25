@@ -2378,6 +2378,228 @@ export const DESTINATION_TRACKS = Object.freeze({
       ],
     },
   ],
+
+  'سلوفينيا': [
+    {
+      id: 'si-eu-eea-swiss-free-fulltime',
+      titleAr: 'سلوفيني / EU-EEA / سويسرا — دوام كامل بدون رسوم دراسية',
+      match: ({ nationality }) => nationality === 'سلوفينيا' || isEuEea(nationality),
+      whenAr:
+        'حسب Study in Slovenia وUniversity of Ljubljana: مواطنو سلوفينيا وEU وسويسرا والنرويج وآيسلندا وليختنشتاين معفيون من الرسوم الدراسية للبكالوريوس/الماجستير بدوام كامل في المؤسسات المموّلة من الميزانية العامة. التقديم عبر بوابة eVŠ.',
+      channelAr: 'بوابة eVŠ / تقديم الجامعة',
+      docs: [
+        'شهادة ثانوية / معادل',
+        'إثبات جنسية سلوفينية أو EU/EEA/سويسرا',
+        'لغة سلوفينية أو إنجليزية حسب البرنامج',
+      ],
+      feesAr: 'بدون رسوم دراسية للدوام الكامل في الدورة الأولى/الثانية ضمن الأهلية؛ الجزئي والدكتوراه عادة برسوم.',
+      visaAr: 'تسجيل إقامة إن تجاوزت المدة 90 يوماً — بلا تأشيرة طالب وطنية.',
+      caveats: [
+        'مواطنو دول غرب البلقان ذات الاتفاق الثنائي (صربيا، البوسنة، الجبل الأسود، كوسوفو، شمال مقدونيا) معفيون أيضاً غالباً.',
+        'من أكمل درجة معادلة مسبقاً أو يدرس جزئياً قد يدفع رسوماً حتى لو كان من EU.',
+      ],
+      sources: [
+        {
+          label: 'Study in Slovenia — tuition and funding',
+          url: 'https://studyinslovenia.si/study/tuition-and-funding/',
+        },
+        {
+          label: 'University of Ljubljana — tuition exemptions',
+          url: 'https://www.uni-lj.si/en/study/tuition-fees-and-other-study-contributions',
+        },
+        {
+          label: 'European Education Area — Slovenia',
+          url: 'https://education.ec.europa.eu/study-in-europe/country-profiles/slovenia',
+        },
+      ],
+      portals: [],
+      universities: [
+        'University of Ljubljana',
+        'University of Maribor',
+        'University of Primorska',
+        'University of Nova Gorica',
+      ],
+    },
+    {
+      id: 'si-non-eu-tuition-residence',
+      titleAr: 'دول ثالثة — رسوم دراسية + تصريح إقامة',
+      match: () => true,
+      whenAr:
+        'غير الأوروبيين (ما عدا الاستثناءات الثنائية) يدفعون عادة رسوماً للبكالوريوس/الماجستير بدوام كامل ويحتاجون تصريح إقامة للدراسة مع تمويل وتأمين وسكن. النطاق التقريبي €2000–€15000 حسب البرنامج.',
+      channelAr: 'eVŠ / الجامعة → تصريح إقامة طالب',
+      docs: [
+        'جواز دولة ثالثة',
+        'قبول',
+        'تمويل وتأمين صحي',
+        'إثبات سكن',
+        'تصريح إقامة',
+      ],
+      feesAr: 'رسوم دراسية مؤسسية للدورات الأولى/الثانية بدوام كامل عادة.',
+      visaAr: 'تصريح إقامة للدراسة (سفارة أو وحدة إدارية) — قد يستغرق أسابيع/أشهراً.',
+      caveats: ['تحقق إن كانت جنسيتك ضمن اتفاق غرب البلقان للإعفاء.'],
+      sources: [
+        {
+          label: 'Study in Slovenia — tuition and funding',
+          url: 'https://studyinslovenia.si/study/tuition-and-funding/',
+        },
+        {
+          label: 'European Education Area — Slovenia',
+          url: 'https://education.ec.europa.eu/study-in-europe/country-profiles/slovenia',
+        },
+      ],
+      portals: [],
+      universities: [
+        'University of Ljubljana',
+        'University of Maribor',
+        'University of Primorska',
+        'University of Nova Gorica',
+      ],
+    },
+  ],
+
+  'إستونيا': [
+    {
+      id: 'ee-eu-eea-register-dreamapply',
+      titleAr: 'إستوني / EU-EEA — تسجيل إقامة + DreamApply (إستونية مجانية غالباً)',
+      match: ({ nationality }) => nationality === 'إستونيا' || isEuEea(nationality),
+      whenAr:
+        'حسب وزارة التعليم الإستونية وEurydice: الدراسة بدوام كامل باللغة الإستونية بدون رسوم دراسية بغض النظر عن الجنسية عند استيفاء التقدم الأكاديمي. مواطنو EU/EEA يسجّلون الإقامة خلال 3 أشهر بلا تأشيرة. البرامج بالإنجليزية برسوم عبر DreamApply؛ بعض المؤسسات تفرّق رسوم EU/غير EU.',
+      channelAr: 'DreamApply / بوابة الجامعة',
+      docs: [
+        'شهادة ثانوية',
+        'إثبات جنسية إستونية أو EU/EEA',
+        'لغة إستونية للبرامج المجانية أو إنجليزية للمدفوعة',
+      ],
+      feesAr: 'إستونية بدوام كامل: مجانية عادة؛ إنجليزية: ≈ €1500–€15000؛ الدكتوراه بدون رسوم.',
+      visaAr: 'لا تأشيرة؛ تسجيل إقامة خلال 3 أشهر.',
+      caveats: [
+        'الرسوم للإنجليزية قد تختلف بين EU وغير EU حسب الجامعة.',
+        'التقدم الأكاديمي (مثل 75% من المنهج) قد يُشترط للإبقاء على المجانية.',
+      ],
+      sources: [
+        {
+          label: 'Estonian Ministry — higher education free in Estonian',
+          url: 'https://www.hm.ee/en/education-research-and-youth-affairs/general-education/higher-education',
+        },
+        {
+          label: 'Eurydice — Estonia national student fees',
+          url: 'https://eurydice.eacea.ec.europa.eu/countries/estonia/national-student-fee',
+        },
+        { label: 'Study in Estonia — tuition fees', url: 'https://www.studyinestonia.ee/tuition-fees' },
+      ],
+      portals: [],
+      universities: [
+        'University of Tartu',
+        'Tallinn University of Technology',
+        'Tallinn University',
+        'Estonian University of Life Sciences',
+      ],
+    },
+    {
+      id: 'ee-non-eu-visa-english-fees',
+      titleAr: 'غير EU — تأشيرة D / إقامة + رسوم للبرامج الإنجليزية',
+      match: () => true,
+      whenAr:
+        'غير الأوروبيين يحتاجون تأشيرة طويلة D أو تصريح إقامة مؤقت للدراسة قبل الوصول. البرامج الإستونية بدوام كامل تبقى غالباً مجانية حتى للدوليين (Eurydice)، بينما الإنجليزية برسوم وقد تكون أعلى لغير EU في بعض الجامعات.',
+      channelAr: 'DreamApply → قبول → تأشيرة D / إقامة مؤقتة',
+      docs: [
+        'جواز دولة ثالثة',
+        'قبول',
+        'إثبات لغة وتمويل وتأمين وسكن',
+        'تأشيرة D أو تصريح إقامة للدراسة',
+      ],
+      feesAr: 'إستونية مجانية غالباً؛ إنجليزية برسوم (قد تفرّق الجامعة بين EU وغير EU).',
+      visaAr: 'تأشيرة D أو إقامة مؤقتة للدراسة ثم تسجيل العنوان.',
+      caveats: ['الدكتوراه بدون رسوم دراسية لجميع الجنسيات حسب Study in Estonia.'],
+      sources: [
+        { label: 'Study in Estonia — tuition fees', url: 'https://www.studyinestonia.ee/tuition-fees' },
+        {
+          label: 'European Education Area — Estonia',
+          url: 'https://education.ec.europa.eu/study-in-europe/country-profiles/estonia',
+        },
+        {
+          label: 'Eurydice — Estonia national student fees',
+          url: 'https://eurydice.eacea.ec.europa.eu/countries/estonia/national-student-fee',
+        },
+      ],
+      portals: [],
+      universities: [
+        'University of Tartu',
+        'Tallinn University of Technology',
+        'Tallinn University',
+        'Estonian University of Life Sciences',
+      ],
+    },
+  ],
+
+  'ليتوانيا': [
+    {
+      id: 'lt-eu-eea-state-funded-lama-bpo',
+      titleAr: 'ليتواني / EU-EEA — مقاعد ممولة حكومياً عبر LAMA BPO',
+      match: ({ nationality }) => nationality === 'ليتوانيا' || isEuEea(nationality),
+      whenAr:
+        'حسب Study in Lithuania وRenkuosi Lietuvą: مواطنو ليتوانيا وEU/EEA مؤهلون للتقدم لمقاعد ممولة من الدولة (بدون رسوم عند القبول عليها) عبر القبول العام LAMA BPO. بلا تأشيرة طالب.',
+      channelAr: 'LAMA BPO (قبول عام) أو تقديم الجامعة للمقاعد غير المموّلة',
+      docs: [
+        'شهادة ثانوية',
+        'إثبات جنسية ليتوانية أو EU/EEA',
+        'لغة ليتوانية أو إنجليزية حسب البرنامج',
+      ],
+      feesAr: 'مقاعد حكومية بدون رسوم عند الأهلية؛ وإلا رسوم من ≈ €1300/سنة للبكالوريوس.',
+      visaAr: 'لا تأشيرة لـ EU/EEA.',
+      caveats: ['المقاعد المموّلة تنافسية؛ عدم الحصول عليها يعني دفع الرسوم كمسار ذاتي.'],
+      sources: [
+        { label: 'Study in Lithuania — tuition fees', url: 'https://studyin.lt/how-to-apply/tuition-fees/' },
+        {
+          label: 'Renkuosi Lietuvą — EU/EEA state-funded places',
+          url: 'https://www.renkuosilietuva.lt/en/create-pdf/548',
+        },
+        {
+          label: 'European Education Area — Lithuania',
+          url: 'https://education.ec.europa.eu/study-in-europe/country-profiles/lithuania',
+        },
+      ],
+      portals: [],
+      universities: [
+        'Vilnius University',
+        'Kaunas University of Technology',
+        'Vilnius Gediminas Technical University',
+        'Vytautas Magnus University',
+      ],
+    },
+    {
+      id: 'lt-non-eu-self-funded-visa',
+      titleAr: 'غير EU — تمويل ذاتي عادة + تأشيرة وطنية وإقامة',
+      match: () => true,
+      whenAr:
+        'غير الأوروبيين يتقدمون عادة مباشرة للجامعة/الكلية بتمويل ذاتي ويدفعون الرسوم، مع تأشيرة وطنية وتصريح إقامة مؤقت قبل القدوم. منح ماجستير حكومية متاحة لدول مختارة؛ الدكتوراه قد تُموَّل حكومياً حتى لغير EU.',
+      channelAr: 'تقديم الجامعة/الكلية مباشرة → تأشيرة وطنية + إقامة مؤقتة',
+      docs: [
+        'جواز دولة ثالثة',
+        'اعتراف/تقييم مؤهل (SKVC) عند الطلب',
+        'لغة ليتوانية أو إنجليزية',
+        'تمويل وتأمين',
+        'تأشيرة وطنية وإقامة',
+      ],
+      feesAr: 'رسوم ذاتية من ≈ €1300 (بكالوريوس) و≈ €2300 (ماجستير) فما فوق حسب البرنامج.',
+      visaAr: 'تأشيرة وطنية + تصريح إقامة مؤقت لغير EU/EEA.',
+      caveats: ['مسار LAMA BPO للمقاعد الحكومية مخصص أساساً لـ EU/EEA والليتوانيين والمؤهلين الآخرين.'],
+      sources: [
+        { label: 'Study in Lithuania — tuition fees', url: 'https://studyin.lt/how-to-apply/tuition-fees/' },
+        {
+          label: 'Renkuosi Lietuvą — non-EU nationals',
+          url: 'https://www.renkuosilietuva.lt/en/create-pdf/549',
+        },
+      ],
+      portals: [],
+      universities: [
+        'Vilnius University',
+        'Kaunas University of Technology',
+        'Vilnius Gediminas Technical University',
+        'Vytautas Magnus University',
+      ],
+    },
+  ],
 });
 
 /**
@@ -2522,6 +2744,9 @@ export function exampleAlternateNationality(studyCountry, currentNationality) {
     سلوفاكيا: 'الأردن',
     كرواتيا: 'الأردن',
     بلغاريا: 'الأردن',
+    سلوفينيا: 'الأردن',
+    إستونيا: 'الأردن',
+    ليتوانيا: 'الأردن',
   };
   return alts[studyCountry] || 'الأردن';
 }
@@ -2623,6 +2848,12 @@ export function nationalityTracksSummary() {
       'https://education.ec.europa.eu/study-in-europe/country-profiles/croatia',
       'https://education.ec.europa.eu/study-in-europe/country-profiles/bulgaria',
       'https://www.uni-ruse.bg/en/directorates/FSD/annual-tuition-fees',
+      'https://studyinslovenia.si/study/tuition-and-funding/',
+      'https://www.uni-lj.si/en/study/tuition-fees-and-other-study-contributions',
+      'https://www.studyinestonia.ee/tuition-fees',
+      'https://eurydice.eacea.ec.europa.eu/countries/estonia/national-student-fee',
+      'https://studyin.lt/how-to-apply/tuition-fees/',
+      'https://www.renkuosilietuva.lt/en/create-pdf/548',
     ],
   };
 }

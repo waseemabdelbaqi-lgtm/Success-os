@@ -1024,11 +1024,11 @@ export default function AdmissionsPage() {
                       <Status recognition={recognition} />
                       {u.platformMember ? (
                         <p className="admission-partner-flag">
-                          {kindLabelAr(institutionKind(u))} مشتركة — تواصل عبر الإشعارات بعد الدفع
+                          {kindLabelAr(institutionKind(u))} مشتركة — بعد دفع $5 يتم التخاطب عبر الإشعارات
                         </p>
                       ) : (
                         <p className="admission-partner-flag external">
-                          {kindLabelAr(institutionKind(u))} غير مشتركة — تواصل عبر إيميل رسمي بعد الدفع
+                          {kindLabelAr(institutionKind(u))} غير مشتركة — بعد دفع $5 إيميل رسمي يعبّئه الطالب
                         </p>
                       )}
                       <footer>
@@ -1038,7 +1038,7 @@ export default function AdmissionsPage() {
                           className="contact-uni-cta"
                           href={`/university-contact?id=${encodeURIComponent(u.id)}&nationality=${encodeURIComponent(nationality)}&studyCountry=${encodeURIComponent(studyCountry || '')}&applicantType=${encodeURIComponent(applicantType || '')}`}
                         >
-                          تواصل مع {kindLabelAr(institutionKind(u))} · $5
+                          تواصل · بوابة دفع $5
                         </a>
                         <button
                           type="button"
