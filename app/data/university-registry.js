@@ -61,6 +61,9 @@ export const countryAuthorities = {
   'الدنمارك':{authority:'Study in Denmark / optagelse.dk',url:'https://studyindenmark.dk/',note:'EU/EEA/سويسرا بدون رسوم؛ غير EU برسوم وتصريح إقامة — البكالوريوس عبر optagelse.dk.'},
   'بولندا':{authority:'NAWA / Study in Poland',url:'https://study.gov.pl/',note:'دوام كامل بولندي في الحكومية مجاني لبولندا/EU-EEA وKarta Polaka؛ غيرهم برسوم وتأشيرة حسب الوضع.'},
   'التشيك':{authority:'Study in Czechia',url:'https://www.studyin.cz/',note:'البرامج التشيكية في العامة مجانية لكل الجنسيات؛ الإنجليزية برسوم؛ التأشيرة تختلف EU مقابل غير EU.'},
+  'اليونان':{authority:'Study in Greece / European Education Area',url:'https://education.ec.europa.eu/study-in-europe/country-profiles/greece',note:'بكالوريوس يوناني عام غالباً مجاني؛ غير EU يحتاجون تأشيرة D؛ البرامج الإنجليزية برسوم.'},
+  'رومانيا':{authority:'Ministry of Education Romania',url:'https://education.ec.europa.eu/study-in-europe/country-profiles/romania',note:'EU/EEA/سويسرا بنفس شروط الرومانيين؛ غير EU برسوم أجنبية وتأشيرة طالب.'},
+  'المجر':{authority:'Study in Hungary',url:'https://studyinhungary.hu/',note:'EU بلا تأشيرة مع مسار مقاعد حكومية/ذاتية؛ غير EU تمويل ذاتي أو منحة + إقامة طالب.'},
 };
 
 const allSystems = qualificationSystems.map(x=>x.id);
@@ -216,6 +219,58 @@ export const globalInstitutions = [
  U('vut','التشيك','برنو','Brno University of Technology','جامعة',['وجاهي'],['هندسة','حوسبة','علوم'],'https://www.vut.cz/en/students/admissions',{
    contactEmail:'admissions@vut.cz',
  }),
+ U('nkua','اليونان','أثينا','National and Kapodistrian University of Athens','جامعة',['وجاهي'],['طب وصحة','علوم','آداب','قانون'],'https://en.uoa.gr/admissions/',{
+   local:['بكالوريوس يوناني عام غالباً مجاني لـ EU','تقديم الجامعة'],
+   international:['برامج إنجليزية برسوم','تأشيرة D لغير EU'],
+   platformMember:true,contactEmail:'protocol@uoa.gr',
+ }),
+ U('auth','اليونان','ثيسالونيكي','Aristotle University of Thessaloniki','جامعة',['وجاهي'],['هندسة','طب وصحة','علوم','آداب'],'https://www.auth.gr/en/admission',{
+   contactEmail:'admissions@auth.gr',
+ }),
+ U('ntua','اليونان','أثينا','National Technical University of Athens','جامعة',['وجاهي'],['هندسة','حوسبة','عمارة وتصميم'],'https://www.ntua.gr/en/studies/admission',{
+   platformMember:true,contactEmail:'central@ntua.gr',
+ }),
+ U('upatras','اليونان','باتراس','University of Patras','جامعة',['وجاهي'],['هندسة','علوم','طب وصحة','أعمال'],'https://www.upatras.gr/en/admission/',{
+   contactEmail:'intrel@upatras.gr',
+ }),
+ U('acs-athens','اليونان','أثينا','American Community Schools of Athens','مدرسة',['وجاهي'],['American Curriculum','IB','ابتدائي','ثانوي'],'https://www.acs.gr/admissions',{
+   degree:'تعليم مدرسي K-12',contactEmail:'admissions@acs.gr',
+ }),
+ U('unibuc','رومانيا','بوخارست','University of Bucharest','جامعة',['وجاهي'],['علوم','آداب','قانون','اقتصاد'],'https://unibuc.ro/en/admitere/',{
+   local:['نفس شروط المواطنين لـ EU/EEA/سويسرا','مقاعد مدعومة أو برسوم'],
+   international:['رسوم بالعملة الأجنبية','تأشيرة طالب لغير EU'],
+   platformMember:true,contactEmail:'admitere@unibuc.ro',
+ }),
+ U('ubb','رومانيا','كلوج','Babeș-Bolyai University','جامعة',['وجاهي'],['علوم','آداب','أعمال','قانون'],'https://www.ubbcluj.ro/en/prospective-students/',{
+   contactEmail:'admit@ubbcluj.ro',
+ }),
+ U('upb','رومانيا','بوخارست','Politehnica University of Bucharest','جامعة',['وجاهي'],['هندسة','حوسبة','علوم'],'https://upb.ro/en/admission/',{
+   platformMember:true,contactEmail:'international@upb.ro',
+ }),
+ U('uaic','رومانيا','ياش','Alexandru Ioan Cuza University','جامعة',['وجاهي'],['علوم','آداب','اقتصاد','قانون'],'https://www.uaic.ro/en/studies/admission/',{
+   contactEmail:'admission@uaic.ro',
+ }),
+ U('aisb-ro','رومانيا','بوخارست','American International School of Bucharest','مدرسة',['وجاهي'],['IB','ابتدائي','ثانوي'],'https://www.aisb.ro/admissions',{
+   degree:'تعليم مدرسي K-12',
+   platformMember:true,contactEmail:'admissions@aisb.ro',
+ }),
+ U('elte','المجر','بودابست','Eötvös Loránd University (ELTE)','جامعة',['وجاهي'],['علوم','آداب','قانون','تعليم'],'https://www.elte.hu/en/content/admission.t.66',{
+   local:['مقاعد حكومية أو ذاتية لـ EU','felvi / تقديم الجامعة'],
+   international:['تمويل ذاتي أو Stipendium Hungaricum','تصريح إقامة'],
+   platformMember:true,contactEmail:'admissions@elte.hu',
+ }),
+ U('semmelweis','المجر','بودابست','Semmelweis University','جامعة',['وجاهي'],['طب وصحة'],'https://semmelweis.hu/english/education/admission/',{
+   contactEmail:'admission@semmelweis.hu',
+ }),
+ U('unideb','المجر','دبرتسن','University of Debrecen','جامعة',['وجاهي'],['طب وصحة','هندسة','علوم','أعمال'],'https://edu.unideb.hu/p/how-to-apply',{
+   platformMember:true,contactEmail:'info@edu.unideb.hu',
+ }),
+ U('bme','المجر','بودابست','Budapest University of Technology and Economics','جامعة',['وجاهي'],['هندسة','حوسبة','علوم'],'https://www.bme.hu/en/education/admission',{
+   contactEmail:'admission@bme.hu',
+ }),
+ U('aisb-hu','المجر','بودابست','American International School of Budapest','مدرسة',['وجاهي'],['American Curriculum','IB','ابتدائي','ثانوي'],'https://www.aisb.hu/admissions',{
+   degree:'تعليم مدرسي K-12',contactEmail:'admissions@aisb.hu',
+ }),
  U('sapienza','إيطاليا','روما','Sapienza Università di Roma','جامعة',['وجاهي'],['هندسة','طب وصحة','علوم','آداب'],'https://www.uniroma1.it/en/pagina/admission',{
    local:['دبلوم ثانوي إيطالي أو معادل','تسجيل مباشر'],
    international:['قبول البرنامج','Universitaly لغير EU خارج إيطاليا','تأشيرة دراسة'],
@@ -336,15 +391,36 @@ export const globalInstitutions = [
  // Asia
  U('tsinghua','الصين','بكين','Tsinghua University','جامعة',['وجاهي'],['هندسة','حوسبة','علوم','أعمال'],'https://international.join-tsinghua.edu.cn/'),
  U('fudan','الصين','شنغهاي','Fudan University','جامعة',['وجاهي'],['علوم','طب وصحة','آداب','اقتصاد'],'https://iso.fudan.edu.cn/'),
- U('tokyo','اليابان','طوكيو','The University of Tokyo','جامعة',['وجاهي'],['هندسة','علوم','آداب','اقتصاد'],'https://www.u-tokyo.ac.jp/en/prospective-students/undergraduate_english.html'),
- U('kyoto','اليابان','كيوتو','Kyoto University','جامعة',['وجاهي'],['هندسة','علوم','طب وصحة','آداب'],'https://www.kyoto-u.ac.jp/en/education-campus/education_and_admissions'),
- U('waseda','اليابان','طوكيو','Waseda University','جامعة',['وجاهي'],['علوم','آداب','أعمال','هندسة'],'https://www.waseda.jp/inst/admission/en/'),
+ U('tokyo','اليابان','طوكيو','The University of Tokyo','جامعة',['وجاهي'],['هندسة','علوم','آداب','اقتصاد'],'https://www.u-tokyo.ac.jp/en/prospective-students/undergraduate_english.html',{
+   platformMember:true,contactEmail:'admission.u@gs.mail.u-tokyo.ac.jp',
+ }),
+ U('kyoto','اليابان','كيوتو','Kyoto University','جامعة',['وجاهي'],['هندسة','علوم','طب وصحة','آداب'],'https://www.kyoto-u.ac.jp/en/education-campus/education_and_admissions',{
+   contactEmail:'admission@mail2.adm.kyoto-u.ac.jp',
+ }),
+ U('waseda','اليابان','طوكيو','Waseda University','جامعة',['وجاهي'],['علوم','آداب','أعمال','هندسة'],'https://www.waseda.jp/inst/admission/en/',{
+   contactEmail:'admission@list.waseda.jp',
+ }),
+ U('osaka','اليابان','أوساكا','Osaka University','جامعة',['وجاهي'],['هندسة','علوم','طب وصحة','آداب'],'https://www.osaka-u.ac.jp/en/admissions',{
+   platformMember:true,contactEmail:'gakusei-nyushi-g30@office.osaka-u.ac.jp',
+ }),
  U('snu','كوريا الجنوبية','سيول','Seoul National University','جامعة',['وجاهي'],['هندسة','علوم','أعمال','آداب'],'https://en.snu.ac.kr/admission'),
  U('yonsei','كوريا الجنوبية','سيول','Yonsei University','جامعة',['وجاهي'],['علوم','أعمال','طب وصحة','آداب'],'https://admission.yonsei.ac.kr/'),
  U('korea-u','كوريا الجنوبية','سيول','Korea University','جامعة',['وجاهي'],['هندسة','أعمال','علوم','آداب'],'https://oia.korea.ac.kr/'),
- U('iitd','الهند','نيودلهي','Indian Institute of Technology Delhi','معهد جامعي',['وجاهي'],['هندسة','حوسبة','علوم'],'https://home.iitd.ac.in/undergraduate.php'),
- U('iitb','الهند','مومباي','Indian Institute of Technology Bombay','معهد جامعي',['وجاهي'],['هندسة','حوسبة','علوم'],'https://www.iitb.ac.in/newacadhome/undergraduate.jsp'),
- U('du','الهند','نيودلهي','University of Delhi','جامعة',['وجاهي'],['آداب','علوم','أعمال','قانون'],'https://admission.uod.ac.in/'),
+ U('iitd','الهند','نيودلهي','Indian Institute of Technology Delhi','معهد جامعي',['وجاهي'],['هندسة','حوسبة','علوم'],'https://home.iitd.ac.in/undergraduate.php',{
+   platformMember:true,contactEmail:'ugadmission@admin.iitd.ac.in',
+ }),
+ U('iitb','الهند','مومباي','Indian Institute of Technology Bombay','معهد جامعي',['وجاهي'],['هندسة','حوسبة','علوم'],'https://www.iitb.ac.in/newacadhome/undergraduate.jsp',{
+   contactEmail:'jeeadv@iitb.ac.in',
+ }),
+ U('du','الهند','نيودلهي','University of Delhi','جامعة',['وجاهي'],['آداب','علوم','أعمال','قانون'],'https://admission.uod.ac.in/',{
+   contactEmail:'admission@du.ac.in',
+ }),
+ U('iisc','الهند','بنغالور','Indian Institute of Science','معهد جامعي',['وجاهي'],['علوم','هندسة','حوسبة'],'https://iisc.ac.in/admissions/',{
+   platformMember:true,contactEmail:'admission.acad@iisc.ac.in',
+ }),
+ U('ashoka','الهند','سونيبات','Ashoka University','جامعة',['وجاهي'],['آداب','علوم','اقتصاد'],'https://www.ashoka.edu.in/admissions/',{
+   contactEmail:'ugadmissions@ashoka.edu.in',
+ }),
  U('um','ماليزيا','كوالالمبور','Universiti Malaya','جامعة',['وجاهي'],['هندسة','طب وصحة','علوم','أعمال'],'https://study.um.edu.my/how-to-apply'),
  U('ukm','ماليزيا','بانغي','Universiti Kebangsaan Malaysia','جامعة',['وجاهي'],['طب وصحة','علوم','هندسة','آداب'],'https://www.ukm.my/portal/'),
  U('utm','ماليزيا','جوهور','Universiti Teknologi Malaysia','جامعة',['وجاهي'],['هندسة','حوسبة','علوم'],'https://admission.utm.my/'),
@@ -383,12 +459,30 @@ export const globalInstitutions = [
  U('auc','مصر','القاهرة','الجامعة الأمريكية بالقاهرة','جامعة',['وجاهي'],['أعمال','هندسة','علوم','آداب'],'https://www.aucegypt.edu/admissions/undergraduate',{
    contactEmail:'admissions@aucegypt.edu',
  }),
- U('usthb','الجزائر','الجزائر','جامعة هواري بومدين للعلوم والتكنولوجيا','جامعة',['وجاهي'],['علوم','هندسة','حوسبة'],'https://www.usthb.dz/'),
- U('univ-alger','الجزائر','الجزائر','جامعة الجزائر 1 بن يوسف بن خدة','جامعة',['وجاهي'],['طب وصحة','قانون','آداب','علوم'],'https://www.univ-alger.dz/'),
- U('univ-oran','الجزائر','وهران','جامعة وهران 1 أحمد بن بلة','جامعة',['وجاهي'],['علوم','طب وصحة','آداب'],'https://www.univ-oran1.dz/'),
- U('um5','المغرب','الرباط','جامعة محمد الخامس','جامعة',['وجاهي'],['علوم','قانون','آداب','طب وصحة'],'https://www.um5.ac.ma/um5/'),
- U('uh2c','المغرب','الدار البيضاء','جامعة الحسن الثاني','جامعة',['وجاهي'],['علوم','هندسة','طب وصحة','آداب'],'https://www.univh2c.ma/'),
- U('uca','المغرب','مراكش','جامعة القاضي عياض','جامعة',['وجاهي'],['علوم','هندسة','آداب','طب وصحة'],'https://www.uca.ma/'),
+ U('usthb','الجزائر','الجزائر','جامعة هواري بومدين للعلوم والتكنولوجيا','جامعة',['وجاهي'],['علوم','هندسة','حوسبة'],'https://www.usthb.dz/',{
+   platformMember:true,contactEmail:'contact@usthb.dz',
+ }),
+ U('univ-alger','الجزائر','الجزائر','جامعة الجزائر 1 بن يوسف بن خدة','جامعة',['وجاهي'],['طب وصحة','قانون','آداب','علوم'],'https://www.univ-alger.dz/',{
+   contactEmail:'contact@univ-alger.dz',
+ }),
+ U('univ-oran','الجزائر','وهران','جامعة وهران 1 أحمد بن بلة','جامعة',['وجاهي'],['علوم','طب وصحة','آداب'],'https://www.univ-oran1.dz/',{
+   contactEmail:'contact@univ-oran1.dz',
+ }),
+ U('univ-constantine','الجزائر','قسنطينة','جامعة الإخوة منتوري قسنطينة 1','جامعة',['وجاهي'],['علوم','طب وصحة','آداب','هندسة'],'https://www.umc.edu.dz/',{
+   platformMember:true,contactEmail:'contact@umc.edu.dz',
+ }),
+ U('um5','المغرب','الرباط','جامعة محمد الخامس','جامعة',['وجاهي'],['علوم','قانون','آداب','طب وصحة'],'https://www.um5.ac.ma/um5/',{
+   platformMember:true,contactEmail:'contact@um5.ac.ma',
+ }),
+ U('uh2c','المغرب','الدار البيضاء','جامعة الحسن الثاني','جامعة',['وجاهي'],['علوم','هندسة','طب وصحة','آداب'],'https://www.univh2c.ma/',{
+   contactEmail:'contact@univh2c.ma',
+ }),
+ U('uca','المغرب','مراكش','جامعة القاضي عياض','جامعة',['وجاهي'],['علوم','هندسة','آداب','طب وصحة'],'https://www.uca.ma/',{
+   contactEmail:'contact@uca.ma',
+ }),
+ U('um6p','المغرب','بن جرير','جامعة محمد السادس متعددة التخصصات التقنية','جامعة',['وجاهي'],['هندسة','حوسبة','علوم','أعمال'],'https://www.um6p.ma/',{
+   platformMember:true,contactEmail:'admissions@um6p.ma',
+ }),
  U('metu','تركيا','أنقرة','Middle East Technical University','جامعة',['وجاهي'],['هندسة','حوسبة','علوم','أعمال'],'https://iso.metu.edu.tr/en/application-requirements'),
  U('bau','تركيا','إسطنبول','Bahçeşehir University','جامعة',['وجاهي','أونلاين'],['طب وصحة','هندسة','تصميم','أعمال'],'https://int.bau.edu.tr/admission/undergraduate-applicants/'),
  U('boun','تركيا','إسطنبول','Boğaziçi University','جامعة',['وجاهي'],['هندسة','علوم','آداب','اقتصاد'],'https://www.boun.edu.tr/en-US/Content/Academic/Prospective_Students'),

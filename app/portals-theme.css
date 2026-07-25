@@ -1367,6 +1367,31 @@ html[data-os-theme='dark'] .os-content {
   line-height: 1.8;
   color: #4b0a11;
 }
+.university-contact-aside .contact-case {
+  margin-top: 12px;
+  padding: 12px 14px;
+  border-radius: 14px;
+  border: 1px solid rgba(158, 23, 34, 0.1);
+  background: rgba(255, 255, 255, 0.72);
+}
+.university-contact-aside .contact-case.is-active {
+  border-color: rgba(158, 23, 34, 0.35);
+  background: #fff;
+  box-shadow: 0 0 0 1px rgba(158, 23, 34, 0.08);
+}
+.university-contact-aside .contact-case b {
+  display: block;
+  margin-bottom: 6px;
+  color: #9e1722;
+}
+.university-contact-aside .contact-case em {
+  display: block;
+  margin-top: 8px;
+  font-style: normal;
+  font-size: 12px;
+  font-weight: 700;
+  color: #0d4a4d;
+}
 .university-contact-aside a {
   display: inline-block;
   margin: 8px 12px 0 0;

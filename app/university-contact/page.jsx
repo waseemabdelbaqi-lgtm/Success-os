@@ -279,23 +279,26 @@ export default function UniversityContactPage() {
             </form>
 
             <aside className="university-contact-aside">
-              <small>مسار ما بعد الدفع — جامعة / كلية / مدرسة</small>
-              <h3>
-                {partner ? `الحالة 1 — ${label} مشتركة` : `الحالة 2 — ${label} غير مشتركة`}
-              </h3>
-              {partner ? (
+              <small>بعد الدفع — حالتان لجامعة / كلية / مدرسة</small>
+              <h3>ادفع ${CONTACT_FEE_USD} ثم يُفتح أحد المسارين</h3>
+              <div className={`contact-case ${partner ? 'is-active' : ''}`}>
+                <b>الحالة 1 — مشتركة في المنصة</b>
                 <ol>
                   <li>تدفع ${CONTACT_FEE_USD} عبر بوابة الدفع</li>
                   <li>يُنشأ إشعار فوري لمكتب القبول داخل المنصة</li>
                   <li>تتابع الرد من مركز الإشعارات مباشرة</li>
                 </ol>
-              ) : (
+                {partner && <em>هذه ال{label} مشتركة — ستُفعَّل هذه الحالة بعد الدفع</em>}
+              </div>
+              <div className={`contact-case ${!partner ? 'is-active' : ''}`}>
+                <b>الحالة 2 — غير مشتركة</b>
                 <ol>
                   <li>تدفع ${CONTACT_FEE_USD} عبر بوابة الدفع</li>
                   <li>تُفتح مسودة إيميل رسمي إلى {officialContactEmail(institution)}</li>
-                  <li>تراجع البيانات الضرورية ثم ترسل الإيميل بنفسك</li>
+                  <li>تعبّئ/تراجع البيانات الضرورية ثم ترسل الإيميل بنفسك</li>
                 </ol>
-              )}
+                {!partner && <em>هذه ال{label} غير مشتركة — ستُفعَّل هذه الحالة بعد الدفع</em>}
+              </div>
               <a href={institution.admission} target="_blank" rel="noreferrer">
                 صفحة القبول الرسمية ↗
               </a>

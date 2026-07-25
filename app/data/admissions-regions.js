@@ -20,8 +20,8 @@ export const ADMISSION_REGIONS = [
     order: 2,
     nameAr: 'أوروبا',
     nameEn: 'Europe',
-    blurbAr: 'بريطانيا وألمانيا وفرنسا وهولندا وبولندا والتشيك والسويد وإيطاليا والنمسا وإسبانيا وبلجيكا وأيرلندا — قنوات قبول تختلف بالجنسية.',
-    blurbEn: 'UK, Germany, France, NL, Poland, Czechia, Sweden, Italy, Austria, Spain, Belgium, Ireland — nationality-dependent channels.',
+    blurbAr: 'بريطانيا وألمانيا وفرنسا وهولندا وبولندا والتشيك واليونان ورومانيا والمجر والسويد وإيطاليا والنمسا وإسبانيا وبلجيكا وأيرلندا — قنوات قبول تختلف بالجنسية.',
+    blurbEn: 'UK, Germany, France, NL, Poland, Czechia, Greece, Romania, Hungary, Sweden, Italy, Austria, Spain, Belgium, Ireland — nationality-dependent channels.',
     icon: '🇪🇺',
   },
   {
@@ -811,6 +811,73 @@ export const ADMISSION_COUNTRIES = {
     sources: [
       { label: 'Study in Czechia — tuition fees', url: 'https://www.studyin.cz/plan-your-studies/tuition-fees/' },
       { label: 'Study in Czechia', url: 'https://www.studyin.cz/' },
+    ],
+  },
+  'اليونان': {
+    region: 'europe',
+    nameEn: 'Greece',
+    authority: 'Study in Greece / Ministry of Education',
+    authorityUrl: 'https://education.ec.europa.eu/study-in-europe/country-profiles/greece',
+    applyChannelLocal: 'تقديم الجامعة — بكالوريوس يوناني عام غالباً مجاني لـ EU',
+    applyChannelInternational: 'تقديم الجامعة + تأشيرة D لغير EU',
+    localSummaryAr:
+      'مواطن يوناني/EU-EEA/سويسرا: بلا تأشيرة؛ بكالوريوس باليونانية في العامة بدون رسوم عادة.',
+    internationalSummaryAr:
+      'غير EU: تأشيرة D؛ البرامج الإنجليزية/الدولية برسوم؛ الدورة الأولى باليونانية قد تبقى مجانية حسب Eurydice.',
+    localDocs: ['شهادة ثانوية', 'إثبات جنسية EU/EEA', 'ترجمة يونانية إن لزم'],
+    internationalDocs: ['جواز', 'قبول', 'ترجمة مصدّقة', 'تمويل وتأمين', 'تأشيرة D'],
+    notesAr: 'الجنسية تحدد التأشيرة؛ الرسوم تتأثر بلغة البرنامج والمستوى.',
+    sources: [
+      {
+        label: 'European Education Area — Greece',
+        url: 'https://education.ec.europa.eu/study-in-europe/country-profiles/greece',
+      },
+      {
+        label: 'Eurydice — Greece fees',
+        url: 'https://eurydice.eacea.ec.europa.eu/countries/greece/national-student-fee',
+      },
+    ],
+  },
+  'رومانيا': {
+    region: 'europe',
+    nameEn: 'Romania',
+    authority: 'Ministry of Education / Study in Romania',
+    authorityUrl: 'https://education.ec.europa.eu/study-in-europe/country-profiles/romania',
+    applyChannelLocal: 'تقديم الجامعة — نفس شروط المواطنين لـ EU/EEA/سويسرا',
+    applyChannelInternational: 'ملف دولي + رسوم بالعملة الأجنبية + تأشيرة طالب',
+    localSummaryAr: 'روماني أو EU/EEA/سويسرا: نفس شروط الرسوم والمقاعد المدعومة كالمواطنين.',
+    internationalSummaryAr: 'غير EU: رسوم أجنبية تقريباً €2000–€5000/سنة + تأشيرة طالب وإقامة.',
+    localDocs: ['شهادة ثانوية', 'إثبات جنسية EU/EEA أو رومانية', 'لغة البرنامج'],
+    internationalDocs: ['جواز', 'قبول', 'لغة', 'تمويل', 'تأشيرة طالب'],
+    notesAr: 'الجنسية تغيّر الرسوم والتأشيرة بوضوح بين مسار المواطنين ومسار غير EU.',
+    sources: [
+      {
+        label: 'European Education Area — Romania',
+        url: 'https://education.ec.europa.eu/study-in-europe/country-profiles/romania',
+      },
+    ],
+  },
+  'المجر': {
+    region: 'europe',
+    nameEn: 'Hungary',
+    authority: 'Study in Hungary / Tempus Public Foundation',
+    authorityUrl: 'https://studyinhungary.hu/',
+    applyChannelLocal: 'تقديم الجامعة / felvi — مقاعد حكومية أو ذاتية لـ EU',
+    applyChannelInternational: 'تمويل ذاتي أو Stipendium Hungaricum + تصريح إقامة',
+    localSummaryAr: 'مجري/EU-EEA: بلا تأشيرة؛ تنافس على مقاعد ممولة أو ذاتية حسب القواعد.',
+    internationalSummaryAr: 'غير EU: رسوم ذاتية أو منحة + تصريح إقامة للدراسة.',
+    localDocs: ['شهادة ثانوية', 'جنسية EU/EEA', 'لغة مجرية أو إنجليزية'],
+    internationalDocs: ['جواز', 'قبول/منحة', 'لغة', 'تمويل', 'تصريح إقامة'],
+    notesAr: 'التأشيرة واضحة بالجنسية؛ التمويل الحكومي تنافسي وليس تلقائياً لكل البرامج الإنجليزية.',
+    sources: [
+      {
+        label: 'European Education Area — Hungary',
+        url: 'https://education.ec.europa.eu/study-in-europe/country-profiles/hungary',
+      },
+      {
+        label: 'Study in Hungary — tuition',
+        url: 'https://studyinhungary.hu/study-in-hungary/menu/studying-in-hungary/tuition-fees-and-funding-options.html',
+      },
     ],
   },
 };

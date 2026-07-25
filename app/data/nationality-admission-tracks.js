@@ -1936,6 +1936,231 @@ export const DESTINATION_TRACKS = Object.freeze({
       ],
     },
   ],
+
+  'اليونان': [
+    {
+      id: 'gr-eu-eea-swiss-greek-ug-free',
+      titleAr: 'يوناني / EU-EEA / سويسرا — بكالوريوس يوناني مجاني + بلا تأشيرة',
+      match: ({ nationality }) => nationality === 'اليونان' || isEuEea(nationality),
+      whenAr:
+        'حسب European Education Area وEurydice: مواطنو اليونان وEU/EEA وسويسرا لا يحتاجون تأشيرة طالب. البرامج الجامعية العامة باليونانية في الدورة الأولى غالباً بدون رسوم دراسية؛ البرامج بالإنجليزية والعديد من الماجستير قد تفرض رسوماً.',
+      channelAr: 'تقديم الجامعة الإلكتروني (مستندات مترجمة لليونانية عند الطلب)',
+      docs: [
+        'شهادة ثانوية / معادل',
+        'إثبات جنسية EU/EEA أو يونانية',
+        'ترجمة يونانية معتمدة للمستندات إن لزم',
+        'لغة يونانية للبرامج المجانية أو إنجليزية للبرامج الدولية',
+      ],
+      feesAr: 'بكالوريوس يوناني عام: بدون رسوم عادة؛ إنجليزي/ماجستير: رسوم حسب البرنامج.',
+      visaAr: 'لا تأشيرة لـ EU/EEA/سويسرا.',
+      caveats: [
+        'Hellenic Open University والبرامج الأجنبية اللغة استثناءات رسومية.',
+        'تحقق من كل برنامج: عدد البرامج الإنجليزية تجاوز 200.',
+      ],
+      sources: [
+        {
+          label: 'European Education Area — Study in Greece',
+          url: 'https://education.ec.europa.eu/study-in-europe/country-profiles/greece',
+        },
+        {
+          label: 'Eurydice — Greece national student fees',
+          url: 'https://eurydice.eacea.ec.europa.eu/countries/greece/national-student-fee',
+        },
+      ],
+      portals: [],
+      universities: [
+        'National and Kapodistrian University of Athens',
+        'Aristotle University of Thessaloniki',
+        'National Technical University of Athens',
+        'University of Patras',
+      ],
+    },
+    {
+      id: 'gr-non-eu-visa-english-fees',
+      titleAr: 'خارج EU/EEA — تأشيرة D + رسوم للبرامج الإنجليزية/الدولية',
+      match: () => true,
+      whenAr:
+        'غير الأوروبيين يحتاجون تأشيرة طالب من نوع D ثم تصريح إقامة. حسب Eurydice قد تبقى الدورة الأولى باليونانية بدون رسوم حتى للدوليين، بينما البرامج باللغات الأجنبية تستهدف الدوليين وبرسوم. ملف European Education Area يذكر نطاقاً تقريباً €5000–€15000/سنة للبكالوريوس غير EU في المسارات المدفوعة.',
+      channelAr: 'تقديم الجامعة → موافقة → تأشيرة D / إقامة طالب',
+      docs: [
+        'جواز دولة ثالثة',
+        'قبول رسمي',
+        'مستندات مترجمة ومصدّقة لليونانية',
+        'إثبات تمويل وتأمين صحي',
+        'تأشيرة D ثم تصريح إقامة',
+      ],
+      feesAr: 'يوناني عام (دورة أولى): غالباً مجاني؛ برامج إنجليزية/دولية: رسوم مؤسسية.',
+      visaAr: 'تأشيرة طالب Type D + تصريح إقامة قبل/عند الوصول.',
+      caveats: [
+        'الجنسية تحدد التأشيرة بوضوح؛ الرسوم تتأثر بقوة بلغة البرنامج والمستوى.',
+        'العمل بدوام جزئي لغير EU يتطلب تصريحاً إضافياً غالباً.',
+      ],
+      sources: [
+        {
+          label: 'European Education Area — Study in Greece',
+          url: 'https://education.ec.europa.eu/study-in-europe/country-profiles/greece',
+        },
+        {
+          label: 'Eurydice — Greece national student fees',
+          url: 'https://eurydice.eacea.ec.europa.eu/countries/greece/national-student-fee',
+        },
+      ],
+      portals: [],
+      universities: [
+        'National and Kapodistrian University of Athens',
+        'Aristotle University of Thessaloniki',
+        'National Technical University of Athens',
+        'University of Patras',
+      ],
+    },
+  ],
+
+  'رومانيا': [
+    {
+      id: 'ro-eu-eea-swiss-same-as-romanian',
+      titleAr: 'روماني / EU-EEA / سويسرا — نفس شروط المواطنين الرومانيين',
+      match: ({ nationality }) => nationality === 'رومانيا' || isEuEea(nationality),
+      whenAr:
+        'حسب القانون الروماني وEuropean Education Area: مواطنو EU/EEA والاتحاد السويسري يتقدمون بنفس شروط المواطنين الرومانيين بما فيها الرسوم والمقاعد المموّلة حكومياً (حيث تُتاح). التقديم مباشرة للجامعة؛ لا تأشيرة طالب.',
+      channelAr: 'تقديم مباشر للجامعة (نفس مسار المواطنين)',
+      docs: [
+        'شهادة ثانوية / معادل',
+        'إثبات جنسية رومانية أو EU/EEA/سويسرا',
+        'إثبات لغة رومانية أو إنجليزية/فرنسية/ألمانية حسب البرنامج',
+      ],
+      feesAr: 'نفس رسوم الرومانيين — مقاعد مدعومة بدون رسوم أو مقاعد برسوم محلية حسب النتيجة.',
+      visaAr: 'لا تأشيرة؛ تسجيل لدى السلطات إن تجاوزت الإقامة 90 يوماً.',
+      caveats: ['المواعيد والامتحانات تختلف بين الجامعات — راجع منهجية القبول السنوية.'],
+      sources: [
+        {
+          label: 'European Education Area — Study in Romania',
+          url: 'https://education.ec.europa.eu/study-in-europe/country-profiles/romania',
+        },
+        {
+          label: 'Romanian embassy guidance — EU same conditions',
+          url: 'https://brasilia.mae.ro/en/romania/300',
+        },
+      ],
+      portals: [],
+      universities: [
+        'University of Bucharest',
+        'Babeș-Bolyai University',
+        'Politehnica University of Bucharest',
+        'Alexandru Ioan Cuza University',
+      ],
+    },
+    {
+      id: 'ro-non-eu-foreign-currency-visa',
+      titleAr: 'غير EU — رسوم بالعملة الأجنبية + تأشيرة طالب',
+      match: () => true,
+      whenAr:
+        'غير الأوروبيين يدفعون عادة رسوماً بالعملة الأجنبية تحددها الجامعة (متوسط European Education Area ≈ €2000–€5000/سنة)، ويتقدمون مباشرة دون مسابقة المواطنين غالباً، ثم يطلبون تأشيرة طالب وتصريح إقامة. منح الحكومة الرومانية متاحة لفئات مختارة من غير EU.',
+      channelAr: 'ملف الجامعة الدولي → خطاب قبول → تأشيرة طالب رومانية',
+      docs: [
+        'جواز دولة ثالثة',
+        'كشف علامات ودبلوم',
+        'إثبات لغة',
+        'خطاب قبول',
+        'تمويل وتأمين وسكن',
+        'تأشيرة طالب ثم إقامة',
+      ],
+      feesAr: 'رسوم غير EU بالعملة الأجنبية حسب البرنامج (غالباً أعلى من مسار المواطنين).',
+      visaAr: 'تأشيرة طالب من السفارة/القنصلية ثم تصريح إقامة بعد الوصول.',
+      caveats: ['قد تُطلب سنة تحضيرية للرومانية في بعض المنح أو البرامج.'],
+      sources: [
+        {
+          label: 'European Education Area — Study in Romania',
+          url: 'https://education.ec.europa.eu/study-in-europe/country-profiles/romania',
+        },
+      ],
+      portals: [],
+      universities: [
+        'University of Bucharest',
+        'Babeș-Bolyai University',
+        'Politehnica University of Bucharest',
+        'Alexandru Ioan Cuza University',
+      ],
+    },
+  ],
+
+  'المجر': [
+    {
+      id: 'hu-hungarian-eu-eea-state-track',
+      titleAr: 'مجري / EU-EEA — تسجيل إقامة + مسار مقاعد حكومية/ذاتية',
+      match: ({ nationality }) => nationality === 'المجر' || isEuEea(nationality),
+      whenAr:
+        'حسب European Education Area وEurydice: مواطنو المجر وEU/EEA لا يحتاجون تأشيرة؛ يقيمون بشهادة تسجيل إن تجاوزت المدة 90 يوماً. يمكن التنافس على مقاعد ممولة حكومياً أو ذاتية التمويل حسب الأداء والقواعد الوطنية؛ التقديم مباشرة للجامعة. البرامج بالإنجليزية واسعة (مئات البرامج).',
+      channelAr: 'تقديم مباشر للجامعة / felvi.hu للمسارات الوطنية',
+      docs: [
+        'شهادة ثانوية / معادل',
+        'إثبات جنسية مجرية أو EU/EEA',
+        'لغة مجرية أو إنجليزية حسب البرنامج',
+        'اختبار قبول إن طلبه البرنامج',
+      ],
+      feesAr: 'مقاعد حكومية بدون رسوم دراسية عند الأهلية؛ وإلا رسوم ذاتية أرخص غالباً من مسار غير EU في بعض المؤسسات.',
+      visaAr: 'لا تأشيرة؛ شهادة تسجيل إقامة لـ EU/EEA.',
+      caveats: [
+        'ليس كل البرامج الإنجليزية مجانية حتى للمجريين — التمويل الحكومي محدود وتنافسي.',
+        'Stipendium Hungaricum منحة منفصلة تستهدف غالباً دولاً شريكة خارج EU.',
+      ],
+      sources: [
+        {
+          label: 'European Education Area — Study in Hungary',
+          url: 'https://education.ec.europa.eu/study-in-europe/country-profiles/hungary',
+        },
+        {
+          label: 'Eurydice — Hungary national student fees',
+          url: 'https://eurydice.eacea.ec.europa.eu/countries/hungary/national-student-fee',
+        },
+        {
+          label: 'Study in Hungary — tuition & funding',
+          url: 'https://studyinhungary.hu/study-in-hungary/menu/studying-in-hungary/tuition-fees-and-funding-options.html',
+        },
+      ],
+      portals: [],
+      universities: [
+        'Eötvös Loránd University (ELTE)',
+        'Semmelweis University',
+        'University of Debrecen',
+        'Budapest University of Technology and Economics',
+      ],
+    },
+    {
+      id: 'hu-non-eu-self-funded-residence',
+      titleAr: 'غير EU — تمويل ذاتي / منحة + تصريح إقامة للدراسة',
+      match: () => true,
+      whenAr:
+        'غير الأوروبيين يتقدمون عادة كطلاب ذاتيي التمويل برسوم تحددها الجامعة (الطب وطب الأسنان أعلى)، أو عبر Stipendium Hungaricum عند الأهلية. يلزم تصريح إقامة للدراسة للإقامة أطول من 90 يوماً، غالباً عبر السفارة قبل الوصول.',
+      channelAr: 'تقديم الجامعة أو منحة Stipendium Hungaricum → تصريح إقامة طالب',
+      docs: [
+        'جواز دولة ثالثة',
+        'مؤهل سابق + لغة',
+        'قبول أو منحة',
+        'تمويل وتأمين',
+        'تصريح إقامة للدراسة',
+      ],
+      feesAr: 'رسوم ذاتية حسب البرنامج؛ المنح الحكومية قد تغطي الرسوم والإقامة الجزئية.',
+      visaAr: 'تأشيرة/تصريح إقامة للدراسة لغير EU حسب الجنسية ومدة الإقامة.',
+      caveats: ['بعض الجامعات تسعر EU وغير EU بشكل مختلف؛ أكّد صفحة الرسوم للبرنامج.'],
+      sources: [
+        {
+          label: 'European Education Area — Study in Hungary',
+          url: 'https://education.ec.europa.eu/study-in-europe/country-profiles/hungary',
+        },
+        {
+          label: 'Study in Hungary — tuition & funding',
+          url: 'https://studyinhungary.hu/study-in-hungary/menu/studying-in-hungary/tuition-fees-and-funding-options.html',
+        },
+      ],
+      portals: [],
+      universities: [
+        'Eötvös Loránd University (ELTE)',
+        'Semmelweis University',
+        'University of Debrecen',
+        'Budapest University of Technology and Economics',
+      ],
+    },
+  ],
 });
 
 /**
@@ -2074,6 +2299,9 @@ export function exampleAlternateNationality(studyCountry, currentNationality) {
     بولندا: 'الأردن',
     التشيك: 'الأردن',
     نيوزيلندا: 'الأردن',
+    اليونان: 'الأردن',
+    رومانيا: 'الأردن',
+    المجر: 'الأردن',
   };
   return alts[studyCountry] || 'الأردن';
 }
@@ -2164,6 +2392,11 @@ export function nationalityTracksSummary() {
       'https://www.auckland.ac.nz/en/study/fees-and-money-matters/tuition-fees/paying-your-fees/fee-types-and-calculation.html',
       'https://ask.otago.ac.nz/knowledgebase/article/KA-10000242',
       'https://www.canterbury.ac.nz/study/getting-started/study-and-living-costs/study-costs/domestic-tuition-fees',
+      'https://education.ec.europa.eu/study-in-europe/country-profiles/greece',
+      'https://eurydice.eacea.ec.europa.eu/countries/greece/national-student-fee',
+      'https://education.ec.europa.eu/study-in-europe/country-profiles/romania',
+      'https://education.ec.europa.eu/study-in-europe/country-profiles/hungary',
+      'https://studyinhungary.hu/study-in-hungary/menu/studying-in-hungary/tuition-fees-and-funding-options.html',
     ],
   };
 }
