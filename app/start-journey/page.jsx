@@ -6,6 +6,7 @@ import {journeyDestination} from '../lib/routes';
 import {
   ADMISSION_STUDY_COUNTRIES,
   UNIVERSITY_DEGREES,
+  UNIVERSITY_INSTITUTION_TYPES,
   UNIVERSITY_JOURNEY_FIELDS,
   UNIVERSITY_STUDY_MODES,
   admissionsUrlFromJourney,
@@ -28,6 +29,7 @@ const options={
  'نوع الخدمة':serviceTypes,
  'داخل الدولة أو خارجها':['داخل دولتي','خارج دولتي','كلاهما'],
  'دولة الوجهة':ADMISSION_STUDY_COUNTRIES,
+ 'نوع المؤسسة':UNIVERSITY_INSTITUTION_TYPES.filter(x=>x!=='الكل'),
  'نمط الدراسة':UNIVERSITY_STUDY_MODES.filter(x=>x!=='الكل'),
  'الدرجة':UNIVERSITY_DEGREES.filter(x=>x!=='الكل'),
  'التخصص':universityFieldChoices().filter(x=>x!=='الكل'),

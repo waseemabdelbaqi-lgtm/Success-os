@@ -40,6 +40,7 @@ export const ADMISSION_STUDY_COUNTRIES = Object.keys(ADMISSION_COUNTRIES);
 export const UNIVERSITY_JOURNEY_FIELDS = [
   'داخل الدولة أو خارجها',
   'دولة الوجهة',
+  'نوع المؤسسة',
   'نمط الدراسة',
   'الدرجة',
   'التخصص',
@@ -47,6 +48,16 @@ export const UNIVERSITY_JOURNEY_FIELDS = [
 
 export const UNIVERSITY_STUDY_MODES = ['الكل', 'وجاهي', 'أونلاين'];
 export const UNIVERSITY_DEGREES = ['الكل', 'دبلوم', 'بكالوريوس', 'ماجستير', 'دكتوراه', 'دورة قصيرة'];
+export const UNIVERSITY_INSTITUTION_TYPES = [
+  'الكل',
+  'جامعة',
+  'جامعة أونلاين',
+  'كلية جامعية',
+  'كلية مجتمعية',
+  'كلية تقنية',
+  'كلية',
+  'معهد جامعي',
+];
 
 const FIELD_CHOICES = [
   'الكل',
@@ -62,6 +73,8 @@ const FIELD_CHOICES = [
   'اقتصاد',
   'علوم اجتماعية',
   'إدارة',
+  'تعليم',
+  'صحة',
 ];
 
 export function universityFieldChoices() {
@@ -121,6 +134,9 @@ export function admissionsUrlFromJourney(form = {}) {
 
   const field = filters['التخصص'];
   if (field && field !== 'الكل') params.set('field', field);
+
+  const type = filters['نوع المؤسسة'];
+  if (type && type !== 'الكل') params.set('type', type);
 
   if (form.name) params.set('name', form.name);
 
