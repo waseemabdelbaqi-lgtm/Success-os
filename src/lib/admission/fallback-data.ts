@@ -131,6 +131,36 @@ export const FALLBACK_INSTITUTIONS: Institution[] = [
     official_email: "admission@kpfu.ru",
     logo_url: "https://kpfu.ru",
   },
+  {
+    id: "00000000-0000-4000-8000-000000000019",
+    name: "جامعة برلين التقنية - ألمانيا",
+    type: "university",
+    country: "Germany",
+    majors: ["Engineering", "Computing", "Sciences", "Architecture"],
+    is_partner: false,
+    official_email: "international@tu-berlin.de",
+    logo_url: "https://tu-berlin.de",
+  },
+  {
+    id: "00000000-0000-4000-8000-000000000020",
+    name: "جامعة كوفنتري - بريطانيا",
+    type: "university",
+    country: "United Kingdom",
+    majors: ["Engineering", "Business", "Computing", "Design", "Health"],
+    is_partner: true,
+    official_email: "applications.io@coventry.ac.uk",
+    logo_url: "https://coventry.ac.uk",
+  },
+  {
+    id: "00000000-0000-4000-8000-000000000021",
+    name: "جامعة الشرق الأدنى - قبرص",
+    type: "university",
+    country: "Cyprus",
+    majors: ["Medicine", "Engineering", "Business", "Law", "Dentistry"],
+    is_partner: true,
+    official_email: "info@neu.edu.tr",
+    logo_url: "https://neu.edu.tr",
+  },
 ];
 
 type FallbackCriteria = {
@@ -326,6 +356,42 @@ const CRITERIA: Record<string, FallbackCriteria[]> = {
       alternative_exam_required: "HIV Test + Russian Year",
       avg_living_cost: "250$ - 400$ شهرياً",
       deadline_date: "2026-10-15",
+      is_accredited_in_home_country: true,
+    },
+  ],
+  "00000000-0000-4000-8000-000000000019": [
+    {
+      nationality: "Egyptian",
+      min_gpa: 3.0,
+      requirements_text:
+        "الشهادة الثانوية العامة تتطلب دراسة سنة تحضيرية (Studienkolleg) إجبارية. يشترط إثبات لغة ألمانية B2 أو إنجليزية IELTS 6.5 حسب المسار، وفتح حساب مغلق بمبلغ 11,900 يورو.",
+      alternative_exam_required: "Studienkolleg + Blocked Account",
+      avg_living_cost: "900$ - 1100$ شهرياً",
+      deadline_date: "2026-07-15",
+      is_accredited_in_home_country: true,
+    },
+  ],
+  "00000000-0000-4000-8000-000000000020": [
+    {
+      nationality: "Saudi",
+      min_gpa: 2.8,
+      requirements_text:
+        "القبول مشروط بدراسة سنة تأسيسية (Foundation Year). يشترط رفع شهادة IELTS for UKVI حصراً بمعدل لا يقل عن 5.5، وتقديم كشف حساب بنكي يغطي الرسوم والمعيشة لـ 9 أشهر.",
+      alternative_exam_required: "IELTS for UKVI",
+      avg_living_cost: "1200$ - 1600$ شهرياً",
+      deadline_date: "2026-08-30",
+      is_accredited_in_home_country: true,
+    },
+  ],
+  "00000000-0000-4000-8000-000000000021": [
+    {
+      nationality: "Yemeni",
+      min_gpa: 2.0,
+      requirements_text:
+        "قبول فوري مباشر بالشهادة الثانوية. يحصل الطالب تلقائياً على منحة جزئية بقيمة 50% على كافة التخصصات. الفيزا تصدر فوراً في المطار بناءً على ورقة القبول الحالية.",
+      alternative_exam_required: "القبول بالثانوية فقط",
+      avg_living_cost: "300$ - 400$ شهرياً",
+      deadline_date: "2026-10-01",
       is_accredited_in_home_country: true,
     },
   ],
