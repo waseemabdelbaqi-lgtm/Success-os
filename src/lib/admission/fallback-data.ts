@@ -181,6 +181,26 @@ export const FALLBACK_INSTITUTIONS: Institution[] = [
     official_email: "admissions.info@ug.edu.ge",
     logo_url: "https://ug.edu.ge",
   },
+  {
+    id: "00000000-0000-4000-8000-000000000024",
+    name: "جامعة سيؤول الوطنية - كوريا",
+    type: "university",
+    country: "South Korea",
+    majors: ["Engineering", "Medicine", "Sciences", "Business", "Arts"],
+    is_partner: false,
+    official_email: "admission@snu.ac.kr",
+    logo_url: "https://snu.ac.kr",
+  },
+  {
+    id: "00000000-0000-4000-8000-000000000025",
+    name: "جامعة دبرتسن - المجر",
+    type: "university",
+    country: "Hungary",
+    majors: ["Medicine", "Engineering", "Sciences", "Business", "Pharmacy"],
+    is_partner: true,
+    official_email: "sh@edu.unideb.hu",
+    logo_url: "https://unideb.hu",
+  },
 ];
 
 type FallbackCriteria = {
@@ -439,6 +459,31 @@ const CRITERIA: Record<string, FallbackCriteria[]> = {
       is_accredited_in_home_country: true,
     },
   ],
+  "00000000-0000-4000-8000-000000000024": [
+    {
+      nationality: "Moroccan",
+      min_gpa: 3.3,
+      requirements_text:
+        "يشترط ألا يحمل الطالب أو أحد والديه الجنسية الكورية. يتطلب تقديم شهادة TOPIK مستوى 3 للتخصصات الكورية أو آيلتس 5.5 للإنجليزية، مع توفير توثيق الأبوستيل للشهادات وكشف حساب بقيمة 20,000 دولار.",
+      alternative_exam_required: "Apostille + TOPIK/IELTS",
+      avg_living_cost: "500$ - 700$ شهرياً",
+      deadline_date: "2026-03-27",
+      is_accredited_in_home_country: true,
+    },
+  ],
+  "00000000-0000-4000-8000-000000000025": [
+    {
+      nationality: "Egyptian",
+      min_gpa: 3.0,
+      requirements_text:
+        "القبول مشروط بترشيح وزارة التعليم العالي المصرية (Sending Partner). يشترط أن يكون السن فوق 18 عاماً، ورفع الفحص الطبي المعتمد (HIV, Hep B/C). المنحة تغطي الرسوم، السكن، وتمنح راتباً شهرياً.",
+      requires_embassy_letter: true,
+      alternative_exam_required: "Nomination + Medical Check",
+      avg_living_cost: "110$ شهرياً (المنحة تغطي السكن والرسوم)",
+      deadline_date: "2026-01-15",
+      is_accredited_in_home_country: true,
+    },
+  ],
 };
 
 function degreeMatchesType(degree: string, type: Institution["type"]) {
@@ -470,6 +515,8 @@ function pickCriteria(institutionId: string, nationality: string) {
     kuwait: "kuwait",
     yemeni: "yemen",
     yemen: "yemen",
+    moroccan: "morocco",
+    morocco: "morocco",
   };
   const key = aliases[normalized] || normalized;
   return (
