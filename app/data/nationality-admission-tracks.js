@@ -2600,6 +2600,229 @@ export const DESTINATION_TRACKS = Object.freeze({
       ],
     },
   ],
+
+  'لاتفيا': [
+    {
+      id: 'lv-eu-eea-same-fee-rules',
+      titleAr: 'لاتفي / EU-EEA — نفس إجراءات رسوم المواطنين + بلا تأشيرة',
+      match: ({ nationality }) => nationality === 'لاتفيا' || isEuEea(nationality),
+      whenAr:
+        'حسب وكالة تطوير التعليم الحكومية (VIAA): رسوم مواطني الاتحاد الأوروبي وأبنائهم تُحدَّد وتُغطى بنفس إجراءات مواطني لاتفيا والمقيمين الدائمين. يمكن التنافس على مقاعد ممولة من الميزانية أو مقاعد ذاتية. بلا تأشيرة طالب.',
+      channelAr: 'تقديم الجامعة مباشرة — مسار EU/مواطنين',
+      docs: [
+        'شهادة ثانوية',
+        'إثبات جنسية لاتفية أو EU/EEA',
+        'لغة لاتفية أو إنجليزية حسب البرنامج',
+      ],
+      feesAr: 'مقاعد حكومية بدون رسوم عند القبول عليها؛ وإلا رسوم محلية (غالباً أقل من متوسط غير EU).',
+      visaAr: 'لا تأشيرة لـ EU/EEA/سويسرا.',
+      caveats: [
+        'المقاعد المموّلة محدودة وتنافسية — عدم الفوز بها يعني دفع الرسوم.',
+        'Eurydice/OECD: متوسط رسوم غير EU أعلى بكثير من مسار EU.',
+      ],
+      sources: [
+        {
+          label: 'VIAA — education system (EU fee procedure)',
+          url: 'https://www.viaa.gov.lv/en/education-system',
+        },
+        {
+          label: 'Eurydice — Latvia higher education funding',
+          url: 'https://eurydice.eacea.ec.europa.eu/eurypedia/latvia/higher-education-funding',
+        },
+        {
+          label: 'European Education Area — Latvia',
+          url: 'https://education.ec.europa.eu/study-in-europe/country-profiles/latvia',
+        },
+      ],
+      portals: [],
+      universities: [
+        'University of Latvia',
+        'Riga Technical University',
+        'Rīga Stradiņš University',
+        'Latvia University of Life Sciences and Technologies',
+      ],
+    },
+    {
+      id: 'lv-non-eu-higher-fees-visa',
+      titleAr: 'غير EU — رسوم أعلى عادة + دعوة جامعية وتأشيرة/إقامة',
+      match: () => true,
+      whenAr:
+        'غير الأوروبيين يدفعون عادة رسوماً أعلى ويتقدمون للجامعة ثم يحصلون على رقم دعوة للتأشيرة/تصريح الإقامة عبر السفارة. European Education Area يذكر نطاقاً من أقل من €1600 حتى €15000+ للطب/الأسنان.',
+      channelAr: 'تقديم الجامعة → دعوة OCMA → تأشيرة/إقامة طالب',
+      docs: [
+        'جواز دولة ثالثة',
+        'قبول واتفاقية دراسة',
+        'رقم دعوة من الجامعة',
+        'تمويل وتأمين',
+        'تأشيرة أو تصريح إقامة',
+      ],
+      feesAr: 'رسوم دولية حسب البرنامج (متوسط أعلى من مسار EU حسب Eurydice/OECD).',
+      visaAr: 'تأشيرة/إقامة عبر السفارة بعد دعوة الجامعة — إجراءات تختلف حسب بلد الإقامة.',
+      caveats: ['منح الدولة اللاتفية متاحة لمواطني دول شريكة محددة فقط غالباً.'],
+      sources: [
+        {
+          label: 'European Education Area — Latvia',
+          url: 'https://education.ec.europa.eu/study-in-europe/country-profiles/latvia',
+        },
+        {
+          label: 'Eurydice — Latvia higher education funding',
+          url: 'https://eurydice.eacea.ec.europa.eu/eurypedia/latvia/higher-education-funding',
+        },
+      ],
+      portals: [],
+      universities: [
+        'University of Latvia',
+        'Riga Technical University',
+        'Rīga Stradiņš University',
+        'Latvia University of Life Sciences and Technologies',
+      ],
+    },
+  ],
+
+  'مالطا': [
+    {
+      id: 'mt-eu-eea-home-fees',
+      titleAr: 'مالطي / EU-EEA — رسوم Home Students + بلا تأشيرة',
+      match: ({ nationality }) => nationality === 'مالطا' || isEuEea(nationality),
+      whenAr:
+        'حسب جامعة مالطا ولوائح الرسوم: مواطنو EU/EEA يُصنَّفون Home Students برسوم أدنى من الدوليين. بلا تأشيرة؛ تسجيل إقامة إن تجاوزت المدة 90 يوماً. الإنجليزية لغة التدريس الأساسية.',
+      channelAr: 'تقديم الجامعة الإلكتروني — مسار EU/Home',
+      docs: [
+        'شهادة ثانوية',
+        'إثبات جنسية مالطية أو EU/EEA',
+        'إثبات إنجليزي عند الطلب',
+      ],
+      feesAr: 'رسوم Home/EU أقل من Non-EU؛ تختلف حسب البرنامج والمستوى.',
+      visaAr: 'لا تأشيرة لـ EU/EEA.',
+      caveats: ['تحقق من صفحة كل برنامج: الجامعة تعرض رسوم EU مقابل non-EU.'],
+      sources: [
+        {
+          label: 'European Education Area — Malta',
+          url: 'https://education.ec.europa.eu/study-in-europe/country-profiles/malta',
+        },
+        {
+          label: 'University of Malta — fees policy (Home = EU/EEA)',
+          url: 'https://www.um.edu.mt/__data/assets/pdf_file/0004/431545/FeesPolicyGuidelines1.pdf',
+        },
+      ],
+      portals: [],
+      universities: [
+        'University of Malta',
+        'Malta College of Arts, Science and Technology (MCAST)',
+        'Institute of Tourism Studies',
+        'American University of Malta',
+      ],
+    },
+    {
+      id: 'mt-non-eu-higher-fees-d-visa',
+      titleAr: 'غير EU/EEA — رسوم دولية أعلى + تأشيرة D وإقامة إلكترونية',
+      match: () => true,
+      whenAr:
+        'غير الأوروبيين يدفعون رسوم Non-EU (مثال جامعة مالطا: تقريباً €8500 لبرامج الآداب/الأعمال و€10800 للعلوم الجامعية حسب الجداول المنشورة). يلزم تأشيرة طالب طويلة D قبل السفر، ثم e-Residence Permit للدراسة سنة فأكثر.',
+      channelAr: 'تقديم الجامعة → قبول → تأشيرة D → e-Residence',
+      docs: [
+        'جواز دولة ثالثة',
+        'قبول',
+        'إثبات تمويل وتأمين صحي خاص',
+        'تأشيرة D ثم تصريح إقامة إلكتروني',
+      ],
+      feesAr: 'رسوم Non-EU أعلى بوضوح من Home/EU حسب البرنامج.',
+      visaAr: 'تأشيرة Student D قبل السفر + e-Residence بعد الوصول.',
+      caveats: ['العمل لغير EU محدود غالباً بـ 20 ساعة/أسبوع بعد الحصول على الإقامة.'],
+      sources: [
+        {
+          label: 'European Education Area — Malta',
+          url: 'https://education.ec.europa.eu/study-in-europe/country-profiles/malta',
+        },
+        {
+          label: 'University of Malta — Non-EU tuition fees schedule',
+          url: 'https://www.um.edu.mt/__data/assets/pdf_file/0009/363186/FeesNonEUStudents.pdf',
+        },
+      ],
+      portals: [],
+      universities: [
+        'University of Malta',
+        'Malta College of Arts, Science and Technology (MCAST)',
+        'Institute of Tourism Studies',
+        'American University of Malta',
+      ],
+    },
+  ],
+
+  'لوكسمبورغ': [
+    {
+      id: 'lu-eu-eea-swiss-flexible-docs',
+      titleAr: 'لوكسمبورغي / EU-EEA / سويسرا — رسوم موحّدة + تقديم مرن أكثر',
+      match: ({ nationality }) => nationality === 'لوكسمبورغ' || isEuEea(nationality),
+      whenAr:
+        'حسب University of Luxembourg: لا رسوم منفصلة للطلاب الدوليين (≈ €400/فصل لمعظم البرامج). متقدمو EU/EEA/سويسرا يمكنهم التقديم بشرط لاحق للشهادة/معادلة الثانوية، بلا تأشيرة طالب؛ تسجيل إقامة إن تجاوزت 90 يوماً.',
+      channelAr: 'منصة قبول University of Luxembourg',
+      docs: [
+        'شهادة ثانوية أو قبول مشروط',
+        'معادلة الثانوية لوزارة التعليم عند الطلب (يمكن لاحقاً لـ EU)',
+        'إثبات لغات البرنامج (فرنسية/ألمانية/إنجليزية حسب التخصص)',
+      ],
+      feesAr: 'رسوم برنامج موحّدة تقريباً €400/فصل لمعظم البرامج + رسوم تقديم ≈ €100.',
+      visaAr: 'لا تأشيرة؛ تسجيل إقامة بعد 90 يوماً.',
+      caveats: [
+        'الجنسية لا تغيّر مبلغ الرسوم عادة، لكنها تغيّر صرامة مواعيد المعادلة والتأشيرة.',
+        'تكلفة المعيشة مرتفعة (≈ €1500+/شهر كحد أدنى إرشادي).',
+      ],
+      sources: [
+        {
+          label: 'University of Luxembourg — admission criteria (EU vs third country)',
+          url: 'https://www.uni.lu/en/admissions/admission-criteria/',
+        },
+        {
+          label: 'European Education Area — Luxembourg',
+          url: 'https://education.ec.europa.eu/study-in-europe/country-profiles/luxembourg',
+        },
+      ],
+      portals: [],
+      universities: [
+        'University of Luxembourg',
+        'Luxembourg School of Business',
+        'Sacred Heart University Luxembourg',
+      ],
+    },
+    {
+      id: 'lu-third-country-equivalence-ast',
+      titleAr: 'دول ثالثة — معادلة قبل الموعد + AST / إقامة + رسوم موحّدة',
+      match: () => true,
+      whenAr:
+        'لمتقدمي الدول الثالثة على البكالوريوس: يجب تقديم معادلة الشهادة الثانوية لوزارة التعليم قبل موعد التقديم (لا قبول مشروط كـ EU). الرسوم الدراسية نفسها تقريباً، لكن يلزم تصريح إقامة مؤقت (AST) وتمويل أعلى للمعيشة والتأمين الاجتماعي.',
+      channelAr: 'معادلة الثانوية → منصة uni.lu → AST / إقامة طالب',
+      docs: [
+        'جواز دولة ثالثة',
+        'معادلة الثانوية قبل الموعد (بكالوريوس)',
+        'قبول',
+        'إثبات تمويل وسكن وتأمين',
+        'تصريح إقامة مؤقت (AST)',
+      ],
+      feesAr: 'نفس رسوم البرنامج تقريباً (لا تسعير منفصل لغير EU) + تكاليف تأمين اجتماعي أعلى غالباً.',
+      visaAr: 'تصريح/تأشيرة إقامة طالب للدول الثالثة قبل/عند الوصول حسب القواعد.',
+      caveats: [
+        'إجراء المعادلة قد يستغرق 6 أسابيع على الأقل — ابدأ مبكراً.',
+        'للماجستير قد يُطلب تسجيل المؤهل في Register of Titles بعد القبول.',
+      ],
+      sources: [
+        {
+          label: 'University of Luxembourg — admission criteria',
+          url: 'https://www.uni.lu/en/admissions/admission-criteria/',
+        },
+        {
+          label: 'European Education Area — Luxembourg',
+          url: 'https://education.ec.europa.eu/study-in-europe/country-profiles/luxembourg',
+        },
+      ],
+      portals: [],
+      universities: [
+        'University of Luxembourg',
+        'Luxembourg School of Business',
+        'Sacred Heart University Luxembourg',
+      ],
+    },
+  ],
 });
 
 /**
@@ -2747,6 +2970,9 @@ export function exampleAlternateNationality(studyCountry, currentNationality) {
     سلوفينيا: 'الأردن',
     إستونيا: 'الأردن',
     ليتوانيا: 'الأردن',
+    لاتفيا: 'الأردن',
+    مالطا: 'الأردن',
+    لوكسمبورغ: 'الأردن',
   };
   return alts[studyCountry] || 'الأردن';
 }
@@ -2854,6 +3080,12 @@ export function nationalityTracksSummary() {
       'https://eurydice.eacea.ec.europa.eu/countries/estonia/national-student-fee',
       'https://studyin.lt/how-to-apply/tuition-fees/',
       'https://www.renkuosilietuva.lt/en/create-pdf/548',
+      'https://www.viaa.gov.lv/en/education-system',
+      'https://eurydice.eacea.ec.europa.eu/eurypedia/latvia/higher-education-funding',
+      'https://education.ec.europa.eu/study-in-europe/country-profiles/malta',
+      'https://www.um.edu.mt/__data/assets/pdf_file/0009/363186/FeesNonEUStudents.pdf',
+      'https://www.uni.lu/en/admissions/admission-criteria/',
+      'https://education.ec.europa.eu/study-in-europe/country-profiles/luxembourg',
     ],
   };
 }

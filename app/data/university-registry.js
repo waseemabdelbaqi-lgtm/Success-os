@@ -70,6 +70,9 @@ export const countryAuthorities = {
   'سلوفينيا':{authority:'Study in Slovenia',url:'https://studyinslovenia.si/',note:'EU/EEA/سويسرا معفيون من رسوم الدوام الكامل غالباً؛ غير EU يدفعون + إقامة طالب.'},
   'إستونيا':{authority:'Study in Estonia',url:'https://www.studyinestonia.ee/',note:'إستونية بدوام كامل مجانية غالباً لكل الجنسيات؛ الإنجليزية برسوم؛ التأشيرة لغير EU.'},
   'ليتوانيا':{authority:'Study in Lithuania / LAMA BPO',url:'https://studyin.lt/',note:'EU/EEA مؤهلون لمقاعد حكومية؛ غير EU تمويل ذاتي وتأشيرة وطنية عادة.'},
+  'لاتفيا':{authority:'VIAA / Study in Latvia',url:'https://www.viaa.gov.lv/en/education-system',note:'رسوم EU بنفس إجراءات المواطنين؛ غير EU رسوم أعلى عادة + تأشيرة/إقامة.'},
+  'مالطا':{authority:'University of Malta / MFHEA',url:'https://education.ec.europa.eu/study-in-europe/country-profiles/malta',note:'Home (EU/EEA) برسوم أدنى؛ Non-EU برسوم أعلى وتأشيرة D.'},
+  'لوكسمبورغ':{authority:'University of Luxembourg',url:'https://www.uni.lu/en/admissions/admission-criteria/',note:'رسوم موحّدة تقريباً؛ الجنسية تغيّر مواعيد المعادلة ومتطلبات الإقامة.'},
 };
 
 const allSystems = qualificationSystems.map(x=>x.id);
@@ -387,6 +390,57 @@ export const globalInstitutions = [
  U('aisv','ليتوانيا','فيلنيوس','American International School of Vilnius','مدرسة',['وجاهي'],['American Curriculum','IB','ابتدائي','ثانوي'],'https://www.aisv.lt/admissions',{
    degree:'تعليم مدرسي K-12',
    platformMember:true,contactEmail:'admissions@aisv.lt',
+ }),
+ U('lu-lv','لاتفيا','ريغا','University of Latvia','جامعة',['وجاهي'],['علوم','طب وصحة','آداب','قانون'],'https://www.lu.lv/en/admission/',{
+   local:['رسوم EU كإجراءات المواطنين','مقاعد حكومية تنافسية'],
+   international:['رسوم أعلى لغير EU','دعوة وتأشيرة/إقامة'],
+   platformMember:true,contactEmail:'admission@lu.lv',
+ }),
+ U('rtu','لاتفيا','ريغا','Riga Technical University','جامعة',['وجاهي'],['هندسة','حوسبة','علوم','أعمال'],'https://www.rtu.lv/en/studies/admission',{
+   platformMember:true,contactEmail:'international@rtu.lv',
+ }),
+ U('rsu','لاتفيا','ريغا','Rīga Stradiņš University','جامعة',['وجاهي'],['طب وصحة','علوم اجتماعية'],'https://www.rsu.lv/en/study-here/admission',{
+   contactEmail:'admissions@rsu.lv',
+ }),
+ U('lbtu','لاتفيا','جيلغافا','Latvia University of Life Sciences and Technologies','جامعة',['وجاهي'],['زراعة','هندسة','علوم','أعمال'],'https://www.lbtu.lv/en/admission',{
+   contactEmail:'international@lbtu.lv',
+ }),
+ U('isriga','لاتفيا','ريغا','International School of Riga','مدرسة',['وجاهي'],['IB','ابتدائي','ثانوي'],'https://www.isriga.lv/admissions',{
+   degree:'تعليم مدرسي K-12',
+   platformMember:true,contactEmail:'admissions@isriga.lv',
+ }),
+ U('um','مالطا','مسيدا','University of Malta','جامعة',['وجاهي'],['طب وصحة','علوم','آداب','أعمال','هندسة'],'https://www.um.edu.mt/journey/admissionsadvice/',{
+   local:['رسوم Home/EU','تقديم الجامعة'],
+   international:['رسوم Non-EU أعلى','تأشيرة D','e-Residence'],
+   platformMember:true,contactEmail:'admissions@um.edu.mt',
+ }),
+ U('mcast','مالطا','باولا','Malta College of Arts, Science and Technology','كلية',['وجاهي'],['هندسة','حوسبة','أعمال','تصميم'],'https://www.mcast.edu.mt/admissions/',{
+   degree:'دبلوم وبكالوريوس تطبيقي',contactEmail:'admissions@mcast.edu.mt',
+ }),
+ U('its-mt','مالطا','سانتا فينيرا','Institute of Tourism Studies','كلية',['وجاهي'],['ضيافة','سياحة','أعمال'],'https://its.edu.mt/admissions/',{
+   degree:'دبلوم وبكالوريوس تطبيقي',
+   platformMember:true,contactEmail:'admissions@its.edu.mt',
+ }),
+ U('aum','مالطا','كوسبيكو','American University of Malta','جامعة',['وجاهي'],['أعمال','حوسبة','هندسة'],'https://aum.edu.mt/admissions/',{
+   contactEmail:'admissions@aum.edu.mt',
+ }),
+ U('verdala','مالطا','إنبابة','Verdala International School','مدرسة',['وجاهي'],['IB','ابتدائي','ثانوي'],'https://www.verdala.org/admissions',{
+   degree:'تعليم مدرسي K-12',contactEmail:'admissions@verdala.org',
+ }),
+ U('uni-lu','لوكسمبورغ','إيش-سور-ألزيت','University of Luxembourg','جامعة',['وجاهي'],['علوم','قانون','أعمال','هندسة','آداب'],'https://www.uni.lu/en/admissions/',{
+   local:['رسوم ≈ €400/فصل','تقديم مرن لـ EU'],
+   international:['معادلة قبل الموعد لغير EU','AST / إقامة طالب'],
+   platformMember:true,contactEmail:'admission@uni.lu',
+ }),
+ U('lsb','لوكسمبورغ','لوكسمبورغ','Luxembourg School of Business','كلية',['وجاهي'],['أعمال','إدارة'],'https://www.luxsb.lu/admissions/',{
+   degree:'ماجستير ودبلوم أعمال',contactEmail:'admissions@luxsb.lu',
+ }),
+ U('shu-lu','لوكسمبورغ','لوكسمبورغ','Sacred Heart University Luxembourg','جامعة',['وجاهي'],['أعمال','تمويل'],'https://www.shu.lu/admissions/',{
+   contactEmail:'admissions@shu.lu',
+ }),
+ U('isl','لوكسمبورغ','لوكسمبورغ','International School of Luxembourg','مدرسة',['وجاهي'],['IB','ابتدائي','ثانوي'],'https://www.islux.lu/admissions',{
+   degree:'تعليم مدرسي K-12',
+   platformMember:true,contactEmail:'admissions@islux.lu',
  }),
  U('sapienza','إيطاليا','روما','Sapienza Università di Roma','جامعة',['وجاهي'],['هندسة','طب وصحة','علوم','آداب'],'https://www.uniroma1.it/en/pagina/admission',{
    local:['دبلوم ثانوي إيطالي أو معادل','تسجيل مباشر'],
