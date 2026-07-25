@@ -57,6 +57,20 @@ export function AdmissionFunnelApp() {
     const unlock_token = params.get("unlock_token");
     const institution_id = params.get("institution_id");
     const session_id = params.get("session_id");
+    const nationality = params.get("nationality");
+    const studyCountry = params.get("studyCountry");
+    const stepParam = params.get("step");
+
+    if (nationality || studyCountry) {
+      setProfile((p) => ({
+        ...p,
+        nationality: nationality || p.nationality,
+        preferredStudyCountry: studyCountry || p.preferredStudyCountry,
+      }));
+    }
+    if (stepParam === "matches") {
+      setStep("matches");
+    }
 
     if (paid && (payment_id || session_id)) {
       void (async () => {
