@@ -26,6 +26,12 @@ export interface AdmissionCriteria {
   nationality: string;
   min_gpa: number;
   requirements_text: string;
+  /** متوسط تكلفة المعيشة للطالب */
+  avg_living_cost?: string | null;
+  /** آخر موعد للتقديم */
+  deadline_date?: string | null;
+  /** هل الشهادة معترف بها في بلد الطالب */
+  is_accredited_in_home_country?: boolean | null;
 }
 
 export interface Institution {

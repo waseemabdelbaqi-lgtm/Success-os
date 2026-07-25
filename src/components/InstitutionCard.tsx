@@ -6,6 +6,9 @@ import { useRouter } from "next/navigation";
 interface Criteria {
   min_gpa: number;
   requirements_text: string;
+  avg_living_cost?: string | null;
+  deadline_date?: string | null;
+  is_accredited_in_home_country?: boolean | null;
 }
 
 export interface InstitutionCardProps {
@@ -144,6 +147,38 @@ export default function InstitutionCard({
                 • الحد الأدنى للمعدل المطلـوب:{" "}
                 <span className="font-bold text-[#9e1722]">{matchedCriteria.min_gpa}</span>
               </p>
+              {matchedCriteria.avg_living_cost ? (
+                <p>
+                  • متوسط تكلفة المعيشة:{" "}
+                  <span className="font-semibold text-[#4d3439]">
+                    {matchedCriteria.avg_living_cost}
+                  </span>
+                </p>
+              ) : null}
+              {matchedCriteria.deadline_date ? (
+                <p>
+                  • آخر موعد للتقديم:{" "}
+                  <span className="font-semibold text-[#4d3439]" dir="ltr">
+                    {matchedCriteria.deadline_date}
+                  </span>
+                </p>
+              ) : null}
+              {typeof matchedCriteria.is_accredited_in_home_country === "boolean" ? (
+                <p>
+                  • الاعتراف في بلدك:{" "}
+                  <span
+                    className={
+                      matchedCriteria.is_accredited_in_home_country
+                        ? "font-semibold text-green-700"
+                        : "font-semibold text-amber-700"
+                    }
+                  >
+                    {matchedCriteria.is_accredited_in_home_country
+                      ? "معتمدة ✓"
+                      : "يُرجى التحقق من الاعتراف"}
+                  </span>
+                </p>
+              ) : null}
               <p className="whitespace-pre-line leading-relaxed">
                 • {matchedCriteria.requirements_text}
               </p>

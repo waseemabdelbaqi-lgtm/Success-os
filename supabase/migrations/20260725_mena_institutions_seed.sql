@@ -83,3 +83,6 @@ values
 on conflict (institution_id, nationality) do update set
   min_gpa = excluded.min_gpa,
   requirements_text = excluded.requirements_text;
+
+-- Enrichment fields (applied after 20260725_admission_criteria_enrichment.sql columns exist)
+-- Safe no-op if columns missing on first partial apply; enrichment migration sets living cost/deadlines.

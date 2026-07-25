@@ -83,7 +83,16 @@ export const FALLBACK_INSTITUTIONS: Institution[] = [
   },
 ];
 
-const CRITERIA: Record<string, Array<{ nationality: string; min_gpa: number; requirements_text: string }>> = {
+type FallbackCriteria = {
+  nationality: string;
+  min_gpa: number;
+  requirements_text: string;
+  avg_living_cost?: string | null;
+  deadline_date?: string | null;
+  is_accredited_in_home_country?: boolean | null;
+};
+
+const CRITERIA: Record<string, FallbackCriteria[]> = {
   "00000000-0000-4000-8000-000000000001": [
     {
       nationality: "Jordan",
@@ -149,12 +158,16 @@ const CRITERIA: Record<string, Array<{ nationality: string; min_gpa: number; req
       min_gpa: 3.2,
       requirements_text:
         "يتطلب القبول للطلاب المصريين شهادة الثانوية العامة مصدقة من الخارجية المصرية والسفارة السعودية، مع فحص طبي معتمد وخلو سوابق من وزارة الداخلية لتأشيرة الدخول.",
+      avg_living_cost: "350$ - 500$ شهرياً (شامل السكن والطعام المتوسط)",
+      deadline_date: "2026-08-25",
+      is_accredited_in_home_country: true,
     },
     {
       nationality: "Syrian",
       min_gpa: 3.0,
       requirements_text:
         "القبول متاح عبر مسار المنح الدراسية للوافدين، يتطلب جواز سفر ساري المفعول لمدة لا تقل عن سنة، وإعفاء من شرط السن إن كان المتقدم حاصلاً على تميز أكاديمي.",
+      is_accredited_in_home_country: true,
     },
   ],
   "00000000-0000-4000-8000-000000000012": [
@@ -163,12 +176,16 @@ const CRITERIA: Record<string, Array<{ nationality: string; min_gpa: number; req
       min_gpa: 2.5,
       requirements_text:
         "التقديم متاح عبر الإدارة العامة للوافدين بمصر، يتطلب دفع رسوم القيد السنوية البالغة 1500 دولار للمرة الأولى، وتصديق الشهادة الثانوية من الملحقية الثقافية المصرية بالرياض.",
+      avg_living_cost: "150$ - 300$ شهرياً (معيشة اقتصادية جداً للطلاب)",
+      deadline_date: "2026-09-10",
+      is_accredited_in_home_country: true,
     },
     {
       nationality: "Jordanian",
       min_gpa: 2.5,
       requirements_text:
         "القبول فوري لتخصصات الهندسة والحاسبات بمعدل لا يقل عن 65%، يتطلب توفير شهادة ميلاد أصلية وصورة جواز السفر معتمدة من السفارة الأردنية بالقاهرة.",
+      is_accredited_in_home_country: true,
     },
   ],
   "00000000-0000-4000-8000-000000000013": [

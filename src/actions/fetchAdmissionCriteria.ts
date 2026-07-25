@@ -23,6 +23,9 @@ export type ScrapedCriteria = {
   nationality: string;
   min_gpa: number;
   requirements_text: string;
+  avg_living_cost?: string | null;
+  deadline_date?: string | null;
+  is_accredited_in_home_country?: boolean | null;
   source?: "cache" | "tavily+openai" | "mock";
 };
 
@@ -176,6 +179,9 @@ export async function getOrScrapeCriteria(
         nationality: hit.nationality,
         min_gpa: hit.min_gpa,
         requirements_text: hit.requirements_text,
+        avg_living_cost: hit.avg_living_cost ?? null,
+        deadline_date: hit.deadline_date ?? null,
+        is_accredited_in_home_country: hit.is_accredited_in_home_country ?? true,
         source: "cache",
       };
     }

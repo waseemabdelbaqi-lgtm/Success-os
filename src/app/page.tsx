@@ -122,6 +122,12 @@ export default async function DiscoveryPage({
                     ? {
                         min_gpa: Number(inst.matchedCriteria.min_gpa),
                         requirements_text: inst.matchedCriteria.requirements_text,
+                        avg_living_cost: inst.matchedCriteria.avg_living_cost,
+                        deadline_date: inst.matchedCriteria.deadline_date
+                          ? String(inst.matchedCriteria.deadline_date).slice(0, 10)
+                          : null,
+                        is_accredited_in_home_country:
+                          inst.matchedCriteria.is_accredited_in_home_country,
                       }
                     : null
                 }
