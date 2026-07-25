@@ -1,6 +1,216 @@
 'use client';
-import {useMemo,useState} from 'react';
-import {InnerNav} from '../components';
-const channels={student:{label:'الطالب',peers:['المعلم','المدرسة','الجامعة'],icon:'◉'},teacher:{label:'المعلم',peers:['الطالب','المدرسة','المركز التعليمي'],icon:'♙'},school:{label:'المدرسة',peers:['الطالب','ولي الأمر','المعلم'],icon:'⌂'},university:{label:'الجامعة أو الكلية',peers:['الطالب','مسؤول القبول'],icon:'🎓'},jobseeker:{label:'الباحث عن عمل',peers:['شركة التوظيف'],icon:'◇'},employer:{label:'شركة التوظيف',peers:['الباحث عن عمل'],icon:'↗'}};
-const seed=[{id:1,to:'student',from:'المعلم',title:'تم تأكيد حصة الفيزياء',body:'موعد الحصة الثلاثاء الساعة 5:00 مساءً.',time:'منذ 8 دقائق',read:false},{id:2,to:'student',from:'الجامعة',title:'مطلوب استكمال وثيقة',body:'ارفع ترجمة كشف العلامات لمتابعة فحص الأهلية.',time:'منذ 25 دقيقة',read:false},{id:3,to:'teacher',from:'الطالب',title:'سؤال قبل الحصة',body:'هل تشمل الحصة تدريبًا على الرسوم البيانية؟',time:'منذ 40 دقيقة',read:true},{id:4,to:'school',from:'الطالب',title:'طلب معلومات عن الرسوم',body:'طلب الطالب تفاصيل السعر السنوي وخطة الأقساط.',time:'منذ ساعة',read:false},{id:5,to:'university',from:'الطالب',title:'تم رفع الوثائق',body:'أضيفت الشهادة وكشف العلامات إلى ملف القبول.',time:'منذ ساعتين',read:true},{id:6,to:'jobseeker',from:'شركة التوظيف',title:'دعوة إلى مقابلة',body:'تم ترشيحك لمقابلة وظيفة صانع محتوى تعليمي.',time:'اليوم',read:false},{id:7,to:'employer',from:'الباحث عن عمل',title:'طلب توظيف جديد',body:'وصل طلب جديد يطابق 82% من المهارات المطلوبة.',time:'اليوم',read:false}];
-export default function NotificationsPage(){const [role,setRole]=useState('student'),[items,setItems]=useState(seed),[peer,setPeer]=useState(channels.student.peers[0]),[message,setMessage]=useState('');const visible=useMemo(()=>items.filter(x=>x.to===role),[items,role]);const unread=visible.filter(x=>!x.read).length;function changeRole(v){setRole(v);setPeer(channels[v].peers[0])}function send(e){e.preventDefault();if(!message.trim())return;setItems([{id:Date.now(),to:role,from:`رسالة إلى ${peer}`,title:'تم إنشاء إشعار تجريبي',body:message.trim(),time:'الآن',read:false},...items]);setMessage('')}return <div className="os-page phase11-legacy-page"><InnerNav active="notifications"/><main className="os-page-content notification-page"><header className="notification-hero"><div><span>CONNECTED NOTIFICATIONS</span><h1>مركز الإشعارات والعلاقات</h1><p>قناة موحدة للتحديثات التعليمية والقبول والتوظيف، مع فصل الصلاحيات حسب دور المستخدم.</p></div><div><b>{unread}</b><small>غير مقروء في هذه المساحة</small></div></header><section className="notification-rolebar">{Object.entries(channels).map(([id,c])=><button className={role===id?'active':''} onClick={()=>changeRole(id)} key={id}><span>{c.icon}</span>{c.label}</button>)}</section><section className="notification-layout"><div className="notification-feed"><header><div><small>الوارد</small><h2>إشعارات {channels[role].label}</h2></div><button onClick={()=>setItems(items.map(x=>x.to===role?{...x,read:true}:x))}>تعليم الكل كمقروء</button></header>{visible.map(n=><article className={n.read?'':'unread'} key={n.id} onClick={()=>setItems(items.map(x=>x.id===n.id?{...x,read:true}:x))}><span>{n.from[0]}</span><div><small>{n.from} • {n.time}</small><h3>{n.title}</h3><p>{n.body}</p></div><i></i></article>)}{!visible.length&&<div className="empty-notification">لا توجد إشعارات في هذه المساحة.</div>}</div><form className="notification-compose" onSubmit={send}><small>إرسال تجريبي</small><h2>إنشاء إشعار</h2><label>إلى<select value={peer} onChange={e=>setPeer(e.target.value)}>{channels[role].peers.map(x=><option key={x}>{x}</option>)}</select></label><label>الرسالة<textarea value={message} onChange={e=>setMessage(e.target.value)} placeholder="اكتب موعدًا أو تحديثًا أو طلب وثيقة..."/></label><button>إرسال الإشعار</button><p>الحماية الإنتاجية ستمنع أي دور من مراسلة جهة خارج الصلاحيات المحددة.</p><div><a href="/profile">صفحة المستخدم</a><a href="/control-center">لوحة التحكم</a></div></form></section></main></div>}
+import { useEffect, useMemo, useState } from 'react';
+import { InnerNav } from '../components';
+import { INQUIRY_NOTIFICATIONS_KEY } from '../data/university-inquiry';
+
+const channels = {
+  student: { label: 'الطالب', peers: ['المعلم', 'المدرسة', 'الجامعة'], icon: '◉' },
+  teacher: { label: 'المعلم', peers: ['الطالب', 'المدرسة', 'المركز التعليمي'], icon: '♙' },
+  school: { label: 'المدرسة', peers: ['الطالب', 'ولي الأمر', 'المعلم'], icon: '⌂' },
+  university: { label: 'الجامعة أو الكلية', peers: ['الطالب', 'مسؤول القبول'], icon: '🎓' },
+  jobseeker: { label: 'الباحث عن عمل', peers: ['شركة التوظيف'], icon: '◇' },
+  employer: { label: 'شركة التوظيف', peers: ['الباحث عن عمل'], icon: '↗' },
+};
+
+const seed = [
+  {
+    id: 1,
+    to: 'student',
+    from: 'المعلم',
+    title: 'تم تأكيد حصة الفيزياء',
+    body: 'موعد الحصة الثلاثاء الساعة 5:00 مساءً.',
+    time: 'منذ 8 دقائق',
+    read: false,
+  },
+  {
+    id: 2,
+    to: 'student',
+    from: 'الجامعة',
+    title: 'مطلوب استكمال وثيقة',
+    body: 'ارفع ترجمة كشف العلامات لمتابعة فحص الأهلية.',
+    time: 'منذ 25 دقيقة',
+    read: false,
+  },
+  {
+    id: 3,
+    to: 'teacher',
+    from: 'الطالب',
+    title: 'سؤال قبل الحصة',
+    body: 'هل تشمل الحصة تدريبًا على الرسوم البيانية؟',
+    time: 'منذ 40 دقيقة',
+    read: true,
+  },
+  {
+    id: 4,
+    to: 'school',
+    from: 'الطالب',
+    title: 'طلب معلومات عن الرسوم',
+    body: 'طلب الطالب تفاصيل السعر السنوي وخطة الأقساط.',
+    time: 'منذ ساعة',
+    read: false,
+  },
+  {
+    id: 5,
+    to: 'university',
+    from: 'الطالب',
+    title: 'تم رفع الوثائق',
+    body: 'أضيفت الشهادة وكشف العلامات إلى ملف القبول.',
+    time: 'منذ ساعتين',
+    read: true,
+  },
+  {
+    id: 6,
+    to: 'jobseeker',
+    from: 'شركة التوظيف',
+    title: 'دعوة إلى مقابلة',
+    body: 'تم ترشيحك لمقابلة وظيفة صانع محتوى تعليمي.',
+    time: 'اليوم',
+    read: false,
+  },
+  {
+    id: 7,
+    to: 'employer',
+    from: 'الباحث عن عمل',
+    title: 'طلب توظيف جديد',
+    body: 'وصل طلب جديد يطابق 82% من المهارات المطلوبة.',
+    time: 'اليوم',
+    read: false,
+  },
+];
+
+export default function NotificationsPage() {
+  const [role, setRole] = useState('student');
+  const [items, setItems] = useState(seed);
+  const [peer, setPeer] = useState(channels.student.peers[0]);
+  const [message, setMessage] = useState('');
+
+  useEffect(() => {
+    try {
+      const stored = JSON.parse(localStorage.getItem(INQUIRY_NOTIFICATIONS_KEY) || '[]');
+      if (Array.isArray(stored) && stored.length) {
+        setItems((prev) => {
+          const ids = new Set(prev.map((x) => String(x.id)));
+          const fresh = stored.filter((x) => !ids.has(String(x.id)));
+          return fresh.length ? [...fresh, ...prev] : prev;
+        });
+      }
+    } catch {
+      /* ignore */
+    }
+  }, []);
+
+  const visible = useMemo(() => items.filter((x) => x.to === role), [items, role]);
+  const unread = visible.filter((x) => !x.read).length;
+
+  function changeRole(v) {
+    setRole(v);
+    setPeer(channels[v].peers[0]);
+  }
+
+  function send(e) {
+    e.preventDefault();
+    if (!message.trim()) return;
+    setItems([
+      {
+        id: Date.now(),
+        to: role,
+        from: `رسالة إلى ${peer}`,
+        title: 'تم إنشاء إشعار تجريبي',
+        body: message.trim(),
+        time: 'الآن',
+        read: false,
+      },
+      ...items,
+    ]);
+    setMessage('');
+  }
+
+  return (
+    <div className="os-page phase11-legacy-page">
+      <InnerNav active="notifications" />
+      <main className="os-page-content notification-page">
+        <header className="notification-hero">
+          <div>
+            <span>CONNECTED NOTIFICATIONS</span>
+            <h1>مركز الإشعارات والعلاقات</h1>
+            <p>
+              قناة موحدة للتحديثات التعليمية والقبول والتوظيف — بما فيها طلبات التواصل مع جامعة أو كلية أو
+              مدرسة بعد دفع رسوم $5 (إشعارات للمؤسسات المشتركة).
+            </p>
+          </div>
+          <div>
+            <b>{unread}</b>
+            <small>غير مقروء في هذه المساحة</small>
+          </div>
+        </header>
+        <section className="notification-rolebar">
+          {Object.entries(channels).map(([id, c]) => (
+            <button className={role === id ? 'active' : ''} onClick={() => changeRole(id)} key={id}>
+              <span>{c.icon}</span>
+              {c.label}
+            </button>
+          ))}
+        </section>
+        <section className="notification-layout">
+          <div className="notification-feed">
+            <header>
+              <div>
+                <small>الوارد</small>
+                <h2>إشعارات {channels[role].label}</h2>
+              </div>
+              <button onClick={() => setItems(items.map((x) => (x.to === role ? { ...x, read: true } : x)))}>
+                تعليم الكل كمقروء
+              </button>
+            </header>
+            {visible.map((n) => (
+              <article
+                className={n.read ? '' : 'unread'}
+                key={n.id}
+                onClick={() => setItems(items.map((x) => (x.id === n.id ? { ...x, read: true } : x)))}
+              >
+                <span>{String(n.from || '?')[0]}</span>
+                <div>
+                  <small>
+                    {n.from} • {n.time}
+                    {n.channel === 'platform' ? ' • تواصل جامعي' : ''}
+                  </small>
+                  <h3>{n.title}</h3>
+                  <p>{n.body}</p>
+                </div>
+                <i></i>
+              </article>
+            ))}
+            {!visible.length && <div className="empty-notification">لا توجد إشعارات في هذه المساحة.</div>}
+          </div>
+          <form className="notification-compose" onSubmit={send}>
+            <small>إرسال تجريبي</small>
+            <h2>إنشاء إشعار</h2>
+            <label>
+              إلى
+              <select value={peer} onChange={(e) => setPeer(e.target.value)}>
+                {channels[role].peers.map((x) => (
+                  <option key={x}>{x}</option>
+                ))}
+              </select>
+            </label>
+            <label>
+              الرسالة
+              <textarea
+                value={message}
+                onChange={(e) => setMessage(e.target.value)}
+                placeholder="اكتب موعدًا أو تحديثًا أو طلب وثيقة..."
+              />
+            </label>
+            <button>إرسال الإشعار</button>
+            <p>الحماية الإنتاجية ستمنع أي دور من مراسلة جهة خارج الصلاحيات المحددة.</p>
+            <div>
+              <a href="/profile">صفحة المستخدم</a>
+              <a href="/university-contact">تواصل جامعي</a>
+              <a href="/control-center">لوحة التحكم</a>
+            </div>
+          </form>
+        </section>
+      </main>
+    </div>
+  );
+}

@@ -3,4 +3,113 @@ import {useState} from 'react';
 import {InnerNav} from '../components';
 import {assetProtectionProfiles,roleMatrix,securityLayers} from '../data/security-controls';
 
-export default function SecurityCenter(){const [selected,setSelected]=useState('lesson');const profile=assetProtectionProfiles.find(x=>x.id===selected);return <div className="os-page phase11-legacy-page"><InnerNav active="security"/><main className="os-page-content security-page"><header className="security-hero"><div><span>SUCCESS SHIELD • CONTENT PROTECTION</span><h1>كل ملف له مالك، بصمة، صلاحية وسجل</h1><p>نحمي الدروس والملخصات والفيديو والامتحانات وبنوك الأسئلة من لحظة الرفع حتى المشاهدة أو السحب، مع توضيح أن المنع المطلق للتصوير أو التسريب غير ممكن تقنيًا.</p></div><div className="shield-3d"><i>✓</i><b>S4S</b><small>DEFENSE IN DEPTH</small></div></header><section className="protection-status"><div><b>8</b><span>طبقات حماية</span></div><div><b>SHA-256</b><span>بصمة نزاهة</span></div><div><b>Default Deny</b><span>قاعدة الوصول</span></div><div><b>Human Gate</b><span>اعتماد النشر</span></div></section><section className="asset-protection"><header><small>اختر نوع الأصل</small><h2>سياسة حماية حسب طبيعة المحتوى</h2></header><div className="asset-tabs">{assetProtectionProfiles.map(x=><button className={selected===x.id?'active':''} onClick={()=>setSelected(x.id)} key={x.id}><span>{x.icon}</span>{x.name}</button>)}</div><article className="asset-policy"><div><small>مستوى السياسة</small><h2>{profile.name}</h2><b>{profile.level}</b></div><section>{profile.controls.map(x=><p key={x}><span>✓</span>{x}</p>)}</section><aside><small>بيان الحماية</small><p>يعرض للمستخدم قبل الفتح ويُحفظ قبوله مع الجلسة.</p><button>تطبيق هذه السياسة</button></aside></article></section><section className="security-layers"><header><small>DEFENSE IN DEPTH</small><h2>الحماية ليست زرًا واحدًا</h2></header><div>{securityLayers.map(([n,t,p])=><article key={n}><b>{n}</b><h3>{t}</h3><p>{p}</p></article>)}</div></section><section className="role-security"><header><small>أقل صلاحية ممكنة</small><h2>ماذا يستطيع كل دور؟</h2></header><div>{roleMatrix.map(([role,can,cannot])=><article key={role}><h3>{role}</h3><p><b>يسمح:</b> {can}</p><p><b>يمنع:</b> {cannot}</p></article>)}</div></section><section className="leak-response"><div><small>عند الاشتباه بتسريب</small><h2>سحب فوري، حفظ الأدلة، ثم استجابة منظمة</h2><p>إلغاء الرابط والجلسة، تحديد النسخة والعلامة المائية، حفظ السجلات، إشعار فريق الحماية والمالك، تقييم الإبلاغ القانوني، ثم إصلاح السبب.</p></div><a href="/content-studio">طبّق الحماية على أصل جديد</a></section></main></div>}
+export default function SecurityCenter(){
+  const [selected,setSelected]=useState('lesson');
+  const [applied,setApplied]=useState('');
+  const profile=assetProtectionProfiles.find(x=>x.id===selected);
+
+  function applyPolicy(){
+    try{
+      const payload={
+        assetType:profile.id,
+        name:profile.name,
+        level:profile.level,
+        controls:profile.controls,
+        appliedAt:new Date().toISOString(),
+      };
+      localStorage.setItem('success-os-active-protection-policy',JSON.stringify(payload));
+      setApplied(profile.name);
+    }catch{
+      setApplied('');
+    }
+  }
+
+  return (
+    <div className="os-page phase11-legacy-page">
+      <InnerNav active="security"/>
+      <main className="os-page-content security-page">
+        <header className="security-hero">
+          <div>
+            <span>SUCCESS SHIELD • CONTENT PROTECTION</span>
+            <h1>كل ملف له مالك، بصمة، صلاحية وسجل</h1>
+            <p>نحمي الدروس والملخصات والفيديو والامتحانات وبنوك الأسئلة من لحظة الرفع حتى المشاهدة أو السحب، مع توضيح أن المنع المطلق للتصوير أو التسريب غير ممكن تقنيًا.</p>
+          </div>
+          <div className="shield-3d"><i>✓</i><b>S4S</b><small>DEFENSE IN DEPTH</small></div>
+        </header>
+        <section className="protection-status">
+          <div><b>8</b><span>طبقات حماية</span></div>
+          <div><b>SHA-256</b><span>بصمة نزاهة</span></div>
+          <div><b>Default Deny</b><span>قاعدة الوصول</span></div>
+          <div><b>Human Gate</b><span>اعتماد النشر</span></div>
+        </section>
+        <section className="asset-protection">
+          <header>
+            <small>اختر نوع الأصل</small>
+            <h2>سياسة حماية حسب طبيعة المحتوى</h2>
+          </header>
+          <div className="asset-tabs">
+            {assetProtectionProfiles.map(x=>(
+              <button type="button" className={selected===x.id?'active':''} onClick={()=>setSelected(x.id)} key={x.id}>
+                <span>{x.icon}</span>{x.name}
+              </button>
+            ))}
+          </div>
+          <article className="asset-policy">
+            <div>
+              <small>مستوى السياسة</small>
+              <h2>{profile.name}</h2>
+              <b>{profile.level}</b>
+            </div>
+            <section>{profile.controls.map(x=><p key={x}><span>✓</span>{x}</p>)}</section>
+            <aside>
+              <small>بيان الحماية</small>
+              <p>يعرض للمستخدم قبل الفتح ويُحفظ قبوله مع الجلسة.</p>
+              <button type="button" onClick={applyPolicy}>تطبيق هذه السياسة</button>
+              {applied&&(
+                <div className="policy-applied">
+                  <p>تم تطبيق سياسة «{applied}» وحفظها محليًا.</p>
+                  <a href="/content-studio">افتح استوديو المحتوى ←</a>
+                  <a href="/source-registry">سجل المصادر ←</a>
+                </div>
+              )}
+            </aside>
+          </article>
+        </section>
+        <section className="security-layers">
+          <header>
+            <small>DEFENSE IN DEPTH</small>
+            <h2>الحماية ليست زرًا واحدًا</h2>
+          </header>
+          <div>
+            {securityLayers.map(([n,t,p])=>(
+              <article key={n}><b>{n}</b><h3>{t}</h3><p>{p}</p></article>
+            ))}
+          </div>
+        </section>
+        <section className="role-security">
+          <header>
+            <small>أقل صلاحية ممكنة</small>
+            <h2>ماذا يستطيع كل دور؟</h2>
+          </header>
+          <div>
+            {roleMatrix.map(([role,can,cannot])=>(
+              <article key={role}>
+                <h3>{role}</h3>
+                <p><b>يسمح:</b> {can}</p>
+                <p><b>يمنع:</b> {cannot}</p>
+              </article>
+            ))}
+          </div>
+        </section>
+        <section className="leak-response">
+          <div>
+            <small>عند الاشتباه بتسريب</small>
+            <h2>سحب فوري، حفظ الأدلة، ثم استجابة منظمة</h2>
+            <p>إلغاء الرابط والجلسة، تحديد النسخة والعلامة المائية، حفظ السجلات، إشعار فريق الحماية والمالك، تقييم الإبلاغ القانوني، ثم إصلاح السبب.</p>
+          </div>
+          <a href="/content-studio">طبّق الحماية على أصل جديد</a>
+        </section>
+      </main>
+    </div>
+  );
+}

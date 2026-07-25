@@ -46,12 +46,12 @@ export function EnterpriseAdminShell({ children }) {
       .filter((g) => g.items.length);
   }, [groups, search]);
 
-  const bg = dark ? '#0b1220' : '#f4f6f8';
-  const panel = dark ? '#111827' : '#ffffff';
-  const text = dark ? '#e5e7eb' : '#111827';
-  const muted = dark ? '#9ca3af' : '#6b7280';
-  const border = dark ? '#1f2937' : '#e5e7eb';
-  const accent = '#0f766e';
+  const bg = dark ? '#1a0408' : '#f7f4f1';
+  const panel = dark ? '#2a0c12' : '#ffffff';
+  const text = dark ? '#f8ead8' : '#1a1212';
+  const muted = dark ? '#c4b4a8' : '#6b5a52';
+  const border = dark ? '#4a1a22' : '#eadde0';
+  const accent = '#9e1722';
 
   return (
     <div
@@ -60,7 +60,7 @@ export function EnterpriseAdminShell({ children }) {
         minHeight: '100vh',
         background: bg,
         color: text,
-        fontFamily: 'system-ui, sans-serif',
+        fontFamily: 'var(--sos-font-body, "Source Sans 3", sans-serif)',
       }}
     >
       <aside

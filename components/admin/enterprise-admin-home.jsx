@@ -6,13 +6,14 @@ function StatCard({ label, value }) {
   return (
     <div
       style={{
-        border: '1px solid #e5e7eb',
-        borderRadius: 12,
+        border: '1px solid var(--ea-border, #eadde0)',
+        borderRadius: 14,
         padding: '0.85rem',
         background: 'var(--ea-card, #fff)',
+        boxShadow: '0 12px 28px rgba(75, 10, 17, 0.06)',
       }}
     >
-      <div style={{ fontSize: 12, color: '#6b7280' }}>{label}</div>
+      <div style={{ fontSize: 12, color: 'var(--ea-muted, #6b5a52)' }}>{label}</div>
       <div style={{ fontSize: 22, fontWeight: 700, marginTop: 4 }}>
         {value === null || value === undefined ? '—' : value}
       </div>
@@ -30,12 +31,12 @@ function MiniBars({ series }) {
             style={{
               height: `${Math.round(((Number(s.value) || 0) / max) * 100)}%`,
               minHeight: 4,
-              background: '#0f766e',
+              background: 'linear-gradient(180deg, #c43a45, #9e1722)',
               borderRadius: '6px 6px 0 0',
             }}
             title={`${s.label}: ${s.value}`}
           />
-          <div style={{ fontSize: 10, color: '#6b7280', marginTop: 4 }}>{s.label}</div>
+          <div style={{ fontSize: 10, color: 'var(--ea-muted, #6b5a52)', marginTop: 4 }}>{s.label}</div>
         </div>
       ))}
     </div>
