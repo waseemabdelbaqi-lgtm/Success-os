@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useState, useTransition } from "react";
 import { listStudentNotifications } from "@/src/actions/admission";
-import { getSupabaseBrowserClient, isSupabaseConfigured } from "@/src/lib/supabase/client";
+import { getSupabaseBrowserClient, isSupabaseConfigured } from "@/src/utils/supabase/client";
 
 export type AdmissionNotification = {
   id: string;

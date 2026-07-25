@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { uploadAdmissionDocument, submitApplication } from "@/src/actions/admission";
+import { submitApplication, uploadAdmissionDocument } from "@/src/actions/submitApplication";
 import { Button } from "@/src/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/src/components/ui/card";
 import { Input } from "@/src/components/ui/input";

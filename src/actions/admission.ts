@@ -16,7 +16,7 @@ import {
   previewSaveFile,
 } from "@/src/lib/admission/preview-store";
 import { getResend, isResendConfigured } from "@/src/lib/resend";
-import { getSupabaseServerClient } from "@/src/lib/supabase/server";
+import { getSupabaseServerClient } from "@/src/utils/supabase/server";
 import type {
   AdmissionProfileInput,
   Institution,

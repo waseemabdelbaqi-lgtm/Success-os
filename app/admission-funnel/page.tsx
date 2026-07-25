@@ -1,17 +1,36 @@
-import { InnerNav } from "../components";
-import { AdmissionFunnelApp } from "@/src/components/admission-funnel/admission-funnel-app";
+import { redirect } from "next/navigation";
 
-export const metadata = {
-  title: "Admission funnel",
-  description:
-    "Filter universities by nationality, pay a $5 unlock fee, and submit via partner notifications or official email.",
-};
+export const dynamic = "force-dynamic";
 
-export default function AdmissionFunnelPage() {
-  return (
-    <main className="min-h-screen bg-[radial-gradient(circle_at_12%_0%,rgba(158,23,34,0.08),transparent_32%),linear-gradient(180deg,#fffdfd_0%,#f7f2f3_100%)]">
-      <InnerNav active="admissions" />
-      <AdmissionFunnelApp />
-    </main>
-  );
+type Search = Record<string, string | string[] | undefined>;
+
+/** Legacy URL → multi-page admission funnel */
+export default async function AdmissionFunnelRedirectPage({
+  searchParams,
+}: {
+  searchParams: Promise<Search> | Search;
+}) {
+  const sp = await Promise.resolve(searchParams);
+  const step = typeof sp.step === "string" ? sp.step : "";
+  const paid = sp.paid;
+  const institutionId =
+    typeof sp.institution_id === "string"
+      ? sp.institution_id
+      : typeof sp.institution === "string"
+        ? sp.institution
+        : "";
+
+  if (paid && institutionId) {
+    const qs = new URLSearchParams();
+    for (const [k, v] of Object.entries(sp)) {
+      if (typeof v === "string") qs.set(k, v);
+    }
+    redirect(`/apply/${institutionId}?${qs.toString()}`);
+  }
+
+  if (step === "matches") {
+    redirect("/admission");
+  }
+
+  redirect("/onboard");
 }

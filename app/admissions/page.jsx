@@ -310,7 +310,7 @@ export default function AdmissionsPage() {
               جنسية الطالب وبلد إقامته وبلد شهادته، وليس بمجرد مسار «محلي/دولي» فقط.
             </p>
             <p style={{ marginTop: 12 }}>
-              <a className="contact-uni-cta" href="/admission-funnel">
+              <a className="contact-uni-cta" href="/onboard">
                 مسار التقديم الموحّد — فلترة · دفع $5 · تقديم
               </a>
             </p>
@@ -1041,7 +1041,7 @@ export default function AdmissionsPage() {
                         <a href={`/eligibility-check?id=${u.id}`}>فحص الأهلية</a>
                         <a
                           className="contact-uni-cta"
-                          href={`/admission-funnel?institution=${encodeURIComponent(u.id)}&nationality=${encodeURIComponent(nationality)}&studyCountry=${encodeURIComponent(studyCountry || '')}&step=matches`}
+                          href={`/onboard?nationality=${encodeURIComponent(nationality)}&studyCountry=${encodeURIComponent(studyCountry || '')}`}
                         >
                           Apply Now · $5
                         </a>
@@ -1206,7 +1206,7 @@ export default function AdmissionsPage() {
             {selected.id && (
               <a
                 className="apply-button"
-                href={`/admission-funnel?institution=${encodeURIComponent(selected.id)}&nationality=${encodeURIComponent(nationality)}&studyCountry=${encodeURIComponent(studyCountry || '')}&step=matches`}
+                href={`/onboard?nationality=${encodeURIComponent(nationality)}&studyCountry=${encodeURIComponent(studyCountry || '')}`}
               >
                 Apply Now — {kindLabelAr(institutionKind(selected))} · دفع $5 ثم تقديم موحّد
               </a>
