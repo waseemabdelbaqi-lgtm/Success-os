@@ -1,47 +1,43 @@
 "use client";
 
-import { Badge } from "@/src/components/ui/badge";
-import { Button } from "@/src/components/ui/button";
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/src/components/ui/card";
-import type { Institution } from "@/src/types/admission";
+import InstitutionCardImpl from "@/src/components/InstitutionCard";
+import type { AdmissionProfileInput, Institution } from "@/src/types/admission";
 
 type Props = {
   institution: Institution;
-  onApply: (institution: Institution) => void;
+  /** Profile fields forwarded into /api/checkout (needed for live Stripe mode). */
+  profile?: AdmissionProfileInput;
 };
 
-export function InstitutionCard({ institution, onApply }: Props) {
-  const criteria = institution.criteria;
+/**
+ * Adapter used by the admission funnel pages.
+ * Apply Now posts to /api/checkout and redirects to Stripe (or the preview unlock URL).
+ */
+export function InstitutionCard({ institution, profile }: Props) {
   return (
-    <Card className="flex h-full flex-col">
-      <CardHeader>
-        <div className="flex flex-wrap items-center gap-2">
-          <Badge variant="muted">{institution.type}</Badge>
-          <Badge variant={institution.is_partner ? "partner" : "email"}>
-            {institution.is_partner ? "Partner · in-app route" : "Non-partner · email route"}
-          </Badge>
-        </div>
-        <CardTitle className="mt-2">{institution.name}</CardTitle>
-        <p className="text-sm text-[#73636a]">
-          {institution.country || "International"}
-          {criteria ? ` · min GPA ${criteria.min_gpa}` : ""}
-        </p>
-      </CardHeader>
-      <CardContent className="flex-1 space-y-3 text-sm">
-        {criteria ? (
-          <div className="rounded-xl bg-[#fff8f8] p-3">
-            <p className="font-bold text-[#9e1722]">
-              Criteria for {criteria.nationality === "All" ? "all nationalities" : criteria.nationality}
-            </p>
-            <p className="mt-2 leading-relaxed text-[#4d3439]">{criteria.requirements_text}</p>
-          </div>
-        ) : null}
-      </CardContent>
-      <CardFooter>
-        <Button className="w-full" onClick={() => onApply(institution)}>
-          Apply Now · $5
-        </Button>
-      </CardFooter>
-    </Card>
+    <InstitutionCardImpl
+      id={institution.id}
+      name={institution.name}
+      type={institution.type}
+      logo_url={institution.logo_url}
+      is_partner={institution.is_partner}
+      matchedCriteria={
+        institution.criteria
+          ? {
+              min_gpa: institution.criteria.min_gpa,
+              requirements_text: institution.criteria.requirements_text,
+            }
+          : null
+      }
+      userId={profile?.userId}
+      customerEmail={profile?.email}
+      fullName={profile?.fullName}
+      nationality={profile?.nationality}
+      gpa={profile?.gpa}
+      targetDegree={profile?.targetDegree}
+      major={profile?.major}
+    />
   );
 }
+
+export default InstitutionCard;

@@ -6,7 +6,6 @@ import { ApplicationForm } from "@/src/components/admission-funnel/application-f
 import { InstitutionCard } from "@/src/components/admission-funnel/institution-card";
 import { NotificationsPanel } from "@/src/components/admission-funnel/notifications-panel";
 import { OnboardingForm } from "@/src/components/admission-funnel/onboarding-form";
-import { PaymentDialog } from "@/src/components/admission-funnel/payment-dialog";
 import { Badge } from "@/src/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/src/components/ui/card";
 import { FALLBACK_INSTITUTIONS } from "@/src/lib/admission/fallback-data";
@@ -39,7 +38,6 @@ export function AdmissionFunnelApp() {
   const [pending, startTransition] = useTransition();
 
   const [selected, setSelected] = useState<Institution | null>(null);
-  const [payOpen, setPayOpen] = useState(false);
   const [paymentId, setPaymentId] = useState("");
   const [unlockToken, setUnlockToken] = useState("");
   const [noteKey, setNoteKey] = useState(0);
@@ -186,14 +184,7 @@ export function AdmissionFunnelApp() {
               ) : (
                 <div className="grid gap-4 md:grid-cols-2">
                   {matches.map((inst) => (
-                    <InstitutionCard
-                      key={inst.id}
-                      institution={inst}
-                      onApply={(i) => {
-                        setSelected(i);
-                        setPayOpen(true);
-                      }}
-                    />
+                    <InstitutionCard key={inst.id} institution={inst} profile={profile} />
                   ))}
                 </div>
               )}
@@ -284,20 +275,6 @@ export function AdmissionFunnelApp() {
         </aside>
       </div>
 
-      <PaymentDialog
-        open={payOpen}
-        institution={selected}
-        profile={profile}
-        customerEmail={profile.email}
-        onOpenChange={setPayOpen}
-        onUnlocked={({ paymentId: pid, unlockToken: token, institutionId }) => {
-          setPaymentId(pid);
-          setUnlockToken(token);
-          const inst = matches.find((m) => m.id === institutionId) || selected;
-          setSelected(inst);
-          setStep("apply");
-        }}
-      />
     </div>
   );
 }

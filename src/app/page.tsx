@@ -6,15 +6,11 @@ import { useEffect, useState, useTransition } from "react";
 import { filterInstitutions } from "@/src/actions/admission";
 import { AdmissionLayout } from "@/src/app/layout";
 import InstitutionCard from "@/src/components/InstitutionCard";
-import PaymentModal from "@/src/components/PaymentModal";
 import { NotificationsPanel } from "@/src/components/admission-funnel/notifications-panel";
 import { Badge } from "@/src/components/ui/badge";
 import { Button } from "@/src/components/ui/button";
 import { Card, CardContent } from "@/src/components/ui/card";
-import {
-  readAdmissionProfile,
-  writePaymentUnlock,
-} from "@/src/lib/admission/profile-session";
+import { readAdmissionProfile } from "@/src/lib/admission/profile-session";
 import type { AdmissionProfileInput, Institution } from "@/src/types/admission";
 
 /**
@@ -27,8 +23,6 @@ export default function AdmissionMatchesPage() {
   const [mode, setMode] = useState<"supabase" | "preview" | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [pending, startTransition] = useTransition();
-  const [selected, setSelected] = useState<Institution | null>(null);
-  const [payOpen, setPayOpen] = useState(false);
 
   useEffect(() => {
     const saved = readAdmissionProfile();
@@ -103,11 +97,26 @@ export default function AdmissionMatchesPage() {
                 {matches.map((inst) => (
                   <InstitutionCard
                     key={inst.id}
-                    institution={inst}
-                    onApply={(i) => {
-                      setSelected(i);
-                      setPayOpen(true);
-                    }}
+                    id={inst.id}
+                    name={inst.name}
+                    type={inst.type}
+                    logo_url={inst.logo_url}
+                    is_partner={inst.is_partner}
+                    matchedCriteria={
+                      inst.criteria
+                        ? {
+                            min_gpa: inst.criteria.min_gpa,
+                            requirements_text: inst.criteria.requirements_text,
+                          }
+                        : null
+                    }
+                    userId={profile.userId}
+                    customerEmail={profile.email}
+                    fullName={profile.fullName}
+                    nationality={profile.nationality}
+                    gpa={profile.gpa}
+                    targetDegree={profile.targetDegree}
+                    major={profile.major}
                   />
                 ))}
               </div>
@@ -117,20 +126,6 @@ export default function AdmissionMatchesPage() {
             <NotificationsPanel />
           </aside>
         </div>
-
-        <PaymentModal
-          open={payOpen}
-          institution={selected}
-          profile={profile}
-          customerEmail={profile.email}
-          onOpenChange={setPayOpen}
-          onUnlocked={({ paymentId, unlockToken, institutionId }) => {
-            writePaymentUnlock({ paymentId, unlockToken, institutionId });
-            router.push(
-              `/apply/${institutionId}?payment_id=${encodeURIComponent(paymentId)}&unlock_token=${encodeURIComponent(unlockToken)}`,
-            );
-          }}
-        />
       </div>
     </AdmissionLayout>
   );
