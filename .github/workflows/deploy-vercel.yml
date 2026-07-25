@@ -20,8 +20,7 @@ jobs:
     name: Build and deploy
     runs-on: ubuntu-latest
     timeout-minutes: 30
-    # Requires repository secrets: VERCEL_TOKEN, VERCEL_ORG_ID, VERCEL_PROJECT_ID
-    if: ${{ secrets.VERCEL_TOKEN != '' }}
+    # Set repository secrets before enabling: VERCEL_TOKEN, VERCEL_ORG_ID, VERCEL_PROJECT_ID
 
     env:
       VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
@@ -32,42 +31,56 @@ jobs:
       NEXT_PUBLIC_FEATURE_AUTH_ENABLED: "false"
       AUTH_SESSION_COOKIE_NAME: __session
       AUTH_SESSION_COOKIE_MAX_AGE: "432000"
-      AUTH_SESSION_META_SECRET: ${{ secrets.AUTH_SESSION_META_SECRET || 'success-os-preview-secret-key-32' }}
+      AUTH_SESSION_META_SECRET: success-os-preview-secret-key-32
       AUTH_SECURE_COOKIES: "true"
       LOG_LEVEL: info
-      NEXT_PUBLIC_FIREBASE_API_KEY: ${{ secrets.NEXT_PUBLIC_FIREBASE_API_KEY || 'preview-placeholder' }}
-      NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN: ${{ secrets.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN || 'success-os-preview.firebaseapp.com' }}
-      NEXT_PUBLIC_FIREBASE_PROJECT_ID: ${{ secrets.NEXT_PUBLIC_FIREBASE_PROJECT_ID || 'success-os-preview' }}
-      NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET: ${{ secrets.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET || 'success-os-preview.appspot.com' }}
-      NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID: ${{ secrets.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID || '123456789012' }}
-      NEXT_PUBLIC_FIREBASE_APP_ID: ${{ secrets.NEXT_PUBLIC_FIREBASE_APP_ID || '1:123456789012:web:preview' }}
-      FIREBASE_PROJECT_ID: ${{ secrets.FIREBASE_PROJECT_ID || 'success-os-preview' }}
-      FIREBASE_CLIENT_EMAIL: ${{ secrets.FIREBASE_CLIENT_EMAIL || 'preview@success-os-preview.iam.gserviceaccount.com' }}
-      FIREBASE_PRIVATE_KEY: ${{ secrets.FIREBASE_PRIVATE_KEY || '-----BEGIN PRIVATE KEY-----\nPREVIEW\n-----END PRIVATE KEY-----\n' }}
 
     steps:
+      - name: Require Vercel secrets
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+        run: |
+          if [ -z "$VERCEL_TOKEN" ] || [ -z "$VERCEL_ORG_ID" ] || [ -z "$VERCEL_PROJECT_ID" ]; then
+            echo "Skipping deploy: add VERCEL_TOKEN, VERCEL_ORG_ID, VERCEL_PROJECT_ID repository secrets."
+            echo "skipped=true" >> "$GITHUB_ENV"
+          else
+            echo "skipped=false" >> "$GITHUB_ENV"
+          fi
+
       - name: Checkout
+        if: env.skipped != 'true'
         uses: actions/checkout@v4
 
       - name: Setup Node.js
+        if: env.skipped != 'true'
         uses: actions/setup-node@v4
         with:
           node-version: "20"
           cache: npm
 
       - name: Install dependencies
+        if: env.skipped != 'true'
         run: npm ci
 
       - name: Install Vercel CLI
+        if: env.skipped != 'true'
         run: npm install --global vercel@39
 
       - name: Pull Vercel environment
+        if: env.skipped != 'true'
         run: vercel pull --yes --environment=${{ github.event_name == 'pull_request' && 'preview' || 'production' }} --token=${{ secrets.VERCEL_TOKEN }}
 
       - name: Build project artifacts
-        run: vercel build ${{ github.event_name == 'pull_request' && '' || '--prod' }} --token=${{ secrets.VERCEL_TOKEN }}
+        if: env.skipped != 'true'
+        run: |
+          if [ "${{ github.event_name }}" = "pull_request" ]; then
+            vercel build --token=${{ secrets.VERCEL_TOKEN }}
+          else
+            vercel build --prod --token=${{ secrets.VERCEL_TOKEN }}
+          fi
 
       - name: Deploy to Vercel
+        if: env.skipped != 'true'
         id: deploy
         run: |
           if [ "${{ github.event_name }}" = "pull_request" ]; then
@@ -79,7 +92,7 @@ jobs:
           echo "Deployed: $url"
 
       - name: Comment deployment URL on PR
-        if: github.event_name == 'pull_request' && steps.deploy.outputs.url != ''
+        if: env.skipped != 'true' && github.event_name == 'pull_request' && steps.deploy.outputs.url != ''
         uses: actions/github-script@v7
         with:
           script: |
