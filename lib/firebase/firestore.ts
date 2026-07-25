@@ -14,4 +14,9 @@ export function getAdminFirestore(): Firestore {
 export const COLLECTIONS = {
   USERS: "users",
   ROLE_AUDIT_LOG: "role_audit_log",
+  /** Admission funnel (partner route persistence when Admin SDK is live). */
+  ADMISSION_PROFILES: "admission_profiles",
+  ADMISSION_PAYMENTS: "admission_payments",
+  ADMISSION_APPLICATIONS: "admission_applications",
+  ADMISSION_NOTIFICATIONS: "admission_notifications",
 } as const;

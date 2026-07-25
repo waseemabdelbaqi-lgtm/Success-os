@@ -309,6 +309,11 @@ export default function AdmissionsPage() {
               ابدأ بالقارة، اختر دولة الدراسة، ثم جنسيتك — فشروط القبول والرسوم والتأشيرة وقناة التقديم تختلف باختلاف
               جنسية الطالب وبلد إقامته وبلد شهادته، وليس بمجرد مسار «محلي/دولي» فقط.
             </p>
+            <p style={{ marginTop: 12 }}>
+              <a className="contact-uni-cta" href="/admission-funnel">
+                مسار التقديم الموحّد — فلترة · دفع $5 · تقديم
+              </a>
+            </p>
           </div>
           <div className="admission-orbit">
             <b>{ADMISSION_REGIONS.length}</b>
@@ -1036,9 +1041,14 @@ export default function AdmissionsPage() {
                         <a href={`/eligibility-check?id=${u.id}`}>فحص الأهلية</a>
                         <a
                           className="contact-uni-cta"
+                          href={`/admission-funnel?institution=${encodeURIComponent(u.id)}&nationality=${encodeURIComponent(nationality)}&studyCountry=${encodeURIComponent(studyCountry || '')}&step=matches`}
+                        >
+                          Apply Now · $5
+                        </a>
+                        <a
                           href={`/university-contact?id=${encodeURIComponent(u.id)}&nationality=${encodeURIComponent(nationality)}&studyCountry=${encodeURIComponent(studyCountry || '')}&applicantType=${encodeURIComponent(applicantType || '')}`}
                         >
-                          تواصل · بوابة دفع $5
+                          تواصل سريع
                         </a>
                         <button
                           type="button"
@@ -1196,9 +1206,9 @@ export default function AdmissionsPage() {
             {selected.id && (
               <a
                 className="apply-button"
-                href={`/university-contact?id=${encodeURIComponent(selected.id)}&nationality=${encodeURIComponent(nationality)}&studyCountry=${encodeURIComponent(studyCountry || '')}&applicantType=${encodeURIComponent(applicantType || '')}`}
+                href={`/admission-funnel?institution=${encodeURIComponent(selected.id)}&nationality=${encodeURIComponent(nationality)}&studyCountry=${encodeURIComponent(studyCountry || '')}&step=matches`}
               >
-                تواصل مع {kindLabelAr(institutionKind(selected))} — دفع $5 ثم إشعار أو إيميل
+                Apply Now — {kindLabelAr(institutionKind(selected))} · دفع $5 ثم تقديم موحّد
               </a>
             )}
             <button

@@ -79,7 +79,7 @@ export function InnerNav({active}) {
   const groups={
     access:[['/access','البوابات'],['/control-hubs','لوحات التحكم'],['/partner-search','البحث'],['/join-us','انضم إلينا']],
     join:[['/join-us','طلب الشراكة'],['/control-hubs','لوحات التحكم'],['/partner-search','ابحث عن شريك'],['/notifications','الإشعارات']],
-    admissions:[['/admissions','البحث والقبول'],['/degree-finder','دليل الدرجات'],['/global-sources','البوابات'],['/control-hubs','لوحات التحكم'],['/scholarships','المنح'],['/application-tracker','متابعة التقديم']],
+    admissions:[['/admissions','البحث والقبول'],['/admission-funnel','مسار التقديم $5'],['/degree-finder','دليل الدرجات'],['/global-sources','البوابات'],['/control-hubs','لوحات التحكم'],['/scholarships','المنح'],['/application-tracker','متابعة التقديم']],
     degrees:[['/degree-finder','دليل الدرجات'],['/admissions','شروط القبول'],['/university-compare','المقارنة'],['/global-sources','البوابات']],
     jobs:[['/jobs','الوظائف'],['/jobseeker-portal','ملفي المهني'],['/application-tracker','طلباتي']],
     subjects:[['/subject-catalog','المواد المدرسية'],['/curriculum-lab','المناهج'],['/study-content-generator','إنشاء محتوى']],
