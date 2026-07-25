@@ -91,6 +91,46 @@ export const FALLBACK_INSTITUTIONS: Institution[] = [
     official_email: "international@bau.edu.tr",
     logo_url: "https://bau.edu.tr",
   },
+  {
+    id: "00000000-0000-4000-8000-000000000015",
+    name: "جامعة الشارقة - الإمارات",
+    type: "university",
+    country: "United Arab Emirates",
+    majors: ["Engineering", "Medicine", "Business", "Sciences"],
+    is_partner: false,
+    official_email: "admissions@sharjah.ac.ae",
+    logo_url: "https://sharjah.ac.ae",
+  },
+  {
+    id: "00000000-0000-4000-8000-000000000016",
+    name: "جامعة قطر - الدوحة",
+    type: "university",
+    country: "Qatar",
+    majors: ["Engineering", "Medicine", "Business", "Law", "Sciences"],
+    is_partner: false,
+    official_email: "admission@qu.edu.qa",
+    logo_url: "https://qu.edu.qa",
+  },
+  {
+    id: "00000000-0000-4000-8000-000000000017",
+    name: "جامعة مالايا - ماليزيا",
+    type: "university",
+    country: "Malaysia",
+    majors: ["Engineering", "Medicine", "Computing", "Sciences", "Business"],
+    is_partner: true,
+    official_email: "international@um.edu.my",
+    logo_url: "https://um.edu.my",
+  },
+  {
+    id: "00000000-0000-4000-8000-000000000018",
+    name: "جامعة قازان الفيدرالية - روسيا",
+    type: "university",
+    country: "Russia",
+    majors: ["Medicine", "Engineering", "Sciences", "Languages"],
+    is_partner: false,
+    official_email: "admission@kpfu.ru",
+    logo_url: "https://kpfu.ru",
+  },
 ];
 
 type FallbackCriteria = {
@@ -252,6 +292,43 @@ const CRITERIA: Record<string, FallbackCriteria[]> = {
       is_accredited_in_home_country: true,
     },
   ],
+  "00000000-0000-4000-8000-000000000015": [
+    {
+      nationality: "Yemeni",
+      min_gpa: 3.5,
+      requirements_text:
+        "يشترط شهادة آيلتس 5.5 أكاديمية بشكل فوري، مع رفع درجات اختبار EmSAT الوطني بمعدل لا يقل عن 1100 في الرياضيات والفيزياء.",
+      alternative_exam_required: "IELTS 5.5 + EmSAT",
+      avg_living_cost: "800$ - 1200$ شهرياً",
+      deadline_date: "2026-08-15",
+      is_accredited_in_home_country: true,
+    },
+  ],
+  "00000000-0000-4000-8000-000000000017": [
+    {
+      nationality: "Syrian",
+      min_gpa: 3.0,
+      requirements_text:
+        "القبول يعتمد على درجات المواد العلمية (فوق 70% في الرياضيات). يشترط الخضوع للفحص الطبي الإلزامي لوزارة الهجرة EMGS للحصول على موافقة الفيزا (VAL).",
+      max_age_allowed: 28,
+      alternative_exam_required: "EMGS Medical Check",
+      avg_living_cost: "400$ - 600$ شهرياً",
+      deadline_date: "2026-09-01",
+      is_accredited_in_home_country: true,
+    },
+  ],
+  "00000000-0000-4000-8000-000000000018": [
+    {
+      nationality: "Egyptian",
+      min_gpa: 2.0,
+      requirements_text:
+        "القبول مباشر بمعدل ثانوية يبدأ من 60% للقطاع الطبي. يشترط رفع شهادة فحص HIV مترجمة للروسية، واجتياز السنة التحضيرية للغة (Pre-University Russian Course).",
+      alternative_exam_required: "HIV Test + Russian Year",
+      avg_living_cost: "250$ - 400$ شهرياً",
+      deadline_date: "2026-10-15",
+      is_accredited_in_home_country: true,
+    },
+  ],
 };
 
 function degreeMatchesType(degree: string, type: Institution["type"]) {
@@ -281,6 +358,8 @@ function pickCriteria(institutionId: string, nationality: string) {
     iraq: "iraq",
     kuwaiti: "kuwait",
     kuwait: "kuwait",
+    yemeni: "yemen",
+    yemen: "yemen",
   };
   const key = aliases[normalized] || normalized;
   return (

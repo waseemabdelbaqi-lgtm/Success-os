@@ -221,6 +221,8 @@ function nationalityAliases(nationality: string): string[] {
     iraq: ["Iraq", "Iraqi"],
     kuwaiti: ["Kuwaiti", "Kuwait"],
     kuwait: ["Kuwait", "Kuwaiti"],
+    yemeni: ["Yemeni", "Yemen"],
+    yemen: ["Yemen", "Yemeni"],
   };
   return map[key] || [nationality];
 }
