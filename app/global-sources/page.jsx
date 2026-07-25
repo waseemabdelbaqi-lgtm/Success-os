@@ -113,7 +113,7 @@ export default function GlobalSources() {
               <small>ADMISSION PORTALS & APPLICATION SYSTEMS</small>
               <h2>بوابات وأنظمة القبول</h2>
               <p>
-                Name • Website • Type • Region • Details — {ADMISSION_PORTALS.length} مصدر إنتاجي (A–Z) عبر{' '}
+                Name • Website • Type • Scope • Details — {ADMISSION_PORTALS.length} مصدر إنتاجي (A–Z) عبر{' '}
                 <a href="/api/v1/portals">/api/v1/portals</a>.
               </p>
             </div>
@@ -126,7 +126,7 @@ export default function GlobalSources() {
                   <th>Name</th>
                   <th>Website</th>
                   <th>Type</th>
-                  <th>Region</th>
+                  <th>Scope</th>
                   <th>Details</th>
                   <th></th>
                 </tr>
@@ -136,7 +136,7 @@ export default function GlobalSources() {
                   <tr key={p.id}>
                     <td>
                       <b>{p.name}</b>
-                      <small>{p.nameAr}</small>
+                      <small>{p.typeAr}</small>
                     </td>
                     <td>
                       <a href={p.website} target="_blank" rel="noreferrer">
@@ -144,7 +144,7 @@ export default function GlobalSources() {
                       </a>
                     </td>
                     <td>{p.type}</td>
-                    <td>{p.region}</td>
+                    <td>{p.scope || p.region}</td>
                     <td className="portal-details-cell">{p.details}</td>
                     <td>
                       <a href={p.website} target="_blank" rel="noreferrer">
@@ -160,7 +160,7 @@ export default function GlobalSources() {
             {ADMISSION_PORTALS.map((p) => (
               <article key={p.id}>
                 <small>
-                  {p.type} • {p.region}
+                  {p.type} • {p.scope || p.region}
                 </small>
                 <h3>{p.name}</h3>
                 <p>{p.detailsAr || p.details}</p>

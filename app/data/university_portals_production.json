@@ -1,177 +1,310 @@
 [
   {
+    "Name": "Alison",
+    "Website": "https://alison.com/",
+    "Type": "Training Center & Certifications",
+    "Scope": "Global",
+    "Details": "Free workplace skills platform offering diplomas and vocational certificates."
+  },
+  {
     "Name": "Appily",
     "Website": "https://www.appily.com/",
-    "Type": "Search & Directory",
-    "Region": "United States",
+    "Type": "University & College Search",
+    "Scope": "United States",
     "Details": "Comprehensive search engine with financial aid and admission chance estimators."
   },
   {
     "Name": "ApplyAlberta",
     "Website": "https://applyalberta.ca/",
-    "Type": "Centralized Application System",
-    "Region": "Canada (Alberta)",
+    "Type": "Centralized Admission Portal",
+    "Scope": "Canada (Alberta)",
     "Details": "Centralized application hub for post-secondary institutions in Alberta."
+  },
+  {
+    "Name": "ApplyBoard",
+    "Website": "https://www.applyboard.com/",
+    "Type": "Global College Marketplace",
+    "Scope": "International",
+    "Details": "International student recruitment platform matching users to over 1500 colleges."
   },
   {
     "Name": "ApplyTexas",
     "Website": "https://www.applytexas.org/",
-    "Type": "State University System",
-    "Region": "United States (Texas)",
+    "Type": "Centralized Admission Portal",
+    "Scope": "United States (Texas)",
     "Details": "Centralized application engine for the vast majority of higher education in Texas."
   },
   {
+    "Name": "Arizona State University Online",
+    "Website": "https://asuonline.asu.edu/",
+    "Type": "Online Degree University",
+    "Scope": "Global / US",
+    "Details": "Top-tier public institution delivering over 300 fully online degree programs."
+  },
+  {
+    "Name": "Bachelorsportal",
+    "Website": "https://www.bachelorsportal.com/",
+    "Type": "University & College Search",
+    "Scope": "Global",
+    "Details": "Massive database tracking over 100000 undergraduate programs worldwide."
+  },
+  {
     "Name": "BigFuture College Board",
-    "Website": "https://bigfuture.collegeboard.org/",
-    "Type": "Search & Directory",
-    "Region": "United States",
+    "Website": "https://bigfuture.collegeboard.org/college-search",
+    "Type": "University & College Search",
+    "Scope": "United States",
     "Details": "Official College Board tool for matching tracking and exploring US universities."
   },
   {
     "Name": "CAAS (Coalition for College)",
     "Website": "https://www.coalitionforcollegeaccess.org/",
-    "Type": "Application Portal",
-    "Region": "United States",
+    "Type": "Centralized Admission Portal",
+    "Scope": "United States",
     "Details": "A streamlined alternative platform focused on diverse and affordable institutions."
   },
   {
     "Name": "Cal State Apply",
     "Website": "https://www.calstate.edu/apply",
-    "Type": "State University System",
-    "Region": "United States (California)",
+    "Type": "Centralized Admission Portal",
+    "Scope": "United States (California)",
     "Details": "Centralized application portal for all 23 California State University campuses."
+  },
+  {
+    "Name": "Canvas Network",
+    "Website": "https://www.canvas.net/",
+    "Type": "Training Center & MOOC",
+    "Scope": "Global",
+    "Details": "Open-enrollment network for institutional professional development courses."
   },
   {
     "Name": "CaoKao Hub (Chinaschools)",
     "Website": "https://www.chinaschoolguide.com/",
-    "Type": "Informational Hub",
-    "Region": "China",
+    "Type": "University Search Directory",
+    "Scope": "China",
     "Details": "Gateway resource for international student tracking of national university intake systems."
   },
   {
     "Name": "Common App",
     "Website": "https://www.commonapp.org/",
-    "Type": "Application Portal",
-    "Region": "Global / US",
+    "Type": "Centralized Admission Portal",
+    "Scope": "Global / US",
     "Details": "Centralized application portal for over 1100 institutions."
+  },
+  {
+    "Name": "Coursera Degrees",
+    "Website": "https://www.coursera.org/degrees",
+    "Type": "Online Degree Portal",
+    "Scope": "Global",
+    "Details": "Hosts fully accredited online bachelors and masters degrees from elite universities."
+  },
+  {
+    "Name": "edX",
+    "Website": "https://www.edx.org/",
+    "Type": "Online Degree & Professional Training",
+    "Scope": "Global",
+    "Details": "Offers verified corporate training micro-credentials and full master programs."
+  },
+  {
+    "Name": "FutureLearn",
+    "Website": "https://www.futurelearn.com/",
+    "Type": "Online Degree & Professional Training",
+    "Scope": "Global / UK",
+    "Details": "Partners with leading global brands and universities to offer flexible digital degrees."
   },
   {
     "Name": "Hochschulstart",
     "Website": "https://www.hochschulstart.de/",
-    "Type": "Centralized Application System",
-    "Region": "Germany",
+    "Type": "Centralized Admission Portal",
+    "Scope": "Germany",
     "Details": "Coordinates applications for nationwide restricted university programs in Germany."
+  },
+  {
+    "Name": "IEEE Learning Network",
+    "Website": "https://iln.ieee.org/",
+    "Type": "Technical Training Center",
+    "Scope": "Global",
+    "Details": "Premium continuing education and technical training platform for engineers."
+  },
+  {
+    "Name": "Khan Academy",
+    "Website": "https://www.khanacademy.org/",
+    "Type": "Training Center & College Prep",
+    "Scope": "Global",
+    "Details": "Free open-source academic repository specializing in K-12 and collegiate foundations."
+  },
+  {
+    "Name": "LinkedIn Learning",
+    "Website": "https://www.linkedin.com/learning/",
+    "Type": "Professional Training Center",
+    "Scope": "Global",
+    "Details": "Enterprise skill training center focusing on tech creative and business courses."
+  },
+  {
+    "Name": "Mastersportal",
+    "Website": "https://www.mastersportal.com/",
+    "Type": "University Search Directory",
+    "Scope": "Global",
+    "Details": "Specialized global indexing platform for postgraduate master degrees and tracking."
+  },
+  {
+    "Name": "Open University UK",
+    "Website": "https://www.open.ac.uk/",
+    "Type": "Online Degree University",
+    "Scope": "Global / UK",
+    "Details": "Pioneer in distance learning hosting over 170000 digital degree students globally."
   },
   {
     "Name": "OUAC",
     "Website": "https://www.ouac.on.ca/",
-    "Type": "Centralized Application System",
-    "Region": "Canada (Ontario)",
+    "Type": "Centralized Admission Portal",
+    "Scope": "Canada (Ontario)",
     "Details": "Centralized application service for all public universities in Ontario."
   },
   {
     "Name": "Parcoursup",
     "Website": "https://www.parcoursup.gouv.fr/",
-    "Type": "Centralized Application System",
-    "Region": "France",
+    "Type": "Centralized Admission Portal",
+    "Scope": "France",
     "Details": "Official national platform to register for first year higher education in France."
+  },
+  {
+    "Name": "PhDsportal",
+    "Website": "https://www.phdsportal.com/",
+    "Type": "University Search Directory",
+    "Scope": "Global",
+    "Details": "Comprehensive international directory for tracking doctorate and research funding programs."
+  },
+  {
+    "Name": "Pluralsight",
+    "Website": "https://www.pluralsight.com/",
+    "Type": "Technical Training Center",
+    "Scope": "Global",
+    "Details": "Workforce development platform specializing in IT cybersecurity and software tracking."
   },
   {
     "Name": "QTAC",
     "Website": "https://www.qtac.edu.au/",
-    "Type": "Centralized Application System",
-    "Region": "Australia (Queensland)",
+    "Type": "Centralized Admission Portal",
+    "Scope": "Australia (Queensland)",
     "Details": "Centralized admissions center for higher education institutions in Queensland."
-  },
-  {
-    "Name": "SATAC",
-    "Website": "https://www.satac.edu.au/",
-    "Type": "Centralized Application System",
-    "Region": "Australia (SA & NT)",
-    "Details": "Processes applications for tertiary courses in South Australia and Northern Territory."
   },
   {
     "Name": "Saddem Portal",
     "Website": "https://www.moe.gov.sa/",
-    "Type": "Centralized Application System",
-    "Region": "Saudi Arabia",
+    "Type": "Centralized Admission Portal",
+    "Scope": "Saudi Arabia",
     "Details": "Central government tracking and admission paths for Saudi national universities."
+  },
+  {
+    "Name": "SATAC",
+    "Website": "https://www.satac.edu.au/",
+    "Type": "Centralized Admission Portal",
+    "Scope": "Australia (SA & NT)",
+    "Details": "Processes applications for tertiary courses in South Australia and Northern Territory."
+  },
+  {
+    "Name": "Skillshare",
+    "Website": "https://www.skillshare.com/",
+    "Type": "Creative Training Center",
+    "Scope": "Global",
+    "Details": "Creator-driven platform focused on design multimedia animation and practical trades."
+  },
+  {
+    "Name": "Southern New Hampshire University",
+    "Website": "https://www.snhu.edu/",
+    "Type": "Online Degree University",
+    "Scope": "Global / US",
+    "Details": "One of the largest nonprofit online degree providers in the world."
   },
   {
     "Name": "SRAM",
     "Website": "https://www.sram.qc.ca/",
-    "Type": "Centralized Application System",
-    "Region": "Canada (Quebec)",
+    "Type": "Centralized Admission Portal",
+    "Scope": "Canada (Quebec)",
     "Details": "Application service for CEGEPs and colleges in the province of Quebec."
   },
   {
     "Name": "Studielink",
     "Website": "https://www.studielink.nl/",
-    "Type": "Centralized Application System",
-    "Region": "Netherlands",
+    "Type": "Centralized Admission Portal",
+    "Scope": "Netherlands",
     "Details": "Official national enrollment portal for Dutch higher education institutions."
   },
   {
     "Name": "Study in India Portal",
     "Website": "https://www.studyinindia.gov.in/",
-    "Type": "Centralized Application System",
-    "Region": "India",
+    "Type": "Centralized Admission Portal",
+    "Scope": "India",
     "Details": "Official government portal for international student admission into Indian universities."
   },
   {
     "Name": "Study in Japan Portal",
     "Website": "https://www.studyinjapan.go.jp/",
-    "Type": "Official Directory & Hub",
-    "Region": "Japan",
+    "Type": "University Search Directory",
+    "Scope": "Japan",
     "Details": "Government-backed gateway mapping entry requirements and links for universities across Japan."
+  },
+  {
+    "Name": "Times Course Finder",
+    "Website": "https://timescoursefinder.com/",
+    "Type": "Global College Marketplace",
+    "Scope": "International",
+    "Details": "Aggregator matching global students to courses visas and active scholarship metrics."
   },
   {
     "Name": "TISC",
     "Website": "https://www.tisc.edu.au/",
-    "Type": "Centralized Application System",
-    "Region": "Australia (WA)",
+    "Type": "Centralized Admission Portal",
+    "Scope": "Australia (WA)",
     "Details": "Tertiary Institutions Service Centre for universities in Western Australia."
   },
   {
     "Name": "Top Universities",
-    "Website": "https://www.topuniversities.com/",
-    "Type": "Rankings & Directory",
-    "Region": "Global",
+    "Website": "https://www.topuniversities.com/universities",
+    "Type": "University Search Directory",
+    "Scope": "Global",
     "Details": "QS rankings directory with direct links to top global universities."
   },
   {
     "Name": "UAC",
     "Website": "https://www.uac.edu.au/",
-    "Type": "Centralized Application System",
-    "Region": "Australia (NSW & ACT)",
+    "Type": "Centralized Admission Portal",
+    "Scope": "Australia (NSW & ACT)",
     "Details": "Processes applications for institutions in New South Wales and the Australian Capital Territory."
   },
   {
     "Name": "UCAS",
     "Website": "https://www.ucas.com/",
-    "Type": "Centralized Application System",
-    "Region": "United Kingdom",
+    "Type": "Centralized Admission Portal",
+    "Scope": "United Kingdom",
     "Details": "The mandatory centralized admissions system for all UK university courses."
   },
   {
     "Name": "University of California Admissions",
     "Website": "https://admission.universityofcalifornia.edu/",
-    "Type": "State University System",
-    "Region": "United States (California)",
+    "Type": "Centralized Admission Portal",
+    "Scope": "United States (California)",
     "Details": "The dedicated portal for applying to all 9 UC undergraduate campuses."
+  },
+  {
+    "Name": "University of the People",
+    "Website": "https://www.uopeople.edu/",
+    "Type": "Online Degree University",
+    "Scope": "Global",
+    "Details": "Tuition-free accredited online university focused on accessible degree pathways worldwide."
   },
   {
     "Name": "VTAC",
     "Website": "https://www.vtac.edu.au/",
-    "Type": "Centralized Application System",
-    "Region": "Australia (Victoria)",
+    "Type": "Centralized Admission Portal",
+    "Scope": "Australia (Victoria)",
     "Details": "Centralized admissions center for universities in Victoria."
   },
   {
     "Name": "World Higher Education Database",
     "Website": "https://www.whed.net/",
-    "Type": "Official Directory",
-    "Region": "Global",
+    "Type": "University Search Directory",
+    "Scope": "Global",
     "Details": "IAU/UNESCO official list of higher education systems and accredited institutions."
   }
 ]

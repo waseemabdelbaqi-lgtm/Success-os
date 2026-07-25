@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /**
  * Cursor-style iterative parse of university_portals_production.json
- * Mirrors the pandas / fast-csv loops and FastAPI /api/v1/portals payload.
+ * Schema: Name | Website | Type | Scope | Details
  *
  * Usage: node scripts/parse-admission-portals.mjs
  */
@@ -21,14 +21,15 @@ const ordered = [...rows].sort((a, b) => a.Name.localeCompare(b.Name, 'en'));
 console.log(`Loaded ${ordered.length} production portal records\n`);
 
 for (const [index, row] of ordered.entries()) {
+  const scope = row.Scope || row.Region || '—';
   console.log(
-    `[${index}] Parsing: ${row.Name} | Endpoint: ${row.Website} | Region: ${row.Region}`,
+    `[${index}] Parsing: ${row.Name} | Endpoint: ${row.Website} | Scope: ${scope}`,
   );
   console.log(`         Type: ${row.Type}`);
   console.log(`         Details: ${row.Details}`);
 }
 
-console.log(
-  `\nSuccessfully completed extraction of ${ordered.length} records.`,
-);
-console.log('API shape: GET /api/v1/portals → list[Portal]');
+const types = [...new Set(ordered.map((r) => r.Type))].sort();
+console.log(`\nSuccessfully completed extraction of ${ordered.length} records.`);
+console.log(`Types (${types.length}): ${types.join(' | ')}`);
+console.log('API: GET /api/v1/portals  (?type=&scope=)');

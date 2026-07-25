@@ -1,25 +1,25 @@
 import { NextResponse } from 'next/server';
-import productionPortals from '@/app/data/university_portals_production.json';
+import { getPortalsApiPayload } from '@/app/data/admission-portals';
 
 export const dynamic = 'force-static';
 
-type Portal = {
-  Name: string;
-  Website: string;
-  Type: string;
-  Region: string;
-  Details: string;
-};
-
 /**
  * GET /api/v1/portals
- * Unified University Portals API — A–Z ordered production records.
- * Shape matches FastAPI: list[Portal] with Name/Website/Type/Region/Details.
+ * Unified portals API — A–Z ordered production records:
+ * { Name, Website, Type, Scope, Details }[]
+ *
+ * Optional query:
+ *   ?type=Admission
+ *   ?scope=United States
  */
-export async function GET() {
-  const data = ([...productionPortals] as Portal[]).sort((a, b) =>
-    a.Name.localeCompare(b.Name, 'en'),
-  );
+export async function GET(request: Request) {
+  const { searchParams } = new URL(request.url);
+  const type = (searchParams.get('type') || '').toLowerCase();
+  const scope = (searchParams.get('scope') || '').toLowerCase();
+
+  let data = getPortalsApiPayload();
+  if (type) data = data.filter((p) => p.Type.toLowerCase().includes(type));
+  if (scope) data = data.filter((p) => p.Scope.toLowerCase().includes(scope));
 
   return NextResponse.json(data, {
     headers: {

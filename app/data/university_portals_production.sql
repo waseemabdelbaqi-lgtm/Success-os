@@ -1,40 +1,59 @@
--- Production Schema Setup
+-- Production Schema Setup (Name / Website / Type / Scope / Details)
 CREATE TABLE IF NOT EXISTS university_portals (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     name VARCHAR(255) NOT NULL UNIQUE,
     website TEXT NOT NULL,
-    type VARCHAR(100) NOT NULL,
-    region VARCHAR(100) NOT NULL,
+    type VARCHAR(120) NOT NULL,
+    scope VARCHAR(100) NOT NULL,
     details TEXT NOT NULL
 );
 
--- Fast Lookups via Alphabetic Name Index
 CREATE INDEX IF NOT EXISTS idx_portals_name_alpha ON university_portals(name ASC);
+CREATE INDEX IF NOT EXISTS idx_portals_scope ON university_portals(scope ASC);
+CREATE INDEX IF NOT EXISTS idx_portals_type ON university_portals(type ASC);
 
--- Sample Batch Seed (A-Z Ordered String Records)
-INSERT INTO university_portals (name, website, type, region, details) VALUES
-('Appily', 'https://www.appily.com/', 'Search & Directory', 'United States', 'Comprehensive search engine with financial aid and admission chance estimators.'),
-('ApplyAlberta', 'https://applyalberta.ca/', 'Centralized Application System', 'Canada (Alberta)', 'Centralized application hub for post-secondary institutions in Alberta.'),
-('ApplyTexas', 'https://www.applytexas.org/', 'State University System', 'United States (Texas)', 'Centralized application engine for the vast majority of higher education in Texas.'),
-('BigFuture College Board', 'https://bigfuture.collegeboard.org/', 'Search & Directory', 'United States', 'Official College Board tool for matching tracking and exploring US universities.'),
-('CAAS (Coalition for College)', 'https://www.coalitionforcollegeaccess.org/', 'Application Portal', 'United States', 'A streamlined alternative platform focused on diverse and affordable institutions.'),
-('Cal State Apply', 'https://www.calstate.edu/apply', 'State University System', 'United States (California)', 'Centralized application portal for all 23 California State University campuses.'),
-('CaoKao Hub (Chinaschools)', 'https://www.chinaschoolguide.com/', 'Informational Hub', 'China', 'Gateway resource for international student tracking of national university intake systems.'),
-('Common App', 'https://www.commonapp.org/', 'Application Portal', 'Global / US', 'Centralized application portal for over 1100 institutions.'),
-('Hochschulstart', 'https://www.hochschulstart.de/', 'Centralized Application System', 'Germany', 'Coordinates applications for nationwide restricted university programs in Germany.'),
-('OUAC', 'https://www.ouac.on.ca/', 'Centralized Application System', 'Canada (Ontario)', 'Centralized application service for all public universities in Ontario.'),
-('Parcoursup', 'https://www.parcoursup.gouv.fr/', 'Centralized Application System', 'France', 'Official national platform to register for first year higher education in France.'),
-('QTAC', 'https://www.qtac.edu.au/', 'Centralized Application System', 'Australia (Queensland)', 'Centralized admissions center for higher education institutions in Queensland.'),
-('SATAC', 'https://www.satac.edu.au/', 'Centralized Application System', 'Australia (SA & NT)', 'Processes applications for tertiary courses in South Australia and Northern Territory.'),
-('Saddem Portal', 'https://www.moe.gov.sa/', 'Centralized Application System', 'Saudi Arabia', 'Central government tracking and admission paths for Saudi national universities.'),
-('SRAM', 'https://www.sram.qc.ca/', 'Centralized Application System', 'Canada (Quebec)', 'Application service for CEGEPs and colleges in the province of Quebec.'),
-('Studielink', 'https://www.studielink.nl/', 'Centralized Application System', 'Netherlands', 'Official national enrollment portal for Dutch higher education institutions.'),
-('Study in India Portal', 'https://www.studyinindia.gov.in/', 'Centralized Application System', 'India', 'Official government portal for international student admission into Indian universities.'),
-('Study in Japan Portal', 'https://www.studyinjapan.go.jp/', 'Official Directory & Hub', 'Japan', 'Government-backed gateway mapping entry requirements and links for universities across Japan.'),
-('TISC', 'https://www.tisc.edu.au/', 'Centralized Application System', 'Australia (WA)', 'Tertiary Institutions Service Centre for universities in Western Australia.'),
-('Top Universities', 'https://www.topuniversities.com/', 'Rankings & Directory', 'Global', 'QS rankings directory with direct links to top global universities.'),
-('UAC', 'https://www.uac.edu.au/', 'Centralized Application System', 'Australia (NSW & ACT)', 'Processes applications for institutions in New South Wales and the Australian Capital Territory.'),
-('UCAS', 'https://www.ucas.com/', 'Centralized Application System', 'United Kingdom', 'The mandatory centralized admissions system for all UK university courses.'),
-('University of California Admissions', 'https://admission.universityofcalifornia.edu/', 'State University System', 'United States (California)', 'The dedicated portal for applying to all 9 UC undergraduate campuses.'),
-('VTAC', 'https://www.vtac.edu.au/', 'Centralized Application System', 'Australia (Victoria)', 'Centralized admissions center for universities in Victoria.'),
-('World Higher Education Database', 'https://www.whed.net/', 'Official Directory', 'Global', 'IAU/UNESCO official list of higher education systems and accredited institutions.');
+-- Seed (44 records, A–Z by name)
+INSERT INTO university_portals (name, website, type, scope, details) VALUES ('Alison', 'https://alison.com/', 'Training Center & Certifications', 'Global', 'Free workplace skills platform offering diplomas and vocational certificates.');
+INSERT INTO university_portals (name, website, type, scope, details) VALUES ('Appily', 'https://www.appily.com/', 'University & College Search', 'United States', 'Comprehensive search engine with financial aid and admission chance estimators.');
+INSERT INTO university_portals (name, website, type, scope, details) VALUES ('ApplyAlberta', 'https://applyalberta.ca/', 'Centralized Admission Portal', 'Canada (Alberta)', 'Centralized application hub for post-secondary institutions in Alberta.');
+INSERT INTO university_portals (name, website, type, scope, details) VALUES ('ApplyBoard', 'https://www.applyboard.com/', 'Global College Marketplace', 'International', 'International student recruitment platform matching users to over 1500 colleges.');
+INSERT INTO university_portals (name, website, type, scope, details) VALUES ('ApplyTexas', 'https://www.applytexas.org/', 'Centralized Admission Portal', 'United States (Texas)', 'Centralized application engine for the vast majority of higher education in Texas.');
+INSERT INTO university_portals (name, website, type, scope, details) VALUES ('Arizona State University Online', 'https://asuonline.asu.edu/', 'Online Degree University', 'Global / US', 'Top-tier public institution delivering over 300 fully online degree programs.');
+INSERT INTO university_portals (name, website, type, scope, details) VALUES ('Bachelorsportal', 'https://www.bachelorsportal.com/', 'University & College Search', 'Global', 'Massive database tracking over 100000 undergraduate programs worldwide.');
+INSERT INTO university_portals (name, website, type, scope, details) VALUES ('BigFuture College Board', 'https://bigfuture.collegeboard.org/college-search', 'University & College Search', 'United States', 'Official College Board tool for matching tracking and exploring US universities.');
+INSERT INTO university_portals (name, website, type, scope, details) VALUES ('CAAS (Coalition for College)', 'https://www.coalitionforcollegeaccess.org/', 'Centralized Admission Portal', 'United States', 'A streamlined alternative platform focused on diverse and affordable institutions.');
+INSERT INTO university_portals (name, website, type, scope, details) VALUES ('Cal State Apply', 'https://www.calstate.edu/apply', 'Centralized Admission Portal', 'United States (California)', 'Centralized application portal for all 23 California State University campuses.');
+INSERT INTO university_portals (name, website, type, scope, details) VALUES ('Canvas Network', 'https://www.canvas.net/', 'Training Center & MOOC', 'Global', 'Open-enrollment network for institutional professional development courses.');
+INSERT INTO university_portals (name, website, type, scope, details) VALUES ('CaoKao Hub (Chinaschools)', 'https://www.chinaschoolguide.com/', 'University Search Directory', 'China', 'Gateway resource for international student tracking of national university intake systems.');
+INSERT INTO university_portals (name, website, type, scope, details) VALUES ('Common App', 'https://www.commonapp.org/', 'Centralized Admission Portal', 'Global / US', 'Centralized application portal for over 1100 institutions.');
+INSERT INTO university_portals (name, website, type, scope, details) VALUES ('Coursera Degrees', 'https://www.coursera.org/degrees', 'Online Degree Portal', 'Global', 'Hosts fully accredited online bachelors and masters degrees from elite universities.');
+INSERT INTO university_portals (name, website, type, scope, details) VALUES ('edX', 'https://www.edx.org/', 'Online Degree & Professional Training', 'Global', 'Offers verified corporate training micro-credentials and full master programs.');
+INSERT INTO university_portals (name, website, type, scope, details) VALUES ('FutureLearn', 'https://www.futurelearn.com/', 'Online Degree & Professional Training', 'Global / UK', 'Partners with leading global brands and universities to offer flexible digital degrees.');
+INSERT INTO university_portals (name, website, type, scope, details) VALUES ('Hochschulstart', 'https://www.hochschulstart.de/', 'Centralized Admission Portal', 'Germany', 'Coordinates applications for nationwide restricted university programs in Germany.');
+INSERT INTO university_portals (name, website, type, scope, details) VALUES ('IEEE Learning Network', 'https://iln.ieee.org/', 'Technical Training Center', 'Global', 'Premium continuing education and technical training platform for engineers.');
+INSERT INTO university_portals (name, website, type, scope, details) VALUES ('Khan Academy', 'https://www.khanacademy.org/', 'Training Center & College Prep', 'Global', 'Free open-source academic repository specializing in K-12 and collegiate foundations.');
+INSERT INTO university_portals (name, website, type, scope, details) VALUES ('LinkedIn Learning', 'https://www.linkedin.com/learning/', 'Professional Training Center', 'Global', 'Enterprise skill training center focusing on tech creative and business courses.');
+INSERT INTO university_portals (name, website, type, scope, details) VALUES ('Mastersportal', 'https://www.mastersportal.com/', 'University Search Directory', 'Global', 'Specialized global indexing platform for postgraduate master degrees and tracking.');
+INSERT INTO university_portals (name, website, type, scope, details) VALUES ('Open University UK', 'https://www.open.ac.uk/', 'Online Degree University', 'Global / UK', 'Pioneer in distance learning hosting over 170000 digital degree students globally.');
+INSERT INTO university_portals (name, website, type, scope, details) VALUES ('OUAC', 'https://www.ouac.on.ca/', 'Centralized Admission Portal', 'Canada (Ontario)', 'Centralized application service for all public universities in Ontario.');
+INSERT INTO university_portals (name, website, type, scope, details) VALUES ('Parcoursup', 'https://www.parcoursup.gouv.fr/', 'Centralized Admission Portal', 'France', 'Official national platform to register for first year higher education in France.');
+INSERT INTO university_portals (name, website, type, scope, details) VALUES ('PhDsportal', 'https://www.phdsportal.com/', 'University Search Directory', 'Global', 'Comprehensive international directory for tracking doctorate and research funding programs.');
+INSERT INTO university_portals (name, website, type, scope, details) VALUES ('Pluralsight', 'https://www.pluralsight.com/', 'Technical Training Center', 'Global', 'Workforce development platform specializing in IT cybersecurity and software tracking.');
+INSERT INTO university_portals (name, website, type, scope, details) VALUES ('QTAC', 'https://www.qtac.edu.au/', 'Centralized Admission Portal', 'Australia (Queensland)', 'Centralized admissions center for higher education institutions in Queensland.');
+INSERT INTO university_portals (name, website, type, scope, details) VALUES ('Saddem Portal', 'https://www.moe.gov.sa/', 'Centralized Admission Portal', 'Saudi Arabia', 'Central government tracking and admission paths for Saudi national universities.');
+INSERT INTO university_portals (name, website, type, scope, details) VALUES ('SATAC', 'https://www.satac.edu.au/', 'Centralized Admission Portal', 'Australia (SA & NT)', 'Processes applications for tertiary courses in South Australia and Northern Territory.');
+INSERT INTO university_portals (name, website, type, scope, details) VALUES ('Skillshare', 'https://www.skillshare.com/', 'Creative Training Center', 'Global', 'Creator-driven platform focused on design multimedia animation and practical trades.');
+INSERT INTO university_portals (name, website, type, scope, details) VALUES ('Southern New Hampshire University', 'https://www.snhu.edu/', 'Online Degree University', 'Global / US', 'One of the largest nonprofit online degree providers in the world.');
+INSERT INTO university_portals (name, website, type, scope, details) VALUES ('SRAM', 'https://www.sram.qc.ca/', 'Centralized Admission Portal', 'Canada (Quebec)', 'Application service for CEGEPs and colleges in the province of Quebec.');
+INSERT INTO university_portals (name, website, type, scope, details) VALUES ('Studielink', 'https://www.studielink.nl/', 'Centralized Admission Portal', 'Netherlands', 'Official national enrollment portal for Dutch higher education institutions.');
+INSERT INTO university_portals (name, website, type, scope, details) VALUES ('Study in India Portal', 'https://www.studyinindia.gov.in/', 'Centralized Admission Portal', 'India', 'Official government portal for international student admission into Indian universities.');
+INSERT INTO university_portals (name, website, type, scope, details) VALUES ('Study in Japan Portal', 'https://www.studyinjapan.go.jp/', 'University Search Directory', 'Japan', 'Government-backed gateway mapping entry requirements and links for universities across Japan.');
+INSERT INTO university_portals (name, website, type, scope, details) VALUES ('Times Course Finder', 'https://timescoursefinder.com/', 'Global College Marketplace', 'International', 'Aggregator matching global students to courses visas and active scholarship metrics.');
+INSERT INTO university_portals (name, website, type, scope, details) VALUES ('TISC', 'https://www.tisc.edu.au/', 'Centralized Admission Portal', 'Australia (WA)', 'Tertiary Institutions Service Centre for universities in Western Australia.');
+INSERT INTO university_portals (name, website, type, scope, details) VALUES ('Top Universities', 'https://www.topuniversities.com/universities', 'University Search Directory', 'Global', 'QS rankings directory with direct links to top global universities.');
+INSERT INTO university_portals (name, website, type, scope, details) VALUES ('UAC', 'https://www.uac.edu.au/', 'Centralized Admission Portal', 'Australia (NSW & ACT)', 'Processes applications for institutions in New South Wales and the Australian Capital Territory.');
+INSERT INTO university_portals (name, website, type, scope, details) VALUES ('UCAS', 'https://www.ucas.com/', 'Centralized Admission Portal', 'United Kingdom', 'The mandatory centralized admissions system for all UK university courses.');
+INSERT INTO university_portals (name, website, type, scope, details) VALUES ('University of California Admissions', 'https://admission.universityofcalifornia.edu/', 'Centralized Admission Portal', 'United States (California)', 'The dedicated portal for applying to all 9 UC undergraduate campuses.');
+INSERT INTO university_portals (name, website, type, scope, details) VALUES ('University of the People', 'https://www.uopeople.edu/', 'Online Degree University', 'Global', 'Tuition-free accredited online university focused on accessible degree pathways worldwide.');
+INSERT INTO university_portals (name, website, type, scope, details) VALUES ('VTAC', 'https://www.vtac.edu.au/', 'Centralized Admission Portal', 'Australia (Victoria)', 'Centralized admissions center for universities in Victoria.');
+INSERT INTO university_portals (name, website, type, scope, details) VALUES ('World Higher Education Database', 'https://www.whed.net/', 'University Search Directory', 'Global', 'IAU/UNESCO official list of higher education systems and accredited institutions.');

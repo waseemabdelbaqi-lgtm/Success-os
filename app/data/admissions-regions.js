@@ -78,7 +78,6 @@ export const ADMISSION_COUNTRIES = {
     notesAr: 'الاعتماد مؤسسي/برامجي أمريكي؛ لا توجد معادلة اتحادية تلقائية للشهادات الأجنبية في كل الولايات.',
     sources: [
       { label: 'Common App', url: 'https://www.commonapp.org/' },
-      { label: 'Common App', url: 'https://www.commonapp.org/' },
       { label: 'CAAS (Coalition for College)', url: 'https://www.coalitionforcollegeaccess.org/' },
       { label: 'BigFuture College Board', url: 'https://bigfuture.collegeboard.org/' },
       { label: 'Appily', url: 'https://www.appily.com/' },
@@ -205,7 +204,10 @@ export const ADMISSION_COUNTRIES = {
     localDocs: ['نتيجة Gaokao', 'اختيارات التخصص حسب المقاطعة'],
     internationalDocs: ['شهادة ثانوية', 'HSK أو IELTS/TOEFL', 'جواز وتمويل', 'تأشيرة دراسة'],
     notesAr: 'مسار الطالب الدولي منفصل تماماً عن Gaokao.',
-    sources: [{ label: 'Tsinghua International', url: 'https://international.join-tsinghua.edu.cn/' }],
+    sources: [
+      { label: 'CaoKao Hub (Chinaschools)', url: 'https://www.chinaschoolguide.com/' },
+      { label: 'Tsinghua International', url: 'https://international.join-tsinghua.edu.cn/' },
+    ],
   },
   'اليابان': {
     region: 'asia',
@@ -219,7 +221,10 @@ export const ADMISSION_COUNTRIES = {
     localDocs: ['شهادة ثانوية يابانية', 'امتحانات الدخول'],
     internationalDocs: ['شهادة ثانوية', 'EJU أو متطلبات البرنامج الإنجليزي', 'JLPT أو IELTS', 'تمويل وتأشيرة طالب'],
     notesAr: 'البرامج الإنجليزية لها شروط مختلفة عن المسار الياباني.',
-    sources: [{ label: 'University of Tokyo UG English', url: 'https://www.u-tokyo.ac.jp/en/prospective-students/undergraduate_english.html' }],
+    sources: [
+      { label: 'Study in Japan Portal', url: 'https://www.studyinjapan.go.jp/' },
+      { label: 'University of Tokyo UG English', url: 'https://www.u-tokyo.ac.jp/en/prospective-students/undergraduate_english.html' },
+    ],
   },
   'كوريا الجنوبية': {
     region: 'asia',
@@ -247,7 +252,10 @@ export const ADMISSION_COUNTRIES = {
     localDocs: ['Class XII marks', 'JEE/NEET عند اللزوم', 'Counselling'],
     internationalDocs: ['شهادة ثانوية معادلة', 'جواز', 'إثبات تمويل', 'متطلبات الحصة الدولية'],
     notesAr: 'الهندسة والطب مرتبطان بمجالس مهنية منفصلة.',
-    sources: [{ label: 'IIT Delhi UG', url: 'https://home.iitd.ac.in/undergraduate.php' }],
+    sources: [
+      { label: 'Study in India Portal', url: 'https://www.studyinindia.gov.in/' },
+      { label: 'IIT Delhi UG', url: 'https://home.iitd.ac.in/undergraduate.php' },
+    ],
   },
   'ماليزيا': {
     region: 'asia',
@@ -323,7 +331,10 @@ export const ADMISSION_COUNTRIES = {
     localDocs: ['شهادة الثانوية', 'قدرات', 'تحصيلي', 'طلب الجامعة'],
     internationalDocs: ['شهادة ثانوية', 'جواز', 'إثبات لغة', 'شروط المقعد الدولي/المنحة'],
     notesAr: 'للدراسة خارج المملكة استخدم قائمة الجامعات الموصى بها.',
-    sources: [{ label: 'King Saud University DAR', url: 'https://dar.ksu.edu.sa/' }],
+    sources: [
+      { label: 'Saddem Portal / MOE', url: 'https://www.moe.gov.sa/' },
+      { label: 'King Saud University DAR', url: 'https://dar.ksu.edu.sa/' },
+    ],
   },
   'قطر': {
     region: 'mena',

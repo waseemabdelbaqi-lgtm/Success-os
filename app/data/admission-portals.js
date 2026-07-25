@@ -1,36 +1,41 @@
 /**
- * University portals production layer.
- * Source of truth: university_portals_production.json (+ .sql schema)
- * Schema: Name | Website | Type | Region | Details (A–Z ordered)
+ * University / training portals production layer.
+ * Source: university_portals_production.json
+ * Schema: Name | Website | Type | Scope | Details
  */
 
 import productionPortals from './university_portals_production.json';
 
 const TYPE_AR = {
-  'Search & Directory': 'بحث ودليل',
-  'Centralized Application System': 'نظام تقديم مركزي',
-  'State University System': 'نظام جامعات ولاية',
-  'Application Portal': 'بوابة تقديم',
-  'Informational Hub': 'مركز معلومات',
-  'Official Directory & Hub': 'دليل ومركز رسمي',
-  'Rankings & Directory': 'تصنيفات ودليل',
-  'Official Directory': 'دليل رسمي',
-  Directory: 'دليل مؤسسات',
-  Portal: 'بوابة تقديم',
+  'Training Center & Certifications': 'مركز تدريب وشهادات',
+  'University & College Search': 'بحث جامعات وكليات',
+  'Centralized Admission Portal': 'بوابة قبول مركزية',
+  'Global College Marketplace': 'سوق كليات عالمي',
+  'Online Degree University': 'جامعة درجات أونلاين',
+  'Training Center & MOOC': 'مركز تدريب وMOOC',
+  'University Search Directory': 'دليل بحث جامعات',
+  'Online Degree Portal': 'بوابة درجات أونلاين',
+  'Online Degree & Professional Training': 'درجات وتدريب مهني أونلاين',
+  'Technical Training Center': 'مركز تدريب تقني',
+  'Training Center & College Prep': 'تدريب وتحضير جامعي',
+  'Professional Training Center': 'مركز تدريب مهني',
+  'Creative Training Center': 'مركز تدريب إبداعي',
 };
 
-const REGION_AR = {
+const SCOPE_AR = {
+  Global: 'عالمي',
+  International: 'دولي',
   'United States': 'الولايات المتحدة',
   'Canada (Alberta)': 'كندا (ألبرتا)',
   'United States (Texas)': 'الولايات المتحدة (تكساس)',
   'United States (California)': 'الولايات المتحدة (كاليفورنيا)',
   'Global / US': 'عالمي / الولايات المتحدة',
+  'Global / UK': 'عالمي / المملكة المتحدة',
   Germany: 'ألمانيا',
   'Canada (Ontario)': 'كندا (أونتاريو)',
   'Canada (Quebec)': 'كندا (كيبيك)',
   France: 'فرنسا',
   Netherlands: 'هولندا',
-  Global: 'عالمي',
   'Australia (NSW & ACT)': 'أستراليا (NSW وACT)',
   'Australia (Victoria)': 'أستراليا (فيكتوريا)',
   'Australia (Queensland)': 'أستراليا (كوينزلاند)',
@@ -43,32 +48,21 @@ const REGION_AR = {
   Japan: 'اليابان',
 };
 
-const REGION_BUCKET = {
-  'United States': ['americas'],
-  'Canada (Alberta)': ['americas'],
-  'United States (Texas)': ['americas'],
-  'United States (California)': ['americas'],
-  'Global / US': ['americas', 'global'],
-  Germany: ['europe'],
-  'Canada (Ontario)': ['americas'],
-  'Canada (Quebec)': ['americas'],
-  France: ['europe'],
-  Netherlands: ['europe'],
-  Global: ['global', 'americas', 'europe', 'asia', 'mena', 'africa', 'oceania'],
-  'Australia (NSW & ACT)': ['oceania'],
-  'Australia (Victoria)': ['oceania'],
-  'Australia (Queensland)': ['oceania'],
-  'Australia (SA & NT)': ['oceania'],
-  'Australia (WA)': ['oceania'],
-  'United Kingdom': ['europe'],
-  China: ['asia'],
-  'Saudi Arabia': ['mena'],
-  India: ['asia'],
-  Japan: ['asia'],
-};
-
-/** Raw production records (FastAPI / SQL compatible shape). */
-export const ADMISSION_PORTALS_V4 = productionPortals;
+function scopeBuckets(scope) {
+  const s = (scope || '').toLowerCase();
+  if (s.includes('international') || s === 'global') {
+    return ['global', 'americas', 'europe', 'asia', 'mena', 'africa', 'oceania'];
+  }
+  if (s.includes('united states') || s.includes('/ us')) return ['americas', 'global'];
+  if (s.includes('canada')) return ['americas'];
+  if (s.includes('united kingdom') || s.includes('/ uk') || s.includes('germany') || s.includes('france') || s.includes('netherlands')) {
+    return ['europe', 'global'];
+  }
+  if (s.includes('australia')) return ['oceania'];
+  if (s.includes('china') || s.includes('india') || s.includes('japan')) return ['asia'];
+  if (s.includes('saudi')) return ['mena'];
+  return ['global'];
+}
 
 function slug(name) {
   return name
@@ -77,24 +71,41 @@ function slug(name) {
     .replace(/(^-|-$)/g, '');
 }
 
-/** App-facing records for wizard + global sources. */
-export const ADMISSION_PORTALS = productionPortals.map((row) => ({
+/** Normalize raw rows (support Scope or legacy Region). */
+function normalizeRow(row) {
+  const Scope = row.Scope || row.Region || 'Global';
+  return {
+    Name: row.Name,
+    Website: row.Website,
+    Type: row.Type,
+    Scope,
+    Region: Scope, // backward-compatible alias
+    Details: row.Details,
+  };
+}
+
+export const ADMISSION_PORTALS_V4 = productionPortals.map(normalizeRow);
+
+export const ADMISSION_PORTALS = ADMISSION_PORTALS_V4.map((row) => ({
   id: slug(row.Name),
   name: row.Name,
   nameAr: row.Name,
   website: row.Website,
   type: row.Type,
   typeAr: TYPE_AR[row.Type] || row.Type,
-  region: row.Region,
-  regionAr: REGION_AR[row.Region] || row.Region,
-  regions: REGION_BUCKET[row.Region] || ['global'],
+  scope: row.Scope,
+  scopeAr: SCOPE_AR[row.Scope] || row.Scope,
+  region: row.Scope,
+  regionAr: SCOPE_AR[row.Scope] || row.Scope,
+  regions: scopeBuckets(row.Scope),
   details: row.Details,
   detailsAr: row.Details,
   bestFor: ['local', 'international'],
   Name: row.Name,
   Website: row.Website,
   Type: row.Type,
-  Region: row.Region,
+  Scope: row.Scope,
+  Region: row.Scope,
   Details: row.Details,
 }));
 
@@ -107,50 +118,49 @@ const COUNTRY_PORTAL_IDS = {
     'applytexas',
     'cal-state-apply',
     'university-of-california-admissions',
-    'world-higher-education-database',
+    'arizona-state-university-online',
+    'southern-new-hampshire-university',
+    'applyboard',
+    'bachelorsportal',
     'top-universities',
+    'world-higher-education-database',
   ],
   'كندا': [
     'ouac',
     'applyalberta',
     'sram',
-    'common-app',
+    'applyboard',
+    'bachelorsportal',
     'world-higher-education-database',
     'top-universities',
   ],
-  'المملكة المتحدة': ['ucas', 'world-higher-education-database', 'top-universities'],
-  'ألمانيا': ['hochschulstart', 'world-higher-education-database', 'top-universities'],
-  'فرنسا': ['parcoursup', 'world-higher-education-database', 'top-universities'],
-  'هولندا': ['studielink', 'world-higher-education-database', 'top-universities'],
+  'المملكة المتحدة': [
+    'ucas',
+    'open-university-uk',
+    'futurelearn',
+    'bachelorsportal',
+    'mastersportal',
+    'top-universities',
+    'world-higher-education-database',
+  ],
+  'ألمانيا': ['hochschulstart', 'bachelorsportal', 'top-universities', 'world-higher-education-database'],
+  'فرنسا': ['parcoursup', 'bachelorsportal', 'top-universities', 'world-higher-education-database'],
+  'هولندا': ['studielink', 'bachelorsportal', 'top-universities', 'world-higher-education-database'],
   'أستراليا': [
     'uac',
     'vtac',
     'qtac',
     'satac',
     'tisc',
-    'world-higher-education-database',
+    'applyboard',
+    'bachelorsportal',
     'top-universities',
-  ],
-  'الصين': [
-    'caokao-hub-chinaschools',
     'world-higher-education-database',
-    'top-universities',
   ],
-  'السعودية': [
-    'saddem-portal',
-    'world-higher-education-database',
-    'top-universities',
-  ],
-  'الهند': [
-    'study-in-india-portal',
-    'world-higher-education-database',
-    'top-universities',
-  ],
-  'اليابان': [
-    'study-in-japan-portal',
-    'world-higher-education-database',
-    'top-universities',
-  ],
+  'الصين': ['caokao-hub-chinaschools', 'applyboard', 'top-universities', 'world-higher-education-database'],
+  'السعودية': ['saddem-portal', 'applyboard', 'top-universities', 'world-higher-education-database'],
+  'الهند': ['study-in-india-portal', 'applyboard', 'top-universities', 'world-higher-education-database'],
+  'اليابان': ['study-in-japan-portal', 'applyboard', 'top-universities', 'world-higher-education-database'],
 };
 
 export function portalsForRegion(regionId) {
@@ -172,19 +182,31 @@ export function portalsForCoverage(coverageHint) {
   const key = coverageHint.toLowerCase();
   return ADMISSION_PORTALS.filter(
     (p) =>
-      p.region.toLowerCase().includes(key) ||
-      p.regionAr.includes(coverageHint) ||
+      p.scope.toLowerCase().includes(key) ||
+      p.scopeAr.includes(coverageHint) ||
       p.regions.includes('global'),
   );
 }
 
-/** Cursor-style iterative processor (pandas / fast-csv equivalent). */
-export function iterateAdmissionPortals(onRow) {
-  productionPortals.forEach((row, index) => onRow(row, index));
-  return productionPortals.length;
+export function portalsByType(typeHint) {
+  if (!typeHint) return ADMISSION_PORTALS;
+  const key = typeHint.toLowerCase();
+  return ADMISSION_PORTALS.filter((p) => p.type.toLowerCase().includes(key));
 }
 
-/** API response shape: [{ Name, Website, Type, Region, Details }] A–Z. */
+export function iterateAdmissionPortals(onRow) {
+  ADMISSION_PORTALS_V4.forEach((row, index) => onRow(row, index));
+  return ADMISSION_PORTALS_V4.length;
+}
+
 export function getPortalsApiPayload() {
-  return [...productionPortals].sort((a, b) => a.Name.localeCompare(b.Name, 'en'));
+  return [...ADMISSION_PORTALS_V4]
+    .map(({ Name, Website, Type, Scope, Details }) => ({
+      Name,
+      Website,
+      Type,
+      Scope,
+      Details,
+    }))
+    .sort((a, b) => a.Name.localeCompare(b.Name, 'en'));
 }

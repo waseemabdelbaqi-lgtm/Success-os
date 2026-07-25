@@ -271,13 +271,13 @@ export default function AdmissionsPage() {
             {activePortals.map((p) => (
               <article key={p.id}>
                 <small>
-                  {p.type} • {p.region}
+                  {p.type} • {p.scope || p.region}
                 </small>
                 <h3>{p.name}</h3>
                 <p>{p.detailsAr || p.details}</p>
                 <div className="admission-portal-meta">
                   <span>{p.typeAr}</span>
-                  <span>{p.regionAr}</span>
+                  <span>{p.scopeAr || p.regionAr}</span>
                 </div>
                 <a href={p.website} target="_blank" rel="noreferrer">
                   فتح {p.name} ↗
