@@ -1,265 +1,227 @@
 /**
- * External admissions portals, application systems, and university directories.
- * Name / Website / Type / Region / Details — launch gateways only (not scraped copies).
+ * External admissions portals — sourced from university_admission_portals-v4.csv
+ * Schema: Name | Website | Type | Region | Details
+ * Re-parse: node scripts/parse-admission-portals.mjs
  */
 
-export const ADMISSION_PORTALS = [
+const TYPE_AR = {
+  'Search & Directory': 'بحث ودليل',
+  'Centralized Application System': 'نظام تقديم مركزي',
+  'University System': 'نظام جامعي',
+  Portal: 'بوابة تقديم',
+  Directory: 'دليل مؤسسات',
+};
+
+const REGION_AR = {
+  'United States': 'الولايات المتحدة',
+  'Canada (Alberta)': 'كندا (ألبرتا)',
+  'United States (Texas)': 'الولايات المتحدة (تكساس)',
+  'Global / US': 'عالمي / الولايات المتحدة',
+  Germany: 'ألمانيا',
+  'Canada (Ontario)': 'كندا (أونتاريو)',
+  France: 'فرنسا',
+  Netherlands: 'هولندا',
+  Global: 'عالمي',
+  'Australia (NSW & ACT)': 'أستراليا (NSW وACT)',
+  'United Kingdom': 'المملكة المتحدة',
+  'United States (California)': 'الولايات المتحدة (كاليفورنيا)',
+  'Australia (Victoria)': 'أستراليا (فيكتوريا)',
+};
+
+const REGION_BUCKET = {
+  'United States': ['americas'],
+  'Canada (Alberta)': ['americas'],
+  'United States (Texas)': ['americas'],
+  'Global / US': ['americas', 'global'],
+  Germany: ['europe'],
+  'Canada (Ontario)': ['americas'],
+  France: ['europe'],
+  Netherlands: ['europe'],
+  Global: ['global', 'americas', 'europe', 'asia', 'mena', 'africa', 'oceania'],
+  'Australia (NSW & ACT)': ['oceania'],
+  'United Kingdom': ['europe'],
+  'United States (California)': ['americas'],
+  'Australia (Victoria)': ['oceania'],
+};
+
+/** Canonical v4 records (mirrors CSV). */
+export const ADMISSION_PORTALS_V4 = [
   {
-    id: 'appily',
-    name: 'Appily',
-    nameAr: 'Appily',
-    website: 'https://www.appily.com/',
-    type: 'Directory',
-    typeAr: 'دليل بحث',
-    region: 'United States',
-    regionAr: 'الولايات المتحدة',
-    regions: ['americas'],
-    details:
+    Name: 'Appily',
+    Website: 'https://www.appily.com/',
+    Type: 'Search & Directory',
+    Region: 'United States',
+    Details:
       'Comprehensive search engine with financial aid and admission chance estimators.',
-    detailsAr:
-      'محرك بحث شامل للكليات الأمريكية مع تقديرات المساعدات المالية وفرص القبول.',
-    bestFor: ['local', 'international'],
   },
   {
-    id: 'applyalberta',
-    name: 'ApplyAlberta',
-    nameAr: 'ApplyAlberta',
-    website: 'https://www.applyalberta.ca/',
-    type: 'Application System',
-    typeAr: 'نظام تقديم',
-    region: 'Canada (Alberta)',
-    regionAr: 'كندا (ألبرتا)',
-    regions: ['americas'],
-    details:
-      'Centralized application hub for post-secondary institutions in Alberta.',
-    detailsAr: 'بوابة تقديم مركزية لمؤسسات التعليم ما بعد الثانوي في ألبرتا.',
-    bestFor: ['local', 'international'],
+    Name: 'ApplyAlberta',
+    Website: 'https://applyalberta.ca/',
+    Type: 'Centralized Application System',
+    Region: 'Canada (Alberta)',
+    Details: 'Centralized application hub for post-secondary institutions in Alberta.',
   },
   {
-    id: 'applytexas',
-    name: 'ApplyTexas',
-    nameAr: 'ApplyTexas',
-    website: 'https://www.applytexas.org/',
-    type: 'University System',
-    typeAr: 'نظام جامعي',
-    region: 'United States (Texas)',
-    regionAr: 'الولايات المتحدة (تكساس)',
-    regions: ['americas'],
-    details:
+    Name: 'ApplyTexas',
+    Website: 'https://www.applytexas.org/',
+    Type: 'University System',
+    Region: 'United States (Texas)',
+    Details:
       'Centralized application engine for the vast majority of higher education in Texas.',
-    detailsAr: 'محرك تقديم مركزي لمعظم مؤسسات التعليم العالي في تكساس.',
-    bestFor: ['local', 'international'],
   },
   {
-    id: 'bigfuture',
-    name: 'BigFuture College Board',
-    nameAr: 'BigFuture — College Board',
-    website: 'https://bigfuture.collegeboard.org/',
-    type: 'Directory',
-    typeAr: 'دليل بحث',
-    region: 'United States',
-    regionAr: 'الولايات المتحدة',
-    regions: ['americas'],
-    details:
+    Name: 'BigFuture College Board',
+    Website: 'https://bigfuture.collegeboard.org/',
+    Type: 'Search & Directory',
+    Region: 'United States',
+    Details:
       'Official College Board tool for matching, tracking and exploring US universities.',
-    detailsAr:
-      'أداة College Board الرسمية لمطابقة وتتبع واستكشاف الجامعات الأمريكية.',
-    bestFor: ['local', 'international'],
   },
   {
-    id: 'coalition',
-    name: 'Coalition for College',
-    nameAr: 'Coalition for College',
-    website: 'https://www.coalitionforcollegeaccess.org/',
-    type: 'Portal',
-    typeAr: 'بوابة تقديم',
-    region: 'United States',
-    regionAr: 'الولايات المتحدة',
-    regions: ['americas'],
-    details:
+    Name: 'Coalition for College',
+    Website: 'https://www.coalitionforcollegeaccess.org/',
+    Type: 'Portal',
+    Region: 'United States',
+    Details:
       'A streamlined alternative platform focused on diverse and affordable institutions.',
-    detailsAr: 'منصة بديلة مبسطة تركز على مؤسسات متنوعة وبأسعار ميسورة.',
-    bestFor: ['local', 'international'],
   },
   {
-    id: 'common-app',
-    name: 'Common App',
-    nameAr: 'Common App',
-    website: 'https://www.commonapp.org/',
-    type: 'Portal',
-    typeAr: 'بوابة تقديم',
-    region: 'Global / US',
-    regionAr: 'عالمي / الولايات المتحدة',
-    regions: ['americas', 'global'],
-    details: 'Centralized application portal for over 1100 institutions.',
-    detailsAr: 'بوابة تقديم موحّدة لأكثر من 1100 مؤسسة.',
-    bestFor: ['local', 'international'],
+    Name: 'Common App',
+    Website: 'https://www.commonapp.org/',
+    Type: 'Portal',
+    Region: 'Global / US',
+    Details: 'Centralized application portal for over 1100 institutions.',
   },
   {
-    id: 'hochschulstart',
-    name: 'Hochschulstart',
-    nameAr: 'Hochschulstart',
-    website: 'https://www.hochschulstart.de/',
-    type: 'Application System',
-    typeAr: 'نظام تقديم',
-    region: 'Germany',
-    regionAr: 'ألمانيا',
-    regions: ['europe'],
-    details:
+    Name: 'Hochschulstart',
+    Website: 'https://www.hochschulstart.de/',
+    Type: 'Centralized Application System',
+    Region: 'Germany',
+    Details:
       'Coordinates applications for nationwide restricted university programs in Germany.',
-    detailsAr: 'ينسّق التقديم للبرامج الجامعية المقيدة على المستوى الوطني في ألمانيا.',
-    bestFor: ['local', 'international'],
   },
   {
-    id: 'ouac',
-    name: 'OUAC',
-    nameAr: 'OUAC',
-    website: 'https://www.ouac.on.ca/',
-    type: 'Application System',
-    typeAr: 'نظام تقديم',
-    region: 'Canada (Ontario)',
-    regionAr: 'كندا (أونتاريو)',
-    regions: ['americas'],
-    details: 'Centralized application service for all public universities in Ontario.',
-    detailsAr: 'خدمة تقديم مركزية لجميع الجامعات العامة في أونتاريو.',
-    bestFor: ['local', 'international'],
+    Name: 'OUAC',
+    Website: 'https://www.ouac.on.ca/',
+    Type: 'Centralized Application System',
+    Region: 'Canada (Ontario)',
+    Details: 'Centralized application service for all public universities in Ontario.',
   },
   {
-    id: 'parcoursup',
-    name: 'Parcoursup',
-    nameAr: 'Parcoursup',
-    website: 'https://www.parcoursup.gouv.fr/',
-    type: 'Application System',
-    typeAr: 'نظام تقديم',
-    region: 'France',
-    regionAr: 'فرنسا',
-    regions: ['europe'],
-    details:
+    Name: 'Parcoursup',
+    Website: 'https://www.parcoursup.gouv.fr/',
+    Type: 'Centralized Application System',
+    Region: 'France',
+    Details:
       'Official national platform to register for first year higher education in France.',
-    detailsAr: 'المنصة الوطنية الرسمية للتسجيل في السنة الأولى من التعليم العالي في فرنسا.',
-    bestFor: ['local', 'international'],
   },
   {
-    id: 'studielink',
-    name: 'Studielink',
-    nameAr: 'Studielink',
-    website: 'https://www.studielink.nl/',
-    type: 'Application System',
-    typeAr: 'نظام تقديم',
-    region: 'Netherlands',
-    regionAr: 'هولندا',
-    regions: ['europe'],
-    details:
+    Name: 'Studielink',
+    Website: 'https://www.studielink.nl/',
+    Type: 'Centralized Application System',
+    Region: 'Netherlands',
+    Details:
       'Official national enrollment portal for Dutch higher education institutions.',
-    detailsAr: 'بوابة التسجيل الوطنية الرسمية لمؤسسات التعليم العالي الهولندية.',
-    bestFor: ['local', 'international'],
   },
   {
-    id: 'top-universities',
-    name: 'Top Universities',
-    nameAr: 'Top Universities (QS)',
-    website: 'https://www.topuniversities.com/',
-    type: 'Directory',
-    typeAr: 'دليل وتصنيف',
-    region: 'Global',
-    regionAr: 'عالمي',
-    regions: ['global', 'americas', 'europe', 'asia', 'mena', 'africa', 'oceania'],
-    details: 'QS rankings directory with direct links to top global universities.',
-    detailsAr: 'دليل تصنيفات QS مع روابط مباشرة لأبرز الجامعات العالمية.',
-    bestFor: ['local', 'international'],
+    Name: 'Top Universities',
+    Website: 'https://www.topuniversities.com/',
+    Type: 'Search & Directory',
+    Region: 'Global',
+    Details: 'QS rankings directory with direct links to top global universities.',
   },
   {
-    id: 'uac',
-    name: 'UAC',
-    nameAr: 'UAC',
-    website: 'https://www.uac.edu.au/',
-    type: 'Application System',
-    typeAr: 'نظام تقديم',
-    region: 'Australia (NSW & ACT)',
-    regionAr: 'أستراليا (NSW وACT)',
-    regions: ['oceania'],
-    details:
+    Name: 'UAC',
+    Website: 'https://www.uac.edu.au/',
+    Type: 'Centralized Application System',
+    Region: 'Australia (NSW & ACT)',
+    Details:
       'Processes applications for institutions in New South Wales and the Australian Capital Territory.',
-    detailsAr: 'يعالج طلبات القبول لمؤسسات نيو ساوث ويلز وإقليم العاصمة الأسترالية.',
-    bestFor: ['local', 'international'],
   },
   {
-    id: 'ucas',
-    name: 'UCAS',
-    nameAr: 'UCAS',
-    website: 'https://www.ucas.com/',
-    type: 'Application System',
-    typeAr: 'نظام تقديم',
-    region: 'United Kingdom',
-    regionAr: 'المملكة المتحدة',
-    regions: ['europe'],
-    details: 'The mandatory centralized admissions system for all UK university courses.',
-    detailsAr: 'نظام القبول المركزي الإلزامي لجميع المقررات الجامعية في المملكة المتحدة.',
-    bestFor: ['local', 'international'],
+    Name: 'UCAS',
+    Website: 'https://www.ucas.com/',
+    Type: 'Centralized Application System',
+    Region: 'United Kingdom',
+    Details: 'The mandatory centralized admissions system for all UK university courses.',
   },
   {
-    id: 'uc-admissions',
-    name: 'University of California Admissions',
-    nameAr: 'قبول جامعة كاليفورنيا',
-    website: 'https://admission.universityofcalifornia.edu/',
-    type: 'University System',
-    typeAr: 'نظام جامعي',
-    region: 'United States (California)',
-    regionAr: 'الولايات المتحدة (كاليفورنيا)',
-    regions: ['americas'],
-    details: 'The dedicated portal for applying to all 9 UC undergraduate campuses.',
-    detailsAr: 'البوابة المخصصة للتقديم إلى جميع فروع UC الجامعية التسعة.',
-    bestFor: ['local', 'international'],
+    Name: 'University of California Admissions',
+    Website: 'https://admission.universityofcalifornia.edu/',
+    Type: 'University System',
+    Region: 'United States (California)',
+    Details: 'The dedicated portal for applying to all 9 UC undergraduate campuses.',
   },
   {
-    id: 'vtac',
-    name: 'VTAC',
-    nameAr: 'VTAC',
-    website: 'https://www.vtac.edu.au/',
-    type: 'Application System',
-    typeAr: 'نظام تقديم',
-    region: 'Australia (Victoria)',
-    regionAr: 'أستراليا (فيكتوريا)',
-    regions: ['oceania'],
-    details: 'Centralized admissions center for universities in Victoria.',
-    detailsAr: 'مركز قبول مركزي لجامعات ولاية فيكتوريا.',
-    bestFor: ['local', 'international'],
+    Name: 'VTAC',
+    Website: 'https://www.vtac.edu.au/',
+    Type: 'Centralized Application System',
+    Region: 'Australia (Victoria)',
+    Details: 'Centralized admissions center for universities in Victoria.',
   },
   {
-    id: 'whed',
-    name: 'World Higher Education Database',
-    nameAr: 'قاعدة WHED العالمية',
-    website: 'https://www.whed.net/',
-    type: 'Directory',
-    typeAr: 'دليل مؤسسات',
-    region: 'Global',
-    regionAr: 'عالمي',
-    regions: ['global', 'americas', 'europe', 'asia', 'mena', 'africa', 'oceania'],
-    details:
+    Name: 'World Higher Education Database',
+    Website: 'https://www.whed.net/',
+    Type: 'Directory',
+    Region: 'Global',
+    Details:
       'IAU/UNESCO official list of higher education systems and accredited institutions.',
-    detailsAr: 'القائمة الرسمية لـ IAU/UNESCO لأنظمة التعليم العالي والمؤسسات المعتمدة.',
-    bestFor: ['local', 'international'],
   },
 ];
+
+function slug(name) {
+  return name
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/(^-|-$)/g, '');
+}
+
+/** App-facing records used by admissions wizard + global sources. */
+export const ADMISSION_PORTALS = ADMISSION_PORTALS_V4.map((row) => ({
+  id: slug(row.Name),
+  name: row.Name,
+  nameAr: row.Name,
+  website: row.Website,
+  type: row.Type,
+  typeAr: TYPE_AR[row.Type] || row.Type,
+  region: row.Region,
+  regionAr: REGION_AR[row.Region] || row.Region,
+  regions: REGION_BUCKET[row.Region] || ['global'],
+  details: row.Details,
+  detailsAr: row.Details,
+  bestFor: ['local', 'international'],
+  // Preserve original CSV/JSON keys for tooling
+  Name: row.Name,
+  Website: row.Website,
+  Type: row.Type,
+  Region: row.Region,
+  Details: row.Details,
+}));
 
 /** Map study-country Arabic names to the most relevant portals. */
 const COUNTRY_PORTAL_IDS = {
   'الولايات المتحدة': [
     'common-app',
-    'coalition',
-    'bigfuture',
+    'coalition-for-college',
+    'bigfuture-college-board',
     'appily',
     'applytexas',
-    'uc-admissions',
-    'whed',
+    'university-of-california-admissions',
+    'world-higher-education-database',
     'top-universities',
   ],
-  'كندا': ['ouac', 'applyalberta', 'common-app', 'whed', 'top-universities'],
-  'المملكة المتحدة': ['ucas', 'whed', 'top-universities'],
-  'ألمانيا': ['hochschulstart', 'whed', 'top-universities'],
-  'فرنسا': ['parcoursup', 'whed', 'top-universities'],
-  'هولندا': ['studielink', 'whed', 'top-universities'],
-  'أستراليا': ['uac', 'vtac', 'whed', 'top-universities'],
+  'كندا': [
+    'ouac',
+    'applyalberta',
+    'common-app',
+    'world-higher-education-database',
+    'top-universities',
+  ],
+  'المملكة المتحدة': ['ucas', 'world-higher-education-database', 'top-universities'],
+  'ألمانيا': ['hochschulstart', 'world-higher-education-database', 'top-universities'],
+  'فرنسا': ['parcoursup', 'world-higher-education-database', 'top-universities'],
+  'هولندا': ['studielink', 'world-higher-education-database', 'top-universities'],
+  'أستراليا': ['uac', 'vtac', 'world-higher-education-database', 'top-universities'],
 };
 
 export function portalsForRegion(regionId) {
@@ -285,4 +247,12 @@ export function portalsForCoverage(coverageHint) {
       p.regionAr.includes(coverageHint) ||
       p.regions.includes('global'),
   );
+}
+
+/** Cursor-style iterative processor (same shape as the pandas/fast-csv loops). */
+export function iterateAdmissionPortals(onRow) {
+  ADMISSION_PORTALS_V4.forEach((row, index) => {
+    onRow(row, index);
+  });
+  return ADMISSION_PORTALS_V4.length;
 }

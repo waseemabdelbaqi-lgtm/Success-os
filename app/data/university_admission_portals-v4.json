@@ -1,0 +1,114 @@
+[
+  {
+    "Name": "Appily",
+    "Website": "https://www.appily.com/",
+    "Type": "Search & Directory",
+    "Region": "United States",
+    "Details": "Comprehensive search engine with financial aid and admission chance estimators."
+  },
+  {
+    "Name": "ApplyAlberta",
+    "Website": "https://applyalberta.ca/",
+    "Type": "Centralized Application System",
+    "Region": "Canada (Alberta)",
+    "Details": "Centralized application hub for post-secondary institutions in Alberta."
+  },
+  {
+    "Name": "ApplyTexas",
+    "Website": "https://www.applytexas.org/",
+    "Type": "University System",
+    "Region": "United States (Texas)",
+    "Details": "Centralized application engine for the vast majority of higher education in Texas."
+  },
+  {
+    "Name": "BigFuture College Board",
+    "Website": "https://bigfuture.collegeboard.org/",
+    "Type": "Search & Directory",
+    "Region": "United States",
+    "Details": "Official College Board tool for matching, tracking and exploring US universities."
+  },
+  {
+    "Name": "Coalition for College",
+    "Website": "https://www.coalitionforcollegeaccess.org/",
+    "Type": "Portal",
+    "Region": "United States",
+    "Details": "A streamlined alternative platform focused on diverse and affordable institutions."
+  },
+  {
+    "Name": "Common App",
+    "Website": "https://www.commonapp.org/",
+    "Type": "Portal",
+    "Region": "Global / US",
+    "Details": "Centralized application portal for over 1100 institutions."
+  },
+  {
+    "Name": "Hochschulstart",
+    "Website": "https://www.hochschulstart.de/",
+    "Type": "Centralized Application System",
+    "Region": "Germany",
+    "Details": "Coordinates applications for nationwide restricted university programs in Germany."
+  },
+  {
+    "Name": "OUAC",
+    "Website": "https://www.ouac.on.ca/",
+    "Type": "Centralized Application System",
+    "Region": "Canada (Ontario)",
+    "Details": "Centralized application service for all public universities in Ontario."
+  },
+  {
+    "Name": "Parcoursup",
+    "Website": "https://www.parcoursup.gouv.fr/",
+    "Type": "Centralized Application System",
+    "Region": "France",
+    "Details": "Official national platform to register for first year higher education in France."
+  },
+  {
+    "Name": "Studielink",
+    "Website": "https://www.studielink.nl/",
+    "Type": "Centralized Application System",
+    "Region": "Netherlands",
+    "Details": "Official national enrollment portal for Dutch higher education institutions."
+  },
+  {
+    "Name": "Top Universities",
+    "Website": "https://www.topuniversities.com/",
+    "Type": "Search & Directory",
+    "Region": "Global",
+    "Details": "QS rankings directory with direct links to top global universities."
+  },
+  {
+    "Name": "UAC",
+    "Website": "https://www.uac.edu.au/",
+    "Type": "Centralized Application System",
+    "Region": "Australia (NSW & ACT)",
+    "Details": "Processes applications for institutions in New South Wales and the Australian Capital Territory."
+  },
+  {
+    "Name": "UCAS",
+    "Website": "https://www.ucas.com/",
+    "Type": "Centralized Application System",
+    "Region": "United Kingdom",
+    "Details": "The mandatory centralized admissions system for all UK university courses."
+  },
+  {
+    "Name": "University of California Admissions",
+    "Website": "https://admission.universityofcalifornia.edu/",
+    "Type": "University System",
+    "Region": "United States (California)",
+    "Details": "The dedicated portal for applying to all 9 UC undergraduate campuses."
+  },
+  {
+    "Name": "VTAC",
+    "Website": "https://www.vtac.edu.au/",
+    "Type": "Centralized Application System",
+    "Region": "Australia (Victoria)",
+    "Details": "Centralized admissions center for universities in Victoria."
+  },
+  {
+    "Name": "World Higher Education Database",
+    "Website": "https://www.whed.net/",
+    "Type": "Directory",
+    "Region": "Global",
+    "Details": "IAU/UNESCO official list of higher education systems and accredited institutions."
+  }
+]

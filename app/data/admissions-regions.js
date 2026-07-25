@@ -100,7 +100,7 @@ export const ADMISSION_COUNTRIES = {
     notesAr: 'التعليم اختصاص إقليمي — تحقق من المقاطعة والبرنامج والجهة المهنية.',
     sources: [
       { label: 'OUAC', url: 'https://www.ouac.on.ca/' },
-      { label: 'ApplyAlberta', url: 'https://www.applyalberta.ca/' },
+      { label: 'ApplyAlberta', url: 'https://applyalberta.ca/' },
       { label: 'University of Toronto requirements', url: 'https://future.utoronto.ca/apply/requirements/' },
       { label: 'UBC requirements', url: 'https://you.ubc.ca/applying-ubc/requirements/' },
     ],
