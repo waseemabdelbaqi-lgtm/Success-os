@@ -409,7 +409,7 @@ export const globalInstitutions = [
    degree:'تعليم مدرسي K-12',
    platformMember:true,contactEmail:'admissions@isriga.lv',
  }),
- U('um','مالطا','مسيدا','University of Malta','جامعة',['وجاهي'],['طب وصحة','علوم','آداب','أعمال','هندسة'],'https://www.um.edu.mt/journey/admissionsadvice/',{
+ U('umalta','مالطا','مسيدا','University of Malta','جامعة',['وجاهي'],['طب وصحة','علوم','آداب','أعمال','هندسة'],'https://www.um.edu.mt/journey/admissionsadvice/',{
    local:['رسوم Home/EU','تقديم الجامعة'],
    international:['رسوم Non-EU أعلى','تأشيرة D','e-Residence'],
    platformMember:true,contactEmail:'admissions@um.edu.mt',
