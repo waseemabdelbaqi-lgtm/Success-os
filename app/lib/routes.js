@@ -40,15 +40,28 @@ export const ROUTES = Object.freeze({
     applications: '/jobs/applications',
     career: '/jobs/career-plan',
   },
-  teacher: { search: '/teachers', join: '/partners/teacher/apply' },
-  center: { search: '/centers', join: '/partners/center/apply' },
-  school: { search: '/schools', join: '/partners/school/apply' },
-  university: { search: '/universities', join: '/partners/university/apply' },
-  employer: { search: '/jobs/companies', join: '/partners/employer/apply' },
+  teacher: { search: '/teachers', join: '/access?portal=teacher&intent=join' },
+  center: { search: '/centers', join: '/access?portal=center&intent=join' },
+  school: { search: '/schools', join: '/access?portal=school&intent=join' },
+  university: { search: '/universities', join: '/access?portal=university&intent=join' },
+  employer: { search: '/jobs', join: '/access?portal=employer&intent=join' },
 });
+
+/** Finish destinations after a partner join / access submit. */
+export const joinFinishDestination = (portal) => {
+  if (portal === 'teacher') return '/teacher-portal';
+  if (portal === 'employer') return '/jobs';
+  if (portal === 'jobseeker') return '/jobseeker-portal';
+  if (portal === 'student') return '/student-portal';
+  if (['center', 'school', 'university', 'college'].includes(portal)) {
+    return `/control-center?role=institution&from=join&portal=${encodeURIComponent(portal)}`;
+  }
+  return '/join-us';
+};
 
 export const journeyDestination = (portal, intent) => {
   if (portal === 'student') return ROUTES.student.dashboard;
   if (portal === 'jobseeker') return ROUTES.jobs.dashboard;
-  return ROUTES[portal]?.[intent] || ROUTES.journey;
+  if (intent === 'join') return ROUTES[portal]?.join || '/join-us';
+  return ROUTES[portal]?.[intent] || ROUTES[portal]?.search || ROUTES.journey;
 };

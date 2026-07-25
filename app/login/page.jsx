@@ -117,8 +117,14 @@ export default function Login() {
           </form>
         )}
 
-        <a href="/access">استكشف البوابات بدون حساب ←</a>
-        <a href="/student/dashboard">مكتبة كتب الطالب (معاينة) ←</a>
+        <div className="auth-quick-links">
+          <a href="/access">استكشف البوابات بدون حساب ←</a>
+          <a href="/start-journey">ابدأ الرحلة ←</a>
+          <a href="/student-portal">بوابة الطالب ←</a>
+          <a href="/student/dashboard">مكتبة كتب الطالب (معاينة) ←</a>
+          <a href="/register">إنشاء حساب كامل ←</a>
+          <a href="/contact">تواصل مع Success 4 Sure ←</a>
+        </div>
         <p>
           عند المتابعة أنت توافق على الخصوصية وشروط الاستخدام وحماية
           المتعلمين.

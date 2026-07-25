@@ -243,11 +243,19 @@ export default function AccessPage() {
     const destinations = {
       student: "/student-portal",
       teacher: intent === "join" ? "/teacher-portal" : "/teachers",
-      center: intent === "join" ? "/join-us?role=center" : "/centers",
-      school: intent === "join" ? "/join-us?role=school" : "/schools",
+      center:
+        intent === "join"
+          ? "/control-center?role=institution&from=join&portal=center"
+          : "/centers",
+      school:
+        intent === "join"
+          ? "/control-center?role=institution&from=join&portal=school"
+          : "/schools",
       university:
-        intent === "join" ? "/join-us?role=university" : "/universities",
-      employer: intent === "join" ? "/join-us?role=employer" : "/jobs",
+        intent === "join"
+          ? "/control-center?role=institution&from=join&portal=university"
+          : "/universities",
+      employer: intent === "join" ? "/jobs?view=companies" : "/jobs",
       jobseeker: "/jobseeker-portal",
     };
     const dest = destinations[portal] || "/start-journey";
