@@ -9,6 +9,10 @@ interface Criteria {
   avg_living_cost?: string | null;
   deadline_date?: string | null;
   is_accredited_in_home_country?: boolean | null;
+  max_age_allowed?: number | null;
+  requires_embassy_letter?: boolean | null;
+  requires_security_clearance?: boolean | null;
+  alternative_exam_required?: string | null;
 }
 
 export interface InstitutionCardProps {
@@ -176,6 +180,32 @@ export default function InstitutionCard({
                     {matchedCriteria.is_accredited_in_home_country
                       ? "معتمدة ✓"
                       : "يُرجى التحقق من الاعتراف"}
+                  </span>
+                </p>
+              ) : null}
+              {matchedCriteria.max_age_allowed != null ? (
+                <p>
+                  • الحد الأقصى للعمر:{" "}
+                  <span className="font-semibold text-[#4d3439]">
+                    {matchedCriteria.max_age_allowed} عاماً
+                  </span>
+                </p>
+              ) : null}
+              {matchedCriteria.requires_embassy_letter ? (
+                <p className="font-semibold text-amber-800">
+                  • مطلوب خطاب عدم ممانعة من السفارة / الملحقية الثقافية
+                </p>
+              ) : null}
+              {matchedCriteria.requires_security_clearance ? (
+                <p className="font-semibold text-amber-800">
+                  • مطلوب فحص / موافقة أمنية قبل إتمام القبول
+                </p>
+              ) : null}
+              {matchedCriteria.alternative_exam_required ? (
+                <p>
+                  • اختبار / مسار بديل:{" "}
+                  <span className="font-semibold text-[#4d3439]" dir="ltr">
+                    {matchedCriteria.alternative_exam_required}
                   </span>
                 </p>
               ) : null}

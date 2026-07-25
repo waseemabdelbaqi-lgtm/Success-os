@@ -32,6 +32,14 @@ export interface AdmissionCriteria {
   deadline_date?: string | null;
   /** هل الشهادة معترف بها في بلد الطالب */
   is_accredited_in_home_country?: boolean | null;
+  /** الحد الأقصى للعمر إن وُجد */
+  max_age_allowed?: number | null;
+  /** يتطلب خطاب عدم ممانعة من السفارة/الملحقية */
+  requires_embassy_letter?: boolean | null;
+  /** يتطلب فحصاً أمنياً / موافقة أمنية */
+  requires_security_clearance?: boolean | null;
+  /** اختبار بديل مطلوب (YÖS, SAT, TÖMER…) */
+  alternative_exam_required?: string | null;
 }
 
 export interface Institution {

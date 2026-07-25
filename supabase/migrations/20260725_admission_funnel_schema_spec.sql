@@ -27,6 +27,13 @@ create table if not exists public.admission_criteria (
   nationality text not null,
   min_gpa numeric(3, 2) not null,
   requirements_text text not null,
+  avg_living_cost text,
+  deadline_date date,
+  is_accredited_in_home_country boolean default true,
+  max_age_allowed integer,
+  requires_embassy_letter boolean default false,
+  requires_security_clearance boolean default false,
+  alternative_exam_required text,
   unique (institution_id, nationality)
 );
 

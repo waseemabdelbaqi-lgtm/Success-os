@@ -100,6 +100,10 @@ type FallbackCriteria = {
   avg_living_cost?: string | null;
   deadline_date?: string | null;
   is_accredited_in_home_country?: boolean | null;
+  max_age_allowed?: number | null;
+  requires_embassy_letter?: boolean | null;
+  requires_security_clearance?: boolean | null;
+  alternative_exam_required?: string | null;
 };
 
 const CRITERIA: Record<string, FallbackCriteria[]> = {
@@ -174,10 +178,13 @@ const CRITERIA: Record<string, FallbackCriteria[]> = {
     },
     {
       nationality: "Syrian",
-      min_gpa: 3.0,
+      min_gpa: 3.2,
       requirements_text:
-        "القبول متاح عبر مسار المنح الدراسية للوافدين، يتطلب جواز سفر ساري المفعول لمدة لا تقل عن سنة، وإعفاء من شرط السن إن كان المتقدم حاصلاً على تميز أكاديمي.",
+        "القبول متاح عبر نظام المنح الخارجية للوافدين، يشترط ألا يتجاوز السن 25 عاماً، وتوفير صلة قرابة (محرم نظامي) للطالبات الإناث بالمملكة.",
       is_accredited_in_home_country: true,
+      max_age_allowed: 25,
+      requires_embassy_letter: false,
+      requires_security_clearance: true,
     },
   ],
   "00000000-0000-4000-8000-000000000012": [
@@ -195,6 +202,15 @@ const CRITERIA: Record<string, FallbackCriteria[]> = {
       min_gpa: 2.5,
       requirements_text:
         "القبول فوري لتخصصات الهندسة والحاسبات بمعدل لا يقل عن 65%، يتطلب توفير شهادة ميلاد أصلية وصورة جواز السفر معتمدة من السفارة الأردنية بالقاهرة.",
+      is_accredited_in_home_country: true,
+    },
+    {
+      nationality: "Kuwaiti",
+      min_gpa: 2.5,
+      requirements_text:
+        "يشترط إحضار موافقة رسمية وخطاب عدم ممانعة من المكتب الثقافي الكويتي بالقاهرة مصدقاً وموجهاً للكلية.",
+      requires_embassy_letter: true,
+      requires_security_clearance: false,
       is_accredited_in_home_country: true,
     },
   ],
@@ -225,6 +241,16 @@ const CRITERIA: Record<string, FallbackCriteria[]> = {
       deadline_date: "2026-09-30",
       is_accredited_in_home_country: true,
     },
+    {
+      nationality: "Iraqi",
+      min_gpa: 2.0,
+      requirements_text:
+        "القبول بالشهادة الثانوية العراقية مباشرة بدون يوس، ويشترط الخضوع لسنة اللغة التحضيرية وعمل معادلة Denklik بالقنصلية التركية.",
+      requires_embassy_letter: false,
+      requires_security_clearance: false,
+      alternative_exam_required: "TÖMER/IELTS",
+      is_accredited_in_home_country: true,
+    },
   ],
 };
 
@@ -253,6 +279,8 @@ function pickCriteria(institutionId: string, nationality: string) {
     "saudi arabian": "saudi",
     iraqi: "iraq",
     iraq: "iraq",
+    kuwaiti: "kuwait",
+    kuwait: "kuwait",
   };
   const key = aliases[normalized] || normalized;
   return (

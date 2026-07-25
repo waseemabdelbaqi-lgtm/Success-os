@@ -26,6 +26,10 @@ export type ScrapedCriteria = {
   avg_living_cost?: string | null;
   deadline_date?: string | null;
   is_accredited_in_home_country?: boolean | null;
+  max_age_allowed?: number | null;
+  requires_embassy_letter?: boolean | null;
+  requires_security_clearance?: boolean | null;
+  alternative_exam_required?: string | null;
   source?: "cache" | "tavily+openai" | "mock";
 };
 
@@ -182,6 +186,10 @@ export async function getOrScrapeCriteria(
         avg_living_cost: hit.avg_living_cost ?? null,
         deadline_date: hit.deadline_date ?? null,
         is_accredited_in_home_country: hit.is_accredited_in_home_country ?? true,
+        max_age_allowed: hit.max_age_allowed ?? null,
+        requires_embassy_letter: hit.requires_embassy_letter ?? false,
+        requires_security_clearance: hit.requires_security_clearance ?? false,
+        alternative_exam_required: hit.alternative_exam_required ?? null,
         source: "cache",
       };
     }
@@ -211,6 +219,8 @@ function nationalityAliases(nationality: string): string[] {
     "saudi arabian": ["Saudi Arabian", "Saudi"],
     iraqi: ["Iraqi", "Iraq"],
     iraq: ["Iraq", "Iraqi"],
+    kuwaiti: ["Kuwaiti", "Kuwait"],
+    kuwait: ["Kuwait", "Kuwaiti"],
   };
   return map[key] || [nationality];
 }

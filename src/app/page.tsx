@@ -128,6 +128,13 @@ export default async function DiscoveryPage({
                           : null,
                         is_accredited_in_home_country:
                           inst.matchedCriteria.is_accredited_in_home_country,
+                        max_age_allowed: inst.matchedCriteria.max_age_allowed,
+                        requires_embassy_letter:
+                          inst.matchedCriteria.requires_embassy_letter,
+                        requires_security_clearance:
+                          inst.matchedCriteria.requires_security_clearance,
+                        alternative_exam_required:
+                          inst.matchedCriteria.alternative_exam_required,
                       }
                     : null
                 }
