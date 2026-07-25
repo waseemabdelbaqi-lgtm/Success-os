@@ -32,6 +32,7 @@ import {
   nationalityTracksSummary,
   resolveNationalityTrack,
 } from '../data/nationality-admission-tracks';
+import { institutionKind, kindLabelAr } from '../data/university-inquiry';
 
 const STEPS = [
   ['region', 'القارة'],
@@ -992,9 +993,13 @@ export default function AdmissionsPage() {
                       </ul>
                       <Status recognition={recognition} />
                       {u.platformMember ? (
-                        <p className="admission-partner-flag">مشتركة في المنصة — تواصل عبر الإشعارات بعد الدفع</p>
+                        <p className="admission-partner-flag">
+                          {kindLabelAr(institutionKind(u))} مشتركة — تواصل عبر الإشعارات بعد الدفع
+                        </p>
                       ) : (
-                        <p className="admission-partner-flag external">غير مشتركة — تواصل عبر إيميل رسمي بعد الدفع</p>
+                        <p className="admission-partner-flag external">
+                          {kindLabelAr(institutionKind(u))} غير مشتركة — تواصل عبر إيميل رسمي بعد الدفع
+                        </p>
                       )}
                       <footer>
                         <a href={`/university-profile?id=${u.id}`}>الملف الكامل</a>
@@ -1003,7 +1008,7 @@ export default function AdmissionsPage() {
                           className="contact-uni-cta"
                           href={`/university-contact?id=${encodeURIComponent(u.id)}&nationality=${encodeURIComponent(nationality)}&studyCountry=${encodeURIComponent(studyCountry || '')}&applicantType=${encodeURIComponent(applicantType || '')}`}
                         >
-                          تواصل مع الجامعة · $5
+                          تواصل مع {kindLabelAr(institutionKind(u))} · $5
                         </a>
                         <button
                           type="button"
@@ -1163,7 +1168,7 @@ export default function AdmissionsPage() {
                 className="apply-button"
                 href={`/university-contact?id=${encodeURIComponent(selected.id)}&nationality=${encodeURIComponent(nationality)}&studyCountry=${encodeURIComponent(studyCountry || '')}&applicantType=${encodeURIComponent(applicantType || '')}`}
               >
-                تواصل مع الجامعة — دفع $5 ثم إشعار أو إيميل
+                تواصل مع {kindLabelAr(institutionKind(selected))} — دفع $5 ثم إشعار أو إيميل
               </a>
             )}
             <button

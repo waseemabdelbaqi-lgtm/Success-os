@@ -1653,6 +1653,83 @@ export const DESTINATION_TRACKS = Object.freeze({
       universities: ['Universidade de Lisboa', 'Universidade do Porto', 'Universidade Católica Portuguesa'],
     },
   ],
+
+  'فنلندا': [
+    {
+      id: 'fi-eu-eea-swiss-free',
+      titleAr: 'فنلندي / EU-EEA / سويسرا — بدون رسوم دراسية (Studyinfo.fi)',
+      match: ({ nationality }) => nationality === 'فنلندا' || isEuEea(nationality),
+      whenAr:
+        'مواطنو فنلندا وEU/EEA وسويسرا لا يدفعون رسوماً دراسية للدرجات. التقديم للبرامج عبر Studyinfo.fi. برامج الفنلندية/السويدية والدكتوراه بدون رسوم للجميع عادة.',
+      channelAr: 'Studyinfo.fi',
+      docs: ['شهادة ثانوية مؤهلة', 'إثبات جنسية EU/EEA/سويسرا', 'لغة إنجليزية أو فنلندية/سويدية'],
+      feesAr: 'بدون tuition للدرجات؛ قد تُدفع رسوم اتحاد طلاب.',
+      visaAr: 'EU/EEA: تسجيل؛ الفنلندي لا يحتاج تصريح طالب.',
+      caveats: ['بعض تصاريح الإقامة الفنلندية تعفي غير EU أيضاً — راجع Studyinfo/Migri.'],
+      sources: [
+        { label: 'Study in Finland — fees', url: 'https://www.studyinfinland.fi/funding-your-studies/fees-and-cost-living' },
+        { label: 'Aalto — tuition fees', url: 'https://www.aalto.fi/en/admission-services/scholarships-and-tuition-fees' },
+      ],
+      portals: [],
+      universities: ['Aalto University', 'University of Helsinki', 'University of Turku', 'International School of Helsinki'],
+    },
+    {
+      id: 'fi-non-eu-tuition-permit',
+      titleAr: 'خارج EU/EEA/سويسرا — رسوم برامج إنجليزية + تصريح إقامة',
+      match: () => true,
+      whenAr:
+        'غير الأوروبيين يدفعون عادة رسوماً لبرامج البكالوريوس/الماجستير بالإنجليزية (€8000–€20000 تقريباً) وقد تُفرض رسوم تقديم. يلزم تصريح إقامة طالب عبر Migri مع إثبات تمويل ودفع الرسوم.',
+      channelAr: 'Studyinfo.fi → دفع الرسوم/المنحة → تصريح إقامة Migri',
+      docs: ['جواز دولة ثالثة', 'Studyinfo application', 'إثبات لغة', 'تمويل', 'residence permit'],
+      feesAr: 'رسوم دراسية لبرامج الإنجليزية + رسوم تقديم محتملة لغير EU.',
+      visaAr: 'تصريح إقامة للدراسات عبر Migri.',
+      caveats: ['الدكتوراه والبرامج بالفنلندية/السويدية غالباً بدون رسوم حتى لغير EU.'],
+      sources: [
+        { label: 'Migri — studying in Finland', url: 'https://migri.fi/en/studying-in-finland' },
+        { label: 'Studyinfo.fi', url: 'https://studyinfo.fi/' },
+      ],
+      portals: [],
+      universities: ['Aalto University', 'University of Helsinki', 'University of Turku'],
+    },
+  ],
+
+  'الدنمارك': [
+    {
+      id: 'dk-eu-eea-swiss-free',
+      titleAr: 'دنماركي / EU-EEA / سويسرا — بدون رسوم + optagelse.dk',
+      match: ({ nationality }) => nationality === 'الدنمارك' || isEuEea(nationality),
+      whenAr:
+        'التعليم العالي مجاني لمواطني الدنمارك وEU/EEA وسويسرا (ولمن لهم وضع معادل). طلبات البكالوريوس عبر البوابة الوطنية optagelse.dk.',
+      channelAr: 'optagelse.dk (بكالوريوس) / بوابة الجامعة للماجستير',
+      docs: ['شهادة ثانوية مؤهلة', 'إثبات جنسية EU/EEA/سويسرا', 'لغة إنجليزية/دنماركية حسب البرنامج'],
+      feesAr: 'بدون رسوم دراسية للدرجات الكاملة عادة.',
+      visaAr: 'EU/EEA: تسجيل؛ الدنماركي لا يحتاج تصريح طالب.',
+      caveats: ['بعض أوضاع الإقامة الدنماركية تعفي غير EU — راجع Study in Denmark.'],
+      sources: [
+        { label: 'Study in Denmark — tuition', url: 'https://studyindenmark.dk/study-options/tuition-fees-and-scholarships' },
+        { label: 'optagelse.dk guidance', url: 'https://lifeindenmark.borger.dk/school-and-education/higher-education/admission-to-higher-education-in-denmark' },
+      ],
+      portals: ['finduddannelse'],
+      universities: ['University of Copenhagen', 'Technical University of Denmark', 'Aarhus University', 'Copenhagen International School'],
+    },
+    {
+      id: 'dk-non-eu-tuition-permit',
+      titleAr: 'خارج EU/EEA/سويسرا — رسوم دراسية + تصريح إقامة',
+      match: () => true,
+      whenAr:
+        'غير الأوروبيين يدفعون رسوماً سنوية تقريباً €6000–€16000 ويحتاجون تصريح إقامة. مواعيد غير EU أبكر غالباً؛ بعض المؤسسات تفرض رسوم تقييم لغير EU.',
+      channelAr: 'optagelse.dk أو بوابة الجامعة → تصريح إقامة طالب',
+      docs: ['جواز دولة ثالثة', 'قبول', 'إثبات تمويل', 'تصريح إقامة (برسوم طلب)'],
+      feesAr: 'رسوم دراسية حسب المؤسسة + رسوم تصريح الإقامة.',
+      visaAr: 'تصريح إقامة للدراسة لغير EU/EEA/سويسرا.',
+      caveats: ['تحقق من كل برنامج: المواعيد والرسوم ليست موحدة لكل المؤسسات.'],
+      sources: [
+        { label: 'Study in Denmark — tuition', url: 'https://studyindenmark.dk/study-options/tuition-fees-and-scholarships' },
+      ],
+      portals: ['finduddannelse'],
+      universities: ['University of Copenhagen', 'Technical University of Denmark', 'Aarhus University'],
+    },
+  ],
 });
 
 /**
@@ -1786,6 +1863,8 @@ export function exampleAlternateNationality(studyCountry, currentNationality) {
     بلجيكا: 'الأردن',
     النرويج: 'الأردن',
     البرتغال: 'الأردن',
+    فنلندا: 'الأردن',
+    الدنمارك: 'الأردن',
   };
   return alts[studyCountry] || 'الأردن';
 }
@@ -1867,6 +1946,9 @@ export function nationalityTracksSummary() {
       'https://studyinnorway.no/cost-and-requirements',
       'http://wwwcdn.dges.gov.pt/en/pagina/international-students',
       'https://dges.gov.pt/en/pagina/non-eu-students?plid=1531',
+      'https://www.studyinfinland.fi/funding-your-studies/fees-and-cost-living',
+      'https://studyinfo.fi/',
+      'https://studyindenmark.dk/study-options/tuition-fees-and-scholarships',
     ],
   };
 }

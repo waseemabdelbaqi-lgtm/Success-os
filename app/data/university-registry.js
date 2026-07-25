@@ -57,6 +57,8 @@ export const countryAuthorities = {
   'بلجيكا':{authority:'Flemish / French Community education authorities',url:'https://www.belgium.be/en/education/coming_to_study_in_belgium',note:'الرسوم والتأشيرة تختلف EU مقابل غير EU، وتختلف بين فلاندرز ووالونيا.'},
   'النرويج':{authority:'Study in Norway',url:'https://studyinnorway.no/',note:'منذ 2023 الرسوم الدراسية لغير EU/EEA/سويسرا؛ المواطنون الأوروبيون معفيون في العامة.'},
   'البرتغال':{authority:'DGES',url:'https://www.dges.gov.pt/',note:'Concurso Nacional للمواطنين/EU المؤهلين؛ Concurso Especial للطالب الدولي.'},
+  'فنلندا':{authority:'Studyinfo.fi / Study in Finland',url:'https://studyinfo.fi/',note:'EU/EEA/سويسرا بدون رسوم دراسية؛ غير EU يدفعون لبرامج الإنجليزية عبر Studyinfo.'},
+  'الدنمارك':{authority:'Study in Denmark / optagelse.dk',url:'https://studyindenmark.dk/',note:'EU/EEA/سويسرا بدون رسوم؛ غير EU برسوم وتصريح إقامة — البكالوريوس عبر optagelse.dk.'},
 };
 
 const allSystems = qualificationSystems.map(x=>x.id);
@@ -238,6 +240,28 @@ export const globalInstitutions = [
  U('kth','السويد','ستوكهولم','KTH Royal Institute of Technology','جامعة',['وجاهي'],['هندسة','حوسبة','علوم'],'https://www.kth.se/en/studies/master/admissions',{
    contactEmail:'info@kth.se',
  }),
+ U('aalto','فنلندا','إسبو','Aalto University','جامعة',['وجاهي'],['هندسة','تصميم','أعمال','حوسبة'],'https://www.aalto.fi/en/admission',{
+   local:['Studyinfo.fi','بدون رسوم دراسية لـ EU/EEA/سويسرا'],
+   international:['Studyinfo.fi','رسوم لبرامج إنجليزية لغير EU','تصريح إقامة'],
+   platformMember:true,contactEmail:'admissions@aalto.fi',
+ }),
+ U('helsinki-uni','فنلندا','هلسنكي','University of Helsinki','جامعة',['وجاهي'],['علوم','طب وصحة','آداب','قانون'],'https://www.helsinki.fi/en/admissions-and-education',{
+   contactEmail:'admissions@helsinki.fi',
+ }),
+ U('utu','فنلندا','توركو','University of Turku','جامعة',['وجاهي'],['علوم','طب وصحة','آداب'],'https://www.utu.fi/en/study-at-utu',{
+   contactEmail:'admissions@utu.fi',
+ }),
+ U('ku-dk','الدنمارك','كوبنهاغن','University of Copenhagen','جامعة',['وجاهي'],['علوم','طب وصحة','آداب','قانون'],'https://studies.ku.dk/bachelor/admission/',{
+   local:['optagelse.dk','بدون رسوم لـ EU/EEA/سويسرا'],
+   international:['تقديم المؤسسة / optagelse','رسوم دراسية','تصريح إقامة'],
+   platformMember:true,contactEmail:'bacheloradmission@adm.ku.dk',
+ }),
+ U('dtu','الدنمارك','كونغنز لينغبي','Technical University of Denmark','جامعة',['وجاهي'],['هندسة','حوسبة','علوم'],'https://www.dtu.dk/english/education/international-student-guide/application',{
+   contactEmail:'international@adm.dtu.dk',
+ }),
+ U('au-dk','الدنمارك','آرهوس','Aarhus University','جامعة',['وجاهي'],['علوم','أعمال','آداب','طب وصحة'],'https://bachelor.au.dk/en/admission',{
+   contactEmail:'ba.admission@au.dk',
+ }),
  U('uio','النرويج','أوسلو','University of Oslo','جامعة',['وجاهي'],['علوم','طب وصحة','آداب','قانون'],'https://www.uio.no/english/studies/admission/',{
    local:['بدون رسوم دراسية لـ EU/EEA/سويسرا','رسوم فصل طلابية'],
    international:['رسوم دراسية لغير EU/EEA','تصريح إقامة طالب','إثبات تمويل'],
@@ -376,19 +400,80 @@ export const globalInstitutions = [
  // Community colleges & pathway colleges
  U('bcc','الولايات المتحدة','New York','Borough of Manhattan Community College','كلية مجتمعية',['وجاهي','أونلاين'],['حوسبة','أعمال','علوم','آداب'],'https://www.bmcc.cuny.edu/admissions/',{
    degree:'دبلوم وAssociate',
+   platformMember:true,contactEmail:'admissions@bmcc.cuny.edu',
  }),
  U('deanza','الولايات المتحدة','Cupertino','De Anza College','كلية مجتمعية',['وجاهي','أونلاين'],['حوسبة','هندسة','أعمال','علوم'],'https://www.deanza.edu/admissions/',{
    degree:'دبلوم وAssociate',
+   contactEmail:'admissions@deanza.edu',
  }),
  U('seneca','كندا','تورونتو','Seneca Polytechnic','كلية تقنية',['وجاهي','أونلاين'],['حوسبة','أعمال','تصميم','هندسة'],'https://www.senecapolytechnic.ca/admissions.html',{
    degree:'دبلوم وبكالوريوس تطبيقي',
+   platformMember:true,contactEmail:'internationaladmissions@senecacollege.ca',
  }),
  U('centennial','كندا','تورونتو','Centennial College','كلية',['وجاهي','أونلاين'],['هندسة','حوسبة','أعمال','طب وصحة'],'https://www.centennialcollege.ca/admissions/',{
    degree:'دبلوم وبكالوريوس',
+   contactEmail:'international@centennialcollege.ca',
  }),
  U('hkcc','الصين','هونغ كونغ','HKU SPACE Community College','كلية مجتمعية',['وجاهي'],['أعمال','علوم','آداب'],'https://hkuspace.hku.hk/cc/',{
    degree:'دبلوم وAssociate',
    region:'asia',
+   contactEmail:'ccadmissions@hkuspace.hku.hk',
+ }),
+ U('luminus','الأردن','عمّان','Luminus Technical University College','كلية تقنية',['وجاهي'],['حوسبة','هندسة','أعمال','تصميم'],'https://www.luminus.edu.jo/',{
+   degree:'دبلوم وبكالوريوس تطبيقي',
+   platformMember:true,contactEmail:'admissions@luminus.edu.jo',
+ }),
+ U('htmi','الإمارات','دبي','HTMi Hotel and Tourism Management Institute Dubai','كلية',['وجاهي'],['ضيافة','أعمال','سياحة'],'https://www.htmi.ch/',{
+   degree:'دبلوم وبكالوريوس',
+   contactEmail:'dubai@htmi.ch',
+ }),
+
+ // Named schools (K-12) — same $5 contact channel as universities/colleges
+ U('abs-jo','الأردن','عمّان','Amman Baccalaureate School','مدرسة',['وجاهي'],['IB','ابتدائي','متوسط','ثانوي'],'https://www.abs.edu.jo/admissions',{
+   degree:'تعليم مدرسي K-12',
+   platformMember:true,contactEmail:'admissions@abs.edu.jo',
+   local:['هوية أردنية / إقامة','سجل أكاديمي','مقابلة/اختبار قبول حسب المرحلة'],
+   international:['جواز','سجل أكاديمي مترجم','إثبات لغة إن لزم','رسوم غير مواطنين قد تختلف'],
+ }),
+ U('kings-jo','الأردن','مادبا','King\'s Academy','مدرسة',['وجاهي'],['American Curriculum','ثانوي'],'https://www.kingsacademy.edu.jo/admissions',{
+   degree:'تعليم مدرسي ثانوي',
+   contactEmail:'admissions@kingsacademy.edu.jo',
+ }),
+ U('ics-jo','الأردن','عمّان','International Community School Amman','مدرسة',['وجاهي'],['British Curriculum','ابتدائي','ثانوي'],'https://www.ics.edu.jo/admissions',{
+   degree:'تعليم مدرسي K-12',
+   platformMember:true,contactEmail:'admissions@ics.edu.jo',
+ }),
+ U('gems-wellington-ae','الإمارات','دبي','GEMS Wellington International School','مدرسة',['وجاهي'],['British Curriculum','IB','ابتدائي','ثانوي'],'https://www.gemswellingtoninternationalschool.com/admissions',{
+   degree:'تعليم مدرسي K-12',
+   contactEmail:'admissions_wis@gemsedu.com',
+ }),
+ U('dubai-college','الإمارات','دبي','Dubai College','مدرسة',['وجاهي'],['British Curriculum','ثانوي'],'https://www.dubaicollege.org/admissions',{
+   degree:'تعليم مدرسي ثانوي',
+   platformMember:true,contactEmail:'admissions@dubaicollege.org',
+ }),
+ U('repton-dubai','الإمارات','دبي','Repton School Dubai','مدرسة',['وجاهي'],['British Curriculum','ابتدائي','ثانوي'],'https://www.reptondubai.org/admissions',{
+   degree:'تعليم مدرسي K-12',
+   contactEmail:'admissions@reptondubai.org',
+ }),
+ U('ais-riyadh','السعودية','الرياض','American International School Riyadh','مدرسة',['وجاهي'],['American Curriculum','ابتدائي','ثانوي'],'https://www.aisr.org/admissions',{
+   degree:'تعليم مدرسي K-12',
+   contactEmail:'admissions@aisr.org',
+ }),
+ U('cac-egypt','مصر','القاهرة','Cairo American College','مدرسة',['وجاهي'],['American Curriculum','ابتدائي','ثانوي'],'https://www.cacegypt.org/admissions',{
+   degree:'تعليم مدرسي K-12',
+   platformMember:true,contactEmail:'admissions@cacegypt.org',
+ }),
+ U('acs-eg','مصر','القاهرة','American College of Cairo (school track)','مدرسة',['وجاهي'],['American Curriculum','ثانوي'],'https://www.aucegypt.edu/',{
+   degree:'تعليم مدرسي ثانوي',
+   contactEmail:'admissions@aucegypt.edu',
+ }),
+ U('helsinki-intl','فنلندا','هلسنكي','International School of Helsinki','مدرسة',['وجاهي'],['IB','ابتدائي','ثانوي'],'https://www.ishelsinki.fi/admissions',{
+   degree:'تعليم مدرسي K-12',
+   contactEmail:'admissions@ishelsinki.fi',
+ }),
+ U('copenhagen-intl','الدنمارك','كوبنهاغن','Copenhagen International School','مدرسة',['وجاهي'],['IB','ابتدائي','ثانوي'],'https://www.cis.dk/admissions',{
+   degree:'تعليم مدرسي K-12',
+   contactEmail:'admissions@cis.dk',
  }),
 
  // More global research universities

@@ -4,11 +4,13 @@ import { useEffect, useMemo, useState } from 'react';
 import { InnerNav } from '../components';
 import { globalInstitutions } from '../data/university-registry';
 import {
+  CONTACT_FEE_USD,
   INQUIRY_DRAFT_KEY,
-  UNIVERSITY_INQUIRY_FEE_USD,
   buildInquiryCheckoutHref,
   buildOfficialEmailDraft,
-  isPlatformUniversity,
+  institutionKind,
+  isPlatformInstitution,
+  kindLabelAr,
   officialContactEmail,
   pushInquiryNotifications,
   saveInquiry,
@@ -72,15 +74,19 @@ export default function UniversityContactPage() {
     [params.id],
   );
 
-  const partner = isPlatformUniversity(institution);
+  const kind = institutionKind(institution || { type: inquiry?.institutionKind });
+  const label = kindLabelAr(inquiry?.institutionKind || kind);
+  const partner = isPlatformInstitution(institution) || Boolean(inquiry?.platformMember);
 
   function finalizeAfterPayment(draft, nextParams) {
     const uni =
       globalInstitutions.find((u) => u.id === (draft.universityId || nextParams.id)) || null;
+    const k = draft.institutionKind || institutionKind(uni);
     const record = {
       id: draft.id || nextParams.inquiryId || `INQ-${Date.now()}`,
       universityId: uni?.id || draft.universityId || nextParams.id,
-      universityName: uni?.name || draft.universityName || 'جامعة',
+      universityName: uni?.name || draft.universityName || kindLabelAr(k),
+      institutionKind: k,
       platformMember: Boolean(uni?.platformMember),
       nationality: draft.nationality || nextParams.nationality,
       studyCountry: draft.studyCountry || nextParams.studyCountry || uni?.country,
@@ -88,7 +94,7 @@ export default function UniversityContactPage() {
       programInterest: draft.programInterest || '',
       message: draft.message || '',
       student: draft.student || {},
-      feeUsd: UNIVERSITY_INQUIRY_FEE_USD,
+      feeUsd: CONTACT_FEE_USD,
       paidAt: new Date().toISOString(),
       status: uni?.platformMember ? 'notified' : 'email_pending',
       channel: uni?.platformMember ? 'notifications' : 'official_email',
@@ -129,15 +135,17 @@ export default function UniversityContactPage() {
     if (!form.email.includes('@')) eMap.email = 'أدخل بريداً صحيحاً';
     if (!form.phone.trim()) eMap.phone = 'أدخل رقم هاتف';
     if (!form.message.trim()) eMap.message = 'اكتب نص الاستفسار';
-    if (!institution) eMap.submit = 'اختر جامعة من نتائج القبول أولاً';
+    if (!institution) eMap.submit = 'اختر جامعة أو كلية أو مدرسة من النتائج أولاً';
     setErrors(eMap);
     if (Object.keys(eMap).length) return;
 
+    const k = institutionKind(institution);
     const inquiryId = `INQ-${Date.now()}`;
     const draft = {
       id: inquiryId,
       universityId: institution.id,
       universityName: institution.name,
+      institutionKind: k,
       nationality: params.nationality,
       studyCountry: params.studyCountry || institution.country,
       applicantType: params.applicantType,
@@ -158,6 +166,7 @@ export default function UniversityContactPage() {
       studyCountry: params.studyCountry || institution.country,
       applicantType: params.applicantType,
       inquiryId,
+      institutionKind: k,
     });
   }
 
@@ -173,33 +182,40 @@ export default function UniversityContactPage() {
     }
   }
 
+  const interestPlaceholder =
+    kind === 'school'
+      ? 'مثال: الصف 10 — منهج IB / أمريكي'
+      : kind === 'college'
+        ? 'مثال: دبلوم تقنية معلومات'
+        : 'مثال: هندسة حاسوب — بكالوريوس';
+
   return (
     <div className="os-page phase11-legacy-page">
       <InnerNav active="admissions" />
       <main className="os-page-content university-contact-page">
         <header className="university-contact-hero">
           <div>
-            <small>UNIVERSITY CONTACT CHANNEL</small>
-            <h1>تواصل مع الجامعة</h1>
+            <small>INSTITUTION CONTACT — UNIVERSITY · COLLEGE · SCHOOL</small>
+            <h1>تواصل مع {institution ? label : 'المؤسسة التعليمية'}</h1>
             <p>
-              بعد مطابقة جنسيتك ومسار القبول: عبّئ البيانات → ادفع رسوم الخدمة{' '}
-              <b>${UNIVERSITY_INQUIRY_FEE_USD}</b> → ثم{' '}
+              ينطبق على <b>الجامعة والكلية والمدرسة</b>. بعد مطابقة جنسيتك: عبّئ البيانات → ادفع{' '}
+              <b>${CONTACT_FEE_USD}</b> → ثم{' '}
               {partner
-                ? 'تخاطب مباشر عبر إشعارات المنصة لأن الجامعة مشتركة'
-                : 'إيميل رسمي تعبّئه وترسله إن لم تكن الجامعة مشتركة'}
+                ? `تخاطب مباشر عبر الإشعارات لأن ال${label} مشتركة`
+                : `إيميل رسمي تعبّئه وترسله إن لم تكن ال${label} مشتركة`}
               .
             </p>
           </div>
           <aside>
-            <b>${UNIVERSITY_INQUIRY_FEE_USD}</b>
+            <b>${CONTACT_FEE_USD}</b>
             <small>رسوم تواصل ثابتة</small>
           </aside>
         </header>
 
         {!institution && !inquiry && (
           <section className="university-contact-empty">
-            <h2>لم تُحدَّد جامعة</h2>
-            <p>ارجع إلى نتائج القبول واضغط «تواصل مع الجامعة» على البطاقة.</p>
+            <h2>لم تُحدَّد مؤسسة</h2>
+            <p>ارجع إلى نتائج القبول واضغط «تواصل» على بطاقة جامعة أو كلية أو مدرسة.</p>
             <a href="/admissions">فتح مساعد القبول ←</a>
           </section>
         )}
@@ -211,9 +227,9 @@ export default function UniversityContactPage() {
                 <small>01 — بيانات الطالب الضرورية</small>
                 <h2>{institution.name}</h2>
                 <p>
-                  {institution.city} • {institution.country} •{' '}
+                  {label} • {institution.city} • {institution.country} •{' '}
                   {partner ? (
-                    <em className="partner-pill">مشتركة في المنصة — بعد الدفع عبر الإشعارات</em>
+                    <em className="partner-pill">مشتركة — بعد الدفع عبر الإشعارات</em>
                   ) : (
                     <em className="external-pill">غير مشتركة — بعد الدفع عبر إيميل رسمي</em>
                   )}
@@ -239,15 +255,15 @@ export default function UniversityContactPage() {
                 {errors.phone && <em>{errors.phone}</em>}
               </label>
               <label>
-                التخصص / البرنامج المرغوب
+                {kind === 'school' ? 'الصف / المنهج المرغوب' : 'التخصص / البرنامج المرغوب'}
                 <input
                   value={form.programInterest}
                   onChange={(e) => onChange('programInterest', e.target.value)}
-                  placeholder="مثال: هندسة حاسوب — بكالوريوس"
+                  placeholder={interestPlaceholder}
                 />
               </label>
               <label>
-                نص الاستفسار (يُرسل للجامعة)
+                نص الاستفسار (يُرسل لل{label})
                 <textarea
                   rows={5}
                   value={form.message}
@@ -258,22 +274,24 @@ export default function UniversityContactPage() {
               </label>
               {errors.submit && <em>{errors.submit}</em>}
               <button type="submit" className="primary">
-                المتابعة إلى بوابة الدفع ${UNIVERSITY_INQUIRY_FEE_USD} ←
+                المتابعة إلى بوابة الدفع ${CONTACT_FEE_USD} ←
               </button>
             </form>
 
             <aside className="university-contact-aside">
-              <small>مسار ما بعد الدفع</small>
-              <h3>{partner ? 'الحالة 1 — جامعة مشتركة' : 'الحالة 2 — جامعة غير مشتركة'}</h3>
+              <small>مسار ما بعد الدفع — جامعة / كلية / مدرسة</small>
+              <h3>
+                {partner ? `الحالة 1 — ${label} مشتركة` : `الحالة 2 — ${label} غير مشتركة`}
+              </h3>
               {partner ? (
                 <ol>
-                  <li>تدفع ${UNIVERSITY_INQUIRY_FEE_USD} عبر بوابة الدفع</li>
+                  <li>تدفع ${CONTACT_FEE_USD} عبر بوابة الدفع</li>
                   <li>يُنشأ إشعار فوري لمكتب القبول داخل المنصة</li>
                   <li>تتابع الرد من مركز الإشعارات مباشرة</li>
                 </ol>
               ) : (
                 <ol>
-                  <li>تدفع ${UNIVERSITY_INQUIRY_FEE_USD} عبر بوابة الدفع</li>
+                  <li>تدفع ${CONTACT_FEE_USD} عبر بوابة الدفع</li>
                   <li>تُفتح مسودة إيميل رسمي إلى {officialContactEmail(institution)}</li>
                   <li>تراجع البيانات الضرورية ثم ترسل الإيميل بنفسك</li>
                 </ol>
@@ -291,11 +309,13 @@ export default function UniversityContactPage() {
             <header>
               <span>✓</span>
               <div>
-                <small>تم استلام رسوم التواصل ${UNIVERSITY_INQUIRY_FEE_USD}</small>
+                <small>
+                  تم استلام رسوم التواصل ${CONTACT_FEE_USD} — {kindLabelAr(inquiry.institutionKind)}
+                </small>
                 <h2>
                   {inquiry.platformMember
-                    ? 'تم فتح قناة الإشعارات مع الجامعة الشريكة'
-                    : 'جهّز الإيميل الرسمي وأرسله للجامعة'}
+                    ? `تم فتح قناة الإشعارات مع ال${kindLabelAr(inquiry.institutionKind)} الشريكة`
+                    : `جهّز الإيميل الرسمي وأرسله لل${kindLabelAr(inquiry.institutionKind)}`}
                 </h2>
                 <p>
                   {inquiry.universityName} — جنسية الطالب: {inquiry.nationality} — رقم الطلب{' '}
@@ -307,8 +327,8 @@ export default function UniversityContactPage() {
             {inquiry.platformMember ? (
               <div className="university-contact-partner-ok">
                 <p>
-                  الجامعة <b>مشتركة في SUCCESS OS</b>. أُرسل إشعار إلى مساحة الجامعة وإشعار تأكيد
-                  لطالبك. لا حاجة لإيميل خارجي الآن.
+                  هذه ال{kindLabelAr(inquiry.institutionKind)} <b>مشتركة في SUCCESS OS</b>. أُرسل
+                  إشعار إلى مساحة المؤسسة وإشعار تأكيد للطالب. لا حاجة لإيميل خارجي الآن.
                 </p>
                 <div className="university-contact-actions">
                   <a className="primary" href="/notifications">
@@ -320,8 +340,8 @@ export default function UniversityContactPage() {
             ) : (
               <div className="university-contact-email-panel">
                 <p>
-                  الجامعة <b>غير مشتركة</b> في المنصة. عبّئ/راجع البيانات ثم أرسل الإيميل الرسمي من
-                  جهازك.
+                  ال{kindLabelAr(inquiry.institutionKind)} <b>غير مشتركة</b> في المنصة. عبّئ/راجع
+                  البيانات ثم أرسل الإيميل الرسمي من جهازك.
                 </p>
                 <label>
                   إلى (إيميل القبول الرسمي)
@@ -356,7 +376,7 @@ export default function UniversityContactPage() {
                 {emailSent && (
                   <p className="email-sent-note">
                     فُتح عميل البريد لديك. أكمل الإرسال هناك. تحقّق دائماً من صحة عنوان القبول على
-                    موقع الجامعة.
+                    موقع المؤسسة.
                   </p>
                 )}
                 {emailDraft && (
