@@ -89,12 +89,22 @@ export function InnerNav({active}) {
     world:[['/world','الدول والأنظمة'],['/global-knowledge-system','نظام المعرفة'],['/global-sources','المصادر الرسمية']],
     security:[['/security-center','الحماية'],['/source-registry','سجل المصادر'],['/trust','الثقة']],
     profile:[['/profile','حسابي'],['/settings','الإعدادات'],['/notifications','الإشعارات']],
-    teachers:[['/teachers','المعلمون'],['/class-booking','الحجز'],['/join-us?role=teacher','انضم كمعلم']],
-    library:[['/library','المكتبة'],['/books','الكتب'],['/student/books','مكتبتي'],['/lesson','نموذج درس']]
+    teachers:[['/teachers','المعلمون'],['/class-booking','الحجز'],['/teacher-portal','بوابة المعلم'],['/join-us?role=teacher','انضم كمعلم']],
+    library:[['/library','المكتبة'],['/books','الكتب'],['/student/books','مكتبتي'],['/lesson','نموذج درس']],
+    tutor:[['/tutor','المعلم الذكي'],['/lesson','الدرس'],['/diagnostic','التشخيص'],['/assessment','الإتقان']],
+    parent:[['/parent','ولي الأمر'],['/notifications','التنبيهات'],['/class-booking','الحجز'],['/passport','الجواز']],
+    passport:[['/passport','الجواز'],['/assessment','الإتقان'],['/diagnostic','التشخيص'],['/dashboard','لوحتي']],
+    notifications:[['/notifications','التنبيهات'],['/student-requests','طلباتي'],['/profile','حسابي']],
+    programs:[['/programs','البرامج'],['/courses','الدورات'],['/books','الكتب'],['/marketplace','السوق']],
+    curriculum:[['/curriculum-lab','المناهج'],['/subject-catalog','المواد'],['/global-sources','المصادر']],
+    sources:[['/global-sources','المصادر الرسمية'],['/source-registry','سجل المصادر'],['/trust','الثقة']],
+    rankings:[['/rankings','التصنيفات'],['/admissions','القبول'],['/degree-finder','الدرجات']],
+    ecosystem:[['/ecosystem','النظام'],['/marketplace','السوق'],['/join-us','الشراكة']],
+    'teacher-portal':[['/teacher-portal','بوابة المعلم'],['/content-studio','الاستوديو'],['/class-booking','الجلسات'],['/notifications','الرسائل']]
   };
   const items=groups[active]||[['/start-journey','ابدأ طلبك'],['/notifications','الإشعارات']];
-  const studentScopes=['admissions','degrees','subjects','university-subjects','calendar','world','teachers','library'];
-  const destination=active==='jobs'?['/jobseeker-portal','بوابة الباحث عن عمل']:active==='studio'||active==='security'?['/control-center','لوحة العمل']:active==='join'?['/join-us','بوابة الشراكة']:studentScopes.includes(active)?['/student-portal','بوابة الطالب']:['/start-journey','ابدأ الرحلة'];
+  const studentScopes=['admissions','degrees','subjects','university-subjects','calendar','world','teachers','library','tutor','parent','passport','programs','notifications','curriculum','rankings'];
+  const destination=active==='jobs'?['/jobseeker-portal','بوابة الباحث عن عمل']:active==='studio'||active==='security'||active==='teacher-portal'?['/control-center','لوحة العمل']:active==='join'?['/join-us','بوابة الشراكة']:studentScopes.includes(active)?['/student-portal','بوابة الطالب']:['/start-journey','ابدأ الرحلة'];
   return <nav className="os-inner-nav"><Brand/><div className="os-inner-nav-links"><a href="/">الرئيسية</a>{items.map(([href,label],i)=><a className={i===0?'active':''} href={href} key={`${href}-${label}`}>{label}</a>)}</div><a className="os-primary" href={destination[0]}>{destination[1]}</a><PageGuide/></nav>;
 }
 

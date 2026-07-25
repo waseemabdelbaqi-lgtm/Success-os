@@ -29,7 +29,7 @@ export default function ParentPage(){
 
   return (
     <div className="os-page phase11-legacy-page">
-      <InnerNav/>
+      <InnerNav active="parent"/>
       <main className="os-page-content">
         <div className="os-page-head">
           <span className="tag">PARENT EXPERIENCE</span>

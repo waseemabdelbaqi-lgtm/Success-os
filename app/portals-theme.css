@@ -541,3 +541,46 @@ html[data-os-theme='dark'] .os-content {
   color: #4b0a11;
   background: #fff;
 }
+
+.diagnostic-next,
+.passport-actions,
+.portal-secondary-actions,
+.service-success {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.diagnostic-next a,
+.passport-actions a,
+.portal-secondary-actions a,
+.service-success a,
+.os-plan-card {
+  text-decoration: none;
+  color: inherit;
+}
+
+.diagnostic-next a,
+.passport-actions a,
+.portal-secondary-actions a {
+  padding: 10px 14px;
+  border-radius: 999px;
+  border: 1px solid rgba(158, 23, 34, 0.22);
+  color: #4b0a11;
+  background: #fff;
+}
+
+.os-plan-card {
+  display: block;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.os-plan-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px rgba(75, 10, 17, 0.1);
+}
+
+.program-card {
+  scroll-margin-top: 96px;
+}

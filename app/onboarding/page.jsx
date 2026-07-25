@@ -46,7 +46,7 @@ const steps = [
 ];
 
 const finishRoutes = {
-  'تشخيص سريع': '/student-portal',
+  'تشخيص سريع': '/diagnostic',
   'ابحث عن معلم': '/teachers',
   'ابدأ الرحلة الكاملة': '/start-journey?portal=student',
   'تواصل معنا': '/contact',

@@ -46,17 +46,17 @@ export const S4S_PROGRAMS = [
 ];
 
 export const S4S_COURSES = [
-  { id: 'est-math-1', title: 'EST II Math 1', titleAr: 'EST II رياضيات 1', kind: 'recorded', kindAr: 'حصة مسجلة', subject: 'Math', href: '/start-journey?portal=student' },
-  { id: 'ap-biology', title: 'AP Biology', titleAr: 'AP Biology', kind: 'recorded', kindAr: 'حصة مسجلة', subject: 'Biology', href: '/start-journey?portal=student' },
-  { id: 'ap-physics-1', title: 'AP Physics 1', titleAr: 'AP Physics 1', kind: 'recorded', kindAr: 'حصة مسجلة', subject: 'Physics', href: '/start-journey?portal=student' },
-  { id: 'est-us-history', title: 'EST U.S. History', titleAr: 'EST تاريخ الولايات المتحدة', kind: 'recorded', kindAr: 'حصة مسجلة', subject: 'History', href: '/start-journey?portal=student' },
+  { id: 'est-math-1', title: 'EST II Math 1', titleAr: 'EST II رياضيات 1', kind: 'recorded', kindAr: 'حصة مسجلة', subject: 'Math', href: '/start-journey?portal=student&studentType=courses&subject=Math&course=est-math-1' },
+  { id: 'ap-biology', title: 'AP Biology', titleAr: 'AP Biology', kind: 'recorded', kindAr: 'حصة مسجلة', subject: 'Biology', href: '/start-journey?portal=student&studentType=courses&subject=Biology&course=ap-biology' },
+  { id: 'ap-physics-1', title: 'AP Physics 1', titleAr: 'AP Physics 1', kind: 'recorded', kindAr: 'حصة مسجلة', subject: 'Physics', href: '/start-journey?portal=student&studentType=courses&subject=Physics&course=ap-physics-1' },
+  { id: 'est-us-history', title: 'EST U.S. History', titleAr: 'EST تاريخ الولايات المتحدة', kind: 'recorded', kindAr: 'حصة مسجلة', subject: 'History', href: '/start-journey?portal=student&studentType=courses&subject=History&course=est-us-history' },
 ];
 
 export const S4S_BOOKS = [
-  { id: 'physics-foundations', title: 'Physics Foundations', titleAr: 'أساسيات الفيزياء', track: 'AP / EST', href: '/student/books' },
-  { id: 'chemistry-mastery', title: 'Chemistry Mastery Workbook', titleAr: 'كتاب إتقان الكيمياء', track: 'IGCSE / A Level', href: '/student/books' },
-  { id: 'sat-math-practice', title: 'SAT Math Practice Pack', titleAr: 'حقيبة تدريب SAT Math', track: 'SAT', href: '/student/books' },
-  { id: 'est-science-pack', title: 'EST Science Pack', titleAr: 'حقيبة علوم EST', track: 'EST', href: '/student/books' },
+  { id: 'physics-foundations', title: 'Physics Foundations', titleAr: 'أساسيات الفيزياء', track: 'AP / EST', href: '/student/books?book=physics-foundations' },
+  { id: 'chemistry-mastery', title: 'Chemistry Mastery Workbook', titleAr: 'كتاب إتقان الكيمياء', track: 'IGCSE / A Level', href: '/student/books?book=chemistry-mastery' },
+  { id: 'sat-math-practice', title: 'SAT Math Practice Pack', titleAr: 'حقيبة تدريب SAT Math', track: 'SAT', href: '/student/books?book=sat-math-practice' },
+  { id: 'est-science-pack', title: 'EST Science Pack', titleAr: 'حقيبة علوم EST', track: 'EST', href: '/student/books?book=est-science-pack' },
 ];
 
 export const S4S_CONTACT = {

@@ -29,7 +29,35 @@ export default function StartJourney(){
  const router=useRouter();
  const [step,setStep]=useState(1),[portal,setPortal]=useState(''),[form,setForm]=useState(defaults),[errors,setErrors]=useState({}),[busy,setBusy]=useState(false),[qa,setQa]=useState(false),[choice,setChoice]=useState(''),[lang,setLang]=useState('ar');
  const [partnerProducts,setPartnerProducts]=useState([]);
- useEffect(()=>{try{const p=new URLSearchParams(location.search).get('portal');if(p==='join'){router.replace('/join-us');return}const saved=JSON.parse(sessionStorage.getItem('success-os-journey')||'null');if(saved){setPortal(saved.portal||'');setForm(saved.form||defaults);setStep(saved.step||1);setChoice(saved.choice||'')}if(p&&portals.some(x=>x[0]===p)){setPortal(p);setStep(needsIntent.has(p)||p==='student'?2:3)}}catch{}},[router]);
+ useEffect(()=>{try{
+  const params=new URLSearchParams(location.search);
+  const p=params.get('portal');
+  if(p==='join'){router.replace('/join-us');return}
+  const saved=JSON.parse(sessionStorage.getItem('success-os-journey')||'null');
+  if(saved){setPortal(saved.portal||'');setForm(saved.form||defaults);setStep(saved.step||1);setChoice(saved.choice||'')}
+  if(p&&portals.some(x=>x[0]===p)){
+   setPortal(p);
+   const studentType=params.get('studentType')||'';
+   const subject=params.get('subject')||'';
+   const course=params.get('course')||'';
+   const program=params.get('program')||'';
+   if(p==='student'&&(studentType||subject||course||program)){
+    setForm(f=>({
+     ...f,
+     studentType:studentType||(course||program?'courses':f.studentType),
+     filters:{
+      ...f.filters,
+      ...(subject?{'المادة':subject,'اسم الدورة':subject}:{}),
+      ...(course?{'اسم الدورة':course}:{}),
+      ...(program?{'مجال الدورة':program}:{}),
+     },
+    }));
+    setStep(studentType||course||program?3:2);
+   }else{
+    setStep(needsIntent.has(p)||p==='student'?2:3);
+   }
+  }
+ }catch{}},[router]);
  useEffect(()=>{try{sessionStorage.setItem('success-os-journey',JSON.stringify({portal,form,step,choice}))}catch{}},[portal,form,step,choice]);
  useEffect(()=>{try{setPartnerProducts(JSON.parse(localStorage.getItem('success-os-partner-products')||'[]'))}catch{}},[]);
  const studentCore=form.studentType==='university'?universityStudentCore:form.studentType==='courses'?courseStudentCore:schoolStudentCore;
@@ -71,7 +99,8 @@ export default function StartJourney(){
   }
   if(step===4&&portal==='student'){
    try{sessionStorage.setItem('success-os-student-search',JSON.stringify({form,createdAt:new Date().toISOString()}))}catch{}
-   router.push('/student/results');
+   // Continue in-journey results → detail → purchase → checkout (steps 5–8).
+   setTimeout(()=>{setBusy(false);setStep(5)},220);
    return;
   }
   if(step===4&&portal!=='student'){

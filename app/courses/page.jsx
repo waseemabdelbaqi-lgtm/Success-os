@@ -37,6 +37,7 @@ export default function CoursesPage() {
                   <h2>{item.name}</h2>
                   <p>{item.blurbAr}</p>
                   <a href={`/programs#${item.id}`}>تفاصيل البرنامج ←</a>
+                  <a href={`/start-journey?portal=student&studentType=courses&program=${encodeURIComponent(item.id)}`}>ابدأ المسار ←</a>
                 </article>
               )),
             )}
