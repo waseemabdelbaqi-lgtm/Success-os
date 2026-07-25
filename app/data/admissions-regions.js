@@ -78,11 +78,12 @@ export const ADMISSION_COUNTRIES = {
     notesAr: 'الاعتماد مؤسسي/برامجي أمريكي؛ لا توجد معادلة اتحادية تلقائية للشهادات الأجنبية في كل الولايات.',
     sources: [
       { label: 'Common App', url: 'https://www.commonapp.org/' },
+      { label: 'Coalition for College', url: 'https://www.coalitionforcollegeaccess.org/' },
       { label: 'BigFuture College Board', url: 'https://bigfuture.collegeboard.org/' },
       { label: 'Appily', url: 'https://www.appily.com/' },
+      { label: 'ApplyTexas', url: 'https://www.applytexas.org/' },
+      { label: 'UC Admissions', url: 'https://admission.universityofcalifornia.edu/' },
       { label: 'ASU International first-year', url: 'https://admission.asu.edu/apply/international/first-year' },
-      { label: 'MIT Admissions', url: 'https://mitadmissions.org/apply/firstyear/' },
-      { label: 'Stanford Undergraduate', url: 'https://admission.stanford.edu/apply/first-year/' },
     ],
   },
   'كندا': {
@@ -98,6 +99,8 @@ export const ADMISSION_COUNTRIES = {
     internationalDocs: ['كشف علامات رسمي مترجم', 'إثبات لغة (IELTS/TOEFL أو فرنسي)', 'جواز سفر', 'إثبات تمويل', 'طلب Study Permit بعد القبول'],
     notesAr: 'التعليم اختصاص إقليمي — تحقق من المقاطعة والبرنامج والجهة المهنية.',
     sources: [
+      { label: 'OUAC', url: 'https://www.ouac.on.ca/' },
+      { label: 'ApplyAlberta', url: 'https://www.applyalberta.ca/' },
       { label: 'University of Toronto requirements', url: 'https://future.utoronto.ca/apply/requirements/' },
       { label: 'UBC requirements', url: 'https://you.ubc.ca/applying-ubc/requirements/' },
     ],
@@ -115,8 +118,8 @@ export const ADMISSION_COUNTRIES = {
     internationalDocs: ['مؤهل ثانوي معادل (IB/A Level/وطني مع تقييم)', 'IELTS Academic أو بديل مقبول', 'طلب UCAS', 'إثبات تمويل وCAS', 'تأشيرة طالب بريطانية'],
     notesAr: 'مواعيد UCAS مهمة — equal consideration في يناير؛ الطب/الأسنان أبكر.',
     sources: [
-      { label: 'Manchester international UG process', url: 'https://www.manchester.ac.uk/study/international/admissions/undergraduate-application-process/' },
       { label: 'UCAS', url: 'https://www.ucas.com/' },
+      { label: 'Manchester international UG process', url: 'https://www.manchester.ac.uk/study/international/admissions/undergraduate-application-process/' },
       { label: 'UCL undergraduate application', url: 'https://www.ucl.ac.uk/prospective-students/undergraduate/application' },
     ],
   },
@@ -133,6 +136,7 @@ export const ADMISSION_COUNTRIES = {
     internationalDocs: ['شهادة ثانوية + تقييم anabin', 'طلب uni-assist إن طُلب', 'إثبات لغة (TestDaF/DSH أو IELTS/TOEFL)', 'جواز وتمويل وطلب تأشيرة وطنية'],
     notesAr: 'كثير من البرامج تحتاج Studienkolleg إذا لم تُعادل الشهادة مباشرة.',
     sources: [
+      { label: 'Hochschulstart', url: 'https://www.hochschulstart.de/' },
       { label: 'TUM Application', url: 'https://www.tum.de/en/studies/application' },
       { label: 'anabin', url: 'https://anabin.kmk.org/' },
     ],
@@ -150,6 +154,7 @@ export const ADMISSION_COUNTRIES = {
     internationalDocs: ['شهادة ثانوية معادلة', 'ملف Campus France', 'DELF/DALF أو IELTS حسب لغة البرنامج', 'تمويل وتأشيرة طالب'],
     notesAr: 'صفة المؤسسة والدرجة الوطنية مهمة قبل المعادلة في بلدك.',
     sources: [
+      { label: 'Parcoursup', url: 'https://www.parcoursup.gouv.fr/' },
       { label: 'Paris-Saclay admission', url: 'https://www.universite-paris-saclay.fr/en/admission' },
       { label: 'Campus France', url: 'https://www.campusfrance.org/' },
     ],
@@ -167,6 +172,7 @@ export const ADMISSION_COUNTRIES = {
     internationalDocs: ['شهادة ثانوية معادلة', 'IELTS/TOEFL', 'Studielink + تطبيق الجامعة', 'إثبات تمويل وإقامة'],
     notesAr: 'تحقق من اعتماد البرنامج لدى NVAO وليس الاسم فقط.',
     sources: [
+      { label: 'Studielink', url: 'https://www.studielink.nl/' },
       { label: 'TU Delft admission', url: 'https://www.tudelft.nl/en/education/admission-and-application' },
       { label: 'UvA admissions', url: 'https://www.uva.nl/en/education/admissions/admissions.html' },
     ],
@@ -448,6 +454,8 @@ export const ADMISSION_COUNTRIES = {
     internationalDocs: ['شهادة ثانوية معادلة', 'IELTS/TOEFL/PTE', 'Confirmation of Enrolment', 'إثبات تمويل', 'Student visa (subclass 500)'],
     notesAr: 'تحقق من CRICOS للبرامج المقدمة للطلاب الدوليين داخل أستراليا.',
     sources: [
+      { label: 'UAC', url: 'https://www.uac.edu.au/' },
+      { label: 'VTAC', url: 'https://www.vtac.edu.au/' },
       { label: 'University of Melbourne international UG', url: 'https://study.unimelb.edu.au/how-to-apply/undergraduate-study/international-applications' },
       { label: 'UNSW international apply', url: 'https://www.unsw.edu.au/study/how-to-apply/international' },
     ],

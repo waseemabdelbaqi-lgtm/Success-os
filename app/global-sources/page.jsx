@@ -110,9 +110,12 @@ export default function GlobalSources() {
         <section className="admission-portals-band sources-portals">
           <header>
             <div>
-              <small>ADMISSION PORTALS & DIRECTORIES</small>
-              <h2>بوابات ودلائل القبول</h2>
-              <p>Name • Website • Type • Coverage — للبحث والتقديم ثم التحقق داخل SUCCESS OS.</p>
+              <small>ADMISSION PORTALS & APPLICATION SYSTEMS</small>
+              <h2>بوابات وأنظمة القبول</h2>
+              <p>
+                Name • Website • Type • Region • Details — {ADMISSION_PORTALS.length} مصدر للبحث والتقديم ثم التحقق داخل
+                SUCCESS OS.
+              </p>
             </div>
             <a href="/admissions">مستكشف القبول ←</a>
           </header>
@@ -123,7 +126,8 @@ export default function GlobalSources() {
                   <th>Name</th>
                   <th>Website</th>
                   <th>Type</th>
-                  <th>Coverage</th>
+                  <th>Region</th>
+                  <th>Details</th>
                   <th></th>
                 </tr>
               </thead>
@@ -140,7 +144,8 @@ export default function GlobalSources() {
                       </a>
                     </td>
                     <td>{p.type}</td>
-                    <td>{p.coverage}</td>
+                    <td>{p.region}</td>
+                    <td className="portal-details-cell">{p.details}</td>
                     <td>
                       <a href={p.website} target="_blank" rel="noreferrer">
                         فتح ↗
@@ -155,10 +160,10 @@ export default function GlobalSources() {
             {ADMISSION_PORTALS.map((p) => (
               <article key={p.id}>
                 <small>
-                  {p.type} • {p.coverage}
+                  {p.type} • {p.region}
                 </small>
                 <h3>{p.name}</h3>
-                <p>{p.blurbAr}</p>
+                <p>{p.detailsAr || p.details}</p>
                 <a href={p.website} target="_blank" rel="noreferrer">
                   {p.website.replace(/^https?:\/\//, '').replace(/\/$/, '')} ↗
                 </a>
