@@ -161,6 +161,26 @@ export const FALLBACK_INSTITUTIONS: Institution[] = [
     official_email: "info@neu.edu.tr",
     logo_url: "https://neu.edu.tr",
   },
+  {
+    id: "00000000-0000-4000-8000-000000000022",
+    name: "جامعة مالطا الحكومية",
+    type: "university",
+    country: "Malta",
+    majors: ["Engineering", "Medicine", "Business", "Sciences", "Law"],
+    is_partner: false,
+    official_email: "intl.admissions@um.edu.mt",
+    logo_url: "https://um.edu.mt",
+  },
+  {
+    id: "00000000-0000-4000-8000-000000000023",
+    name: "جامعة جورجيا - تبيليسي",
+    type: "university",
+    country: "Georgia",
+    majors: ["Medicine", "Dentistry", "Business", "Computing", "Law"],
+    is_partner: true,
+    official_email: "admissions.info@ug.edu.ge",
+    logo_url: "https://ug.edu.ge",
+  },
 ];
 
 type FallbackCriteria = {
@@ -392,6 +412,30 @@ const CRITERIA: Record<string, FallbackCriteria[]> = {
       alternative_exam_required: "القبول بالثانوية فقط",
       avg_living_cost: "300$ - 400$ شهرياً",
       deadline_date: "2026-10-01",
+      is_accredited_in_home_country: true,
+    },
+  ],
+  "00000000-0000-4000-8000-000000000022": [
+    {
+      nationality: "Jordanian",
+      min_gpa: 3.0,
+      requirements_text:
+        "الشهادة الثانوية العامة (التوجيهي) مقبولة مباشرة. يشترط إثبات لغة إنجليزية IELTS 6.0 أو خوض اختبار الجامعة الداخلي، مع تقديم حساب بنكي بقيمة 10,000 يورو لتأشيرة الشنغن.",
+      alternative_exam_required: "IELTS 6.0 / University Test",
+      avg_living_cost: "700$ - 900$ شهرياً",
+      deadline_date: "2026-06-30",
+      is_accredited_in_home_country: true,
+    },
+  ],
+  "00000000-0000-4000-8000-000000000023": [
+    {
+      nationality: "Egyptian",
+      min_gpa: 2.4,
+      requirements_text:
+        "معدل القبول للطب يبدأ من 60% في الثانوية. يشترط تسجيل ورفع فيديو تعريفي باللغة الإنجليزية (دقيقتين)، والخضوع لموافقة مركز الجودة الوزاري الجورجي EQE بعد صدور القبول المبدئي.",
+      alternative_exam_required: "فيديو تعريفي + موافقة EQE",
+      avg_living_cost: "350$ - 500$ شهرياً",
+      deadline_date: "2026-10-31",
       is_accredited_in_home_country: true,
     },
   ],
