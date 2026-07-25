@@ -3,6 +3,7 @@ import { redirect } from "next/navigation";
 import { InnerNav } from "../components";
 import { createClient } from "@/utils/supabase/server";
 import InstitutionCard from "@/components/InstitutionCard";
+import { getOrScrapeCriteria } from "@/actions/getOrScrapeCriteria";
 import {
   FALLBACK_INSTITUTIONS,
   getFallbackCriteriaRows,
@@ -101,23 +102,54 @@ export default async function DiscoveryPage({ searchParams }: PageProps) {
 
   const institutions = await loadInstitutions();
 
-  // الفلترة الذكية والمطابقة (تفضيل شرط الجنسية ثم All)
-  const filtered = institutions
-    .map((inst) => {
-      const matchedCriteria = pickMatchedCriteria(
-        inst.admission_criteria,
+  // الفلترة الذكية: شروط مخزّنة → وإلا كشط/بحث حي ثم تخزين مؤقت
+  const enriched = await Promise.all(
+    institutions.map(async (inst) => {
+      const key = normalizeNationalityKey(studentNationality);
+      const exact = (inst.admission_criteria || []).find(
+        (c) => normalizeNationalityKey(c.nationality) === key,
+      );
+
+      if (exact) {
+        return { ...inst, matchedCriteria: exact };
+      }
+
+      const scraped = await getOrScrapeCriteria(
+        inst.id,
+        inst.name,
         studentNationality,
       );
-      return { ...inst, matchedCriteria };
-    })
-    .filter((inst) => {
-      if (typeFilter && inst.type !== typeFilter) return false;
-      // عرض الجامعة فقط إذا كان معدل الطالب أعلى أو يساوي الحد الأدنى المطلوب لجنسيته
-      if (inst.matchedCriteria) {
-        return studentGpa >= Number(inst.matchedCriteria.min_gpa);
+
+      if (scraped) {
+        return {
+          ...inst,
+          matchedCriteria: {
+            nationality: scraped.nationality,
+            min_gpa: Number(scraped.min_gpa),
+            requirements_text: scraped.requirements_text,
+          },
+        };
       }
-      return false;
-    });
+
+      // احتياطي: شرط عام All إن وُجد
+      return {
+        ...inst,
+        matchedCriteria: pickMatchedCriteria(
+          inst.admission_criteria,
+          studentNationality,
+        ),
+      };
+    }),
+  );
+
+  const filtered = enriched.filter((inst) => {
+    if (typeFilter && inst.type !== typeFilter) return false;
+    // عرض الجامعة فقط إذا كان معدل الطالب أعلى أو يساوي الحد الأدنى المطلوب لجنسيته
+    if (inst.matchedCriteria) {
+      return studentGpa >= Number(inst.matchedCriteria.min_gpa);
+    }
+    return false;
+  });
 
   return (
     <>
