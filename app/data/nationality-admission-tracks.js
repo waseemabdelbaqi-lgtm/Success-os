@@ -2161,6 +2161,223 @@ export const DESTINATION_TRACKS = Object.freeze({
       ],
     },
   ],
+
+  'سلوفاكيا': [
+    {
+      id: 'sk-eu-eea-same-as-slovak',
+      titleAr: 'سلوفاكي / EU-EEA — نفس شروط المواطنين + بلا تأشيرة',
+      match: ({ nationality }) => nationality === 'سلوفاكيا' || isEuEea(nationality),
+      whenAr:
+        'حسب European Education Area وIOM Slovakia: مواطنو EU/EEA يدرسون بنفس شروط السلوفاكيين وبلا تأشيرة. الدراسة بدوام كامل بالسلوفاكية في الجامعات العامة غالباً مجانية (ما لم تتجاوز المدة النظامية)؛ البرامج بالإنجليزية برسوم لكل الجنسيات.',
+      channelAr: 'تقديم مباشر للكلية/الجامعة',
+      docs: [
+        'شهادة ثانوية / معادل',
+        'إثبات جنسية سلوفاكية أو EU/EEA',
+        'لغة سلوفاكية للبرامج المجانية أو إنجليزية للمدفوعة',
+      ],
+      feesAr: 'سلوفاكية بدوام كامل في العامة: غالباً مجانية؛ لغات أجنبية: ≈ €750–€11000/سنة حسب البرنامج.',
+      visaAr: 'لا تأشيرة لـ EU/EEA.',
+      caveats: [
+        'الرسوم مرتبطة بلغة التدريس أكثر من الجنسية؛ التأشيرة تختلف بالجنسية.',
+        'الجامعات الخاصة تحدد رسومها بحرية.',
+      ],
+      sources: [
+        {
+          label: 'European Education Area — Slovakia',
+          url: 'https://education.ec.europa.eu/study-in-europe/country-profiles/slovakia',
+        },
+        {
+          label: 'IOM MIC — studying at a university in Slovakia',
+          url: 'https://mic.iom.sk/en/news/894-studying-at-a-university-in-slovakia.html',
+        },
+      ],
+      portals: [],
+      universities: [
+        'Comenius University Bratislava',
+        'Slovak University of Technology in Bratislava',
+        'Pavol Jozef Šafárik University in Košice',
+        'Technical University of Košice',
+      ],
+    },
+    {
+      id: 'sk-non-eu-visa-language-fees',
+      titleAr: 'غير EU — تأشيرة/إقامة + سلوفاكية مجانية أو إنجليزية برسوم',
+      match: () => true,
+      whenAr:
+        'غير الأوروبيين يحتاجون غالباً تأشيرة/تصريح إقامة (قد تستغرق 2–4 أشهر). شروط الرسوم في العامة مماثلة: سلوفاكية بدوام كامل مجانية عادة، وإنجليزية برسوم بغض النظر عن الجنسية. التقديم للكلية مباشرة مع إثبات تمويل وتأمين.',
+      channelAr: 'تقديم الجامعة → قبول → تأشيرة/إقامة طالب',
+      docs: [
+        'جواز دولة ثالثة',
+        'قبول',
+        'إثبات لغة',
+        'تمويل وتأمين صحي',
+        'تأشيرة/إقامة طالب',
+      ],
+      feesAr: 'سلوفاكية عامة بدوام كامل: غالباً مجانية؛ أجنبية: رسوم مؤسسية.',
+      visaAr: 'تأشيرة/إقامة لغير EU حسب الجنسية ومدة الإقامة.',
+      caveats: ['لا تفترض أن «دولي = رسوم دائماً» في سلوفاكيا — لغة البرنامج حاسمة.'],
+      sources: [
+        {
+          label: 'European Education Area — Slovakia',
+          url: 'https://education.ec.europa.eu/study-in-europe/country-profiles/slovakia',
+        },
+      ],
+      portals: [],
+      universities: [
+        'Comenius University Bratislava',
+        'Slovak University of Technology in Bratislava',
+        'Pavol Jozef Šafárik University in Košice',
+        'Technical University of Košice',
+      ],
+    },
+  ],
+
+  'كرواتيا': [
+    {
+      id: 'hr-eu-subsidised-same-as-croatian',
+      titleAr: 'كرواتي / EU — دعم رسوم كالمواطنين + studij.hr',
+      match: ({ nationality }) => nationality === 'كرواتيا' || isEuEea(nationality),
+      whenAr:
+        'حسب gov.hr الرسمي: طلاب EU بدوام كامل لهم نفس حقوق الوصول والدعم الرسوم كما المواطنين الكرواتيين (بما فيها دعم الوجبات). التقديم للبكالوريوس عبر النظام المركزي Postani student / studij.hr.',
+      channelAr: 'Postani student (studij.hr) أو تقديم الجامعة للدرجات العليا',
+      docs: [
+        'شهادة ثانوية',
+        'إثبات جنسية كرواتية أو EU',
+        'لغة كرواتية أو إنجليزية حسب البرنامج',
+      ],
+      feesAr: 'دعم رسوم حكومي للدوام الكامل ضمن الحصص المؤهلة — نفس معاملة المواطنين.',
+      visaAr: 'لا تأشيرة لـ EU/EEA.',
+      caveats: ['بعد السنة الأولى قد تُطبَّق رسوم وفق نموذج الإنجاز/النقاط حسب القانون المحلي.'],
+      sources: [
+        {
+          label: 'gov.hr — international students in Croatia',
+          url: 'https://gov.hr/en/international-students-studying-in-croatia/1078',
+        },
+        {
+          label: 'European Education Area — Croatia',
+          url: 'https://education.ec.europa.eu/study-in-europe/country-profiles/croatia',
+        },
+        { label: 'studij.hr', url: 'https://www.studij.hr/' },
+      ],
+      portals: [],
+      universities: [
+        'University of Zagreb',
+        'University of Split',
+        'University of Rijeka',
+        'University of Osijek',
+      ],
+    },
+    {
+      id: 'hr-third-country-quota-fees-visa',
+      titleAr: 'دول ثالثة — حصص أجانب + رسوم مؤسسية + تأشيرة',
+      match: () => true,
+      whenAr:
+        'حسب gov.hr: طلاب الدول الثالثة يلتحقون ضمن حصص الأجانب ويدفعون رسوماً تحددها المؤسسة، ثم يحتاجون تأشيرة طالب وتصريح إقامة مؤقت. Study in Croatia يذكر نطاقاً تقريباً €1000–€12000 حسب التخصص.',
+      channelAr: 'تقديم الجامعة / studij.hr → تأشيرة طالب → إقامة مؤقتة',
+      docs: [
+        'جواز دولة ثالثة',
+        'قبول ضمن حصة أجانب',
+        'إثبات تمويل وتأمين',
+        'تأشيرة طالب ثم تصريح إقامة',
+      ],
+      feesAr: 'رسوم يحددها الـHEI (غالباً أعلى من مسار EU المدعوم).',
+      visaAr: 'تأشيرة طالب قبل الوصول + إقامة مؤقتة للدراسة.',
+      caveats: ['قدّم مبكراً لإفساح وقت التأشيرة.'],
+      sources: [
+        {
+          label: 'gov.hr — international students in Croatia',
+          url: 'https://gov.hr/en/international-students-studying-in-croatia/1078',
+        },
+        {
+          label: 'Study in Croatia — tuition',
+          url: 'https://www.studyincroatia.hr/study-in-croatia/tuition-fees-and-scholarships/',
+        },
+      ],
+      portals: [],
+      universities: [
+        'University of Zagreb',
+        'University of Split',
+        'University of Rijeka',
+        'University of Osijek',
+      ],
+    },
+  ],
+
+  'بلغاريا': [
+    {
+      id: 'bg-eu-eea-swiss-home-fees',
+      titleAr: 'بلغاري / EU-EEA / سويسرا — رسوم المواطنين + بلا تأشيرة',
+      match: ({ nationality }) => nationality === 'بلغاريا' || isEuEea(nationality),
+      whenAr:
+        'حسب Eurydice وجامعات بلغارية رسمية (مثل صوفيا/روسه): مواطنو EU/EEA/سويسرا يدفعون رسوم المواطنين في المؤسسات الحكومية ويتقدمون وفق قواعد المواطن الأوروبي. لا تأشيرة طالب.',
+      channelAr: 'تقديم الجامعة — مسار EU / مواطنين',
+      docs: [
+        'شهادة ثانوية',
+        'إثبات جنسية بلغارية أو EU/EEA/سويسرا',
+        'لغة بلغارية أو إنجليزية حسب البرنامج',
+      ],
+      feesAr: 'رسوم مواطنين أقل من مسار غير EU (تحددها الحكومة/الجامعة سنوياً).',
+      visaAr: 'لا تأشيرة لـ EU/EEA/سويسرا.',
+      caveats: ['البرامج بالإنجليزية للأجانب قد تبقى برسوم أعلى حتى لبعض المسارات — أكّد جدول الرسوم.'],
+      sources: [
+        {
+          label: 'European Education Area — Bulgaria',
+          url: 'https://education.ec.europa.eu/study-in-europe/country-profiles/bulgaria',
+        },
+        {
+          label: 'Eurydice — Bulgaria higher education funding',
+          url: 'https://eurydice.eacea.ec.europa.eu/eurypedia/bulgaria/higher-education-funding',
+        },
+        {
+          label: 'University of Ruse — annual tuition (EU = Bulgarian rates)',
+          url: 'https://www.uni-ruse.bg/en/directorates/FSD/annual-tuition-fees',
+        },
+      ],
+      portals: [],
+      universities: [
+        'Sofia University St. Kliment Ohridski',
+        'Technical University of Sofia',
+        'Medical University of Sofia',
+        'Plovdiv University',
+      ],
+    },
+    {
+      id: 'bg-non-eu-higher-fees-visa-d',
+      titleAr: 'غير EU — رسوم أجانب أعلى + تأشيرة D وإقامة',
+      match: () => true,
+      whenAr:
+        'غير الأوروبيين يتقدمون كطلاب دوليين برسوم أعلى (لا تقل عن الحد الأدنى القانوني للصيانة في الحكومية)، ويحتاجون تأشيرة Type D ثم تصريح إقامة من مديرية الهجرة، مع تسجيل العنوان خلال 5 أيام من الوصول.',
+      channelAr: 'مسار دولي للجامعة → تأشيرة D → تصريح إقامة',
+      docs: [
+        'جواز دولة ثالثة',
+        'دبلوم وكشف علامات',
+        'إثبات لغة / سنة تحضيرية إن لزم',
+        'شهادة طبية',
+        'تمويل وتأمين',
+        'تأشيرة D وإقامة',
+      ],
+      feesAr: 'رسوم أجانب أعلى من رسوم EU/المواطنين حسب التخصص.',
+      visaAr: 'تأشيرة Type D + تصريح إقامة (Migration Directorate).',
+      caveats: ['حاملو جنسية مزدوجة بينها بلغارية قد يدفعون نسبة مخفّضة في بعض الجامعات.'],
+      sources: [
+        {
+          label: 'European Education Area — Bulgaria',
+          url: 'https://education.ec.europa.eu/study-in-europe/country-profiles/bulgaria',
+        },
+        {
+          label: 'University of Ruse — annual tuition fees',
+          url: 'https://www.uni-ruse.bg/en/directorates/FSD/annual-tuition-fees',
+        },
+      ],
+      portals: [],
+      universities: [
+        'Sofia University St. Kliment Ohridski',
+        'Technical University of Sofia',
+        'Medical University of Sofia',
+        'Plovdiv University',
+      ],
+    },
+  ],
 });
 
 /**
@@ -2302,6 +2519,9 @@ export function exampleAlternateNationality(studyCountry, currentNationality) {
     اليونان: 'الأردن',
     رومانيا: 'الأردن',
     المجر: 'الأردن',
+    سلوفاكيا: 'الأردن',
+    كرواتيا: 'الأردن',
+    بلغاريا: 'الأردن',
   };
   return alts[studyCountry] || 'الأردن';
 }
@@ -2397,6 +2617,12 @@ export function nationalityTracksSummary() {
       'https://education.ec.europa.eu/study-in-europe/country-profiles/romania',
       'https://education.ec.europa.eu/study-in-europe/country-profiles/hungary',
       'https://studyinhungary.hu/study-in-hungary/menu/studying-in-hungary/tuition-fees-and-funding-options.html',
+      'https://education.ec.europa.eu/study-in-europe/country-profiles/slovakia',
+      'https://mic.iom.sk/en/news/894-studying-at-a-university-in-slovakia.html',
+      'https://gov.hr/en/international-students-studying-in-croatia/1078',
+      'https://education.ec.europa.eu/study-in-europe/country-profiles/croatia',
+      'https://education.ec.europa.eu/study-in-europe/country-profiles/bulgaria',
+      'https://www.uni-ruse.bg/en/directorates/FSD/annual-tuition-fees',
     ],
   };
 }

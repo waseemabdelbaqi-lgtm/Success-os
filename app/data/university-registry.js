@@ -64,6 +64,9 @@ export const countryAuthorities = {
   'اليونان':{authority:'Study in Greece / European Education Area',url:'https://education.ec.europa.eu/study-in-europe/country-profiles/greece',note:'بكالوريوس يوناني عام غالباً مجاني؛ غير EU يحتاجون تأشيرة D؛ البرامج الإنجليزية برسوم.'},
   'رومانيا':{authority:'Ministry of Education Romania',url:'https://education.ec.europa.eu/study-in-europe/country-profiles/romania',note:'EU/EEA/سويسرا بنفس شروط الرومانيين؛ غير EU برسوم أجنبية وتأشيرة طالب.'},
   'المجر':{authority:'Study in Hungary',url:'https://studyinhungary.hu/',note:'EU بلا تأشيرة مع مسار مقاعد حكومية/ذاتية؛ غير EU تمويل ذاتي أو منحة + إقامة طالب.'},
+  'سلوفاكيا':{authority:'Study in Slovakia / Ministry of Education',url:'https://education.ec.europa.eu/study-in-europe/country-profiles/slovakia',note:'سلوفاكية بدوام كامل في العامة غالباً مجانية لكل الجنسيات؛ الإنجليزية برسوم؛ التأشيرة لغير EU.'},
+  'كرواتيا':{authority:'Study in Croatia / gov.hr',url:'https://gov.hr/en/international-students-studying-in-croatia/1078',note:'EU بنفس دعم الرسوم كالكرواتيين؛ الدول الثالثة بحصص أجانب ورسوم مؤسسية وتأشيرة.'},
+  'بلغاريا':{authority:'Ministry of Education and Science',url:'https://education.ec.europa.eu/study-in-europe/country-profiles/bulgaria',note:'EU/EEA/سويسرا برسوم المواطنين؛ غير EU برسوم أعلى وتأشيرة D.'},
 };
 
 const allSystems = qualificationSystems.map(x=>x.id);
@@ -270,6 +273,61 @@ export const globalInstitutions = [
  }),
  U('aisb-hu','المجر','بودابست','American International School of Budapest','مدرسة',['وجاهي'],['American Curriculum','IB','ابتدائي','ثانوي'],'https://www.aisb.hu/admissions',{
    degree:'تعليم مدرسي K-12',contactEmail:'admissions@aisb.hu',
+ }),
+ U('uniba','سلوفاكيا','براتيسلافا','Comenius University Bratislava','جامعة',['وجاهي'],['طب وصحة','علوم','آداب','قانون'],'https://uniba.sk/en/admissions/',{
+   local:['سلوفاكية بدوام كامل غالباً مجانية','تقديم الكلية'],
+   international:['سلوفاكية مجانية أو إنجليزية برسوم','تأشيرة لغير EU'],
+   platformMember:true,contactEmail:'admissions@uniba.sk',
+ }),
+ U('stuba','سلوفاكيا','براتيسلافا','Slovak University of Technology in Bratislava','جامعة',['وجاهي'],['هندسة','حوسبة','عمارة وتصميم'],'https://www.stuba.sk/english/degree-students/admission.html',{
+   contactEmail:'admission@stuba.sk',
+ }),
+ U('upjs','سلوفاكيا','كوشيتسه','Pavol Jozef Šafárik University in Košice','جامعة',['وجاهي'],['طب وصحة','علوم','آداب'],'https://www.upjs.sk/en/information/admission/',{
+   platformMember:true,contactEmail:'admissions@upjs.sk',
+ }),
+ U('tuke','سلوفاكيا','كوشيتسه','Technical University of Košice','جامعة',['وجاهي'],['هندسة','حوسبة','علوم'],'https://www.tuke.sk/en/admissions',{
+   contactEmail:'international@tuke.sk',
+ }),
+ U('bisb-sk','سلوفاكيا','براتيسلافا','British International School Bratislava','مدرسة',['وجاهي'],['British Curriculum','IB','ابتدائي','ثانوي'],'https://www.nordangliaeducation.com/bisb-bratislava/admissions',{
+   degree:'تعليم مدرسي K-12',contactEmail:'admissions@bisb.sk',
+ }),
+ U('unizg','كرواتيا','زغرب','University of Zagreb','جامعة',['وجاهي'],['هندسة','طب وصحة','علوم','آداب'],'https://www.unizg.hr/homepage/study-at-the-university-of-zagreb/admission-and-enrolment/',{
+   local:['studij.hr / دعم رسوم EU','Postani student'],
+   international:['حصص أجانب','رسوم مؤسسية','تأشيرة'],
+   platformMember:true,contactEmail:'international@unizg.hr',
+ }),
+ U('unist','كرواتيا','سبليت','University of Split','جامعة',['وجاهي'],['طب وصحة','هندسة','علوم','أعمال'],'https://www.unist.hr/en/study/admission',{
+   contactEmail:'international@unist.hr',
+ }),
+ U('uniri','كرواتيا','رييكا','University of Rijeka','جامعة',['وجاهي'],['علوم','طب وصحة','آداب','أعمال'],'https://uniri.hr/en/study/admission/',{
+   platformMember:true,contactEmail:'international@uniri.hr',
+ }),
+ U('unios','كرواتيا','أوسييك','University of Osijek','جامعة',['وجاهي'],['زراعة','علوم','آداب','أعمال'],'https://www.unios.hr/en/study/admission/',{
+   contactEmail:'international@unios.hr',
+ }),
+ U('vern','كرواتيا','زغرب','VERN University of Applied Sciences','كلية',['وجاهي'],['أعمال','سياحة','إعلام'],'https://www.vern.hr/en/admissions/',{
+   degree:'بكالوريوس تطبيقي وماجستير',contactEmail:'admissions@vern.hr',
+ }),
+ U('aisz','كرواتيا','زغرب','American International School of Zagreb','مدرسة',['وجاهي'],['American Curriculum','IB','ابتدائي','ثانوي'],'https://www.aisz.hr/admissions',{
+   degree:'تعليم مدرسي K-12',
+   platformMember:true,contactEmail:'admissions@aisz.hr',
+ }),
+ U('uni-sofia','بلغاريا','صوفيا','Sofia University St. Kliment Ohridski','جامعة',['وجاهي'],['علوم','آداب','قانون','اقتصاد'],'https://www.uni-sofia.bg/index.php/eng/admission',{
+   local:['رسوم مواطنين لـ EU/EEA/سويسرا','تقديم الجامعة'],
+   international:['رسوم أجانب أعلى','تأشيرة D'],
+   platformMember:true,contactEmail:'admission@uni-sofia.bg',
+ }),
+ U('tu-sofia','بلغاريا','صوفيا','Technical University of Sofia','جامعة',['وجاهي'],['هندسة','حوسبة','علوم'],'https://tu-sofia.bg/en/admissions',{
+   contactEmail:'foreign_students@tu-sofia.bg',
+ }),
+ U('mu-sofia','بلغاريا','صوفيا','Medical University of Sofia','جامعة',['وجاهي'],['طب وصحة'],'https://mu-sofia.bg/en/admission/',{
+   platformMember:true,contactEmail:'admission@mu-sofia.bg',
+ }),
+ U('uni-plovdiv','بلغاريا','بلوفديف','Plovdiv University','جامعة',['وجاهي'],['علوم','آداب','تعليم','اقتصاد'],'https://uni-plovdiv.bg/en/pages/index/160/',{
+   contactEmail:'admission@uni-plovdiv.bg',
+ }),
+ U('acs-sofia','بلغاريا','صوفيا','American College of Sofia','مدرسة',['وجاهي'],['American Curriculum','ثانوي'],'https://www.acs.bg/admissions',{
+   degree:'تعليم مدرسي ثانوي',contactEmail:'admissions@acs.bg',
  }),
  U('sapienza','إيطاليا','روما','Sapienza Università di Roma','جامعة',['وجاهي'],['هندسة','طب وصحة','علوم','آداب'],'https://www.uniroma1.it/en/pagina/admission',{
    local:['دبلوم ثانوي إيطالي أو معادل','تسجيل مباشر'],
