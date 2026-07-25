@@ -109,6 +109,16 @@ export default function LibraryPage(){
           </div>
           <a href="/lesson">شاهد نموذج الدرس</a>
         </div>
+        <div className="full-idea-banner" style={{ marginTop: 16 }}>
+          <div>
+            <h3>Global Digital Library</h3>
+            <p>
+              مكتبة منهجية عالمية تفاعلية — IB Physics Photoelectric Effect مع معرفة عميقة،
+              مجسّم ثلاثي الأبعاد، مساحة رسم، آلة حاسبة، أمثلة واختبار فوري.
+            </p>
+          </div>
+          <a href="/digital-library">افتح المكتبة العالمية</a>
+        </div>
       </main>
     </div>
   );
