@@ -77,6 +77,9 @@ export const ADMISSION_COUNTRIES = {
     internationalDocs: ['شهادة وكشف علامات مترجمان', 'إثبات إنجليزي (TOEFL/IELTS/Duolingo/PTE)', 'جواز سفر', 'إثبات تمويل / Affidavit of Support', 'طلب I-20 ثم رسوم SEVIS وتأشيرة F-1', 'رسوم تقديم دولية'],
     notesAr: 'الاعتماد مؤسسي/برامجي أمريكي؛ لا توجد معادلة اتحادية تلقائية للشهادات الأجنبية في كل الولايات.',
     sources: [
+      { label: 'Common App', url: 'https://www.commonapp.org/' },
+      { label: 'BigFuture College Board', url: 'https://bigfuture.collegeboard.org/' },
+      { label: 'Appily', url: 'https://www.appily.com/' },
       { label: 'ASU International first-year', url: 'https://admission.asu.edu/apply/international/first-year' },
       { label: 'MIT Admissions', url: 'https://mitadmissions.org/apply/firstyear/' },
       { label: 'Stanford Undergraduate', url: 'https://admission.stanford.edu/apply/first-year/' },

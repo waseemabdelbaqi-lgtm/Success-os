@@ -787,3 +787,134 @@ html[data-os-theme='dark'] .os-content {
     grid-template-columns: 1fr;
   }
 }
+
+.admission-portals-band {
+  margin: 16px 0 8px;
+  padding: 20px;
+  border-radius: 20px;
+  border: 1px solid rgba(158, 23, 34, 0.12);
+  background: linear-gradient(160deg, #fffaf6, #f7ecec);
+}
+
+.admission-portals-band > header {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  align-items: end;
+  margin-bottom: 14px;
+}
+
+.admission-portals-band > header small {
+  color: #9e1722;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+}
+
+.admission-portals-band > header a {
+  text-decoration: none;
+  color: #9e1722;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.admission-portals-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 12px;
+}
+
+.admission-portals-grid article {
+  padding: 14px;
+  border-radius: 16px;
+  background: #fff;
+  border: 1px solid rgba(158, 23, 34, 0.1);
+}
+
+.admission-portals-grid small {
+  color: #9e1722;
+  font-weight: 700;
+}
+
+.admission-portals-grid h3 {
+  margin: 6px 0;
+  font-size: 15px;
+}
+
+.admission-portals-grid p {
+  margin: 0 0 10px;
+  font-size: 12px;
+  line-height: 1.7;
+  color: #6d5559;
+}
+
+.admission-portal-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 10px;
+}
+
+.admission-portal-meta span {
+  font-size: 10px;
+  padding: 4px 8px;
+  border-radius: 999px;
+  background: rgba(158, 23, 34, 0.08);
+  color: #4b0a11;
+}
+
+.admission-portals-grid a {
+  text-decoration: none;
+  color: #9e1722;
+  font-weight: 700;
+  font-size: 12px;
+}
+
+.admission-portals-table-wrap {
+  overflow-x: auto;
+  margin-bottom: 14px;
+}
+
+.admission-portals-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+  border-radius: 14px;
+  overflow: hidden;
+}
+
+.admission-portals-table th,
+.admission-portals-table td {
+  text-align: start;
+  padding: 12px 14px;
+  border-bottom: 1px solid rgba(158, 23, 34, 0.1);
+  font-size: 13px;
+  vertical-align: top;
+}
+
+.admission-portals-table th {
+  background: #4b0a11;
+  color: #fff;
+  font-size: 11px;
+  letter-spacing: 0.04em;
+}
+
+.admission-portals-table td b {
+  display: block;
+}
+
+.admission-portals-table td small {
+  color: #7a6064;
+}
+
+.admission-portals-table a {
+  color: #9e1722;
+  text-decoration: none;
+  font-weight: 700;
+}
+
+@media (max-width: 760px) {
+  .admission-portals-band > header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

@@ -12,6 +12,7 @@ import {
   requirementsForApplicant,
   studentCountries,
 } from '../data/university-registry';
+import { ADMISSION_PORTALS, portalsForRegion } from '../data/admission-portals';
 
 const STEPS = [
   ['region', 'القارة'],
@@ -61,6 +62,22 @@ export default function AdmissionsPage() {
     () => (regionId ? countriesForRegion(regionId) : []),
     [regionId],
   );
+  const activePortals = useMemo(() => {
+    if (!regionId) return ADMISSION_PORTALS;
+    const list = portalsForRegion(regionId);
+    // Prefer US-focused directories when studying in the United States.
+    if (studyCountry === 'الولايات المتحدة') {
+      return ADMISSION_PORTALS.filter(
+        (p) =>
+          p.id === 'common-app' ||
+          p.id === 'bigfuture' ||
+          p.id === 'appily' ||
+          p.id === 'whed' ||
+          p.id === 'top-universities',
+      );
+    }
+    return list;
+  }, [regionId, studyCountry]);
   const qSystem = qualificationSystems.find((x) => x.id === system) || qualificationSystems.at(-1);
 
   const pool = useMemo(() => {
@@ -239,6 +256,38 @@ export default function AdmissionsPage() {
             </button>
           ))}
         </nav>
+
+        <section className="admission-portals-band">
+          <header>
+            <div>
+              <small>EXTERNAL PORTALS & DIRECTORIES</small>
+              <h2>بوابات ودلائل القبول الرسمية</h2>
+              <p>
+                ابحث خارج فهرس الإطلاق عبر Common App وBigFuture وAppily وWHED وTop Universities، ثم ارجع للمطابقة
+                المحلية/الدولية داخل SUCCESS OS.
+              </p>
+            </div>
+            <a href="/global-sources">كل المصادر ←</a>
+          </header>
+          <div className="admission-portals-grid">
+            {activePortals.map((p) => (
+              <article key={p.id}>
+                <small>
+                  {p.typeAr} • {p.coverageAr}
+                </small>
+                <h3>{p.nameAr}</h3>
+                <p>{p.blurbAr}</p>
+                <div className="admission-portal-meta">
+                  <span>{p.type}</span>
+                  <span>{p.coverage}</span>
+                </div>
+                <a href={p.website} target="_blank" rel="noreferrer">
+                  فتح {p.name} ↗
+                </a>
+              </article>
+            ))}
+          </div>
+        </section>
 
         {step === 'region' && (
           <section className="admission-choice-panel">
