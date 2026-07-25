@@ -50,26 +50,49 @@ export function AdmissionFunnelApp() {
     emailPreviewHtml?: string;
   } | null>(null);
 
+  function runFilter(nextProfile: AdmissionProfileInput = profile) {
+    setFilterError(null);
+    startTransition(async () => {
+      const res = await filterInstitutions(nextProfile);
+      if (!res.ok) {
+        setFilterError(res.error);
+        return;
+      }
+      setMatches(res.data.institutions);
+      setFilterMode(res.data.mode);
+      setStep("matches");
+
+      const paidId = sessionStorage.getItem("sos_paid_institution");
+      if (paidId) {
+        const inst = res.data.institutions.find((i) => i.id === paidId);
+        if (inst) setSelected(inst);
+      }
+    });
+  }
+
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     const paid = params.get("paid");
     const payment_id = params.get("payment_id");
-    const unlock_token = params.get("unlock_token");
     const institution_id = params.get("institution_id");
     const session_id = params.get("session_id");
     const nationality = params.get("nationality");
     const studyCountry = params.get("studyCountry");
     const stepParam = params.get("step");
 
+    const seeded: AdmissionProfileInput = {
+      ...profile,
+      nationality: nationality || profile.nationality,
+      preferredStudyCountry: studyCountry || profile.preferredStudyCountry,
+    };
+
     if (nationality || studyCountry) {
-      setProfile((p) => ({
-        ...p,
-        nationality: nationality || p.nationality,
-        preferredStudyCountry: studyCountry || p.preferredStudyCountry,
-      }));
+      setProfile(seeded);
     }
-    if (stepParam === "matches") {
-      setStep("matches");
+
+    // Deep-link from admissions CTAs: auto-run smart filter
+    if (stepParam === "matches" && !paid) {
+      runFilter(seeded);
     }
 
     if (paid && (payment_id || session_id)) {
@@ -101,27 +124,8 @@ export function AdmissionFunnelApp() {
         }
       })();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- bootstrap from URL once
   }, []);
-
-  function runFilter() {
-    setFilterError(null);
-    startTransition(async () => {
-      const res = await filterInstitutions(profile);
-      if (!res.ok) {
-        setFilterError(res.error);
-        return;
-      }
-      setMatches(res.data.institutions);
-      setFilterMode(res.data.mode);
-      setStep("matches");
-
-      const paidId = sessionStorage.getItem("sos_paid_institution");
-      if (paidId) {
-        const inst = res.data.institutions.find((i) => i.id === paidId);
-        if (inst) setSelected(inst);
-      }
-    });
-  }
 
   return (
     <div className="mx-auto w-full max-w-6xl space-y-6 px-4 py-8 sm:px-6">

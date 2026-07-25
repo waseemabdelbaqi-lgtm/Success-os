@@ -1,26 +1,17 @@
 "use client";
 
-import { useEffect, useState, useTransition } from "react";
-import { listStudentNotifications } from "@/src/actions/admission";
+import { useAdmissionNotifications } from "@/src/hooks/use-admission-notifications";
+import { Badge } from "@/src/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/src/components/ui/card";
 
 export function NotificationsPanel({ refreshKey = 0 }: { refreshKey?: number }) {
-  const [items, setItems] = useState<
-    Array<{ id: string; title: string; body: string; created_at: string }>
-  >([]);
-  const [pending, startTransition] = useTransition();
-
-  useEffect(() => {
-    startTransition(async () => {
-      const res = await listStudentNotifications();
-      if (res.ok) setItems(res.data);
-    });
-  }, [refreshKey]);
+  const { items, pending, live } = useAdmissionNotifications(refreshKey);
 
   return (
     <Card>
-      <CardHeader>
+      <CardHeader className="flex flex-row items-center justify-between gap-2 space-y-0">
         <CardTitle className="text-base">In-app notifications</CardTitle>
+        <Badge variant={live ? "partner" : "muted"}>{live ? "Live" : "Synced"}</Badge>
       </CardHeader>
       <CardContent className="space-y-3">
         {pending && items.length === 0 ? (
@@ -28,7 +19,7 @@ export function NotificationsPanel({ refreshKey = 0 }: { refreshKey?: number }) 
         ) : null}
         {items.length === 0 && !pending ? (
           <p className="text-sm text-[#73636a]">
-            Partner applications appear here in realtime after submission.
+            Partner applications appear here via Supabase Realtime after submission.
           </p>
         ) : null}
         {items.map((n) => (

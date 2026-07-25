@@ -125,6 +125,24 @@ create table if not exists public.notifications (
 
 create index if not exists notifications_profile_idx on public.notifications (profile_id, created_at desc);
 
+-- Realtime: stream new student notifications to the in-app dashboard
+alter table public.notifications replica identity full;
+do $$
+begin
+  if not exists (
+    select 1 from pg_publication_tables
+    where pubname = 'supabase_realtime'
+      and schemaname = 'public'
+      and tablename = 'notifications'
+  ) then
+    alter publication supabase_realtime add table public.notifications;
+  end if;
+exception
+  when undefined_object then
+    -- Local Postgres without supabase_realtime publication — skip safely
+    null;
+end $$;
+
 -- ---------------------------------------------------------------------------
 -- Storage bucket for application PDFs
 -- ---------------------------------------------------------------------------
