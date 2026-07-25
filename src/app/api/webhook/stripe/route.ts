@@ -1,68 +1,112 @@
 import { NextResponse } from "next/server";
-import { getStripe, isStripeConfigured } from "@/src/lib/stripe";
+import { headers } from "next/headers";
+import type Stripe from "stripe";
+import { createClient } from "@/utils/supabase/server";
 import { previewMarkPaidBySession } from "@/src/lib/admission/preview-store";
-import { getSupabaseServerClient } from "@/src/utils/supabase/server";
+import { getStripe, isStripeConfigured } from "@/src/lib/stripe";
 
 export const runtime = "nodejs";
 
-/** استقبال تأكيد الدفع وتحديث الحالة في قاعدة البيانات */
+/**
+ * Stripe webhook — verifies signature, marks payments.completed on
+ * checkout.session.completed so the unified application form unlocks.
+ */
 export async function POST(request: Request) {
-  const payload = await request.text();
-  const signature = request.headers.get("stripe-signature");
+  const body = await request.text();
 
-  if (!isStripeConfigured()) {
+  // Preview / local mode when Stripe is not configured
+  if (!isStripeConfigured() || !process.env.STRIPE_WEBHOOK_SECRET) {
     try {
-      const body = JSON.parse(payload) as { sessionId?: string };
-      if (body.sessionId) {
-        const row = previewMarkPaidBySession(body.sessionId);
+      const json = JSON.parse(body) as { sessionId?: string };
+      if (json.sessionId) {
+        const row = previewMarkPaidBySession(json.sessionId);
         return NextResponse.json({ received: true, preview: true, payment: row });
       }
     } catch {
       /* fall through */
     }
-    return NextResponse.json({ received: true, preview: true });
+    return NextResponse.json({ received: true, preview: true }, { status: 200 });
   }
 
   const stripe = getStripe();
-  const secret = process.env.STRIPE_WEBHOOK_SECRET;
-  let event;
+  const endpointSecret = process.env.STRIPE_WEBHOOK_SECRET!;
 
-  try {
-    if (secret && signature) {
-      event = stripe.webhooks.constructEvent(payload, signature, secret);
-    } else {
-      event = JSON.parse(payload);
-    }
-  } catch (err) {
-    const message = err instanceof Error ? err.message : "Invalid webhook";
-    return NextResponse.json({ error: message }, { status: 400 });
+  const headersList = await headers();
+  const sig = headersList.get("stripe-signature");
+  if (!sig) {
+    return NextResponse.json({ error: "Missing stripe-signature header" }, { status: 400 });
   }
 
+  let event: Stripe.Event;
+
+  // 1. التحقق من أمان وصحة الطلب القادم للتأكد أنه مرسل فعلاً من خوادم Stripe
+  try {
+    event = stripe.webhooks.constructEvent(body, sig, endpointSecret);
+  } catch (err: unknown) {
+    const message = err instanceof Error ? err.message : "Unknown error";
+    console.error(`Webhook Signature Verification Failed: ${message}`);
+    return NextResponse.json({ error: `Webhook Error: ${message}` }, { status: 400 });
+  }
+
+  // 2. معالجة الحدث عند إتمام الدفع بنجاح (checkout.session.completed)
   if (event.type === "checkout.session.completed") {
-    const session = event.data.object as { id: string };
+    const session = event.data.object as Stripe.Checkout.Session;
 
-    const supabase = getSupabaseServerClient();
-    if (!supabase) {
-      previewMarkPaidBySession(session.id);
-      return NextResponse.json({ received: true, mode: "preview" });
+    // استخراج المعطيات المخزنة مسبقاً في الـ Metadata (camelCase أو snake_case)
+    const userId = session.metadata?.userId || session.metadata?.user_id;
+    const institutionId =
+      session.metadata?.institutionId || session.metadata?.institution_id;
+    const stripeSessionId = session.id;
+
+    try {
+      const supabase = await createClient();
+
+      if (userId && institutionId) {
+        // تحديث حالة الدفع إلى "مكتمل" (completed) لفتح بوابة نموذج البيانات للطالب
+        const { error } = await supabase
+          .from("payments")
+          .update({ status: "completed" })
+          .eq("user_id", userId)
+          .eq("institution_id", institutionId)
+          .eq("stripe_session_id", stripeSessionId);
+
+        if (error) {
+          console.error("Failed to update payment status in Supabase:", error);
+          return NextResponse.json({ error: "Database update failed" }, { status: 500 });
+        }
+      } else {
+        // Fallback: session id only (legacy checkout sessions)
+        const { error } = await supabase
+          .from("payments")
+          .update({ status: "completed" })
+          .eq("stripe_session_id", stripeSessionId);
+
+        if (error) {
+          console.error("Failed to update payment by session id:", error);
+          return NextResponse.json({ error: "Database update failed" }, { status: 500 });
+        }
+      }
+    } catch (err: unknown) {
+      const message = err instanceof Error ? err.message : "Supabase unavailable";
+      console.error(message);
+      // Keep Stripe retries meaningful when DB credentials are missing in prod
+      return NextResponse.json({ error: message }, { status: 500 });
     }
-
-    await supabase
-      .from("payments")
-      .update({ status: "completed" })
-      .eq("stripe_session_id", session.id);
   }
 
   if (event.type === "checkout.session.expired") {
-    const session = event.data.object as { id: string };
-    const supabase = getSupabaseServerClient();
-    if (supabase) {
+    const session = event.data.object as Stripe.Checkout.Session;
+    try {
+      const supabase = await createClient();
       await supabase
         .from("payments")
         .update({ status: "failed" })
         .eq("stripe_session_id", session.id);
+    } catch (err) {
+      console.error("Failed to mark expired checkout:", err);
     }
   }
 
-  return NextResponse.json({ received: true });
+  // إرسال رد إيجابي لـ Stripe لتأكيد استلام وتجهيز الـ Webhook بنجاح
+  return NextResponse.json({ received: true }, { status: 200 });
 }

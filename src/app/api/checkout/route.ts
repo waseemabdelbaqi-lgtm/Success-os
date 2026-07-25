@@ -120,8 +120,11 @@ export async function POST(request: Request) {
       },
     ],
     metadata: {
+      // Both casings supported by /api/webhook/stripe
       institution_id: institutionId,
+      institutionId,
       user_id: userId,
+      userId,
     },
   });
 
