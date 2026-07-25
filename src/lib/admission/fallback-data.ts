@@ -120,10 +120,23 @@ function degreeMatchesType(degree: string, type: Institution["type"]) {
   return type === "university" || type === "college";
 }
 
+/** Raw criteria rows for an institution — used by the server discovery page. */
+export function getFallbackCriteriaRows(institutionId: string) {
+  return (CRITERIA[institutionId] || []).map((c) => ({ ...c }));
+}
+
 function pickCriteria(institutionId: string, nationality: string) {
   const rows = CRITERIA[institutionId] || [];
+  const normalized = nationality.trim().toLowerCase();
+  const aliases: Record<string, string> = {
+    egyptian: "egypt",
+    egypt: "egypt",
+    jordanian: "jordan",
+    jordan: "jordan",
+  };
+  const key = aliases[normalized] || normalized;
   return (
-    rows.find((c) => c.nationality === nationality) ||
+    rows.find((c) => c.nationality.toLowerCase() === key || c.nationality.toLowerCase() === normalized) ||
     rows.find((c) => c.nationality === "All") ||
     null
   );

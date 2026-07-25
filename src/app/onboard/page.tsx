@@ -51,7 +51,12 @@ function OnboardFormClient() {
       return;
     }
     writeAdmissionProfile(profile);
-    router.push("/admission");
+    const qs = new URLSearchParams({
+      nationality: profile.nationality,
+      gpa: String(profile.gpa),
+    });
+    if (profile.targetDegree === "school") qs.set("type", "school");
+    router.push(`/admission?${qs.toString()}`);
   }
 
   return (
