@@ -1,49 +1,56 @@
 [
   {
+    "Name": "AACC Community College Directory",
+    "Website": "https://www.aaccihub.com/network/findacompany",
+    "Type": "Community College Directory",
+    "Scope": "United States",
+    "Details": "Official network portal of the American Association of Community Colleges to search member institutions."
+  },
+  {
     "Name": "Alison",
-    "Website": "https://alison.com/",
+    "Website": "https://alison.com",
     "Type": "Training Center & Certifications",
     "Scope": "Global",
     "Details": "Free workplace skills platform offering diplomas and vocational certificates."
   },
   {
     "Name": "Appily",
-    "Website": "https://www.appily.com/",
+    "Website": "https://appily.com",
     "Type": "University & College Search",
     "Scope": "United States",
     "Details": "Comprehensive search engine with financial aid and admission chance estimators."
   },
   {
     "Name": "ApplyAlberta",
-    "Website": "https://applyalberta.ca/",
+    "Website": "https://applyalberta.ca",
     "Type": "Centralized Admission Portal",
     "Scope": "Canada (Alberta)",
     "Details": "Centralized application hub for post-secondary institutions in Alberta."
   },
   {
     "Name": "ApplyBoard",
-    "Website": "https://www.applyboard.com/",
+    "Website": "https://applyboard.com",
     "Type": "Global College Marketplace",
     "Scope": "International",
     "Details": "International student recruitment platform matching users to over 1500 colleges."
   },
   {
     "Name": "ApplyTexas",
-    "Website": "https://www.applytexas.org/",
+    "Website": "https://applytexas.org",
     "Type": "Centralized Admission Portal",
     "Scope": "United States (Texas)",
     "Details": "Centralized application engine for the vast majority of higher education in Texas."
   },
   {
     "Name": "Arizona State University Online",
-    "Website": "https://asuonline.asu.edu/",
+    "Website": "https://asu.edu",
     "Type": "Online Degree University",
     "Scope": "Global / US",
     "Details": "Top-tier public institution delivering over 300 fully online degree programs."
   },
   {
     "Name": "Bachelorsportal",
-    "Website": "https://www.bachelorsportal.com/",
+    "Website": "https://bachelorsportal.com",
     "Type": "University & College Search",
     "Scope": "Global",
     "Details": "Massive database tracking over 100000 undergraduate programs worldwide."
@@ -57,45 +64,94 @@
   },
   {
     "Name": "CAAS (Coalition for College)",
-    "Website": "https://www.coalitionforcollegeaccess.org/",
+    "Website": "https://coalitionforcollegeaccess.org",
     "Type": "Centralized Admission Portal",
     "Scope": "United States",
     "Details": "A streamlined alternative platform focused on diverse and affordable institutions."
   },
   {
     "Name": "Cal State Apply",
-    "Website": "https://www.calstate.edu/apply",
+    "Website": "https://calstate.edu",
     "Type": "Centralized Admission Portal",
     "Scope": "United States (California)",
     "Details": "Centralized application portal for all 23 California State University campuses."
   },
   {
     "Name": "Canvas Network",
-    "Website": "https://www.canvas.net/",
+    "Website": "https://canvas.net",
     "Type": "Training Center & MOOC",
     "Scope": "Global",
     "Details": "Open-enrollment network for institutional professional development courses."
   },
   {
     "Name": "CaoKao Hub (Chinaschools)",
-    "Website": "https://www.chinaschoolguide.com/",
+    "Website": "https://chinaschoolguide.com",
     "Type": "University Search Directory",
     "Scope": "China",
     "Details": "Gateway resource for international student tracking of national university intake systems."
   },
   {
+    "Name": "CareerOneStop CC Finder",
+    "Website": "https://www.careeronestop.org/LocalHelp/CommunityServices/find-community-colleges.aspx",
+    "Type": "Community College Directory",
+    "Scope": "United States",
+    "Details": "Department of Labor backed tool to find local community colleges, vocational certificates, and associate programs."
+  },
+  {
+    "Name": "CHEA Directory",
+    "Website": "https://www.chea.org/directories",
+    "Type": "Accreditation Directory",
+    "Scope": "United States / Global",
+    "Details": "Council for Higher Education Accreditation database checking over 8200 accredited institutions."
+  },
+  {
+    "Name": "Class Central",
+    "Website": "https://www.classcentral.com/",
+    "Type": "Online Degree & MOOC Aggregator",
+    "Scope": "Global",
+    "Details": "Aggregates free and premium online courses and degree options from thousands of global universities."
+  },
+  {
+    "Name": "Codecademy",
+    "Website": "https://codecademy.com",
+    "Type": "Technical Training Center",
+    "Scope": "Global",
+    "Details": "Vocational interactive software engineering and technical skills curriculum platform."
+  },
+  {
+    "Name": "College Navigator",
+    "Website": "https://ed.gov",
+    "Type": "University & College Search",
+    "Scope": "United States",
+    "Details": "Federal NCES tool filtering extensive tuition, financial aid, and graduation metrics."
+  },
+  {
     "Name": "Common App",
-    "Website": "https://www.commonapp.org/",
+    "Website": "https://commonapp.org",
     "Type": "Centralized Admission Portal",
     "Scope": "Global / US",
     "Details": "Centralized application portal for over 1100 institutions."
   },
   {
     "Name": "Coursera Degrees",
-    "Website": "https://www.coursera.org/degrees",
+    "Website": "https://coursera.org",
     "Type": "Online Degree Portal",
     "Scope": "Global",
     "Details": "Hosts fully accredited online bachelors and masters degrees from elite universities."
+  },
+  {
+    "Name": "DAPIP US Department of Education",
+    "Website": "https://ope.ed.gov/dapip/",
+    "Type": "Accreditation Directory",
+    "Scope": "United States",
+    "Details": "The authoritative Database of Accredited Postsecondary Institutions and Programs maintained by OPE."
+  },
+  {
+    "Name": "Educations.com",
+    "Website": "https://www.educations.com/",
+    "Type": "University & College Search",
+    "Scope": "Global",
+    "Details": "International study search engine for programs universities and destination guidance worldwide."
   },
   {
     "Name": "edX",
