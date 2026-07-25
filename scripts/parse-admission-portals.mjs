@@ -1,6 +1,8 @@
 #!/usr/bin/env node
 /**
- * Cursor-style iterative parse of university_admission_portals-v4.csv
+ * Cursor-style iterative parse of university_portals_production.json
+ * Mirrors the pandas / fast-csv loops and FastAPI /api/v1/portals payload.
+ *
  * Usage: node scripts/parse-admission-portals.mjs
  */
 import fs from 'fs';
@@ -8,51 +10,17 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const csvPath = path.resolve(
+const jsonPath = path.resolve(
   __dirname,
-  '../app/data/university_admission_portals-v4.csv',
+  '../app/data/university_portals_production.json',
 );
 
-function parseCsv(text) {
-  const lines = text.replace(/^\uFEFF/, '').trim().split(/\r?\n/);
-  const headers = lines[0].split(',');
-  return lines.slice(1).map((line) => {
-    // Simple CSV: no embedded commas in this dataset's Details fields that break columns
-    // Details may contain commas — join remainder into Details
-    const parts = [];
-    let current = '';
-    let inQuotes = false;
-    for (let i = 0; i < line.length; i += 1) {
-      const ch = line[i];
-      if (ch === '"') {
-        inQuotes = !inQuotes;
-        continue;
-      }
-      if (ch === ',' && !inQuotes) {
-        parts.push(current);
-        current = '';
-        continue;
-      }
-      current += ch;
-    }
-    parts.push(current);
-    const row = {};
-    headers.forEach((h, i) => {
-      row[h.trim()] = (parts[i] || '').trim();
-    });
-    // If Details was split by commas, rejoin
-    if (parts.length > headers.length) {
-      row.Details = parts.slice(headers.length - 1).join(',').trim();
-    }
-    return row;
-  });
-}
+const rows = JSON.parse(fs.readFileSync(jsonPath, 'utf8'));
+const ordered = [...rows].sort((a, b) => a.Name.localeCompare(b.Name, 'en'));
 
-const raw = fs.readFileSync(csvPath, 'utf8');
-const rows = parseCsv(raw);
+console.log(`Loaded ${ordered.length} production portal records\n`);
 
-console.log(`Loaded ${rows.length} records from ${path.basename(csvPath)}\n`);
-for (const [index, row] of rows.entries()) {
+for (const [index, row] of ordered.entries()) {
   console.log(
     `[${index}] Parsing: ${row.Name} | Endpoint: ${row.Website} | Region: ${row.Region}`,
   );
@@ -60,11 +28,7 @@ for (const [index, row] of rows.entries()) {
   console.log(`         Details: ${row.Details}`);
 }
 
-console.log(`\nSuccessfully completed extraction of ${rows.length} records.`);
-
-const jsonOut = path.resolve(
-  __dirname,
-  '../app/data/university_admission_portals-v4.json',
+console.log(
+  `\nSuccessfully completed extraction of ${ordered.length} records.`,
 );
-fs.writeFileSync(jsonOut, JSON.stringify(rows, null, 2));
-console.log(`Wrote JSON mirror → ${path.relative(process.cwd(), jsonOut)}`);
+console.log('API shape: GET /api/v1/portals → list[Portal]');

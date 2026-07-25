@@ -16,7 +16,7 @@
   {
     "Name": "ApplyTexas",
     "Website": "https://www.applytexas.org/",
-    "Type": "University System",
+    "Type": "State University System",
     "Region": "United States (Texas)",
     "Details": "Centralized application engine for the vast majority of higher education in Texas."
   },
@@ -25,19 +25,33 @@
     "Website": "https://bigfuture.collegeboard.org/",
     "Type": "Search & Directory",
     "Region": "United States",
-    "Details": "Official College Board tool for matching, tracking and exploring US universities."
+    "Details": "Official College Board tool for matching tracking and exploring US universities."
   },
   {
-    "Name": "Coalition for College",
+    "Name": "CAAS (Coalition for College)",
     "Website": "https://www.coalitionforcollegeaccess.org/",
-    "Type": "Portal",
+    "Type": "Application Portal",
     "Region": "United States",
     "Details": "A streamlined alternative platform focused on diverse and affordable institutions."
   },
   {
+    "Name": "Cal State Apply",
+    "Website": "https://www.calstate.edu/apply",
+    "Type": "State University System",
+    "Region": "United States (California)",
+    "Details": "Centralized application portal for all 23 California State University campuses."
+  },
+  {
+    "Name": "CaoKao Hub (Chinaschools)",
+    "Website": "https://www.chinaschoolguide.com/",
+    "Type": "Informational Hub",
+    "Region": "China",
+    "Details": "Gateway resource for international student tracking of national university intake systems."
+  },
+  {
     "Name": "Common App",
     "Website": "https://www.commonapp.org/",
-    "Type": "Portal",
+    "Type": "Application Portal",
     "Region": "Global / US",
     "Details": "Centralized application portal for over 1100 institutions."
   },
@@ -63,6 +77,34 @@
     "Details": "Official national platform to register for first year higher education in France."
   },
   {
+    "Name": "QTAC",
+    "Website": "https://www.qtac.edu.au/",
+    "Type": "Centralized Application System",
+    "Region": "Australia (Queensland)",
+    "Details": "Centralized admissions center for higher education institutions in Queensland."
+  },
+  {
+    "Name": "SATAC",
+    "Website": "https://www.satac.edu.au/",
+    "Type": "Centralized Application System",
+    "Region": "Australia (SA & NT)",
+    "Details": "Processes applications for tertiary courses in South Australia and Northern Territory."
+  },
+  {
+    "Name": "Saddem Portal",
+    "Website": "https://www.moe.gov.sa/",
+    "Type": "Centralized Application System",
+    "Region": "Saudi Arabia",
+    "Details": "Central government tracking and admission paths for Saudi national universities."
+  },
+  {
+    "Name": "SRAM",
+    "Website": "https://www.sram.qc.ca/",
+    "Type": "Centralized Application System",
+    "Region": "Canada (Quebec)",
+    "Details": "Application service for CEGEPs and colleges in the province of Quebec."
+  },
+  {
     "Name": "Studielink",
     "Website": "https://www.studielink.nl/",
     "Type": "Centralized Application System",
@@ -70,9 +112,30 @@
     "Details": "Official national enrollment portal for Dutch higher education institutions."
   },
   {
+    "Name": "Study in India Portal",
+    "Website": "https://www.studyinindia.gov.in/",
+    "Type": "Centralized Application System",
+    "Region": "India",
+    "Details": "Official government portal for international student admission into Indian universities."
+  },
+  {
+    "Name": "Study in Japan Portal",
+    "Website": "https://www.studyinjapan.go.jp/",
+    "Type": "Official Directory & Hub",
+    "Region": "Japan",
+    "Details": "Government-backed gateway mapping entry requirements and links for universities across Japan."
+  },
+  {
+    "Name": "TISC",
+    "Website": "https://www.tisc.edu.au/",
+    "Type": "Centralized Application System",
+    "Region": "Australia (WA)",
+    "Details": "Tertiary Institutions Service Centre for universities in Western Australia."
+  },
+  {
     "Name": "Top Universities",
     "Website": "https://www.topuniversities.com/",
-    "Type": "Search & Directory",
+    "Type": "Rankings & Directory",
     "Region": "Global",
     "Details": "QS rankings directory with direct links to top global universities."
   },
@@ -93,7 +156,7 @@
   {
     "Name": "University of California Admissions",
     "Website": "https://admission.universityofcalifornia.edu/",
-    "Type": "University System",
+    "Type": "State University System",
     "Region": "United States (California)",
     "Details": "The dedicated portal for applying to all 9 UC undergraduate campuses."
   },
@@ -107,7 +170,7 @@
   {
     "Name": "World Higher Education Database",
     "Website": "https://www.whed.net/",
-    "Type": "Directory",
+    "Type": "Official Directory",
     "Region": "Global",
     "Details": "IAU/UNESCO official list of higher education systems and accredited institutions."
   }

@@ -78,12 +78,13 @@ export const ADMISSION_COUNTRIES = {
     notesAr: 'الاعتماد مؤسسي/برامجي أمريكي؛ لا توجد معادلة اتحادية تلقائية للشهادات الأجنبية في كل الولايات.',
     sources: [
       { label: 'Common App', url: 'https://www.commonapp.org/' },
-      { label: 'Coalition for College', url: 'https://www.coalitionforcollegeaccess.org/' },
+      { label: 'Common App', url: 'https://www.commonapp.org/' },
+      { label: 'CAAS (Coalition for College)', url: 'https://www.coalitionforcollegeaccess.org/' },
       { label: 'BigFuture College Board', url: 'https://bigfuture.collegeboard.org/' },
       { label: 'Appily', url: 'https://www.appily.com/' },
       { label: 'ApplyTexas', url: 'https://www.applytexas.org/' },
+      { label: 'Cal State Apply', url: 'https://www.calstate.edu/apply' },
       { label: 'UC Admissions', url: 'https://admission.universityofcalifornia.edu/' },
-      { label: 'ASU International first-year', url: 'https://admission.asu.edu/apply/international/first-year' },
     ],
   },
   'كندا': {
@@ -101,6 +102,7 @@ export const ADMISSION_COUNTRIES = {
     sources: [
       { label: 'OUAC', url: 'https://www.ouac.on.ca/' },
       { label: 'ApplyAlberta', url: 'https://applyalberta.ca/' },
+      { label: 'SRAM', url: 'https://www.sram.qc.ca/' },
       { label: 'University of Toronto requirements', url: 'https://future.utoronto.ca/apply/requirements/' },
       { label: 'UBC requirements', url: 'https://you.ubc.ca/applying-ubc/requirements/' },
     ],
@@ -456,8 +458,10 @@ export const ADMISSION_COUNTRIES = {
     sources: [
       { label: 'UAC', url: 'https://www.uac.edu.au/' },
       { label: 'VTAC', url: 'https://www.vtac.edu.au/' },
+      { label: 'QTAC', url: 'https://www.qtac.edu.au/' },
+      { label: 'SATAC', url: 'https://www.satac.edu.au/' },
+      { label: 'TISC', url: 'https://www.tisc.edu.au/' },
       { label: 'University of Melbourne international UG', url: 'https://study.unimelb.edu.au/how-to-apply/undergraduate-study/international-applications' },
-      { label: 'UNSW international apply', url: 'https://www.unsw.edu.au/study/how-to-apply/international' },
     ],
   },
   'نيوزيلندا': {

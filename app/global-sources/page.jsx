@@ -113,8 +113,8 @@ export default function GlobalSources() {
               <small>ADMISSION PORTALS & APPLICATION SYSTEMS</small>
               <h2>بوابات وأنظمة القبول</h2>
               <p>
-                Name • Website • Type • Region • Details — {ADMISSION_PORTALS.length} مصدر للبحث والتقديم ثم التحقق داخل
-                SUCCESS OS.
+                Name • Website • Type • Region • Details — {ADMISSION_PORTALS.length} مصدر إنتاجي (A–Z) عبر{' '}
+                <a href="/api/v1/portals">/api/v1/portals</a>.
               </p>
             </div>
             <a href="/admissions">مستكشف القبول ←</a>

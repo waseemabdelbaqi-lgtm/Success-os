@@ -1,0 +1,40 @@
+-- Production Schema Setup
+CREATE TABLE IF NOT EXISTS university_portals (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name VARCHAR(255) NOT NULL UNIQUE,
+    website TEXT NOT NULL,
+    type VARCHAR(100) NOT NULL,
+    region VARCHAR(100) NOT NULL,
+    details TEXT NOT NULL
+);
+
+-- Fast Lookups via Alphabetic Name Index
+CREATE INDEX IF NOT EXISTS idx_portals_name_alpha ON university_portals(name ASC);
+
+-- Sample Batch Seed (A-Z Ordered String Records)
+INSERT INTO university_portals (name, website, type, region, details) VALUES
+('Appily', 'https://www.appily.com/', 'Search & Directory', 'United States', 'Comprehensive search engine with financial aid and admission chance estimators.'),
+('ApplyAlberta', 'https://applyalberta.ca/', 'Centralized Application System', 'Canada (Alberta)', 'Centralized application hub for post-secondary institutions in Alberta.'),
+('ApplyTexas', 'https://www.applytexas.org/', 'State University System', 'United States (Texas)', 'Centralized application engine for the vast majority of higher education in Texas.'),
+('BigFuture College Board', 'https://bigfuture.collegeboard.org/', 'Search & Directory', 'United States', 'Official College Board tool for matching tracking and exploring US universities.'),
+('CAAS (Coalition for College)', 'https://www.coalitionforcollegeaccess.org/', 'Application Portal', 'United States', 'A streamlined alternative platform focused on diverse and affordable institutions.'),
+('Cal State Apply', 'https://www.calstate.edu/apply', 'State University System', 'United States (California)', 'Centralized application portal for all 23 California State University campuses.'),
+('CaoKao Hub (Chinaschools)', 'https://www.chinaschoolguide.com/', 'Informational Hub', 'China', 'Gateway resource for international student tracking of national university intake systems.'),
+('Common App', 'https://www.commonapp.org/', 'Application Portal', 'Global / US', 'Centralized application portal for over 1100 institutions.'),
+('Hochschulstart', 'https://www.hochschulstart.de/', 'Centralized Application System', 'Germany', 'Coordinates applications for nationwide restricted university programs in Germany.'),
+('OUAC', 'https://www.ouac.on.ca/', 'Centralized Application System', 'Canada (Ontario)', 'Centralized application service for all public universities in Ontario.'),
+('Parcoursup', 'https://www.parcoursup.gouv.fr/', 'Centralized Application System', 'France', 'Official national platform to register for first year higher education in France.'),
+('QTAC', 'https://www.qtac.edu.au/', 'Centralized Application System', 'Australia (Queensland)', 'Centralized admissions center for higher education institutions in Queensland.'),
+('SATAC', 'https://www.satac.edu.au/', 'Centralized Application System', 'Australia (SA & NT)', 'Processes applications for tertiary courses in South Australia and Northern Territory.'),
+('Saddem Portal', 'https://www.moe.gov.sa/', 'Centralized Application System', 'Saudi Arabia', 'Central government tracking and admission paths for Saudi national universities.'),
+('SRAM', 'https://www.sram.qc.ca/', 'Centralized Application System', 'Canada (Quebec)', 'Application service for CEGEPs and colleges in the province of Quebec.'),
+('Studielink', 'https://www.studielink.nl/', 'Centralized Application System', 'Netherlands', 'Official national enrollment portal for Dutch higher education institutions.'),
+('Study in India Portal', 'https://www.studyinindia.gov.in/', 'Centralized Application System', 'India', 'Official government portal for international student admission into Indian universities.'),
+('Study in Japan Portal', 'https://www.studyinjapan.go.jp/', 'Official Directory & Hub', 'Japan', 'Government-backed gateway mapping entry requirements and links for universities across Japan.'),
+('TISC', 'https://www.tisc.edu.au/', 'Centralized Application System', 'Australia (WA)', 'Tertiary Institutions Service Centre for universities in Western Australia.'),
+('Top Universities', 'https://www.topuniversities.com/', 'Rankings & Directory', 'Global', 'QS rankings directory with direct links to top global universities.'),
+('UAC', 'https://www.uac.edu.au/', 'Centralized Application System', 'Australia (NSW & ACT)', 'Processes applications for institutions in New South Wales and the Australian Capital Territory.'),
+('UCAS', 'https://www.ucas.com/', 'Centralized Application System', 'United Kingdom', 'The mandatory centralized admissions system for all UK university courses.'),
+('University of California Admissions', 'https://admission.universityofcalifornia.edu/', 'State University System', 'United States (California)', 'The dedicated portal for applying to all 9 UC undergraduate campuses.'),
+('VTAC', 'https://www.vtac.edu.au/', 'Centralized Application System', 'Australia (Victoria)', 'Centralized admissions center for universities in Victoria.'),
+('World Higher Education Database', 'https://www.whed.net/', 'Official Directory', 'Global', 'IAU/UNESCO official list of higher education systems and accredited institutions.');

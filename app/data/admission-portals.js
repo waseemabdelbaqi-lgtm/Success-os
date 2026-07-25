@@ -1,173 +1,74 @@
 /**
- * External admissions portals — sourced from university_admission_portals-v4.csv
- * Schema: Name | Website | Type | Region | Details
- * Re-parse: node scripts/parse-admission-portals.mjs
+ * University portals production layer.
+ * Source of truth: university_portals_production.json (+ .sql schema)
+ * Schema: Name | Website | Type | Region | Details (A–Z ordered)
  */
+
+import productionPortals from './university_portals_production.json';
 
 const TYPE_AR = {
   'Search & Directory': 'بحث ودليل',
   'Centralized Application System': 'نظام تقديم مركزي',
-  'University System': 'نظام جامعي',
-  Portal: 'بوابة تقديم',
+  'State University System': 'نظام جامعات ولاية',
+  'Application Portal': 'بوابة تقديم',
+  'Informational Hub': 'مركز معلومات',
+  'Official Directory & Hub': 'دليل ومركز رسمي',
+  'Rankings & Directory': 'تصنيفات ودليل',
+  'Official Directory': 'دليل رسمي',
   Directory: 'دليل مؤسسات',
+  Portal: 'بوابة تقديم',
 };
 
 const REGION_AR = {
   'United States': 'الولايات المتحدة',
   'Canada (Alberta)': 'كندا (ألبرتا)',
   'United States (Texas)': 'الولايات المتحدة (تكساس)',
+  'United States (California)': 'الولايات المتحدة (كاليفورنيا)',
   'Global / US': 'عالمي / الولايات المتحدة',
   Germany: 'ألمانيا',
   'Canada (Ontario)': 'كندا (أونتاريو)',
+  'Canada (Quebec)': 'كندا (كيبيك)',
   France: 'فرنسا',
   Netherlands: 'هولندا',
   Global: 'عالمي',
   'Australia (NSW & ACT)': 'أستراليا (NSW وACT)',
-  'United Kingdom': 'المملكة المتحدة',
-  'United States (California)': 'الولايات المتحدة (كاليفورنيا)',
   'Australia (Victoria)': 'أستراليا (فيكتوريا)',
+  'Australia (Queensland)': 'أستراليا (كوينزلاند)',
+  'Australia (SA & NT)': 'أستراليا (SA وNT)',
+  'Australia (WA)': 'أستراليا (WA)',
+  'United Kingdom': 'المملكة المتحدة',
+  China: 'الصين',
+  'Saudi Arabia': 'السعودية',
+  India: 'الهند',
+  Japan: 'اليابان',
 };
 
 const REGION_BUCKET = {
   'United States': ['americas'],
   'Canada (Alberta)': ['americas'],
   'United States (Texas)': ['americas'],
+  'United States (California)': ['americas'],
   'Global / US': ['americas', 'global'],
   Germany: ['europe'],
   'Canada (Ontario)': ['americas'],
+  'Canada (Quebec)': ['americas'],
   France: ['europe'],
   Netherlands: ['europe'],
   Global: ['global', 'americas', 'europe', 'asia', 'mena', 'africa', 'oceania'],
   'Australia (NSW & ACT)': ['oceania'],
-  'United Kingdom': ['europe'],
-  'United States (California)': ['americas'],
   'Australia (Victoria)': ['oceania'],
+  'Australia (Queensland)': ['oceania'],
+  'Australia (SA & NT)': ['oceania'],
+  'Australia (WA)': ['oceania'],
+  'United Kingdom': ['europe'],
+  China: ['asia'],
+  'Saudi Arabia': ['mena'],
+  India: ['asia'],
+  Japan: ['asia'],
 };
 
-/** Canonical v4 records (mirrors CSV). */
-export const ADMISSION_PORTALS_V4 = [
-  {
-    Name: 'Appily',
-    Website: 'https://www.appily.com/',
-    Type: 'Search & Directory',
-    Region: 'United States',
-    Details:
-      'Comprehensive search engine with financial aid and admission chance estimators.',
-  },
-  {
-    Name: 'ApplyAlberta',
-    Website: 'https://applyalberta.ca/',
-    Type: 'Centralized Application System',
-    Region: 'Canada (Alberta)',
-    Details: 'Centralized application hub for post-secondary institutions in Alberta.',
-  },
-  {
-    Name: 'ApplyTexas',
-    Website: 'https://www.applytexas.org/',
-    Type: 'University System',
-    Region: 'United States (Texas)',
-    Details:
-      'Centralized application engine for the vast majority of higher education in Texas.',
-  },
-  {
-    Name: 'BigFuture College Board',
-    Website: 'https://bigfuture.collegeboard.org/',
-    Type: 'Search & Directory',
-    Region: 'United States',
-    Details:
-      'Official College Board tool for matching, tracking and exploring US universities.',
-  },
-  {
-    Name: 'Coalition for College',
-    Website: 'https://www.coalitionforcollegeaccess.org/',
-    Type: 'Portal',
-    Region: 'United States',
-    Details:
-      'A streamlined alternative platform focused on diverse and affordable institutions.',
-  },
-  {
-    Name: 'Common App',
-    Website: 'https://www.commonapp.org/',
-    Type: 'Portal',
-    Region: 'Global / US',
-    Details: 'Centralized application portal for over 1100 institutions.',
-  },
-  {
-    Name: 'Hochschulstart',
-    Website: 'https://www.hochschulstart.de/',
-    Type: 'Centralized Application System',
-    Region: 'Germany',
-    Details:
-      'Coordinates applications for nationwide restricted university programs in Germany.',
-  },
-  {
-    Name: 'OUAC',
-    Website: 'https://www.ouac.on.ca/',
-    Type: 'Centralized Application System',
-    Region: 'Canada (Ontario)',
-    Details: 'Centralized application service for all public universities in Ontario.',
-  },
-  {
-    Name: 'Parcoursup',
-    Website: 'https://www.parcoursup.gouv.fr/',
-    Type: 'Centralized Application System',
-    Region: 'France',
-    Details:
-      'Official national platform to register for first year higher education in France.',
-  },
-  {
-    Name: 'Studielink',
-    Website: 'https://www.studielink.nl/',
-    Type: 'Centralized Application System',
-    Region: 'Netherlands',
-    Details:
-      'Official national enrollment portal for Dutch higher education institutions.',
-  },
-  {
-    Name: 'Top Universities',
-    Website: 'https://www.topuniversities.com/',
-    Type: 'Search & Directory',
-    Region: 'Global',
-    Details: 'QS rankings directory with direct links to top global universities.',
-  },
-  {
-    Name: 'UAC',
-    Website: 'https://www.uac.edu.au/',
-    Type: 'Centralized Application System',
-    Region: 'Australia (NSW & ACT)',
-    Details:
-      'Processes applications for institutions in New South Wales and the Australian Capital Territory.',
-  },
-  {
-    Name: 'UCAS',
-    Website: 'https://www.ucas.com/',
-    Type: 'Centralized Application System',
-    Region: 'United Kingdom',
-    Details: 'The mandatory centralized admissions system for all UK university courses.',
-  },
-  {
-    Name: 'University of California Admissions',
-    Website: 'https://admission.universityofcalifornia.edu/',
-    Type: 'University System',
-    Region: 'United States (California)',
-    Details: 'The dedicated portal for applying to all 9 UC undergraduate campuses.',
-  },
-  {
-    Name: 'VTAC',
-    Website: 'https://www.vtac.edu.au/',
-    Type: 'Centralized Application System',
-    Region: 'Australia (Victoria)',
-    Details: 'Centralized admissions center for universities in Victoria.',
-  },
-  {
-    Name: 'World Higher Education Database',
-    Website: 'https://www.whed.net/',
-    Type: 'Directory',
-    Region: 'Global',
-    Details:
-      'IAU/UNESCO official list of higher education systems and accredited institutions.',
-  },
-];
+/** Raw production records (FastAPI / SQL compatible shape). */
+export const ADMISSION_PORTALS_V4 = productionPortals;
 
 function slug(name) {
   return name
@@ -176,8 +77,8 @@ function slug(name) {
     .replace(/(^-|-$)/g, '');
 }
 
-/** App-facing records used by admissions wizard + global sources. */
-export const ADMISSION_PORTALS = ADMISSION_PORTALS_V4.map((row) => ({
+/** App-facing records for wizard + global sources. */
+export const ADMISSION_PORTALS = productionPortals.map((row) => ({
   id: slug(row.Name),
   name: row.Name,
   nameAr: row.Name,
@@ -190,7 +91,6 @@ export const ADMISSION_PORTALS = ADMISSION_PORTALS_V4.map((row) => ({
   details: row.Details,
   detailsAr: row.Details,
   bestFor: ['local', 'international'],
-  // Preserve original CSV/JSON keys for tooling
   Name: row.Name,
   Website: row.Website,
   Type: row.Type,
@@ -198,14 +98,14 @@ export const ADMISSION_PORTALS = ADMISSION_PORTALS_V4.map((row) => ({
   Details: row.Details,
 }));
 
-/** Map study-country Arabic names to the most relevant portals. */
 const COUNTRY_PORTAL_IDS = {
   'الولايات المتحدة': [
     'common-app',
-    'coalition-for-college',
+    'caas-coalition-for-college',
     'bigfuture-college-board',
     'appily',
     'applytexas',
+    'cal-state-apply',
     'university-of-california-admissions',
     'world-higher-education-database',
     'top-universities',
@@ -213,6 +113,7 @@ const COUNTRY_PORTAL_IDS = {
   'كندا': [
     'ouac',
     'applyalberta',
+    'sram',
     'common-app',
     'world-higher-education-database',
     'top-universities',
@@ -221,7 +122,35 @@ const COUNTRY_PORTAL_IDS = {
   'ألمانيا': ['hochschulstart', 'world-higher-education-database', 'top-universities'],
   'فرنسا': ['parcoursup', 'world-higher-education-database', 'top-universities'],
   'هولندا': ['studielink', 'world-higher-education-database', 'top-universities'],
-  'أستراليا': ['uac', 'vtac', 'world-higher-education-database', 'top-universities'],
+  'أستراليا': [
+    'uac',
+    'vtac',
+    'qtac',
+    'satac',
+    'tisc',
+    'world-higher-education-database',
+    'top-universities',
+  ],
+  'الصين': [
+    'caokao-hub-chinaschools',
+    'world-higher-education-database',
+    'top-universities',
+  ],
+  'السعودية': [
+    'saddem-portal',
+    'world-higher-education-database',
+    'top-universities',
+  ],
+  'الهند': [
+    'study-in-india-portal',
+    'world-higher-education-database',
+    'top-universities',
+  ],
+  'اليابان': [
+    'study-in-japan-portal',
+    'world-higher-education-database',
+    'top-universities',
+  ],
 };
 
 export function portalsForRegion(regionId) {
@@ -249,10 +178,13 @@ export function portalsForCoverage(coverageHint) {
   );
 }
 
-/** Cursor-style iterative processor (same shape as the pandas/fast-csv loops). */
+/** Cursor-style iterative processor (pandas / fast-csv equivalent). */
 export function iterateAdmissionPortals(onRow) {
-  ADMISSION_PORTALS_V4.forEach((row, index) => {
-    onRow(row, index);
-  });
-  return ADMISSION_PORTALS_V4.length;
+  productionPortals.forEach((row, index) => onRow(row, index));
+  return productionPortals.length;
+}
+
+/** API response shape: [{ Name, Website, Type, Region, Details }] A–Z. */
+export function getPortalsApiPayload() {
+  return [...productionPortals].sort((a, b) => a.Name.localeCompare(b.Name, 'en'));
 }
