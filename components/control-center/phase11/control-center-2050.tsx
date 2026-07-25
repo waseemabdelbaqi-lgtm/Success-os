@@ -10,6 +10,10 @@ import {
   type ControlCenterRoleId,
 } from '@/components/control-center/phase11/control-center-role-data';
 import { ROLE_CONTROL_ACTIONS } from '@/app/data/control-hubs-catalog';
+import {
+  CONTROL_CENTER_SCENARIO_KEY,
+  getScenarioScope,
+} from '@/app/data/scenario-permissions';
 
 const NAV_DESTINATIONS: Partial<Record<ControlCenterRoleId, string[]>> = {
   owner: [
@@ -111,6 +115,8 @@ export function ControlCenter2050() {
   const [icon, title, name, subtitle, nav, stats, tasks, ai, hint] = current;
   const controlActions = ROLE_CONTROL_ACTIONS[role] || [];
   const navLinks = NAV_DESTINATIONS[role] || [];
+  const scenarioKey = CONTROL_CENTER_SCENARIO_KEY[role] || role;
+  const scenario = getScenarioScope(scenarioKey);
 
   const activity = useMemo(
     () =>
@@ -264,33 +270,61 @@ export function ControlCenter2050() {
             </Link>
           </section>
 
-          {controlActions.length ? (
-            <section className="p11-glass p11-cc-panel" style={{ marginBottom: '1rem' }}>
-              <header>
-                <div>
-                  <small>أزرار التحكم</small>
-                  <h3>إجراءات هذا الدور</h3>
-                </div>
-                <Link href="/control-hubs">عرض التصنيفات ←</Link>
-              </header>
-              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem', padding: '0.25rem 0 0.5rem' }}>
-                {controlActions.map((action) => (
-                  <Link
-                    key={`${action.href}-${action.label}`}
-                    href={action.href}
-                    className={
-                      action.kind === 'primary' || action.kind === 'admin'
-                        ? 'p11-btn-primary'
-                        : 'p11-btn-gold'
-                    }
-                    style={{ textDecoration: 'none', fontSize: 13 }}
-                  >
-                    {action.label}
-                  </Link>
-                ))}
+          <section className="p11-glass p11-cc-panel" style={{ marginBottom: '1rem' }}>
+            <header>
+              <div>
+                <small>الصلاحيات حسب السيناريو</small>
+                <h3>
+                  {scenario.labelAr}
+                  {scenario.crud ? ' · مشرف (CRUD)' : ' · قراءة/تشغيل'}
+                </h3>
               </div>
-            </section>
-          ) : null}
+              <Link href="/dashboard/admin/permissions">مصفوفة الصلاحيات ←</Link>
+            </header>
+            <p style={{ fontSize: 13, opacity: 0.85, margin: '0 0 0.75rem' }}>
+              القسم: {scenario.section === 'company' ? 'الشركة' : scenario.section === 'partners' ? 'الشركاء' : 'المستخدمون'}
+              {scenario.dept ? ` · الدائرة: ${scenario.dept}` : ''}
+              {' · '}
+              الإضافة والتعديل والحذف للمشرف فقط.
+            </p>
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6, marginBottom: '0.75rem' }}>
+              {(scenario.permissions.includes('*')
+                ? ['صلاحيات كاملة للمشرف']
+                : scenario.permissions
+              ).map((p) => (
+                <span
+                  key={p}
+                  style={{
+                    fontSize: 11,
+                    padding: '0.2rem 0.55rem',
+                    borderRadius: 999,
+                    background: 'rgba(127,29,29,0.1)',
+                  }}
+                >
+                  {p}
+                </span>
+              ))}
+            </div>
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem' }}>
+              {controlActions.map((action) => (
+                <Link
+                  key={`${action.href}-${action.label}`}
+                  href={action.href}
+                  className={
+                    action.kind === 'primary' || action.kind === 'admin'
+                      ? 'p11-btn-primary'
+                      : 'p11-btn-gold'
+                  }
+                  style={{ textDecoration: 'none', fontSize: 13 }}
+                >
+                  {action.label}
+                </Link>
+              ))}
+              <Link href="/control-hubs" className="p11-btn-gold" style={{ textDecoration: 'none', fontSize: 13 }}>
+                كل اللوحات
+              </Link>
+            </div>
+          </section>
 
           <section className="p11-cc-stats">
             {stats.map(([value, label, delta]) => (

@@ -20,43 +20,110 @@ import {
   processSuccessfulPayment,
   PAYOUT_METHODS,
 } from '../../lib/admin/enterprise-payment-engine.js';
+import {
+  canCrud,
+  canManagePermissions,
+  canPerformAction,
+  isSupervisor,
+  resolveActorRole,
+} from '../../data/enterprise-admin-rbac.js';
+import { filterSchemaActions } from '../../data/scenario-permissions.js';
 
-const ELEVATED = new Set(['super_admin', 'owner', 'admin']);
+const READ_ELEVATED = new Set([
+  'super_admin',
+  'owner',
+  'admin',
+  'academic_director',
+  'finance',
+  'hr',
+  'legal',
+  'marketing',
+  'sales',
+  'customer_support',
+  'engineer',
+  'content_creator',
+  'social_media_manager',
+  'employee',
+]);
 
-async function assertEnterpriseAdminAccess() {
+async function resolveSessionRole() {
   if (process.env.FEATURE_AUTH_ENABLED !== 'true') {
-    return null;
+    // Demo / preview: default actor is supervisor so CRUD is testable;
+    // UI still labels CRUD as supervisor-only and can override via ?role=
+    return { role: 'admin', session: null };
   }
-
   try {
     const { getSessionFromCookies } = await import('../../../lib/auth/session');
     const session = await getSessionFromCookies();
-    if (!session) {
-      return Response.json({ error: 'UNAUTHORIZED' }, { status: 401 });
-    }
-    if (!ELEVATED.has(session.role)) {
-      return Response.json({ error: 'FORBIDDEN' }, { status: 403 });
-    }
-    return null;
+    if (!session) return { role: null, session: null, error: 'UNAUTHORIZED' };
+    return { role: resolveActorRole({ role: session.role }), session };
   } catch {
-    return Response.json({ error: 'UNAUTHORIZED' }, { status: 401 });
+    return { role: null, session: null, error: 'UNAUTHORIZED' };
   }
 }
 
+async function assertEnterpriseAdminAccess({ write = false, action = '' } = {}) {
+  const { role, error } = await resolveSessionRole();
+  if (error) {
+    if (process.env.FEATURE_AUTH_ENABLED === 'true') {
+      return Response.json({ error }, { status: error === 'FORBIDDEN' ? 403 : 401 });
+    }
+  }
+  const actor = role || 'admin';
+
+  if (write) {
+    if (!canPerformAction(actor, action)) {
+      return Response.json(
+        {
+          error: 'FORBIDDEN',
+          message: 'الإضافة والتعديل والحذف للمشرف فقط',
+          actor,
+        },
+        { status: 403 },
+      );
+    }
+  } else if (process.env.FEATURE_AUTH_ENABLED === 'true' && !READ_ELEVATED.has(actor) && !isSupervisor(actor)) {
+    return Response.json({ error: 'FORBIDDEN' }, { status: 403 });
+  }
+
+  return { actor };
+}
+
 export async function GET(request) {
-  const denied = await assertEnterpriseAdminAccess();
-  if (denied) return denied;
+  const access = await assertEnterpriseAdminAccess({ write: false });
+  if (access instanceof Response) return access;
 
   const { searchParams } = new URL(request.url);
   const view = searchParams.get('view') || 'home';
+  const roleOverride = searchParams.get('role');
+  const effectiveActor = roleOverride
+    ? resolveActorRole({ role: roleOverride })
+    : access.actor;
 
   if (view === 'meta') {
-    return Response.json(getEnterpriseAdminMeta(), { headers: { 'Cache-Control': 'no-store' } });
+    return Response.json(
+      {
+        ...getEnterpriseAdminMeta(),
+        actor: effectiveActor,
+        canCrud: canCrud(effectiveActor),
+        canManagePermissions: canManagePermissions(effectiveActor),
+        policy: 'CRUD_SUPERVISOR_ONLY',
+      },
+      { headers: { 'Cache-Control': 'no-store' } },
+    );
   }
 
   if (view === 'home') {
     const home = await buildHomeDashboard();
-    return Response.json(home, { headers: { 'Cache-Control': 'no-store' } });
+    return Response.json(
+      {
+        ...home,
+        actor: effectiveActor,
+        canCrud: canCrud(effectiveActor),
+        canManagePermissions: canManagePermissions(effectiveActor),
+      },
+      { headers: { 'Cache-Control': 'no-store' } },
+    );
   }
 
   if (view === 'module') {
@@ -64,22 +131,45 @@ export async function GET(request) {
     if (!moduleId) {
       return Response.json({ error: 'MODULE_REQUIRED' }, { status: 400 });
     }
+    const payload = listModuleItems(moduleId, {
+      q: searchParams.get('q') || '',
+      status: searchParams.get('status') || '',
+      sort: searchParams.get('sort') || 'updatedAt',
+      dir: searchParams.get('dir') || 'desc',
+      page: searchParams.get('page'),
+      pageSize: searchParams.get('pageSize'),
+      includeDeleted: searchParams.get('includeDeleted'),
+    });
+    if (payload?.schema?.actions) {
+      payload.schema = {
+        ...payload.schema,
+        actions: filterSchemaActions(payload.schema.actions, effectiveActor),
+        allActions: payload.schema.actions,
+      };
+    }
     return Response.json(
-      listModuleItems(moduleId, {
-        q: searchParams.get('q') || '',
-        status: searchParams.get('status') || '',
-        sort: searchParams.get('sort') || 'updatedAt',
-        dir: searchParams.get('dir') || 'desc',
-        page: searchParams.get('page'),
-        pageSize: searchParams.get('pageSize'),
-        includeDeleted: searchParams.get('includeDeleted'),
-      }),
+      {
+        ...payload,
+        actor: effectiveActor,
+        canCrud: canCrud(effectiveActor),
+        canManagePermissions: canManagePermissions(effectiveActor),
+        policyNote: 'الإضافة والتعديل والحذف للمشرف فقط',
+      },
       { headers: { 'Cache-Control': 'no-store' } },
     );
   }
 
   if (view === 'permissions') {
-    return Response.json(getPermissionsMatrix(), { headers: { 'Cache-Control': 'no-store' } });
+    return Response.json(
+      {
+        ...getPermissionsMatrix(),
+        actor: effectiveActor,
+        canCrud: canCrud(effectiveActor),
+        canManagePermissions: canManagePermissions(effectiveActor),
+        policyNote: 'إدارة مصفوفة الصلاحيات للمشرف فقط',
+      },
+      { headers: { 'Cache-Control': 'no-store' } },
+    );
   }
 
   if (view === 'commission') {
@@ -162,19 +252,57 @@ export async function GET(request) {
 }
 
 export async function POST(request) {
-  const denied = await assertEnterpriseAdminAccess();
-  if (denied) return denied;
-
   try {
     const body = await request.json();
     const { action, moduleId, payload } = body;
+    const actor = resolveActorRole(body);
+
+    const access = await assertEnterpriseAdminAccess({ write: true, action });
+    if (access instanceof Response) return access;
+
+    // Enforce scenario even when auth feature flag is off (demo override via body.role)
+    if (!canPerformAction(actor, action)) {
+      return Response.json(
+        {
+          ok: false,
+          error: 'FORBIDDEN',
+          message: 'الإضافة والتعديل والحذف للمشرف فقط',
+          actor,
+        },
+        { status: 403 },
+      );
+    }
+
+    if (
+      (moduleId === 'permissions' ||
+        action?.startsWith('role') ||
+        action === 'createRole' ||
+        action === 'assignPermissions' ||
+        action === 'togglePermission' ||
+        action === 'deleteRole' ||
+        action === 'updateRolePermissions') &&
+      !canManagePermissions(actor)
+    ) {
+      return Response.json(
+        {
+          ok: false,
+          error: 'FORBIDDEN',
+          message: 'إدارة الصلاحيات للمشرف فقط',
+          actor,
+        },
+        { status: 403 },
+      );
+    }
 
     if (action === 'home') {
       return Response.json(await buildHomeDashboard());
     }
 
     if (action === 'setCommissionDefaults') {
-      return Response.json(setCommissionDefaults(payload || body, { user: body.user || 'owner' }));
+      if (!canCrud(actor)) {
+        return Response.json({ ok: false, error: 'FORBIDDEN', message: 'للمشرف فقط' }, { status: 403 });
+      }
+      return Response.json(setCommissionDefaults(payload || body, { user: actor }));
     }
 
     if (action === 'previewCommission') {
@@ -182,15 +310,22 @@ export async function POST(request) {
     }
 
     if (moduleId === 'commission-rules' && (action === 'create' || action === 'add' || action === 'update' || action === 'edit')) {
-      return Response.json(mutateCommissionRule(action, payload || {}, { user: body.user || 'admin' }));
+      return Response.json(mutateCommissionRule(action, payload || {}, { user: actor }));
     }
 
     if (action === 'processPayment') {
-      return Response.json(processSuccessfulPayment(payload || body, { user: body.user || 'system' }));
+      // Finance operate: supervisors or finance specialty
+      if (!canCrud(actor) && actor !== 'finance') {
+        return Response.json({ ok: false, error: 'FORBIDDEN' }, { status: 403 });
+      }
+      return Response.json(processSuccessfulPayment(payload || body, { user: actor }));
     }
 
     if (moduleId === 'payouts' && ['approve', 'reject', 'markTransferred'].includes(action)) {
-      return Response.json(mutatePayout(action, payload || {}, { user: body.user || 'admin' }));
+      if (!canCrud(actor) && actor !== 'finance' && actor !== 'owner') {
+        return Response.json({ ok: false, error: 'FORBIDDEN' }, { status: 403 });
+      }
+      return Response.json(mutatePayout(action, payload || {}, { user: actor }));
     }
 
     if (

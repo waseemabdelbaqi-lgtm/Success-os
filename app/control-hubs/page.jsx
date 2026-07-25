@@ -4,10 +4,11 @@ import { useMemo, useState } from 'react';
 import { InnerNav } from '../components';
 import {
   COMPANY_DEPTS,
-  CONTROL_HUB_SECTIONS,
   CONTROL_HUBS,
+  CONTROL_HUB_SECTIONS,
   filterHubs,
 } from '../data/control-hubs-catalog';
+import { permissionsForHub } from '../data/scenario-permissions';
 
 function ActionButton({ action }) {
   const styles = {
@@ -37,6 +38,7 @@ function ActionButton({ action }) {
 }
 
 function HubCard({ hub }) {
+  const perms = permissionsForHub(hub.id);
   return (
     <article
       style={{
@@ -47,7 +49,7 @@ function HubCard({ hub }) {
         borderRadius: 14,
         background: 'linear-gradient(165deg, rgba(127,29,29,0.07), rgba(255,255,255,0.65))',
         border: '1px solid rgba(127,29,29,0.16)',
-        minHeight: 200,
+        minHeight: 220,
       }}
     >
       <header>
@@ -59,10 +61,31 @@ function HubCard({ hub }) {
         <h3 style={{ margin: '0.25rem 0', fontSize: '1.1rem' }}>{hub.title}</h3>
         <p style={{ margin: 0, opacity: 0.8, lineHeight: 1.55, fontSize: 14 }}>{hub.note}</p>
       </header>
+      <div style={{ fontSize: 11, opacity: 0.75, lineHeight: 1.45 }}>
+        <div>
+          <b>صلاحيات الاختصاص:</b>{' '}
+          {(perms.read || []).slice(0, 4).join(' · ') || 'عرض حسب الدور'}
+        </div>
+        <div style={{ color: '#7f1d1d', marginTop: 2 }}>{perms.crudNote}</div>
+        {perms.roles?.length ? (
+          <div style={{ marginTop: 2 }}>
+            أدوار: {perms.roles.map((r) => r.labelAr).join(' · ')}
+          </div>
+        ) : null}
+      </div>
       <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6, marginTop: 'auto' }}>
         {(hub.actions || []).map((a) => (
           <ActionButton key={`${hub.id}-${a.href}-${a.label}`} action={a} />
         ))}
+        {hub.section === 'company' && (hub.dept === 'قيادة' || hub.id === 'admin-erp') ? (
+          <ActionButton
+            action={{
+              href: '/dashboard/admin/permissions',
+              label: 'مصفوفة الصلاحيات',
+              kind: 'admin',
+            }}
+          />
+        ) : null}
       </div>
     </article>
   );
