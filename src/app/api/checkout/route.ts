@@ -18,6 +18,23 @@ type CheckoutBody = {
   major?: string;
 };
 
+/** Prefer NEXT_PUBLIC_SITE_URL, then APP_URL, then the incoming request origin. */
+function resolveSiteOrigin(request: Request): string {
+  for (const candidate of [
+    process.env.NEXT_PUBLIC_SITE_URL,
+    process.env.NEXT_PUBLIC_APP_URL,
+  ]) {
+    const value = candidate?.trim();
+    if (!value) continue;
+    try {
+      return new URL(value).origin;
+    } catch {
+      // ignore invalid env URLs
+    }
+  }
+  return new URL(request.url).origin;
+}
+
 /** إنشاء جلسة الدفع عبر Stripe (Stripe Session) — $5 USD */
 export async function POST(request: Request) {
   let body: CheckoutBody;
@@ -32,7 +49,7 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "institutionId is required" }, { status: 400 });
   }
 
-  const origin = new URL(request.url).origin;
+  const origin = resolveSiteOrigin(request);
   const successUrl =
     body.successUrl ||
     `${origin}/apply/${encodeURIComponent(institutionId)}?paid=1&session_id={CHECKOUT_SESSION_ID}`;
