@@ -55,6 +55,7 @@ export default function AdmissionsPage() {
   const [degree, setDegree] = useState('بكالوريوس');
   const [field, setField] = useState('الكل');
   const [mode, setMode] = useState('الكل');
+  const [institutionType, setInstitutionType] = useState('الكل');
   const [query, setQuery] = useState('');
   const [selected, setSelected] = useState(null);
   const [saved, setSaved] = useState([]);
@@ -88,15 +89,21 @@ export default function AdmissionsPage() {
     [pool],
   );
 
+  const institutionTypes = useMemo(
+    () => ['الكل', ...new Set(pool.map((x) => x.type))],
+    [pool],
+  );
+
   const results = useMemo(() => {
     return pool.filter((x) => {
       if (field !== 'الكل' && !x.fields.includes(field)) return false;
       if (mode !== 'الكل' && !x.modes.includes(mode)) return false;
+      if (institutionType !== 'الكل' && x.type !== institutionType) return false;
       if (degree !== 'الكل' && x.degree && !String(x.degree).includes(degree)) return false;
       if (system && x.systems && !x.systems.includes(system)) return false;
       if (
         query &&
-        !`${x.name} ${x.country} ${x.city} ${x.fields.join(' ')}`
+        !`${x.name} ${x.country} ${x.city} ${x.type} ${x.fields.join(' ')}`
           .toLowerCase()
           .includes(query.toLowerCase())
       ) {
@@ -104,7 +111,7 @@ export default function AdmissionsPage() {
       }
       return true;
     });
-  }, [pool, field, mode, degree, system, query]);
+  }, [pool, field, mode, degree, system, query, institutionType]);
 
   useEffect(() => {
     try {
@@ -120,6 +127,7 @@ export default function AdmissionsPage() {
     const degreeParam = q.get('degree');
     const modeParam = q.get('mode');
     const fieldParam = q.get('field');
+    const typeParam = q.get('type');
     const searchQ = q.get('q') || q.get('name');
 
     if (regionParam && ADMISSION_REGIONS.some((r) => r.id === regionParam)) {
@@ -142,6 +150,7 @@ export default function AdmissionsPage() {
     if (degreeParam) setDegree(degreeParam);
     if (modeParam === 'وجاهي' || modeParam === 'أونلاين') setMode(modeParam);
     if (fieldParam) setField(fieldParam);
+    if (typeParam) setInstitutionType(typeParam);
     if (searchQ) setQuery(searchQ);
 
     // Journey deep-link: jump to filters/results when enough context exists
@@ -513,12 +522,28 @@ export default function AdmissionsPage() {
                   ))}
                 </select>
               </label>
+              <label>
+                نوع المؤسسة
+                <select value={institutionType} onChange={(e) => setInstitutionType(e.target.value)}>
+                  {institutionTypes.map((x) => (
+                    <option key={x}>{x}</option>
+                  ))}
+                </select>
+              </label>
+              <label>
+                الدرجة
+                <select value={degree} onChange={(e) => setDegree(e.target.value)}>
+                  {['الكل', 'بكالوريوس', 'دبلوم', 'ماجستير', 'دكتوراه'].map((x) => (
+                    <option key={x}>{x}</option>
+                  ))}
+                </select>
+              </label>
               <label className="wide">
                 اسم الجامعة أو التخصص
                 <input
                   value={query}
                   onChange={(e) => setQuery(e.target.value)}
-                  placeholder="مثال: هندسة، Manchester، طب"
+                  placeholder="مثال: هندسة، Manchester، طب، كلية مجتمعية"
                 />
               </label>
             </div>

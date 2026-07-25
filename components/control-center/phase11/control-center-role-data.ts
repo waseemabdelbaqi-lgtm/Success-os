@@ -287,12 +287,13 @@ export const CONTROL_CENTER_ROLES: Record<ControlCenterRoleId, RoleTuple> = {
   ],
 };
 
+/** Agreed operating classification: Company / Partners / Users */
 export const CONTROL_CENTER_GROUPS: [
   string,
   [ControlCenterRoleId, string][],
 ][] = [
   [
-    'الإدارة والموظفون',
+    'الشركة',
     [
       ['owner', 'المالك'],
       ['engineer', 'المهندس'],
@@ -303,13 +304,16 @@ export const CONTROL_CENTER_GROUPS: [
     ],
   ],
   [
-    'المستخدمون والشركاء',
+    'الشركاء',
     [
-      ['student', 'الطالب'],
-      ['teacher', 'المعلم'],
-      ['institution', 'المؤسسة'],
+      ['teacher', 'المعلم الشريك'],
+      ['institution', 'مؤسسة شريكة'],
       ['employer', 'شركة التوظيف'],
     ],
+  ],
+  [
+    'المستخدمون',
+    [['student', 'الطالب']],
   ],
 ];
 

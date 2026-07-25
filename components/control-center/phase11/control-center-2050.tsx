@@ -9,6 +9,90 @@ import {
   isControlCenterRoleId,
   type ControlCenterRoleId,
 } from '@/components/control-center/phase11/control-center-role-data';
+import { ROLE_CONTROL_ACTIONS } from '@/app/data/control-hubs-catalog';
+
+const NAV_DESTINATIONS: Partial<Record<ControlCenterRoleId, string[]>> = {
+  owner: [
+    '/control-hubs',
+    '/dashboard/admin/students',
+    '/control-center?role=academic',
+    '/dashboard/admin',
+    '/dashboard/admin/finance',
+    '/control-center?role=content',
+    '/control-center?role=social',
+    '/security-center',
+  ],
+  engineer: [
+    '/qa-dashboard',
+    '/security-center',
+    '/dashboard/admin/system-configuration',
+    '/api/v1/portals',
+    '/security-center',
+    '/dashboard/admin/audit-logs',
+  ],
+  content: [
+    '/content-studio',
+    '/dashboard/admin/subjects',
+    '/content-studio',
+    '/curriculum-lab',
+    '/source-registry',
+    '/dashboard/admin/ai-content',
+  ],
+  social: [
+    '/dashboard/admin/social-media',
+    '/dashboard/admin/marketing',
+    '/notifications',
+    '/dashboard/admin/sales',
+    '/scholarships',
+    '/dashboard/admin/reports',
+  ],
+  academic: [
+    '/admissions',
+    '/global-sources',
+    '/degree-finder',
+    '/dashboard/admin/admissions',
+    '/dashboard/admin/scholarships',
+    '/rankings',
+  ],
+  houseTeacher: [
+    '/teacher-portal',
+    '/content-studio',
+    '/class-booking',
+    '/dashboard/admin/teachers',
+    '/study-content-generator',
+  ],
+  teacher: [
+    '/teacher-portal',
+    '/class-booking',
+    '/content-studio',
+    '/dashboard/teacher',
+    '/teachers',
+    '/notifications',
+  ],
+  institution: [
+    '/dashboard/university',
+    '/admissions',
+    '/degree-finder',
+    '/dashboard/admin/universities',
+    '/dashboard/admin/admissions',
+    '/control-hubs',
+  ],
+  employer: [
+    '/jobs',
+    '/dashboard/employer',
+    '/jobs/companies',
+    '/jobseeker-portal',
+    '/dashboard/admin/employers',
+  ],
+  student: [
+    '/student-portal',
+    '/student/dashboard',
+    '/admissions',
+    '/degree-finder',
+    '/passport',
+    '/tutor',
+  ],
+};
 
 export function ControlCenter2050() {
   const [role, setRole] = useState<ControlCenterRoleId>('owner');
@@ -25,6 +109,8 @@ export function ControlCenter2050() {
 
   const current = CONTROL_CENTER_ROLES[role];
   const [icon, title, name, subtitle, nav, stats, tasks, ai, hint] = current;
+  const controlActions = ROLE_CONTROL_ACTIONS[role] || [];
+  const navLinks = NAV_DESTINATIONS[role] || [];
 
   const activity = useMemo(
     () =>
@@ -133,16 +219,31 @@ export function ControlCenter2050() {
         </header>
 
         <nav className="p11-cc-nav">
-          {nav.map((item, index) => (
-            <button
-              key={item}
-              type="button"
-              className={index === activeNav ? 'active' : ''}
-              onClick={() => setActiveNav(index)}
-            >
-              {item}
-            </button>
-          ))}
+          {nav.map((item, index) => {
+            const href = navLinks[index];
+            if (href) {
+              return (
+                <Link
+                  key={item}
+                  href={href}
+                  className={index === activeNav ? 'active' : ''}
+                  onClick={() => setActiveNav(index)}
+                >
+                  {item}
+                </Link>
+              );
+            }
+            return (
+              <button
+                key={item}
+                type="button"
+                className={index === activeNav ? 'active' : ''}
+                onClick={() => setActiveNav(index)}
+              >
+                {item}
+              </button>
+            );
+          })}
         </nav>
 
         <div className="p11-cc-content">
@@ -153,15 +254,43 @@ export function ControlCenter2050() {
                 <small>{subtitle}</small>
                 <h2>أهلا، {name}</h2>
                 <p>
-                  هذه المساحة تعرض ما يحتاجه هذا الدور فقط، مع إجراءات ومساعد ذكي
-                  مخصص.
+                  هذه المساحة تعرض ما يحتاجه هذا الدور فقط، مع أزرار تحكم مرتبطة
+                  بصفحات العمل الحقيقية ومساعد ذكي مخصص.
                 </p>
               </div>
             </div>
-            <button type="button" className="p11-btn-gold">
-              تخصيص اللوحة ⚙
-            </button>
+            <Link href="/control-hubs" className="p11-btn-gold">
+              كل لوحات التحكم ⚙
+            </Link>
           </section>
+
+          {controlActions.length ? (
+            <section className="p11-glass p11-cc-panel" style={{ marginBottom: '1rem' }}>
+              <header>
+                <div>
+                  <small>أزرار التحكم</small>
+                  <h3>إجراءات هذا الدور</h3>
+                </div>
+                <Link href="/control-hubs">عرض التصنيفات ←</Link>
+              </header>
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem', padding: '0.25rem 0 0.5rem' }}>
+                {controlActions.map((action) => (
+                  <Link
+                    key={`${action.href}-${action.label}`}
+                    href={action.href}
+                    className={
+                      action.kind === 'primary' || action.kind === 'admin'
+                        ? 'p11-btn-primary'
+                        : 'p11-btn-gold'
+                    }
+                    style={{ textDecoration: 'none', fontSize: 13 }}
+                  >
+                    {action.label}
+                  </Link>
+                ))}
+              </div>
+            </section>
+          ) : null}
 
           <section className="p11-cc-stats">
             {stats.map(([value, label, delta]) => (
@@ -184,25 +313,37 @@ export function ControlCenter2050() {
                 </div>
                 <button type="button">عرض الكل</button>
               </header>
-              {tasks.map((task, index) => (
-                <div className="p11-cc-task" key={task}>
-                  <button
-                    type="button"
-                    className={index === 0 ? 'urgent' : ''}
-                  >
-                    {index === 0 ? '!' : '✓'}
-                  </button>
-                  <div>
-                    <b>{task}</b>
-                    <small>
-                      {index === 0
-                        ? 'أولوية عالية • اليوم'
-                        : 'ضمن خطة هذا الأسبوع'}
-                    </small>
+              {tasks.map((task, index) => {
+                const action = controlActions[index] || controlActions[0];
+                const body = (
+                  <>
+                    <button
+                      type="button"
+                      className={index === 0 ? 'urgent' : ''}
+                    >
+                      {index === 0 ? '!' : '✓'}
+                    </button>
+                    <div>
+                      <b>{task}</b>
+                      <small>
+                        {index === 0
+                          ? 'أولوية عالية • اليوم'
+                          : 'ضمن خطة هذا الأسبوع'}
+                      </small>
+                    </div>
+                    <span>←</span>
+                  </>
+                );
+                return action ? (
+                  <Link className="p11-cc-task" href={action.href} key={task}>
+                    {body}
+                  </Link>
+                ) : (
+                  <div className="p11-cc-task" key={task}>
+                    {body}
                   </div>
-                  <span>←</span>
-                </div>
-              ))}
+                );
+              })}
             </section>
 
             <section className="p11-glass p11-cc-panel">
