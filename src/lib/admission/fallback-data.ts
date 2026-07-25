@@ -50,6 +50,37 @@ export const FALLBACK_INSTITUTIONS: Institution[] = [
     is_partner: true,
     official_email: "admissions@patana.ac.th",
   },
+  // MENA demo universities (2026 criteria) — mirrors 20260725_mena_institutions_seed.sql
+  {
+    id: "00000000-0000-4000-8000-000000000011",
+    name: "جامعة الملك سعود - الرياض",
+    type: "university",
+    country: "Saudi Arabia",
+    majors: ["Engineering", "Medicine", "Sciences", "Business"],
+    is_partner: true,
+    official_email: "admission@ksu.edu.sa",
+    logo_url: "https://ksu.edu.sa",
+  },
+  {
+    id: "00000000-0000-4000-8000-000000000012",
+    name: "جامعة القاهرة - مصر",
+    type: "university",
+    country: "Egypt",
+    majors: ["Engineering", "Computing", "Medicine", "Arts"],
+    is_partner: false,
+    official_email: "foreign.students@cu.edu.eg",
+    logo_url: "https://cu.edu.eg",
+  },
+  {
+    id: "00000000-0000-4000-8000-000000000013",
+    name: "الجامعة الأردنية - عمان",
+    type: "university",
+    country: "Jordan",
+    majors: ["Engineering", "Pharmacy", "Computing", "Sciences"],
+    is_partner: false,
+    official_email: "intl.students@ju.edu.jo",
+    logo_url: "https://ju.edu.jo",
+  },
 ];
 
 const CRITERIA: Record<string, Array<{ nationality: string; min_gpa: number; requirements_text: string }>> = {
@@ -110,6 +141,42 @@ const CRITERIA: Record<string, Array<{ nationality: string; min_gpa: number; req
       nationality: "All",
       min_gpa: 0,
       requirements_text: "K–12 international school admissions. Passport and prior school records.",
+    },
+  ],
+  "00000000-0000-4000-8000-000000000011": [
+    {
+      nationality: "Egyptian",
+      min_gpa: 3.2,
+      requirements_text:
+        "يتطلب القبول للطلاب المصريين شهادة الثانوية العامة مصدقة من الخارجية المصرية والسفارة السعودية، مع فحص طبي معتمد وخلو سوابق من وزارة الداخلية لتأشيرة الدخول.",
+    },
+    {
+      nationality: "Syrian",
+      min_gpa: 3.0,
+      requirements_text:
+        "القبول متاح عبر مسار المنح الدراسية للوافدين، يتطلب جواز سفر ساري المفعول لمدة لا تقل عن سنة، وإعفاء من شرط السن إن كان المتقدم حاصلاً على تميز أكاديمي.",
+    },
+  ],
+  "00000000-0000-4000-8000-000000000012": [
+    {
+      nationality: "Saudi",
+      min_gpa: 2.5,
+      requirements_text:
+        "التقديم متاح عبر الإدارة العامة للوافدين بمصر، يتطلب دفع رسوم القيد السنوية البالغة 1500 دولار للمرة الأولى، وتصديق الشهادة الثانوية من الملحقية الثقافية المصرية بالرياض.",
+    },
+    {
+      nationality: "Jordanian",
+      min_gpa: 2.5,
+      requirements_text:
+        "القبول فوري لتخصصات الهندسة والحاسبات بمعدل لا يقل عن 65%، يتطلب توفير شهادة ميلاد أصلية وصورة جواز السفر معتمدة من السفارة الأردنية بالقاهرة.",
+    },
+  ],
+  "00000000-0000-4000-8000-000000000013": [
+    {
+      nationality: "Egyptian",
+      min_gpa: 2.8,
+      requirements_text:
+        "القبول عبر البرنامج الدولي بالجامعة، الحد الأدنى للهندسة والصيدلة هو 80% وللتخصصات الأخرى 60%، يشترط مراجعة مكتب الفحص الأمني للوافدين في عمان فور الدخول لإتمام الإقامة.",
     },
   ],
 };
