@@ -114,7 +114,9 @@ export default function GlobalSources() {
               <h2>بوابات وأنظمة القبول</h2>
               <p>
                 Name • Website • Type • Scope • Details — {ADMISSION_PORTALS.length} مصدر إنتاجي (A–Z) عبر{' '}
-                <a href="/api/v1/portals">/api/v1/portals</a>.
+                <a href="/api/v1/portals">/api/v1/portals</a>
+                {' '}• معرفة التخصصات واللغة عبر{' '}
+                <a href="/api/v1/admissions-knowledge">/api/v1/admissions-knowledge</a>.
               </p>
             </div>
             <a href="/admissions">مستكشف القبول ←</a>

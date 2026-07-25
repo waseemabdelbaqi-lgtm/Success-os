@@ -25,6 +25,8 @@ const TYPE_AR = {
   'Creative Training Center': 'مركز تدريب إبداعي',
   'Community College Directory': 'دليل كليات مجتمعية',
   'Accreditation Directory': 'دليل اعتماد أكاديمي',
+  'Recognition Directory': 'دليل معادلة واعتراف',
+  'Scholarship Portal': 'بوابة منح دراسية',
 };
 
 const SCOPE_AR = {
@@ -33,11 +35,16 @@ const SCOPE_AR = {
   'United States': 'الولايات المتحدة',
   'United States / Global': 'الولايات المتحدة / عالمي',
   'Canada (Alberta)': 'كندا (ألبرتا)',
+  Canada: 'كندا',
   'United States (Texas)': 'الولايات المتحدة (تكساس)',
   'United States (California)': 'الولايات المتحدة (كاليفورنيا)',
   'Global / US': 'عالمي / الولايات المتحدة',
   'Global / UK': 'عالمي / المملكة المتحدة',
+  'United Kingdom / Global': 'المملكة المتحدة / عالمي',
+  'United States / Global': 'الولايات المتحدة / عالمي',
+  'Europe / Global': 'أوروبا / عالمي',
   Germany: 'ألمانيا',
+  'Germany / Europe': 'ألمانيا / أوروبا',
   'Europe (Germany)': 'أوروبا (ألمانيا)',
   'Europe (Denmark)': 'أوروبا (الدنمارك)',
   'Canada (Ontario)': 'كندا (أونتاريو)',
@@ -52,6 +59,8 @@ const SCOPE_AR = {
   'United Kingdom': 'المملكة المتحدة',
   China: 'الصين',
   'Saudi Arabia': 'السعودية',
+  Turkey: 'تركيا',
+  Qatar: 'قطر',
   India: 'الهند',
   Japan: 'اليابان',
 };
@@ -76,7 +85,9 @@ function scopeBuckets(scope) {
   }
   if (s.includes('australia')) return ['oceania'];
   if (s.includes('china') || s.includes('india') || s.includes('japan')) return ['asia'];
-  if (s.includes('saudi')) return ['mena'];
+  if (s.includes('saudi') || s.includes('turkey') || s.includes('qatar') || s.includes('türkiye')) {
+    return ['mena'];
+  }
   return ['global'];
 }
 
@@ -141,6 +152,7 @@ const COUNTRY_PORTAL_IDS = {
     'college-navigator',
     'chea-directory',
     'dapip-us-department-of-education',
+    'fulbright-foreign-student-program',
     'applyboard',
     'bachelorsportal',
     'top-universities',
@@ -148,8 +160,10 @@ const COUNTRY_PORTAL_IDS = {
   ],
   'كندا': [
     'ouac',
+    'ontario-colleges',
     'applyalberta',
     'sram',
+    'educanada',
     'applyboard',
     'bachelorsportal',
     'world-higher-education-database',
@@ -157,6 +171,7 @@ const COUNTRY_PORTAL_IDS = {
   ],
   'المملكة المتحدة': [
     'ucas',
+    'chevening-scholarships',
     'open-university-uk',
     'futurelearn',
     'bachelorsportal',
@@ -165,7 +180,10 @@ const COUNTRY_PORTAL_IDS = {
     'world-higher-education-database',
   ],
   'ألمانيا': [
+    'uni-assist',
     'hochschulstart',
+    'daad-study-in-germany',
+    'anabin',
     'kursfinder',
     'bachelorsportal',
     'top-universities',
@@ -177,7 +195,13 @@ const COUNTRY_PORTAL_IDS = {
     'top-universities',
     'world-higher-education-database',
   ],
-  'فرنسا': ['parcoursup', 'bachelorsportal', 'top-universities', 'world-higher-education-database'],
+  'فرنسا': [
+    'parcoursup',
+    'campus-france',
+    'bachelorsportal',
+    'top-universities',
+    'world-higher-education-database',
+  ],
   'هولندا': ['studielink', 'bachelorsportal', 'top-universities', 'world-higher-education-database'],
   'أستراليا': [
     'uac',
@@ -191,7 +215,26 @@ const COUNTRY_PORTAL_IDS = {
     'world-higher-education-database',
   ],
   'الصين': ['caokao-hub-chinaschools', 'applyboard', 'top-universities', 'world-higher-education-database'],
-  'السعودية': ['saddem-portal', 'applyboard', 'top-universities', 'world-higher-education-database'],
+  'السعودية': [
+    'study-in-saudi-arabia',
+    'saddem-portal',
+    'applyboard',
+    'top-universities',
+    'world-higher-education-database',
+  ],
+  'تركيا': [
+    'study-in-t-rkiye',
+    't-rkiye-scholarships',
+    'applyboard',
+    'top-universities',
+    'world-higher-education-database',
+  ],
+  'قطر': [
+    'qatar-scholarships',
+    'applyboard',
+    'top-universities',
+    'world-higher-education-database',
+  ],
   'الهند': ['study-in-india-portal', 'applyboard', 'top-universities', 'world-higher-education-database'],
   'اليابان': ['study-in-japan-portal', 'applyboard', 'top-universities', 'world-higher-education-database'],
 };

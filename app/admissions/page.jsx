@@ -17,6 +17,13 @@ import {
   portalsForCountry,
   portalsForRegion,
 } from '../data/admission-portals';
+import {
+  ADMISSION_DOC_PACKS,
+  LANGUAGE_BENCHMARKS,
+  MAJOR_CLUSTERS,
+  clusterForField,
+  playbookForRegion,
+} from '../data/admissions-knowledge';
 
 const STEPS = [
   ['region', 'القارة'],
@@ -74,6 +81,9 @@ export default function AdmissionsPage() {
     return ADMISSION_PORTALS;
   }, [regionId, studyCountry]);
   const qSystem = qualificationSystems.find((x) => x.id === system) || qualificationSystems.at(-1);
+  const fieldCluster = useMemo(() => clusterForField(field), [field]);
+  const regionPlaybook = useMemo(() => playbookForRegion(regionId), [regionId]);
+  const docPack = applicantType === 'local' ? ADMISSION_DOC_PACKS.local : ADMISSION_DOC_PACKS.international;
 
   const pool = useMemo(() => {
     if (!regionId) return [];
@@ -547,6 +557,34 @@ export default function AdmissionsPage() {
                 />
               </label>
             </div>
+            {fieldCluster && (
+              <aside className="admission-field-intel">
+                <b>مواد ثانوية مفيدة لـ {fieldCluster.labelAr}</b>
+                <p>{fieldCluster.competitiveNoteAr}</p>
+                <ul>
+                  {fieldCluster.secondarySubjectsAr.map((s) => (
+                    <li key={s}>{s}</li>
+                  ))}
+                </ul>
+                <small>
+                  لغة تقريبية: IELTS {fieldCluster.typicalLanguage.ielts}+ / TOEFL iBT{' '}
+                  {fieldCluster.typicalLanguage.toeflIbt}+ — {fieldCluster.typicalLanguage.noteAr}
+                </small>
+              </aside>
+            )}
+            {!fieldCluster && (
+              <aside className="admission-field-intel muted">
+                <b>مجالات شائعة للفلترة</b>
+                <p>اختر مجالاً لعرض المواد الثانوية والحد اللغوي التقريبي، أو تخطَّ لعرض كل البرامج.</p>
+                <div className="admission-chip-row">
+                  {MAJOR_CLUSTERS.map((c) => (
+                    <button key={c.id} type="button" onClick={() => setField(c.labelAr)}>
+                      {c.labelAr}
+                    </button>
+                  ))}
+                </div>
+              </aside>
+            )}
             <footer className="admission-wizard-actions">
               <button type="button" onClick={() => setStep('profile')}>
                 رجوع
@@ -624,6 +662,49 @@ export default function AdmissionsPage() {
                       </a>
                     ))}
                   </div>
+                </article>
+              </section>
+            )}
+
+            {(regionPlaybook || fieldCluster) && (
+              <section className="admission-path-summary admission-research-panel">
+                {regionPlaybook && (
+                  <article>
+                    <small>دليل المنطقة (بحث 2026)</small>
+                    <h3>{regionPlaybook.titleAr}</h3>
+                    <ul>
+                      {regionPlaybook.stepsAr.map((s) => (
+                        <li key={s}>{s}</li>
+                      ))}
+                    </ul>
+                  </article>
+                )}
+                <article>
+                  <small>{docPack.titleAr}</small>
+                  <ul>
+                    {docPack.items.map((d) => (
+                      <li key={d}>{d}</li>
+                    ))}
+                  </ul>
+                </article>
+                <article>
+                  <small>معايير لغة شائعة (إرشادية)</small>
+                  <ul>
+                    {LANGUAGE_BENCHMARKS.slice(0, 4).map((t) => (
+                      <li key={t.id}>
+                        <a href={t.url} target="_blank" rel="noreferrer">
+                          {t.name}
+                        </a>
+                        : {t.typicalMin} (تنافسي {t.competitive})
+                      </li>
+                    ))}
+                  </ul>
+                  {fieldCluster && (
+                    <p>
+                      لتخصص {fieldCluster.labelAr}: IELTS {fieldCluster.typicalLanguage.ielts}+ / TOEFL{' '}
+                      {fieldCluster.typicalLanguage.toeflIbt}+
+                    </p>
+                  )}
                 </article>
               </section>
             )}

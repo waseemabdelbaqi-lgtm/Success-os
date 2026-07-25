@@ -14,6 +14,13 @@
     "Details": "Free workplace skills platform offering diplomas and vocational certificates."
   },
   {
+    "Name": "anabin",
+    "Website": "https://anabin.kmk.org/en/anabin.html",
+    "Type": "Recognition Directory",
+    "Scope": "Germany / Europe",
+    "Details": "Official German database for evaluating foreign school and higher-education qualifications before uni-assist or direct application."
+  },
+  {
     "Name": "Appily",
     "Website": "https://appily.com",
     "Type": "University & College Search",
@@ -77,6 +84,13 @@
     "Details": "Centralized application portal for all 23 California State University campuses."
   },
   {
+    "Name": "Campus France",
+    "Website": "https://www.campusfrance.org/en",
+    "Type": "University Search Directory",
+    "Scope": "France",
+    "Details": "French government gateway for international students covering programmes, Études en France procedure, visas and campus life."
+  },
+  {
     "Name": "Canvas Network",
     "Website": "https://canvas.net",
     "Type": "Training Center & MOOC",
@@ -103,6 +117,13 @@
     "Type": "Accreditation Directory",
     "Scope": "United States / Global",
     "Details": "Council for Higher Education Accreditation database checking over 8200 accredited institutions."
+  },
+  {
+    "Name": "Chevening Scholarships",
+    "Website": "https://www.chevening.org/",
+    "Type": "Scholarship Portal",
+    "Scope": "United Kingdom / Global",
+    "Details": "UK government global scholarship programme for one-year taught master's degrees at UK universities."
   },
   {
     "Name": "Class Central",
@@ -140,11 +161,25 @@
     "Details": "Hosts fully accredited online bachelors and masters degrees from elite universities."
   },
   {
+    "Name": "DAAD Study in Germany",
+    "Website": "https://www.daad.de/en/",
+    "Type": "University Search Directory",
+    "Scope": "Germany",
+    "Details": "German Academic Exchange Service portal for programmes, funding, language requirements and application routes including uni-assist."
+  },
+  {
     "Name": "DAPIP US Department of Education",
     "Website": "https://ope.ed.gov/dapip/",
     "Type": "Accreditation Directory",
     "Scope": "United States",
     "Details": "The authoritative Database of Accredited Postsecondary Institutions and Programs maintained by OPE."
+  },
+  {
+    "Name": "EduCanada",
+    "Website": "https://www.educanada.ca/",
+    "Type": "University Search Directory",
+    "Scope": "Canada",
+    "Details": "Government of Canada study-abroad hub listing designated learning institutions, study permits and scholarship opportunities."
   },
   {
     "Name": "Educations.com",
@@ -161,11 +196,25 @@
     "Details": "Offers verified corporate training micro-credentials and full master programs."
   },
   {
+    "Name": "Erasmus Mundus Catalogue",
+    "Website": "https://www.eacea.ec.europa.eu/scholarships/erasmus-mundus-catalogue_en",
+    "Type": "Scholarship Portal",
+    "Scope": "Europe / Global",
+    "Details": "EU catalogue of jointly delivered Erasmus Mundus Master's programmes with integrated scholarships for international students."
+  },
+  {
     "Name": "Finduddannelse",
     "Website": "https://finduddannelse.dk",
     "Type": "Professional Training Search",
     "Scope": "Europe (Denmark)",
     "Details": "Competence development directory connecting working professionals to industry qualifications."
+  },
+  {
+    "Name": "Fulbright Foreign Student Program",
+    "Website": "https://foreign.fulbrightonline.org/",
+    "Type": "Scholarship Portal",
+    "Scope": "United States / Global",
+    "Details": "U.S. government exchange programme enabling graduate study and research at accredited American universities."
   },
   {
     "Name": "FutureLearn",
@@ -245,6 +294,13 @@
     "Details": "Comprehensive education directory parsing programs from accredited online colleges and free study paths."
   },
   {
+    "Name": "Ontario Colleges",
+    "Website": "https://www.ontariocolleges.ca/en",
+    "Type": "Centralized Admission Portal",
+    "Scope": "Canada (Ontario)",
+    "Details": "Official OCAS portal to apply to public colleges in Ontario; international applicants follow college-specific international steps."
+  },
+  {
     "Name": "Open University UK",
     "Website": "https://open.ac.uk",
     "Type": "Online Degree University",
@@ -278,6 +334,13 @@
     "Type": "Technical Training Center",
     "Scope": "Global",
     "Details": "Workforce development platform specializing in IT cybersecurity and software tracking."
+  },
+  {
+    "Name": "Qatar Scholarships",
+    "Website": "https://www.qatarscholarships.qa/",
+    "Type": "Scholarship Portal",
+    "Scope": "Qatar",
+    "Details": "State-linked scholarship pathways with partner universities covering tuition, housing and stipends for selected programmes."
   },
   {
     "Name": "QTAC",
@@ -343,6 +406,20 @@
     "Details": "Government-backed gateway mapping entry requirements and links for universities across Japan."
   },
   {
+    "Name": "Study in Saudi Arabia",
+    "Website": "https://studyinsaudi.sa/en",
+    "Type": "Centralized Admission Portal",
+    "Scope": "Saudi Arabia",
+    "Details": "Official Ministry of Education portal for international academic applications, scholarships and educational visas to Saudi universities."
+  },
+  {
+    "Name": "Study in Türkiye",
+    "Website": "https://www.studyinturkiye.gov.tr/",
+    "Type": "University Search Directory",
+    "Scope": "Turkey",
+    "Details": "YÖK-managed gateway for programme search, TR-YÖS guidance and international student information across Turkish higher education."
+  },
+  {
     "Name": "Times Course Finder",
     "Website": "https://timescoursefinder.com/",
     "Type": "Global College Marketplace",
@@ -364,6 +441,13 @@
     "Details": "QS rankings directory with direct links to top global universities."
   },
   {
+    "Name": "Türkiye Scholarships",
+    "Website": "https://www.turkiyeburslari.gov.tr/",
+    "Type": "Scholarship Portal",
+    "Scope": "Turkey",
+    "Details": "Government-funded full-time and short-term scholarships with university placement via the TBBS online application system."
+  },
+  {
     "Name": "UAC",
     "Website": "https://www.uac.edu.au/",
     "Type": "Centralized Admission Portal",
@@ -376,6 +460,13 @@
     "Type": "Centralized Admission Portal",
     "Scope": "United Kingdom",
     "Details": "The mandatory centralized admissions system for all UK university courses."
+  },
+  {
+    "Name": "uni-assist",
+    "Website": "https://www.uni-assist.de/en/",
+    "Type": "Centralized Admission Portal",
+    "Scope": "Germany",
+    "Details": "Central evaluation service used by about 180 German universities for international applications, including VPD preliminary review documentation."
   },
   {
     "Name": "University of California Admissions",
