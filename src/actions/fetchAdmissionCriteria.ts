@@ -13,6 +13,7 @@
  */
 
 import { createClient } from "@/utils/supabase/server";
+import { getFallbackCriteriaRows } from "@/src/lib/admission/fallback-data";
 import { summarizeAdmissionCriteria } from "@/src/lib/admission/openai-criteria";
 import { searchTavily } from "@/src/lib/admission/tavily";
 
@@ -163,7 +164,21 @@ export async function getOrScrapeCriteria(
       source: scraped.source,
     };
   } catch {
-    // Preview mode without Supabase
+    // Preview mode without Supabase — prefer seeded MENA/demo criteria, then mock/live
+    const seeded = getFallbackCriteriaRows(institutionId);
+    const aliases = nationalityAliases(trimmedNationality).map((a) => a.toLowerCase());
+    const hit =
+      seeded.find((c) => aliases.includes(c.nationality.toLowerCase())) ||
+      seeded.find((c) => c.nationality === "All");
+    if (hit) {
+      return {
+        institution_id: institutionId,
+        nationality: hit.nationality,
+        min_gpa: hit.min_gpa,
+        requirements_text: hit.requirements_text,
+        source: "cache",
+      };
+    }
     return gatherLiveCriteria(institutionName, trimmedNationality);
   }
 }
