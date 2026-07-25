@@ -1158,3 +1158,192 @@ html[data-os-theme='dark'] .os-content {
     align-items: flex-start;
   }
 }
+
+.admission-partner-flag {
+  margin: 10px 0 0;
+  padding: 8px 12px;
+  border-radius: 10px;
+  background: rgba(8, 125, 106, 0.1);
+  color: #0d4a4d;
+  font-size: 12px;
+  font-weight: 700;
+}
+.admission-partner-flag.external {
+  background: rgba(158, 23, 34, 0.08);
+  color: #6d121b;
+}
+.matched-university-card > footer a.contact-uni-cta {
+  background: #9e1722;
+  color: #fff !important;
+  border-color: #9e1722;
+  font-weight: 800;
+  text-decoration: none;
+  padding: 8px 12px;
+  border-radius: 9px;
+}
+.apply-button.secondary {
+  background: transparent !important;
+  color: #9e1722 !important;
+  border: 1px solid rgba(158, 23, 34, 0.35);
+}
+
+.university-contact-page {
+  display: grid;
+  gap: 18px;
+}
+.university-contact-hero {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 28px 30px;
+  border-radius: 22px;
+  color: #fff;
+  background:
+    radial-gradient(circle at 18% 20%, rgba(255, 214, 186, 0.25), transparent 40%),
+    linear-gradient(135deg, #4b0a11, #9e1722 55%, #c45c2a);
+}
+.university-contact-hero small {
+  letter-spacing: 0.08em;
+  font-weight: 800;
+  opacity: 0.85;
+}
+.university-contact-hero h1 {
+  margin: 8px 0;
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+}
+.university-contact-hero p {
+  margin: 0;
+  max-width: 62ch;
+  line-height: 1.75;
+  opacity: 0.95;
+}
+.university-contact-hero aside {
+  min-width: 120px;
+  align-self: center;
+  text-align: center;
+  padding: 16px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.12);
+}
+.university-contact-hero aside b {
+  display: block;
+  font-size: 2rem;
+}
+.university-contact-layout {
+  display: grid;
+  grid-template-columns: 1.4fr 0.8fr;
+  gap: 16px;
+}
+.university-contact-form,
+.university-contact-aside,
+.university-contact-result,
+.university-contact-empty {
+  padding: 22px;
+  border-radius: 20px;
+  border: 1px solid rgba(158, 23, 34, 0.14);
+  background: linear-gradient(160deg, #fffaf6, #f7ecec);
+}
+.university-contact-form {
+  display: grid;
+  gap: 12px;
+}
+.university-contact-form label,
+.university-contact-email-panel label {
+  display: grid;
+  gap: 6px;
+  font-weight: 700;
+  color: #3a0c12;
+}
+.university-contact-form input,
+.university-contact-form textarea,
+.university-contact-email-panel input,
+.university-contact-email-panel textarea {
+  border: 1px solid #d8c4c6;
+  border-radius: 12px;
+  padding: 12px 14px;
+  font: inherit;
+  background: #fff;
+}
+.university-contact-form em,
+.university-contact-email-panel .email-sent-note {
+  color: #9e1722;
+  font-style: normal;
+  font-size: 13px;
+}
+.university-contact-form button.primary,
+.university-contact-actions .primary,
+.university-contact-actions a.primary {
+  border: 0;
+  border-radius: 12px;
+  padding: 14px 18px;
+  background: #9e1722;
+  color: #fff;
+  font-weight: 800;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+  text-align: center;
+}
+.partner-pill {
+  color: #0d4a4d;
+  font-style: normal;
+  font-weight: 800;
+}
+.external-pill {
+  color: #9e1722;
+  font-style: normal;
+  font-weight: 800;
+}
+.university-contact-aside ol {
+  padding: 0 18px 0 0;
+  line-height: 1.8;
+  color: #4b0a11;
+}
+.university-contact-aside a {
+  display: inline-block;
+  margin: 8px 12px 0 0;
+  color: #9e1722;
+  font-weight: 700;
+  text-decoration: none;
+}
+.university-contact-result > header {
+  display: grid;
+  grid-template-columns: 48px 1fr;
+  gap: 14px;
+  align-items: start;
+  margin-bottom: 16px;
+}
+.university-contact-result > header > span {
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  display: grid;
+  place-items: center;
+  background: #0d4a4d;
+  color: #fff;
+  font-size: 1.4rem;
+}
+.university-contact-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 14px;
+}
+.university-contact-email-panel {
+  display: grid;
+  gap: 12px;
+}
+.university-contact-empty {
+  text-align: center;
+}
+.university-contact-empty a {
+  color: #9e1722;
+  font-weight: 800;
+}
+@media (max-width: 860px) {
+  .university-contact-hero,
+  .university-contact-layout {
+    grid-template-columns: 1fr;
+    flex-direction: column;
+  }
+}

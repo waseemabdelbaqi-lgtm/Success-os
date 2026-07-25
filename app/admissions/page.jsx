@@ -991,9 +991,20 @@ export default function AdmissionsPage() {
                         ))}
                       </ul>
                       <Status recognition={recognition} />
+                      {u.platformMember ? (
+                        <p className="admission-partner-flag">مشتركة في المنصة — تواصل عبر الإشعارات بعد الدفع</p>
+                      ) : (
+                        <p className="admission-partner-flag external">غير مشتركة — تواصل عبر إيميل رسمي بعد الدفع</p>
+                      )}
                       <footer>
                         <a href={`/university-profile?id=${u.id}`}>الملف الكامل</a>
                         <a href={`/eligibility-check?id=${u.id}`}>فحص الأهلية</a>
+                        <a
+                          className="contact-uni-cta"
+                          href={`/university-contact?id=${encodeURIComponent(u.id)}&nationality=${encodeURIComponent(nationality)}&studyCountry=${encodeURIComponent(studyCountry || '')}&applicantType=${encodeURIComponent(applicantType || '')}`}
+                        >
+                          تواصل مع الجامعة · $5
+                        </a>
                         <button
                           type="button"
                           onClick={() => setSelected({ ...u, recognition, req })}
@@ -1147,9 +1158,17 @@ export default function AdmissionsPage() {
             <a href={selected.admission} target="_blank" rel="noreferrer">
               فتح مصدر القبول/التحقق الرسمي ↗
             </a>
+            {selected.id && (
+              <a
+                className="apply-button"
+                href={`/university-contact?id=${encodeURIComponent(selected.id)}&nationality=${encodeURIComponent(nationality)}&studyCountry=${encodeURIComponent(studyCountry || '')}&applicantType=${encodeURIComponent(applicantType || '')}`}
+              >
+                تواصل مع الجامعة — دفع $5 ثم إشعار أو إيميل
+              </a>
+            )}
             <button
               type="button"
-              className="apply-button"
+              className="apply-button secondary"
               onClick={() =>
                 (location.href = `/application-tracker?id=${encodeURIComponent(selected.id || selected.name || '')}&applicant=${applicantType || ''}&country=${encodeURIComponent(studyCountry || '')}`)
               }

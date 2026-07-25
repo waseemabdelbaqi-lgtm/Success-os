@@ -1572,6 +1572,87 @@ export const DESTINATION_TRACKS = Object.freeze({
       universities: ['KU Leuven', 'Ghent University', 'UCLouvain', 'Université libre de Bruxelles'],
     },
   ],
+
+  'النرويج': [
+    {
+      id: 'no-eu-eea-swiss-free',
+      titleAr: 'نرويجي / EU-EEA / سويسرا — بدون رسوم دراسية في الجامعات العامة',
+      match: ({ nationality }) => nationality === 'النرويج' || isEuEea(nationality),
+      whenAr:
+        'حسب Study in Norway: مواطنو النرويج والاتحاد الأوروبي / المنطقة الاقتصادية وسويسرا معفيون من الرسوم الدراسية في مؤسسات التعليم العالي العامة، مع دفع رسوم فصل طلابية صغيرة عادة.',
+      channelAr: 'تقديم الجامعة / Norwegian Universities and Colleges Admission Service حسب البرنامج',
+      docs: ['شهادة ثانوية مؤهلة', 'إثبات جنسية EU/EEA/سويسرا', 'لغة إنجليزية/نرويجية حسب البرنامج'],
+      feesAr: 'بدون tuition في العامة؛ semester fee فقط تقريباً.',
+      visaAr: 'EU/EEA: تسجيل؛ النرويجي لا يحتاج تصريح طالب.',
+      caveats: ['مؤسسات خاصة قد تفرض رسوماً حتى على EU.'],
+      sources: [
+        { label: 'Study in Norway — cost and requirements', url: 'https://studyinnorway.no/cost-and-requirements' },
+      ],
+      portals: [],
+      universities: ['University of Oslo', 'NTNU', 'University of Bergen'],
+    },
+    {
+      id: 'no-non-eu-tuition-permit',
+      titleAr: 'خارج EU/EEA/سويسرا — رسوم دراسية + تصريح إقامة طالب',
+      match: () => true,
+      whenAr:
+        'منذ خريف 2023 يدفع طلاب الدول الثالثة رسوماً دراسية في الجامعات العامة النرويجية تختلف حسب المؤسسة والبرنامج، ويحتاجون تصريح إقامة للدراسة مع إثبات تمويل وسكن.',
+      channelAr: 'تقديم الجامعة (مواعيد أبكر غالباً) → study permit',
+      docs: ['جواز دولة ثالثة', 'قبول كامل الوقت', 'إثبات تمويل وسكن', 'تصريح إقامة طالب'],
+      feesAr: 'رسوم دراسية حسب البرنامج (غالباً عشرات إلى مئات آلاف الكرونة سنوياً) + semester fee.',
+      visaAr: 'Study permit إلزامي لغير EU/EEA/سويسرا (يشمل مواطني UK).',
+      caveats: ['استثناءات للمنح/التبادل/الدكتوراه — تحقق من Study in Norway.'],
+      sources: [
+        { label: 'Study in Norway — cost and requirements', url: 'https://studyinnorway.no/cost-and-requirements' },
+      ],
+      portals: [],
+      universities: ['University of Oslo', 'NTNU', 'University of Bergen'],
+    },
+  ],
+
+  'البرتغال': [
+    {
+      id: 'pt-national-or-eu-call',
+      titleAr: 'برتغالي / EU-EEA مؤهل — Concurso Nacional / شروط المواطنين',
+      match: ({ nationality }) => nationality === 'البرتغال' || isEuEea(nationality),
+      whenAr:
+        'مواطنو البرتغال ومواطنو الاتحاد الأوروبي / المنطقة الاقتصادية (ومن في حكمهم وفق DGES، بما فيه بعض المقيمين لأكثر من سنتين) يدخلون عادة عبر المسابقة الوطنية أو مسارات تعادل شروط المواطنين — وليس وضع «estudante internacional».',
+      channelAr: 'DGES / Concurso Nacional أو تقديم المؤسسة الخاصة',
+      docs: ['شهادة ثانوية / معادل برتغالي', 'امتحانات وطنية أو بدائل مقبولة', 'طلب DGES أو المؤسسة'],
+      feesAr: 'رسوم propinas للمواطنين/EU أقل عادة من رسوم الطالب الدولي.',
+      visaAr: 'EU/EEA: حرية تنقل؛ البرتغالي لا يحتاج تأشيرة.',
+      caveats: ['الإقامة القانونية الطويلة في البرتغال قد تنقلك لمسار الوطني حتى لو لم تكن EU — راجع DGES.'],
+      sources: [
+        { label: 'DGES — National Call', url: 'https://dges.gov.pt/en/pagina/general-information-national-call?plid=1531' },
+        { label: 'DGES — International Students', url: 'http://wwwcdn.dges.gov.pt/en/pagina/international-students' },
+      ],
+      portals: [],
+      universities: ['Universidade de Lisboa', 'Universidade do Porto', 'Universidade Católica Portuguesa'],
+    },
+    {
+      id: 'pt-international-student-special',
+      titleAr: 'طالب دولي (غير EU غالباً) — Concurso Especial + تأشيرة إقامة',
+      match: () => true,
+      whenAr:
+        'من لا يحمل جنسية EU/EEA وليس مقيماً قانونياً لأكثر من سنتين يتقدم عادة عبر المسابقة الخاصة للطالب الدولي (Decreto-Lei 36/2014) مباشرة لكل جامعة/بوليتكنيك بمواعيد ومتطلبات خاصة، ثم تأشيرة إقامة.',
+      channelAr: 'Concurso Especial para Estudantes Internacionais لدى المؤسسة',
+      docs: [
+        'جواز غير EU (أو غير مؤهل للمسار الوطني)',
+        'شهادة تمنح دخول التعليم العالي في بلد الإصدار',
+        'طلب المؤسسة الدولي',
+        'تأشيرة إقامة / تصريح بعد القبول',
+      ],
+      feesAr: 'رسوم طالب دولي أعلى تحددها كل مؤسسة.',
+      visaAr: 'تأشيرة إقامة للدراسة ثم تحويل لتصريح بعد الوصول.',
+      caveats: ['كل مؤسسة تضع مواعيدها ووثائقها — لا توجد بوابة مركزية واحدة لكل الدوليين.'],
+      sources: [
+        { label: 'DGES — Non-EU Students', url: 'https://dges.gov.pt/en/pagina/non-eu-students?plid=1531' },
+        { label: 'DGES — International Students', url: 'http://wwwcdn.dges.gov.pt/en/pagina/international-students' },
+      ],
+      portals: [],
+      universities: ['Universidade de Lisboa', 'Universidade do Porto', 'Universidade Católica Portuguesa'],
+    },
+  ],
 });
 
 /**
@@ -1703,6 +1784,8 @@ export function exampleAlternateNationality(studyCountry, currentNationality) {
     النمسا: 'الأردن',
     إسبانيا: 'الأردن',
     بلجيكا: 'الأردن',
+    النرويج: 'الأردن',
+    البرتغال: 'الأردن',
   };
   return alts[studyCountry] || 'الأردن';
 }
@@ -1781,6 +1864,9 @@ export function nationalityTracksSummary() {
       'https://unedasiss.uned.es/faqs%26idioma%3Den',
       'https://www.belgium.be/en/education/coming_to_study_in_belgium',
       'https://education.ec.europa.eu/study-in-europe/countries/belgium/flanders',
+      'https://studyinnorway.no/cost-and-requirements',
+      'http://wwwcdn.dges.gov.pt/en/pagina/international-students',
+      'https://dges.gov.pt/en/pagina/non-eu-students?plid=1531',
     ],
   };
 }
