@@ -2,7 +2,7 @@
  * Map start-journey university filters → /admissions query params.
  */
 
-import { ADMISSION_COUNTRIES } from '../data/admissions-regions';
+import { ADMISSION_COUNTRIES } from '../data/admissions-regions.js';
 
 /** ISO / common aliases → Arabic country keys used in ADMISSION_COUNTRIES */
 const COUNTRY_ALIASES = {
