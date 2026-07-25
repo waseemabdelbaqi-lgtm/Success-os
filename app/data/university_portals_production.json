@@ -149,76 +149,118 @@
   {
     "Name": "Educations.com",
     "Website": "https://www.educations.com/",
-    "Type": "University & College Search",
+    "Type": "University Search Directory",
     "Scope": "Global",
-    "Details": "International study search engine for programs universities and destination guidance worldwide."
+    "Details": "Study abroad platform cataloging over 120000 global degree structures and scholarship matches."
   },
   {
     "Name": "edX",
-    "Website": "https://www.edx.org/",
+    "Website": "https://edx.org",
     "Type": "Online Degree & Professional Training",
     "Scope": "Global",
     "Details": "Offers verified corporate training micro-credentials and full master programs."
   },
   {
+    "Name": "Finduddannelse",
+    "Website": "https://finduddannelse.dk",
+    "Type": "Professional Training Search",
+    "Scope": "Europe (Denmark)",
+    "Details": "Competence development directory connecting working professionals to industry qualifications."
+  },
+  {
     "Name": "FutureLearn",
-    "Website": "https://www.futurelearn.com/",
+    "Website": "https://futurelearn.com",
     "Type": "Online Degree & Professional Training",
     "Scope": "Global / UK",
     "Details": "Partners with leading global brands and universities to offer flexible digital degrees."
   },
   {
+    "Name": "General Assembly",
+    "Website": "https://generalassemb.ly",
+    "Type": "Technical Training Center",
+    "Scope": "Global",
+    "Details": "Vocational bootcamp layout specializing in tech, design, data engineering, and product management."
+  },
+  {
     "Name": "Hochschulstart",
-    "Website": "https://www.hochschulstart.de/",
+    "Website": "https://hochschulstart.de",
     "Type": "Centralized Admission Portal",
     "Scope": "Germany",
     "Details": "Coordinates applications for nationwide restricted university programs in Germany."
   },
   {
     "Name": "IEEE Learning Network",
-    "Website": "https://iln.ieee.org/",
+    "Website": "https://ieee.org",
     "Type": "Technical Training Center",
     "Scope": "Global",
     "Details": "Premium continuing education and technical training platform for engineers."
   },
   {
+    "Name": "Informa Connect Academy",
+    "Website": "https://informaconnect.com",
+    "Type": "Professional Training Center",
+    "Scope": "Global",
+    "Details": "Provides corporate training courses, industry recognized qualifications, and live workplace seminars."
+  },
+  {
+    "Name": "Keystone Academic Courses",
+    "Website": "https://keystonestudies.com",
+    "Type": "University Search Directory",
+    "Scope": "Global",
+    "Details": "Comprehensive indexing network for matching higher education degrees, pathway courses, and certificates."
+  },
+  {
     "Name": "Khan Academy",
-    "Website": "https://www.khanacademy.org/",
+    "Website": "https://khanacademy.org",
     "Type": "Training Center & College Prep",
     "Scope": "Global",
     "Details": "Free open-source academic repository specializing in K-12 and collegiate foundations."
   },
   {
+    "Name": "Kursfinder",
+    "Website": "https://kursfinder.de",
+    "Type": "Professional Training Search",
+    "Scope": "Europe (Germany)",
+    "Details": "Large professional training database matching employees and corporations with technical trade providers."
+  },
+  {
     "Name": "LinkedIn Learning",
-    "Website": "https://www.linkedin.com/learning/",
+    "Website": "https://linkedin.com",
     "Type": "Professional Training Center",
     "Scope": "Global",
     "Details": "Enterprise skill training center focusing on tech creative and business courses."
   },
   {
     "Name": "Mastersportal",
-    "Website": "https://www.mastersportal.com/",
+    "Website": "https://mastersportal.com",
     "Type": "University Search Directory",
     "Scope": "Global",
     "Details": "Specialized global indexing platform for postgraduate master degrees and tracking."
   },
   {
+    "Name": "OEDb (Online Education Database)",
+    "Website": "https://www.oedb.org/",
+    "Type": "Online Degree Directory",
+    "Scope": "United States / Global",
+    "Details": "Comprehensive education directory parsing programs from accredited online colleges and free study paths."
+  },
+  {
     "Name": "Open University UK",
-    "Website": "https://www.open.ac.uk/",
+    "Website": "https://open.ac.uk",
     "Type": "Online Degree University",
     "Scope": "Global / UK",
     "Details": "Pioneer in distance learning hosting over 170000 digital degree students globally."
   },
   {
     "Name": "OUAC",
-    "Website": "https://www.ouac.on.ca/",
+    "Website": "https://ouac.on.ca",
     "Type": "Centralized Admission Portal",
     "Scope": "Canada (Ontario)",
     "Details": "Centralized application service for all public universities in Ontario."
   },
   {
     "Name": "Parcoursup",
-    "Website": "https://www.parcoursup.gouv.fr/",
+    "Website": "https://parcoursup.gouv.fr",
     "Type": "Centralized Admission Portal",
     "Scope": "France",
     "Details": "Official national platform to register for first year higher education in France."

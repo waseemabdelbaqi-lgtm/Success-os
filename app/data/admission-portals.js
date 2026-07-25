@@ -17,9 +17,11 @@ const TYPE_AR = {
   'Online Degree Portal': 'بوابة درجات أونلاين',
   'Online Degree & Professional Training': 'درجات وتدريب مهني أونلاين',
   'Online Degree & MOOC Aggregator': 'مجمّع درجات وMOOC أونلاين',
+  'Online Degree Directory': 'دليل درجات أونلاين',
   'Technical Training Center': 'مركز تدريب تقني',
   'Training Center & College Prep': 'تدريب وتحضير جامعي',
   'Professional Training Center': 'مركز تدريب مهني',
+  'Professional Training Search': 'بحث تدريب مهني',
   'Creative Training Center': 'مركز تدريب إبداعي',
   'Community College Directory': 'دليل كليات مجتمعية',
   'Accreditation Directory': 'دليل اعتماد أكاديمي',
@@ -36,6 +38,8 @@ const SCOPE_AR = {
   'Global / US': 'عالمي / الولايات المتحدة',
   'Global / UK': 'عالمي / المملكة المتحدة',
   Germany: 'ألمانيا',
+  'Europe (Germany)': 'أوروبا (ألمانيا)',
+  'Europe (Denmark)': 'أوروبا (الدنمارك)',
   'Canada (Ontario)': 'كندا (أونتاريو)',
   'Canada (Quebec)': 'كندا (كيبيك)',
   France: 'فرنسا',
@@ -59,7 +63,15 @@ function scopeBuckets(scope) {
   }
   if (s.includes('united states') || s.includes('/ us')) return ['americas', 'global'];
   if (s.includes('canada')) return ['americas'];
-  if (s.includes('united kingdom') || s.includes('/ uk') || s.includes('germany') || s.includes('france') || s.includes('netherlands')) {
+  if (
+    s.includes('united kingdom') ||
+    s.includes('/ uk') ||
+    s.includes('germany') ||
+    s.includes('france') ||
+    s.includes('netherlands') ||
+    s.includes('denmark') ||
+    s.includes('europe')
+  ) {
     return ['europe', 'global'];
   }
   if (s.includes('australia')) return ['oceania'];
@@ -152,7 +164,19 @@ const COUNTRY_PORTAL_IDS = {
     'top-universities',
     'world-higher-education-database',
   ],
-  'ألمانيا': ['hochschulstart', 'bachelorsportal', 'top-universities', 'world-higher-education-database'],
+  'ألمانيا': [
+    'hochschulstart',
+    'kursfinder',
+    'bachelorsportal',
+    'top-universities',
+    'world-higher-education-database',
+  ],
+  'الدنمارك': [
+    'finduddannelse',
+    'bachelorsportal',
+    'top-universities',
+    'world-higher-education-database',
+  ],
   'فرنسا': ['parcoursup', 'bachelorsportal', 'top-universities', 'world-higher-education-database'],
   'هولندا': ['studielink', 'bachelorsportal', 'top-universities', 'world-higher-education-database'],
   'أستراليا': [
