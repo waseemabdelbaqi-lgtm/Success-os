@@ -29,7 +29,7 @@ export default function StartJourney(){
  const router=useRouter();
  const [step,setStep]=useState(1),[portal,setPortal]=useState(''),[form,setForm]=useState(defaults),[errors,setErrors]=useState({}),[busy,setBusy]=useState(false),[qa,setQa]=useState(false),[choice,setChoice]=useState(''),[lang,setLang]=useState('ar');
  const [partnerProducts,setPartnerProducts]=useState([]);
- useEffect(()=>{try{const saved=JSON.parse(sessionStorage.getItem('success-os-journey')||'null');if(saved){setPortal(saved.portal||'');setForm(saved.form||defaults);setStep(saved.step||1);setChoice(saved.choice||'')}const p=new URLSearchParams(location.search).get('portal');if(p&&portals.some(x=>x[0]===p)){setPortal(p);setStep(needsIntent.has(p)||p==='student'?2:3)}}catch{}},[]);
+ useEffect(()=>{try{const p=new URLSearchParams(location.search).get('portal');if(p==='join'){router.replace('/join-us');return}const saved=JSON.parse(sessionStorage.getItem('success-os-journey')||'null');if(saved){setPortal(saved.portal||'');setForm(saved.form||defaults);setStep(saved.step||1);setChoice(saved.choice||'')}if(p&&portals.some(x=>x[0]===p)){setPortal(p);setStep(needsIntent.has(p)||p==='student'?2:3)}}catch{}},[router]);
  useEffect(()=>{try{sessionStorage.setItem('success-os-journey',JSON.stringify({portal,form,step,choice}))}catch{}},[portal,form,step,choice]);
  useEffect(()=>{try{setPartnerProducts(JSON.parse(localStorage.getItem('success-os-partner-products')||'[]'))}catch{}},[]);
  const studentCore=form.studentType==='university'?universityStudentCore:form.studentType==='courses'?courseStudentCore:schoolStudentCore;
@@ -65,9 +65,21 @@ export default function StartJourney(){
  function next(){
   if((step===2&&portal==='student')||step>=3){if(!valid())return}
   setBusy(true);
+  if(step===2&&portal!=='student'&&form.intent==='join'){
+   router.push(`/access?portal=${encodeURIComponent(portal)}&intent=join`);
+   return;
+  }
   if(step===4&&portal==='student'){
    try{sessionStorage.setItem('success-os-student-search',JSON.stringify({form,createdAt:new Date().toISOString()}))}catch{}
    router.push('/student/results');
+   return;
+  }
+  if(step===4&&portal!=='student'){
+   router.push(query);
+   return;
+  }
+  if(step===3&&portal==='jobseeker'){
+   router.push(query);
    return;
   }
   setTimeout(()=>{setBusy(false);setStep(s=>Math.min(s+1,8))},220)

@@ -7,7 +7,7 @@ const copy = {
   en: {
     dir: 'ltr',
     nav: ['Home', 'Gateways', 'About us', 'Our vision', 'Support'],
-    navIds: ['top', 'gateways', 'why', 'journey', 'contact'],
+    navIds: ['top', 'gateways', 'why', 'journey', '/contact'],
     signIn: 'Sign in', start: 'Start learning', eyebrow: 'AI-powered • Human-guided • Built for life',
     slogan: 'Your Path to Success Leaves Ignorance Behind',
     heroA: 'Your learning.', heroB: 'One intelligent system.',
@@ -63,7 +63,7 @@ const copy = {
   ar: {
     dir: 'rtl',
     nav: ['الرئيسية', 'البوابات', 'من نحن', 'رؤيتنا', 'الدعم'],
-    navIds: ['top', 'gateways', 'why', 'journey', 'contact'],
+    navIds: ['top', 'gateways', 'why', 'journey', '/contact'],
     signIn: 'تسجيل الدخول', start: 'ابدأ التعلم', eyebrow: 'بالذكاء الاصطناعي • بإشراف الإنسان • معك مدى الحياة',
     slogan: 'طريقك نحو النجاح يمحو طريقك نحو الجهل',
     heroA: 'تعليمك.', heroB: 'في نظام ذكي واحد.',
@@ -182,6 +182,24 @@ export default function HomePage() {
   ];
   const partnerGateways=['teacher','center','school','university','employer'];
   const searchRoutes={teacher:'/teachers',center:'/partner-search?portal=center',school:'/school-finder',university:'/admissions',employer:'/jobs'};
+  const footerLinks = {
+    Platform: { Learning: '/programs', 'AI Tutor': '/tutor', Teachers: '/teachers', 'Education Passport': '/passport' },
+    المنصة: { التعلم: '/programs', 'المعلم الذكي': '/tutor', المعلمون: '/teachers', 'الجواز التعليمي': '/passport' },
+    Programs: { 'EST وACT': '/courses', EST: '/courses', ACT: '/courses', AP: '/courses', IGCSE: '/courses', 'A Level': '/courses', 'EST & ACT': '/courses' },
+    البرامج: { 'EST وACT': '/courses', AP: '/courses', IGCSE: '/courses', 'A Level': '/courses' },
+    Company: { About: '/about', 'Safety & Privacy': '/trust', Contact: '/contact', 'Success 4 Sure Academy': 'https://www.success4sureacademy.com/' },
+    الشركة: { 'من نحن': '/about', 'الأمان والخصوصية': '/trust', 'تواصل معنا': '/contact', 'Success 4 Sure Academy': 'https://www.success4sureacademy.com/' },
+  };
+  const roleDestinations = {
+    Student: '/start-journey?portal=student',
+    طالب: '/start-journey?portal=student',
+    Parent: '/parent',
+    'ولي أمر': '/parent',
+    Teacher: '/join-us?role=teacher',
+    معلم: '/join-us?role=teacher',
+    Institution: '/join-us',
+    مؤسسة: '/join-us',
+  };
 
   const hubNodes = lang === 'en'
     ? [['n1','👨‍🎓','Students'],['n2','👩‍🏫','Teachers'],['n3','👪','Parents'],['n4','💼','Careers'],['n5','🏫','Schools'],['n6','🎓','Universities'],['n7','⌁','AI Assist']]
@@ -221,7 +239,7 @@ export default function HomePage() {
             <p>{t.heroText}</p>
             <div className="hero-actions">
               <a className="button" href="#gateways">{t.explore}<b>→</b></a>
-              <a className="button ghost" href="#ai"><Icon name="spark"/>{t.tutor}</a>
+              <a className="button ghost" href="/tutor"><Icon name="spark"/>{t.tutor}</a>
             </div>
             <div className="sos-hero-metrics">
               {t.stats.map(([n,l], i) => (
@@ -246,7 +264,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="portal-first-stage" id="explore-portals">
+      <section className="portal-first-stage" id="portals">
         <div className="portal-first-backdrop"><img src="/media/success-future-gateways.webp" alt="بوابات SUCCESS OS المستقبلية"/></div>
         <div className="container portal-first-content">
           <header>
@@ -254,7 +272,7 @@ export default function HomePage() {
             <h1>{lang==='en'?'Choose your gateway. Reach your goal.':'اختر بوابتك. واصل إلى هدفك.'}</h1>
             <p>{lang==='en'?'A clear beginning for every learner, educator, institution and opportunity.':'بداية واضحة لكل طالب ومعلم ومؤسسة وفرصة، ثم فلاتر تقودك مباشرة إلى طلبك.'}</p>
           </header>
-          <div className="portal-first-grid">{gateways.map(([number,icon,label,,,description,id],i)=><a href={`/start-journey?portal=${id}`} style={{'--portal-pos':`${(i%4)*30}% ${i<4?'20%':'78%'}`}} key={id}><span className="portal-image"></span><small>{number}</small><b>{icon} {label}</b><p>{description}</p></a>)}</div>
+          <div className="portal-first-grid">{gateways.map(([number,icon,label,,,description,id],i)=><a href={id==='join'?'/join-us':`/start-journey?portal=${id}`} style={{'--portal-pos':`${(i%4)*30}% ${i<4?'20%':'78%'}`}} key={id}><span className="portal-image"></span><small>{number}</small><b>{icon} {label}</b><p>{description}</p></a>)}</div>
           <a className="portal-start-button" href="/start-journey"><span>{lang==='en'?'Start the journey':'ابدأ الرحلة'}</span><b>←</b></a>
         </div>
       </section>
@@ -276,7 +294,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="knowledge-entry"><div className="container"><header><small>ONE LEARNING UNIVERSE</small><h2>{lang==='en'?'School, university and career learning—inside one platform':'التعلم المدرسي والجامعي والمهني داخل منصة واحدة'}</h2></header><div className="knowledge-entry-grid"><a href="/subject-catalog"><span>▦</span><small>LOCAL + INTERNATIONAL</small><h3>{lang==='en'?'School subjects':'المواد المدرسية'}</h3><p>{lang==='en'?'Curricula by country, system and grade.':'مناهج حسب الدولة والنظام والصف.'}</p><b>↗</b></a><a href="/university-subjects"><span>⚛</span><small>COLLEGE + UNIVERSITY</small><h3>{lang==='en'?'University subjects':'المواد الجامعية'}</h3><p>{lang==='en'?'Degrees, disciplines and course pathways.':'درجات وتخصصات ومسارات مساقات.'}</p><b>↗</b></a><a href="/content-studio"><span>✦</span><small>HUMAN-GUIDED AI</small><h3>{lang==='en'?'Content studio':'استوديو بناء المحتوى'}</h3><p>{lang==='en'?'Upload, summarize, script and review.':'ارفع ولخّص وابنِ الفيديو ثم راجع.'}</p><b>↗</b></a><a href="/source-registry"><span>✓</span><small>RIGHTS + PROVENANCE</small><h3>{lang==='en'?'Source registry':'سجل المصادر والحقوق'}</h3><p>{lang==='en'?'Know what can be used and how.':'اعرف ما يمكن استخدامه وكيف.'}</p><b>↗</b></a></div><div className="home-shield"><span>⬡</span><div><small>SUCCESS SHIELD</small><b>كل درس وفيديو وامتحان يحمل بصمة وحقوقًا وصلاحية واضحة</b></div><a href="/security-center">افتح مركز الحماية ←</a></div></div></section>
+      <section className="knowledge-entry" id="journey"><div className="container"><header><small>ONE LEARNING UNIVERSE</small><h2>{lang==='en'?'School, university and career learning—inside one platform':'التعلم المدرسي والجامعي والمهني داخل منصة واحدة'}</h2></header><div className="knowledge-entry-grid"><a href="/subject-catalog"><span>▦</span><small>LOCAL + INTERNATIONAL</small><h3>{lang==='en'?'School subjects':'المواد المدرسية'}</h3><p>{lang==='en'?'Curricula by country, system and grade.':'مناهج حسب الدولة والنظام والصف.'}</p><b>↗</b></a><a href="/university-subjects"><span>⚛</span><small>COLLEGE + UNIVERSITY</small><h3>{lang==='en'?'University subjects':'المواد الجامعية'}</h3><p>{lang==='en'?'Degrees, disciplines and course pathways.':'درجات وتخصصات ومسارات مساقات.'}</p><b>↗</b></a><a href="/content-studio"><span>✦</span><small>HUMAN-GUIDED AI</small><h3>{lang==='en'?'Content studio':'استوديو بناء المحتوى'}</h3><p>{lang==='en'?'Upload, summarize, script and review.':'ارفع ولخّص وابنِ الفيديو ثم راجع.'}</p><b>↗</b></a><a href="/source-registry"><span>✓</span><small>RIGHTS + PROVENANCE</small><h3>{lang==='en'?'Source registry':'سجل المصادر والحقوق'}</h3><p>{lang==='en'?'Know what can be used and how.':'اعرف ما يمكن استخدامه وكيف.'}</p><b>↗</b></a></div><div className="home-shield"><span>⬡</span><div><small>SUCCESS SHIELD</small><b>كل درس وفيديو وامتحان يحمل بصمة وحقوقًا وصلاحية واضحة</b></div><a href="/security-center">افتح مركز الحماية ←</a></div></div></section>
 
       <section className="home-core-summary" id="why">
         <div className="container">
@@ -294,9 +312,9 @@ export default function HomePage() {
       <section className="cta-section" id="contact"><div className="container cta-card"><div className="cta-orb a"></div><div className="cta-orb b"></div><div className="eyebrow light">{t.ctaEyebrow}</div><h2>{t.ctaTitle}</h2><p>{t.ctaText}</p><div><button className="button mint-button" onClick={()=>setModal(true)}>{t.ctaButton}<b>→</b></button><a className="button clear" href="https://www.success4sureacademy.com/" target="_blank" rel="noreferrer">{t.ctaSecondary}</a></div></div></section>
     </main>
 
-    <footer><div className="container footer-grid"><div className="footer-brand"><Logo/><p>{t.footerText}</p><div className="socials"><a href="https://www.instagram.com/success4surejo/" target="_blank" rel="noreferrer">IG</a><a href="mailto:info@success4sureacademy.com">@</a><a href="https://www.success4sureacademy.com/" target="_blank" rel="noreferrer">↗</a></div></div>{t.footerCols.map(col=><div className="footer-col" key={col[0]}><strong>{col[0]}</strong>{col.slice(1).map(x=><a href="#top" key={x}>{x}</a>)}</div>)}</div><div className="container footer-bottom"><span>{t.rights}</span><span>Amman • Dubai • Online Worldwide</span></div></footer>
+    <footer><div className="container footer-grid"><div className="footer-brand"><Logo/><p>{t.footerText}</p><div className="socials"><a href="https://www.instagram.com/success4surejo/" target="_blank" rel="noreferrer">IG</a><a href="mailto:info@success4sureacademy.com">@</a><a href="https://www.success4sureacademy.com/" target="_blank" rel="noreferrer">↗</a></div></div>{t.footerCols.map(col=><div className="footer-col" key={col[0]}><strong>{col[0]}</strong>{col.slice(1).map(x=>{const href=(footerLinks[col[0]]||{})[x]||'/';const external=href.startsWith('http');return <a href={href} key={x} {...(external?{target:'_blank',rel:'noreferrer'}:{})}>{x}</a>})}</div>)}</div><div className="container footer-bottom"><span>{t.rights}</span><span>Amman • Dubai • Online Worldwide</span></div></footer>
 
-    {modal && <div className="modal-backdrop" onMouseDown={(e)=>e.target===e.currentTarget&&setModal(false)}><div className="modal"><button className="modal-close" onClick={()=>setModal(false)}>×</button><Logo dark/><h2>{t.modalTitle}</h2><p>{t.modalText}</p><div className="role-grid">{t.roles.map(([name,desc],i)=><button key={name} className={role===name?'selected':''} onClick={()=>setRole(name)}><span>{['◉','◇','✦','▦'][i]}</span><div><strong>{name}</strong><small>{desc}</small></div><b>→</b></button>)}</div><button className="button modal-next" disabled={!role} onClick={()=>{window.location.href='/onboarding'}}>{t.modalNext}<b>→</b></button></div></div>}
+    {modal && <div className="modal-backdrop" onMouseDown={(e)=>e.target===e.currentTarget&&setModal(false)}><div className="modal"><button className="modal-close" onClick={()=>setModal(false)}>×</button><Logo dark/><h2>{t.modalTitle}</h2><p>{t.modalText}</p><div className="role-grid">{t.roles.map(([name,desc],i)=><button key={name} className={role===name?'selected':''} onClick={()=>setRole(name)}><span>{['◉','◇','✦','▦'][i]}</span><div><strong>{name}</strong><small>{desc}</small></div><b>→</b></button>)}</div><button className="button modal-next" disabled={!role} onClick={()=>{window.location.href=roleDestinations[role]||'/start-journey'}}>{t.modalNext}<b>→</b></button></div></div>}
     {languageSheet&&<div className="language-sheet" onMouseDown={e=>e.target===e.currentTarget&&setLanguageSheet(false)}><div><button onClick={()=>setLanguageSheet(false)}>×</button><small>GLOBAL LANGUAGE LAYER</small><h2>اختر من جميع اللغات</h2><p>العربية وEnglish واجهتان أصليتان. بقية اللغات تستخدم طبقة ترجمة تلقائية وتبقى خاضعة للمراجعة البشرية.</p><section>{launchLanguages.map(([code,name,dir,status])=><button className={code===selectedLanguage?'active':''} onClick={()=>{setSelectedLanguage(code);setSelectedDirection(dir==='RTL'?'rtl':'ltr');setLang(code==='ar'?'ar':'en');setLanguageSheet(false)}} key={code}><b>{name}</b><span>{code.toUpperCase()} • {dir} • {status}</span></button>)}</section></div></div>}
   </div>;
 }

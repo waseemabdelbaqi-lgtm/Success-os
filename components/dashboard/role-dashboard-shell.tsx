@@ -68,12 +68,29 @@ export function RoleDashboardShell({
       </section>
 
       <section className="rounded-2xl border border-dashed border-[#dcc8cc] bg-[#fff8f6] p-6">
-        <h2 className="text-sm font-medium text-[#4b0a11]">Feature modules</h2>
+        <h2 className="text-sm font-medium text-[#4b0a11]">Quick links</h2>
         <p className="mt-1 text-sm text-[#6b5a52]">
-          Role-specific features for {definition.label} will be mounted here in
-          upcoming development phases. The permission system and route protection
-          are fully active.
+          Open the live SUCCESS OS surfaces available for your role today.
         </p>
+        <div className="mt-4 flex flex-wrap gap-2">
+          {[
+            ['Start journey', '/start-journey'],
+            ['Student portal', '/student-portal'],
+            ['Teachers', '/teachers'],
+            ['Courses', '/courses'],
+            ['Marketplace', '/marketplace'],
+            ['Jobs', '/jobs'],
+            ['Admin', '/dashboard/admin'],
+          ].map(([label, href]) => (
+            <a
+              key={href}
+              href={href}
+              className="rounded-full bg-[#9e1722] px-3 py-1.5 text-xs font-semibold text-white"
+            >
+              {label}
+            </a>
+          ))}
+        </div>
       </section>
     </div>
   );
