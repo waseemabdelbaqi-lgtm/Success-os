@@ -22,19 +22,9 @@ const CATEGORY_LABELS: Record<string, string> = {
   support: "دعم",
 };
 
-/** Map dashboard roles → control-hub section */
+/** Map dashboard roles → control-hub section (users = student + job seeker only) */
 function sectionForRole(role: UserRole): "company" | "partners" | "users" {
-  if (
-    role === "super_admin" ||
-    role === "owner" ||
-    role === "admin" ||
-    role === "academic_director" ||
-    role === "content_creator" ||
-    role === "social_media_manager" ||
-    role === "customer_support"
-  ) {
-    return "company";
-  }
+  if (role === "student" || role === "job_seeker") return "users";
   if (
     role === "teacher" ||
     role === "school" ||
@@ -44,7 +34,8 @@ function sectionForRole(role: UserRole): "company" | "partners" | "users" {
   ) {
     return "partners";
   }
-  return "users";
+  // parent + all internal staff → company (support / ops)
+  return "company";
 }
 
 export function RoleDashboardShell({

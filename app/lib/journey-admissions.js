@@ -1,10 +1,10 @@
 /**
  * Map start-journey university filters → /admissions query params.
+ * Easy filter model: 3 essentials + optional extras (default الكل).
  */
 
 import { ADMISSION_COUNTRIES } from '../data/admissions-regions.js';
 
-/** ISO / common aliases → Arabic country keys used in ADMISSION_COUNTRIES */
 const COUNTRY_ALIASES = {
   JO: 'الأردن',
   AE: 'الإمارات',
@@ -33,21 +33,24 @@ const COUNTRY_ALIASES = {
   ZA: 'جنوب أفريقيا',
   NG: 'نيجيريا',
   KE: 'كينيا',
+  CH: 'سويسرا',
 };
 
 export const ADMISSION_STUDY_COUNTRIES = Object.keys(ADMISSION_COUNTRIES);
 
+/** Required for university search continue */
+export const UNIVERSITY_CORE_FIELDS = ['داخل الدولة أو خارجها', 'دولة الوجهة', 'الدرجة'];
+
+/** Optional — default الكل, never block continue */
+export const UNIVERSITY_OPTIONAL_FIELDS = ['نمط الدراسة', 'التخصص'];
+
 export const UNIVERSITY_JOURNEY_FIELDS = [
-  'داخل الدولة أو خارجها',
-  'دولة الوجهة',
-  'نوع المؤسسة',
-  'نمط الدراسة',
-  'الدرجة',
-  'التخصص',
+  ...UNIVERSITY_CORE_FIELDS,
+  ...UNIVERSITY_OPTIONAL_FIELDS,
 ];
 
 export const UNIVERSITY_STUDY_MODES = ['الكل', 'وجاهي', 'أونلاين'];
-export const UNIVERSITY_DEGREES = ['الكل', 'دبلوم', 'بكالوريوس', 'ماجستير', 'دكتوراه', 'دورة قصيرة'];
+export const UNIVERSITY_DEGREES = ['بكالوريوس', 'دبلوم', 'ماجستير', 'دكتوراه', 'الكل'];
 export const UNIVERSITY_INSTITUTION_TYPES = [
   'الكل',
   'جامعة',
@@ -69,12 +72,7 @@ const FIELD_CHOICES = [
   'آداب',
   'قانون',
   'تصميم',
-  'عمارة وتصميم',
-  'اقتصاد',
-  'علوم اجتماعية',
-  'إدارة',
   'تعليم',
-  'صحة',
 ];
 
 export function universityFieldChoices() {
@@ -87,7 +85,6 @@ export function resolveAdmissionCountry(value) {
   if (ADMISSION_COUNTRIES[raw]) return raw;
   const upper = raw.toUpperCase();
   if (COUNTRY_ALIASES[upper]) return COUNTRY_ALIASES[upper];
-  // Arabic display name from Intl may differ slightly — fuzzy match
   const hit = ADMISSION_STUDY_COUNTRIES.find(
     (c) => c === raw || c.includes(raw) || raw.includes(c),
   );
@@ -97,19 +94,15 @@ export function resolveAdmissionCountry(value) {
 export function applicantFromJourney(value) {
   if (value === 'داخل دولتي') return 'local';
   if (value === 'خارج دولتي') return 'international';
-  return ''; // كلاهما / unset → wizard chooses
+  return '';
 }
 
-/** Normalize mode for admissions registry (no هجين in data). */
 export function modeFromJourney(value) {
   if (!value || value === 'الكل' || value === 'هجين') return '';
   if (value === 'وجاهي' || value === 'أونلاين') return value;
   return '';
 }
 
-/**
- * Build /admissions?... from journey form filters.
- */
 export function admissionsUrlFromJourney(form = {}) {
   const filters = form.filters || {};
   const params = new URLSearchParams({ from: 'journey' });
@@ -134,9 +127,6 @@ export function admissionsUrlFromJourney(form = {}) {
 
   const field = filters['التخصص'];
   if (field && field !== 'الكل') params.set('field', field);
-
-  const type = filters['نوع المؤسسة'];
-  if (type && type !== 'الكل') params.set('type', type);
 
   if (form.name) params.set('name', form.name);
 

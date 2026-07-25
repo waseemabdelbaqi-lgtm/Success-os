@@ -507,9 +507,9 @@ export default function AdmissionsPage() {
             </header>
             <div>
               <label>
-                المجال
-                <select value={field} onChange={(e) => setField(e.target.value)}>
-                  {fields.map((x) => (
+                الدرجة
+                <select value={degree} onChange={(e) => setDegree(e.target.value)}>
+                  {['الكل', 'بكالوريوس', 'دبلوم', 'ماجستير', 'دكتوراه'].map((x) => (
                     <option key={x}>{x}</option>
                   ))}
                 </select>
@@ -523,27 +523,27 @@ export default function AdmissionsPage() {
                 </select>
               </label>
               <label>
-                نوع المؤسسة
+                المجال (اختياري)
+                <select value={field} onChange={(e) => setField(e.target.value)}>
+                  {fields.map((x) => (
+                    <option key={x}>{x}</option>
+                  ))}
+                </select>
+              </label>
+              <label>
+                نوع المؤسسة (اختياري)
                 <select value={institutionType} onChange={(e) => setInstitutionType(e.target.value)}>
                   {institutionTypes.map((x) => (
                     <option key={x}>{x}</option>
                   ))}
                 </select>
               </label>
-              <label>
-                الدرجة
-                <select value={degree} onChange={(e) => setDegree(e.target.value)}>
-                  {['الكل', 'بكالوريوس', 'دبلوم', 'ماجستير', 'دكتوراه'].map((x) => (
-                    <option key={x}>{x}</option>
-                  ))}
-                </select>
-              </label>
               <label className="wide">
-                اسم الجامعة أو التخصص
+                بحث سريع (اختياري)
                 <input
                   value={query}
                   onChange={(e) => setQuery(e.target.value)}
-                  placeholder="مثال: هندسة، Manchester، طب، كلية مجتمعية"
+                  placeholder="اسم جامعة أو تخصص…"
                 />
               </label>
             </div>
@@ -551,8 +551,20 @@ export default function AdmissionsPage() {
               <button type="button" onClick={() => setStep('profile')}>
                 رجوع
               </button>
+              <button
+                type="button"
+                onClick={() => {
+                  setField('الكل');
+                  setMode('الكل');
+                  setInstitutionType('الكل');
+                  setQuery('');
+                  goResults();
+                }}
+              >
+                تخطي — اعرض الكل
+              </button>
               <button type="button" className="primary" onClick={goResults}>
-                عرض الجامعات المطابقة ←
+                عرض النتائج ←
               </button>
             </footer>
           </section>
