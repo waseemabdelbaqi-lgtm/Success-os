@@ -841,6 +841,42 @@ html[data-os-theme='dark'] .os-content {
   margin-top: 14px;
 }
 
+.admission-nationality-track {
+  margin-top: 16px;
+  padding: 18px 20px;
+  border-radius: 18px;
+  border: 1px solid rgba(158, 23, 34, 0.18);
+  background: linear-gradient(165deg, #fff8f0 0%, #f3e6e6 100%);
+}
+
+.admission-nationality-track small {
+  color: #9e1722;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+}
+
+.admission-nationality-track h3 {
+  margin: 6px 0 8px;
+  color: #4b0a11;
+  font-size: 1.15rem;
+}
+
+.admission-nationality-track p,
+.admission-nationality-track li {
+  color: #4b0a11;
+  line-height: 1.75;
+  font-size: 13px;
+}
+
+.admission-nationality-track ul {
+  margin: 8px 0 12px;
+  padding: 0 18px 0 0;
+}
+
+.admission-nationality-track b {
+  color: #2e060a;
+}
+
 .admission-portals-band {
   margin: 16px 0 8px;
   padding: 20px;

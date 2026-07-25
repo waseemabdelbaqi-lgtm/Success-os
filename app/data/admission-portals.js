@@ -61,6 +61,7 @@ const SCOPE_AR = {
   'Saudi Arabia': 'السعودية',
   Turkey: 'تركيا',
   Qatar: 'قطر',
+  Jordan: 'الأردن',
   India: 'الهند',
   Japan: 'اليابان',
 };
@@ -85,7 +86,13 @@ function scopeBuckets(scope) {
   }
   if (s.includes('australia')) return ['oceania'];
   if (s.includes('china') || s.includes('india') || s.includes('japan')) return ['asia'];
-  if (s.includes('saudi') || s.includes('turkey') || s.includes('qatar') || s.includes('türkiye')) {
+  if (
+    s.includes('saudi') ||
+    s.includes('turkey') ||
+    s.includes('qatar') ||
+    s.includes('türkiye') ||
+    s.includes('jordan')
+  ) {
     return ['mena'];
   }
   return ['global'];
@@ -231,6 +238,12 @@ const COUNTRY_PORTAL_IDS = {
   ],
   'قطر': [
     'qatar-scholarships',
+    'applyboard',
+    'top-universities',
+    'world-higher-education-database',
+  ],
+  'الأردن': [
+    'study-in-jordan',
     'applyboard',
     'top-universities',
     'world-higher-education-database',

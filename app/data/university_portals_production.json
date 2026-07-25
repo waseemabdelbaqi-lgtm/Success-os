@@ -406,6 +406,13 @@
     "Details": "Government-backed gateway mapping entry requirements and links for universities across Japan."
   },
   {
+    "Name": "Study in Jordan",
+    "Website": "https://studyinjordan.jo/",
+    "Type": "Centralized Admission Portal",
+    "Scope": "Jordan",
+    "Details": "Official MOHE unified electronic admission system for international non-Jordanian students at Jordanian public universities (private optional)."
+  },
+  {
     "Name": "Study in Saudi Arabia",
     "Website": "https://studyinsaudi.sa/en",
     "Type": "Centralized Admission Portal",

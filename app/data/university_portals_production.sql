@@ -12,7 +12,7 @@ CREATE INDEX IF NOT EXISTS idx_portals_name_alpha ON university_portals(name ASC
 CREATE INDEX IF NOT EXISTS idx_portals_scope ON university_portals(scope ASC);
 CREATE INDEX IF NOT EXISTS idx_portals_type ON university_portals(type ASC);
 
--- Seed (71 records, A–Z by name)
+-- Seed (72 records, A–Z by name)
 INSERT INTO university_portals (name, website, type, scope, details) VALUES ('AACC Community College Directory', 'https://www.aaccihub.com/network/findacompany', 'Community College Directory', 'United States', 'Official network portal of the American Association of Community Colleges to search member institutions.');
 INSERT INTO university_portals (name, website, type, scope, details) VALUES ('Alison', 'https://alison.com', 'Training Center & Certifications', 'Global', 'Free workplace skills platform offering diplomas and vocational certificates.');
 INSERT INTO university_portals (name, website, type, scope, details) VALUES ('anabin', 'https://anabin.kmk.org/en/anabin.html', 'Recognition Directory', 'Germany / Europe', 'Official German database for evaluating foreign school and higher-education qualifications before uni-assist or direct application.');
@@ -71,6 +71,7 @@ INSERT INTO university_portals (name, website, type, scope, details) VALUES ('SR
 INSERT INTO university_portals (name, website, type, scope, details) VALUES ('Studielink', 'https://www.studielink.nl/', 'Centralized Admission Portal', 'Netherlands', 'Official national enrollment portal for Dutch higher education institutions.');
 INSERT INTO university_portals (name, website, type, scope, details) VALUES ('Study in India Portal', 'https://www.studyinindia.gov.in/', 'Centralized Admission Portal', 'India', 'Official government portal for international student admission into Indian universities.');
 INSERT INTO university_portals (name, website, type, scope, details) VALUES ('Study in Japan Portal', 'https://www.studyinjapan.go.jp/', 'University Search Directory', 'Japan', 'Government-backed gateway mapping entry requirements and links for universities across Japan.');
+INSERT INTO university_portals (name, website, type, scope, details) VALUES ('Study in Jordan', 'https://studyinjordan.jo/', 'Centralized Admission Portal', 'Jordan', 'Official MOHE unified electronic admission system for international non-Jordanian students at Jordanian public universities (private optional).');
 INSERT INTO university_portals (name, website, type, scope, details) VALUES ('Study in Saudi Arabia', 'https://studyinsaudi.sa/en', 'Centralized Admission Portal', 'Saudi Arabia', 'Official Ministry of Education portal for international academic applications, scholarships and educational visas to Saudi universities.');
 INSERT INTO university_portals (name, website, type, scope, details) VALUES ('Study in Türkiye', 'https://www.studyinturkiye.gov.tr/', 'University Search Directory', 'Turkey', 'YÖK-managed gateway for programme search, TR-YÖS guidance and international student information across Turkish higher education.');
 INSERT INTO university_portals (name, website, type, scope, details) VALUES ('Times Course Finder', 'https://timescoursefinder.com/', 'Global College Marketplace', 'International', 'Aggregator matching global students to courses visas and active scholarship metrics.');

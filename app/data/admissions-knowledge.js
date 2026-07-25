@@ -328,10 +328,16 @@ export function knowledgeSummary() {
     languageTests: LANGUAGE_BENCHMARKS.length,
     playbooks: REGION_PLAYBOOKS.length,
     researchedAt: '2026-07-25',
+    noteAr:
+      'شروط القبول تختلف باختلاف جنسية الطالب وبلد إقامته وبلد إصدار الشهادة — راجع nationality-admission-tracks.',
     sources: [
       'UNESCO UIS ISCED-F 2013',
-      'uni-assist / DAAD / Hochschulstart',
-      'UCAS / Common App / OUAC / Studielink / Parcoursup',
+      'uni-assist / DAAD / Hochschulstart (EU vs non-EU routes)',
+      'Campus France Études en France (residence + nationality)',
+      'UCAS / UK home vs overseas fee status',
+      'DUO / Studielink (EEA statutory vs institutional fees)',
+      'OUAC / Ontario PAL 2026 for international undergraduates',
+      'Study in Jordan unified admission for non-Jordanians',
       'Study in Saudi / Study in Türkiye / Türkiye Scholarships',
       'Ontario Colleges / EduCanada',
       'Chevening / Erasmus Mundus / Fulbright / Qatar Scholarships',

@@ -24,6 +24,7 @@ import {
   clusterForField,
   playbookForRegion,
 } from '../data/admissions-knowledge';
+import { resolveNationalityTrack } from '../data/nationality-admission-tracks';
 
 const STEPS = [
   ['region', 'القارة'],
@@ -83,6 +84,19 @@ export default function AdmissionsPage() {
   const qSystem = qualificationSystems.find((x) => x.id === system) || qualificationSystems.at(-1);
   const fieldCluster = useMemo(() => clusterForField(field), [field]);
   const regionPlaybook = useMemo(() => playbookForRegion(regionId), [regionId]);
+  const nationalityTrack = useMemo(
+    () =>
+      studyCountry && nationality
+        ? resolveNationalityTrack({
+            studyCountry,
+            nationality,
+            residenceCountry: nationality,
+            qualificationCountry,
+            applicantType,
+          })
+        : null,
+    [studyCountry, nationality, qualificationCountry, applicantType],
+  );
   const docPack = applicantType === 'local' ? ADMISSION_DOC_PACKS.local : ADMISSION_DOC_PACKS.international;
 
   const pool = useMemo(() => {
@@ -230,12 +244,24 @@ export default function AdmissionsPage() {
 
   function chooseApplicant(type) {
     setApplicantType(type);
-    // If local applicant studying in same country as nationality default, keep; else suggest international path clarity
+    // Local path assumes citizenship of the study country; international keeps selected nationality.
     if (type === 'local' && studyCountry) {
       setNationality(studyCountry);
       setQualificationCountry(studyCountry);
+    } else if (type === 'international' && studyCountry && nationality === studyCountry) {
+      // Nudge away from same-country nationality so the international track can resolve.
+      setNationality('الأردن');
     }
     setStep('profile');
+  }
+
+  function onNationalityChange(next) {
+    setNationality(next);
+    if (studyCountry && next === studyCountry && applicantType === 'international') {
+      setApplicantType('local');
+    } else if (studyCountry && next !== studyCountry && applicantType === 'local') {
+      setApplicantType('international');
+    }
   }
 
   function goResults() {
@@ -258,11 +284,11 @@ export default function AdmissionsPage() {
       <main className="os-page-content admission-match-page admission-wizard-page">
         <header className="admissions-hero admission-premium-hero">
           <div>
-            <span>REGION → COUNTRY → LOCAL / INTERNATIONAL</span>
+            <span>REGION → COUNTRY → NATIONALITY → LOCAL / INTERNATIONAL</span>
             <h1>قبول الجامعات: سلسلة اختيارات واضحة</h1>
             <p>
-              ابدأ بالقارة (الأمريكتان ثم أوروبا ثم آسيا…)، اختر الدولة، ثم حدّد إن كنت طالباً محلياً أو دولياً لترى
-              المتطلبات والقنوات الرسمية المناسبة.
+              ابدأ بالقارة، اختر دولة الدراسة، ثم جنسيتك — فشروط القبول والرسوم والتأشيرة وقناة التقديم تختلف باختلاف
+              جنسية الطالب وبلد إقامته وبلد شهادته، وليس بمجرد مسار «محلي/دولي» فقط.
             </p>
           </div>
           <div className="admission-orbit">
@@ -449,8 +475,8 @@ export default function AdmissionsPage() {
             </header>
             <div>
               <label>
-                جنسية الطالب
-                <select value={nationality} onChange={(e) => setNationality(e.target.value)}>
+                جنسية الطالب (تغيّر شروط القبول)
+                <select value={nationality} onChange={(e) => onNationalityChange(e.target.value)}>
                   {studentCountries.map((x) => (
                     <option key={x}>{x}</option>
                   ))}
@@ -493,6 +519,47 @@ export default function AdmissionsPage() {
                 دولة الشهادة: {qualificationCountry} • جنسية الطالب: {nationality}
               </small>
             </aside>
+            {nationalityTrack && (
+              <aside className="admission-nationality-track">
+                <small>مسار حسب الجنسية — بحث من مصادر رسمية</small>
+                <h3>{nationalityTrack.titleAr}</h3>
+                <p>{nationalityTrack.whenAr}</p>
+                <ul>
+                  <li>
+                    <b>قناة التقديم:</b> {nationalityTrack.channelAr}
+                  </li>
+                  <li>
+                    <b>الرسوم:</b> {nationalityTrack.feesAr}
+                  </li>
+                  <li>
+                    <b>التأشيرة/الإقامة:</b> {nationalityTrack.visaAr}
+                  </li>
+                </ul>
+                <b>وثائق هذا المسار</b>
+                <ul>
+                  {(nationalityTrack.docs || []).map((d) => (
+                    <li key={d}>{d}</li>
+                  ))}
+                </ul>
+                {(nationalityTrack.caveats || []).length > 0 && (
+                  <>
+                    <b>تنبيهات</b>
+                    <ul>
+                      {nationalityTrack.caveats.map((c) => (
+                        <li key={c}>{c}</li>
+                      ))}
+                    </ul>
+                  </>
+                )}
+                <div className="admission-inline-links">
+                  {(nationalityTrack.sources || []).map((s) => (
+                    <a key={s.url} href={s.url} target="_blank" rel="noreferrer">
+                      {s.label} ↗
+                    </a>
+                  ))}
+                </div>
+              </aside>
+            )}
             <footer className="admission-wizard-actions">
               <button type="button" onClick={() => setStep('applicant')}>
                 رجوع
@@ -614,54 +681,79 @@ export default function AdmissionsPage() {
               <span>◎</span>
               <div>
                 <b>
-                  مسار {applicantType === 'local' ? 'طالب محلي' : 'طالب دولي'} في {studyCountry} ({region?.nameAr})
+                  {nationalityTrack?.titleAr ||
+                    `مسار ${applicantType === 'local' ? 'طالب محلي' : 'طالب دولي'} في ${studyCountry}`}{' '}
+                  — جنسية {nationality}
                 </b>
                 <p>
-                  {countryProfile?.[applicantType === 'local' ? 'localSummaryAr' : 'internationalSummaryAr']} هذه
-                  النتائج إرشادية وليست قرار معادلة. تحقق دائماً من الصفحة الرسمية للبرنامج.
+                  {nationalityTrack?.whenAr ||
+                    countryProfile?.[applicantType === 'local' ? 'localSummaryAr' : 'internationalSummaryAr']}{' '}
+                  الشروط تختلف بالجنسية وبلد الإقامة وبلد الشهادة. النتائج إرشادية — تحقق من الصفحة الرسمية.
                 </p>
               </div>
               <a
-                href={countryAuthorities[nationality]?.url || countryProfile?.authorityUrl || 'https://www.whed.net/home.php'}
+                href={
+                  nationalityTrack?.sources?.[0]?.url ||
+                  countryAuthorities[nationality]?.url ||
+                  countryProfile?.authorityUrl ||
+                  'https://www.whed.net/home.php'
+                }
                 target="_blank"
                 rel="noreferrer"
               >
-                الجهة المختصة ↗
+                المصدر الرسمي ↗
               </a>
             </section>
 
-            {countryProfile && (
+            {(nationalityTrack || countryProfile) && (
               <section className="admission-path-summary">
                 <article>
-                  <small>قناة التقديم</small>
-                  <h3>
-                    {applicantType === 'local'
-                      ? countryProfile.applyChannelLocal
-                      : countryProfile.applyChannelInternational}
-                  </h3>
+                  <small>قناة التقديم حسب جنسيتك</small>
+                  <h3>{nationalityTrack?.channelAr || (applicantType === 'local'
+                      ? countryProfile?.applyChannelLocal
+                      : countryProfile?.applyChannelInternational)}</h3>
+                  {nationalityTrack && (
+                    <>
+                      <p>
+                        <b>رسوم:</b> {nationalityTrack.feesAr}
+                      </p>
+                      <p>
+                        <b>تأشيرة:</b> {nationalityTrack.visaAr}
+                      </p>
+                    </>
+                  )}
                 </article>
                 <article>
-                  <small>وثائق أساسية</small>
+                  <small>وثائق هذا المسار</small>
                   <ul>
-                    {(applicantType === 'local'
-                      ? countryProfile.localDocs
-                      : countryProfile.internationalDocs
-                    )
-                      .slice(0, 5)
+                    {(nationalityTrack?.docs ||
+                      (applicantType === 'local'
+                        ? countryProfile?.localDocs
+                        : countryProfile?.internationalDocs) ||
+                      docPack.items)
+                      .slice(0, 6)
                       .map((d) => (
                         <li key={d}>{d}</li>
                       ))}
                   </ul>
                 </article>
                 <article>
-                  <small>مصادرك</small>
+                  <small>مصادر رسمية للتحقق</small>
                   <div className="admission-inline-links">
-                    {countryProfile.sources?.map((s) => (
+                    {(nationalityTrack?.sources?.length
+                      ? nationalityTrack.sources
+                      : countryProfile?.sources
+                    )?.map((s) => (
                       <a key={s.url} href={s.url} target="_blank" rel="noreferrer">
                         {s.label} ↗
                       </a>
                     ))}
                   </div>
+                  {(nationalityTrack?.caveats || []).slice(0, 2).map((c) => (
+                    <p key={c}>
+                      <small>⚠ {c}</small>
+                    </p>
+                  ))}
                 </article>
               </section>
             )}

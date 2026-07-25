@@ -312,14 +312,24 @@ export const ADMISSION_COUNTRIES = {
     nameEn: 'Jordan',
     authority: 'وزارة التعليم العالي والبحث العلمي الأردنية',
     authorityUrl: 'https://mohe.gov.jo/',
-    applyChannelLocal: 'نظام القبول الموحد / الجامعة',
-    applyChannelInternational: 'قبول الموازي أو الدولي + معادلة الشهادة',
-    localSummaryAr: 'طالب محلي: توجيهي + معدل وحدود التخصص عبر القبول الموحد أو المباشر حسب البرنامج.',
-    internationalSummaryAr: 'طالب دولي: معادلة الشهادة لدى الوزارة + لغة البرنامج + رسوم الموازي/الدولي.',
+    applyChannelLocal: 'نظام القبول الموحد / الجامعة (للأردنيين)',
+    applyChannelInternational:
+      'نظام القبول الموحد الإلكتروني للطلاب الدوليين غير الأردنيين عبر Study in Jordan (إلزامي للجامعات الحكومية)',
+    localSummaryAr: 'أردني: توجيهي + معدل وحدود التخصص عبر القبول الموحد أو المباشر حسب البرنامج.',
+    internationalSummaryAr:
+      'غير أردني: التقديم عبر studyinjordan.jo للجامعات الحكومية (معادلة/تحقق وزارة التربية داخل النظام) — الجامعات الخاصة عبر النظام أو مباشرة دون وسطاء.',
     localDocs: ['شهادة التوجيهي', 'طلب القبول الموحد', 'حدود المعدل للتخصص'],
-    internationalDocs: ['شهادة ثانوية + معادلة', 'جواز', 'إثبات لغة إن لزم', 'رسوم المسار الدولي'],
-    notesAr: 'تحقق من قوائم الجامعات المعترف بها قبل الدراسة خارج الأردن أيضاً.',
+    internationalDocs: [
+      'شهادة ثانوية للتحقق/المعادلة عبر النظام',
+      'رفع الوثائق ودفع رسوم الطلب المعلنة',
+      'جواز',
+      'إثبات لغة إن لزم',
+    ],
+    notesAr:
+      'الجنسية حاسمة: غير الأردني ≠ مسار الأردني. الأردني حامل جنسية أجنبية قد يلتحق بالبرنامج الدولي وفق سياسة المجلس. تحقق من قوائم الاعتراف قبل الدراسة خارج الأردن.',
     sources: [
+      { label: 'Study in Jordan (non-Jordanian unified admission)', url: 'https://studyinjordan.jo/' },
+      { label: 'MOHE — international non-Jordanian admission', url: 'https://mohe.gov.jo/' },
       { label: 'University of Jordan registration', url: 'https://registration.ju.edu.jo/' },
       { label: 'JUST Admission', url: 'https://www.just.edu.jo/Admission/' },
     ],
