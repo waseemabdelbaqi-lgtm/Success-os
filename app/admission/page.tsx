@@ -1,3 +1,5 @@
+import Link from "next/link";
+import { redirect } from "next/navigation";
 import { InnerNav } from "../components";
 import { createClient } from "@/utils/supabase/server";
 import InstitutionCard from "@/components/InstitutionCard";
@@ -7,16 +9,12 @@ import {
 } from "@/src/lib/admission/fallback-data";
 
 export const metadata = {
-  title: "المؤسسات المتوافقة | SUCCESS OS",
+  title: "فرصك التعليمية | SUCCESS OS",
   description: "فلترة ذكية للجامعات والكليات حسب الجنسية والمعدل الأكاديمي.",
 };
 
 interface PageProps {
-  searchParams: Promise<{
-    nationality?: string;
-    gpa?: string;
-    type?: string;
-  }>;
+  searchParams: Promise<{ nationality?: string; gpa?: string; type?: string }>;
 }
 
 type CriteriaRow = {
@@ -60,31 +58,6 @@ function pickMatchedCriteria(
   return rows.find((c) => c.nationality === "All") || null;
 }
 
-function filterInstitutions(
-  institutions: InstitutionRow[],
-  studentNationality: string,
-  studentGpa: number,
-  typeFilter?: string,
-) {
-  return institutions
-    .map((inst) => {
-      const matchedCriteria = pickMatchedCriteria(
-        inst.admission_criteria,
-        studentNationality,
-      );
-      return { ...inst, matchedCriteria };
-    })
-    .filter((inst) => {
-      if (typeFilter && inst.type !== typeFilter) return false;
-      // استبعاد المؤسسة إذا كان معدل الطالب أقل من الحد الأدنى المطلوب
-      if (inst.matchedCriteria && studentGpa > 0) {
-        return studentGpa >= Number(inst.matchedCriteria.min_gpa);
-      }
-      // في حال لم يتم إدخال معدل الفلترة حتى الآن — اعرض المؤسسات التي لها شرط مطابق
-      return Boolean(inst.matchedCriteria);
-    });
-}
-
 function fallbackInstitutions(): InstitutionRow[] {
   return FALLBACK_INSTITUTIONS.map((inst) => ({
     id: inst.id,
@@ -96,114 +69,87 @@ function fallbackInstitutions(): InstitutionRow[] {
   }));
 }
 
-async function loadInstitutions(): Promise<{
-  institutions: InstitutionRow[];
-  mode: "supabase" | "preview";
-  error?: string;
-}> {
+async function loadInstitutions(): Promise<InstitutionRow[]> {
   try {
     const supabase = await createClient();
-    const { data, error } = await supabase.from("institutions").select(`
-      id,
-      name,
-      type,
-      logo_url,
-      is_partner,
-      admission_criteria (
-        nationality,
-        min_gpa,
-        requirements_text
-      )
+    const { data } = await supabase.from("institutions").select(`
+      id, name, type, logo_url, is_partner,
+      admission_criteria (nationality, min_gpa, requirements_text)
     `);
-
-    if (error || !data) {
-      return {
-        institutions: fallbackInstitutions(),
-        mode: "preview",
-        error: error?.message,
-      };
-    }
-
-    return { institutions: data as InstitutionRow[], mode: "supabase" };
+    if (!data) return fallbackInstitutions();
+    return data as InstitutionRow[];
   } catch {
-    // بدون مفاتيح Supabase — عرض الكتالوج التجريبي
-    return { institutions: fallbackInstitutions(), mode: "preview" };
+    return fallbackInstitutions();
   }
 }
 
 export default async function DiscoveryPage({ searchParams }: PageProps) {
   const params = await searchParams;
 
-  const studentNationality = params.nationality || "Egyptian";
-  const studentGpa = parseFloat(params.gpa || "0.0");
-  const typeFilter = params.type?.trim() || undefined;
-
-  const { institutions, mode, error: loadError } = await loadInstitutions();
-
-  if (!institutions) {
-    return (
-      <>
-        <InnerNav active="admissions" />
-        <div className="py-20 text-center font-medium text-red-500">
-          حدث خطأ أثناء تحميل البيانات.
-        </div>
-      </>
-    );
+  // فحص أمني وتجربة مستخدم سهلة: إذا لم يدخل بياناته، أعد توجيهه لصفحة تعبئة الجنسية والمعدل فوراً
+  if (!params.nationality || !params.gpa) {
+    redirect("/onboard");
   }
 
-  // الفلترة الذكية (جنسية + معدل، مع تفضيل شرط الجنسية المحددة ثم All)
-  const filteredInstitutions = filterInstitutions(
-    institutions,
-    studentNationality,
-    Number.isFinite(studentGpa) ? studentGpa : 0,
-    typeFilter,
-  );
+  const studentNationality = params.nationality;
+  const studentGpa = parseFloat(params.gpa);
+  const typeFilter = params.type?.trim() || undefined;
+
+  if (!Number.isFinite(studentGpa)) {
+    redirect("/onboard");
+  }
+
+  const institutions = await loadInstitutions();
+
+  // الفلترة الذكية والمطابقة (تفضيل شرط الجنسية ثم All)
+  const filtered = institutions
+    .map((inst) => {
+      const matchedCriteria = pickMatchedCriteria(
+        inst.admission_criteria,
+        studentNationality,
+      );
+      return { ...inst, matchedCriteria };
+    })
+    .filter((inst) => {
+      if (typeFilter && inst.type !== typeFilter) return false;
+      // عرض الجامعة فقط إذا كان معدل الطالب أعلى أو يساوي الحد الأدنى المطلوب لجنسيته
+      if (inst.matchedCriteria) {
+        return studentGpa >= Number(inst.matchedCriteria.min_gpa);
+      }
+      return false;
+    });
 
   return (
     <>
       <InnerNav active="admissions" />
       <main className="min-h-screen bg-[#fff8f8] px-4 py-12 sm:px-6 lg:px-8" dir="rtl">
         <div className="mx-auto max-w-7xl">
-          {/* شريط معلومات الفلترة العلوية */}
-          <div className="mb-10 rounded-2xl bg-gradient-to-br from-[#4b0a11] via-[#7f121b] to-[#9e1722] p-8 text-white shadow-xl">
-            <h1 className="mb-3 font-[family-name:var(--font-sos-display)] text-2xl font-black sm:text-3xl">
-              🎓 المؤسسات المتوافقة مع شروط قبولك
-            </h1>
-            <p className="max-w-2xl text-sm leading-relaxed text-[#f2dadd]">
-              بناءً على جنسيتك ومعدلك الأكاديمي، قمنا بتصفية خياراتك وعرض الجامعات، الكليات
-              والمدارس التي تملك فرصة قبول حقيقية ومباشرة فيها مع الشروط الدقيقة لكل مؤسسة.
-            </p>
-            <div className="mt-5 flex flex-wrap gap-3 text-xs">
-              <span className="rounded-lg border border-white/10 bg-white/10 px-3 py-1.5">
-                🌍 الجنسية المفلترة:{" "}
-                <strong className="text-amber-200">{studentNationality}</strong>
-              </span>
-              {studentGpa > 0 ? (
-                <span className="rounded-lg border border-white/10 bg-white/10 px-3 py-1.5">
-                  📊 المعدل المرصود:{" "}
-                  <strong className="text-amber-200">{studentGpa}</strong>
-                </span>
-              ) : null}
-              {typeFilter ? (
-                <span className="rounded-lg border border-white/10 bg-white/10 px-3 py-1.5">
-                  النوع: <strong className="text-amber-200">{typeFilter}</strong>
-                </span>
-              ) : null}
-              <span className="rounded-lg border border-white/10 bg-white/10 px-3 py-1.5">
-                المصدر: {mode === "supabase" ? "Supabase" : "معاينة محلية"}
-              </span>
-            </div>
-            {loadError && mode === "preview" ? (
-              <p className="mt-3 text-xs text-amber-100/90">
-                تعذّر الاتصال بقاعدة البيانات — يتم عرض بيانات المعاينة.
+          {/* هيدر مخصص يشعر الطالب بالراحة والأمان */}
+          <div className="mb-10 flex flex-col justify-between gap-4 rounded-2xl bg-gradient-to-br from-[#4b0a11] via-[#7f121b] to-[#9e1722] p-8 text-white shadow-xl sm:flex-row sm:items-center">
+            <div>
+              <h1 className="mb-2 font-[family-name:var(--font-sos-display)] text-2xl font-black sm:text-3xl">
+                ✨ فرصك التعليمية المتاحة حالياً
+              </h1>
+              <p className="max-w-xl text-sm text-[#f2dadd]">
+                لقد قمنا بفحص شروط القبول لـ{" "}
+                <span className="font-bold text-amber-200">{filtered.length}</span> مؤسسة
+                وتصفيتها بناءً على بياناتك الأكاديمية وجنسيتك (
+                <strong className="text-amber-200">{studentNationality}</strong> · معدل{" "}
+                <strong className="text-amber-200">{studentGpa}</strong>).
               </p>
-            ) : null}
+            </div>
+            <Link
+              href="/onboard"
+              className="self-start rounded-xl border border-white/10 bg-white/10 px-4 py-2 text-xs text-white transition-all hover:bg-white/20 sm:self-center"
+            >
+              🔄 تعديل الجنسية أو المعدل
+            </Link>
           </div>
 
-          {/* شبكة عرض بطاقات الجامعات المفلترة تلقائياً */}
-          {filteredInstitutions.length > 0 ? (
+          {/* عرض النتائج المفلترة */}
+          {filtered.length > 0 ? (
             <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-              {filteredInstitutions.map((inst) => (
+              {filtered.map((inst) => (
                 <InstitutionCard
                   key={inst.id}
                   id={inst.id}
@@ -216,10 +162,16 @@ export default async function DiscoveryPage({ searchParams }: PageProps) {
               ))}
             </div>
           ) : (
-            <div className="rounded-2xl border border-dashed border-[#ead9db] bg-white py-20 text-center">
+            <div className="rounded-2xl border border-[#ead9db] bg-white py-20 text-center">
               <p className="font-medium text-[#73636a]">
-                للأسف، لا توجد مؤسسات تعليمية تطابق شروط القبول لجنسيتك أو معدلك الحالي.
+                لا توجد مؤسسات تطابق شروط جنسيتك أو معدلك حالياً.
               </p>
+              <Link
+                href="/onboard"
+                className="mt-4 inline-block text-sm font-bold text-[#9e1722] underline"
+              >
+                تعديل بياناتك والمحاولة مجدداً
+              </Link>
             </div>
           )}
         </div>
