@@ -209,6 +209,8 @@ function nationalityAliases(nationality: string): string[] {
     syria: ["Syria", "Syrian"],
     saudi: ["Saudi", "Saudi Arabian"],
     "saudi arabian": ["Saudi Arabian", "Saudi"],
+    iraqi: ["Iraqi", "Iraq"],
+    iraq: ["Iraq", "Iraqi"],
   };
   return map[key] || [nationality];
 }

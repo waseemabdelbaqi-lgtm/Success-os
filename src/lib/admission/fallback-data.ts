@@ -81,6 +81,16 @@ export const FALLBACK_INSTITUTIONS: Institution[] = [
     official_email: "intl.students@ju.edu.jo",
     logo_url: "https://ju.edu.jo",
   },
+  {
+    id: "00000000-0000-4000-8000-000000000014",
+    name: "جامعة بهتشه شهير اسطنبول",
+    type: "university",
+    country: "Turkey",
+    majors: ["Engineering", "Business", "Medicine", "Computing", "Design"],
+    is_partner: true,
+    official_email: "international@bau.edu.tr",
+    logo_url: "https://bau.edu.tr",
+  },
 ];
 
 type FallbackCriteria = {
@@ -195,6 +205,26 @@ const CRITERIA: Record<string, FallbackCriteria[]> = {
       requirements_text:
         "القبول عبر البرنامج الدولي بالجامعة، الحد الأدنى للهندسة والصيدلة هو 80% وللتخصصات الأخرى 60%، يشترط مراجعة مكتب الفحص الأمني للوافدين في عمان فور الدخول لإتمام الإقامة.",
     },
+    {
+      nationality: "Iraqi",
+      min_gpa: 3.2,
+      requirements_text:
+        "يتطلب القبول في البرنامج الدولي تصديق وثيقة الثانوية من وزارة التربية العراقية والخارجية، والحد الأدنى للطب البشري 90% والهندسة 80%.",
+      avg_living_cost: "400$ - 600$ شهرياً (عمان)",
+      deadline_date: "2026-09-15",
+      is_accredited_in_home_country: true,
+    },
+  ],
+  "00000000-0000-4000-8000-000000000014": [
+    {
+      nationality: "Syrian",
+      min_gpa: 2.0,
+      requirements_text:
+        "القبول بالشهادة الثانوية مباشرة بدون اختبارات قبول. يشترط فقط حيازة جواز سفر ساري وعمل معادلة شهادة Denklik بعد الوصول.",
+      avg_living_cost: "350$ - 500$ شهرياً (إسطنبول)",
+      deadline_date: "2026-09-30",
+      is_accredited_in_home_country: true,
+    },
   ],
 };
 
@@ -221,6 +251,8 @@ function pickCriteria(institutionId: string, nationality: string) {
     syria: "syria",
     saudi: "saudi",
     "saudi arabian": "saudi",
+    iraqi: "iraq",
+    iraq: "iraq",
   };
   const key = aliases[normalized] || normalized;
   return (
