@@ -1,36 +1,46 @@
-import { redirect } from "next/navigation";
+"use client";
 
-export const dynamic = "force-dynamic";
+import { useEffect } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
+import { Suspense } from "react";
 
-type Search = Record<string, string | string[] | undefined>;
+function Redirector() {
+  const router = useRouter();
+  const sp = useSearchParams();
+
+  useEffect(() => {
+    const step = sp.get("step") || "";
+    const paid = sp.get("paid");
+    const institutionId = sp.get("institution_id") || sp.get("institution") || "";
+
+    if (paid && institutionId) {
+      const qs = sp.toString();
+      router.replace(`/apply/${institutionId}?${qs}`);
+      return;
+    }
+    if (step === "matches") {
+      router.replace("/admission");
+      return;
+    }
+    router.replace("/onboard");
+  }, [router, sp]);
+
+  return (
+    <div className="mx-auto max-w-lg px-4 py-20 text-sm text-[#73636a]">
+      Redirecting to the admission funnel…
+    </div>
+  );
+}
 
 /** Legacy URL → multi-page admission funnel */
-export default async function AdmissionFunnelRedirectPage({
-  searchParams,
-}: {
-  searchParams: Promise<Search> | Search;
-}) {
-  const sp = await Promise.resolve(searchParams);
-  const step = typeof sp.step === "string" ? sp.step : "";
-  const paid = sp.paid;
-  const institutionId =
-    typeof sp.institution_id === "string"
-      ? sp.institution_id
-      : typeof sp.institution === "string"
-        ? sp.institution
-        : "";
-
-  if (paid && institutionId) {
-    const qs = new URLSearchParams();
-    for (const [k, v] of Object.entries(sp)) {
-      if (typeof v === "string") qs.set(k, v);
-    }
-    redirect(`/apply/${institutionId}?${qs.toString()}`);
-  }
-
-  if (step === "matches") {
-    redirect("/admission");
-  }
-
-  redirect("/onboard");
+export default function AdmissionFunnelRedirectPage() {
+  return (
+    <Suspense
+      fallback={
+        <div className="mx-auto max-w-lg px-4 py-20 text-sm text-[#73636a]">Redirecting…</div>
+      }
+    >
+      <Redirector />
+    </Suspense>
+  );
 }
