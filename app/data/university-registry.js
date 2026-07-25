@@ -78,6 +78,9 @@ export const countryAuthorities = {
   'ليختنشتاين':{authority:'University of Liechtenstein',url:'https://www.uni.li/en/studies/plan-your-studies/study-costs-und-funding',note:'EU/EEA/سويسرا أو Matura أوروبية: CHF 950/فصل؛ غيرهم CHF 1,250 + تأشيرة.'},
   'جورجيا':{authority:'NAEC / Georgian universities',url:'https://admissions.iliauni.edu.ge/en/tuition-fees-and-funding-opportunities/',note:'مواطن: امتحانات وطنية ≈ 2250 GEL؛ أجنبي: قبول مباشر بالدولار + إقامة.'},
   'تايلاند':{authority:'Council of University Presidents / Chulalongkorn',url:'https://www.chula.ac.th/en/academics/admissions/undergraduate-admission/',note:'تايلاندي: TCAS ورسوم Thai أدنى؛ أجنبي: قبول دولي ورسوم Foreign + تأشيرة ED.'},
+  'الفلبين':{authority:'UniFAST / CHED',url:'https://unifast.gov.ph/fhe.html',note:'مواطن فلبيني: Free Higher Education في SUC/LUC؛ أجنبي يدفع + تأشيرة 9(f).'},
+  'إندونيسيا':{authority:'SNPMB / university admissions',url:'https://www.snpmb.id/snbp/informasi-umum',note:'مواطن: SNBP/SNBT/Mandiri + UKT؛ أجنبي: IUP غالباً + KITAS.'},
+  'صربيا':{authority:'Ministry of Education / universities',url:'https://www.bazaobrazovanja.rs/en/education/costs-of-studying',note:'صربي: موازنة أو تمويل ذاتي بالدينار؛ أجنبي: رسوم يورو طوال الدراسة + إقامة.'},
 };
 
 const allSystems = qualificationSystems.map(x=>x.id);
@@ -569,6 +572,86 @@ export const globalInstitutions = [
  U('patana','تايلاند','بانكوك','Bangkok Patana School','مدرسة',['وجاهي'],['IB','British Curriculum','ابتدائي','ثانوي'],'https://www.patana.ac.th/admissions',{
    degree:'تعليم مدرسي K-12',
    platformMember:true,contactEmail:'admissions@patana.ac.th',
+ }),
+ U('upd','الفلبين','كويزون سيتي','University of the Philippines Diliman','جامعة',['وجاهي'],['علوم','هندسة','آداب','أعمال'],'https://upd.edu.ph/immigration-requirements/',{
+   local:['UPCAT أو قبول محلي','Free Higher Education للمواطن الفلبيني في SUC'],
+   international:['رسوم كاملة + EDF','تأشيرة طالب 9(f)'],
+   platformMember:true,contactEmail:'our.diliman@up.edu.ph',
+ }),
+ U('upm','الفلبين','مانيلا','University of the Philippines Manila','جامعة',['وجاهي'],['طب وصحة','علوم','آداب'],'https://www.upm.edu.ph/',{
+   contactEmail:'admission@upm.edu.ph',
+ }),
+ U('admu','الفلبين','كويزون سيتي','Ateneo de Manila University','جامعة',['وجاهي'],['أعمال','علوم','آداب','هندسة'],'https://www.ateneo.edu/ls/undergraduate/admissions',{
+   platformMember:true,contactEmail:'admissions.soh@ateneo.edu',
+ }),
+ U('dlsu','الفلبين','مانيلا','De La Salle University','جامعة',['وجاهي'],['أعمال','هندسة','علوم','تعليم'],'https://www.dlsu.edu.ph/admissions/',{
+   contactEmail:'admissions@dlsu.edu.ph',
+ }),
+ U('ust','الفلبين','مانيلا','University of Santo Tomas','جامعة',['وجاهي'],['طب وصحة','هندسة','آداب','أعمال'],'https://www.ust.edu.ph/admissions/',{
+   contactEmail:'admissions@ust.edu.ph',
+ }),
+ U('mapua','الفلبين','مانيلا','Mapúa University','جامعة',['وجاهي'],['هندسة','حوسبة','عمارة وتصميم'],'https://www.mapua.edu.ph/Pages/Admissions',{
+   contactEmail:'admissions@mapua.edu.ph',
+ }),
+ U('pnu','الفلبين','مانيلا','Philippine Normal University','كلية جامعية',['وجاهي'],['تعليم','علوم اجتماعية'],'https://www.pnu.edu.ph/',{
+   degree:'بكالوريوس ودراسات عليا في التعليم',
+   platformMember:true,contactEmail:'admissions@pnu.edu.ph',
+ }),
+ U('is-manila','الفلبين','مانيلا','International School Manila','مدرسة',['وجاهي'],['IB','American Curriculum','ابتدائي','ثانوي'],'https://www.ismanila.org/admissions',{
+   degree:'تعليم مدرسي K-12',contactEmail:'admissions@ismanila.org',
+ }),
+ U('itb','إندونيسيا','باندونغ','Institut Teknologi Bandung','جامعة',['وجاهي'],['هندسة','حوسبة','أعمال','علوم'],'https://admission.itb.ac.id/home/international/undergraduate',{
+   local:['SNBP/SNBT/Mandiri','UKT متدرج'],
+   international:['IUP فقط للأجانب غالباً','TOEFL/IELTS + SAT','KITAS'],
+   platformMember:true,contactEmail:'admission@itb.ac.id',
+ }),
+ U('ui-id','إندونيسيا','جاكرتا','Universitas Indonesia','جامعة',['وجاهي'],['طب وصحة','هندسة','أعمال','علوم'],'https://admission.ui.ac.id/',{
+   platformMember:true,contactEmail:'humas-admission@ui.ac.id',
+ }),
+ U('ugm','إندونيسيا','يوغياكرتا','Universitas Gadjah Mada','جامعة',['وجاهي'],['طب وصحة','هندسة','علوم','آداب'],'https://um.ugm.ac.id/',{
+   contactEmail:'admission@ugm.ac.id',
+ }),
+ U('its','إندونيسيا','سورابايا','Institut Teknologi Sepuluh Nopember','جامعة',['وجاهي'],['هندسة','حوسبة','علوم'],'https://www.its.ac.id/admission/',{
+   contactEmail:'admisi@its.ac.id',
+ }),
+ U('unair','إندونيسيا','سورابايا','Universitas Airlangga','جامعة',['وجاهي'],['طب وصحة','علوم','أعمال','قانون'],'https://www.unair.ac.id/',{
+   contactEmail:'info@unair.ac.id',
+ }),
+ U('binus','إندونيسيا','جاكرتا','Binus University','جامعة',['وجاهي','أونلاين'],['حوسبة','أعمال','تصميم','هندسة'],'https://binus.ac.id/admission/',{
+   contactEmail:'admissions@binus.edu',
+ }),
+ U('pnj','إندونيسيا','جاكرتا','Politeknik Negeri Jakarta','كلية',['وجاهي'],['هندسة','حوسبة','أعمال'],'https://www.pnj.ac.id/',{
+   degree:'دبلوم تطبيقي وبكالوريوس مهني',
+   platformMember:true,contactEmail:'humas@pnj.ac.id',
+ }),
+ U('jis','إندونيسيا','جاكرتا','Jakarta Intercultural School','مدرسة',['وجاهي'],['IB','American Curriculum','ابتدائي','ثانوي'],'https://www.jisedu.or.id/admissions',{
+   degree:'تعليم مدرسي K-12',contactEmail:'admissions@jisedu.or.id',
+ }),
+ U('bg','صربيا','بلغراد','University of Belgrade','جامعة',['وجاهي'],['هندسة','طب وصحة','علوم','آداب'],'https://www.bg.ac.rs/en/education/',{
+   local:['امتحان قبول','مقاعد موازنة أو تمويل ذاتي بالدينار'],
+   international:['رسوم باليورو طوال الدراسة','إقامة مؤقتة'],
+   platformMember:true,contactEmail:'upis@rect.bg.ac.rs',
+ }),
+ U('uns','صربيا','نوفي ساد','University of Novi Sad','جامعة',['وجاهي'],['هندسة','طب وصحة','علوم','آداب'],'https://www.uns.ac.rs/index.php/en/',{
+   platformMember:true,contactEmail:'international@uns.ac.rs',
+ }),
+ U('uni','صربيا','نيش','University of Niš','جامعة',['وجاهي'],['هندسة','طب وصحة','علوم','آداب'],'https://www.ni.ac.rs/en/',{
+   contactEmail:'international@ni.ac.rs',
+ }),
+ U('kg','صربيا','كراغوييفاتس','University of Kragujevac','جامعة',['وجاهي'],['طب وصحة','هندسة','علوم','أعمال'],'https://www.kg.ac.rs/eng/',{
+   contactEmail:'rektorat@kg.ac.rs',
+ }),
+ U('singi','صربيا','بلغراد','Singidunum University','جامعة',['وجاهي'],['أعمال','حوسبة','سياحة','قانون'],'https://singidunum.ac.rs/en/',{
+   contactEmail:'info@singidunum.ac.rs',
+ }),
+ U('etf-bg','صربيا','بلغراد','School of Electrical Engineering — University of Belgrade','كلية',['وجاهي'],['هندسة','حوسبة'],'https://www.etf.bg.ac.rs/en/studies/tuition',{
+   degree:'بكالوريوس وماجستير ودكتوراه',
+   local:['رسوم مواطنين بالدينار أو موازنة'],
+   international:['رسوم أجانب باليورو'],
+   platformMember:true,contactEmail:'dekanat@etf.bg.ac.rs',
+ }),
+ U('isb','صربيا','بلغراد','International School of Belgrade','مدرسة',['وجاهي'],['IB','ابتدائي','ثانوي'],'https://www.isb.rs/admissions',{
+   degree:'تعليم مدرسي K-12',contactEmail:'admissions@isb.rs',
  }),
  U('sapienza','إيطاليا','روما','Sapienza Università di Roma','جامعة',['وجاهي'],['هندسة','طب وصحة','علوم','آداب'],'https://www.uniroma1.it/en/pagina/admission',{
    local:['دبلوم ثانوي إيطالي أو معادل','تسجيل مباشر'],

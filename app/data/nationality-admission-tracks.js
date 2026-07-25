@@ -3227,6 +3227,269 @@ export const DESTINATION_TRACKS = Object.freeze({
       ],
     },
   ],
+
+  'الفلبين': [
+    {
+      id: 'ph-filipino-free-he-suc-luc',
+      titleAr: 'مواطن فلبيني — تعليم عالٍ مجاني في SUC/LUC (RA 10931)',
+      match: ({ nationality }) => nationality === 'الفلبين',
+      whenAr:
+        'حسب UniFAST وRepublic Act 10931: المواطن الفلبيني المؤهل في الجامعات والكليات الحكومية (SUC) والمحلية المعترف بها (LUC) يُعفى من الرسوم الدراسية ورسوم المدرسة الأخرى لبرامج البكالوريوس إذا استوفى شروط القبول والاستمرار ولم يحصل سابقاً على بكالوريوس ولم يتجاوز مدة البرنامج المسموحة.',
+      channelAr: 'امتحان/قبول المؤسسة (مثل UPCAT في UP) + أهلية Free Higher Education',
+      docs: [
+        'شهادة ثانوية فلبينية',
+        'إثبات جنسية فلبينية',
+        'امتحان قبول المؤسسة إن لزم (UPCAT وغيره)',
+        'استيفاء سياسات القبول والاستمرار',
+      ],
+      feesAr: 'إعفاء من tuition و13 رسماً مدرسياً في SUC/LUC المؤهلة؛ الجامعات الخاصة خارج هذا الإعفاء.',
+      visaAr: 'لا تأشيرة للمواطن الفلبيني.',
+      caveats: [
+        'الإعفاء للمواطن الفلبيني فقط — لا ينطبق على الأجانب.',
+        'يجب ألا يكون لديك بكالوريوس سابق وألا تتجاوز مدة البرنامج + سنة سماح.',
+      ],
+      sources: [
+        {
+          label: 'UniFAST — Free Higher Education (RA 10931)',
+          url: 'https://unifast.gov.ph/fhe.html',
+        },
+        {
+          label: 'RA 10931 — Universal Access to Quality Tertiary Education Act',
+          url: 'https://www.lawphil.net/statutes/repacts/ra2017/ra_10931_2017.html',
+        },
+      ],
+      portals: [],
+      universities: [
+        'University of the Philippines Diliman',
+        'University of the Philippines Manila',
+        'Ateneo de Manila University',
+        'De La Salle University',
+        'University of Santo Tomas',
+      ],
+    },
+    {
+      id: 'ph-foreign-paid-9f-visa',
+      titleAr: 'أجنبي — رسوم كاملة + تأشيرة طالب 9(f) / SSP',
+      match: () => true,
+      whenAr:
+        'الأجانب غير مؤهلين لـ Free Higher Education. يدفعون رسوم المؤسسة وقد يُفرض Educational Development Fee إضافي (في UP مثلاً). يلزم تأشيرة طالب 9(f) أو وضع إقامة يسمح بالدراسة؛ السياحية تحتاج تحويل عبر مكتب الروابط الدولية/الهجرة.',
+      channelAr: 'تقديم المؤسسة كطالب دولي → قبول → تأشيرة 9(f) أو تصريح دراسة',
+      docs: [
+        'جواز أجنبي',
+        'شهادة ثانوية + ترجمة',
+        'رسوم تقديم دولية',
+        'قبول الجامعة',
+        'تأشيرة طالب 9(f) أو SSP للقُصّر',
+        'تأمين صحي',
+      ],
+      feesAr: 'رسوم كاملة حسب الجامعة + غالباً EDF للأجانب؛ بلا إعفاء RA 10931.',
+      visaAr: 'تأشيرة طالب 9(f) أو وضع هجرة مسموح للدراسة — تحويل من سياحية عبر BI/OIL.',
+      caveats: [
+        'SUC قد تقيّد مقاعد الأجانب في تخصصات مثل الطب.',
+        'الجامعات الخاصة لها جداول رسوم مستقلة أيضاً بلا إعفاء حكومي للأجانب.',
+      ],
+      sources: [
+        {
+          label: 'UniFAST — Free Higher Education eligibility',
+          url: 'https://unifast.gov.ph/fhe.html',
+        },
+        {
+          label: 'UP Diliman — immigration requirements',
+          url: 'https://upd.edu.ph/immigration-requirements/',
+        },
+        {
+          label: 'UP Diliman — facts (foreign tuition / EDF)',
+          url: 'https://upd.edu.ph/about/facts-at-a-glance/',
+        },
+      ],
+      portals: [],
+      universities: [
+        'University of the Philippines Diliman',
+        'Ateneo de Manila University',
+        'De La Salle University',
+        'University of Santo Tomas',
+        'Mapúa University',
+      ],
+    },
+  ],
+
+  'إندونيسيا': [
+    {
+      id: 'id-citizen-snbp-snbt-ukt',
+      titleAr: 'مواطن إندونيسي — SNBP/SNBT/Mandiri + نظام UKT',
+      match: ({ nationality }) => nationality === 'إندونيسيا',
+      whenAr:
+        'حسب SNPMB وITB: المواطن الإندونيسي يلتحق بالبرامج النظامية عبر SNBP (إنجاز) أو SNBT/UTBK أو Seleksi Mandiri، برسوم UKT متدرجة حسب القدرة الاقتصادية وKIP-Kuliah للمحتاجين. مسار IUP متاح أيضاً للمواطنين لكن برسوم أعلى وثابتة غالباً.',
+      channelAr: 'بوابة SNPMB (SNBP/SNBT) أو Mandiri الجامعة / IUP اختيارياً',
+      docs: [
+        'شهادة SMA/SMK/MA أو معادل إندونيسي',
+        'NISN / حساب SNPMB',
+        'UTBK لمسار SNBT',
+        'وثائق الدخل لـ UKT أو KIP-Kuliah إن طُلبت',
+      ],
+      feesAr: 'UKT متدرج للبرامج النظامية (قد يبدأ من فئات منخفضة جداً)؛ IUP أعلى وثابت (مثال SBM ITB: نظامي حتى ~20M روبية/فصل مقابل IUP 40M).',
+      visaAr: 'لا تأشيرة للمواطن الإندونيسي.',
+      caveats: [
+        'SNBP مخصص لمدارس المنهج الوطني الإندونيسي (بما فيها SRI في الخارج).',
+        'الأجنبي لا يدخل عادة عبر SNBP/SNBT للبرامج النظامية.',
+      ],
+      sources: [
+        {
+          label: 'SNPMB — SNBP general information',
+          url: 'https://www.snpmb.id/snbp/informasi-umum',
+        },
+        {
+          label: 'SBM ITB — bachelor FAQs (citizen vs foreign paths)',
+          url: 'https://www.sbm.itb.ac.id/contact-us/bachelor-faqs/',
+        },
+        {
+          label: 'ITB Admission — international undergraduate',
+          url: 'https://admission.itb.ac.id/home/international/undergraduate',
+        },
+      ],
+      portals: [
+        { label: 'SNPMB', url: 'https://www.snpmb.id/' },
+      ],
+      universities: [
+        'Institut Teknologi Bandung',
+        'Universitas Indonesia',
+        'Universitas Gadjah Mada',
+        'Institut Teknologi Sepuluh Nopember',
+        'Universitas Airlangga',
+      ],
+    },
+    {
+      id: 'id-foreign-iup-only-kitas',
+      titleAr: 'أجنبي — IUP/قبول دولي فقط + إقامة طالب (KITAS)',
+      match: () => true,
+      whenAr:
+        'حسب SBM ITB: المتقدم الأجنبي يلتحق فقط عبر International Undergraduate Program (IUP) وليس عبر SNBP/SNBT/Mandiri النظامي. الرسوم غالباً أعلى وثابتة، مع متطلبات لغة (TOEFL/IELTS) واختبار (SAT أو اختبار الجامعة)، ثم تصريح إقامة طالب/KITAS.',
+      channelAr: 'تقديم IUP / المسار الدولي للجامعة → قبول → تأشيرة/KITAS طالب',
+      docs: [
+        'جواز أجنبي',
+        'شهادة ثانوية + ترجمة',
+        'TOEFL/IELTS',
+        'SAT أو اختبار قبول IUP',
+        'تمويل',
+        'تصريح إقامة طالب (KITAS)',
+      ],
+      feesAr: 'رسوم IUP أعلى من UKT النظامي (مثال SBM ITB: 40M روبية/فصل) وغالباً بلا تخفيض UKT الاقتصادي.',
+      visaAr: 'تأشيرة دراسة ثم KITAS/إقامة طالب.',
+      caveats: [
+        'لا تفترض أهلية SNBP/SNBT إذا لم تكن مواطناً بمسار وطني.',
+        'كل جامعة تحدد برامج IUP المتاحة للأجانب.',
+      ],
+      sources: [
+        {
+          label: 'SBM ITB — bachelor FAQs (foreign = IUP only)',
+          url: 'https://www.sbm.itb.ac.id/contact-us/bachelor-faqs/',
+        },
+        {
+          label: 'ITB Admission — international undergraduate',
+          url: 'https://admission.itb.ac.id/home/international/undergraduate',
+        },
+        {
+          label: 'SNPMB — SNBP information',
+          url: 'https://www.snpmb.id/snbp/informasi-umum',
+        },
+      ],
+      portals: [],
+      universities: [
+        'Institut Teknologi Bandung',
+        'Universitas Indonesia',
+        'Universitas Gadjah Mada',
+        'Binus University',
+        'Universitas Airlangga',
+      ],
+    },
+  ],
+
+  'صربيا': [
+    {
+      id: 'rs-citizen-budget-or-self-rsd',
+      titleAr: 'مواطن صربي — مقاعد ممولة من الموازنة أو تمويل ذاتي بالدينار',
+      match: ({ nationality }) => nationality === 'صربيا',
+      whenAr:
+        'حسب Study in Serbia وEurydice وجامعة بلغراد: المواطن/المقيم الصربي في المؤسسات العامة قد يُموَّل من موازنة الدولة (بلا tuition) حسب الترتيب في امتحان القبول، أو يدرس بتمويل ذاتي برسوم بالدينار. الأقلية الصربية من دول الجوار قد تُعامل أحياناً مثل المواطنين بما فيها التمويل الحكومي.',
+      channelAr: 'امتحان قبول الكلية/الجامعة + ترتيب budget أو self-financed',
+      docs: [
+        'شهادة ثانوية صربية أو معادلة',
+        'امتحان قبول',
+        'إثبات جنسية صربية',
+        'وثائق التسجيل حسب الكلية',
+      ],
+      feesAr: 'Budget: بلا tuition (رسوم إدارية فقط)؛ Self-financed: رسوم بالدينار حسب الكلية (مثال ETF Belgrade بكالوريوس هندسة كهرباء 144,000 RSD).',
+      visaAr: 'لا تأشيرة للمواطن الصربي.',
+      caveats: [
+        'عدد مقاعد الموازنة تحدده الحكومة سنوياً.',
+        'البرامج بالإنجليزية غالباً برسوم أعلى حتى للمواطنين.',
+      ],
+      sources: [
+        {
+          label: 'Study in Serbia — costs of studying',
+          url: 'https://www.bazaobrazovanja.rs/en/education/costs-of-studying',
+        },
+        {
+          label: 'Eurydice — Serbia national student fees',
+          url: 'https://eurydice.eacea.ec.europa.eu/countries/serbia/national-student-fee',
+        },
+        {
+          label: 'University of Belgrade ETF — tuition (citizens vs foreign)',
+          url: 'https://www.etf.bg.ac.rs/en/studies/tuition',
+        },
+      ],
+      portals: [],
+      universities: [
+        'University of Belgrade',
+        'University of Novi Sad',
+        'University of Niš',
+        'University of Kragujevac',
+      ],
+    },
+    {
+      id: 'rs-foreign-pay-eur-residence',
+      titleAr: 'أجنبي — رسوم باليورو طوال الدراسة + إقامة مؤقتة',
+      match: () => true,
+      whenAr:
+        'حسب إعلانات جامعة بلغراد وStudy in Serbia: المواطن الأجنبي يدفع الرسوم طوال مدة الدراسة (ما لم يشمله اتفاق دولي أو منحة مثل World in Serbia). الرسوم غالباً باليورو وأعلى من مسار المواطن؛ يلزم إقامة مؤقتة للدراسة.',
+      channelAr: 'تقديم الكلية → امتحان/قبول → دفع رسوم أجنبي → إقامة طالب',
+      docs: [
+        'جواز أجنبي',
+        'شهادة ثانوية مع معادلة/اعتراف',
+        'قبول الكلية',
+        'إثبات دفع الرسوم',
+        'تأمين صحي',
+        'طلب إقامة مؤقتة للدراسة',
+      ],
+      feesAr: 'عادة €1,000–€7,000/سنة حسب البرنامج؛ مثال ETF Belgrade: أجانب €2,000–€3,000 للبكالوريوس مقابل رسوم بالدينار للمواطنين.',
+      visaAr: 'تأشيرة/إقامة مؤقتة للدراسة لغير من يُعفى.',
+      caveats: [
+        'منحة World in Serbia استثناء لمن ترشّحهم دول عدم الانحياز.',
+        'أعضاء الأقلية الصربية من دول الجوار قد يُدرَجون بشروط المواطنين.',
+      ],
+      sources: [
+        {
+          label: 'Study in Serbia — costs of studying',
+          url: 'https://www.bazaobrazovanja.rs/en/education/costs-of-studying',
+        },
+        {
+          label: 'University of Belgrade ETF — tuition',
+          url: 'https://www.etf.bg.ac.rs/en/studies/tuition',
+        },
+        {
+          label: 'Faculty of Mechanical Engineering Belgrade — enrolment (foreign pays throughout)',
+          url: 'https://www.mas.bg.ac.rs/en/upis/oas',
+        },
+      ],
+      portals: [],
+      universities: [
+        'University of Belgrade',
+        'University of Novi Sad',
+        'University of Niš',
+        'Singidunum University',
+      ],
+    },
+  ],
 });
 
 /**
@@ -3382,6 +3645,9 @@ export function exampleAlternateNationality(studyCountry, currentNationality) {
     ليختنشتاين: 'الأردن',
     جورجيا: 'الأردن',
     تايلاند: 'الأردن',
+    الفلبين: 'الأردن',
+    إندونيسيا: 'الأردن',
+    صربيا: 'الأردن',
   };
   return alts[studyCountry] || 'الأردن';
 }
