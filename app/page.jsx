@@ -7,7 +7,7 @@ const copy = {
   en: {
     dir: 'ltr',
     nav: ['Home', 'Gateways', 'About us', 'Our vision', 'Support'],
-    navIds: ['top', 'gateways', 'why', 'journey', 'contact'],
+    navIds: ['top', 'gateways', 'why', 'journey', '/contact'],
     signIn: 'Sign in', start: 'Start learning', eyebrow: 'AI-powered • Human-guided • Built for life',
     slogan: 'Your Path to Success Leaves Ignorance Behind',
     heroA: 'Your learning.', heroB: 'One intelligent system.',
@@ -63,7 +63,7 @@ const copy = {
   ar: {
     dir: 'rtl',
     nav: ['الرئيسية', 'البوابات', 'من نحن', 'رؤيتنا', 'الدعم'],
-    navIds: ['top', 'gateways', 'why', 'journey', 'contact'],
+    navIds: ['top', 'gateways', 'why', 'journey', '/contact'],
     signIn: 'تسجيل الدخول', start: 'ابدأ التعلم', eyebrow: 'بالذكاء الاصطناعي • بإشراف الإنسان • معك مدى الحياة',
     slogan: 'طريقك نحو النجاح يمحو طريقك نحو الجهل',
     heroA: 'تعليمك.', heroB: 'في نظام ذكي واحد.',
@@ -182,8 +182,31 @@ export default function HomePage() {
   ];
   const partnerGateways=['teacher','center','school','university','employer'];
   const searchRoutes={teacher:'/teachers',center:'/partner-search?portal=center',school:'/school-finder',university:'/admissions',employer:'/jobs'};
+  const footerLinks = {
+    Platform: { Learning: '/programs', 'AI Tutor': '/tutor', Teachers: '/teachers', 'Education Passport': '/passport' },
+    المنصة: { التعلم: '/programs', 'المعلم الذكي': '/tutor', المعلمون: '/teachers', 'الجواز التعليمي': '/passport' },
+    Programs: { 'EST وACT': '/courses', EST: '/courses', ACT: '/courses', AP: '/courses', IGCSE: '/courses', 'A Level': '/courses', 'EST & ACT': '/courses' },
+    البرامج: { 'EST وACT': '/courses', AP: '/courses', IGCSE: '/courses', 'A Level': '/courses' },
+    Company: { About: '/about', 'Safety & Privacy': '/trust', Contact: '/contact', 'Success 4 Sure Academy': 'https://www.success4sureacademy.com/' },
+    الشركة: { 'من نحن': '/about', 'الأمان والخصوصية': '/trust', 'تواصل معنا': '/contact', 'Success 4 Sure Academy': 'https://www.success4sureacademy.com/' },
+  };
+  const roleDestinations = {
+    Student: '/start-journey?portal=student',
+    طالب: '/start-journey?portal=student',
+    Parent: '/parent',
+    'ولي أمر': '/parent',
+    Teacher: '/join-us?role=teacher',
+    معلم: '/join-us?role=teacher',
+    Institution: '/join-us',
+    مؤسسة: '/join-us',
+  };
 
-  return <div id="top" className="app phase11-landing">
+  const hubNodes = lang === 'en'
+    ? [['n1','👨‍🎓','Students'],['n2','👩‍🏫','Teachers'],['n3','👪','Parents'],['n4','💼','Careers'],['n5','🏫','Schools'],['n6','🎓','Universities'],['n7','⌁','AI Assist']]
+    : [['n1','👨‍🎓','طلاب'],['n2','👩‍🏫','معلمون'],['n3','👪','أولياء'],['n4','💼','مهن'],['n5','🏫','مدارس'],['n6','🎓','جامعات'],['n7','⌁','ذكاء']];
+  const metricIcons = ['◈','◎','✦','⌁'];
+
+  return <div id="top" className="app phase11-landing sos-landing">
     <header className="nav-shell">
       <nav className="nav container">
         <Logo />
@@ -202,39 +225,56 @@ export default function HomePage() {
     </header>
 
     <main>
-      <section className="portal-first-stage">
-        <div className="portal-first-backdrop"><img src="/media/success-future-gateways.webp" alt="بوابات SUCCESS OS المستقبلية"/></div>
-        <div className="container portal-first-content"><header><small>YOUR JOURNEY STARTS HERE</small><h1>{lang==='en'?'Choose your gateway. Reach your goal.':'اختر بوابتك. واصل إلى هدفك.'}</h1><p>{lang==='en'?'A clear beginning for every learner, educator, institution and opportunity.':'بداية واضحة لكل طالب ومعلم ومؤسسة وفرصة، ثم فلاتر تقودك مباشرة إلى طلبك.'}</p></header><div className="portal-first-grid">{gateways.map(([number,icon,label,,,description,id],i)=><a href={`/start-journey?portal=${id}`} style={{'--portal-pos':`${(i%4)*30}% ${i<4?'20%':'78%'}`}} key={id}><span className="portal-image"></span><small>{number}</small><b>{icon} {label}</b><p>{description}</p></a>)}</div><a className="portal-start-button" href="/start-journey"><span>{lang==='en'?'Start the journey':'ابدأ الرحلة'}</span><b>←</b></a></div>
-      </section>
-      <section className="hero">
+      <a className="sos-announce" href="/start-journey">
+        <span aria-hidden="true">📣</span>
+        <div>{lang==='en' ? <>New scholarships available — <em>start your SUCCESS OS journey today</em></> : <>منح جديدة متاحة — <em>ابدأ رحلتك مع SUCCESS OS اليوم</em></>}</div>
+      </a>
+
+      <section className="hero sos-hero">
         <div className="hero-grid container">
           <div className="hero-copy reveal">
-            <div className="eyebrow"><span></span>{t.eyebrow}</div>
+            <div className="eyebrow"><span></span>{lang==='en'?'AI-Powered Education Operating System':'نظام تشغيل التعليم بالذكاء الاصطناعي'}</div>
             <h1>{t.heroA}<br/><span>{t.heroB}</span></h1>
             <div className="official-slogan">SUCCESS OS — {t.slogan}</div>
             <p>{t.heroText}</p>
             <div className="hero-actions">
               <a className="button" href="#gateways">{t.explore}<b>→</b></a>
-              <a className="button ghost" href="#ai"><Icon name="spark"/>{t.tutor}</a>
+              <a className="button ghost" href="/tutor"><Icon name="spark"/>{t.tutor}</a>
+            </div>
+            <div className="sos-hero-metrics">
+              {t.stats.map(([n,l], i) => (
+                <div key={l}><i aria-hidden="true">{metricIcons[i]}</i><div><strong>{n}</strong><small>{l}</small></div></div>
+              ))}
             </div>
             <div className="founder-note"><span className="avatar">S4S</span><div><strong>{t.trust}</strong><small>{t.trustSub}</small></div></div>
           </div>
-          <div className="hero-visual reveal delay">
-            <div className="orbital one"></div><div className="orbital two"></div>
-            <div className="success-3d-world"><i className="ring-a"></i><i className="ring-b"></i><strong>S</strong><span>LEARN • BUILD • SUCCEED</span></div>
-            <div className="dashboard-card">
-              <div className="dash-top"><div><small>{t.today}</small><strong>{t.continue}</strong></div><span>↗</span></div>
-              <div className="progress"><i style={{width:'68%'}}></i></div><small>{t.mins}</small>
-              <div className="dash-grid">
-                <div className="mastery-ring"><div><b>72%</b><small>{t.mastery}</small></div></div>
-                <div className="dash-metrics"><div><small>{t.streak}</small><strong>🔥 {t.days}</strong></div><div><small>{t.next}</small><strong>{t.nextVal}</strong></div></div>
-              </div>
+          <div className="hero-visual reveal delay" aria-hidden="true">
+            <div className="sos-hub">
+              <i className="sos-hub-ring r1"></i>
+              <i className="sos-hub-ring r2"></i>
+              <div className="sos-hub-core"><b>S</b><small>SUCCESS OS</small></div>
+              {hubNodes.map(([cls, icon, label]) => (
+                <div className={`sos-hub-node ${cls}`} key={cls}><span>{icon}</span><small>{label}</small></div>
+              ))}
             </div>
-            <div className="float-card tutor-float"><span><Icon name="spark"/></span><div><small>AI TUTOR</small><b>{lang === 'en' ? 'Ready when you are' : 'جاهز وقت ما تحتاج'}</b></div></div>
-            <div className="float-card pass-float"><span><Icon name="passport"/></span><div><small>EDUCATION PASSPORT</small><b>{lang === 'en' ? 'New skill verified' : 'تم توثيق مهارة جديدة'}</b></div></div>
           </div>
         </div>
-        <div className="stats container">{t.stats.map(([n,l]) => <div key={l}><strong>{n}</strong><span>{l}</span></div>)}</div>
+        <div className="sos-stats-band">
+          <div className="stats container">{t.stats.map(([n,l]) => <div key={l}><strong>{n}</strong><span>{l}</span></div>)}</div>
+        </div>
+      </section>
+
+      <section className="portal-first-stage" id="portals">
+        <div className="portal-first-backdrop"><img src="/media/success-future-gateways.webp" alt="بوابات SUCCESS OS المستقبلية"/></div>
+        <div className="container portal-first-content">
+          <header>
+            <small>{lang==='en'?'EXPLORE BY PORTAL':'استكشف حسب البوابة'}</small>
+            <h1>{lang==='en'?'Choose your gateway. Reach your goal.':'اختر بوابتك. واصل إلى هدفك.'}</h1>
+            <p>{lang==='en'?'A clear beginning for every learner, educator, institution and opportunity.':'بداية واضحة لكل طالب ومعلم ومؤسسة وفرصة، ثم فلاتر تقودك مباشرة إلى طلبك.'}</p>
+          </header>
+          <div className="portal-first-grid">{gateways.map(([number,icon,label,,,description,id],i)=><a href={id==='join'?'/join-us':`/start-journey?portal=${id}`} style={{'--portal-pos':`${(i%4)*30}% ${i<4?'20%':'78%'}`}} key={id}><span className="portal-image"></span><small>{number}</small><b>{icon} {label}</b><p>{description}</p></a>)}</div>
+          <a className="portal-start-button" href="/start-journey"><span>{lang==='en'?'Start the journey':'ابدأ الرحلة'}</span><b>←</b></a>
+        </div>
       </section>
 
       <section className="home-gateway organized" id="gateways">
@@ -254,7 +294,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="knowledge-entry"><div className="container"><header><small>ONE LEARNING UNIVERSE</small><h2>{lang==='en'?'School, university and career learning—inside one platform':'التعلم المدرسي والجامعي والمهني داخل منصة واحدة'}</h2></header><div className="knowledge-entry-grid"><a href="/subject-catalog"><span>▦</span><small>LOCAL + INTERNATIONAL</small><h3>{lang==='en'?'School subjects':'المواد المدرسية'}</h3><p>{lang==='en'?'Curricula by country, system and grade.':'مناهج حسب الدولة والنظام والصف.'}</p><b>↗</b></a><a href="/university-subjects"><span>⚛</span><small>COLLEGE + UNIVERSITY</small><h3>{lang==='en'?'University subjects':'المواد الجامعية'}</h3><p>{lang==='en'?'Degrees, disciplines and course pathways.':'درجات وتخصصات ومسارات مساقات.'}</p><b>↗</b></a><a href="/content-studio"><span>✦</span><small>HUMAN-GUIDED AI</small><h3>{lang==='en'?'Content studio':'استوديو بناء المحتوى'}</h3><p>{lang==='en'?'Upload, summarize, script and review.':'ارفع ولخّص وابنِ الفيديو ثم راجع.'}</p><b>↗</b></a><a href="/source-registry"><span>✓</span><small>RIGHTS + PROVENANCE</small><h3>{lang==='en'?'Source registry':'سجل المصادر والحقوق'}</h3><p>{lang==='en'?'Know what can be used and how.':'اعرف ما يمكن استخدامه وكيف.'}</p><b>↗</b></a></div><div className="home-shield"><span>⬡</span><div><small>SUCCESS SHIELD</small><b>كل درس وفيديو وامتحان يحمل بصمة وحقوقًا وصلاحية واضحة</b></div><a href="/security-center">افتح مركز الحماية ←</a></div></div></section>
+      <section className="knowledge-entry" id="journey"><div className="container"><header><small>ONE LEARNING UNIVERSE</small><h2>{lang==='en'?'School, university and career learning—inside one platform':'التعلم المدرسي والجامعي والمهني داخل منصة واحدة'}</h2></header><div className="knowledge-entry-grid"><a href="/subject-catalog"><span>▦</span><small>LOCAL + INTERNATIONAL</small><h3>{lang==='en'?'School subjects':'المواد المدرسية'}</h3><p>{lang==='en'?'Curricula by country, system and grade.':'مناهج حسب الدولة والنظام والصف.'}</p><b>↗</b></a><a href="/university-subjects"><span>⚛</span><small>COLLEGE + UNIVERSITY</small><h3>{lang==='en'?'University subjects':'المواد الجامعية'}</h3><p>{lang==='en'?'Degrees, disciplines and course pathways.':'درجات وتخصصات ومسارات مساقات.'}</p><b>↗</b></a><a href="/content-studio"><span>✦</span><small>HUMAN-GUIDED AI</small><h3>{lang==='en'?'Content studio':'استوديو بناء المحتوى'}</h3><p>{lang==='en'?'Upload, summarize, script and review.':'ارفع ولخّص وابنِ الفيديو ثم راجع.'}</p><b>↗</b></a><a href="/source-registry"><span>✓</span><small>RIGHTS + PROVENANCE</small><h3>{lang==='en'?'Source registry':'سجل المصادر والحقوق'}</h3><p>{lang==='en'?'Know what can be used and how.':'اعرف ما يمكن استخدامه وكيف.'}</p><b>↗</b></a></div><div className="home-shield"><span>⬡</span><div><small>SUCCESS SHIELD</small><b>كل درس وفيديو وامتحان يحمل بصمة وحقوقًا وصلاحية واضحة</b></div><a href="/security-center">افتح مركز الحماية ←</a></div></div></section>
 
       <section className="home-core-summary" id="why">
         <div className="container">
@@ -272,9 +312,9 @@ export default function HomePage() {
       <section className="cta-section" id="contact"><div className="container cta-card"><div className="cta-orb a"></div><div className="cta-orb b"></div><div className="eyebrow light">{t.ctaEyebrow}</div><h2>{t.ctaTitle}</h2><p>{t.ctaText}</p><div><button className="button mint-button" onClick={()=>setModal(true)}>{t.ctaButton}<b>→</b></button><a className="button clear" href="https://www.success4sureacademy.com/" target="_blank" rel="noreferrer">{t.ctaSecondary}</a></div></div></section>
     </main>
 
-    <footer><div className="container footer-grid"><div className="footer-brand"><Logo/><p>{t.footerText}</p><div className="socials"><a href="https://www.instagram.com/success4surejo/" target="_blank" rel="noreferrer">IG</a><a href="mailto:info@success4sureacademy.com">@</a><a href="https://www.success4sureacademy.com/" target="_blank" rel="noreferrer">↗</a></div></div>{t.footerCols.map(col=><div className="footer-col" key={col[0]}><strong>{col[0]}</strong>{col.slice(1).map(x=><a href="#top" key={x}>{x}</a>)}</div>)}</div><div className="container footer-bottom"><span>{t.rights}</span><span>Amman • Dubai • Online Worldwide</span></div></footer>
+    <footer><div className="container footer-grid"><div className="footer-brand"><Logo/><p>{t.footerText}</p><div className="socials"><a href="https://www.instagram.com/success4surejo/" target="_blank" rel="noreferrer">IG</a><a href="mailto:info@success4sureacademy.com">@</a><a href="https://www.success4sureacademy.com/" target="_blank" rel="noreferrer">↗</a></div></div>{t.footerCols.map(col=><div className="footer-col" key={col[0]}><strong>{col[0]}</strong>{col.slice(1).map(x=>{const href=(footerLinks[col[0]]||{})[x]||'/';const external=href.startsWith('http');return <a href={href} key={x} {...(external?{target:'_blank',rel:'noreferrer'}:{})}>{x}</a>})}</div>)}</div><div className="container footer-bottom"><span>{t.rights}</span><span>Amman • Dubai • Online Worldwide</span></div></footer>
 
-    {modal && <div className="modal-backdrop" onMouseDown={(e)=>e.target===e.currentTarget&&setModal(false)}><div className="modal"><button className="modal-close" onClick={()=>setModal(false)}>×</button><Logo dark/><h2>{t.modalTitle}</h2><p>{t.modalText}</p><div className="role-grid">{t.roles.map(([name,desc],i)=><button key={name} className={role===name?'selected':''} onClick={()=>setRole(name)}><span>{['◉','◇','✦','▦'][i]}</span><div><strong>{name}</strong><small>{desc}</small></div><b>→</b></button>)}</div><button className="button modal-next" disabled={!role} onClick={()=>{window.location.href='/onboarding'}}>{t.modalNext}<b>→</b></button></div></div>}
+    {modal && <div className="modal-backdrop" onMouseDown={(e)=>e.target===e.currentTarget&&setModal(false)}><div className="modal"><button className="modal-close" onClick={()=>setModal(false)}>×</button><Logo dark/><h2>{t.modalTitle}</h2><p>{t.modalText}</p><div className="role-grid">{t.roles.map(([name,desc],i)=><button key={name} className={role===name?'selected':''} onClick={()=>setRole(name)}><span>{['◉','◇','✦','▦'][i]}</span><div><strong>{name}</strong><small>{desc}</small></div><b>→</b></button>)}</div><button className="button modal-next" disabled={!role} onClick={()=>{window.location.href=roleDestinations[role]||'/start-journey'}}>{t.modalNext}<b>→</b></button></div></div>}
     {languageSheet&&<div className="language-sheet" onMouseDown={e=>e.target===e.currentTarget&&setLanguageSheet(false)}><div><button onClick={()=>setLanguageSheet(false)}>×</button><small>GLOBAL LANGUAGE LAYER</small><h2>اختر من جميع اللغات</h2><p>العربية وEnglish واجهتان أصليتان. بقية اللغات تستخدم طبقة ترجمة تلقائية وتبقى خاضعة للمراجعة البشرية.</p><section>{launchLanguages.map(([code,name,dir,status])=><button className={code===selectedLanguage?'active':''} onClick={()=>{setSelectedLanguage(code);setSelectedDirection(dir==='RTL'?'rtl':'ltr');setLang(code==='ar'?'ar':'en');setLanguageSheet(false)}} key={code}><b>{name}</b><span>{code.toUpperCase()} • {dir} • {status}</span></button>)}</section></div></div>}
   </div>;
 }

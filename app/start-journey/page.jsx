@@ -3,6 +3,16 @@ import {useEffect,useMemo,useState} from 'react';
 import {useRouter} from 'next/navigation';
 import {InnerNav} from '../components';
 import {journeyDestination} from '../lib/routes';
+import {
+  ADMISSION_STUDY_COUNTRIES,
+  UNIVERSITY_CORE_FIELDS,
+  UNIVERSITY_DEGREES,
+  UNIVERSITY_JOURNEY_FIELDS,
+  UNIVERSITY_OPTIONAL_FIELDS,
+  UNIVERSITY_STUDY_MODES,
+  admissionsUrlFromJourney,
+  universityFieldChoices,
+} from '../lib/journey-admissions';
 import {countries,currencies,ratingOptions,semestersForSystem,serviceTypes,stagesForSystem,gradesForSystem,subjectsForSystem,systemsForCountry} from '../data/school-systems';
 
 const portals=[['student','◉','الطالب','تعلم، حصص، مدارس وجامعات'],['jobseeker','◇','الباحث عن عمل','وظائف، مهارات وطلبات'],['teacher','♙','المعلم','بحث أو شراكة'],['center','▦','المركز التعليمي','بحث أو شراكة'],['school','⌂','المدرسة','بحث أو شراكة'],['university','🎓','الجامعة أو الكلية','بحث أو شراكة'],['employer','↗','شركة التوظيف','بحث أو شراكة']];
@@ -11,14 +21,18 @@ const schoolStudentCore=['النظام التعليمي','المرحلة الت�
 const universityStudentCore=['الجامعة أو الكلية','التخصص','السنة الجامعية','المادة الجامعية','نوع الخدمة'];
 const courseStudentCore=['نطاق الدورة','مجال الدورة','اسم الدورة','نوع الخدمة'];
 const liveLessonFilters=['دولة مقدم الخدمة','المدينة','العملة','الحد الأعلى للسعر','الحد الأدنى للتقييم'];
-const portalFilters={jobseeker:['المدينة','طريقة العمل','مجال العمل','عائلة الوظيفة','المسمى الوظيفي','الخبرة','نوع العقد','الراتب المتوقع'],teacher:['المدينة','النظام التعليمي','المرحلة','المادة','طريقة التدريس','السعر'],center:['المدينة','النظام التعليمي','المرحلة','المادة أو الدورة','نوع الشهادة','طريقة الخدمة'],school:['المدينة','النظام التعليمي','المرحلة','نوع المدرسة','طريقة الدراسة','الرسوم السنوية'],university:['الجنسية','داخل الدولة أو خارجها','دولة الوجهة','المدينة','نمط الدراسة','الدرجة','التخصص','لغة الدراسة','الميزانية','شروط القبول'],employer:['المدينة','طريقة العمل','القطاع','عائلة الوظيفة','المسمى','الخبرة','نوع العقد','الراتب']};
+const portalFilters={jobseeker:['المدينة','طريقة العمل','مجال العمل','عائلة الوظيفة','المسمى الوظيفي','الخبرة','نوع العقد','الراتب المتوقع'],teacher:['المدينة','النظام التعليمي','المرحلة','المادة','طريقة التدريس','السعر'],center:['المدينة','النظام التعليمي','المرحلة','المادة أو الدورة','نوع الشهادة','طريقة الخدمة'],school:['المدينة','النظام التعليمي','المرحلة','نوع المدرسة','طريقة الدراسة','الرسوم السنوية'],university:UNIVERSITY_JOURNEY_FIELDS,employer:['المدينة','طريقة العمل','القطاع','عائلة الوظيفة','المسمى','الخبرة','نوع العقد','الراتب']};
 const defaults={country:'JO',name:'',intent:'search',studentType:'',filters:{}};
 const steps=['البوابة','نوع الطلب','الهوية','الفلاتر','النتائج','التفاصيل','التأكيد','اللوحة'];
 const options={
  'النظام التعليمي':['النظام الوطني','American','Cambridge IGCSE','Pearson Edexcel','IB','AP','EST'],
  'المرحلة أو المؤهل':['مدرسي','ثانوي دولي','دبلوم','بكالوريوس','دراسات عليا'],'المرحلة':['أساسي','ثانوي','جامعي'],'الصف أو السنة':['7','8','9','10','11','12','سنة جامعية 1','سنة جامعية 2+'],
  'نوع الخدمة':serviceTypes,
- 'داخل الدولة أو خارجها':['داخل دولتي','خارج دولتي','كلاهما'],'نمط الدراسة':['وجاهي','أونلاين','هجين'],'الدرجة':['دبلوم','بكالوريوس','ماجستير','دكتوراه','دورة قصيرة'],'لغة الدراسة':['العربية','الإنجليزية','الفرنسية','الألمانية','أخرى'],
+ 'داخل الدولة أو خارجها':['داخل دولتي','خارج دولتي','كلاهما'],
+ 'دولة الوجهة':ADMISSION_STUDY_COUNTRIES,
+ 'نمط الدراسة':UNIVERSITY_STUDY_MODES,
+ 'الدرجة':UNIVERSITY_DEGREES,
+ 'التخصص':universityFieldChoices(),
  'طريقة العمل':['عن بعد','هجين','من مقر العمل'],'الخبرة':['بدون خبرة','أقل من سنتين','2–5 سنوات','أكثر من 5 سنوات'],'نوع العقد':['دوام كامل','دوام جزئي','عقد','تدريب'],'نوع الشهادة':['معتمدة','غير معتمدة','كلاهما'],'طريقة الخدمة':['أونلاين','حضوري','هجين'],'طريقة التدريس':['أونلاين خاص','حضوري خاص','حضوري مجموعة']
  ,'السنة الجامعية':['السنة الأولى','السنة الثانية','السنة الثالثة','السنة الرابعة','السنة الخامسة أو أكثر']
  ,'العملة':currencies,'الحد الأدنى للتقييم':ratingOptions
@@ -29,7 +43,35 @@ export default function StartJourney(){
  const router=useRouter();
  const [step,setStep]=useState(1),[portal,setPortal]=useState(''),[form,setForm]=useState(defaults),[errors,setErrors]=useState({}),[busy,setBusy]=useState(false),[qa,setQa]=useState(false),[choice,setChoice]=useState(''),[lang,setLang]=useState('ar');
  const [partnerProducts,setPartnerProducts]=useState([]);
- useEffect(()=>{try{const saved=JSON.parse(sessionStorage.getItem('success-os-journey')||'null');if(saved){setPortal(saved.portal||'');setForm(saved.form||defaults);setStep(saved.step||1);setChoice(saved.choice||'')}const p=new URLSearchParams(location.search).get('portal');if(p&&portals.some(x=>x[0]===p)){setPortal(p);setStep(needsIntent.has(p)||p==='student'?2:3)}}catch{}},[]);
+ useEffect(()=>{try{
+  const params=new URLSearchParams(location.search);
+  const p=params.get('portal');
+  if(p==='join'){router.replace('/join-us');return}
+  const saved=JSON.parse(sessionStorage.getItem('success-os-journey')||'null');
+  if(saved){setPortal(saved.portal||'');setForm(saved.form||defaults);setStep(saved.step||1);setChoice(saved.choice||'')}
+  if(p&&portals.some(x=>x[0]===p)){
+   setPortal(p);
+   const studentType=params.get('studentType')||'';
+   const subject=params.get('subject')||'';
+   const course=params.get('course')||'';
+   const program=params.get('program')||'';
+   if(p==='student'&&(studentType||subject||course||program)){
+    setForm(f=>({
+     ...f,
+     studentType:studentType||(course||program?'courses':f.studentType),
+     filters:{
+      ...f.filters,
+      ...(subject?{'المادة':subject,'اسم الدورة':subject}:{}),
+      ...(course?{'اسم الدورة':course}:{}),
+      ...(program?{'مجال الدورة':program}:{}),
+     },
+    }));
+    setStep(studentType||course||program?3:2);
+   }else{
+    setStep(needsIntent.has(p)||p==='student'?2:3);
+   }
+  }
+ }catch{}},[router]);
  useEffect(()=>{try{sessionStorage.setItem('success-os-journey',JSON.stringify({portal,form,step,choice}))}catch{}},[portal,form,step,choice]);
  useEffect(()=>{try{setPartnerProducts(JSON.parse(localStorage.getItem('success-os-partner-products')||'[]'))}catch{}},[]);
  const studentCore=form.studentType==='university'?universityStudentCore:form.studentType==='courses'?courseStudentCore:schoolStudentCore;
@@ -58,16 +100,59 @@ export default function StartJourney(){
   return [{title:'مركز النجاح الأكيد — أولوية الشركاء',price:Math.max(1,Math.round(cap*.75)),note:'سعر الشريك',duration:'60 دقيقة',schedule:'السبت والاثنين • 5:00 مساءً'},{title:'معلم معتمد — الأعلى تقييمًا',price:Math.max(1,Math.round(cap*.85)),note:'سعر الشريك',duration:'60 دقيقة',schedule:'الأحد والثلاثاء • 6:30 مساءً'},{title:'مركز تعليمي شريك — الأعلى تقييمًا',price:cap,note:'سعر الشريك',duration:'90 دقيقة',schedule:'الخميس • 4:00 مساءً'}];
  },[portal,isRecorded,form.filters,partnerProducts]);
  const selectedResult=results.find(x=>x.title===choice),basePrice=selectedResult?.price||0,platformFee=basePrice*.10,partnerPayout=basePrice-platformFee,totalPrice=basePrice;
- const query=useMemo(()=>{const p=new URLSearchParams({from:'journey',country:form.country,name:form.name,studentType:form.studentType||'',...form.filters});return `${target}${target.includes('?')?'&':'?'}${p}`},[target,form]);
+ const query=useMemo(()=>{
+  if(portal==='university'&&form.intent==='search')return admissionsUrlFromJourney(form);
+  const p=new URLSearchParams({from:'journey',country:form.country,name:form.name,studentType:form.studentType||'',...form.filters});
+  return `${target}${target.includes('?')?'&':'?'}${p}`;
+ },[target,form,portal]);
  function choosePortal(id){setPortal(id);setForm(defaults);setChoice('');setErrors({});setStep(needsIntent.has(id)||id==='student'?2:3)}
- function setFilter(label,value){const index=fields.indexOf(label),next={...form.filters,[label]:value};fields.slice(index+1).forEach(key=>delete next[key]);setForm({...form,filters:next});setChoice('')}
- function valid(){const e={};if(step===2&&portal==='student'&&!form.studentType)e.studentType='اختر طالب مدرسة أو طالب جامعة أو دورات';if(step>=3&&!form.name.trim())e.name='اكتب الاسم للمتابعة';if(step>=3&&!form.country.trim())e.country='حدد الدولة';if(step===4)fields.forEach(label=>{if(!form.filters[label])e[label]=`حدد ${label}`});if(step===5&&!choice)e.choice='اختر نتيجة واحدة للمتابعة';setErrors(e);return !Object.keys(e).length}
+ function setFilter(label,value){
+  // University search: no cascading wipe — easier multi-select style
+  if(portal==='university'){
+   setForm({...form,filters:{...form.filters,[label]:value}});
+   setChoice('');
+   return;
+  }
+  const index=fields.indexOf(label),next={...form.filters,[label]:value};fields.slice(index+1).forEach(key=>delete next[key]);setForm({...form,filters:next});setChoice('');
+ }
+ function valid(){
+  const e={};
+  if(step===2&&portal==='student'&&!form.studentType)e.studentType='اختر طالب مدرسة أو طالب جامعة أو دورات';
+  if(step>=3&&!form.name.trim())e.name='اكتب الاسم للمتابعة';
+  if(step>=3&&!form.country.trim())e.country='حدد الدولة';
+  if(step===4){
+   if(portal==='university'){
+    UNIVERSITY_CORE_FIELDS.forEach(label=>{if(!form.filters[label])e[label]=`حدد ${label}`});
+   }else{
+    fields.forEach(label=>{if(!form.filters[label])e[label]=`حدد ${label}`});
+   }
+  }
+  if(step===5&&!choice)e.choice='اختر نتيجة واحدة للمتابعة';
+  setErrors(e);return !Object.keys(e).length;
+ }
  function next(){
   if((step===2&&portal==='student')||step>=3){if(!valid())return}
   setBusy(true);
+  if(step===2&&portal!=='student'&&form.intent==='join'){
+   router.push(`/access?portal=${encodeURIComponent(portal)}&intent=join`);
+   return;
+  }
   if(step===4&&portal==='student'){
    try{sessionStorage.setItem('success-os-student-search',JSON.stringify({form,createdAt:new Date().toISOString()}))}catch{}
-   router.push('/student/results');
+   // Continue in-journey results → detail → purchase → checkout (steps 5–8).
+   setTimeout(()=>{setBusy(false);setStep(5)},220);
+   return;
+  }
+  if(step===4&&portal==='university'){
+   router.push(admissionsUrlFromJourney(form));
+   return;
+  }
+  if(step===4&&portal!=='student'){
+   router.push(query);
+   return;
+  }
+  if(step===3&&portal==='jobseeker'){
+   router.push(query);
    return;
   }
   setTimeout(()=>{setBusy(false);setStep(s=>Math.min(s+1,8))},220)
@@ -81,7 +166,7 @@ export default function StartJourney(){
   {step===2&&portal==='student'&&<Panel n="02" title="اختر مسارك" text="ثلاث رحلات مستقلة حسب احتياج الطالب." cls="journey-request-picker"><div><button className={form.studentType==='school'?'active':''} onClick={()=>{setForm({...form,studentType:'school',filters:{}});setErrors({})}}>طالب مدرسة<span>✓</span></button><button className={form.studentType==='university'?'active':''} onClick={()=>{setForm({...form,studentType:'university',filters:{}});setErrors({})}}>طالب جامعة<span>✓</span></button><button className={form.studentType==='courses'?'active':''} onClick={()=>{setForm({...form,studentType:'courses',filters:{}});setErrors({})}}>دورات محلية وعالمية<span>✓</span></button></div>{errors.studentType&&<em className="field-error">{errors.studentType}</em>}<Actions back={()=>setStep(1)} next={next} busy={busy}/></Panel>}
   {step===2&&portal!=='student'&&<Panel n="02" title={`ماذا تريد من بوابة ${selected?.[2]}؟`} cls="journey-request-picker"><div><button className={form.intent==='search'?'active':''} onClick={()=>setForm({...form,intent:'search'})}>ابحث عن {selected?.[2]}<span>✓</span></button><button className={form.intent==='join'?'active':''} onClick={()=>setForm({...form,intent:'join'})}>انضم إلينا كشريك<span>✓</span></button></div><Actions back={()=>setStep(1)} next={next} busy={busy}/></Panel>}
   {step===3&&<Panel n="03" title={`معلومات ${form.studentType==='university'?'طالب الجامعة':form.studentType==='school'?'طالب المدرسة':form.studentType==='courses'?'طالب الدورات':'أساسية'}`} cls="journey-filter-step"><div><Field label="الاسم" value={form.name} error={errors.name} onChange={v=>setForm({...form,name:v})}/><Field label="الدولة" value={form.country} error={errors.country} choices={countries.map(x=>({value:x.code,label:x.name}))} onChange={v=>setForm({...form,country:v,filters:{}})}/></div><Actions back={()=>setStep(needsIntent.has(portal)||portal==='student'?2:1)} next={next} busy={busy}/></Panel>}
-  {step===4&&<Panel n="04" title={`فلاتر ${selected?.[2]}`} text={portal==='student'?(isRecorded?'يظهر التسجيل البشري فقط إذا رفعه معلم أو مركز. عند عدم وجوده يظهر المعلم المساعد.':isLive?'نعرض مركز النجاح الأكيد ومعلميه أولًا، ثم المعلمين والمراكز الأعلى تقييمًا حسب السعر والموقع.':'اختر المادة ثم نوع الحصة المطلوبة.'):'تغيير أي اختيار يعيد الحقول التابعة فقط.'} cls="journey-filter-step"><div>{fields.map((label,index)=><Field key={label} label={label} value={form.filters[label]||''} error={errors[label]} placeholder={label==='الحد الأعلى للسعر'?'أدخل أقصى سعر':label==='المدينة'?'اكتب المدينة':'الكل'} choices={choicesFor(label)} disabled={index>0&&!form.filters[fields[index-1]]} onChange={v=>{setErrors({});setFilter(label,v)}}/>)}</div>{isRecorded&&<aside className="recorded-ai-note"><b>المعلم المساعد عند عدم وجود تسجيل بشري</b><p>إذا لم يرفع معلم أو مركز تسجيلًا لهذه المادة، يظهر المعلم المساعد لإنتاج حصص المادة كاملة، ثم تنتقل الرحلة إلى الشراء وبعدها إلى لوحة الطالب.</p></aside>}<Actions back={()=>setStep(3)} next={next} busy={busy}/></Panel>}
+  {step===4&&<Panel n="04" title={portal==='university'?`فلاتر سهلة — ${selected?.[2]}`:`فلاتر ${selected?.[2]}`} text={portal==='university'?'ثلاثة اختيارات أساسية فقط. الباقي اختياري (يمكنك تركه على الكل) ثم المتابعة مباشرة إلى القبول.':portal==='student'?(isRecorded?'يظهر التسجيل البشري فقط إذا رفعه معلم أو مركز. عند عدم وجوده يظهر المعلم المساعد.':isLive?'نعرض مركز النجاح الأكيد ومعلميه أولًا، ثم المعلمين والمراكز الأعلى تقييمًا حسب السعر والموقع.':'اختر المادة ثم نوع الحصة المطلوبة.'):'تغيير أي اختيار يعيد الحقول التابعة فقط.'} cls="journey-filter-step"><div>{fields.map((label,index)=>{const optional=portal==='university'&&UNIVERSITY_OPTIONAL_FIELDS.includes(label);return <Field key={label} label={optional?`${label} (اختياري)`:label} value={form.filters[label]||(optional?'الكل':'')} error={errors[label]} placeholder={label==='الحد الأعلى للسعر'?'أدخل أقصى سعر':label==='المدينة'?'اكتب المدينة':'الكل'} choices={choicesFor(label)} disabled={portal!=='university'&&index>0&&!form.filters[fields[index-1]]} onChange={v=>{setErrors({});setFilter(label,v)}}/>})}</div>{isRecorded&&<aside className="recorded-ai-note"><b>المعلم المساعد عند عدم وجود تسجيل بشري</b><p>إذا لم يرفع معلم أو مركز تسجيلًا لهذه المادة، يظهر المعلم المساعد لإنتاج حصص المادة كاملة، ثم تنتقل الرحلة إلى الشراء وبعدها إلى لوحة الطالب.</p></aside>}{portal==='university'&&<aside className="recorded-ai-note"><b>فلاتر أساسية</b><p>مطلوب: داخل/خارج الدولة + دولة الوجهة + الدرجة. نمط الدراسة والتخصص اختياريان.</p></aside>}<Actions back={()=>setStep(3)} next={next} busy={busy}/></Panel>}
   {step===5&&<Panel n="05" title={isRecorded?'الحصص المتاحة للمادة':`نتائج مناسبة لبوابة ${selected?.[2]}`} text={isRecorded?(results[0]?.title.includes('المعلم المساعد')?'لا يوجد تسجيل بشري حاليًا؛ ظهر المعلم المساعد فقط.':'هذه التسجيلات رفعها شركاء وتظهر بأسمائهم.'):'الترتيب يبدأ بمركز النجاح الأكيد ثم الأعلى تقييمًا ضمن فلاترك.'} cls="journey-result-step"><div className="journey-result-cards">{results.map((x,i)=><button className={choice===x.title?'selected':''} onClick={()=>{setChoice(x.title);setErrors({})}} key={x.title}><b>{x.title}</b><span>{x.note} • ${x.price.toFixed(2)}</span><span>المدة: {x.duration} • الموعد: {x.schedule}</span><span>{isRecorded?(x.title.includes('المعلم المساعد')?'إنتاج عند الطلب داخل المنصة':'تسجيل بشري باسم الشريك'):`${countryName} • تقييم ${(4.9-i*.2).toFixed(1)} • مطابقة ${96-i*5}%`}</span><em>{choice===x.title?'✓ تم الاختيار':'اختر'}</em></button>)}</div>{errors.choice&&<em className="field-error">{errors.choice}</em>}<Actions back={()=>setStep(4)} next={next} busy={busy}/></Panel>}
   {step===6&&<Panel n="06" title={choice} cls="journey-result-step"><div className="journey-detail-grid"><article><b>المسار</b><span>{portal==='student'?(form.studentType==='university'?'طالب جامعة':form.studentType==='courses'?'دورات محلية وعالمية':'طالب مدرسة'):selected?.[2]}</span></article><article><b>المدة</b><span>{selectedResult?.duration}</span></article><article><b>الموعد أو التفعيل</b><span>{selectedResult?.schedule}</span></article><article><b>السعر الأساسي</b><span>${basePrice.toFixed(2)} • يتضمن 10%</span></article></div><Actions back={()=>setStep(5)} next={next} busy={busy}/></Panel>}
   {step===7&&<Panel n="07" title="ملخص الشراء" text="عمولة المنصة 10% محسوبة ضمن السعر المعلن ولا تُضاف على الطالب." cls="journey-result-step"><div className="purchase-summary"><span>السعر المعلن <b>${basePrice.toFixed(2)}</b></span><span>يتضمن عمولة المنصة 10% <b>${platformFee.toFixed(2)}</b></span><strong>المبلغ الذي يدفعه الطالب <b>${totalPrice.toFixed(2)}</b></strong></div><footer className="journey-actions"><button onClick={()=>setStep(6)}>رجوع</button><button className="primary" disabled={busy} title={busy?'جارٍ إنشاء طلب الشراء':''} onClick={confirm}>{busy?'جارٍ الإنشاء…':'متابعة إلى الدفع'}</button></footer></Panel>}
