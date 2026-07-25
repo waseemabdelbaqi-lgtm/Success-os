@@ -12,9 +12,10 @@ CREATE INDEX IF NOT EXISTS idx_portals_name_alpha ON university_portals(name ASC
 CREATE INDEX IF NOT EXISTS idx_portals_scope ON university_portals(scope ASC);
 CREATE INDEX IF NOT EXISTS idx_portals_type ON university_portals(type ASC);
 
--- Seed (75 records, A–Z by name)
+-- Seed (76 records, A–Z by name)
 INSERT INTO university_portals (name, website, type, scope, details) VALUES ('AACC Community College Directory', 'https://www.aaccihub.com/network/findacompany', 'Community College Directory', 'United States', 'Official network portal of the American Association of Community Colleges to search member institutions.');
 INSERT INTO university_portals (name, website, type, scope, details) VALUES ('Alison', 'https://alison.com', 'Training Center & Certifications', 'Global', 'Free workplace skills platform offering diplomas and vocational certificates.');
+INSERT INTO university_portals (name, website, type, scope, details) VALUES ('AMCI Morocco', 'https://www.amci.ma/', 'Centralized Admission Portal', 'Morocco', 'Moroccan Agency for International Cooperation channel used for many foreign-student applications to Moroccan public higher education via diplomatic nomination.');
 INSERT INTO university_portals (name, website, type, scope, details) VALUES ('anabin', 'https://anabin.kmk.org/en/anabin.html', 'Recognition Directory', 'Germany / Europe', 'Official German database for evaluating foreign school and higher-education qualifications before uni-assist or direct application.');
 INSERT INTO university_portals (name, website, type, scope, details) VALUES ('Appily', 'https://appily.com', 'University & College Search', 'United States', 'Comprehensive search engine with financial aid and admission chance estimators.');
 INSERT INTO university_portals (name, website, type, scope, details) VALUES ('ApplyAlberta', 'https://applyalberta.ca', 'Centralized Admission Portal', 'Canada (Alberta)', 'Centralized application hub for post-secondary institutions in Alberta.');

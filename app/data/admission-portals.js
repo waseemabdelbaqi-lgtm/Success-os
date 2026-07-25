@@ -65,6 +65,7 @@ const SCOPE_AR = {
   Egypt: 'مصر',
   Ireland: 'أيرلندا',
   'United Arab Emirates': 'الإمارات',
+  Morocco: 'المغرب',
   India: 'الهند',
   Japan: 'اليابان',
 };
@@ -97,7 +98,8 @@ function scopeBuckets(scope) {
     s.includes('jordan') ||
     s.includes('egypt') ||
     s.includes('united arab emirates') ||
-    s.includes('uae')
+    s.includes('uae') ||
+    s.includes('morocco')
   ) {
     return ['mena'];
   }
@@ -263,6 +265,12 @@ const COUNTRY_PORTAL_IDS = {
   ],
   'الإمارات': [
     'napo-uae',
+    'applyboard',
+    'top-universities',
+    'world-higher-education-database',
+  ],
+  'المغرب': [
+    'amci-morocco',
     'applyboard',
     'top-universities',
     'world-higher-education-database',

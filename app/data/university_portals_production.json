@@ -14,6 +14,13 @@
     "Details": "Free workplace skills platform offering diplomas and vocational certificates."
   },
   {
+    "Name": "AMCI Morocco",
+    "Website": "https://www.amci.ma/",
+    "Type": "Centralized Admission Portal",
+    "Scope": "Morocco",
+    "Details": "Moroccan Agency for International Cooperation channel used for many foreign-student applications to Moroccan public higher education via diplomatic nomination."
+  },
+  {
     "Name": "anabin",
     "Website": "https://anabin.kmk.org/en/anabin.html",
     "Type": "Recognition Directory",

@@ -714,6 +714,208 @@ export const DESTINATION_TRACKS = Object.freeze({
       portals: ['study-in-india-portal'],
     },
   ],
+
+  'قطر': [
+    {
+      id: 'qa-qatari',
+      titleAr: 'قطري — هوية قطرية + مسار Foundation عند الحاجة',
+      match: ({ nationality }) => nationality === 'قطر',
+      whenAr:
+        'القطريون يتقدمون بهوية قطرية سارية. حسب صفحة جامعة قطر: غير القطريين غالباً ملزمون بحد أدنى للإنجليزي/الرياضيات للكلية، بينما القطري الذي لا يستوفيها قد يلتحق ببرنامج Foundation. الذكور القطريون بمعدل أقل من 75% قد يُطلب منهم إثبات الخدمة الوطنية أو الإعفاء.',
+      channelAr: 'بوابة قبول جامعة قطر / الجامعات القطرية',
+      docs: [
+        'هوية قطرية سارية',
+        'شهادة ثانوية قطرية أو خاصة معتمدة',
+        'شهادة صحية صادرة داخل قطر',
+        'إثبات خدمة وطنية/إعفاء للذكور عند انطباق الشرط',
+      ],
+      feesAr: 'مسارات مواطنين/مقيمين وفق سياسات المؤسسة والمنح.',
+      visaAr: 'غير مطلوب للمواطن.',
+      caveats: ['أطفال أب قطري أو المتزوجات من قطري قد يرفعون مستندات إضافية عبر رابط إلكتروني خاص.'],
+      sources: [
+        {
+          label: 'Qatar University — High School Applicants',
+          url: 'https://www.qu.edu.qa/en-us/students/admission/undergraduate/admission-requirements/Pages/high-school-applicants.aspx',
+        },
+        {
+          label: 'Qatar University — College Requirements',
+          url: 'https://www.qu.edu.qa/en-us/students/admission/undergraduate/college-requirements',
+        },
+      ],
+      portals: ['qatar-scholarships'],
+    },
+    {
+      id: 'qa-gcc',
+      titleAr: 'مواطن خليجي (غير قطري) — هوية قطرية مطلوبة دون تأشيرة رعاية الجامعة عادة',
+      match: ({ nationality }) =>
+        ['السعودية', 'الإمارات', 'الكويت', 'البحرين', 'عُمان', 'عمان'].includes(nationality),
+      whenAr:
+        'جامعة قطر تميّز مواطني مجلس التعاون: يجب الحصول على هوية قطرية عبر الجهات الرسمية، ولن يُنظر في الطلب دونها. بخلاف غير الخليجيين، لا يُشترط عادة طلب تأشيرة تحت رعاية الجامعة بنفس صيغة international sponsorship.',
+      channelAr: 'بوابة QU + استخراج Qatar ID',
+      docs: ['جواز خليجي', 'هوية قطرية (شرط للنظر في الطلب)', 'شهادة ثانوية معتمدة', 'صورة جواز لغير القطري'],
+      feesAr: 'حسب سياسة الرسوم للمقيمين/الخليجيين في المؤسسة.',
+      visaAr: 'إقامة/هوية قطرية عبر القنوات الرسمية للخليجي — ليست نفس حزمة تأشيرة الطالب لغير GCC.',
+      caveats: ['استثناء GCC مذكور صراحة في تعليمات التأشيرة الدولية لـ QU.'],
+      sources: [
+        {
+          label: 'Qatar University — High School Applicants',
+          url: 'https://www.qu.edu.qa/en-us/students/admission/undergraduate/admission-requirements/Pages/high-school-applicants.aspx',
+        },
+        { label: 'Qatar Scholarships', url: 'https://www.qatarscholarships.qa/' },
+      ],
+      portals: ['qatar-scholarships'],
+    },
+    {
+      id: 'qa-international-non-gcc',
+      titleAr: 'دولي غير خليجي — تأشيرة برعاية الجامعة أو منحة + أصول الشهادة',
+      match: () => true,
+      whenAr:
+        'غير القطريين من خارج GCC: رفع جواز (وليس فقط هوية)، وإرسال أصل كشف الثانوية إلى جامعة قطر ضمن نافذة الدوليين، مع طلب تأشيرة طالب تحت رعاية الجامعة إن كان على نفقته، أو مسار المنحة (تتولى الجامعة التأشيرة). بدون أصل الشهادة + (تأشيرة أو طلب منحة) لا يُنظر في الطلب.',
+      channelAr: 'بوابة QU الدولية + تأشيرة/منحة + Qatar Scholarships عند الانطباق',
+      docs: [
+        'جواز ساري',
+        'أصل كشف علامات الثانوية مصدّق يُرسل إلى الجامعة',
+        'طلب تأشيرة طالب تحت رعاية QU أو اختيار طلب المنحة',
+        'إثبات إنجليزي/رياضيات حسب الكلية (إلزامي غالباً لغير القطري)',
+      ],
+      feesAr: 'دراسة على النفقة أو منحة (Qatar Scholarships / منح QU).',
+      visaAr: 'تأشيرة طالب برعاية الجامعة لغير الخليجيين على النفقة الخاصة.',
+      caveats: ['غير القطري غالباً لا يُقبل في الكلية دون حد اللغة/الرياضيات — بخلاف مسار Foundation للمواطن.'],
+      sources: [
+        {
+          label: 'Qatar University — High School Applicants',
+          url: 'https://www.qu.edu.qa/en-us/students/admission/undergraduate/admission-requirements/Pages/high-school-applicants.aspx',
+        },
+        { label: 'Qatar Scholarships', url: 'https://www.qatarscholarships.qa/' },
+      ],
+      portals: ['qatar-scholarships'],
+    },
+  ],
+
+  'الصين': [
+    {
+      id: 'cn-chinese-gaokao',
+      titleAr: 'مواطن صيني — Gaokao ومسار القبول الوطني',
+      match: ({ nationality }) => nationality === 'الصين',
+      whenAr:
+        'المواطنون الصينيون يدخلون الجامعات الصينية عبر الامتحان الوطني Gaokao ونظام التوزيع المركزي — مسار منفصل تماماً عن قبول الأجانب.',
+      channelAr: 'Gaokao + آليات القبول الوطنية للمقاطعة/الجامعة',
+      docs: ['تسجيل Gaokao', 'نتائج الثانوية والامتحان', 'اختيارات الجامعات حسب المقاطعة'],
+      feesAr: 'رسوم محلية للصينيين.',
+      visaAr: 'غير مطلوب للمواطن.',
+      caveats: ['حاملو جواز أجنبي من أصول صينية قد يخضعون لقواعد إقامة (مثل 4-4-2) لتحديد إن كانوا «دوليين».'],
+      sources: [
+        { label: 'Ministry of Education China', url: 'http://en.moe.gov.cn/' },
+      ],
+      portals: ['caokao-hub-chinaschools'],
+    },
+    {
+      id: 'cn-foreign-international',
+      titleAr: 'أجنبي — قبول دولي / CSC (بدون Gaokao) + CSCA لبعض الجامعات 2026',
+      match: () => true,
+      whenAr:
+        'الأجانب لا يؤدون Gaokao عادة. يتقدمون مباشرة للجامعة أو عبر منحة الحكومة الصينية CSC، بملف أكاديمي ولغة (HSK أو إنجليزي). اعتباراً من دورات 2026 تظهر متطلبات CSCA (اختبار أهلية) خاصة لمسارات منح CSC/بعض الجامعات — تحقق من دليل الجامعة للسنة.',
+      channelAr: 'بوابة الجامعة الدولية و/أو campuschina.org (CSC)',
+      docs: [
+        'جواز أجنبي',
+        'شهادة ثانوية وكشوف',
+        'HSK أو IELTS/TOEFL حسب لغة البرنامج',
+        'خطة دراسية / توصيات حسب الدرجة',
+        'تقرير CSCA إن طلبته الجامعة/المنحة لعام 2026+',
+      ],
+      feesAr: 'ممولة عبر CSC أو رسوم دولية ذاتية.',
+      visaAr: 'تأشيرة دراسة X بعد خطاب القبول واستمارة JW.',
+      caveats: ['لا يوجد UCAS صيني موحّد للأجانب — كل جامعة/منحة قناة مستقلة.'],
+      sources: [
+        { label: 'Campus China / CSC info hubs', url: 'https://www.campuschina.org/' },
+        { label: 'CUCAS — CSCA 2026 guide', url: 'https://news.cucas.cn/admission_express/CSCA_Complete_Guide:_China_Scholastic_Competency_Assessment_for_Bachelor_Degree_Study_in_China/7474' },
+      ],
+      portals: ['caokao-hub-chinaschools', 'applyboard'],
+    },
+  ],
+
+  'المغرب': [
+    {
+      id: 'ma-moroccan-bac',
+      titleAr: 'مغربي — بكالوريا + توجيه (وصول مفتوح / وصول منظّم)',
+      match: ({ nationality }) => nationality === 'المغرب',
+      whenAr:
+        'المغاربة الحاصلون على البكالوريا يلتحقون بالتعليم العالي العمومي: مؤسسات وصول مفتوح تقبل غالباً كل حاصل على بكالوريا، ومؤسسات وصول منظّم (طب، هندسة، ENCG…) بمباراة/انتقاء.',
+      channelAr: 'التسجيل/التوجيه الجامعي الوطني + مباريات الوصول المنظّم',
+      docs: ['بكالوريا مغربية', 'ملف التوجيه', 'مباراة/ملف للوصول المنظّم'],
+      feesAr: 'التعليم العمومي مجاني تقريباً للمغاربة في كثير من المسارات.',
+      visaAr: 'غير مطلوب للمواطن.',
+      caveats: ['المؤسسات الخاصة لها شروط مستقلة.'],
+      sources: [
+        { label: 'وزارة التعليم العالي المغربية', url: 'https://www.enssup.gov.ma/' },
+      ],
+      portals: [],
+    },
+    {
+      id: 'ma-foreign-amci',
+      titleAr: 'أجنبي — قناة دبلوماسية AMCI / ترخيص الوزارة',
+      match: () => true,
+      whenAr:
+        'الطلاب الأجانب للجامعات العمومية المغربية يقدّمون عادة عبر القناة الدبلوماسية ووكالة التعاون الدولي المغربية AMCI؛ الملف الذي لا يمر عبر AMCI قد لا يُعتمد. الأجانب المقيمون الحاصلون على شهادات مغربية يُعاملون غالباً كالمحليين مباشرة في المؤسسة (دون منح AMCI).',
+      channelAr: 'AMCI + ترخيص تسجيل من الوزارة ثم المؤسسة',
+      docs: [
+        'ملف عبر السفارة/AMCI',
+        'بكالوريا أو معادل للسنة الجارية',
+        'ترخيص تسجيل وزاري',
+        'جواز وتمويل/منحة حسب العرض',
+      ],
+      feesAr: 'منح تعاون أو رسوم وفق العرض؛ المقيم بشهادة مغربية كالمحلي.',
+      visaAr: 'تأشيرة/إقامة طالب بعد الترخيص.',
+      caveats: ['التونسيون/الجزائريون المقيمون قد تُعالج ملفاتهم كالمغربيين وفق مذكرات وزارية قديمة — تحقق من الوضع الحالي.'],
+      sources: [
+        { label: 'AMCI', url: 'https://www.amci.ma/' },
+        { label: 'وزارة التعليم العالي المغربية', url: 'https://www.enssup.gov.ma/' },
+      ],
+      portals: ['amci-morocco'],
+    },
+  ],
+
+  'سويسرا': [
+    {
+      id: 'ch-swiss-maturite',
+      titleAr: 'حامل maturité سويسرية — قبول جامعي قياسي',
+      match: ({ nationality, qualificationCountry }) =>
+        nationality === 'سويسرا' || qualificationCountry === 'سويسرا',
+      whenAr:
+        'الجامعات السويسرية تشترط عادة maturité gymnasiale أو مؤهلاً سويسرياً معادلاً للمرحلة الأولى. المواطن/حامل الشهادة السويسرية يسلك هذا المسار المباشر.',
+      channelAr: 'تقديم مباشر للجامعة / swissuniversities',
+      docs: ['Maturité / شهادة ثانوية سويسرية', 'طلب الجامعة', 'لغة البرنامج (ألمانية/فرنسية/إيطالية/إنجليزية)'],
+      feesAr: 'رسوم كنتونية منخفضة نسبياً للمؤهلين المحليين.',
+      visaAr: 'غير مطلوب للمواطن السويسري.',
+      caveats: ['الطب له إجراءات NC منفصلة عبر swissuniversities.'],
+      sources: [
+        { label: 'swissuniversities — Admission', url: 'https://www.swissuniversities.ch/en/topics/studying/admission-to-universities' },
+      ],
+      portals: [],
+    },
+    {
+      id: 'ch-foreign-credentials',
+      titleAr: 'شهادة أجنبية — متطلبات حسب بلد الشهادة (+ ECUS أحياناً)',
+      match: () => true,
+      whenAr:
+        'حاملو الشهادات الأجنبية يُقيَّمون وفق جداول «متطلبات القبول حسب الدولة» لدى swissuniversities. قد تُطلب امتحانات تكميلية (ECUS) أو سنة تحضيرية. الجنسية والإقامة تؤثران على الرسوم والتأشيرة/تصريح الإقامة.',
+      channelAr: 'تقديم الجامعة + فحص مؤهل أجنبي / ECUS عند اللزوم',
+      docs: [
+        'شهادة ثانوية أجنبية + ترجمة',
+        'مراجعة متطلبات بلد الشهادة على swissuniversities',
+        'إثبات لغة',
+        'تمويل وإثبات إقامة/تأشيرة لغير المقيمين',
+      ],
+      feesAr: 'قد تُفرض رسوم أعلى على الطلاب الأجانب حسب الكانتون/الجامعة.',
+      visaAr: 'تصريح إقامة دراسية لغير السويسريين/غير المقيمين.',
+      caveats: ['بلد إصدار الشهادة قد يكون أهم من الجنسية لقبول المؤهل.'],
+      sources: [
+        { label: 'swissuniversities — Admission', url: 'https://www.swissuniversities.ch/en/topics/studying/admission-to-universities' },
+        { label: 'Swiss ENIC', url: 'https://www.swissuniversities.ch/en/service/swiss-enic' },
+      ],
+      portals: [],
+    },
+  ],
 });
 
 /**
@@ -827,6 +1029,10 @@ export function exampleAlternateNationality(studyCountry, currentNationality) {
     أيرلندا: 'الأردن',
     الهند: 'الأردن',
     أستراليا: 'الأردن',
+    قطر: 'الأردن',
+    الصين: 'الأردن',
+    المغرب: 'الأردن',
+    سويسرا: 'الأردن',
   };
   return alts[studyCountry] || 'الأردن';
 }
@@ -853,6 +1059,9 @@ export function nationalityTracksSummary() {
       'https://admission.study-in-egypt.gov.eg/',
       'https://www.mohesr.gov.ae/en/EServices/ServiceCard/pages/napo.aspx',
       'https://www.studyinindia.gov.in/',
+      'https://www.qu.edu.qa/en-us/students/admission/undergraduate/admission-requirements/Pages/high-school-applicants.aspx',
+      'https://www.swissuniversities.ch/en/topics/studying/admission-to-universities',
+      'https://www.amci.ma/',
     ],
   };
 }

@@ -416,13 +416,23 @@ export default function AdmissionsPage() {
           <section className="admission-choice-panel">
             <header>
               <small>03 — {studyCountry}</small>
-              <h2>هل تتقدم كطالب محلي أم دولي؟</h2>
-              <p>المساران مختلفان في الوثائق والقناة واللغة والتأشيرة — اختر واحداً لعرض المتطلبات الصحيحة.</p>
+              <h2>الجنسية تحدّد المسار — ثم محلي أو دولي</h2>
+              <p>
+                في {studyCountry} تختلف قناة التقديم والرسوم والتأشيرة والوثائق باختلاف جنسية الطالب (وأحياناً بلد
+                الإقامة وبلد الشهادة). اختر وضعك التقريبي الآن، ثم حدّد جنسيتك بدقة في الخطوة التالية.
+              </p>
             </header>
+            <aside className="admission-nationality-banner">
+              <b>قاعدة مهمة</b>
+              <p>
+                طالبان لنفس الجامعة في {studyCountry} قد يحصلان على مسارين رسميين مختلفين فقط لأن جنسيتيهما مختلفة —
+                مثال شائع: مواطن الدولة مقابل وافد/أجنبي، أو أوروبي مقابل غير أوروبي.
+              </p>
+            </aside>
             <div className="admission-applicant-grid">
               <button type="button" className="applicant-card local" onClick={() => chooseApplicant('local')}>
                 <span>⌂</span>
-                <b>طالب محلي / مواطن أو مقيم في دولة الدراسة</b>
+                <b>مواطن / مسار محلي في {studyCountry}</b>
                 <p>{countryProfile.localSummaryAr}</p>
                 <small>قناة التقديم: {countryProfile.applyChannelLocal}</small>
                 <ul>
@@ -437,7 +447,7 @@ export default function AdmissionsPage() {
                 onClick={() => chooseApplicant('international')}
               >
                 <span>✈</span>
-                <b>طالب دولي قادم من خارج دولة الدراسة</b>
+                <b>جنسية أخرى / مسار دولي نحو {studyCountry}</b>
                 <p>{countryProfile.internationalSummaryAr}</p>
                 <small>قناة التقديم: {countryProfile.applyChannelInternational}</small>
                 <ul>

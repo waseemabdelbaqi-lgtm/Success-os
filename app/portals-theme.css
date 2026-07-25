@@ -877,6 +877,27 @@ html[data-os-theme='dark'] .os-content {
   color: #2e060a;
 }
 
+.admission-nationality-banner {
+  margin: 0 0 16px;
+  padding: 14px 16px;
+  border-radius: 16px;
+  border: 1px solid rgba(158, 23, 34, 0.2);
+  background: linear-gradient(120deg, #fff7ef, #f7e8e8);
+}
+
+.admission-nationality-banner b {
+  display: block;
+  color: #9e1722;
+  margin-bottom: 4px;
+}
+
+.admission-nationality-banner p {
+  margin: 0;
+  color: #4b0a11;
+  line-height: 1.7;
+  font-size: 13px;
+}
+
 .admission-nationality-contrast {
   margin-top: 14px;
   padding: 12px 14px;
