@@ -640,7 +640,7 @@ export default function AdmissionsPage() {
                 </div>
                 {(nationalityTrack.universities?.length || studyCountryUniversities.length > 0) && (
                   <div className="admission-track-universities">
-                    <b>جامعات مرتبطة بهذا المسار / الدولة</b>
+                    <b>جامعات / كليات / مدارس مرتبطة بهذا المسار</b>
                     <ul>
                       {(nationalityTrack.universities?.length
                         ? nationalityTrack.universities
@@ -880,6 +880,35 @@ export default function AdmissionsPage() {
               </section>
             )}
 
+            <section className="admission-contact-channel" aria-label="قناة التواصل بعد المطابقة">
+              <header>
+                <small>بعد مطابقة الجامعة أو الكلية أو المدرسة</small>
+                <h2>تواصل رسمي بـ $5 — حالتان حسب اشتراك المؤسسة</h2>
+                <p>
+                  نفس القناة لـ جامعة / كلية / مدرسة: تدفع رسوم التواصل الثابتة عبر بوابة الدفع، ثم يُفتح أحد
+                  المسارين حسب حالة المؤسسة في SUCCESS OS.
+                </p>
+              </header>
+              <ol>
+                <li>
+                  <b>1 — اختر المؤسسة بالاسم</b>
+                  <span>من النتائج أدناه (جامعة أو كلية أو مدرسة مسماة)</span>
+                </li>
+                <li>
+                  <b>2 — ادفع $5 عبر بوابة الدفع</b>
+                  <span>رسوم تواصل ثابتة لفتح القناة الرسمية</span>
+                </li>
+                <li>
+                  <b>3أ — مشتركة → إشعارات</b>
+                  <span>تخاطب مباشر داخل مركز الإشعارات مع مكتب القبول</span>
+                </li>
+                <li>
+                  <b>3ب — غير مشتركة → إيميل رسمي</b>
+                  <span>تعبّئ البيانات الضرورية ثم ترسل الإيميل بنفسك</span>
+                </li>
+              </ol>
+            </section>
+
             {(regionPlaybook || fieldCluster) && (
               <section className="admission-path-summary admission-research-panel">
                 {regionPlaybook && (
@@ -928,11 +957,12 @@ export default function AdmissionsPage() {
                 <div>
                   <small>06 — النتائج</small>
                   <h2>
-                    {results.length} جامعة مطابقة في {studyCountry || region?.nameAr}
+                    {results.length} مؤسسة مطابقة في {studyCountry || region?.nameAr}
                   </h2>
                   <p>
-                    عرض متطلبات {applicantType === 'local' ? 'الطالب المحلي' : 'الطالب الدولي'} لكل مؤسسة مع رابط المصدر
-                    الرسمي.
+                    جامعات وكليات ومدارس بأسمائها — متطلبات{' '}
+                    {applicantType === 'local' ? 'الطالب المحلي' : 'الطالب الدولي'} حسب الجنسية، ثم تواصل بـ $5
+                    (إشعار أو إيميل رسمي).
                   </p>
                 </div>
                 <div className="admission-wizard-actions compact">

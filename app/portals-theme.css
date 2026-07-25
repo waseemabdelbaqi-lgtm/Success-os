@@ -841,6 +841,74 @@ html[data-os-theme='dark'] .os-content {
   margin-top: 14px;
 }
 
+.admission-contact-channel {
+  margin-top: 16px;
+  padding: 18px 20px;
+  border-radius: 18px;
+  border: 1px solid rgba(158, 23, 34, 0.16);
+  background: linear-gradient(165deg, #fff7f5 0%, #f6ebe4 100%);
+}
+
+.admission-contact-channel > header h2 {
+  margin: 6px 0 8px;
+  font-size: 1.15rem;
+  color: #3b0a10;
+}
+
+.admission-contact-channel > header p {
+  margin: 0;
+  color: #5a3036;
+  line-height: 1.7;
+  font-size: 0.95rem;
+}
+
+.admission-contact-channel > header small {
+  color: #9e1722;
+  font-weight: 800;
+}
+
+.admission-contact-channel ol {
+  list-style: none;
+  margin: 16px 0 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+
+.admission-contact-channel li {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 12px 14px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(158, 23, 34, 0.1);
+}
+
+.admission-contact-channel li b {
+  color: #9e1722;
+  font-size: 0.92rem;
+}
+
+.admission-contact-channel li span {
+  color: #4b3034;
+  font-size: 0.86rem;
+  line-height: 1.55;
+}
+
+@media (max-width: 900px) {
+  .admission-contact-channel ol {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 560px) {
+  .admission-contact-channel ol {
+    grid-template-columns: 1fr;
+  }
+}
+
 .admission-nationality-track {
   margin-top: 16px;
   padding: 18px 20px;

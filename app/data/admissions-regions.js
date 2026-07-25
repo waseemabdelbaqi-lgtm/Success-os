@@ -20,8 +20,8 @@ export const ADMISSION_REGIONS = [
     order: 2,
     nameAr: 'أوروبا',
     nameEn: 'Europe',
-    blurbAr: 'بريطانيا وألمانيا وفرنسا وهولندا والسويد وإيطاليا والنمسا وإسبانيا وبلجيكا وأيرلندا — قنوات قبول تختلف بالجنسية.',
-    blurbEn: 'UK, Germany, France, NL, Sweden, Italy, Austria, Spain, Belgium, Ireland — nationality-dependent channels.',
+    blurbAr: 'بريطانيا وألمانيا وفرنسا وهولندا وبولندا والتشيك والسويد وإيطاليا والنمسا وإسبانيا وبلجيكا وأيرلندا — قنوات قبول تختلف بالجنسية.',
+    blurbEn: 'UK, Germany, France, NL, Poland, Czechia, Sweden, Italy, Austria, Spain, Belgium, Ireland — nationality-dependent channels.',
     icon: '🇪🇺',
   },
   {
@@ -758,14 +758,60 @@ export const ADMISSION_COUNTRIES = {
     nameEn: 'New Zealand',
     authority: 'NZQA',
     authorityUrl: 'https://www.nzqa.govt.nz/providers/index.do',
-    applyChannelLocal: 'تطبيق الجامعة / NCEA',
-    applyChannelInternational: 'تطبيق الجامعة + Student Visa',
-    localSummaryAr: 'طالب محلي: NCEA Level 3 ومتطلبات المواد.',
-    internationalSummaryAr: 'طالب دولي: مؤهل معادل + إنجليزي + تأشيرة طالب.',
-    localDocs: ['NCEA Level 3', 'طلب الجامعة'],
-    internationalDocs: ['شهادة ثانوية معادلة', 'IELTS', 'جواز وتمويل', 'Student Visa'],
-    notesAr: 'تحقق من تسجيل مقدم التعليم لدى NZQA.',
-    sources: [{ label: 'University of Auckland admissions', url: 'https://www.auckland.ac.nz/en/study/applications-and-admissions.html' }],
+    applyChannelLocal: 'تطبيق الجامعة — Domestic / University Entrance (NCEA)',
+    applyChannelInternational: 'International Admissions + Student Visa',
+    localSummaryAr:
+      'رسوم محلية (domestic) لمواطني نيوزيلندا، والمقيمين الدائمين المقيمين في NZ، ومواطني/مقيمي أستراليا المقيمين في نيوزيلندا أثناء الدراسة — عبر NCEA/University Entrance.',
+    internationalSummaryAr: 'غير فئة domestic: رسوم دولية + إنجليزي + تمويل + Student Visa؛ تحقق من NZQA.',
+    localDocs: ['NCEA Level 3 / University Entrance', 'إثبات جنسية أو إقامة domestic', 'طلب الجامعة'],
+    internationalDocs: ['شهادة ثانوية معادلة', 'IELTS/TOEFL/PTE', 'جواز وتمويل', 'Student Visa'],
+    notesAr:
+      'الجنسية (والإقامة أثناء الدراسة للأستراليين) تحدد domestic مقابل international — ليس مجرد «محلي/دولي» بالعنوان.',
+    sources: [
+      { label: 'University of Auckland admissions', url: 'https://www.auckland.ac.nz/en/study/applications-and-admissions.html' },
+      {
+        label: 'University of Auckland — fee types',
+        url: 'https://www.auckland.ac.nz/en/study/fees-and-money-matters/tuition-fees/paying-your-fees/fee-types-and-calculation.html',
+      },
+      { label: 'University of Otago — Australian status', url: 'https://ask.otago.ac.nz/knowledgebase/article/KA-10000242' },
+    ],
+  },
+  'بولندا': {
+    region: 'europe',
+    nameEn: 'Poland',
+    authority: 'NAWA / Study in Poland',
+    authorityUrl: 'https://study.gov.pl/',
+    applyChannelLocal: 'IRK / نظام قبول الجامعة — شروط المواطنين (بولندي أو EU/EEA)',
+    applyChannelInternational: 'International Admissions + تأشيرة وطنية لغير EU',
+    localSummaryAr:
+      'مواطن بولندي أو EU/EEA (وحاملو Karta Polaka عند اختيار شروط المواطنين): دوام كامل بالبولندية في الحكومية مجاناً غالباً.',
+    internationalSummaryAr: 'أجانب برسوم مؤسسية + لغة البرنامج + تمويل؛ غير EU يحتاجون تأشيرة/إقامة طالب.',
+    localDocs: ['شهادة ثانوية', 'إثبات جنسية بولندية أو EU/EEA', 'لغة بولندية للبرامج البولندية'],
+    internationalDocs: ['جواز', 'شهادة مترجمة', 'إثبات لغة', 'تمويل', 'تأشيرة وطنية / إقامة'],
+    notesAr: 'الوضع القانوني (شروط مواطنين مقابل أجانب) أهم من اسم البرنامج وحده — راجع study.gov.pl.',
+    sources: [
+      { label: 'Study in Poland — tuition', url: 'https://study.gov.pl/tuition-fees' },
+      { label: 'Study in Poland — define your status', url: 'https://study.gov.pl/define-your-status' },
+    ],
+  },
+  'التشيك': {
+    region: 'europe',
+    nameEn: 'Czechia',
+    authority: 'Study in Czechia / Ministry of Education',
+    authorityUrl: 'https://www.studyin.cz/',
+    applyChannelLocal: 'بوابة الجامعة — برامج تشيكية (مجانية في العامة) أو إنجليزية',
+    applyChannelInternational: 'بوابة الجامعة + nostrification + تأشيرة/إقامة لغير EU',
+    localSummaryAr:
+      'البرامج بالتشيكية في العامة مجانية لكل الجنسيات قانوناً؛ مواطنو التشيك وEU/EEA بلا تأشيرة طالب طويلة.',
+    internationalSummaryAr:
+      'غير EU: نفس قاعدة الرسوم اللغوية (تشيكية مجانية / إنجليزية برسوم) مع تصريح إقامة طالب وتمويل.',
+    localDocs: ['شهادة ثانوية', 'لغة تشيكية أو إنجليزية حسب البرنامج', 'طلب الجامعة'],
+    internationalDocs: ['جواز', 'شهادة + nostrification إن لزم', 'إثبات لغة', 'تمويل', 'إقامة طالب'],
+    notesAr: 'في التشيك لغة التدريس تحدد الرسوم في العامة أكثر من الجنسية؛ التأشيرة تختلف بالجنسية.',
+    sources: [
+      { label: 'Study in Czechia — tuition fees', url: 'https://www.studyin.cz/plan-your-studies/tuition-fees/' },
+      { label: 'Study in Czechia', url: 'https://www.studyin.cz/' },
+    ],
   },
 };
 

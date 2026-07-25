@@ -1730,6 +1730,212 @@ export const DESTINATION_TRACKS = Object.freeze({
       universities: ['University of Copenhagen', 'Technical University of Denmark', 'Aarhus University'],
     },
   ],
+
+  'بولندا': [
+    {
+      id: 'pl-polish-eu-eea-free-polish',
+      titleAr: 'مواطن بولندي / EU-EEA — دراسة بدوام كامل بالبولندية مجاناً في العامة',
+      match: ({ nationality }) => nationality === 'بولندا' || isEuEea(nationality),
+      whenAr:
+        'حسب study.gov.pl (NAWA): الدراسة بدوام كامل باللغة البولندية في مؤسسات التعليم العالي الحكومية مجانية للطلاب البولنديين وللأجانب الذين يدرسون «بشروط المواطنين البولنديين» — ويشمل ذلك مواطني EU/EEA وحاملي Karta Polaka (بطاقة القطب). التقديم عبر أنظمة الجامعات (مثل IRK) مع إثبات لغة بولندية كافية.',
+      channelAr: 'نظام قبول الجامعة (IRK/Online Admissions) — مسار شروط المواطنين',
+      docs: [
+        'شهادة ثانوية / معادل',
+        'إثبات جنسية بولندية أو EU/EEA (أو Karta Polaka إن وُجدت)',
+        'إثبات لغة بولندية للبرامج البولندية',
+        'مستندات التسجيل الخاصة بالجامعة',
+      ],
+      feesAr: 'بدون رسوم دراسية للدوام الكامل بالبولندية في الحكومية؛ قد تُفرض رسوم إدارية/فصلية.',
+      visaAr: 'مواطنو EU/EEA: تسجيل إقامة؛ البولندي لا يحتاج تأشيرة طالب.',
+      caveats: [
+        'برامج الإنجليزية والدوام الجزئي والمؤسسات الخاصة غالباً برسوم حتى لمواطني EU.',
+        'حاملو Karta Polaka ومواطنو EU/EEA قد يختارون الدراسة «كأجانب برسوم» لتسهيل القبول — راجع define your status.',
+      ],
+      sources: [
+        { label: 'Study in Poland — tuition fees', url: 'https://study.gov.pl/tuition-fees' },
+        { label: 'Study in Poland — define your status', url: 'https://study.gov.pl/define-your-status' },
+      ],
+      portals: [],
+      universities: [
+        'University of Warsaw',
+        'Jagiellonian University',
+        'Warsaw University of Technology',
+        'AGH University of Krakow',
+      ],
+    },
+    {
+      id: 'pl-fee-paying-foreigners',
+      titleAr: 'أجانب برسوم — خارج شروط المواطنين البولنديين',
+      match: () => true,
+      whenAr:
+        'الأجانب الذين لا يدرسون بشروط المواطنين يدفعون رسوماً تحددها المؤسسة (غالباً ≈ €2000–€6000 سنوياً حسب البرنامج). القبول غالباً أسهل دون منافسة مقاعد المواطنين، مع إثبات لغة البرنامج وتمويل وتأشيرة وطنية إن لزم.',
+      channelAr: 'تقديم الجامعة الدولي / International Admissions → تأشيرة وطنية بولندية',
+      docs: [
+        'جواز دولة ثالثة',
+        'شهادة ثانوية مصدّقة/مترجمة',
+        'إثبات لغة بولندية أو إنجليزية حسب البرنامج',
+        'إثبات تمويل',
+        'تأشيرة وطنية / تصريح إقامة طالب',
+      ],
+      feesAr: 'رسوم دراسية مؤسسية (متوسط رسمي تقريبي €2000+/سنة للدورات الأولى؛ أعلى للتخصصات والـMBA).',
+      visaAr: 'تأشيرة وطنية بولندية ثم تصريح إقامة للدراسة لغير EU/EEA.',
+      caveats: [
+        'ذوو الأصل البولندي المؤكد رسمياً قد يحصلون على خصم رسوم ≈ 30% حسب السياسة الرسمية.',
+        'الدكتوراه بدوام كامل في الكليات البحثية غالباً بدون رسوم مع منحة — استثناء مهم.',
+      ],
+      sources: [
+        { label: 'Study in Poland — tuition fees', url: 'https://study.gov.pl/tuition-fees' },
+        { label: 'Study in Poland — define your status', url: 'https://study.gov.pl/define-your-status' },
+      ],
+      portals: [],
+      universities: [
+        'University of Warsaw',
+        'Jagiellonian University',
+        'Warsaw University of Technology',
+        'AGH University of Krakow',
+      ],
+    },
+  ],
+
+  'التشيك': [
+    {
+      id: 'cz-eu-eea-no-visa',
+      titleAr: 'مواطن تشيكي / EU-EEA — برامج تشيكية مجانية + بلا تأشيرة طالب طويلة',
+      match: ({ nationality }) => nationality === 'التشيك' || isEuEea(nationality),
+      whenAr:
+        'حسب Study in Czechia: التعليم العالي بالتشيكية في المؤسسات العامة/الحكومية مجاني قانوناً لكل الجنسيات. مواطنو التشيك وEU/EEA لا يحتاجون تأشيرة طالب طويلة؛ البرامج بالإنجليزية/لغات أجنبية برسوم للجميع. التقديم عبر بوابات الجامعات.',
+      channelAr: 'بوابة قبول الجامعة (برامج تشيكية أو إنجليزية)',
+      docs: [
+        'شهادة ثانوية / nostrification إن لزم',
+        'إثبات جنسية EU/EEA أو تشيكية',
+        'إثبات لغة تشيكية للبرامج المجانية، أو إنجليزية للبرامج المدفوعة',
+      ],
+      feesAr: 'تشيكية في العامة: مجانية؛ إنجليزية/أجنبية: رسوم حسب البرنامج (حتى عشرات آلاف USD سنوياً في بعض التخصصات).',
+      visaAr: 'EU/EEA: حرية تنقل/تسجيل؛ التشيكي لا يحتاج تصريح طالب.',
+      caveats: [
+        'المجانية مرتبطة بلغة التدريس (التشيكية) وليس بالجنسية — لكن التأشيرة والإقامة تختلفان بالجنسية.',
+        'المؤسسات الخاصة تحدد رسومها بحرية.',
+      ],
+      sources: [
+        { label: 'Study in Czechia — tuition fees', url: 'https://www.studyin.cz/plan-your-studies/tuition-fees/' },
+        { label: 'Study in Czechia', url: 'https://www.studyin.cz/' },
+      ],
+      portals: [],
+      universities: [
+        'Charles University',
+        'Czech Technical University in Prague',
+        'Masaryk University',
+        'Brno University of Technology',
+      ],
+    },
+    {
+      id: 'cz-non-eu-visa-same-tuition-rule',
+      titleAr: 'خارج EU/EEA — نفس قاعدة الرسوم اللغوية + تأشيرة/إقامة طالب',
+      match: () => true,
+      whenAr:
+        'غير الأوروبيين يستفيدون أيضاً من مجانية البرامج التشيكية في العامة، لكن يلزمهم عادة تصريح إقامة طويل الأجل للدراسة وتمويل كافٍ. البرامج بالإنجليزية برسوم لجميع الجنسيات + مسار تأشيرة.',
+      channelAr: 'تقديم الجامعة → nostrification إن لزم → تأشيرة/إقامة طالب طويلة',
+      docs: [
+        'جواز دولة ثالثة',
+        'شهادة ثانوية + nostrification عند الطلب',
+        'إثبات لغة',
+        'تمويل وسكن',
+        'تصريح إقامة للدراسة',
+      ],
+      feesAr: 'تشيكية عامة: مجانية؛ برامج أجنبية: رسوم مؤسسية + رسوم إجراءات القبول.',
+      visaAr: 'تأشيرة/تصريح إقامة طويل الأجل للدراسة لغير EU/EEA.',
+      caveats: [
+        'لا تفترض أن «دولي = رسوم دائماً» في التشيك — لغة البرنامج تحدد الرسوم الدراسية في العامة.',
+        'تحقق من مواعيد القبول ومتطلبات nostrification لكل جامعة.',
+      ],
+      sources: [
+        { label: 'Study in Czechia — tuition fees', url: 'https://www.studyin.cz/plan-your-studies/tuition-fees/' },
+      ],
+      portals: [],
+      universities: [
+        'Charles University',
+        'Czech Technical University in Prague',
+        'Masaryk University',
+        'Brno University of Technology',
+      ],
+    },
+  ],
+
+  'نيوزيلندا': [
+    {
+      id: 'nz-domestic-nz-au',
+      titleAr: 'نيوزيلندي / أسترالي مقيم في NZ — رسوم محلية (domestic)',
+      match: ({ nationality }) =>
+        nationality === 'نيوزيلندا' || nationality === 'أستراليا',
+      whenAr:
+        'حسب سياسات الجامعات النيوزيلندية (مثل Auckland / Otago / Canterbury): يدفع الرسوم المحلية المدعومة حكومياً مواطنو نيوزيلندا، والمقيمون الدائمون المقيمون في NZ أثناء الدراسة، ومواطنو/مقيمو أستراليا الدائمون المقيمون في نيوزيلندا أثناء الدراسة. الدخول عبر University Entrance / NCEA أو معادل أسترالي (مثل ATAR).',
+      channelAr: 'تطبيق الجامعة مباشرة — مسار Domestic / University Entrance',
+      docs: [
+        'NCEA Level 3 أو ATAR/معادل أسترالي أو University Entrance',
+        'إثبات جنسية نيوزيلندية أو أسترالية / إقامة',
+        'إثبات الإقامة في نيوزيلندا أثناء الدراسة (لأستراليين والمقيمين)',
+      ],
+      feesAr: 'رسوم domestic مدعومة — أقل بكثير من الدولية.',
+      visaAr: 'مواطن NZ: لا تأشيرة؛ أسترالي مقيم في NZ: وضع محلي للرسوم عند الإقامة أثناء الدراسة.',
+      caveats: [
+        'الأسترالي أو المقيم الدائم الذي يدرس عن بُعد من خارج نيوزيلندا يُعامل غالباً كدولي للرسوم.',
+        'تحقق من تعريف domestic في Fees Policy لكل جامعة.',
+      ],
+      sources: [
+        {
+          label: 'University of Auckland — fee types',
+          url: 'https://www.auckland.ac.nz/en/study/fees-and-money-matters/tuition-fees/paying-your-fees/fee-types-and-calculation.html',
+        },
+        {
+          label: 'University of Otago — Australian domestic status',
+          url: 'https://ask.otago.ac.nz/knowledgebase/article/KA-10000242',
+        },
+        {
+          label: 'University of Canterbury — domestic tuition',
+          url: 'https://www.canterbury.ac.nz/study/getting-started/study-and-living-costs/study-costs/domestic-tuition-fees',
+        },
+      ],
+      portals: [],
+      universities: [
+        'University of Auckland',
+        'University of Otago',
+        'Victoria University of Wellington',
+        'University of Canterbury',
+      ],
+    },
+    {
+      id: 'nz-international-fees-visa',
+      titleAr: 'طالب دولي — رسوم دولية + Student Visa',
+      match: () => true,
+      whenAr:
+        'من ليس ضمن فئة domestic يدفع رسوماً دولية غير مدعومة ويتقدم عادة عبر المسار الدولي للجامعة، مع إثبات إنجليزي وتمويل وStudent Visa للدراسة داخل نيوزيلندا. تحقق من تسجيل مقدم التعليم لدى NZQA.',
+      channelAr: 'International Admissions للجامعة → عرض قبول → Student Visa',
+      docs: [
+        'جواز دولة ثالثة',
+        'شهادة ثانوية معادلة / University Entrance معادل',
+        'IELTS/TOEFL/PTE حسب البرنامج',
+        'إثبات تمويل',
+        'Student Visa',
+      ],
+      feesAr: 'رسوم دولية كاملة أعلى من domestic.',
+      visaAr: 'Student Visa نيوزيلندية للدراسة الحضورية أطول من 3 أشهر عادة.',
+      caveats: ['بعض برامج الدكتوراه قد تُسعَّر برسوم domestic حتى للطلاب الدوليين — تحقق من البرنامج.'],
+      sources: [
+        {
+          label: 'University of Auckland admissions',
+          url: 'https://www.auckland.ac.nz/en/study/applications-and-admissions.html',
+        },
+        { label: 'NZQA providers', url: 'https://www.nzqa.govt.nz/providers/index.do' },
+      ],
+      portals: [],
+      universities: [
+        'University of Auckland',
+        'University of Otago',
+        'Victoria University of Wellington',
+        'University of Canterbury',
+      ],
+    },
+  ],
 });
 
 /**
@@ -1865,6 +2071,9 @@ export function exampleAlternateNationality(studyCountry, currentNationality) {
     البرتغال: 'الأردن',
     فنلندا: 'الأردن',
     الدنمارك: 'الأردن',
+    بولندا: 'الأردن',
+    التشيك: 'الأردن',
+    نيوزيلندا: 'الأردن',
   };
   return alts[studyCountry] || 'الأردن';
 }
@@ -1949,6 +2158,12 @@ export function nationalityTracksSummary() {
       'https://www.studyinfinland.fi/funding-your-studies/fees-and-cost-living',
       'https://studyinfo.fi/',
       'https://studyindenmark.dk/study-options/tuition-fees-and-scholarships',
+      'https://study.gov.pl/tuition-fees',
+      'https://study.gov.pl/define-your-status',
+      'https://www.studyin.cz/plan-your-studies/tuition-fees/',
+      'https://www.auckland.ac.nz/en/study/fees-and-money-matters/tuition-fees/paying-your-fees/fee-types-and-calculation.html',
+      'https://ask.otago.ac.nz/knowledgebase/article/KA-10000242',
+      'https://www.canterbury.ac.nz/study/getting-started/study-and-living-costs/study-costs/domestic-tuition-fees',
     ],
   };
 }
