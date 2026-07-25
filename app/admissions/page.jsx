@@ -117,21 +117,40 @@ export default function AdmissionsPage() {
     const country = q.get('country');
     const regionParam = q.get('region');
     const applicant = q.get('applicant');
+    const degreeParam = q.get('degree');
+    const modeParam = q.get('mode');
+    const fieldParam = q.get('field');
+    const searchQ = q.get('q') || q.get('name');
+
     if (regionParam && ADMISSION_REGIONS.some((r) => r.id === regionParam)) {
       setRegionId(regionParam);
-      setStep(country ? 'country' : 'country');
+      setStep('country');
     }
     if (country && ADMISSION_COUNTRIES[country]) {
       setStudyCountry(country);
       setRegionId(ADMISSION_COUNTRIES[country].region);
-      setStep(applicant ? 'applicant' : 'applicant');
+      setStep('applicant');
     }
     if (applicant === 'local' || applicant === 'international') {
       setApplicantType(applicant);
+      if (applicant === 'local' && country && ADMISSION_COUNTRIES[country]) {
+        setNationality(country);
+        setQualificationCountry(country);
+      }
       setStep('profile');
     }
-    const searchQ = q.get('q');
+    if (degreeParam) setDegree(degreeParam);
+    if (modeParam === 'وجاهي' || modeParam === 'أونلاين') setMode(modeParam);
+    if (fieldParam) setField(fieldParam);
     if (searchQ) setQuery(searchQ);
+
+    // Journey deep-link: jump to filters/results when enough context exists
+    if (country && ADMISSION_COUNTRIES[country] && (degreeParam || modeParam || fieldParam || applicant)) {
+      setStep(applicant ? 'filters' : 'applicant');
+    }
+    if (country && ADMISSION_COUNTRIES[country] && applicant && (degreeParam || modeParam || fieldParam)) {
+      setStep('results');
+    }
   }, []);
 
   useEffect(() => {

@@ -38,6 +38,7 @@ export const countryAuthorities = {
   'فرنسا':{authority:'وزارة التعليم العالي والبحث',url:'https://www.enseignementsup-recherche.gouv.fr/',note:'تحقق من صفة المؤسسة والدرجة الوطنية أو الاعتراف الرسمي بالبرنامج.'},
   'هولندا':{authority:'NVAO – Accreditation Organisation',url:'https://www.nvao.net/en',note:'التحقق يكون من البرنامج المعتمد ومن المؤسسة وطريقة تقديمه.'},
   'أيرلندا':{authority:'QQI / Irish Register of Qualifications',url:'https://irq.ie/',note:'تحقق من الجهة المانحة والبرنامج ومستوى NFQ.'},
+  'سويسرا':{authority:'swissuniversities',url:'https://www.swissuniversities.ch/en/',note:'تحقق من المؤسسة والبرنامج ومتطلبات اللغة والإقامة للدراسة.'},
   'نيوزيلندا':{authority:'NZQA – Education providers',url:'https://www.nzqa.govt.nz/providers/index.do',note:'تحقق من مقدم التعليم والبرنامج وحالة تسجيله.'},
   'ماليزيا':{authority:'Malaysian Qualifications Register',url:'https://www2.mqa.gov.my/mqr/',note:'ابحث عن البرنامج نفسه في MQR وليس المؤسسة فقط.'},
   'سنغافورة':{authority:'Ministry of Education Singapore',url:'https://www.moe.gov.sg/post-secondary/overview',note:'تحقق من نوع المؤسسة والدرجة والجهة المانحة.'},
@@ -157,6 +158,70 @@ export const globalInstitutions = [
  U('melbourne','أستراليا','ملبورن','The University of Melbourne','جامعة',['وجاهي','أونلاين'],['هندسة','علوم','طب وصحة','أعمال'],'https://study.unimelb.edu.au/how-to-apply/undergraduate-study/international-applications'),
  U('unsw','أستراليا','سيدني','UNSW Sydney','جامعة',['وجاهي','أونلاين'],['هندسة','حوسبة','علوم','أعمال'],'https://www.unsw.edu.au/study/how-to-apply/international'),
  U('auckland','نيوزيلندا','أوكلاند','University of Auckland','جامعة',['وجاهي','أونلاين'],['هندسة','علوم','أعمال','آداب'],'https://www.auckland.ac.nz/en/study/applications-and-admissions.html'),
+
+ // Online degree universities & portals
+ U('snhu','الولايات المتحدة','Manchester NH','Southern New Hampshire University','جامعة أونلاين',['أونلاين'],['أعمال','حوسبة','علوم اجتماعية','تعليم'],'https://www.snhu.edu/admission',{
+   degree:'بكالوريوس وماجستير',
+   entry:'قبول مرن للبالغين؛ تحقق من اعتماد البرنامج في دولة استخدام الدرجة.',
+ }),
+ U('uopeople','الولايات المتحدة','Pasadena','University of the People','جامعة أونلاين',['أونلاين'],['أعمال','حوسبة','تعليم','صحة'],'https://www.uopeople.edu/admission/',{
+   degree:'بكالوريوس وماجستير',
+   entry:'جامعة معتمدة برسوم امتحانات منخفضة؛ افحص الاعتراف المحلي قبل الاعتماد على الدرجة.',
+ }),
+ U('ouuk','المملكة المتحدة','ميلتون كينز','The Open University','جامعة أونلاين',['أونلاين'],['علوم','أعمال','تعليم','حوسبة','آداب'],'https://www.open.ac.uk/courses/',{
+   degree:'بكالوريوس ودراسات عليا ودبلوم',
+ }),
+ U('wgu','الولايات المتحدة','Salt Lake City','Western Governors University','جامعة أونلاين',['أونلاين'],['تعليم','أعمال','حوسبة','طب وصحة'],'https://www.wgu.edu/admissions.html',{
+   degree:'بكالوريوس وماجستير',
+ }),
+ U('pennstate-world','الولايات المتحدة','University Park','Penn State World Campus','جامعة أونلاين',['أونلاين'],['هندسة','أعمال','تعليم','علوم'],'https://www.worldcampus.psu.edu/admissions',{
+   degree:'بكالوريوس وماجستير ودبلوم',
+ }),
+
+ // Community colleges & pathway colleges
+ U('bcc','الولايات المتحدة','New York','Borough of Manhattan Community College','كلية مجتمعية',['وجاهي','أونلاين'],['حوسبة','أعمال','علوم','آداب'],'https://www.bmcc.cuny.edu/admissions/',{
+   degree:'دبلوم وAssociate',
+ }),
+ U('deanza','الولايات المتحدة','Cupertino','De Anza College','كلية مجتمعية',['وجاهي','أونلاين'],['حوسبة','هندسة','أعمال','علوم'],'https://www.deanza.edu/admissions/',{
+   degree:'دبلوم وAssociate',
+ }),
+ U('seneca','كندا','تورونتو','Seneca Polytechnic','كلية تقنية',['وجاهي','أونلاين'],['حوسبة','أعمال','تصميم','هندسة'],'https://www.senecapolytechnic.ca/admissions.html',{
+   degree:'دبلوم وبكالوريوس تطبيقي',
+ }),
+ U('centennial','كندا','تورونتو','Centennial College','كلية',['وجاهي','أونلاين'],['هندسة','حوسبة','أعمال','طب وصحة'],'https://www.centennialcollege.ca/admissions/',{
+   degree:'دبلوم وبكالوريوس',
+ }),
+ U('hkcc','الصين','هونغ كونغ','HKU SPACE Community College','كلية مجتمعية',['وجاهي'],['أعمال','علوم','آداب'],'https://hkuspace.hku.hk/cc/',{
+   degree:'دبلوم وAssociate',
+   region:'asia',
+ }),
+
+ // More global research universities
+ U('harvard','الولايات المتحدة','Cambridge','Harvard University','جامعة',['وجاهي'],['علوم','أعمال','قانون','طب وصحة','آداب'],'https://college.harvard.edu/admissions'),
+ U('nyu','الولايات المتحدة','New York','New York University','جامعة',['وجاهي','أونلاين'],['أعمال','آداب','حوسبة','تصميم'],'https://www.nyu.edu/admissions.html'),
+ U('lse','المملكة المتحدة','لندن','London School of Economics','جامعة',['وجاهي'],['اقتصاد','علوم اجتماعية','قانون','أعمال'],'https://www.lse.ac.uk/study-at-lse/Undergraduate/Prospective-Students/How-to-Apply'),
+ U('eth','سويسرا','زيورخ','ETH Zurich','جامعة',['وجاهي'],['هندسة','حوسبة','علوم'],'https://ethz.ch/en/studies/application.html',{
+   region:'europe',
+   local:['شهادة ثانوية سويسرية / maturité','طلب ETH'],
+   international:['شهادة معادلة','إثبات لغة','تمويل وتأشيرة'],
+ }),
+ U('epfl','سويسرا','لوزان','EPFL','جامعة',['وجاهي'],['هندسة','حوسبة','علوم'],'https://www.epfl.ch/education/admission/',{region:'europe'}),
+ U('anu','أستراليا','كانبرا','Australian National University','جامعة',['وجاهي','أونلاين'],['علوم','هندسة','أعمال','آداب'],'https://www.anu.edu.au/study/apply'),
+ U('monash','أستراليا','ملبورن','Monash University','جامعة',['وجاهي','أونلاين'],['طب وصحة','هندسة','أعمال','علوم'],'https://www.monash.edu/study/how-to-apply'),
+ U('kaist','كوريا الجنوبية','Daejeon','KAIST','معهد جامعي',['وجاهي'],['هندسة','حوسبة','علوم'],'https://admission.kaist.ac.kr/intl-undergraduate/'),
+ U('pku','الصين','بكين','Peking University','جامعة',['وجاهي'],['علوم','آداب','اقتصاد','هندسة'],'https://www.isd.pku.edu.cn/'),
+ U('hku','الصين','هونغ كونغ','The University of Hong Kong','جامعة',['وجاهي'],['طب وصحة','هندسة','أعمال','آداب'],'https://admissions.hku.hk/',{region:'asia'}),
+ U('psut','الأردن','عمّان','جامعة الأميرة سمية للتكنولوجيا','جامعة',['وجاهي'],['حوسبة','هندسة','أعمال'],'https://www.psut.edu.jo/content/admission'),
+ U('bau-jo','الأردن','السلط','جامعة البلقاء التطبيقية','جامعة',['وجاهي'],['هندسة','علوم','أعمال','طب وصحة'],'https://www.bau.edu.jo/'),
+ U('ksau-hs','السعودية','الرياض','جامعة الملك سعود بن عبدالعزيز للعلوم الصحية','جامعة',['وجاهي'],['طب وصحة'],'https://www.ksau-hs.edu.sa/English/Admission'),
+ U('kfupm','السعودية','الظهران','جامعة الملك فهد للبترول والمعادن','جامعة',['وجاهي'],['هندسة','حوسبة','علوم','أعمال'],'https://www.kfupm.edu.sa/'),
+ U('hbku','قطر','الدوحة','جامعة حمد بن خليفة','جامعة',['وجاهي'],['حوسبة','علوم','قانون','علوم اجتماعية'],'https://www.hbku.edu.qa/en/admissions'),
+ U('aus-online','الإمارات','الشارقة','Hamdan Bin Mohammed Smart University','جامعة أونلاين',['أونلاين'],['أعمال','تعليم','إدارة'],'https://www.hbmsu.ac.ae/',{
+   degree:'بكالوريوس وماجستير ودبلوم',
+ }),
+ U('amu','مصر','القاهرة','جامعة الأزهر','جامعة',['وجاهي'],['طب وصحة','هندسة','آداب','علوم'],'https://www.azhar.edu.eg/'),
+ U('witwatersrand','جنوب أفريقيا','جوهانسبرغ','University of the Witwatersrand','جامعة',['وجاهي'],['هندسة','طب وصحة','علوم','أعمال'],'https://www.wits.ac.za/undergraduate/apply-to-wits/'),
+ U('ui','نيجيريا','Ibadan','University of Ibadan','جامعة',['وجاهي'],['علوم','طب وصحة','آداب','أعمال'],'https://www.ui.edu.ng/'),
 ];
 
 export function institutionsForRegion(regionId){

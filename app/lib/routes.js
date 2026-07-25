@@ -43,7 +43,7 @@ export const ROUTES = Object.freeze({
   teacher: { search: '/teachers', join: '/access?portal=teacher&intent=join' },
   center: { search: '/centers', join: '/access?portal=center&intent=join' },
   school: { search: '/schools', join: '/access?portal=school&intent=join' },
-  university: { search: '/universities', join: '/access?portal=university&intent=join' },
+  university: { search: '/admissions', join: '/access?portal=university&intent=join' },
   employer: { search: '/jobs', join: '/access?portal=employer&intent=join' },
 });
 

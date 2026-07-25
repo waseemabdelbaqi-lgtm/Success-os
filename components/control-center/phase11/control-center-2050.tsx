@@ -247,14 +247,14 @@ export function ControlCenter2050() {
             </header>
             <div>
               {SERVICE_JOURNEYS.map((path) => (
-                <article className="p11-lift" key={path[0]}>
-                  {path.map((step, index) => (
-                    <span key={`${path[0]}-${step}`}>
+                <Link className="p11-lift" href={path.href} key={path.href}>
+                  {path.steps.map((step, index) => (
+                    <span key={`${path.href}-${step}`}>
                       {step}
-                      {index < path.length - 1 ? <b> ← </b> : null}
+                      {index < path.steps.length - 1 ? <b> ← </b> : null}
                     </span>
                   ))}
-                </article>
+                </Link>
               ))}
             </div>
           </section>

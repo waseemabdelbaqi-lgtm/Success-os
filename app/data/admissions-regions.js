@@ -192,6 +192,23 @@ export const ADMISSION_COUNTRIES = {
     notesAr: 'تحقق من مستوى NFQ للبرنامج.',
     sources: [{ label: 'Trinity College Dublin apply', url: 'https://www.tcd.ie/study/apply/' }],
   },
+  'سويسرا': {
+    region: 'europe',
+    nameEn: 'Switzerland',
+    authority: 'swissuniversities',
+    authorityUrl: 'https://www.swissuniversities.ch/en/',
+    applyChannelLocal: 'تطبيق الجامعة / maturité',
+    applyChannelInternational: 'تطبيق الجامعة + إقامة دراسة',
+    localSummaryAr: 'طالب محلي: maturité سويسرية ومتطلبات المواد حسب المعهد.',
+    internationalSummaryAr: 'طالب دولي: شهادة معادلة + لغة البرنامج + تمويل وإقامة.',
+    localDocs: ['Maturité / شهادة ثانوية سويسرية', 'طلب الجامعة'],
+    internationalDocs: ['شهادة ثانوية معادلة', 'إثبات لغة', 'تمويل وإقامة دراسة'],
+    notesAr: 'ETH وEPFL لهما مسارات قبول تنافسية منفصلة.',
+    sources: [
+      { label: 'ETH Zurich application', url: 'https://ethz.ch/en/studies/application.html' },
+      { label: 'EPFL admission', url: 'https://www.epfl.ch/education/admission/' },
+    ],
+  },
   'الصين': {
     region: 'asia',
     nameEn: 'China',
