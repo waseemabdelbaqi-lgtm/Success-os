@@ -52,14 +52,14 @@ export async function POST(request: Request) {
   const origin = resolveSiteOrigin(request);
   const successUrl =
     body.successUrl ||
-    `${origin}/apply/${encodeURIComponent(institutionId)}?paid=1&session_id={CHECKOUT_SESSION_ID}`;
+    `${origin}/apply/${encodeURIComponent(institutionId)}?paid=1&success=true&session_id={CHECKOUT_SESSION_ID}`;
   const cancelUrl = body.cancelUrl || `${origin}/admission?cancelled=1`;
 
   const supabase = getSupabaseServerClient();
 
   if (!isStripeConfigured() || !supabase) {
     const payment = previewCreatePayment(institutionId, body.userId);
-    const previewUrl = `${origin}/apply/${encodeURIComponent(institutionId)}?paid=1&preview=1&payment_id=${payment.id}&unlock_token=${encodeURIComponent(payment.stripe_session_id)}`;
+    const previewUrl = `${origin}/apply/${encodeURIComponent(institutionId)}?paid=1&success=true&preview=1&payment_id=${payment.id}&unlock_token=${encodeURIComponent(payment.stripe_session_id)}`;
     return NextResponse.json({
       mode: "preview",
       paymentId: payment.id,

@@ -1,24 +1,36 @@
 import { Suspense } from "react";
 import { InnerNav } from "../../components";
-import ApplyInstitutionPage from "@/src/app/apply/[institutionId]/page";
+import ApplyPage from "@/src/app/apply/[institutionId]/page";
 
 export const metadata = {
-  title: "Apply",
-  description: "Unified admission application — unlocks after $5 payment.",
+  title: "استمارة التقديم | SUCCESS OS",
+  description: "رفع المستندات بعد تأكيد دفع رسوم الـ $5.",
 };
 
-export default function ApplyPage() {
+interface PageProps {
+  params: Promise<{ institutionId: string }>;
+  searchParams: Promise<{
+    success?: string;
+    paid?: string;
+    session_id?: string;
+    payment_id?: string;
+    unlock_token?: string;
+    preview?: string;
+  }>;
+}
+
+export default function ApplyRoutePage({ params, searchParams }: PageProps) {
   return (
     <>
       <InnerNav active="admissions" />
       <Suspense
         fallback={
-          <div className="mx-auto max-w-lg px-4 py-20 text-sm text-[#73636a]">
-            Loading application…
+          <div className="mx-auto max-w-lg px-4 py-20 text-center text-sm text-[#73636a]" dir="rtl">
+            جاري تحميل استمارة التقديم…
           </div>
         }
       >
-        <ApplyInstitutionPage />
+        <ApplyPage params={params} searchParams={searchParams} />
       </Suspense>
     </>
   );
