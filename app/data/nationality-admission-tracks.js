@@ -2823,6 +2823,159 @@ export const DESTINATION_TRACKS = Object.freeze({
       ],
     },
   ],
+
+  'قبرص': [
+    {
+      id: 'cy-eu-gov-covers-ug-greek',
+      titleAr: 'قبرصي / EU — الحكومة تغطي رسوم البكالوريوس العام (يوناني)',
+      match: ({ nationality }) => nationality === 'قبرص' || isEuEea(nationality),
+      whenAr:
+        'حسب وزارة التعليم القبرصية وجامعة التكنولوجيا القبرصية (CUT): مواطنو قبرص وEU لا يدفعون رسوم البكالوريوس في الجامعات العامة للبرامج باليونانية — تغطيها حكومة الجمهورية (€3417/سنة تُحسب لكن تدفعها الدولة). يدفعون للبرامج باللغات الأجنبية وللماجستير. بلا تأشيرة طالب.',
+      channelAr: 'تقديم الجامعة العامة / وزارة التعليم العالي',
+      docs: [
+        'شهادة ثانوية',
+        'إثبات جنسية قبرصية أو EU',
+        'لغة يونانية للبرامج المغطاة حكومياً أو إنجليزية للبرامج الأجنبية',
+      ],
+      feesAr: 'بكالوريوس يوناني عام: مغطى حكومياً لـ EU؛ أجنبي اللغة وماجستير: رسوم حسب البرنامج.',
+      visaAr: 'لا تأشيرة لـ EU/EEA.',
+      caveats: [
+        'Open University of Cyprus (تعليم عن بُعد) استثناء وقد تفرض رسوماً حتى على EU.',
+        'الجامعات الخاصة لها جداول رسوم مستقلة.',
+      ],
+      sources: [
+        {
+          label: 'Cyprus DHE — fees and financial support',
+          url: 'https://highereducation.ac.cy/en/spoudes-cyprus/oikonomikes-paroches',
+        },
+        {
+          label: 'Cyprus University of Technology — tuition',
+          url: 'https://www.cut.ac.cy/students/practical-information/tuition-and-fees/?languageId=1',
+        },
+        {
+          label: 'University of Cyprus — international students fees',
+          url: 'https://www.ucy.ac.cy/aasw/studies/undergraduate-studies/international_students/?lang=en',
+        },
+      ],
+      portals: [],
+      universities: [
+        'University of Cyprus',
+        'Cyprus University of Technology',
+        'Open University of Cyprus',
+        'University of Nicosia',
+        'European University Cyprus',
+      ],
+    },
+    {
+      id: 'cy-non-eu-pay-ug-entry-permit',
+      titleAr: 'غير EU — رسوم بكالوريوس كاملة + تصريح دخول/إقامة',
+      match: () => true,
+      whenAr:
+        'غير الأوروبيين يدفعون رسوم البكالوريوس كاملة في العامة (≈ €6834/سنة حسب CUT وUCY ووزارة التعليم). يلزم غالباً دفع عربون/قسط أول لتأمين تصريح الدخول إلى قبرص، ثم إقامة طالب.',
+      channelAr: 'تقديم الجامعة → دفع عربون غير EU → تصريح دخول/إقامة',
+      docs: [
+        'جواز دولة ثالثة',
+        'قبول',
+        'إثبات تمويل وتأمين',
+        'عربون/قسط أول عند الطلب',
+        'تصريح دخول وإقامة طالب',
+      ],
+      feesAr: 'بكالوريوس عام ≈ €6834/سنة لغير EU؛ ماجستير غالباً بنفس نطاق الرسوم بغض النظر عن الجنسية في بعض البرامج.',
+      visaAr: 'تصريح دخول/إقامة طالب لغير EU — ابدأ مبكراً بعد القبول.',
+      caveats: ['الماجستير في العامة غالباً برسوم لجميع الجنسيات؛ الفرق الأكبر في البكالوريوس.'],
+      sources: [
+        {
+          label: 'Cyprus DHE — fees and financial support',
+          url: 'https://highereducation.ac.cy/en/spoudes-cyprus/oikonomikes-paroches',
+        },
+        {
+          label: 'Cyprus University of Technology — tuition',
+          url: 'https://www.cut.ac.cy/students/practical-information/tuition-and-fees/?languageId=1',
+        },
+      ],
+      portals: [],
+      universities: [
+        'University of Cyprus',
+        'Cyprus University of Technology',
+        'University of Nicosia',
+        'European University Cyprus',
+      ],
+    },
+  ],
+
+  'آيسلندا': [
+    {
+      id: 'is-eea-efta-registration-only',
+      titleAr: 'آيسلندي / EEA-EFTA / سويسرا — رسوم تسجيل فقط بلا تأشيرة',
+      match: ({ nationality }) => nationality === 'آيسلندا' || isEuEea(nationality),
+      whenAr:
+        'حسب European Education Area وجامعة آيسلندا: الجامعات العامة لا تفرض رسوماً دراسية تقليدية بل رسوم تسجيل/إدارة سنوية (≈ 100,000 ISK في UI). مواطنو EEA/EFTA/سويسرا بلا تأشيرة؛ يسجّلون الإقامة إن تجاوزت 90 يوماً. لا تُفرض عليهم رسوم معالجة الطلب الخاصة بغير EEA.',
+      channelAr: 'تقديم الجامعة مباشرة (Application Portal)',
+      docs: [
+        'شهادة ثانوية / درجة سابقة',
+        'إثبات جنسية آيسلندية أو EEA/EFTA/سويسرا',
+        'لغة آيسلندية أو إنجليزية حسب البرنامج',
+      ],
+      feesAr: 'رسوم تسجيل سنوية (ليست tuition تقليدية) ≈ €600–€800 إرشادياً / 100,000 ISK في UI.',
+      visaAr: 'لا تأشيرة؛ تسجيل إقامة بعد 90 يوماً.',
+      caveats: ['المعيشة مرتفعة جداً (≈ €1300–€1900/شهر).'],
+      sources: [
+        {
+          label: 'European Education Area — Iceland',
+          url: 'https://education.ec.europa.eu/study-in-europe/country-profiles/iceland',
+        },
+        {
+          label: 'University of Iceland — university fees',
+          url: 'https://english.hi.is/study/apply/university-fees',
+        },
+      ],
+      portals: [],
+      universities: [
+        'University of Iceland',
+        'Reykjavík University',
+        'University of Akureyri',
+        'Iceland University of the Arts',
+      ],
+    },
+    {
+      id: 'is-non-eea-processing-residence-future-tuition',
+      titleAr: 'خارج EEA/EFTA — رسوم معالجة + إقامة طالب (+ tuition محتمل من 2027)',
+      match: () => true,
+      whenAr:
+        'غير الأوروبيين يدفعون رسوم معالجة طلب (≈ 20,000 ISK / €135 في UI) إضافة لرسوم التسجيل، ويحتاجون تصريح إقامة للدراسة من مديرية الهجرة بعد القبول. الحكومة أذنت بفرض رسوم دراسية على غير EEA/EFTA/سويسرا اعتباراً من خريف 2027؛ من يبدأ في خريف 2026 لا يخضع لها حسب إعلان الجامعة.',
+      channelAr: 'تقديم الجامعة → قبول → تصريح إقامة (Directorate of Immigration)',
+      docs: [
+        'جواز دولة ثالثة',
+        'قبول',
+        'رسوم معالجة الطلب',
+        'تمويل وتأمين صحي',
+        'تصريح إقامة طالب',
+      ],
+      feesAr: 'رسوم معالجة لغير EEA + رسوم تسجيل سنوية؛ tuition لغير EEA قد يبدأ لملتحقي 2027+.',
+      visaAr: 'تصريح إقامة للدراسة (وقد تلزم تأشيرة دخول حسب الجنسية) قبل السفر غالباً.',
+      caveats: [
+        'مواعيد الهجرة ضيقة — خصوصاً لفصل الربيع.',
+        'الدكتوراه معفاة من tuition المستقبلي حسب إعلان UI؛ حاملو إقامة دائمة أيضاً.',
+      ],
+      sources: [
+        {
+          label: 'University of Iceland — university fees',
+          url: 'https://english.hi.is/study/apply/university-fees',
+        },
+        {
+          label: 'European Education Area — Iceland',
+          url: 'https://education.ec.europa.eu/study-in-europe/country-profiles/iceland',
+        },
+      ],
+      portals: [],
+      universities: [
+        'University of Iceland',
+        'Reykjavík University',
+        'University of Akureyri',
+        'Iceland University of the Arts',
+      ],
+    },
+  ],
 });
 
 /**
@@ -2973,6 +3126,8 @@ export function exampleAlternateNationality(studyCountry, currentNationality) {
     لاتفيا: 'الأردن',
     مالطا: 'الأردن',
     لوكسمبورغ: 'الأردن',
+    قبرص: 'الأردن',
+    آيسلندا: 'الأردن',
   };
   return alts[studyCountry] || 'الأردن';
 }
@@ -3086,6 +3241,11 @@ export function nationalityTracksSummary() {
       'https://www.um.edu.mt/__data/assets/pdf_file/0009/363186/FeesNonEUStudents.pdf',
       'https://www.uni.lu/en/admissions/admission-criteria/',
       'https://education.ec.europa.eu/study-in-europe/country-profiles/luxembourg',
+      'https://highereducation.ac.cy/en/spoudes-cyprus/oikonomikes-paroches',
+      'https://www.cut.ac.cy/students/practical-information/tuition-and-fees/?languageId=1',
+      'https://www.ucy.ac.cy/aasw/studies/undergraduate-studies/international_students/?lang=en',
+      'https://english.hi.is/study/apply/university-fees',
+      'https://education.ec.europa.eu/study-in-europe/country-profiles/iceland',
     ],
   };
 }

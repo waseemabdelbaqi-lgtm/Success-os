@@ -73,6 +73,8 @@ export const countryAuthorities = {
   'لاتفيا':{authority:'VIAA / Study in Latvia',url:'https://www.viaa.gov.lv/en/education-system',note:'رسوم EU بنفس إجراءات المواطنين؛ غير EU رسوم أعلى عادة + تأشيرة/إقامة.'},
   'مالطا':{authority:'University of Malta / MFHEA',url:'https://education.ec.europa.eu/study-in-europe/country-profiles/malta',note:'Home (EU/EEA) برسوم أدنى؛ Non-EU برسوم أعلى وتأشيرة D.'},
   'لوكسمبورغ':{authority:'University of Luxembourg',url:'https://www.uni.lu/en/admissions/admission-criteria/',note:'رسوم موحّدة تقريباً؛ الجنسية تغيّر مواعيد المعادلة ومتطلبات الإقامة.'},
+  'قبرص':{authority:'Department of Higher Education Cyprus',url:'https://highereducation.ac.cy/en/spoudes-cyprus/oikonomikes-paroches',note:'EU: الحكومة تغطي بكالوريوس العام باليونانية؛ غير EU يدفع ≈ €6834/سنة + إقامة.'},
+  'آيسلندا':{authority:'University of Iceland / Directorate of Immigration',url:'https://english.hi.is/study/apply/university-fees',note:'EEA: رسوم تسجيل فقط؛ غير EEA رسوم معالجة + إقامة؛ tuition محتمل من 2027.'},
 };
 
 const allSystems = qualificationSystems.map(x=>x.id);
@@ -163,6 +165,12 @@ export const globalInstitutions = [
  }),
  U('heidelberg','ألمانيا','هايدلبرغ','Heidelberg University','جامعة',['وجاهي'],['طب وصحة','علوم','آداب','قانون'],'https://www.uni-heidelberg.de/en/study/application-enrolment',{
    contactEmail:'studium@uni-heidelberg.de',
+ }),
+ U('lmu','ألمانيا','ميونخ','Ludwig-Maximilians-Universität München','جامعة',['وجاهي'],['طب وصحة','علوم','آداب','قانون'],'https://www.lmu.de/en/study/index.html',{
+   platformMember:true,contactEmail:'international@lmu.de',
+ }),
+ U('fu-berlin','ألمانيا','برلين','Freie Universität Berlin','جامعة',['وجاهي'],['علوم','آداب','قانون','أعمال'],'https://www.fu-berlin.de/en/studium/bewerbung/',{
+   contactEmail:'info-service@fu-berlin.de',
  }),
  U('paris-saclay','فرنسا','باريس','Université Paris-Saclay','جامعة',['وجاهي'],['علوم','هندسة','طب وصحة','اقتصاد'],'https://www.universite-paris-saclay.fr/en/admission',{
    platformMember:true,contactEmail:'admissions@universite-paris-saclay.fr',
@@ -441,6 +449,44 @@ export const globalInstitutions = [
  U('isl','لوكسمبورغ','لوكسمبورغ','International School of Luxembourg','مدرسة',['وجاهي'],['IB','ابتدائي','ثانوي'],'https://www.islux.lu/admissions',{
    degree:'تعليم مدرسي K-12',
    platformMember:true,contactEmail:'admissions@islux.lu',
+ }),
+ U('ucy','قبرص','نيقوسيا','University of Cyprus','جامعة',['وجاهي'],['علوم','هندسة','طب وصحة','آداب'],'https://www.ucy.ac.cy/aasw/studies/undergraduate-studies/international_students/?lang=en',{
+   local:['بكالوريوس يوناني مغطى حكومياً لـ EU','تقديم الجامعة'],
+   international:['رسوم Non-EU ≈ €6834','تصريح دخول/إقامة'],
+   platformMember:true,contactEmail:'admissions@ucy.ac.cy',
+ }),
+ U('cut','قبرص','ليماسول','Cyprus University of Technology','جامعة',['وجاهي'],['هندسة','حوسبة','طب وصحة','أعمال'],'https://www.cut.ac.cy/students/practical-information/tuition-and-fees/?languageId=1',{
+   platformMember:true,contactEmail:'admissions@cut.ac.cy',
+ }),
+ U('ouc','قبرص','نيقوسيا','Open University of Cyprus','جامعة أونلاين',['أونلاين'],['آداب','علوم','أعمال','تعليم'],'https://www.ouc.ac.cy/index.php/en/studies/admissions',{
+   degree:'بكالوريوس وماجستير عن بُعد',contactEmail:'admissions@ouc.ac.cy',
+ }),
+ U('unic','قبرص','نيقوسيا','University of Nicosia','جامعة',['وجاهي','أونلاين'],['طب وصحة','أعمال','قانون','حوسبة'],'https://www.unic.ac.cy/admissions/',{
+   contactEmail:'admissions@unic.ac.cy',
+ }),
+ U('euc','قبرص','نيقوسيا','European University Cyprus','جامعة',['وجاهي'],['طب وصحة','أعمال','هندسة','آداب'],'https://euc.ac.cy/en/admissions/',{
+   contactEmail:'admit@euc.ac.cy',
+ }),
+ U('tasis-cy','قبرص','لارنكا','The American Academy Larnaca','مدرسة',['وجاهي'],['British Curriculum','ثانوي'],'https://www.academy.ac.cy/admissions',{
+   degree:'تعليم مدرسي ثانوي',
+   platformMember:true,contactEmail:'admissions@academy.ac.cy',
+ }),
+ U('hi','آيسلندا','ريكيافيك','University of Iceland','جامعة',['وجاهي'],['علوم','طب وصحة','آداب','قانون'],'https://english.hi.is/study/apply/university-fees',{
+   local:['رسوم تسجيل سنوية','بلا تأشيرة لـ EEA'],
+   international:['رسوم معالجة لغير EEA','تصريح إقامة','tuition محتمل من 2027'],
+   platformMember:true,contactEmail:'admission@hi.is',
+ }),
+ U('ru','آيسلندا','ريكيافيك','Reykjavík University','جامعة',['وجاهي'],['هندسة','حوسبة','أعمال','قانون'],'https://en.ru.is/admissions/',{
+   platformMember:true,contactEmail:'admissions@ru.is',
+ }),
+ U('unak','آيسلندا','أكوريري','University of Akureyri','جامعة',['وجاهي'],['علوم','تعليم','أعمال','طب وصحة'],'https://www.unak.is/english/admissions',{
+   contactEmail:'international@unak.is',
+ }),
+ U('lhi','آيسلندا','ريكيافيك','Iceland University of the Arts','جامعة',['وجاهي'],['فنون','تصميم','موسيقى'],'https://www.lhi.is/en/admissions',{
+   contactEmail:'admission@lhi.is',
+ }),
+ U('iis','آيسلندا','ريكيافيك','International School of Iceland','مدرسة',['وجاهي'],['IB','ابتدائي','ثانوي'],'https://www.isi.is/admissions',{
+   degree:'تعليم مدرسي K-12',contactEmail:'admissions@isi.is',
  }),
  U('sapienza','إيطاليا','روما','Sapienza Università di Roma','جامعة',['وجاهي'],['هندسة','طب وصحة','علوم','آداب'],'https://www.uniroma1.it/en/pagina/admission',{
    local:['دبلوم ثانوي إيطالي أو معادل','تسجيل مباشر'],

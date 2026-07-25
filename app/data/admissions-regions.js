@@ -20,8 +20,8 @@ export const ADMISSION_REGIONS = [
     order: 2,
     nameAr: 'أوروبا',
     nameEn: 'Europe',
-    blurbAr: 'بريطانيا وألمانيا وفرنسا وهولندا وبولندا والتشيك واليونان ورومانيا والمجر وسلوفاكيا وكرواتيا وبلغاريا وسلوفينيا وإستونيا وليتوانيا ولاتفيا ومالطا ولوكسمبورغ والسويد وإيطاليا والنمسا وإسبانيا وبلجيكا وأيرلندا — قنوات قبول تختلف بالجنسية.',
-    blurbEn: 'UK, Germany, France, NL, Poland, Czechia, Greece, Romania, Hungary, Slovakia, Croatia, Bulgaria, Slovenia, Estonia, Lithuania, Latvia, Malta, Luxembourg, Sweden, Italy, Austria, Spain, Belgium, Ireland — nationality-dependent channels.',
+    blurbAr: 'بريطانيا وألمانيا وفرنسا وهولندا وبولندا والتشيك واليونان ورومانيا والمجر وسلوفاكيا وكرواتيا وبلغاريا وسلوفينيا وإستونيا وليتوانيا ولاتفيا ومالطا ولوكسمبورغ وقبرص وآيسلندا والسويد وإيطاليا والنمسا وإسبانيا وبلجيكا وأيرلندا — قنوات قبول تختلف بالجنسية.',
+    blurbEn: 'UK, Germany, France, NL, Poland, Czechia, Greece, Romania, Hungary, Slovakia, Croatia, Bulgaria, Slovenia, Estonia, Lithuania, Latvia, Malta, Luxembourg, Cyprus, Iceland, Sweden, Italy, Austria, Spain, Belgium, Ireland — nationality-dependent channels.',
     icon: '🇪🇺',
   },
   {
@@ -1072,6 +1072,52 @@ export const ADMISSION_COUNTRIES = {
       {
         label: 'European Education Area — Luxembourg',
         url: 'https://education.ec.europa.eu/study-in-europe/country-profiles/luxembourg',
+      },
+    ],
+  },
+  'قبرص': {
+    region: 'europe',
+    nameEn: 'Cyprus',
+    authority: 'Department of Higher Education (MoESY)',
+    authorityUrl: 'https://highereducation.ac.cy/en/spoudes-cyprus/oikonomikes-paroches',
+    applyChannelLocal: 'تقديم الجامعة العامة — بكالوريوس يوناني مغطى حكومياً لـ EU',
+    applyChannelInternational: 'تقديم الجامعة + رسوم Non-EU + تصريح دخول/إقامة',
+    localSummaryAr: 'قبرصي/EU: الحكومة تغطي رسوم البكالوريوس العام باليونانية؛ بلا تأشيرة.',
+    internationalSummaryAr: 'غير EU: ≈ €6834/سنة للبكالوريوس العام + تصريح دخول/إقامة.',
+    localDocs: ['شهادة ثانوية', 'جنسية قبرصية أو EU', 'لغة يونانية أو إنجليزية'],
+    internationalDocs: ['جواز', 'قبول', 'تمويل', 'عربون عند الطلب', 'تصريح دخول/إقامة'],
+    notesAr: 'CUT/UCY/DHE: الفرق بالجنسية واضح جداً في رسوم البكالوريوس العامة.',
+    sources: [
+      {
+        label: 'Cyprus DHE — fees',
+        url: 'https://highereducation.ac.cy/en/spoudes-cyprus/oikonomikes-paroches',
+      },
+      {
+        label: 'CUT — tuition fees',
+        url: 'https://www.cut.ac.cy/students/practical-information/tuition-and-fees/?languageId=1',
+      },
+    ],
+  },
+  'آيسلندا': {
+    region: 'europe',
+    nameEn: 'Iceland',
+    authority: 'University of Iceland / Directorate of Immigration',
+    authorityUrl: 'https://english.hi.is/study/apply/university-fees',
+    applyChannelLocal: 'تقديم الجامعة — رسوم تسجيل فقط لـ EEA',
+    applyChannelInternational: 'تقديم + رسوم معالجة لغير EEA + تصريح إقامة',
+    localSummaryAr: 'EEA/EFTA/سويسرا: رسوم تسجيل سنوية بلا tuition تقليدية؛ بلا تأشيرة.',
+    internationalSummaryAr: 'غير EEA: رسوم معالجة + تسجيل + إقامة طالب؛ tuition محتمل من خريف 2027.',
+    localDocs: ['شهادة ثانوية', 'جنسية EEA/EFTA', 'لغة البرنامج'],
+    internationalDocs: ['جواز', 'قبول', 'رسوم معالجة', 'تمويل وتأمين', 'تصريح إقامة'],
+    notesAr: 'UI: غير EEA يدفعون processing fee؛ tuition لغير EEA مُصرَّح به من 2027.',
+    sources: [
+      {
+        label: 'University of Iceland — fees',
+        url: 'https://english.hi.is/study/apply/university-fees',
+      },
+      {
+        label: 'European Education Area — Iceland',
+        url: 'https://education.ec.europa.eu/study-in-europe/country-profiles/iceland',
       },
     ],
   },
