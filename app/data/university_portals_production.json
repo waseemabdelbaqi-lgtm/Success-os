@@ -1,0 +1,625 @@
+[
+  {
+    "Name": "AACC Community College Directory",
+    "Website": "https://www.aaccihub.com/network/findacompany",
+    "Type": "Community College Directory",
+    "Scope": "United States",
+    "Details": "Official network portal of the American Association of Community Colleges to search member institutions."
+  },
+  {
+    "Name": "Alison",
+    "Website": "https://alison.com",
+    "Type": "Training Center & Certifications",
+    "Scope": "Global",
+    "Details": "Free workplace skills platform offering diplomas and vocational certificates."
+  },
+  {
+    "Name": "AMCI Morocco",
+    "Website": "https://www.amci.ma/",
+    "Type": "Centralized Admission Portal",
+    "Scope": "Morocco",
+    "Details": "Moroccan Agency for International Cooperation channel used for many foreign-student applications to Moroccan public higher education via diplomatic nomination."
+  },
+  {
+    "Name": "anabin",
+    "Website": "https://anabin.kmk.org/en/anabin.html",
+    "Type": "Recognition Directory",
+    "Scope": "Germany / Europe",
+    "Details": "Official German database for evaluating foreign school and higher-education qualifications before uni-assist or direct application."
+  },
+  {
+    "Name": "Appily",
+    "Website": "https://appily.com",
+    "Type": "University & College Search",
+    "Scope": "United States",
+    "Details": "Comprehensive search engine with financial aid and admission chance estimators."
+  },
+  {
+    "Name": "ApplyAlberta",
+    "Website": "https://applyalberta.ca",
+    "Type": "Centralized Admission Portal",
+    "Scope": "Canada (Alberta)",
+    "Details": "Centralized application hub for post-secondary institutions in Alberta."
+  },
+  {
+    "Name": "ApplyBoard",
+    "Website": "https://applyboard.com",
+    "Type": "Global College Marketplace",
+    "Scope": "International",
+    "Details": "International student recruitment platform matching users to over 1500 colleges."
+  },
+  {
+    "Name": "ApplyTexas",
+    "Website": "https://applytexas.org",
+    "Type": "Centralized Admission Portal",
+    "Scope": "United States (Texas)",
+    "Details": "Centralized application engine for the vast majority of higher education in Texas."
+  },
+  {
+    "Name": "Arizona State University Online",
+    "Website": "https://asu.edu",
+    "Type": "Online Degree University",
+    "Scope": "Global / US",
+    "Details": "Top-tier public institution delivering over 300 fully online degree programs."
+  },
+  {
+    "Name": "Bachelorsportal",
+    "Website": "https://bachelorsportal.com",
+    "Type": "University & College Search",
+    "Scope": "Global",
+    "Details": "Massive database tracking over 100000 undergraduate programs worldwide."
+  },
+  {
+    "Name": "BigFuture College Board",
+    "Website": "https://bigfuture.collegeboard.org/college-search",
+    "Type": "University & College Search",
+    "Scope": "United States",
+    "Details": "Official College Board tool for matching tracking and exploring US universities."
+  },
+  {
+    "Name": "CAAS (Coalition for College)",
+    "Website": "https://coalitionforcollegeaccess.org",
+    "Type": "Centralized Admission Portal",
+    "Scope": "United States",
+    "Details": "A streamlined alternative platform focused on diverse and affordable institutions."
+  },
+  {
+    "Name": "Cal State Apply",
+    "Website": "https://calstate.edu",
+    "Type": "Centralized Admission Portal",
+    "Scope": "United States (California)",
+    "Details": "Centralized application portal for all 23 California State University campuses."
+  },
+  {
+    "Name": "Campus France",
+    "Website": "https://www.campusfrance.org/en",
+    "Type": "University Search Directory",
+    "Scope": "France",
+    "Details": "French government gateway for international students covering programmes, Études en France procedure, visas and campus life."
+  },
+  {
+    "Name": "Canvas Network",
+    "Website": "https://canvas.net",
+    "Type": "Training Center & MOOC",
+    "Scope": "Global",
+    "Details": "Open-enrollment network for institutional professional development courses."
+  },
+  {
+    "Name": "CAO Ireland",
+    "Website": "https://www.cao.ie/",
+    "Type": "Centralized Admission Portal",
+    "Scope": "Ireland",
+    "Details": "Central Applications Office for undergraduate EU-fee applicants to Irish higher education; non-EU undergraduates usually apply directly to universities."
+  },
+  {
+    "Name": "CaoKao Hub (Chinaschools)",
+    "Website": "https://chinaschoolguide.com",
+    "Type": "University Search Directory",
+    "Scope": "China",
+    "Details": "Gateway resource for international student tracking of national university intake systems."
+  },
+  {
+    "Name": "CareerOneStop CC Finder",
+    "Website": "https://www.careeronestop.org/LocalHelp/CommunityServices/find-community-colleges.aspx",
+    "Type": "Community College Directory",
+    "Scope": "United States",
+    "Details": "Department of Labor backed tool to find local community colleges, vocational certificates, and associate programs."
+  },
+  {
+    "Name": "CHEA Directory",
+    "Website": "https://www.chea.org/directories",
+    "Type": "Accreditation Directory",
+    "Scope": "United States / Global",
+    "Details": "Council for Higher Education Accreditation database checking over 8200 accredited institutions."
+  },
+  {
+    "Name": "Chevening Scholarships",
+    "Website": "https://www.chevening.org/",
+    "Type": "Scholarship Portal",
+    "Scope": "United Kingdom / Global",
+    "Details": "UK government global scholarship programme for one-year taught master's degrees at UK universities."
+  },
+  {
+    "Name": "Class Central",
+    "Website": "https://www.classcentral.com/",
+    "Type": "Online Degree & MOOC Aggregator",
+    "Scope": "Global",
+    "Details": "Aggregates free and premium online courses and degree options from thousands of global universities."
+  },
+  {
+    "Name": "Codecademy",
+    "Website": "https://codecademy.com",
+    "Type": "Technical Training Center",
+    "Scope": "Global",
+    "Details": "Vocational interactive software engineering and technical skills curriculum platform."
+  },
+  {
+    "Name": "College Navigator",
+    "Website": "https://ed.gov",
+    "Type": "University & College Search",
+    "Scope": "United States",
+    "Details": "Federal NCES tool filtering extensive tuition, financial aid, and graduation metrics."
+  },
+  {
+    "Name": "Common App",
+    "Website": "https://commonapp.org",
+    "Type": "Centralized Admission Portal",
+    "Scope": "Global / US",
+    "Details": "Centralized application portal for over 1100 institutions."
+  },
+  {
+    "Name": "Coursera Degrees",
+    "Website": "https://coursera.org",
+    "Type": "Online Degree Portal",
+    "Scope": "Global",
+    "Details": "Hosts fully accredited online bachelors and masters degrees from elite universities."
+  },
+  {
+    "Name": "DAAD Study in Germany",
+    "Website": "https://www.daad.de/en/",
+    "Type": "University Search Directory",
+    "Scope": "Germany",
+    "Details": "German Academic Exchange Service portal for programmes, funding, language requirements and application routes including uni-assist."
+  },
+  {
+    "Name": "DAPIP US Department of Education",
+    "Website": "https://ope.ed.gov/dapip/",
+    "Type": "Accreditation Directory",
+    "Scope": "United States",
+    "Details": "The authoritative Database of Accredited Postsecondary Institutions and Programs maintained by OPE."
+  },
+  {
+    "Name": "EduCanada",
+    "Website": "https://www.educanada.ca/",
+    "Type": "University Search Directory",
+    "Scope": "Canada",
+    "Details": "Government of Canada study-abroad hub listing designated learning institutions, study permits and scholarship opportunities."
+  },
+  {
+    "Name": "Educations.com",
+    "Website": "https://www.educations.com/",
+    "Type": "University Search Directory",
+    "Scope": "Global",
+    "Details": "Study abroad platform cataloging over 120000 global degree structures and scholarship matches."
+  },
+  {
+    "Name": "edX",
+    "Website": "https://edx.org",
+    "Type": "Online Degree & Professional Training",
+    "Scope": "Global",
+    "Details": "Offers verified corporate training micro-credentials and full master programs."
+  },
+  {
+    "Name": "Erasmus Mundus Catalogue",
+    "Website": "https://www.eacea.ec.europa.eu/scholarships/erasmus-mundus-catalogue_en",
+    "Type": "Scholarship Portal",
+    "Scope": "Europe / Global",
+    "Details": "EU catalogue of jointly delivered Erasmus Mundus Master's programmes with integrated scholarships for international students."
+  },
+  {
+    "Name": "Finduddannelse",
+    "Website": "https://finduddannelse.dk",
+    "Type": "Professional Training Search",
+    "Scope": "Europe (Denmark)",
+    "Details": "Competence development directory connecting working professionals to industry qualifications."
+  },
+  {
+    "Name": "Fulbright Foreign Student Program",
+    "Website": "https://foreign.fulbrightonline.org/",
+    "Type": "Scholarship Portal",
+    "Scope": "United States / Global",
+    "Details": "U.S. government exchange programme enabling graduate study and research at accredited American universities."
+  },
+  {
+    "Name": "FutureLearn",
+    "Website": "https://futurelearn.com",
+    "Type": "Online Degree & Professional Training",
+    "Scope": "Global / UK",
+    "Details": "Partners with leading global brands and universities to offer flexible digital degrees."
+  },
+  {
+    "Name": "General Assembly",
+    "Website": "https://generalassemb.ly",
+    "Type": "Technical Training Center",
+    "Scope": "Global",
+    "Details": "Vocational bootcamp layout specializing in tech, design, data engineering, and product management."
+  },
+  {
+    "Name": "Hochschulstart",
+    "Website": "https://hochschulstart.de",
+    "Type": "Centralized Admission Portal",
+    "Scope": "Germany",
+    "Details": "Coordinates applications for nationwide restricted university programs in Germany."
+  },
+  {
+    "Name": "IEEE Learning Network",
+    "Website": "https://ieee.org",
+    "Type": "Technical Training Center",
+    "Scope": "Global",
+    "Details": "Premium continuing education and technical training platform for engineers."
+  },
+  {
+    "Name": "Informa Connect Academy",
+    "Website": "https://informaconnect.com",
+    "Type": "Professional Training Center",
+    "Scope": "Global",
+    "Details": "Provides corporate training courses, industry recognized qualifications, and live workplace seminars."
+  },
+  {
+    "Name": "JAMB e-Facility",
+    "Website": "https://efacility.jamb.gov.ng/",
+    "Type": "Centralized Admission Portal",
+    "Scope": "Nigeria",
+    "Details": "Joint Admissions and Matriculation Board portal for UTME/DE registration in Nigeria and designated foreign centres, plus CAPS admission processing."
+  },
+  {
+    "Name": "Keystone Academic Courses",
+    "Website": "https://keystonestudies.com",
+    "Type": "University Search Directory",
+    "Scope": "Global",
+    "Details": "Comprehensive indexing network for matching higher education degrees, pathway courses, and certificates."
+  },
+  {
+    "Name": "Khan Academy",
+    "Website": "https://khanacademy.org",
+    "Type": "Training Center & College Prep",
+    "Scope": "Global",
+    "Details": "Free open-source academic repository specializing in K-12 and collegiate foundations."
+  },
+  {
+    "Name": "KUCCPS",
+    "Website": "https://www.kuccps.net/",
+    "Type": "Centralized Admission Portal",
+    "Scope": "Kenya",
+    "Details": "Kenya Universities and Colleges Central Placement Service — primarily for Kenyan citizens with KCSE; non-citizens generally apply directly to universities for degree programmes."
+  },
+  {
+    "Name": "Kursfinder",
+    "Website": "https://kursfinder.de",
+    "Type": "Professional Training Search",
+    "Scope": "Europe (Germany)",
+    "Details": "Large professional training database matching employees and corporations with technical trade providers."
+  },
+  {
+    "Name": "LinkedIn Learning",
+    "Website": "https://linkedin.com",
+    "Type": "Professional Training Center",
+    "Scope": "Global",
+    "Details": "Enterprise skill training center focusing on tech creative and business courses."
+  },
+  {
+    "Name": "Mastersportal",
+    "Website": "https://mastersportal.com",
+    "Type": "University Search Directory",
+    "Scope": "Global",
+    "Details": "Specialized global indexing platform for postgraduate master degrees and tracking."
+  },
+  {
+    "Name": "NAPO UAE",
+    "Website": "https://www.mohesr.gov.ae/en/EServices/ServiceCard/pages/napo.aspx",
+    "Type": "Centralized Admission Portal",
+    "Scope": "United Arab Emirates",
+    "Details": "National Admissions and Placement Office channel used by UAE Nationals and children of Emirati mothers graduating Grade 12 for selected federal/partner university placements."
+  },
+  {
+    "Name": "OEDb (Online Education Database)",
+    "Website": "https://www.oedb.org/",
+    "Type": "Online Degree Directory",
+    "Scope": "United States / Global",
+    "Details": "Comprehensive education directory parsing programs from accredited online colleges and free study paths."
+  },
+  {
+    "Name": "Ontario Colleges",
+    "Website": "https://www.ontariocolleges.ca/en",
+    "Type": "Centralized Admission Portal",
+    "Scope": "Canada (Ontario)",
+    "Details": "Official OCAS portal to apply to public colleges in Ontario; international applicants follow college-specific international steps."
+  },
+  {
+    "Name": "Open University UK",
+    "Website": "https://open.ac.uk",
+    "Type": "Online Degree University",
+    "Scope": "Global / UK",
+    "Details": "Pioneer in distance learning hosting over 170000 digital degree students globally."
+  },
+  {
+    "Name": "OUAC",
+    "Website": "https://ouac.on.ca",
+    "Type": "Centralized Admission Portal",
+    "Scope": "Canada (Ontario)",
+    "Details": "Centralized application service for all public universities in Ontario."
+  },
+  {
+    "Name": "Parcoursup",
+    "Website": "https://parcoursup.gouv.fr",
+    "Type": "Centralized Admission Portal",
+    "Scope": "France",
+    "Details": "Official national platform to register for first year higher education in France."
+  },
+  {
+    "Name": "PEC-G Brazil",
+    "Website": "https://www.gov.br/mre/en/subjects/culture-and-education/educational-themes/study-opportunities-for-international-applicants/pec-g/about-the-program",
+    "Type": "Centralized Admission Portal",
+    "Scope": "Brazil",
+    "Details": "Brazilian government undergraduate exchange programme for eligible foreign nationals (not Brazilians) via embassies/consulates — separate from ENEM/SiSU domestic admission."
+  },
+  {
+    "Name": "PhDsportal",
+    "Website": "https://www.phdsportal.com/",
+    "Type": "University Search Directory",
+    "Scope": "Global",
+    "Details": "Comprehensive international directory for tracking doctorate and research funding programs."
+  },
+  {
+    "Name": "Pluralsight",
+    "Website": "https://www.pluralsight.com/",
+    "Type": "Technical Training Center",
+    "Scope": "Global",
+    "Details": "Workforce development platform specializing in IT cybersecurity and software tracking."
+  },
+  {
+    "Name": "Qatar Scholarships",
+    "Website": "https://www.qatarscholarships.qa/",
+    "Type": "Scholarship Portal",
+    "Scope": "Qatar",
+    "Details": "State-linked scholarship pathways with partner universities covering tuition, housing and stipends for selected programmes."
+  },
+  {
+    "Name": "QTAC",
+    "Website": "https://www.qtac.edu.au/",
+    "Type": "Centralized Admission Portal",
+    "Scope": "Australia (Queensland)",
+    "Details": "Centralized admissions center for higher education institutions in Queensland."
+  },
+  {
+    "Name": "Saddem Portal",
+    "Website": "https://www.moe.gov.sa/",
+    "Type": "Centralized Admission Portal",
+    "Scope": "Saudi Arabia",
+    "Details": "Central government tracking and admission paths for Saudi national universities."
+  },
+  {
+    "Name": "SATAC",
+    "Website": "https://www.satac.edu.au/",
+    "Type": "Centralized Admission Portal",
+    "Scope": "Australia (SA & NT)",
+    "Details": "Processes applications for tertiary courses in South Australia and Northern Territory."
+  },
+  {
+    "Name": "SiSU Brazil",
+    "Website": "https://www.gov.br/mec/pt-br/sisu",
+    "Type": "Centralized Admission Portal",
+    "Scope": "Brazil",
+    "Details": "Sistema de Seleção Unificada using ENEM scores for admission to Brazilian public higher education — the main domestic channel for Brazilian secondary-school leavers."
+  },
+  {
+    "Name": "Skillshare",
+    "Website": "https://www.skillshare.com/",
+    "Type": "Creative Training Center",
+    "Scope": "Global",
+    "Details": "Creator-driven platform focused on design multimedia animation and practical trades."
+  },
+  {
+    "Name": "Southern New Hampshire University",
+    "Website": "https://www.snhu.edu/",
+    "Type": "Online Degree University",
+    "Scope": "Global / US",
+    "Details": "One of the largest nonprofit online degree providers in the world."
+  },
+  {
+    "Name": "SRAM",
+    "Website": "https://www.sram.qc.ca/",
+    "Type": "Centralized Admission Portal",
+    "Scope": "Canada (Quebec)",
+    "Details": "Application service for CEGEPs and colleges in the province of Quebec."
+  },
+  {
+    "Name": "Studielink",
+    "Website": "https://www.studielink.nl/",
+    "Type": "Centralized Admission Portal",
+    "Scope": "Netherlands",
+    "Details": "Official national enrollment portal for Dutch higher education institutions."
+  },
+  {
+    "Name": "Study in Algeria",
+    "Website": "https://studyinalgeria.dz/",
+    "Type": "Centralized Admission Portal",
+    "Scope": "Algeria",
+    "Details": "Official gateway for information and procedures related to foreign student admission into Algerian higher education institutions."
+  },
+  {
+    "Name": "Study in Austria",
+    "Website": "https://studyinaustria.at/",
+    "Type": "University Search Directory",
+    "Scope": "Austria",
+    "Details": "Official OeAD gateway for studying in Austria, including tuition rules that differ for EU/EEA vs third-country nationals."
+  },
+  {
+    "Name": "Study in Egypt",
+    "Website": "https://admission.study-in-egypt.gov.eg/",
+    "Type": "Centralized Admission Portal",
+    "Scope": "Egypt",
+    "Details": "Official Egyptian Ministry platform for non-Egyptian (expatriate) students applying to Egyptian universities and institutes."
+  },
+  {
+    "Name": "Study in Flanders",
+    "Website": "https://www.studyinflanders.be/",
+    "Type": "University Search Directory",
+    "Scope": "Belgium",
+    "Details": "Official gateway for higher education in Flanders/Brussels with EU vs non-EU fee and visa guidance."
+  },
+  {
+    "Name": "Study in India Portal",
+    "Website": "https://www.studyinindia.gov.in/",
+    "Type": "Centralized Admission Portal",
+    "Scope": "India",
+    "Details": "Official government portal for international student admission into Indian universities."
+  },
+  {
+    "Name": "Study in Japan Portal",
+    "Website": "https://www.studyinjapan.go.jp/",
+    "Type": "University Search Directory",
+    "Scope": "Japan",
+    "Details": "Government-backed gateway mapping entry requirements and links for universities across Japan."
+  },
+  {
+    "Name": "Study in Jordan",
+    "Website": "https://studyinjordan.jo/",
+    "Type": "Centralized Admission Portal",
+    "Scope": "Jordan",
+    "Details": "Official MOHE unified electronic admission system for international non-Jordanian students at Jordanian public universities (private optional)."
+  },
+  {
+    "Name": "Study in Korea",
+    "Website": "https://www.studyinkorea.go.kr/",
+    "Type": "University Search Directory",
+    "Scope": "South Korea",
+    "Details": "Korean government portal for international students covering universities, scholarships, and D-2/D-4 student visa guidance."
+  },
+  {
+    "Name": "Study in Saudi Arabia",
+    "Website": "https://studyinsaudi.sa/en",
+    "Type": "Centralized Admission Portal",
+    "Scope": "Saudi Arabia",
+    "Details": "Official Ministry of Education portal for international academic applications, scholarships and educational visas to Saudi universities."
+  },
+  {
+    "Name": "Study in Sweden",
+    "Website": "https://studyinsweden.se/",
+    "Type": "University Search Directory",
+    "Scope": "Sweden",
+    "Details": "Official Swedish Institute gateway for international students covering programmes, fees by citizenship, scholarships and residence permits."
+  },
+  {
+    "Name": "Study in Türkiye",
+    "Website": "https://www.studyinturkiye.gov.tr/",
+    "Type": "University Search Directory",
+    "Scope": "Turkey",
+    "Details": "YÖK-managed gateway for programme search, TR-YÖS guidance and international student information across Turkish higher education."
+  },
+  {
+    "Name": "Times Course Finder",
+    "Website": "https://timescoursefinder.com/",
+    "Type": "Global College Marketplace",
+    "Scope": "International",
+    "Details": "Aggregator matching global students to courses visas and active scholarship metrics."
+  },
+  {
+    "Name": "TISC",
+    "Website": "https://www.tisc.edu.au/",
+    "Type": "Centralized Admission Portal",
+    "Scope": "Australia (WA)",
+    "Details": "Tertiary Institutions Service Centre for universities in Western Australia."
+  },
+  {
+    "Name": "Top Universities",
+    "Website": "https://www.topuniversities.com/universities",
+    "Type": "University Search Directory",
+    "Scope": "Global",
+    "Details": "QS rankings directory with direct links to top global universities."
+  },
+  {
+    "Name": "Türkiye Scholarships",
+    "Website": "https://www.turkiyeburslari.gov.tr/",
+    "Type": "Scholarship Portal",
+    "Scope": "Turkey",
+    "Details": "Government-funded full-time and short-term scholarships with university placement via the TBBS online application system."
+  },
+  {
+    "Name": "UAC",
+    "Website": "https://www.uac.edu.au/",
+    "Type": "Centralized Admission Portal",
+    "Scope": "Australia (NSW & ACT)",
+    "Details": "Processes applications for institutions in New South Wales and the Australian Capital Territory."
+  },
+  {
+    "Name": "UCAS",
+    "Website": "https://www.ucas.com/",
+    "Type": "Centralized Admission Portal",
+    "Scope": "United Kingdom",
+    "Details": "The mandatory centralized admissions system for all UK university courses."
+  },
+  {
+    "Name": "UNEDasiss",
+    "Website": "https://unedasiss.uned.es/",
+    "Type": "Centralized Admission Portal",
+    "Scope": "Spain",
+    "Details": "UNED accreditation service for international access to Spanish universities. Pathways differ for EU education systems vs non-EU systems requiring Bachillerato homologation."
+  },
+  {
+    "Name": "uni-assist",
+    "Website": "https://www.uni-assist.de/en/",
+    "Type": "Centralized Admission Portal",
+    "Scope": "Germany",
+    "Details": "Central evaluation service used by about 180 German universities for international applications, including VPD preliminary review documentation."
+  },
+  {
+    "Name": "Universitaly",
+    "Website": "https://www.universitaly.it/studenti-stranieri",
+    "Type": "Centralized Admission Portal",
+    "Scope": "Italy",
+    "Details": "Italian Ministry portal for international pre-enrolment. Mandatory for non-EU students residing abroad who need a study visa; EU citizens and legal residents apply directly to universities."
+  },
+  {
+    "Name": "University Admissions Sweden",
+    "Website": "https://www.universityadmissions.se/",
+    "Type": "Centralized Admission Portal",
+    "Scope": "Sweden",
+    "Details": "Sweden's national application portal (antagning.se / universityadmissions.se). EU/EEA/Swiss citizens study tuition-free; most non-EU/EEA applicants pay application and tuition fees."
+  },
+  {
+    "Name": "University of California Admissions",
+    "Website": "https://admission.universityofcalifornia.edu/",
+    "Type": "Centralized Admission Portal",
+    "Scope": "United States (California)",
+    "Details": "The dedicated portal for applying to all 9 UC undergraduate campuses."
+  },
+  {
+    "Name": "University of the People",
+    "Website": "https://www.uopeople.edu/",
+    "Type": "Online Degree University",
+    "Scope": "Global",
+    "Details": "Tuition-free accredited online university focused on accessible degree pathways worldwide."
+  },
+  {
+    "Name": "VTAC",
+    "Website": "https://www.vtac.edu.au/",
+    "Type": "Centralized Admission Portal",
+    "Scope": "Australia (Victoria)",
+    "Details": "Centralized admissions center for universities in Victoria."
+  },
+  {
+    "Name": "Wallonie-Bruxelles Campus",
+    "Website": "https://www.studyinbelgium.be/",
+    "Type": "University Search Directory",
+    "Scope": "Belgium",
+    "Details": "Official campus portal for the French-speaking Community of Belgium covering programmes, fees and admission for international students."
+  },
+  {
+    "Name": "World Higher Education Database",
+    "Website": "https://www.whed.net/",
+    "Type": "University Search Directory",
+    "Scope": "Global",
+    "Details": "IAU/UNESCO official list of higher education systems and accredited institutions."
+  }
+]

@@ -287,12 +287,13 @@ export const CONTROL_CENTER_ROLES: Record<ControlCenterRoleId, RoleTuple> = {
   ],
 };
 
+/** Agreed operating classification: Company / Partners / Users */
 export const CONTROL_CENTER_GROUPS: [
   string,
   [ControlCenterRoleId, string][],
 ][] = [
   [
-    'الإدارة والموظفون',
+    'الشركة',
     [
       ['owner', 'المالك'],
       ['engineer', 'المهندس'],
@@ -303,22 +304,40 @@ export const CONTROL_CENTER_GROUPS: [
     ],
   ],
   [
-    'المستخدمون والشركاء',
+    'الشركاء',
     [
-      ['student', 'الطالب'],
-      ['teacher', 'المعلم'],
-      ['institution', 'المؤسسة'],
+      ['teacher', 'المعلم الشريك'],
+      ['institution', 'مؤسسة شريكة'],
       ['employer', 'شركة التوظيف'],
     ],
+  ],
+  [
+    'المستخدمون',
+    [['student', 'الطالب']],
   ],
 ];
 
 export const SERVICE_JOURNEYS = [
-  ['تعلم', 'تقييم', 'جواز'],
-  ['محتوى', 'خريطة', 'AI'],
-  ['حجز', 'دفع', 'حضور'],
-  ['مهارات', 'وظائف', 'مقابلات'],
-  ['Social', 'CRM', 'تسجيل'],
+  {
+    href: '/start-journey?portal=student',
+    steps: ['تعلم', 'تقييم', 'جواز'],
+  },
+  {
+    href: '/admissions',
+    steps: ['قارة', 'دولة', 'قبول'],
+  },
+  {
+    href: '/degree-finder',
+    steps: ['درجات', 'أونلاين', 'مقارنة'],
+  },
+  {
+    href: '/jobseeker-portal',
+    steps: ['مهارات', 'وظائف', 'مقابلات'],
+  },
+  {
+    href: '/control-hubs',
+    steps: ['لوحات', 'أدوار', 'تشغيل'],
+  },
 ] as const;
 
 export function isControlCenterRoleId(

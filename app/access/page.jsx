@@ -238,6 +238,49 @@ export default function AccessPage() {
     e.preventDefault();
     setSubmitted(true);
     runAI("journey");
+    const intent =
+      new URLSearchParams(window.location.search).get("intent") || "search";
+    const destinations = {
+      student: "/student-portal",
+      teacher: intent === "join" ? "/teacher-portal" : "/teachers",
+      center:
+        intent === "join"
+          ? "/control-center?role=institution&from=join&portal=center"
+          : "/centers",
+      school:
+        intent === "join"
+          ? "/control-center?role=institution&from=join&portal=school"
+          : "/schools",
+      university:
+        intent === "join"
+          ? "/control-center?role=institution&from=join&portal=university"
+          : "/universities",
+      employer: intent === "join" ? "/jobs?view=companies" : "/jobs",
+      jobseeker: "/jobseeker-portal",
+    };
+    const dest = destinations[portal] || "/start-journey";
+    try {
+      const payload = {
+        portal,
+        intent,
+        name,
+        country,
+        system,
+        grade,
+        subject,
+        at: new Date().toISOString(),
+      };
+      const saved = JSON.parse(
+        window.localStorage.getItem("success-os-access-requests") || "[]",
+      );
+      window.localStorage.setItem(
+        "success-os-access-requests",
+        JSON.stringify([payload, ...saved].slice(0, 30)),
+      );
+    } catch {}
+    window.setTimeout(() => {
+      window.location.href = dest;
+    }, 700);
   }
   return (
     <div className="os-page phase11-legacy-page">
@@ -630,11 +673,17 @@ export default function AccessPage() {
             </button>
             {submitted && (
               <div className="form-success">
-                <b>✓ تم حفظ الطلب التجريبي</b>
+                <b>✓ تم حفظ طلبك</b>
                 <p>
-                  سيربط النظام الخطوة التالية بلوحتك الخاصة بعد تفعيل الحسابات
-                  والصلاحيات.
+                  يتم الآن فتح الوجهة المناسبة لبوابتك. إذا لم يحدث انتقال تلقائي،
+                  استخدم الروابط أدناه.
                 </p>
+                <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', marginTop: 10 }}>
+                  <a className="os-primary" href="/start-journey">ابدأ الرحلة</a>
+                  <a href="/student-portal">لوحة الطالب</a>
+                  <a href="/teachers">المعلمون</a>
+                  <a href="/jobseeker-portal">الباحث عن عمل</a>
+                </div>
               </div>
             )}
           </form>

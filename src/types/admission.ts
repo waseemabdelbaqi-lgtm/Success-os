@@ -1,0 +1,86 @@
+export type InstitutionType = "university" | "college" | "school";
+export type TargetDegree = "bachelor" | "master" | "phd" | "diploma" | "school";
+export type PaymentStatus = "pending" | "completed" | "failed";
+export type ApplicationRoute = "partner" | "email";
+export type ApplicationStatus = "submitted" | "under_review" | "accepted" | "rejected";
+
+/** @deprecated use InstitutionType */
+export type InstitutionKind = InstitutionType;
+
+export interface AdmissionProfileInput {
+  fullName: string;
+  email?: string;
+  phone?: string;
+  nationality: string;
+  gpa: number;
+  targetDegree: TargetDegree;
+  major: string;
+  preferredStudyCountry?: string;
+  /** Supabase auth user id when signed in */
+  userId?: string;
+}
+
+export interface AdmissionCriteria {
+  id?: string;
+  institution_id?: string;
+  nationality: string;
+  min_gpa: number;
+  requirements_text: string;
+  /** متوسط تكلفة المعيشة للطالب */
+  avg_living_cost?: string | null;
+  /** آخر موعد للتقديم */
+  deadline_date?: string | null;
+  /** هل الشهادة معترف بها في بلد الطالب */
+  is_accredited_in_home_country?: boolean | null;
+  /** الحد الأقصى للعمر إن وُجد */
+  max_age_allowed?: number | null;
+  /** يتطلب خطاب عدم ممانعة من السفارة/الملحقية */
+  requires_embassy_letter?: boolean | null;
+  /** يتطلب فحصاً أمنياً / موافقة أمنية */
+  requires_security_clearance?: boolean | null;
+  /** اختبار بديل مطلوب (YÖS, SAT, TÖMER…) */
+  alternative_exam_required?: string | null;
+}
+
+export interface Institution {
+  id: string;
+  name: string;
+  type: InstitutionType;
+  official_email: string;
+  is_partner: boolean;
+  logo_url?: string | null;
+  country?: string | null;
+  majors?: string[];
+  /** Criteria matched to the student's nationality (or All) */
+  criteria?: AdmissionCriteria | null;
+}
+
+export interface PaymentRecord {
+  id: string;
+  user_id?: string | null;
+  institution_id: string;
+  amount: number;
+  status: PaymentStatus;
+  stripe_session_id: string;
+  /** Client unlock key — mirrors stripe_session_id in this schema */
+  unlock_token?: string | null;
+}
+
+export interface ApplicationPersonal {
+  fullName: string;
+  email: string;
+  phone: string;
+  dateOfBirth: string;
+  address?: string;
+}
+
+export interface SubmitApplicationInput {
+  paymentId: string;
+  unlockToken: string;
+  institutionId: string;
+  profile: AdmissionProfileInput;
+  personal: ApplicationPersonal;
+  transcriptPath: string;
+  passportPath: string;
+  message?: string;
+}

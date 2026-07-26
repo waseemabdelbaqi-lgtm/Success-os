@@ -1,50 +1,87 @@
 "use client";
 import { useEffect, useState } from "react";
 import { InnerNav } from "../components";
+
 const roles = {
   student: [
     "◉",
     "صفحة الطالب",
     "تعلم وحصص ومدارس وقبول جامعي في رحلة مستقلة",
-    ["الخطة الحالية", "الحصص المحجوزة", "طلبات المدارس", "طلبات القبول"],
+    [
+      ["الخطة الحالية", "/student-journey"],
+      ["الحصص المحجوزة", "/class-booking"],
+      ["طلبات المدارس", "/school-finder"],
+      ["طلبات القبول", "/admissions"],
+    ],
   ],
   teacher: [
     "♙",
     "صفحة المعلم",
     "المحتوى والحصص والأسعار والشراكة",
-    ["حصصي", "المحتوى المرفوع", "الطلاب", "الأرباح"],
+    [
+      ["حصصي", "/teacher-portal"],
+      ["المحتوى المرفوع", "/content-studio"],
+      ["الطلاب", "/class-booking"],
+      ["الأرباح", "/control-center?role=teacher"],
+    ],
   ],
   center: [
     "▦",
     "صفحة المركز التعليمي",
     "البرامج والمعلمون والاشتراكات",
-    ["البرامج", "المعلمون", "الطلاب", "المدفوعات"],
+    [
+      ["البرامج", "/control-center?role=institution&portal=center"],
+      ["المعلمون", "/teachers"],
+      ["الطلاب", "/partner-search?portal=center"],
+      ["المدفوعات", "/control-center?role=institution&portal=center"],
+    ],
   ],
   school: [
     "⌂",
     "صفحة المدرسة",
     "الصفوف والرسوم وطلبات الالتحاق",
-    ["الصفوف", "الرسوم", "طلبات الالتحاق", "التقارير"],
+    [
+      ["الصفوف", "/control-center?role=institution&portal=school"],
+      ["الرسوم", "/school-finder"],
+      ["طلبات الالتحاق", "/control-center?role=institution&portal=school"],
+      ["التقارير", "/control-center?role=institution&portal=school"],
+    ],
   ],
   university: [
     "🎓",
     "صفحة الجامعة أو الكلية",
     "البرامج والشروط وطلبات الطلاب",
-    ["البرامج", "شروط المحلي", "شروط الدولي", "طلبات القبول"],
+    [
+      ["البرامج", "/admissions"],
+      ["شروط المحلي", "/degree-finder"],
+      ["شروط الدولي", "/eligibility-check"],
+      ["طلبات القبول", "/application-tracker"],
+    ],
   ],
   employer: [
     "↗",
     "صفحة شركة التوظيف",
     "الوظائف والمرشحون والمقابلات",
-    ["الوظائف", "المطابقات", "المقابلات", "العروض"],
+    [
+      ["الوظائف", "/jobs?view=companies"],
+      ["المطابقات", "/jobs"],
+      ["المقابلات", "/application-tracker"],
+      ["العروض", "/control-center?role=employer"],
+    ],
   ],
   jobseeker: [
     "◇",
     "صفحة الباحث عن العمل",
     "المهارات والطلبات والمقابلات",
-    ["ملف المهارات", "الوظائف المناسبة", "طلباتي", "المقابلات"],
+    [
+      ["ملف المهارات", "/jobseeker-portal"],
+      ["الوظائف المناسبة", "/jobs"],
+      ["طلباتي", "/application-tracker"],
+      ["المقابلات", "/profile?role=jobseeker"],
+    ],
   ],
 };
+
 export default function ProfilePage() {
   const [role, setRole] = useState("student");
   useEffect(() => {
@@ -59,6 +96,25 @@ export default function ProfilePage() {
       school: "institution",
       university: "institution",
     }[role] || role;
+  const heroHref =
+    role === "jobseeker"
+      ? "/jobs"
+      : role === "student"
+        ? "/student-portal"
+        : role === "teacher"
+          ? "/teacher-portal"
+          : role === "employer"
+            ? "/jobs?view=companies"
+            : `/control-center?role=${dashboardRole}`;
+  const heroLabel =
+    role === "jobseeker"
+      ? "فتح بوابة الوظائف"
+      : role === "student"
+        ? "فتح بوابة الطالب"
+        : role === "teacher"
+          ? "فتح بوابة المعلم"
+          : "فتح لوحة التحكم";
+
   return (
     <div className="os-page phase11-legacy-page">
       <InnerNav active="profile" />
@@ -70,11 +126,12 @@ export default function ProfilePage() {
             <h1>{title}</h1>
             <p>{text}</p>
           </div>
-          <a href={role === "jobseeker" ? "/jobs" : role === "student" ? "/student-portal" : `/control-center?role=${dashboardRole}`}>{role === "jobseeker" ? "فتح بوابة الوظائف" : role === "student" ? "فتح بوابة الطالب" : "فتح لوحة التحكم"}</a>
+          <a href={heroHref}>{heroLabel}</a>
         </header>
         <section className="profile-switch">
           {Object.entries(roles).map(([id, r]) => (
             <button
+              type="button"
               className={id === role ? "active" : ""}
               onClick={() => setRole(id)}
               key={id}
@@ -90,7 +147,9 @@ export default function ProfilePage() {
             <p>الدولة: الأردن</p>
             <p>اللغة: العربية / English</p>
             <p>حالة التحقق: Demo</p>
-            <a href="/access">تحديث بيانات البوابة</a>
+            <a href={`/access?portal=${role}`}>تحديث بيانات البوابة</a>
+            <a href="/settings">إعدادات المنصة</a>
+            <a href="/login">تسجيل الدخول</a>
           </aside>
           <div className="profile-main">
             <section className="profile-stats">
@@ -107,16 +166,16 @@ export default function ProfilePage() {
               ))}
             </section>
             <section className="profile-tabs">
-              {tabs.map((x, i) => (
-                <article key={x}>
+              {tabs.map(([label, href], i) => (
+                <article key={label}>
                   <span>{["▦", "✓", "⌁", "↗"][i]}</span>
-                  <h2>{x}</h2>
+                  <h2>{label}</h2>
                   <p>
                     {i === 0
                       ? "عرض العناصر الحالية وإضافة جديد."
                       : "تظهر هنا البيانات المصرح بها لهذا المستخدم فقط."}
                   </p>
-                  <button>فتح ←</button>
+                  <a href={href}>فتح ←</a>
                 </article>
               ))}
             </section>
@@ -137,6 +196,8 @@ export default function ProfilePage() {
                 <a href="/passport">الجواز التعليمي</a>
                 <a href="/notifications">الإشعارات</a>
                 <a href="/control-center">مركز التحكم</a>
+                <a href="/courses">دورات Success 4 Sure</a>
+                <a href="/marketplace">السوق التعليمي</a>
               </div>
             </section>
           </div>
