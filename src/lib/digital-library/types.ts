@@ -1,3 +1,26 @@
+export type TeacherExplanationSegment = {
+  id: string;
+  minutes: number;
+  titleAr: string;
+  goalAr: string;
+  teacherScript: string;
+  studentMoves: string[];
+  boardCue?: string;
+};
+
+export type TeacherExplanation = {
+  totalMinutes: number;
+  teacherId: string;
+  teacherName: string;
+  teacherHref: string;
+  offerId?: string;
+  offerHref?: string;
+  titleAr: string;
+  subtitleAr: string;
+  materials: string[];
+  segments: TeacherExplanationSegment[];
+};
+
 export type LessonModuleContent = {
   slug: string;
   title: string;
@@ -27,6 +50,8 @@ export type LessonModuleContent = {
     explanation: string;
   }>;
   sources: Array<{ label: string; url: string }>;
+  /** Full human-teacher explanation (≥30 min) when available */
+  teacherExplanation?: TeacherExplanation;
 };
 
 export type CurriculumNode = {

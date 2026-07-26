@@ -18,21 +18,39 @@ async function resolveParams(params: Promise<Params> | Params) {
   return Promise.resolve(params);
 }
 
+function decodeSlug(value: string) {
+  let out = String(value || "");
+  for (let i = 0; i < 2; i++) {
+    try {
+      const next = decodeURIComponent(out);
+      if (next === out) break;
+      out = next;
+    } catch {
+      break;
+    }
+  }
+  return out;
+}
+
+function lessonSlugs(p: Params) {
+  return [
+    decodeSlug(p.region),
+    decodeSlug(p.country),
+    decodeSlug(p.curriculumType),
+    decodeSlug(p.educationLevel),
+    decodeSlug(p.subject),
+    decodeSlug(p.chapter),
+    decodeSlug(p.lesson),
+  ];
+}
+
 export async function generateMetadata({
   params,
 }: {
   params: Promise<Params> | Params;
 }): Promise<Metadata> {
   const p = await resolveParams(params);
-  const path = findNodePath([
-    p.region,
-    p.country,
-    p.curriculumType,
-    p.educationLevel,
-    p.subject,
-    p.chapter,
-    p.lesson,
-  ]);
+  const path = findNodePath(lessonSlugs(p));
   const leaf = path?.[path.length - 1];
   const lesson = getLessonBySlug(leaf?.lessonSlug);
   return {
@@ -53,15 +71,7 @@ export default async function GlobalLessonPage({
   params: Promise<Params> | Params;
 }) {
   const p = await resolveParams(params);
-  const slugs = [
-    p.region,
-    p.country,
-    p.curriculumType,
-    p.educationLevel,
-    p.subject,
-    p.chapter,
-    p.lesson,
-  ];
+  const slugs = lessonSlugs(p);
   const path = findNodePath(slugs);
   if (!path || path.length !== 7) notFound();
 
@@ -80,15 +90,14 @@ export default async function GlobalLessonPage({
       crumbs={[{ label: "Library", href: "/digital-library" }, ...crumbs]}
       storageKey={`dl-workspace:${slugs.join("/")}`}
       teacherSubjects={[
-        p.subject,
-        decodeURIComponent(p.subject),
+        slugs[4],
         "physics",
         "فيزياء",
         "رياضيات",
         "math",
       ].filter(Boolean)}
       teacherCurricula={[
-        p.curriculumType,
+        slugs[2],
         "IB",
         "ib",
         "توجيهي",

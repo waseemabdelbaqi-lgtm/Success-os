@@ -699,6 +699,161 @@
   }
 }
 
+/* Full teacher explanation (≥30 min timed delivery) */
+.dl-teacher-explain {
+  margin: 1.25rem 0 1.75rem;
+  padding: 1.25rem 1.2rem 1.4rem;
+  border-radius: 1rem;
+  background:
+    radial-gradient(ellipse 60% 70% at 100% 0%, rgba(242, 215, 124, 0.2), transparent 55%),
+    linear-gradient(145deg, #fff9f2 0%, #f7e8df 45%, #f3ddd2 100%);
+  border: 1px solid rgba(158, 23, 34, 0.18);
+  color: #2a0c10;
+  animation: dl-teacher-rise 0.65s ease both;
+}
+
+.dl-teacher-explain-head .dl-kicker {
+  color: #9e1722;
+  margin: 0 0 0.3rem;
+}
+
+.dl-teacher-explain-head h2 {
+  margin: 0 0 0.35rem;
+  color: #4b0a11;
+  font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+}
+
+.dl-teacher-explain-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 0.75rem;
+  font-size: 0.88rem;
+  font-weight: 700;
+}
+
+.dl-teacher-explain-meta a {
+  color: #9e1722;
+}
+
+.dl-teacher-explain-materials {
+  margin: 1rem 0;
+  padding: 0.75rem 0.85rem;
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 0.75rem;
+}
+
+.dl-teacher-explain-materials ul {
+  margin: 0.35rem 0 0;
+  padding-inline-start: 1.1rem;
+}
+
+.dl-teacher-timeline {
+  list-style: none;
+  margin: 0.85rem 0;
+  padding: 0;
+  display: grid;
+  gap: 0.45rem;
+}
+
+.dl-teacher-timeline button {
+  width: 100%;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 0.65rem;
+  align-items: center;
+  text-align: start;
+  border: 1px solid rgba(75, 10, 17, 0.14);
+  background: rgba(255, 255, 255, 0.75);
+  border-radius: 0.65rem;
+  padding: 0.55rem 0.75rem;
+  font: inherit;
+  cursor: pointer;
+  color: #2a0c10;
+}
+
+.dl-teacher-timeline button.active {
+  background: #9e1722;
+  color: #fff8f2;
+  border-color: #9e1722;
+}
+
+.dl-teacher-timeline button b {
+  color: inherit;
+  font-size: 0.78rem;
+}
+
+.dl-teacher-timeline button i {
+  font-style: normal;
+  font-size: 0.75rem;
+  opacity: 0.85;
+}
+
+.dl-teacher-segment {
+  margin-top: 0.85rem;
+  padding: 1rem 1.05rem;
+  background: #4b0a11;
+  color: #fff8f2;
+  border-radius: 0.85rem;
+}
+
+.dl-teacher-segment h3 {
+  margin: 0 0 0.35rem;
+  color: #f2d77c;
+  font-size: 1.1rem;
+}
+
+.dl-teacher-segment h3 small {
+  color: rgba(255, 248, 242, 0.75);
+  font-weight: 600;
+  font-size: 0.8rem;
+}
+
+.dl-teacher-segment > header p {
+  margin: 0 0 0.85rem;
+  color: rgba(255, 248, 242, 0.88);
+}
+
+.dl-teacher-script p {
+  margin: 0 0 0.75rem;
+  line-height: 1.75;
+  white-space: pre-wrap;
+}
+
+.dl-teacher-script strong,
+.dl-teacher-moves strong {
+  display: block;
+  color: #f2d77c;
+  margin-bottom: 0.35rem;
+}
+
+.dl-teacher-moves ul {
+  margin: 0;
+  padding-inline-start: 1.1rem;
+}
+
+.dl-teacher-board {
+  margin: 0.85rem 0 0;
+  padding: 0.55rem 0.7rem;
+  background: rgba(242, 215, 124, 0.12);
+  border-radius: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.dl-teacher-explain-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  margin-top: 1rem;
+}
+
+.dl-teacher-explain-actions a {
+  color: #9e1722;
+  font-weight: 800;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(158, 23, 34, 0.35);
+}
+
 /* Real teacher bridge — human layer after interactive modules */
 .dl-teacher-bridge {
   margin: 2rem 0 1.25rem;

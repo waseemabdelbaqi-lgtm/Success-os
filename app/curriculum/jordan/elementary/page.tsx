@@ -28,6 +28,14 @@ type Snap = {
   lessonSlots: Slot[];
   outlines: { count: number; published: number; items: Array<{ id: string; titleAr: string; subject: string; status: string }> };
   lastBuild: { builtAt?: string; totals?: Record<string, number> } | null;
+  teacher?: {
+    fullName?: string;
+    href?: string;
+    offerHref?: string;
+    offerTitle?: string;
+    durationMinutes?: number;
+    lessonExplainHref?: string;
+  };
 };
 
 export default function JordanElementaryStagePage(): ReactNode {
@@ -161,7 +169,32 @@ export default function JordanElementaryStagePage(): ReactNode {
           >
             درس حي · صف 2 رياضيات
           </Link>
+          {snap?.teacher?.lessonExplainHref ? (
+            <Link className="gold" href={snap.teacher.lessonExplainHref}>
+              شرح المعلّم 35د · {snap.teacher.fullName || "أ. وسيم"}
+            </Link>
+          ) : null}
         </div>
+
+        {snap?.teacher ? (
+          <section className="el-panel" style={{ marginBottom: "1rem" }}>
+            <h2>معلّم المرحلة</h2>
+            <p style={{ color: "var(--m)", marginTop: 0 }}>
+              {snap.teacher.fullName} يقود شرحًا كاملًا لا يقل عن 30 دقيقة داخل درس الجمع بخط
+              الأعداد ({snap.teacher.durationMinutes || 35} د).
+            </p>
+            <div className="el-actions" style={{ marginTop: 0 }}>
+              {snap.teacher.href ? (
+                <Link href={snap.teacher.href}>ملف المعلّم</Link>
+              ) : null}
+              {snap.teacher.offerHref ? (
+                <Link href={snap.teacher.offerHref} className="ghost">
+                  {snap.teacher.offerTitle || "عرض الحصة"}
+                </Link>
+              ) : null}
+            </div>
+          </section>
+        ) : null}
 
         {msg ? <p className="el-msg">{msg}</p> : null}
 

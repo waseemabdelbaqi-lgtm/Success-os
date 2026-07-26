@@ -19,6 +19,7 @@ import {
   JORDAN_WAVE1_SOURCES,
 } from './jordan-wave1-engine.js';
 import { listCurriculumOutlines } from './curriculum-os-store.js';
+import { ensureElementaryTeacher } from './seed-elementary-teacher.js';
 
 export const ELEMENTARY_STAGE = Object.freeze({
   id: 'jordan-elementary',
@@ -184,6 +185,8 @@ export async function buildJordanElementaryStage(options = {}) {
     await harvestJordanStructure();
   }
 
+  const teacherSeed = ensureElementaryTeacher();
+
   const reformReports = [];
   for (const gradeAr of ELEMENTARY_STAGE.gradesAr) {
     const report = reformulateJordanHarvest({
@@ -214,10 +217,21 @@ export async function buildJordanElementaryStage(options = {}) {
     },
     grades,
     lessonSlots: ELEMENTARY_LESSON_SLOTS,
+    teacher: {
+      id: teacherSeed.teacher?.id,
+      fullName: teacherSeed.teacher?.fullName,
+      offerId: teacherSeed.offer?.id,
+      offerTitle: teacherSeed.offer?.title,
+      durationMinutes: teacherSeed.offer?.durationMinutes,
+      href: `/teachers/${teacherSeed.teacher?.id}`,
+      offerHref: `/teachers/offers/${teacherSeed.offer?.id}`,
+      lessonExplainHref:
+        '/digital-library/middle-east/jordan/national/grade-1/الرياضيات/الجمع/الجمع-بخط-الأعداد#teacher-explain',
+    },
     next: [
+      'Deliver full teacher explanation (≥30 min) inside live lessons',
       'Author queued interactive lessons grade-by-grade',
-      'Attach Teachers OS offers per subject',
-      'Produce video scripts after lesson QA',
+      'Produce video scripts from teacher explanation segments',
     ],
   };
 
@@ -232,6 +246,7 @@ export async function buildJordanElementaryStage(options = {}) {
 }
 
 export function getJordanElementarySnapshot() {
+  const teacherSeed = ensureElementaryTeacher();
   const build = erpReadJson(path.join(stageRoot(), 'latest-build.json'));
   const grades = listElementaryGradeRows();
   const joOutlines = listCurriculumOutlines({}).filter((o) => {
@@ -266,10 +281,22 @@ export function getJordanElementarySnapshot() {
           totals: build.totals,
         }
       : null,
+    teacher: {
+      id: teacherSeed.teacher?.id,
+      fullName: teacherSeed.teacher?.fullName,
+      offerId: teacherSeed.offer?.id,
+      offerTitle: teacherSeed.offer?.title,
+      durationMinutes: teacherSeed.offer?.durationMinutes,
+      href: `/teachers/${teacherSeed.teacher?.id}`,
+      offerHref: `/teachers/offers/${teacherSeed.offer?.id}`,
+      lessonExplainHref:
+        '/digital-library/middle-east/jordan/national/grade-1/الرياضيات/الجمع/الجمع-بخط-الأعداد#teacher-explain',
+    },
     doctrineAr: [
       'المرحلة الابتدائية أولاً: صفوف 1–6 كقاعدة الهرم.',
       'لكل صف×مادة: outline → درس تفاعلي → معلّم حقيقي → فيديو لاحقاً.',
       'المحتوى أصلي SUCCESS OS؛ الهيكل من NCCD/منهاجي بدون نسخ الكتب.',
+      'شرح المعلّم ≥ 30 دقيقة داخل الدرس — أ. وسيم يقود الجمع بخط الأعداد 35د.',
     ],
   };
 }

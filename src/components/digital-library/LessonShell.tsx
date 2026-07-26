@@ -7,6 +7,7 @@ import { GamifiedQuiz } from "@/src/components/digital-library/GamifiedQuiz";
 import { RealTeacherBridge } from "@/src/components/digital-library/RealTeacherBridge";
 import { SmartWorkspace } from "@/src/components/digital-library/SmartWorkspace";
 import { SolvedExamples } from "@/src/components/digital-library/SolvedExamples";
+import { TeacherFullExplanation } from "@/src/components/digital-library/TeacherFullExplanation";
 import { ThreeDCanvasLazy as ThreeDCanvas } from "@/src/components/digital-library/ThreeDCanvasLazy";
 import type { LessonModuleContent } from "@/src/lib/digital-library/types";
 
@@ -19,6 +20,7 @@ type Props = {
 };
 
 const MODULE_LINKS = [
+  { href: "#teacher-explain", label: "شرح المعلّم" },
   { href: "#knowledge", label: "Knowledge" },
   { href: "#visualizer", label: "3D" },
   { href: "#workspace", label: "Workspace" },
@@ -54,10 +56,13 @@ export function LessonShell({
         <h1>{lesson.title}</h1>
         <p className="dl-hero-lead">{lesson.subtitle}</p>
         <p className="dl-meta">
-          ~{lesson.estimatedMinutes} min · 6 وحدات تفاعلية · المعلّم من Teachers OS
+          ~{lesson.estimatedMinutes} min · شرح معلّم كامل + وحدات تفاعلية · Teachers OS
         </p>
         <div className="dl-module-jump" role="navigation" aria-label="Jump to module">
-          {MODULE_LINKS.map((m) => (
+          {(lesson.teacherExplanation
+            ? MODULE_LINKS
+            : MODULE_LINKS.filter((m) => m.href !== "#teacher-explain")
+          ).map((m) => (
             <a key={m.href} href={m.href}>
               {m.label}
             </a>
@@ -65,6 +70,9 @@ export function LessonShell({
         </div>
       </header>
 
+      {lesson.teacherExplanation ? (
+        <TeacherFullExplanation explanation={lesson.teacherExplanation} />
+      ) : null}
       <DeepKnowledgeBase markdown={lesson.knowledgeMarkdown} objectives={lesson.learningObjectives} />
       <ThreeDCanvas kind={lesson.visualizer.kind} caption={lesson.visualizer.caption} />
       <SmartWorkspace storageKey={storageKey} />
@@ -72,8 +80,16 @@ export function LessonShell({
       <GamifiedQuiz items={lesson.quiz} />
       <RealTeacherBridge
         lessonTitle={lesson.title}
-        subjects={teacherSubjects}
-        curricula={teacherCurricula}
+        subjects={
+          lesson.teacherExplanation
+            ? ["رياضيات", "الرياضيات", "math", ...teacherSubjects]
+            : teacherSubjects
+        }
+        curricula={
+          lesson.teacherExplanation
+            ? ["Jordan", "national", "الصف الأول", ...teacherCurricula]
+            : teacherCurricula
+        }
       />
 
       <footer className="dl-sources">
