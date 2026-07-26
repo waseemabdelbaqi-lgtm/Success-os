@@ -181,7 +181,7 @@ export default function HomePage() {
     ['08','✦','انضم إلينا','بوابة الشراكات','معلم • مركز • مدرسة • جامعة • كلية • شركة','اختر نوع الشراكة وابدأ طلب انضمام موثّق إلى منظومة SUCCESS OS.','join']
   ];
   const partnerGateways=['teacher','center','school','university','employer'];
-  const searchRoutes={teacher:'/teachers',center:'/partner-search?portal=center',school:'/school-finder',university:'/admissions',employer:'/jobs'};
+  const searchRoutes={teacher:'/teachers',center:'/partners/discover',school:'/partners/discover',university:'/admissions',employer:'/partners/discover?audience=jobseeker'};
   const footerLinks = {
     Platform: { Learning: '/programs', 'AI Tutor': '/tutor', 'Partner Guide': '/guide', Teachers: '/teachers', 'User dashboards': '/dashboard/links', 'Super Admin': '/dashboard/super-admin', 'Employees OS': '/dashboard/employees', 'Teachers OS': '/dashboard/teachers', 'Education Passport': '/passport' },
     المنصة: { التعلم: '/programs', 'المعلم الذكي': '/tutor', 'دليل الشريك': '/guide', المعلمون: '/teachers', 'لوحات المستخدمين': '/dashboard/links', 'لوحة المشرف': '/dashboard/super-admin', 'لوحات الموظفين': '/dashboard/employees', 'لوحات المعلمين': '/dashboard/teachers', 'الجواز التعليمي': '/passport' },
@@ -195,7 +195,7 @@ export default function HomePage() {
     teacher: '/teachers/dashboard',
     center: '/dashboard/educational-center',
     school: '/dashboard/school',
-    university: '/dashboard/university',
+    university: '/partners/dashboard?type=university',
     employer: '/dashboard/employer',
     jobseeker: '/jobs/dashboard',
     join: '/dashboard/links',

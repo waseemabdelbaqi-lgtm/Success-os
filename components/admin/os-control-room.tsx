@@ -290,6 +290,24 @@ export function OsControlRoom(): ReactNode {
                 {isAr ? "دليل الشريك الحي" : "Living Partner Guide"}
               </Link>
               <Link
+                href="/partners/dashboard"
+                className="rounded-xl border border-white/30 bg-white/10 px-4 py-2.5 text-sm font-semibold text-white"
+              >
+                {isAr ? "لوحات الشركاء" : "Partners OS"}
+              </Link>
+              <Link
+                href="/partners/discover"
+                className="rounded-xl border border-white/30 bg-white/10 px-4 py-2.5 text-sm font-semibold text-white"
+              >
+                {isAr ? "اكتشاف الشركاء" : "Partner discover"}
+              </Link>
+              <Link
+                href="/admissions"
+                className="rounded-xl border border-white/30 bg-white/10 px-4 py-2.5 text-sm font-semibold text-white"
+              >
+                {isAr ? "قبول الجامعات" : "Admissions"}
+              </Link>
+              <Link
                 href="/dashboard/links"
                 className="rounded-xl border border-white/30 bg-white/10 px-4 py-2.5 text-sm font-semibold text-white"
               >

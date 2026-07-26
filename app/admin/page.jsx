@@ -43,6 +43,26 @@ export default function AdminPage() {
           </a>
         </section>
 
+        <section className="os-card admin-card" style={{ marginBottom: '1rem' }}>
+          <span>PARTNERS OS · ADMISSIONS</span>
+          <h2>لوحات الشركاء + قبول الجامعات</h2>
+          <p>
+            الشريك يعبّئ ملفه وينشره، والطالب/الباحث يطابق الجهة المناسبة. القبول الجامعي يبقى عبر
+            مسار admissions مع صفحة الشريك العامة.
+          </p>
+          <div style={{ display: 'flex', gap: '0.6rem', flexWrap: 'wrap' }}>
+            <a className="button" href="/partners/dashboard">
+              لوحة تحكم الشريك →
+            </a>
+            <a className="button" href="/partners/discover">
+              اكتشاف الشركاء →
+            </a>
+            <a className="button" href="/admissions">
+              قبول الجامعات →
+            </a>
+          </div>
+        </section>
+
         <section className="os-card admin-card" style={{ marginBottom: '1rem', background: 'linear-gradient(135deg,#301218,#7f121b)', color: '#fff' }}>
           <span style={{ color: '#f2d77c' }}>AI COMPANION · LIVING PARTNER GUIDE</span>
           <h2 style={{ color: '#fff' }}>دليل الشريك الحي — يسجّل ويتأكد</h2>

@@ -241,24 +241,21 @@ export default function AccessPage() {
     const intent =
       new URLSearchParams(window.location.search).get("intent") || "search";
     const destinations = {
-      student: "/student-portal",
-      teacher: intent === "join" ? "/teacher-portal" : "/teachers",
+      student: "/students/dashboard",
+      teacher: intent === "join" ? "/teachers/register" : "/teachers",
       center:
-        intent === "join"
-          ? "/control-center?role=institution&from=join&portal=center"
-          : "/centers",
+        intent === "join" ? "/partners/dashboard?type=center" : "/partners/discover",
       school:
-        intent === "join"
-          ? "/control-center?role=institution&from=join&portal=school"
-          : "/schools",
+        intent === "join" ? "/partners/dashboard?type=school" : "/partners/discover",
       university:
         intent === "join"
-          ? "/control-center?role=institution&from=join&portal=university"
-          : "/universities",
-      employer: intent === "join" ? "/jobs?view=companies" : "/jobs",
-      jobseeker: "/jobseeker-portal",
+          ? "/partners/dashboard?type=university"
+          : "/admissions",
+      employer:
+        intent === "join" ? "/partners/dashboard?type=employer" : "/jobs",
+      jobseeker: "/jobs/dashboard",
     };
-    const dest = destinations[portal] || "/start-journey";
+    let dest = destinations[portal] || "/start-journey";
     try {
       const payload = {
         portal,
@@ -277,6 +274,45 @@ export default function AccessPage() {
         "success-os-access-requests",
         JSON.stringify([payload, ...saved].slice(0, 30)),
       );
+
+      // Partner join → create Partners OS draft then open control room
+      if (
+        intent === "join" &&
+        ["university", "college", "school", "center", "employer"].includes(portal)
+      ) {
+        fetch("/api/partners-os", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            action: "registerPartner",
+            partner: {
+              type: portal === "college" ? "college" : portal,
+              orgName: name || "شريك جديد",
+              contactName: name,
+              email: `${(name || "partner").replace(/\s+/g, ".").toLowerCase()}@join.success`,
+              phone: "+962700000000",
+              country: country || "الأردن",
+              city: "",
+              about: `ملف ${portal} أُنشئ من بوابة الانضمام — أكمل البيانات من لوحة التحكم.`,
+              educationSystems: system ? [system] : [],
+              status: "draft",
+            },
+          }),
+        })
+          .then((r) => r.json())
+          .then((json) => {
+            if (json?.ok && json.partner?.id) {
+              localStorage.setItem("sos_partner_id", json.partner.id);
+              window.location.href = `/partners/dashboard?partnerId=${encodeURIComponent(json.partner.id)}&type=${encodeURIComponent(json.partner.type)}`;
+            } else {
+              window.location.href = dest;
+            }
+          })
+          .catch(() => {
+            window.location.href = dest;
+          });
+        return;
+      }
     } catch {}
     window.setTimeout(() => {
       window.location.href = dest;

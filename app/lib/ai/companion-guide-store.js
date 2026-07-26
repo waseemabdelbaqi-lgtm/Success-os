@@ -83,6 +83,24 @@ const SURFACES = Object.freeze([
     path: '/guide',
     tier: 'platform',
   },
+  {
+    id: 'partners_dashboard',
+    labelAr: 'لوحة تحكم الشريك',
+    path: '/partners/dashboard',
+    tier: 'partners',
+  },
+  {
+    id: 'partners_discover',
+    labelAr: 'اكتشاف الشركاء',
+    path: '/partners/discover',
+    tier: 'partners',
+  },
+  {
+    id: 'admissions',
+    labelAr: 'قبول الجامعات',
+    path: '/admissions',
+    tier: 'partners',
+  },
 ]);
 
 export const PARTNERSHIP_PROTOCOL = Object.freeze({
