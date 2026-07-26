@@ -1,19 +1,14 @@
 import type { LessonModuleContent } from "@/src/lib/digital-library/types";
-import { JORDAN_G1_MATH_NUMBER_LINE_TEACHER_35M } from "@/src/lib/digital-library/teacher-explanations/jordan-g1-math-number-line-35m";
 
 /**
  * Jordan National Curriculum · Grade 1 · Mathematics
- * Structure title aligned to Minhaji index: الوحدة الأولى — الجمع باستعمال خط الأعداد
- * Content is SUCCESS OS original (pedagogy-informed). Never copies textbook prose.
- * Full human-teacher explanation: 35 minutes via Teachers OS
- * (أ. لاما النوري · شخصية وهمية دافئة للصفوف الأولى).
+ * Delivery: AI teacher theater (visual), not text lesson-plan dump.
  */
 export const JORDAN_G1_MATH_NUMBER_LINE_ADDITION: LessonModuleContent = {
   slug: "jordan-g1-math-number-line-addition",
   title: "الجمع باستعمال خط الأعداد",
-  subtitle: "الصف الأول · رياضيات · حصة AI · أ. لاما النوري · 35د",
-  estimatedMinutes: 35,
-  teacherExplanation: JORDAN_G1_MATH_NUMBER_LINE_TEACHER_35M,
+  subtitle: "الصف الأول · رياضيات · حصة AI مرئية",
+  estimatedMinutes: 12,
   learningObjectives: [
     "أن يعدّ المتعلم قفزات على خط الأعداد لتمثيل عملية جمع بسيطة ضمن 20.",
     "أن يربط جملة الجمع مثل $3 + 4 = 7$ بصورة القفز على خط الأعداد.",
