@@ -6,14 +6,13 @@ function StatCard({ label, value }) {
   return (
     <div
       style={{
-        border: '1px solid var(--ea-border, #eadde0)',
-        borderRadius: 14,
+        border: '1px solid #e5e7eb',
+        borderRadius: 12,
         padding: '0.85rem',
         background: 'var(--ea-card, #fff)',
-        boxShadow: '0 12px 28px rgba(75, 10, 17, 0.06)',
       }}
     >
-      <div style={{ fontSize: 12, color: 'var(--ea-muted, #6b5a52)' }}>{label}</div>
+      <div style={{ fontSize: 12, color: '#6b7280' }}>{label}</div>
       <div style={{ fontSize: 22, fontWeight: 700, marginTop: 4 }}>
         {value === null || value === undefined ? '—' : value}
       </div>
@@ -31,12 +30,12 @@ function MiniBars({ series }) {
             style={{
               height: `${Math.round(((Number(s.value) || 0) / max) * 100)}%`,
               minHeight: 4,
-              background: 'linear-gradient(180deg, #c43a45, #9e1722)',
+              background: '#0f766e',
               borderRadius: '6px 6px 0 0',
             }}
             title={`${s.label}: ${s.value}`}
           />
-          <div style={{ fontSize: 10, color: 'var(--ea-muted, #6b5a52)', marginTop: 4 }}>{s.label}</div>
+          <div style={{ fontSize: 10, color: '#6b7280', marginTop: 4 }}>{s.label}</div>
         </div>
       ))}
     </div>
@@ -173,6 +172,32 @@ export default function EnterpriseAdminHomePage() {
       </div>
 
       {error ? <p style={{ color: '#b91c1c' }}>{error}</p> : null}
+
+      <section
+        style={{
+          border: '1px solid #d1fae5',
+          background: '#ecfdf5',
+          borderRadius: 12,
+          padding: 14,
+          marginBottom: 16,
+        }}
+      >
+        <h2 style={{ margin: 0, fontSize: 16 }}>لوحات تحكم المستخدمين وتوزيع الصلاحيات</h2>
+        <p style={{ margin: '6px 0 10px', color: '#065f46', fontSize: 13 }}>
+          أنشئ الصلاحيات من الأدمن، وافتح لوحة كل دور لترى الوحدات التي فُتحت تلقائيًا.
+        </p>
+        <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
+          <a className="button" href="/dashboard/links">
+            روابط جميع اللوحات
+          </a>
+          <a className="button" href="/dashboard/user-dashboards">
+            دليل لوحات المستخدمين
+          </a>
+          <a className="button" href="/dashboard/admin/permissions">
+            توزيع الصلاحيات
+          </a>
+        </div>
+      </section>
 
       <h2 style={{ fontSize: 16 }}>Users & organizations</h2>
       <div style={{ display: 'grid', gap: 10, gridTemplateColumns: 'repeat(auto-fit,minmax(150px,1fr))', marginBottom: 16 }}>

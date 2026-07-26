@@ -6,8 +6,8 @@ import {launchLanguages} from './data/education-data';
 const copy = {
   en: {
     dir: 'ltr',
-    nav: ['Home', 'Gateways', 'About us', 'Our vision', 'Support'],
-    navIds: ['top', 'gateways', 'why', 'journey', '/contact'],
+    nav: ['Home', 'Gateways', 'User dashboards', 'About us', 'Our vision', 'Support'],
+    navIds: ['top', 'gateways', '/dashboard/links', 'why', 'journey', '/contact'],
     signIn: 'Sign in', start: 'Start learning', eyebrow: 'AI-powered • Human-guided • Built for life',
     slogan: 'Your Path to Success Leaves Ignorance Behind',
     heroA: 'Your learning.', heroB: 'One intelligent system.',
@@ -54,7 +54,7 @@ const copy = {
     passportItems: ['Skills & mastery', 'Assessments', 'Projects & evidence', 'Verified credentials'],
     ctaEyebrow: 'The next chapter of education starts here', ctaTitle: 'Build your future with a system that grows with you.',
     ctaText: 'Join the first generation of learners shaping SUCCESS OS.', ctaButton: 'Start your journey', ctaSecondary: 'Talk to Success 4 Sure',
-    footerText: 'The AI-powered lifelong Education Operating System.', footerCols: [['Platform', 'Learning', 'AI Tutor', 'Teachers', 'Education Passport'], ['Programs', 'EST & ACT', 'AP', 'IGCSE', 'A Level'], ['Company', 'About', 'Safety & Privacy', 'Contact', 'Success 4 Sure Academy']],
+    footerText: 'The AI-powered lifelong Education Operating System.', footerCols: [['Platform', 'Learning', 'AI Tutor', 'Teachers', 'User dashboards', 'Education Passport'], ['Programs', 'EST & ACT', 'AP', 'IGCSE', 'A Level'], ['Company', 'About', 'Safety & Privacy', 'Contact', 'Success 4 Sure Academy']],
     rights: '© 2026 SUCCESS OS by Success 4 Sure. All rights reserved.',
     modalTitle: 'Begin your SUCCESS OS journey', modalText: 'Choose who you are. We will shape the next step around you.',
     roles: [['Student', 'Start a personalized learning journey'], ['Parent', 'Support progress with age-appropriate insight'], ['Teacher', 'Teach, mentor, and grow your impact'], ['Institution', 'Connect your learners and programs']],
@@ -62,8 +62,8 @@ const copy = {
   },
   ar: {
     dir: 'rtl',
-    nav: ['الرئيسية', 'البوابات', 'من نحن', 'رؤيتنا', 'الدعم'],
-    navIds: ['top', 'gateways', 'why', 'journey', '/contact'],
+    nav: ['الرئيسية', 'البوابات', 'لوحات المستخدمين', 'من نحن', 'رؤيتنا', 'الدعم'],
+    navIds: ['top', 'gateways', '/dashboard/links', 'why', 'journey', '/contact'],
     signIn: 'تسجيل الدخول', start: 'ابدأ التعلم', eyebrow: 'بالذكاء الاصطناعي • بإشراف الإنسان • معك مدى الحياة',
     slogan: 'طريقك نحو النجاح يمحو طريقك نحو الجهل',
     heroA: 'تعليمك.', heroB: 'في نظام ذكي واحد.',
@@ -110,7 +110,7 @@ const copy = {
     passportItems: ['المهارات والإتقان', 'الاختبارات', 'المشاريع والأدلة', 'الشهادات الموثقة'],
     ctaEyebrow: 'الفصل القادم من التعليم يبدأ هنا', ctaTitle: 'ابنِ مستقبلك مع نظام يكبر معك.',
     ctaText: 'كن من الجيل الأول الذي يشارك في بناء SUCCESS OS.', ctaButton: 'ابدأ رحلتك', ctaSecondary: 'تواصل مع Success 4 Sure',
-    footerText: 'نظام التعليم المدعوم بالذكاء الاصطناعي مدى الحياة.', footerCols: [['المنصة', 'التعلم', 'المعلم الذكي', 'المعلمون', 'الجواز التعليمي'], ['البرامج', 'EST وACT', 'AP', 'IGCSE', 'A Level'], ['الشركة', 'من نحن', 'الأمان والخصوصية', 'تواصل معنا', 'Success 4 Sure Academy']],
+    footerText: 'نظام التعليم المدعوم بالذكاء الاصطناعي مدى الحياة.', footerCols: [['المنصة', 'التعلم', 'المعلم الذكي', 'المعلمون', 'لوحات المستخدمين', 'الجواز التعليمي'], ['البرامج', 'EST وACT', 'AP', 'IGCSE', 'A Level'], ['الشركة', 'من نحن', 'الأمان والخصوصية', 'تواصل معنا', 'Success 4 Sure Academy']],
     rights: '© 2026 SUCCESS OS by Success 4 Sure. جميع الحقوق محفوظة.',
     modalTitle: 'ابدأ رحلتك مع SUCCESS OS', modalText: 'اختر دورك وسنبني الخطوة التالية حول احتياجك.',
     roles: [['طالب', 'ابدأ رحلة تعلم شخصية'], ['ولي أمر', 'تابع التقدم بصلاحيات مناسبة للعمر'], ['معلم', 'علّم ووجّه ووسع أثرك'], ['مؤسسة', 'اربط طلابك وبرامجك']],
@@ -183,22 +183,32 @@ export default function HomePage() {
   const partnerGateways=['teacher','center','school','university','employer'];
   const searchRoutes={teacher:'/teachers',center:'/partner-search?portal=center',school:'/school-finder',university:'/admissions',employer:'/jobs'};
   const footerLinks = {
-    Platform: { Learning: '/programs', 'AI Tutor': '/tutor', Teachers: '/teachers', 'Education Passport': '/passport' },
-    المنصة: { التعلم: '/programs', 'المعلم الذكي': '/tutor', المعلمون: '/teachers', 'الجواز التعليمي': '/passport' },
+    Platform: { Learning: '/programs', 'AI Tutor': '/tutor', Teachers: '/teachers', 'User dashboards': '/dashboard/links', 'Education Passport': '/passport' },
+    المنصة: { التعلم: '/programs', 'المعلم الذكي': '/tutor', المعلمون: '/teachers', 'لوحات المستخدمين': '/dashboard/links', 'الجواز التعليمي': '/passport' },
     Programs: { 'EST وACT': '/courses', EST: '/courses', ACT: '/courses', AP: '/courses', IGCSE: '/courses', 'A Level': '/courses', 'EST & ACT': '/courses' },
     البرامج: { 'EST وACT': '/courses', AP: '/courses', IGCSE: '/courses', 'A Level': '/courses' },
     Company: { About: '/about', 'Safety & Privacy': '/trust', Contact: '/contact', 'Success 4 Sure Academy': 'https://www.success4sureacademy.com/' },
     الشركة: { 'من نحن': '/about', 'الأمان والخصوصية': '/trust', 'تواصل معنا': '/contact', 'Success 4 Sure Academy': 'https://www.success4sureacademy.com/' },
   };
+  const dashboardRoutes = {
+    student: '/student-portal',
+    teacher: '/dashboard/teacher',
+    center: '/dashboard/educational-center',
+    school: '/dashboard/school',
+    university: '/dashboard/university',
+    employer: '/dashboard/employer',
+    jobseeker: '/dashboard/job-seeker',
+    join: '/dashboard/links',
+  };
   const roleDestinations = {
-    Student: '/start-journey?portal=student',
-    طالب: '/start-journey?portal=student',
-    Parent: '/parent',
-    'ولي أمر': '/parent',
-    Teacher: '/join-us?role=teacher',
-    معلم: '/join-us?role=teacher',
-    Institution: '/join-us',
-    مؤسسة: '/join-us',
+    Student: '/student-portal',
+    طالب: '/student-portal',
+    Parent: '/dashboard/parent',
+    'ولي أمر': '/dashboard/parent',
+    Teacher: '/dashboard/teacher',
+    معلم: '/dashboard/teacher',
+    Institution: '/dashboard/links',
+    مؤسسة: '/dashboard/links',
   };
 
   const hubNodes = lang === 'en'
@@ -281,7 +291,7 @@ export default function HomePage() {
         <div className="container">
           <header><div><small>{lang==='en'?'EIGHT CONNECTED GATEWAYS':'ثماني بوابات مترابطة'}</small><h2>{lang==='en'?'Choose where your SUCCESS journey begins':'اختر البوابة التي تبدأ منها رحلتك'}</h2><p>{lang==='en'?'Search for a trusted partner or join the network through a dedicated path.':'ابحث عن شريك موثوق أو انضم إلى الشبكة من خلال مسار واضح ومستقل.'}</p></div><a href="/join-us">{lang==='en'?'Partnership gateway':'بوابة انضم إلينا'} ←</a></header>
           <div className="gateway-join-steps"><span><b>1</b>{lang==='en'?'Choose your gateway':'اختر بوابتك'}</span><i></i><span><b>2</b>{lang==='en'?'Add your basic details':'أدخل بياناتك الأساسية'}</span><i></i><span><b>3</b>{lang==='en'?'Open your private journey':'انتقل لمساحتك الخاصة'}</span></div>
-          <div className="gateway-join-grid">{gateways.map(([number,icon,label,category,tags,description,id])=><article className={`gateway-join-card gateway-${id}`} key={id}><div className="gateway-card-head"><span>{icon}</span><small>{lang==='en'?`GATEWAY ${number}`:`البوابة ${number}`}</small></div><div className="gateway-card-copy"><em>{category}</em><h3>{label}</h3><p>{description}</p><strong>{tags}</strong></div>{partnerGateways.includes(id)?<div className="gateway-card-actions"><a href={searchRoutes[id]}><span>{lang==='en'?`Find ${label}`:`ابحث في ${label}`}</span><b>⌕</b></a><a href={`/join-us?role=${id}`}><span>{lang==='en'?`Join as ${label}`:`انضم إلى ${label}`}</span><b>＋</b></a></div>:<a href={id==='student'?'/student-portal':id==='jobseeker'?'/jobseeker-portal':'/join-us'}><span>{id==='join'?(lang==='en'?'Open partnership gateway':'افتح بوابة الشراكات'):(lang==='en'?'Open this gateway':'افتح هذه البوابة')}</span><b>←</b></a>}</article>)}</div>
+          <div className="gateway-join-grid">{gateways.map(([number,icon,label,category,tags,description,id])=><article className={`gateway-join-card gateway-${id}`} key={id}><div className="gateway-card-head"><span>{icon}</span><small>{lang==='en'?`GATEWAY ${number}`:`البوابة ${number}`}</small></div><div className="gateway-card-copy"><em>{category}</em><h3>{label}</h3><p>{description}</p><strong>{tags}</strong></div><div className="gateway-card-actions"><a href={dashboardRoutes[id]||'/dashboard/links'}><span>{lang==='en'?'Open dashboard':'افتح اللوحة'}</span><b>▣</b></a>{partnerGateways.includes(id)?<><a href={searchRoutes[id]}><span>{lang==='en'?`Find ${label}`:`ابحث في ${label}`}</span><b>⌕</b></a><a href={`/join-us?role=${id}`}><span>{lang==='en'?`Join as ${label}`:`انضم إلى ${label}`}</span><b>＋</b></a></>:null}{!partnerGateways.includes(id)?<a href={id==='student'?'/student-portal':id==='jobseeker'?'/jobseeker-portal':'/join-us'}><span>{id==='join'?(lang==='en'?'Partnerships':'الشراكات'):(lang==='en'?'Open gateway':'البوابة')}</span><b>←</b></a>:null}</div></article>)}</div>
           <section className="work-with-us-network">
             <div className="network-copy"><small>{lang==='en'?'CONNECTED PARTNERSHIP NETWORK':'شبكة الشراكة المتصلة'}</small><h2>{lang==='en'?'Work with SUCCESS OS':'اعمل معنا'}</h2><p>{lang==='en'?'Join the education-to-employment ecosystem through the role that fits you.':'انضم إلى منظومة تصل التعليم بالجامعة والعمل من خلال الدور المناسب لك.'}</p></div>
             <div className="network-map">

@@ -16,36 +16,17 @@ export function EnterpriseAdminModulePage({ moduleId }) {
   const [permMatrix, setPermMatrix] = useState(null);
   const [financeSummary, setFinanceSummary] = useState(null);
   const [commissionDefaults, setCommissionDefaults] = useState(null);
-  const [actorRole, setActorRole] = useState('admin');
-  const [canCrud, setCanCrud] = useState(true);
-  const [canManagePermissions, setCanManagePermissions] = useState(true);
 
   const isPermissions = moduleId === 'permissions';
   const isFinance = moduleId === 'finance';
   const isCommission = moduleId === 'commission-rules';
   const isPaymentSplits = moduleId === 'payment-splits';
 
-  useEffect(() => {
-    try {
-      const role =
-        new URLSearchParams(window.location.search).get('role') ||
-        window.localStorage.getItem('success-os-actor-role') ||
-        'admin';
-      setActorRole(role);
-    } catch {
-      setActorRole('admin');
-    }
-  }, []);
-
   const load = useCallback(async () => {
     setError('');
-    const roleParam = actorRole ? `&role=${encodeURIComponent(actorRole)}` : '';
     if (isPermissions) {
-      const res = await fetch(`/api/enterprise-admin?view=permissions${roleParam}`, { cache: 'no-store' });
-      const json = await res.json();
-      setPermMatrix(json);
-      setCanCrud(!!json.canCrud);
-      setCanManagePermissions(!!json.canManagePermissions);
+      const res = await fetch('/api/enterprise-admin?view=permissions', { cache: 'no-store' });
+      setPermMatrix(await res.json());
       return;
     }
     if (isFinance) {
@@ -61,15 +42,11 @@ export function EnterpriseAdminModulePage({ moduleId }) {
       module: moduleId,
       q,
       status,
-      role: actorRole,
     });
     const res = await fetch(`/api/enterprise-admin?${params}`, { cache: 'no-store' });
     if (!res.ok) throw new Error('Failed to load module');
-    const json = await res.json();
-    setData(json);
-    setCanCrud(json.canCrud !== false);
-    setCanManagePermissions(!!json.canManagePermissions);
-  }, [moduleId, q, status, isPermissions, isFinance, isCommission, actorRole]);
+    setData(await res.json());
+  }, [moduleId, q, status, isPermissions, isFinance, isCommission]);
 
   useEffect(() => {
     load().catch((e) => setError(e.message || 'load failed'));
@@ -86,14 +63,10 @@ export function EnterpriseAdminModulePage({ moduleId }) {
           action,
           moduleId: isPermissions ? 'permissions' : moduleId,
           payload,
-          role: actorRole,
-          actorRole,
         }),
       });
       const json = await res.json();
-      if (!res.ok || json.ok === false) {
-        throw new Error(json.message || json.error || 'action failed');
-      }
+      if (!res.ok || json.ok === false) throw new Error(json.error || 'action failed');
       setMode(null);
       setForm({});
       await load();
@@ -125,14 +98,6 @@ export function EnterpriseAdminModulePage({ moduleId }) {
         matrix={permMatrix}
         busy={busy}
         error={error}
-        canManage={canManagePermissions}
-        actorRole={actorRole}
-        onActorChange={(role) => {
-          setActorRole(role);
-          try {
-            window.localStorage.setItem('success-os-actor-role', role);
-          } catch {}
-        }}
         onReload={load}
         onAction={runAction}
         onCreate={(payload) => runAction('createRole', payload)}
@@ -143,64 +108,15 @@ export function EnterpriseAdminModulePage({ moduleId }) {
 
   return (
     <div>
-      <div
-        style={{
-          marginBottom: 12,
-          padding: '10px 12px',
-          borderRadius: 10,
-          background: canCrud ? 'rgba(22,101,52,0.08)' : 'rgba(127,29,29,0.08)',
-          border: '1px solid rgba(127,29,29,0.18)',
-          fontSize: 13,
-        }}
-      >
-        <b>سياسة الصلاحيات:</b> الإضافة والتعديل والحذف للمشرف فقط.
-        {' · '}
-        الدور الحالي: <b>{actorRole}</b>
-        {' · '}
-        {canCrud ? 'صلاحية CRUD مفعّلة' : 'عرض/تشغيل فقط — لا يمكن التعديل'}
-        <select
-          value={actorRole}
-          onChange={(e) => {
-            const role = e.target.value;
-            setActorRole(role);
-            try {
-              window.localStorage.setItem('success-os-actor-role', role);
-            } catch {}
-          }}
-          style={{ marginInlineStart: 8, padding: '4px 8px' }}
-          aria-label="تجربة دور الممثل"
-        >
-          {[
-            'admin',
-            'super_admin',
-            'owner',
-            'hr',
-            'legal',
-            'finance',
-            'academic_director',
-            'marketing',
-            'content_creator',
-            'customer_support',
-            'teacher',
-            'student',
-            'job_seeker',
-          ].map((r) => (
-            <option key={r} value={r}>
-              {r}
-            </option>
-          ))}
-        </select>
-      </div>
       <div style={{ display: 'flex', justifyContent: 'space-between', gap: 12, flexWrap: 'wrap' }}>
         <div>
           <h1 style={{ margin: 0, fontSize: 22, textTransform: 'capitalize' }}>{title}</h1>
           <p style={{ margin: '4px 0 0', color: '#6b7280', fontSize: 13 }}>
             Total: {data ? data.total : 'Loading…'} · Dynamic table (search / filter / export)
-            {data?.policyNote ? ` · ${data.policyNote}` : ''}
           </p>
         </div>
         <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
-          {canCrud && (actions.includes('add') || actions.includes('create')) ? (
+          {actions.includes('add') || actions.includes('create') ? (
             <button
               type="button"
               disabled={busy}
@@ -265,7 +181,6 @@ export function EnterpriseAdminModulePage({ moduleId }) {
               type="button"
               disabled={busy}
               onClick={() => runAction('bulkDelete', { ids: selected })}
-              style={{ display: canCrud ? undefined : 'none' }}
             >
               Delete selected ({selected.length})
             </button>
@@ -395,7 +310,7 @@ export function EnterpriseAdminModulePage({ moduleId }) {
                   {c.label}
                 </th>
               ))}
-              <th style={th}>{canCrud ? 'Actions' : 'Operate'}</th>
+              <th style={th}>Actions</th>
             </tr>
           </thead>
           <tbody>
@@ -673,17 +588,21 @@ function listIncludes(arr, value) {
   return Array.isArray(arr) && arr.includes(value);
 }
 
-function PermissionsPanel({
-  matrix,
-  busy,
-  error,
-  canManage = false,
-  actorRole = 'admin',
-  onActorChange,
-  onReload,
-  onCreate,
-  onToggle,
-}) {
+function dashboardPathForRoleKey(roleKey) {
+  if (!roleKey) return null;
+  if (roleKey === 'student') return '/student/dashboard';
+  if (roleKey === 'admin' || roleKey === 'super_admin') return '/dashboard/admin';
+  if (roleKey === 'school_manager') return '/dashboard/school';
+  if (roleKey === 'university_manager') return '/dashboard/university';
+  if (roleKey === 'center_manager') return '/dashboard/educational-center';
+  if (roleKey === 'jobseeker') return '/dashboard/job-seeker';
+  if (roleKey === 'recruitment_company') return '/dashboard/recruitment-company';
+  if (roleKey === 'school_student') return '/dashboard/school-student';
+  if (roleKey === 'university_student') return '/dashboard/university-student';
+  return `/dashboard/${String(roleKey).replace(/_/g, '-')}`;
+}
+
+function PermissionsPanel({ matrix, busy, error, onReload, onCreate, onToggle }) {
   const [name, setName] = useState('');
   const [key, setKey] = useState('');
   const [description, setDescription] = useState('');
@@ -696,50 +615,29 @@ function PermissionsPanel({
   }, [matrix, selectedKey]);
 
   const role = (matrix?.roles || []).find((r) => r.key === selectedKey) || null;
+  const previewHref = dashboardPathForRoleKey(role?.key);
 
   return (
     <div>
-      <div
-        style={{
-          marginBottom: 12,
-          padding: '10px 12px',
-          borderRadius: 10,
-          background: canManage ? 'rgba(22,101,52,0.08)' : 'rgba(127,29,29,0.08)',
-          border: '1px solid rgba(127,29,29,0.18)',
-          fontSize: 13,
-        }}
-      >
-        <b>إدارة الصلاحيات للمشرف فقط.</b> الدور الحالي: <b>{actorRole}</b>
-        {onActorChange ? (
-          <select
-            value={actorRole}
-            onChange={(e) => onActorChange(e.target.value)}
-            style={{ marginInlineStart: 8, padding: '4px 8px' }}
-          >
-            {['admin', 'super_admin', 'owner', 'hr', 'finance', 'teacher', 'student'].map((r) => (
-              <option key={r} value={r}>
-                {r}
-              </option>
-            ))}
-          </select>
-        ) : null}
-        {!canManage ? <div style={{ marginTop: 4 }}>أنت في وضع العرض — لا يمكن إضافة/تعديل/حذف صلاحيات.</div> : null}
-      </div>
       <div style={{ display: 'flex', justifyContent: 'space-between', gap: 12, flexWrap: 'wrap' }}>
         <div>
-          <h1 style={{ margin: 0, fontSize: 22 }}>Permissions</h1>
+          <h1 style={{ margin: 0, fontSize: 22 }}>توزيع الصلاحيات / Permissions</h1>
           <p style={{ margin: '4px 0 0', color: '#6b7280', fontSize: 13 }}>
-            Configurable role matrix · {matrix?.flags?.length ?? 0} permission flags
-            {matrix?.policyNote ? ` · ${matrix.policyNote}` : ''}
+            وزّع الصلاحيات على الأدوار لفتح وحدات لوحات المستخدمين ·{' '}
+            {matrix?.flags?.length ?? 0} flags
           </p>
         </div>
-        <button type="button" disabled={busy} onClick={() => onReload()}>
-          Refresh
-        </button>
+        <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
+          <a className="button" href="/dashboard/user-dashboards" style={{ textDecoration: 'none' }}>
+            لوحات المستخدمين
+          </a>
+          <button type="button" disabled={busy} onClick={() => onReload()}>
+            Refresh
+          </button>
+        </div>
       </div>
       {error ? <p style={{ color: '#b91c1c' }}>{error}</p> : null}
 
-      {canManage ? (
       <form
         onSubmit={(e) => {
           e.preventDefault();
@@ -774,9 +672,6 @@ function PermissionsPanel({
           Create Role
         </button>
       </form>
-      ) : (
-        <p style={{ color: '#6b7280', fontSize: 13 }}>إنشاء الأدوار وتعديل الأعلام متاح للمشرف فقط.</p>
-      )}
 
       <div style={{ display: 'grid', gridTemplateColumns: '240px 1fr', gap: 16 }}>
         <div style={{ border: '1px solid #e5e7eb', borderRadius: 12, padding: 8 }}>
@@ -791,8 +686,8 @@ function PermissionsPanel({
                 textAlign: 'left',
                 padding: 8,
                 marginBottom: 4,
-                background: selectedKey === r.key ? '#fff4f4' : 'transparent',
-                border: '1px solid #eadde0',
+                background: selectedKey === r.key ? '#ecfdf5' : 'transparent',
+                border: '1px solid #e5e7eb',
                 borderRadius: 8,
               }}
             >
@@ -802,8 +697,32 @@ function PermissionsPanel({
           ))}
         </div>
         <div style={{ border: '1px solid #e5e7eb', borderRadius: 12, padding: 12 }}>
-          <h3 style={{ marginTop: 0 }}>{role?.name || 'Select a role'}</h3>
-          <p style={{ color: '#6b7280', fontSize: 13 }}>{role?.description}</p>
+          <div style={{ display: 'flex', justifyContent: 'space-between', gap: 8, flexWrap: 'wrap' }}>
+            <div>
+              <h3 style={{ marginTop: 0 }}>{role?.name || 'Select a role'}</h3>
+              <p style={{ color: '#6b7280', fontSize: 13 }}>{role?.description}</p>
+            </div>
+            {previewHref ? (
+              <a
+                href={previewHref}
+                style={{
+                  alignSelf: 'flex-start',
+                  padding: '0.45rem 0.75rem',
+                  borderRadius: 8,
+                  background: '#0f766e',
+                  color: '#fff',
+                  textDecoration: 'none',
+                  fontSize: 13,
+                  fontWeight: 600,
+                }}
+              >
+                معاينة لوحة الدور
+              </a>
+            ) : null}
+          </div>
+          <p style={{ fontSize: 12, color: '#0f766e', marginTop: 0 }}>
+            أي صلاحية تفعّلها هنا تفتح وحدات مطابقة في لوحة تحكم هذا المستخدم.
+          </p>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(200px,1fr))', gap: 6 }}>
             {(matrix?.flags || []).map((flag) => {
               const on = listIncludes(role?.permissions, flag);
@@ -812,7 +731,7 @@ function PermissionsPanel({
                   <input
                     type="checkbox"
                     checked={!!on}
-                    disabled={busy || !role || !canManage}
+                    disabled={busy || !role}
                     onChange={() => onToggle(role.key, flag)}
                   />
                   {flag}
