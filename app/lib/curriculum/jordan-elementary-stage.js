@@ -229,6 +229,9 @@ export async function buildJordanElementaryStage(options = {}) {
         '/digital-library/middle-east/jordan/national/grade-1/الرياضيات/الجمع/الجمع-بخط-الأعداد#teacher-explain',
     },
     faculty: teacherSeed.faculty,
+    earlyFaculty: teacherSeed.earlyFaculty,
+    upperFaculty: teacherSeed.upperFaculty,
+    castingDoctrineAr: teacherSeed.castingDoctrineAr,
     scienceOffer: teacherSeed.scienceOffer
       ? {
           id: teacherSeed.scienceOffer.id,
@@ -239,7 +242,7 @@ export async function buildJordanElementaryStage(options = {}) {
         }
       : null,
     next: [
-      'Keep elementary first: grades 1–6 with S4S faculty personas',
+      'Cast teachers by age-fit personality (warm leads for grades 1–3)',
       'Author queued interactive lessons grade-by-grade',
       'Produce video scripts from teacher explanation segments',
     ],
@@ -303,6 +306,9 @@ export function getJordanElementarySnapshot() {
         '/digital-library/middle-east/jordan/national/grade-1/الرياضيات/الجمع/الجمع-بخط-الأعداد#teacher-explain',
     },
     faculty: teacherSeed.faculty,
+    earlyFaculty: teacherSeed.earlyFaculty,
+    upperFaculty: teacherSeed.upperFaculty,
+    castingDoctrineAr: teacherSeed.castingDoctrineAr,
     scienceOffer: teacherSeed.scienceOffer
       ? {
           id: teacherSeed.scienceOffer.id,
@@ -314,10 +320,11 @@ export function getJordanElementarySnapshot() {
       : null,
     doctrineAr: [
       'المرحلة الابتدائية أولاً: صفوف 1–6 كقاعدة الهرم.',
-      'شخصيات المعلّمين من Success 4 Sure Academy (الموقع الرسمي).',
-      'لكل صف×مادة: outline → درس تفاعلي → معلّم حقيقي → فيديو لاحقاً.',
+      'شخصية المعلّم حسب عمر الطالب — الصغار يحبون المعلّمات الدافعات/الدلوعات بالشرح.',
+      'مش شرط المعلّم من منصتنا؛ المهم التماشي مع المرحلة العمرية.',
+      'صفوف 1–3: لاما (رياضيات) · رنيم (علوم) · هبة (عربي) · ميس (English).',
+      'صفوف 4–6: اختصاصيون أوضح (ومنهم Success 4 Sure عند الحاجة).',
       'المحتوى أصلي SUCCESS OS؛ الهيكل من NCCD/منهاجي بدون نسخ الكتب.',
-      'أ. نسيم اللبدي · رياضيات 35د · أ. وسيم اللبدي · علوم 35د.',
     ],
   };
 }

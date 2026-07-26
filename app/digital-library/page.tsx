@@ -41,7 +41,7 @@ export default function DigitalLibraryHubPage() {
               textDecoration: "none",
             }}
           >
-            المرحلة الابتدائية · معلّمو Success 4 Sure
+            المرحلة الابتدائية · معلّمات دافعات للصغار
           </Link>
           <Link
             href="/digital-library/middle-east/jordan/national/grade-1/الرياضيات/الجمع/الجمع-بخط-الأعداد#teacher-explain"
@@ -56,7 +56,7 @@ export default function DigitalLibraryHubPage() {
               border: "1px solid rgba(242,215,124,.55)",
             }}
           >
-            صف 1 رياضيات · أ. نسيم اللبدي · 35د
+            صف 1 رياضيات · أ. لاما · 35د
           </Link>
           <Link
             href="/digital-library/middle-east/jordan/national/grade-1/العلوم/الإنسان-والصحة/نحن-متشابهون-ومختلفون#teacher-explain"
@@ -71,7 +71,7 @@ export default function DigitalLibraryHubPage() {
               border: "1px solid rgba(242,215,124,.55)",
             }}
           >
-            صف 1 علوم · أ. وسيم اللبدي · 35د
+            صف 1 علوم · أ. رنيم · 35د
           </Link>
           <Link
             href="/teachers"

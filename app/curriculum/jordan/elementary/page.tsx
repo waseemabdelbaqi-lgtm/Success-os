@@ -41,10 +41,31 @@ type Snap = {
     fullName: string;
     fullNameAr?: string;
     roleAr?: string;
+    ageBand?: string;
+    styleTags?: string[];
     elementarySubjects?: string[];
+    profileUrl?: string;
+    source?: string;
+    href?: string;
+  }>;
+  earlyFaculty?: Array<{
+    id: string;
+    fullName: string;
+    fullNameAr?: string;
+    roleAr?: string;
+    styleTags?: string[];
+    href?: string;
+  }>;
+  upperFaculty?: Array<{
+    id: string;
+    fullName: string;
+    fullNameAr?: string;
+    roleAr?: string;
+    styleTags?: string[];
     profileUrl?: string;
     href?: string;
   }>;
+  castingDoctrineAr?: string[];
   scienceOffer?: {
     id?: string;
     title?: string;
@@ -150,14 +171,12 @@ export default function JordanElementaryStagePage(): ReactNode {
       `}</style>
 
       <div className="el-wrap">
-        <p className="el-kicker">SUCCESS OS · Jordan · Elementary · Success 4 Sure Faculty</p>
+        <p className="el-kicker">SUCCESS OS · Jordan · Elementary · Age-fit Teachers</p>
         <h1 className="el-brand">{snap?.stage.labelAr || "المرحلة الابتدائية"}</h1>
         <p className="el-lead">
-          نبدأ من صفوف 1–6. شخصيات المعلّمين مأخوذة من معلّمي{" "}
-          <a href="https://www.success4sureacademy.com/teachers/" style={{ color: "var(--b)", fontWeight: 800 }}>
-            Success 4 Sure Academy
-          </a>
-          : رياضيات، علوم، إنجليزي، مهارات رقمية، ودراسات — ثم الدرس التفاعلي والشرح ≥30 دقيقة.
+          نبدأ من صفوف 1–6. نختار شخصية المعلّم حسب عمر الطالب: الصغار يحبون المعلّمات
+          الدافعات والدلوعات بالشرح — ومش شرط يكون الشخص من منصتنا. اختصاصيو Success 4 Sure
+          يخدمون الصفوف الأعلى عند الحاجة، والشرح الحي ≥30 دقيقة داخل الدرس.
         </p>
 
         <nav className="el-nav">
@@ -197,43 +216,79 @@ export default function JordanElementaryStagePage(): ReactNode {
           </Link>
           {snap?.teacher?.lessonExplainHref ? (
             <Link className="gold" href={snap.teacher.lessonExplainHref}>
-              شرح رياضيات 35د · أ. نسيم اللبدي
+              شرح رياضيات 35د · أ. لاما الحموري
             </Link>
           ) : null}
           {snap?.scienceOffer?.lessonExplainHref ? (
             <Link className="gold" href={snap.scienceOffer.lessonExplainHref}>
-              شرح علوم 35د · أ. وسيم اللبدي
+              شرح علوم 35د · أ. رنيم العبادي
             </Link>
           ) : null}
         </div>
 
-        {snap?.faculty?.length ? (
+        {(snap?.earlyFaculty?.length || snap?.upperFaculty?.length) ? (
           <section className="el-panel" style={{ marginBottom: "1rem" }}>
-            <h2>هيئة معلّمي Success 4 Sure · المرحلة الابتدائية</h2>
+            <h2>شخصيات المعلّمين حسب العمر</h2>
             <p style={{ color: "var(--m)", marginTop: 0 }}>
-              شخصيات حقيقية من موقع الأكاديمية — مربوطة بمواد الصفوف 1–6 على SUCCESS OS.
+              الصغار (1–3): معلّمات دافعات دلوعات بالشرح. الأكبر (4–6): اختصاصيون أوضح — ومنهم
+              Success 4 Sure عند الحاجة. المعلّم مش شرط من منصتنا.
             </p>
+            {(snap.castingDoctrineAr || []).length ? (
+              <ul style={{ color: "var(--m)", paddingInlineStart: "1.1rem", marginTop: "0.4rem" }}>
+                {snap.castingDoctrineAr!.map((line) => (
+                  <li key={line}>{line}</li>
+                ))}
+              </ul>
+            ) : null}
+
+            <h3 style={{ color: "var(--d)", fontSize: "0.95rem", margin: "0.9rem 0 0.35rem" }}>
+              صفوف 1–3 · دفء ولعب
+            </h3>
             <div className="el-faculty">
-              {snap.faculty.map((t) => (
+              {(snap.earlyFaculty || []).map((t) => (
                 <article key={t.id} className="el-fac">
                   <strong>{t.fullNameAr || t.fullName}</strong>
-                  <em>{t.roleAr || (t.elementarySubjects || []).join(" · ")}</em>
+                  <em>{t.roleAr}</em>
+                  <div className="el-tags">
+                    {(t.styleTags || []).slice(0, 4).map((tag) => (
+                      <i key={tag}>{tag}</i>
+                    ))}
+                  </div>
+                  {t.href ? <Link href={t.href}>ملف Teachers OS</Link> : null}
+                </article>
+              ))}
+            </div>
+
+            <h3 style={{ color: "var(--d)", fontSize: "0.95rem", margin: "1rem 0 0.35rem" }}>
+              صفوف 4–6 · اختصاص ودقة
+            </h3>
+            <div className="el-faculty">
+              {(snap.upperFaculty || []).map((t) => (
+                <article key={t.id} className="el-fac">
+                  <strong>{t.fullNameAr || t.fullName}</strong>
+                  <em>{t.roleAr}</em>
+                  <div className="el-tags">
+                    {(t.styleTags || []).slice(0, 4).map((tag) => (
+                      <i key={tag}>{tag}</i>
+                    ))}
+                  </div>
                   {t.href ? <Link href={t.href}>ملف Teachers OS</Link> : null}
                   {t.profileUrl ? (
                     <a href={t.profileUrl} target="_blank" rel="noreferrer">
-                      صفحة S4S
+                      مصدر خارجي
                     </a>
                   ) : null}
                 </article>
               ))}
             </div>
+
             <div className="el-actions" style={{ marginTop: "0.85rem" }}>
               {snap.teacher?.offerHref ? (
-                <Link href={snap.teacher.offerHref}>عرض رياضيات · نسيم</Link>
+                <Link href={snap.teacher.offerHref}>عرض رياضيات · لاما</Link>
               ) : null}
               {snap.scienceOffer?.href ? (
                 <Link href={snap.scienceOffer.href} className="ghost">
-                  عرض علوم · وسيم
+                  عرض علوم · رنيم
                 </Link>
               ) : null}
             </div>

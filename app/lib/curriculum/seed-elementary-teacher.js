@@ -1,14 +1,11 @@
 /**
- * Seed Success 4 Sure Academy faculty as elementary-stage Teachers OS personas.
- * Source roster: https://www.success4sureacademy.com/teachers/
+ * Elementary Teachers OS seeding — age-matched personalities first.
  *
- * Elementary subject mapping (Jordan grades 1–6):
- *  - Math        → Mr. Naseem Al-Labadi
- *  - Science     → Mr. Waseem Al-Labadi (+ Ms. Noor Al-Lozi biology support)
- *  - English     → Ms. Sara Abd Alraheem
- *  - Digital     → Mr. Ala’a Bariyeh
- *  - Math enrich → Mr. Zuheir Esawi
- *  - Social/Econ → Mr. Abd Al Fattah Barqawi
+ * Doctrine:
+ * - Young learners (grades 1–3) prefer warm, affectionate teacher voices —
+ *   especially nurturing female classroom personas ("دلوعات بالشرح").
+ * - These personas do NOT have to come from Success 4 Sure; we cast for
+ *   developmental fit, then optionally add S4S specialists for grades 4–6.
  */
 
 import {
@@ -18,164 +15,170 @@ import {
   upsertTeacherProfile,
 } from '../teachers/teachers-os-store.js';
 
-export const S4S_ELEMENTARY_FACULTY = Object.freeze([
+/** Lower elementary — warm classroom leads (SUCCESS OS cast, age-fit). */
+export const EARLY_ELEMENTARY_FACULTY = Object.freeze([
+  {
+    id: 'teacher-jo-lama-hammouri',
+    fullName: 'أ. لاما الحموري',
+    fullNameEn: 'Ms. Lama Al-Hammouri',
+    roleAr: 'رياضيات الصفوف 1–3 · شرح دافئ ولعوب',
+    ageBand: 'grades-1-3',
+    styleTags: ['دافئة', 'دلوع', 'لعوب', 'صوت هادئ', 'قصص وألعاب'],
+    email: 'lama.hammouri@success-os.local',
+    phone: '0790000051',
+    profileUrl: '',
+    bio:
+      'معلّمة رياضيات ابتدائية أردنية متخصصة بالصفوف الأولى. أسلوبها دافئ ولعوب: قصص قصيرة، قفزات على خط الأعداد، وتشجيع بكلمات حنونة. ليس شرطًا أن تكون من منصة امتحانات — شخصيتها مصممة لعمر 6–9 سنوات.',
+    aboutStudent:
+      'يا قمري ويا بطلي الصغير… أنا معلّمتك لاما. بنلعب ونعدّ ونقفز على خط الأعداد، وما في غلط يخوّفنا — كل محاولة حلوة وبتقرّبنا للجواب.',
+    subjects: ['رياضيات', 'الرياضيات', 'Math', 'math'],
+    elementarySubjects: ['الرياضيات'],
+    experienceYears: 9,
+    source: 'success-os-cast',
+  },
+  {
+    id: 'teacher-jo-raneem-abbadi',
+    fullName: 'أ. رنيم العبادي',
+    fullNameEn: 'Ms. Raneem Al-Abbadi',
+    roleAr: 'علوم الصفوف 1–3 · ملاحظة لطيفة وفضول',
+    ageBand: 'grades-1-3',
+    styleTags: ['حنونة', 'فضولية', 'هادئة', 'احترام وتنوع'],
+    email: 'raneem.abbadi@success-os.local',
+    phone: '0790000052',
+    profileUrl: '',
+    bio:
+      'معلّمة علوم للمرحلة التأسيسية. تعلّم بالملاحظة واللمس والكلام اللطيف: نتشابه كبشر ونختلف باحترام. شخصية صفّية دافئة تناسب الأطفال الصغار أكثر من أسلوب الامتحانات الثانوية.',
+    aboutStudent:
+      'يا حبيبي ويا حبيبتي… أنا معلّمتك رنيم. بنفتح عيوننا على العالم بهدوء: نشوف، نلمس، نحكي، وما بنجرح بعض لما نختلف.',
+    subjects: ['علوم', 'العلوم', 'Science', 'science'],
+    elementarySubjects: ['العلوم'],
+    experienceYears: 8,
+    source: 'success-os-cast',
+  },
+  {
+    id: 'teacher-jo-hiba-khatib',
+    fullName: 'أ. هبة الخطيب',
+    fullNameEn: 'Ms. Hiba Al-Khatib',
+    roleAr: 'عربي الصفوف 1–3 · حكاية وصوت حنّي',
+    ageBand: 'grades-1-3',
+    styleTags: ['قصصية', 'دلوع', 'صوت دافئ', 'تشجيع القراءة'],
+    email: 'hiba.khatib@success-os.local',
+    phone: '0790000053',
+    profileUrl: '',
+    bio:
+      'معلّمة لغة عربية للصفوف الأولى. تشرح بالحكاية والأغنية الصفّية والتصفيق الخفيف. تركّز على حب الحرف والكلمة قبل القواعد الثقيلة.',
+    aboutStudent:
+      'يا قمري القارئ… أنا معلّمتك هبة. بنحكي قصة، بنشير للحروف مثل أصدقاء، وكل كلمة جديدة بتاخد حضن تشجيع.',
+    subjects: ['اللغة العربية', 'عربي', 'Arabic', 'arabic'],
+    elementarySubjects: ['اللغة العربية'],
+    experienceYears: 10,
+    source: 'success-os-cast',
+  },
+  {
+    id: 'teacher-jo-mais-qteishat',
+    fullName: 'أ. ميس قطيشات',
+    fullNameEn: 'Ms. Mais Qteishat',
+    roleAr: 'English G1–3 · soft & playful',
+    ageBand: 'grades-1-3',
+    styleTags: ['مرحة', 'أغاني', 'تشجيع', 'English soft voice'],
+    email: 'mais.qteishat@success-os.local',
+    phone: '0790000054',
+    profileUrl: '',
+    bio:
+      'Early-years English teacher with a soft, playful classroom voice. Songs, gestures, and short stories — built for young Jordanian learners who need warmth before exams.',
+    aboutStudent:
+      'Hi my little stars… I’m Miss Mais. We clap, we sing, we try — and every English word gets a big smile.',
+    subjects: ['English', 'english', 'اللغة الإنجليزية', 'انجليزي'],
+    elementarySubjects: ['اللغة الإنجليزية'],
+    experienceYears: 7,
+    source: 'success-os-cast',
+  },
+]);
+
+/** Upper elementary — subject specialists (incl. S4S where useful). */
+export const UPPER_ELEMENTARY_FACULTY = Object.freeze([
   {
     id: 'teacher-s4s-naseem-al-labadi',
     fullName: 'Mr. Naseem Al-Labadi',
     fullNameAr: 'أ. نسيم اللبدي',
-    roleAr: 'رياضيات المرحلة الابتدائية',
+    roleAr: 'رياضيات الصفوف 4–6 · دقة وخطوات',
+    ageBand: 'grades-4-6',
+    styleTags: ['منظّم', 'واضح', 'خطوات امتحانية مبسّطة'],
     email: 'naseem@success4sureacademy.com',
     phone: '0790000041',
     profileUrl: 'https://www.success4sureacademy.com/naseem-al-labadi',
     bio:
-      'Mr. Naseem Allabadi — mathematics teacher at Success 4 Sure Academy and Platform. B.Sc. Mathematics from Arab Amman University with honors (1st in class, GPA 3.81/4). Higher Diploma in Education and Training with honors (GPA 3.65/4). Teaching since 2012.',
+      'Mathematics teacher at Success 4 Sure Academy. B.Sc. Mathematics (honors) + Higher Diploma in Education. Strong for upper-elementary precision and graded problem steps.',
     aboutStudent:
-      'يا بطل الرياضيات: أنا أستاذ نسيم اللبدي من Success 4 Sure. بنمشي خطوة خطوة — نفهم قبل ما نحفظ، ونستخدم خط الأعداد والصور عشان الجمع يصير لعبة واضحة.',
-    subjects: ['رياضيات', 'الرياضيات', 'Math', 'math', 'Mathematics'],
+      'يا بطل الصف الرابع وفوق: أنا أستاذ نسيم. بنرتّب المسألة بخطوات واضحة ونفهم قبل ما نسرع.',
+    subjects: ['رياضيات', 'الرياضيات', 'Math', 'math'],
     elementarySubjects: ['الرياضيات'],
     experienceYears: 14,
-  },
-  {
-    id: 'teacher-s4s-waseem-al-labadi',
-    fullName: 'Mr. Waseem Al-Labadi',
-    fullNameAr: 'أ. وسيم اللبدي',
-    roleAr: 'علوم · مؤسس Success 4 Sure',
-    email: 'waseem@success4sureacademy.com',
-    phone: '0790000040',
-    profileUrl: 'https://www.success4sureacademy.com/waseem-al-labadi',
-    bio:
-      'Mr. Waseem Abdelbaqi — founder of Success 4 Sure Academy. Highly experienced Physics and Chemistry teacher with over 14 years teaching in Jordan and the Gulf. B.Sc. Earth & Environmental Sciences (Geophysics), Hashemite University. ACT and AdvancED certified. Clear bilingual teaching style.',
-    aboutStudent:
-      'مرحباً — أنا أستاذ وسيم اللبدي، مؤسس Success 4 Sure. في المرحلة الابتدائية بنبني حب العلوم بالملاحظة والتجربة البسيطة، عربي وإنجليزي، بهدوء وثقة.',
-    subjects: [
-      'علوم',
-      'العلوم',
-      'Science',
-      'science',
-      'Chemistry',
-      'chemistry',
-      'كيمياء',
-      'Physics',
-      'physics',
-      'فيزياء',
-    ],
-    elementarySubjects: ['العلوم'],
-    experienceYears: 14,
+    source: 'success-4-sure',
   },
   {
     id: 'teacher-s4s-noor-al-lozi',
     fullName: 'Ms. Noor Al-Lozi',
     fullNameAr: 'أ. نور اللوزي',
-    roleAr: 'علوم الحياة · أحياء',
+    roleAr: 'علوم/أحياء الصفوف 4–6',
+    ageBand: 'grades-4-6',
+    styleTags: ['علمية', 'واضحة', 'محترمة'],
     email: 'noor@success4sureacademy.com',
     phone: '0790000042',
     profileUrl: 'https://www.success4sureacademy.com/teachers/',
     bio:
-      'Ms. Noor Al-Lozi — Biology teacher at Success 4 Sure Academy. Supports life-science and health topics for learners building observation and respectful scientific language.',
+      'Biology teacher at Success 4 Sure Academy — life science bridge for upper elementary into middle-school inquiry.',
     aboutStudent:
-      'أنا الأستاذة نور اللوزي. بنتعلّم نلاحظ جسمنا وصحتنا باحترام: نتشابه كبشر، ونختلف بتنوع جميل.',
-    subjects: ['أحياء', 'Biology', 'biology', 'علوم', 'العلوم', 'Science', 'science'],
+      'أنا الأستاذة نور. بنلاحظ جسمنا والبيئة بلغة علمية بسيطة ومحترمة.',
+    subjects: ['أحياء', 'Biology', 'علوم', 'العلوم', 'Science'],
     elementarySubjects: ['العلوم'],
     experienceYears: 6,
+    source: 'success-4-sure',
   },
   {
     id: 'teacher-s4s-sara-abd-alraheem',
     fullName: 'Ms. Sara Abd Alraheem',
     fullNameAr: 'أ. سارة عبد الرحيم',
-    roleAr: 'اللغة الإنجليزية',
+    roleAr: 'English الصفوف 4–6',
+    ageBand: 'grades-4-6',
+    styleTags: ['واثقة', 'داعمة', 'طلاقة'],
     email: 'sara@success4sureacademy.com',
     phone: '0790000043',
     profileUrl: 'https://www.success4sureacademy.com/sara-abd-alraheem',
     bio:
-      'Ms. Sara Abd Alraheem — experienced and passionate English teacher with over six years of teaching at Success 4 Sure Academy. Dedicated to inspiring confident reading, speaking, and classroom English for young and exam learners.',
+      'English teacher at Success 4 Sure with 6+ years. Better fit once learners leave pure early-years song mode and need reading stamina.',
     aboutStudent:
-      'Hi champions — I’m Miss Sara from Success 4 Sure. We learn English with smiles, songs, and short stories — step by step.',
-    subjects: [
-      'English',
-      'english',
-      'اللغة الإنجليزية',
-      'انجليزي',
-      'الإنجليزية',
-    ],
+      'Hi — I’m Miss Sara. We build confident English for bigger classrooms, step by step.',
+    subjects: ['English', 'english', 'اللغة الإنجليزية'],
     elementarySubjects: ['اللغة الإنجليزية'],
     experienceYears: 6,
+    source: 'success-4-sure',
   },
   {
-    id: 'teacher-s4s-zuheir-esawi',
-    fullName: 'Mr. Zuheir Esawi',
-    fullNameAr: 'أ. زهير عيساوي',
-    roleAr: 'رياضيات عليا · تفكير حل مسائل',
-    email: 'zuheir@success4sureacademy.com',
-    phone: '0790000044',
-    profileUrl: 'https://www.success4sureacademy.com/zuheir-esawi',
+    id: 'teacher-s4s-waseem-al-labadi',
+    fullName: 'Mr. Waseem Al-Labadi',
+    fullNameEn: 'Mr. Waseem Al-Labadi',
+    fullNameAr: 'أ. وسيم اللبدي',
+    roleAr: 'علوم/إشراف أكاديمي · صفوف أعلى',
+    ageBand: 'grades-4-6',
+    styleTags: ['واضح', 'ثنائي اللغة', 'مؤسس'],
+    email: 'waseem@success4sureacademy.com',
+    phone: '0790000040',
+    profileUrl: 'https://www.success4sureacademy.com/waseem-al-labadi',
     bio:
-      'Mr. Zuheir Esawi — experienced Physics and Mathematics teacher with 6 years of teaching, focusing on AHSD and IGCSE. Concept-based instruction that builds problem-solving and critical thinking. Currently teaching at Al-Asriyya Schools.',
+      'Founder of Success 4 Sure Academy. Physics/Chemistry specialist — available as upper-elementary science mentor, not as the default G1 classroom voice.',
     aboutStudent:
-      'أنا أستاذ زهير. بنقوّي التفكير الرياضي وحل المسائل للصفوف الأعلى في الابتدائي — فهم عميق قبل السرعة.',
-    subjects: [
-      'رياضيات',
-      'الرياضيات',
-      'Math',
-      'math',
-      'Calculus',
-      'calculus',
-      'Physics',
-      'physics',
-      'فيزياء',
-    ],
-    elementarySubjects: ['الرياضيات'],
-    experienceYears: 6,
-  },
-  {
-    id: 'teacher-s4s-alaa-bariyeh',
-    fullName: "Mr. Ala’a Bariyeh",
-    fullNameAr: 'أ. علاء بريه',
-    roleAr: 'المهارات الرقمية',
-    email: 'alaa@success4sureacademy.com',
-    phone: '0790000045',
-    profileUrl: 'https://www.success4sureacademy.com/teachers/',
-    bio:
-      "Mr. Ala’a Bariyeh — Computer Science Principles teacher at Success 4 Sure Academy. Guides digital literacy, safe computing habits, and computational thinking for school learners.",
-    aboutStudent:
-      'أنا أستاذ علاء. بنتعلّم نفكّر كمهندسي المستقبل: خطوات واضحة، أمان رقمي، وإبداع بسيط على الجهاز.',
-    subjects: [
-      'Computer Science',
-      'CSP',
-      'المهارات الرقمية',
-      'الحاسوب',
-      'Digital',
-      'digital',
-    ],
-    elementarySubjects: ['المهارات الرقمية'],
-    experienceYears: 5,
-  },
-  {
-    id: 'teacher-s4s-abd-al-fattah-barqawi',
-    fullName: 'Mr. Abd Al Fattah Barqawi',
-    fullNameAr: 'أ. عبد الفتاح برقاوي',
-    roleAr: 'دراسات اجتماعية · اقتصاد مبسّط',
-    email: 'barqawi@success4sureacademy.com',
-    phone: '0790000046',
-    profileUrl: 'https://www.success4sureacademy.com/teachers/',
-    bio:
-      'Mr. Abd Al Fattah Barqawi — Economics teacher at Success 4 Sure Academy. Supports social-studies and everyday economics ideas for school pathways.',
-    aboutStudent:
-      'أنا أستاذ عبد الفتاح. بنتعلّم كيف المجتمع يشتغل: البيت، المدرسة، والسوق — بلغة مناسبة للعمر.',
-    subjects: [
-      'Economics',
-      'economics',
-      'اقتصاد',
-      'الدراسات الاجتماعية',
-      'اجتماعيات',
-    ],
-    elementarySubjects: ['الدراسات الاجتماعية'],
-    experienceYears: 8,
+      'أنا أستاذ وسيم. للصفوف الأكبر بنربط أساس العلوم بالتفكير الواضح عربي/إنجليزي.',
+    subjects: ['علوم', 'العلوم', 'Chemistry', 'Physics', 'كيمياء', 'فيزياء'],
+    elementarySubjects: ['العلوم'],
+    experienceYears: 14,
+    source: 'success-4-sure',
   },
 ]);
 
-export const ELEMENTARY_MATH_TEACHER_ID = 'teacher-s4s-naseem-al-labadi';
-export const ELEMENTARY_SCIENCE_TEACHER_ID = 'teacher-s4s-waseem-al-labadi';
-/** @deprecated use ELEMENTARY_MATH_TEACHER_ID — kept for older links */
+export const ELEMENTARY_MATH_TEACHER_ID = 'teacher-jo-lama-hammouri';
+export const ELEMENTARY_SCIENCE_TEACHER_ID = 'teacher-jo-raneem-abbadi';
+/** @deprecated alias — early math lead */
 export const ELEMENTARY_TEACHER_ID = ELEMENTARY_MATH_TEACHER_ID;
 export const ELEMENTARY_OFFER_G1_MATH_ID = 'offer-jo-g1-math-numberline-35m';
 export const ELEMENTARY_OFFER_G1_SCIENCE_ID = 'offer-jo-g1-science-alike-35m';
@@ -186,8 +189,6 @@ const ELEMENTARY_CURRICULA = [
   'المنهاج الوطني',
   'Elementary',
   'المرحلة الابتدائية',
-  'Success 4 Sure',
-  'S4S',
   'الصف الأول',
   'الصف الثاني',
   'الصف الثالث',
@@ -197,10 +198,15 @@ const ELEMENTARY_CURRICULA = [
 ];
 
 function upsertFacultyMember(member) {
+  const curricula = [
+    ...ELEMENTARY_CURRICULA,
+    member.ageBand === 'grades-1-3' ? 'الصفوف الأولى' : 'الصفوف العليا ابتدائي',
+    member.source === 'success-4-sure' ? 'Success 4 Sure' : 'SUCCESS OS Cast',
+  ];
   return upsertTeacherProfile({
     id: member.id,
     registeredBy: 'supervisor',
-    registeredByActor: 'Waseem · Partner · Success 4 Sure',
+    registeredByActor: 'Waseem · Partner · Elementary Casting',
     autoApprove: true,
     fullName: member.fullName,
     email: member.email,
@@ -208,54 +214,65 @@ function upsertFacultyMember(member) {
     nationality: 'أردني',
     city: 'عمّان',
     country: 'الأردن',
-    bio: member.bio,
+    bio: `${member.bio}\n\nأسلوب الصف: ${(member.styleTags || []).join(' · ')} · الشريحة العمرية: ${member.ageBand}`,
     aboutStudent: member.aboutStudent,
     subjects: member.subjects,
-    curricula: ELEMENTARY_CURRICULA,
+    curricula,
     languages: ['العربية', 'English'],
     experienceYears: member.experienceYears,
-    introVideoUrl: member.profileUrl,
-    certificateName: 'S4S-faculty-credential.txt',
-    certificateDataUrl: 'data:text/plain;base64,UzRTLWZhY3VsdHk=',
+    introVideoUrl: member.profileUrl || '',
+    certificateName: 'elementary-age-fit-credential.txt',
+    certificateDataUrl: 'data:text/plain;base64,RUxFTS1BR0UtRklU',
     idDocumentType: 'national_id',
-    idDocumentName: 's4s-faculty-kyc-placeholder.txt',
-    idDocumentDataUrl: 'data:text/plain;base64,UzRTLUtZQw==',
-    workAreas: ['عمّان', 'أونلاين', 'Success 4 Sure Academy', 'المرحلة الابتدائية'],
+    idDocumentName: 'elementary-cast-kyc-placeholder.txt',
+    idDocumentDataUrl: 'data:text/plain;base64,RUxFTS1LWUM=',
+    workAreas: ['عمّان', 'أونلاين', 'المرحلة الابتدائية', member.ageBand],
     acceptsOnline: true,
     acceptsInPerson: true,
     acceptsRecorded: true,
   });
 }
 
+function toFacultyCard(member, profile) {
+  return {
+    id: member.id,
+    fullName: member.fullName,
+    fullNameAr: member.fullNameAr || member.fullName,
+    fullNameEn: member.fullNameEn || '',
+    roleAr: member.roleAr,
+    ageBand: member.ageBand,
+    styleTags: member.styleTags || [],
+    elementarySubjects: member.elementarySubjects,
+    profileUrl: member.profileUrl || '',
+    source: member.source,
+    href: `/teachers/${member.id}`,
+    status: getTeacher(member.id)?.status || profile.status,
+  };
+}
+
 export function ensureElementaryTeacher() {
-  const faculty = S4S_ELEMENTARY_FACULTY.map((member) => {
-    const profile = upsertFacultyMember(member);
-    return {
-      id: member.id,
-      fullName: member.fullName,
-      fullNameAr: member.fullNameAr,
-      roleAr: member.roleAr,
-      elementarySubjects: member.elementarySubjects,
-      profileUrl: member.profileUrl,
-      href: `/teachers/${member.id}`,
-      status: getTeacher(member.id)?.status || profile.status,
-    };
-  });
+  const early = EARLY_ELEMENTARY_FACULTY.map((m) =>
+    toFacultyCard(m, upsertFacultyMember(m)),
+  );
+  const upper = UPPER_ELEMENTARY_FACULTY.map((m) =>
+    toFacultyCard(m, upsertFacultyMember(m)),
+  );
+  const faculty = [...early, ...upper];
 
   const mathOffer = upsertOffer({
     id: ELEMENTARY_OFFER_G1_MATH_ID,
     teacherId: ELEMENTARY_MATH_TEACHER_ID,
     status: 'published',
     type: 'recorded',
-    title: 'شرح كامل · الجمع بخط الأعداد (35 دقيقة) — صف 1 · أ. نسيم اللبدي',
+    title: 'شرح كامل · الجمع بخط الأعداد (35 دقيقة) — صف 1 · أ. لاما الحموري',
     subject: 'الرياضيات',
-    curriculum: 'المنهاج الوطني الأردني · الصف الأول · Success 4 Sure',
+    curriculum: 'المنهاج الوطني الأردني · الصف الأول · معلّمة دافئة للصغار',
     description:
-      'حصة معلّم حقيقي من Success 4 Sure: أ. نسيم اللبدي يقود تهيئة، شرح، تدريب موجّه، تدريب مستقل، وخروج — مربوطة بالدرس التفاعلي 3D.',
+      'حصة معلّمة حقيقية بأسلوب دلوع ولعوب مناسب لعمر الصف الأول: تهيئة حنونة، شرح بالقفز، تدريب موجّه، تدريب مستقل، وخروج تشجيعي — مربوطة بالدرس التفاعلي 3D.',
     price: 7,
     currency: 'JOD',
     durationMinutes: 35,
-    recordingName: 'jo-g1-math-numberline-naseem-35m.md',
+    recordingName: 'jo-g1-math-numberline-lama-35m.md',
     recordingUrl:
       '/digital-library/middle-east/jordan/national/grade-1/الرياضيات/الجمع/الجمع-بخط-الأعداد#teacher-explain',
   });
@@ -265,15 +282,15 @@ export function ensureElementaryTeacher() {
     teacherId: ELEMENTARY_SCIENCE_TEACHER_ID,
     status: 'published',
     type: 'recorded',
-    title: 'شرح كامل · نحن متشابهون ومختلفون (35 دقيقة) — صف 1 · أ. وسيم اللبدي',
+    title: 'شرح كامل · نحن متشابهون ومختلفون (35 دقيقة) — صف 1 · أ. رنيم العبادي',
     subject: 'العلوم',
-    curriculum: 'المنهاج الوطني الأردني · الصف الأول · Success 4 Sure',
+    curriculum: 'المنهاج الوطني الأردني · الصف الأول · معلّمة حنونة للصغار',
     description:
-      'حصة علوم ابتدائية بصوت أ. وسيم اللبدي (مؤسس Success 4 Sure): نلاحظ التشابه والاختلاف باحترام، ثم نربطها بنشاط صفي أردني.',
+      'حصة علوم بأسلوب لطيف ومناسب للمرحلة العمرية: أ. رنيم العبادي تعلّم التشابه والاختلاف باحترام ودفء — قبل أي أسلوب امتحاني.',
     price: 7,
     currency: 'JOD',
     durationMinutes: 35,
-    recordingName: 'jo-g1-science-alike-waseem-35m.md',
+    recordingName: 'jo-g1-science-alike-raneem-35m.md',
     recordingUrl:
       '/digital-library/middle-east/jordan/national/grade-1/العلوم/الإنسان-والصحة/نحن-متشابهون-ومختلفون#teacher-explain',
   });
@@ -284,6 +301,14 @@ export function ensureElementaryTeacher() {
     offer: mathOffer,
     scienceOffer,
     faculty,
+    earlyFaculty: early,
+    upperFaculty: upper,
+    castingDoctrineAr: [
+      'نختار شخصية المعلّم حسب عمر الطالب — مش حسب شهرة المنصة فقط.',
+      'الصفوف 1–3: معلّمات دافعات دلوعات بالشرح (قصص، لعب، تشجيع).',
+      'الصفوف 4–6: اختصاصيون أوضح خطواتًا (ومنهم معلّمو Success 4 Sure عند الحاجة).',
+      'المعلّم مش شرط يكون من منصتنا — المهم التماشي مع المرحلة العمرية.',
+    ],
     offersForTeacher: listOffers({ teacherId: ELEMENTARY_MATH_TEACHER_ID }),
   };
 }
