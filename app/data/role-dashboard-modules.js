@@ -914,6 +914,7 @@ export const PUBLIC_DASHBOARD_LINKS = Object.freeze([
   { key: 'employer', labelAr: 'أصحاب العمل', labelEn: 'Employers', href: '/dashboard/employer' },
   { key: 'job_seeker', labelAr: 'غرفة قيادة الباحث عن عمل', labelEn: 'Job seeker control cockpit', href: '/jobs/dashboard' },
   { key: 'students_os', labelAr: 'غرفة تحكم الطالب', labelEn: 'Students OS control room', href: '/students/dashboard' },
+  { key: 'partner_guide', labelAr: 'دليل الشريك الحي', labelEn: 'Living Partner Guide', href: '/guide' },
   { key: 'parent', labelAr: 'أولياء الأمور', labelEn: 'Parents', href: '/dashboard/parent' },
   { key: 'school_student', labelAr: 'طالب مدرسة', labelEn: 'School Student', href: '/dashboard/school-student' },
   { key: 'university_student', labelAr: 'طالب جامعة', labelEn: 'University Student', href: '/dashboard/university-student' },

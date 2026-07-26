@@ -43,6 +43,18 @@ export default function AdminPage() {
           </a>
         </section>
 
+        <section className="os-card admin-card" style={{ marginBottom: '1rem', background: 'linear-gradient(135deg,#301218,#7f121b)', color: '#fff' }}>
+          <span style={{ color: '#f2d77c' }}>AI COMPANION · LIVING PARTNER GUIDE</span>
+          <h2 style={{ color: '#fff' }}>دليل الشريك الحي — يسجّل ويتأكد</h2>
+          <p style={{ color: 'rgba(255,255,255,0.88)' }}>
+            طبقة ذكاء تسجّل خطوات البناء، تتحقق من الأسطح الحرجة، وتسرد أين وصلنا كشركاء — ذاكرة
+            المنظومة ما بتنسى.
+          </p>
+          <a className="button" href="/guide" style={{ background: '#fff', color: '#9e1722' }}>
+            افتح دليل الشريك →
+          </a>
+        </section>
+
         <section className="os-card admin-card" style={{ marginBottom: '1rem' }}>
           <span>STUDENTS OS · CAREERS OS</span>
           <h2>غرفة تحكم الطالب وغرفة قيادة الباحث عن عمل</h2>

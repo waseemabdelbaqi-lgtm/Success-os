@@ -284,6 +284,12 @@ export function OsControlRoom(): ReactNode {
                 {isAr ? "غرفة قيادة الباحث" : "Careers OS"}
               </Link>
               <Link
+                href="/guide"
+                className="rounded-xl border border-white/30 bg-white/10 px-4 py-2.5 text-sm font-semibold text-white"
+              >
+                {isAr ? "دليل الشريك الحي" : "Living Partner Guide"}
+              </Link>
+              <Link
                 href="/dashboard/links"
                 className="rounded-xl border border-white/30 bg-white/10 px-4 py-2.5 text-sm font-semibold text-white"
               >
