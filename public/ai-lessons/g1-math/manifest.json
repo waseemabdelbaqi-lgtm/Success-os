@@ -1,145 +1,138 @@
 {
   "slug": "jordan-g1-math-number-line-addition",
-  "voice": "ar-JO-SanaNeural",
+  "voice": "ar-EG-SalmaNeural",
+  "style": "youtube-talking-head",
   "teacherName": "أ. لاما النوري",
-  "teacherImage": "/ai-lessons/g1-math/teacher.png",
+  "faces": {
+    "idle": "/ai-lessons/g1-math/faces/idle.png",
+    "talk": "/ai-lessons/g1-math/faces/talk.png"
+  },
+  "teacherImage": "/ai-lessons/g1-math/faces/idle.png",
   "beats": [
     {
       "id": "b01",
       "file": "/ai-lessons/g1-math/audio/beat-01.mp3",
-      "duration": 9.864,
-      "caption": "يا قمري، أنا معلمتك لاما. اليوم بنتعلم الجمع بطريقة ممتعة على خط الأعداد.",
+      "duration": 8.256,
+      "caption": "يا قمري! أنا معلمتك لاما. يلا نبدأ حصة جميلة.",
       "board": {
         "kind": "title",
         "title": "الجمع بخط الأعداد"
-      },
-      "teacher": "/ai-lessons/g1-math/teacher.png"
+      }
     },
     {
       "id": "b02",
       "file": "/ai-lessons/g1-math/audio/beat-02.mp3",
-      "duration": 9.288,
-      "caption": "معي ثلاث حلوات، وصاحبي أعطاني اثنتين. كم صار معي؟ فكر شوي.",
+      "duration": 8.16,
+      "caption": "معي ثلاث حلوات… وصاحبي أعطاني ثنتين. كم صار؟",
       "board": {
         "kind": "story",
         "story": "٣ حلوات + ٢ = ؟"
-      },
-      "teacher": "/ai-lessons/g1-math/teacher.png"
+      }
     },
     {
       "id": "b03",
       "file": "/ai-lessons/g1-math/audio/beat-03.mp3",
-      "duration": 6.864,
-      "caption": "الجمع يعني نحط الأشياء مع بعض، ونقفز لليمين على خط الأعداد.",
+      "duration": 6.768,
+      "caption": "الجمع يعني نحط مع بعض… ونقفز يمين على الخط.",
       "board": {
         "kind": "numberline",
         "from": 0,
         "hops": 0
-      },
-      "teacher": "/ai-lessons/g1-math/teacher.png"
+      }
     },
     {
       "id": "b04",
       "file": "/ai-lessons/g1-math/audio/beat-04.mp3",
-      "duration": 6.6,
-      "caption": "نبدأ على الرقم ثلاثة. هذا بيتنا الأول على الخط.",
+      "duration": 5.28,
+      "caption": "نبص على الرقم ثلاثة. هون بنبدأ.",
       "board": {
         "kind": "numberline",
         "from": 3,
         "hops": 0
-      },
-      "teacher": "/ai-lessons/g1-math/teacher.png"
+      }
     },
     {
       "id": "b05",
       "file": "/ai-lessons/g1-math/audio/beat-05.mp3",
-      "duration": 8.76,
-      "caption": "هلا أربع قفزات: قفزة، قفزة، قفزة، قفزة. ركز معي.",
+      "duration": 9.36,
+      "caption": "أربع قفزات معايا: واحدة… اثنين… ثلاثة… أربعة!",
       "board": {
         "kind": "numberline",
         "from": 3,
         "hops": 4
-      },
-      "teacher": "/ai-lessons/g1-math/teacher.png"
+      }
     },
     {
       "id": "b06",
       "file": "/ai-lessons/g1-math/audio/beat-06.mp3",
-      "duration": 8.928,
-      "caption": "وقفنا على سبعة. إذن ثلاثة زائد أربعة يساوي سبعة. برافو عليك!",
+      "duration": 7.704,
+      "caption": "وصلنا سبعة. ثلاثة زائد أربعة يساوي سبعة. برافوو!",
       "board": {
         "kind": "equation",
         "equation": "٣ + ٤ = ٧"
-      },
-      "teacher": "/ai-lessons/g1-math/teacher.png"
+      }
     },
     {
       "id": "b07",
       "file": "/ai-lessons/g1-math/audio/beat-07.mp3",
-      "duration": 7.296,
-      "caption": "هيا نجرب: ابدأ من خمسة، واقفز قفزتين. وين نوصل؟",
+      "duration": 6.6,
+      "caption": "جرب: من خمسة… قفزتين. وين؟",
       "board": {
         "kind": "numberline",
         "from": 5,
         "hops": 2
-      },
-      "teacher": "/ai-lessons/g1-math/teacher.png"
+      }
     },
     {
       "id": "b08",
       "file": "/ai-lessons/g1-math/audio/beat-08.mp3",
-      "duration": 8.376,
-      "caption": "وصلنا سبعة. خمسة زائد اثنين يساوي سبعة. أنت بطل الصف.",
+      "duration": 7.56,
+      "caption": "سبعة! خمسة زائد اثنين يساوي سبعة. أنت نجم.",
       "board": {
         "kind": "equation",
         "equation": "٥ + ٢ = ٧"
-      },
-      "teacher": "/ai-lessons/g1-math/teacher.png"
+      }
     },
     {
       "id": "b09",
       "file": "/ai-lessons/g1-math/audio/beat-09.mp3",
-      "duration": 8.616,
-      "caption": "قصة: سارة معها ست تفاحات، وأمها أعطتها ثلاث. اقفز معي.",
+      "duration": 7.224,
+      "caption": "قصة سارة: ست تفاحات… وأمها زودتها ثلاث.",
       "board": {
         "kind": "numberline",
         "from": 6,
         "hops": 3
-      },
-      "teacher": "/ai-lessons/g1-math/teacher.png"
+      }
     },
     {
       "id": "b10",
       "file": "/ai-lessons/g1-math/audio/beat-10.mp3",
-      "duration": 8.448,
-      "caption": "صارت تسع تفاحات. ستة زائد ثلاثة يساوي تسعة. يا عسل!",
+      "duration": 6.144,
+      "caption": "تسعة تفاحات. ستة زائد ثلاثة يساوي تسعة.",
       "board": {
         "kind": "equation",
         "equation": "٦ + ٣ = ٩"
-      },
-      "teacher": "/ai-lessons/g1-math/teacher.png"
+      }
     },
     {
       "id": "b11",
       "file": "/ai-lessons/g1-math/audio/beat-11.mp3",
-      "duration": 9.216,
-      "caption": "قاعدة ذهبية: ابدأ، اقفز، بعدين اقرأ الناتج. سهلة وواضحة.",
+      "duration": 6.744,
+      "caption": "احفظها: ابدأ… اقفز… اقرأ الناتج.",
       "board": {
         "kind": "title",
         "title": "ابدأ → اقفز → اقرأ"
-      },
-      "teacher": "/ai-lessons/g1-math/teacher.png"
+      }
     },
     {
       "id": "b12",
       "file": "/ai-lessons/g1-math/audio/beat-12.mp3",
-      "duration": 7.344,
-      "caption": "أحبك يا قمري. يلا نروح على التفاعليات ونلعب مع بعض.",
+      "duration": 6.048,
+      "caption": "خلصنا الشرح. يلا للتفاعليات يا قمري!",
       "board": {
         "kind": "cheer",
-        "title": "أنت نجم الصف ⭐"
-      },
-      "teacher": "/ai-lessons/g1-math/teacher.png"
+        "title": "أنت نجم الصف"
+      }
     }
   ]
 }

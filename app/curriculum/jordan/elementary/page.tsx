@@ -79,7 +79,9 @@ export default function JordanElementaryStagePage(): ReactNode {
       `}</style>
       <div className="wrap">
         <h1>{snap?.stage?.labelAr || "المرحلة الابتدائية"}</h1>
-        <p className="lead">اختَر الصف وافتح الحصة — معلّم AI على الشاشة يشرح، وبعدين تفاعليات.</p>
+        <p className="lead">
+          اختَر الصف وافتح الحصة — معلّمات ستايل يتحرّكن مع الصوت (ستايل يوتيوب)، وبعدين تفاعليات.
+        </p>
         <div className="row">
           <select value={grade} onChange={(e) => setGrade(e.target.value)} aria-label="الصف">
             {GRADES.map((g) => (
