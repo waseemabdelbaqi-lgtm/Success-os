@@ -68,6 +68,7 @@ export default function OnboardPage() {
               <option value="Kuwaiti">كويتي</option>
               <option value="Yemeni">يمني</option>
               <option value="Moroccan">مغربي</option>
+              <option value="Lebanese">لبناني</option>
             </select>
           </div>
 

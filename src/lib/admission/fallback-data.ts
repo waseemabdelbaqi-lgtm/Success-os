@@ -201,6 +201,36 @@ export const FALLBACK_INSTITUTIONS: Institution[] = [
     official_email: "sh@edu.unideb.hu",
     logo_url: "https://unideb.hu",
   },
+  {
+    id: "00000000-0000-4000-8000-000000000026",
+    name: "جامعة البوليتكنيك في ميلانو - إيطاليا",
+    type: "university",
+    country: "Italy",
+    majors: ["Engineering", "Architecture", "Design", "Computing"],
+    is_partner: false,
+    official_email: "international-admissions@polimi.it",
+    logo_url: "https://polimi.it",
+  },
+  {
+    id: "00000000-0000-4000-8000-000000000027",
+    name: "جامعة نيقوسيا - قبرص اليونانية",
+    type: "university",
+    country: "Cyprus",
+    majors: ["Medicine", "Business", "Law", "Computing", "Pharmacy"],
+    is_partner: true,
+    official_email: "admissions@unic.ac.cy",
+    logo_url: "https://unic.ac.cy",
+  },
+  {
+    id: "00000000-0000-4000-8000-000000000028",
+    name: "جامعة تسينغهوا - بكين الصين",
+    type: "university",
+    country: "China",
+    majors: ["Engineering", "Computing", "Sciences", "Business", "Architecture"],
+    is_partner: false,
+    official_email: "admissions@tsinghua.edu.cn",
+    logo_url: "https://tsinghua.edu.cn",
+  },
 ];
 
 type FallbackCriteria = {
@@ -484,6 +514,43 @@ const CRITERIA: Record<string, FallbackCriteria[]> = {
       is_accredited_in_home_country: true,
     },
   ],
+  "00000000-0000-4000-8000-000000000026": [
+    {
+      nationality: "Moroccan",
+      min_gpa: 3.2,
+      requirements_text:
+        "القبول مشروط باجتياز اختبار English TOLC-I بمعدل مرجعي مطلوب للكلية. يتطلب التسجيل لاحقاً في Universitaly وتجهيز وثائق ISEE المالي لمنحة المعيشة والسكن DSU.",
+      alternative_exam_required: "English TOLC-I + Universitaly",
+      avg_living_cost: "600$ - 850$ شهرياً",
+      deadline_date: "2026-04-15",
+      is_accredited_in_home_country: true,
+    },
+  ],
+  "00000000-0000-4000-8000-000000000027": [
+    {
+      nationality: "Lebanese",
+      min_gpa: 2.5,
+      requirements_text:
+        "يشترط كشف حساب بنكي لولي الأمر بقيمة 7000 يورو، ورفع كفالة بنكية مستردة بقيمة 600 يورو للهجرة، بالإضافة لشهادة الفحوصات الطبية الأربعة المصدقة من الخارجية.",
+      alternative_exam_required: "Bank Guarantee + Medical Pack",
+      avg_living_cost: "700$ - 950$ شهرياً",
+      deadline_date: "2026-07-30",
+      is_accredited_in_home_country: true,
+    },
+  ],
+  "00000000-0000-4000-8000-000000000028": [
+    {
+      nationality: "Yemeni",
+      min_gpa: 3.5,
+      requirements_text:
+        "القبول منافس جداً، يشترط رفع شهادة خلو سوابق جنائية (فيش وتشبيه) مصدق، وخطابين توصية أكاديميين، مع فحص طبي معتمد (Foreigner Physical Examination). المنحة تعفي من الرسوم وتوفر السكن وراتب شهري.",
+      max_age_allowed: 25,
+      alternative_exam_required: "Non-Criminal Record + 2 Recommendation Letters",
+      avg_living_cost: "150$ شهرياً (المنحة تغطي المعيشة الأساسية والسكن)",
+      deadline_date: "2026-03-01",
+      is_accredited_in_home_country: true,
+    },
+  ],
 };
 
 function degreeMatchesType(degree: string, type: Institution["type"]) {
@@ -517,6 +584,8 @@ function pickCriteria(institutionId: string, nationality: string) {
     yemen: "yemen",
     moroccan: "morocco",
     morocco: "morocco",
+    lebanese: "lebanon",
+    lebanon: "lebanon",
   };
   const key = aliases[normalized] || normalized;
   return (
