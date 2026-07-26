@@ -25,9 +25,9 @@ export function LessonShell({
   storageKey,
 }: Props) {
   const isJordan = lesson.slug.startsWith("jordan-");
-  const teacherName =
-    lesson.teacherExplanation?.teacherName ||
-    (lesson.slug.includes("science") ? "أ. رنيم صالح" : "أ. لاما النوري");
+  const teacherName = lesson.slug.includes("science")
+    ? "أ. رنيم صالح"
+    : "أ. لاما النوري";
 
   if (isJordan) {
     return (
