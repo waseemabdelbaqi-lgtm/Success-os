@@ -3,17 +3,19 @@ import type { TeacherExplanation } from "@/src/lib/digital-library/types";
 /**
  * Full teacher-led explanation ≥ 30 minutes for
  * Jordan G1 Math — الجمع باستعمال خط الأعداد
- * Delivered by Teachers OS: أ. وسيم · معلّم SUCCESS OS
+ * Delivered by Teachers OS: Mr. Naseem Al-Labadi · Success 4 Sure Academy
+ * https://www.success4sureacademy.com/naseem-al-labadi
  */
 export const JORDAN_G1_MATH_NUMBER_LINE_TEACHER_35M: TeacherExplanation = {
   totalMinutes: 35,
-  teacherId: "teacher-success-os-waseem-elementary",
-  teacherName: "أ. وسيم · معلّم SUCCESS OS",
-  teacherHref: "/teachers/teacher-success-os-waseem-elementary",
+  teacherId: "teacher-s4s-naseem-al-labadi",
+  teacherName: "أ. نسيم اللبدي · Success 4 Sure",
+  teacherHref: "/teachers/teacher-s4s-naseem-al-labadi",
   offerId: "offer-jo-g1-math-numberline-35m",
   offerHref: "/teachers/offers/offer-jo-g1-math-numberline-35m",
   titleAr: "شرح المعلّم الكامل · 35 دقيقة",
-  subtitleAr: "صوت المعلّم الحقيقي يقود الدرس — والتفاعلي يدعم الفهم",
+  subtitleAr:
+    "أ. نسيم اللبدي — معلّم الرياضيات في Success 4 Sure · المرحلة الابتدائية · الصف الأول",
   materials: [
     "خط أعداد كبير على السبورة أو الشاشة (0–20)",
     "مكعبات أو أصابع للتحقق",
@@ -27,7 +29,7 @@ export const JORDAN_G1_MATH_NUMBER_LINE_TEACHER_35M: TeacherExplanation = {
       minutes: 5,
       titleAr: "تهيئة وربط",
       goalAr: "نشعل فضول الطالب ونراجع معنى الجمع بكلمات بسيطة.",
-      teacherScript: `مرحبًا يا أبطال الصف الأول! أنا معلّمكم وسيم من SUCCESS OS.
+      teacherScript: `مرحبًا يا أبطال الصف الأول! أنا أستاذ نسيم اللبدي — معلّم الرياضيات في Success 4 Sure Academy.
 
 اليوم سؤالنا الجميل: إذا كان معي 3 أقلام، وأعطاني صديقي قلمين… كم صار معي؟
 
@@ -38,7 +40,7 @@ export const JORDAN_G1_MATH_NUMBER_LINE_TEACHER_35M: TeacherExplanation = {
         "عدّ جماعي 0→10 ثم 10→5",
         "يسمع قصة الأقلام ويجيب شفهيًا بتخمين",
       ],
-      boardCue: "اكتب على السبورة: الجمع = نضع مع بعض · نقفز لليمين",
+      boardCue: "اكتب على السبورة: الجمع = نضع مع بعض · نقفز لليمين · أ. نسيم اللبدي",
     },
     {
       id: "model",
@@ -107,7 +109,7 @@ export const JORDAN_G1_MATH_NUMBER_LINE_TEACHER_35M: TeacherExplanation = {
 3) 7 + 3
 4) قصة: مع ليلى 5 ملصقات، وصديقتها أعطتها 6. كم صار معها؟
 
-قاعدة الصف: ابدأ → اقفز → اقرأ الناتج → تحقق.
+قاعدة الصف من Success 4 Sure: ابدأ → اقفز → اقرأ الناتج → تحقق.
 أنا بدور بينكم (أو في الدردشة للأونلاين). إذا تعلّقتوا، ارجعوا للمجسّم 3D وشوفوا مثال 3+4 مرة ثانية، بعدين رجّعوا لمسألتكم.`,
       studentMoves: [
         "يحل 4 مسائل باستقلال",
@@ -126,7 +128,7 @@ export const JORDAN_G1_MATH_NUMBER_LINE_TEACHER_35M: TeacherExplanation = {
 سؤال خروج 2: ابدأ عند 6 واقفز 2. وين تصل؟ (8)
 سؤال خروج 3 (صوتي): بجملة واحدة، علّم أخاك الصغير كيف يجمع بخط الأعداد.
 
-قبل ما نسكر: تذكّروا — المعلّم الحقيقي هون معكم على SUCCESS OS، والتفاعلي مساعد ذكي، مش بديل عنكم كأبطال فهم.
+قبل ما نسكر: تذكّروا — أنا أستاذ نسيم من Success 4 Sure معكم على SUCCESS OS، والتفاعلي مساعد ذكي، مش بديل عن فهمكم.
 
 الواجب الخفيف (اختياري): اخترع قصة جمع من بيتك (ألعاب، معالق، كتب) وارسم خط أعداد صغير لها.
 

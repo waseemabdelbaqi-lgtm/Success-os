@@ -5,12 +5,14 @@ import { JORDAN_G1_MATH_NUMBER_LINE_TEACHER_35M } from "@/src/lib/digital-librar
  * Jordan National Curriculum · Grade 1 · Mathematics
  * Structure title aligned to Minhaji index: الوحدة الأولى — الجمع باستعمال خط الأعداد
  * Content is SUCCESS OS original (pedagogy-informed). Never copies textbook prose.
- * Full human-teacher explanation: 35 minutes via Teachers OS (أ. وسيم).
+ * Full human-teacher explanation: 35 minutes via Teachers OS
+ * (أ. نسيم اللبدي · Success 4 Sure).
  */
 export const JORDAN_G1_MATH_NUMBER_LINE_ADDITION: LessonModuleContent = {
   slug: "jordan-g1-math-number-line-addition",
   title: "الجمع باستعمال خط الأعداد",
-  subtitle: "الأردن · الصف الأول · الرياضيات · الوحدة الأولى: الجمع · شرح معلّم 35د",
+  subtitle:
+    "الأردن · الصف الأول · الرياضيات · أ. نسيم اللبدي (Success 4 Sure) · شرح 35د",
   estimatedMinutes: 35,
   teacherExplanation: JORDAN_G1_MATH_NUMBER_LINE_TEACHER_35M,
   learningObjectives: [

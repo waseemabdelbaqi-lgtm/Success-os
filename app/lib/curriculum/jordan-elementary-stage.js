@@ -228,8 +228,18 @@ export async function buildJordanElementaryStage(options = {}) {
       lessonExplainHref:
         '/digital-library/middle-east/jordan/national/grade-1/الرياضيات/الجمع/الجمع-بخط-الأعداد#teacher-explain',
     },
+    faculty: teacherSeed.faculty,
+    scienceOffer: teacherSeed.scienceOffer
+      ? {
+          id: teacherSeed.scienceOffer.id,
+          title: teacherSeed.scienceOffer.title,
+          href: `/teachers/offers/${teacherSeed.scienceOffer.id}`,
+          lessonExplainHref:
+            '/digital-library/middle-east/jordan/national/grade-1/العلوم/الإنسان-والصحة/نحن-متشابهون-ومختلفون#teacher-explain',
+        }
+      : null,
     next: [
-      'Deliver full teacher explanation (≥30 min) inside live lessons',
+      'Keep elementary first: grades 1–6 with S4S faculty personas',
       'Author queued interactive lessons grade-by-grade',
       'Produce video scripts from teacher explanation segments',
     ],
@@ -292,11 +302,22 @@ export function getJordanElementarySnapshot() {
       lessonExplainHref:
         '/digital-library/middle-east/jordan/national/grade-1/الرياضيات/الجمع/الجمع-بخط-الأعداد#teacher-explain',
     },
+    faculty: teacherSeed.faculty,
+    scienceOffer: teacherSeed.scienceOffer
+      ? {
+          id: teacherSeed.scienceOffer.id,
+          title: teacherSeed.scienceOffer.title,
+          href: `/teachers/offers/${teacherSeed.scienceOffer.id}`,
+          lessonExplainHref:
+            '/digital-library/middle-east/jordan/national/grade-1/العلوم/الإنسان-والصحة/نحن-متشابهون-ومختلفون#teacher-explain',
+        }
+      : null,
     doctrineAr: [
       'المرحلة الابتدائية أولاً: صفوف 1–6 كقاعدة الهرم.',
+      'شخصيات المعلّمين من Success 4 Sure Academy (الموقع الرسمي).',
       'لكل صف×مادة: outline → درس تفاعلي → معلّم حقيقي → فيديو لاحقاً.',
       'المحتوى أصلي SUCCESS OS؛ الهيكل من NCCD/منهاجي بدون نسخ الكتب.',
-      'شرح المعلّم ≥ 30 دقيقة داخل الدرس — أ. وسيم يقود الجمع بخط الأعداد 35د.',
+      'أ. نسيم اللبدي · رياضيات 35د · أ. وسيم اللبدي · علوم 35د.',
     ],
   };
 }

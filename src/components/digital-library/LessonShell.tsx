@@ -37,14 +37,31 @@ export function LessonShell({
   teacherCurricula = ["IB", "ib"],
 }: Props) {
   const isJordan = lesson.slug.startsWith("jordan-");
+  const isJordanMath = lesson.slug.includes("-math-");
+  const isJordanScience = lesson.slug.includes("-science-");
   const isS4s = lesson.slug.startsWith("s4s-");
-  const bridgeSubjects = isJordan
-    ? ["رياضيات", "الرياضيات", "math", "علوم", ...teacherSubjects]
-    : isS4s
-      ? ["Chemistry", "chemistry", "كيمياء", "الكيمياء", ...teacherSubjects]
-      : teacherSubjects;
+  const bridgeSubjects = isJordanMath
+    ? ["رياضيات", "الرياضيات", "Math", "math", ...teacherSubjects]
+    : isJordanScience
+      ? ["علوم", "العلوم", "Science", "science", ...teacherSubjects]
+      : isJordan
+        ? ["رياضيات", "الرياضيات", "علوم", ...teacherSubjects]
+        : isS4s
+          ? ["Chemistry", "chemistry", "كيمياء", "الكيمياء", ...teacherSubjects]
+          : teacherSubjects;
   const bridgeCurricula = isJordan
-    ? ["Jordan", "national", "الصف الأول", ...teacherCurricula]
+    ? [
+        "Jordan",
+        "national",
+        "المنهاج الوطني",
+        "Elementary",
+        "المرحلة الابتدائية",
+        "Success 4 Sure",
+        "S4S",
+        "الصف الأول",
+        "الصف الثاني",
+        ...teacherCurricula,
+      ]
     : isS4s
       ? ["EST", "AP", "Success 4 Sure", "S4S", ...teacherCurricula]
       : teacherCurricula;
@@ -60,10 +77,10 @@ export function LessonShell({
           ))}
         </nav>
         <p className="dl-kicker">
-          {isS4s
-            ? "Success 4 Sure · Mr. Waseem Al-Labadi · معلّم حقيقي"
-            : isJordan
-              ? "الأردن · درس تفاعلي · معلّم حقيقي"
+          {isJordan
+            ? "الأردن · المرحلة الابتدائية · معلّم Success 4 Sure"
+            : isS4s
+              ? "Success 4 Sure · معلّم حقيقي"
               : "درس تفاعلي · يقوده معلّم حقيقي"}
         </p>
         <h1>{lesson.title}</h1>

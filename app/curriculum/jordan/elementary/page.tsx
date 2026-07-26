@@ -36,6 +36,21 @@ type Snap = {
     durationMinutes?: number;
     lessonExplainHref?: string;
   };
+  faculty?: Array<{
+    id: string;
+    fullName: string;
+    fullNameAr?: string;
+    roleAr?: string;
+    elementarySubjects?: string[];
+    profileUrl?: string;
+    href?: string;
+  }>;
+  scienceOffer?: {
+    id?: string;
+    title?: string;
+    href?: string;
+    lessonExplainHref?: string;
+  } | null;
 };
 
 export default function JordanElementaryStagePage(): ReactNode {
@@ -124,14 +139,25 @@ export default function JordanElementaryStagePage(): ReactNode {
         .el-badge.queued{background:#fff3cd;color:#7a5b00}
         .el-pipe{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.75rem}
         .el-pipe span{background:var(--d);color:var(--g);font-size:.72rem;font-weight:800;padding:.3rem .5rem;border-radius:.35rem}
+        .el-faculty{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:.65rem;margin-top:.75rem}
+        .el-fac{
+          border:1px solid rgba(75,10,17,.12);border-radius:.8rem;padding:.75rem .8rem;
+          background:linear-gradient(165deg,rgba(255,255,255,.9),rgba(255,249,242,.85));
+        }
+        .el-fac strong{display:block;color:var(--b);font-size:.95rem}
+        .el-fac em{display:block;font-style:normal;color:var(--m);font-size:.78rem;margin:.2rem 0 .45rem}
+        .el-fac a{color:var(--d);font-weight:800;font-size:.78rem;text-decoration:none;margin-inline-end:.55rem}
       `}</style>
 
       <div className="el-wrap">
-        <p className="el-kicker">SUCCESS OS · Jordan · Elementary</p>
+        <p className="el-kicker">SUCCESS OS · Jordan · Elementary · Success 4 Sure Faculty</p>
         <h1 className="el-brand">{snap?.stage.labelAr || "المرحلة الابتدائية"}</h1>
         <p className="el-lead">
-          بناء صفوف 1–6: سحب الهيكل، إعادة صياغة المناهج، دروس تفاعلية حية، ثم المعلّم
-          الحقيقي والفيديو. هذه قاعدة هرم الأردن.
+          نبدأ من صفوف 1–6. شخصيات المعلّمين مأخوذة من معلّمي{" "}
+          <a href="https://www.success4sureacademy.com/teachers/" style={{ color: "var(--b)", fontWeight: 800 }}>
+            Success 4 Sure Academy
+          </a>
+          : رياضيات، علوم، إنجليزي، مهارات رقمية، ودراسات — ثم الدرس التفاعلي والشرح ≥30 دقيقة.
         </p>
 
         <nav className="el-nav">
@@ -171,25 +197,43 @@ export default function JordanElementaryStagePage(): ReactNode {
           </Link>
           {snap?.teacher?.lessonExplainHref ? (
             <Link className="gold" href={snap.teacher.lessonExplainHref}>
-              شرح المعلّم 35د · {snap.teacher.fullName || "أ. وسيم"}
+              شرح رياضيات 35د · أ. نسيم اللبدي
+            </Link>
+          ) : null}
+          {snap?.scienceOffer?.lessonExplainHref ? (
+            <Link className="gold" href={snap.scienceOffer.lessonExplainHref}>
+              شرح علوم 35د · أ. وسيم اللبدي
             </Link>
           ) : null}
         </div>
 
-        {snap?.teacher ? (
+        {snap?.faculty?.length ? (
           <section className="el-panel" style={{ marginBottom: "1rem" }}>
-            <h2>معلّم المرحلة</h2>
+            <h2>هيئة معلّمي Success 4 Sure · المرحلة الابتدائية</h2>
             <p style={{ color: "var(--m)", marginTop: 0 }}>
-              {snap.teacher.fullName} يقود شرحًا كاملًا لا يقل عن 30 دقيقة داخل درس الجمع بخط
-              الأعداد ({snap.teacher.durationMinutes || 35} د).
+              شخصيات حقيقية من موقع الأكاديمية — مربوطة بمواد الصفوف 1–6 على SUCCESS OS.
             </p>
-            <div className="el-actions" style={{ marginTop: 0 }}>
-              {snap.teacher.href ? (
-                <Link href={snap.teacher.href}>ملف المعلّم</Link>
+            <div className="el-faculty">
+              {snap.faculty.map((t) => (
+                <article key={t.id} className="el-fac">
+                  <strong>{t.fullNameAr || t.fullName}</strong>
+                  <em>{t.roleAr || (t.elementarySubjects || []).join(" · ")}</em>
+                  {t.href ? <Link href={t.href}>ملف Teachers OS</Link> : null}
+                  {t.profileUrl ? (
+                    <a href={t.profileUrl} target="_blank" rel="noreferrer">
+                      صفحة S4S
+                    </a>
+                  ) : null}
+                </article>
+              ))}
+            </div>
+            <div className="el-actions" style={{ marginTop: "0.85rem" }}>
+              {snap.teacher?.offerHref ? (
+                <Link href={snap.teacher.offerHref}>عرض رياضيات · نسيم</Link>
               ) : null}
-              {snap.teacher.offerHref ? (
-                <Link href={snap.teacher.offerHref} className="ghost">
-                  {snap.teacher.offerTitle || "عرض الحصة"}
+              {snap.scienceOffer?.href ? (
+                <Link href={snap.scienceOffer.href} className="ghost">
+                  عرض علوم · وسيم
                 </Link>
               ) : null}
             </div>

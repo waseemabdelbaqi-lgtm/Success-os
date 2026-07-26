@@ -17,16 +17,6 @@ export default function DigitalLibraryHubPage() {
     "quantum-physics",
     "photoelectric-effect",
   ]);
-  const s4sChemistryHref = lessonHref([
-    "international-systems",
-    "global",
-    "est",
-    "secondary",
-    "chemistry",
-    "atomic-structure",
-    "atomic-structure-part-1",
-  ]);
-
   return (
     <div className="dl-hub" dir="rtl">
       <header className="dl-hub-hero">
@@ -40,7 +30,7 @@ export default function DigitalLibraryHubPage() {
         </p>
         <p style={{ marginTop: "1rem", display: "flex", flexWrap: "wrap", gap: "0.65rem" }}>
           <Link
-            href={prototypeHref}
+            href="/curriculum/jordan/elementary"
             style={{
               display: "inline-flex",
               background: "#f2d77c",
@@ -51,22 +41,37 @@ export default function DigitalLibraryHubPage() {
               textDecoration: "none",
             }}
           >
-            درس IB Physics · التأثير الكهروضوئي
+            المرحلة الابتدائية · معلّمو Success 4 Sure
           </Link>
           <Link
-            href="/curriculum"
+            href="/digital-library/middle-east/jordan/national/grade-1/الرياضيات/الجمع/الجمع-بخط-الأعداد#teacher-explain"
             style={{
               display: "inline-flex",
-              background: "transparent",
-              color: "#fff",
-              fontWeight: 700,
+              background: "#9e1722",
+              color: "#f2d77c",
+              fontWeight: 800,
               padding: "0.7rem 1rem",
               borderRadius: "0.75rem",
               textDecoration: "none",
               border: "1px solid rgba(242,215,124,.55)",
             }}
           >
-            رفع المناهج
+            صف 1 رياضيات · أ. نسيم اللبدي · 35د
+          </Link>
+          <Link
+            href="/digital-library/middle-east/jordan/national/grade-1/العلوم/الإنسان-والصحة/نحن-متشابهون-ومختلفون#teacher-explain"
+            style={{
+              display: "inline-flex",
+              background: "transparent",
+              color: "#f2d77c",
+              fontWeight: 800,
+              padding: "0.7rem 1rem",
+              borderRadius: "0.75rem",
+              textDecoration: "none",
+              border: "1px solid rgba(242,215,124,.55)",
+            }}
+          >
+            صف 1 علوم · أ. وسيم اللبدي · 35د
           </Link>
           <Link
             href="/teachers"
@@ -84,34 +89,19 @@ export default function DigitalLibraryHubPage() {
             معلّمون حقيقيون
           </Link>
           <Link
-            href="/digital-library/middle-east/jordan/national/grade-1/الرياضيات/الجمع/الجمع-بخط-الأعداد"
+            href={prototypeHref}
             style={{
               display: "inline-flex",
               background: "transparent",
-              color: "#f2d77c",
-              fontWeight: 800,
+              color: "#fff",
+              fontWeight: 700,
               padding: "0.7rem 1rem",
               borderRadius: "0.75rem",
               textDecoration: "none",
-              border: "1px solid rgba(242,215,124,.55)",
+              border: "1px solid rgba(255,255,255,.25)",
             }}
           >
-            الأردن · صف 1 رياضيات · خط الأعداد
-          </Link>
-          <Link
-            href={`${s4sChemistryHref}#teacher-explain`}
-            style={{
-              display: "inline-flex",
-              background: "#9e1722",
-              color: "#f2d77c",
-              fontWeight: 800,
-              padding: "0.7rem 1rem",
-              borderRadius: "0.75rem",
-              textDecoration: "none",
-              border: "1px solid rgba(242,215,124,.55)",
-            }}
-          >
-            S4S · Waseem Al-Labadi · Atomic Structure 35m
+            IB Physics (مرجعي)
           </Link>
         </p>
       </header>
