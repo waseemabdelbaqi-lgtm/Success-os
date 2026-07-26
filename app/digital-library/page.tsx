@@ -41,10 +41,10 @@ export default function DigitalLibraryHubPage() {
               textDecoration: "none",
             }}
           >
-            المرحلة الابتدائية · معلّمات دافعات للصغار
+            المرحلة الابتدائية · حصص AI
           </Link>
           <Link
-            href="/digital-library/middle-east/jordan/national/grade-1/الرياضيات/الجمع/الجمع-بخط-الأعداد#teacher-explain"
+            href="/digital-library/middle-east/jordan/national/grade-1/الرياضيات/الجمع/الجمع-بخط-الأعداد#ai-class"
             style={{
               display: "inline-flex",
               background: "#9e1722",
@@ -56,22 +56,7 @@ export default function DigitalLibraryHubPage() {
               border: "1px solid rgba(242,215,124,.55)",
             }}
           >
-            صف 1 رياضيات · أ. لاما · 35د
-          </Link>
-          <Link
-            href="/digital-library/middle-east/jordan/national/grade-1/العلوم/الإنسان-والصحة/نحن-متشابهون-ومختلفون#teacher-explain"
-            style={{
-              display: "inline-flex",
-              background: "transparent",
-              color: "#f2d77c",
-              fontWeight: 800,
-              padding: "0.7rem 1rem",
-              borderRadius: "0.75rem",
-              textDecoration: "none",
-              border: "1px solid rgba(242,215,124,.55)",
-            }}
-          >
-            صف 1 علوم · أ. رنيم · 35د
+            حصة AI · صف 1 رياضيات
           </Link>
           <Link
             href="/teachers"

@@ -4,13 +4,12 @@ import { JORDAN_G1_SCIENCE_ALIKE_TEACHER_35M } from "@/src/lib/digital-library/t
 /**
  * Jordan · Grade 1 · Science — الإنسان والصحة
  * Original SUCCESS OS lesson aligned to elementary structure titles.
- * Full teacher explanation: أ. رنيم العبادي — warm age-fit voice (35 min).
+ * Full teacher explanation: أ. رنيم صالح — fictional warm persona (35 min).
  */
 export const JORDAN_G1_SCIENCE_ALIKE_DIFFERENT: LessonModuleContent = {
   slug: "jordan-g1-science-alike-different",
   title: "نحن متشابهون ومختلفون",
-  subtitle:
-    "الأردن · الصف الأول · العلوم · أ. رنيم العبادي · شرح حنّي 35د",
+  subtitle: "الصف الأول · علوم · حصة AI · أ. رنيم صالح · 35د",
   estimatedMinutes: 35,
   teacherExplanation: JORDAN_G1_SCIENCE_ALIKE_TEACHER_35M,
   learningObjectives: [

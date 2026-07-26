@@ -17,6 +17,11 @@ import {
   buildJordanElementaryStage,
   getJordanElementarySnapshot,
 } from '@/app/lib/curriculum/jordan-elementary-stage';
+import {
+  buildElementaryAiClass,
+  getElementaryAiClass,
+  listElementaryAiClasses,
+} from '@/app/lib/curriculum/elementary-ai-class-engine';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
@@ -45,6 +50,17 @@ export async function GET(request) {
 
     if (view === 'jordan-elementary' || view === 'elementary') {
       return ok({ elementary: getJordanElementarySnapshot() });
+    }
+
+    if (view === 'elementary-ai-class') {
+      const slug = searchParams.get('slug') || lessonSlug;
+      const aiClass = getElementaryAiClass(slug);
+      if (!aiClass) return fail(new Error('AI_CLASS_NOT_FOUND'), 404);
+      return ok({ aiClass });
+    }
+
+    if (view === 'elementary-ai-classes') {
+      return ok({ aiClasses: listElementaryAiClasses() });
     }
 
     if (view === 'outline' && id) {
@@ -151,6 +167,19 @@ export async function POST(request) {
         publish: body?.publish === true,
       });
       return ok({ build, elementary: getJordanElementarySnapshot() });
+    }
+
+    if (action === 'elementary-ai-class') {
+      if (!body?.slug) return fail(new Error('SLUG_REQUIRED'));
+      const aiClass = buildElementaryAiClass(String(body.slug));
+      return ok({ aiClass }, 201);
+    }
+
+    if (action === 'elementary-ai-classes-build') {
+      const built = listElementaryAiClasses().map((row) =>
+        buildElementaryAiClass(row.slug),
+      );
+      return ok({ built, elementary: getJordanElementarySnapshot() }, 201);
     }
 
     return fail(new Error('UNKNOWN_ACTION'));

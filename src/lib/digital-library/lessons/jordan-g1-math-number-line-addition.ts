@@ -6,13 +6,12 @@ import { JORDAN_G1_MATH_NUMBER_LINE_TEACHER_35M } from "@/src/lib/digital-librar
  * Structure title aligned to Minhaji index: الوحدة الأولى — الجمع باستعمال خط الأعداد
  * Content is SUCCESS OS original (pedagogy-informed). Never copies textbook prose.
  * Full human-teacher explanation: 35 minutes via Teachers OS
- * (أ. لاما الحموري · معلّمة دافئة للصفوف الأولى).
+ * (أ. لاما النوري · شخصية وهمية دافئة للصفوف الأولى).
  */
 export const JORDAN_G1_MATH_NUMBER_LINE_ADDITION: LessonModuleContent = {
   slug: "jordan-g1-math-number-line-addition",
   title: "الجمع باستعمال خط الأعداد",
-  subtitle:
-    "الأردن · الصف الأول · الرياضيات · أ. لاما الحموري · شرح دافئ 35د",
+  subtitle: "الصف الأول · رياضيات · حصة AI · أ. لاما النوري · 35د",
   estimatedMinutes: 35,
   teacherExplanation: JORDAN_G1_MATH_NUMBER_LINE_TEACHER_35M,
   learningObjectives: [

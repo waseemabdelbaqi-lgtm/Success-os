@@ -7,6 +7,7 @@ import { GamifiedQuiz } from "@/src/components/digital-library/GamifiedQuiz";
 import { RealTeacherBridge } from "@/src/components/digital-library/RealTeacherBridge";
 import { SmartWorkspace } from "@/src/components/digital-library/SmartWorkspace";
 import { SolvedExamples } from "@/src/components/digital-library/SolvedExamples";
+import { AiClassStudio } from "@/src/components/digital-library/AiClassStudio";
 import { TeacherFullExplanation } from "@/src/components/digital-library/TeacherFullExplanation";
 import { ThreeDCanvasLazy as ThreeDCanvas } from "@/src/components/digital-library/ThreeDCanvasLazy";
 import type { LessonModuleContent } from "@/src/lib/digital-library/types";
@@ -20,13 +21,12 @@ type Props = {
 };
 
 const MODULE_LINKS = [
-  { href: "#teacher-explain", label: "شرح المعلّم" },
-  { href: "#knowledge", label: "Knowledge" },
+  { href: "#ai-class", label: "حصة AI" },
+  { href: "#teacher-explain", label: "سكربت الشرح" },
   { href: "#visualizer", label: "3D" },
-  { href: "#workspace", label: "Workspace" },
-  { href: "#examples", label: "Examples" },
-  { href: "#quiz", label: "Quiz" },
-  { href: "#real-teacher", label: "معلّم" },
+  { href: "#quiz", label: "اختبار" },
+  { href: "#examples", label: "أمثلة" },
+  { href: "#knowledge", label: "معرفة" },
 ];
 
 export function LessonShell({
@@ -89,9 +89,9 @@ export function LessonShell({
           ~{lesson.estimatedMinutes} min · شرح معلّم كامل + وحدات تفاعلية · Teachers OS
         </p>
         <div className="dl-module-jump" role="navigation" aria-label="Jump to module">
-          {(lesson.teacherExplanation
+          {(lesson.teacherExplanation || isJordan
             ? MODULE_LINKS
-            : MODULE_LINKS.filter((m) => m.href !== "#teacher-explain")
+            : MODULE_LINKS.filter((m) => m.href !== "#teacher-explain" && m.href !== "#ai-class")
           ).map((m) => (
             <a key={m.href} href={m.href}>
               {m.label}
@@ -100,14 +100,15 @@ export function LessonShell({
         </div>
       </header>
 
+      {isJordan ? <AiClassStudio slug={lesson.slug} /> : null}
       {lesson.teacherExplanation ? (
         <TeacherFullExplanation explanation={lesson.teacherExplanation} />
       ) : null}
-      <DeepKnowledgeBase markdown={lesson.knowledgeMarkdown} objectives={lesson.learningObjectives} />
       <ThreeDCanvas kind={lesson.visualizer.kind} caption={lesson.visualizer.caption} />
-      <SmartWorkspace storageKey={storageKey} />
-      <SolvedExamples examples={lesson.examples} />
       <GamifiedQuiz items={lesson.quiz} />
+      <SolvedExamples examples={lesson.examples} />
+      <SmartWorkspace storageKey={storageKey} />
+      <DeepKnowledgeBase markdown={lesson.knowledgeMarkdown} objectives={lesson.learningObjectives} />
       <RealTeacherBridge
         lessonTitle={lesson.title}
         subjects={bridgeSubjects}

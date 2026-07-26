@@ -20,6 +20,7 @@ import {
 } from './jordan-wave1-engine.js';
 import { listCurriculumOutlines } from './curriculum-os-store.js';
 import { ensureElementaryTeacher } from './seed-elementary-teacher.js';
+import { listElementaryAiClasses } from './elementary-ai-class-engine.js';
 
 export const ELEMENTARY_STAGE = Object.freeze({
   id: 'jordan-elementary',
@@ -226,25 +227,24 @@ export async function buildJordanElementaryStage(options = {}) {
       href: `/teachers/${teacherSeed.teacher?.id}`,
       offerHref: `/teachers/offers/${teacherSeed.offer?.id}`,
       lessonExplainHref:
-        '/digital-library/middle-east/jordan/national/grade-1/الرياضيات/الجمع/الجمع-بخط-الأعداد#teacher-explain',
+        '/digital-library/middle-east/jordan/national/grade-1/الرياضيات/الجمع/الجمع-بخط-الأعداد#ai-class',
     },
     faculty: teacherSeed.faculty,
     earlyFaculty: teacherSeed.earlyFaculty,
-    upperFaculty: teacherSeed.upperFaculty,
-    castingDoctrineAr: teacherSeed.castingDoctrineAr,
+    upperFaculty: [],
+    aiClasses: listElementaryAiClasses(),
     scienceOffer: teacherSeed.scienceOffer
       ? {
           id: teacherSeed.scienceOffer.id,
           title: teacherSeed.scienceOffer.title,
           href: `/teachers/offers/${teacherSeed.scienceOffer.id}`,
           lessonExplainHref:
-            '/digital-library/middle-east/jordan/national/grade-1/العلوم/الإنسان-والصحة/نحن-متشابهون-ومختلفون#teacher-explain',
+            '/digital-library/middle-east/jordan/national/grade-1/العلوم/الإنسان-والصحة/نحن-متشابهون-ومختلفون#ai-class',
         }
       : null,
     next: [
-      'Cast teachers by age-fit personality (warm leads for grades 1–3)',
-      'Author queued interactive lessons grade-by-grade',
-      'Produce video scripts from teacher explanation segments',
+      'Build more AI classes grade-by-grade',
+      'Wire avatar video provider when keys available',
     ],
   };
 
@@ -303,28 +303,24 @@ export function getJordanElementarySnapshot() {
       href: `/teachers/${teacherSeed.teacher?.id}`,
       offerHref: `/teachers/offers/${teacherSeed.offer?.id}`,
       lessonExplainHref:
-        '/digital-library/middle-east/jordan/national/grade-1/الرياضيات/الجمع/الجمع-بخط-الأعداد#teacher-explain',
+        '/digital-library/middle-east/jordan/national/grade-1/الرياضيات/الجمع/الجمع-بخط-الأعداد#ai-class',
     },
     faculty: teacherSeed.faculty,
     earlyFaculty: teacherSeed.earlyFaculty,
-    upperFaculty: teacherSeed.upperFaculty,
-    castingDoctrineAr: teacherSeed.castingDoctrineAr,
+    upperFaculty: [],
+    aiClasses: listElementaryAiClasses(),
     scienceOffer: teacherSeed.scienceOffer
       ? {
           id: teacherSeed.scienceOffer.id,
           title: teacherSeed.scienceOffer.title,
           href: `/teachers/offers/${teacherSeed.scienceOffer.id}`,
           lessonExplainHref:
-            '/digital-library/middle-east/jordan/national/grade-1/العلوم/الإنسان-والصحة/نحن-متشابهون-ومختلفون#teacher-explain',
+            '/digital-library/middle-east/jordan/national/grade-1/العلوم/الإنسان-والصحة/نحن-متشابهون-ومختلفون#ai-class',
         }
       : null,
     doctrineAr: [
-      'المرحلة الابتدائية أولاً: صفوف 1–6 كقاعدة الهرم.',
-      'شخصية المعلّم حسب عمر الطالب — الصغار يحبون المعلّمات الدافعات/الدلوعات بالشرح.',
-      'مش شرط المعلّم من منصتنا؛ المهم التماشي مع المرحلة العمرية.',
-      'صفوف 1–3: لاما (رياضيات) · رنيم (علوم) · هبة (عربي) · ميس (English).',
-      'صفوف 4–6: اختصاصيون أوضح (ومنهم Success 4 Sure عند الحاجة).',
-      'المحتوى أصلي SUCCESS OS؛ الهيكل من NCCD/منهاجي بدون نسخ الكتب.',
+      'حصة AI = فيديو شرح + تفاعليات + اختبار.',
+      'أسماء المعلّمين وهمية داخل المنصة.',
     ],
   };
 }
