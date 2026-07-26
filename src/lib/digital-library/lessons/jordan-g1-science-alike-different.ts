@@ -1,17 +1,14 @@
 import type { LessonModuleContent } from "@/src/lib/digital-library/types";
-import { JORDAN_G1_SCIENCE_ALIKE_TEACHER_35M } from "@/src/lib/digital-library/teacher-explanations/jordan-g1-science-alike-35m";
 
 /**
  * Jordan · Grade 1 · Science — الإنسان والصحة
- * Original SUCCESS OS lesson aligned to elementary structure titles.
- * Full teacher explanation: أ. رنيم صالح — fictional warm persona (35 min).
+ * Delivery: AI teacher theater (visual).
  */
 export const JORDAN_G1_SCIENCE_ALIKE_DIFFERENT: LessonModuleContent = {
   slug: "jordan-g1-science-alike-different",
   title: "نحن متشابهون ومختلفون",
-  subtitle: "الصف الأول · علوم · حصة AI · أ. رنيم صالح · 35د",
-  estimatedMinutes: 35,
-  teacherExplanation: JORDAN_G1_SCIENCE_ALIKE_TEACHER_35M,
+  subtitle: "الصف الأول · علوم · حصة AI مرئية",
+  estimatedMinutes: 5,
   learningObjectives: [
     "أن يلاحظ المتعلم صفات مشتركة بين البشر (عيون، أيدي، حاجة للطعام والماء).",
     "أن يميّز اختلافات بسيطة محترمة (الطول، لون الشعر، الهوايات).",
