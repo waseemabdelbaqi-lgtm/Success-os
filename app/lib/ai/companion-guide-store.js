@@ -131,6 +131,12 @@ const SURFACES = Object.freeze([
     path: '/digital-library/international-systems/global/ib/dp/physics/quantum-physics/photoelectric-effect',
     tier: 'library',
   },
+  {
+    id: 'jordan_g1_math_lesson',
+    labelAr: 'الأردن · صف 1 · الجمع بخط الأعداد',
+    path: '/digital-library/middle-east/jordan/national/grade-1/الرياضيات/الجمع/الجمع-بخط-الأعداد',
+    tier: 'library',
+  },
 ]);
 
 export const PARTNERSHIP_PROTOCOL = Object.freeze({

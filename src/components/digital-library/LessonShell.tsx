@@ -34,6 +34,7 @@ export function LessonShell({
   teacherSubjects = ["physics", "فيزياء"],
   teacherCurricula = ["IB", "ib"],
 }: Props) {
+  const isJordan = lesson.slug.startsWith("jordan-");
   return (
     <div className="dl-lesson">
       <header className="dl-lesson-hero">
@@ -45,7 +46,11 @@ export function LessonShell({
             </span>
           ))}
         </nav>
-        <p className="dl-kicker">درس تفاعلي · يقوده معلّم حقيقي</p>
+        <p className="dl-kicker">
+          {isJordan
+            ? "الأردن · درس تفاعلي · معلّم حقيقي"
+            : "درس تفاعلي · يقوده معلّم حقيقي"}
+        </p>
         <h1>{lesson.title}</h1>
         <p className="dl-hero-lead">{lesson.subtitle}</p>
         <p className="dl-meta">

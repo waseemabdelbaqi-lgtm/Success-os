@@ -18,6 +18,9 @@ const ThreeDCanvasInner = dynamic(
   },
 );
 
-export function ThreeDCanvasLazy(props: { kind?: "photoelectric" | "orbital" | "wave"; caption: string }) {
+export function ThreeDCanvasLazy(props: {
+  kind?: "photoelectric" | "orbital" | "wave" | "numberline";
+  caption: string;
+}) {
   return <ThreeDCanvasInner {...props} />;
 }

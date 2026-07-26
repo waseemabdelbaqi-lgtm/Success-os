@@ -6,7 +6,7 @@ export type LessonModuleContent = {
   learningObjectives: string[];
   knowledgeMarkdown: string;
   visualizer: {
-    kind: "photoelectric" | "orbital" | "wave";
+    kind: "photoelectric" | "orbital" | "wave" | "numberline";
     caption: string;
   };
   examples: Array<{

@@ -74,6 +74,21 @@ export default function DigitalLibraryHubPage() {
           >
             معلّمون حقيقيون
           </Link>
+          <Link
+            href="/digital-library/middle-east/jordan/national/grade-1/الرياضيات/الجمع/الجمع-بخط-الأعداد"
+            style={{
+              display: "inline-flex",
+              background: "transparent",
+              color: "#f2d77c",
+              fontWeight: 800,
+              padding: "0.7rem 1rem",
+              borderRadius: "0.75rem",
+              textDecoration: "none",
+              border: "1px solid rgba(242,215,124,.55)",
+            }}
+          >
+            الأردن · صف 1 رياضيات · خط الأعداد
+          </Link>
         </p>
       </header>
 

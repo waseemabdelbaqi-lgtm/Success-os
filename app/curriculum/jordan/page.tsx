@@ -216,6 +216,19 @@ export default function JordanCurriculumWavePage(): ReactNode {
           >
             {busy === "jordan-wave1" ? "تشغيل الموجة…" : "تشغيل الموجة كاملة"}
           </button>
+          <Link
+            href="/digital-library/middle-east/jordan/national/grade-1/الرياضيات/الجمع/الجمع-بخط-الأعداد"
+            style={{
+              background: "#f2d77c",
+              color: "#4b0a11",
+              fontWeight: 900,
+              padding: "0.55rem 0.9rem",
+              borderRadius: "0.55rem",
+              textDecoration: "none",
+            }}
+          >
+            3) افتح الدرس التفاعلي · الجمع بخط الأعداد
+          </Link>
         </div>
 
         {msg ? <p className="jo-msg">{msg}</p> : null}

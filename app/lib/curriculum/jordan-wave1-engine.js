@@ -469,8 +469,14 @@ export function reformulateJordanHarvest(options = {}) {
         educationLevel: slugify(gradeRow.gradeAr) || 'grade',
         subject,
         chapter: node.units?.[0]?.titleAr || 'unit-1',
-        lessonSlug: 'ib-physics-photoelectric-effect',
-        libraryPath: `/digital-library/middle-east/jordan/national/${slugify(gradeRow.gradeAr)}/${encodeURIComponent(subject)}`,
+    lessonSlug:
+      gradeRow.gradeAr === 'الصف الأول' && subject === 'الرياضيات'
+        ? 'jordan-g1-math-number-line-addition'
+        : 'ib-physics-photoelectric-effect',
+    libraryPath:
+      gradeRow.gradeAr === 'الصف الأول' && subject === 'الرياضيات'
+        ? '/digital-library/middle-east/jordan/national/grade-1/الرياضيات/الجمع/الجمع-بخط-الأعداد'
+        : `/digital-library/middle-east/jordan/national/${slugify(gradeRow.gradeAr)}/${encodeURIComponent(subject)}`,
         fileName: `${id}.md`,
         mimeType: 'text/markdown',
         tags: ['Jordan', 'Wave1', gradeRow.gradeAr, subject, 'national'],

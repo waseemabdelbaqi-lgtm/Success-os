@@ -266,6 +266,11 @@ export async function pulseRoots(options = {}) {
     { id: 'jordan_wave', path: '/curriculum/jordan', domain: 'library' },
     { id: 'curriculum_api', path: '/api/curriculum-os?view=snapshot', domain: 'library' },
     { id: 'jordan_api', path: '/api/curriculum-os?view=jordan', domain: 'library' },
+    {
+      id: 'jordan_g1_lesson',
+      path: '/digital-library/middle-east/jordan/national/grade-1/%D8%A7%D9%84%D8%B1%D9%8A%D8%A7%D8%B6%D9%8A%D8%A7%D8%AA/%D8%A7%D9%84%D8%AC%D9%85%D8%B9/%D8%A7%D9%84%D8%AC%D9%85%D8%B9-%D8%A8%D8%AE%D8%B7-%D8%A7%D9%84%D8%A3%D8%B9%D8%AF%D8%A7%D8%AF',
+      domain: 'library',
+    },
     { id: 'teachers', path: '/teachers/dashboard', domain: 'teaching' },
     { id: 'teachers_api', path: '/api/teachers-os?view=marketplace', domain: 'teaching' },
     { id: 'partners', path: '/partners/dashboard', domain: 'partners' },

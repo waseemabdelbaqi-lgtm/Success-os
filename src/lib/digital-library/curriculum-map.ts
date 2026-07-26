@@ -149,7 +149,29 @@ export const CURRICULUM_TREE: CurriculumNode[] = [
             slug: "national",
             name: "المنهاج الوطني",
             children: [
-              meGradeBranch("grade-1", "الصف الأول", "الرياضيات", "الأعداد-والعمليات", "العد-إلى-20"),
+              {
+                slug: "grade-1",
+                name: "الصف الأول",
+                children: [
+                  {
+                    slug: "الرياضيات",
+                    name: "الرياضيات",
+                    children: [
+                      {
+                        slug: "الجمع",
+                        name: "الوحدة الأولى: الجمع",
+                        children: [
+                          {
+                            slug: "الجمع-بخط-الأعداد",
+                            name: "الجمع باستعمال خط الأعداد",
+                            lessonSlug: "jordan-g1-math-number-line-addition",
+                          },
+                        ],
+                      },
+                    ],
+                  },
+                ],
+              },
               meGradeBranch("grade-5", "الصف الخامس", "العلوم", "المادة-والطاقة", "حالات-المادة"),
               meGradeBranch("grade-10", "الصف العاشر", "الفيزياء", "الميكانيكا", "القوة-والحركة"),
               meGradeBranch("tawjihi", "توجيهي", "الرياضيات", "التفاضل", "المشتقات"),
