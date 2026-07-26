@@ -1,0 +1,386 @@
+{
+  "schema": "success-os.jordan-minhaji-deep-g1.v1",
+  "gradeAr": "الصف الأول",
+  "retrievedAt": "2026-07-26T22:39:58.628829+00:00",
+  "rights": {
+    "copyBookText": false,
+    "usage": "structure-titles-only"
+  },
+  "subjects": [
+    {
+      "titleAr": "الرياضيات",
+      "href": "https://minhaji.net/lesson/44/%D8%A7%D9%84%D8%B1%D9%8A%D8%A7%D8%B6%D9%8A%D8%A7%D8%AA",
+      "unitHints": [
+        "الوحدة الأولى: الجمع الدرس الأول: خط الأعداد الدرس ال",
+        "الوحدة الثانية: الطرح الدرس الأول: الطرح باستعمال خط ا",
+        "الوحدة الثالثة: الأعداد ضمن منزلتين الدرس الأول: العشر",
+        "الوحدة الرابعة: ترتيب العداد ومقارنتها الدرس الأول: ال",
+        "الوحدة الخامسة: معالجة البيانات الدرس الأول: التصنيف و",
+        "الوحدة السادسة: الجمع ضمن منزلتين الدرس الأول: جمع الع",
+        "الوحدة السابعة: الطرح ضمن منزلتين الدرس الأول: طرح الع"
+      ],
+      "lessons": [
+        {
+          "titleAr": "الدرس الثاني: العددان 4 ، 5",
+          "href": "https://minhaji.net/lesson/18571"
+        },
+        {
+          "titleAr": "الدرس الثالث: العدد صفر",
+          "href": "https://minhaji.net/lesson/24481"
+        },
+        {
+          "titleAr": "الدرس الرابع: الأعداد 6 ، 7 ، 8",
+          "href": "https://minhaji.net/lesson/24484"
+        },
+        {
+          "titleAr": "الدرس الخامس: العددان 9 ، 10",
+          "href": "https://minhaji.net/lesson/24487"
+        },
+        {
+          "titleAr": "الدرس السادس: الأعداد من 11 إلى 20",
+          "href": "https://minhaji.net/lesson/24490"
+        },
+        {
+          "titleAr": "الدرس السابع: الموقع والاتجاه",
+          "href": "https://minhaji.net/lesson/24493"
+        },
+        {
+          "titleAr": "الدرس الثاني: الجمع باستعمال خط الأعداد",
+          "href": "https://minhaji.net/lesson/24411"
+        },
+        {
+          "titleAr": "الدرس الثالث: الجمع باستعمال الضعف",
+          "href": "https://minhaji.net/lesson/24413"
+        },
+        {
+          "titleAr": "الدرس الرابع: الجمع بالإكمال إلى العشرة",
+          "href": "https://minhaji.net/lesson/24416"
+        },
+        {
+          "titleAr": "الدرس الخامس: خصائص عملية الجمع",
+          "href": "https://minhaji.net/lesson/24497"
+        },
+        {
+          "titleAr": "الدرس الثاني: الطرح باستعمال الضعف",
+          "href": "https://minhaji.net/lesson/24421"
+        },
+        {
+          "titleAr": "الدرس الثالث: الطرح بإيجاد عشرة",
+          "href": "https://minhaji.net/lesson/24423"
+        },
+        {
+          "titleAr": "الدرس الرابع: العلاقة بين الجمع والطرح",
+          "href": "https://minhaji.net/lesson/24425"
+        },
+        {
+          "titleAr": "الدرس الخامس: الحقائق المترابطة",
+          "href": "https://minhaji.net/lesson/24427"
+        },
+        {
+          "titleAr": "الدرس السادس: العدد المفقود",
+          "href": "https://minhaji.net/lesson/24430"
+        },
+        {
+          "titleAr": "الدرس الثاني: الآحاد والعشرات",
+          "href": "https://minhaji.net/lesson/24443"
+        },
+        {
+          "titleAr": "الدرس الثالث: تمثيل العداد ضمن منزلتين",
+          "href": "https://minhaji.net/lesson/24445"
+        },
+        {
+          "titleAr": "الدرس الرابع: القيمة المنزلية",
+          "href": "https://minhaji.net/lesson/24499"
+        },
+        {
+          "titleAr": "الدرس الثاني: العد قفزياً",
+          "href": "https://minhaji.net/lesson/24450"
+        },
+        {
+          "titleAr": "الدرس الثاني: التصنيف وفق أكثر من خاصية",
+          "href": "https://minhaji.net/lesson/24455"
+        },
+        {
+          "titleAr": "الدرس الثاني: الجمع الذهني",
+          "href": "https://minhaji.net/lesson/24460"
+        },
+        {
+          "titleAr": "الدرس الثالث: جمع عددين من منزلتين",
+          "href": "https://minhaji.net/lesson/24462"
+        },
+        {
+          "titleAr": "الدرس الرابع: التخمين والتحقق",
+          "href": "https://minhaji.net/lesson/24464"
+        },
+        {
+          "titleAr": "الدرس الثاني: الطرح الذهني",
+          "href": "https://minhaji.net/lesson/24470"
+        },
+        {
+          "titleAr": "الدرس الثالث: طرح عددين من منزلتين",
+          "href": "https://minhaji.net/lesson/24472"
+        },
+        {
+          "titleAr": "الدرس الرابع: اختيار العملية",
+          "href": "https://minhaji.net/lesson/24474"
+        }
+      ],
+      "units": [
+        {
+          "titleAr": "الوحدة التمهيدية: الأعداد حتى 20",
+          "lessons": [
+            {
+              "titleAr": "الدرس الثاني: العددان 4 ، 5",
+              "href": "https://minhaji.net/lesson/18571"
+            },
+            {
+              "titleAr": "الدرس الثالث: العدد صفر",
+              "href": "https://minhaji.net/lesson/24481"
+            },
+            {
+              "titleAr": "الدرس الرابع: الأعداد 6 ، 7 ، 8",
+              "href": "https://minhaji.net/lesson/24484"
+            },
+            {
+              "titleAr": "الدرس الخامس: العددان 9 ، 10",
+              "href": "https://minhaji.net/lesson/24487"
+            },
+            {
+              "titleAr": "الدرس السادس: الأعداد من 11 إلى 20",
+              "href": "https://minhaji.net/lesson/24490"
+            },
+            {
+              "titleAr": "الدرس السابع: الموقع والاتجاه",
+              "href": "https://minhaji.net/lesson/24493"
+            }
+          ]
+        },
+        {
+          "titleAr": "الوحدة الأولى: الجمع",
+          "lessons": [
+            {
+              "titleAr": "الدرس الثاني: الجمع باستعمال خط الأعداد",
+              "href": "https://minhaji.net/lesson/24411"
+            },
+            {
+              "titleAr": "الدرس الثالث: الجمع باستعمال الضعف",
+              "href": "https://minhaji.net/lesson/24413"
+            },
+            {
+              "titleAr": "الدرس الرابع: الجمع بالإكمال إلى العشرة",
+              "href": "https://minhaji.net/lesson/24416"
+            },
+            {
+              "titleAr": "الدرس الخامس: خصائص عملية الجمع",
+              "href": "https://minhaji.net/lesson/24497"
+            },
+            {
+              "titleAr": "الدرس الثاني: الطرح باستعمال الضعف",
+              "href": "https://minhaji.net/lesson/24421"
+            },
+            {
+              "titleAr": "الدرس الرابع: العلاقة بين الجمع والطرح",
+              "href": "https://minhaji.net/lesson/24425"
+            },
+            {
+              "titleAr": "الدرس الثاني: الجمع الذهني",
+              "href": "https://minhaji.net/lesson/24460"
+            },
+            {
+              "titleAr": "الدرس الثالث: جمع عددين من منزلتين",
+              "href": "https://minhaji.net/lesson/24462"
+            }
+          ]
+        },
+        {
+          "titleAr": "الوحدة الثانية: الطرح",
+          "lessons": [
+            {
+              "titleAr": "الدرس الثالث: الطرح بإيجاد عشرة",
+              "href": "https://minhaji.net/lesson/24423"
+            },
+            {
+              "titleAr": "الدرس الخامس: الحقائق المترابطة",
+              "href": "https://minhaji.net/lesson/24427"
+            },
+            {
+              "titleAr": "الدرس السادس: العدد المفقود",
+              "href": "https://minhaji.net/lesson/24430"
+            },
+            {
+              "titleAr": "الدرس الثاني: الطرح الذهني",
+              "href": "https://minhaji.net/lesson/24470"
+            },
+            {
+              "titleAr": "الدرس الثالث: طرح عددين من منزلتين",
+              "href": "https://minhaji.net/lesson/24472"
+            }
+          ]
+        },
+        {
+          "titleAr": "الوحدة الثالثة: الأعداد ضمن منزلتين",
+          "lessons": [
+            {
+              "titleAr": "الدرس الثاني: الآحاد والعشرات",
+              "href": "https://minhaji.net/lesson/24443"
+            },
+            {
+              "titleAr": "الدرس الثالث: تمثيل العداد ضمن منزلتين",
+              "href": "https://minhaji.net/lesson/24445"
+            },
+            {
+              "titleAr": "الدرس الرابع: القيمة المنزلية",
+              "href": "https://minhaji.net/lesson/24499"
+            }
+          ]
+        },
+        {
+          "titleAr": "الوحدة الرابعة: ترتيب العداد ومقارنتها",
+          "lessons": [
+            {
+              "titleAr": "الدرس الثاني: العد قفزياً",
+              "href": "https://minhaji.net/lesson/24450"
+            }
+          ]
+        },
+        {
+          "titleAr": "الوحدة الخامسة: معالجة البيانات",
+          "lessons": [
+            {
+              "titleAr": "الدرس الثاني: التصنيف وفق أكثر من خاصية",
+              "href": "https://minhaji.net/lesson/24455"
+            }
+          ]
+        },
+        {
+          "titleAr": "الوحدة السادسة: الجمع ضمن منزلتين",
+          "lessons": [
+            {
+              "titleAr": "الدرس الرابع: التخمين والتحقق",
+              "href": "https://minhaji.net/lesson/24464"
+            }
+          ]
+        },
+        {
+          "titleAr": "الوحدة السابعة: الطرح ضمن منزلتين",
+          "lessons": [
+            {
+              "titleAr": "الدرس الرابع: اختيار العملية",
+              "href": "https://minhaji.net/lesson/24474"
+            }
+          ]
+        }
+      ],
+      "structureQuality": "unit-lesson-titles-from-minhaji-index"
+    },
+    {
+      "titleAr": "العلوم",
+      "href": "https://minhaji.net/lesson/20744/%D8%A7%D9%84%D8%B9%D9%84%D9%88%D9%85",
+      "unitHints": [
+        "الوحدة الأولى: الإنسان والصحة الدرس الأول: نحن متشابه",
+        "الوحدة الرابعة: الحركة والقوة الدرس الأول: الموقع والح"
+      ],
+      "lessons": [
+        {
+          "titleAr": "الدرس الثاني: حاجات الإنسان الأساسية",
+          "href": "https://minhaji.net/lesson/27334"
+        },
+        {
+          "titleAr": "الدرس الثالث: صحة جسم الإنسان",
+          "href": "https://minhaji.net/lesson/27342"
+        },
+        {
+          "titleAr": "ملخصات",
+          "href": "https://minhaji.net/lesson/20745/ملخصات"
+        }
+      ]
+    },
+    {
+      "titleAr": "العربية لغتي",
+      "href": "https://minhaji.net/lesson/49/%D8%A7%D9%84%D8%B9%D8%B1%D8%A8%D9%8A%D8%A9_%D9%84%D8%BA%D8%AA%D9%8A",
+      "unitHints": [],
+      "lessons": [
+        {
+          "titleAr": "1 بطاقات الحروف",
+          "href": "https://minhaji.net/lesson/50"
+        },
+        {
+          "titleAr": "2 بطاقات الكلمات",
+          "href": "https://minhaji.net/lesson/55"
+        },
+        {
+          "titleAr": "3 بطاقات المدود والحركات",
+          "href": "https://minhaji.net/lesson/11290"
+        }
+      ]
+    },
+    {
+      "titleAr": "اللغة الإنجليزية",
+      "href": "https://minhaji.net/lesson/58/%D8%A7%D9%84%D9%84%D8%BA%D8%A9_%D8%A7%D9%84%D8%A5%D9%86%D8%AC%D9%84%D9%8A%D8%B2%D9%8A%D8%A9",
+      "unitHints": [],
+      "lessons": [
+        {
+          "titleAr": "منهاج اللغة الإنجليزية القديم",
+          "href": "https://minhaji.net/lesson/33440/منهاج_اللغة_الإنجليزية_القديم"
+        }
+      ]
+    },
+    {
+      "titleAr": "التربية الإسلامية",
+      "href": "https://minhaji.net/lesson/20662/%D8%A7%D9%84%D8%AA%D8%B1%D8%A8%D9%8A%D8%A9_%D8%A7%D9%84%D8%A5%D8%B3%D9%84%D8%A7%D9%85%D9%8A%D8%A9",
+      "unitHints": [
+        "الوحدة الأولى: أحبك ربي الكتب المقررة دليل المعلم ملخ"
+      ],
+      "lessons": [
+        {
+          "titleAr": "ملخصات",
+          "href": "https://minhaji.net/lesson/27207/ملخصات"
+        }
+      ]
+    },
+    {
+      "titleAr": "الدراسات الاجتماعية",
+      "href": "https://minhaji.net/lesson/31097/%D8%A7%D9%84%D8%AF%D8%B1%D8%A7%D8%B3%D8%A7%D8%AA_%D8%A7%D9%84%D8%A7%D8%AC%D8%AA%D9%85%D8%A7%D8%B9%D9%8A%D8%A9",
+      "unitHints": [],
+      "lessons": [
+        {
+          "titleAr": "المنهاج القديم",
+          "href": "https://minhaji.net/lesson/40/المنهاج_القديم"
+        }
+      ]
+    },
+    {
+      "titleAr": "المهارات الرقمية",
+      "href": "https://minhaji.net/lesson/57473/%D8%A7%D9%84%D9%85%D9%87%D8%A7%D8%B1%D8%A7%D8%AA_%D8%A7%D9%84%D8%B1%D9%82%D9%85%D9%8A%D8%A9",
+      "unitHints": [],
+      "lessons": []
+    },
+    {
+      "titleAr": "التربية الفنية",
+      "href": "https://minhaji.net/lesson/22688/%D8%A7%D9%84%D8%AA%D8%B1%D8%A8%D9%8A%D8%A9_%D8%A7%D9%84%D9%81%D9%86%D9%8A%D8%A9",
+      "unitHints": [],
+      "lessons": [
+        {
+          "titleAr": "كتاب الطالب",
+          "href": "https://minhaji.net/lesson/22689/كتاب_الطالب"
+        },
+        {
+          "titleAr": "منهاج التربية الفنية القديم",
+          "href": "https://minhaji.net/lesson/34114/منهاج_التربية_الفنية_القديم"
+        }
+      ]
+    },
+    {
+      "titleAr": "التربية الرياضية",
+      "href": "https://minhaji.net/lesson/34757/%D8%A7%D9%84%D8%AA%D8%B1%D8%A8%D9%8A%D8%A9_%D8%A7%D9%84%D8%B1%D9%8A%D8%A7%D8%B6%D9%8A%D8%A9",
+      "unitHints": [],
+      "lessons": [
+        {
+          "titleAr": "كتاب الطالب",
+          "href": "https://minhaji.net/lesson/34758/كتاب_الطالب"
+        }
+      ]
+    }
+  ],
+  "pluginNote": "Deepened via direct Minhaji harvest (Exa MCP rate-limited). Structure titles only."
+}

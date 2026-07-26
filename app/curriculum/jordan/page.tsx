@@ -260,6 +260,10 @@ export default function JordanCurriculumWavePage(): ReactNode {
                 الرسمي المحفوظ، ويمكنك لاحقاً رفع ملفات NCCD يدوياً.
               </p>
             ) : null}
+            <p style={{ marginTop: "0.75rem", color: "var(--muted)", fontSize: "0.82rem" }}>
+              Plugins: سحب عميق لمنهاجي (صف 1 رياضيات: وحدات حقيقية). Exa MCP وصل لحدّه المجاني —
+              فعّل مفتاح Exa أو Apify لتسريع سحب NCCD لاحقاً.
+            </p>
           </section>
 
           <section className="jo-panel">

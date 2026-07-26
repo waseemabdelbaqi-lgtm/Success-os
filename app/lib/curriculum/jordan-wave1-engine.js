@@ -94,6 +94,46 @@ function loadMinhajiSeed() {
   return erpReadJson(file);
 }
 
+function loadDeepGradeSeed(gradeAr = '') {
+  const map = {
+    'الصف الأول': 'jordan-minhaji-deep-grade1-seed.json',
+  };
+  const name = map[gradeAr];
+  if (!name) return null;
+  return erpReadJson(path.join(process.cwd(), 'app', 'data', name));
+}
+
+/**
+ * Prefer live/deep Minhaji unit+lesson titles when reformulating.
+ * Falls back to national subject framework blueprints.
+ */
+function unitsFromDeepOrFramework(node, gradeAr, subject) {
+  const deep = loadDeepGradeSeed(gradeAr);
+  const hit = deep?.subjects?.find((s) => {
+    const a = normalizeSubject(s.titleAr);
+    return a === subject || s.titleAr === subject || subject.includes(a);
+  });
+  if (hit?.units?.length) {
+    return hit.units.map((unit, ui) => ({
+      unitId: `U${ui + 1}`,
+      titleAr: unit.titleAr,
+      lessons: (unit.lessons || []).map((lesson, li) => ({
+        lessonId: `L${ui + 1}.${li + 1}`,
+        titleAr: lesson.titleAr || lesson,
+        learningOutcomes: [
+          `أن يتعرف المتعلم مفهومًا من «${lesson.titleAr || lesson}» ضمن ${unit.titleAr} بما يتوافق مع إطار المنهاج الوطني لـ${gradeAr}.`,
+          `أن يطبّق مهارة مرتبطة بالدرس بخطوات واضحة قابلة للتحقق.`,
+          `أن يربط التعلم بموقف حياتي أردني مناسب للمرحلة.`,
+        ],
+        structureHref: lesson.href || '',
+        contentOrigin: 'success-os-original-aligned-to-minhaji-structure-titles',
+      })),
+      structureSource: 'minhaji-deep-index',
+    }));
+  }
+  return node.units || [];
+}
+
 function stageForGrade(gradeAr = '') {
   if (gradeAr.includes('رياض')) return 'رياض الأطفال';
   const m = String(gradeAr).match(/(\d+)/);
@@ -400,9 +440,19 @@ export function reformulateJordanHarvest(options = {}) {
         ],
       });
 
+      const deepUnits = unitsFromDeepOrFramework(node, gradeRow.gradeAr, subject);
+      const enriched = {
+        ...node,
+        units: deepUnits.length ? deepUnits : node.units,
+        structureMode: deepUnits?.[0]?.structureSource || 'framework-blueprint',
+      };
+
       const id = `jo-w1-${slugify(gradeRow.gradeAr)}-${slugify(subject)}`;
-      const markdown = outlineMarkdownFromNode(node, {
-        structureSource: gradeRow.sourceUrl || 'minhaji.net',
+      const markdown = outlineMarkdownFromNode(enriched, {
+        structureSource:
+          enriched.structureMode === 'minhaji-deep-index'
+            ? 'Minhaji deep unit/lesson titles + SUCCESS OS original outcomes'
+            : gradeRow.sourceUrl || 'minhaji.net',
         officialCatalogUrl,
       });
 
@@ -430,15 +480,16 @@ export function reformulateJordanHarvest(options = {}) {
           subjects: [subject, sub.titleAr],
           curricula: ['Jordan', 'national', 'توجيهي', gradeRow.gradeAr],
         },
-        notes: `structureHref=${sub.href || ''}`,
+        notes: `structureHref=${sub.href || ''};structureMode=${enriched.structureMode}`,
       });
       created.push({
         id: outline.id,
         grade: gradeRow.gradeAr,
         subject,
-        units: node.units?.length || 0,
-        lessons: node.units?.reduce((n, u) => n + (u.lessons?.length || 0), 0) || 0,
+        units: enriched.units?.length || 0,
+        lessons: enriched.units?.reduce((n, u) => n + (u.lessons?.length || 0), 0) || 0,
         status: outline.status,
+        structureMode: enriched.structureMode,
       });
     }
     if (created.length >= limit) break;
