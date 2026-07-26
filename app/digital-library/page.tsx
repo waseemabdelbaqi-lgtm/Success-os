@@ -19,30 +19,60 @@ export default function DigitalLibraryHubPage() {
   ]);
 
   return (
-    <div className="dl-hub">
+    <div className="dl-hub" dir="rtl">
       <header className="dl-hub-hero">
-        <p className="dl-kicker" style={{ color: "#9fd9c8" }}>
-          SUCCESS OS · Global Digital Library
+        <p className="dl-kicker" style={{ color: "#f2d77c" }}>
+          SUCCESS OS · المكتبة الرقمية العالمية
         </p>
-        <h1>Navigate the world’s curricula</h1>
+        <h1 style={{ color: "#fff" }}>SUCCESS OS</h1>
         <p>
-          Nested taxonomy from region to lesson. Open the production prototype — IB Physics
-          Photoelectric Effect — with all six interactive modules live.
+          مناهج العالم في شجرة واحدة — من المنطقة إلى الدرس. الدرس التفاعلي و3D أدوات دراسة؛
+          الشرح والتدريس من معلّم حقيقي عبر Teachers OS.
         </p>
-        <p style={{ marginTop: "1rem" }}>
+        <p style={{ marginTop: "1rem", display: "flex", flexWrap: "wrap", gap: "0.65rem" }}>
           <Link
             href={prototypeHref}
             style={{
               display: "inline-flex",
-              background: "#fff",
-              color: "#0b1220",
+              background: "#f2d77c",
+              color: "#4b0a11",
               fontWeight: 800,
               padding: "0.7rem 1rem",
               borderRadius: "0.75rem",
               textDecoration: "none",
             }}
           >
-            Open IB Physics · Photoelectric Effect
+            درس IB Physics · التأثير الكهروضوئي
+          </Link>
+          <Link
+            href="/curriculum"
+            style={{
+              display: "inline-flex",
+              background: "transparent",
+              color: "#fff",
+              fontWeight: 700,
+              padding: "0.7rem 1rem",
+              borderRadius: "0.75rem",
+              textDecoration: "none",
+              border: "1px solid rgba(242,215,124,.55)",
+            }}
+          >
+            رفع المناهج
+          </Link>
+          <Link
+            href="/teachers"
+            style={{
+              display: "inline-flex",
+              background: "transparent",
+              color: "#fff",
+              fontWeight: 700,
+              padding: "0.7rem 1rem",
+              borderRadius: "0.75rem",
+              textDecoration: "none",
+              border: "1px solid rgba(255,255,255,.35)",
+            }}
+          >
+            معلّمون حقيقيون
           </Link>
         </p>
       </header>

@@ -183,8 +183,8 @@ export default function HomePage() {
   const partnerGateways=['teacher','center','school','university','employer'];
   const searchRoutes={teacher:'/teachers',center:'/partners/discover',school:'/partners/discover',university:'/admissions',employer:'/partners/discover?audience=jobseeker'};
   const footerLinks = {
-    Platform: { Learning: '/programs', 'AI Tutor': '/tutor', Roots: '/roots', 'Partner Guide': '/guide', Teachers: '/teachers', 'User dashboards': '/dashboard/links', 'Super Admin': '/dashboard/super-admin', 'Employees OS': '/dashboard/employees', 'Teachers OS': '/dashboard/teachers', 'Education Passport': '/passport' },
-    المنصة: { التعلم: '/programs', 'المعلم الذكي': '/tutor', 'الجذور': '/roots', 'دليل الشريك': '/guide', المعلمون: '/teachers', 'لوحات المستخدمين': '/dashboard/links', 'لوحة المشرف': '/dashboard/super-admin', 'لوحات الموظفين': '/dashboard/employees', 'لوحات المعلمين': '/dashboard/teachers', 'الجواز التعليمي': '/passport' },
+    Platform: { Learning: '/programs', 'AI Tutor': '/tutor', 'Digital Library': '/digital-library', Curriculum: '/curriculum', Roots: '/roots', 'Partner Guide': '/guide', Teachers: '/teachers', 'User dashboards': '/dashboard/links', 'Super Admin': '/dashboard/super-admin', 'Employees OS': '/dashboard/employees', 'Teachers OS': '/dashboard/teachers', 'Education Passport': '/passport' },
+    المنصة: { التعلم: '/programs', 'المعلم الذكي': '/tutor', 'المكتبة الرقمية': '/digital-library', المناهج: '/curriculum', 'الجذور': '/roots', 'دليل الشريك': '/guide', المعلمون: '/teachers', 'لوحات المستخدمين': '/dashboard/links', 'لوحة المشرف': '/dashboard/super-admin', 'لوحات الموظفين': '/dashboard/employees', 'لوحات المعلمين': '/dashboard/teachers', 'الجواز التعليمي': '/passport' },
     Programs: { 'EST وACT': '/courses', EST: '/courses', ACT: '/courses', AP: '/courses', IGCSE: '/courses', 'A Level': '/courses', 'EST & ACT': '/courses' },
     البرامج: { 'EST وACT': '/courses', AP: '/courses', IGCSE: '/courses', 'A Level': '/courses' },
     Company: { About: '/about', 'Safety & Privacy': '/trust', Contact: '/contact', 'Success 4 Sure Academy': 'https://www.success4sureacademy.com/' },

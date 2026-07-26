@@ -111,6 +111,7 @@ const OS_DOMAINS: OsDomain[] = [
       { label: "القبول", href: "/dashboard/admin/admissions" },
       { label: "Content Studio", href: "/content-studio" },
       { label: "المكتبة الرقمية", href: "/digital-library" },
+      { label: "Curriculum OS", href: "/curriculum" },
     ],
   },
   {

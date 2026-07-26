@@ -107,6 +107,24 @@ const SURFACES = Object.freeze([
     path: '/roots',
     tier: 'core',
   },
+  {
+    id: 'digital_library',
+    labelAr: 'المكتبة الرقمية العالمية',
+    path: '/digital-library',
+    tier: 'library',
+  },
+  {
+    id: 'curriculum_os',
+    labelAr: 'Curriculum OS · رفع المناهج',
+    path: '/curriculum',
+    tier: 'library',
+  },
+  {
+    id: 'prototype_lesson',
+    labelAr: 'درس تفاعلي · التأثير الكهروضوئي',
+    path: '/digital-library/international-systems/global/ib/dp/physics/quantum-physics/photoelectric-effect',
+    tier: 'library',
+  },
 ]);
 
 export const PARTNERSHIP_PROTOCOL = Object.freeze({
@@ -333,7 +351,11 @@ export async function runSurfaceVerification(options = {}) {
   }
 
   // API smoke (snapshot only — never call verify here to avoid recursion)
-  for (const apiPath of ['/api/teachers-os?view=marketplace', '/api/ai-guide?view=protocol']) {
+  for (const apiPath of [
+    '/api/teachers-os?view=marketplace',
+    '/api/ai-guide?view=protocol',
+    '/api/curriculum-os?view=snapshot',
+  ]) {
     const url = `${origin.replace(/\/$/, '')}${apiPath}`;
     const started = Date.now();
     let ok = false;

@@ -26,9 +26,16 @@ const ORBITS = [
   {
     id: "library",
     title: "مكتبة النجوم",
-    blurb: "كتب، ملاحظات، وإشارات تضيء تقدمك.",
-    href: "/student/dashboard",
+    blurb: "مكتبة رقمية عالمية + دروس تفاعلية/3D مربوطة بمعلّم حقيقي.",
+    href: "/digital-library",
     accent: "#ffd9a0",
+  },
+  {
+    id: "curriculum",
+    title: "المناهج الحية",
+    blurb: "تصفّح outlines واربط فصلك بمسار تعلم واضح.",
+    href: "/curriculum",
+    accent: "#f0c48a",
   },
   {
     id: "teachers",
@@ -50,6 +57,7 @@ const QUESTS = [
   { id: "q1", label: "افتح مادة واحدة هذا الأسبوع", href: "/start-journey?portal=student" },
   { id: "q2", label: "اسأل المعلم الذكي سؤالاً صعباً", href: "/tutor" },
   { id: "q3", label: "احجز حصة أو شاهد عرض معلم", href: "/teachers" },
+  { id: "q3b", label: "افتح درساً تفاعلياً من المكتبة", href: "/digital-library" },
   { id: "q4", label: "حدّث الجواز التعليمي", href: "/passport" },
 ] as const;
 

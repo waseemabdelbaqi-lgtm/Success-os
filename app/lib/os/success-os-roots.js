@@ -70,6 +70,23 @@ export const ROOT_DOMAINS = Object.freeze([
     arteries: ['identity', 'journey', 'evidence'],
   },
   {
+    id: 'library',
+    depth: 1,
+    labelAr: 'جذر المكتبة والمناهج',
+    labelEn: 'Library & Curriculum Root',
+    essence:
+      'مكتبة رقمية عالمية + دروس تفاعلية/3D + مناهج مرفوعة — تُسلَّم عبر معلّم حقيقي.',
+    color: '#8a1420',
+    surfaces: [
+      '/digital-library',
+      '/curriculum',
+      '/library',
+      '/digital-library/international-systems/global/ib/dp/physics/quantum-physics/photoelectric-effect',
+    ],
+    apis: ['/api/curriculum-os'],
+    arteries: ['journey', 'match', 'evidence'],
+  },
+  {
     id: 'teaching',
     depth: 1,
     labelAr: 'جذر التدريس',
@@ -161,7 +178,7 @@ export const LIFE_ARTERIES = Object.freeze([
     labelAr: 'شريان الهوية',
     labelEn: 'Identity',
     from: 'human_core',
-    to: ['learning', 'teaching', 'partners', 'careers', 'operations'],
+    to: ['learning', 'library', 'teaching', 'partners', 'careers', 'operations'],
     meaning: 'من أنت وما دورك قبل أي خدمة.',
   },
   {
@@ -169,7 +186,7 @@ export const LIFE_ARTERIES = Object.freeze([
     labelAr: 'شريان الرحلة',
     labelEn: 'Journey',
     from: 'learning',
-    to: ['admissions', 'partners', 'careers'],
+    to: ['admissions', 'partners', 'careers', 'library'],
     meaning: 'مسار متصل: مدرسة → جامعة → مهنة.',
   },
   {
@@ -177,7 +194,7 @@ export const LIFE_ARTERIES = Object.freeze([
     labelAr: 'شريان المطابقة',
     labelEn: 'Match',
     from: 'partners',
-    to: ['learning', 'careers', 'teaching', 'admissions'],
+    to: ['learning', 'careers', 'teaching', 'admissions', 'library'],
     meaning: 'الطالب/الباحث يلاقي المعلم أو الجامعة أو الوظيفة المناسبة.',
   },
   {
@@ -243,6 +260,9 @@ export async function pulseRoots(options = {}) {
   const critical = [
     { id: 'home', path: '/', domain: 'human_core' },
     { id: 'students', path: '/students/dashboard', domain: 'learning' },
+    { id: 'library', path: '/digital-library', domain: 'library' },
+    { id: 'curriculum', path: '/curriculum', domain: 'library' },
+    { id: 'curriculum_api', path: '/api/curriculum-os?view=snapshot', domain: 'library' },
     { id: 'teachers', path: '/teachers/dashboard', domain: 'teaching' },
     { id: 'teachers_api', path: '/api/teachers-os?view=marketplace', domain: 'teaching' },
     { id: 'partners', path: '/partners/dashboard', domain: 'partners' },

@@ -59,9 +59,18 @@ export default function LibraryPage(){
       <main className="os-page-content">
         <section className="library-hero">
           <div>
-            <span className="academy-tag">SUCCESS 4 SURE CONTENT ENGINE</span>
+            <span className="academy-tag">SUCCESS OS · LIBRARY + CURRICULUM</span>
             <h1>مكتبة تتحول إلى تعلم تفاعلي</h1>
-            <p>لا نرفع الكتب كما هي. نقسم المحتوى إلى مفاهيم ومهارات ودروس وأسئلة وأدلة إتقان، ثم نربطه بخطة الطالب والمعلم الذكي.</p>
+            <p>
+              لا نرفع الكتب كما هي. نقسم المحتوى إلى مفاهيم ومهارات ودروس وأسئلة، نربطه بالمكتبة
+              الرقمية العالمية، والمعلّم الحقيقي عبر Teachers OS — والمناهج تُرفع من الشريك في
+              Curriculum OS.
+            </p>
+            <p style={{ marginTop: '0.85rem', display: 'flex', flexWrap: 'wrap', gap: '0.65rem' }}>
+              <a className="btn primary" href="/digital-library">المكتبة الرقمية العالمية</a>
+              <a className="btn" href="/curriculum">رفع المناهج</a>
+              <a className="btn" href="/teachers">معلّمون حقيقيون</a>
+            </p>
           </div>
           <div className="library-count">
             <div><b>{materials.length + S4S_BOOKS.length}+</b><small>أصل تعليمي قيد التنظيم</small></div>
