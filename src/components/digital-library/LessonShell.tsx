@@ -56,14 +56,12 @@ export function LessonShell({
         "المنهاج الوطني",
         "Elementary",
         "المرحلة الابتدائية",
-        "Success 4 Sure",
-        "S4S",
         "الصف الأول",
         "الصف الثاني",
         ...teacherCurricula,
       ]
     : isS4s
-      ? ["EST", "AP", "Success 4 Sure", "S4S", ...teacherCurricula]
+      ? ["EST", "AP", ...teacherCurricula]
       : teacherCurricula;
   return (
     <div className="dl-lesson">
@@ -78,10 +76,8 @@ export function LessonShell({
         </nav>
         <p className="dl-kicker">
           {isJordan
-            ? "الأردن · المرحلة الابتدائية · معلّم Success 4 Sure"
-            : isS4s
-              ? "Success 4 Sure · معلّم حقيقي"
-              : "درس تفاعلي · يقوده معلّم حقيقي"}
+            ? "الأردن · المرحلة الابتدائية · حصة AI"
+            : "درس تفاعلي · شرح + تفاعليات"}
         </p>
         <h1>{lesson.title}</h1>
         <p className="dl-hero-lead">{lesson.subtitle}</p>
