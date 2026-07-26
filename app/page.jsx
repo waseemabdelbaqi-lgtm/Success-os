@@ -192,7 +192,7 @@ export default function HomePage() {
   };
   const dashboardRoutes = {
     student: '/student-portal',
-    teacher: '/dashboard/teachers',
+    teacher: '/teachers/dashboard',
     center: '/dashboard/educational-center',
     school: '/dashboard/school',
     university: '/dashboard/university',
@@ -205,8 +205,8 @@ export default function HomePage() {
     طالب: '/student-portal',
     Parent: '/dashboard/parent',
     'ولي أمر': '/dashboard/parent',
-    Teacher: '/dashboard/teachers',
-    معلم: '/dashboard/teachers',
+    Teacher: '/teachers/dashboard',
+    معلم: '/teachers/dashboard',
     Institution: '/dashboard/links',
     مؤسسة: '/dashboard/links',
   };
@@ -295,7 +295,7 @@ export default function HomePage() {
           <section className="work-with-us-network">
             <div className="network-copy"><small>{lang==='en'?'CONNECTED PARTNERSHIP NETWORK':'شبكة الشراكة المتصلة'}</small><h2>{lang==='en'?'Work with SUCCESS OS':'اعمل معنا'}</h2><p>{lang==='en'?'Join the education-to-employment ecosystem through the role that fits you.':'انضم إلى منظومة تصل التعليم بالجامعة والعمل من خلال الدور المناسب لك.'}</p></div>
             <div className="network-map">
-              <div className="network-side"><a href="/join-us?role=teacher">{lang==='en'?'Teacher':'معلم'}<i>←</i></a><a href="/join-us?role=center">{lang==='en'?'Learning center':'مركز تعليمي'}<i>←</i></a><a href="/join-us?role=school">{lang==='en'?'School':'مدرسة'}<i>←</i></a></div>
+              <div className="network-side"><a href="/teachers/register">{lang==='en'?'Teacher':'معلم'}<i>←</i></a><a href="/join-us?role=center">{lang==='en'?'Learning center':'مركز تعليمي'}<i>←</i></a><a href="/join-us?role=school">{lang==='en'?'School':'مدرسة'}<i>←</i></a></div>
               <a className="network-core" href="/join-us"><span>✦</span><b>{lang==='en'?'JOIN US':'انضم إلينا'}</b><small>SUCCESS OS</small></a>
               <div className="network-side"><a href="/join-us?role=university"><i>→</i>{lang==='en'?'University':'جامعة'}</a><a href="/join-us?role=college"><i>→</i>{lang==='en'?'College':'كلية'}</a><a href="/join-us?role=employer"><i>→</i>{lang==='en'?'Employer':'شركة توظيف'}</a></div>
             </div>

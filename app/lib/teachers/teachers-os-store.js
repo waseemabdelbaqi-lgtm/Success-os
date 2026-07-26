@@ -69,11 +69,18 @@ export function upsertTeacherProfile(input = {}) {
   const now = erpNow();
   const id = erpText(input.id) || erpId();
   const existing = items.find((t) => t.id === id);
+  const registeredBy = erpText(input.registeredBy) || existing?.registeredBy || 'self';
+  const autoApprove = registeredBy === 'supervisor' && input.autoApprove !== false;
+
   const profile = {
     id,
-    status: existing?.status || 'pending_review',
+    status: autoApprove
+      ? 'approved'
+      : existing?.status || 'pending_review',
     createdAt: existing?.createdAt || now,
     updatedAt: now,
+    registeredBy,
+    registeredByActor: erpText(input.registeredByActor) || existing?.registeredByActor || '',
     fullName: erpText(input.fullName),
     email: erpText(input.email),
     phone: erpText(input.phone),
@@ -81,9 +88,24 @@ export function upsertTeacherProfile(input = {}) {
     city: erpText(input.city),
     country: erpText(input.country),
     bio: erpText(input.bio),
+    aboutStudent: erpText(input.aboutStudent) || erpText(input.bio),
     subjects: erpList(input.subjects).map(erpText).filter(Boolean),
+    curricula: erpList(input.curricula).length
+      ? erpList(input.curricula).map(erpText).filter(Boolean)
+      : existing?.curricula || [],
     languages: erpList(input.languages).map(erpText).filter(Boolean),
     experienceYears: Number(input.experienceYears) || 0,
+    photoName: erpText(input.photoName) || existing?.photoName || '',
+    photoDataUrl:
+      erpText(input.photoDataUrl).length > 900000
+        ? existing?.photoDataUrl || ''
+        : erpText(input.photoDataUrl) || existing?.photoDataUrl || '',
+    introVideoName: erpText(input.introVideoName) || existing?.introVideoName || '',
+    introVideoUrl: erpText(input.introVideoUrl) || existing?.introVideoUrl || '',
+    introVideoDataUrl:
+      erpText(input.introVideoDataUrl).length > 250000
+        ? ''
+        : erpText(input.introVideoDataUrl) || existing?.introVideoDataUrl || '',
     certificateName: erpText(input.certificateName) || existing?.certificateName || '',
     certificateDataUrl: erpText(input.certificateDataUrl) || existing?.certificateDataUrl || '',
     idDocumentType: erpText(input.idDocumentType) || existing?.idDocumentType || 'passport',
@@ -96,6 +118,11 @@ export function upsertTeacherProfile(input = {}) {
     acceptsInPerson: input.acceptsInPerson !== false,
     acceptsRecorded: input.acceptsRecorded !== false,
   };
+
+  if (autoApprove && !existing?.approvedAt) {
+    profile.approvedBy = erpText(input.registeredByActor) || 'super_admin';
+    profile.approvedAt = now;
+  }
 
   if (!profile.fullName || !profile.email || !profile.phone) {
     throw new Error('FULL_PROFILE_REQUIRED');
@@ -167,6 +194,7 @@ export function upsertOffer(input = {}) {
     type,
     title: erpText(input.title),
     subject: erpText(input.subject),
+    curriculum: erpText(input.curriculum),
     description: erpText(input.description),
     price,
     currency: erpText(input.currency) || 'JOD',
@@ -348,8 +376,88 @@ export function approveTeacher(teacherId, actor = 'super_admin') {
   return next.find((t) => t.id === teacherId);
 }
 
-export function getTeachersOsSnapshot(teacherId) {
+export function getPublicTeacherCard(teacherId) {
+  const teacher = getTeacher(teacherId);
+  if (!teacher) return null;
+  return {
+    id: teacher.id,
+    status: teacher.status,
+    fullName: teacher.fullName,
+    city: teacher.city,
+    country: teacher.country,
+    aboutStudent: teacher.aboutStudent || teacher.bio || '',
+    subjects: teacher.subjects || [],
+    curricula: teacher.curricula || [],
+    languages: teacher.languages || [],
+    experienceYears: teacher.experienceYears || 0,
+    workAreas: teacher.workAreas || [],
+    photoDataUrl: teacher.photoDataUrl || '',
+    introVideoName: teacher.introVideoName || '',
+    introVideoUrl: teacher.introVideoUrl || '',
+    // Never expose ID/certificate blobs publicly.
+  };
+}
+
+export function getTeacherPreview(teacherId) {
+  const teacher = getPublicTeacherCard(teacherId);
+  if (!teacher) return null;
+  const offers = listOffers({ teacherId, publishedOnly: true });
+  return {
+    teacher,
+    offers,
+    platformPercent: getPlatformCommissionPercent(),
+  };
+}
+
+/**
+ * Platform-only AI extraction archive.
+ * Teachers cannot read this collection from public/student surfaces.
+ */
+export function savePlatformAiExtraction(input = {}) {
+  const platformOnly = input.platformOnly !== false;
+  if (!platformOnly) throw new Error('PLATFORM_ONLY_FEATURE');
+
+  const row = {
+    id: erpId(),
+    createdAt: erpNow(),
+    platformOnly: true,
+    teacherId: erpText(input.teacherId),
+    sourceType: erpText(input.sourceType) || 'video',
+    sourceName: erpText(input.sourceName),
+    curriculum: erpText(input.curriculum),
+    subject: erpText(input.subject),
+    summary: erpText(input.summary),
+    extracted: input.extracted || {},
+    actor: erpText(input.actor) || 'platform_ai',
+    visibility: 'platform_internal',
+  };
+
+  const items = [row, ...erpList(collection('platform-ai-video-extractions').items)].slice(
+    0,
+    2000,
+  );
+  writeCollection('platform-ai-video-extractions', items);
+  erpAppendAudit({
+    actor: row.actor,
+    action: 'platform.ai.video.extract',
+    moduleId: 'teachers-os-platform',
+    entityId: row.id,
+    meta: { teacherId: row.teacherId, curriculum: row.curriculum },
+  });
+  return row;
+}
+
+export function listPlatformAiExtractions(filters = {}) {
+  let items = erpList(collection('platform-ai-video-extractions').items).filter(
+    (x) => x.platformOnly && x.visibility === 'platform_internal',
+  );
+  if (filters.teacherId) items = items.filter((x) => x.teacherId === filters.teacherId);
+  return items;
+}
+
+export function getTeachersOsSnapshot(teacherId, options = {}) {
   const teacher = teacherId ? getTeacher(teacherId) : null;
+  const includePlatformAi = options.includePlatformAi === true;
   return {
     platformPercent: getPlatformCommissionPercent(),
     teacher,
@@ -359,5 +467,9 @@ export function getTeachersOsSnapshot(teacherId) {
     sales: teacherId ? teacherSalesSummary(teacherId) : null,
     absences: teacherId ? listAbsences({ teacherId }) : listAbsences({ status: 'pending_supervisor' }),
     pendingAbsences: listAbsences({ status: 'pending_supervisor' }),
+    // Platform-only archive — never attach unless explicitly requested by a platform actor.
+    platformAiExtractions: includePlatformAi
+      ? listPlatformAiExtractions(teacherId ? { teacherId } : undefined)
+      : [],
   };
 }

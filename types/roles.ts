@@ -91,7 +91,7 @@ export const ROLE_DEFINITIONS: Record<UserRole, RoleDefinition> = {
     slug: "teacher",
     label: "Teacher",
     description: "Course delivery, grading, and student engagement.",
-    dashboardPath: "/dashboard/teachers",
+    dashboardPath: "/teachers/dashboard",
     tier: "education",
     selfRegisterable: false,
     category: "education",

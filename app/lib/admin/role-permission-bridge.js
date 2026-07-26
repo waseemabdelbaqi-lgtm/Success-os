@@ -141,7 +141,7 @@ function resolveDashboardPath(roleKey) {
   if (roleKey === 'admin') return '/dashboard/admin';
   if (roleKey === 'super_admin') return '/dashboard/super-admin';
   if (roleKey === 'employee') return '/dashboard/employees';
-  if (roleKey === 'teacher') return '/dashboard/teachers';
+  if (roleKey === 'teacher') return '/teachers/dashboard';
   return `/dashboard/${String(roleKey).replace(/_/g, '-')}`;
 }
 

@@ -123,11 +123,14 @@ export default function TeachersPage() {
             </p>
           </div>
           <div style={{ display: 'flex', gap: '0.6rem', flexWrap: 'wrap' }}>
-            <a className="teacher-join-link" href="/dashboard/teachers">
-              لوحة المعلم
+            <a className="teacher-join-link" href="/teachers/register">
+              تسجيل معلم
             </a>
-            <a className="teacher-join-link" href="/join-us?role=teacher">
-              انضم كمعلم
+            <a className="teacher-join-link" href="/teachers/dashboard">
+              لوحة تحكم المعلم
+            </a>
+            <a className="teacher-join-link" href="/dashboard/teachers">
+              Teachers OS
             </a>
           </div>
         </header>
@@ -156,9 +159,16 @@ export default function TeachersPage() {
                     {offer.type === 'online' ? <span>منصة + Zoom</span> : null}
                     {offer.type === 'recorded' ? <span>ملف مسجّل</span> : null}
                   </div>
-                  <Link className="os-primary" href={`/teachers/offers/${offer.id}`}>
-                    عرض كل التفاصيل قبل الحجز
-                  </Link>
+                  <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
+                    <Link className="os-primary" href={`/teachers/offers/${offer.id}`}>
+                      تفاصيل العرض
+                    </Link>
+                    {offer.teacherId ? (
+                      <Link className="os-primary" href={`/teachers/${offer.teacherId}`}>
+                        صفحة المعلم والأسعار
+                      </Link>
+                    ) : null}
+                  </div>
                 </article>
               ))}
             </div>

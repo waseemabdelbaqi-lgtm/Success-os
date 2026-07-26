@@ -260,6 +260,18 @@ export function OsControlRoom(): ReactNode {
                 {isAr ? "لوحات المعلمين" : "Teachers OS"}
               </Link>
               <Link
+                href="/teachers/register?by=supervisor"
+                className="rounded-xl border border-white/30 bg-white/10 px-4 py-2.5 text-sm font-semibold text-white"
+              >
+                {isAr ? "تسجيل معلم (مشرف)" : "Register teacher (supervisor)"}
+              </Link>
+              <Link
+                href="/teachers/platform"
+                className="rounded-xl border border-white/30 bg-white/10 px-4 py-2.5 text-sm font-semibold text-white"
+              >
+                {isAr ? "AI المنصة / المعلمون" : "Platform AI · Teachers"}
+              </Link>
+              <Link
                 href="/dashboard/links"
                 className="rounded-xl border border-white/30 bg-white/10 px-4 py-2.5 text-sm font-semibold text-white"
               >

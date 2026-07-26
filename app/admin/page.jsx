@@ -50,9 +50,20 @@ export default function AdminPage() {
             تسجيل وثائق المعلم، رفع الحصص المسجلة، أونلاين/وجاهي مع السعر والمدة والمنطقة، أرباح بعد
             خصم 10% للمنصة، وتبليغ التخلف لقرار المشرف.
           </p>
-          <a className="button" href="/dashboard/teachers">
-            افتح لوحات المعلمين →
-          </a>
+          <div style={{ display: 'flex', gap: '0.6rem', flexWrap: 'wrap' }}>
+            <a className="button" href="/dashboard/teachers">
+              Teachers OS →
+            </a>
+            <a className="button" href="/teachers/register?by=supervisor">
+              تسجيل معلم عبر المشرف →
+            </a>
+            <a className="button" href="/teachers/platform">
+              أدوات المنصة / AI →
+            </a>
+            <a className="button" href="/teachers/dashboard">
+              لوحة تحكم المعلم →
+            </a>
+          </div>
         </section>
 
         <section className="os-card admin-card" style={{ marginBottom: '1rem' }}>

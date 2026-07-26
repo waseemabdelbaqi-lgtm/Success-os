@@ -263,22 +263,34 @@ export function TeachersOsWorkspace(): ReactNode {
           </p>
           <div className="mt-5 flex flex-wrap gap-2">
             <Link
-              href="/teachers"
+              href="/teachers/register"
               className="rounded-xl bg-white px-4 py-2.5 text-sm font-bold text-[#9e1722]"
             >
-              سوق المعلمين (عرض الطالب)
+              تسجيل معلم
             </Link>
             <Link
-              href="/dashboard/super-admin"
+              href="/teachers/dashboard"
               className="rounded-xl border border-white/30 bg-white/10 px-4 py-2.5 text-sm font-semibold"
             >
-              لوحة المشرف
+              لوحة تحكم المعلم
             </Link>
             <Link
-              href="/teacher-portal"
+              href="/teachers"
               className="rounded-xl border border-white/30 bg-white/10 px-4 py-2.5 text-sm font-semibold"
             >
-              البوابة القديمة
+              سوق المعلمين
+            </Link>
+            <Link
+              href="/teachers/register?by=supervisor"
+              className="rounded-xl border border-white/30 bg-white/10 px-4 py-2.5 text-sm font-semibold"
+            >
+              تسجيل عبر المشرف
+            </Link>
+            <Link
+              href="/teachers/platform"
+              className="rounded-xl border border-white/30 bg-white/10 px-4 py-2.5 text-sm font-semibold"
+            >
+              أدوات المنصة / AI
             </Link>
           </div>
         </div>
