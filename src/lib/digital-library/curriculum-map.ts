@@ -150,6 +150,29 @@ export const CURRICULUM_TREE: CurriculumNode[] = [
             name: "المنهاج الوطني",
             children: [
               {
+                slug: "elementary",
+                name: "المرحلة الابتدائية (1–6)",
+                children: [
+                  {
+                    slug: "overview",
+                    name: "نظرة عامة",
+                    children: [
+                      {
+                        slug: "stage",
+                        name: "Stage Hub",
+                        children: [
+                          {
+                            slug: "start",
+                            name: "ابدأ البناء",
+                            lessonSlug: "jordan-g1-math-number-line-addition",
+                          },
+                        ],
+                      },
+                    ],
+                  },
+                ],
+              },
+              {
                 slug: "grade-1",
                 name: "الصف الأول",
                 children: [
@@ -170,9 +193,52 @@ export const CURRICULUM_TREE: CurriculumNode[] = [
                       },
                     ],
                   },
+                  {
+                    slug: "العلوم",
+                    name: "العلوم",
+                    children: [
+                      {
+                        slug: "الإنسان-والصحة",
+                        name: "الإنسان والصحة",
+                        children: [
+                          {
+                            slug: "نحن-متشابهون-ومختلفون",
+                            name: "نحن متشابهون ومختلفون",
+                            lessonSlug: "jordan-g1-science-alike-different",
+                          },
+                        ],
+                      },
+                    ],
+                  },
                 ],
               },
-              meGradeBranch("grade-5", "الصف الخامس", "العلوم", "المادة-والطاقة", "حالات-المادة"),
+              {
+                slug: "grade-2",
+                name: "الصف الثاني",
+                children: [
+                  {
+                    slug: "الرياضيات",
+                    name: "الرياضيات",
+                    children: [
+                      {
+                        slug: "القيمة-المكانية",
+                        name: "القيمة المكانية",
+                        children: [
+                          {
+                            slug: "العشرات-والآحاد",
+                            name: "العشرات والآحاد",
+                            lessonSlug: "jordan-g2-math-tens-ones",
+                          },
+                        ],
+                      },
+                    ],
+                  },
+                ],
+              },
+              meGradeBranch("grade-3", "الصف الثالث", "اللغة-العربية", "القراءة-والفهم", "أفهم-ما-أقرأ"),
+              meGradeBranch("grade-4", "الصف الرابع", "العلوم", "المادة-والطاقة", "حالات-المادة"),
+              meGradeBranch("grade-5", "الصف الخامس", "الرياضيات", "الكسور", "مفهوم-الكسر"),
+              meGradeBranch("grade-6", "الصف السادس", "العلوم", "النظم-البيئية", "السلسلة-الغذائية"),
               meGradeBranch("grade-10", "الصف العاشر", "الفيزياء", "الميكانيكا", "القوة-والحركة"),
               meGradeBranch("tawjihi", "توجيهي", "الرياضيات", "التفاضل", "المشتقات"),
             ],

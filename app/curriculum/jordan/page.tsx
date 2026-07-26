@@ -164,7 +164,10 @@ export default function JordanCurriculumWavePage(): ReactNode {
         </p>
 
         <nav className="jo-nav" aria-label="روابط">
-          <Link href="/curriculum">Curriculum OS</Link>
+          <Link href="/curriculum/jordan/elementary">المرحلة الابتدائية 1–6</Link>
+          <Link href="/curriculum" className="ghost">
+            Curriculum OS
+          </Link>
           <Link href="/digital-library/middle-east" className="ghost">
             المكتبة · الشرق الأوسط
           </Link>

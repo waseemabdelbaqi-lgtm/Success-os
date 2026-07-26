@@ -126,6 +126,12 @@ const SURFACES = Object.freeze([
     tier: 'library',
   },
   {
+    id: 'jordan_elementary',
+    labelAr: 'الأردن · المرحلة الابتدائية 1–6',
+    path: '/curriculum/jordan/elementary',
+    tier: 'library',
+  },
+  {
     id: 'prototype_lesson',
     labelAr: 'درس تفاعلي · التأثير الكهروضوئي',
     path: '/digital-library/international-systems/global/ib/dp/physics/quantum-physics/photoelectric-effect',

@@ -81,6 +81,7 @@ export const ROOT_DOMAINS = Object.freeze([
       '/digital-library',
       '/curriculum',
       '/curriculum/jordan',
+      '/curriculum/jordan/elementary',
       '/library',
       '/digital-library/international-systems/global/ib/dp/physics/quantum-physics/photoelectric-effect',
     ],
@@ -264,6 +265,8 @@ export async function pulseRoots(options = {}) {
     { id: 'library', path: '/digital-library', domain: 'library' },
     { id: 'curriculum', path: '/curriculum', domain: 'library' },
     { id: 'jordan_wave', path: '/curriculum/jordan', domain: 'library' },
+    { id: 'jordan_elementary', path: '/curriculum/jordan/elementary', domain: 'library' },
+    { id: 'jordan_elementary_api', path: '/api/curriculum-os?view=jordan-elementary', domain: 'library' },
     { id: 'curriculum_api', path: '/api/curriculum-os?view=snapshot', domain: 'library' },
     { id: 'jordan_api', path: '/api/curriculum-os?view=jordan', domain: 'library' },
     {

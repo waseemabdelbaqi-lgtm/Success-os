@@ -13,6 +13,10 @@ import {
   reformulateJordanHarvest,
   runJordanWave1,
 } from '@/app/lib/curriculum/jordan-wave1-engine';
+import {
+  buildJordanElementaryStage,
+  getJordanElementarySnapshot,
+} from '@/app/lib/curriculum/jordan-elementary-stage';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
@@ -37,6 +41,10 @@ export async function GET(request) {
 
     if (view === 'jordan' || view === 'jordan-wave1') {
       return ok({ jordan: getJordanWave1Snapshot() });
+    }
+
+    if (view === 'jordan-elementary' || view === 'elementary') {
+      return ok({ elementary: getJordanElementarySnapshot() });
     }
 
     if (view === 'outline' && id) {
@@ -134,6 +142,15 @@ export async function POST(request) {
         publish: body?.publish === true,
       });
       return ok(result);
+    }
+
+    if (action === 'jordan-elementary-build' || action === 'elementary-build') {
+      const build = await buildJordanElementaryStage({
+        harvest: body?.harvest !== false,
+        limitPerGrade: Number(body?.limitPerGrade) || 12,
+        publish: body?.publish === true,
+      });
+      return ok({ build, elementary: getJordanElementarySnapshot() });
     }
 
     return fail(new Error('UNKNOWN_ACTION'));
