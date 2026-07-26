@@ -187,7 +187,10 @@ export default function CurriculumOsPage(): ReactNode {
           والمعلّم يصير معلّماً حقيقياً عبر Teachers OS — مشروع واحد، جذر واحد.
         </p>
         <nav className="c-nav" aria-label="روابط المنظومة">
-          <Link href="/digital-library">المكتبة الرقمية</Link>
+          <Link href="/curriculum/jordan">موجة الأردن 1</Link>
+          <Link href="/digital-library" className="ghost">
+            المكتبة الرقمية
+          </Link>
           <Link href="/teachers" className="ghost">
             معلّمون حقيقيون
           </Link>

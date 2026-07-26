@@ -141,7 +141,22 @@ export const CURRICULUM_TREE: CurriculumNode[] = [
     slug: "middle-east",
     name: "Middle East",
     children: [
-      meCountry("jordan", "Jordan", "national", "tawjihi", "الرياضيات", "التفاضل", "المشتقات"),
+      {
+        slug: "jordan",
+        name: "Jordan · الأردن",
+        children: [
+          {
+            slug: "national",
+            name: "المنهاج الوطني",
+            children: [
+              meGradeBranch("grade-1", "الصف الأول", "الرياضيات", "الأعداد-والعمليات", "العد-إلى-20"),
+              meGradeBranch("grade-5", "الصف الخامس", "العلوم", "المادة-والطاقة", "حالات-المادة"),
+              meGradeBranch("grade-10", "الصف العاشر", "الفيزياء", "الميكانيكا", "القوة-والحركة"),
+              meGradeBranch("tawjihi", "توجيهي", "الرياضيات", "التفاضل", "المشتقات"),
+            ],
+          },
+        ],
+      },
       meCountry("saudi-arabia", "Saudi Arabia", "national", "secondary", "physics", "modern-physics", "photoelectric"),
       meCountry("egypt", "Egypt", "national", "thanaweya", "physics", "quantum", "photoelectric"),
       meCountry("uae", "UAE", "ministry", "cycle-3", "physics", "modern", "photons"),
@@ -287,6 +302,32 @@ export const CURRICULUM_TREE: CurriculumNode[] = [
 
 function leafLesson(slug: string, name: string): CurriculumNode {
   return { slug, name, lessonSlug: "ib-physics-photoelectric-effect" };
+}
+
+function meGradeBranch(
+  levelSlug: string,
+  levelName: string,
+  subject: string,
+  chapter: string,
+  lesson: string,
+): CurriculumNode {
+  return {
+    slug: levelSlug,
+    name: levelName,
+    children: [
+      {
+        slug: subject,
+        name: subject,
+        children: [
+          {
+            slug: chapter,
+            name: chapter,
+            children: [leafLesson(lesson, lesson.replace(/-/g, " "))],
+          },
+        ],
+      },
+    ],
+  };
 }
 
 function meCountry(

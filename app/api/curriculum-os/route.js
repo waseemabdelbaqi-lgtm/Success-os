@@ -7,6 +7,12 @@ import {
   matchTeachersForLesson,
   publishCurriculumOutline,
 } from '@/app/lib/curriculum/curriculum-os-store';
+import {
+  getJordanWave1Snapshot,
+  harvestJordanStructure,
+  reformulateJordanHarvest,
+  runJordanWave1,
+} from '@/app/lib/curriculum/jordan-wave1-engine';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
@@ -28,6 +34,10 @@ export async function GET(request) {
     const view = searchParams.get('view') || 'snapshot';
     const id = searchParams.get('id') || '';
     const lessonSlug = searchParams.get('lessonSlug') || '';
+
+    if (view === 'jordan' || view === 'jordan-wave1') {
+      return ok({ jordan: getJordanWave1Snapshot() });
+    }
 
     if (view === 'outline' && id) {
       const outline = getCurriculumOutline(id);
@@ -97,6 +107,33 @@ export async function POST(request) {
           q: body?.q,
         }),
       });
+    }
+
+    if (action === 'jordan-harvest') {
+      const harvest = await harvestJordanStructure();
+      return ok({ harvest, jordan: getJordanWave1Snapshot() });
+    }
+
+    if (action === 'jordan-reformulate') {
+      const reformulation = reformulateJordanHarvest({
+        limit: body?.limit,
+        grade: body?.grade,
+        subject: body?.subject,
+        publish: body?.publish === true,
+      });
+      return ok({ reformulation, jordan: getJordanWave1Snapshot() });
+    }
+
+    if (action === 'jordan-wave1' || action === 'jordan-run') {
+      const result = await runJordanWave1({
+        harvest: body?.harvest !== false,
+        reformulate: body?.reformulate !== false,
+        limit: Number(body?.limit) || 24,
+        grade: body?.grade || '',
+        subject: body?.subject || '',
+        publish: body?.publish === true,
+      });
+      return ok(result);
     }
 
     return fail(new Error('UNKNOWN_ACTION'));

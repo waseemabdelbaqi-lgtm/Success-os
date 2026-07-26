@@ -120,6 +120,12 @@ const SURFACES = Object.freeze([
     tier: 'library',
   },
   {
+    id: 'jordan_wave1',
+    labelAr: 'موجة الأردن 1 · سحب وإعادة صياغة',
+    path: '/curriculum/jordan',
+    tier: 'library',
+  },
+  {
     id: 'prototype_lesson',
     labelAr: 'درس تفاعلي · التأثير الكهروضوئي',
     path: '/digital-library/international-systems/global/ib/dp/physics/quantum-physics/photoelectric-effect',
