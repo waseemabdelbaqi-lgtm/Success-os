@@ -1,7 +1,17 @@
 /**
  * ADMIN-01 — Enterprise Admin RBAC matrix.
  * Every permission is individually configurable per role.
+ * Supervisor CRUD helpers are re-exported from scenario-permissions.
  */
+
+import {
+  SUPERVISOR_ROLES,
+  SCENARIO_ROLE_SCOPES,
+  canCrud,
+  canManagePermissions,
+  canPerformAction,
+  isSupervisor,
+} from './scenario-permissions.js';
 
 export const ENTERPRISE_ADMIN_PERMISSION_FLAGS = Object.freeze([
   'platform.manage',
@@ -381,4 +391,28 @@ export const ENTERPRISE_ADMIN_DEFAULT_ROLES = Object.freeze([
 
 export function rolePermissionCount(role) {
   return Array.isArray(role?.permissions) ? role.permissions.length : 0;
+}
+
+export {
+  SUPERVISOR_ROLES,
+  canCrud,
+  canManagePermissions,
+  canPerformAction,
+  isSupervisor,
+};
+
+/** Resolve actor role from request body / headers / session fallback */
+export function resolveActorRole(input = {}) {
+  const raw =
+    input.role ||
+    input.actorRole ||
+    input.userRole ||
+    input._role ||
+    input.user ||
+    '';
+  const key = String(raw).toLowerCase().replace(/\s+/g, '_');
+  if (SUPERVISOR_ROLES.includes(key) || SCENARIO_ROLE_SCOPES[key]) return key;
+  if (key === 'مشرف' || key === 'supervisor') return 'admin';
+  if (key === 'ceo') return 'owner';
+  return key || 'employee';
 }

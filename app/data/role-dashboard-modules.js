@@ -733,6 +733,58 @@ export const ROLE_DASHBOARD_CATALOG = Object.freeze({
     ],
   },
 
+  super_admin: {
+    label: 'Super Admin',
+    labelAr: 'المشرف الأعلى',
+    modules: [
+      {
+        id: 'os-control-room',
+        title: 'OS Control Room',
+        titleAr: 'غرفة تحكم نظام التشغيل',
+        description: 'Highest-level SUCCESS OS management.',
+        descriptionAr: 'أعلى مستوى لإدارة SUCCESS OS.',
+        href: '/dashboard/super-admin',
+        permissions: ['platform.manage', 'roles.assign', 'audit.read'],
+      },
+      {
+        id: 'permissions',
+        title: 'Permissions Matrix',
+        titleAr: 'مصفوفة الصلاحيات',
+        description: 'Distribute role permissions.',
+        descriptionAr: 'توزيع صلاحيات الأدوار.',
+        href: '/dashboard/admin/permissions',
+        permissions: ['roles.assign', 'roles.read'],
+      },
+      {
+        id: 'enterprise-admin',
+        title: 'Enterprise Admin',
+        titleAr: 'الإدارة المؤسسية',
+        description: 'ERP operations room.',
+        descriptionAr: 'غرفة عمليات ERP.',
+        href: '/dashboard/admin',
+        permissions: ['platform.manage', 'users.read'],
+      },
+      {
+        id: 'audit',
+        title: 'Audit Logs',
+        titleAr: 'سجلات التدقيق',
+        description: 'Security and change history.',
+        descriptionAr: 'سجل الأمان والتغييرات.',
+        href: '/dashboard/admin/audit-logs',
+        permissions: ['audit.read'],
+      },
+      {
+        id: 'system-config',
+        title: 'System Configuration',
+        titleAr: 'تكوين النظام',
+        description: 'Platform configuration controls.',
+        descriptionAr: 'ضوابط تكوين المنصة.',
+        href: '/dashboard/admin/system-configuration',
+        permissions: ['platform.config'],
+      },
+    ],
+  },
+
   academic_director: {
     label: 'Academic Director',
     labelAr: 'المدير الأكاديمي',
@@ -778,6 +830,7 @@ export const ROLE_DASHBOARD_CATALOG = Object.freeze({
 
 /** Roles that get a dedicated control dashboard (beyond enterprise admin). */
 export const USER_CONTROL_DASHBOARD_ROLES = Object.freeze([
+  'super_admin',
   'admin',
   'employee',
   'teacher',
@@ -801,7 +854,8 @@ export const USER_CONTROL_DASHBOARD_ROLES = Object.freeze([
 
 /** Explicit public link directory requested by product owner. */
 export const PUBLIC_DASHBOARD_LINKS = Object.freeze([
-  { key: 'admin', labelAr: 'الأدمن / المشرف', labelEn: 'Admin', href: '/dashboard/admin' },
+  { key: 'super_admin', labelAr: 'لوحة المشرف · أعلى مستوى OS', labelEn: 'Super Admin · Highest OS layer', href: '/dashboard/super-admin' },
+  { key: 'admin', labelAr: 'Enterprise Admin (ERP)', labelEn: 'Enterprise Admin (ERP)', href: '/dashboard/admin' },
   { key: 'employee', labelAr: 'الموظفون', labelEn: 'Employees', href: '/dashboard/employee' },
   { key: 'teacher', labelAr: 'المعلمون', labelEn: 'Teachers', href: '/dashboard/teacher' },
   { key: 'educational_center', labelAr: 'المراكز التعليمية', labelEn: 'Educational Centers', href: '/dashboard/educational-center' },

@@ -591,7 +591,8 @@ function listIncludes(arr, value) {
 function dashboardPathForRoleKey(roleKey) {
   if (!roleKey) return null;
   if (roleKey === 'student') return '/student/dashboard';
-  if (roleKey === 'admin' || roleKey === 'super_admin') return '/dashboard/admin';
+  if (roleKey === 'admin') return '/dashboard/admin';
+  if (roleKey === 'super_admin') return '/dashboard/super-admin';
   if (roleKey === 'school_manager') return '/dashboard/school';
   if (roleKey === 'university_manager') return '/dashboard/university';
   if (roleKey === 'center_manager') return '/dashboard/educational-center';

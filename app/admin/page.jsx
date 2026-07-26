@@ -14,6 +14,18 @@ export default function AdminPage() {
           </p>
         </div>
 
+        <section className="os-card admin-card" style={{ marginBottom: '1rem', background: 'linear-gradient(135deg,#4b0a11,#9e1722)', color: '#fff' }}>
+          <span style={{ color: '#f2d77c' }}>SUPER ADMIN · HIGHEST OS LAYER</span>
+          <h2 style={{ color: '#fff' }}>لوحة المشرف — إدارة نظام التشغيل</h2>
+          <p style={{ color: 'rgba(255,255,255,0.88)' }}>
+            أعلى طبقة تحكم في SUCCESS OS: صحة النظام، الصلاحيات، ERP، البوابات، المحتوى، المالية،
+            والتدقيق من غرفة واحدة.
+          </p>
+          <a className="button" href="/dashboard/super-admin" style={{ background: '#fff', color: '#9e1722' }}>
+            افتح لوحة المشرف →
+          </a>
+        </section>
+
         <section className="os-card admin-card" style={{ marginBottom: '1rem' }}>
           <span>ADMIN-01</span>
           <h2>Enterprise Admin Dashboard</h2>

@@ -43,7 +43,8 @@
     // Use current origin so links always match the live preview host (tunnel or local).
     const BASE = window.location.origin.replace(/\/$/, '');
     const items = [
-      { label: 'الأدمن / المشرف', path: '/dashboard/admin', extra: '/dashboard/admin/permissions', extraLabel: 'الصلاحيات' },
+      { label: 'لوحة المشرف · أعلى مستوى OS', path: '/dashboard/super-admin', extra: '/dashboard/admin/permissions', extraLabel: 'الصلاحيات' },
+      { label: 'Enterprise Admin (ERP)', path: '/dashboard/admin', extra: '/dashboard/admin/permissions', extraLabel: 'الصلاحيات' },
       { label: 'الموظفون', path: '/dashboard/employee' },
       { label: 'المعلمون', path: '/dashboard/teacher' },
       { label: 'المراكز التعليمية', path: '/dashboard/educational-center' },
