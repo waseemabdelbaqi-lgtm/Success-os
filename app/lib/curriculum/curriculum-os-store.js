@@ -13,6 +13,7 @@ import {
   erpWriteCollection,
 } from '../admin/enterprise-erp-store.js';
 import { listOffers, listTeachers } from '../teachers/teachers-os-store.js';
+import { ensureS4sWaseemChemistry } from './seed-s4s-waseem-chemistry.js';
 
 const MAX_OUTLINE_CHARS = 120000;
 const MAX_FILE_NAME = 180;
@@ -306,6 +307,12 @@ function haystack(teacher) {
  * Match approved teachers + published offers to a lesson/outline context.
  */
 export function matchTeachersForLesson(context = {}) {
+  try {
+    ensureS4sWaseemChemistry();
+  } catch {
+    // Seed is best-effort; matching still proceeds with existing profiles.
+  }
+
   const subjects = erpList(context.subjects)
     .map((s) => String(s).toLowerCase())
     .filter(Boolean);
@@ -358,6 +365,12 @@ export function matchTeachersForLesson(context = {}) {
 }
 
 export function getCurriculumOsSnapshot() {
+  let s4s = null;
+  try {
+    s4s = ensureS4sWaseemChemistry();
+  } catch {
+    s4s = null;
+  }
   const outlines = listCurriculumOutlines();
   return {
     counts: {
@@ -368,12 +381,23 @@ export function getCurriculumOsSnapshot() {
       offersLive: listOffers({ publishedOnly: true }).length,
     },
     outlines: outlines.slice(0, 40),
+    featuredTeacher: s4s
+      ? {
+          id: s4s.teacher?.id,
+          fullName: s4s.teacher?.fullName,
+          offerId: s4s.offer?.id,
+          lessonSlug: s4s.lessonSlug,
+          lessonHref: s4s.lessonHref,
+          source: 'https://www.success4sureacademy.com/waseem-al-labadi',
+        }
+      : null,
     doctrine: {
       titleAr: 'عقيدة المناهج الحية',
       lines: [
         'الملف يُستقبل → يُحوَّل إلى outline → يُربط بدرس تفاعلي.',
         'الدرس التفاعلي/ثلاثي الأبعاد أداة دراسة — المعلم الحقيقي هو صاحب العرض.',
         'الشريك يرفع المناهج؛ المنصة تربطها بالمكتبة والمعلمين والجذور.',
+        'Success 4 Sure · Mr. Waseem Al-Labadi يقود شرح الكيمياء ≥30 دقيقة على المنصة.',
       ],
     },
   };

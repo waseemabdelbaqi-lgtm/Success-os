@@ -131,6 +131,58 @@ export const CURRICULUM_TREE: CurriculumNode[] = [
                   },
                 ],
               },
+              {
+                slug: "ap-chemistry",
+                name: "AP Chemistry",
+                children: [
+                  {
+                    slug: "atomic-structure",
+                    name: "Atomic Structure",
+                    children: [
+                      {
+                        slug: "particles-and-nuclides",
+                        name: "Particles, Z & A",
+                        children: [
+                          {
+                            slug: "atomic-structure-part-1",
+                            name: "Atomic Structure Part 1",
+                            lessonSlug: "s4s-est-chemistry-atomic-structure",
+                          },
+                        ],
+                      },
+                    ],
+                  },
+                ],
+              },
+            ],
+          },
+          {
+            slug: "est",
+            name: "EST · Success 4 Sure",
+            children: [
+              {
+                slug: "secondary",
+                name: "Secondary / Exam Prep",
+                children: [
+                  {
+                    slug: "chemistry",
+                    name: "Chemistry",
+                    children: [
+                      {
+                        slug: "atomic-structure",
+                        name: "Atomic Structure",
+                        children: [
+                          {
+                            slug: "atomic-structure-part-1",
+                            name: "Atomic Structure Part 1 · Mr. Waseem Al-Labadi",
+                            lessonSlug: "s4s-est-chemistry-atomic-structure",
+                          },
+                        ],
+                      },
+                    ],
+                  },
+                ],
+              },
             ],
           },
         ],

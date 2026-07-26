@@ -91,6 +91,9 @@ export default async function GlobalLessonPage({
       storageKey={`dl-workspace:${slugs.join("/")}`}
       teacherSubjects={[
         slugs[4],
+        "Chemistry",
+        "chemistry",
+        "كيمياء",
         "physics",
         "فيزياء",
         "رياضيات",
@@ -98,6 +101,9 @@ export default async function GlobalLessonPage({
       ].filter(Boolean)}
       teacherCurricula={[
         slugs[2],
+        "EST",
+        "AP",
+        "Success 4 Sure",
         "IB",
         "ib",
         "توجيهي",

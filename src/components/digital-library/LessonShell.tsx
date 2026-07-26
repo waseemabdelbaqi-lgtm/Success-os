@@ -37,6 +37,17 @@ export function LessonShell({
   teacherCurricula = ["IB", "ib"],
 }: Props) {
   const isJordan = lesson.slug.startsWith("jordan-");
+  const isS4s = lesson.slug.startsWith("s4s-");
+  const bridgeSubjects = isJordan
+    ? ["رياضيات", "الرياضيات", "math", "علوم", ...teacherSubjects]
+    : isS4s
+      ? ["Chemistry", "chemistry", "كيمياء", "الكيمياء", ...teacherSubjects]
+      : teacherSubjects;
+  const bridgeCurricula = isJordan
+    ? ["Jordan", "national", "الصف الأول", ...teacherCurricula]
+    : isS4s
+      ? ["EST", "AP", "Success 4 Sure", "S4S", ...teacherCurricula]
+      : teacherCurricula;
   return (
     <div className="dl-lesson">
       <header className="dl-lesson-hero">
@@ -49,9 +60,11 @@ export function LessonShell({
           ))}
         </nav>
         <p className="dl-kicker">
-          {isJordan
-            ? "الأردن · درس تفاعلي · معلّم حقيقي"
-            : "درس تفاعلي · يقوده معلّم حقيقي"}
+          {isS4s
+            ? "Success 4 Sure · Mr. Waseem Al-Labadi · معلّم حقيقي"
+            : isJordan
+              ? "الأردن · درس تفاعلي · معلّم حقيقي"
+              : "درس تفاعلي · يقوده معلّم حقيقي"}
         </p>
         <h1>{lesson.title}</h1>
         <p className="dl-hero-lead">{lesson.subtitle}</p>
@@ -80,16 +93,8 @@ export function LessonShell({
       <GamifiedQuiz items={lesson.quiz} />
       <RealTeacherBridge
         lessonTitle={lesson.title}
-        subjects={
-          lesson.teacherExplanation
-            ? ["رياضيات", "الرياضيات", "math", ...teacherSubjects]
-            : teacherSubjects
-        }
-        curricula={
-          lesson.teacherExplanation
-            ? ["Jordan", "national", "الصف الأول", ...teacherCurricula]
-            : teacherCurricula
-        }
+        subjects={bridgeSubjects}
+        curricula={bridgeCurricula}
       />
 
       <footer className="dl-sources">

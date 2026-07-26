@@ -17,6 +17,15 @@ export default function DigitalLibraryHubPage() {
     "quantum-physics",
     "photoelectric-effect",
   ]);
+  const s4sChemistryHref = lessonHref([
+    "international-systems",
+    "global",
+    "est",
+    "secondary",
+    "chemistry",
+    "atomic-structure",
+    "atomic-structure-part-1",
+  ]);
 
   return (
     <div className="dl-hub" dir="rtl">
@@ -88,6 +97,21 @@ export default function DigitalLibraryHubPage() {
             }}
           >
             الأردن · صف 1 رياضيات · خط الأعداد
+          </Link>
+          <Link
+            href={`${s4sChemistryHref}#teacher-explain`}
+            style={{
+              display: "inline-flex",
+              background: "#9e1722",
+              color: "#f2d77c",
+              fontWeight: 800,
+              padding: "0.7rem 1rem",
+              borderRadius: "0.75rem",
+              textDecoration: "none",
+              border: "1px solid rgba(242,215,124,.55)",
+            }}
+          >
+            S4S · Waseem Al-Labadi · Atomic Structure 35m
           </Link>
         </p>
       </header>
