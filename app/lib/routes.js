@@ -51,8 +51,8 @@ export const ROUTES = Object.freeze({
 export const joinFinishDestination = (portal) => {
   if (portal === 'teacher') return '/teacher-portal';
   if (portal === 'employer') return '/jobs';
-  if (portal === 'jobseeker') return '/jobseeker-portal';
-  if (portal === 'student') return '/student-portal';
+  if (portal === 'jobseeker') return '/jobs/dashboard';
+  if (portal === 'student') return '/students/dashboard';
   if (['center', 'school', 'university', 'college'].includes(portal)) {
     return `/control-center?role=institution&from=join&portal=${encodeURIComponent(portal)}`;
   }
