@@ -89,26 +89,13 @@ export default async function GlobalLessonPage({
       lesson={lesson}
       crumbs={[{ label: "Library", href: "/digital-library" }, ...crumbs]}
       storageKey={`dl-workspace:${slugs.join("/")}`}
-      teacherSubjects={[
-        slugs[4],
-        "Chemistry",
-        "chemistry",
-        "كيمياء",
-        "physics",
-        "فيزياء",
-        "رياضيات",
-        "math",
-      ].filter(Boolean)}
+      teacherSubjects={[slugs[4], "رياضيات", "math", "علوم", "science"].filter(Boolean)}
       teacherCurricula={[
         slugs[2],
-        "EST",
-        "AP",
-        "Success 4 Sure",
-        "IB",
-        "ib",
-        "توجيهي",
         "Jordan",
         "national",
+        "المنهاج الوطني",
+        "Elementary",
         "الصف الأول",
       ].filter(Boolean)}
     />
