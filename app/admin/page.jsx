@@ -44,6 +44,18 @@ export default function AdminPage() {
         </section>
 
         <section className="os-card admin-card" style={{ marginBottom: '1rem' }}>
+          <span>TEACHERS OS</span>
+          <h2>لوحات المعلمين — حصص ومبيعات وإشراف</h2>
+          <p>
+            تسجيل وثائق المعلم، رفع الحصص المسجلة، أونلاين/وجاهي مع السعر والمدة والمنطقة، أرباح بعد
+            خصم 10% للمنصة، وتبليغ التخلف لقرار المشرف.
+          </p>
+          <a className="button" href="/dashboard/teachers">
+            افتح لوحات المعلمين →
+          </a>
+        </section>
+
+        <section className="os-card admin-card" style={{ marginBottom: '1rem' }}>
           <span>ADMIN-01</span>
           <h2>Enterprise Admin Dashboard</h2>
           <p>

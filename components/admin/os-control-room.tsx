@@ -254,6 +254,12 @@ export function OsControlRoom(): ReactNode {
                 {isAr ? "لوحات الموظفين" : "Employees OS"}
               </Link>
               <Link
+                href="/dashboard/teachers"
+                className="rounded-xl border border-white/30 bg-white/10 px-4 py-2.5 text-sm font-semibold text-white"
+              >
+                {isAr ? "لوحات المعلمين" : "Teachers OS"}
+              </Link>
+              <Link
                 href="/dashboard/links"
                 className="rounded-xl border border-white/30 bg-white/10 px-4 py-2.5 text-sm font-semibold text-white"
               >
