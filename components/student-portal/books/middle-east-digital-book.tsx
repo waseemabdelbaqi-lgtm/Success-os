@@ -500,6 +500,7 @@ export function DigitalBookReader({ bookId }: { bookId: string }) {
               curriculum={book.curriculum}
               lessonTitle={current.lesson.title}
               slides={lessonSlides}
+              videoUrl="/media/ap-physics-1-position-velocity.mp4"
             />
           </section>
 

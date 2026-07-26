@@ -46,13 +46,19 @@ export function BookLessonMediaPlayer({
   videoUrl,
   dir = 'rtl',
 }: BookLessonMediaPlayerProps) {
-  const [mode, setMode] = useState<'slideshow' | 'video'>('slideshow');
+  const [mode, setMode] = useState<'slideshow' | 'video'>(
+    videoUrl ? 'video' : 'slideshow',
+  );
   const [playing, setPlaying] = useState(false);
   const [segment, setSegment] = useState(0);
   const [sellOpen, setSellOpen] = useState(false);
   const [password, setPassword] = useState('');
   const [sellNotice, setSellNotice] = useState('');
-  const [videoReady] = useState(Boolean(videoUrl));
+  const videoReady = Boolean(videoUrl);
+
+  useEffect(() => {
+    if (videoUrl) setMode('video');
+  }, [videoUrl]);
 
   const safeSlides = useMemo(
     () =>
