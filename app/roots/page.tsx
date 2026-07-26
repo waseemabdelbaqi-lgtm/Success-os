@@ -148,7 +148,7 @@ export default function RootsPage(): ReactNode {
             مش واجهات فوق التراب. هاي الشرايين: هوية، رحلة، مطابقة، معاملة، دليل، وتدقيق — تسقي
             المعلم والطالب والشريك والباحث من نواة واحدة. سابق عصره لأنه يخلي المنصة كائن حي مو كتالوج.
           </p>
-          <p className="mt-2 text-xs text-[#f2d77c]/m?.steward}</p>
+          <p className="mt-2 text-xs text-[#f2d77c]">{m?.steward}</p>
           <div className="mt-6 flex flex-wrap gap-2">
             <button
               type="button"
