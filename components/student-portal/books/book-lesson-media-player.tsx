@@ -88,8 +88,11 @@ export function BookLessonMediaPlayer({
     return () => clearTimeout(timer);
   }, [playing, segment, safeSlides.length, mode]);
 
-  const current = safeSlides[segment] || safeSlides[0];
-  const progress = ((segment + 1) / safeSlides.length) * 100;
+  const current =
+    safeSlides[segment] ??
+    safeSlides[0] ??
+    ({ title: lessonTitle, body: '', kind: 'intro' } as Slide);
+  const progress = ((segment + 1) / Math.max(safeSlides.length, 1)) * 100;
   const predictorHref = `/student/predictor?bookId=${encodeURIComponent(bookId)}&lesson=${encodeURIComponent(lessonTitle)}`;
 
   async function createProtectedSale() {
