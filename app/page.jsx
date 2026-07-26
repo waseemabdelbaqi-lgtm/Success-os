@@ -54,7 +54,7 @@ const copy = {
     passportItems: ['Skills & mastery', 'Assessments', 'Projects & evidence', 'Verified credentials'],
     ctaEyebrow: 'The next chapter of education starts here', ctaTitle: 'Build your future with a system that grows with you.',
     ctaText: 'Join the first generation of learners shaping SUCCESS OS.', ctaButton: 'Start your journey', ctaSecondary: 'Talk to Success 4 Sure',
-    footerText: 'The AI-powered lifelong Education Operating System.', footerCols: [['Platform', 'Learning', 'AI Tutor', 'Partner Guide', 'Teachers', 'User dashboards', 'Super Admin', 'Employees OS', 'Teachers OS', 'Education Passport'], ['Programs', 'EST & ACT', 'AP', 'IGCSE', 'A Level'], ['Company', 'About', 'Safety & Privacy', 'Contact', 'Success 4 Sure Academy']],
+    footerText: 'The AI-powered lifelong Education Operating System.', footerCols: [['Platform', 'Learning', 'AI Tutor', 'Roots', 'Partner Guide', 'Teachers', 'User dashboards', 'Super Admin', 'Employees OS', 'Teachers OS', 'Education Passport'], ['Programs', 'EST & ACT', 'AP', 'IGCSE', 'A Level'], ['Company', 'About', 'Safety & Privacy', 'Contact', 'Success 4 Sure Academy']],
     rights: '© 2026 SUCCESS OS by Success 4 Sure. All rights reserved.',
     modalTitle: 'Begin your SUCCESS OS journey', modalText: 'Choose who you are. We will shape the next step around you.',
     roles: [['Student', 'Start a personalized learning journey'], ['Parent', 'Support progress with age-appropriate insight'], ['Teacher', 'Teach, mentor, and grow your impact'], ['Institution', 'Connect your learners and programs']],
@@ -110,7 +110,7 @@ const copy = {
     passportItems: ['المهارات والإتقان', 'الاختبارات', 'المشاريع والأدلة', 'الشهادات الموثقة'],
     ctaEyebrow: 'الفصل القادم من التعليم يبدأ هنا', ctaTitle: 'ابنِ مستقبلك مع نظام يكبر معك.',
     ctaText: 'كن من الجيل الأول الذي يشارك في بناء SUCCESS OS.', ctaButton: 'ابدأ رحلتك', ctaSecondary: 'تواصل مع Success 4 Sure',
-    footerText: 'نظام التعليم المدعوم بالذكاء الاصطناعي مدى الحياة.', footerCols: [['المنصة', 'التعلم', 'المعلم الذكي', 'دليل الشريك', 'المعلمون', 'لوحات المستخدمين', 'لوحة المشرف', 'لوحات الموظفين', 'لوحات المعلمين', 'الجواز التعليمي'], ['البرامج', 'EST وACT', 'AP', 'IGCSE', 'A Level'], ['الشركة', 'من نحن', 'الأمان والخصوصية', 'تواصل معنا', 'Success 4 Sure Academy']],
+    footerText: 'نظام التعليم المدعوم بالذكاء الاصطناعي مدى الحياة.', footerCols: [['المنصة', 'التعلم', 'المعلم الذكي', 'الجذور', 'دليل الشريك', 'المعلمون', 'لوحات المستخدمين', 'لوحة المشرف', 'لوحات الموظفين', 'لوحات المعلمين', 'الجواز التعليمي'], ['البرامج', 'EST وACT', 'AP', 'IGCSE', 'A Level'], ['الشركة', 'من نحن', 'الأمان والخصوصية', 'تواصل معنا', 'Success 4 Sure Academy']],
     rights: '© 2026 SUCCESS OS by Success 4 Sure. جميع الحقوق محفوظة.',
     modalTitle: 'ابدأ رحلتك مع SUCCESS OS', modalText: 'اختر دورك وسنبني الخطوة التالية حول احتياجك.',
     roles: [['طالب', 'ابدأ رحلة تعلم شخصية'], ['ولي أمر', 'تابع التقدم بصلاحيات مناسبة للعمر'], ['معلم', 'علّم ووجّه ووسع أثرك'], ['مؤسسة', 'اربط طلابك وبرامجك']],
@@ -183,8 +183,8 @@ export default function HomePage() {
   const partnerGateways=['teacher','center','school','university','employer'];
   const searchRoutes={teacher:'/teachers',center:'/partners/discover',school:'/partners/discover',university:'/admissions',employer:'/partners/discover?audience=jobseeker'};
   const footerLinks = {
-    Platform: { Learning: '/programs', 'AI Tutor': '/tutor', 'Partner Guide': '/guide', Teachers: '/teachers', 'User dashboards': '/dashboard/links', 'Super Admin': '/dashboard/super-admin', 'Employees OS': '/dashboard/employees', 'Teachers OS': '/dashboard/teachers', 'Education Passport': '/passport' },
-    المنصة: { التعلم: '/programs', 'المعلم الذكي': '/tutor', 'دليل الشريك': '/guide', المعلمون: '/teachers', 'لوحات المستخدمين': '/dashboard/links', 'لوحة المشرف': '/dashboard/super-admin', 'لوحات الموظفين': '/dashboard/employees', 'لوحات المعلمين': '/dashboard/teachers', 'الجواز التعليمي': '/passport' },
+    Platform: { Learning: '/programs', 'AI Tutor': '/tutor', Roots: '/roots', 'Partner Guide': '/guide', Teachers: '/teachers', 'User dashboards': '/dashboard/links', 'Super Admin': '/dashboard/super-admin', 'Employees OS': '/dashboard/employees', 'Teachers OS': '/dashboard/teachers', 'Education Passport': '/passport' },
+    المنصة: { التعلم: '/programs', 'المعلم الذكي': '/tutor', 'الجذور': '/roots', 'دليل الشريك': '/guide', المعلمون: '/teachers', 'لوحات المستخدمين': '/dashboard/links', 'لوحة المشرف': '/dashboard/super-admin', 'لوحات الموظفين': '/dashboard/employees', 'لوحات المعلمين': '/dashboard/teachers', 'الجواز التعليمي': '/passport' },
     Programs: { 'EST وACT': '/courses', EST: '/courses', ACT: '/courses', AP: '/courses', IGCSE: '/courses', 'A Level': '/courses', 'EST & ACT': '/courses' },
     البرامج: { 'EST وACT': '/courses', AP: '/courses', IGCSE: '/courses', 'A Level': '/courses' },
     Company: { About: '/about', 'Safety & Privacy': '/trust', Contact: '/contact', 'Success 4 Sure Academy': 'https://www.success4sureacademy.com/' },

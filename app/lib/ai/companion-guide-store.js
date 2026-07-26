@@ -101,6 +101,12 @@ const SURFACES = Object.freeze([
     path: '/admissions',
     tier: 'partners',
   },
+  {
+    id: 'os_roots',
+    labelAr: 'جذور المنظومة',
+    path: '/roots',
+    tier: 'core',
+  },
 ]);
 
 export const PARTNERSHIP_PROTOCOL = Object.freeze({

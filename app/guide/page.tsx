@@ -217,6 +217,12 @@ export default function CompanionGuidePage(): ReactNode {
             >
               لوحة المعلم
             </Link>
+            <Link
+              href="/roots"
+              className="rounded-xl border border-[#f2d77c]/50 bg-[#f2d77c]/15 px-4 py-2.5 text-sm font-semibold text-[#f2d77c]"
+            >
+              جذور المنظومة
+            </Link>
           </div>
         </div>
       </header>

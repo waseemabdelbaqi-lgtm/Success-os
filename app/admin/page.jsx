@@ -43,6 +43,18 @@ export default function AdminPage() {
           </a>
         </section>
 
+        <section className="os-card admin-card" style={{ marginBottom: '1rem', background: 'linear-gradient(160deg,#0c0608,#4b0a11)', color: '#fff' }}>
+          <span style={{ color: '#f2d77c' }}>SUCCESS OS ROOTS · SHARAYEEN</span>
+          <h2 style={{ color: '#fff' }}>جذور المنظومة — شرايين الحياة</h2>
+          <p style={{ color: 'rgba(255,255,255,0.88)' }}>
+            طبقة الأساس: نواة الإنسان، التعلم، التدريس، الشراكة، المهن، القبول، التشغيل، والجهاز
+            العصبي الذكي. ازرع الجذور قبل ما تطلع لفوق.
+          </p>
+          <a className="button" href="/roots" style={{ background: '#f2d77c', color: '#301218' }}>
+            افتح الجذور →
+          </a>
+        </section>
+
         <section className="os-card admin-card" style={{ marginBottom: '1rem' }}>
           <span>PARTNERS OS · ADMISSIONS</span>
           <h2>لوحات الشركاء + قبول الجامعات</h2>
