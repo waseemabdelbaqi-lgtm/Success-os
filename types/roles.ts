@@ -181,7 +181,7 @@ export const ROLE_DEFINITIONS: Record<UserRole, RoleDefinition> = {
     slug: "employee",
     label: "Employee",
     description: "Internal staff tasks and HR self-service.",
-    dashboardPath: "/dashboard/employee",
+    dashboardPath: "/dashboard/employees",
     tier: "platform",
     selfRegisterable: false,
     category: "platform",

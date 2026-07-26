@@ -21,8 +21,25 @@ export default function AdminPage() {
             أعلى طبقة تحكم في SUCCESS OS: صحة النظام، الصلاحيات، ERP، البوابات، المحتوى، المالية،
             والتدقيق من غرفة واحدة.
           </p>
-          <a className="button" href="/dashboard/super-admin" style={{ background: '#fff', color: '#9e1722' }}>
-            افتح لوحة المشرف →
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.6rem' }}>
+            <a className="button" href="/dashboard/super-admin" style={{ background: '#fff', color: '#9e1722' }}>
+              افتح لوحة المشرف →
+            </a>
+            <a className="button" href="/dashboard/employees" style={{ background: 'rgba(255,255,255,0.12)', color: '#fff', border: '1px solid rgba(255,255,255,0.35)' }}>
+              لوحات الموظفين →
+            </a>
+          </div>
+        </section>
+
+        <section className="os-card admin-card" style={{ marginBottom: '1rem' }}>
+          <span>EMPLOYEES OS</span>
+          <h2>لوحات الموظفين — أعلى مستوى تشغيل</h2>
+          <p>
+            غرفة تحكم دوائر الشركة: الموارد البشرية، المالية، القانونية، التقنية، التسويق، المحتوى،
+            الأكاديميا، والدعم — مع لوحة الموظف الشخصية.
+          </p>
+          <a className="button" href="/dashboard/employees">
+            افتح لوحات الموظفين →
           </a>
         </section>
 

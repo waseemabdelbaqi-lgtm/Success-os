@@ -855,8 +855,9 @@ export const USER_CONTROL_DASHBOARD_ROLES = Object.freeze([
 /** Explicit public link directory requested by product owner. */
 export const PUBLIC_DASHBOARD_LINKS = Object.freeze([
   { key: 'super_admin', labelAr: 'لوحة المشرف · أعلى مستوى OS', labelEn: 'Super Admin · Highest OS layer', href: '/dashboard/super-admin' },
+  { key: 'employees_os', labelAr: 'لوحات الموظفين · أعلى مستوى', labelEn: 'Employees OS · Highest staff layer', href: '/dashboard/employees' },
   { key: 'admin', labelAr: 'Enterprise Admin (ERP)', labelEn: 'Enterprise Admin (ERP)', href: '/dashboard/admin' },
-  { key: 'employee', labelAr: 'الموظفون', labelEn: 'Employees', href: '/dashboard/employee' },
+  { key: 'employee', labelAr: 'لوحة الموظف الشخصية', labelEn: 'Personal employee board', href: '/dashboard/employee' },
   { key: 'teacher', labelAr: 'المعلمون', labelEn: 'Teachers', href: '/dashboard/teacher' },
   { key: 'educational_center', labelAr: 'المراكز التعليمية', labelEn: 'Educational Centers', href: '/dashboard/educational-center' },
   { key: 'school', labelAr: 'المدارس', labelEn: 'Schools', href: '/dashboard/school' },

@@ -64,10 +64,25 @@ const OS_DOMAINS: OsDomain[] = [
     href: "/dashboard/admin",
     links: [
       { label: "Enterprise Admin", href: "/dashboard/admin" },
+      { label: "لوحات الموظفين", href: "/dashboard/employees" },
       { label: "المالية", href: "/dashboard/admin/finance" },
       { label: "الطلاب", href: "/dashboard/admin/students" },
       { label: "المعلمون", href: "/dashboard/admin/teachers" },
       { label: "الشركاء", href: "/dashboard/admin/partners" },
+    ],
+  },
+  {
+    id: "employees",
+    tag: "02B · STAFF",
+    titleAr: "لوحات الموظفين",
+    titleEn: "Employees OS",
+    descAr: "أعلى طبقة لتشغيل موظفي الشركة ودوائرها: HR، مالية، قانونية، تقنية، ودعم.",
+    href: "/dashboard/employees",
+    links: [
+      { label: "غرفة موظفي الشركة", href: "/dashboard/employees" },
+      { label: "لوحة الموظف", href: "/dashboard/employee" },
+      { label: "الموارد البشرية", href: "/dashboard/admin/human-resources" },
+      { label: "سجل الموظفين", href: "/dashboard/admin/employees" },
     ],
   },
   {
@@ -231,6 +246,12 @@ export function OsControlRoom(): ReactNode {
                 className="rounded-xl border border-white/30 bg-white/10 px-4 py-2.5 text-sm font-semibold text-white"
               >
                 {isAr ? "توزيع الصلاحيات" : "Permissions"}
+              </Link>
+              <Link
+                href="/dashboard/employees"
+                className="rounded-xl border border-white/30 bg-white/10 px-4 py-2.5 text-sm font-semibold text-white"
+              >
+                {isAr ? "لوحات الموظفين" : "Employees OS"}
               </Link>
               <Link
                 href="/dashboard/links"
