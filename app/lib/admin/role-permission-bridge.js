@@ -137,7 +137,8 @@ export function buildRoleControlDashboard(roleKey, options = {}) {
 }
 
 function resolveDashboardPath(roleKey) {
-  if (roleKey === 'student') return '/student/dashboard';
+  if (roleKey === 'student') return '/students/dashboard';
+  if (roleKey === 'job_seeker' || roleKey === 'jobseeker') return '/jobs/dashboard';
   if (roleKey === 'admin') return '/dashboard/admin';
   if (roleKey === 'super_admin') return '/dashboard/super-admin';
   if (roleKey === 'employee') return '/dashboard/employees';

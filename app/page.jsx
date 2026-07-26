@@ -191,18 +191,18 @@ export default function HomePage() {
     الشركة: { 'من نحن': '/about', 'الأمان والخصوصية': '/trust', 'تواصل معنا': '/contact', 'Success 4 Sure Academy': 'https://www.success4sureacademy.com/' },
   };
   const dashboardRoutes = {
-    student: '/student-portal',
+    student: '/students/dashboard',
     teacher: '/teachers/dashboard',
     center: '/dashboard/educational-center',
     school: '/dashboard/school',
     university: '/dashboard/university',
     employer: '/dashboard/employer',
-    jobseeker: '/dashboard/job-seeker',
+    jobseeker: '/jobs/dashboard',
     join: '/dashboard/links',
   };
   const roleDestinations = {
-    Student: '/student-portal',
-    طالب: '/student-portal',
+    Student: '/students/dashboard',
+    طالب: '/students/dashboard',
     Parent: '/dashboard/parent',
     'ولي أمر': '/dashboard/parent',
     Teacher: '/teachers/dashboard',
@@ -291,7 +291,7 @@ export default function HomePage() {
         <div className="container">
           <header><div><small>{lang==='en'?'EIGHT CONNECTED GATEWAYS':'ثماني بوابات مترابطة'}</small><h2>{lang==='en'?'Choose where your SUCCESS journey begins':'اختر البوابة التي تبدأ منها رحلتك'}</h2><p>{lang==='en'?'Search for a trusted partner or join the network through a dedicated path.':'ابحث عن شريك موثوق أو انضم إلى الشبكة من خلال مسار واضح ومستقل.'}</p></div><a href="/join-us">{lang==='en'?'Partnership gateway':'بوابة انضم إلينا'} ←</a></header>
           <div className="gateway-join-steps"><span><b>1</b>{lang==='en'?'Choose your gateway':'اختر بوابتك'}</span><i></i><span><b>2</b>{lang==='en'?'Add your basic details':'أدخل بياناتك الأساسية'}</span><i></i><span><b>3</b>{lang==='en'?'Open your private journey':'انتقل لمساحتك الخاصة'}</span></div>
-          <div className="gateway-join-grid">{gateways.map(([number,icon,label,category,tags,description,id])=><article className={`gateway-join-card gateway-${id}`} key={id}><div className="gateway-card-head"><span>{icon}</span><small>{lang==='en'?`GATEWAY ${number}`:`البوابة ${number}`}</small></div><div className="gateway-card-copy"><em>{category}</em><h3>{label}</h3><p>{description}</p><strong>{tags}</strong></div><div className="gateway-card-actions"><a href={dashboardRoutes[id]||'/dashboard/links'}><span>{lang==='en'?'Open dashboard':'افتح اللوحة'}</span><b>▣</b></a>{partnerGateways.includes(id)?<><a href={searchRoutes[id]}><span>{lang==='en'?`Find ${label}`:`ابحث في ${label}`}</span><b>⌕</b></a><a href={`/join-us?role=${id}`}><span>{lang==='en'?`Join as ${label}`:`انضم إلى ${label}`}</span><b>＋</b></a></>:null}{!partnerGateways.includes(id)?<a href={id==='student'?'/student-portal':id==='jobseeker'?'/jobseeker-portal':'/join-us'}><span>{id==='join'?(lang==='en'?'Partnerships':'الشراكات'):(lang==='en'?'Open gateway':'البوابة')}</span><b>←</b></a>:null}</div></article>)}</div>
+          <div className="gateway-join-grid">{gateways.map(([number,icon,label,category,tags,description,id])=><article className={`gateway-join-card gateway-${id}`} key={id}><div className="gateway-card-head"><span>{icon}</span><small>{lang==='en'?`GATEWAY ${number}`:`البوابة ${number}`}</small></div><div className="gateway-card-copy"><em>{category}</em><h3>{label}</h3><p>{description}</p><strong>{tags}</strong></div><div className="gateway-card-actions"><a href={dashboardRoutes[id]||'/dashboard/links'}><span>{lang==='en'?'Open dashboard':'افتح اللوحة'}</span><b>▣</b></a>{partnerGateways.includes(id)?<><a href={searchRoutes[id]}><span>{lang==='en'?`Find ${label}`:`ابحث في ${label}`}</span><b>⌕</b></a><a href={`/join-us?role=${id}`}><span>{lang==='en'?`Join as ${label}`:`انضم إلى ${label}`}</span><b>＋</b></a></>:null}{!partnerGateways.includes(id)?<a href={id==='student'?'/students/dashboard':id==='jobseeker'?'/jobs/dashboard':'/join-us'}><span>{id==='join'?(lang==='en'?'Partnerships':'الشراكات'):(lang==='en'?'Open gateway':'البوابة')}</span><b>←</b></a>:null}</div></article>)}</div>
           <section className="work-with-us-network">
             <div className="network-copy"><small>{lang==='en'?'CONNECTED PARTNERSHIP NETWORK':'شبكة الشراكة المتصلة'}</small><h2>{lang==='en'?'Work with SUCCESS OS':'اعمل معنا'}</h2><p>{lang==='en'?'Join the education-to-employment ecosystem through the role that fits you.':'انضم إلى منظومة تصل التعليم بالجامعة والعمل من خلال الدور المناسب لك.'}</p></div>
             <div className="network-map">

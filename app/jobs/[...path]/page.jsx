@@ -4,7 +4,7 @@ import { useParams } from 'next/navigation';
 
 const targets = {
   onboarding: '/profile?role=jobseeker',
-  dashboard: '/jobseeker-portal',
+  dashboard: '/jobs/dashboard',
   search: '/jobs',
   companies: '/jobs?view=companies',
   applications: '/application-tracker',

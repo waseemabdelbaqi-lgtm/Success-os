@@ -44,6 +44,23 @@ export default function AdminPage() {
         </section>
 
         <section className="os-card admin-card" style={{ marginBottom: '1rem' }}>
+          <span>STUDENTS OS · CAREERS OS</span>
+          <h2>غرفة تحكم الطالب وغرفة قيادة الباحث عن عمل</h2>
+          <p>
+            لوحات تخيّلية للمسار التعليمي والمهني: حلم الطالب ومدارات التعلم، ورادار الوظائف ومنصات
+            الإطلاق للباحث — مع فصل الخصوصية بين البوابتين.
+          </p>
+          <div style={{ display: 'flex', gap: '0.6rem', flexWrap: 'wrap' }}>
+            <a className="button" href="/students/dashboard">
+              غرفة تحكم الطالب →
+            </a>
+            <a className="button" href="/jobs/dashboard">
+              غرفة قيادة الباحث →
+            </a>
+          </div>
+        </section>
+
+        <section className="os-card admin-card" style={{ marginBottom: '1rem' }}>
           <span>TEACHERS OS</span>
           <h2>لوحات المعلمين — حصص ومبيعات وإشراف</h2>
           <p>

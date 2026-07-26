@@ -309,6 +309,15 @@ export const ROLE_DASHBOARD_CATALOG = Object.freeze({
     labelAr: 'الباحث عن عمل',
     modules: [
       {
+        id: 'careers-os',
+        title: 'Careers control cockpit',
+        titleAr: 'غرفة قيادة الباحث عن عمل',
+        description: 'Launch pads, match score, applications.',
+        descriptionAr: 'منصات الإطلاق والمطابقة والطلبات.',
+        href: '/jobs/dashboard',
+        permissions: ['orgs.read', 'partners.read', 'users.read', 'academic.read', 'content.read'],
+      },
+      {
         id: 'search',
         title: 'Job Search',
         titleAr: 'البحث عن عمل',
@@ -323,7 +332,7 @@ export const ROLE_DASHBOARD_CATALOG = Object.freeze({
         titleAr: 'طلباتي',
         description: 'Track submitted applications.',
         descriptionAr: 'متابعة الطلبات المقدمة.',
-        href: '/jobseeker-portal',
+        href: '/application-tracker',
         permissions: ['users.read', 'orgs.read'],
       },
       {
@@ -342,6 +351,15 @@ export const ROLE_DASHBOARD_CATALOG = Object.freeze({
     label: 'Student',
     labelAr: 'الطالب',
     modules: [
+      {
+        id: 'students-os',
+        title: 'Students OS control room',
+        titleAr: 'غرفة تحكم الطالب',
+        description: 'Dream, quests, materials, teachers.',
+        descriptionAr: 'الحلم والمهام والمواد والمعلمون.',
+        href: '/students/dashboard',
+        permissions: ['academic.read', 'content.read'],
+      },
       {
         id: 'learning',
         title: 'Learning Home',
@@ -894,7 +912,8 @@ export const PUBLIC_DASHBOARD_LINKS = Object.freeze([
   { key: 'university', labelAr: 'الجامعات', labelEn: 'Universities', href: '/dashboard/university' },
   { key: 'recruitment_company', labelAr: 'شركات التوظيف', labelEn: 'Recruitment Companies', href: '/dashboard/recruitment-company' },
   { key: 'employer', labelAr: 'أصحاب العمل', labelEn: 'Employers', href: '/dashboard/employer' },
-  { key: 'job_seeker', labelAr: 'الباحثون عن العمل', labelEn: 'Job Seekers', href: '/dashboard/job-seeker' },
+  { key: 'job_seeker', labelAr: 'غرفة قيادة الباحث عن عمل', labelEn: 'Job seeker control cockpit', href: '/jobs/dashboard' },
+  { key: 'students_os', labelAr: 'غرفة تحكم الطالب', labelEn: 'Students OS control room', href: '/students/dashboard' },
   { key: 'parent', labelAr: 'أولياء الأمور', labelEn: 'Parents', href: '/dashboard/parent' },
   { key: 'school_student', labelAr: 'طالب مدرسة', labelEn: 'School Student', href: '/dashboard/school-student' },
   { key: 'university_student', labelAr: 'طالب جامعة', labelEn: 'University Student', href: '/dashboard/university-student' },
