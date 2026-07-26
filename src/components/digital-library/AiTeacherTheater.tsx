@@ -2,19 +2,29 @@
 
 import { useEffect, useMemo, useRef, useState } from "react";
 
+type Board = {
+  kind: "title" | "numberline" | "equation" | "cheer" | "story";
+  title?: string;
+  from?: number;
+  hops?: number;
+  equation?: string;
+  story?: string;
+};
+
 type Beat = {
   id: string;
-  seconds: number;
+  file: string;
+  duration: number;
   caption: string;
-  board: {
-    kind: "title" | "numberline" | "equation" | "cheer" | "story";
-    title?: string;
-    from?: number;
-    hops?: number;
-    equation?: string;
-    story?: string;
-  };
-  mood: "smile" | "talk" | "point" | "cheer";
+  board: Board;
+};
+
+type Manifest = {
+  slug: string;
+  voice: string;
+  teacherName: string;
+  teacherImage: string;
+  beats: Beat[];
 };
 
 type Props = {
@@ -23,159 +33,28 @@ type Props = {
   teacherName?: string;
 };
 
-const MATH_BEATS: Beat[] = [
-  {
-    id: "b1",
-    seconds: 6,
-    caption: "يا قمري… أنا معلّمتك لاما. اليوم نجمع بلعب!",
-    board: { kind: "title", title: "الجمع بخط الأعداد" },
-    mood: "smile",
-  },
-  {
-    id: "b2",
-    seconds: 7,
-    caption: "معي 3 حلوات… وصاحبي أعطاني 2. كم صار؟",
-    board: { kind: "story", story: "٣ حلوات + ٢ حلوات = ؟" },
-    mood: "talk",
-  },
-  {
-    id: "b3",
-    seconds: 8,
-    caption: "الجمع يعني نحط مع بعض… ونقفز لليمين على الخط.",
-    board: { kind: "numberline", from: 0, hops: 0 },
-    mood: "point",
-  },
-  {
-    id: "b4",
-    seconds: 9,
-    caption: "نبدأ على الرقم 3… هذا بيتنا الأول.",
-    board: { kind: "numberline", from: 3, hops: 0 },
-    mood: "point",
-  },
-  {
-    id: "b5",
-    seconds: 10,
-    caption: "أربع قفزات… قفزة… قفزة… قفزة… قفزة!",
-    board: { kind: "numberline", from: 3, hops: 4 },
-    mood: "talk",
-  },
-  {
-    id: "b6",
-    seconds: 8,
-    caption: "وقفنا على 7. إذن 3 + 4 = 7. برافو!",
-    board: { kind: "equation", equation: "٣ + ٤ = ٧" },
-    mood: "cheer",
-  },
-  {
-    id: "b7",
-    seconds: 8,
-    caption: "جرّب معي: ابدأ من 5 واقفز مرتين… وين نوصل؟",
-    board: { kind: "numberline", from: 5, hops: 2 },
-    mood: "point",
-  },
-  {
-    id: "b8",
-    seconds: 7,
-    caption: "وصلنا 7! 5 + 2 = 7. أنت بطل الصف.",
-    board: { kind: "equation", equation: "٥ + ٢ = ٧" },
-    mood: "cheer",
-  },
-  {
-    id: "b9",
-    seconds: 8,
-    caption: "قصة: 6 تفاحات… وأمها أعطتها 3. اقفز!",
-    board: { kind: "numberline", from: 6, hops: 3 },
-    mood: "talk",
-  },
-  {
-    id: "b10",
-    seconds: 7,
-    caption: "صارت 9 تفاحات. يلا نلعب كمان!",
-    board: { kind: "equation", equation: "٦ + ٣ = ٩" },
-    mood: "cheer",
-  },
-  {
-    id: "b11",
-    seconds: 8,
-    caption: "قاعدة ذهبية: ابدأ → اقفز → اقرأ الناتج.",
-    board: { kind: "title", title: "ابدأ → اقفز → اقرأ" },
-    mood: "smile",
-  },
-  {
-    id: "b12",
-    seconds: 6,
-    caption: "أحبك يا قمري… أشوفك بالتفاعليات!",
-    board: { kind: "cheer", title: "أنت نجم الصف ⭐" },
-    mood: "cheer",
-  },
-];
-
-const SCIENCE_BEATS: Beat[] = [
-  {
-    id: "s1",
-    seconds: 6,
-    caption: "يا حبيبي… أنا معلّمتك رنيم.",
-    board: { kind: "title", title: "نتشابه ونختلف" },
-    mood: "smile",
-  },
-  {
-    id: "s2",
-    seconds: 8,
-    caption: "كلنا بشر… نتنفس ونحتاج مي وأكل.",
-    board: { kind: "story", story: "نتشابه: هوا · مي · أكل · لعب" },
-    mood: "talk",
-  },
-  {
-    id: "s3",
-    seconds: 8,
-    caption: "ونختلف بالطول والشعر والهوايات… وهذا حلو!",
-    board: { kind: "story", story: "نختلف باحترام 💛" },
-    mood: "cheer",
-  },
-  {
-    id: "s4",
-    seconds: 7,
-    caption: "وعد الصف: ما بنجرح حدّا. بنحتفل ببعض.",
-    board: { kind: "cheer", title: "وعد الحب والاحترام" },
-    mood: "smile",
-  },
-];
-
-function beatsFor(slug: string): Beat[] {
-  if (slug.includes("science")) return SCIENCE_BEATS;
-  return MATH_BEATS;
-}
-
-function NumberLineBoard({
-  from = 0,
-  hops = 0,
-  animate,
-}: {
-  from?: number;
-  hops?: number;
-  animate: boolean;
-}) {
+function NumberLineBoard({ from = 0, hops = 0 }: { from?: number; hops?: number }) {
   const end = from + hops;
   const marks = Array.from({ length: 21 }, (_, i) => i);
   return (
-    <div className="att-nl" aria-hidden>
-      <div className="att-nl-rail">
+    <div className="vp-nl" dir="ltr">
+      <div className="vp-nl-rail">
         {marks.map((n) => (
           <span key={n} className={n === from || n === end ? "hot" : ""}>
             {n}
           </span>
         ))}
       </div>
-      <div className="att-nl-track" dir="ltr">
+      <div className="vp-nl-track">
         <i
-          className={animate && hops ? "hop" : ""}
           style={{
-            left: hops ? `calc(${(from / 20) * 100}% + ${(hops / 20) * 100}%)` : `${(from / 20) * 100}%`,
-            ["--travel" as string]: `${(hops / 20) * 100}%`,
+            left: hops
+              ? `calc(${(from / 20) * 100}% + ${(hops / 20) * 100}%)`
+              : `${(from / 20) * 100}%`,
           }}
         />
       </div>
-      <p className="att-nl-label">
+      <p>
         نبدأ {from}
         {hops ? ` · نقفز ${hops} · نصل ${end}` : ""}
       </p>
@@ -183,158 +62,145 @@ function NumberLineBoard({
   );
 }
 
-function TeacherAvatar({ mood }: { mood: Beat["mood"] }) {
+function BoardPanel({ board }: { board: Board }) {
   return (
-    <div className={`att-teacher ${mood}`} aria-hidden>
-      <div className="att-hair" />
-      <div className="att-face">
-        <span className="eye l" />
-        <span className="eye r" />
-        <span className="mouth" />
-      </div>
-      <div className="att-body">
-        <div className="att-arm left" />
-        <div className="att-torso" />
-        <div className="att-arm right" />
-      </div>
-      <div className="att-badge">AI</div>
+    <div className="vp-board" key={`${board.kind}-${board.title}-${board.equation}-${board.from}-${board.hops}`}>
+      {(board.kind === "title" || board.kind === "cheer") && <h3>{board.title}</h3>}
+      {board.kind === "story" && <p className="story">{board.story}</p>}
+      {board.kind === "equation" && <p className="eq">{board.equation}</p>}
+      {board.kind === "numberline" && <NumberLineBoard from={board.from} hops={board.hops} />}
     </div>
   );
 }
 
 /**
- * Cinematic AI teacher lesson player — screen + teacher + board.
- * No browser TTS. Feels like watching a class video.
+ * Broadcast-grade AI lesson player: real female neural voice + teacher on screen.
  */
-export function AiTeacherTheater({
-  slug,
-  title,
-  teacherName = "أ. لاما النوري",
-}: Props) {
-  const beats = useMemo(() => beatsFor(slug), [slug]);
-  const totalSec = useMemo(() => beats.reduce((n, b) => n + b.seconds, 0), [beats]);
-  const [playing, setPlaying] = useState(false);
+export function AiTeacherTheater({ slug, title, teacherName = "أ. لاما النوري" }: Props) {
+  const [manifest, setManifest] = useState<Manifest | null>(null);
   const [idx, setIdx] = useState(0);
-  const [elapsedInBeat, setElapsedInBeat] = useState(0);
+  const [playing, setPlaying] = useState(false);
+  const [t, setT] = useState(0);
+  const [ready, setReady] = useState(false);
   const [showActs, setShowActs] = useState(false);
-  const raf = useRef<number | null>(null);
-  const last = useRef<number>(0);
-  const beat = beats[idx] || beats[0];
+  const audioRef = useRef<HTMLAudioElement | null>(null);
+  const beats = manifest?.beats || [];
+  const beat = beats[idx];
 
-  const globalElapsed = useMemo(() => {
-    let t = 0;
-    for (let i = 0; i < idx; i++) t += beats[i].seconds;
-    return t + elapsedInBeat;
-  }, [beats, idx, elapsedInBeat]);
+  const total = useMemo(() => beats.reduce((n, b) => n + (b.duration || 0), 0), [beats]);
+  const elapsed = useMemo(() => {
+    let s = 0;
+    for (let i = 0; i < idx; i++) s += beats[i]?.duration || 0;
+    return s + t;
+  }, [beats, idx, t]);
 
   useEffect(() => {
-    if (!playing) {
-      if (raf.current) cancelAnimationFrame(raf.current);
+    const path = slug.includes("science")
+      ? "/ai-lessons/g1-science/manifest.json"
+      : "/ai-lessons/g1-math/manifest.json";
+    fetch(path, { cache: "no-store" })
+      .then((r) => r.json())
+      .then((j) => {
+        setManifest(j);
+        setReady(true);
+      })
+      .catch(() => setReady(true));
+  }, [slug]);
+
+  useEffect(() => {
+    const a = audioRef.current;
+    if (!a || !beat?.file) return;
+    a.src = beat.file;
+    a.load();
+    setT(0);
+    if (playing) {
+      a.play().catch(() => setPlaying(false));
+    }
+  }, [beat?.file, idx]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  useEffect(() => {
+    const a = audioRef.current;
+    if (!a) return;
+    if (playing) a.play().catch(() => setPlaying(false));
+    else a.pause();
+  }, [playing]);
+
+  function onEnded() {
+    if (idx >= beats.length - 1) {
+      setPlaying(false);
+      setShowActs(true);
       return;
     }
-    last.current = performance.now();
-    const tick = (now: number) => {
-      const dt = (now - last.current) / 1000;
-      last.current = now;
-      setElapsedInBeat((e) => {
-        const next = e + dt;
-        const limit = beats[idx]?.seconds || 1;
-        if (next >= limit) {
-          if (idx >= beats.length - 1) {
-            setPlaying(false);
-            setShowActs(true);
-            return limit;
-          }
-          setIdx((i) => i + 1);
-          return 0;
-        }
-        return next;
-      });
-      raf.current = requestAnimationFrame(tick);
-    };
-    raf.current = requestAnimationFrame(tick);
-    return () => {
-      if (raf.current) cancelAnimationFrame(raf.current);
-    };
-  }, [playing, idx, beats]);
+    setIdx((i) => i + 1);
+  }
 
-  function seek(i: number) {
-    setIdx(Math.max(0, Math.min(beats.length - 1, i)));
-    setElapsedInBeat(0);
+  function seekBeat(i: number) {
+    setIdx(i);
+    setT(0);
     setShowActs(false);
+    setPlaying(true);
   }
 
-  function onScrub(pct: number) {
-    const target = pct * totalSec;
-    let acc = 0;
-    for (let i = 0; i < beats.length; i++) {
-      if (acc + beats[i].seconds >= target) {
-        setIdx(i);
-        setElapsedInBeat(Math.max(0, target - acc));
-        setShowActs(false);
-        return;
-      }
-      acc += beats[i].seconds;
-    }
+  function fmt(sec: number) {
+    const s = Math.max(0, Math.floor(sec));
+    return `${Math.floor(s / 60)}:${String(s % 60).padStart(2, "0")}`;
   }
 
-  const pct = totalSec ? Math.min(100, (globalElapsed / totalSec) * 100) : 0;
+  const pct = total ? Math.min(100, (elapsed / total) * 100) : 0;
+  const img = manifest?.teacherImage || "/ai-lessons/g1-math/teacher.png";
+  const name = manifest?.teacherName || teacherName;
 
   return (
-    <section className="att" id="ai-class" dir="rtl">
+    <section className="vp" id="ai-class" dir="rtl">
       <style>{css}</style>
-      <div className="att-screen">
-        <div className="att-top">
-          <span>SUCCESS OS · بث مباشر AI</span>
-          <b>
-            {teacherName} · {title}
-          </b>
-        </div>
-
-        <div className="att-stage">
-          <div className="att-left">
-            <TeacherAvatar mood={beat.mood} />
-            <p className="att-name">{teacherName}</p>
+      <div className="vp-frame">
+        <div className="vp-video">
+          <img
+            className={`vp-teacher ${playing ? "talking" : ""}`}
+            src={img}
+            alt={name}
+          />
+          <div className="vp-grade">بث تعليمي · SUCCESS OS</div>
+          <div className="vp-overlay-board">
+            {beat?.board ? <BoardPanel board={beat.board} /> : <div className="vp-board"><h3>{title}</h3></div>}
           </div>
-          <div className="att-board" key={beat.id}>
-            {beat.board.kind === "title" || beat.board.kind === "cheer" ? (
-              <h3 className="pop">{beat.board.title}</h3>
-            ) : null}
-            {beat.board.kind === "story" ? <p className="story pop">{beat.board.story}</p> : null}
-            {beat.board.kind === "equation" ? (
-              <p className="eq pop">{beat.board.equation}</p>
-            ) : null}
-            {beat.board.kind === "numberline" ? (
-              <NumberLineBoard
-                from={beat.board.from}
-                hops={beat.board.hops}
-                animate={playing || elapsedInBeat > 0}
-              />
-            ) : null}
+          <div className="vp-caption">
+            <strong>{name}</strong>
+            <p>{beat?.caption || (ready ? "اضغط تشغيل لسماع الشرح" : "جاري التحميل…")}</p>
           </div>
+          {playing ? <div className="vp-live">● LIVE VOICE</div> : null}
         </div>
 
-        <div className="att-caption">
-          <p key={beat.id}>{beat.caption}</p>
-        </div>
+        <audio
+          ref={audioRef}
+          preload="auto"
+          onTimeUpdate={() => setT(audioRef.current?.currentTime || 0)}
+          onEnded={onEnded}
+        />
 
-        <div className="att-controls">
+        <div className="vp-bar">
           <button
             type="button"
-            className="play"
+            className="main"
             onClick={() => {
-              if (idx >= beats.length - 1 && elapsedInBeat >= (beat?.seconds || 0) - 0.05) {
-                seek(0);
+              if (!beats.length) return;
+              if (!playing && idx >= beats.length - 1 && t > (beat?.duration || 1) - 0.3) {
+                setIdx(0);
+                setT(0);
               }
               setPlaying((p) => !p);
             }}
           >
-            {playing ? "❚❚ إيقاف" : "▶ مشاهدة الحصة"}
+            {playing ? "إيقاف" : "▶ تشغيل الحصة"}
           </button>
-          <button type="button" onClick={() => seek(Math.max(0, idx - 1))}>
+          <button type="button" onClick={() => seekBeat(Math.max(0, idx - 1))} disabled={!idx}>
             السابق
           </button>
-          <button type="button" onClick={() => seek(Math.min(beats.length - 1, idx + 1))}>
+          <button
+            type="button"
+            onClick={() => seekBeat(Math.min(beats.length - 1, idx + 1))}
+            disabled={idx >= beats.length - 1}
+          >
             التالي
           </button>
           <button
@@ -346,152 +212,133 @@ export function AiTeacherTheater({
               document.getElementById("ai-acts")?.scrollIntoView({ behavior: "smooth" });
             }}
           >
-            التفاعليات
+            تفاعليات
           </button>
-          <span className="att-clock">
-            {fmt(globalElapsed)} / {fmt(totalSec)}
+          <span className="clock">
+            {fmt(elapsed)} / {fmt(total || 0)}
           </span>
         </div>
 
         <div
-          className="att-scrub"
-          role="slider"
-          aria-valuemin={0}
-          aria-valuemax={100}
-          aria-valuenow={Math.round(pct)}
-          tabIndex={0}
+          className="vp-scrub"
           onClick={(e) => {
+            if (!beats.length) return;
             const rect = e.currentTarget.getBoundingClientRect();
-            const x = e.clientX - rect.left;
-            // RTL: right is start
-            const ratio = 1 - x / rect.width;
-            onScrub(Math.min(1, Math.max(0, ratio)));
+            const ratio = 1 - (e.clientX - rect.left) / rect.width;
+            let acc = 0;
+            const target = ratio * total;
+            for (let i = 0; i < beats.length; i++) {
+              if (acc + beats[i].duration >= target) {
+                setIdx(i);
+                setPlaying(true);
+                requestAnimationFrame(() => {
+                  const a = audioRef.current;
+                  if (a) a.currentTime = Math.max(0, target - acc);
+                });
+                return;
+              }
+              acc += beats[i].duration;
+            }
           }}
         >
           <i style={{ width: `${pct}%` }} />
         </div>
+
+        <ol className="vp-chapters">
+          {beats.map((b, i) => (
+            <li key={b.id}>
+              <button type="button" className={i === idx ? "on" : ""} onClick={() => seekBeat(i)}>
+                <em>{fmt(beats.slice(0, i).reduce((n, x) => n + x.duration, 0))}</em>
+                <span>{b.caption.slice(0, 42)}{b.caption.length > 42 ? "…" : ""}</span>
+              </button>
+            </li>
+          ))}
+        </ol>
       </div>
 
-      {showActs ? <QuickActs slug={slug} /> : null}
+      {showActs ? <QuickActs /> : null}
+      <p className="vp-note">
+        صوت المعلّمة: عصبي أردني نسائي (Sana) · الصورة مولّدة للمنصة · أسماء وهمية
+      </p>
     </section>
   );
 }
 
-function QuickActs({ slug }: { slug: string }) {
-  const math = !slug.includes("science");
-  const items = math
-    ? [
-        { q: "3 + 4 = ؟", a: "7", choices: ["5", "6", "7", "8"] },
-        { q: "ابدأ من 5 واقفز 2. وين؟", a: "7", choices: ["6", "7", "8"] },
-        { q: "6 + 3 = ؟", a: "9", choices: ["8", "9", "10"] },
-      ]
-    : [
-        { q: "نتنفس مع بعض. هذا؟", a: "متشابه", choices: ["متشابه", "مختلف"] },
-        { q: "هوايات مختلفة. هذا؟", a: "مختلف", choices: ["عيب", "مختلف"] },
-      ];
-  const [picked, setPicked] = useState<Record<number, string>>({});
+function QuickActs() {
+  const items = [
+    { q: "٣ + ٤ = ؟", a: "٧", choices: ["٥", "٦", "٧", "٨"] },
+    { q: "ابدأ من ٥ واقفز ٢. وين؟", a: "٧", choices: ["٦", "٧", "٨"] },
+    { q: "٦ + ٣ = ؟", a: "٩", choices: ["٨", "٩", "١٠"] },
+  ];
   const [ok, setOk] = useState<Record<number, boolean | null>>({});
-
   return (
-    <div className="att-acts" id="ai-acts">
-      <h3>تفاعليات سريعة</h3>
+    <div className="vp-acts" id="ai-acts">
+      <h3>تفاعليات بعد الحصة</h3>
       {items.map((it, i) => (
         <article key={it.q}>
           <p>{it.q}</p>
           <div>
             {it.choices.map((c) => (
-              <button
-                key={c}
-                type="button"
-                className={picked[i] === c ? "on" : ""}
-                onClick={() => {
-                  setPicked((p) => ({ ...p, [i]: c }));
-                  setOk((o) => ({ ...o, [i]: c === it.a }));
-                }}
-              >
+              <button key={c} type="button" onClick={() => setOk((o) => ({ ...o, [i]: c === it.a }))}>
                 {c}
               </button>
             ))}
           </div>
           {ok[i] === true ? <em className="good">برافو!</em> : null}
-          {ok[i] === false ? <em className="bad">جرّب كمان</em> : null}
+          {ok[i] === false ? <em className="bad">سمع المقطع مرة ثانية</em> : null}
         </article>
       ))}
-      <p className="att-next">
-        كمان: <a href="#visualizer">المجسّم 3D</a> · <a href="#quiz">اختبار</a>
-      </p>
     </div>
   );
 }
 
-function fmt(sec: number) {
-  const s = Math.max(0, Math.floor(sec));
-  const m = Math.floor(s / 60);
-  const r = s % 60;
-  return `${m}:${String(r).padStart(2, "0")}`;
-}
-
 const css = `
-.att{--b:#9e1722;--d:#4b0a11;--g:#f2d77c;--ink:#1a0a0c;margin:1rem 0 1.5rem;font-family:"IBM Plex Sans Arabic","Segoe UI",Tahoma,sans-serif}
-.att-screen{border-radius:1.1rem;overflow:hidden;background:#14080a;box-shadow:0 18px 50px rgba(75,10,17,.35);border:1px solid rgba(242,215,124,.25)}
-.att-top{display:flex;justify-content:space-between;gap:.75rem;flex-wrap:wrap;padding:.65rem 1rem;background:linear-gradient(90deg,#4b0a11,#9e1722);color:#fff;font-size:.82rem}
-.att-top b{color:var(--g)}
-.att-stage{display:grid;grid-template-columns:200px 1fr;gap:1rem;padding:1.1rem 1.1rem .5rem;min-height:320px;background:
-  radial-gradient(ellipse 60% 50% at 20% 20%, rgba(242,215,124,.16), transparent 55%),
-  linear-gradient(165deg,#2a1014 0%, #4b0a11 45%, #1a080b 100%);
+.vp{--b:#9e1722;--d:#4b0a11;--g:#f2d77c;margin:1rem 0 1.25rem;font-family:"IBM Plex Sans Arabic","Segoe UI",Tahoma,sans-serif;color:#fff}
+.vp-frame{background:#0b0708;border-radius:1.15rem;overflow:hidden;border:1px solid rgba(242,215,124,.28);box-shadow:0 24px 70px rgba(0,0,0,.45)}
+.vp-video{position:relative;aspect-ratio:16/9;background:#12090b;overflow:hidden}
+.vp-teacher{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:62% center;transform:scale(1.02);transition:filter .3s}
+.vp-teacher.talking{filter:saturate(1.08) contrast(1.04);animation:pulseSoft 1.8s ease-in-out infinite}
+.vp-grade{position:absolute;top:.7rem;right:.7rem;background:rgba(0,0,0,.55);border:1px solid rgba(242,215,124,.35);color:var(--g);font-weight:800;font-size:.72rem;padding:.28rem .55rem;border-radius:.45rem;backdrop-filter:blur(6px)}
+.vp-live{position:absolute;top:.7rem;left:.7rem;background:#9e1722;color:#fff;font-weight:900;font-size:.7rem;padding:.28rem .55rem;border-radius:.45rem;letter-spacing:.04em}
+.vp-overlay-board{position:absolute;top:12%;left:3%;width:min(42%,340px);max-height:58%;}
+.vp-board{background:rgba(255,249,242,.94);color:var(--d);border-radius:.85rem;padding:.85rem;border:2px solid rgba(242,215,124,.75);box-shadow:0 12px 40px rgba(0,0,0,.35);min-height:140px;display:flex;align-items:center;justify-content:center;animation:pop .35s ease}
+.vp-board h3,.vp-board .eq,.vp-board .story{margin:0;text-align:center;font-weight:900}
+.vp-board h3{font-size:clamp(1.1rem,2.4vw,1.7rem)}
+.vp-board .eq{font-size:clamp(1.7rem,4vw,2.6rem)}
+.vp-board .story{font-size:clamp(1.05rem,2.4vw,1.45rem);line-height:1.5}
+.vp-caption{position:absolute;left:3%;right:3%;bottom:3%;background:linear-gradient(180deg,rgba(0,0,0,.2),rgba(0,0,0,.78));border:1px solid rgba(255,255,255,.12);border-radius:.8rem;padding:.7rem .9rem;backdrop-filter:blur(8px)}
+.vp-caption strong{display:block;color:var(--g);font-size:.78rem;margin-bottom:.2rem}
+.vp-caption p{margin:0;font-size:clamp(.95rem,2.1vw,1.2rem);font-weight:700;line-height:1.55}
+.vp-bar{display:flex;flex-wrap:wrap;gap:.45rem;align-items:center;padding:.75rem .9rem .45rem;background:#140a0c}
+.vp-bar button{border:0;border-radius:.55rem;padding:.55rem .85rem;font:inherit;font-weight:800;cursor:pointer;background:rgba(255,255,255,.1);color:#fff}
+.vp-bar button:disabled{opacity:.35;cursor:not-allowed}
+.vp-bar button.main{background:var(--g);color:var(--d)}
+.vp-bar button.gold{background:var(--b);color:var(--g);border:1px solid rgba(242,215,124,.35)}
+.vp-bar .clock{margin-inline-start:auto;color:rgba(255,255,255,.7);font-weight:700;font-variant-numeric:tabular-nums}
+.vp-scrub{margin:0 .9rem .7rem;height:8px;border-radius:99px;background:rgba(255,255,255,.12);cursor:pointer;overflow:hidden;direction:ltr}
+.vp-scrub i{display:block;height:100%;background:linear-gradient(90deg,#f2d77c,#9e1722)}
+.vp-chapters{list-style:none;margin:0;padding:0 .7rem .8rem;display:grid;gap:.3rem;max-height:180px;overflow:auto;background:#140a0c}
+.vp-chapters button{width:100%;display:flex;gap:.65rem;text-align:right;border:0;border-radius:.5rem;padding:.45rem .6rem;background:rgba(255,255,255,.05);color:#fff;font:inherit;cursor:pointer}
+.vp-chapters button.on{background:rgba(158,23,34,.55);outline:1px solid rgba(242,215,124,.4)}
+.vp-chapters em{font-style:normal;color:var(--g);font-weight:800;min-width:2.4rem}
+.vp-chapters span{font-size:.86rem;opacity:.92}
+.vp-note{margin:.55rem 0 0;color:#6b3a40;font-size:.78rem;font-weight:700}
+.vp-acts{margin-top:.9rem;background:linear-gradient(165deg,#fff9f2,#f1e2d5);color:var(--d);border-radius:1rem;padding:1rem;border:1px solid rgba(75,10,17,.1)}
+.vp-acts h3{margin:.1rem 0 .7rem}
+.vp-acts article{margin-bottom:.65rem;padding:.7rem;border-radius:.7rem;background:rgba(255,255,255,.8)}
+.vp-acts p{margin:.1rem 0 .4rem;font-weight:800}
+.vp-acts button{margin:.12rem;border:0;border-radius:.45rem;padding:.4rem .7rem;font:inherit;font-weight:800;background:rgba(158,23,34,.1);color:var(--d);cursor:pointer}
+.vp-acts .good{color:#14532d;font-weight:800}.vp-acts .bad{color:#9e1722;font-weight:800}
+.vp-nl{width:100%}.vp-nl-rail{display:flex;justify-content:space-between;font-size:.58rem;font-weight:800;margin-bottom:.35rem}
+.vp-nl-rail .hot{color:var(--b);transform:scale(1.2)}
+.vp-nl-track{position:relative;height:12px;border-radius:99px;background:linear-gradient(90deg,#d8c2ad,#c9b09a)}
+.vp-nl-track i{position:absolute;top:-9px;width:26px;height:26px;margin-left:-13px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#ffd98a,#9e1722);transition:left .9s ease;box-shadow:0 4px 10px rgba(75,10,17,.3)}
+.vp-nl p{margin:.4rem 0 0;text-align:center;font-weight:800;color:var(--b);font-size:.85rem}
+@media(max-width:700px){
+  .vp-overlay-board{position:absolute;top:auto;bottom:28%;left:4%;right:4%;width:auto;max-height:34%}
+  .vp-board{min-height:110px;padding:.65rem}
+  .vp-caption{padding:.55rem .7rem}
 }
-@media(max-width:760px){.att-stage{grid-template-columns:1fr;min-height:420px}}
-.att-left{display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:.4rem}
-.att-name{color:var(--g);font-weight:800;margin:0;font-size:.9rem}
-.att-teacher{position:relative;width:150px;height:210px}
-.att-hair{position:absolute;top:8px;left:22px;right:22px;height:70px;background:#2b1520;border-radius:40px 40px 18px 18px;box-shadow:inset 0 -10px 0 #3d1d2c}
-.att-face{position:absolute;top:38px;left:34px;width:82px;height:90px;background:linear-gradient(180deg,#f3c7a8,#e8b08f);border-radius:42% 42% 48% 48%;box-shadow:0 8px 0 rgba(0,0,0,.12)}
-.att-face .eye{position:absolute;top:34px;width:10px;height:12px;background:#2a1014;border-radius:50%}
-.att-face .eye.l{left:20px}.att-face .eye.r{right:20px}
-.att-face .mouth{position:absolute;left:28px;bottom:22px;width:26px;height:10px;border:3px solid #9e1722;border-top:0;border-radius:0 0 16px 16px}
-.att-teacher.talk .mouth{animation:talk .35s ease-in-out infinite alternate}
-.att-teacher.cheer .mouth{height:14px;width:28px;border-radius:0 0 20px 20px;bottom:18px}
-.att-teacher.point .att-arm.right{transform:rotate(-35deg) translateY(-8px)}
-.att-body{position:absolute;bottom:0;left:20px;right:20px;height:100px}
-.att-torso{position:absolute;left:22px;right:22px;top:0;bottom:10px;background:linear-gradient(180deg,#9e1722,#6d1018);border-radius:24px 24px 18px 18px}
-.att-arm{position:absolute;top:8px;width:18px;height:70px;background:#e8b08f;border-radius:12px;transition:transform .35s ease}
-.att-arm.left{left:4px;transform:rotate(12deg)}.att-arm.right{right:4px;transform:rotate(-12deg)}
-.att-teacher.talk .att-arm.right{animation:wave 1.1s ease-in-out infinite}
-.att-badge{position:absolute;top:0;left:0;background:var(--g);color:var(--d);font-weight:900;font-size:.65rem;padding:.15rem .35rem;border-radius:.35rem}
-.att-board{background:linear-gradient(160deg,#f8f1e6,#efe0cf);border-radius:1rem;padding:1rem;display:flex;align-items:center;justify-content:center;min-height:240px;border:3px solid rgba(242,215,124,.55);box-shadow:inset 0 0 0 1px rgba(75,10,17,.08)}
-.att-board h3,.att-board .eq,.att-board .story{margin:0;text-align:center;color:var(--d);font-weight:900}
-.att-board h3{font-size:clamp(1.4rem,3vw,2.1rem)}
-.att-board .eq{font-size:clamp(2rem,5vw,3.2rem);letter-spacing:.04em}
-.att-board .story{font-size:clamp(1.2rem,3vw,1.8rem);line-height:1.5}
-.pop{animation:pop .45s ease}
-.att-nl{width:100%}
-.att-nl-rail{display:flex;justify-content:space-between;gap:0;font-size:.62rem;font-weight:800;color:var(--d);margin-bottom:.45rem}
-.att-nl-rail .hot{color:var(--b);transform:scale(1.25)}
-.att-nl-track{position:relative;height:14px;border-radius:99px;background:linear-gradient(90deg,#d8c2ad,#c9b09a);margin:.35rem 0}
-.att-nl-track i{position:absolute;top:-10px;width:28px;height:28px;margin-left:-14px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#ffd98a,#9e1722);box-shadow:0 4px 10px rgba(75,10,17,.35);transition:left 1s ease}
-.att-nl-track i.hop{animation:hopx 1.05s ease; left: calc(var(--start, 0%) + var(--travel, 0%)) !important}
-.att-nl-label{margin:.4rem 0 0;text-align:center;font-weight:800;color:var(--b)}
-.att-caption{margin:.2rem 1rem .8rem;background:rgba(0,0,0,.55);color:#fff;border-radius:.75rem;padding:.75rem 1rem;min-height:3.2rem;display:flex;align-items:center;border:1px solid rgba(242,215,124,.2)}
-.att-caption p{margin:0;font-size:clamp(1rem,2.4vw,1.25rem);font-weight:700;line-height:1.55;animation:fade .35s ease}
-.att-controls{display:flex;flex-wrap:wrap;gap:.45rem;align-items:center;padding:0 1rem .75rem}
-.att-controls button{border:0;border-radius:.6rem;padding:.55rem .85rem;font:inherit;font-weight:800;cursor:pointer;background:rgba(255,255,255,.12);color:#fff}
-.att-controls button.play{background:var(--g);color:var(--d)}
-.att-controls button.gold{background:#9e1722;color:var(--g);border:1px solid rgba(242,215,124,.4)}
-.att-clock{margin-inline-start:auto;color:rgba(255,255,255,.75);font-weight:700;font-variant-numeric:tabular-nums}
-.att-scrub{margin:0 1rem 1rem;height:10px;border-radius:99px;background:rgba(255,255,255,.15);cursor:pointer;overflow:hidden;direction:ltr}
-.att-scrub i{display:block;height:100%;background:linear-gradient(90deg,#f2d77c,#9e1722);border-radius:99px}
-.att-acts{margin-top:1rem;background:linear-gradient(165deg,#fff9f2,#f3e4d8);border-radius:1rem;padding:1rem;border:1px solid rgba(75,10,17,.1)}
-.att-acts h3{margin:.1rem 0 .7rem;color:var(--d)}
-.att-acts article{margin-bottom:.7rem;padding:.7rem;border-radius:.75rem;background:rgba(255,255,255,.75)}
-.att-acts p{margin:.1rem 0 .45rem;font-weight:800;color:var(--d)}
-.att-acts button{margin:.15rem;border:0;border-radius:.5rem;padding:.45rem .75rem;font:inherit;font-weight:800;background:rgba(158,23,34,.1);color:var(--d);cursor:pointer}
-.att-acts button.on{background:var(--b);color:#fff}
-.att-acts .good{color:#14532d;font-weight:800}.att-acts .bad{color:#9e1722;font-weight:800}
-.att-next{color:#6b3a40;font-weight:700}
-.att-next a{color:var(--b);font-weight:900}
-@keyframes talk{from{transform:scaleY(.7)}to{transform:scaleY(1.15)}}
-@keyframes wave{0%,100%{transform:rotate(-12deg)}50%{transform:rotate(-28deg) translateY(-6px)}}
-@keyframes hopx{0%{transform:translateY(0)}40%{transform:translateY(-14px)}100%{transform:translateY(0)}}
-@keyframes pop{from{opacity:0;transform:scale(.92)}to{opacity:1;transform:scale(1)}}
-@keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+@keyframes pop{from{opacity:0;transform:translateY(8px) scale(.97)}to{opacity:1;transform:none}}
+@keyframes pulseSoft{0%,100%{filter:saturate(1.05)}50%{filter:saturate(1.18) brightness(1.03)}}
 `;
