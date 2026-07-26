@@ -13,6 +13,24 @@ export const ROLE_DASHBOARD_CATALOG = Object.freeze({
     labelAr: 'المعلم',
     modules: [
       {
+        id: 'teacher-control',
+        title: 'Teacher control dashboard',
+        titleAr: 'لوحة تحكم المعلم',
+        description: 'Profile, recorded lessons, prices and offers.',
+        descriptionAr: 'الملف والحصص المسجلة والأسعار والعروض.',
+        href: '/teachers/dashboard',
+        permissions: ['academic.read', 'tasks.read', 'content.write'],
+      },
+      {
+        id: 'teacher-register',
+        title: 'Teacher registration',
+        titleAr: 'تسجيل المعلم',
+        description: 'Photo, about text, intro video and documents.',
+        descriptionAr: 'الصورة والتعريف والفيديو والوثائق.',
+        href: '/teachers/register',
+        permissions: ['academic.read', 'content.write'],
+      },
+      {
         id: 'teachers-os',
         title: 'Teachers OS',
         titleAr: 'لوحات المعلمين',
@@ -27,7 +45,7 @@ export const ROLE_DASHBOARD_CATALOG = Object.freeze({
         titleAr: 'حصصي',
         description: 'Live and scheduled classes.',
         descriptionAr: 'الحصص المباشرة والمجدولة.',
-        href: '/dashboard/teachers',
+        href: '/teachers/dashboard',
         permissions: ['academic.read', 'tasks.read'],
       },
       {
