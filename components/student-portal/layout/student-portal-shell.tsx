@@ -36,14 +36,14 @@ function ShellInner({ children }: StudentPortalShellProps): ReactNode {
         />
         <div className="flex min-w-0 flex-1 flex-col overflow-hidden">
           <div className="flex-1 overflow-y-auto premium-grid">
+            {/* Avoid opacity:0 initial — if JS chunks fail/lag, content stays blank. */}
             <AnimatePresence mode="wait">
               <motion.div
                 key={pathname}
-                initial={{ opacity: 0, rotateY: direction === "rtl" ? -2 : 2, x: 12 }}
-                animate={{ opacity: 1, rotateY: 0, x: 0 }}
-                exit={{ opacity: 0, x: -8 }}
-                transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
-                style={{ transformOrigin: direction === "rtl" ? "right center" : "left center" }}
+                initial={{ opacity: 0.92, y: 8 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0.92, y: -4 }}
+                transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }}
               >
                 {children}
               </motion.div>

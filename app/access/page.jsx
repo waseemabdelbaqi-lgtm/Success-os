@@ -238,6 +238,85 @@ export default function AccessPage() {
     e.preventDefault();
     setSubmitted(true);
     runAI("journey");
+    const intent =
+      new URLSearchParams(window.location.search).get("intent") || "search";
+    const destinations = {
+      student: "/students/dashboard",
+      teacher: intent === "join" ? "/teachers/register" : "/teachers",
+      center:
+        intent === "join" ? "/partners/dashboard?type=center" : "/partners/discover",
+      school:
+        intent === "join" ? "/partners/dashboard?type=school" : "/partners/discover",
+      university:
+        intent === "join"
+          ? "/partners/dashboard?type=university"
+          : "/admissions",
+      employer:
+        intent === "join" ? "/partners/dashboard?type=employer" : "/jobs",
+      jobseeker: "/jobs/dashboard",
+    };
+    let dest = destinations[portal] || "/start-journey";
+    try {
+      const payload = {
+        portal,
+        intent,
+        name,
+        country,
+        system,
+        grade,
+        subject,
+        at: new Date().toISOString(),
+      };
+      const saved = JSON.parse(
+        window.localStorage.getItem("success-os-access-requests") || "[]",
+      );
+      window.localStorage.setItem(
+        "success-os-access-requests",
+        JSON.stringify([payload, ...saved].slice(0, 30)),
+      );
+
+      // Partner join → create Partners OS draft then open control room
+      if (
+        intent === "join" &&
+        ["university", "college", "school", "center", "employer"].includes(portal)
+      ) {
+        fetch("/api/partners-os", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            action: "registerPartner",
+            partner: {
+              type: portal === "college" ? "college" : portal,
+              orgName: name || "شريك جديد",
+              contactName: name,
+              email: `${(name || "partner").replace(/\s+/g, ".").toLowerCase()}@join.success`,
+              phone: "+962700000000",
+              country: country || "الأردن",
+              city: "",
+              about: `ملف ${portal} أُنشئ من بوابة الانضمام — أكمل البيانات من لوحة التحكم.`,
+              educationSystems: system ? [system] : [],
+              status: "draft",
+            },
+          }),
+        })
+          .then((r) => r.json())
+          .then((json) => {
+            if (json?.ok && json.partner?.id) {
+              localStorage.setItem("sos_partner_id", json.partner.id);
+              window.location.href = `/partners/dashboard?partnerId=${encodeURIComponent(json.partner.id)}&type=${encodeURIComponent(json.partner.type)}`;
+            } else {
+              window.location.href = dest;
+            }
+          })
+          .catch(() => {
+            window.location.href = dest;
+          });
+        return;
+      }
+    } catch {}
+    window.setTimeout(() => {
+      window.location.href = dest;
+    }, 700);
   }
   return (
     <div className="os-page phase11-legacy-page">
@@ -630,11 +709,17 @@ export default function AccessPage() {
             </button>
             {submitted && (
               <div className="form-success">
-                <b>✓ تم حفظ الطلب التجريبي</b>
+                <b>✓ تم حفظ طلبك</b>
                 <p>
-                  سيربط النظام الخطوة التالية بلوحتك الخاصة بعد تفعيل الحسابات
-                  والصلاحيات.
+                  يتم الآن فتح الوجهة المناسبة لبوابتك. إذا لم يحدث انتقال تلقائي،
+                  استخدم الروابط أدناه.
                 </p>
+                <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', marginTop: 10 }}>
+                  <a className="os-primary" href="/start-journey">ابدأ الرحلة</a>
+                  <a href="/student-portal">لوحة الطالب</a>
+                  <a href="/teachers">المعلمون</a>
+                  <a href="/jobseeker-portal">الباحث عن عمل</a>
+                </div>
               </div>
             )}
           </form>

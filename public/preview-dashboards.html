@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>معاينة لوحات المستخدمين · SUCCESS OS</title>
+  <style>
+    :root { --bg:#fff8f8; --card:#fff; --text:#301218; --muted:#73636a; --accent:#9e1722; --line:#ead9db; }
+    * { box-sizing: border-box; }
+    body { margin:0; font-family:"Segoe UI", Tahoma, Arial, sans-serif; background:linear-gradient(180deg,#fff1f1 0%,var(--bg) 40%,#fff8f8 100%); color:var(--text); min-height:100vh; padding:28px 16px 48px; }
+    .wrap { max-width:900px; margin:0 auto; }
+    h1 { margin:0 0 8px; font-size:1.8rem; }
+    p { color:var(--muted); line-height:1.7; }
+    .note { background:#fff1f1; border:1px solid #ead9db; border-radius:14px; padding:12px 14px; margin:18px 0 22px; color:#4b0a11; font-size:0.95rem; }
+    ol { list-style:none; padding:0; margin:0; display:grid; gap:12px; }
+    li { background:var(--card); border:1px solid var(--line); border-radius:16px; padding:14px 16px; display:flex; gap:12px; justify-content:space-between; align-items:center; flex-wrap:wrap; box-shadow:0 8px 24px rgba(75,10,17,.06); }
+    .label { font-weight:700; margin-bottom:6px; }
+    .path { font-family:ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size:.82rem; color:var(--muted); direction:ltr; text-align:right; word-break:break-all; }
+    a.btn { display:inline-flex; align-items:center; justify-content:center; background:var(--accent); color:#fff; text-decoration:none; border-radius:999px; padding:10px 16px; font-weight:700; min-width:130px; }
+    a.btn.secondary { background:#fff; color:var(--accent); border:1px solid var(--accent); }
+    .actions { display:flex; gap:8px; flex-wrap:wrap; }
+    .footer { margin-top:24px; display:flex; gap:10px; flex-wrap:wrap; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>روابط معاينة لوحات المستخدمين</h1>
+    <p>روابط عامة تعمل الآن للمعاينة. للتعديل لاحقًا افتح صفحة الصلاحيات من الأدمن.</p>
+    <div class="note">
+      صفحة الروابط العامة:
+      <div class="path" id="homeLink">/preview-dashboards.html</div>
+    </div>
+
+    <ol id="list"></ol>
+
+    <div class="footer">
+      <a class="btn secondary" id="permLink" href="/dashboard/admin/permissions">توزيع الصلاحيات</a>
+      <a class="btn secondary" id="adminLink" href="/dashboard/admin">لوحة الأدمن</a>
+    </div>
+  </div>
+
+  <script>
+    // Use current origin so links always match the live preview host (tunnel or local).
+    const BASE = window.location.origin.replace(/\/$/, '');
+    const items = [
+      { label: 'لوحة المشرف · أعلى مستوى OS', path: '/dashboard/super-admin', extra: '/dashboard/admin/permissions', extraLabel: 'الصلاحيات' },
+      { label: 'لوحات الموظفين · أعلى مستوى', path: '/dashboard/employees' },
+      { label: 'لوحات المعلمين · أعلى مستوى', path: '/dashboard/teachers' },
+      { label: 'Enterprise Admin (ERP)', path: '/dashboard/admin', extra: '/dashboard/admin/permissions', extraLabel: 'الصلاحيات' },
+      { label: 'لوحة الموظف الشخصية', path: '/dashboard/employee' },
+      { label: 'المعلمون', path: '/dashboard/teacher' },
+      { label: 'المراكز التعليمية', path: '/dashboard/educational-center' },
+      { label: 'المدارس', path: '/dashboard/school' },
+      { label: 'الكليات', path: '/dashboard/college' },
+      { label: 'الجامعات', path: '/dashboard/university' },
+      { label: 'شركات التوظيف', path: '/dashboard/recruitment-company' },
+      { label: 'أصحاب العمل', path: '/dashboard/employer' },
+      { label: 'الباحثون عن العمل', path: '/dashboard/job-seeker' },
+      { label: 'أولياء الأمور', path: '/dashboard/parent' },
+      { label: 'طالب مدرسة', path: '/dashboard/school-student' },
+      { label: 'طالب جامعة', path: '/dashboard/university-student' },
+      { label: 'بوابة الطالب (الحية)', path: '/student-portal' },
+      { label: 'بوابة المعلم (الحية)', path: '/teacher-portal' },
+      { label: 'بوابة الباحث عن عمل (الحية)', path: '/jobseeker-portal' },
+      { label: 'بوابة ولي الأمر (الحية)', path: '/parent' },
+    ];
+
+    document.getElementById('homeLink').textContent = BASE + '/preview-dashboards.html';
+    document.getElementById('permLink').href = BASE + '/dashboard/admin/permissions';
+    document.getElementById('adminLink').href = BASE + '/dashboard/admin';
+
+    const list = document.getElementById('list');
+    items.forEach((item, index) => {
+      const li = document.createElement('li');
+      const url = BASE + item.path;
+      li.innerHTML = `
+        <div>
+          <div class="label">${index + 1}) ${item.label}</div>
+          <div class="path">${url}</div>
+        </div>
+        <div class="actions">
+          <a class="btn" href="${url}" target="_blank" rel="noopener">فتح المعاينة</a>
+          ${item.extra ? `<a class="btn secondary" href="${BASE + item.extra}" target="_blank" rel="noopener">${item.extraLabel}</a>` : ''}
+        </div>
+      `;
+      list.appendChild(li);
+    });
+  </script>
+</body>
+</html>

@@ -3,7 +3,7 @@ import {useEffect,useState} from 'react';
 import {InnerNav} from '../components';
 
 const roles=[
-  ['teacher','♙','المعلمون','قدّم الحصص المباشرة والمسجلة، وحدد المناهج والأسعار والتوفر.','/access?portal=teacher&intent=join'],
+  ['teacher','♙','المعلمون','قدّم الحصص المباشرة والمسجلة، وحدد المناهج والأسعار والتوفر.','/teachers/register'],
   ['center','▦','المراكز التعليمية','أضف الدورات والمعلمين والشهادات واربط برامج المركز بالطلاب.','/access?portal=center&intent=join'],
   ['school','⌂','المدارس','اعرض النظام والصفوف والرسوم واستقبل طلبات الالتحاق المؤهلة.','/access?portal=school&intent=join'],
   ['university','🎓','الجامعات','انشر البرامج وشروط القبول والاعتراف ومسارات التقديم.','/access?portal=university&intent=join&type=university'],

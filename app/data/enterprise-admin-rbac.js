@@ -1,7 +1,17 @@
 /**
  * ADMIN-01 — Enterprise Admin RBAC matrix.
  * Every permission is individually configurable per role.
+ * Supervisor CRUD helpers are re-exported from scenario-permissions.
  */
+
+import {
+  SUPERVISOR_ROLES,
+  SCENARIO_ROLE_SCOPES,
+  canCrud,
+  canManagePermissions,
+  canPerformAction,
+  isSupervisor,
+} from './scenario-permissions.js';
 
 export const ENTERPRISE_ADMIN_PERMISSION_FLAGS = Object.freeze([
   'platform.manage',
@@ -130,8 +140,8 @@ export const ENTERPRISE_ADMIN_DEFAULT_ROLES = Object.freeze([
   {
     key: 'employee',
     name: 'Employee',
-    description: 'Internal staff',
-    permissions: ['tasks.read', 'tasks.write', 'hr.read', 'notifications.send'],
+    description: 'Internal employee control dashboard',
+    permissions: ['tasks.read', 'tasks.write', 'hr.read', 'notifications.send', 'content.read'],
   },
   {
     key: 'academic_director',
@@ -274,6 +284,104 @@ export const ENTERPRISE_ADMIN_DEFAULT_ROLES = Object.freeze([
     permissions: ['orgs.read', 'users.read', 'partners.read'],
   },
   {
+    key: 'job_seeker',
+    name: 'Job Seeker',
+    description: 'Job search and applications',
+    permissions: ['orgs.read', 'users.read', 'partners.read', 'academic.read', 'content.read'],
+  },
+  {
+    key: 'school',
+    name: 'School',
+    description: 'School institution control dashboard',
+    permissions: [
+      'orgs.read',
+      'orgs.write',
+      'students.read',
+      'students.write',
+      'teachers.read',
+      'teachers.assign',
+      'academic.read',
+      'partners.read',
+      'reports.view',
+      'reports.export',
+    ],
+  },
+  {
+    key: 'college',
+    name: 'College',
+    description: 'College institution control dashboard',
+    permissions: [
+      'orgs.read',
+      'orgs.write',
+      'students.read',
+      'students.write',
+      'teachers.read',
+      'academic.read',
+      'academic.write',
+      'partners.read',
+      'reports.view',
+      'reports.export',
+    ],
+  },
+  {
+    key: 'university',
+    name: 'University',
+    description: 'University institution control dashboard',
+    permissions: [
+      'orgs.read',
+      'orgs.write',
+      'students.read',
+      'academic.read',
+      'academic.write',
+      'partners.read',
+      'reports.view',
+      'reports.export',
+    ],
+  },
+  {
+    key: 'educational_center',
+    name: 'Educational Center',
+    description: 'Educational center control dashboard',
+    permissions: [
+      'orgs.read',
+      'orgs.write',
+      'students.read',
+      'teachers.read',
+      'academic.read',
+      'content.read',
+      'partners.read',
+      'reports.view',
+    ],
+  },
+  {
+    key: 'school_student',
+    name: 'School Student',
+    description: 'School learner control dashboard',
+    permissions: ['academic.read', 'content.read', 'students.read'],
+  },
+  {
+    key: 'university_student',
+    name: 'University Student',
+    description: 'University learner control dashboard',
+    permissions: ['academic.read', 'content.read', 'students.read', 'partners.read'],
+  },
+  {
+    key: 'social_media_manager',
+    name: 'Social Media Manager',
+    description: 'Social campaigns and publishing',
+    permissions: [
+      'social.read',
+      'social.write',
+      'social.publish',
+      'marketing.read',
+      'marketing.write',
+      'content.read',
+      'content.write',
+      'notifications.send',
+      'reports.view',
+    ],
+  },
+  {
     key: 'recruitment_company',
     name: 'Recruitment Company',
     description: 'Recruitment partner',
@@ -283,4 +391,28 @@ export const ENTERPRISE_ADMIN_DEFAULT_ROLES = Object.freeze([
 
 export function rolePermissionCount(role) {
   return Array.isArray(role?.permissions) ? role.permissions.length : 0;
+}
+
+export {
+  SUPERVISOR_ROLES,
+  canCrud,
+  canManagePermissions,
+  canPerformAction,
+  isSupervisor,
+};
+
+/** Resolve actor role from request body / headers / session fallback */
+export function resolveActorRole(input = {}) {
+  const raw =
+    input.role ||
+    input.actorRole ||
+    input.userRole ||
+    input._role ||
+    input.user ||
+    '';
+  const key = String(raw).toLowerCase().replace(/\s+/g, '_');
+  if (SUPERVISOR_ROLES.includes(key) || SCENARIO_ROLE_SCOPES[key]) return key;
+  if (key === 'مشرف' || key === 'supervisor') return 'admin';
+  if (key === 'ceo') return 'owner';
+  return key || 'employee';
 }

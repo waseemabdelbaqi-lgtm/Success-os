@@ -1,0 +1,127 @@
+name: Deploy to Vercel
+
+on:
+  push:
+    branches: [main, merge-success-os, cursor/complete-basic-structure-bca1]
+  pull_request:
+    branches: [main, merge-success-os]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pull-requests: write
+
+concurrency:
+  group: vercel-deploy-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    name: Build and deploy
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    # Set repository secrets before enabling: VERCEL_TOKEN, VERCEL_ORG_ID, VERCEL_PROJECT_ID
+
+    env:
+      VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+      VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+      NEXT_PUBLIC_APP_NAME: Success OS
+      NEXT_PUBLIC_APP_ENV: production
+      FEATURE_AUTH_ENABLED: "false"
+      NEXT_PUBLIC_FEATURE_AUTH_ENABLED: "false"
+      AUTH_SESSION_COOKIE_NAME: __session
+      AUTH_SESSION_COOKIE_MAX_AGE: "432000"
+      AUTH_SESSION_META_SECRET: success-os-preview-secret-key-32
+      AUTH_SECURE_COOKIES: "true"
+      LOG_LEVEL: info
+
+    steps:
+      - name: Require Vercel secrets
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+        run: |
+          if [ -z "$VERCEL_TOKEN" ] || [ -z "$VERCEL_ORG_ID" ] || [ -z "$VERCEL_PROJECT_ID" ]; then
+            echo "Skipping deploy: add VERCEL_TOKEN, VERCEL_ORG_ID, VERCEL_PROJECT_ID repository secrets."
+            echo "skipped=true" >> "$GITHUB_ENV"
+          else
+            echo "skipped=false" >> "$GITHUB_ENV"
+          fi
+
+      - name: Checkout
+        if: env.skipped != 'true'
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        if: env.skipped != 'true'
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: npm
+
+      - name: Install dependencies
+        if: env.skipped != 'true'
+        run: npm ci
+
+      - name: Install Vercel CLI
+        if: env.skipped != 'true'
+        run: npm install --global vercel@39
+
+      - name: Pull Vercel environment
+        if: env.skipped != 'true'
+        run: vercel pull --yes --environment=${{ github.event_name == 'pull_request' && 'preview' || 'production' }} --token=${{ secrets.VERCEL_TOKEN }}
+
+      - name: Build project artifacts
+        if: env.skipped != 'true'
+        run: |
+          if [ "${{ github.event_name }}" = "pull_request" ]; then
+            vercel build --token=${{ secrets.VERCEL_TOKEN }}
+          else
+            vercel build --prod --token=${{ secrets.VERCEL_TOKEN }}
+          fi
+
+      - name: Deploy to Vercel
+        if: env.skipped != 'true'
+        id: deploy
+        run: |
+          if [ "${{ github.event_name }}" = "pull_request" ]; then
+            url=$(vercel deploy --prebuilt --token=${{ secrets.VERCEL_TOKEN }})
+          else
+            url=$(vercel deploy --prebuilt --prod --token=${{ secrets.VERCEL_TOKEN }})
+          fi
+          echo "url=$url" >> "$GITHUB_OUTPUT"
+          echo "Deployed: $url"
+
+      - name: Comment deployment URL on PR
+        if: env.skipped != 'true' && github.event_name == 'pull_request' && steps.deploy.outputs.url != ''
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const url = '${{ steps.deploy.outputs.url }}';
+            const body = [
+              '## Deploy live',
+              '',
+              `Preview: ${url}`,
+              '',
+              'Auth is off in preview until Firebase secrets are configured.',
+            ].join('\n');
+            const { data: comments } = await github.rest.issues.listComments({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+            });
+            const existing = comments.find((c) => c.body?.includes('## Deploy live'));
+            if (existing) {
+              await github.rest.issues.updateComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                comment_id: existing.id,
+                body,
+              });
+            } else {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.issue.number,
+                body,
+              });
+            }

@@ -3,6 +3,10 @@ import { ROLE_DEFINITIONS } from "@/types/roles";
 import type { UserRole } from "@/types/roles";
 import { getPermissionsForRole } from "@/types/permissions";
 import { EmailVerificationBanner } from "@/components/auth/email-verification";
+import {
+  CONTROL_HUB_SECTIONS,
+  CONTROL_HUBS,
+} from "@/app/data/control-hubs-catalog";
 
 type RoleDashboardShellProps = {
   role: UserRole;
@@ -11,12 +15,28 @@ type RoleDashboardShellProps = {
 };
 
 const CATEGORY_LABELS: Record<string, string> = {
-  platform: "Platform Management",
-  education: "Education",
-  employment: "Employment",
-  content: "Content & Media",
-  support: "Customer Support",
+  platform: "الشركة · Platform",
+  education: "تعليم / شراكة",
+  employment: "توظيف",
+  content: "محتوى",
+  support: "دعم",
 };
+
+/** Map dashboard roles → control-hub section (users = student + job seeker only) */
+function sectionForRole(role: UserRole): "company" | "partners" | "users" {
+  if (role === "student" || role === "job_seeker") return "users";
+  if (
+    role === "teacher" ||
+    role === "school" ||
+    role === "university" ||
+    role === "educational_center" ||
+    role === "employer"
+  ) {
+    return "partners";
+  }
+  // parent + all internal staff → company (support / ops)
+  return "company";
+}
 
 export function RoleDashboardShell({
   role,
@@ -25,41 +45,82 @@ export function RoleDashboardShell({
 }: RoleDashboardShellProps): ReactNode {
   const definition = ROLE_DEFINITIONS[role];
   const permissions = getPermissionsForRole(role);
+  const sectionId = sectionForRole(role);
+  const section = CONTROL_HUB_SECTIONS.find((s) => s.id === sectionId);
+  const relatedHubs = CONTROL_HUBS.filter((h) => h.section === sectionId).slice(
+    0,
+    4,
+  );
+  const ownActions =
+    CONTROL_HUBS.find(
+      (h) =>
+        h.href.includes(definition.dashboardPath) ||
+        h.subtitle?.toLowerCase().includes(definition.label.toLowerCase()),
+    )?.actions || relatedHubs[0]?.actions || [];
 
   return (
     <div className="phase11-role-dashboard space-y-8">
       <EmailVerificationBanner />
 
       <div className="space-y-2">
-        <p className="text-sm font-medium uppercase tracking-[0.2em] text-zinc-500">
-          {CATEGORY_LABELS[definition.category] ?? definition.category}
+        <p className="text-sm font-medium uppercase tracking-[0.2em] text-[#9e1722]">
+          {CATEGORY_LABELS[definition.category] ?? definition.category} ·{" "}
+          {section?.titleAr}
         </p>
-        <h1 className="text-3xl font-semibold tracking-tight text-zinc-950">
+        <h1 className="text-3xl font-semibold tracking-tight text-[#4b0a11]">
           {definition.label} Dashboard
         </h1>
-        <p className="max-w-2xl text-zinc-600">{definition.description}</p>
+        <p className="max-w-2xl text-[#6b5a52]">{definition.description}</p>
       </div>
 
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        <DashboardCard title="Account" value={userName ?? "—"} subtitle={userEmail ?? "—"} />
+        <DashboardCard
+          title="Account"
+          value={userName ?? "—"}
+          subtitle={userEmail ?? "—"}
+        />
         <DashboardCard title="Role" value={definition.label} subtitle={role} />
         <DashboardCard
-          title="Permissions"
-          value={String(permissions.length)}
-          subtitle="Active capabilities"
+          title="Classification"
+          value={section?.titleAr ?? "—"}
+          subtitle={section?.titleEn ?? ""}
         />
       </div>
 
-      <section className="rounded-2xl border border-zinc-200 bg-white p-6 shadow-sm">
-        <h2 className="text-lg font-semibold text-zinc-900">Your permissions</h2>
-        <p className="mt-1 text-sm text-zinc-500">
+      <section className="rounded-2xl border border-[#eadde0] bg-white p-6 shadow-[0_14px_34px_rgba(75,10,17,0.06)]">
+        <h2 className="text-lg font-semibold text-[#4b0a11]">أزرار التحكم</h2>
+        <p className="mt-1 text-sm text-[#6b5a52]">
+          إجراءات مرتبطة بهذا الدور ضمن تصنيف {section?.titleAr}.
+        </p>
+        <div className="mt-4 flex flex-wrap gap-2">
+          {ownActions.map((action) => (
+            <a
+              key={`${action.href}-${action.label}`}
+              href={action.href}
+              className="rounded-full bg-[#9e1722] px-3 py-1.5 text-xs font-semibold text-white"
+            >
+              {action.label}
+            </a>
+          ))}
+          <a
+            href="/control-hubs"
+            className="rounded-full border border-[#9e1722] px-3 py-1.5 text-xs font-semibold text-[#9e1722]"
+          >
+            كل لوحات التحكم
+          </a>
+        </div>
+      </section>
+
+      <section className="rounded-2xl border border-[#eadde0] bg-white p-6 shadow-[0_14px_34px_rgba(75,10,17,0.06)]">
+        <h2 className="text-lg font-semibold text-[#4b0a11]">Your permissions</h2>
+        <p className="mt-1 text-sm text-[#6b5a52]">
           These permissions control what you can access within Success OS.
         </p>
         <div className="mt-4 flex flex-wrap gap-2">
           {permissions.map((permission) => (
             <span
               key={permission}
-              className="rounded-full bg-zinc-100 px-3 py-1 text-xs font-medium text-zinc-700"
+              className="rounded-full bg-[#fff4f4] px-3 py-1 text-xs font-medium text-[#9e1722]"
             >
               {permission}
             </span>
@@ -67,13 +128,23 @@ export function RoleDashboardShell({
         </div>
       </section>
 
-      <section className="rounded-2xl border border-dashed border-zinc-300 bg-zinc-50 p-6">
-        <h2 className="text-sm font-medium text-zinc-700">Feature modules</h2>
-        <p className="mt-1 text-sm text-zinc-500">
-          Role-specific features for {definition.label} will be mounted here in
-          upcoming development phases. The permission system and route protection
-          are fully active.
-        </p>
+      <section className="rounded-2xl border border-dashed border-[#dcc8cc] bg-[#fff8f6] p-6">
+        <h2 className="text-sm font-medium text-[#4b0a11]">
+          لوحات ضمن {section?.titleAr}
+        </h2>
+        <p className="mt-1 text-sm text-[#6b5a52]">{section?.blurbAr}</p>
+        <div className="mt-4 grid gap-3 sm:grid-cols-2">
+          {relatedHubs.map((hub) => (
+            <a
+              key={hub.id}
+              href={hub.href}
+              className="rounded-xl border border-[#eadde0] bg-white p-4 text-[#4b0a11] no-underline shadow-sm"
+            >
+              <b className="block">{hub.title}</b>
+              <small className="text-[#6b5a52]">{hub.note}</small>
+            </a>
+          ))}
+        </div>
       </section>
     </div>
   );
@@ -89,10 +160,10 @@ function DashboardCard({
   subtitle: string;
 }): ReactNode {
   return (
-    <div className="rounded-2xl border border-zinc-200 bg-white p-5 shadow-sm">
-      <p className="text-sm text-zinc-500">{title}</p>
-      <p className="mt-1 text-xl font-semibold text-zinc-900">{value}</p>
-      <p className="mt-0.5 truncate text-xs text-zinc-400">{subtitle}</p>
+    <div className="rounded-2xl border border-[#eadde0] bg-white p-5 shadow-[0_14px_34px_rgba(75,10,17,0.06)]">
+      <p className="text-sm text-[#6b5a52]">{title}</p>
+      <p className="mt-1 text-xl font-semibold text-[#1a1212]">{value}</p>
+      <p className="mt-0.5 truncate text-xs text-[#8a7872]">{subtitle}</p>
     </div>
   );
 }
