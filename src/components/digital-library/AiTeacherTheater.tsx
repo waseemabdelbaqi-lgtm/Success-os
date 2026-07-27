@@ -1,6 +1,11 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
+import {
+  AI_ASSISTANT_TEACHER_TITLE,
+  stripAiAssistantTitle,
+  withAiAssistantTitle,
+} from "@/src/lib/digital-library/ai-assistant-teacher";
 
 type Beat = {
   id: string;
@@ -11,6 +16,7 @@ type Beat = {
 type Manifest = {
   teacher?: string;
   teacherName?: string;
+  teacherTitle?: string;
   voice?: string;
   video?: string;
   poster?: string;
@@ -30,7 +36,11 @@ function fmt(sec: number) {
 }
 
 /** JoAcademy-style course lesson player: real MP4 + chapters + activities. */
-export function AiTeacherTheater({ slug, title, teacherName = "أ. لاما النوري" }: Props) {
+export function AiTeacherTheater({
+  slug,
+  title,
+  teacherName = withAiAssistantTitle("أ. لاما النوري"),
+}: Props) {
   const [manifest, setManifest] = useState<Manifest | null>(null);
   const [playing, setPlaying] = useState(false);
   const [current, setCurrent] = useState(0);
@@ -41,7 +51,8 @@ export function AiTeacherTheater({ slug, title, teacherName = "أ. لاما ال
   const beats = manifest?.beats || [];
   const videoSrc = manifest?.video;
   const poster = manifest?.poster || "/ai-lessons/g1-math/poster.jpg";
-  const name = manifest?.teacher || manifest?.teacherName || teacherName;
+  const name = withAiAssistantTitle(manifest?.teacher || manifest?.teacherName || teacherName);
+  const role = manifest?.teacherTitle || AI_ASSISTANT_TEACHER_TITLE;
 
   useEffect(() => {
     const path = slug.includes("science")
@@ -85,7 +96,7 @@ export function AiTeacherTheater({ slug, title, teacherName = "أ. لاما ال
         <style>{css}</style>
         <div className="ja-empty">
           <h2>{title}</h2>
-          <p>فيديو الحصة قيد التحضير للمعلمة {name}.</p>
+          <p>فيديو الحصة قيد التحضير لـ {name}.</p>
         </div>
       </section>
     );
@@ -123,7 +134,8 @@ export function AiTeacherTheater({ slug, title, teacherName = "أ. لاما ال
               <p className="ja-kicker">درس مصوّر · منهج أردني · الصف الأول</p>
               <h2>{title}</h2>
               <p className="ja-teacher">
-                المعلمة <strong>{name}</strong>
+                معلّمة الذكاء الاصطناعي <strong>{name}</strong>
+                <span className="ja-role">{role}</span>
                 {manifest?.voice ? <span> · صوت أردني ({manifest.voice})</span> : null}
               </p>
             </div>
@@ -225,8 +237,9 @@ const css = `
 .ja-kicker{margin:0;color:var(--b);font-weight:800;font-size:.82rem}
 .ja-kicker::before{content:"▶ ";color:#c00}
 .ja-info h2{margin:.2rem 0;font-size:clamp(1.15rem,2.5vw,1.55rem);color:var(--d)}
-.ja-teacher{margin:.15rem 0 0;color:#6b3a40;font-size:.92rem}
+.ja-teacher{margin:.15rem 0 0;color:#6b3a40;font-size:.92rem;display:flex;flex-wrap:wrap;gap:.35rem .45rem;align-items:center}
 .ja-teacher strong{color:var(--b)}
+.ja-role{display:inline-flex;align-items:center;background:rgba(158,23,34,.1);color:var(--b);border:1px solid rgba(158,23,34,.22);border-radius:.45rem;padding:.12rem .45rem;font-size:.78rem;font-weight:900}
 .ja-actions{display:flex;flex-wrap:wrap;gap:.45rem;align-items:center}
 .ja-actions button{border:0;border-radius:.55rem;padding:.55rem .9rem;font:inherit;font-weight:800;cursor:pointer}
 .ja-actions .play{background:var(--b);color:#fff}

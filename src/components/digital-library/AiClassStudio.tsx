@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
+import { withAiAssistantTitle } from "@/src/lib/digital-library/ai-assistant-teacher";
 
 type Shot = {
   id: string;
@@ -168,11 +169,12 @@ export function AiClassStudio({ slug, initialPack = null }: Props) {
     <section className="ai-class" id="ai-class" dir="rtl">
       <style>{css}</style>
       <header className="ai-head">
-        <p className="ai-kicker">حصة AI · فيديو شرح + تفاعليات</p>
+        <p className="ai-kicker">حصة AI · معلّمة مساعدة · فيديو شرح + تفاعليات</p>
         <h2>
           {pack.lesson.titleAr}
           <small>
-            {pack.lesson.gradeAr} · {pack.lesson.subject} · {pack.lesson.teacherName}
+            {pack.lesson.gradeAr} · {pack.lesson.subject} ·{" "}
+            {withAiAssistantTitle(pack.lesson.teacherName)}
           </small>
         </h2>
         <p className="ai-meta">

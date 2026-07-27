@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useCallback, useEffect, useState, type ReactNode } from "react";
+import { withAiAssistantTitle } from "@/src/lib/digital-library/ai-assistant-teacher";
 
 type AiClassRow = {
   slug: string;
@@ -99,7 +100,7 @@ export default function JordanElementaryStagePage(): ReactNode {
           <article key={c.slug} className="card">
             <h2>{c.titleAr}</h2>
             <p>
-              {c.gradeAr} · {c.subject} · {c.teacherName}
+              {c.gradeAr} · {c.subject} · {withAiAssistantTitle(c.teacherName || "")}
             </p>
             <div className="row">
               <Link className="btn gold" href={(c.href || "#").replace("#teacher-explain", "#ai-class")}>

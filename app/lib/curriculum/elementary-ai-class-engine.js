@@ -14,6 +14,7 @@ import {
   erpWriteJson,
 } from '../admin/enterprise-erp-store.js';
 import { ensureElementaryTeacher } from './seed-elementary-teacher.js';
+import { withAiAssistantTitle } from './ai-assistant-teacher.js';
 
 const LESSON_DEFS = Object.freeze({
   'jordan-g1-math-number-line-addition': {
@@ -22,7 +23,7 @@ const LESSON_DEFS = Object.freeze({
     unit: 'الجمع',
     titleAr: 'الجمع باستعمال خط الأعداد',
     teacherId: 'teacher-jo-lama-nouri',
-    teacherName: 'أ. لاما النوري',
+    teacherName: withAiAssistantTitle('أ. لاما النوري'),
     href: '/digital-library/middle-east/jordan/national/grade-1/الرياضيات/الجمع/الجمع-بخط-الأعداد',
     visualizer: 'numberline',
   },
@@ -32,7 +33,7 @@ const LESSON_DEFS = Object.freeze({
     unit: 'الإنسان والصحة',
     titleAr: 'نحن متشابهون ومختلفون',
     teacherId: 'teacher-jo-raneem-saleh',
-    teacherName: 'أ. رنيم صالح',
+    teacherName: withAiAssistantTitle('أ. رنيم صالح'),
     href: '/digital-library/middle-east/jordan/national/grade-1/العلوم/الإنسان-والصحة/نحن-متشابهون-ومختلفون',
     visualizer: 'orbital',
   },
@@ -42,7 +43,7 @@ const LESSON_DEFS = Object.freeze({
     unit: 'القيمة المكانية',
     titleAr: 'العشرات والآحاد',
     teacherId: 'teacher-jo-lama-nouri',
-    teacherName: 'أ. لاما النوري',
+    teacherName: withAiAssistantTitle('أ. لاما النوري'),
     href: '/digital-library/middle-east/jordan/national/grade-2/الرياضيات/القيمة-المكانية/العشرات-والآحاد',
     visualizer: 'numberline',
   },

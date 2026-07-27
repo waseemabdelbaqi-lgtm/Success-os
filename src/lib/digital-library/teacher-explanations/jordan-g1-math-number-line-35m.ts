@@ -1,15 +1,16 @@
+import { withAiAssistantTitle } from "@/src/lib/digital-library/ai-assistant-teacher";
 import type { TeacherExplanation } from "@/src/lib/digital-library/types";
 
-/** Fictional warm teacher persona for G1 math (35 min). */
+/** Fictional warm AI assistant teacher persona for G1 math (35 min). */
 export const JORDAN_G1_MATH_NUMBER_LINE_TEACHER_35M: TeacherExplanation = {
   totalMinutes: 35,
   teacherId: "teacher-jo-lama-nouri",
-  teacherName: "أ. لاما النوري",
+  teacherName: withAiAssistantTitle("أ. لاما النوري"),
   teacherHref: "/teachers/teacher-jo-lama-nouri",
   offerId: "offer-jo-g1-math-numberline-35m",
   offerHref: "/teachers/offers/offer-jo-g1-math-numberline-35m",
   titleAr: "فيديو الشرح · 35 دقيقة",
-  subtitleAr: "أ. لاما النوري · حصة AI دافئة للصف الأول",
+  subtitleAr: `${withAiAssistantTitle("أ. لاما النوري")} · حصة AI دافئة للصف الأول`,
   materials: [
     "خط أعداد ملون 0–20",
     "مكعبات أو أصابع",

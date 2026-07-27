@@ -131,7 +131,7 @@ def compose_frame(beat, t, fonts, idle, talk):
     # YouTube-like top strip
     d.rectangle([0, 0, W, 52], fill=NAVY)
     d.text((22, 14), "Success OS  ·  الصف الأول  ·  رياضيات", font=small_f, fill=GOLD)
-    d.text((W - 250, 14), "درس مصوّر", font=small_f, fill=(255, 255, 255, 220))
+    d.text((W - 340, 14), "معلّمة مساعدة · درس مصوّر", font=small_f, fill=(255, 255, 255, 220))
 
     # LEFT: large teacher camera (YouTube educator style)
     cam_w, cam_h = 560, 620
@@ -149,9 +149,9 @@ def compose_frame(beat, t, fonts, idle, talk):
     img.alpha_composite(cam, (28, 68))
 
     # lower-third nameplate on teacher
-    d.rounded_rectangle([48, 620, 420, 678], radius=14, fill=(12, 8, 9, 220), outline=GOLD, width=2)
-    d.text((66, 628), "أ. لاما النوري", font=body_f, fill=GOLD)
-    d.text((66, 656), "معلمة الصف الأول · صوت أردني", font=small_f, fill=(255, 255, 255, 210))
+    d.rounded_rectangle([48, 620, 520, 678], radius=14, fill=(12, 8, 9, 220), outline=GOLD, width=2)
+    d.text((66, 628), "أ. لاما النوري · معلّمة مساعدة", font=body_f, fill=GOLD)
+    d.text((66, 656), "معلّمة ذكاء اصطناعي · صوت أردني", font=small_f, fill=(255, 255, 255, 210))
 
     # RIGHT: live board
     d.rounded_rectangle([620, 68, 1250, 678], radius=24, fill=BOARD, outline=(214, 186, 158, 255), width=3)
@@ -275,7 +275,9 @@ def main():
     total_dur = probe_duration(video_out)
     manifest = {
         "lessonId": "jordan-g1-math-number-line-addition",
-        "teacher": "أ. لاما النوري",
+        "teacher": "أ. لاما النوري · معلّمة مساعدة",
+        "teacherTitle": "معلّمة مساعدة",
+        "teacherRole": "معلّمة مساعدة بالذكاء الاصطناعي",
         "voice": "ar-JO-SanaNeural",
         "style": "youtube-grade1-teacher-forward",
         "styleNote": "Inspired by Jordanian G1 YouTube lesson format (e.g. energy/pacing of channels like أ. رشا الحجاج) — fictional teacher, original content",

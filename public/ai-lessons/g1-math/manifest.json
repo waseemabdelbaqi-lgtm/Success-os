@@ -1,6 +1,6 @@
 {
   "lessonId": "jordan-g1-math-number-line-addition",
-  "teacher": "أ. لاما النوري",
+  "teacher": "أ. لاما النوري · معلّمة مساعدة",
   "voice": "ar-JO-SanaNeural",
   "style": "youtube-grade1-teacher-forward",
   "styleNote": "Inspired by Jordanian G1 YouTube lesson format (e.g. energy/pacing of channels like أ. رشا الحجاج) — fictional teacher, original content",
@@ -84,5 +84,7 @@
   "faces": {
     "idle": "/ai-lessons/g1-math/faces/idle.png",
     "talk": "/ai-lessons/g1-math/faces/talk.png"
-  }
+  },
+  "teacherTitle": "معلّمة مساعدة",
+  "teacherRole": "معلّمة مساعدة بالذكاء الاصطناعي"
 }

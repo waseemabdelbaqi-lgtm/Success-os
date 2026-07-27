@@ -9,6 +9,7 @@ import { SolvedExamples } from "@/src/components/digital-library/SolvedExamples"
 import { AiTeacherTheater } from "@/src/components/digital-library/AiTeacherTheater";
 import { TeacherFullExplanation } from "@/src/components/digital-library/TeacherFullExplanation";
 import { ThreeDCanvasLazy as ThreeDCanvas } from "@/src/components/digital-library/ThreeDCanvasLazy";
+import { withAiAssistantTitle } from "@/src/lib/digital-library/ai-assistant-teacher";
 import type { LessonModuleContent } from "@/src/lib/digital-library/types";
 
 type Props = {
@@ -25,9 +26,9 @@ export function LessonShell({
   storageKey,
 }: Props) {
   const isJordan = lesson.slug.startsWith("jordan-");
-  const teacherName = lesson.slug.includes("science")
-    ? "أ. رنيم صالح"
-    : "أ. لاما النوري";
+  const teacherName = withAiAssistantTitle(
+    lesson.slug.includes("science") ? "أ. رنيم صالح" : "أ. لاما النوري",
+  );
 
   if (isJordan) {
     return (

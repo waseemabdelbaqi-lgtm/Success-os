@@ -4,12 +4,12 @@ import type { TeacherExplanation } from "@/src/lib/digital-library/types";
 export const JORDAN_G1_SCIENCE_ALIKE_TEACHER_35M: TeacherExplanation = {
   totalMinutes: 35,
   teacherId: "teacher-jo-raneem-saleh",
-  teacherName: "أ. رنيم صالح",
+  teacherName: "أ. رنيم صالح · معلّمة مساعدة",
   teacherHref: "/teachers/teacher-jo-raneem-saleh",
   offerId: "offer-jo-g1-science-alike-35m",
   offerHref: "/teachers/offers/offer-jo-g1-science-alike-35m",
   titleAr: "فيديو الشرح · 35 دقيقة",
-  subtitleAr: "أ. رنيم صالح · حصة AI حنونة للصف الأول",
+  subtitleAr: "أ. رنيم صالح · معلّمة مساعدة · حصة AI حنونة للصف الأول",
   materials: ["صور متنوعة محترمة", "بطاقات متشابه/مختلف", "دفتر وألوان"],
   segments: [
     {
