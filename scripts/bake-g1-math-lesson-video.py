@@ -46,11 +46,11 @@ BEATS = [
 
 
 def ar(text: str) -> str:
-    """Shape Arabic for correct Pillow rendering."""
+    """Shape Arabic for correct Pillow rendering (reshape only; no get_display)."""
     if not text:
         return text
     try:
-        return get_display(arabic_reshaper.reshape(str(text)))
+        return arabic_reshaper.reshape(str(text))
     except Exception:
         return str(text)
 
