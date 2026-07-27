@@ -45,7 +45,7 @@ export function NumberLineBoard({ board, events, equationFallback, locale }: Pro
               animate={{ scale: 1 }}
               transition={{ delay: i * 0.08 }}
             >
-              ●
+              ★
             </motion.span>
           ))}
         </div>

@@ -8,22 +8,7 @@ import type {
   VisualEvent,
 } from "@/src/lib/interactive-lesson/types";
 import { useLessonProgress } from "@/src/components/interactive-lesson/useLessonProgress";
-
-function normalizeTypeAnswer(value: string) {
-  return value.replace(/[^\d]/g, "").trim();
-}
-
-function isCorrect(scene: SceneDefinition, answer: unknown): boolean {
-  if (scene.interactionType === "type") {
-    return normalizeTypeAnswer(String(answer ?? "")) === normalizeTypeAnswer(String(scene.correctAnswer));
-  }
-  if (scene.interactionType === "arrange") {
-    const expected = scene.correctAnswer as number[];
-    const got = answer as number[];
-    return Array.isArray(got) && expected.length === got.length && expected.every((v, i) => v === got[i]);
-  }
-  return Number(answer) === Number(scene.correctAnswer);
-}
+import { isCorrectAnswer } from "@/src/lib/interactive-lesson/answer";
 
 export function useLessonEngine(lesson: InteractiveLessonDefinition, storageKey: string) {
   const { progress, hydrated, patch, reset } = useLessonProgress(lesson.lessonId, storageKey);
@@ -44,8 +29,9 @@ export function useLessonEngine(lesson: InteractiveLessonDefinition, storageKey:
   progressRef.current = progress;
 
   const locale: LessonLocale = progress.locale;
-  const scene = lesson.scenes[Math.min(progress.sceneIndex, lesson.scenes.length - 1)];
-  sceneRef.current = scene;
+  const scene: SceneDefinition | undefined =
+    lesson.scenes[Math.min(progress.sceneIndex, Math.max(0, lesson.scenes.length - 1))];
+  sceneRef.current = scene ?? null;
 
   const interactiveScenes = useMemo(
     () => lesson.scenes.filter((s) => s.completionRule === "interaction"),
@@ -158,7 +144,7 @@ export function useLessonEngine(lesson: InteractiveLessonDefinition, storageKey:
       setSceneElapsedMs(0);
       setPlaybackId((n) => n + 1);
       setClockOn(true);
-      void playAudioFor(scene);
+      if (scene) void playAudioFor(scene);
     }
   }, [hydrated, playAudioFor, progress.phase, progress.sceneIndex, scene]);
 
@@ -193,6 +179,7 @@ export function useLessonEngine(lesson: InteractiveLessonDefinition, storageKey:
   }, [patch, progress.sceneIndex]);
 
   const replay = useCallback(() => {
+    if (!scene) return;
     setFeedbackText("");
     patch({ phase: "playing" });
     setPlaybackId((n) => n + 1);
@@ -207,15 +194,23 @@ export function useLessonEngine(lesson: InteractiveLessonDefinition, storageKey:
       if (progress.phase !== "awaiting_interaction" && progress.phase !== "hint") return;
 
       const attempts = (progress.attemptByScene[scene.sceneId] || 0) + 1;
-      const ok = isCorrect(scene, answer);
+      const ok = isCorrectAnswer(scene, answer);
       const attemptByScene = { ...progress.attemptByScene, [scene.sceneId]: attempts };
       const answers = { ...progress.answers, [scene.sceneId]: answer };
 
       if (ok) {
         const prev = progress.answers[scene.sceneId];
-        const prevOk = prev !== undefined && isCorrect(scene, prev);
+        const prevOk = prev !== undefined && isCorrectAnswer(scene, prev);
         const correctCount = prevOk ? progress.correctCount : progress.correctCount + 1;
-        setFeedbackText(scene.correctFeedback?.[locale] || "");
+        const praise = scene.correctFeedback?.[locale] || "";
+        setFeedbackText(praise);
+        if (typeof window !== "undefined" && window.speechSynthesis && praise && !muted) {
+          window.speechSynthesis.cancel();
+          const u = new SpeechSynthesisUtterance(praise);
+          u.lang = locale === "ar" ? "ar-SA" : "en-US";
+          u.rate = slow ? 0.85 : 1;
+          window.speechSynthesis.speak(u);
+        }
         patch({
           attemptByScene,
           answers,
@@ -238,15 +233,31 @@ export function useLessonEngine(lesson: InteractiveLessonDefinition, storageKey:
 
       const incorrectCount = progress.incorrectCount + 1;
       if (attempts === 1) {
-        setFeedbackText(scene.firstHint?.[locale] || scene.incorrectFeedback?.[locale] || "");
+        const hint = scene.firstHint?.[locale] || scene.incorrectFeedback?.[locale] || "";
+        setFeedbackText(hint);
+        if (typeof window !== "undefined" && window.speechSynthesis && hint && !muted) {
+          window.speechSynthesis.cancel();
+          const u = new SpeechSynthesisUtterance(hint);
+          u.lang = locale === "ar" ? "ar-SA" : "en-US";
+          u.rate = slow ? 0.85 : 1;
+          window.speechSynthesis.speak(u);
+        }
         patch({ attemptByScene, answers, incorrectCount, phase: "hint" });
         return;
       }
 
-      setFeedbackText(scene.secondExplanation?.[locale] || "");
+      const easier = scene.secondExplanation?.[locale] || "";
+      setFeedbackText(easier);
+      if (typeof window !== "undefined" && window.speechSynthesis && easier && !muted) {
+        window.speechSynthesis.cancel();
+        const u = new SpeechSynthesisUtterance(easier);
+        u.lang = locale === "ar" ? "ar-SA" : "en-US";
+        u.rate = slow ? 0.85 : 1;
+        window.speechSynthesis.speak(u);
+      }
       patch({ attemptByScene, answers, incorrectCount, phase: "reexplain" });
     },
-    [interactiveScenes.length, lesson.scenes.length, locale, patch, progress, scene],
+    [interactiveScenes.length, lesson.scenes.length, locale, muted, patch, progress, scene, slow],
   );
 
   const dismissHint = useCallback(() => {

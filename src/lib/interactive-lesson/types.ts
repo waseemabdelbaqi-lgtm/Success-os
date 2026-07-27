@@ -22,7 +22,8 @@ export type InteractionType =
   | "arrange"
   | "match"
   | "type"
-  | "drag";
+  | "drag"
+  | "draw";
 
 export type BoardMode =
   | "blank"
@@ -65,7 +66,9 @@ export type SceneDefinition = {
   interactionType: InteractionType;
   question?: LocalizedText;
   answerOptions?: LocalizedText[];
-  /** Correct option index for mcq/tap/arrange; string for type */
+  /** Right-side labels for match interactions */
+  matchTargets?: LocalizedText[];
+  /** Correct option index for mcq/tap; order arrays for arrange/drag/match; string for type/draw */
   correctAnswer: number | string | number[];
   firstHint?: LocalizedText;
   secondExplanation?: LocalizedText;

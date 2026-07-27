@@ -58,15 +58,30 @@ export function useLessonProgress(lessonId: string, storageKey: string) {
   );
 
   const reset = useCallback(() => {
-    const fresh = emptyProgress(lessonId, progress.locale);
-    save(fresh);
-  }, [lessonId, progress.locale, save]);
+    setProgress((prev) => {
+      const fresh = emptyProgress(lessonId, prev.locale);
+      try {
+        localStorage.setItem(key, JSON.stringify(fresh));
+      } catch {
+        /* ignore */
+      }
+      return fresh;
+    });
+  }, [key, lessonId]);
 
   const patch = useCallback(
     (partial: Partial<LessonProgressState>) => {
-      save({ ...progress, ...partial });
+      setProgress((prev) => {
+        const stamped = { ...prev, ...partial, updatedAt: new Date().toISOString() };
+        try {
+          localStorage.setItem(key, JSON.stringify(stamped));
+        } catch {
+          /* ignore quota */
+        }
+        return stamped;
+      });
     },
-    [progress, save],
+    [key],
   );
 
   const setPhase = useCallback(

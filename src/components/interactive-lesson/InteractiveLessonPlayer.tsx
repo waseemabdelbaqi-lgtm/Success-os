@@ -27,7 +27,14 @@ export function InteractiveLessonPlayer({ lesson, storageKey }: Props) {
   }, []);
 
   if (!hydrated || !scene) {
-    return <div className="il" dir={dir}>…</div>;
+    return (
+      <div className="il" dir="rtl" aria-busy="true">
+        <style>{css}</style>
+        <p className="il-kicker">Prepared by Mr Waseem Allabadi</p>
+        <h2>{lesson.title.ar}</h2>
+        <p>{locale === "en" ? "Loading your class…" : "جاري تجهيز حصتك…"}</p>
+      </div>
+    );
   }
 
   const teacher = `${lesson.teacherName[locale]} · ${lesson.teacherTitle[locale]}`;
@@ -222,6 +229,18 @@ const css = `
 .il-arrange{list-style:none;margin:0 0 .6rem;padding:0;display:grid;gap:.35rem}
 .il-arrange li{display:flex;justify-content:space-between;gap:.5rem;align-items:center;background:#fff;border-radius:.5rem;padding:.45rem .55rem}
 .il-arrange-btns{display:flex;gap:.25rem}
+.il-hint-line{margin:0 0 .5rem;font-size:.9rem;opacity:.85}
+.il-drag-list{list-style:none;margin:0 0 .6rem;padding:0;display:grid;gap:.35rem}
+.il-drag-list li{display:flex;gap:.55rem;align-items:center;background:#fff;border-radius:.5rem;padding:.55rem .65rem;cursor:grab;border:1px dashed rgba(158,23,34,.25)}
+.il-drag-handle{opacity:.45;letter-spacing:-2px;font-weight:900}
+.il-match{display:grid;gap:.45rem;margin-bottom:.55rem}
+.il-match-row{display:grid;grid-template-columns:1fr 1fr;gap:.45rem;align-items:center}
+.il-match-left{background:#fff;border-radius:.5rem;padding:.45rem .55rem;font-weight:800}
+.il-match select{border:1px solid rgba(75,10,17,.25);border-radius:.5rem;padding:.45rem;font:inherit}
+.il-draw-prompt{margin:0 0 .45rem;font-size:.9rem}
+.il-draw-pad{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:.35rem;margin-bottom:.55rem}
+.il-draw-pad button{aspect-ratio:1;font-size:1.2rem}
+.il-draw-pad button.picked{background:var(--b);color:#fff}
 .il-feedback{margin:.55rem 0;padding:.7rem .85rem;border-radius:.75rem;font-weight:800}
 .il-feedback.ok{background:#e8f7ee;color:#14532d}
 .il-feedback.hint{background:#fff4e8;color:#7a3e00}
