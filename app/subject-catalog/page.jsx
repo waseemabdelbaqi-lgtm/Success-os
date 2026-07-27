@@ -1,14 +1,32 @@
 'use client';
-import {useMemo,useState} from 'react';
+import {useEffect,useMemo,useState} from 'react';
 import {InnerNav} from '../components';
 import {countries,currencies,curriculumStatus,gradesForSystem,ratingOptions,semestersForSystem,serviceTypes,stagesForSystem,subjectsForSystem,systemsForCountry} from '../data/school-systems';
 
 export default function SubjectCatalog(){
- const [country,setCountry]=useState('JO'),[system,setSystem]=useState(''),[stage,setStage]=useState(''),[grade,setGrade]=useState(''),[semester,setSemester]=useState(''),[subject,setSubject]=useState(''),[service,setService]=useState(''),[providerCountry,setProviderCountry]=useState('JO'),[city,setCity]=useState(''),[currency,setCurrency]=useState('JOD — دينار أردني'),[maxPrice,setMaxPrice]=useState(''),[rating,setRating]=useState('4+ نجوم'),[q,setQ]=useState('');
+ const [country,setCountry]=useState('JO'),[system,setSystem]=useState('النظام الوطني'),[stage,setStage]=useState(''),[grade,setGrade]=useState(''),[semester,setSemester]=useState(''),[subject,setSubject]=useState(''),[service,setService]=useState(''),[providerCountry,setProviderCountry]=useState('JO'),[city,setCity]=useState(''),[currency,setCurrency]=useState('JOD — دينار أردني'),[maxPrice,setMaxPrice]=useState(''),[rating,setRating]=useState('4+ نجوم'),[q,setQ]=useState('');
  const systemOptions=systemsForCountry(country),stageOptions=stagesForSystem(system,country),gradeOptions=gradesForSystem(system,stage,country),semesterOptions=semestersForSystem(system,stage,country),subjectOptions=subjectsForSystem(system,stage,country),status=curriculumStatus(country,system);
  const shownSubjects=useMemo(()=>subjectOptions.filter(name=>(!subject||name===subject)&&(!q||name.toLowerCase().includes(q.toLowerCase()))),[subjectOptions,subject,q]);
  const countryName=countries.find(x=>x.code===country)?.name||country;
- const reset=()=>{setCountry('JO');setSystem('');setStage('');setGrade('');setSemester('');setSubject('');setService('');setProviderCountry('JO');setCity('');setMaxPrice('');setQ('')};
+ useEffect(()=>{
+  const params=new URLSearchParams(location.search);
+  const query=params.get('q');
+  if(query)setQ(query);
+  // Default Jordan browse path so the catalog is not empty on first visit.
+  if(!stage&&stageOptions.length){
+   const preferred=stageOptions.find(x=>/ثانوي|Secondary/i.test(x))||stageOptions[0];
+   setStage(preferred);
+  }
+ },[]);
+ useEffect(()=>{
+  if(!stage||grade||!gradeOptions.length)return;
+  setGrade(gradeOptions.find(x=>/10|الصف 10/i.test(x))||gradeOptions[0]);
+ },[stage,grade,gradeOptions.length]);
+ useEffect(()=>{
+  if(!grade||semester||!semesterOptions.length)return;
+  setSemester(semesterOptions[0]);
+ },[grade,semester,semesterOptions.length]);
+ const reset=()=>{setCountry('JO');setSystem('النظام الوطني');setStage('');setGrade('');setSemester('');setSubject('');setService('');setProviderCountry('JO');setCity('');setMaxPrice('');setQ('')};
  const selectCountry=value=>{setCountry(value);setSystem('');setStage('');setGrade('');setSemester('');setSubject('');setService('')};
  const selectSystem=value=>{setSystem(value);setStage('');setGrade('');setSemester('');setSubject('');setService('')};
  const selectStage=value=>{setStage(value);setGrade('');setSemester('');setSubject('');setService('')};

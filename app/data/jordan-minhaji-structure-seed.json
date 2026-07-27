@@ -1,0 +1,841 @@
+{
+  "schema": "success-os.jordan-source-matrix.v1",
+  "country": "Jordan",
+  "countryAr": "الأردن",
+  "source": "minhaji.net",
+  "role": "structure-index-companion",
+  "retrievedAt": "2026-07-26T22:34:55.543566+00:00",
+  "rights": {
+    "copyBookText": false,
+    "usage": "structure-titles-and-links-only",
+    "note": "Index for reformulating SUCCESS OS original outlines; never republish protected textbook prose"
+  },
+  "grades": [
+    {
+      "minhajiId": 1,
+      "gradeAr": "رياض الأطفال",
+      "sourceUrl": "https://minhaji.net/lesson/1/%D8%B1%D9%8A%D8%A7%D8%B6_%D8%A7%D9%84%D8%A3%D8%B7%D9%81%D8%A7%D9%84",
+      "subjects": [
+        {
+          "titleAr": "المنهاج التطوري",
+          "href": "https://minhaji.net/lesson/27061/المنهاج_التطوري"
+        },
+        {
+          "titleAr": "الرياضيات",
+          "href": "https://minhaji.net/lesson/27/الرياضيات"
+        },
+        {
+          "titleAr": "اللغة العربية",
+          "href": "https://minhaji.net/lesson/33/اللغة_العربية"
+        },
+        {
+          "titleAr": "العلوم",
+          "href": "https://minhaji.net/lesson/30/العلوم"
+        }
+      ],
+      "ok": true
+    },
+    {
+      "minhajiId": 2,
+      "gradeAr": "الصف الأول",
+      "sourceUrl": "https://minhaji.net/lesson/2/%D8%A7%D9%84%D8%B5%D9%81_%D8%A7%D9%84%D8%A3%D9%88%D9%84",
+      "subjects": [
+        {
+          "titleAr": "الرياضيات",
+          "href": "https://minhaji.net/lesson/44/الرياضيات"
+        },
+        {
+          "titleAr": "العلوم",
+          "href": "https://minhaji.net/lesson/20744/العلوم"
+        },
+        {
+          "titleAr": "العربية لغتي",
+          "href": "https://minhaji.net/lesson/49/العربية_لغتي"
+        },
+        {
+          "titleAr": "اللغة الإنجليزية",
+          "href": "https://minhaji.net/lesson/58/اللغة_الإنجليزية"
+        },
+        {
+          "titleAr": "التربية الإسلامية",
+          "href": "https://minhaji.net/lesson/20662/التربية_الإسلامية"
+        },
+        {
+          "titleAr": "الدراسات الاجتماعية",
+          "href": "https://minhaji.net/lesson/31097/الدراسات_الاجتماعية"
+        },
+        {
+          "titleAr": "المهارات الرقمية",
+          "href": "https://minhaji.net/lesson/57473/المهارات_الرقمية"
+        },
+        {
+          "titleAr": "التربية الفنية",
+          "href": "https://minhaji.net/lesson/22688/التربية_الفنية"
+        },
+        {
+          "titleAr": "التربية الرياضية",
+          "href": "https://minhaji.net/lesson/34757/التربية_الرياضية"
+        }
+      ],
+      "ok": true
+    },
+    {
+      "minhajiId": 3,
+      "gradeAr": "الصف الثاني",
+      "sourceUrl": "https://minhaji.net/lesson/3/%D8%A7%D9%84%D8%B5%D9%81_%D8%A7%D9%84%D8%AB%D8%A7%D9%86%D9%8A",
+      "subjects": [
+        {
+          "titleAr": "الرياضيات",
+          "href": "https://minhaji.net/lesson/72/الرياضيات"
+        },
+        {
+          "titleAr": "اللغة الإنجليزية",
+          "href": "https://minhaji.net/lesson/81/اللغة_الإنجليزية"
+        },
+        {
+          "titleAr": "العربية لغتي",
+          "href": "https://minhaji.net/lesson/78/العربية_لغتي"
+        },
+        {
+          "titleAr": "العلوم",
+          "href": "https://minhaji.net/lesson/65/العلوم"
+        },
+        {
+          "titleAr": "التربية الإسلامية",
+          "href": "https://minhaji.net/lesson/20664/التربية_الإسلامية"
+        },
+        {
+          "titleAr": "الدراسات الاجتماعية",
+          "href": "https://minhaji.net/lesson/79/الدراسات_الاجتماعية"
+        },
+        {
+          "titleAr": "المهارات الرقمية",
+          "href": "https://minhaji.net/lesson/57467/المهارات_الرقمية"
+        },
+        {
+          "titleAr": "التربية الفنية",
+          "href": "https://minhaji.net/lesson/22692/التربية_الفنية"
+        },
+        {
+          "titleAr": "التربية الرياضية",
+          "href": "https://minhaji.net/lesson/132563/التربية_الرياضية"
+        }
+      ],
+      "ok": true
+    },
+    {
+      "minhajiId": 4,
+      "gradeAr": "الصف الثالث",
+      "sourceUrl": "https://minhaji.net/lesson/4/%D8%A7%D9%84%D8%B5%D9%81_%D8%A7%D9%84%D8%AB%D8%A7%D9%84%D8%AB",
+      "subjects": [
+        {
+          "titleAr": "الرياضيات",
+          "href": "https://minhaji.net/lesson/101/الرياضيات"
+        },
+        {
+          "titleAr": "اللغة الإنجليزية",
+          "href": "https://minhaji.net/lesson/138/اللغة_الإنجليزية"
+        },
+        {
+          "titleAr": "العربية لغتي",
+          "href": "https://minhaji.net/lesson/119/العربية_لغتي"
+        },
+        {
+          "titleAr": "العلوم",
+          "href": "https://minhaji.net/lesson/89/العلوم"
+        },
+        {
+          "titleAr": "التربية الإسلامية",
+          "href": "https://minhaji.net/lesson/131/التربية_الإسلامية"
+        },
+        {
+          "titleAr": "الدراسات الاجتماعية",
+          "href": "https://minhaji.net/lesson/125/الدراسات_الاجتماعية_"
+        },
+        {
+          "titleAr": "المهارات الرقمية",
+          "href": "https://minhaji.net/lesson/57480/المهارات_الرقمية"
+        },
+        {
+          "titleAr": "التربية الفنية",
+          "href": "https://minhaji.net/lesson/22694/التربية_الفنية"
+        },
+        {
+          "titleAr": "التربية الرياضية",
+          "href": "https://minhaji.net/lesson/34322/التربية_الرياضية"
+        }
+      ],
+      "ok": true
+    },
+    {
+      "minhajiId": 5,
+      "gradeAr": "الصف الرابع",
+      "sourceUrl": "https://minhaji.net/lesson/5/%D8%A7%D9%84%D8%B5%D9%81_%D8%A7%D9%84%D8%B1%D8%A7%D8%A8%D8%B9",
+      "subjects": [
+        {
+          "titleAr": "الرياضيات",
+          "href": "https://minhaji.net/lesson/148/الرياضيات"
+        },
+        {
+          "titleAr": "العربية لغتي",
+          "href": "https://minhaji.net/lesson/149/العربية_لغتي"
+        },
+        {
+          "titleAr": "اللغة الإنجليزية",
+          "href": "https://minhaji.net/lesson/151/اللغة_الإنجليزية"
+        },
+        {
+          "titleAr": "العلوم",
+          "href": "https://minhaji.net/lesson/145/العلوم"
+        },
+        {
+          "titleAr": "التربية الإسلامية",
+          "href": "https://minhaji.net/lesson/147/التربية_الإسلامية"
+        },
+        {
+          "titleAr": "الدراسات الاجتماعية",
+          "href": "https://minhaji.net/lesson/31094/الدراسات_الاجتماعية"
+        },
+        {
+          "titleAr": "المهارات الرقمية",
+          "href": "https://minhaji.net/lesson/57486/المهارات_الرقمية"
+        },
+        {
+          "titleAr": "التربية المهنية",
+          "href": "https://minhaji.net/lesson/150/التربية_المهنية"
+        },
+        {
+          "titleAr": "التربية الفنية",
+          "href": "https://minhaji.net/lesson/22696/التربية_الفنية"
+        },
+        {
+          "titleAr": "التربية الرياضية",
+          "href": "https://minhaji.net/lesson/132559/التربية_الرياضية"
+        }
+      ],
+      "ok": true
+    },
+    {
+      "minhajiId": 6,
+      "gradeAr": "الصف الخامس",
+      "sourceUrl": "https://minhaji.net/lesson/6/%D8%A7%D9%84%D8%B5%D9%81_%D8%A7%D9%84%D8%AE%D8%A7%D9%85%D8%B3",
+      "subjects": [
+        {
+          "titleAr": "الرياضيات",
+          "href": "https://minhaji.net/lesson/960/_الرياضيات_"
+        },
+        {
+          "titleAr": "العربية لغتي",
+          "href": "https://minhaji.net/lesson/959/_العربية_لغتي"
+        },
+        {
+          "titleAr": "اللغة الإنجليزية",
+          "href": "https://minhaji.net/lesson/962/_اللغة_الإنجليزية_"
+        },
+        {
+          "titleAr": "العلوم",
+          "href": "https://minhaji.net/lesson/956/العلوم"
+        },
+        {
+          "titleAr": "التربية الإسلامية",
+          "href": "https://minhaji.net/lesson/958/_التربية_الإسلامية_"
+        },
+        {
+          "titleAr": "الدراسات الاجتماعية",
+          "href": "https://minhaji.net/lesson/957/الدراسات_الاجتماعية"
+        },
+        {
+          "titleAr": "المهارات الرقمية",
+          "href": "https://minhaji.net/lesson/57491/المهارات_الرقمية"
+        },
+        {
+          "titleAr": "التربية المهنية",
+          "href": "https://minhaji.net/lesson/961/التربية_المهنية"
+        },
+        {
+          "titleAr": "التربية الفنية",
+          "href": "https://minhaji.net/lesson/22698/التربية_الفنية"
+        },
+        {
+          "titleAr": "التربية الرياضية",
+          "href": "https://minhaji.net/lesson/34319/التربية_الرياضية"
+        }
+      ],
+      "ok": true
+    },
+    {
+      "minhajiId": 7,
+      "gradeAr": "الصف السادس",
+      "sourceUrl": "https://minhaji.net/lesson/7/%D8%A7%D9%84%D8%B5%D9%81_%D8%A7%D9%84%D8%B3%D8%A7%D8%AF%D8%B3",
+      "subjects": [
+        {
+          "titleAr": "الرياضيات",
+          "href": "https://minhaji.net/lesson/1058/الرياضيات"
+        },
+        {
+          "titleAr": "اللغة الإنجليزية",
+          "href": "https://minhaji.net/lesson/1062/اللغة_الإنجليزية"
+        },
+        {
+          "titleAr": "العربية لغتي",
+          "href": "https://minhaji.net/lesson/1059/العربية_لغتي"
+        },
+        {
+          "titleAr": "العلوم",
+          "href": "https://minhaji.net/lesson/1053/العلوم"
+        },
+        {
+          "titleAr": "التربية الإسلامية",
+          "href": "https://minhaji.net/lesson/1057/التربية_الإسلامية"
+        },
+        {
+          "titleAr": "الدراسات الاجتماعية",
+          "href": "https://minhaji.net/lesson/55664/الدراسات_الاجتماعية"
+        },
+        {
+          "titleAr": "المهارات الرقمية",
+          "href": "https://minhaji.net/lesson/57496/المهارات_الرقمية"
+        },
+        {
+          "titleAr": "التربية المهنية",
+          "href": "https://minhaji.net/lesson/1060/التربية_المهنية"
+        },
+        {
+          "titleAr": "التربية الفنية",
+          "href": "https://minhaji.net/lesson/22708/التربية_الفنية"
+        },
+        {
+          "titleAr": "التربية الرياضية",
+          "href": "https://minhaji.net/lesson/132555/التربية_الرياضية"
+        }
+      ],
+      "ok": true
+    },
+    {
+      "minhajiId": 8,
+      "gradeAr": "الصف السابع",
+      "sourceUrl": "https://minhaji.net/lesson/8/%D8%A7%D9%84%D8%B5%D9%81_%D8%A7%D9%84%D8%B3%D8%A7%D8%A8%D8%B9",
+      "subjects": [
+        {
+          "titleAr": "الرياضيات",
+          "href": "https://minhaji.net/lesson/1071/الرياضيات"
+        },
+        {
+          "titleAr": "العربية لغتي",
+          "href": "https://minhaji.net/lesson/1066/العربية_لغتي"
+        },
+        {
+          "titleAr": "اللغة الإنجليزية",
+          "href": "https://minhaji.net/lesson/1073/اللغة_الإنجليزية"
+        },
+        {
+          "titleAr": "العلوم",
+          "href": "https://minhaji.net/lesson/1063/العلوم"
+        },
+        {
+          "titleAr": "التربية الإسلامية",
+          "href": "https://minhaji.net/lesson/1065/التربية_الإسلامية"
+        },
+        {
+          "titleAr": "الدراسات الاجتماعية",
+          "href": "https://minhaji.net/lesson/31090/الدراسات_الاجتماعية"
+        },
+        {
+          "titleAr": "الثقافة المالية",
+          "href": "https://minhaji.net/lesson/1064/الثقافة_المالية"
+        },
+        {
+          "titleAr": "المهارات الرقمية",
+          "href": "https://minhaji.net/lesson/1070/المهارات_الرقمية"
+        },
+        {
+          "titleAr": "التربية المهنية",
+          "href": "https://minhaji.net/lesson/1072/التربية_المهنية"
+        },
+        {
+          "titleAr": "التربية الفنية",
+          "href": "https://minhaji.net/lesson/22706/التربية_الفنية"
+        },
+        {
+          "titleAr": "التربية الرياضية",
+          "href": "https://minhaji.net/lesson/34316/التربية_الرياضية"
+        }
+      ],
+      "ok": true
+    },
+    {
+      "minhajiId": 9,
+      "gradeAr": "الصف الثامن",
+      "sourceUrl": "https://minhaji.net/lesson/9/%D8%A7%D9%84%D8%B5%D9%81_%D8%A7%D9%84%D8%AB%D8%A7%D9%85%D9%86",
+      "subjects": [
+        {
+          "titleAr": "الرياضيات",
+          "href": "https://minhaji.net/lesson/1081/الرياضيات"
+        },
+        {
+          "titleAr": "العلوم",
+          "href": "https://minhaji.net/lesson/1074/العلوم"
+        },
+        {
+          "titleAr": "العربية لغتي",
+          "href": "https://minhaji.net/lesson/5969/العربية_لغتي"
+        },
+        {
+          "titleAr": "اللغة الإنجليزية",
+          "href": "https://minhaji.net/lesson/1084/اللغة_الإنجليزية"
+        },
+        {
+          "titleAr": "التربية الإسلامية",
+          "href": "https://minhaji.net/lesson/1076/التربية_الإسلامية"
+        },
+        {
+          "titleAr": "الدراسات الاجتماعية",
+          "href": "https://minhaji.net/lesson/33861/الدراسات_الاجتماعية"
+        },
+        {
+          "titleAr": "المهارات الرقمية",
+          "href": "https://minhaji.net/lesson/1080/المهارات_الرقمية"
+        },
+        {
+          "titleAr": "الثقافة المالية",
+          "href": "https://minhaji.net/lesson/1075/الثقافة_المالية"
+        },
+        {
+          "titleAr": "التربية المهنية",
+          "href": "https://minhaji.net/lesson/1085/التربية_المهنية"
+        },
+        {
+          "titleAr": "التربية الفنية",
+          "href": "https://minhaji.net/lesson/22700/التربية_الفنية"
+        }
+      ],
+      "ok": true
+    },
+    {
+      "minhajiId": 10,
+      "gradeAr": "الصف التاسع",
+      "sourceUrl": "https://minhaji.net/lesson/10/%D8%A7%D9%84%D8%B5%D9%81_%D8%A7%D9%84%D8%AA%D8%A7%D8%B3%D8%B9",
+      "subjects": [
+        {
+          "titleAr": "الرياضيات",
+          "href": "https://minhaji.net/lesson/1095/الرياضيات"
+        },
+        {
+          "titleAr": "العربية لغتي",
+          "href": "https://minhaji.net/lesson/1097/العربية_لغتي"
+        },
+        {
+          "titleAr": "اللغة الإنجليزية",
+          "href": "https://minhaji.net/lesson/1100/اللغة_الإنجليزية"
+        },
+        {
+          "titleAr": "التربية الإسلامية",
+          "href": "https://minhaji.net/lesson/1086/التربية_الإسلامية"
+        },
+        {
+          "titleAr": "الكيمياء",
+          "href": "https://minhaji.net/lesson/1090/الكيمياء"
+        },
+        {
+          "titleAr": "الفيزياء",
+          "href": "https://minhaji.net/lesson/1092/الفيزياء"
+        },
+        {
+          "titleAr": "العلوم الحياتية",
+          "href": "https://minhaji.net/lesson/1091/العلوم_الحياتية"
+        },
+        {
+          "titleAr": "علوم الأرض والبيئة",
+          "href": "https://minhaji.net/lesson/1093/علوم_الأرض_والبيئة"
+        },
+        {
+          "titleAr": "التربية الوطنية والمدنية",
+          "href": "https://minhaji.net/lesson/1088/التربية_الوطنية_والمدنية"
+        },
+        {
+          "titleAr": "التاريخ",
+          "href": "https://minhaji.net/lesson/1087/التاريخ"
+        },
+        {
+          "titleAr": "الجغرافيا",
+          "href": "https://minhaji.net/lesson/1089/الجغرافيا"
+        },
+        {
+          "titleAr": "المهارات الرقمية",
+          "href": "https://minhaji.net/lesson/1094/المهارات_الرقمية"
+        },
+        {
+          "titleAr": "الثقافة المالية",
+          "href": "https://minhaji.net/lesson/10557/الثقافة_المالية"
+        },
+        {
+          "titleAr": "التربية المهنية",
+          "href": "https://minhaji.net/lesson/1098/التربية_المهنية_"
+        },
+        {
+          "titleAr": "التربية الفنية",
+          "href": "https://minhaji.net/lesson/22702/التربية_الفنية_"
+        },
+        {
+          "titleAr": "التربية الرياضية",
+          "href": "https://minhaji.net/lesson/34313/التربية_الرياضية"
+        }
+      ],
+      "ok": true
+    },
+    {
+      "minhajiId": 11,
+      "gradeAr": "الصف العاشر",
+      "sourceUrl": "https://minhaji.net/lesson/11/%D8%A7%D9%84%D8%B5%D9%81_%D8%A7%D9%84%D8%B9%D8%A7%D8%B4%D8%B1",
+      "subjects": [
+        {
+          "titleAr": "الرياضيات",
+          "href": "https://minhaji.net/lesson/1114/الرياضيات"
+        },
+        {
+          "titleAr": "العربية لغتي",
+          "href": "https://minhaji.net/lesson/1115/العربية_لغتي"
+        },
+        {
+          "titleAr": "اللغة الإنجليزية",
+          "href": "https://minhaji.net/lesson/1117/اللغة_الإنجليزية"
+        },
+        {
+          "titleAr": "التربية الإسلامية",
+          "href": "https://minhaji.net/lesson/1101/التربية_الإسلامية"
+        },
+        {
+          "titleAr": "الفيزياء",
+          "href": "https://minhaji.net/lesson/1111/الفيزياء"
+        },
+        {
+          "titleAr": "الكيمياء",
+          "href": "https://minhaji.net/lesson/1109/الكيمياء"
+        },
+        {
+          "titleAr": "العلوم الحياتية",
+          "href": "https://minhaji.net/lesson/1110/العلوم_الحياتية"
+        },
+        {
+          "titleAr": "علوم الأرض والبيئة",
+          "href": "https://minhaji.net/lesson/1112/علوم_الأرض_والبيئة"
+        },
+        {
+          "titleAr": "التاريخ",
+          "href": "https://minhaji.net/lesson/1103/التاريخ"
+        },
+        {
+          "titleAr": "الجغرافيا",
+          "href": "https://minhaji.net/lesson/1102/الجغرافيا"
+        },
+        {
+          "titleAr": "التربية الوطنية والمدنية",
+          "href": "https://minhaji.net/lesson/1104/التربية_الوطنية_والمدنية"
+        },
+        {
+          "titleAr": "المهارات الرقمية",
+          "href": "https://minhaji.net/lesson/1113/المهارات_الرقمية"
+        },
+        {
+          "titleAr": "الثقافة المالية",
+          "href": "https://minhaji.net/lesson/15024/الثقافة_المالية"
+        },
+        {
+          "titleAr": "التربية المهنية",
+          "href": "https://minhaji.net/lesson/1118/التربية_المهنية"
+        },
+        {
+          "titleAr": "التربية الفنية",
+          "href": "https://minhaji.net/lesson/22704/التربية_الفنية"
+        },
+        {
+          "titleAr": "التربية الرياضية",
+          "href": "https://minhaji.net/lesson/132547/التربية_الرياضية"
+        }
+      ],
+      "ok": true
+    },
+    {
+      "minhajiId": 13,
+      "gradeAr": "الصف الحادي عشر",
+      "sourceUrl": "https://minhaji.net/lesson/13/%D8%A7%D9%84%D8%B5%D9%81_%D8%A7%D9%84%D8%AD%D8%A7%D8%AF%D9%8A_%D8%B9%D8%B4%D8%B1",
+      "subjects": [
+        {
+          "titleAr": "تاريخ الأردن",
+          "href": "https://minhaji.net/lesson/8841/تاريخ_الأردن"
+        },
+        {
+          "titleAr": "العربية لغتي",
+          "href": "https://minhaji.net/lesson/8840/العربية_لغتي"
+        },
+        {
+          "titleAr": "التربية الإسلامية",
+          "href": "https://minhaji.net/lesson/8845/التربية_الإسلامية"
+        },
+        {
+          "titleAr": "اللغة الإنجليزية",
+          "href": "https://minhaji.net/lesson/8843/اللغة_الإنجليزية"
+        },
+        {
+          "titleAr": "الرياضيات",
+          "href": "https://minhaji.net/lesson/8834/الرياضيات"
+        },
+        {
+          "titleAr": "الكيمياء",
+          "href": "https://minhaji.net/lesson/8830/الكيمياء"
+        },
+        {
+          "titleAr": "الفيزياء",
+          "href": "https://minhaji.net/lesson/8831/الفيزياء"
+        },
+        {
+          "titleAr": "العلوم الحياتية",
+          "href": "https://minhaji.net/lesson/8832/العلوم_الحياتية"
+        },
+        {
+          "titleAr": "علوم الأرض والبيئة",
+          "href": "https://minhaji.net/lesson/8833/علوم_الأرض_والبيئة"
+        },
+        {
+          "titleAr": "المهارات الرقمية",
+          "href": "https://minhaji.net/lesson/8844/المهارات_الرقمية_"
+        },
+        {
+          "titleAr": "الثقافة المالية",
+          "href": "https://minhaji.net/lesson/55656/الثقافة_المالية"
+        }
+      ],
+      "ok": true
+    },
+    {
+      "minhajiId": 14,
+      "gradeAr": "الصف الثاني عشر",
+      "sourceUrl": "https://minhaji.net/lesson/14/%D8%A7%D9%84%D8%B5%D9%81_%D8%A7%D9%84%D8%AB%D8%A7%D9%86%D9%8A_%D8%B9%D8%B4%D8%B1_",
+      "subjects": [
+        {
+          "titleAr": "الرياضيات",
+          "href": "https://minhaji.net/lesson/36160",
+          "track": "المسار الأكاديمي"
+        },
+        {
+          "titleAr": "الكيمياء",
+          "href": "https://minhaji.net/lesson/36160",
+          "track": "المسار الأكاديمي"
+        },
+        {
+          "titleAr": "الفيزياء",
+          "href": "https://minhaji.net/lesson/36160",
+          "track": "المسار الأكاديمي"
+        },
+        {
+          "titleAr": "العلوم الحياتية",
+          "href": "https://minhaji.net/lesson/36160",
+          "track": "المسار الأكاديمي"
+        },
+        {
+          "titleAr": "علوم الأرض والبيئة",
+          "href": "https://minhaji.net/lesson/36160",
+          "track": "المسار الأكاديمي"
+        },
+        {
+          "titleAr": "العربية لغتي",
+          "href": "https://minhaji.net/lesson/36160",
+          "track": "المسار الأكاديمي"
+        },
+        {
+          "titleAr": "اللغة الإنجليزية",
+          "href": "https://minhaji.net/lesson/36160",
+          "track": "المسار الأكاديمي"
+        },
+        {
+          "titleAr": "التربية الإسلامية",
+          "href": "https://minhaji.net/lesson/36160",
+          "track": "المسار الأكاديمي"
+        },
+        {
+          "titleAr": "المهارات الرقمية",
+          "href": "https://minhaji.net/lesson/36160",
+          "track": "المسار الأكاديمي"
+        },
+        {
+          "titleAr": "الثقافة المالية",
+          "href": "https://minhaji.net/lesson/36160",
+          "track": "المسار الأكاديمي"
+        },
+        {
+          "titleAr": "علوم النفس والاجتماع",
+          "href": "https://minhaji.net/lesson/36160",
+          "track": "المسار الأكاديمي"
+        },
+        {
+          "titleAr": "الفلسفة",
+          "href": "https://minhaji.net/lesson/36160",
+          "track": "المسار الأكاديمي"
+        },
+        {
+          "titleAr": "الجغرافيا",
+          "href": "https://minhaji.net/lesson/36160",
+          "track": "المسار الأكاديمي"
+        },
+        {
+          "titleAr": "التاريخ",
+          "href": "https://minhaji.net/lesson/36160",
+          "track": "المسار الأكاديمي"
+        }
+      ],
+      "ok": true,
+      "tracks": [
+        {
+          "titleAr": "المسار الأكاديمي",
+          "href": "https://minhaji.net/lesson/36160",
+          "subjects": [
+            "الرياضيات",
+            "الكيمياء",
+            "الفيزياء",
+            "العلوم الحياتية",
+            "علوم الأرض والبيئة",
+            "العربية لغتي",
+            "اللغة الإنجليزية",
+            "التربية الإسلامية",
+            "المهارات الرقمية",
+            "الثقافة المالية",
+            "علوم النفس والاجتماع",
+            "الفلسفة",
+            "الجغرافيا",
+            "التاريخ"
+          ]
+        }
+      ]
+    }
+  ],
+  "sampleUnits": {
+    "grade": "الصف الأول",
+    "subject": "الرياضيات",
+    "items": [
+      {
+        "titleAr": "الدرس الثاني: العددان 4 ، 5",
+        "href": "https://minhaji.net/lesson/18571"
+      },
+      {
+        "titleAr": "الدرس الثالث: العدد صفر",
+        "href": "https://minhaji.net/lesson/24481"
+      },
+      {
+        "titleAr": "الدرس الرابع: الأعداد 6 ، 7 ، 8",
+        "href": "https://minhaji.net/lesson/24484"
+      },
+      {
+        "titleAr": "الدرس الخامس: العددان 9 ، 10",
+        "href": "https://minhaji.net/lesson/24487"
+      },
+      {
+        "titleAr": "الدرس السادس: الأعداد من 11 إلى 20",
+        "href": "https://minhaji.net/lesson/24490"
+      },
+      {
+        "titleAr": "الدرس السابع: الموقع والاتجاه",
+        "href": "https://minhaji.net/lesson/24493"
+      },
+      {
+        "titleAr": "الدرس الثاني: الجمع باستعمال خط الأعداد",
+        "href": "https://minhaji.net/lesson/24411"
+      },
+      {
+        "titleAr": "الدرس الثالث: الجمع باستعمال الضعف",
+        "href": "https://minhaji.net/lesson/24413"
+      },
+      {
+        "titleAr": "الدرس الرابع: الجمع بالإكمال إلى العشرة",
+        "href": "https://minhaji.net/lesson/24416"
+      },
+      {
+        "titleAr": "الدرس الخامس: خصائص عملية الجمع",
+        "href": "https://minhaji.net/lesson/24497"
+      },
+      {
+        "titleAr": "الدرس الثاني: الطرح باستعمال الضعف",
+        "href": "https://minhaji.net/lesson/24421"
+      },
+      {
+        "titleAr": "الدرس الثالث: الطرح بإيجاد عشرة",
+        "href": "https://minhaji.net/lesson/24423"
+      },
+      {
+        "titleAr": "الدرس الرابع: العلاقة بين الجمع والطرح",
+        "href": "https://minhaji.net/lesson/24425"
+      },
+      {
+        "titleAr": "الدرس الخامس: الحقائق المترابطة",
+        "href": "https://minhaji.net/lesson/24427"
+      },
+      {
+        "titleAr": "الدرس السادس: العدد المفقود",
+        "href": "https://minhaji.net/lesson/24430"
+      },
+      {
+        "titleAr": "الدرس الثاني: الآحاد والعشرات",
+        "href": "https://minhaji.net/lesson/24443"
+      },
+      {
+        "titleAr": "الدرس الثالث: تمثيل العداد ضمن منزلتين",
+        "href": "https://minhaji.net/lesson/24445"
+      },
+      {
+        "titleAr": "الدرس الرابع: القيمة المنزلية",
+        "href": "https://minhaji.net/lesson/24499"
+      },
+      {
+        "titleAr": "الدرس الثاني: العد قفزياً",
+        "href": "https://minhaji.net/lesson/24450"
+      },
+      {
+        "titleAr": "الدرس الثاني: التصنيف وفق أكثر من خاصية",
+        "href": "https://minhaji.net/lesson/24455"
+      },
+      {
+        "titleAr": "الدرس الثاني: الجمع الذهني",
+        "href": "https://minhaji.net/lesson/24460"
+      },
+      {
+        "titleAr": "الدرس الثالث: جمع عددين من منزلتين",
+        "href": "https://minhaji.net/lesson/24462"
+      },
+      {
+        "titleAr": "الدرس الرابع: التخمين والتحقق",
+        "href": "https://minhaji.net/lesson/24464"
+      },
+      {
+        "titleAr": "الدرس الثاني: الطرح الذهني",
+        "href": "https://minhaji.net/lesson/24470"
+      },
+      {
+        "titleAr": "الدرس الثالث: طرح عددين من منزلتين",
+        "href": "https://minhaji.net/lesson/24472"
+      },
+      {
+        "titleAr": "الدرس الرابع: اختيار العملية",
+        "href": "https://minhaji.net/lesson/24474"
+      },
+      {
+        "titleAr": "الكتب المقررة",
+        "href": "https://minhaji.net/lesson/22124/الكتب_المقررة"
+      },
+      {
+        "titleAr": "دليل المعلم",
+        "href": "https://minhaji.net/lesson/16101/دليل_المعلم"
+      },
+      {
+        "titleAr": "الفاقد التعليمي",
+        "href": "https://minhaji.net/lesson/24720/الفاقد_التعليمي"
+      },
+      {
+        "titleAr": "أوراق عمل",
+        "href": "https://minhaji.net/lesson/46/أوراق_عمل_"
+      },
+      {
+        "titleAr": "دوسيات",
+        "href": "https://minhaji.net/lesson/18903/دوسيات"
+      }
+    ]
+  }
+}

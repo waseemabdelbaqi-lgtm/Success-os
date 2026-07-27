@@ -1,0 +1,37 @@
+{
+  "lessonId": "jordan-g1-math-number-line-addition",
+  "product": "interactive-react-player",
+  "interactiveRoute": "/ai-lessons/g1-math",
+  "teacher": "أ. لاما النوري · معلّمة مساعدة",
+  "teacherTitle": "معلّمة مساعدة",
+  "teacherRole": "معلّمة مساعدة بالذكاء الاصطناعي",
+  "voice": "ar-JO-SanaNeural",
+  "style": "interactive-digital-classroom",
+  "styleNote": "Lesson product is the React interactive player at /ai-lessons/g1-math — NOT an MP4. Archived slideshow kept only as optional media.",
+  "archivedSlideshow": "/ai-lessons/g1-math/media/archived-slideshow.mp4",
+  "poster": "/ai-lessons/g1-math/poster.jpg",
+  "duration": 90,
+  "beats": [
+    {
+      "id": "demo",
+      "title": "شرح متحرك 3+2",
+      "duration": 28
+    },
+    {
+      "id": "your-turn",
+      "title": "توقف للتفاعل",
+      "duration": 0,
+      "interaction": true
+    },
+    {
+      "id": "result",
+      "title": "تشجيع ومتابعة",
+      "duration": 8
+    }
+  ],
+  "faces": {
+    "idle": "/ai-lessons/g1-math/faces/idle.png",
+    "talk": "/ai-lessons/g1-math/faces/talk.png"
+  },
+  "producer": "interactive-lesson-engine"
+}

@@ -81,8 +81,8 @@ export function StudentDashboard(): ReactNode {
   return (
     <div>
       <StudentTopBar
-        title="Welcome back, Waseem 👋"
-        subtitle="Keep reading. Your next chapter is ready."
+        title="مرحبًا بك في لوحة الطالب"
+        subtitle="واصِل قراءتك — دروسك وفيديوهاتك جاهزة."
       />
       <div className="space-y-7 p-4 sm:p-7">
         <section className="relative overflow-hidden rounded-[2rem] bg-gradient-to-br from-[#76151a] via-[#8b1e1e] to-[#5a0d12] p-6 text-white shadow-[0_28px_70px_rgba(107,16,22,0.24)] sm:p-8">
@@ -91,27 +91,26 @@ export function StudentDashboard(): ReactNode {
           <div className="relative grid gap-8 lg:grid-cols-[1fr_auto] lg:items-center">
             <div>
               <p className="text-[10px] font-black uppercase tracking-[0.26em] text-[#f0d477]">
-                Your learning universe
+                SUCCESS OS · طالب
               </p>
               <h2 className="mt-3 max-w-2xl text-3xl font-black tracking-[-0.04em] sm:text-4xl">
-                Great readers build extraordinary futures.
+                كتبك ودروسك التفاعلية في مكان واحد.
               </h2>
               <p className="mt-3 max-w-xl text-sm leading-7 text-white/70">
-                Your books, summaries, highlights, and reading journey—beautifully
-                organized in one focused space.
+                مكتبتك، الملخصات، الملاحظات، والفيديو التفاعلي — مرتّبة لتكمِل من حيث توقفت بكل وضوح.
               </p>
               <div className="mt-6 flex flex-wrap gap-3">
                 <Link
                   href={STUDENT_ROUTES.books}
                   className="rounded-xl bg-gradient-to-br from-[#f1d77e] to-[#c89a28] px-5 py-3 text-sm font-black text-[#47100e] shadow-xl transition hover:-translate-y-1"
                 >
-                  Explore library
+                  استكشف المكتبة
                 </Link>
                 <Link
-                  href={STUDENT_ROUTES.profile}
+                  href="/"
                   className="rounded-xl border border-white/20 bg-white/10 px-5 py-3 text-sm font-bold text-white backdrop-blur transition hover:bg-white/15"
                 >
-                  Update curriculum
+                  الصفحة الرئيسية
                 </Link>
               </div>
             </div>

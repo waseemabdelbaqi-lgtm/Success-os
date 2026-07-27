@@ -59,6 +59,18 @@ async function buildAuthContext(
 export async function middleware(request: NextRequest): Promise<NextResponse> {
   const { pathname } = request.nextUrl;
 
+  // Admission funnel: /?nationality=X&gpa=Y → discovery board at /admission
+  // (keeps marketing homepage at `/` when params are absent)
+  if (pathname === "/") {
+    const nationality = request.nextUrl.searchParams.get("nationality");
+    const gpa = request.nextUrl.searchParams.get("gpa");
+    if (nationality && gpa) {
+      const target = request.nextUrl.clone();
+      target.pathname = "/admission";
+      return NextResponse.redirect(target);
+    }
+  }
+
   if (shouldBypassAuthMiddleware(pathname)) {
     return NextResponse.next();
   }

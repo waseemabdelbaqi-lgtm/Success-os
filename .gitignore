@@ -67,3 +67,4 @@ Desktop.ini
 
 # Generated / local curriculum & ERP stores (too large for git)
 /library/
+.data/

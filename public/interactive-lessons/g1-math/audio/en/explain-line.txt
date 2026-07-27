@@ -1,0 +1,1 @@
+A number line is a straight line. Numbers go left to right. Each jump right adds one.

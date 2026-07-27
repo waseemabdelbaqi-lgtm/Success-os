@@ -46,13 +46,19 @@ export function BookLessonMediaPlayer({
   videoUrl,
   dir = 'rtl',
 }: BookLessonMediaPlayerProps) {
-  const [mode, setMode] = useState<'slideshow' | 'video'>('slideshow');
+  const [mode, setMode] = useState<'slideshow' | 'video'>(
+    videoUrl ? 'video' : 'slideshow',
+  );
   const [playing, setPlaying] = useState(false);
   const [segment, setSegment] = useState(0);
   const [sellOpen, setSellOpen] = useState(false);
   const [password, setPassword] = useState('');
   const [sellNotice, setSellNotice] = useState('');
-  const [videoReady] = useState(Boolean(videoUrl));
+  const videoReady = Boolean(videoUrl);
+
+  useEffect(() => {
+    if (videoUrl) setMode('video');
+  }, [videoUrl]);
 
   const safeSlides = useMemo(
     () =>
@@ -82,8 +88,11 @@ export function BookLessonMediaPlayer({
     return () => clearTimeout(timer);
   }, [playing, segment, safeSlides.length, mode]);
 
-  const current = safeSlides[segment] || safeSlides[0];
-  const progress = ((segment + 1) / safeSlides.length) * 100;
+  const current =
+    safeSlides[segment] ??
+    safeSlides[0] ??
+    ({ title: lessonTitle, body: '', kind: 'intro' } as Slide);
+  const progress = ((segment + 1) / Math.max(safeSlides.length, 1)) * 100;
   const predictorHref = `/student/predictor?bookId=${encodeURIComponent(bookId)}&lesson=${encodeURIComponent(lessonTitle)}`;
 
   async function createProtectedSale() {
