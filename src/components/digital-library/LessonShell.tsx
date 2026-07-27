@@ -9,7 +9,9 @@ import { SolvedExamples } from "@/src/components/digital-library/SolvedExamples"
 import { AiTeacherTheater } from "@/src/components/digital-library/AiTeacherTheater";
 import { TeacherFullExplanation } from "@/src/components/digital-library/TeacherFullExplanation";
 import { ThreeDCanvasLazy as ThreeDCanvas } from "@/src/components/digital-library/ThreeDCanvasLazy";
+import { InteractiveLessonPlayer } from "@/src/components/interactive-lesson/InteractiveLessonPlayer";
 import { withAiAssistantTitle } from "@/src/lib/digital-library/ai-assistant-teacher";
+import { JORDAN_G1_MATH_INTERACTIVE } from "@/src/lib/interactive-lesson/lessons/jordan-g1-math-number-line";
 import type { LessonModuleContent } from "@/src/lib/digital-library/types";
 
 type Props = {
@@ -20,15 +22,12 @@ type Props = {
   teacherCurricula?: string[];
 };
 
-export function LessonShell({
-  lesson,
-  crumbs,
-  storageKey,
-}: Props) {
+export function LessonShell({ lesson, crumbs, storageKey }: Props) {
   const isJordan = lesson.slug.startsWith("jordan-");
   const teacherName = withAiAssistantTitle(
     lesson.slug.includes("science") ? "أ. رنيم صالح" : "أ. لاما النوري",
   );
+  const useInteractive = Boolean(lesson.interactivePlayer);
 
   if (isJordan) {
     return (
@@ -44,24 +43,27 @@ export function LessonShell({
           </nav>
           <h1 style={{ marginBottom: "0.35rem" }}>{lesson.title}</h1>
           <p className="dl-meta" style={{ marginTop: 0 }}>
-            {teacherName} · درس مصوّر بصوت أردني · ثم التفاعليات
+            {teacherName} ·{" "}
+            {useInteractive
+              ? "حصة تفاعلية · شرح متحرك · أسئلة أثناء الدرس"
+              : "درس مصوّر بصوت أردني · ثم التفاعليات"}
           </p>
           <div className="dl-module-jump" role="navigation" aria-label="Jump">
             <a href="#ai-class">الحصة</a>
-            <a href="#ai-acts">تفاعليات</a>
+            {!useInteractive ? <a href="#ai-acts">تفاعليات</a> : null}
             <a href="#visualizer">3D</a>
-            <a href="#quiz">اختبار</a>
+            {!useInteractive ? <a href="#quiz">اختبار</a> : null}
           </div>
         </header>
 
-        <AiTeacherTheater
-          slug={lesson.slug}
-          title={lesson.title}
-          teacherName={teacherName}
-        />
+        {useInteractive ? (
+          <InteractiveLessonPlayer lesson={JORDAN_G1_MATH_INTERACTIVE} storageKey={storageKey} />
+        ) : (
+          <AiTeacherTheater slug={lesson.slug} title={lesson.title} teacherName={teacherName} />
+        )}
         <ThreeDCanvas kind={lesson.visualizer.kind} caption={lesson.visualizer.caption} />
-        <GamifiedQuiz items={lesson.quiz} />
-        <SolvedExamples examples={lesson.examples} />
+        {!useInteractive ? <GamifiedQuiz items={lesson.quiz} /> : null}
+        {!useInteractive ? <SolvedExamples examples={lesson.examples} /> : null}
         <SmartWorkspace storageKey={storageKey} />
         <FloatingScientificCalc />
       </div>

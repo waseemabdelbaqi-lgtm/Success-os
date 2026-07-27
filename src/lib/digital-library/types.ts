@@ -52,6 +52,8 @@ export type LessonModuleContent = {
   sources: Array<{ label: string; url: string }>;
   /** Full human-teacher explanation (≥30 min) when available */
   teacherExplanation?: TeacherExplanation;
+  /** Opt-in interactive scene player (replaces slideshow theater) */
+  interactivePlayer?: boolean;
 };
 
 export type CurriculumNode = {

@@ -2,13 +2,14 @@ import type { LessonModuleContent } from "@/src/lib/digital-library/types";
 
 /**
  * Jordan National Curriculum · Grade 1 · Mathematics
- * Delivery: AI teacher theater (visual), not text lesson-plan dump.
+ * Delivery: interactive scene-based AI lesson player (not slideshow MP4).
  */
 export const JORDAN_G1_MATH_NUMBER_LINE_ADDITION: LessonModuleContent = {
   slug: "jordan-g1-math-number-line-addition",
   title: "الجمع باستعمال خط الأعداد",
-  subtitle: "الصف الأول · رياضيات · حصة AI مرئية",
+  subtitle: "الصف الأول · رياضيات · حصة تفاعلية",
   estimatedMinutes: 12,
+  interactivePlayer: true,
   learningObjectives: [
     "أن يعدّ المتعلم قفزات على خط الأعداد لتمثيل عملية جمع بسيطة ضمن 20.",
     "أن يربط جملة الجمع مثل $3 + 4 = 7$ بصورة القفز على خط الأعداد.",
