@@ -24,7 +24,9 @@ const LESSONS = Object.freeze({
     teacherName: withAiAssistantTitle('أ. لاما النوري'),
     scriptsDir: 'public/ai-lessons/g1-math/scripts',
     manifestPath: 'public/ai-lessons/g1-math/manifest.json',
-    previewVideo: '/ai-lessons/g1-math/lesson.mp4',
+    previewVideo: '/ai-lessons/g1-math',
+    interactiveRoute: '/ai-lessons/g1-math',
+    archivedSlideshow: '/ai-lessons/g1-math/media/archived-slideshow.mp4',
   },
 });
 

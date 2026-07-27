@@ -122,7 +122,7 @@ export function useLessonEngine(lesson: InteractiveLessonDefinition, storageKey:
         if (modeRef.current === "reexplain") {
           stopAudio();
           patch({ phase: "awaiting_interaction" });
-          setFeedbackText("");
+          // Keep secondExplanation text until the student tries again
         } else {
           finishAutoScene();
         }
@@ -139,7 +139,7 @@ export function useLessonEngine(lesson: InteractiveLessonDefinition, storageKey:
     if (!hydrated) return;
     if (progress.phase === "playing" || progress.phase === "reexplain") {
       modeRef.current = progress.phase === "reexplain" ? "reexplain" : "playing";
-      setFeedbackText("");
+      if (progress.phase === "playing") setFeedbackText("");
       setActiveEvents([]);
       setSceneElapsedMs(0);
       setPlaybackId((n) => n + 1);
@@ -218,16 +218,7 @@ export function useLessonEngine(lesson: InteractiveLessonDefinition, storageKey:
           phase: "feedback_correct",
           masteryPercent: Math.round((correctCount / Math.max(1, interactiveScenes.length)) * 100),
         });
-        window.setTimeout(() => {
-          const p = progressRef.current;
-          const n = p.sceneIndex + 1;
-          if (n >= lesson.scenes.length) {
-            patch({ phase: "completed", completedAt: new Date().toISOString() });
-          } else {
-            setFeedbackText("");
-            patch({ sceneIndex: n, phase: "playing" });
-          }
-        }, 1200);
+        // Wait for explicit Continue — do not auto-advance past the interaction.
         return;
       }
 

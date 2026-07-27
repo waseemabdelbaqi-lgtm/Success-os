@@ -61,6 +61,16 @@ const nextConfig: NextConfig = {
       },
     ];
   },
+  async redirects() {
+    return [
+      {
+        // Old flat MP4 must never be treated as the lesson product.
+        source: "/ai-lessons/g1-math/lesson.mp4",
+        destination: "/ai-lessons/g1-math",
+        permanent: false,
+      },
+    ];
+  },
   experimental: {
     optimizePackageImports: ["firebase", "firebase-admin"],
   },

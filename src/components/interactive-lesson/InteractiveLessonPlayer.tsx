@@ -120,6 +120,14 @@ export function InteractiveLessonPlayer({ lesson, storageKey }: Props) {
         </div>
       ) : null}
 
+      {progress.phase === "feedback_correct" ? (
+        <div className="il-continue-wrap">
+          <button type="button" className="primary il-continue" onClick={engine.nextScene}>
+            {locale === "ar" ? "متابعة الدرس ←" : "Continue lesson →"}
+          </button>
+        </div>
+      ) : null}
+
       {progress.phase === "completed" ? (
         <div className="il-result" role="status">
           <h3>{locale === "ar" ? "نتيجة الدرس" : "Lesson result"}</h3>
@@ -244,6 +252,8 @@ const css = `
 .il-feedback{margin:.55rem 0;padding:.7rem .85rem;border-radius:.75rem;font-weight:800}
 .il-feedback.ok{background:#e8f7ee;color:#14532d}
 .il-feedback.hint{background:#fff4e8;color:#7a3e00}
+.il-continue-wrap{margin:.7rem 0;display:flex;justify-content:center}
+.il-continue{font-size:1.05rem!important;padding:.75rem 1.4rem!important;background:var(--b)!important;color:#fff!important}
 .il-result{margin:.7rem 0;padding:1rem;border-radius:.9rem;background:linear-gradient(160deg,#4b0a11,#9e1722);color:#fff}
 .il-result strong{color:var(--g)}
 .il-controls{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.75rem}
