@@ -588,6 +588,23 @@ function listIncludes(arr, value) {
   return Array.isArray(arr) && arr.includes(value);
 }
 
+function dashboardPathForRoleKey(roleKey) {
+  if (!roleKey) return null;
+  if (roleKey === 'student') return '/student/dashboard';
+  if (roleKey === 'admin') return '/dashboard/admin';
+  if (roleKey === 'super_admin') return '/dashboard/super-admin';
+  if (roleKey === 'employee') return '/dashboard/employees';
+  if (roleKey === 'teacher') return '/teachers/dashboard';
+  if (roleKey === 'school_manager') return '/dashboard/school';
+  if (roleKey === 'university_manager') return '/dashboard/university';
+  if (roleKey === 'center_manager') return '/dashboard/educational-center';
+  if (roleKey === 'jobseeker') return '/dashboard/job-seeker';
+  if (roleKey === 'recruitment_company') return '/dashboard/recruitment-company';
+  if (roleKey === 'school_student') return '/dashboard/school-student';
+  if (roleKey === 'university_student') return '/dashboard/university-student';
+  return `/dashboard/${String(roleKey).replace(/_/g, '-')}`;
+}
+
 function PermissionsPanel({ matrix, busy, error, onReload, onCreate, onToggle }) {
   const [name, setName] = useState('');
   const [key, setKey] = useState('');
@@ -601,19 +618,26 @@ function PermissionsPanel({ matrix, busy, error, onReload, onCreate, onToggle })
   }, [matrix, selectedKey]);
 
   const role = (matrix?.roles || []).find((r) => r.key === selectedKey) || null;
+  const previewHref = dashboardPathForRoleKey(role?.key);
 
   return (
     <div>
       <div style={{ display: 'flex', justifyContent: 'space-between', gap: 12, flexWrap: 'wrap' }}>
         <div>
-          <h1 style={{ margin: 0, fontSize: 22 }}>Permissions</h1>
+          <h1 style={{ margin: 0, fontSize: 22 }}>توزيع الصلاحيات / Permissions</h1>
           <p style={{ margin: '4px 0 0', color: '#6b7280', fontSize: 13 }}>
-            Configurable role matrix · {matrix?.flags?.length ?? 0} permission flags
+            وزّع الصلاحيات على الأدوار لفتح وحدات لوحات المستخدمين ·{' '}
+            {matrix?.flags?.length ?? 0} flags
           </p>
         </div>
-        <button type="button" disabled={busy} onClick={() => onReload()}>
-          Refresh
-        </button>
+        <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
+          <a className="button" href="/dashboard/user-dashboards" style={{ textDecoration: 'none' }}>
+            لوحات المستخدمين
+          </a>
+          <button type="button" disabled={busy} onClick={() => onReload()}>
+            Refresh
+          </button>
+        </div>
       </div>
       {error ? <p style={{ color: '#b91c1c' }}>{error}</p> : null}
 
@@ -676,8 +700,32 @@ function PermissionsPanel({ matrix, busy, error, onReload, onCreate, onToggle })
           ))}
         </div>
         <div style={{ border: '1px solid #e5e7eb', borderRadius: 12, padding: 12 }}>
-          <h3 style={{ marginTop: 0 }}>{role?.name || 'Select a role'}</h3>
-          <p style={{ color: '#6b7280', fontSize: 13 }}>{role?.description}</p>
+          <div style={{ display: 'flex', justifyContent: 'space-between', gap: 8, flexWrap: 'wrap' }}>
+            <div>
+              <h3 style={{ marginTop: 0 }}>{role?.name || 'Select a role'}</h3>
+              <p style={{ color: '#6b7280', fontSize: 13 }}>{role?.description}</p>
+            </div>
+            {previewHref ? (
+              <a
+                href={previewHref}
+                style={{
+                  alignSelf: 'flex-start',
+                  padding: '0.45rem 0.75rem',
+                  borderRadius: 8,
+                  background: '#0f766e',
+                  color: '#fff',
+                  textDecoration: 'none',
+                  fontSize: 13,
+                  fontWeight: 600,
+                }}
+              >
+                معاينة لوحة الدور
+              </a>
+            ) : null}
+          </div>
+          <p style={{ fontSize: 12, color: '#0f766e', marginTop: 0 }}>
+            أي صلاحية تفعّلها هنا تفتح وحدات مطابقة في لوحة تحكم هذا المستخدم.
+          </p>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(200px,1fr))', gap: 6 }}>
             {(matrix?.flags || []).map((flag) => {
               const on = listIncludes(role?.permissions, flag);

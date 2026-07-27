@@ -6,8 +6,8 @@ import {launchLanguages} from './data/education-data';
 const copy = {
   en: {
     dir: 'ltr',
-    nav: ['Home', 'Gateways', 'About us', 'Our vision', 'Support'],
-    navIds: ['top', 'gateways', 'why', 'journey', 'contact'],
+    nav: ['Home', 'Gateways', 'User dashboards', 'About us', 'Our vision', 'Support'],
+    navIds: ['top', 'gateways', '/dashboard/links', 'why', 'journey', '/contact'],
     signIn: 'Sign in', start: 'Start learning', eyebrow: 'AI-powered • Human-guided • Built for life',
     slogan: 'Your Path to Success Leaves Ignorance Behind',
     heroA: 'Your learning.', heroB: 'One intelligent system.',
@@ -54,7 +54,7 @@ const copy = {
     passportItems: ['Skills & mastery', 'Assessments', 'Projects & evidence', 'Verified credentials'],
     ctaEyebrow: 'The next chapter of education starts here', ctaTitle: 'Build your future with a system that grows with you.',
     ctaText: 'Join the first generation of learners shaping SUCCESS OS.', ctaButton: 'Start your journey', ctaSecondary: 'Talk to Success 4 Sure',
-    footerText: 'The AI-powered lifelong Education Operating System.', footerCols: [['Platform', 'Learning', 'AI Tutor', 'Teachers', 'Education Passport'], ['Programs', 'EST & ACT', 'AP', 'IGCSE', 'A Level'], ['Company', 'About', 'Safety & Privacy', 'Contact', 'Success 4 Sure Academy']],
+    footerText: 'The AI-powered lifelong Education Operating System.', footerCols: [['Platform', 'Learning', 'AI Tutor', 'Roots', 'Partner Guide', 'Teachers', 'User dashboards', 'Super Admin', 'Employees OS', 'Teachers OS', 'Education Passport'], ['Programs', 'EST & ACT', 'AP', 'IGCSE', 'A Level'], ['Company', 'About', 'Safety & Privacy', 'Contact', 'Success 4 Sure Academy']],
     rights: '© 2026 SUCCESS OS by Success 4 Sure. All rights reserved.',
     modalTitle: 'Begin your SUCCESS OS journey', modalText: 'Choose who you are. We will shape the next step around you.',
     roles: [['Student', 'Start a personalized learning journey'], ['Parent', 'Support progress with age-appropriate insight'], ['Teacher', 'Teach, mentor, and grow your impact'], ['Institution', 'Connect your learners and programs']],
@@ -62,8 +62,8 @@ const copy = {
   },
   ar: {
     dir: 'rtl',
-    nav: ['الرئيسية', 'البوابات', 'من نحن', 'رؤيتنا', 'الدعم'],
-    navIds: ['top', 'gateways', 'why', 'journey', 'contact'],
+    nav: ['الرئيسية', 'البوابات', 'لوحات المستخدمين', 'من نحن', 'رؤيتنا', 'الدعم'],
+    navIds: ['top', 'gateways', '/dashboard/links', 'why', 'journey', '/contact'],
     signIn: 'تسجيل الدخول', start: 'ابدأ التعلم', eyebrow: 'بالذكاء الاصطناعي • بإشراف الإنسان • معك مدى الحياة',
     slogan: 'طريقك نحو النجاح يمحو طريقك نحو الجهل',
     heroA: 'تعليمك.', heroB: 'في نظام ذكي واحد.',
@@ -110,7 +110,7 @@ const copy = {
     passportItems: ['المهارات والإتقان', 'الاختبارات', 'المشاريع والأدلة', 'الشهادات الموثقة'],
     ctaEyebrow: 'الفصل القادم من التعليم يبدأ هنا', ctaTitle: 'ابنِ مستقبلك مع نظام يكبر معك.',
     ctaText: 'كن من الجيل الأول الذي يشارك في بناء SUCCESS OS.', ctaButton: 'ابدأ رحلتك', ctaSecondary: 'تواصل مع Success 4 Sure',
-    footerText: 'نظام التعليم المدعوم بالذكاء الاصطناعي مدى الحياة.', footerCols: [['المنصة', 'التعلم', 'المعلم الذكي', 'المعلمون', 'الجواز التعليمي'], ['البرامج', 'EST وACT', 'AP', 'IGCSE', 'A Level'], ['الشركة', 'من نحن', 'الأمان والخصوصية', 'تواصل معنا', 'Success 4 Sure Academy']],
+    footerText: 'نظام التعليم المدعوم بالذكاء الاصطناعي مدى الحياة.', footerCols: [['المنصة', 'التعلم', 'المعلم الذكي', 'الجذور', 'دليل الشريك', 'المعلمون', 'لوحات المستخدمين', 'لوحة المشرف', 'لوحات الموظفين', 'لوحات المعلمين', 'الجواز التعليمي'], ['البرامج', 'EST وACT', 'AP', 'IGCSE', 'A Level'], ['الشركة', 'من نحن', 'الأمان والخصوصية', 'تواصل معنا', 'Success 4 Sure Academy']],
     rights: '© 2026 SUCCESS OS by Success 4 Sure. جميع الحقوق محفوظة.',
     modalTitle: 'ابدأ رحلتك مع SUCCESS OS', modalText: 'اختر دورك وسنبني الخطوة التالية حول احتياجك.',
     roles: [['طالب', 'ابدأ رحلة تعلم شخصية'], ['ولي أمر', 'تابع التقدم بصلاحيات مناسبة للعمر'], ['معلم', 'علّم ووجّه ووسع أثرك'], ['مؤسسة', 'اربط طلابك وبرامجك']],
@@ -181,9 +181,42 @@ export default function HomePage() {
     ['08','✦','انضم إلينا','بوابة الشراكات','معلم • مركز • مدرسة • جامعة • كلية • شركة','اختر نوع الشراكة وابدأ طلب انضمام موثّق إلى منظومة SUCCESS OS.','join']
   ];
   const partnerGateways=['teacher','center','school','university','employer'];
-  const searchRoutes={teacher:'/teachers',center:'/partner-search?portal=center',school:'/school-finder',university:'/admissions',employer:'/jobs'};
+  const searchRoutes={teacher:'/teachers',center:'/partners/discover',school:'/partners/discover',university:'/admissions',employer:'/partners/discover?audience=jobseeker'};
+  const footerLinks = {
+    Platform: { Learning: '/programs', 'AI Tutor': '/tutor', 'Digital Library': '/digital-library', Curriculum: '/curriculum', Roots: '/roots', 'Partner Guide': '/guide', Teachers: '/teachers', 'User dashboards': '/dashboard/links', 'Super Admin': '/dashboard/super-admin', 'Employees OS': '/dashboard/employees', 'Teachers OS': '/dashboard/teachers', 'Education Passport': '/passport' },
+    المنصة: { التعلم: '/programs', 'المعلم الذكي': '/tutor', 'المكتبة الرقمية': '/digital-library', المناهج: '/curriculum', 'الجذور': '/roots', 'دليل الشريك': '/guide', المعلمون: '/teachers', 'لوحات المستخدمين': '/dashboard/links', 'لوحة المشرف': '/dashboard/super-admin', 'لوحات الموظفين': '/dashboard/employees', 'لوحات المعلمين': '/dashboard/teachers', 'الجواز التعليمي': '/passport' },
+    Programs: { 'EST وACT': '/courses', EST: '/courses', ACT: '/courses', AP: '/courses', IGCSE: '/courses', 'A Level': '/courses', 'EST & ACT': '/courses' },
+    البرامج: { 'EST وACT': '/courses', AP: '/courses', IGCSE: '/courses', 'A Level': '/courses' },
+    Company: { About: '/about', 'Safety & Privacy': '/trust', Contact: '/contact', 'Success 4 Sure Academy': 'https://www.success4sureacademy.com/' },
+    الشركة: { 'من نحن': '/about', 'الأمان والخصوصية': '/trust', 'تواصل معنا': '/contact', 'Success 4 Sure Academy': 'https://www.success4sureacademy.com/' },
+  };
+  const dashboardRoutes = {
+    student: '/students/dashboard',
+    teacher: '/teachers/dashboard',
+    center: '/dashboard/educational-center',
+    school: '/dashboard/school',
+    university: '/partners/dashboard?type=university',
+    employer: '/dashboard/employer',
+    jobseeker: '/jobs/dashboard',
+    join: '/dashboard/links',
+  };
+  const roleDestinations = {
+    Student: '/students/dashboard',
+    طالب: '/students/dashboard',
+    Parent: '/dashboard/parent',
+    'ولي أمر': '/dashboard/parent',
+    Teacher: '/teachers/dashboard',
+    معلم: '/teachers/dashboard',
+    Institution: '/dashboard/links',
+    مؤسسة: '/dashboard/links',
+  };
 
-  return <div id="top" className="app phase11-landing">
+  const hubNodes = lang === 'en'
+    ? [['n1','👨‍🎓','Students'],['n2','👩‍🏫','Teachers'],['n3','👪','Parents'],['n4','💼','Careers'],['n5','🏫','Schools'],['n6','🎓','Universities'],['n7','⌁','AI Assist']]
+    : [['n1','👨‍🎓','طلاب'],['n2','👩‍🏫','معلمون'],['n3','👪','أولياء'],['n4','💼','مهن'],['n5','🏫','مدارس'],['n6','🎓','جامعات'],['n7','⌁','ذكاء']];
+  const metricIcons = ['◈','◎','✦','⌁'];
+
+  return <div id="top" className="app phase11-landing sos-landing">
     <header className="nav-shell">
       <nav className="nav container">
         <Logo />
@@ -202,50 +235,67 @@ export default function HomePage() {
     </header>
 
     <main>
-      <section className="portal-first-stage">
-        <div className="portal-first-backdrop"><img src="/media/success-future-gateways.webp" alt="بوابات SUCCESS OS المستقبلية"/></div>
-        <div className="container portal-first-content"><header><small>YOUR JOURNEY STARTS HERE</small><h1>{lang==='en'?'Choose your gateway. Reach your goal.':'اختر بوابتك. واصل إلى هدفك.'}</h1><p>{lang==='en'?'A clear beginning for every learner, educator, institution and opportunity.':'بداية واضحة لكل طالب ومعلم ومؤسسة وفرصة، ثم فلاتر تقودك مباشرة إلى طلبك.'}</p></header><div className="portal-first-grid">{gateways.map(([number,icon,label,,,description,id],i)=><a href={`/start-journey?portal=${id}`} style={{'--portal-pos':`${(i%4)*30}% ${i<4?'20%':'78%'}`}} key={id}><span className="portal-image"></span><small>{number}</small><b>{icon} {label}</b><p>{description}</p></a>)}</div><a className="portal-start-button" href="/start-journey"><span>{lang==='en'?'Start the journey':'ابدأ الرحلة'}</span><b>←</b></a></div>
-      </section>
-      <section className="hero">
+      <a className="sos-announce" href="/start-journey">
+        <span aria-hidden="true">📣</span>
+        <div>{lang==='en' ? <>New scholarships available — <em>start your SUCCESS OS journey today</em></> : <>منح جديدة متاحة — <em>ابدأ رحلتك مع SUCCESS OS اليوم</em></>}</div>
+      </a>
+
+      <section className="hero sos-hero">
         <div className="hero-grid container">
           <div className="hero-copy reveal">
-            <div className="eyebrow"><span></span>{t.eyebrow}</div>
+            <div className="eyebrow"><span></span>{lang==='en'?'AI-Powered Education Operating System':'نظام تشغيل التعليم بالذكاء الاصطناعي'}</div>
             <h1>{t.heroA}<br/><span>{t.heroB}</span></h1>
             <div className="official-slogan">SUCCESS OS — {t.slogan}</div>
             <p>{t.heroText}</p>
             <div className="hero-actions">
               <a className="button" href="#gateways">{t.explore}<b>→</b></a>
-              <a className="button ghost" href="#ai"><Icon name="spark"/>{t.tutor}</a>
+              <a className="button ghost" href="/tutor"><Icon name="spark"/>{t.tutor}</a>
+            </div>
+            <div className="sos-hero-metrics">
+              {t.stats.map(([n,l], i) => (
+                <div key={l}><i aria-hidden="true">{metricIcons[i]}</i><div><strong>{n}</strong><small>{l}</small></div></div>
+              ))}
             </div>
             <div className="founder-note"><span className="avatar">S4S</span><div><strong>{t.trust}</strong><small>{t.trustSub}</small></div></div>
           </div>
-          <div className="hero-visual reveal delay">
-            <div className="orbital one"></div><div className="orbital two"></div>
-            <div className="success-3d-world"><i className="ring-a"></i><i className="ring-b"></i><strong>S</strong><span>LEARN • BUILD • SUCCEED</span></div>
-            <div className="dashboard-card">
-              <div className="dash-top"><div><small>{t.today}</small><strong>{t.continue}</strong></div><span>↗</span></div>
-              <div className="progress"><i style={{width:'68%'}}></i></div><small>{t.mins}</small>
-              <div className="dash-grid">
-                <div className="mastery-ring"><div><b>72%</b><small>{t.mastery}</small></div></div>
-                <div className="dash-metrics"><div><small>{t.streak}</small><strong>🔥 {t.days}</strong></div><div><small>{t.next}</small><strong>{t.nextVal}</strong></div></div>
-              </div>
+          <div className="hero-visual reveal delay" aria-hidden="true">
+            <div className="sos-hub">
+              <i className="sos-hub-ring r1"></i>
+              <i className="sos-hub-ring r2"></i>
+              <div className="sos-hub-core"><b>S</b><small>SUCCESS OS</small></div>
+              {hubNodes.map(([cls, icon, label]) => (
+                <div className={`sos-hub-node ${cls}`} key={cls}><span>{icon}</span><small>{label}</small></div>
+              ))}
             </div>
-            <div className="float-card tutor-float"><span><Icon name="spark"/></span><div><small>AI TUTOR</small><b>{lang === 'en' ? 'Ready when you are' : 'جاهز وقت ما تحتاج'}</b></div></div>
-            <div className="float-card pass-float"><span><Icon name="passport"/></span><div><small>EDUCATION PASSPORT</small><b>{lang === 'en' ? 'New skill verified' : 'تم توثيق مهارة جديدة'}</b></div></div>
           </div>
         </div>
-        <div className="stats container">{t.stats.map(([n,l]) => <div key={l}><strong>{n}</strong><span>{l}</span></div>)}</div>
+        <div className="sos-stats-band">
+          <div className="stats container">{t.stats.map(([n,l]) => <div key={l}><strong>{n}</strong><span>{l}</span></div>)}</div>
+        </div>
+      </section>
+
+      <section className="portal-first-stage" id="portals">
+        <div className="portal-first-backdrop"><img src="/media/success-future-gateways.webp" alt="بوابات SUCCESS OS المستقبلية"/></div>
+        <div className="container portal-first-content">
+          <header>
+            <small>{lang==='en'?'EXPLORE BY PORTAL':'استكشف حسب البوابة'}</small>
+            <h1>{lang==='en'?'Choose your gateway. Reach your goal.':'اختر بوابتك. واصل إلى هدفك.'}</h1>
+            <p>{lang==='en'?'A clear beginning for every learner, educator, institution and opportunity.':'بداية واضحة لكل طالب ومعلم ومؤسسة وفرصة، ثم فلاتر تقودك مباشرة إلى طلبك.'}</p>
+          </header>
+          <div className="portal-first-grid">{gateways.map(([number,icon,label,,,description,id],i)=><a href={id==='join'?'/join-us':`/start-journey?portal=${id}`} style={{'--portal-pos':`${(i%4)*30}% ${i<4?'20%':'78%'}`}} key={id}><span className="portal-image"></span><small>{number}</small><b>{icon} {label}</b><p>{description}</p></a>)}</div>
+          <a className="portal-start-button" href="/start-journey"><span>{lang==='en'?'Start the journey':'ابدأ الرحلة'}</span><b>←</b></a>
+        </div>
       </section>
 
       <section className="home-gateway organized" id="gateways">
         <div className="container">
           <header><div><small>{lang==='en'?'EIGHT CONNECTED GATEWAYS':'ثماني بوابات مترابطة'}</small><h2>{lang==='en'?'Choose where your SUCCESS journey begins':'اختر البوابة التي تبدأ منها رحلتك'}</h2><p>{lang==='en'?'Search for a trusted partner or join the network through a dedicated path.':'ابحث عن شريك موثوق أو انضم إلى الشبكة من خلال مسار واضح ومستقل.'}</p></div><a href="/join-us">{lang==='en'?'Partnership gateway':'بوابة انضم إلينا'} ←</a></header>
           <div className="gateway-join-steps"><span><b>1</b>{lang==='en'?'Choose your gateway':'اختر بوابتك'}</span><i></i><span><b>2</b>{lang==='en'?'Add your basic details':'أدخل بياناتك الأساسية'}</span><i></i><span><b>3</b>{lang==='en'?'Open your private journey':'انتقل لمساحتك الخاصة'}</span></div>
-          <div className="gateway-join-grid">{gateways.map(([number,icon,label,category,tags,description,id])=><article className={`gateway-join-card gateway-${id}`} key={id}><div className="gateway-card-head"><span>{icon}</span><small>{lang==='en'?`GATEWAY ${number}`:`البوابة ${number}`}</small></div><div className="gateway-card-copy"><em>{category}</em><h3>{label}</h3><p>{description}</p><strong>{tags}</strong></div>{partnerGateways.includes(id)?<div className="gateway-card-actions"><a href={searchRoutes[id]}><span>{lang==='en'?`Find ${label}`:`ابحث في ${label}`}</span><b>⌕</b></a><a href={`/join-us?role=${id}`}><span>{lang==='en'?`Join as ${label}`:`انضم إلى ${label}`}</span><b>＋</b></a></div>:<a href={id==='student'?'/student-portal':id==='jobseeker'?'/jobseeker-portal':'/join-us'}><span>{id==='join'?(lang==='en'?'Open partnership gateway':'افتح بوابة الشراكات'):(lang==='en'?'Open this gateway':'افتح هذه البوابة')}</span><b>←</b></a>}</article>)}</div>
+          <div className="gateway-join-grid">{gateways.map(([number,icon,label,category,tags,description,id])=><article className={`gateway-join-card gateway-${id}`} key={id}><div className="gateway-card-head"><span>{icon}</span><small>{lang==='en'?`GATEWAY ${number}`:`البوابة ${number}`}</small></div><div className="gateway-card-copy"><em>{category}</em><h3>{label}</h3><p>{description}</p><strong>{tags}</strong></div><div className="gateway-card-actions"><a href={dashboardRoutes[id]||'/dashboard/links'}><span>{lang==='en'?'Open dashboard':'افتح اللوحة'}</span><b>▣</b></a>{partnerGateways.includes(id)?<><a href={searchRoutes[id]}><span>{lang==='en'?`Find ${label}`:`ابحث في ${label}`}</span><b>⌕</b></a><a href={`/join-us?role=${id}`}><span>{lang==='en'?`Join as ${label}`:`انضم إلى ${label}`}</span><b>＋</b></a></>:null}{!partnerGateways.includes(id)?<a href={id==='student'?'/students/dashboard':id==='jobseeker'?'/jobs/dashboard':'/join-us'}><span>{id==='join'?(lang==='en'?'Partnerships':'الشراكات'):(lang==='en'?'Open gateway':'البوابة')}</span><b>←</b></a>:null}</div></article>)}</div>
           <section className="work-with-us-network">
             <div className="network-copy"><small>{lang==='en'?'CONNECTED PARTNERSHIP NETWORK':'شبكة الشراكة المتصلة'}</small><h2>{lang==='en'?'Work with SUCCESS OS':'اعمل معنا'}</h2><p>{lang==='en'?'Join the education-to-employment ecosystem through the role that fits you.':'انضم إلى منظومة تصل التعليم بالجامعة والعمل من خلال الدور المناسب لك.'}</p></div>
             <div className="network-map">
-              <div className="network-side"><a href="/join-us?role=teacher">{lang==='en'?'Teacher':'معلم'}<i>←</i></a><a href="/join-us?role=center">{lang==='en'?'Learning center':'مركز تعليمي'}<i>←</i></a><a href="/join-us?role=school">{lang==='en'?'School':'مدرسة'}<i>←</i></a></div>
+              <div className="network-side"><a href="/teachers/register">{lang==='en'?'Teacher':'معلم'}<i>←</i></a><a href="/join-us?role=center">{lang==='en'?'Learning center':'مركز تعليمي'}<i>←</i></a><a href="/join-us?role=school">{lang==='en'?'School':'مدرسة'}<i>←</i></a></div>
               <a className="network-core" href="/join-us"><span>✦</span><b>{lang==='en'?'JOIN US':'انضم إلينا'}</b><small>SUCCESS OS</small></a>
               <div className="network-side"><a href="/join-us?role=university"><i>→</i>{lang==='en'?'University':'جامعة'}</a><a href="/join-us?role=college"><i>→</i>{lang==='en'?'College':'كلية'}</a><a href="/join-us?role=employer"><i>→</i>{lang==='en'?'Employer':'شركة توظيف'}</a></div>
             </div>
@@ -254,7 +304,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="knowledge-entry"><div className="container"><header><small>ONE LEARNING UNIVERSE</small><h2>{lang==='en'?'School, university and career learning—inside one platform':'التعلم المدرسي والجامعي والمهني داخل منصة واحدة'}</h2></header><div className="knowledge-entry-grid"><a href="/subject-catalog"><span>▦</span><small>LOCAL + INTERNATIONAL</small><h3>{lang==='en'?'School subjects':'المواد المدرسية'}</h3><p>{lang==='en'?'Curricula by country, system and grade.':'مناهج حسب الدولة والنظام والصف.'}</p><b>↗</b></a><a href="/university-subjects"><span>⚛</span><small>COLLEGE + UNIVERSITY</small><h3>{lang==='en'?'University subjects':'المواد الجامعية'}</h3><p>{lang==='en'?'Degrees, disciplines and course pathways.':'درجات وتخصصات ومسارات مساقات.'}</p><b>↗</b></a><a href="/content-studio"><span>✦</span><small>HUMAN-GUIDED AI</small><h3>{lang==='en'?'Content studio':'استوديو بناء المحتوى'}</h3><p>{lang==='en'?'Upload, summarize, script and review.':'ارفع ولخّص وابنِ الفيديو ثم راجع.'}</p><b>↗</b></a><a href="/source-registry"><span>✓</span><small>RIGHTS + PROVENANCE</small><h3>{lang==='en'?'Source registry':'سجل المصادر والحقوق'}</h3><p>{lang==='en'?'Know what can be used and how.':'اعرف ما يمكن استخدامه وكيف.'}</p><b>↗</b></a></div><div className="home-shield"><span>⬡</span><div><small>SUCCESS SHIELD</small><b>كل درس وفيديو وامتحان يحمل بصمة وحقوقًا وصلاحية واضحة</b></div><a href="/security-center">افتح مركز الحماية ←</a></div></div></section>
+      <section className="knowledge-entry" id="journey"><div className="container"><header><small>ONE LEARNING UNIVERSE</small><h2>{lang==='en'?'School, university and career learning—inside one platform':'التعلم المدرسي والجامعي والمهني داخل منصة واحدة'}</h2></header><div className="knowledge-entry-grid"><a href="/subject-catalog"><span>▦</span><small>LOCAL + INTERNATIONAL</small><h3>{lang==='en'?'School subjects':'المواد المدرسية'}</h3><p>{lang==='en'?'Curricula by country, system and grade.':'مناهج حسب الدولة والنظام والصف.'}</p><b>↗</b></a><a href="/university-subjects"><span>⚛</span><small>COLLEGE + UNIVERSITY</small><h3>{lang==='en'?'University subjects':'المواد الجامعية'}</h3><p>{lang==='en'?'Degrees, disciplines and course pathways.':'درجات وتخصصات ومسارات مساقات.'}</p><b>↗</b></a><a href="/content-studio"><span>✦</span><small>HUMAN-GUIDED AI</small><h3>{lang==='en'?'Content studio':'استوديو بناء المحتوى'}</h3><p>{lang==='en'?'Upload, summarize, script and review.':'ارفع ولخّص وابنِ الفيديو ثم راجع.'}</p><b>↗</b></a><a href="/source-registry"><span>✓</span><small>RIGHTS + PROVENANCE</small><h3>{lang==='en'?'Source registry':'سجل المصادر والحقوق'}</h3><p>{lang==='en'?'Know what can be used and how.':'اعرف ما يمكن استخدامه وكيف.'}</p><b>↗</b></a></div><div className="home-shield"><span>⬡</span><div><small>SUCCESS SHIELD</small><b>كل درس وفيديو وامتحان يحمل بصمة وحقوقًا وصلاحية واضحة</b></div><a href="/security-center">افتح مركز الحماية ←</a></div></div></section>
 
       <section className="home-core-summary" id="why">
         <div className="container">
@@ -272,9 +322,9 @@ export default function HomePage() {
       <section className="cta-section" id="contact"><div className="container cta-card"><div className="cta-orb a"></div><div className="cta-orb b"></div><div className="eyebrow light">{t.ctaEyebrow}</div><h2>{t.ctaTitle}</h2><p>{t.ctaText}</p><div><button className="button mint-button" onClick={()=>setModal(true)}>{t.ctaButton}<b>→</b></button><a className="button clear" href="https://www.success4sureacademy.com/" target="_blank" rel="noreferrer">{t.ctaSecondary}</a></div></div></section>
     </main>
 
-    <footer><div className="container footer-grid"><div className="footer-brand"><Logo/><p>{t.footerText}</p><div className="socials"><a href="https://www.instagram.com/success4surejo/" target="_blank" rel="noreferrer">IG</a><a href="mailto:info@success4sureacademy.com">@</a><a href="https://www.success4sureacademy.com/" target="_blank" rel="noreferrer">↗</a></div></div>{t.footerCols.map(col=><div className="footer-col" key={col[0]}><strong>{col[0]}</strong>{col.slice(1).map(x=><a href="#top" key={x}>{x}</a>)}</div>)}</div><div className="container footer-bottom"><span>{t.rights}</span><span>Amman • Dubai • Online Worldwide</span></div></footer>
+    <footer><div className="container footer-grid"><div className="footer-brand"><Logo/><p>{t.footerText}</p><div className="socials"><a href="https://www.instagram.com/success4surejo/" target="_blank" rel="noreferrer">IG</a><a href="mailto:info@success4sureacademy.com">@</a><a href="https://www.success4sureacademy.com/" target="_blank" rel="noreferrer">↗</a></div></div>{t.footerCols.map(col=><div className="footer-col" key={col[0]}><strong>{col[0]}</strong>{col.slice(1).map(x=>{const href=(footerLinks[col[0]]||{})[x]||'/';const external=href.startsWith('http');return <a href={href} key={x} {...(external?{target:'_blank',rel:'noreferrer'}:{})}>{x}</a>})}</div>)}</div><div className="container footer-bottom"><span>{t.rights}</span><span>Amman • Dubai • Online Worldwide</span></div></footer>
 
-    {modal && <div className="modal-backdrop" onMouseDown={(e)=>e.target===e.currentTarget&&setModal(false)}><div className="modal"><button className="modal-close" onClick={()=>setModal(false)}>×</button><Logo dark/><h2>{t.modalTitle}</h2><p>{t.modalText}</p><div className="role-grid">{t.roles.map(([name,desc],i)=><button key={name} className={role===name?'selected':''} onClick={()=>setRole(name)}><span>{['◉','◇','✦','▦'][i]}</span><div><strong>{name}</strong><small>{desc}</small></div><b>→</b></button>)}</div><button className="button modal-next" disabled={!role} onClick={()=>{window.location.href='/onboarding'}}>{t.modalNext}<b>→</b></button></div></div>}
+    {modal && <div className="modal-backdrop" onMouseDown={(e)=>e.target===e.currentTarget&&setModal(false)}><div className="modal"><button className="modal-close" onClick={()=>setModal(false)}>×</button><Logo dark/><h2>{t.modalTitle}</h2><p>{t.modalText}</p><div className="role-grid">{t.roles.map(([name,desc],i)=><button key={name} className={role===name?'selected':''} onClick={()=>setRole(name)}><span>{['◉','◇','✦','▦'][i]}</span><div><strong>{name}</strong><small>{desc}</small></div><b>→</b></button>)}</div><button className="button modal-next" disabled={!role} onClick={()=>{window.location.href=roleDestinations[role]||'/start-journey'}}>{t.modalNext}<b>→</b></button></div></div>}
     {languageSheet&&<div className="language-sheet" onMouseDown={e=>e.target===e.currentTarget&&setLanguageSheet(false)}><div><button onClick={()=>setLanguageSheet(false)}>×</button><small>GLOBAL LANGUAGE LAYER</small><h2>اختر من جميع اللغات</h2><p>العربية وEnglish واجهتان أصليتان. بقية اللغات تستخدم طبقة ترجمة تلقائية وتبقى خاضعة للمراجعة البشرية.</p><section>{launchLanguages.map(([code,name,dir,status])=><button className={code===selectedLanguage?'active':''} onClick={()=>{setSelectedLanguage(code);setSelectedDirection(dir==='RTL'?'rtl':'ltr');setLang(code==='ar'?'ar':'en');setLanguageSheet(false)}} key={code}><b>{name}</b><span>{code.toUpperCase()} • {dir} • {status}</span></button>)}</section></div></div>}
   </div>;
 }

@@ -73,8 +73,10 @@ function ensureStore() {
   fs.mkdirSync(path.join(rootDir(), 'metrics'), { recursive: true });
   fs.mkdirSync(path.join(rootDir(), 'activity'), { recursive: true });
 
+  const SCENARIO_RBAC_VERSION = 'scenario-crud-supervisor-v1';
   if (!readJson(collectionPath('roles'))) {
     writeJson(collectionPath('roles'), {
+      scenarioVersion: SCENARIO_RBAC_VERSION,
       items: ENTERPRISE_ADMIN_DEFAULT_ROLES.map((r) => ({
         ...r,
         id: r.key,
@@ -85,11 +87,11 @@ function ensureStore() {
       updatedAt: nowIso(),
     });
   } else {
-    // Merge newly introduced default roles without wiping Owner customizations
+    // Merge new roles + resync scenario permissions when policy version changes
     const rolesDoc = readJson(collectionPath('roles'));
     const existing = list(rolesDoc.items);
     const byKey = new Map(existing.map((r) => [r.key, r]));
-    let changed = false;
+    let changed = rolesDoc.scenarioVersion !== SCENARIO_RBAC_VERSION;
     for (const def of ENTERPRISE_ADMIN_DEFAULT_ROLES) {
       if (!byKey.has(def.key)) {
         byKey.set(def.key, {
@@ -100,10 +102,22 @@ function ensureStore() {
           updatedAt: nowIso(),
         });
         changed = true;
+      } else if (rolesDoc.scenarioVersion !== SCENARIO_RBAC_VERSION) {
+        // Apply supervisor-only CRUD policy to known scenario roles
+        const prev = byKey.get(def.key);
+        byKey.set(def.key, {
+          ...prev,
+          name: def.name,
+          description: def.description,
+          permissions: def.permissions,
+          permissionCount: rolePermissionCount(def),
+          updatedAt: nowIso(),
+        });
       }
     }
     if (changed) {
       writeJson(collectionPath('roles'), {
+        scenarioVersion: SCENARIO_RBAC_VERSION,
         items: [...byKey.values()],
         updatedAt: nowIso(),
       });

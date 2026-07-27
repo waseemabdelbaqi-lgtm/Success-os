@@ -33,5 +33,5 @@
     "**/*.jsx",
     ".next/types/**/*.ts"
   ],
-  "exclude": ["node_modules", "dist", ".vinext", ".wrangler", "src"]
+  "exclude": ["node_modules", "dist", ".vinext", ".wrangler"]
 }

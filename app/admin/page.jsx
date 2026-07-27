@@ -14,6 +14,119 @@ export default function AdminPage() {
           </p>
         </div>
 
+        <section className="os-card admin-card" style={{ marginBottom: '1rem', background: 'linear-gradient(135deg,#4b0a11,#9e1722)', color: '#fff' }}>
+          <span style={{ color: '#f2d77c' }}>SUPER ADMIN · HIGHEST OS LAYER</span>
+          <h2 style={{ color: '#fff' }}>لوحة المشرف — إدارة نظام التشغيل</h2>
+          <p style={{ color: 'rgba(255,255,255,0.88)' }}>
+            أعلى طبقة تحكم في SUCCESS OS: صحة النظام، الصلاحيات، ERP، البوابات، المحتوى، المالية،
+            والتدقيق من غرفة واحدة.
+          </p>
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.6rem' }}>
+            <a className="button" href="/dashboard/super-admin" style={{ background: '#fff', color: '#9e1722' }}>
+              افتح لوحة المشرف →
+            </a>
+            <a className="button" href="/dashboard/employees" style={{ background: 'rgba(255,255,255,0.12)', color: '#fff', border: '1px solid rgba(255,255,255,0.35)' }}>
+              لوحات الموظفين →
+            </a>
+          </div>
+        </section>
+
+        <section className="os-card admin-card" style={{ marginBottom: '1rem' }}>
+          <span>EMPLOYEES OS</span>
+          <h2>لوحات الموظفين — أعلى مستوى تشغيل</h2>
+          <p>
+            غرفة تحكم دوائر الشركة: الموارد البشرية، المالية، القانونية، التقنية، التسويق، المحتوى،
+            الأكاديميا، والدعم — مع لوحة الموظف الشخصية.
+          </p>
+          <a className="button" href="/dashboard/employees">
+            افتح لوحات الموظفين →
+          </a>
+        </section>
+
+        <section className="os-card admin-card" style={{ marginBottom: '1rem', background: 'linear-gradient(160deg,#0c0608,#4b0a11)', color: '#fff' }}>
+          <span style={{ color: '#f2d77c' }}>SUCCESS OS ROOTS · SHARAYEEN</span>
+          <h2 style={{ color: '#fff' }}>جذور المنظومة — شرايين الحياة</h2>
+          <p style={{ color: 'rgba(255,255,255,0.88)' }}>
+            طبقة الأساس: نواة الإنسان، التعلم، التدريس، الشراكة، المهن، القبول، التشغيل، والجهاز
+            العصبي الذكي. ازرع الجذور قبل ما تطلع لفوق.
+          </p>
+          <a className="button" href="/roots" style={{ background: '#f2d77c', color: '#301218' }}>
+            افتح الجذور →
+          </a>
+        </section>
+
+        <section className="os-card admin-card" style={{ marginBottom: '1rem' }}>
+          <span>PARTNERS OS · ADMISSIONS</span>
+          <h2>لوحات الشركاء + قبول الجامعات</h2>
+          <p>
+            الشريك يعبّئ ملفه وينشره، والطالب/الباحث يطابق الجهة المناسبة. القبول الجامعي يبقى عبر
+            مسار admissions مع صفحة الشريك العامة.
+          </p>
+          <div style={{ display: 'flex', gap: '0.6rem', flexWrap: 'wrap' }}>
+            <a className="button" href="/partners/dashboard">
+              لوحة تحكم الشريك →
+            </a>
+            <a className="button" href="/partners/discover">
+              اكتشاف الشركاء →
+            </a>
+            <a className="button" href="/admissions">
+              قبول الجامعات →
+            </a>
+          </div>
+        </section>
+
+        <section className="os-card admin-card" style={{ marginBottom: '1rem', background: 'linear-gradient(135deg,#301218,#7f121b)', color: '#fff' }}>
+          <span style={{ color: '#f2d77c' }}>AI COMPANION · LIVING PARTNER GUIDE</span>
+          <h2 style={{ color: '#fff' }}>دليل الشريك الحي — يسجّل ويتأكد</h2>
+          <p style={{ color: 'rgba(255,255,255,0.88)' }}>
+            طبقة ذكاء تسجّل خطوات البناء، تتحقق من الأسطح الحرجة، وتسرد أين وصلنا كشركاء — ذاكرة
+            المنظومة ما بتنسى.
+          </p>
+          <a className="button" href="/guide" style={{ background: '#fff', color: '#9e1722' }}>
+            افتح دليل الشريك →
+          </a>
+        </section>
+
+        <section className="os-card admin-card" style={{ marginBottom: '1rem' }}>
+          <span>STUDENTS OS · CAREERS OS</span>
+          <h2>غرفة تحكم الطالب وغرفة قيادة الباحث عن عمل</h2>
+          <p>
+            لوحات تخيّلية للمسار التعليمي والمهني: حلم الطالب ومدارات التعلم، ورادار الوظائف ومنصات
+            الإطلاق للباحث — مع فصل الخصوصية بين البوابتين.
+          </p>
+          <div style={{ display: 'flex', gap: '0.6rem', flexWrap: 'wrap' }}>
+            <a className="button" href="/students/dashboard">
+              غرفة تحكم الطالب →
+            </a>
+            <a className="button" href="/jobs/dashboard">
+              غرفة قيادة الباحث →
+            </a>
+          </div>
+        </section>
+
+        <section className="os-card admin-card" style={{ marginBottom: '1rem' }}>
+          <span>TEACHERS OS</span>
+          <h2>لوحات المعلمين — حصص ومبيعات وإشراف</h2>
+          <p>
+            تسجيل وثائق المعلم، رفع الحصص المسجلة، أونلاين/وجاهي مع السعر والمدة والمنطقة، أرباح بعد
+            خصم 10% للمنصة، وتبليغ التخلف لقرار المشرف.
+          </p>
+          <div style={{ display: 'flex', gap: '0.6rem', flexWrap: 'wrap' }}>
+            <a className="button" href="/dashboard/teachers">
+              Teachers OS →
+            </a>
+            <a className="button" href="/teachers/register?by=supervisor">
+              تسجيل معلم عبر المشرف →
+            </a>
+            <a className="button" href="/teachers/platform">
+              أدوات المنصة / AI →
+            </a>
+            <a className="button" href="/teachers/dashboard">
+              لوحة تحكم المعلم →
+            </a>
+          </div>
+        </section>
+
         <section className="os-card admin-card" style={{ marginBottom: '1rem' }}>
           <span>ADMIN-01</span>
           <h2>Enterprise Admin Dashboard</h2>
