@@ -51,7 +51,8 @@ export function AiTeacherTheater({
   const beats = manifest?.beats || [];
   const videoSrc = manifest?.video;
   const poster = manifest?.poster || "/ai-lessons/g1-math/poster.jpg";
-  const name = withAiAssistantTitle(manifest?.teacher || manifest?.teacherName || teacherName);
+  const fullName = withAiAssistantTitle(manifest?.teacher || manifest?.teacherName || teacherName);
+  const name = stripAiAssistantTitle(fullName);
   const role = manifest?.teacherTitle || AI_ASSISTANT_TEACHER_TITLE;
 
   useEffect(() => {
@@ -96,7 +97,7 @@ export function AiTeacherTheater({
         <style>{css}</style>
         <div className="ja-empty">
           <h2>{title}</h2>
-          <p>فيديو الحصة قيد التحضير لـ {name}.</p>
+          <p>فيديو الحصة قيد التحضير لـ {fullName}.</p>
         </div>
       </section>
     );
@@ -136,7 +137,7 @@ export function AiTeacherTheater({
               <p className="ja-teacher">
                 معلّمة الذكاء الاصطناعي <strong>{name}</strong>
                 <span className="ja-role">{role}</span>
-                {manifest?.voice ? <span> · صوت أردني ({manifest.voice})</span> : null}
+                {manifest?.voice ? <span className="ja-voice">صوت أردني</span> : null}
               </p>
             </div>
             <div className="ja-actions">

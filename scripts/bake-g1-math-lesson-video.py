@@ -14,6 +14,8 @@ import subprocess
 from pathlib import Path
 
 from PIL import Image, ImageDraw, ImageFont, ImageEnhance
+import arabic_reshaper
+from bidi.algorithm import get_display
 
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "public" / "ai-lessons" / "g1-math"
@@ -41,6 +43,17 @@ BEATS = [
     {"id": "12", "title": "أحسنتم", "lines": ["ارسموا خط أعداد في البيت", "وبشوفكم الدرس الجاي"], "board": "bye"},
 ]
 
+
+
+def ar(text: str) -> str:
+    """Shape Arabic for correct Pillow rendering."""
+    if not text:
+        return text
+    try:
+        return get_display(arabic_reshaper.reshape(str(text)))
+    except Exception:
+        return str(text)
+
 BRAND = (158, 23, 34, 255)
 GOLD = (242, 215, 124, 255)
 INK = (28, 18, 20, 255)
@@ -67,8 +80,13 @@ def probe_duration(path: Path) -> float:
 
 
 def load_fonts():
-    bold = "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf"
-    path = bold if os.path.exists(bold) else None
+    candidates = [
+        "/usr/share/fonts/truetype/noto/NotoSansArabic-Bold.ttf",
+        "/usr/share/fonts/truetype/noto/NotoNaskhArabic-Bold.ttf",
+        "/usr/share/fonts/truetype/noto/NotoKufiArabic-Bold.ttf",
+        "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf",
+    ]
+    path = next((p for p in candidates if os.path.exists(p)), None)
     if not path:
         d = ImageFont.load_default()
         return d, d, d, d, d
@@ -130,8 +148,8 @@ def compose_frame(beat, t, fonts, idle, talk):
 
     # YouTube-like top strip
     d.rectangle([0, 0, W, 52], fill=NAVY)
-    d.text((22, 14), "Success OS  ·  الصف الأول  ·  رياضيات", font=small_f, fill=GOLD)
-    d.text((W - 340, 14), "معلّمة مساعدة · درس مصوّر", font=small_f, fill=(255, 255, 255, 220))
+    d.text((22, 14), ar("Success OS  ·  الصف الأول  ·  رياضيات"), font=small_f, fill=GOLD)
+    d.text((W - 340, 14), ar("معلّمة مساعدة · درس مصوّر"), font=small_f, fill=(255, 255, 255, 220))
 
     # LEFT: large teacher camera (YouTube educator style)
     cam_w, cam_h = 560, 620
@@ -150,20 +168,20 @@ def compose_frame(beat, t, fonts, idle, talk):
 
     # lower-third nameplate on teacher
     d.rounded_rectangle([48, 620, 520, 678], radius=14, fill=(12, 8, 9, 220), outline=GOLD, width=2)
-    d.text((66, 628), "أ. لاما النوري · معلّمة مساعدة", font=body_f, fill=GOLD)
-    d.text((66, 656), "معلّمة ذكاء اصطناعي · صوت أردني", font=small_f, fill=(255, 255, 255, 210))
+    d.text((66, 628), ar("أ. لاما النوري · معلّمة مساعدة"), font=body_f, fill=GOLD)
+    d.text((66, 656), ar("معلّمة ذكاء اصطناعي · صوت أردني"), font=small_f, fill=(255, 255, 255, 210))
 
     # RIGHT: live board
     d.rounded_rectangle([620, 68, 1250, 678], radius=24, fill=BOARD, outline=(214, 186, 158, 255), width=3)
-    d.text((650, 95), beat["title"], font=title_f, fill=BRAND)
+    d.text((650, 95), ar(beat["title"]), font=title_f, fill=BRAND)
     y = 165
     for line in beat["lines"]:
-        d.text((650, y), line, font=body_f, fill=INK)
+        d.text((650, y), ar(line), font=body_f, fill=INK)
         y += 48
 
     if beat.get("eq"):
         d.rounded_rectangle([650, 300, 1120, 385], radius=16, fill=SOFT, outline=GOLD, width=3)
-        d.text((680, 315), beat["eq"], font=eq_f, fill=BRAND)
+        d.text((680, 315), ar(beat["eq"]), font=eq_f, fill=BRAND)
 
     b = beat["board"]
     start = highlight = None
@@ -188,11 +206,11 @@ def compose_frame(beat, t, fonts, idle, talk):
 
     if b == "bye":
         d.rounded_rectangle([650, 420, 1200, 560], radius=18, fill=NAVY, outline=GOLD, width=3)
-        d.text((690, 470), "أنتم أبطال اليوم ★", font=title_f, fill=GOLD)
+        d.text((690, 470), ar("أنتم أبطال اليوم ★"), font=title_f, fill=GOLD)
 
     # tiny progress footer
     d.rectangle([0, 696, W, H], fill=NAVY)
-    d.text((22, 700), "ستايل دروس يوتيوب للصف الأول  ·  محتوى أصلي Success OS", font=small_f, fill=(255, 255, 255, 190))
+    d.text((22, 700), ar("ستايل دروس يوتيوب للصف الأول  ·  محتوى أصلي Success OS"), font=small_f, fill=(255, 255, 255, 190))
     return img.convert("RGB")
 
 
