@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
+import { ElementaryStudioPanel } from "@/src/components/digital-library/ElementaryStudioPanel";
 import {
   AI_ASSISTANT_TEACHER_TITLE,
   stripAiAssistantTitle,
@@ -19,6 +20,7 @@ type Manifest = {
   teacherTitle?: string;
   voice?: string;
   video?: string;
+  studioVideo?: string;
   poster?: string;
   duration?: number;
   beats?: Beat[];
@@ -49,7 +51,7 @@ export function AiTeacherTheater({
   const videoRef = useRef<HTMLVideoElement | null>(null);
 
   const beats = manifest?.beats || [];
-  const videoSrc = manifest?.video;
+  const videoSrc = manifest?.studioVideo || manifest?.video;
   const poster = manifest?.poster || "/ai-lessons/g1-math/poster.jpg";
   const fullName = withAiAssistantTitle(manifest?.teacher || manifest?.teacherName || teacherName);
   const name = stripAiAssistantTitle(fullName);
@@ -194,8 +196,9 @@ export function AiTeacherTheater({
       </div>
 
       {showActs ? <Acts /> : null}
+      <ElementaryStudioPanel slug={slug} />
       <p className="ja-foot">
-        ستايل دروس يوتيوب للصف الأول · معلمة أردنية الملامح · صوت نسائي أردني · محتوى أصلي وشخصيات وهميّة
+        المعاينة الحالية محلية · الإنتاج الحقيقي عبر استوديو HeyGen/Synthesia · اللقب دائماً: معلّمة مساعدة
       </p>
     </section>
   );

@@ -31,8 +31,8 @@ export async function generateText(options){
 export async function generateJSON(options){const result=await generateText(options),clean=result.text.replace(/^```json\s*/i,'').replace(/```$/,'').trim();try{return {...result,data:JSON.parse(clean)}}catch{throw Object.assign(new Error('INVALID_STRUCTURED_RESPONSE'),{attempts:[...result.attempts,{provider:result.provider,error:'INVALID_JSON'}]})}}
 
 async function createHeyGen({script,title,language}){
- const locale=/arabic|العربية|^ar/i.test(language||'')?'ar-SA':'en-US';
- const payload={type:'avatar',avatar_id:process.env.HEYGEN_AVATAR_ID,title,aspect_ratio:'16:9',background:{value:'#071b2f'},remove_background:false,caption:{file_format:'srt',style:'default'},output_format:'mp4',script,voice_id:process.env.HEYGEN_VOICE_ID,voice_settings:{speed:1,pitch:0,volume:1,locale},motion_prompt:'Natural professional teacher gestures, friendly eye contact, lively but not distracting delivery, pause for examples and challenge problems.'};
+ const locale=/arabic|العربية|^ar/i.test(language||'')?(process.env.HEYGEN_VOICE_LOCALE||'ar-JO'):'en-US';
+ const payload={type:'avatar',avatar_id:process.env.HEYGEN_AVATAR_ID,title,aspect_ratio:'16:9',background:{value:process.env.HEYGEN_BACKGROUND||'#fff8f0'},remove_background:false,caption:{file_format:'srt',style:'default'},output_format:'mp4',script,voice_id:process.env.HEYGEN_VOICE_ID,voice_settings:{speed:1,pitch:0,volume:1,locale},motion_prompt:'Jordanian female elementary assistant teacher: warm natural gestures, friendly eye contact, clear child-friendly pacing, lively but not distracting, classroom YouTube educator energy.'};
  const r=await fetch('https://api.heygen.com/v3/videos',{method:'POST',headers:{'Content-Type':'application/json','x-api-key':process.env.HEYGEN_API_KEY},body:JSON.stringify(payload)}),d=await r.json();
  if(!r.ok)throw new Error(`HEYGEN_${r.status}`);const id=d?.data?.id||d?.id;if(!id)throw new Error('HEYGEN_MISSING_ID');return {id,provider:'heygen',status:'processing'};
 }
