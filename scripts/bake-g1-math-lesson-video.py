@@ -1,5 +1,8 @@
 #!/usr/bin/env python3
-"""Bake JoAcademy-style MP4: big board + Jordanian teacher PiP + JO voice."""
+"""Bake YouTube-education-style MP4 (teacher-forward), inspired by JO G1 channels.
+
+Style reference only — original teacher/content, not a clone of any real educator.
+"""
 
 from __future__ import annotations
 
@@ -10,40 +13,40 @@ import shutil
 import subprocess
 from pathlib import Path
 
-from PIL import Image, ImageDraw, ImageFont, ImageFilter, ImageEnhance
+from PIL import Image, ImageDraw, ImageFont, ImageEnhance
 
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "public" / "ai-lessons" / "g1-math"
-FRAMES = Path("/tmp/lesson-frames-jo")
+FRAMES = Path("/tmp/lesson-frames-yt")
 AUDIO_DIR = OUT / "audio"
 FACES_DIR = OUT / "faces"
-SRC_IDLE = Path("/opt/cursor/artifacts/assets/lama-jo-idle.png")
-SRC_TALK = Path("/opt/cursor/artifacts/assets/lama-jo-talk.png")
+SRC_IDLE = Path("/opt/cursor/artifacts/assets/lama-yt-idle.png")
+SRC_TALK = Path("/opt/cursor/artifacts/assets/lama-yt-talk.png")
 
 W, H = 1280, 720
-FPS = 15
+FPS = 10
 
 BEATS = [
-    {"id": "01", "title": "مرحباً يا بطل", "body": "اليوم نتعلم الجمع\nبخط الأعداد", "board": "welcome", "eq": "3 + 2 = ؟"},
-    {"id": "02", "title": "ما هو خط الأعداد؟", "body": "خط مستقيم\nوأرقام مرتبة من اليسار لليمين", "board": "numberline"},
-    {"id": "03", "title": "نبدأ من العدد الأول", "body": "في المسألة 3 + 2\nنقف عند الرقم 3", "board": "start3"},
-    {"id": "04", "title": "قفزات الجمع", "body": "نجمع 2\nفنقفز قفزتين لليمين", "board": "jumps"},
-    {"id": "05", "title": "النتيجة", "body": "3 ← 4 ← 5\nإذن الإجابة 5", "board": "answer5", "eq": "3 + 2 = 5"},
-    {"id": "06", "title": "تحدّيك الآن", "body": "حل بنفسك:\n2 + 3 = ؟", "board": "challenge", "eq": "2 + 3 = ؟"},
-    {"id": "07", "title": "الحل معاً", "body": "من 2 ثلاث قفزات\nفنصل إلى 5", "board": "solve", "eq": "2 + 3 = 5"},
-    {"id": "08", "title": "نشاط سريع", "body": "ارسم خط أعداد 0–10\nوحل 4 + 1", "board": "activity", "eq": "4 + 1 = ؟"},
-    {"id": "09", "title": "التحقق", "body": "من 4 قفزة واحدة\nالنتيجة 5", "board": "check", "eq": "4 + 1 = 5"},
-    {"id": "10", "title": "القاعدة الذهبية", "body": "ابدأ من العدد الأول\nثم اقفز بعدد الجمع", "board": "rule"},
-    {"id": "11", "title": "لنتذكر", "body": "الجمع = قفزات لليمين\nعلى خط الأعداد", "board": "remember"},
-    {"id": "12", "title": "أحسنت يا بطل", "body": "تعلّمت بطريقة الأبطال\nإلى اللقاء في الدرس القادم", "board": "bye"},
+    {"id": "01", "title": "مرحبا يا أبطالي", "lines": ["اليوم: الجمع بخط الأعداد", "مع المعلمة لاما النوري"], "board": "welcome", "eq": "3 + 2"},
+    {"id": "02", "title": "ما هو خط الأعداد؟", "lines": ["خط مستقيم", "أرقام من اليسار → اليمين"], "board": "numberline"},
+    {"id": "03", "title": "نبدأ من العدد الأول", "lines": ["المسألة: 3 + 2", "نقف عند الرقم 3"], "board": "start3"},
+    {"id": "04", "title": "قفزات الجمع لليمين", "lines": ["نجمع 2 = قفزتان", "3 → 4 → 5"], "board": "jumps"},
+    {"id": "05", "title": "النتيجة", "lines": ["3 + 2 = 5", "ممتاز يا أبطالي!"], "board": "answer5", "eq": "3 + 2 = 5"},
+    {"id": "06", "title": "دورك الآن", "lines": ["حل: 2 + 3", "ابدأ من الرقم 2"], "board": "challenge", "eq": "2 + 3 = ؟"},
+    {"id": "07", "title": "الحل معاً", "lines": ["2 → 3 → 4 → 5", "الناتج = 5"], "board": "solve", "eq": "2 + 3 = 5"},
+    {"id": "08", "title": "تمرين سريع", "lines": ["4 + 1", "قفزة واحدة لليمين"], "board": "activity", "eq": "4 + 1 = ؟"},
+    {"id": "09", "title": "خطأ شائع", "lines": ["لا تبدأ من الصفر دائماً", "الجمع = لليمين فقط"], "board": "check", "eq": "4 + 1 = 5"},
+    {"id": "10", "title": "القاعدة الذهبية", "lines": ["1) ابدأ من العدد الأول", "2) اقفز بعدد الجمع", "3) مكانك = الناتج"], "board": "rule"},
+    {"id": "11", "title": "مراجعة سريعة", "lines": ["3+2=5   2+3=5   4+1=5", "أنتم فاهمين ما شاء الله"], "board": "remember"},
+    {"id": "12", "title": "أحسنتم", "lines": ["ارسموا خط أعداد في البيت", "وبشوفكم الدرس الجاي"], "board": "bye"},
 ]
 
 BRAND = (158, 23, 34, 255)
 GOLD = (242, 215, 124, 255)
-INK = (32, 20, 22, 255)
-BOARD = (250, 246, 240, 255)
+INK = (28, 18, 20, 255)
+BOARD = (252, 248, 242, 255)
 SOFT = (255, 236, 214, 255)
-NAVY = (28, 18, 22, 255)
+NAVY = (22, 12, 14, 255)
 
 
 def probe_duration(path: Path) -> float:
@@ -65,30 +68,33 @@ def probe_duration(path: Path) -> float:
 
 def load_fonts():
     bold = "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf"
-    reg = "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf"
-    path = bold if os.path.exists(bold) else reg if os.path.exists(reg) else None
+    path = bold if os.path.exists(bold) else None
     if not path:
         d = ImageFont.load_default()
         return d, d, d, d, d
     return (
-        ImageFont.truetype(path, 52),
-        ImageFont.truetype(path, 38),
-        ImageFont.truetype(path, 28),
-        ImageFont.truetype(path, 34),
-        ImageFont.truetype(path, 64),
+        ImageFont.truetype(path, 44),
+        ImageFont.truetype(path, 32),
+        ImageFont.truetype(path, 24),
+        ImageFont.truetype(path, 30),
+        ImageFont.truetype(path, 56),
     )
+
+
+def rounded_mask(size, radius):
+    m = Image.new("L", size, 0)
+    ImageDraw.Draw(m).rounded_rectangle([0, 0, size[0] - 1, size[1] - 1], radius=radius, fill=255)
+    return m
 
 
 def prep_faces():
     FACES_DIR.mkdir(parents=True, exist_ok=True)
     for src, name in ((SRC_IDLE, "idle.png"), (SRC_TALK, "talk.png")):
         img = Image.open(src).convert("RGBA")
-        # focus upper body / face
         w, h = img.size
-        img = img.crop((int(w * 0.06), int(h * 0.02), int(w * 0.94), int(h * 0.92)))
-        # slight warmth
-        img = ImageEnhance.Color(img).enhance(1.05)
-        img = ImageEnhance.Contrast(img).enhance(1.04)
+        img = img.crop((int(w * 0.04), 0, int(w * 0.96), int(h * 0.95)))
+        img = ImageEnhance.Color(img).enhance(1.06)
+        img = ImageEnhance.Contrast(img).enhance(1.05)
         img.save(FACES_DIR / name)
     return (
         Image.open(FACES_DIR / "idle.png").convert("RGBA"),
@@ -96,114 +102,97 @@ def prep_faces():
     )
 
 
-def rounded_mask(size, radius):
-    m = Image.new("L", size, 0)
-    d = ImageDraw.Draw(m)
-    d.rounded_rectangle([0, 0, size[0] - 1, size[1] - 1], radius=radius, fill=255)
-    return m
-
-
-def draw_number_line(d, num_font, small_font, highlight=None, jumps=None, start=None, y=455):
-    x0, x1 = 90, 860
-    d.line([(x0, y), (x1, y)], fill=BRAND, width=7)
-    positions = {}
+def draw_number_line(d, num_font, highlight=None, jumps=None, start=None, y=470):
+    x0, x1 = 70, 600
+    d.line([(x0, y), (x1, y)], fill=BRAND, width=6)
+    pos = {}
     for n in range(0, 11):
         x = x0 + int(n * (x1 - x0) / 10)
-        positions[n] = x
+        pos[n] = x
         fill = GOLD if highlight == n else BRAND
-        d.ellipse([x - 9, y - 9, x + 9, y + 9], fill=fill, outline=INK)
-        d.text((x - 8, y + 18), str(n), font=num_font, fill=INK)
+        d.ellipse([x - 8, y - 8, x + 8, y + 8], fill=fill, outline=INK)
+        d.text((x - 7, y + 14), str(n), font=num_font, fill=INK)
     if start is not None:
-        x = positions[start]
-        d.ellipse([x - 20, y - 62, x + 20, y - 22], fill=BRAND, outline=GOLD, width=3)
-        d.text((x - 7, y - 55), "★", font=small_font, fill=GOLD)
+        x = pos[start]
+        d.ellipse([x - 18, y - 56, x + 18, y - 20], fill=BRAND, outline=GOLD, width=3)
     if jumps:
         for a, b in jumps:
-            xa, xb = positions[a], positions[b]
-            d.arc([xa, y - 78, xb, y + 8], start=200, end=340, fill=(196, 92, 42, 255), width=5)
+            xa, xb = pos[a], pos[b]
+            d.arc([xa, y - 70, xb, y + 6], start=200, end=340, fill=(196, 92, 42, 255), width=4)
 
 
 def compose_frame(beat, t, fonts, idle, talk):
     title_f, body_f, small_f, num_f, eq_f = fonts
-    img = Image.new("RGBA", (W, H), (245, 236, 228, 255))
+    img = Image.new("RGBA", (W, H), (236, 228, 220, 255))
     d = ImageDraw.Draw(img)
-
-    # soft gradient backdrop
     for i in range(H):
-        r = 245 - int(18 * i / H)
-        g = 236 - int(22 * i / H)
-        b = 228 - int(16 * i / H)
-        d.line([(0, i), (W, i)], fill=(r, g, b, 255))
+        d.line([(0, i), (W, i)], fill=(238 - i // 40, 228 - i // 45, 220 - i // 50, 255))
 
-    # top bar like course platform
-    d.rectangle([0, 0, W, 64], fill=NAVY)
-    d.text((28, 18), "Success OS  ·  الصف الأول  ·  الرياضيات", font=small_f, fill=GOLD)
-    d.text((W - 310, 18), "المعلمة لاما النوري", font=small_f, fill=(255, 255, 255, 230))
+    # YouTube-like top strip
+    d.rectangle([0, 0, W, 52], fill=NAVY)
+    d.text((22, 14), "Success OS  ·  الصف الأول  ·  رياضيات", font=small_f, fill=GOLD)
+    d.text((W - 250, 14), "درس مصوّر", font=small_f, fill=(255, 255, 255, 220))
 
-    # main board
-    d.rounded_rectangle([36, 88, 900, 668], radius=26, fill=BOARD, outline=(220, 190, 160, 255), width=3)
-    d.text((70, 118), beat["title"], font=title_f, fill=BRAND)
-    y = 195
-    for line in beat["body"].split("\n"):
-        d.text((70, y), line, font=body_f, fill=INK)
-        y += 54
+    # LEFT: large teacher camera (YouTube educator style)
+    cam_w, cam_h = 560, 620
+    talking = int(t * 6) % 2 == 0
+    face = talk if talking else idle
+    face_r = face.resize((cam_w, cam_h), Image.Resampling.LANCZOS)
+    bob = int(math.sin(t * 3.2) * 3)
+    cam = Image.new("RGBA", (cam_w + 16, cam_h + 16), (0, 0, 0, 0))
+    cd = ImageDraw.Draw(cam)
+    cd.rounded_rectangle([0, 0, cam_w + 15, cam_h + 15], radius=26, fill=(12, 8, 9, 255), outline=GOLD, width=3)
+    masked = Image.new("RGBA", (cam_w, cam_h), (0, 0, 0, 0))
+    masked.paste(face_r, (0, 0))
+    masked.putalpha(rounded_mask((cam_w, cam_h), 22))
+    cam.alpha_composite(masked, (8, 8 + bob))
+    img.alpha_composite(cam, (28, 68))
+
+    # lower-third nameplate on teacher
+    d.rounded_rectangle([48, 620, 420, 678], radius=14, fill=(12, 8, 9, 220), outline=GOLD, width=2)
+    d.text((66, 628), "أ. لاما النوري", font=body_f, fill=GOLD)
+    d.text((66, 656), "معلمة الصف الأول · صوت أردني", font=small_f, fill=(255, 255, 255, 210))
+
+    # RIGHT: live board
+    d.rounded_rectangle([620, 68, 1250, 678], radius=24, fill=BOARD, outline=(214, 186, 158, 255), width=3)
+    d.text((650, 95), beat["title"], font=title_f, fill=BRAND)
+    y = 165
+    for line in beat["lines"]:
+        d.text((650, y), line, font=body_f, fill=INK)
+        y += 48
 
     if beat.get("eq"):
-        d.rounded_rectangle([70, 310, 520, 400], radius=18, fill=SOFT, outline=GOLD, width=3)
-        d.text((100, 325), beat["eq"], font=eq_f, fill=BRAND)
+        d.rounded_rectangle([650, 300, 1120, 385], radius=16, fill=SOFT, outline=GOLD, width=3)
+        d.text((680, 315), beat["eq"], font=eq_f, fill=BRAND)
 
     b = beat["board"]
     start = highlight = None
     jumps = None
-    if b == "numberline":
-        pass
-    elif b == "start3":
-        start, highlight = 3, 3
+    show_line = b not in ("welcome", "bye")
+    if b == "start3":
+        start = highlight = 3
     elif b == "jumps":
         start, jumps = 3, [(3, 4), (4, 5)]
     elif b == "answer5":
         highlight, jumps = 5, [(3, 4), (4, 5)]
     elif b == "challenge":
-        start, highlight = 2, 2
+        start = highlight = 2
     elif b == "solve":
         highlight, jumps = 5, [(2, 3), (3, 4), (4, 5)]
     elif b == "activity":
-        start, highlight = 4, 4
+        start = highlight = 4
     elif b == "check":
         highlight, jumps = 5, [(4, 5)]
-    elif b in ("rule", "remember", "welcome", "bye"):
-        if b != "welcome" and b != "bye":
-            draw_number_line(d, num_f, small_f)
-    if b not in ("welcome", "bye", "rule", "remember"):
-        draw_number_line(d, num_f, small_f, highlight=highlight, jumps=jumps, start=start)
-    elif b in ("rule", "remember"):
-        draw_number_line(d, num_f, small_f)
+    if show_line:
+        draw_number_line(d, num_f, highlight=highlight, jumps=jumps, start=start, y=520)
 
     if b == "bye":
-        d.rounded_rectangle([70, 420, 820, 560], radius=18, fill=NAVY, outline=GOLD, width=3)
-        d.text((110, 465), "أنت بطل اليوم ★", font=title_f, fill=GOLD)
+        d.rounded_rectangle([650, 420, 1200, 560], radius=18, fill=NAVY, outline=GOLD, width=3)
+        d.text((690, 470), "أنتم أبطال اليوم ★", font=title_f, fill=GOLD)
 
-    # teacher PiP camera (JoAcademy-like talking head)
-    cam_w, cam_h = 330, 430
-    talking = (int(t * 7) % 2) == 0
-    face = talk if talking else idle
-    face_r = face.resize((cam_w, cam_h), Image.Resampling.LANCZOS)
-    bob = int(math.sin(t * 3.8) * 4)
-    # frame card
-    card = Image.new("RGBA", (cam_w + 18, cam_h + 70), (0, 0, 0, 0))
-    cd = ImageDraw.Draw(card)
-    cd.rounded_rectangle([0, 0, cam_w + 17, cam_h + 69], radius=22, fill=(18, 10, 12, 235), outline=GOLD, width=3)
-    face_masked = Image.new("RGBA", (cam_w, cam_h), (0, 0, 0, 0))
-    face_masked.paste(face_r, (0, 0))
-    face_masked.putalpha(rounded_mask((cam_w, cam_h), 18))
-    card.alpha_composite(face_masked, (9, 9 + bob))
-    cd.text((18, cam_h + 22), "أ. لاما النوري", font=small_f, fill=GOLD)
-    cd.text((18, cam_h + 46), "معلمة الصف الأول", font=small_f, fill=(255, 255, 255, 200))
-    img.alpha_composite(card, (920, 100))
-
-    # progress tip
-    d.rounded_rectangle([36, 680, 900, 708], radius=10, fill=(255, 255, 255, 180))
-    d.text((55, 684), "درس مصوّر  ·  صوت أردني  ·  Success OS", font=small_f, fill=BRAND)
+    # tiny progress footer
+    d.rectangle([0, 696, W, H], fill=NAVY)
+    d.text((22, 700), "ستايل دروس يوتيوب للصف الأول  ·  محتوى أصلي Success OS", font=small_f, fill=(255, 255, 255, 190))
     return img.convert("RGB")
 
 
@@ -221,7 +210,7 @@ def main():
         nframes = max(1, int(round(dur * FPS)))
         for i in range(nframes):
             frame = compose_frame(beat, i / FPS, fonts, idle, talk)
-            frame.save(FRAMES / f"f{frame_idx:05d}.png", optimize=True)
+            frame.save(FRAMES / f"f{frame_idx:05d}.jpg", quality=88)
             frame_idx += 1
         manifest_beats.append(
             {
@@ -231,13 +220,13 @@ def main():
                 "audio": f"/ai-lessons/g1-math/audio/beat-{beat['id']}.mp3",
             }
         )
-        print(f"beat {beat['id']} {dur:.2f}s frames={nframes}")
+        print(f"beat {beat['id']} {dur:.1f}s frames={nframes}", flush=True)
 
-    list_file = Path("/tmp/audio_list_jo.txt")
+    list_file = Path("/tmp/audio_list_yt.txt")
     with list_file.open("w") as f:
         for beat in BEATS:
             f.write(f"file '{AUDIO_DIR / f'beat-{beat['id']}.mp3'}'\n")
-    concat_audio = Path("/tmp/lesson_audio_jo.mp3")
+    concat_audio = Path("/tmp/lesson_audio_yt.mp3")
     subprocess.check_call(
         ["ffmpeg", "-y", "-f", "concat", "-safe", "0", "-i", str(list_file), "-c", "copy", str(concat_audio)],
         stdout=subprocess.DEVNULL,
@@ -252,7 +241,7 @@ def main():
             "-framerate",
             str(FPS),
             "-i",
-            str(FRAMES / "f%05d.png"),
+            str(FRAMES / "f%05d.jpg"),
             "-i",
             str(concat_audio),
             "-c:v",
@@ -260,9 +249,9 @@ def main():
             "-pix_fmt",
             "yuv420p",
             "-preset",
-            "fast",
+            "veryfast",
             "-crf",
-            "20",
+            "21",
             "-r",
             str(FPS),
             "-c:a",
@@ -277,21 +266,8 @@ def main():
         stdout=subprocess.DEVNULL,
         stderr=subprocess.DEVNULL,
     )
-
     subprocess.check_call(
-        [
-            "ffmpeg",
-            "-y",
-            "-ss",
-            "4",
-            "-i",
-            str(video_out),
-            "-frames:v",
-            "1",
-            "-q:v",
-            "2",
-            str(OUT / "poster.jpg"),
-        ],
+        ["ffmpeg", "-y", "-ss", "8", "-i", str(video_out), "-frames:v", "1", "-q:v", "2", str(OUT / "poster.jpg")],
         stdout=subprocess.DEVNULL,
         stderr=subprocess.DEVNULL,
     )
@@ -301,7 +277,8 @@ def main():
         "lessonId": "jordan-g1-math-number-line-addition",
         "teacher": "أ. لاما النوري",
         "voice": "ar-JO-SanaNeural",
-        "style": "joacademy-course-player",
+        "style": "youtube-grade1-teacher-forward",
+        "styleNote": "Inspired by Jordanian G1 YouTube lesson format (e.g. energy/pacing of channels like أ. رشا الحجاج) — fictional teacher, original content",
         "video": "/ai-lessons/g1-math/lesson.mp4",
         "poster": "/ai-lessons/g1-math/poster.jpg",
         "duration": round(total_dur, 3),

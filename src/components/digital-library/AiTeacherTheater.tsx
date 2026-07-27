@@ -181,7 +181,9 @@ export function AiTeacherTheater({ slug, title, teacherName = "أ. لاما ال
       </div>
 
       {showActs ? <Acts /> : null}
-      <p className="ja-foot">ستايل دروس جو أكاديمي · معلمة أردنية الملامح · صوت نسائي أردني · شخصيات وهميّة</p>
+      <p className="ja-foot">
+        ستايل دروس يوتيوب للصف الأول · معلمة أردنية الملامح · صوت نسائي أردني · محتوى أصلي وشخصيات وهميّة
+      </p>
     </section>
   );
 }
@@ -217,10 +219,11 @@ const css = `
 .ja-course{display:grid;grid-template-columns:minmax(0,1.7fr) minmax(240px,.85fr);gap:1rem;align-items:start}
 @media(max-width:960px){.ja-course{grid-template-columns:1fr}}
 .ja-main{min-width:0}
-.ja-screen{background:#0b0708;border-radius:1rem;overflow:hidden;border:1px solid rgba(75,10,17,.18);box-shadow:0 18px 40px rgba(36,16,18,.18);aspect-ratio:16/9}
-.ja-video{display:block;width:100%;height:100%;object-fit:contain;background:#0b0708}
+.ja-screen{background:#0f0f0f;border-radius:.85rem;overflow:hidden;border:1px solid rgba(0,0,0,.25);box-shadow:0 16px 36px rgba(0,0,0,.22);aspect-ratio:16/9}
+.ja-video{display:block;width:100%;height:100%;object-fit:contain;background:#0f0f0f}
 .ja-info{margin-top:.85rem;display:flex;flex-wrap:wrap;gap:.8rem;justify-content:space-between;align-items:flex-end;padding:.15rem .1rem}
 .ja-kicker{margin:0;color:var(--b);font-weight:800;font-size:.82rem}
+.ja-kicker::before{content:"▶ ";color:#c00}
 .ja-info h2{margin:.2rem 0;font-size:clamp(1.15rem,2.5vw,1.55rem);color:var(--d)}
 .ja-teacher{margin:.15rem 0 0;color:#6b3a40;font-size:.92rem}
 .ja-teacher strong{color:var(--b)}
