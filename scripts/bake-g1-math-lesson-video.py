@@ -24,6 +24,7 @@ AUDIO_DIR = OUT / "audio"
 FACES_DIR = OUT / "faces"
 SRC_IDLE = Path("/opt/cursor/artifacts/assets/lama-yt-idle.png")
 SRC_TALK = Path("/opt/cursor/artifacts/assets/lama-yt-talk.png")
+SLIDE_NL = ROOT / "public" / "ai-lessons" / "g1-math" / "slides" / "numberline.png"
 
 W, H = 1280, 720
 FPS = 10
@@ -173,6 +174,13 @@ def compose_frame(beat, t, fonts, idle, talk):
 
     # RIGHT: live board
     d.rounded_rectangle([620, 68, 1250, 678], radius=24, fill=BOARD, outline=(214, 186, 158, 255), width=3)
+    if SLIDE_NL.exists() and beat.get("board") in ("numberline", "start3", "jumps", "answer5", "challenge", "solve", "activity", "check", "rule", "remember"):
+        try:
+            bg = Image.open(SLIDE_NL).convert("RGBA").resize((610, 250), Image.Resampling.LANCZOS)
+            bg.putalpha(90)
+            img.alpha_composite(bg, (630, 400))
+        except Exception:
+            pass
     d.text((650, 95), ar(beat["title"]), font=title_f, fill=BRAND)
     y = 165
     for line in beat["lines"]:

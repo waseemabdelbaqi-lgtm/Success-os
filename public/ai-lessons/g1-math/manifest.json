@@ -8,83 +8,84 @@
   "styleNote": "Inspired by Jordanian G1 YouTube lesson format (e.g. energy/pacing of channels like أ. رشا الحجاج) — fictional teacher, original content",
   "video": "/ai-lessons/g1-math/lesson.mp4",
   "poster": "/ai-lessons/g1-math/poster.jpg",
-  "duration": 248.3,
+  "duration": 259.274,
   "beats": [
     {
       "id": "01",
       "title": "مرحبا يا أبطالي",
-      "duration": 21.408,
+      "duration": 21.024,
       "audio": "/ai-lessons/g1-math/audio/beat-01.mp3"
     },
     {
       "id": "02",
       "title": "ما هو خط الأعداد؟",
-      "duration": 24.912,
+      "duration": 25.296,
       "audio": "/ai-lessons/g1-math/audio/beat-02.mp3"
     },
     {
       "id": "03",
       "title": "نبدأ من العدد الأول",
-      "duration": 21.336,
+      "duration": 22.992,
       "audio": "/ai-lessons/g1-math/audio/beat-03.mp3"
     },
     {
       "id": "04",
       "title": "قفزات الجمع لليمين",
-      "duration": 21.432,
+      "duration": 21.576,
       "audio": "/ai-lessons/g1-math/audio/beat-04.mp3"
     },
     {
       "id": "05",
       "title": "النتيجة",
-      "duration": 16.56,
+      "duration": 21.864,
       "audio": "/ai-lessons/g1-math/audio/beat-05.mp3"
     },
     {
       "id": "06",
       "title": "دورك الآن",
-      "duration": 20.016,
+      "duration": 21.096,
       "audio": "/ai-lessons/g1-math/audio/beat-06.mp3"
     },
     {
       "id": "07",
       "title": "الحل معاً",
-      "duration": 20.016,
+      "duration": 22.776,
       "audio": "/ai-lessons/g1-math/audio/beat-07.mp3"
     },
     {
       "id": "08",
       "title": "تمرين سريع",
-      "duration": 18.744,
+      "duration": 20.256,
       "audio": "/ai-lessons/g1-math/audio/beat-08.mp3"
     },
     {
       "id": "09",
       "title": "خطأ شائع",
-      "duration": 18.384,
+      "duration": 19.584,
       "audio": "/ai-lessons/g1-math/audio/beat-09.mp3"
     },
     {
       "id": "10",
       "title": "القاعدة الذهبية",
-      "duration": 19.896,
+      "duration": 20.352,
       "audio": "/ai-lessons/g1-math/audio/beat-10.mp3"
     },
     {
       "id": "11",
       "title": "مراجعة سريعة",
-      "duration": 22.32,
+      "duration": 21.144,
       "audio": "/ai-lessons/g1-math/audio/beat-11.mp3"
     },
     {
       "id": "12",
       "title": "أحسنتم",
-      "duration": 23.352,
+      "duration": 21.336,
       "audio": "/ai-lessons/g1-math/audio/beat-12.mp3"
     }
   ],
   "faces": {
     "idle": "/ai-lessons/g1-math/faces/idle.png",
     "talk": "/ai-lessons/g1-math/faces/talk.png"
-  }
+  },
+  "producer": "studio-upgrade-approved"
 }
