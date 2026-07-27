@@ -12,6 +12,7 @@ import {
 } from '../ai/provider-registry.js';
 import { avatarVideoStatus, createAvatarVideo } from '../ai/orchestrator.js';
 import { withAiAssistantTitle } from './ai-assistant-teacher.js';
+import { geminiReady, runGeminiLessonRebuild } from './gemini-lesson-producer.js';
 
 const ROOT = process.cwd();
 const JOBS_DIR = path.join(ROOT, '.data', 'elementary-studio-jobs');
@@ -55,15 +56,18 @@ export function studioProviderStatus() {
   const avatar = providerRegistry.filter((p) => p.tasks.includes(AI_TASKS.AVATAR_VIDEO));
   const voice = providerRegistry.filter((p) => p.tasks.includes(AI_TASKS.VOICE));
   const readyAvatar = avatar.filter((p) => isProviderConfigured(p) && p.implemented?.includes(AI_TASKS.AVATAR_VIDEO));
+  const gemini = geminiReady();
   return {
-    ceiling: 'heygen-or-synthesia',
+    ceiling: 'gemini-plus-heygen',
     messageAr:
-      'لإنتاج معلّمة مساعدة حقيقية تتحرك وتتكلم بمستوى يوتيوب/جو أكاديمي يلزم HeyGen أو Synthesia. الترقيع المحلي (صور + TTS) مجرد معاينة.',
+      'المسار الأقوى الآن: 1) GEMINI_API_KEY لإعادة بناء السكربت والصور بجودة أعلى 2) HEYGEN_* لمعلّمة حقيقية تتحرك. بدون المفاتيح تبقى المعاينة المحلية ضعيفة.',
     required: {
+      gemini: ['GEMINI_API_KEY'],
       recommended: ['HEYGEN_API_KEY', 'HEYGEN_AVATAR_ID', 'HEYGEN_VOICE_ID'],
       alternative: ['SYNTHESIA_API_KEY', 'SYNTHESIA_AVATAR_ID'],
       optionalVoiceUpgrade: ['ELEVENLABS_API_KEY'],
     },
+    gemini: { configured: gemini, operational: gemini, env: ['GEMINI_API_KEY'] },
     providers: {
       avatar: avatar.map((p) => ({
         id: p.id,
@@ -80,6 +84,7 @@ export function studioProviderStatus() {
       })),
     },
     ready: readyAvatar.length > 0,
+    geminiReady: gemini,
     activeProvider: readyAvatar[0]?.id || null,
   };
 }
@@ -161,6 +166,10 @@ export async function produceElementaryStudioVideo(slug = 'jordan-g1-math-number
     thumbnailUrl: '',
   });
   return { job, studio: status, attempts: video.attempts || [] };
+}
+
+export async function rebuildWithGemini(steps = ['all']) {
+  return runGeminiLessonRebuild({ steps });
 }
 
 export async function refreshElementaryStudioJob(slug = 'jordan-g1-math-number-line-addition') {

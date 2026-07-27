@@ -4,13 +4,16 @@ import { useCallback, useEffect, useState } from "react";
 
 type StudioStatus = {
   ready?: boolean;
+  geminiReady?: boolean;
   activeProvider?: string | null;
   messageAr?: string;
   required?: {
+    gemini?: string[];
     recommended?: string[];
     alternative?: string[];
     optionalVoiceUpgrade?: string[];
   };
+  gemini?: { configured?: boolean; operational?: boolean };
   providers?: {
     avatar?: Array<{ id: string; label: string; operational?: boolean; configured?: boolean }>;
   };
@@ -48,6 +51,29 @@ export function ElementaryStudioPanel({ slug }: { slug: string }) {
   useEffect(() => {
     void load();
   }, [load]);
+
+  async function geminiRebuild() {
+    setBusy(true);
+    setMsg("");
+    try {
+      const r = await fetch("/api/elementary-studio", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ action: "gemini-rebuild", slug, steps: ["all"] }),
+      });
+      const data = await r.json();
+      if (!r.ok) {
+        setMsg(data.message || data.error || "فشل Gemini");
+      } else {
+        setMsg("تم إعادة البناء عبر Gemini — حدّث الصفحة وشغّل الفيديو");
+      }
+      await load();
+    } catch {
+      setMsg("تعذر الاتصال بـ Gemini");
+    } finally {
+      setBusy(false);
+    }
+  }
 
   async function produce() {
     setBusy(true);
@@ -96,65 +122,70 @@ export function ElementaryStudioPanel({ slug }: { slug: string }) {
   const studio = snap?.studio;
   const job = snap?.job;
   const ready = Boolean(studio?.ready);
+  const geminiOk = Boolean(studio?.geminiReady);
 
   return (
     <section className="es" dir="rtl">
       <style>{css}</style>
       <header>
-        <h3>استوديو المعلّمة المساعدة (أقوى من المعاينة)</h3>
+        <h3>استوديو المعلّمة المساعدة</h3>
         <p>
-          المعاينة الحالية = صور + صوت. المنتج الحقيقي = <b>HeyGen / Synthesia</b> معلّمة تتحرك وتتكلم.
+          1) <b>Gemini</b> يعيد بناء السكربت والصور · 2) <b>HeyGen</b> معلّمة تتحرك وتتكلم. بدون المفاتيح الجودة بتظل ضعيفة.
         </p>
       </header>
 
       <div className="es-grid">
         <article>
-          <h4>حالة الأدوات</h4>
-          <p className={ready ? "ok" : "bad"}>{ready ? `جاهز: ${studio?.activeProvider}` : "غير مهيأ — لازم مفاتيح"}</p>
+          <h4>Gemini</h4>
+          <p className={geminiOk ? "ok" : "bad"}>
+            {geminiOk ? "مفتاح Gemini موجود — جاهز لإعادة البناء" : "ما في GEMINI_API_KEY — أضفه الآن"}
+          </p>
+          {!geminiOk ? (
+            <div className="keys">
+              <p>ضع في `.env.local` ثم أعد تشغيل السيرفر:</p>
+              <code>GEMINI_API_KEY=...</code>
+            </div>
+          ) : null}
+          <div className="btns">
+            <button type="button" className="gem" disabled={busy || !geminiOk} onClick={geminiRebuild}>
+              {busy ? "…" : "أعد البناء بـ Gemini"}
+            </button>
+          </div>
+        </article>
+
+        <article>
+          <h4>HeyGen / Synthesia</h4>
+          <p className={ready ? "ok" : "bad"}>{ready ? `جاهز: ${studio?.activeProvider}` : "غير مهيأ — لمعلّمة متحركة"}</p>
           <ul>
-            {(studio?.providers?.avatar || []).map((p) => (
+            {(studio?.providers?.avatar || []).slice(0, 3).map((p) => (
               <li key={p.id}>
-                {p.label}: {p.operational ? "يعمل" : p.configured ? "ناقص تنفيذ" : "بدون مفتاح"}
+                {p.label}: {p.operational ? "يعمل" : "بدون مفتاح"}
               </li>
             ))}
           </ul>
           {!ready ? (
             <div className="keys">
-              <p>ضع في `.env.local` ثم أعد تشغيل السيرفر:</p>
               <code>
                 {(studio?.required?.recommended || ["HEYGEN_API_KEY", "HEYGEN_AVATAR_ID", "HEYGEN_VOICE_ID"]).join(
                   "\n",
                 )}
               </code>
-              <p className="alt">بديل: {(studio?.required?.alternative || []).join(" · ")}</p>
             </div>
           ) : null}
-        </article>
-
-        <article>
-          <h4>السكربت الجاهز للإنتاج</h4>
-          <p>
-            {snap?.script?.error
-              ? snap.script.error
-              : `${snap?.script?.parts || 0} مقاطع · ~${snap?.script?.estimatedMinutes || "—"} د · ${snap?.script?.words || "—"} كلمة`}
-          </p>
           <p className="teacher">{snap?.lesson?.teacherName}</p>
           <div className="btns">
             <button type="button" disabled={busy || !ready} onClick={produce}>
-              {busy ? "…" : "أنتج بـ HeyGen/Synthesia"}
+              {busy ? "…" : "أنتج بـ HeyGen"}
             </button>
             <button type="button" disabled={busy || !job?.id} onClick={refresh}>
-              حدّث حالة الفيديو
+              حدّث الحالة
             </button>
           </div>
           {job ? (
             <p className="job">
               مهمة {job.id} · {job.provider} · {job.status}
-              {job.failure ? ` · ${job.failure}` : ""}
             </p>
-          ) : (
-            <p className="job">لا توجد مهمة استوديو بعد.</p>
-          )}
+          ) : null}
           {job?.videoUrl ? (
             <p>
               <a href={job.videoUrl} target="_blank" rel="noreferrer">
@@ -185,6 +216,7 @@ const css = `
 .es .alt{font-size:.8rem;color:#6b3a40}
 .es .btns{display:flex;flex-wrap:wrap;gap:.4rem;margin:.55rem 0}
 .es button{border:0;border-radius:.5rem;padding:.5rem .75rem;font:inherit;font-weight:800;cursor:pointer;background:#9e1722;color:#fff}
+.es button.gem{background:#1a73e8}
 .es button:disabled{opacity:.4;cursor:not-allowed}
 .es .teacher{font-weight:800;color:#4b0a11}
 .es .job,.es .msg,.es .foot{font-size:.85rem;color:#6b3a40}

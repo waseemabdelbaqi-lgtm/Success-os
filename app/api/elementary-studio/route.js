@@ -1,6 +1,7 @@
 import {
   getElementaryStudioSnapshot,
   produceElementaryStudioVideo,
+  rebuildWithGemini,
   refreshElementaryStudioJob,
   studioProviderStatus,
 } from '@/app/lib/curriculum/elementary-studio';
@@ -27,9 +28,15 @@ export async function POST(request) {
     if (action === 'produce') {
       return Response.json(await produceElementaryStudioVideo(slug));
     }
+    if (action === 'gemini-rebuild') {
+      const steps = Array.isArray(body.steps) ? body.steps : ['all'];
+      return Response.json(await rebuildWithGemini(steps));
+    }
     return Response.json({ error: 'UNKNOWN_ACTION' }, { status: 400 });
   } catch (error) {
-    const status = error.status || (error.message === 'NO_AVATAR_PROVIDER_CONFIGURED' ? 503 : 500);
+    const status =
+      error.status ||
+      (error.message === 'NO_AVATAR_PROVIDER_CONFIGURED' || error.message === 'NO_GEMINI_API_KEY' ? 503 : 500);
     return Response.json(
       {
         error: error.message || 'STUDIO_FAILED',
