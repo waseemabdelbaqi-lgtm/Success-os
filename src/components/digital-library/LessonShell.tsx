@@ -43,7 +43,7 @@ export function LessonShell({
           </nav>
           <h1 style={{ marginBottom: "0.35rem" }}>{lesson.title}</h1>
           <p className="dl-meta" style={{ marginTop: 0 }}>
-            {teacherName} · مشاهدة الحصة ثم التفاعليات
+            {teacherName} · درس مصوّر بصوت أردني · ثم التفاعليات
           </p>
           <div className="dl-module-jump" role="navigation" aria-label="Jump">
             <a href="#ai-class">الحصة</a>

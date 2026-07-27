@@ -1,80 +1,82 @@
 {
   "lessonId": "jordan-g1-math-number-line-addition",
-  "teacher": "لاما النوري",
+  "teacher": "أ. لاما النوري",
+  "voice": "ar-JO-SanaNeural",
+  "style": "joacademy-course-player",
   "video": "/ai-lessons/g1-math/lesson.mp4",
   "poster": "/ai-lessons/g1-math/poster.jpg",
-  "duration": 85.826,
+  "duration": 126.194,
   "beats": [
     {
       "id": "01",
-      "title": "مرحباً يا بطل الصف الأول",
-      "duration": 8.256,
+      "title": "مرحباً يا بطل",
+      "duration": 12.312,
       "audio": "/ai-lessons/g1-math/audio/beat-01.mp3"
     },
     {
       "id": "02",
-      "title": "خط الأعداد",
-      "duration": 8.16,
+      "title": "ما هو خط الأعداد؟",
+      "duration": 10.416,
       "audio": "/ai-lessons/g1-math/audio/beat-02.mp3"
     },
     {
       "id": "03",
-      "title": "قف عند البداية",
-      "duration": 6.768,
+      "title": "نبدأ من العدد الأول",
+      "duration": 11.016,
       "audio": "/ai-lessons/g1-math/audio/beat-03.mp3"
     },
     {
       "id": "04",
-      "title": "اقفز قفزات الجمع",
-      "duration": 5.28,
+      "title": "قفزات الجمع",
+      "duration": 9.0,
       "audio": "/ai-lessons/g1-math/audio/beat-04.mp3"
     },
     {
       "id": "05",
-      "title": "أين وصلنا؟",
-      "duration": 9.36,
+      "title": "النتيجة",
+      "duration": 10.8,
       "audio": "/ai-lessons/g1-math/audio/beat-05.mp3"
     },
     {
       "id": "06",
-      "title": "تحدي صغير",
-      "duration": 7.704,
+      "title": "تحدّيك الآن",
+      "duration": 10.464,
       "audio": "/ai-lessons/g1-math/audio/beat-06.mp3"
     },
     {
       "id": "07",
       "title": "الحل معاً",
-      "duration": 6.6,
+      "duration": 11.016,
       "audio": "/ai-lessons/g1-math/audio/beat-07.mp3"
     },
     {
       "id": "08",
       "title": "نشاط سريع",
-      "duration": 7.56,
+      "duration": 9.36,
       "audio": "/ai-lessons/g1-math/audio/beat-08.mp3"
     },
     {
       "id": "09",
-      "title": "تحقق",
-      "duration": 7.224,
+      "title": "التحقق",
+      "duration": 9.912,
       "audio": "/ai-lessons/g1-math/audio/beat-09.mp3"
     },
     {
       "id": "10",
-      "title": "قاعدة ذهبية",
-      "duration": 6.144,
+      "title": "القاعدة الذهبية",
+      "duration": 10.776,
       "audio": "/ai-lessons/g1-math/audio/beat-10.mp3"
     },
     {
       "id": "11",
-      "title": "تذكر",
-      "duration": 6.744,
+      "title": "لنتذكر",
+      "duration": 9.744,
       "audio": "/ai-lessons/g1-math/audio/beat-11.mp3"
     },
     {
       "id": "12",
-      "title": "أحسنت",
-      "duration": 6.048,
+      "title": "أحسنت يا بطل",
+      "duration": 11.4,
       "audio": "/ai-lessons/g1-math/audio/beat-12.mp3"
     }
   ],
