@@ -1,30 +1,72 @@
-# AIOS Architecture (Phase 3)
+# AIOS Architecture — Success AI OS
+
+## System map
+
+```
+SUCCESS AI OS
+                           │
+     ┌─────────────────────┼─────────────────────┐
+     │                     │                     │
+ Coding Factory      Education Factory     Media Factory
+     │                     │                     │
+ Claude Code         Claude               HeyGen
+ OpenAI              Gemini               ElevenLabs
+ Cursor              Wolfram             OpenAI Images
+     │                     │              Blender
+     └──────────────┬──────┴──────────────┘
+                    │
+            Master Orchestrator (AIOS)
+                    │
+        GitHub • Supabase • Browserbase
+                    │
+              Playwright • Sentry
+                    │
+                  Vercel
+```
+
+## Factories
+
+| Factory | Mission | Preferred providers | Agents |
+|---------|---------|---------------------|--------|
+| **Coding** | Engineering, APIs, DB, security, deploy plans | Claude Code / Anthropic, OpenAI, Cursor | engineering, backend, frontend, database, security, performance, deployment, monitoring, documentation, testing, accessibility |
+| **Education** | Curriculum, research, verification, translation | Anthropic, Gemini, Wolfram | curriculum, research, translation, documentation |
+| **Media** | Video, voice, images, optional 3D | HeyGen, ElevenLabs, OpenAI Images, Blender | video, voice |
+
+Factories are planning/routing namespaces. They do **not** replace the Master Orchestrator — AIOS still owns planning, parallel dispatch, quality/security gates, and REPORT/REVIEW defaults.
+
+## Infrastructure spine
+
+| Tool | Role | AIOS rule |
+|------|------|-----------|
+| GitHub | source / PRs | no auto-push/merge |
+| Supabase | data/auth | no destructive DB without approval |
+| Browserbase | remote browser | adapter-ready; optional |
+| Playwright | e2e / route smoke | local tools first for testing |
+| Sentry | errors | observe only unless explicitly tasked |
+| Vercel | deploy target | **never auto-deploy** |
 
 ## Principles
 
-1. **Provider independence** — Application code never imports OpenAI/Anthropic/Gemini SDKs. All model I/O goes through the AI Gateway + Provider Registry.
-2. **Official SDKs only** — `openai`, `@anthropic-ai/sdk`, `@google/genai`; Ollama via local HTTP.
-3. **Modular agents** — Register specialists with `registerAgent(id, runner)`.
-4. **Non-destructive** — AIOS extends Success OS; it does not rewrite working pages, routes, schema, or business APIs.
+1. **Provider independence** — App code never imports provider SDKs; AI Gateway + Provider Registry only.
+2. **Official SDKs** — `openai`, `@anthropic-ai/sdk`, `@google/genai`; Ollama local fallback; media/infra via adapters.
+3. **Modular agents** — `registerAgent(id, runner)`; factories group agents, they do not hard-wire SDKs into pages.
+4. **Non-destructive** — AIOS extends Success OS; no rewrite of routes/pages/schema/business APIs.
 5. **REVIEW by default** — Propose only; execute/apply/commit/push/deploy require explicit overrides.
-6. **MCP-first for actions** — Providers reason; MCP tools perform controlled external actions.
+6. **MCP-first for actions** — Providers reason; MCP/infra tools perform controlled external actions.
 
 ## Layers
 
 | Layer | Module |
 |-------|--------|
+| Factories | `config/factories.manifest.json`, `src/factories/registry.js` |
 | Env loader | `src/env/load.js` |
 | AI Gateway | `src/gateway/ai-gateway.js` |
 | Provider Registry | `src/providers/registry.js` |
-| Provider adapters | `src/providers/{openai,anthropic,gemini,ollama-fallback}.js` |
-| Cost guards | `src/cost/guards.js` |
-| Context selector | `src/context/selector.js` |
-| Agent contracts | `src/contracts/agent-output.js` |
+| Provider adapters | `src/providers/{openai,anthropic,gemini,ollama-fallback,playwright}.js` |
+| Cost / context / contracts | `src/cost`, `src/context`, `src/contracts` |
 | Master Orchestrator | `src/aios.js` |
-| Planning Engine | `src/planning/engine.js` |
-| Task Queue / Dispatcher | `src/queue/dispatcher.js` |
-| Result Aggregator | `src/result-aggregator.js` |
-| Quality / Security / Performance | `src/quality-validator.js`, `src/security/validator.js`, `src/performance/optimizer.js` |
+| Planning / Dispatcher | `src/planning/engine.js`, `src/queue/dispatcher.js` |
+| Gates | quality, security, performance |
 | MCP Bridge | `src/mcp/bridge.js` |
 | Git Integration | `src/git-automation.js` (disabled by default) |
 
@@ -32,24 +74,18 @@
 
 ```
 User objective
-  → Master Orchestrator
-  → Task Planner (dependency waves)
+  → Master Orchestrator (AIOS)
+  → Task Planner (factory-tagged + dependency waves)
   → Parallel Dispatcher (AIOS_MAX_PARALLEL_TASKS)
-      → Role-routed providers (circuit breaker + concurrency)
+      → Coding / Education / Media agents via role-routed providers
   → Result Aggregator
   → Quality + Security gates
   → Report (REVIEW: proposals only)
 ```
 
-Independent tasks run in parallel; dependents wait. Critical engineering/security failures abort dependent work. Successful independent outputs are preserved for review.
+## Structured contracts & context
 
-## Structured contracts
-
-Every agent output is validated (Zod). Malformed JSON gets one controlled repair attempt. Unvalidated model output is never written into the repository automatically.
-
-## Context selection
-
-Agents receive objective, subtask, relevant file excerpts (path-cited), architectural rules, and the output schema — not the whole repo, secrets, `node_modules`, or build artifacts.
+Validated Zod agent outputs (one repair attempt). Context is relevance-selected — never the whole repo or secrets.
 
 ## Safety defaults
 

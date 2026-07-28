@@ -28,6 +28,14 @@ npm run ai:aios:health
 
 The AIOS CLI loads `.env.local` then `.env` via `dotenv` on every platform (no Unix-only syntax required).
 
+## 1b. Factories
+
+```bash
+npm run ai:aios:factories
+```
+
+Shows Coding / Education / Media factory readiness plus infrastructure spine (GitHub, Supabase, Browserbase, Playwright, Sentry, Vercel). Missing keys stay adapter-ready; Vercel is never auto-deployed.
+
 ## 2. Supported environment variable names
 
 | Provider | Key variables (first wins) | Model |

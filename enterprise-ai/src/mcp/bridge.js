@@ -10,9 +10,11 @@ export const MCP_TARGETS = [
   "supabase",
   "docker",
   "browser",
+  "browserbase",
   "playwright",
   "notion",
   "google-drive",
+  "sentry",
 ];
 
 const TOOL_CATALOG = [

@@ -22,6 +22,14 @@ export {
   validateConfiguredModels,
 } from "./providers/registry.js";
 export { loadAiosEnv } from "./env/load.js";
+export {
+  getFactoriesManifest,
+  listFactories,
+  listInfrastructure,
+  summarizeFactories,
+  factoryForAgent,
+  annotateTasksWithFactory,
+} from "./factories/registry.js";
 
 // Legacy agent constants
 export { GPT_ENGINEERING_AGENT } from "./agents/gpt-engineering.js";

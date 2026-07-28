@@ -20,6 +20,7 @@ import { probeMcpAvailability, mcpUsagePolicy, listMcpTools } from "./mcp/bridge
 import { listAgents } from "./agents/registry.js";
 import { buildExecutiveReport, formatAiosDisplay } from "./output/report-formatter.js";
 import { costStatus, persistUsage } from "./cost/guards.js";
+import { summarizeFactories } from "./factories/registry.js";
 
 function ensureReportDir(root) {
   const dir = path.join(root, "data/master-ai-orchestrator/reports");
@@ -57,6 +58,7 @@ export async function runAIOS(userRequest, options = {}) {
   }
 
   const providerDetection = await detectProviders();
+  const factories = await summarizeFactories({ providerDetection });
   const mcp = await probeMcpAvailability({ callMcp: options.callMcp });
   const mcpTools = listMcpTools();
   const agentsCatalog = listAgents();
@@ -177,7 +179,14 @@ export async function runAIOS(userRequest, options = {}) {
       providerIndependentAppLayer: true,
       registry: registrySnapshot(),
       circuitBreakers: circuitBreakerStatus(),
+      successAiOs: {
+        codingFactory: "Claude Code · OpenAI · Cursor",
+        educationFactory: "Claude · Gemini · Wolfram",
+        mediaFactory: "HeyGen · ElevenLabs · OpenAI Images · Blender",
+        infrastructure: "GitHub · Supabase · Browserbase · Playwright · Sentry · Vercel",
+      },
     },
+    factories,
     aiProvidersUsed: merged.providersUsed,
     realProvidersParticipating: realProviders,
     multiAgentLive: realProviders.length >= 2,

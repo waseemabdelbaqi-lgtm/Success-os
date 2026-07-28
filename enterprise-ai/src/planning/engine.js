@@ -3,6 +3,7 @@
  */
 import { randomUUID } from "node:crypto";
 import { listAgents } from "../agents/registry.js";
+import { annotateTasksWithFactory, factoryForAgent } from "../factories/registry.js";
 
 const RULES = [
   { agent: "engineering", re: /arch|engineer|implement|refactor|bug|code|module|system|aios|security review/i },
@@ -98,15 +99,22 @@ export function planRequest(userRequest, { context = {} } = {}) {
     }
   }
 
+  const tasksWithFactory = annotateTasksWithFactory(tasks);
+  const factoriesInvolved = [...new Set(tasksWithFactory.map((t) => t.factory).filter(Boolean))];
+
   return {
     planId: `plan_${randomUUID().replace(/-/g, "").slice(0, 12)}`,
     objective: text,
     userRequest: text,
     createdAt: new Date().toISOString(),
     complexity,
-    strategy: "dependency-waves-then-parallel-within-wave",
+    strategy: "factories-via-dependency-waves-then-parallel-within-wave",
+    factoriesInvolved,
+    factoryMap: Object.fromEntries(
+      tasksWithFactory.map((t) => [t.agent, factoryForAgent(t.agent) || "unassigned"]),
+    ),
     dependencyWaves: waves,
-    tasks,
+    tasks: tasksWithFactory,
   };
 }
 

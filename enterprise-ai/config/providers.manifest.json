@@ -1,54 +1,133 @@
 {
-  "version": 1,
+  "version": 2,
   "providers": [
     {
       "id": "openai",
       "label": "OpenAI",
+      "factory": ["coding", "education", "media"],
       "envAny": ["OPENAI_API_KEY", "OPENAI_CONTENT_API_KEY"],
-      "agents": ["gpt-engineering"]
+      "agents": ["engineering", "gpt-engineering"]
     },
     {
       "id": "anthropic",
-      "label": "Anthropic Claude",
+      "label": "Anthropic Claude / Claude Code",
+      "factory": ["coding", "education"],
       "envAny": ["ANTHROPIC_API_KEY", "CLAUDE_API_KEY"],
-      "agents": ["claude-curriculum"]
+      "agents": ["engineering", "curriculum", "claude-curriculum"]
     },
     {
       "id": "gemini",
       "label": "Google Gemini",
+      "factory": ["education"],
       "envAny": ["GEMINI_API_KEY", "GOOGLE_API_KEY", "GOOGLE_GENERATIVE_AI_API_KEY"],
-      "agents": ["gemini-research"],
+      "agents": ["research", "gemini-research"],
       "respectDisabledFlag": "GEMINI_DISABLED"
+    },
+    {
+      "id": "cursor",
+      "label": "Cursor (IDE / agent surface)",
+      "factory": ["coding"],
+      "envAny": [],
+      "detect": "cursor-surface",
+      "agents": ["engineering"],
+      "state": "host-environment"
+    },
+    {
+      "id": "wolfram",
+      "label": "Wolfram",
+      "factory": ["education"],
+      "envAny": ["WOLFRAM_APP_ID", "WOLFRAM_ALPHA_APPID"],
+      "agents": ["research", "curriculum"],
+      "state": "adapter-ready"
+    },
+    {
+      "id": "heygen",
+      "label": "HeyGen",
+      "factory": ["media"],
+      "envAny": ["HEYGEN_API_KEY"],
+      "agents": ["video"]
+    },
+    {
+      "id": "elevenlabs",
+      "label": "ElevenLabs",
+      "factory": ["media"],
+      "envAny": ["ELEVENLABS_API_KEY"],
+      "agents": ["voice"]
+    },
+    {
+      "id": "openai-images",
+      "label": "OpenAI Images",
+      "factory": ["media"],
+      "envAny": ["OPENAI_API_KEY", "OPENAI_CONTENT_API_KEY"],
+      "agents": ["video"],
+      "state": "shares-openai-key"
+    },
+    {
+      "id": "blender",
+      "label": "Blender",
+      "factory": ["media"],
+      "envAny": ["BLENDER_BIN", "BLENDER_PATH"],
+      "agents": ["video"],
+      "state": "offline-tooling-slot"
     },
     {
       "id": "github",
       "label": "GitHub",
+      "layer": "infrastructure",
       "envAny": ["GITHUB_TOKEN", "GH_TOKEN"],
-      "agents": ["gpt-engineering", "testing"]
+      "agents": ["engineering", "testing"]
+    },
+    {
+      "id": "supabase",
+      "label": "Supabase",
+      "layer": "infrastructure",
+      "envAll": ["SUPABASE_URL"],
+      "envAny": ["SUPABASE_SERVICE_ROLE_KEY", "SUPABASE_ANON_KEY"],
+      "agents": ["engineering", "backend"]
+    },
+    {
+      "id": "browserbase",
+      "label": "Browserbase",
+      "layer": "infrastructure",
+      "envAny": ["BROWSERBASE_API_KEY"],
+      "agents": ["testing"],
+      "state": "adapter-ready"
     },
     {
       "id": "playwright",
       "label": "Playwright",
+      "layer": "infrastructure",
       "envAny": [],
       "detect": "playwright-module",
       "agents": ["testing"]
     },
     {
-      "id": "supabase",
-      "label": "Supabase",
-      "envAll": ["SUPABASE_URL"],
-      "envAny": ["SUPABASE_SERVICE_ROLE_KEY", "SUPABASE_ANON_KEY"],
-      "agents": ["gpt-engineering"]
+      "id": "sentry",
+      "label": "Sentry",
+      "layer": "infrastructure",
+      "envAny": ["SENTRY_DSN", "NEXT_PUBLIC_SENTRY_DSN"],
+      "agents": ["monitoring"],
+      "state": "adapter-ready"
+    },
+    {
+      "id": "vercel",
+      "label": "Vercel",
+      "layer": "infrastructure",
+      "envAny": ["VERCEL_TOKEN"],
+      "agents": ["deployment"],
+      "state": "never-auto-deploy"
     },
     {
       "id": "postgres",
       "label": "PostgreSQL",
+      "layer": "infrastructure",
       "envAny": ["DATABASE_URL", "POSTGRES_URL"],
-      "agents": ["gpt-engineering"]
+      "agents": ["database", "engineering"]
     },
     {
       "id": "ollama-local",
       "label": "Local Ollama / local LLMs",
+      "factory": ["coding", "education"],
       "envAny": [],
       "detect": "ollama-loopback",
       "agents": ["engineering", "curriculum", "research", "backend", "frontend"]

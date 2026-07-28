@@ -74,6 +74,13 @@ export async function detectProviders() {
       configured = d.ok;
       detail = d.detail;
     }
+    if (p.detect === "cursor-surface") {
+      // Cursor is the host IDE/agent surface when AIOS runs inside Cursor Cloud/Desktop.
+      configured = Boolean(process.env.CURSOR_AGENT || process.env.CURSOR_TRACE_ID || process.env.TERM_PROGRAM);
+      detail = configured
+        ? "Cursor/host agent surface detected"
+        : "Cursor surface not detected — AIOS CLI still runnable";
+    }
 
     const modelEnv =
       p.id === "openai"

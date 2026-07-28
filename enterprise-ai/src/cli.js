@@ -7,6 +7,7 @@ import { detectProviders } from "./providers/detect.js";
 import { createProviderRegistry, runAllHealthChecks } from "./providers/registry.js";
 import { runAIOS, formatAiosDisplay } from "./aios.js";
 import { getMcpToolRegistry } from "./mcp/bridge.js";
+import { summarizeFactories, listFactories } from "./factories/registry.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const rootDir = path.resolve(__dirname, "../..");
@@ -16,6 +17,7 @@ function parseArgs(argv) {
     detect: false,
     health: false,
     mcp: false,
+    factories: false,
     execute: false,
     agents: false,
     smoke: false,
@@ -29,6 +31,7 @@ function parseArgs(argv) {
     if (a === "--detect") out.detect = true;
     else if (a === "--health") out.health = true;
     else if (a === "--mcp") out.mcp = true;
+    else if (a === "--factories") out.factories = true;
     else if (a === "--execute") out.execute = true;
     else if (a === "--agents") out.agents = true;
     else if (a === "--smoke") out.smoke = true;
@@ -57,6 +60,7 @@ Usage:
 Flags:
   --detect     Provider configuration detection (no secrets)
   --health     Live minimal health probes per provider
+  --factories  Success AI OS factory map (Coding / Education / Media)
   --mcp        Print MCP tool registry status
   --execute    Request execute mode (still no auto-commit/push/deploy)
   --mode MODE  review | execute | dry-run
@@ -79,6 +83,12 @@ async function main() {
     return;
   }
 
+  if (args.factories) {
+    const summary = await summarizeFactories();
+    console.log(JSON.stringify({ ...summary, catalog: listFactories() }, null, 2));
+    return;
+  }
+
   if (args.agents) {
     const { listAgents } = await import("./agents/registry.js");
     console.log(JSON.stringify({ agents: listAgents() }, null, 2));
@@ -88,10 +98,12 @@ async function main() {
   if (args.detect) {
     const detection = await detectProviders();
     const registry = createProviderRegistry({ rootDir, logger });
+    const factories = await summarizeFactories({ providerDetection: detection });
     console.log(
       JSON.stringify(
         {
           ...detection,
+          factories,
           registry: registry.snapshot(),
           mcp: getMcpToolRegistry(),
           secretsExposed: false,
