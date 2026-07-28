@@ -2,6 +2,7 @@ import "server-only";
 
 import { GoogleGenAI } from "@google/genai";
 import { timingSafeEqual } from "node:crypto";
+import { readGeminiApiKeySecure } from "@/lib/ai/gemini-local-env";
 
 /** Fixed connection probe — never accept caller-supplied prompts here. */
 export const GEMINI_HEALTH_PROMPT = "أجب بكلمة واحدة فقط: جاهز";
@@ -45,10 +46,7 @@ export type GeminiHealthFailure = {
 export type GeminiHealthResult = GeminiHealthSuccess | GeminiHealthFailure;
 
 function readApiKey(): string | null {
-  const key = process.env.GEMINI_API_KEY?.trim();
-  if (!key) return null;
-  if (/^your_gemini_api_key$/i.test(key)) return null;
-  return key;
+  return readGeminiApiKeySecure();
 }
 
 /** Strip secrets from any error text before returning or logging. */
@@ -374,4 +372,26 @@ export async function assertGeminiHealthAccess(
   }
 
   return null;
+}
+
+/**
+ * Protects Gemini setup wizard mutations: local development only + health access gate.
+ */
+export async function assertGeminiSetupAccess(
+  request: Request,
+): Promise<Response | null> {
+  const { isLocalDevelopmentEnvironment } = await import("@/lib/ai/gemini-local-env");
+  if (!isLocalDevelopmentEnvironment()) {
+    return Response.json(
+      {
+        ok: false,
+        error: {
+          code: "FORBIDDEN",
+          message: "Gemini setup wizard is available only in local development.",
+        },
+      },
+      { status: 403, headers: { "Cache-Control": "no-store" } },
+    );
+  }
+  return assertGeminiHealthAccess(request);
 }
