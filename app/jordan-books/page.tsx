@@ -44,6 +44,9 @@ export default function JordanBooksHomePage() {
             <li>
               <Link href="/jordan-books/jordan/national/grade-1/semester-1/math">الرياضيات</Link>
             </li>
+            <li>
+              <Link href="/interactive-books/reader/book-jo-g1-s1-math">محرك الكتاب Gate 2 (اختبار محرك — غير مكتمل)</Link>
+            </li>
           </ol>
         </section>
 
