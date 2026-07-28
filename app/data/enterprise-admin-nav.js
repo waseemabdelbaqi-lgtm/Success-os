@@ -9,6 +9,11 @@ import {
   ENTERPRISE_ERP_NAV,
   ENTERPRISE_ERP_NAV_GROUPS,
 } from './enterprise-erp-modules.js';
+import {
+  RECORDED_LESSON_CONCRETE_SOURCES,
+  lessonSourceLabel,
+} from './recorded-lesson-sources.js';
+import { calculateTeacherPriceSplit } from '../lib/admin/teacher-price-split.js';
 
 export const ENTERPRISE_ADMIN_SCHEMA = 'success-os.enterprise-admin.v2';
 export const ENTERPRISE_ADMIN_VERSION = '2.0.0';
@@ -165,6 +170,134 @@ export const ENTERPRISE_ADMIN_MODULES = Object.freeze({
       { key: 'jobTitle', label: 'Job Title', type: 'text' },
       { key: 'status', label: 'Status', type: 'select', options: ['active', 'on_leave', 'terminated'] },
     ],
+  },
+  'recorded-lessons': {
+    id: 'recorded-lessons',
+    collection: 'recorded-lessons',
+    label: 'Recorded Lessons',
+    searchable: [
+      'name',
+      'title',
+      'subject',
+      'grade',
+      'curriculum',
+      'country',
+      'teacherName',
+      'language',
+      'lessonSource',
+      'status',
+    ],
+    filters: {
+      cascade: [
+        'country',
+        'curriculum',
+        'grade',
+        'subject',
+        'teacherGender',
+        'language',
+        'price',
+        'rating',
+        'duration',
+        'newest',
+        'popularity',
+        'results',
+      ],
+      lessonSource: {
+        label: 'Lesson Source',
+        type: 'radio',
+        options: [
+          { value: 's4s_intelligence', label: 'S4S Intelligence' },
+          { value: 'teacher', label: 'Teacher' },
+          { value: 'female_teacher', label: 'Female Teacher' },
+          { value: 'all', label: 'All' },
+        ],
+        default: 'all',
+      },
+    },
+    columns: [
+      { key: 'title', label: 'Title' },
+      { key: 'country', label: 'Country' },
+      { key: 'curriculum', label: 'Curriculum' },
+      { key: 'grade', label: 'Grade' },
+      { key: 'subject', label: 'Subject' },
+      { key: 'teacherGender', label: 'Teacher Gender' },
+      { key: 'language', label: 'Language' },
+      { key: 'price', label: 'Teacher Price' },
+      { key: 'teacherReceives', label: 'Teacher Receives' },
+      { key: 'successOs', label: 'Success OS' },
+      { key: 'commissionPercent', label: 'Commission %' },
+      { key: 'rating', label: 'Rating' },
+      { key: 'durationMinutes', label: 'Duration' },
+      { key: 'popularity', label: 'Popularity' },
+      { key: 'lessonSourceLabel', label: 'Lesson Source' },
+      { key: 'status', label: 'Status' },
+    ],
+    actions: ['add', 'edit', 'delete', 'archive', 'restore', 'view'],
+    fields: [
+      { key: 'title', label: 'Title', type: 'text', required: true },
+      { key: 'name', label: 'Name (optional)', type: 'text' },
+      { key: 'country', label: 'Country', type: 'text' },
+      { key: 'curriculum', label: 'Curriculum', type: 'text' },
+      { key: 'grade', label: 'Grade', type: 'text' },
+      { key: 'subject', label: 'Subject', type: 'text' },
+      {
+        key: 'teacherGender',
+        label: 'Teacher Gender',
+        type: 'select',
+        options: [
+          { value: 'male', label: 'Male' },
+          { value: 'female', label: 'Female' },
+        ],
+      },
+      {
+        key: 'language',
+        label: 'Language',
+        type: 'select',
+        options: [
+          { value: 'ar', label: 'Arabic' },
+          { value: 'en', label: 'English' },
+          { value: 'fr', label: 'French' },
+        ],
+      },
+      {
+        key: 'lessonSource',
+        label: 'Lesson Source',
+        type: 'select',
+        required: true,
+        options: RECORDED_LESSON_CONCRETE_SOURCES.map((id) => ({
+          value: id,
+          label: lessonSourceLabel(id),
+        })),
+      },
+      { key: 'teacherName', label: 'Teacher name', type: 'text' },
+      { key: 'price', label: 'Teacher Price (USD)', type: 'number' },
+      { key: 'rating', label: 'Rating', type: 'number' },
+      { key: 'durationMinutes', label: 'Duration (minutes)', type: 'number' },
+      { key: 'popularity', label: 'Popularity score', type: 'number' },
+      {
+        key: 'status',
+        label: 'Status',
+        type: 'select',
+        options: ['draft', 'pending', 'approved', 'published', 'archived', 'active', 'inactive'],
+      },
+    ],
+    formatRow(row) {
+      const split = calculateTeacherPriceSplit({
+        teacherPrice: row.isFree ? 0 : row.price,
+        commissionPercent: row.commissionPercent ?? 30,
+        currency: row.currency || 'USD',
+      });
+      return {
+        ...row,
+        title: row.title || row.name || '—',
+        name: row.name || row.title || '',
+        lessonSourceLabel: lessonSourceLabel(row.lessonSource),
+        price: row.isFree ? 'Free' : `${split.teacherPrice} ${split.currency}`,
+        teacherReceives: row.isFree ? '—' : `${split.teacherReceives} ${split.currency}`,
+        successOs: row.isFree ? '—' : `${split.successOs} ${split.currency}`,
+        commissionPercent: row.isFree ? '—' : `${split.platformCommissionPercent}%`,
+      };
+    },
   },
   permissions: {
     id: 'permissions',

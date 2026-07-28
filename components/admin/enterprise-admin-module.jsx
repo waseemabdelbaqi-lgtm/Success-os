@@ -1,6 +1,11 @@
 'use client';
 
 import { useCallback, useEffect, useMemo, useState } from 'react';
+import { defaultRecordedLessonFilters } from '@/app/data/recorded-lesson-filters.js';
+import { RecordedLessonsFilters } from '@/components/admin/recorded-lessons-filters.jsx';
+import { RecordedLessonsSubjectResults } from '@/components/admin/recorded-lessons-subject-results.jsx';
+import { TeacherPriceSplitPanel } from '@/components/admin/teacher-price-split.jsx';
+import { CommissionCascadePanel } from '@/components/admin/commission-cascade-panel.jsx';
 
 const emptyForm = {};
 
@@ -8,6 +13,7 @@ export function EnterpriseAdminModulePage({ moduleId }) {
   const [data, setData] = useState(null);
   const [q, setQ] = useState('');
   const [status, setStatus] = useState('');
+  const [catalogFilters, setCatalogFilters] = useState(() => defaultRecordedLessonFilters());
   const [error, setError] = useState('');
   const [busy, setBusy] = useState(false);
   const [selected, setSelected] = useState([]);
@@ -16,11 +22,14 @@ export function EnterpriseAdminModulePage({ moduleId }) {
   const [permMatrix, setPermMatrix] = useState(null);
   const [financeSummary, setFinanceSummary] = useState(null);
   const [commissionDefaults, setCommissionDefaults] = useState(null);
+  const [priceSplit, setPriceSplit] = useState(null);
+  const [commissionCascade, setCommissionCascade] = useState(null);
 
   const isPermissions = moduleId === 'permissions';
   const isFinance = moduleId === 'finance';
   const isCommission = moduleId === 'commission-rules';
   const isPaymentSplits = moduleId === 'payment-splits';
+  const isRecordedLessons = moduleId === 'recorded-lessons';
 
   const load = useCallback(async () => {
     setError('');
@@ -36,6 +45,12 @@ export function EnterpriseAdminModulePage({ moduleId }) {
     if (isCommission) {
       const res = await fetch('/api/enterprise-admin?view=commission-defaults', { cache: 'no-store' });
       setCommissionDefaults(await res.json());
+      const cascadeRes = await fetch(
+        '/api/enterprise-admin?view=commission-cascade&teacherPrice=50&service=recorded-lesson&partnerType=teacher',
+        { cache: 'no-store' },
+      );
+      const cascadeJson = await cascadeRes.json();
+      setCommissionCascade(cascadeJson.cascade || null);
     }
     const params = new URLSearchParams({
       view: 'module',
@@ -43,14 +58,50 @@ export function EnterpriseAdminModulePage({ moduleId }) {
       q,
       status,
     });
+    if (isRecordedLessons) {
+      params.set('lessonSource', catalogFilters.lessonSource || 'all');
+      params.set('country', catalogFilters.country || 'all');
+      params.set('curriculum', catalogFilters.curriculum || 'all');
+      params.set('grade', catalogFilters.grade || 'all');
+      params.set('subject', catalogFilters.subject || 'all');
+      params.set('teacherGender', catalogFilters.teacherGender || 'all');
+      params.set('language', catalogFilters.language || 'all');
+      params.set('price', catalogFilters.price || 'all');
+      params.set('rating', catalogFilters.rating || 'all');
+      params.set('duration', catalogFilters.duration || 'all');
+      params.set('sort', catalogFilters.sort || 'newest');
+      params.set('catalogSort', catalogFilters.sort || 'newest');
+    }
     const res = await fetch(`/api/enterprise-admin?${params}`, { cache: 'no-store' });
     if (!res.ok) throw new Error('Failed to load module');
     setData(await res.json());
-  }, [moduleId, q, status, isPermissions, isFinance, isCommission]);
+  }, [moduleId, q, status, catalogFilters, isPermissions, isFinance, isCommission, isRecordedLessons]);
 
   useEffect(() => {
     load().catch((e) => setError(e.message || 'load failed'));
   }, [load]);
+
+  useEffect(() => {
+    if (!isRecordedLessons || !mode) {
+      setPriceSplit(null);
+      return;
+    }
+    const price = form.price;
+    if (price === '' || price == null) {
+      setPriceSplit(null);
+      return;
+    }
+    const params = new URLSearchParams({
+      view: 'teacher-price-split',
+      teacherPrice: String(price),
+      service: 'recorded-lesson',
+      currency: 'USD',
+    });
+    fetch(`/api/enterprise-admin?${params}`, { cache: 'no-store' })
+      .then((r) => r.json())
+      .then((json) => setPriceSplit(json.split || null))
+      .catch(() => setPriceSplit(null));
+  }, [isRecordedLessons, mode, form.price]);
 
   async function runAction(action, payload = {}) {
     setBusy(true);
@@ -79,6 +130,19 @@ export function EnterpriseAdminModulePage({ moduleId }) {
 
   function exportCsv() {
     const params = new URLSearchParams({ view: 'export', module: moduleId, q, status });
+    if (isRecordedLessons) {
+      params.set('lessonSource', catalogFilters.lessonSource || 'all');
+      params.set('country', catalogFilters.country || 'all');
+      params.set('curriculum', catalogFilters.curriculum || 'all');
+      params.set('grade', catalogFilters.grade || 'all');
+      params.set('subject', catalogFilters.subject || 'all');
+      params.set('teacherGender', catalogFilters.teacherGender || 'all');
+      params.set('language', catalogFilters.language || 'all');
+      params.set('price', catalogFilters.price || 'all');
+      params.set('rating', catalogFilters.rating || 'all');
+      params.set('duration', catalogFilters.duration || 'all');
+      params.set('sort', catalogFilters.sort || 'newest');
+    }
     window.open(`/api/enterprise-admin?${params}`, '_blank');
   }
 
@@ -122,7 +186,11 @@ export function EnterpriseAdminModulePage({ moduleId }) {
               disabled={busy}
               onClick={() => {
                 setMode('add');
-                setForm({ status: 'active' });
+                setForm(
+                  isRecordedLessons
+                    ? { status: 'draft', lessonSource: 's4s_intelligence', price: 50 }
+                    : { status: 'active' },
+                );
               }}
             >
               Add
@@ -152,6 +220,10 @@ export function EnterpriseAdminModulePage({ moduleId }) {
                         gatewayFees: 0,
                         partnerId,
                         partnerType,
+                        service:
+                          partnerType === 'teacher' || isRecordedLessons
+                            ? 'recorded-lesson'
+                            : undefined,
                         currency: 'USD',
                         payoutMethod: 'manual_transfer',
                       },
@@ -192,31 +264,69 @@ export function EnterpriseAdminModulePage({ moduleId }) {
 
       {isFinance && financeSummary ? <FinanceSummaryCards summary={financeSummary} /> : null}
       {isCommission && commissionDefaults ? (
-        <CommissionDefaultsBar
-          defaults={commissionDefaults}
-          busy={busy}
-          onSave={async (percent) => {
-            setBusy(true);
-            try {
-              const res = await fetch('/api/enterprise-admin', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                  action: 'setCommissionDefaults',
-                  payload: { defaultCommissionPercent: percent },
-                  user: 'owner',
-                }),
-              });
-              const json = await res.json();
-              if (!res.ok || json.ok === false) throw new Error(json.error || 'failed');
-              setCommissionDefaults(json.defaults);
-            } catch (e) {
-              setError(e.message || 'failed');
-            } finally {
-              setBusy(false);
+        <>
+          <CommissionDefaultsBar
+            defaults={commissionDefaults}
+            busy={busy}
+            onSave={async (payload) => {
+              setBusy(true);
+              try {
+                const res = await fetch('/api/enterprise-admin', {
+                  method: 'POST',
+                  headers: { 'Content-Type': 'application/json' },
+                  body: JSON.stringify({
+                    action: 'setCommissionDefaults',
+                    payload:
+                      typeof payload === 'number'
+                        ? { defaultCommissionPercent: payload }
+                        : payload,
+                    user: 'owner',
+                  }),
+                });
+                const json = await res.json();
+                if (!res.ok || json.ok === false) throw new Error(json.error || 'failed');
+                setCommissionDefaults(json.defaults);
+                await load();
+              } catch (e) {
+                setError(e.message || 'failed');
+              } finally {
+                setBusy(false);
+              }
+            }}
+          />
+          <CommissionCascadePanel
+            cascade={commissionCascade}
+            title="Global → Teacher Override → Center Override → Special Campaign → Final"
+            teacherPrice={50}
+          />
+        </>
+      ) : null}
+
+      {isRecordedLessons ? (
+        <>
+          <RecordedLessonsFilters
+            filters={catalogFilters}
+            facets={data?.facets}
+            total={data?.total || 0}
+            lessonSource={catalogFilters.lessonSource}
+            onLessonSourceChange={(lessonSource) =>
+              setCatalogFilters((prev) => ({ ...prev, lessonSource }))
             }
-          }}
-        />
+            onChange={setCatalogFilters}
+          />
+          <RecordedLessonsSubjectResults
+            grouped={
+              data?.grouped || {
+                subject: catalogFilters.subject !== 'all' ? catalogFilters.subject : 'All Subjects',
+                sections: [],
+              }
+            }
+            onSelectLesson={(lesson) => {
+              setMode('edit');
+              setForm(lesson);
+            }}
+          />
+        </>
       ) : null}
 
       <div style={{ display: 'flex', gap: 8, margin: '12px 0', flexWrap: 'wrap' }}>
@@ -234,6 +344,9 @@ export function EnterpriseAdminModulePage({ moduleId }) {
           <option value="pending">pending</option>
           <option value="queued">queued</option>
           <option value="approved">approved</option>
+          <option value="draft">draft</option>
+          <option value="published">published</option>
+          <option value="archived">archived</option>
         </select>
       </div>
 
@@ -258,11 +371,15 @@ export function EnterpriseAdminModulePage({ moduleId }) {
                     style={{ display: 'block', width: '100%', marginTop: 4, padding: 8 }}
                   >
                     <option value="">Select</option>
-                    {(f.options || []).map((o) => (
-                      <option key={o} value={o}>
-                        {o}
-                      </option>
-                    ))}
+                    {(f.options || []).map((o) => {
+                      const value = typeof o === 'object' ? o.value : o;
+                      const label = typeof o === 'object' ? o.label : o;
+                      return (
+                        <option key={value} value={value}>
+                          {label}
+                        </option>
+                      );
+                    })}
                   </select>
                 ) : (
                   <input
@@ -281,6 +398,12 @@ export function EnterpriseAdminModulePage({ moduleId }) {
               </label>
             ))}
           </div>
+          {isRecordedLessons && priceSplit ? (
+            <TeacherPriceSplitPanel
+              split={priceSplit}
+              title="Teacher Price → Platform Commission → Teacher Receives → Success OS"
+            />
+          ) : null}
           <div style={{ display: 'flex', gap: 8, marginTop: 10 }}>
             <button type="submit" disabled={busy}>
               Save
@@ -543,9 +666,19 @@ function FinanceSummaryCards({ summary }) {
 
 function CommissionDefaultsBar({ defaults, busy, onSave }) {
   const [percent, setPercent] = useState(defaults.defaultCommissionPercent);
+  const [globalPercent, setGlobalPercent] = useState(
+    defaults.globalCommissionPercent ?? defaults.recordedLessonCommissionPercent ?? 30,
+  );
   useEffect(() => {
     setPercent(defaults.defaultCommissionPercent);
-  }, [defaults.defaultCommissionPercent]);
+    setGlobalPercent(
+      defaults.globalCommissionPercent ?? defaults.recordedLessonCommissionPercent ?? 30,
+    );
+  }, [
+    defaults.defaultCommissionPercent,
+    defaults.globalCommissionPercent,
+    defaults.recordedLessonCommissionPercent,
+  ]);
   return (
     <div
       style={{
@@ -560,10 +693,10 @@ function CommissionDefaultsBar({ defaults, busy, onSave }) {
       }}
     >
       <div style={{ fontSize: 13 }}>
-        <strong>Default commission</strong> (Owner-configurable, not hardcoded)
+        <strong>Commission defaults</strong> (Owner-configurable cascade root)
       </div>
       <label style={{ fontSize: 13 }}>
-        %
+        Legacy fallback %
         <input
           type="number"
           value={percent}
@@ -571,9 +704,32 @@ function CommissionDefaultsBar({ defaults, busy, onSave }) {
           style={{ marginLeft: 6, padding: 6, width: 80 }}
         />
       </label>
-      <button type="button" disabled={busy} onClick={() => onSave(percent)}>
-        Save default
+      <label style={{ fontSize: 13 }}>
+        Global Commission %
+        <input
+          type="number"
+          value={globalPercent}
+          onChange={(e) => setGlobalPercent(Number(e.target.value))}
+          style={{ marginLeft: 6, padding: 6, width: 80 }}
+        />
+      </label>
+      <button
+        type="button"
+        disabled={busy}
+        onClick={() =>
+          onSave({
+            defaultCommissionPercent: percent,
+            globalCommissionPercent: globalPercent,
+            recordedLessonCommissionPercent: globalPercent,
+          })
+        }
+      >
+        Save defaults
       </button>
+      <span style={{ fontSize: 12, color: '#6b7280' }}>
+        Cascade: Global {globalPercent}% → Teacher Override → Center Override → Special Campaign →
+        Final
+      </span>
       <span style={{ fontSize: 12, color: '#6b7280' }}>
         Updated {defaults.updatedAt || '—'} by {defaults.updatedBy || '—'}
       </span>
