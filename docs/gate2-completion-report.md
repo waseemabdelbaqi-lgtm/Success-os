@@ -12,6 +12,7 @@
 - Gate 1 FAIL checkpoint: `15c7426`
 - Gate 2 engine commit: `d8ec003`
 - Follow-up (nav/gitignore): `693242a`
+- AI-video student CTA disable + report SHAs: `f1db13b`
 - Branch: `cursor/jordan-interactive-books-bca1`
 - PR: https://github.com/waseemabdelbaqi-lgtm/Success-os/pull/34
 
@@ -51,8 +52,8 @@ Including: `curriculum_versions`, `academic_years`, `educational_stages`, `grade
 
 ## 7. Removed or disabled experimental routes
 
-- No deletion of AI-video code
-- Student AI-video path already previously gated as stopped in Jordan books phase
+- No deletion of AI-video / HeyGen reusable code (`/api/video-production`, orchestrator adapters retained)
+- Student material “إنتاج فيديو مدرس” CTAs disabled (BOOKS FIRST); `/ai-lessons/g1-math` remains an archived stop page and now links to Gate 2 reader
 - Did **not** overwrite legacy `app/api/book-engine/route.js`
 
 ## 8. Working admin routes
