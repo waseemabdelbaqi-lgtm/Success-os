@@ -145,14 +145,16 @@ export async function POST(request: Request): Promise<Response> {
     );
   }
 
-  if (action === "start_google_login" || action === "save") {
-    const started = await startGeminiCliGoogleLogin();
+  if (action === "start_google_login" || action === "save" || action === "restart") {
+    const started = await startGeminiCliGoogleLogin({ force: true });
     return json(
       {
         ok: true,
         method: "gemini-cli-google-login",
         status: started.status,
         authUrl: started.authUrl,
+        callbackPort: started.callbackPort,
+        expiresAt: started.expiresAt,
         message: started.message,
         pauseForUser: started.status === "waiting_for_google_approval",
         curriculumProcessingAllowed: false,
