@@ -1,8 +1,9 @@
 # GATE 5 — Final Jordan Completion & Global Launch Readiness
 
-**Release candidate:** `rc-gate5-jordan-final`  
+**Release candidate:** `rc-gate5-jordan-final` (tag `gate5-release-candidate-rc1`)  
 **Branch:** `cursor/gate5-jordan-final-readiness-bca1`  
 **Pre-audit checkpoint:** `e405d5f` (tag `gate5-pre-audit-checkpoint`)  
+**Post-audit commit:** `c53bcf4`  
 **Verdict:** **NOT READY FOR THE NEXT COUNTRY**
 
 ---
@@ -27,7 +28,7 @@ Snapshot ID: `8a65deef-0e1d-4517-b73e-3a6d31edd408` (also re-verified by `npm ru
 `rc-gate5-jordan-final`
 
 ### 2. Git checkpoint
-Pre-audit: `e405d5f` · Post Gate 5: see latest commit on this branch after push.
+Pre-audit: `e405d5f` · Post Gate 5: `c53bcf4` · RC tag: `gate5-release-candidate-rc1`
 
 ### 3. Database migration version
 Applied: `001_book_engine_core.sql`, `002_global_country_architecture.sql`, `003_curriculum_production_factory.sql`
