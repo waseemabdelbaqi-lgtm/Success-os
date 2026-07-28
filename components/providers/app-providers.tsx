@@ -1,6 +1,7 @@
 "use client";
 
 import type { ReactNode } from "react";
+import { CompanionGuideBeacon } from "@/components/ai/companion-guide-beacon";
 import { AuthProvider } from "@/components/providers/auth-provider";
 
 type AppProvidersProps = {
@@ -8,5 +9,10 @@ type AppProvidersProps = {
 };
 
 export function AppProviders({ children }: AppProvidersProps): ReactNode {
-  return <AuthProvider>{children}</AuthProvider>;
+  return (
+    <AuthProvider>
+      <CompanionGuideBeacon />
+      {children}
+    </AuthProvider>
+  );
 }

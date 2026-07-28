@@ -102,8 +102,25 @@ export const MIDDLE_EAST_OFFICIAL_SOURCES = {
     },
     {
       name: 'National Center for Curriculum Development (NCCD)',
+      url: 'https://nccd.gov.jo/Ar/Pages/textbooks',
+      type: 'national-curriculum',
+    },
+    {
+      name: 'NCCD textbooks (www)',
       url: 'https://www.nccd.gov.jo/Ar/Pages/textbooks',
       type: 'national-curriculum',
+    },
+    {
+      name: 'Minhaji — Jordan grade/subject structure index',
+      url: 'https://minhaji.net/',
+      type: 'structure-index-companion',
+      usage: 'grade-subject-title-index-never-copy-prose',
+    },
+    {
+      name: 'JoAcademy courses (delivery companion)',
+      url: 'https://www.joacademy.com/user/courses',
+      type: 'market-delivery-companion',
+      usage: 'program-taxonomy-never-copy',
     },
     {
       name: 'Darsak Platform',

@@ -1,7 +1,7 @@
 import crypto from 'node:crypto';
 import fs from 'node:fs';
 import path from 'node:path';
-import { getMiddleEastLiveBook } from '../../../../lib/student/middle-east-live-book-store';
+import { getMiddleEastLiveBook } from '../../../lib/student/middle-east-live-book-store';
 
 export const dynamic = 'force-dynamic';
 export const runtime = 'nodejs';
