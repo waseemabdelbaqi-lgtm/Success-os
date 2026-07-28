@@ -204,13 +204,6 @@ export function useLessonEngine(lesson: InteractiveLessonDefinition, storageKey:
         const correctCount = prevOk ? progress.correctCount : progress.correctCount + 1;
         const praise = scene.correctFeedback?.[locale] || "";
         setFeedbackText(praise);
-        if (typeof window !== "undefined" && window.speechSynthesis && praise && !muted) {
-          window.speechSynthesis.cancel();
-          const u = new SpeechSynthesisUtterance(praise);
-          u.lang = locale === "ar" ? "ar-SA" : "en-US";
-          u.rate = slow ? 0.85 : 1;
-          window.speechSynthesis.speak(u);
-        }
         patch({
           attemptByScene,
           answers,
@@ -226,29 +219,15 @@ export function useLessonEngine(lesson: InteractiveLessonDefinition, storageKey:
       if (attempts === 1) {
         const hint = scene.firstHint?.[locale] || scene.incorrectFeedback?.[locale] || "";
         setFeedbackText(hint);
-        if (typeof window !== "undefined" && window.speechSynthesis && hint && !muted) {
-          window.speechSynthesis.cancel();
-          const u = new SpeechSynthesisUtterance(hint);
-          u.lang = locale === "ar" ? "ar-SA" : "en-US";
-          u.rate = slow ? 0.85 : 1;
-          window.speechSynthesis.speak(u);
-        }
         patch({ attemptByScene, answers, incorrectCount, phase: "hint" });
         return;
       }
 
       const easier = scene.secondExplanation?.[locale] || "";
       setFeedbackText(easier);
-      if (typeof window !== "undefined" && window.speechSynthesis && easier && !muted) {
-        window.speechSynthesis.cancel();
-        const u = new SpeechSynthesisUtterance(easier);
-        u.lang = locale === "ar" ? "ar-SA" : "en-US";
-        u.rate = slow ? 0.85 : 1;
-        window.speechSynthesis.speak(u);
-      }
       patch({ attemptByScene, answers, incorrectCount, phase: "reexplain" });
     },
-    [interactiveScenes.length, lesson.scenes.length, locale, muted, patch, progress, scene, slow],
+    [interactiveScenes.length, lesson.scenes.length, locale, patch, progress, scene],
   );
 
   const dismissHint = useCallback(() => {
