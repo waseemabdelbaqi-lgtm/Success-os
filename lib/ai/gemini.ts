@@ -375,7 +375,10 @@ export async function assertGeminiHealthAccess(
 }
 
 /**
- * Protects Gemini setup wizard mutations: local development only + health access gate.
+ * Protects Gemini setup wizard mutations: local development only.
+ * Unlike the health probe, this may run behind a local preview tunnel.
+ * When FEATURE_AUTH_ENABLED, requires an elevated admin session.
+ * When ADMIN_AI_HEALTH_TOKEN is set, requires that token.
  */
 export async function assertGeminiSetupAccess(
   request: Request,
@@ -393,5 +396,74 @@ export async function assertGeminiSetupAccess(
       { status: 403, headers: { "Cache-Control": "no-store" } },
     );
   }
-  return assertGeminiHealthAccess(request);
+
+  const configuredToken = process.env.ADMIN_AI_HEALTH_TOKEN?.trim();
+  const provided =
+    request.headers.get("x-admin-ai-health-token")?.trim() ||
+    request.headers.get("authorization")?.replace(/^Bearer\s+/i, "").trim() ||
+    "";
+
+  if (configuredToken) {
+    if (!provided || !safeEqual(provided, configuredToken)) {
+      return Response.json(
+        {
+          ok: false,
+          error: { code: "UNAUTHORIZED", message: "Admin health token required." },
+        },
+        { status: 401, headers: { "Cache-Control": "no-store" } },
+      );
+    }
+  }
+
+  if (process.env.FEATURE_AUTH_ENABLED === "true") {
+    try {
+      const { getSessionFromCookies } = await import("@/lib/auth/session");
+      const { USER_ROLES } = await import("@/types/roles");
+      const session = await getSessionFromCookies();
+      const elevated = new Set<string>([
+        USER_ROLES.SUPER_ADMIN,
+        USER_ROLES.OWNER,
+        USER_ROLES.ADMIN,
+      ]);
+      if (!session || !elevated.has(session.role)) {
+        return Response.json(
+          {
+            ok: false,
+            error: { code: "FORBIDDEN", message: "Admin session required." },
+          },
+          { status: 403, headers: { "Cache-Control": "no-store" } },
+        );
+      }
+    } catch {
+      return Response.json(
+        {
+          ok: false,
+          error: { code: "UNAUTHORIZED", message: "Admin session required." },
+        },
+        { status: 401, headers: { "Cache-Control": "no-store" } },
+      );
+    }
+  }
+
+  // Setup is not a generation endpoint — reject prompt query attempts.
+  const url = new URL(request.url);
+  if (
+    url.searchParams.has("prompt") ||
+    url.searchParams.has("text") ||
+    url.searchParams.has("input") ||
+    url.searchParams.has("q")
+  ) {
+    return Response.json(
+      {
+        ok: false,
+        error: {
+          code: "FORBIDDEN",
+          message: "Custom prompts are not allowed on the Gemini setup endpoint.",
+        },
+      },
+      { status: 403, headers: { "Cache-Control": "no-store" } },
+    );
+  }
+
+  return null;
 }
