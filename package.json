@@ -27,6 +27,10 @@
     "curriculum:acquire:jo-g1-math": "node scripts/curriculum-ai/acquire-jordan-g1-math.mjs",
     "curriculum:download:jo-g1-math": "node scripts/curriculum-ai/download-official-pdf.mjs",
     "curriculum:test:upload": "node scripts/curriculum-ai/test-chunked-upload.mjs",
+    "curriculum:worker": "node workers/curriculum-ingestion/src/index.js worker",
+    "curriculum:discover:jordan": "node workers/curriculum-ingestion/src/index.js discover",
+    "curriculum:ingest:phase": "node workers/curriculum-ingestion/src/index.js phase",
+    "curriculum:ingest:test": "node workers/curriculum-ingestion/src/tests/run-tests.mjs",
     "curriculum:extract:book": "python3 scripts/curriculum-ai/extract-book.py",
     "validate:books": "node scripts/validate-book-engine.mjs",
     "validate:jordan": "node scripts/validate-jordan-curriculum.mjs",
@@ -100,15 +104,19 @@
     "deploy:vinext": "vinext-cloudflare deploy --config dist/server/wrangler.json"
   },
   "dependencies": {
+    "better-sqlite3": "^13.0.1",
+    "bullmq": "^5.81.2",
     "clsx": "^2.1.1",
     "firebase": "^11.6.0",
     "firebase-admin": "^13.2.0",
     "framer-motion": "^12.23.6",
+    "ioredis": "^5.11.1",
     "next": "^15.3.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "tailwind-merge": "^3.2.0",
-    "zod": "^3.24.2"
+    "uuid": "^14.0.1",
+    "zod": "^3.25.76"
   },
   "devDependencies": {
     "@cloudflare/vite-plugin": "^1.44.0",
