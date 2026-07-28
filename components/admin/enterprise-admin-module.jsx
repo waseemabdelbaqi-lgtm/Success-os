@@ -4,6 +4,7 @@ import { useCallback, useEffect, useMemo, useState } from 'react';
 import { defaultRecordedLessonFilters } from '@/app/data/recorded-lesson-filters.js';
 import { RecordedLessonsFilters } from '@/components/admin/recorded-lessons-filters.jsx';
 import { TeacherPriceSplitPanel } from '@/components/admin/teacher-price-split.jsx';
+import { CommissionCascadePanel } from '@/components/admin/commission-cascade-panel.jsx';
 
 const emptyForm = {};
 
@@ -21,6 +22,7 @@ export function EnterpriseAdminModulePage({ moduleId }) {
   const [financeSummary, setFinanceSummary] = useState(null);
   const [commissionDefaults, setCommissionDefaults] = useState(null);
   const [priceSplit, setPriceSplit] = useState(null);
+  const [commissionCascade, setCommissionCascade] = useState(null);
 
   const isPermissions = moduleId === 'permissions';
   const isFinance = moduleId === 'finance';
@@ -42,6 +44,12 @@ export function EnterpriseAdminModulePage({ moduleId }) {
     if (isCommission) {
       const res = await fetch('/api/enterprise-admin?view=commission-defaults', { cache: 'no-store' });
       setCommissionDefaults(await res.json());
+      const cascadeRes = await fetch(
+        '/api/enterprise-admin?view=commission-cascade&teacherPrice=50&service=recorded-lesson&partnerType=teacher',
+        { cache: 'no-store' },
+      );
+      const cascadeJson = await cascadeRes.json();
+      setCommissionCascade(cascadeJson.cascade || null);
     }
     const params = new URLSearchParams({
       view: 'module',
@@ -255,34 +263,42 @@ export function EnterpriseAdminModulePage({ moduleId }) {
 
       {isFinance && financeSummary ? <FinanceSummaryCards summary={financeSummary} /> : null}
       {isCommission && commissionDefaults ? (
-        <CommissionDefaultsBar
-          defaults={commissionDefaults}
-          busy={busy}
-          onSave={async (payload) => {
-            setBusy(true);
-            try {
-              const res = await fetch('/api/enterprise-admin', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                  action: 'setCommissionDefaults',
-                  payload:
-                    typeof payload === 'number'
-                      ? { defaultCommissionPercent: payload }
-                      : payload,
-                  user: 'owner',
-                }),
-              });
-              const json = await res.json();
-              if (!res.ok || json.ok === false) throw new Error(json.error || 'failed');
-              setCommissionDefaults(json.defaults);
-            } catch (e) {
-              setError(e.message || 'failed');
-            } finally {
-              setBusy(false);
-            }
-          }}
-        />
+        <>
+          <CommissionDefaultsBar
+            defaults={commissionDefaults}
+            busy={busy}
+            onSave={async (payload) => {
+              setBusy(true);
+              try {
+                const res = await fetch('/api/enterprise-admin', {
+                  method: 'POST',
+                  headers: { 'Content-Type': 'application/json' },
+                  body: JSON.stringify({
+                    action: 'setCommissionDefaults',
+                    payload:
+                      typeof payload === 'number'
+                        ? { defaultCommissionPercent: payload }
+                        : payload,
+                    user: 'owner',
+                  }),
+                });
+                const json = await res.json();
+                if (!res.ok || json.ok === false) throw new Error(json.error || 'failed');
+                setCommissionDefaults(json.defaults);
+                await load();
+              } catch (e) {
+                setError(e.message || 'failed');
+              } finally {
+                setBusy(false);
+              }
+            }}
+          />
+          <CommissionCascadePanel
+            cascade={commissionCascade}
+            title="Global → Teacher Override → Center Override → Special Campaign → Final"
+            teacherPrice={50}
+          />
+        </>
       ) : null}
 
       {isRecordedLessons ? (
@@ -635,13 +651,19 @@ function FinanceSummaryCards({ summary }) {
 
 function CommissionDefaultsBar({ defaults, busy, onSave }) {
   const [percent, setPercent] = useState(defaults.defaultCommissionPercent);
-  const [recordedPercent, setRecordedPercent] = useState(
-    defaults.recordedLessonCommissionPercent ?? 30,
+  const [globalPercent, setGlobalPercent] = useState(
+    defaults.globalCommissionPercent ?? defaults.recordedLessonCommissionPercent ?? 30,
   );
   useEffect(() => {
     setPercent(defaults.defaultCommissionPercent);
-    setRecordedPercent(defaults.recordedLessonCommissionPercent ?? 30);
-  }, [defaults.defaultCommissionPercent, defaults.recordedLessonCommissionPercent]);
+    setGlobalPercent(
+      defaults.globalCommissionPercent ?? defaults.recordedLessonCommissionPercent ?? 30,
+    );
+  }, [
+    defaults.defaultCommissionPercent,
+    defaults.globalCommissionPercent,
+    defaults.recordedLessonCommissionPercent,
+  ]);
   return (
     <div
       style={{
@@ -656,10 +678,10 @@ function CommissionDefaultsBar({ defaults, busy, onSave }) {
       }}
     >
       <div style={{ fontSize: 13 }}>
-        <strong>Default commission</strong> (Owner-configurable, not hardcoded)
+        <strong>Commission defaults</strong> (Owner-configurable cascade root)
       </div>
       <label style={{ fontSize: 13 }}>
-        Global %
+        Legacy fallback %
         <input
           type="number"
           value={percent}
@@ -668,11 +690,11 @@ function CommissionDefaultsBar({ defaults, busy, onSave }) {
         />
       </label>
       <label style={{ fontSize: 13 }}>
-        Recorded Lessons %
+        Global Commission %
         <input
           type="number"
-          value={recordedPercent}
-          onChange={(e) => setRecordedPercent(Number(e.target.value))}
+          value={globalPercent}
+          onChange={(e) => setGlobalPercent(Number(e.target.value))}
           style={{ marginLeft: 6, padding: 6, width: 80 }}
         />
       </label>
@@ -682,16 +704,16 @@ function CommissionDefaultsBar({ defaults, busy, onSave }) {
         onClick={() =>
           onSave({
             defaultCommissionPercent: percent,
-            recordedLessonCommissionPercent: recordedPercent,
+            globalCommissionPercent: globalPercent,
+            recordedLessonCommissionPercent: globalPercent,
           })
         }
       >
         Save defaults
       </button>
       <span style={{ fontSize: 12, color: '#6b7280' }}>
-        Example: Teacher Price 50 USD → Commission {recordedPercent}% → Teacher{' '}
-        {(50 * (100 - Number(recordedPercent || 0)) / 100).toFixed(0)} USD · Success OS{' '}
-        {(50 * Number(recordedPercent || 0) / 100).toFixed(0)} USD
+        Cascade: Global {globalPercent}% → Teacher Override → Center Override → Special Campaign →
+        Final
       </span>
       <span style={{ fontSize: 12, color: '#6b7280' }}>
         Updated {defaults.updatedAt || '—'} by {defaults.updatedBy || '—'}

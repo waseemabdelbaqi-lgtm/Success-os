@@ -12,6 +12,7 @@ import {
   listCommissionRules,
   mutateCommissionRule,
   previewCommission,
+  previewCommissionCascade,
   previewTeacherPriceSplit,
   setCommissionDefaults,
 } from '../../lib/admin/enterprise-commission-engine.js';
@@ -113,6 +114,34 @@ export async function GET(request) {
           commissionPercent: searchParams.get('commissionPercent') || undefined,
           currency: searchParams.get('currency') || undefined,
           service: searchParams.get('service') || 'recorded-lesson',
+          partnerId: searchParams.get('partnerId') || undefined,
+          teacherId: searchParams.get('teacherId') || undefined,
+          centerId: searchParams.get('centerId') || undefined,
+          partnerType: searchParams.get('partnerType') || undefined,
+          promotionId: searchParams.get('promotionId') || undefined,
+          campaignId: searchParams.get('campaignId') || undefined,
+        }),
+        defaults: getCommissionDefaults(),
+      },
+      { headers: { 'Cache-Control': 'no-store' } },
+    );
+  }
+
+  if (view === 'commission-cascade') {
+    return Response.json(
+      {
+        ok: true,
+        cascade: previewCommissionCascade({
+          teacherPrice: searchParams.get('teacherPrice') || searchParams.get('price') || 50,
+          currency: searchParams.get('currency') || undefined,
+          service: searchParams.get('service') || 'recorded-lesson',
+          partnerId: searchParams.get('partnerId') || undefined,
+          teacherId: searchParams.get('teacherId') || undefined,
+          centerId: searchParams.get('centerId') || undefined,
+          partnerType: searchParams.get('partnerType') || undefined,
+          promotionId: searchParams.get('promotionId') || undefined,
+          campaignId: searchParams.get('campaignId') || undefined,
+          globalCommissionPercent: searchParams.get('globalCommissionPercent') || undefined,
         }),
         defaults: getCommissionDefaults(),
       },

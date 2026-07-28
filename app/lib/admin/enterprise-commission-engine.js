@@ -21,28 +21,42 @@ import {
   calculateTeacherPriceSplit,
   isRecordedLessonService,
 } from './teacher-price-split.js';
+import { resolveCommissionCascade } from './commission-cascade.js';
 
 const DEFAULTS_FILE = () => path.join(erpRoot(), 'config', 'commission-defaults.json');
 
 const BASE_DEFAULTS = {
   defaultCommissionPercent: 10,
-  /** Recorded Lessons teacher-price split (Teacher Price → Success OS %). */
+  /** Cascade root — Global Commission (Teacher Price split default). */
+  globalCommissionPercent: 30,
+  /** Alias kept for Recorded Lessons callers; mirrors global when unset. */
   recordedLessonCommissionPercent: 30,
   defaultCurrency: 'USD',
   note: 'Owner-configurable. Never hardcode this value in application code paths.',
 };
+
+function mergeCommissionDefaults(existing) {
+  const merged = { ...BASE_DEFAULTS, ...existing };
+  if (existing.globalCommissionPercent == null) {
+    merged.globalCommissionPercent =
+      existing.recordedLessonCommissionPercent ?? BASE_DEFAULTS.globalCommissionPercent;
+  }
+  if (existing.recordedLessonCommissionPercent == null) {
+    merged.recordedLessonCommissionPercent =
+      merged.globalCommissionPercent ?? BASE_DEFAULTS.recordedLessonCommissionPercent;
+  }
+  return merged;
+}
 
 /** Seed configurable defaults (Owner can change anytime via API). */
 export function ensureCommissionDefaults() {
   erpEnsureDirs();
   const existing = erpReadJson(DEFAULTS_FILE());
   if (existing) {
-    let changed = false;
-    const merged = { ...BASE_DEFAULTS, ...existing };
-    if (existing.recordedLessonCommissionPercent == null) {
-      merged.recordedLessonCommissionPercent = BASE_DEFAULTS.recordedLessonCommissionPercent;
-      changed = true;
-    }
+    const merged = mergeCommissionDefaults(existing);
+    const changed =
+      existing.globalCommissionPercent == null ||
+      existing.recordedLessonCommissionPercent == null;
     if (changed) {
       merged.updatedAt = existing.updatedAt || erpNow();
       erpWriteJson(DEFAULTS_FILE(), merged);
@@ -71,10 +85,16 @@ export function setCommissionDefaults(patch = {}, meta = {}) {
       patch.defaultCommissionPercent != null
         ? Number(patch.defaultCommissionPercent)
         : before.defaultCommissionPercent,
+    globalCommissionPercent:
+      patch.globalCommissionPercent != null
+        ? Number(patch.globalCommissionPercent)
+        : before.globalCommissionPercent,
     recordedLessonCommissionPercent:
       patch.recordedLessonCommissionPercent != null
         ? Number(patch.recordedLessonCommissionPercent)
-        : before.recordedLessonCommissionPercent,
+        : patch.globalCommissionPercent != null
+          ? Number(patch.globalCommissionPercent)
+          : before.recordedLessonCommissionPercent,
     updatedAt: erpNow(),
     updatedBy: meta.user || 'owner',
   };
@@ -96,15 +116,57 @@ export function setCommissionDefaults(patch = {}, meta = {}) {
 export function previewTeacherPriceSplit(input = {}) {
   const defaults = ensureCommissionDefaults();
   const service = input.service || 'recorded-lesson';
-  const percent =
-    input.commissionPercent != null
-      ? Number(input.commissionPercent)
-      : isRecordedLessonService(service)
-        ? Number(defaults.recordedLessonCommissionPercent ?? 30)
-        : Number(defaults.defaultCommissionPercent ?? 10);
-  return calculateTeacherPriceSplit({
+  const cascade = previewCommissionCascade({
+    ...input,
+    service,
     teacherPrice: input.teacherPrice ?? input.price ?? input.grossAmount ?? 0,
-    commissionPercent: percent,
+  });
+  if (input.commissionPercent != null) {
+    return calculateTeacherPriceSplit({
+      teacherPrice: input.teacherPrice ?? input.price ?? input.grossAmount ?? 0,
+      commissionPercent: Number(input.commissionPercent),
+      currency: input.currency || defaults.defaultCurrency || 'USD',
+    });
+  }
+  return {
+    ...cascade.teacherPriceSplit,
+    cascadeSteps: cascade.cascadeSteps,
+    finalCommissionPercent: cascade.finalCommissionPercent,
+    winnerLayer: cascade.winnerLayer,
+  };
+}
+
+/**
+ * Preview Global → Teacher → Center → Campaign → Final cascade.
+ */
+export function previewCommissionCascade(input = {}) {
+  const defaults = ensureCommissionDefaults();
+  const rules = erpActiveItemsSafe(erpReadCollection('commission-rules').items);
+  const globalPercent =
+    input.globalCommissionPercent != null
+      ? Number(input.globalCommissionPercent)
+      : isRecordedLessonService(input.service || 'recorded-lesson')
+        ? Number(
+            defaults.globalCommissionPercent ??
+              defaults.recordedLessonCommissionPercent ??
+              30,
+          )
+        : Number(defaults.globalCommissionPercent ?? defaults.defaultCommissionPercent ?? 30);
+
+  return resolveCommissionCascade({
+    globalCommissionPercent: globalPercent,
+    rules,
+    context: {
+      at: input.at,
+      partnerId: input.partnerId || input.teacherId,
+      teacherId: input.teacherId || input.partnerId,
+      centerId: input.centerId,
+      partnerType: input.partnerType,
+      promotionId: input.promotionId || input.campaignId,
+      campaignId: input.campaignId || input.promotionId,
+      service: input.service || 'recorded-lesson',
+    },
+    teacherPrice: input.teacherPrice ?? input.price ?? input.grossAmount ?? 0,
     currency: input.currency || defaults.defaultCurrency || 'USD',
   });
 }
@@ -173,7 +235,9 @@ function applyRuleAmount(rule, gross) {
 
 /**
  * Resolve commission for a payment context.
- * Uses highest-scoring matching rule; falls back to Owner-configured default %.
+ * Prefer cascade (Global → Teacher → Center → Campaign → Final).
+ * Falls back to legacy highest-score rule matching when cascade yields only global
+ * and a non-layer legacy rule still matches.
  */
 export function resolveCommission(context = {}) {
   const defaults = ensureCommissionDefaults();
@@ -188,15 +252,28 @@ export function resolveCommission(context = {}) {
     service: context.service || null,
     subscriptionId: context.subscriptionId || null,
     contractId: context.contractId || null,
-    promotionId: context.promotionId || null,
+    promotionId: context.promotionId || context.campaignId || null,
     vip: context.vip === true,
+    teacherId: context.teacherId || null,
+    centerId: context.centerId || null,
+    campaignId: context.campaignId || null,
   };
   const gross = Number(context.grossAmount || 0);
 
+  const cascade = previewCommissionCascade({
+    ...ctx,
+    teacherPrice: gross,
+    grossAmount: gross,
+    currency: context.currency || defaults.defaultCurrency || 'USD',
+    service: ctx.service || (ctx.partnerType === 'teacher' ? 'recorded-lesson' : ctx.service),
+  });
+
+  // Legacy scored rules (without overrideLayer) still supported when cascade is global-only
   const rules = erpActiveItemsSafe(erpReadCollection('commission-rules').items);
   let best = null;
   let bestScore = -1;
   for (const rule of rules) {
+    if (rule.overrideLayer || rule.layer) continue;
     const s = scoreRule(rule, ctx);
     if (s > bestScore) {
       bestScore = s;
@@ -204,39 +281,42 @@ export function resolveCommission(context = {}) {
     }
   }
 
-  if (!best) {
-    const percent = isRecordedLessonService(ctx.service)
-      ? Number(defaults.recordedLessonCommissionPercent ?? defaults.defaultCommissionPercent)
-      : Number(defaults.defaultCommissionPercent);
+  if (cascade.winnerLayer !== 'global' || !best) {
+    const percent = cascade.finalCommissionPercent;
     const amount = Number(((gross * percent) / 100).toFixed(6));
-    const teacherSplit = calculateTeacherPriceSplit({
-      teacherPrice: gross,
-      commissionPercent: percent,
-      currency: defaults.defaultCurrency || 'USD',
-    });
     return {
-      source: isRecordedLessonService(ctx.service) ? 'recorded-lesson-default' : 'default',
-      ruleId: null,
+      source: cascade.winnerLayer === 'global' ? 'global-cascade' : 'cascade',
+      ruleId: cascade.ruleId,
       pricingType: 'percentage',
       percent,
       fixedAmount: 0,
       commissionAmount: amount,
-      teacherReceives: teacherSplit.teacherReceives,
-      successOs: teacherSplit.successOs,
+      teacherReceives: cascade.teacherReceives,
+      successOs: cascade.successOs,
+      cascade,
       defaultsVersion: defaults.updatedAt,
     };
   }
 
   const commissionAmount = applyRuleAmount(best, gross);
+  const percent = Number(best.percent ?? best.percentage ?? 0);
+  const teacherSplit = calculateTeacherPriceSplit({
+    teacherPrice: gross,
+    commissionPercent: percent,
+    currency: defaults.defaultCurrency || 'USD',
+  });
   return {
     source: 'rule',
     ruleId: best.id,
     ruleName: best.name,
     pricingType: best.pricingType || best.type || 'percentage',
-    percent: Number(best.percent ?? best.percentage ?? 0),
+    percent,
     fixedAmount: Number(best.fixedAmount ?? 0),
     commissionAmount,
+    teacherReceives: teacherSplit.teacherReceives,
+    successOs: teacherSplit.successOs,
     ruleVersion: best.version || 1,
+    cascade,
   };
 }
 
@@ -291,7 +371,10 @@ export function mutateCommissionRule(action, payload = {}, meta = {}) {
       service: payload.service || null,
       subscriptionId: payload.subscriptionId || null,
       contractId: payload.contractId || null,
-      promotionId: payload.promotionId || null,
+      promotionId: payload.promotionId || payload.campaignId || null,
+      campaignId: payload.campaignId || payload.promotionId || null,
+      overrideLayer: payload.overrideLayer || payload.layer || null,
+      specialCampaign: payload.specialCampaign === true,
       vip: payload.vip === true,
       dateFrom: payload.dateFrom || null,
       dateTo: payload.dateTo || null,
@@ -357,11 +440,17 @@ export function previewCommission(payload = {}) {
     service: payload.service || (payload.partnerType === 'teacher' ? 'recorded-lesson' : payload.service),
     grossAmount: payload.grossAmount ?? payload.teacherPrice ?? payload.price ?? 0,
   });
-  const split = previewTeacherPriceSplit({
+  const cascade =
+    resolved.cascade ||
+    previewCommissionCascade({
+      ...payload,
+      teacherPrice: payload.teacherPrice ?? payload.price ?? payload.grossAmount ?? 0,
+      service: payload.service || 'recorded-lesson',
+    });
+  const split = calculateTeacherPriceSplit({
     teacherPrice: payload.teacherPrice ?? payload.price ?? payload.grossAmount ?? 0,
     commissionPercent: resolved.percent,
     currency: payload.currency,
-    service: payload.service || 'recorded-lesson',
   });
   return {
     ...resolved,
@@ -369,5 +458,9 @@ export function previewCommission(payload = {}) {
     teacherReceives: split.teacherReceives,
     successOs: split.successOs,
     breakdown: split.breakdown,
+    cascadeSteps: cascade.cascadeSteps,
+    finalCommissionPercent: cascade.finalCommissionPercent ?? resolved.percent,
+    winnerLayer: cascade.winnerLayer,
+    winnerLabel: cascade.winnerLabel,
   };
 }

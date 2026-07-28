@@ -379,9 +379,10 @@ export const ENTERPRISE_ERP_MODULES = Object.freeze({
   'commission-rules': crudSchema({
     id: 'commission-rules',
     label: 'Commission Rules',
-    searchable: ['name', 'partnerType', 'country', 'service', 'pricingType'],
+    searchable: ['name', 'partnerType', 'country', 'service', 'pricingType', 'overrideLayer'],
     columns: [
       { key: 'name', label: 'Rule' },
+      { key: 'overrideLayer', label: 'Cascade layer' },
       { key: 'pricingType', label: 'Type' },
       { key: 'percent', label: '%' },
       { key: 'fixedAmount', label: 'Fixed' },
@@ -393,6 +394,16 @@ export const ENTERPRISE_ERP_MODULES = Object.freeze({
     fields: [
       { key: 'name', label: 'Rule name', type: 'text', required: true },
       {
+        key: 'overrideLayer',
+        label: 'Cascade layer',
+        type: 'select',
+        options: [
+          { value: 'teacher_override', label: 'Teacher Override' },
+          { value: 'center_override', label: 'Center Override' },
+          { value: 'special_campaign', label: 'Special Campaign' },
+        ],
+      },
+      {
         key: 'pricingType',
         label: 'Pricing type',
         type: 'select',
@@ -402,8 +413,9 @@ export const ENTERPRISE_ERP_MODULES = Object.freeze({
       { key: 'fixedAmount', label: 'Fixed amount', type: 'number' },
       { key: 'minimum', label: 'Minimum', type: 'number' },
       { key: 'maximum', label: 'Maximum', type: 'number' },
-      { key: 'partnerType', label: 'Partner type', type: 'text' },
+      { key: 'partnerType', label: 'Partner type (teacher/center)', type: 'text' },
       { key: 'partnerId', label: 'Partner ID', type: 'text' },
+      { key: 'promotionId', label: 'Campaign / Promotion ID', type: 'text' },
       { key: 'country', label: 'Country', type: 'text' },
       { key: 'city', label: 'City', type: 'text' },
       { key: 'curriculum', label: 'Curriculum', type: 'text' },
