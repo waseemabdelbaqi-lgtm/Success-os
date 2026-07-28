@@ -48,6 +48,35 @@ export default function JordanBooksHomePage() {
         </section>
 
         <section style={card}>
+          <h2 style={h2}>محرك التعلم التفاعلي Success OS</h2>
+          <p style={muted}>
+            كتاب كامل → درس تفاعلي (15 مرحلة) → تدريب → تعاون → لعبة مراجعة → تقييم → إتقان → تقارير. لا تضمين
+            Nearpod/Kahoot/Padlet — بدائل أصلية مستقلة.
+          </p>
+          <ol style={path}>
+            <li>
+              <Link href="/jordan-books/lesson-engine/sos-il-jo-g1-math-u0-l1-numbers-123">
+                الدرس المرجعي الكامل: الأعداد 1 ، 2 ، 3
+              </Link>
+            </li>
+            <li>
+              <Link href="/teacher/live-lesson?lessonId=sos-il-jo-g1-math-u0-l1-numbers-123">
+                وضع المعلم المباشر
+              </Link>
+            </li>
+            <li>
+              <Link href="/admin/lesson-studio">استوديو إنشاء الدروس</Link>
+            </li>
+            <li>
+              <Link href="/admin/lesson-reports">التقارير</Link>
+            </li>
+            <li>
+              <Link href="/admin/jordan-curriculum-matrix">مصفوفة المنهاج + طابور الإنتاج</Link>
+            </li>
+          </ol>
+        </section>
+
+        <section style={card}>
           <h2 style={h2}>التجريبي الحالي (Pilot)</h2>
           <p>
             <strong>{pilot.officialTitleAr}</strong>

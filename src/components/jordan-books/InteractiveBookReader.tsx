@@ -6,6 +6,7 @@ import type { BookRecord } from "@/src/lib/jordan-books/schema/types";
 import { rightsLabel } from "@/src/lib/jordan-books/registry";
 import { useBookAnnotations } from "@/src/lib/jordan-books/hooks/useBookAnnotations";
 import { ContentBlockView } from "@/src/components/jordan-books/ContentBlockView";
+import { getInteractiveLessonForBookLesson } from "@/src/lib/sos-lesson-engine/registry";
 
 type Props = {
   book: BookRecord;
@@ -131,6 +132,7 @@ export function InteractiveBookReader({ book, unitId, initialLessonId }: Props) 
   const currentUnit = book.units.find((u) => u.lessons.some((l) => l.id === lesson.id));
   const lessonAnswers =
     book.answerBank?.filter((a) => a.lessonId === lesson.id && mastery[a.questionBlockId]) || [];
+  const interactiveLesson = getInteractiveLessonForBookLesson(book.id, lesson.id);
 
   return (
     <div
@@ -167,6 +169,21 @@ export function InteractiveBookReader({ book, unitId, initialLessonId }: Props) 
         هذا كتاب تفاعلي مرافق Success OS — ليس إعادة نشر للكتاب الحكومي. الشروحات أصلية. الاعتماد يظهر على
         المحتوى الأصلي فقط.
       </div>
+
+      {interactiveLesson ? (
+        <div className="jb-banner" role="navigation" style={{ background: "rgba(158,23,34,.08)" }}>
+          <strong>محرك الدرس التفاعلي متاح لهذا الدرس:</strong>{" "}
+          <Link href={`/jordan-books/lesson-engine/${interactiveLesson.id}`}>وضع الدرس التفاعلي الكامل</Link>
+          {" · "}
+          <Link href={`/jordan-books/lesson-engine/${interactiveLesson.id}/review-game`}>لعبة مراجعة</Link>
+          {" · "}
+          <Link href={`/teacher/live-lesson?lessonId=${encodeURIComponent(interactiveLesson.id)}`}>
+            جلسة معلم مباشرة
+          </Link>
+          {" · "}
+          وضع الصفحات (الحالي) · تدريب · مراجعة — التقدّم يُحفظ عبر الإتقان في وضع الدرس.
+        </div>
+      ) : null}
 
       <div className="jb-toolbar">
         <button type="button" onClick={() => setTocOpen((v) => !v)}>

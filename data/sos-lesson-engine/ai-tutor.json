@@ -1,0 +1,13 @@
+[
+  {
+    "lessonId": "sos-il-jo-g1-math-u0-l1-numbers-123",
+    "studentKey": "t1",
+    "stageId": "explanation",
+    "userMessage": "بسّط الشرح",
+    "assistantMessage": "شرح مبسّط من الدرس المعتمد: تخيّل درجة سلم واحدة فقط: هذه هي 1. مثال: قلم واحد على الطاولة → نكتب 1.",
+    "confidence": "high",
+    "needsTeacherReview": false,
+    "id": "ai-1785255571632",
+    "createdAt": "2026-07-28T16:19:31.632Z"
+  }
+]
