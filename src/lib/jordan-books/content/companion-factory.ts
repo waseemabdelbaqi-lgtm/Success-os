@@ -37,6 +37,31 @@ export type CompanionBookSeed = {
   units: CompanionUnitSeed[];
 };
 
+function subjectEngineNote(subjectAr: string): string {
+  if (/رياض|math|أعمال/i.test(subjectAr) || subjectAr.includes("رياضيات")) {
+    return "محرك رياضيات: تمثيل رمزي · خطوات حل · مساحة عمل الطالب (KaTeX عند توفر الصيغ).";
+  }
+  if (/عرب|English|إنجل|أدب|نحو/i.test(subjectAr) || subjectAr.includes("لغة")) {
+    return "محرك لغة: مفردات · فهم · كتابة · دعم RTL/LTR حسب المبحث.";
+  }
+  if (/علوم|فيزياء|كيمياء|حيات|أرض/i.test(subjectAr)) {
+    return "محرك علوم: ملاحظة · سلامة · جداول بيانات · استنتاج.";
+  }
+  if (/اجتماع|تاريخ|جغراف|وطنية|أردن/i.test(subjectAr)) {
+    return "محرك دراسات اجتماعية: خط زمني · خريطة ذهنية · سبب ونتيجة.";
+  }
+  if (/إسلام/i.test(subjectAr)) {
+    return "محرك تربية إسلامية: مراجع نصية موثّقة لاحقاً · قيم · تطبيق.";
+  }
+  if (/رقمية|حاسوب|مهني/i.test(subjectAr)) {
+    return "محرك رقمي/مهني: خطوات · خوارزمية · سلامة رقمية أو ورشة.";
+  }
+  if (/رياضة|فنية|موسيقى/i.test(subjectAr)) {
+    return "محرك عملي: تسلسل مهاري · سلامة · محفظة/تأمل.";
+  }
+  return "محرك تفاعلي عام: تلميح · إعادة محاولة · تغذية راجعة.";
+}
+
 function seedToLesson(seed: CompanionLessonSeed, subjectAr: string): ReturnType<typeof buildFullLesson> {
   const options = seed.options || [seed.answer, "—", "—"];
   const correctIndex = typeof seed.correctIndex === "number" ? seed.correctIndex : 0;
@@ -51,7 +76,7 @@ function seedToLesson(seed: CompanionLessonSeed, subjectAr: string): ReturnType<
       { term: seed.titleAr, definition: `مفهوم أساسي في درس «${seed.titleAr}» لمبحث ${subjectAr}.` },
     ],
     hookAr: seed.hookAr,
-    whyAr: `هذا الدرس جزء من منهاج ${subjectAr} للصف المحدد — شرح Success OS أصلي بمحاذاة النواتج.`,
+    whyAr: `هذا الدرس جزء من منهاج ${subjectAr} للصف المحدد — شرح Success OS أصلي بمحاذاة النواتج. ${subjectEngineNote(subjectAr)}`,
     materialsAr: "دفتر · قلم · مواد صفية بسيطة",
     keyQuestionAr: seed.outcomes[0] || "ماذا سنتعلم؟",
     definitionAr: seed.explanationAr.split(".")[0] + ".",
@@ -69,6 +94,9 @@ function seedToLesson(seed: CompanionLessonSeed, subjectAr: string): ReturnType<
       mcq(`راجع: ${seed.titleAr}`, options, correctIndex, `الصحيح: ${seed.answer}`),
       typeAnswer(`اكتب إجابة قصيرة عن: ${seed.titleAr}`, seed.answer, `نموذج: ${seed.answer}`, [seed.answer]),
       mcq("هل راجعت تعريف الدرس؟", ["نعم", "لا", "جزئياً"], 0, "المراجعة تثبّت التعلم."),
+      typeAnswer("رتّب خطوات التعلم: اقرأ → فكّر → طبّق → تحقق", "اقرأ → فكّر → طبّق → تحقق", "الترتيب الصحيح يدعم الإتقان.", [
+        "اقرأ → فكّر → طبّق → تحقق",
+      ]),
     ],
     challenge: typeAnswer(`لخّص فكرة الدرس بكلمة أو جملة قصيرة`, seed.titleAr, "الملخص يرتبط بعنوان الدرس.", [
       seed.titleAr,

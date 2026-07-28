@@ -1,31 +1,55 @@
 import { G1_MATH_S1_STUDENT_BOOK } from "@/src/lib/jordan-books/content/g1-math-s1/student-book";
 import { G1_SEM1_SUBJECT_BOOKS } from "@/src/lib/jordan-books/content/g1-sem1-subjects";
+import {
+  PRIORITY_AUTHORED_PACKS,
+  buildCellToBookMap,
+} from "@/src/lib/jordan-books/content/subject-packs";
 import { loadProductionStore, saveProductionStore } from "@/src/lib/jordan-books/matrix/queue-store";
 import type { BookRecord } from "@/src/lib/jordan-books/schema/types";
 import { buildCompanionBook, type CompanionBookSeed } from "@/src/lib/jordan-books/content/companion-factory";
 import type { InventoryCell } from "@/src/lib/jordan-books/matrix/types";
 
 export function listAuthoredBooks(): BookRecord[] {
-  return [G1_MATH_S1_STUDENT_BOOK, ...G1_SEM1_SUBJECT_BOOKS];
+  return [G1_MATH_S1_STUDENT_BOOK, ...G1_SEM1_SUBJECT_BOOKS, ...PRIORITY_AUTHORED_PACKS];
 }
 
-const CELL_TO_BOOK: Record<string, string> = {
-  "jo-1-general-s1-math-sos_companion": "jo-g1-s1-math-student-book",
-  "jo-1-general-s1-arabic-sos_companion": "jo-g1-s1-arabic-companion",
-  "jo-1-general-s1-english-sos_companion": "jo-g1-s1-english-companion",
-  "jo-1-general-s1-science-sos_companion": "jo-g1-s1-science-companion",
-  "jo-1-general-s1-islamic-sos_companion": "jo-g1-s1-islamic-companion",
-  "jo-1-general-s1-social-sos_companion": "jo-g1-s1-social-companion",
-  "jo-1-general-s1-digital-sos_companion": "jo-g1-s1-digital-companion",
-  "jo-1-general-s1-pe-sos_companion": "jo-g1-s1-pe-companion",
-  "jo-1-general-s1-arts-sos_companion": "jo-g1-s1-arts-companion",
-};
+const CELL_TO_BOOK: Record<string, string> = buildCellToBookMap();
 
 function stubSeedFromCell(cell: InventoryCell): CompanionBookSeed {
   const gradeNum = cell.gradeKey.replace(/\D/g, "") || cell.gradeKey;
+  const unitCount = 2;
+  const lessonCount = 4;
+  const units = Array.from({ length: unitCount }, (_, ui) => {
+    const unitOrder = ui + 1;
+    return {
+      id: `u${unitOrder}`,
+      order: unitOrder,
+      titleAr: `وحدة ${unitOrder} تأسيسية — ${cell.subjectAr}`,
+      titleEn: `Foundation unit ${unitOrder} — ${cell.subjectSlug}`,
+      descriptionAr:
+        "وحدة تأسيسية Success OS. عناوين الوحدات الرسمية الكاملة NEEDS VERIFICATION مقابل طبعة NCCD الحالية.",
+      lessons: Array.from({ length: lessonCount }, (_, li) => {
+        const lessonOrder = li + 1;
+        return {
+          id: `u${unitOrder}-l${lessonOrder}`,
+          order: lessonOrder,
+          titleAr: `درس ${lessonOrder}: ${cell.subjectAr}`,
+          titleEn: `Lesson ${lessonOrder}`,
+          outcomes: [`أتعرّف مفهوماً أولياً في ${cell.subjectAr}`, "أشارك في نشاط صفّي بسيط"],
+          hookAr: `لماذا نتعلّم ${cell.subjectAr}؟`,
+          explanationAr: `مدخل تفاعلي أصلي لمبحث ${cell.subjectAr} في ${cell.gradeAr}. مسودة للمراجعة الأكاديمية — لا يدّعي أنه نص الكتاب الحكومي.`,
+          exampleAr: `هل ${cell.subjectAr} مادة مهمة؟`,
+          answer: "نعم",
+          options: ["نعم", "لا", "غير متأكد"],
+          correctIndex: 0,
+        };
+      }),
+    };
+  });
+
   return {
     id: cell.structuredBookId || `jo-g${gradeNum}-s${cell.semester}-${cell.subjectSlug}-companion`,
-    grade: String(gradeNum),
+    grade: String(gradeNum || cell.gradeKey),
     gradeAr: cell.gradeAr,
     semester: String(cell.semester),
     semesterAr: cell.semesterAr,
@@ -33,57 +57,7 @@ function stubSeedFromCell(cell: InventoryCell): CompanionBookSeed {
     subjectAr: cell.subjectAr,
     stage: cell.stage,
     officialSourceUrl: cell.officialSourceUrl,
-    units: [
-      {
-        id: "u1",
-        order: 1,
-        titleAr: `وحدة تأسيسية — ${cell.subjectAr}`,
-        titleEn: `Foundation — ${cell.subjectSlug}`,
-        descriptionAr:
-          "وحدة تأسيسية Success OS. عناوين الوحدات الرسمية الكاملة NEEDS VERIFICATION مقابل طبعة NCCD الحالية.",
-        lessons: [
-          {
-            id: "u1-l1",
-            order: 1,
-            titleAr: `مدخل إلى ${cell.subjectAr}`,
-            titleEn: `Intro to ${cell.subjectSlug}`,
-            outcomes: [`أتعرّف مفاهيم أولية في ${cell.subjectAr}`, "أشارك في نشاط صفّي بسيط"],
-            hookAr: `لماذا نتعلّم ${cell.subjectAr}؟`,
-            explanationAr: `هذا مدخل تفاعلي أصلي لمبحث ${cell.subjectAr} في ${cell.gradeAr}. المحتوى مسودة للمراجعة الأكاديمية ولا يدّعي أنه نص الكتاب الحكومي.`,
-            exampleAr: `هل ${cell.subjectAr} مادة مهمة؟`,
-            answer: "نعم",
-            options: ["نعم", "لا", "غير متأكد"],
-            correctIndex: 0,
-          },
-          {
-            id: "u1-l2",
-            order: 2,
-            titleAr: "مفردات الدرس",
-            titleEn: "Lesson vocabulary",
-            outcomes: ["أتعرّف مصطلحاً أساسياً", "أستخدمه في جملة"],
-            hookAr: "ما الكلمة الجديدة اليوم؟",
-            explanationAr: `نختار مصطلحاً أساسياً من ${cell.subjectAr} ونشرحه بلغة مناسبة للعمر، ثم نطبّقه في تمرين قصير.`,
-            exampleAr: "هل راجعت التعريف؟",
-            answer: "نعم",
-            options: ["نعم", "لا", "لاحقاً"],
-            correctIndex: 0,
-          },
-          {
-            id: "u1-l3",
-            order: 3,
-            titleAr: "تطبيق وتقييم قصير",
-            titleEn: "Practice check",
-            outcomes: ["أحل تمريناً قصيراً", "أراجع إجابتي"],
-            hookAr: "جرّب السؤال ثم تحقق.",
-            explanationAr: "بعد الشرح يأتي تدريب قصير مع تلميح وإعادة محاولة. الإجابات تُراجع أكاديمياً قبل النشر.",
-            exampleAr: "هل أنهيت التدريب؟",
-            answer: "نعم",
-            options: ["نعم", "لا", "جزئياً"],
-            correctIndex: 0,
-          },
-        ],
-      },
-    ],
+    units,
   };
 }
 
@@ -97,7 +71,7 @@ export function buildStubBookForCell(cell: InventoryCell): BookRecord {
   return book;
 }
 
-export async function processProductionQueue(limit = 25): Promise<{
+export async function processProductionQueue(limit = 50): Promise<{
   processed: number;
   results: Array<{ cellId: string; status: string; bookId?: string; note?: string }>;
   storeSummary: { pending: number; done: number; blocked: number };
@@ -153,18 +127,19 @@ export async function processProductionQueue(limit = 25): Promise<{
       continue;
     }
 
-    const gradeNum = cell.gradeKey.replace(/\D/g, "") || cell.gradeKey;
-    const bookId = `jo-g${gradeNum}-s${cell.semester}-${cell.subjectSlug}-companion`;
+    const gradeKey = cell.gradeKey;
+    const bookId = `jo-${gradeKey}-s${cell.semester}-${cell.subjectSlug}-companion`;
+    const stub = buildStubBookForCell({ ...cell, structuredBookId: bookId });
     store.cells = store.cells.map((c) =>
       c.id === cell.id
         ? {
             ...c,
             matrixStatus: "STRUCTURED",
             structuredBookId: bookId,
-            unitsDone: 1,
-            lessonsDone: 3,
-            exercisesDone: 12,
-            answersDone: 12,
+            unitsDone: stub.units.length,
+            lessonsDone: stub.units.reduce((n, u) => n + u.lessons.length, 0),
+            exercisesDone: stub.answerBank?.length || 0,
+            answersDone: stub.answerBank?.length || 0,
           }
         : c,
     );
@@ -198,4 +173,10 @@ export async function getStubBookById(bookId: string): Promise<BookRecord | null
   const store = await loadProductionStore();
   const cell = store.cells.find((c) => c.structuredBookId === bookId && c.matrixStatus === "STRUCTURED");
   return cell ? buildStubBookForCell(cell) : null;
+}
+
+export async function getAnyBookById(bookId: string): Promise<BookRecord | null> {
+  const authored = listAuthoredBooks().find((b) => b.id === bookId);
+  if (authored) return authored;
+  return getStubBookById(bookId);
 }

@@ -10,7 +10,7 @@ import { readEditorialOverrides, upsertEditorialOverride } from "@/src/lib/jorda
 import type { EditorialStatus } from "@/src/lib/jordan-books/schema/types";
 import { buildCompletenessMatrix } from "@/src/lib/jordan-books/matrix/completeness";
 import { inventoryStats, MASTER_INVENTORY } from "@/src/lib/jordan-books/matrix/master-inventory";
-import { loadProductionStore } from "@/src/lib/jordan-books/matrix/queue-store";
+import { loadProductionStore, rebuildProductionStore } from "@/src/lib/jordan-books/matrix/queue-store";
 import { loadStubBooks, processProductionQueue, getStubBookById } from "@/src/lib/jordan-books/production/queue-processor";
 
 export const dynamic = "force-dynamic";
@@ -132,13 +132,28 @@ export async function POST(request: Request) {
   };
 
   if (body.action === "process_queue") {
-    const result = await processProductionQueue(Math.min(body.limit || 40, 100));
+    const result = await processProductionQueue(Math.min(body.limit || 40, 200));
     const store = await loadProductionStore();
     return NextResponse.json({
       ok: true,
       result,
       matrix: buildCompletenessMatrix(store.cells),
       message: "Queue processed. Foundation stubs are STRUCTURED not COMPLETE. Video development remains stopped.",
+    });
+  }
+
+  if (body.action === "rebuild_queue") {
+    const store = await rebuildProductionStore();
+    const result = await processProductionQueue(Math.min(body.limit || 80, 250));
+    const after = await loadProductionStore();
+    return NextResponse.json({
+      ok: true,
+      rebuiltAt: store.updatedAt,
+      result,
+      inventoryStats: inventoryStats(after.cells),
+      matrix: buildCompletenessMatrix(after.cells),
+      honestCompleteClaim: false,
+      message: "Inventory rebuilt and queue advanced. Library is NOT claimed COMPLETE.",
     });
   }
 

@@ -52,6 +52,29 @@ export default function JordanCurriculumMatrixPage(): ReactNode {
     }
   }
 
+  async function rebuildAndRun(limit = 120) {
+    setBusy(true);
+    setMsg("");
+    try {
+      const res = await fetch("/api/jordan-books", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ action: "rebuild_queue", limit }),
+      });
+      const json = await res.json();
+      if (!json.ok) throw new Error("fail");
+      setMatrix(json.matrix);
+      setMsg(
+        `أُعيد بناء المخزون والطابور. processed=${json.result?.processed ?? 0}. honestCompleteClaim=false.`,
+      );
+      reload();
+    } catch {
+      setMsg("فشل إعادة البناء");
+    } finally {
+      setBusy(false);
+    }
+  }
+
   const cells =
     matrix?.cells.filter((c) => {
       if (!filter) return true;
@@ -65,8 +88,8 @@ export default function JordanCurriculumMatrixPage(): ReactNode {
         <p style={eyebrow}>Admin · Completeness Matrix · Production Queue</p>
         <h1 style={h1}>مصفوفة اكتمال المنهاج الأردني — كل الصفوف والمباحث</h1>
         <p style={banner}>
-          لا يُعرض COMPLETE إلا بعد المراجعات. الفيديو متوقف. الأرقام ديناميكية من المخزون والطابور. G12
-          المهني/قوائم ناقصة = NOT_DISCOVERED دون اختراع مباحث.
+          لا يُعرض COMPLETE إلا بعد المراجعات. الفيديو متوقف. الأرقام ديناميكية من المخزون والطابور. المسارات
+          المهنية بلا قائمة مباحث رسمية = NOT_DISCOVERED دون اختراع مباحث.
         </p>
         <div style={actions}>
           <button type="button" style={btn} disabled={busy} onClick={reload}>
@@ -77,6 +100,9 @@ export default function JordanCurriculumMatrixPage(): ReactNode {
           </button>
           <button type="button" style={btn} disabled={busy} onClick={() => runQueue(100)}>
             تشغيل طابور (100)
+          </button>
+          <button type="button" style={btnSecondary} disabled={busy} onClick={() => rebuildAndRun(150)}>
+            إعادة بناء المخزون + طابور (150)
           </button>
           <Link href="/admin/jordan-books-dashboard" style={link}>
             لوحة التغطية
@@ -209,6 +235,12 @@ const btn: CSSProperties = {
   padding: "0.45rem 0.7rem",
   fontWeight: 800,
   cursor: "pointer",
+};
+const btnSecondary: CSSProperties = {
+  ...btn,
+  background: "#9e1722",
+  color: "#fff",
+  borderColor: "#9e1722",
 };
 const link: CSSProperties = { color: "#9e1722", fontWeight: 900, alignSelf: "center" };
 const grid: CSSProperties = {

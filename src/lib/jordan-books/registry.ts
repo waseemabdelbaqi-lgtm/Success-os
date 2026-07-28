@@ -1,5 +1,6 @@
 import { G1_MATH_S1_STUDENT_BOOK } from "@/src/lib/jordan-books/content/g1-math-s1/student-book";
 import { G1_SEM1_SUBJECT_BOOKS } from "@/src/lib/jordan-books/content/g1-sem1-subjects";
+import { PRIORITY_AUTHORED_PACKS } from "@/src/lib/jordan-books/content/subject-packs";
 import { G1_SEM1_INVENTORY, OFFICIAL_SOURCES } from "@/src/lib/jordan-books/inventory/g1-semester1";
 import type {
   BookRecord,
@@ -12,7 +13,11 @@ import { g1MathS1Stats } from "@/src/lib/jordan-books/content/g1-math-s1/student
 import { summarizeValidation, validateBook } from "@/src/lib/jordan-books/validation/validate-book";
 
 /** Structured interactive books registered in the CMS content layer. */
-export const STRUCTURED_BOOKS: BookRecord[] = [G1_MATH_S1_STUDENT_BOOK, ...G1_SEM1_SUBJECT_BOOKS];
+export const STRUCTURED_BOOKS: BookRecord[] = [
+  G1_MATH_S1_STUDENT_BOOK,
+  ...G1_SEM1_SUBJECT_BOOKS,
+  ...PRIORITY_AUTHORED_PACKS,
+];
 
 export type EditorialOverride = {
   bookId: string;

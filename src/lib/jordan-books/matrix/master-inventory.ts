@@ -66,9 +66,33 @@ const G11_VERIFIED = [
   "تاريخ الأردن",
 ];
 
+/**
+ * Grade 12 academic subjects harvested from NCCD textbook catalogue listings
+ * (TextBooksGrade/83 and /143 HTML subject filters + book title clusters).
+ * Live NCCD pages frequently return HTTP 500 — treat as indexed-pending-nccd until human re-verify.
+ */
+const G12_INDEXED = [
+  "الرياضيات",
+  "الرياضيات/الأعمال",
+  "الفيزياء",
+  "الكيمياء",
+  "العلوم الحياتية",
+  "علوم الأرض والبيئة",
+  "اللغة العربية /الأدب",
+  "اللغة العربية /النّحو والصّرف وموسيقا الشّعر",
+  "اللغة الإنجليزية",
+  "التربية الإسلامية",
+  "تاريخ الأردن",
+  "الفلسفة",
+  "علوم النفس والاجتماع",
+  "الثقافة المالية",
+  "المهارات الرقمية",
+];
+
 /** Minhaji-indexed (pending NCCD review) — from wave1 harvest 2026-07-26 */
 const INDEXED: Record<string, string[]> = {
-  kg: ["المنهاج التطوري", "الرياضيات", "اللغة العربية", "العلوم"],
+  kg1: ["المنهاج التطوري", "الرياضيات", "اللغة العربية", "العلوم"],
+  kg2: ["المنهاج التطوري", "الرياضيات", "اللغة العربية", "العلوم"],
   "2": [
     "الرياضيات",
     "اللغة الإنجليزية",
@@ -188,7 +212,6 @@ const INDEXED: Record<string, string[]> = {
     "التربية الفنية والموسيقية والمسرحية",
     "التربية الرياضية",
   ],
-  "12": [], // NOT DISCOVERED in harvest — cells marked NOT_DISCOVERED pending NCCD
 };
 
 function slug(ar: string): string {
@@ -215,6 +238,11 @@ function slug(ar: string): string {
     "التربية الوطنية والمدنية": "civic",
     "تاريخ الأردن": "jordan-history",
     "المنهاج التطوري": "kg-developmental",
+    "الرياضيات/الأعمال": "math-business",
+    "اللغة العربية /الأدب": "arabic-literature",
+    "اللغة العربية /النّحو والصّرف وموسيقا الشّعر": "arabic-grammar",
+    الفلسفة: "philosophy",
+    "علوم النفس والاجتماع": "psychology",
   };
   return map[ar] || ar.replace(/\s+/g, "-").slice(0, 40);
 }
@@ -225,7 +253,7 @@ function bookTypesFor(subjectAr: string, gradeKey: string): BookTypeKey[] {
   if (["الرياضيات", "العلوم", "اللغة العربية", "اللغة الإنجليزية", "العربية لغتي"].includes(subjectAr)) {
     return [...core, "activity", "teacher_guide"];
   }
-  if (gradeKey === "kg") {
+  if (gradeKey === "kg1" || gradeKey === "kg2") {
     return ["support", "sos_companion", "teacher_guide"];
   }
   return [...core, "teacher_guide"];
@@ -246,13 +274,24 @@ function rightsFor(bookType: BookTypeKey): string {
 function buildGradeSeeds(): GradeSeed[] {
   const seeds: GradeSeed[] = [
     {
-      gradeKey: "kg",
-      gradeAr: "رياض الأطفال",
+      gradeKey: "kg1",
+      gradeAr: "رياض الأطفال — المستوى الأول",
       stage: "الطفولة المبكرة",
       pathway: "general",
       pathwayAr: "عام",
       subjectListStatus: "indexed-pending-nccd",
-      subjects: INDEXED.kg || [],
+      subjects: INDEXED.kg1 || [],
+      semesters: ["year"],
+      nccdKey: "kg",
+    },
+    {
+      gradeKey: "kg2",
+      gradeAr: "رياض الأطفال — المستوى الثاني",
+      stage: "الطفولة المبكرة",
+      pathway: "general",
+      pathwayAr: "عام",
+      subjectListStatus: "indexed-pending-nccd",
+      subjects: INDEXED.kg2 || [],
       semesters: ["year"],
       nccdKey: "kg",
     },
@@ -314,8 +353,8 @@ function buildGradeSeeds(): GradeSeed[] {
     stage: "التعليم الثانوي",
     pathway: "academic",
     pathwayAr: "المسار الأكاديمي",
-    subjectListStatus: "not_discovered",
-    subjects: [],
+    subjectListStatus: "indexed-pending-nccd",
+    subjects: G12_INDEXED,
     semesters: ["1", "2"],
     nccdKey: "12-academic-2026",
   });
