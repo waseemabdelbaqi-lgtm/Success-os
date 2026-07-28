@@ -79,8 +79,8 @@ export default function JordanBooksDashboardPage(): ReactNode {
           <button type="button" style={btn} onClick={reload} disabled={busy}>
             تحديث
           </button>
-          <Link href="/jordan-books/jordan/national/grade-1/semester-1/math/student-book/unit-1" style={link}>
-            فتح Pilot الوحدة 1
+          <Link href="/jordan-books/jordan/national/grade-1/semester-1/math/student-book" style={link}>
+            فتح Pilot الكتاب الكامل
           </Link>
           <Link href="/jordan-books" style={link}>
             مكتبة الكتب
@@ -106,6 +106,40 @@ export default function JordanBooksDashboardPage(): ReactNode {
               <Stat label="دروس مكتملة البنية" value={coverage.completedLessons} />
               <Stat label="دروس مراجعة" value={coverage.reviewedLessons} />
               <Stat label="دروس منشورة" value={coverage.publishedLessons} />
+            </section>
+
+            <section style={card}>
+              <h2 style={h2}>إحصاءات الكتاب التجريبي + التحقق الآلي</h2>
+              <p>
+                اكتمال معلن: <strong>{coverage.completenessClaim || "—"}</strong> (لا يُعرض COMPLETE إلا بعد
+                المراجعات البشرية)
+              </p>
+              {coverage.pilotBookStats ? (
+                <ul>
+                  <li>وحدات: {coverage.pilotBookStats.units}</li>
+                  <li>دروس: {coverage.pilotBookStats.lessons}</li>
+                  <li>أسئلة: {coverage.pilotBookStats.questions}</li>
+                  <li>بنك إجابات: {coverage.pilotBookStats.answerBankEntries}</li>
+                  <li>خريطة صفحات: {coverage.pilotBookStats.pageMapEntries}</li>
+                  <li>مصطلحات: {coverage.pilotBookStats.glossaryTerms}</li>
+                  <li>
+                    وحدات مؤجلة (حدود الفصل): {coverage.pilotBookStats.reservedUnitsPendingVerification}
+                  </li>
+                </ul>
+              ) : null}
+              {coverage.validation ? (
+                <p>
+                  أخطاء تحقق: {coverage.validation.errors} · تحذيرات: {coverage.validation.warnings}
+                </p>
+              ) : null}
+              {coverage.validation?.issues?.slice(0, 40).map((issue) => (
+                <div key={`${issue.code}-${issue.lessonId || issue.unitId || issue.message}`} style={{ marginBottom: 6 }}>
+                  <strong style={{ color: issue.severity === "error" ? "#9e1722" : "#9a711a" }}>
+                    [{issue.severity}] {issue.code}
+                  </strong>{" "}
+                  {issue.message}
+                </div>
+              ))}
             </section>
 
             <section style={card}>

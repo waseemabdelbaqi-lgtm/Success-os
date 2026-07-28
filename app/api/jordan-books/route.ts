@@ -31,11 +31,26 @@ export async function GET(request: Request) {
     return NextResponse.json({ ok: true, book });
   }
 
+  if (view === "validation") {
+    const books = listStructuredBooks(overrides);
+    const { summarizeValidation, validateBook } = await import(
+      "@/src/lib/jordan-books/validation/validate-book"
+    );
+    return NextResponse.json({
+      ok: true,
+      results: books.map((b) => ({
+        bookId: b.id,
+        completenessClaim: b.completenessClaim,
+        ...summarizeValidation(validateBook(b)),
+      })),
+    });
+  }
+
   if (view === "pilot") {
     return NextResponse.json({
       ok: true,
       book: getPilotBook(overrides),
-      route: "/jordan-books/jordan/national/grade-1/semester-1/math/student-book/unit-1",
+      route: "/jordan-books/jordan/national/grade-1/semester-1/math/student-book",
       videoDevelopmentStopped: true,
     });
   }
@@ -49,12 +64,15 @@ const ALLOWED: EditorialStatus[] = [
   "rights_checked",
   "structured",
   "draft",
+  "content_draft",
   "academic_review",
   "language_review",
   "technical_review",
+  "corrections_required",
   "approved",
   "published",
   "archived",
+  "replaced",
 ];
 
 export async function POST(request: Request) {

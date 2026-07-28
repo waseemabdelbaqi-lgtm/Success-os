@@ -2,21 +2,30 @@
 
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
-import type { BookRecord, UnitRecord } from "@/src/lib/jordan-books/schema/types";
+import type { BookRecord } from "@/src/lib/jordan-books/schema/types";
 import { rightsLabel } from "@/src/lib/jordan-books/registry";
 import { useBookAnnotations } from "@/src/lib/jordan-books/hooks/useBookAnnotations";
 import { ContentBlockView } from "@/src/components/jordan-books/ContentBlockView";
 
 type Props = {
   book: BookRecord;
-  unitId: string;
+  unitId?: string;
   initialLessonId?: string;
 };
 
 export function InteractiveBookReader({ book, unitId, initialLessonId }: Props) {
-  const unit = book.units.find((u) => u.id === unitId) as UnitRecord | undefined;
-  const lessons = unit?.lessons || [];
-  const totalLessons = lessons.length;
+  const units = unitId ? book.units.filter((u) => u.id === unitId) : book.units;
+  const unit = units[0];
+  const allLessons = units.flatMap((u) => u.lessons);
+  const [mastery, setMastery] = useState<Record<string, boolean>>({});
+  const [showAnswers, setShowAnswers] = useState(false);
+  const [activeUnitFilter, setActiveUnitFilter] = useState<string | "all">(unitId || "all");
+  const lessons =
+    activeUnitFilter === "all"
+      ? allLessons
+      : units.find((u) => u.id === activeUnitFilter)?.lessons || allLessons;
+  const totalLessons = allLessons.length;
+  const masteryScore = Object.values(mastery).filter(Boolean).length;
 
   const {
     ready,
@@ -30,7 +39,7 @@ export function InteractiveBookReader({ book, unitId, initialLessonId }: Props) 
   } = useBookAnnotations(book.id, totalLessons);
 
   const [lessonId, setLessonId] = useState(
-    initialLessonId || state.progress.lastLessonId || lessons[0]?.id || "",
+    initialLessonId || state.progress.lastLessonId || allLessons[0]?.id || "",
   );
   const [query, setQuery] = useState("");
   const [fontScale, setFontScale] = useState(1.05);
@@ -48,7 +57,7 @@ export function InteractiveBookReader({ book, unitId, initialLessonId }: Props) 
     }
   }, [ready, state.progress.lastLessonId, initialLessonId]);
 
-  const lesson = lessons.find((l) => l.id === lessonId) || lessons[0];
+  const lesson = allLessons.find((l) => l.id === lessonId) || allLessons[0];
 
   useEffect(() => {
     if (!lesson) return;
@@ -60,12 +69,17 @@ export function InteractiveBookReader({ book, unitId, initialLessonId }: Props) 
   const searchHits = useMemo(() => {
     const q = query.trim();
     if (!q) return [];
-    return lessons.flatMap((l) =>
+    return allLessons.flatMap((l) =>
       l.blocks
         .filter((b) => `${b.titleAr || ""} ${b.bodyAr}`.includes(q))
-        .map((b) => ({ lessonId: l.id, lessonTitle: l.titleAr, blockId: b.id, snippet: b.bodyAr.slice(0, 80) })),
+        .map((b) => ({
+          lessonId: l.id,
+          lessonTitle: l.titleAr,
+          blockId: b.id,
+          snippet: b.bodyAr.slice(0, 80),
+        })),
     );
-  }, [query, lessons]);
+  }, [query, allLessons]);
 
   if (!unit || !lesson) {
     return (
@@ -112,8 +126,11 @@ export function InteractiveBookReader({ book, unitId, initialLessonId }: Props) 
     }
   }
 
-  const lessonIndex = lessons.findIndex((l) => l.id === lesson.id);
+  const lessonIndex = allLessons.findIndex((l) => l.id === lesson.id);
   const hlSet = new Set(state.highlights.map((h) => h.blockId));
+  const currentUnit = book.units.find((u) => u.lessons.some((l) => l.id === lesson.id));
+  const lessonAnswers =
+    book.answerBank?.filter((a) => a.lessonId === lesson.id && mastery[a.questionBlockId]) || [];
 
   return (
     <div
@@ -127,7 +144,8 @@ export function InteractiveBookReader({ book, unitId, initialLessonId }: Props) 
           <p className="jb-eyebrow">Success OS · Jordan National Curriculum · BOOKS FIRST</p>
           <h1>{book.officialTitleAr}</h1>
           <p className="jb-meta">
-            {book.gradeAr} · {book.semesterAr} · {book.subjectAr} · {unit.titleAr}
+            {book.gradeAr} · {book.semesterAr} · {book.subjectAr} · {units.length} وحدات · {totalLessons}{" "}
+            دروس · اكتمال معلن: {book.completenessClaim}
           </p>
         </div>
         <div className="jb-top-actions">
@@ -145,13 +163,18 @@ export function InteractiveBookReader({ book, unitId, initialLessonId }: Props) 
         </div>
       ) : null}
 
+      <div className="jb-banner" role="note">
+        هذا كتاب تفاعلي مرافق Success OS — ليس إعادة نشر للكتاب الحكومي. الشروحات أصلية. الاعتماد يظهر على
+        المحتوى الأصلي فقط.
+      </div>
+
       <div className="jb-toolbar">
         <button type="button" onClick={() => setTocOpen((v) => !v)}>
           المحتويات
         </button>
         <label className="jb-search">
           <span>بحث</span>
-          <input value={query} onChange={(e) => setQuery(e.target.value)} placeholder="ابحث داخل الوحدة…" />
+          <input value={query} onChange={(e) => setQuery(e.target.value)} placeholder="ابحث داخل الكتاب…" />
         </label>
         <button type="button" onClick={() => setFontScale((s) => Math.min(1.5, +(s + 0.1).toFixed(2)))}>
           تكبير الخط
@@ -171,8 +194,11 @@ export function InteractiveBookReader({ book, unitId, initialLessonId }: Props) 
         <button type="button" onClick={toggleFullscreen}>
           ملء الشاشة
         </button>
+        <button type="button" onClick={() => setShowAnswers((v) => !v)}>
+          {showAnswers ? "إخفاء بنك الإجابات" : "بنك الإجابات (بعد التحقق)"}
+        </button>
         <span className="jb-progress" aria-live="polite">
-          التقدم: {state.progress.percent}%
+          التقدم: {state.progress.percent}% · إتقان أسئلة: {masteryScore}
         </span>
       </div>
 
@@ -196,21 +222,55 @@ export function InteractiveBookReader({ book, unitId, initialLessonId }: Props) 
       <div className="jb-layout">
         {tocOpen ? (
           <aside className="jb-toc" aria-label="جدول المحتويات">
-            <h2>فهرس الوحدة</h2>
-            <ol>
-              {lessons.map((l) => (
-                <li key={l.id}>
+            <h2>فهرس الكتاب</h2>
+            {!unitId ? (
+              <div className="jb-unit-filters">
+                <button
+                  type="button"
+                  className={activeUnitFilter === "all" ? "active" : ""}
+                  onClick={() => setActiveUnitFilter("all")}
+                >
+                  كل الوحدات
+                </button>
+                {units.map((u) => (
                   <button
+                    key={u.id}
                     type="button"
-                    className={l.id === lesson.id ? "active" : ""}
-                    onClick={() => goLesson(l.id)}
+                    className={activeUnitFilter === u.id ? "active" : ""}
+                    onClick={() => {
+                      setActiveUnitFilter(u.id);
+                      const first = u.lessons[0];
+                      if (first) goLesson(first.id);
+                    }}
                   >
-                    {l.order}. {l.titleAr}
-                    {state.bookmarks.includes(l.id) ? " ★" : ""}
-                    {state.progress.completedLessonIds.includes(l.id) ? " ✓" : ""}
+                    {u.titleAr}
                   </button>
-                </li>
-              ))}
+                ))}
+              </div>
+            ) : null}
+            <ol>
+              {(activeUnitFilter === "all" ? units : units.filter((u) => u.id === activeUnitFilter)).map(
+                (u) => (
+                  <li key={u.id} className="jb-toc-unit">
+                    <strong>{u.titleAr}</strong>
+                    <ol>
+                      {u.lessons.map((l) => (
+                        <li key={l.id}>
+                          <button
+                            type="button"
+                            className={l.id === lesson.id ? "active" : ""}
+                            onClick={() => goLesson(l.id)}
+                          >
+                            {l.order}. {l.titleAr}
+                            {state.bookmarks.includes(l.id) ? " ★" : ""}
+                            {state.progress.completedLessonIds.includes(l.id) ? " ✓" : ""}
+                          </button>
+                        </li>
+                      ))}
+                    </ol>
+                  </li>
+                ),
+              )}
             </ol>
             <p className="jb-credit-safe">
               شروحات Success OS الأصلية فقط تحمل اعتماد: Prepared by Mr Waseem Allabadi — دون ادعاء ملكية الكتاب
@@ -222,7 +282,7 @@ export function InteractiveBookReader({ book, unitId, initialLessonId }: Props) 
         <main id="jb-reader-main" className="jb-main">
           <div className="jb-lesson-head">
             <h2>
-              الدرس {lesson.order}: {lesson.titleAr}
+              {currentUnit?.titleAr} · الدرس {lesson.order}: {lesson.titleAr}
             </h2>
             <div className="jb-lesson-actions">
               <button type="button" onClick={() => toggleBookmark(lesson.id)}>
@@ -276,9 +336,34 @@ export function InteractiveBookReader({ book, unitId, initialLessonId }: Props) 
               onHighlight={addHighlight}
               onClearHighlight={removeHighlight}
               onSaveHandwriting={saveHandwriting}
+              onMastery={(id, correct) =>
+                setMastery((prev) => ({ ...prev, [id]: correct ? true : prev[id] || false }))
+              }
               fontScale={fontScale}
             />
           ))}
+
+          {showAnswers ? (
+            <section className="jb-notes">
+              <h3>بنك إجابات هذا الدرس (يظهر للأسئلة التي أجبت عنها صحيحاً أو راجعتها)</h3>
+              <ul>
+                {(book.answerBank || [])
+                  .filter((a) => a.lessonId === lesson.id)
+                  .map((a) => (
+                    <li key={a.id}>
+                      <strong>{a.promptAr}</strong> → {a.correctAnswer}
+                      <br />
+                      <span>{a.explanationAr}</span>
+                      <br />
+                      <em>verification: {a.verificationStatus}</em>
+                    </li>
+                  ))}
+              </ul>
+              {lessonAnswers.length === 0 ? (
+                <p>أجب عن الأسئلة أولاً، أو افتح البنك للمراجعة الأكاديمية (مسودة).</p>
+              ) : null}
+            </section>
+          ) : null}
 
           <section className="jb-notes">
             <h3>ملاحظاتي على الدرس</h3>
@@ -299,17 +384,17 @@ export function InteractiveBookReader({ book, unitId, initialLessonId }: Props) 
             <button
               type="button"
               disabled={lessonIndex <= 0}
-              onClick={() => goLesson(lessons[lessonIndex - 1]!.id)}
+              onClick={() => goLesson(allLessons[lessonIndex - 1]!.id)}
             >
               الدرس السابق
             </button>
             <span>
-              {lessonIndex + 1} / {lessons.length}
+              {lessonIndex + 1} / {allLessons.length}
             </span>
             <button
               type="button"
-              disabled={lessonIndex >= lessons.length - 1}
-              onClick={() => goLesson(lessons[lessonIndex + 1]!.id)}
+              disabled={lessonIndex >= allLessons.length - 1}
+              onClick={() => goLesson(allLessons[lessonIndex + 1]!.id)}
             >
               الدرس التالي
             </button>
@@ -522,6 +607,41 @@ export function InteractiveBookReader({ book, unitId, initialLessonId }: Props) 
           background: var(--b);
           color: #fff;
           border-color: var(--b);
+        }
+        .jb-unit-filters {
+          display: flex;
+          flex-direction: column;
+          gap: 0.35rem;
+          margin-bottom: 0.75rem;
+        }
+        .jb-toc-unit {
+          margin-bottom: 0.75rem;
+        }
+        .jb-toc-unit > strong {
+          display: block;
+          color: var(--b);
+          margin-bottom: 0.35rem;
+        }
+        .jb-diff {
+          display: inline-block;
+          font-size: 0.75rem;
+          font-weight: 800;
+          background: rgba(158, 23, 34, 0.1);
+          padding: 0.15rem 0.45rem;
+          border-radius: 0.35rem;
+          margin-bottom: 0.35rem;
+        }
+        .jb-q-tools {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 0.4rem;
+          align-items: center;
+          margin-top: 0.45rem;
+        }
+        .jb-attempts {
+          color: var(--muted);
+          font-size: 0.85rem;
+          font-weight: 700;
         }
         .jb-credit-safe {
           font-size: 0.8rem;

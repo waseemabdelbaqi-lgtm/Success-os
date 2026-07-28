@@ -24,15 +24,18 @@ export default function JordanNationalPage() {
             <li key={g.grade}>
               {g.grade === "الصف 1" ? (
                 <Link href="/jordan-books/jordan/national/grade-1">
-                  {g.gradeAr} — {g.catalogueStatus}
+                  {g.grade} — {g.catalogueStatus}
                 </Link>
               ) : (
                 <span>
-                  {g.gradeAr} — {g.catalogueStatus} · inventory pending
+                  {g.grade} — {g.catalogueStatus} · inventory pending
                 </span>
               )}
             </li>
           ))}
+          <li>
+            <span>رياض الأطفال (KG1/KG2) — OFFICIAL STRUCTURE INVENTORY PENDING · NEEDS VERIFICATION</span>
+          </li>
         </ul>
         <Link href="/jordan-books/jordan">← الأردن</Link>
       </div>

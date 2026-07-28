@@ -7,6 +7,8 @@ import type {
   RightsStatus,
 } from "@/src/lib/jordan-books/schema/types";
 import { jordanAuthority, jordanGradeRegistry } from "@/app/data/jordan-curriculum";
+import { g1MathS1Stats } from "@/src/lib/jordan-books/content/g1-math-s1/student-book";
+import { summarizeValidation, validateBook } from "@/src/lib/jordan-books/validation/validate-book";
 
 /** Structured interactive books registered in the CMS content layer. */
 export const STRUCTURED_BOOKS: BookRecord[] = [G1_MATH_S1_STUDENT_BOOK];
@@ -48,6 +50,9 @@ export type CoverageReport = {
   officialSources: typeof OFFICIAL_SOURCES;
   authority: typeof jordanAuthority;
   videoDevelopmentStopped: true;
+  pilotBookStats?: ReturnType<typeof g1MathS1Stats>;
+  validation?: ReturnType<typeof summarizeValidation>;
+  completenessClaim?: BookRecord["completenessClaim"];
 };
 
 const REVIEWED: EditorialStatus[] = [
@@ -174,7 +179,7 @@ export function buildCoverageReport(overrides: EditorialOverride[] = []): Covera
     const gradeKey = String(g.grade ?? "");
     const gradeNum = gradeKey.replace(/[^\d]/g, "") || gradeKey;
     const structuredLessons = books
-      .filter((b) => b.grade === gradeNum || b.gradeAr === g.gradeAr)
+      .filter((b) => b.grade === gradeNum || b.gradeAr === String((g as { gradeAr?: string }).gradeAr ?? ""))
       .reduce((n, b) => n + b.units.reduce((u, unit) => u + unit.lessons.length, 0), 0);
     // Honest percent: only count structured content vs inventory student books for that grade when known
     const expectedForGrade = inventory.filter((i) => i.grade === gradeNum && i.bookType === "student").length;
@@ -183,7 +188,7 @@ export function buildCoverageReport(overrides: EditorialOverride[] = []): Covera
       expectedForGrade > 0 ? Math.round((structuredBooksForGrade / expectedForGrade) * 100) : 0;
     return {
       grade: gradeKey,
-      gradeAr: String(g.gradeAr ?? gradeKey),
+      gradeAr: String((g as { gradeAr?: string }).gradeAr ?? gradeKey),
       percent,
       structuredLessons,
     };
@@ -244,17 +249,28 @@ export function buildCoverageReport(overrides: EditorialOverride[] = []): Covera
     officialSources: OFFICIAL_SOURCES,
     authority: jordanAuthority,
     videoDevelopmentStopped: true,
+    pilotBookStats: g1MathS1Stats(),
+    validation: summarizeValidation(books.flatMap((b) => validateBook(b))),
+    completenessClaim: books[0]?.completenessClaim,
   };
 }
 
 export function rightsLabel(status: RightsStatus): string {
   switch (status) {
+    case "publicly_reusable":
+      return "PUBLICLY REUSABLE";
+    case "officially_authorized":
+      return "OFFICIALLY AUTHORIZED";
     case "official_link_only":
       return "رابط رسمي فقط — لا إعادة نشر";
+    case "transform_permitted":
+      return "TRANSFORM PERMITTED";
     case "sos_original_aligned":
       return "محتوى Success OS أصلي بمحاذاة النواتج";
     case "rights_review_required":
       return "RIGHTS REVIEW REQUIRED";
+    case "restricted":
+      return "RESTRICTED";
     case "unavailable":
       return "OFFICIAL SOURCE NOT FOUND";
     case "needs_verification":

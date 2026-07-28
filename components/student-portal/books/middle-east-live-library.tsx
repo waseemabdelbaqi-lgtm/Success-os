@@ -118,10 +118,10 @@ export function MiddleEastLiveLibrary() {
             Interactive national curriculum books (not PDF-only). AI video path is paused.
           </p>
           <Link
-            href="/jordan-books/jordan/national/grade-1/semester-1/math/student-book/unit-1"
+            href="/jordan-books/jordan/national/grade-1/semester-1/math/student-book"
             className="mt-2 inline-block font-black text-[#9e1722] underline"
           >
-            Open Grade 1 Math · Unit 1 (الجمع)
+            Open Grade 1 Math Sem1 companion book (units 0–3)
           </Link>
         </div>
       </div>

@@ -39,18 +39,23 @@ export default function MathSubjectPage() {
         </section>
 
         <section style={card}>
-          <h2 style={h2}>الكتاب التفاعلي (Pilot)</h2>
+          <h2 style={h2}>الكتاب التفاعلي (Sem1 core — وحدات 0–3)</h2>
           <p>
             <strong>{book.officialTitleAr}</strong>
           </p>
           <p>
             الطبعة / السنة: {book.edition} / {book.publicationYear}
           </p>
-          <p>الحالة التحريرية: {book.editorialStatus}</p>
+          <p>
+            الحالة التحريرية: {book.editorialStatus} · اكتمال معلن: {book.completenessClaim}
+          </p>
+          <Link href="/jordan-books/jordan/national/grade-1/semester-1/math/student-book" style={cta}>
+            فتح الكتاب التفاعلي كاملاً
+          </Link>
           <ul>
             {book.units.map((u) => (
               <li key={u.id}>
-                <Link href="/jordan-books/jordan/national/grade-1/semester-1/math/student-book/unit-1">
+                <Link href={`/jordan-books/jordan/national/grade-1/semester-1/math/student-book/${u.id}`}>
                   {u.titleAr} — {u.lessons.length} دروس
                 </Link>
               </li>
@@ -82,3 +87,14 @@ const card: CSSProperties = {
   padding: "1rem",
   margin: "1rem 0",
 };
+const cta: CSSProperties = {
+  display: "inline-block",
+  margin: "0.5rem 0 1rem",
+  background: "#9e1722",
+  color: "#fff",
+  textDecoration: "none",
+  fontWeight: 900,
+  padding: "0.65rem 0.9rem",
+  borderRadius: 10,
+};
+

@@ -52,14 +52,15 @@ export default function JordanBooksHomePage() {
           <p>
             <strong>{pilot.officialTitleAr}</strong>
           </p>
-          <p style={muted}>
-            {pilot.gradeAr} · {pilot.semesterAr} · الوحدة الأولى: الجمع — 5 دروس كاملة (مسودة تحريرية)
+          <p>
+            {pilot.gradeAr} · {pilot.semesterAr} · وحدات 0–3 (تمهيدي + جمع + طرح + منزلتين) — مسودة تحريرية ·
+            اكتمال معلن: {pilot.completenessClaim}
           </p>
           <p style={warn}>
             المحتوى Success OS أصلي بمحاذاة النواتج. الكتاب الرسمي PDF مرتبط فقط — لا إعادة نشر.
           </p>
-          <Link href="/jordan-books/jordan/national/grade-1/semester-1/math/student-book/unit-1" style={cta}>
-            فتح الوحدة الأولى — الجمع
+          <Link href="/jordan-books/jordan/national/grade-1/semester-1/math/student-book" style={cta}>
+            فتح كتاب الرياضيات التفاعلي — وحدات 0–3 كاملة
           </Link>
         </section>
 

@@ -29,8 +29,8 @@ export default function G1MathVideoArchivedPage() {
           <li>نماذج السينما / الصور الرمزية مؤرشفة داخل المستودع وغير مفعّلة كمنتج.</li>
           <li>الكود القابل لإعادة الاستخدام للدروس محفوظ دون حذف.</li>
         </ul>
-        <Link href="/jordan-books/jordan/national/grade-1/semester-1/math/student-book/unit-1" style={cta}>
-          فتح تجريبي الرياضيات — الوحدة الأولى
+        <Link href="/jordan-books/jordan/national/grade-1/semester-1/math/student-book" style={cta}>
+          فتح كتاب الرياضيات التفاعلي (فصل 1)
         </Link>
         <p style={{ marginTop: 14 }}>
           <Link href="/jordan-books" style={link}>
