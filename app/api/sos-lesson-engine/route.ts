@@ -46,6 +46,11 @@ export async function GET(request: Request) {
     });
   }
 
+  if (view === "coverage") {
+    const { buildLessonCoverageReport } = await import("@/src/lib/sos-lesson-engine/production-bridge");
+    return NextResponse.json({ ok: true, ...buildLessonCoverageReport() });
+  }
+
   if (view === "lesson") {
     const id = searchParams.get("id") || "";
     const lesson = getInteractiveLesson(id);
