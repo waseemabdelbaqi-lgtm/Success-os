@@ -35,53 +35,74 @@ export function validateBook(book: BookRecord): ValidationIssue[] {
     });
   }
 
-  const expectedIds = new Set(G1_MATH_S1_UNITS.map((u) => u.id));
-  for (const expected of G1_MATH_S1_UNITS) {
-    const unit = book.units.find((u) => u.id === expected.id);
-    if (!unit) {
-      issues.push({
-        severity: "error",
-        code: "missing_unit",
-        message: `Missing expected unit ${expected.titleAr}`,
-        bookId: book.id,
-        unitId: expected.id,
-      });
-      continue;
-    }
-    if (unit.lessons.length !== expected.lessons.length) {
-      issues.push({
-        severity: "error",
-        code: "lesson_count_mismatch",
-        message: `Unit ${unit.id} expected ${expected.lessons.length} lessons, found ${unit.lessons.length}`,
-        bookId: book.id,
-        unitId: unit.id,
-      });
-    }
-    expected.lessons.forEach((el, idx) => {
-      const lesson = unit.lessons[idx];
-      if (!lesson || lesson.id !== el.id) {
+  if (book.id === "jo-g1-s1-math-student-book") {
+    const expectedIds = new Set(G1_MATH_S1_UNITS.map((u) => u.id));
+    for (const expected of G1_MATH_S1_UNITS) {
+      const unit = book.units.find((u) => u.id === expected.id);
+      if (!unit) {
         issues.push({
           severity: "error",
-          code: "incorrect_lesson_order",
-          message: `Expected lesson ${el.id} at position ${idx + 1}`,
+          code: "missing_unit",
+          message: `Missing expected unit ${expected.titleAr}`,
+          bookId: book.id,
+          unitId: expected.id,
+        });
+        continue;
+      }
+      if (unit.lessons.length !== expected.lessons.length) {
+        issues.push({
+          severity: "error",
+          code: "lesson_count_mismatch",
+          message: `Unit ${unit.id} expected ${expected.lessons.length} lessons, found ${unit.lessons.length}`,
           bookId: book.id,
           unitId: unit.id,
-          lessonId: el.id,
         });
       }
+      expected.lessons.forEach((el, idx) => {
+        const lesson = unit.lessons[idx];
+        if (!lesson || lesson.id !== el.id) {
+          issues.push({
+            severity: "error",
+            code: "incorrect_lesson_order",
+            message: `Expected lesson ${el.id} at position ${idx + 1}`,
+            bookId: book.id,
+            unitId: unit.id,
+            lessonId: el.id,
+          });
+        }
+      });
+    }
+    for (const unit of book.units) {
+      if (!expectedIds.has(unit.id)) {
+        issues.push({
+          severity: "warning",
+          code: "extra_unit",
+          message: `Unexpected unit in Sem1 math book: ${unit.id}`,
+          bookId: book.id,
+          unitId: unit.id,
+        });
+      }
+    }
+    const lessonCount = book.units.reduce((n, u) => n + u.lessons.length, 0);
+    const expected = expectedSem1LessonCount();
+    if (lessonCount !== expected) {
+      issues.push({
+        severity: "error",
+        code: "sem1_lesson_total_mismatch",
+        message: `Expected ${expected} Sem1 core lessons, found ${lessonCount}`,
+        bookId: book.id,
+      });
+    }
+  } else if (book.units.length === 0) {
+    issues.push({
+      severity: "error",
+      code: "missing_unit",
+      message: "Companion book has no units",
+      bookId: book.id,
     });
   }
 
   for (const unit of book.units) {
-    if (!expectedIds.has(unit.id) && book.id.includes("g1-s1-math")) {
-      issues.push({
-        severity: "warning",
-        code: "extra_unit",
-        message: `Unexpected unit in Sem1 core book: ${unit.id}`,
-        bookId: book.id,
-        unitId: unit.id,
-      });
-    }
     const lessonIds = unit.lessons.map((l) => l.id);
     const dup = lessonIds.filter((id, i) => lessonIds.indexOf(id) !== i);
     for (const id of dup) {
@@ -100,7 +121,7 @@ export function validateBook(book: BookRecord): ValidationIssue[] {
         issues.push({
           severity: "error",
           code: "empty_section",
-          message: `Lesson has no blocks`,
+          message: "Lesson has no blocks",
           bookId: book.id,
           unitId: unit.id,
           lessonId: lesson.id,
@@ -174,8 +195,7 @@ export function validateBook(book: BookRecord): ValidationIssue[] {
             });
           }
           const hasAnswer =
-            typeof block.question?.correctIndex === "number" ||
-            Boolean(block.question?.correctAnswer);
+            typeof block.question?.correctIndex === "number" || Boolean(block.question?.correctAnswer);
           if (!hasAnswer) {
             issues.push({
               severity: "error",
@@ -187,19 +207,6 @@ export function validateBook(book: BookRecord): ValidationIssue[] {
           }
         }
       }
-    }
-  }
-
-  if (book.id === "jo-g1-s1-math-student-book") {
-    const lessonCount = book.units.reduce((n, u) => n + u.lessons.length, 0);
-    const expected = expectedSem1LessonCount();
-    if (lessonCount !== expected) {
-      issues.push({
-        severity: "error",
-        code: "sem1_lesson_total_mismatch",
-        message: `Expected ${expected} Sem1 core lessons, found ${lessonCount}`,
-        bookId: book.id,
-      });
     }
   }
 

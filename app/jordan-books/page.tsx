@@ -90,9 +90,15 @@ export default function JordanBooksHomePage() {
               </li>
             ))}
           </ul>
+          <p>
           <Link href="/admin/jordan-books-dashboard" style={link}>
-            لوحة تغطية المنهاج (Admin)
+            لوحة التغطية
           </Link>
+          {" · "}
+          <Link href="/admin/jordan-curriculum-matrix" style={link}>
+            مصفوفة الاكتمال + الطابور
+          </Link>
+        </p>
         </section>
       </div>
     </main>
