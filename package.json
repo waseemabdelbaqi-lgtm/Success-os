@@ -93,7 +93,9 @@
     "start:vinext": "wrangler dev --config dist/server/wrangler.json",
     "deploy:vinext": "vinext-cloudflare deploy --config dist/server/wrangler.json",
     "gate2:test": "node scripts/gate2-book-engine-tests.mjs",
-    "gate2:seed": "node -e \"fetch('http://127.0.0.1:3000/api/interactive-book-engine?view=seed').then(r=>r.json()).then(console.log)\""
+    "gate2:seed": "node -e \"fetch('http://127.0.0.1:3000/api/interactive-book-engine?view=seed').then(r=>r.json()).then(console.log)\"",
+    "gate3:test": "node scripts/gate3-book-engine-tests.mjs",
+    "gate3:pipeline": "node -e \"fetch('http://127.0.0.1:3000/api/global-curriculum',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({action:'run_pipeline'})}).then(r=>r.json()).then(j=>{console.log(JSON.stringify(j,null,2)); if(!j.ok) process.exit(1)})\""
   },
   "dependencies": {
     "@prisma/client": "^7.9.1",

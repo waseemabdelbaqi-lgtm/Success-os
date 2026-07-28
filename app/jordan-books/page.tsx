@@ -25,8 +25,13 @@ export default function JordanBooksHomePage() {
         <section style={card}>
           <h2 style={h2}>مسار الطالب</h2>
           <p style={muted}>
-            بوابة الطالب → المواد المدرسية → الشرق الأوسط → الأردن → المنهاج الوطني → الصف → الفصل → المبحث →
+            بوابة الطالب → المواد المدرسية →{" "}
+            <Link href="/student/countries">الدولة</Link> → الأردن → المنهاج الوطني → الصف → الفصل → المبحث →
             الكتاب → الوحدة → الدرس
+          </p>
+          <p style={muted}>
+            لوحة تغطية Gate 3: <Link href="/admin/jordan-coverage">Jordan coverage</Link> ·{" "}
+            <Link href="/admin/country-readiness">Country readiness</Link>
           </p>
           <ol style={path}>
             <li>
