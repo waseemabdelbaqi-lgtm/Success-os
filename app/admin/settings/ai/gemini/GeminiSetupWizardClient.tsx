@@ -75,6 +75,8 @@ export function GeminiSetupWizardClient() {
   const [loadError, setLoadError] = useState<string | null>(null);
   const [authUrl, setAuthUrl] = useState<string | null>(null);
 
+  const [redirectPaste, setRedirectPaste] = useState("");
+
   const refresh = useCallback(async () => {
     try {
       const res = await fetch("/api/admin/ai/gemini/setup", { cache: "no-store" });
@@ -163,6 +165,41 @@ export function GeminiSetupWizardClient() {
       await refresh();
     } catch {
       setMessage("تعذر بدء تسجيل دخول Google.");
+    } finally {
+      setBusy(false);
+    }
+  }
+
+  async function completeFromRedirect() {
+    if (!redirectPaste.trim()) return;
+    setBusy(true);
+    try {
+      const res = await fetch("/api/admin/ai/gemini/setup", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          action: "complete_from_redirect",
+          redirectUrl: redirectPaste.trim(),
+        }),
+      });
+      const data = await res.json();
+      setRedirectPaste("");
+      setAuthUrl(null);
+      setStatus((prev) => ({
+        ...prev,
+        authenticated: Boolean(data.ok),
+        accountEmail: data.accountEmail,
+        health: data.health,
+        curriculumProcessingAllowed: Boolean(data.curriculumProcessingAllowed),
+      }));
+      setMessage(
+        data.health?.connected
+          ? "Connected — تم الربط عبر Google."
+          : data.error?.message || data.health?.error?.message || "اكتمل الدخول لكن الاختبار فشل.",
+      );
+      await refresh();
+    } catch {
+      setMessage("تعذر إكمال المصادقة من رابط التحويل.");
     } finally {
       setBusy(false);
     }
@@ -273,6 +310,31 @@ export function GeminiSetupWizardClient() {
             </a>
           ) : null}
           <p className="gemini-note">بانتظار اكتمال المصادقة…</p>
+          <div className="gemini-manual" style={{ marginTop: "1rem" }}>
+            <p>
+              إذا ظهرت بعد Allow صفحة خطأ على <code>127.0.0.1</code> (بيئة سحابية)، انسخ رابط شريط
+              العنوان بالكامل — يبدأ بـ <code>http://127.0.0.1</code> — والصقه هنا. هذا ليس مفتاح
+              API.
+            </p>
+            <input
+              type="password"
+              autoComplete="off"
+              value={redirectPaste}
+              onChange={(e) => setRedirectPaste(e.target.value)}
+              placeholder="http://127.0.0.1:.../oauth2callback?code=..."
+              disabled={busy}
+              style={{ width: "100%", padding: "0.65rem", marginTop: "0.5rem" }}
+            />
+            <button
+              type="button"
+              className="button button-secondary"
+              style={{ marginTop: "0.5rem" }}
+              disabled={busy || !redirectPaste.trim()}
+              onClick={() => void completeFromRedirect()}
+            >
+              إكمال المصادقة من رابط التحويل
+            </button>
+          </div>
         </section>
       ) : null}
 
