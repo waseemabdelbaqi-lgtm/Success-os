@@ -1,6 +1,6 @@
 "use client";
 
-import { FormEvent, useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 type HealthView = {
   status: "Connected" | "Failed";
@@ -13,30 +13,26 @@ type HealthView = {
 
 type SetupStatus = {
   ok?: boolean;
-  configured: boolean;
-  localDevelopment: boolean;
-  canAutoWrite: boolean;
-  autoWriteReason: string | null;
-  envFile: string;
-  gitignored: boolean;
-  officialKeyPage: string;
-  curriculumProcessingAllowed: boolean;
-  health: HealthView | null;
+  authenticated?: boolean;
+  configured?: boolean;
+  accountEmail?: string | null;
+  waitingForApproval?: boolean;
+  authUrl?: string | null;
+  curriculumProcessingAllowed?: boolean;
+  health?: HealthView | null;
   error?: { code: string; message: string };
+  message?: string;
 };
 
-const OFFICIAL_KEY_URL = "https://aistudio.google.com/apikey";
-
-function HealthCard({ health }: { health: HealthView | null }) {
+function HealthCard({ health }: { health: HealthView | null | undefined }) {
   if (!health) {
     return (
-      <div className="gemini-health-card gemini-health-idle" role="status">
+      <div className="gemini-health-card" role="status">
         <strong>لم يُختبر الاتصال بعد</strong>
-        <p>احفظ المفتاح لتشغيل الاختبار تلقائياً.</p>
+        <p>بعد الموافقة على Google سيتم الاختبار تلقائياً.</p>
       </div>
     );
   }
-
   return (
     <div
       className={`gemini-health-card ${health.connected ? "gemini-health-ok" : "gemini-health-fail"}`}
@@ -75,38 +71,24 @@ export function GeminiSetupWizardClient() {
   const [status, setStatus] = useState<SetupStatus | null>(null);
   const [loading, setLoading] = useState(true);
   const [busy, setBusy] = useState(false);
-  const [apiKey, setApiKey] = useState("");
-  const [showForm, setShowForm] = useState(false);
-  const [mode, setMode] = useState<"connect" | "replace">("connect");
   const [message, setMessage] = useState<string | null>(null);
-  const [manualPaste, setManualPaste] = useState(false);
   const [loadError, setLoadError] = useState<string | null>(null);
-
-  const copyLine = useMemo(() => {
-    const trimmed = apiKey.trim();
-    return trimmed ? `GEMINI_API_KEY=${trimmed}` : "GEMINI_API_KEY=";
-  }, [apiKey]);
+  const [authUrl, setAuthUrl] = useState<string | null>(null);
 
   const refresh = useCallback(async () => {
-    setLoading(true);
-    setLoadError(null);
     try {
-      const res = await fetch("/api/admin/ai/gemini/setup", {
-        method: "GET",
-        cache: "no-store",
-      });
+      const res = await fetch("/api/admin/ai/gemini/setup", { cache: "no-store" });
       const data = (await res.json()) as SetupStatus;
       if (!res.ok) {
-        setLoadError(data.error?.message || "تعذر تحميل حالة Gemini.");
+        setLoadError(data.error?.message || "تعذر تحميل الحالة.");
         setStatus(null);
       } else {
+        setLoadError(null);
         setStatus(data);
-        setShowForm(!data.configured);
-        setMode(data.configured ? "replace" : "connect");
+        if (data.authUrl) setAuthUrl(data.authUrl);
       }
     } catch {
       setLoadError("تعذر الاتصال بخادم الإعداد.");
-      setStatus(null);
     } finally {
       setLoading(false);
     }
@@ -116,50 +98,78 @@ export function GeminiSetupWizardClient() {
     void refresh();
   }, [refresh]);
 
-  async function onSave(event: FormEvent) {
-    event.preventDefault();
+  // Poll while waiting for Google Allow.
+  useEffect(() => {
+    if (!status?.waitingForApproval && !authUrl) return;
+    if (status?.authenticated) return;
+    const id = window.setInterval(() => {
+      void (async () => {
+        await refresh();
+        const res = await fetch("/api/admin/ai/gemini/setup", { cache: "no-store" });
+        const data = (await res.json()) as SetupStatus;
+        if (data.authenticated) {
+          setMessage("تم تسجيل الدخول. جاري اختبار الاتصال…");
+          const testRes = await fetch("/api/admin/ai/gemini/setup", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ action: "test" }),
+          });
+          const testData = (await testRes.json()) as SetupStatus & {
+            health?: HealthView;
+          };
+          setStatus((prev) => ({
+            ...prev,
+            ...data,
+            health: testData.health || data.health,
+            curriculumProcessingAllowed: Boolean(testData.curriculumProcessingAllowed),
+          }));
+          setAuthUrl(null);
+          setMessage(
+            testData.health?.connected
+              ? "Connected — تم ربط Gemini عبر تسجيل دخول Google."
+              : testData.health?.error?.message || "فشل اختبار الاتصال.",
+          );
+        }
+      })();
+    }, 2500);
+    return () => window.clearInterval(id);
+  }, [status?.waitingForApproval, status?.authenticated, authUrl, refresh]);
+
+  async function startGoogleLogin() {
     setBusy(true);
     setMessage(null);
-    setManualPaste(false);
-    const keyForFallback = apiKey.trim();
     try {
       const res = await fetch("/api/admin/ai/gemini/setup", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ apiKey: keyForFallback, action: "save" }),
+        body: JSON.stringify({ action: "start_google_login" }),
       });
-      const data = await res.json();
-      setApiKey("");
-      if (data.requiresManualPaste) {
-        setManualPaste(true);
-        setApiKey(keyForFallback);
+      const data = (await res.json()) as SetupStatus & {
+        authUrl?: string;
+        pauseForUser?: boolean;
+        message?: string;
+      };
+      if (data.authUrl) {
+        setAuthUrl(data.authUrl);
+        window.open(data.authUrl, "_blank", "noopener,noreferrer");
         setMessage(
-          data.manualPasteHint ||
-            `تعذر الحفظ التلقائي. الصق السطر في الملف ${data.envFile || ".env.local"} ثم أعد تشغيل الخادم.`,
+          "توقّف هنا: أكمل الموافقة في صفحة Google (Allow). سأكملها الإعداد تلقائياً بعد ذلك.",
         );
-      } else if (!data.saved) {
-        setMessage(data.reason || data.error?.message || "فشل الحفظ.");
-      } else if (data.health?.connected) {
-        setMessage("تم الاتصال بنجاح. لن يبدأ أي إنتاج للمناهج قبل نجاح هذا الاختبار.");
-        setShowForm(false);
+      } else if (data.authenticated) {
+        setMessage(data.message || "الحساب متصل مسبقاً.");
       } else {
-        setMessage(
-          data.message ||
-            data.health?.error?.message ||
-            "تم الحفظ لكن اختبار الاتصال فشل.",
-        );
+        setMessage(data.error?.message || data.message || "تعذر بدء تسجيل الدخول.");
       }
       await refresh();
     } catch {
-      setMessage("حدث خطأ أثناء الحفظ.");
+      setMessage("تعذر بدء تسجيل دخول Google.");
     } finally {
       setBusy(false);
     }
   }
 
-  async function onTestOnly() {
+  async function retest() {
     setBusy(true);
-    setMessage(null);
     try {
       const res = await fetch("/api/admin/ai/gemini/setup", {
         method: "POST",
@@ -167,69 +177,40 @@ export function GeminiSetupWizardClient() {
         body: JSON.stringify({ action: "test" }),
       });
       const data = await res.json();
-      if (data.health) {
-        setStatus((prev) =>
-          prev
-            ? {
-                ...prev,
-                health: data.health,
-                curriculumProcessingAllowed: Boolean(data.curriculumProcessingAllowed),
-                configured: prev.configured || Boolean(data.health?.connected),
-              }
-            : prev,
-        );
-      }
+      setStatus((prev) => ({
+        ...prev,
+        health: data.health,
+        authenticated: data.ok || prev?.authenticated,
+        curriculumProcessingAllowed: Boolean(data.curriculumProcessingAllowed),
+      }));
       setMessage(
         data.health?.connected
           ? "اختبار الاتصال نجح."
-          : data.health?.error?.message || "فشل اختبار الاتصال.",
+          : data.health?.error?.message || "فشل الاختبار.",
       );
-    } catch {
-      setMessage("تعذر تشغيل الاختبار.");
     } finally {
       setBusy(false);
     }
   }
 
-  async function onRemove() {
-    const ok = window.confirm(
-      "هل تريد حذف مفتاح Gemini من الإعداد المحلي؟ لن يعمل الاتصال حتى تضيف مفتاحاً جديداً.",
-    );
+  async function logout() {
+    const ok = window.confirm("هل تريد قطع اتصال Google / Gemini CLI من هذا الجهاز؟");
     if (!ok) return;
     setBusy(true);
-    setMessage(null);
     try {
-      const res = await fetch("/api/admin/ai/gemini/setup", { method: "DELETE" });
-      const data = await res.json();
-      setApiKey("");
-      setShowForm(true);
-      setMode("connect");
-      setMessage(data.removed ? "تم حذف المفتاح من الإعداد المحلي." : data.reason || "فشل الحذف.");
+      await fetch("/api/admin/ai/gemini/setup", { method: "DELETE" });
+      setAuthUrl(null);
+      setMessage("تم قطع الاتصال.");
       await refresh();
-    } catch {
-      setMessage("تعذر حذف المفتاح.");
     } finally {
       setBusy(false);
-    }
-  }
-
-  function openGoogleKeyPage() {
-    window.open(OFFICIAL_KEY_URL, "_blank", "noopener,noreferrer");
-  }
-
-  async function copyConfigLine() {
-    try {
-      await navigator.clipboard.writeText(copyLine);
-      setMessage("تم نسخ سطر الإعداد. الصقه داخل ملف .env.local ثم أعد تشغيل الخادم.");
-    } catch {
-      setMessage("تعذر النسخ تلقائياً — انسخ السطر يدوياً من المربع أدناه.");
     }
   }
 
   if (loading) {
     return (
       <div className="gemini-wizard" dir="rtl" lang="ar">
-        <p>جاري التحقق من إعداد Gemini…</p>
+        <p>جاري التحقق…</p>
         <WizardStyles />
       </div>
     );
@@ -238,9 +219,8 @@ export function GeminiSetupWizardClient() {
   if (loadError) {
     return (
       <div className="gemini-wizard" dir="rtl" lang="ar">
-        <h1>إعداد Gemini</h1>
+        <h1>ربط Gemini</h1>
         <p className="gemini-error-text">{loadError}</p>
-        <p>هذه الصفحة متاحة فقط للمسؤول في بيئة التطوير المحلية (localhost).</p>
         <button type="button" className="button" onClick={() => void refresh()}>
           إعادة المحاولة
         </button>
@@ -249,143 +229,87 @@ export function GeminiSetupWizardClient() {
     );
   }
 
-  const configured = Boolean(status?.configured);
+  const connected = Boolean(status?.health?.connected || status?.authenticated);
 
   return (
     <div className="gemini-wizard" dir="rtl" lang="ar">
       <header className="gemini-wizard-head">
-        <p className="gemini-kicker">إعداد محلي آمن · للمسؤول فقط</p>
+        <p className="gemini-kicker">Gemini CLI · تسجيل دخول Google الرسمي</p>
         <h1>ربط Google Gemini</h1>
         <p>
-          خطوة واحدة فقط: ربط مفتاح Gemini الرسمي. لن يبدأ أي عمل على المناهج قبل نجاح اختبار
-          الاتصال الحقيقي.
+          بدون مفاتيح API يدوية. سيتم فتح صفحة Google الرسمية للموافقة. بعد ضغط Allow يكتمل الربط
+          تلقائياً.
         </p>
       </header>
 
-      <section className="gemini-panel" aria-labelledby="status-title">
-        <h2 id="status-title">الحالة الحالية</h2>
+      <section className="gemini-panel">
+        <h2>الحالة</h2>
         <p>
-          المفتاح محفوظ محلياً: <strong>{configured ? "نعم" : "لا"}</strong>
+          الحساب: <strong>{status?.accountEmail || "غير متصل"}</strong>
           {" · "}
-          ملف Git يتجاهل السر:{" "}
-          <strong>{status?.gitignored ? "نعم (.env.local)" : "تحقق يدوياً"}</strong>
+          الطريقة: <strong>Gemini CLI Google login</strong>
         </p>
-        <HealthCard health={status?.health ?? null} />
+        <HealthCard health={status?.health} />
         <p className="gemini-note">
           معالجة المناهج:{" "}
           <strong>
             {status?.curriculumProcessingAllowed
-              ? "مسموحة بعد نجاح الاختبار"
-              : "موقوفة حتى نجاح الاتصال"}
+              ? "مسموحة"
+              : "موقوفة حتى نجاح الاختبار (لن يبدأ التوليد الآن)"}
           </strong>
         </p>
       </section>
 
-      {!showForm && configured ? (
-        <section className="gemini-actions">
-          <button type="button" className="button" disabled={busy} onClick={() => void onTestOnly()}>
-            إعادة اختبار الاتصال
-          </button>
-          <button
-            type="button"
-            className="button button-secondary"
-            disabled={busy}
-            onClick={() => {
-              const ok = window.confirm("استبدال المفتاح الحالي بمفتاح جديد؟");
-              if (!ok) return;
-              setMode("replace");
-              setShowForm(true);
-              setApiKey("");
-            }}
-          >
-            استبدال المفتاح
-          </button>
-          <button
-            type="button"
-            className="button button-danger"
-            disabled={busy}
-            onClick={() => void onRemove()}
-          >
-            حذف المفتاح
-          </button>
-        </section>
-      ) : null}
-
-      {showForm ? (
-        <section className="gemini-panel" aria-labelledby="connect-title">
-          <h2 id="connect-title">{mode === "replace" ? "استبدال مفتاح Gemini" : "ربط Gemini"}</h2>
-
-          <button type="button" className="button gemini-primary" onClick={openGoogleKeyPage}>
-            Connect Gemini — افتح صفحة Google الرسمية
-          </button>
-
-          <ol className="gemini-steps">
-            <li>سجّل الدخول بحساب Google.</li>
-            <li>اضغط Create API Key.</li>
-            <li>انسخ المفتاح.</li>
-            <li>ارجع إلى هذه الصفحة والصقه في الحقل أدناه.</li>
-          </ol>
-
-          <form onSubmit={onSave} className="gemini-form" autoComplete="off">
-            <label htmlFor="gemini-api-key">مفتاح Gemini API</label>
-            <input
-              id="gemini-api-key"
-              name="gemini-api-key"
-              type="password"
-              inputMode="text"
-              autoComplete="new-password"
-              spellCheck={false}
-              value={apiKey}
-              onChange={(e) => setApiKey(e.target.value)}
-              placeholder="الصق المفتاح هنا"
-              disabled={busy}
-              required
-            />
-            <div className="gemini-form-actions">
-              <button type="submit" className="button" disabled={busy || !apiKey.trim()}>
-                {busy ? "جاري الحفظ والاختبار…" : "حفظ واختبار الاتصال"}
-              </button>
-              {configured ? (
-                <button
-                  type="button"
-                  className="button button-secondary"
-                  disabled={busy}
-                  onClick={() => {
-                    setShowForm(false);
-                    setApiKey("");
-                  }}
-                >
-                  إلغاء
-                </button>
-              ) : null}
-            </div>
-          </form>
-
-          {manualPaste || status?.canAutoWrite === false ? (
-            <div className="gemini-manual" role="region" aria-label="إعداد يدوي">
-              <h3>إن تعذر الحفظ التلقائي</h3>
-              <p>
-                افتح الملف <code>{status?.envFile || ".env.local"}</code> في جذر مشروع Success OS
-                وألصق هذا السطر في سطر واحد ثم احفظ الملف وأعد تشغيل الخادم:
-              </p>
-              <textarea
-                className="gemini-copy-line"
-                readOnly
-                value={copyLine}
-                rows={2}
-                aria-label="سطر إعداد للنسخ"
-              />
-              <button
-                type="button"
-                className="button button-secondary"
-                onClick={() => void copyConfigLine()}
-              >
-                نسخ سطر الإعداد
-              </button>
-            </div>
+      {authUrl || status?.waitingForApproval ? (
+        <section className="gemini-panel gemini-wait" role="status" aria-live="polite">
+          <h2>⏸️ توقف هنا — موافقة Google مطلوبة</h2>
+          <p>
+            افتح صفحة التفويض واضغط <strong>Allow</strong>. لا حاجة لنسخ أي مفتاح. بعد الموافقة
+            نكمل تلقائياً.
+          </p>
+          {authUrl ? (
+            <a className="button gemini-primary" href={authUrl} target="_blank" rel="noreferrer">
+              فتح صفحة موافقة Google
+            </a>
           ) : null}
+          <p className="gemini-note">بانتظار اكتمال المصادقة…</p>
         </section>
       ) : null}
+
+      <section className="gemini-actions">
+        {!connected ? (
+          <button
+            type="button"
+            className="button gemini-primary"
+            disabled={busy}
+            onClick={() => void startGoogleLogin()}
+          >
+            {busy ? "جاري التحضير…" : "Connect Gemini — تسجيل الدخول بحساب Google"}
+          </button>
+        ) : (
+          <>
+            <button type="button" className="button" disabled={busy} onClick={() => void retest()}>
+              إعادة اختبار الاتصال
+            </button>
+            <button
+              type="button"
+              className="button button-secondary"
+              disabled={busy}
+              onClick={() => void startGoogleLogin()}
+            >
+              إعادة ربط الحساب
+            </button>
+            <button
+              type="button"
+              className="button button-danger"
+              disabled={busy}
+              onClick={() => void logout()}
+            >
+              قطع الاتصال
+            </button>
+          </>
+        )}
+      </section>
 
       {message ? <p className="gemini-message">{message}</p> : null}
       <WizardStyles />
@@ -402,7 +326,7 @@ function WizardStyles() {
         padding: 2rem 1.25rem 4rem;
         color: #142033;
         background:
-          radial-gradient(circle at 10% 0%, #e7f2ff 0%, transparent 45%),
+          radial-gradient(circle at 12% 0%, #e8f3ff 0%, transparent 42%),
           linear-gradient(180deg, #f7fafc 0%, #eef3f8 100%);
         min-height: 100vh;
         font-family: "IBM Plex Sans Arabic", "Segoe UI", Tahoma, sans-serif;
@@ -420,11 +344,11 @@ function WizardStyles() {
         margin-top: 1.25rem;
         padding: 1.1rem 1.15rem;
         border: 1px solid #d5e0ec;
-        background: rgba(255, 255, 255, 0.88);
+        background: rgba(255, 255, 255, 0.9);
       }
-      .gemini-panel h2 {
-        margin: 0 0 0.75rem;
-        font-size: 1.15rem;
+      .gemini-wait {
+        border-color: #c9a227;
+        background: #fff9e9;
       }
       .gemini-health-card {
         display: grid;
@@ -451,41 +375,20 @@ function WizardStyles() {
         color: #5b6b7c;
       }
       .gemini-actions {
-        display: flex;
-        flex-wrap: wrap;
+        display: grid;
         gap: 0.6rem;
         margin-top: 1rem;
-      }
-      .gemini-steps {
-        margin: 1rem 0 1.1rem;
-        padding-inline-start: 1.2rem;
-        line-height: 1.7;
-      }
-      .gemini-form {
-        display: grid;
-        gap: 0.55rem;
-      }
-      .gemini-form input {
-        width: 100%;
-        padding: 0.75rem 0.85rem;
-        border: 1px solid #b7c6d8;
-        background: #fff;
-        font-size: 1rem;
-      }
-      .gemini-form-actions {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0.55rem;
-        margin-top: 0.35rem;
       }
       .gemini-wizard .button {
         appearance: none;
         border: 1px solid #1f4e79;
         background: #1f4e79;
         color: #fff;
-        padding: 0.65rem 1rem;
+        padding: 0.75rem 1rem;
         font: inherit;
         cursor: pointer;
+        text-align: center;
+        text-decoration: none;
       }
       .gemini-wizard .button:disabled {
         opacity: 0.55;
@@ -502,20 +405,6 @@ function WizardStyles() {
       .gemini-primary {
         width: 100%;
         font-weight: 700;
-      }
-      .gemini-manual {
-        margin-top: 1rem;
-        padding: 0.85rem;
-        border: 1px dashed #9aa8b8;
-        background: #f7f9fc;
-      }
-      .gemini-copy-line {
-        width: 100%;
-        margin: 0.5rem 0;
-        padding: 0.65rem;
-        font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-        direction: ltr;
-        text-align: left;
       }
       .gemini-message {
         margin-top: 1rem;

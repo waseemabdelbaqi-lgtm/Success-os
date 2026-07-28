@@ -1,12 +1,13 @@
 import {
   assertGeminiSetupAccess,
-  verifyGeminiConnection,
 } from "@/lib/ai/gemini";
 import {
-  getGeminiSetupStatus,
-  removeGeminiApiKeyFromEnvLocal,
-  saveGeminiApiKeyToEnvLocal,
-} from "@/lib/ai/gemini-local-env";
+  getGeminiCliAuthStatus,
+  logoutGeminiCliGoogle,
+  startGeminiCliGoogleLogin,
+  verifyGeminiCliConnection,
+  isCurriculumGenerationAllowed,
+} from "@/lib/ai/gemini-cli-auth";
 import { checkRateLimit, getRateLimitHeaders } from "@/lib/rate-limit";
 
 export const runtime = "nodejs";
@@ -17,43 +18,22 @@ function clientKey(request: Request): string {
   return xf || request.headers.get("x-real-ip") || "loopback";
 }
 
-function json(data: unknown, status = 200, extraHeaders?: Record<string, string>) {
+function json(data: unknown, status = 200, extra?: Record<string, string>) {
   return Response.json(data, {
     status,
-    headers: { "Cache-Control": "no-store", ...extraHeaders },
+    headers: { "Cache-Control": "no-store", ...extra },
   });
-}
-
-function publicHealth(result: Awaited<ReturnType<typeof verifyGeminiConnection>>) {
-  if (result.connected) {
-    return {
-      status: "Connected" as const,
-      connected: true,
-      model: result.model,
-      response: result.response,
-      latencyMs: result.latencyMs,
-      error: null,
-    };
-  }
-  return {
-    status: "Failed" as const,
-    connected: false,
-    model: result.model,
-    response: null,
-    latencyMs: result.latencyMs,
-    error: result.error,
-  };
 }
 
 /**
  * GET /api/admin/ai/gemini/setup
- * Safe status only — never returns the API key.
+ * Safe Gemini CLI Google-login status + optional health (never returns tokens).
  */
 export async function GET(request: Request): Promise<Response> {
   const denied = await assertGeminiSetupAccess(request);
   if (denied) return denied;
 
-  const rate = checkRateLimit(`gemini-setup-status:${clientKey(request)}`);
+  const rate = checkRateLimit(`gemini-cli-status:${clientKey(request)}`);
   if (!rate.allowed) {
     return json(
       { ok: false, error: { code: "RATE_LIMIT", message: "Rate limit exceeded." } },
@@ -62,18 +42,38 @@ export async function GET(request: Request): Promise<Response> {
     );
   }
 
-  const status = getGeminiSetupStatus();
-  let health = null as ReturnType<typeof publicHealth> | null;
-  if (status.configured) {
-    health = publicHealth(await verifyGeminiConnection());
+  const auth = await getGeminiCliAuthStatus();
+  let health = null as Awaited<ReturnType<typeof verifyGeminiCliConnection>> | null;
+  if (auth.authenticated) {
+    health = await verifyGeminiCliConnection();
   }
 
   return json(
     {
       ok: true,
-      ...status,
-      curriculumProcessingAllowed: Boolean(health?.connected),
-      health,
+      method: "gemini-cli-google-login",
+      configured: auth.authenticated,
+      authenticated: auth.authenticated,
+      accountEmail: auth.accountEmail,
+      authType: auth.authType,
+      waitingForApproval: auth.waitingForApproval,
+      authUrl: auth.authUrl,
+      localDevelopment: true,
+      gitignored: true,
+      credentialStore: "~/.gemini/oauth_creds.json (never committed)",
+      curriculumProcessingAllowed: isCurriculumGenerationAllowed(
+        Boolean(health?.connected),
+      ),
+      health: health
+        ? {
+            status: health.status,
+            connected: health.connected,
+            model: health.model,
+            response: health.response,
+            latencyMs: health.latencyMs,
+            error: health.error,
+          }
+        : null,
     },
     200,
     getRateLimitHeaders(rate),
@@ -82,15 +82,13 @@ export async function GET(request: Request): Promise<Response> {
 
 /**
  * POST /api/admin/ai/gemini/setup
- * Body: { apiKey: string, action?: "save" | "test" }
- * Saves to .env.local (local only), hydrates process.env, runs health test.
- * Never returns the key.
+ * Actions: start_google_login | test | (legacy save rejected)
  */
 export async function POST(request: Request): Promise<Response> {
   const denied = await assertGeminiSetupAccess(request);
   if (denied) return denied;
 
-  const rate = checkRateLimit(`gemini-setup-write:${clientKey(request)}`);
+  const rate = checkRateLimit(`gemini-cli-write:${clientKey(request)}`);
   if (!rate.allowed) {
     return json(
       { ok: false, error: { code: "RATE_LIMIT", message: "Rate limit exceeded." } },
@@ -99,100 +97,126 @@ export async function POST(request: Request): Promise<Response> {
     );
   }
 
-  let body: { apiKey?: unknown; action?: unknown } = {};
+  let body: { action?: unknown; apiKey?: unknown } = {};
   try {
-    body = (await request.json()) as { apiKey?: unknown; action?: unknown };
+    body = (await request.json()) as { action?: unknown; apiKey?: unknown };
   } catch {
+    body = {};
+  }
+
+  // Reject legacy API-key paste flow — replaced by Google login.
+  if (typeof body.apiKey === "string") {
+    body.apiKey = undefined;
     return json(
-      { ok: false, error: { code: "BAD_REQUEST", message: "JSON body required." } },
+      {
+        ok: false,
+        error: {
+          code: "API_KEY_FLOW_DISABLED",
+          message:
+            "Manual API keys are disabled. Use official Gemini CLI Google login instead.",
+        },
+      },
       400,
       getRateLimitHeaders(rate),
     );
   }
 
-  const action = typeof body.action === "string" ? body.action : "save";
+  const action = typeof body.action === "string" ? body.action : "start_google_login";
 
   if (action === "test") {
-    const health = publicHealth(await verifyGeminiConnection());
+    const health = await verifyGeminiCliConnection();
     return json(
       {
         ok: health.connected,
-        saved: false,
-        requiresManualPaste: false,
-        envFile: ".env.local",
-        curriculumProcessingAllowed: health.connected,
-        health,
+        method: "gemini-cli-google-login",
+        accountEmail: health.accountEmail,
+        curriculumProcessingAllowed: isCurriculumGenerationAllowed(health.connected),
+        health: {
+          status: health.status,
+          connected: health.connected,
+          model: health.model,
+          response: health.response,
+          latencyMs: health.latencyMs,
+          error: health.error,
+        },
       },
       health.connected ? 200 : 503,
       getRateLimitHeaders(rate),
     );
   }
 
-  if (typeof body.apiKey !== "string") {
-    return json(
-      { ok: false, error: { code: "BAD_REQUEST", message: "apiKey is required." } },
-      400,
-      getRateLimitHeaders(rate),
-    );
-  }
-
-  const save = saveGeminiApiKeyToEnvLocal(body.apiKey);
-  // Clear the request body reference from local scope as much as practical.
-  body.apiKey = undefined;
-
-  if (!save.saved) {
+  if (action === "start_google_login" || action === "save") {
+    const started = await startGeminiCliGoogleLogin();
     return json(
       {
-        ok: false,
-        saved: false,
-        requiresManualPaste: save.requiresManualPaste,
-        envFile: save.file,
-        reason: "reason" in save ? save.reason : "Save failed.",
-        configured: save.configured,
+        ok: true,
+        method: "gemini-cli-google-login",
+        status: started.status,
+        authUrl: started.authUrl,
+        message: started.message,
+        pauseForUser: started.status === "waiting_for_google_approval",
         curriculumProcessingAllowed: false,
-        health: null,
-        // Client builds the copy line from its own input — server never echoes the key.
-        manualPasteHint:
-          save.requiresManualPaste
-            ? `أنشئ أو افتح الملف ${save.file} في جذر المشروع وألصق سطر الإعداد الذي يظهر في الصفحة.`
-            : null,
       },
-      save.requiresManualPaste ? 503 : 400,
+      200,
       getRateLimitHeaders(rate),
     );
   }
 
-  const health = publicHealth(await verifyGeminiConnection());
+  if (action === "complete_from_redirect") {
+    const { completeGeminiCliLoginFromRedirectUrl } = await import(
+      "@/lib/ai/gemini-cli-auth"
+    );
+    const redirectUrl =
+      typeof (body as { redirectUrl?: unknown }).redirectUrl === "string"
+        ? (body as { redirectUrl: string }).redirectUrl
+        : "";
+    const done = await completeGeminiCliLoginFromRedirectUrl(redirectUrl);
+    let health = null as Awaited<
+      ReturnType<typeof verifyGeminiCliConnection>
+    > | null;
+    if (done.authenticated) {
+      health = await verifyGeminiCliConnection();
+    }
+    return json(
+      {
+        ok: done.authenticated,
+        method: "gemini-cli-google-login",
+        accountEmail: done.accountEmail,
+        error: done.error ? { code: "OAUTH_COMPLETE_FAILED", message: done.error } : null,
+        curriculumProcessingAllowed: isCurriculumGenerationAllowed(
+          Boolean(health?.connected),
+        ),
+        health: health
+          ? {
+              status: health.status,
+              connected: health.connected,
+              model: health.model,
+              response: health.response,
+              latencyMs: health.latencyMs,
+              error: health.error,
+            }
+          : null,
+      },
+      done.authenticated ? 200 : 400,
+      getRateLimitHeaders(rate),
+    );
+  }
 
   return json(
-    {
-      ok: health.connected,
-      saved: true,
-      requiresManualPaste: false,
-      envFile: save.file,
-      configured: true,
-      processEnvUpdated: true,
-      restartRecommended: false,
-      curriculumProcessingAllowed: health.connected,
-      health,
-      message: health.connected
-        ? "تم حفظ المفتاح واختبار الاتصال بنجاح."
-        : "تم حفظ المفتاح لكن اختبار الاتصال فشل.",
-    },
-    health.connected ? 200 : 502,
+    { ok: false, error: { code: "BAD_REQUEST", message: "Unknown action." } },
+    400,
     getRateLimitHeaders(rate),
   );
 }
 
 /**
- * DELETE /api/admin/ai/gemini/setup
- * Removes GEMINI_API_KEY from .env.local and process.env.
+ * DELETE /api/admin/ai/gemini/setup — logout / remove local CLI OAuth credentials.
  */
 export async function DELETE(request: Request): Promise<Response> {
   const denied = await assertGeminiSetupAccess(request);
   if (denied) return denied;
 
-  const rate = checkRateLimit(`gemini-setup-delete:${clientKey(request)}`);
+  const rate = checkRateLimit(`gemini-cli-delete:${clientKey(request)}`);
   if (!rate.allowed) {
     return json(
       { ok: false, error: { code: "RATE_LIMIT", message: "Rate limit exceeded." } },
@@ -201,15 +225,14 @@ export async function DELETE(request: Request): Promise<Response> {
     );
   }
 
-  const result = removeGeminiApiKeyFromEnvLocal();
+  const result = await logoutGeminiCliGoogle();
   return json(
     {
       ok: result.removed,
       removed: result.removed,
-      envFile: result.file,
-      configured: result.configured,
+      method: "gemini-cli-google-login",
+      configured: false,
       curriculumProcessingAllowed: false,
-      reason: result.reason || null,
       health: {
         status: "Failed",
         connected: false,
@@ -217,12 +240,12 @@ export async function DELETE(request: Request): Promise<Response> {
         response: null,
         latencyMs: 0,
         error: {
-          code: "GEMINI_API_KEY_MISSING",
-          message: "GEMINI_API_KEY was removed.",
+          code: "NOT_AUTHENTICATED",
+          message: "Gemini CLI Google login credentials were removed.",
         },
       },
     },
-    result.removed ? 200 : 500,
+    200,
     getRateLimitHeaders(rate),
   );
 }
