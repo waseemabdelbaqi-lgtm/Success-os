@@ -9,7 +9,7 @@ export const AgentOutputSchema = z.object({
   provider: z.string(),
   model: z.string().nullable(),
   status: z.enum(["completed", "failed", "needs_review"]),
-  summary: z.string(),
+  summary: z.string().min(1),
   assumptions: z.array(z.string()).default([]),
   sources: z.array(z.string()).default([]),
   filesProposed: z.array(z.string()).default([]),

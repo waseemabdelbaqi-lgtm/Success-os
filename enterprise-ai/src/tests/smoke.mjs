@@ -59,15 +59,18 @@ const contractOk = validateAgentOutput({
 });
 assert.equal(contractOk.ok, true);
 
-const repaired = await validateWithRepair("{not-json", { taskId: "t2", agent: "x", provider: "p", model: "m" }, async () =>
-  JSON.stringify({
-    taskId: "t2",
-    agent: "x",
-    provider: "p",
-    model: "m",
-    status: "needs_review",
-    summary: "repaired",
-  }),
+const repaired = await validateWithRepair(
+  JSON.stringify({ taskId: "t2", agent: "x", provider: "p", model: "m", status: "bogus", summary: "" }),
+  { taskId: "t2", agent: "x", provider: "p", model: "m" },
+  async () =>
+    JSON.stringify({
+      taskId: "t2",
+      agent: "x",
+      provider: "p",
+      model: "m",
+      status: "needs_review",
+      summary: "repaired",
+    }),
 );
 assert.equal(repaired.ok, true);
 assert.equal(repaired.repaired, true);
