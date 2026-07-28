@@ -70,6 +70,9 @@ Desktop.ini
 
 # Official curriculum PDF binaries (too large / rights-sensitive)
 /data/curriculum-ai/**/source/*.pdf
+/data/curriculum-ai/**/source.pdf
+/data/curriculum-ai/**/upload-sessions/
+/data/curriculum-ai/**/REJECTED_*
 !/data/curriculum-ai/**/source/.gitkeep
 
 # Page extraction dumps (keep structure.json + acquisition.json)

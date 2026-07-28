@@ -1,0 +1,9 @@
+{
+  "state": "EMPTY",
+  "officialTitle": "الرياضيات — الصف الأول — الفصل الدراسي الأول — كتاب الطالب",
+  "officialUrl": "https://nccd.gov.jo/EBV4.0/Root_Storage/AR/Math/2025/G01/MA.01.ST.BOOK_WEB.pdf",
+  "extractionEnabled": false,
+  "extractionStarted": false,
+  "updatedAt": "2026-07-28T21:34:19.362240Z",
+  "note": "Upload pipeline tested with fixture PDF then reset for official browser import."
+}

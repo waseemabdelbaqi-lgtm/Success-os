@@ -25,6 +25,8 @@
     "ai:local:setup": "node scripts/setup-local-ollama.mjs",
     "ai:local:test": "node scripts/test-local-ollama.mjs",
     "curriculum:acquire:jo-g1-math": "node scripts/curriculum-ai/acquire-jordan-g1-math.mjs",
+    "curriculum:download:jo-g1-math": "node scripts/curriculum-ai/download-official-pdf.mjs",
+    "curriculum:test:upload": "node scripts/curriculum-ai/test-chunked-upload.mjs",
     "curriculum:extract:book": "python3 scripts/curriculum-ai/extract-book.py",
     "validate:books": "node scripts/validate-book-engine.mjs",
     "validate:jordan": "node scripts/validate-jordan-curriculum.mjs",

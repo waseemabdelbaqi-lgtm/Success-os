@@ -1,0 +1,13 @@
+{
+  "uploadTest": "PASS",
+  "maxFileSize": 314572800,
+  "chunkResumeTest": "PASS",
+  "pdfValidationTest": "PASS",
+  "pageCount": 12,
+  "fileSize": 25176550,
+  "sha256": "fdbf76695a29c69cb41ef252010bcb4170bb26277e7790a0b8dd49d17ff129ce",
+  "verified": true,
+  "extractionEnabled": true,
+  "extractionStarted": false,
+  "importPageHttp": 200
+}

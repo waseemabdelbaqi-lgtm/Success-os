@@ -13,5 +13,10 @@
   },
   "cache": {
     "enabled": true
+  },
+  // Chunked curriculum PDF upload uses 5MB parts (max book 300MB).
+  // Keep Workers request bodies small; do not upload the full PDF in one request.
+  "limits": {
+    "cpu_ms": 300000
   }
 }

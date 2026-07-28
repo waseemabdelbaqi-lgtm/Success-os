@@ -1,27 +1,31 @@
 import { NextResponse } from "next/server";
 import fs from "node:fs";
 import path from "node:path";
-import { spawn } from "node:child_process";
+import { randomUUID } from "node:crypto";
 import {
-  JORDAN_G1_MATH_BOOK_ID,
-  bookDir,
-  listPdfCandidates,
-  loadAcquisition,
-  readJsonIfExists,
-  writeJson,
-} from "@/lib/curriculum-ai/store";
-import {
+  BOOK_STORAGE_DIR,
+  CHUNK_SIZE,
+  MAX_FILE_SIZE,
   OFFICIAL_BOOK_TITLE_AR,
-  OFFICIAL_CATALOG_URL,
   OFFICIAL_PDF_URL,
+  PREVIEW_DIR,
+  SOURCE_PDF_PATH,
+  UPLOAD_SESSIONS_DIR,
+  assembleChunks,
+  ensureBookDirs,
+  readImportStatus,
   renderPreviewPngs,
+  streamRequestToFile,
   validateOfficialPdf,
+  writeImportStatus,
 } from "@/lib/curriculum-ai/pdf-validation";
 
 export const dynamic = "force-dynamic";
 export const runtime = "nodejs";
-
 export const maxDuration = 300;
+
+// Allow large-ish chunk bodies in this route segment (5MB chunks + overhead).
+export const preferredRegion = "auto";
 
 function json(data: unknown, status = 200) {
   return NextResponse.json(data, {
@@ -30,222 +34,378 @@ function json(data: unknown, status = 200) {
   });
 }
 
-function sourceDir(bookId = JORDAN_G1_MATH_BOOK_ID) {
-  return path.join(bookDir(bookId), "source");
+type SessionMeta = {
+  sessionId: string;
+  fileName: string;
+  fileSize: number;
+  totalChunks: number;
+  chunkSize: number;
+  received: number[];
+  createdAt: string;
+  updatedAt: string;
+};
+
+function sessionDir(sessionId: string) {
+  return path.join(UPLOAD_SESSIONS_DIR, sessionId);
 }
 
-function importStatusPath(bookId = JORDAN_G1_MATH_BOOK_ID) {
-  return path.join(bookDir(bookId), "import-status.json");
+function sessionMetaPath(sessionId: string) {
+  return path.join(sessionDir(sessionId), "session.json");
 }
 
-function downloadAttempt(bookId = JORDAN_G1_MATH_BOOK_ID) {
-  return readJsonIfExists<Record<string, unknown>>(
-    path.join(bookDir(bookId), "download-attempt.json"),
+function readSession(sessionId: string): SessionMeta | null {
+  const p = sessionMetaPath(sessionId);
+  if (!fs.existsSync(p)) return null;
+  return JSON.parse(fs.readFileSync(p, "utf8")) as SessionMeta;
+}
+
+function writeSession(meta: SessionMeta) {
+  fs.mkdirSync(sessionDir(meta.sessionId), { recursive: true });
+  fs.writeFileSync(
+    sessionMetaPath(meta.sessionId),
+    `${JSON.stringify({ ...meta, updatedAt: new Date().toISOString() }, null, 2)}\n`,
   );
 }
 
-function getValidPdf(bookId = JORDAN_G1_MATH_BOOK_ID) {
-  const preferred = path.join(sourceDir(bookId), "MA.01.ST.BOOK_WEB.pdf");
-  const candidates = [
-    preferred,
-    ...listPdfCandidates(bookId).filter((p) => p !== preferred),
-  ];
-  for (const file of candidates) {
-    const v = validateOfficialPdf(file);
-    if (v.ok) return v;
-  }
-  return null;
-}
-
-function ensurePreviews(bookId: string, pdfPath: string, pageCount: number) {
-  const previewDir = path.join(bookDir(bookId), "previews");
-  const needed = Math.min(3, pageCount);
-  const existing = Array.from({ length: needed }, (_, i) =>
-    path.join(previewDir, `preview-page-${i + 1}.png`),
-  );
-  if (existing.every((p) => fs.existsSync(p))) {
-    return existing.map((p) => path.relative(process.cwd(), p));
-  }
-  const rendered = renderPreviewPngs(pdfPath, previewDir, [0, 1, 2].slice(0, needed));
-  return rendered.map((p) => path.relative(process.cwd(), p));
+function listReceivedChunks(sessionId: string): number[] {
+  const dir = sessionDir(sessionId);
+  if (!fs.existsSync(dir)) return [];
+  return fs
+    .readdirSync(dir)
+    .map((f) => {
+      const m = /^chunk-(\d+)\.part$/.exec(f);
+      return m ? Number(m[1]) : null;
+    })
+    .filter((n): n is number => n != null)
+    .sort((a, b) => a - b);
 }
 
 export async function GET(request: Request) {
+  ensureBookDirs();
   const url = new URL(request.url);
-  const bookId = url.searchParams.get("bookId") || JORDAN_G1_MATH_BOOK_ID;
   const preview = url.searchParams.get("preview");
+  const sessionId = url.searchParams.get("sessionId");
 
   if (preview) {
-    const file = path.join(
-      bookDir(bookId),
-      "previews",
-      `preview-page-${Number(preview)}.png`,
-    );
+    const file = path.join(PREVIEW_DIR, `preview-page-${Number(preview)}.png`);
     if (!fs.existsSync(file)) return json({ ok: false, error: "PREVIEW_MISSING" }, 404);
     const buf = fs.readFileSync(file);
     return new NextResponse(buf, {
       status: 200,
-      headers: {
-        "Content-Type": "image/png",
-        "Cache-Control": "no-store",
-      },
+      headers: { "Content-Type": "image/png", "Cache-Control": "no-store" },
     });
   }
 
-  const valid = getValidPdf(bookId);
-  const attempt = downloadAttempt(bookId);
-  const acquisition = loadAcquisition(bookId);
-  const status = readJsonIfExists<Record<string, unknown>>(importStatusPath(bookId));
-
-  if (!valid) {
-    const failReason =
-      (status?.failReason as string) ||
-      (attempt?.failReason as string) ||
-      (Array.isArray(acquisition?.blockers) ? acquisition?.blockers?.[0] : null) ||
-      "لم يتم استيراد ملف PDF رسمي صالح بعد.";
+  if (sessionId) {
+    const meta = readSession(sessionId);
+    if (!meta) return json({ ok: false, error: "SESSION_NOT_FOUND" }, 404);
+    const received = listReceivedChunks(sessionId);
     return json({
-      imported: false,
-      message: "لم يتم استيراد الكتاب بعد",
-      failReason,
-      officialUrl: (attempt?.officialUrl as string) || OFFICIAL_PDF_URL,
-      catalogUrl: OFFICIAL_CATALOG_URL,
-      officialTitle: OFFICIAL_BOOK_TITLE_AR,
-      needsManualUpload: true,
+      ok: true,
+      sessionId,
+      fileSize: meta.fileSize,
+      totalChunks: meta.totalChunks,
+      chunkSize: meta.chunkSize,
+      received,
+      missing: Array.from({ length: meta.totalChunks }, (_, i) => i).filter(
+        (i) => !received.includes(i),
+      ),
+      bytesReceived: received.reduce((sum, i) => {
+        const p = path.join(sessionDir(sessionId), `chunk-${String(i).padStart(6, "0")}.part`);
+        return sum + (fs.existsSync(p) ? fs.statSync(p).size : 0);
+      }, 0),
     });
   }
 
-  const previews = ensurePreviews(bookId, valid.localFile, valid.pageCount);
-  writeJson(importStatusPath(bookId), {
-    imported: true,
-    officialUrl: (attempt?.officialUrl as string) || OFFICIAL_PDF_URL,
-    localFile: path.relative(process.cwd(), valid.localFile),
-    fileSize: valid.fileSize,
-    pageCount: valid.pageCount,
-    sha256: valid.sha256,
-    firstPageValid: valid.firstPageValid,
-    lastPageValid: valid.lastPageValid,
-    updatedAt: new Date().toISOString(),
-  });
+  const status = readImportStatus();
+  const verified = status.state === "VERIFIED" && fs.existsSync(SOURCE_PDF_PATH);
+  const previews = verified
+    ? [1, 2, 3]
+        .filter((n) => fs.existsSync(path.join(PREVIEW_DIR, `preview-page-${n}.png`)))
+        .map((n) => `/api/admin/curriculum-ai/books/import?preview=${n}`)
+    : [];
 
   return json({
-    imported: true,
     officialTitle: OFFICIAL_BOOK_TITLE_AR,
-    officialUrl: (attempt?.officialUrl as string) || OFFICIAL_PDF_URL,
-    localFile: path.relative(process.cwd(), valid.localFile),
-    fileSize: valid.fileSize,
-    pageCount: valid.pageCount,
-    sha256: valid.sha256,
-    firstPageValid: valid.firstPageValid,
-    lastPageValid: valid.lastPageValid,
-    previews: previews.map((_, i) => `/api/admin/curriculum-ai/books/import?preview=${i + 1}`),
-    coverPreview: previews.length
-      ? `/api/admin/curriculum-ai/books/import?preview=1`
-      : null,
+    officialUrl: OFFICIAL_PDF_URL,
+    maxFileSize: MAX_FILE_SIZE,
+    chunkSize: CHUNK_SIZE,
+    status,
+    verified,
+    localFile: verified ? path.relative(process.cwd(), SOURCE_PDF_PATH) : null,
+    previews,
+    coverPreview: previews[0] || null,
+    extractionEnabled: Boolean(status.extractionEnabled && verified),
   });
 }
 
 export async function POST(request: Request) {
-  const bookId = JORDAN_G1_MATH_BOOK_ID;
-  const contentType = request.headers.get("content-type") || "";
+  ensureBookDirs();
+  const url = new URL(request.url);
+  const action = url.searchParams.get("action") || "";
 
-  // Multipart upload
-  if (contentType.includes("multipart/form-data")) {
-    const form = await request.formData();
-    const file = form.get("file");
-    if (!(file instanceof File)) {
-      return json({ ok: false, error: "FILE_REQUIRED" }, 400);
+  // ---- init upload session ----
+  if (action === "init") {
+    const body = (await request.json()) as {
+      fileName?: string;
+      fileSize?: number;
+    };
+    const fileSize = Number(body.fileSize || 0);
+    const fileName = String(body.fileName || "source.pdf");
+    if (!Number.isFinite(fileSize) || fileSize <= 0) {
+      return json({ ok: false, error: "INVALID_FILE_SIZE" }, 400);
     }
-    const destDir = sourceDir(bookId);
-    fs.mkdirSync(destDir, { recursive: true });
-    const dest = path.join(destDir, "MA.01.ST.BOOK_WEB.pdf");
-    const partial = `${dest}.upload-partial`;
-    const buf = Buffer.from(await file.arrayBuffer());
-    fs.writeFileSync(partial, buf);
+    if (fileSize > MAX_FILE_SIZE) {
+      return json({ ok: false, error: "FILE_TOO_LARGE", maxFileSize: MAX_FILE_SIZE }, 400);
+    }
+    const totalChunks = Math.ceil(fileSize / CHUNK_SIZE);
+    const sessionId = randomUUID();
+    const meta: SessionMeta = {
+      sessionId,
+      fileName,
+      fileSize,
+      totalChunks,
+      chunkSize: CHUNK_SIZE,
+      received: [],
+      createdAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString(),
+    };
+    writeSession(meta);
+    writeImportStatus({
+      state: "UPLOADING",
+      officialTitle: OFFICIAL_BOOK_TITLE_AR,
+      officialUrl: OFFICIAL_PDF_URL,
+      extractionEnabled: false,
+      extractionStarted: false,
+      updatedAt: new Date().toISOString(),
+    });
+    return json({
+      ok: true,
+      sessionId,
+      chunkSize: CHUNK_SIZE,
+      totalChunks,
+      maxFileSize: MAX_FILE_SIZE,
+    });
+  }
 
-    const validation = validateOfficialPdf(partial);
+  // ---- upload one chunk (streamed to disk) ----
+  if (action === "chunk") {
+    const sessionId = url.searchParams.get("sessionId") || "";
+    const index = Number(url.searchParams.get("index"));
+    const meta = readSession(sessionId);
+    if (!meta) return json({ ok: false, error: "SESSION_NOT_FOUND" }, 404);
+    if (!Number.isInteger(index) || index < 0 || index >= meta.totalChunks) {
+      return json({ ok: false, error: "INVALID_CHUNK_INDEX" }, 400);
+    }
+
+    const chunkPath = path.join(
+      sessionDir(sessionId),
+      `chunk-${String(index).padStart(6, "0")}.part`,
+    );
+
+    // Idempotent: skip rewrite if chunk already present with expected size.
+    const expectedSize =
+      index === meta.totalChunks - 1
+        ? meta.fileSize - meta.chunkSize * (meta.totalChunks - 1)
+        : meta.chunkSize;
+
+    if (fs.existsSync(chunkPath) && fs.statSync(chunkPath).size === expectedSize) {
+      const received = listReceivedChunks(sessionId);
+      return json({
+        ok: true,
+        skipped: true,
+        index,
+        received,
+        progress: received.length / meta.totalChunks,
+      });
+    }
+
+    try {
+      const written = await streamRequestToFile(
+        request,
+        chunkPath,
+        meta.chunkSize + 64 * 1024,
+      );
+      if (written !== expectedSize) {
+        // Allow final chunk variance already handled; reject mismatch
+        if (fs.existsSync(chunkPath)) fs.unlinkSync(chunkPath);
+        return json(
+          {
+            ok: false,
+            error: "CHUNK_SIZE_MISMATCH",
+            expectedSize,
+            written,
+          },
+          400,
+        );
+      }
+    } catch (err) {
+      if (fs.existsSync(chunkPath)) fs.unlinkSync(chunkPath);
+      return json(
+        { ok: false, error: String((err as Error)?.message || err) },
+        500,
+      );
+    }
+
+    const received = listReceivedChunks(sessionId);
+    meta.received = received;
+    writeSession(meta);
+    return json({
+      ok: true,
+      skipped: false,
+      index,
+      received,
+      progress: received.length / meta.totalChunks,
+    });
+  }
+
+  // ---- complete: assemble + validate + preview ----
+  if (action === "complete") {
+    const body = (await request.json()) as { sessionId?: string };
+    const sessionId = String(body.sessionId || "");
+    const meta = readSession(sessionId);
+    if (!meta) return json({ ok: false, error: "SESSION_NOT_FOUND" }, 404);
+
+    const received = listReceivedChunks(sessionId);
+    if (received.length !== meta.totalChunks) {
+      return json(
+        {
+          ok: false,
+          error: "INCOMPLETE_UPLOAD",
+          received,
+          totalChunks: meta.totalChunks,
+        },
+        409,
+      );
+    }
+
+    writeImportStatus({
+      state: "ASSEMBLING",
+      officialTitle: OFFICIAL_BOOK_TITLE_AR,
+      officialUrl: OFFICIAL_PDF_URL,
+      extractionEnabled: false,
+      extractionStarted: false,
+      updatedAt: new Date().toISOString(),
+    });
+
+    const assembledPath = path.join(sessionDir(sessionId), "assembled.pdf");
+    try {
+      await assembleChunks(sessionDir(sessionId), meta.totalChunks, assembledPath);
+    } catch (err) {
+      writeImportStatus({
+        state: "REJECTED",
+        officialTitle: OFFICIAL_BOOK_TITLE_AR,
+        officialUrl: OFFICIAL_PDF_URL,
+        failReason: `فشل تجميع الأجزاء: ${String((err as Error)?.message || err)}`,
+        extractionEnabled: false,
+        extractionStarted: false,
+        updatedAt: new Date().toISOString(),
+      });
+      return json({ ok: false, error: "ASSEMBLE_FAILED" }, 500);
+    }
+
+    writeImportStatus({
+      state: "VALIDATING",
+      officialTitle: OFFICIAL_BOOK_TITLE_AR,
+      officialUrl: OFFICIAL_PDF_URL,
+      extractionEnabled: false,
+      extractionStarted: false,
+      updatedAt: new Date().toISOString(),
+    });
+
+    const validation = await validateOfficialPdf(assembledPath);
     if (!validation.ok) {
       const rejected = path.join(
-        destDir,
-        `REJECTED_UPLOAD_${validation.reason}_${Date.now()}.bin`,
+        BOOK_STORAGE_DIR,
+        `REJECTED_${validation.reason}_${Date.now()}.bin`,
       );
-      fs.renameSync(partial, rejected);
-      writeJson(importStatusPath(bookId), {
-        imported: false,
-        failReason: `UPLOAD_VALIDATION_FAILED:${validation.reason}`,
+      fs.renameSync(assembledPath, rejected);
+      writeImportStatus({
+        state: "REJECTED",
+        officialTitle: OFFICIAL_BOOK_TITLE_AR,
+        officialUrl: OFFICIAL_PDF_URL,
+        failReason: `الملف مرفوض: ${validation.reason}`,
+        fileSize: validation.fileSize,
+        extractionEnabled: false,
+        extractionStarted: false,
         updatedAt: new Date().toISOString(),
       });
       return json(
         {
           ok: false,
-          imported: false,
-          message: "لم يتم استيراد الكتاب بعد",
-          failReason: `فشل التحقق من الملف المرفوع: ${validation.reason}`,
+          state: "REJECTED",
+          failReason: validation.reason,
         },
         400,
       );
     }
 
-    if (fs.existsSync(dest)) fs.unlinkSync(dest);
-    fs.renameSync(partial, dest);
-    // Clear stale previews then regenerate
-    const previewDir = path.join(bookDir(bookId), "previews");
-    if (fs.existsSync(previewDir)) {
-      for (const f of fs.readdirSync(previewDir)) {
-        if (f.endsWith(".png")) fs.unlinkSync(path.join(previewDir, f));
+    if (fs.existsSync(SOURCE_PDF_PATH)) fs.unlinkSync(SOURCE_PDF_PATH);
+    fs.renameSync(assembledPath, SOURCE_PDF_PATH);
+
+    // clear old previews
+    if (fs.existsSync(PREVIEW_DIR)) {
+      for (const f of fs.readdirSync(PREVIEW_DIR)) {
+        if (f.endsWith(".png")) fs.unlinkSync(path.join(PREVIEW_DIR, f));
       }
     }
-    const previews = ensurePreviews(bookId, dest, validation.pageCount);
-    writeJson(importStatusPath(bookId), {
-      imported: true,
-      source: "manual_upload",
-      officialUrl: OFFICIAL_PDF_URL,
-      localFile: path.relative(process.cwd(), dest),
-      fileSize: validation.fileSize,
-      pageCount: validation.pageCount,
-      sha256: validation.sha256,
-      firstPageValid: true,
-      lastPageValid: true,
-      updatedAt: new Date().toISOString(),
-    });
-    return json({
-      ok: true,
-      imported: true,
+    renderPreviewPngs(SOURCE_PDF_PATH, PREVIEW_DIR, 3);
+
+    writeImportStatus({
+      state: "VERIFIED",
       officialTitle: OFFICIAL_BOOK_TITLE_AR,
       officialUrl: OFFICIAL_PDF_URL,
-      localFile: path.relative(process.cwd(), dest),
+      localFile: path.relative(process.cwd(), SOURCE_PDF_PATH),
       fileSize: validation.fileSize,
       pageCount: validation.pageCount,
       sha256: validation.sha256,
       firstPageValid: true,
       lastPageValid: true,
-      previews: previews.map((_, i) => `/api/admin/curriculum-ai/books/import?preview=${i + 1}`),
+      extractionEnabled: true,
+      extractionStarted: false,
+      updatedAt: new Date().toISOString(),
+    });
+
+    // Cleanup chunk parts (keep session meta lightly)
+    for (const f of fs.readdirSync(sessionDir(sessionId))) {
+      if (f.endsWith(".part")) fs.unlinkSync(path.join(sessionDir(sessionId), f));
+    }
+
+    return json({
+      ok: true,
+      state: "VERIFIED",
+      officialTitle: OFFICIAL_BOOK_TITLE_AR,
+      localFile: path.relative(process.cwd(), SOURCE_PDF_PATH),
+      fileSize: validation.fileSize,
+      pageCount: validation.pageCount,
+      sha256: validation.sha256,
+      firstPageValid: true,
+      lastPageValid: true,
+      extractionEnabled: true,
+      previews: [1, 2, 3]
+        .filter((n) => fs.existsSync(path.join(PREVIEW_DIR, `preview-page-${n}.png`)))
+        .map((n) => `/api/admin/curriculum-ai/books/import?preview=${n}`),
     });
   }
 
-  const body = (await request.json().catch(() => ({}))) as { action?: string };
-  if (body.action === "redownload") {
-    // Fire Playwright download; do not claim success until validation passes on next GET.
-    writeJson(importStatusPath(bookId), {
-      imported: false,
-      failReason: "إعادة التنزيل الرسمي قيد التنفيذ…",
+  // ---- enable extraction button only (do not start) ----
+  if (action === "arm-extraction") {
+    const status = readImportStatus();
+    if (status.state !== "VERIFIED" || !fs.existsSync(SOURCE_PDF_PATH)) {
+      return json({ ok: false, error: "NOT_VERIFIED" }, 409);
+    }
+    // Explicitly do NOT start extraction — only acknowledge arming.
+    writeImportStatus({
+      ...status,
+      extractionEnabled: true,
+      extractionStarted: false,
       updatedAt: new Date().toISOString(),
     });
-    const child = spawn(
-      "node",
-      [path.join(process.cwd(), "scripts/curriculum-ai/download-official-pdf.mjs")],
-      {
-        cwd: process.cwd(),
-        detached: true,
-        stdio: "ignore",
-      },
-    );
-    child.unref();
     return json({
       ok: true,
-      started: true,
-      pid: child.pid,
-      message: "بدأت محاولة إعادة التنزيل الرسمي. حدّث الصفحة بعد اكتمالها.",
-      officialUrl: OFFICIAL_PDF_URL,
+      extractionEnabled: true,
+      extractionStarted: false,
+      message: "الاستخراج جاهز للبدء يدوياً — لم يبدأ تلقائياً.",
     });
   }
 
