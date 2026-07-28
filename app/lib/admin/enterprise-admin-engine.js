@@ -40,6 +40,7 @@ import {
   applyRecordedLessonCatalog,
   parseRecordedLessonFilters,
 } from '../../data/recorded-lesson-filters.js';
+import { groupRecordedLessonsBySource } from '../../data/recorded-lesson-sections.js';
 
 const PERFORMANCE_CACHE_MS = 60_000;
 let performanceCache = { at: 0, value: null };
@@ -440,6 +441,10 @@ export function listModuleItems(moduleId, options = {}) {
     catalogMeta = {
       filters: catalog.filters,
       facets: catalog.facets,
+      grouped: groupRecordedLessonsBySource(catalog.items, {
+        subject: catalog.filters.subject,
+        lessonSource: catalog.filters.lessonSource,
+      }),
     };
   } else {
     const q = text(options.q || options.search).toLowerCase();
@@ -502,6 +507,7 @@ export function listModuleItems(moduleId, options = {}) {
       lessonSource: normalizeLessonSource(options.lessonSource || 'all') || 'all',
     },
     facets: catalogMeta?.facets || null,
+    grouped: catalogMeta?.grouped || null,
     catalog: moduleId === 'recorded-lessons' ? parseRecordedLessonFilters(options) : null,
     items: pageItems,
     updatedAt: doc.updatedAt,

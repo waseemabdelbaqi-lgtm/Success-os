@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { defaultRecordedLessonFilters } from '@/app/data/recorded-lesson-filters.js';
 import { RecordedLessonsFilters } from '@/components/admin/recorded-lessons-filters.jsx';
+import { RecordedLessonsSubjectResults } from '@/components/admin/recorded-lessons-subject-results.jsx';
 import { TeacherPriceSplitPanel } from '@/components/admin/teacher-price-split.jsx';
 import { CommissionCascadePanel } from '@/components/admin/commission-cascade-panel.jsx';
 
@@ -302,16 +303,30 @@ export function EnterpriseAdminModulePage({ moduleId }) {
       ) : null}
 
       {isRecordedLessons ? (
-        <RecordedLessonsFilters
-          filters={catalogFilters}
-          facets={data?.facets}
-          total={data?.total || 0}
-          lessonSource={catalogFilters.lessonSource}
-          onLessonSourceChange={(lessonSource) =>
-            setCatalogFilters((prev) => ({ ...prev, lessonSource }))
-          }
-          onChange={setCatalogFilters}
-        />
+        <>
+          <RecordedLessonsFilters
+            filters={catalogFilters}
+            facets={data?.facets}
+            total={data?.total || 0}
+            lessonSource={catalogFilters.lessonSource}
+            onLessonSourceChange={(lessonSource) =>
+              setCatalogFilters((prev) => ({ ...prev, lessonSource }))
+            }
+            onChange={setCatalogFilters}
+          />
+          <RecordedLessonsSubjectResults
+            grouped={
+              data?.grouped || {
+                subject: catalogFilters.subject !== 'all' ? catalogFilters.subject : 'All Subjects',
+                sections: [],
+              }
+            }
+            onSelectLesson={(lesson) => {
+              setMode('edit');
+              setForm(lesson);
+            }}
+          />
+        </>
       ) : null}
 
       <div style={{ display: 'flex', gap: 8, margin: '12px 0', flexWrap: 'wrap' }}>

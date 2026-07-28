@@ -7,22 +7,30 @@ export const RECORDED_LESSON_SOURCES = Object.freeze([
   {
     id: 's4s_intelligence',
     label: 'S4S Intelligence',
+    sectionTitle: 'S4S Intelligence',
     description: 'AI-produced recorded lessons from Success 4 Sure Intelligence',
+    recommended: true,
   },
   {
     id: 'teacher',
     label: 'Teacher',
+    sectionTitle: 'Teacher Lessons',
     description: 'Human teacher recorded lessons',
+    recommended: false,
   },
   {
     id: 'female_teacher',
     label: 'Female Teacher',
+    sectionTitle: 'Female Teacher Lessons',
     description: 'Recorded lessons from female teachers',
+    recommended: false,
   },
   {
     id: 'all',
     label: 'All',
+    sectionTitle: 'All Lessons',
     description: 'All lesson sources',
+    recommended: false,
   },
 ]);
 
