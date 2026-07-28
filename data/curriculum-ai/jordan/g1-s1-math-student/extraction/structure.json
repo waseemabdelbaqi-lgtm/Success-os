@@ -1,0 +1,50 @@
+{
+  "book": {
+    "officialTitle": "الرياضيات — الصف الأول — الفصل الدراسي الأول — كتاب الطالب",
+    "country": "Jordan",
+    "curriculum": "Jordanian National Curriculum",
+    "grade": "1",
+    "semester": "1",
+    "subject": "Mathematics",
+    "bookType": "Student Book",
+    "edition": "2025 NCCD web edition (MA.01.ST.BOOK_WEB) — current applicable edition pending MoE node/79818 live confirmation",
+    "academicYear": "2025/2026 (pending MoE live verification)",
+    "authority": "المركز الوطني لتطوير المناهج (NCCD) / وزارة التربية والتعليم الأردنية",
+    "officialSourceUrl": "https://nccd.gov.jo/EBV4.0/Root_Storage/AR/Math/2025/G01/MA.01.ST.BOOK_WEB.pdf",
+    "rightsStatus": "All rights reserved by NCCD / Jordan MoE. Local extraction for curriculum alignment only; do not republish protected textbook prose.",
+    "fileSizeBytes": 0,
+    "pageCount": 0,
+    "sha256": "",
+    "language": "ar",
+    "catalogUrl": "https://www.nccd.gov.jo/ar/pages/TextBooksGrade/68",
+    "verificationStatus": "incomplete_capture_rejected"
+  },
+  "parts": [],
+  "specialSections": [],
+  "extractionWarnings": [
+    "NCCD_LIVE_TLS_BLOCKED: official PDF URL https://nccd.gov.jo/EBV4.0/Root_Storage/AR/Math/2025/G01/MA.01.ST.BOOK_WEB.pdf could not be downloaded from this environment (status=0, error=fetch failed).",
+    "WAYBACK_TRUNCATED_CAPTURE_REJECTED: REJECTED_INCOMPLETE_wayback_truncation_5MiB_of_109MiB.pdf is an incomplete archive of the official PDF (Wayback stored ~5MiB of ~109MiB; missing %%EOF). Not used."
+  ],
+  "pagesNeedingReview": [],
+  "pageCoverage": {
+    "totalPdfPages": 0,
+    "extractedPages": 0,
+    "textPages": 0,
+    "ocrPages": 0,
+    "missingPages": []
+  },
+  "structureComparison": {
+    "tocSource": "not available — official PDF not acquired",
+    "result": "BLOCKED",
+    "notes": [
+      "NCCD_LIVE_TLS_BLOCKED: official PDF URL https://nccd.gov.jo/EBV4.0/Root_Storage/AR/Math/2025/G01/MA.01.ST.BOOK_WEB.pdf could not be downloaded from this environment (status=0, error=fetch failed).",
+      "WAYBACK_TRUNCATED_CAPTURE_REJECTED: REJECTED_INCOMPLETE_wayback_truncation_5MiB_of_109MiB.pdf is an incomplete archive of the official PDF (Wayback stored ~5MiB of ~109MiB; missing %%EOF). Not used."
+    ]
+  },
+  "processing": {
+    "status": "blocked_acquisition",
+    "lastCompletedPage": 0,
+    "resumable": true,
+    "processingTimeMs": 0
+  }
+}

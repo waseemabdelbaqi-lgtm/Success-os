@@ -1,0 +1,5 @@
+# Local curriculum PDF extraction (Step 2) — do not use cloud AI APIs.
+pymupdf>=1.24.0
+pdfplumber>=0.11.0
+pillow>=10.0.0
+pytesseract>=0.3.10
