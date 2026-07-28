@@ -9,6 +9,10 @@ import {
   ENTERPRISE_ERP_NAV,
   ENTERPRISE_ERP_NAV_GROUPS,
 } from './enterprise-erp-modules.js';
+import {
+  RECORDED_LESSON_CONCRETE_SOURCES,
+  lessonSourceLabel,
+} from './recorded-lesson-sources.js';
 
 export const ENTERPRISE_ADMIN_SCHEMA = 'success-os.enterprise-admin.v2';
 export const ENTERPRISE_ADMIN_VERSION = '2.0.0';
@@ -165,6 +169,68 @@ export const ENTERPRISE_ADMIN_MODULES = Object.freeze({
       { key: 'jobTitle', label: 'Job Title', type: 'text' },
       { key: 'status', label: 'Status', type: 'select', options: ['active', 'on_leave', 'terminated'] },
     ],
+  },
+  'recorded-lessons': {
+    id: 'recorded-lessons',
+    collection: 'recorded-lessons',
+    label: 'Recorded Lessons',
+    searchable: ['name', 'title', 'subject', 'grade', 'teacherName', 'lessonSource', 'status'],
+    filters: {
+      lessonSource: {
+        label: 'Lesson Source',
+        type: 'radio',
+        options: [
+          { value: 's4s_intelligence', label: 'S4S Intelligence' },
+          { value: 'teacher', label: 'Teacher' },
+          { value: 'female_teacher', label: 'Female Teacher' },
+          { value: 'all', label: 'All' },
+        ],
+        default: 'all',
+      },
+    },
+    columns: [
+      { key: 'title', label: 'Title' },
+      { key: 'subject', label: 'Subject' },
+      { key: 'grade', label: 'Grade' },
+      { key: 'lessonSourceLabel', label: 'Lesson Source' },
+      { key: 'teacherName', label: 'Teacher' },
+      { key: 'durationMinutes', label: 'Minutes' },
+      { key: 'status', label: 'Status' },
+      { key: 'updatedAt', label: 'Updated' },
+    ],
+    actions: ['add', 'edit', 'delete', 'archive', 'restore', 'view'],
+    fields: [
+      { key: 'title', label: 'Title', type: 'text', required: true },
+      { key: 'name', label: 'Name (optional)', type: 'text' },
+      { key: 'subject', label: 'Subject', type: 'text' },
+      { key: 'grade', label: 'Grade', type: 'text' },
+      {
+        key: 'lessonSource',
+        label: 'Lesson Source',
+        type: 'select',
+        required: true,
+        options: RECORDED_LESSON_CONCRETE_SOURCES.map((id) => ({
+          value: id,
+          label: lessonSourceLabel(id),
+        })),
+      },
+      { key: 'teacherName', label: 'Teacher name', type: 'text' },
+      { key: 'durationMinutes', label: 'Duration (minutes)', type: 'number' },
+      {
+        key: 'status',
+        label: 'Status',
+        type: 'select',
+        options: ['draft', 'pending', 'approved', 'published', 'archived', 'active', 'inactive'],
+      },
+    ],
+    formatRow(row) {
+      return {
+        ...row,
+        title: row.title || row.name || '—',
+        name: row.name || row.title || '',
+        lessonSourceLabel: lessonSourceLabel(row.lessonSource),
+      };
+    },
   },
   permissions: {
     id: 'permissions',

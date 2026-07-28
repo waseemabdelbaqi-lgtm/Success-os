@@ -1,6 +1,7 @@
 'use client';
 
 import { useCallback, useEffect, useMemo, useState } from 'react';
+import { RECORDED_LESSON_SOURCES } from '@/app/data/recorded-lesson-sources.js';
 
 const emptyForm = {};
 
@@ -8,6 +9,7 @@ export function EnterpriseAdminModulePage({ moduleId }) {
   const [data, setData] = useState(null);
   const [q, setQ] = useState('');
   const [status, setStatus] = useState('');
+  const [lessonSource, setLessonSource] = useState('all');
   const [error, setError] = useState('');
   const [busy, setBusy] = useState(false);
   const [selected, setSelected] = useState([]);
@@ -21,6 +23,7 @@ export function EnterpriseAdminModulePage({ moduleId }) {
   const isFinance = moduleId === 'finance';
   const isCommission = moduleId === 'commission-rules';
   const isPaymentSplits = moduleId === 'payment-splits';
+  const isRecordedLessons = moduleId === 'recorded-lessons';
 
   const load = useCallback(async () => {
     setError('');
@@ -43,10 +46,11 @@ export function EnterpriseAdminModulePage({ moduleId }) {
       q,
       status,
     });
+    if (isRecordedLessons) params.set('lessonSource', lessonSource || 'all');
     const res = await fetch(`/api/enterprise-admin?${params}`, { cache: 'no-store' });
     if (!res.ok) throw new Error('Failed to load module');
     setData(await res.json());
-  }, [moduleId, q, status, isPermissions, isFinance, isCommission]);
+  }, [moduleId, q, status, lessonSource, isPermissions, isFinance, isCommission, isRecordedLessons]);
 
   useEffect(() => {
     load().catch((e) => setError(e.message || 'load failed'));
@@ -79,6 +83,7 @@ export function EnterpriseAdminModulePage({ moduleId }) {
 
   function exportCsv() {
     const params = new URLSearchParams({ view: 'export', module: moduleId, q, status });
+    if (isRecordedLessons) params.set('lessonSource', lessonSource || 'all');
     window.open(`/api/enterprise-admin?${params}`, '_blank');
   }
 
@@ -122,7 +127,11 @@ export function EnterpriseAdminModulePage({ moduleId }) {
               disabled={busy}
               onClick={() => {
                 setMode('add');
-                setForm({ status: 'active' });
+                setForm(
+                  isRecordedLessons
+                    ? { status: 'draft', lessonSource: 's4s_intelligence' }
+                    : { status: 'active' },
+                );
               }}
             >
               Add
@@ -219,6 +228,37 @@ export function EnterpriseAdminModulePage({ moduleId }) {
         />
       ) : null}
 
+      {isRecordedLessons ? (
+        <fieldset
+          style={{
+            margin: '16px 0 8px',
+            padding: '12px 14px',
+            border: '1px solid #e5e7eb',
+            borderRadius: 12,
+            background: '#fafafa',
+          }}
+        >
+          <legend style={{ padding: '0 6px', fontWeight: 600, fontSize: 14 }}>Lesson Source</legend>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 8, marginTop: 4 }}>
+            {RECORDED_LESSON_SOURCES.map((source) => (
+              <label
+                key={source.id}
+                style={{ display: 'flex', alignItems: 'center', gap: 8, fontSize: 14, cursor: 'pointer' }}
+              >
+                <input
+                  type="radio"
+                  name="lesson-source"
+                  value={source.id}
+                  checked={lessonSource === source.id}
+                  onChange={() => setLessonSource(source.id)}
+                />
+                <span>{source.label}</span>
+              </label>
+            ))}
+          </div>
+        </fieldset>
+      ) : null}
+
       <div style={{ display: 'flex', gap: 8, margin: '12px 0', flexWrap: 'wrap' }}>
         <input
           value={q}
@@ -234,6 +274,9 @@ export function EnterpriseAdminModulePage({ moduleId }) {
           <option value="pending">pending</option>
           <option value="queued">queued</option>
           <option value="approved">approved</option>
+          <option value="draft">draft</option>
+          <option value="published">published</option>
+          <option value="archived">archived</option>
         </select>
       </div>
 
@@ -258,11 +301,15 @@ export function EnterpriseAdminModulePage({ moduleId }) {
                     style={{ display: 'block', width: '100%', marginTop: 4, padding: 8 }}
                   >
                     <option value="">Select</option>
-                    {(f.options || []).map((o) => (
-                      <option key={o} value={o}>
-                        {o}
-                      </option>
-                    ))}
+                    {(f.options || []).map((o) => {
+                      const value = typeof o === 'object' ? o.value : o;
+                      const label = typeof o === 'object' ? o.label : o;
+                      return (
+                        <option key={value} value={value}>
+                          {label}
+                        </option>
+                      );
+                    })}
                   </select>
                 ) : (
                   <input

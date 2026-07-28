@@ -68,6 +68,7 @@ export async function GET(request) {
       listModuleItems(moduleId, {
         q: searchParams.get('q') || '',
         status: searchParams.get('status') || '',
+        lessonSource: searchParams.get('lessonSource') || 'all',
         sort: searchParams.get('sort') || 'updatedAt',
         dir: searchParams.get('dir') || 'desc',
         page: searchParams.get('page'),
@@ -108,6 +109,7 @@ export async function GET(request) {
     const file = exportModuleCsv(moduleId, {
       q: searchParams.get('q') || '',
       status: searchParams.get('status') || '',
+      lessonSource: searchParams.get('lessonSource') || 'all',
     });
     return new Response(file.csv, {
       headers: {

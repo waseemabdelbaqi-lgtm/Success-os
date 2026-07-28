@@ -31,6 +31,11 @@ import {
   erpSaveVersion,
 } from './enterprise-erp-store.js';
 import { ensureCommissionDefaults } from './enterprise-commission-engine.js';
+import {
+  matchesLessonSourceFilter,
+  normalizeLessonSource,
+  lessonSourceLabel,
+} from '../../data/recorded-lesson-sources.js';
 
 const PERFORMANCE_CACHE_MS = 60_000;
 let performanceCache = { at: 0, value: null };
@@ -123,6 +128,7 @@ function ensureStore() {
     'job-seekers',
     'partners',
     'courses',
+    'recorded-lessons',
     'notifications',
     'audit-logs',
     ...ERP_COLLECTION_NAMES,
@@ -415,6 +421,13 @@ export function listModuleItems(moduleId, options = {}) {
     items = items.filter((row) => row.status === options.status);
   }
 
+  if (moduleId === 'recorded-lessons' || options.lessonSource) {
+    const sourceFilter = normalizeLessonSource(options.lessonSource || 'all') || 'all';
+    if (sourceFilter !== 'all') {
+      items = items.filter((row) => matchesLessonSourceFilter(row.lessonSource, sourceFilter));
+    }
+  }
+
   const sortKey = options.sort || 'updatedAt';
   const dir = options.dir === 'asc' ? 1 : -1;
   items = [...items].sort((a, b) => {
@@ -428,14 +441,30 @@ export function listModuleItems(moduleId, options = {}) {
   const page = Math.max(1, Number(options.page) || 1);
   const pageSize = Math.min(100, Math.max(1, Number(options.pageSize) || 25));
   const start = (page - 1) * pageSize;
-  const pageItems = items.slice(start, start + pageSize);
+  let pageItems = items.slice(start, start + pageSize);
+  if (typeof schema.formatRow === 'function') {
+    pageItems = pageItems.map((row) => schema.formatRow(row));
+  } else if (moduleId === 'recorded-lessons') {
+    pageItems = pageItems.map((row) => ({
+      ...row,
+      title: row.title || row.name || '—',
+      lessonSourceLabel: lessonSourceLabel(row.lessonSource),
+    }));
+  }
 
   return {
     moduleId,
-    schema,
+    schema: {
+      ...schema,
+      // Do not send functions over JSON
+      formatRow: undefined,
+    },
     total: items.length,
     page,
     pageSize,
+    filters: {
+      lessonSource: normalizeLessonSource(options.lessonSource || 'all') || 'all',
+    },
     items: pageItems,
     updatedAt: doc.updatedAt,
   };
@@ -476,6 +505,16 @@ export function mutateModule(moduleId, action, payload = {}) {
       deletedAt: null,
       archivedAt: null,
     };
+    if (moduleId === 'recorded-lessons') {
+      row.title = payload.title || payload.name || '';
+      row.name = payload.name || row.title;
+      const source = normalizeLessonSource(payload.lessonSource);
+      if (!source || source === 'all') {
+        return { ok: false, error: 'LESSON_SOURCE_REQUIRED' };
+      }
+      row.lessonSource = source;
+      row.durationMinutes = Number(payload.durationMinutes || 0) || null;
+    }
     if (moduleId === 'teachers' && payload.subjects && !Array.isArray(payload.subjects)) {
       row.subjects = String(payload.subjects)
         .split(',')
@@ -510,12 +549,27 @@ export function mutateModule(moduleId, action, payload = {}) {
     if (idx < 0) return { ok: false, error: 'NOT_FOUND' };
     erpSaveVersion(collectionName, items[idx]);
     const before = items[idx];
-    items[idx] = {
+    const next = {
       ...items[idx],
       ...payload,
       id,
       updatedAt: nowIso(),
     };
+    if (moduleId === 'recorded-lessons') {
+      next.title = payload.title || payload.name || next.title || '';
+      next.name = payload.name || next.title;
+      if (payload.lessonSource != null) {
+        const source = normalizeLessonSource(payload.lessonSource);
+        if (!source || source === 'all') {
+          return { ok: false, error: 'LESSON_SOURCE_REQUIRED' };
+        }
+        next.lessonSource = source;
+      }
+      if (payload.durationMinutes != null) {
+        next.durationMinutes = Number(payload.durationMinutes) || null;
+      }
+    }
+    items[idx] = next;
     writeCollection(collectionName, { items });
     audit({ id, name: items[idx].name });
     erpAppendAudit({
