@@ -9,7 +9,8 @@
 
 ## 1. Git checkpoint
 
-See latest commit on `cursor/gate4-curriculum-factory-bca1` after push.
+- Commit: `2b9a0bf`
+- Branch: `cursor/gate4-curriculum-factory-bca1`
 
 ## 2. Migrations
 
