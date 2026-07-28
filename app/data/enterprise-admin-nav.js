@@ -13,6 +13,7 @@ import {
   RECORDED_LESSON_CONCRETE_SOURCES,
   lessonSourceLabel,
 } from './recorded-lesson-sources.js';
+import { calculateTeacherPriceSplit } from '../lib/admin/teacher-price-split.js';
 
 export const ENTERPRISE_ADMIN_SCHEMA = 'success-os.enterprise-admin.v2';
 export const ENTERPRISE_ADMIN_VERSION = '2.0.0';
@@ -221,7 +222,10 @@ export const ENTERPRISE_ADMIN_MODULES = Object.freeze({
       { key: 'subject', label: 'Subject' },
       { key: 'teacherGender', label: 'Teacher Gender' },
       { key: 'language', label: 'Language' },
-      { key: 'price', label: 'Price' },
+      { key: 'price', label: 'Teacher Price' },
+      { key: 'teacherReceives', label: 'Teacher Receives' },
+      { key: 'successOs', label: 'Success OS' },
+      { key: 'commissionPercent', label: 'Commission %' },
       { key: 'rating', label: 'Rating' },
       { key: 'durationMinutes', label: 'Duration' },
       { key: 'popularity', label: 'Popularity' },
@@ -278,12 +282,20 @@ export const ENTERPRISE_ADMIN_MODULES = Object.freeze({
       },
     ],
     formatRow(row) {
+      const split = calculateTeacherPriceSplit({
+        teacherPrice: row.isFree ? 0 : row.price,
+        commissionPercent: row.commissionPercent ?? 30,
+        currency: row.currency || 'USD',
+      });
       return {
         ...row,
         title: row.title || row.name || '—',
         name: row.name || row.title || '',
         lessonSourceLabel: lessonSourceLabel(row.lessonSource),
-        price: row.isFree ? 'Free' : row.price ?? '—',
+        price: row.isFree ? 'Free' : `${split.teacherPrice} ${split.currency}`,
+        teacherReceives: row.isFree ? '—' : `${split.teacherReceives} ${split.currency}`,
+        successOs: row.isFree ? '—' : `${split.successOs} ${split.currency}`,
+        commissionPercent: row.isFree ? '—' : `${split.platformCommissionPercent}%`,
       };
     },
   },
