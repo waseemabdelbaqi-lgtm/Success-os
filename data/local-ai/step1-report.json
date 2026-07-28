@@ -1,0 +1,23 @@
+{
+  "step": 1,
+  "curriculumProcessingAllowed": false,
+  "hardwareDetected": {
+    "os": "Ubuntu 24.04.4 LTS",
+    "cpu": "Intel(R) Xeon(R) Processor (4 cores, x86_64)",
+    "ram": "15 GiB total / ~12 GiB available",
+    "gpu": "none",
+    "diskAvailable": "225 GiB"
+  },
+  "ollamaInstallationStatus": "installed",
+  "selectedModel": "qwen3:8b",
+  "downloadSize": "5.2 GB",
+  "testResponse": "الجمع هو إضافة أشياء معًا لحساب الكمية الإجمالية. مثلاً: 2 تفاحة + 1 تفاحة = 3 تفاحة.  \nسؤال: ما هو ناتج جمع 3 + 2؟  \nأ. 4  \nب. 5  \nج. 6  \nالإجابة الصحيحة: ب. 5",
+  "responseTimeMs": 19049,
+  "arabicQualityResult": "PASS",
+  "jsonTestResult": "PASS",
+  "result": "PASS",
+  "geminiApiKeySetup": "disabled",
+  "geminiOAuthSetup": "disabled",
+  "ollamaHost": "http://127.0.0.1:11434",
+  "notes": "Low-resource host (15GiB RAM, no GPU) → 7B–9B class. qwen3:8b verified on Ollama library."
+}

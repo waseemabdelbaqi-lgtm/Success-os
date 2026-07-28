@@ -4,7 +4,11 @@ const orchestrator=fs.readFileSync('app/lib/ai/orchestrator.js','utf8');
 const routes=['app/api/study-content/route.js','app/api/lesson-production/route.js','app/api/video-production/route.js','app/api/ai-journey/route.js'].map(x=>fs.readFileSync(x,'utf8'));
 const engine=fs.readFileSync('app/lib/ai/lesson-engine.js','utf8');
 const failures=[];
-for(const provider of ['openai','gemini','mistral-ocr','mathpix','google-document-ai','heygen','synthesia','tavus','colossyan','elai','elevenlabs','cartesia','runway','pika','luma','flux','ideogram','deepl','sympy'])if(!registry.includes(`id:'${provider}'`))failures.push(`Missing provider registry entry: ${provider}`);
+for(const provider of ['ollama-local','openai','gemini','mistral-ocr','mathpix','google-document-ai','heygen','synthesia','tavus','colossyan','elai','elevenlabs','cartesia','runway','pika','luma','flux','ideogram','deepl','sympy'])if(!registry.includes(`id:'${provider}'`))failures.push(`Missing provider registry entry: ${provider}`);
+if(!registry.includes("state:'disabled'")||!/id:'gemini'[\s\S]*?state:'disabled'/.test(registry))failures.push('Gemini must remain registered as disabled (no API-key/OAuth setup)');
+if(!orchestrator.includes('GEMINI_DISABLED')||!orchestrator.includes('ollamaLocalText'))failures.push('Orchestrator must disable Gemini and route text through local Ollama');
+if(!fs.existsSync('app/lib/ai/local-ollama.js'))failures.push('Missing local Ollama service');
+if(!fs.existsSync('lib/ai/local-ollama.ts'))failures.push('Missing TypeScript local Ollama service');
 for(const token of ['generateText','generateJSON','createAvatarVideo','avatarVideoStatus','extractDocument','orchestratorHealth','circuitOpen','taskWeights','ALL_TEXT_PROVIDERS_FAILED','ALL_AVATAR_PROVIDERS_FAILED','ALL_OCR_PROVIDERS_FAILED'])if(!orchestrator.includes(token))failures.push(`Missing orchestrator contract: ${token}`);
 for(const [i,route] of routes.entries()){if(!route.includes('orchestrator'))failures.push(`API route ${i+1} bypasses orchestrator`);if(route.includes("fetch('https://api.openai.com")||route.includes("fetch('https://api.heygen.com"))failures.push(`API route ${i+1} hard-codes provider`)}
 for(const token of ['lessonFingerprint','buildLessonPackage','packageQuality','teacherScript','unitExam','finalExam','sourceLicenseReviewRequired','quality gate + scientific review'])if(!engine.includes(token))failures.push(`Missing lesson engine contract: ${token}`);
