@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { defaultRecordedLessonFilters } from '@/app/data/recorded-lesson-filters.js';
 import { RecordedLessonsFilters } from '@/components/admin/recorded-lessons-filters.jsx';
+import { TeacherPriceSplitPanel } from '@/components/admin/teacher-price-split.jsx';
 
 const emptyForm = {};
 
@@ -19,6 +20,7 @@ export function EnterpriseAdminModulePage({ moduleId }) {
   const [permMatrix, setPermMatrix] = useState(null);
   const [financeSummary, setFinanceSummary] = useState(null);
   const [commissionDefaults, setCommissionDefaults] = useState(null);
+  const [priceSplit, setPriceSplit] = useState(null);
 
   const isPermissions = moduleId === 'permissions';
   const isFinance = moduleId === 'finance';
@@ -69,6 +71,28 @@ export function EnterpriseAdminModulePage({ moduleId }) {
   useEffect(() => {
     load().catch((e) => setError(e.message || 'load failed'));
   }, [load]);
+
+  useEffect(() => {
+    if (!isRecordedLessons || !mode) {
+      setPriceSplit(null);
+      return;
+    }
+    const price = form.price;
+    if (price === '' || price == null) {
+      setPriceSplit(null);
+      return;
+    }
+    const params = new URLSearchParams({
+      view: 'teacher-price-split',
+      teacherPrice: String(price),
+      service: 'recorded-lesson',
+      currency: 'USD',
+    });
+    fetch(`/api/enterprise-admin?${params}`, { cache: 'no-store' })
+      .then((r) => r.json())
+      .then((json) => setPriceSplit(json.split || null))
+      .catch(() => setPriceSplit(null));
+  }, [isRecordedLessons, mode, form.price]);
 
   async function runAction(action, payload = {}) {
     setBusy(true);
@@ -155,7 +179,7 @@ export function EnterpriseAdminModulePage({ moduleId }) {
                 setMode('add');
                 setForm(
                   isRecordedLessons
-                    ? { status: 'draft', lessonSource: 's4s_intelligence' }
+                    ? { status: 'draft', lessonSource: 's4s_intelligence', price: 50 }
                     : { status: 'active' },
                 );
               }}
@@ -187,6 +211,10 @@ export function EnterpriseAdminModulePage({ moduleId }) {
                         gatewayFees: 0,
                         partnerId,
                         partnerType,
+                        service:
+                          partnerType === 'teacher' || isRecordedLessons
+                            ? 'recorded-lesson'
+                            : undefined,
                         currency: 'USD',
                         payoutMethod: 'manual_transfer',
                       },
@@ -230,7 +258,7 @@ export function EnterpriseAdminModulePage({ moduleId }) {
         <CommissionDefaultsBar
           defaults={commissionDefaults}
           busy={busy}
-          onSave={async (percent) => {
+          onSave={async (payload) => {
             setBusy(true);
             try {
               const res = await fetch('/api/enterprise-admin', {
@@ -238,7 +266,10 @@ export function EnterpriseAdminModulePage({ moduleId }) {
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
                   action: 'setCommissionDefaults',
-                  payload: { defaultCommissionPercent: percent },
+                  payload:
+                    typeof payload === 'number'
+                      ? { defaultCommissionPercent: payload }
+                      : payload,
                   user: 'owner',
                 }),
               });
@@ -336,6 +367,12 @@ export function EnterpriseAdminModulePage({ moduleId }) {
               </label>
             ))}
           </div>
+          {isRecordedLessons && priceSplit ? (
+            <TeacherPriceSplitPanel
+              split={priceSplit}
+              title="Teacher Price → Platform Commission → Teacher Receives → Success OS"
+            />
+          ) : null}
           <div style={{ display: 'flex', gap: 8, marginTop: 10 }}>
             <button type="submit" disabled={busy}>
               Save
@@ -598,9 +635,13 @@ function FinanceSummaryCards({ summary }) {
 
 function CommissionDefaultsBar({ defaults, busy, onSave }) {
   const [percent, setPercent] = useState(defaults.defaultCommissionPercent);
+  const [recordedPercent, setRecordedPercent] = useState(
+    defaults.recordedLessonCommissionPercent ?? 30,
+  );
   useEffect(() => {
     setPercent(defaults.defaultCommissionPercent);
-  }, [defaults.defaultCommissionPercent]);
+    setRecordedPercent(defaults.recordedLessonCommissionPercent ?? 30);
+  }, [defaults.defaultCommissionPercent, defaults.recordedLessonCommissionPercent]);
   return (
     <div
       style={{
@@ -618,7 +659,7 @@ function CommissionDefaultsBar({ defaults, busy, onSave }) {
         <strong>Default commission</strong> (Owner-configurable, not hardcoded)
       </div>
       <label style={{ fontSize: 13 }}>
-        %
+        Global %
         <input
           type="number"
           value={percent}
@@ -626,9 +667,32 @@ function CommissionDefaultsBar({ defaults, busy, onSave }) {
           style={{ marginLeft: 6, padding: 6, width: 80 }}
         />
       </label>
-      <button type="button" disabled={busy} onClick={() => onSave(percent)}>
-        Save default
+      <label style={{ fontSize: 13 }}>
+        Recorded Lessons %
+        <input
+          type="number"
+          value={recordedPercent}
+          onChange={(e) => setRecordedPercent(Number(e.target.value))}
+          style={{ marginLeft: 6, padding: 6, width: 80 }}
+        />
+      </label>
+      <button
+        type="button"
+        disabled={busy}
+        onClick={() =>
+          onSave({
+            defaultCommissionPercent: percent,
+            recordedLessonCommissionPercent: recordedPercent,
+          })
+        }
+      >
+        Save defaults
       </button>
+      <span style={{ fontSize: 12, color: '#6b7280' }}>
+        Example: Teacher Price 50 USD → Commission {recordedPercent}% → Teacher{' '}
+        {(50 * (100 - Number(recordedPercent || 0)) / 100).toFixed(0)} USD · Success OS{' '}
+        {(50 * Number(recordedPercent || 0) / 100).toFixed(0)} USD
+      </span>
       <span style={{ fontSize: 12, color: '#6b7280' }}>
         Updated {defaults.updatedAt || '—'} by {defaults.updatedBy || '—'}
       </span>

@@ -266,7 +266,7 @@ export const ENTERPRISE_ADMIN_MODULES = Object.freeze({
         })),
       },
       { key: 'teacherName', label: 'Teacher name', type: 'text' },
-      { key: 'price', label: 'Price', type: 'number' },
+      { key: 'price', label: 'Teacher Price (USD)', type: 'number' },
       { key: 'rating', label: 'Rating', type: 'number' },
       { key: 'durationMinutes', label: 'Duration (minutes)', type: 'number' },
       { key: 'popularity', label: 'Popularity score', type: 'number' },

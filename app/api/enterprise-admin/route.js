@@ -12,6 +12,7 @@ import {
   listCommissionRules,
   mutateCommissionRule,
   previewCommission,
+  previewTeacherPriceSplit,
   setCommissionDefaults,
 } from '../../lib/admin/enterprise-commission-engine.js';
 import {
@@ -101,6 +102,22 @@ export async function GET(request) {
 
   if (view === 'commission-defaults') {
     return Response.json(getCommissionDefaults(), { headers: { 'Cache-Control': 'no-store' } });
+  }
+
+  if (view === 'teacher-price-split') {
+    return Response.json(
+      {
+        ok: true,
+        split: previewTeacherPriceSplit({
+          teacherPrice: searchParams.get('teacherPrice') || searchParams.get('price') || 0,
+          commissionPercent: searchParams.get('commissionPercent') || undefined,
+          currency: searchParams.get('currency') || undefined,
+          service: searchParams.get('service') || 'recorded-lesson',
+        }),
+        defaults: getCommissionDefaults(),
+      },
+      { headers: { 'Cache-Control': 'no-store' } },
+    );
   }
 
   if (view === 'finance-summary') {

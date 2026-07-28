@@ -17,20 +17,42 @@ import {
   erpWriteCollection,
   erpWriteJson,
 } from './enterprise-erp-store.js';
+import {
+  calculateTeacherPriceSplit,
+  isRecordedLessonService,
+} from './teacher-price-split.js';
 
 const DEFAULTS_FILE = () => path.join(erpRoot(), 'config', 'commission-defaults.json');
+
+const BASE_DEFAULTS = {
+  defaultCommissionPercent: 10,
+  /** Recorded Lessons teacher-price split (Teacher Price → Success OS %). */
+  recordedLessonCommissionPercent: 30,
+  defaultCurrency: 'USD',
+  note: 'Owner-configurable. Never hardcode this value in application code paths.',
+};
 
 /** Seed configurable defaults (Owner can change anytime via API). */
 export function ensureCommissionDefaults() {
   erpEnsureDirs();
   const existing = erpReadJson(DEFAULTS_FILE());
-  if (existing) return existing;
+  if (existing) {
+    let changed = false;
+    const merged = { ...BASE_DEFAULTS, ...existing };
+    if (existing.recordedLessonCommissionPercent == null) {
+      merged.recordedLessonCommissionPercent = BASE_DEFAULTS.recordedLessonCommissionPercent;
+      changed = true;
+    }
+    if (changed) {
+      merged.updatedAt = existing.updatedAt || erpNow();
+      erpWriteJson(DEFAULTS_FILE(), merged);
+    }
+    return merged;
+  }
   const defaults = {
-    defaultCommissionPercent: 10,
-    defaultCurrency: 'USD',
+    ...BASE_DEFAULTS,
     updatedAt: erpNow(),
     updatedBy: 'system',
-    note: 'Owner-configurable. Never hardcode this value in application code paths.',
   };
   erpWriteJson(DEFAULTS_FILE(), defaults);
   return defaults;
@@ -49,6 +71,10 @@ export function setCommissionDefaults(patch = {}, meta = {}) {
       patch.defaultCommissionPercent != null
         ? Number(patch.defaultCommissionPercent)
         : before.defaultCommissionPercent,
+    recordedLessonCommissionPercent:
+      patch.recordedLessonCommissionPercent != null
+        ? Number(patch.recordedLessonCommissionPercent)
+        : before.recordedLessonCommissionPercent,
     updatedAt: erpNow(),
     updatedBy: meta.user || 'owner',
   };
@@ -62,6 +88,25 @@ export function setCommissionDefaults(patch = {}, meta = {}) {
     reason: meta.reason || 'update_commission_defaults',
   });
   return { ok: true, defaults: next };
+}
+
+/**
+ * Preview Teacher Price split for Recorded Lessons (and teacher services).
+ */
+export function previewTeacherPriceSplit(input = {}) {
+  const defaults = ensureCommissionDefaults();
+  const service = input.service || 'recorded-lesson';
+  const percent =
+    input.commissionPercent != null
+      ? Number(input.commissionPercent)
+      : isRecordedLessonService(service)
+        ? Number(defaults.recordedLessonCommissionPercent ?? 30)
+        : Number(defaults.defaultCommissionPercent ?? 10);
+  return calculateTeacherPriceSplit({
+    teacherPrice: input.teacherPrice ?? input.price ?? input.grossAmount ?? 0,
+    commissionPercent: percent,
+    currency: input.currency || defaults.defaultCurrency || 'USD',
+  });
 }
 
 function scoreRule(rule, ctx) {
@@ -160,15 +205,24 @@ export function resolveCommission(context = {}) {
   }
 
   if (!best) {
-    const percent = Number(defaults.defaultCommissionPercent);
+    const percent = isRecordedLessonService(ctx.service)
+      ? Number(defaults.recordedLessonCommissionPercent ?? defaults.defaultCommissionPercent)
+      : Number(defaults.defaultCommissionPercent);
     const amount = Number(((gross * percent) / 100).toFixed(6));
+    const teacherSplit = calculateTeacherPriceSplit({
+      teacherPrice: gross,
+      commissionPercent: percent,
+      currency: defaults.defaultCurrency || 'USD',
+    });
     return {
-      source: 'default',
+      source: isRecordedLessonService(ctx.service) ? 'recorded-lesson-default' : 'default',
       ruleId: null,
       pricingType: 'percentage',
       percent,
       fixedAmount: 0,
       commissionAmount: amount,
+      teacherReceives: teacherSplit.teacherReceives,
+      successOs: teacherSplit.successOs,
       defaultsVersion: defaults.updatedAt,
     };
   }
@@ -298,5 +352,22 @@ function saveRuleVersion(rule) {
 }
 
 export function previewCommission(payload = {}) {
-  return resolveCommission(payload);
+  const resolved = resolveCommission({
+    ...payload,
+    service: payload.service || (payload.partnerType === 'teacher' ? 'recorded-lesson' : payload.service),
+    grossAmount: payload.grossAmount ?? payload.teacherPrice ?? payload.price ?? 0,
+  });
+  const split = previewTeacherPriceSplit({
+    teacherPrice: payload.teacherPrice ?? payload.price ?? payload.grossAmount ?? 0,
+    commissionPercent: resolved.percent,
+    currency: payload.currency,
+    service: payload.service || 'recorded-lesson',
+  });
+  return {
+    ...resolved,
+    teacherPriceSplit: split,
+    teacherReceives: split.teacherReceives,
+    successOs: split.successOs,
+    breakdown: split.breakdown,
+  };
 }
