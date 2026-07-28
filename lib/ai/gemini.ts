@@ -5,7 +5,7 @@ import { timingSafeEqual } from "node:crypto";
 import { readGeminiApiKeySecure } from "@/lib/ai/gemini-local-env";
 
 /** Fixed connection probe — never accept caller-supplied prompts here. */
-export const GEMINI_HEALTH_PROMPT = "أجب بكلمة واحدة فقط: جاهز";
+export const GEMINI_HEALTH_PROMPT = "أجب بكلمة واحدة: جاهز";
 
 /** Prefer currently available stable Gemini models (first success wins). */
 const STABLE_MODEL_CANDIDATES = [

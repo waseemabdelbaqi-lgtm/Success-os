@@ -17,13 +17,6 @@ async function openAIText({prompt,maxOutputTokens=3000,effort='medium',safetyIde
  if(!r.ok)throw new Error(`OPENAI_${r.status}`);const d=await r.json();return d.output_text||d.output?.flatMap(x=>x.content||[]).map(x=>x.text||'').join('')||'';
 }
 async function geminiText({prompt,maxOutputTokens=3000}){
-  try{
-    const { generateWithGeminiCliAuth } = await import('@/lib/ai/gemini-cli-auth');
-    const out = await generateWithGeminiCliAuth(prompt,{ maxOutputTokens });
-    return out.text;
-  }catch{
-    // Fall back to API key only if present (legacy).
-  }
   const key=process.env.GEMINI_API_KEY,model=process.env.GEMINI_TEXT_MODEL||'gemini-2.5-pro';
   if(!key) throw new Error('GEMINI_NOT_AUTHENTICATED');
   const r=await fetch('https://generativelanguage.googleapis.com/v1beta/interactions',{method:'POST',headers:{'Content-Type':'application/json','x-goog-api-key':key},body:JSON.stringify({model,input:prompt,generation_config:{max_output_tokens:maxOutputTokens}})});
