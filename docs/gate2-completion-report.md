@@ -9,8 +9,11 @@
 
 ## 1. Git checkpoint
 
-- Pre-work tag intent: Gate 2 builds on Gate 1 FAIL checkpoint `15c7426`
-- This Gate 2 commit: see latest commit on branch after push
+- Gate 1 FAIL checkpoint: `15c7426`
+- Gate 2 engine commit: `d8ec003`
+- Follow-up (nav/gitignore): `693242a`
+- Branch: `cursor/jordan-interactive-books-bca1`
+- PR: https://github.com/waseemabdelbaqi-lgtm/Success-os/pull/34
 
 ## 2. Database migrations created
 
