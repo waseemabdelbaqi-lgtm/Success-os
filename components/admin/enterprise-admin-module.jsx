@@ -1,7 +1,8 @@
 'use client';
 
 import { useCallback, useEffect, useMemo, useState } from 'react';
-import { RECORDED_LESSON_SOURCES } from '@/app/data/recorded-lesson-sources.js';
+import { defaultRecordedLessonFilters } from '@/app/data/recorded-lesson-filters.js';
+import { RecordedLessonsFilters } from '@/components/admin/recorded-lessons-filters.jsx';
 
 const emptyForm = {};
 
@@ -9,7 +10,7 @@ export function EnterpriseAdminModulePage({ moduleId }) {
   const [data, setData] = useState(null);
   const [q, setQ] = useState('');
   const [status, setStatus] = useState('');
-  const [lessonSource, setLessonSource] = useState('all');
+  const [catalogFilters, setCatalogFilters] = useState(() => defaultRecordedLessonFilters());
   const [error, setError] = useState('');
   const [busy, setBusy] = useState(false);
   const [selected, setSelected] = useState([]);
@@ -46,11 +47,24 @@ export function EnterpriseAdminModulePage({ moduleId }) {
       q,
       status,
     });
-    if (isRecordedLessons) params.set('lessonSource', lessonSource || 'all');
+    if (isRecordedLessons) {
+      params.set('lessonSource', catalogFilters.lessonSource || 'all');
+      params.set('country', catalogFilters.country || 'all');
+      params.set('curriculum', catalogFilters.curriculum || 'all');
+      params.set('grade', catalogFilters.grade || 'all');
+      params.set('subject', catalogFilters.subject || 'all');
+      params.set('teacherGender', catalogFilters.teacherGender || 'all');
+      params.set('language', catalogFilters.language || 'all');
+      params.set('price', catalogFilters.price || 'all');
+      params.set('rating', catalogFilters.rating || 'all');
+      params.set('duration', catalogFilters.duration || 'all');
+      params.set('sort', catalogFilters.sort || 'newest');
+      params.set('catalogSort', catalogFilters.sort || 'newest');
+    }
     const res = await fetch(`/api/enterprise-admin?${params}`, { cache: 'no-store' });
     if (!res.ok) throw new Error('Failed to load module');
     setData(await res.json());
-  }, [moduleId, q, status, lessonSource, isPermissions, isFinance, isCommission, isRecordedLessons]);
+  }, [moduleId, q, status, catalogFilters, isPermissions, isFinance, isCommission, isRecordedLessons]);
 
   useEffect(() => {
     load().catch((e) => setError(e.message || 'load failed'));
@@ -83,7 +97,19 @@ export function EnterpriseAdminModulePage({ moduleId }) {
 
   function exportCsv() {
     const params = new URLSearchParams({ view: 'export', module: moduleId, q, status });
-    if (isRecordedLessons) params.set('lessonSource', lessonSource || 'all');
+    if (isRecordedLessons) {
+      params.set('lessonSource', catalogFilters.lessonSource || 'all');
+      params.set('country', catalogFilters.country || 'all');
+      params.set('curriculum', catalogFilters.curriculum || 'all');
+      params.set('grade', catalogFilters.grade || 'all');
+      params.set('subject', catalogFilters.subject || 'all');
+      params.set('teacherGender', catalogFilters.teacherGender || 'all');
+      params.set('language', catalogFilters.language || 'all');
+      params.set('price', catalogFilters.price || 'all');
+      params.set('rating', catalogFilters.rating || 'all');
+      params.set('duration', catalogFilters.duration || 'all');
+      params.set('sort', catalogFilters.sort || 'newest');
+    }
     window.open(`/api/enterprise-admin?${params}`, '_blank');
   }
 
@@ -229,34 +255,16 @@ export function EnterpriseAdminModulePage({ moduleId }) {
       ) : null}
 
       {isRecordedLessons ? (
-        <fieldset
-          style={{
-            margin: '16px 0 8px',
-            padding: '12px 14px',
-            border: '1px solid #e5e7eb',
-            borderRadius: 12,
-            background: '#fafafa',
-          }}
-        >
-          <legend style={{ padding: '0 6px', fontWeight: 600, fontSize: 14 }}>Lesson Source</legend>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 8, marginTop: 4 }}>
-            {RECORDED_LESSON_SOURCES.map((source) => (
-              <label
-                key={source.id}
-                style={{ display: 'flex', alignItems: 'center', gap: 8, fontSize: 14, cursor: 'pointer' }}
-              >
-                <input
-                  type="radio"
-                  name="lesson-source"
-                  value={source.id}
-                  checked={lessonSource === source.id}
-                  onChange={() => setLessonSource(source.id)}
-                />
-                <span>{source.label}</span>
-              </label>
-            ))}
-          </div>
-        </fieldset>
+        <RecordedLessonsFilters
+          filters={catalogFilters}
+          facets={data?.facets}
+          total={data?.total || 0}
+          lessonSource={catalogFilters.lessonSource}
+          onLessonSourceChange={(lessonSource) =>
+            setCatalogFilters((prev) => ({ ...prev, lessonSource }))
+          }
+          onChange={setCatalogFilters}
+        />
       ) : null}
 
       <div style={{ display: 'flex', gap: 8, margin: '12px 0', flexWrap: 'wrap' }}>

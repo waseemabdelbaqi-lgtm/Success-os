@@ -36,6 +36,10 @@ import {
   normalizeLessonSource,
   lessonSourceLabel,
 } from '../../data/recorded-lesson-sources.js';
+import {
+  applyRecordedLessonCatalog,
+  parseRecordedLessonFilters,
+} from '../../data/recorded-lesson-filters.js';
 
 const PERFORMANCE_CACHE_MS = 60_000;
 let performanceCache = { at: 0, value: null };
@@ -410,33 +414,65 @@ export function listModuleItems(moduleId, options = {}) {
     items = items.filter((i) => !i.deletedAt && !i.archivedAt);
   }
 
-  const q = text(options.q || options.search).toLowerCase();
-  if (q) {
-    const keys = schema.searchable || ['name'];
-    items = items.filter((row) =>
-      keys.some((k) => String(row[k] ?? '').toLowerCase().includes(q)),
-    );
+  let catalogMeta = null;
+
+  if (moduleId === 'recorded-lessons') {
+    const catalogSort =
+      options.catalogSort ||
+      (['newest', 'popularity', 'rating', 'price_asc', 'price_desc', 'duration'].includes(options.sort)
+        ? options.sort
+        : 'newest');
+    const catalog = applyRecordedLessonCatalog(items, {
+      q: options.q || options.search || '',
+      lessonSource: options.lessonSource,
+      sort: catalogSort,
+      country: options.country,
+      curriculum: options.curriculum,
+      grade: options.grade,
+      subject: options.subject,
+      teacherGender: options.teacherGender,
+      language: options.language,
+      price: options.price,
+      rating: options.rating,
+      duration: options.duration,
+    });
+    items = catalog.items;
+    catalogMeta = {
+      filters: catalog.filters,
+      facets: catalog.facets,
+    };
+  } else {
+    const q = text(options.q || options.search).toLowerCase();
+    if (q) {
+      const keys = schema.searchable || ['name'];
+      items = items.filter((row) =>
+        keys.some((k) => String(row[k] ?? '').toLowerCase().includes(q)),
+      );
+    }
+    if (options.status) {
+      items = items.filter((row) => row.status === options.status);
+    }
+    if (options.lessonSource) {
+      const sourceFilter = normalizeLessonSource(options.lessonSource || 'all') || 'all';
+      if (sourceFilter !== 'all') {
+        items = items.filter((row) => matchesLessonSourceFilter(row.lessonSource, sourceFilter));
+      }
+    }
+
+    const sortKey = options.sort || 'updatedAt';
+    const dir = options.dir === 'asc' ? 1 : -1;
+    items = [...items].sort((a, b) => {
+      const av = a[sortKey] ?? a.at ?? '';
+      const bv = b[sortKey] ?? b.at ?? '';
+      if (av < bv) return -1 * dir;
+      if (av > bv) return 1 * dir;
+      return 0;
+    });
   }
-  if (options.status) {
+
+  if (moduleId === 'recorded-lessons' && options.status) {
     items = items.filter((row) => row.status === options.status);
   }
-
-  if (moduleId === 'recorded-lessons' || options.lessonSource) {
-    const sourceFilter = normalizeLessonSource(options.lessonSource || 'all') || 'all';
-    if (sourceFilter !== 'all') {
-      items = items.filter((row) => matchesLessonSourceFilter(row.lessonSource, sourceFilter));
-    }
-  }
-
-  const sortKey = options.sort || 'updatedAt';
-  const dir = options.dir === 'asc' ? 1 : -1;
-  items = [...items].sort((a, b) => {
-    const av = a[sortKey] ?? a.at ?? '';
-    const bv = b[sortKey] ?? b.at ?? '';
-    if (av < bv) return -1 * dir;
-    if (av > bv) return 1 * dir;
-    return 0;
-  });
 
   const page = Math.max(1, Number(options.page) || 1);
   const pageSize = Math.min(100, Math.max(1, Number(options.pageSize) || 25));
@@ -462,9 +498,11 @@ export function listModuleItems(moduleId, options = {}) {
     total: items.length,
     page,
     pageSize,
-    filters: {
+    filters: catalogMeta?.filters || {
       lessonSource: normalizeLessonSource(options.lessonSource || 'all') || 'all',
     },
+    facets: catalogMeta?.facets || null,
+    catalog: moduleId === 'recorded-lessons' ? parseRecordedLessonFilters(options) : null,
     items: pageItems,
     updatedAt: doc.updatedAt,
   };
@@ -513,7 +551,19 @@ export function mutateModule(moduleId, action, payload = {}) {
         return { ok: false, error: 'LESSON_SOURCE_REQUIRED' };
       }
       row.lessonSource = source;
+      row.country = text(payload.country) || null;
+      row.curriculum = text(payload.curriculum) || null;
+      row.grade = text(payload.grade) || null;
+      row.subject = text(payload.subject) || null;
+      row.teacherGender = text(payload.teacherGender).toLowerCase() || null;
+      row.language = text(payload.language).toLowerCase() || null;
+      row.teacherName = text(payload.teacherName) || null;
+      row.price = payload.price == null || payload.price === '' ? null : Number(payload.price);
+      row.isFree = row.price == null || row.price <= 0;
+      row.rating = payload.rating == null || payload.rating === '' ? null : Number(payload.rating);
       row.durationMinutes = Number(payload.durationMinutes || 0) || null;
+      row.popularity = Number(payload.popularity || 0) || 0;
+      row.publishedAt = payload.publishedAt || (row.status === 'published' ? nowIso() : null);
     }
     if (moduleId === 'teachers' && payload.subjects && !Array.isArray(payload.subjects)) {
       row.subjects = String(payload.subjects)
@@ -565,8 +615,33 @@ export function mutateModule(moduleId, action, payload = {}) {
         }
         next.lessonSource = source;
       }
+      for (const key of [
+        'country',
+        'curriculum',
+        'grade',
+        'subject',
+        'teacherName',
+      ]) {
+        if (payload[key] != null) next[key] = text(payload[key]) || null;
+      }
+      if (payload.teacherGender != null) {
+        next.teacherGender = text(payload.teacherGender).toLowerCase() || null;
+      }
+      if (payload.language != null) {
+        next.language = text(payload.language).toLowerCase() || null;
+      }
+      if (payload.price != null) {
+        next.price = payload.price === '' ? null : Number(payload.price);
+        next.isFree = next.price == null || next.price <= 0;
+      }
+      if (payload.rating != null) {
+        next.rating = payload.rating === '' ? null : Number(payload.rating);
+      }
       if (payload.durationMinutes != null) {
         next.durationMinutes = Number(payload.durationMinutes) || null;
+      }
+      if (payload.popularity != null) {
+        next.popularity = Number(payload.popularity) || 0;
       }
     }
     items[idx] = next;
