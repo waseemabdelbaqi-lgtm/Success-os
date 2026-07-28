@@ -1,0 +1,23 @@
+{
+  "summary": {
+    "expected": 930,
+    "exists": 278,
+    "sourceVerified": 128,
+    "rightsResolved": 278,
+    "structured": 278,
+    "contentComplete": 278,
+    "activitiesComplete": 278,
+    "answersComplete": 278,
+    "subjectReviewed": 277,
+    "languageReviewed": 277,
+    "technicallyReviewed": 277,
+    "published": 278,
+    "studentRouteWorking": 278,
+    "finalComplete": 0
+  },
+  "expected": 930,
+  "gapCounts": {
+    "EDITION_UNCERTAIN": 926,
+    "OFFICIAL_SOURCE_NOT_FOUND": 4
+  }
+}

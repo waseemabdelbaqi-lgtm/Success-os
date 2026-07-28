@@ -149,6 +149,27 @@ export function finalApproveAndPublish(input: {
     ).run(input.approver, t, input.bookVersionId);
   }
 
+  const existingPub = db
+    .prepare(`SELECT id FROM published_versions WHERE book_version_id=?`)
+    .get(input.bookVersionId) as { id?: string } | undefined;
+  if (existingPub?.id) {
+    const book = db
+      .prepare(`SELECT book_id FROM book_versions WHERE id=?`)
+      .get(input.bookVersionId) as { book_id: string };
+    const job = db
+      .prepare(`SELECT id FROM factory_jobs WHERE book_version_id=? OR book_id=? ORDER BY updated_at DESC LIMIT 1`)
+      .get(input.bookVersionId, book.book_id) as { id?: string } | undefined;
+    if (job?.id) {
+      transitionJob(job.id, "PUBLISHED", {
+        actor: input.approver,
+        role: "final_approver",
+        message: "Already published — idempotent Gate 5 sync",
+        reviewDecision: "published",
+      });
+    }
+    return { ok: true, message: "Already published", publishedId: existingPub.id };
+  }
+
   db.prepare(
     `INSERT INTO approvals (id, book_version_id, approval_type, decision, reviewer, comments, decided_at) VALUES (?,?,?,?,?,?,?)`,
   ).run(uuid(), input.bookVersionId, "FINAL_APPROVAL", "approve", input.approver, input.notes || null, t);

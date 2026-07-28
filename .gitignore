@@ -72,3 +72,4 @@ Desktop.ini
 data/book-engine/*.sqlite-wal
 data/book-engine/*.sqlite-shm
 data/book-engine/*.sqlite
+data/book-engine/backups/

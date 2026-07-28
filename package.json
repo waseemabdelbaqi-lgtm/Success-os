@@ -97,7 +97,9 @@
     "gate3:test": "node scripts/gate3-book-engine-tests.mjs",
     "gate3:pipeline": "node -e \"fetch('http://127.0.0.1:3000/api/global-curriculum',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({action:'run_pipeline'})}).then(r=>r.json()).then(j=>{console.log(JSON.stringify(j,null,2)); if(!j.ok) process.exit(1)})\"",
     "gate4:test": "node scripts/gate4-factory-tests.mjs",
-    "gate4:drain": "node -e \"fetch('http://127.0.0.1:3000/api/curriculum-factory',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({action:'drain_eligible'})}).then(r=>r.json()).then(j=>{console.log(JSON.stringify(j,null,2)); if(!j.ok) process.exit(1)})\""
+    "gate4:drain": "node -e \"fetch('http://127.0.0.1:3000/api/curriculum-factory',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({action:'drain_eligible'})}).then(r=>r.json()).then(j=>{console.log(JSON.stringify(j,null,2)); if(!j.ok) process.exit(1)})\"",
+    "gate5:test": "node scripts/gate5-final-tests.mjs",
+    "gate5:audit": "node -e \"fetch('http://127.0.0.1:3000/api/gate5',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({action:'run_final_audit',publishLimit:10})}).then(r=>r.json()).then(j=>{console.log(JSON.stringify({verdict:j.report?.readiness?.verdict,totals:j.report?.totals,gaps:j.report?.gapCounts},null,2)); if(!j.ok) process.exit(1)})\""
   },
   "dependencies": {
     "@prisma/client": "^7.9.1",
