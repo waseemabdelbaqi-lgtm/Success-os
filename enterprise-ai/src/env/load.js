@@ -15,7 +15,7 @@ export function loadAiosEnv({ root = process.cwd(), override = false } = {}) {
   for (const name of candidates) {
     const full = path.join(root, name);
     if (!fs.existsSync(full)) continue;
-    dotenvConfig({ path: full, override: false });
+    dotenvConfig({ path: full, override: false, quiet: true });
     files.push(name);
   }
   // Normalize aliases without duplicating secrets into files
