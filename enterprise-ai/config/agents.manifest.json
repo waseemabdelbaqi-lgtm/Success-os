@@ -1,0 +1,21 @@
+{
+  "version": 1,
+  "agents": [
+    { "id": "engineering", "label": "Engineering Agent", "capabilities": ["architecture", "integration", "bugfix"] },
+    { "id": "backend", "label": "Backend Agent", "capabilities": ["apis", "services", "auth"] },
+    { "id": "frontend", "label": "Frontend Agent", "capabilities": ["ui", "components", "accessibility-ui"] },
+    { "id": "database", "label": "Database Agent", "capabilities": ["schema-advice", "queries", "migrations-plan"] },
+    { "id": "security", "label": "Security Agent", "capabilities": ["owasp", "secrets", "input-validation"] },
+    { "id": "performance", "label": "Performance Agent", "capabilities": ["latency", "bundle", "caching"] },
+    { "id": "curriculum", "label": "Curriculum Agent", "capabilities": ["lessons", "assessments", "objectives"] },
+    { "id": "research", "label": "Research Agent", "capabilities": ["official-sources", "verification", "datasets"] },
+    { "id": "video", "label": "Video Production Agent", "capabilities": ["video", "animation", "media"] },
+    { "id": "voice", "label": "Voice Agent", "capabilities": ["narration", "tts", "multilingual-speech"] },
+    { "id": "translation", "label": "Translation Agent", "capabilities": ["i18n", "locale", "glossary"] },
+    { "id": "testing", "label": "Testing Agent", "capabilities": ["unit", "integration", "e2e", "playwright"] },
+    { "id": "accessibility", "label": "Accessibility Agent", "capabilities": ["a11y", "wcag", "aria"] },
+    { "id": "documentation", "label": "Documentation Agent", "capabilities": ["docs", "adr", "changelogs"] },
+    { "id": "deployment", "label": "Deployment Agent", "capabilities": ["release", "infra", "rollback-plan"] },
+    { "id": "monitoring", "label": "Monitoring Agent", "capabilities": ["observability", "alerts", "slos"] }
+  ]
+}

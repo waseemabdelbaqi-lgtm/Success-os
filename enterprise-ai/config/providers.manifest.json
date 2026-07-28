@@ -1,0 +1,64 @@
+{
+  "version": 1,
+  "providers": [
+    {
+      "id": "openai",
+      "label": "OpenAI",
+      "envAny": ["OPENAI_API_KEY", "OPENAI_CONTENT_API_KEY"],
+      "agents": ["gpt-engineering"]
+    },
+    {
+      "id": "anthropic",
+      "label": "Anthropic Claude",
+      "envAny": ["ANTHROPIC_API_KEY", "CLAUDE_API_KEY"],
+      "agents": ["claude-curriculum"]
+    },
+    {
+      "id": "gemini",
+      "label": "Google Gemini",
+      "envAny": ["GEMINI_API_KEY", "GOOGLE_GENERATIVE_AI_API_KEY"],
+      "agents": ["gemini-research"],
+      "respectDisabledFlag": "GEMINI_DISABLED"
+    },
+    {
+      "id": "github",
+      "label": "GitHub",
+      "envAny": ["GITHUB_TOKEN", "GH_TOKEN"],
+      "agents": ["gpt-engineering", "testing"]
+    },
+    {
+      "id": "playwright",
+      "label": "Playwright",
+      "envAny": [],
+      "detect": "playwright-module",
+      "agents": ["testing"]
+    },
+    {
+      "id": "supabase",
+      "label": "Supabase",
+      "envAll": ["SUPABASE_URL"],
+      "envAny": ["SUPABASE_SERVICE_ROLE_KEY", "SUPABASE_ANON_KEY"],
+      "agents": ["gpt-engineering"]
+    },
+    {
+      "id": "postgres",
+      "label": "PostgreSQL",
+      "envAny": ["DATABASE_URL", "POSTGRES_URL"],
+      "agents": ["gpt-engineering"]
+    },
+    {
+      "id": "ollama-local",
+      "label": "Local Ollama / local LLMs",
+      "envAny": [],
+      "detect": "ollama-loopback",
+      "agents": ["engineering", "curriculum", "research", "backend", "frontend"]
+    },
+    {
+      "id": "future-provider-slot",
+      "label": "Future Provider (register via AI Gateway)",
+      "envAny": ["FUTURE_AI_API_KEY"],
+      "agents": ["engineering"],
+      "state": "extensible-slot"
+    }
+  ]
+}

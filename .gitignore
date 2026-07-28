@@ -67,3 +67,6 @@ Desktop.ini
 
 # Generated / local curriculum & ERP stores (too large for git)
 /library/
+
+# AIOS runtime artifacts (keep code; ignore generated reports/docs)
+/data/master-ai-orchestrator/
