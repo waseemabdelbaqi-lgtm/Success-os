@@ -3,7 +3,7 @@
 **Release candidate:** `rc-gate5-jordan-final` (tag `gate5-release-candidate-rc1`)  
 **Branch:** `cursor/gate5-jordan-final-readiness-bca1`  
 **Pre-audit checkpoint:** `e405d5f` (tag `gate5-pre-audit-checkpoint`)  
-**Post-audit commit:** `c53bcf4`  
+**Post-audit commit:** `c53bcf4` (tip `6834667`) · PR [#37](https://github.com/waseemabdelbaqi-lgtm/Success-os/pull/37)  
 **Verdict:** **NOT READY FOR THE NEXT COUNTRY**
 
 ---
