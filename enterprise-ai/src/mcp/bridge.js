@@ -1,6 +1,6 @@
 /**
- * MCP Support — isolated adapters for Cursor MCP servers.
- * Prefer MCP over manual workflows when a caller is injected.
+ * MCP caller injection + tool registry.
+ * AI providers reason; MCP tools perform controlled external actions.
  */
 
 export const MCP_TARGETS = [
@@ -15,10 +15,29 @@ export const MCP_TARGETS = [
   "google-drive",
 ];
 
-/**
- * @param {object} opts
- * @param {(server:string, tool:string, args?:object)=>Promise<any>} [opts.callMcp]
- */
+const TOOL_CATALOG = [
+  { name: "filesystem.read", server: "filesystem", destructive: false, approvalRequired: false },
+  { name: "filesystem.write", server: "filesystem", destructive: true, approvalRequired: true },
+  { name: "github.get_file", server: "github", destructive: false, approvalRequired: false },
+  { name: "github.create_pr_comment", server: "github", destructive: false, approvalRequired: true },
+  { name: "playwright.navigate", server: "playwright", destructive: false, approvalRequired: false },
+  { name: "browser.navigate", server: "browser", destructive: false, approvalRequired: false },
+  { name: "postgres.query_readonly", server: "postgresql", destructive: false, approvalRequired: true },
+  { name: "postgres.mutate", server: "postgresql", destructive: true, approvalRequired: true },
+  { name: "supabase.rest", server: "supabase", destructive: false, approvalRequired: true },
+  { name: "docker.ps", server: "docker", destructive: false, approvalRequired: false },
+  { name: "notion.search", server: "notion", destructive: false, approvalRequired: false },
+];
+
+export function listMcpTools() {
+  return TOOL_CATALOG.map((t) => ({
+    ...t,
+    availability: "adapter-ready",
+    authenticationState: "unknown-until-injected",
+    timeoutMs: Number(process.env.AIOS_REQUEST_TIMEOUT_MS || 180000),
+  }));
+}
+
 export async function probeMcpAvailability({ callMcp } = {}) {
   const results = [];
   for (const target of MCP_TARGETS) {
@@ -47,7 +66,13 @@ export async function probeMcpAvailability({ callMcp } = {}) {
     checkedAt: new Date().toISOString(),
     preferMcpOverManual: true,
     results,
-    futureServers: ["linear", "slack", "custom-mcp"],
+    tools: listMcpTools(),
+    setupInstructions: [
+      "Open Cursor Settings → MCP",
+      "Enable/authenticate: GitHub, Filesystem, Playwright/Browser, PostgreSQL, Supabase, Docker, Notion",
+      "Do not put API keys in tracked MCP JSON files",
+      "Inject callMcp into runAIOS({ callMcp }) from the Cursor agent runtime",
+    ],
   };
 }
 
@@ -55,19 +80,49 @@ export function mcpUsagePolicy() {
   return {
     policy: "Use MCP whenever available instead of manual workflows",
     targets: MCP_TARGETS,
-    isolation: "Each connector is isolated behind an adapter; app code never talks to MCP SDKs directly",
-    secrets: "Never pass API keys through MCP tool arguments; rely on server-side auth",
+    isolation: "MCP tools are separate from AI providers",
+    secrets: "Never pass API keys through MCP tool arguments",
+    restrictions: [
+      "No unrestricted shell from AI-generated strings",
+      "No unrestricted filesystem writes",
+      "No destructive DB/Git operations without explicit approval",
+    ],
   };
 }
 
-/** Thin adapter facade for future MCP tool calls */
 export function createMcpAdapter(callMcp) {
   return {
-    async invoke(server, tool, args = {}) {
-      if (typeof callMcp !== "function") {
-        throw new Error(`MCP_UNAVAILABLE:${server}/${tool}`);
+    async invoke(server, tool, args = {}, { approveDestructive = false } = {}) {
+      const meta = TOOL_CATALOG.find((t) => t.server === server && t.name.endsWith(tool.split(".").pop()));
+      if (meta?.destructive && !approveDestructive) {
+        throw new Error(`MCP_APPROVAL_REQUIRED:${server}/${tool}`);
       }
+      if (typeof callMcp !== "function") throw new Error(`MCP_UNAVAILABLE:${server}/${tool}`);
       return callMcp(server, tool, args);
     },
+  };
+}
+
+export function getMcpToolRegistry() {
+  const tools = listMcpTools();
+  return {
+    isolation: "MCP tools are separate from AI providers",
+    targets: MCP_TARGETS,
+    tools,
+    detected: MCP_TARGETS,
+    ready: tools.filter((t) => !t.destructive && t.availability === "adapter-ready").map((t) => t.name),
+    requiringSetup: tools.map((t) => ({
+      name: t.name,
+      authenticationState: t.authenticationState,
+      approvalRequired: t.approvalRequired,
+      destructive: t.destructive,
+    })),
+    setupInstructions: [
+      "Cursor Settings → MCP",
+      "Authenticate GitHub, Filesystem, Playwright/Browser, PostgreSQL, Supabase, Docker, Notion as needed",
+      "Never store API keys in tracked MCP JSON",
+      "Inject callMcp into runAIOS({ callMcp }) from the Cursor runtime",
+    ],
+    restrictions: mcpUsagePolicy().restrictions,
   };
 }

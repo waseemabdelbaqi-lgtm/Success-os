@@ -1,41 +1,100 @@
 #!/usr/bin/env node
-/**
- * AIOS CLI
- *   node enterprise-ai/src/cli.js "your request"
- *   node enterprise-ai/src/cli.js --detect
- *   node enterprise-ai/src/cli.js --agents
- */
-import { runAIOS, formatAiosDisplay } from "./aios.js";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
+import { loadAiosEnv } from "./env/load.js";
+import { createLogger } from "./utils/logger.js";
 import { detectProviders } from "./providers/detect.js";
-import { listGatewayProviders } from "./gateway/ai-gateway.js";
-import { listAgents } from "./agents/registry.js";
-import { probeMcpAvailability, mcpUsagePolicy } from "./mcp/bridge.js";
-import { gitAutomationStatus } from "./git-automation.js";
+import { createProviderRegistry, runAllHealthChecks } from "./providers/registry.js";
+import { runAIOS, formatAiosDisplay } from "./aios.js";
+import { getMcpToolRegistry } from "./mcp/bridge.js";
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const rootDir = path.resolve(__dirname, "../..");
+
+function parseArgs(argv) {
+  const out = {
+    detect: false,
+    health: false,
+    mcp: false,
+    execute: false,
+    agents: false,
+    smoke: false,
+    mode: null,
+    objective: "",
+    help: false,
+  };
+  const rest = [];
+  for (let i = 0; i < argv.length; i += 1) {
+    const a = argv[i];
+    if (a === "--detect") out.detect = true;
+    else if (a === "--health") out.health = true;
+    else if (a === "--mcp") out.mcp = true;
+    else if (a === "--execute") out.execute = true;
+    else if (a === "--agents") out.agents = true;
+    else if (a === "--smoke") out.smoke = true;
+    else if (a === "--mode" && argv[i + 1]) {
+      out.mode = String(argv[++i]).toLowerCase();
+    } else if (a === "--help" || a === "-h") {
+      out.help = true;
+    } else {
+      rest.push(a);
+    }
+  }
+  out.objective = rest.join(" ").trim();
+  return out;
+}
+
+function printHelp() {
+  console.log(`Success OS AIOS — Master AI Orchestrator
+
+Usage:
+  npm run ai:aios -- "Your objective"              # REVIEW mode (default)
+  npm run ai:aios:execute -- "Your objective"      # EXECUTE mode (explicit)
+  npm run ai:aios:detect
+  npm run ai:aios:health
+  npm run ai:aios:test
+
+Flags:
+  --detect     Provider configuration detection (no secrets)
+  --health     Live minimal health probes per provider
+  --mcp        Print MCP tool registry status
+  --execute    Request execute mode (still no auto-commit/push/deploy)
+  --mode MODE  review | execute | dry-run
+  --agents     List registered agents
+`);
+}
 
 async function main() {
-  const args = process.argv.slice(2);
+  loadAiosEnv({ root: rootDir });
+  const args = parseArgs(process.argv.slice(2));
+  const logger = createLogger({ level: process.env.AIOS_LOG_LEVEL || "info" });
 
-  if (args.includes("--agents")) {
-    console.log(JSON.stringify({ agents: listAgents(), gatewayProviders: listGatewayProviders() }, null, 2));
+  if (args.help) {
+    printHelp();
     return;
   }
 
-  if (args.includes("--detect") || args.includes("--health")) {
-    const providers = await detectProviders();
-    const mcp = await probeMcpAvailability();
+  if (args.mcp) {
+    console.log(JSON.stringify(getMcpToolRegistry(), null, 2));
+    return;
+  }
+
+  if (args.agents) {
+    const { listAgents } = await import("./agents/registry.js");
+    console.log(JSON.stringify({ agents: listAgents() }, null, 2));
+    return;
+  }
+
+  if (args.detect) {
+    const detection = await detectProviders();
+    const registry = createProviderRegistry({ rootDir, logger });
     console.log(
       JSON.stringify(
         {
-          system: "SUCCESS-OS-AIOS",
-          gatewayProviders: listGatewayProviders(),
-          agents: listAgents(),
-          providers,
-          mcp: { ...mcp, policy: mcpUsagePolicy() },
-          git: gitAutomationStatus(),
-          activation: {
-            note: "Merge keys from enterprise-ai/config/.env.orchestrator.example into .env.local",
-            inactiveProviders: providers.inactive,
-          },
+          ...detection,
+          registry: registry.snapshot(),
+          mcp: getMcpToolRegistry(),
+          secretsExposed: false,
         },
         null,
         2,
@@ -44,25 +103,89 @@ async function main() {
     return;
   }
 
-  const request = args.filter((a) => !a.startsWith("--")).join(" ").trim();
-  if (!request) {
-    console.error('Usage: npm run ai:aios -- "Improve curriculum research pipeline"');
-    console.error("       npm run ai:aios:detect");
-    console.error("       npm run ai:aios -- --agents");
-    process.exit(1);
+  if (args.health) {
+    const health = await runAllHealthChecks();
+    console.log(
+      JSON.stringify(
+        {
+          generatedAt: new Date().toISOString(),
+          ...health,
+          mcp: getMcpToolRegistry(),
+          secretsExposed: false,
+        },
+        null,
+        2,
+      ),
+    );
+    return;
   }
 
-  const report = await runAIOS(request, {
-    context: { source: "cli", runSmoke: args.includes("--smoke") },
+  if (!args.objective) {
+    printHelp();
+    process.exitCode = 1;
+    return;
+  }
+
+  let mode = args.mode;
+  if (args.execute) mode = "execute";
+  if (!mode) mode = process.env.AIOS_EXECUTION_MODE || "review";
+
+  const isExecute = mode === "execute";
+  const report = await runAIOS(args.objective, {
+    projectRoot: rootDir,
+    executionMode: isExecute ? "execute" : "review",
+    allowExecute: isExecute,
+    context: { runSmoke: args.smoke },
+    logger,
   });
 
-  console.log(formatAiosDisplay(report));
-  console.log(JSON.stringify(report.executive, null, 2));
+  if (process.env.AIOS_PRINT_DISPLAY === "true") {
+    console.log(formatAiosDisplay(report));
+  }
 
-  if (!report.quality.ok || !report.security.ok) process.exitCode = 2;
+  console.log(
+    JSON.stringify(
+      {
+        ok: report.status?.startsWith("COMPLETED"),
+        mode: report.executionMode,
+        reportPath: report.reportPath,
+        status: report.status,
+        summary: report.executive,
+        providersUsed: report.aiProvidersUsed,
+        realProvidersParticipating: report.realProvidersParticipating,
+        multiAgentLive: report.multiAgentLive,
+        tokenUsage: report.tokenUsage,
+        cost: report.cost,
+        review: report.review,
+        safety: {
+          autoCommit: report.git?.autoCommit === true,
+          autoPush: report.git?.autoPush === true,
+          autoDeploy: report.git?.autoDeploy === true,
+          patchesApplied: report.review?.patchesApplied === true,
+        },
+      },
+      null,
+      2,
+    ),
+  );
+
+  if (!String(report.status || "").startsWith("COMPLETED")) process.exitCode = 2;
 }
 
-main().catch((err) => {
-  console.error(err);
-  process.exit(1);
+main().catch((error) => {
+  console.error(
+    JSON.stringify(
+      {
+        ok: false,
+        error: {
+          name: error?.name || "Error",
+          message: String(error?.message || error),
+          category: error?.category || error?.status || "PROVIDER_ERROR",
+        },
+      },
+      null,
+      2,
+    ),
+  );
+  process.exitCode = 1;
 });

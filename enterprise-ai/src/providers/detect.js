@@ -5,6 +5,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { loadAiosEnv } from "../env/load.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const MANIFEST = JSON.parse(
@@ -51,6 +52,7 @@ async function detectOllama() {
 }
 
 export async function detectProviders() {
+  loadAiosEnv({ root: process.cwd() });
   const results = [];
   for (const p of MANIFEST.providers) {
     let configured = groupReadyAny(p.envAny) && groupReadyAll(p.envAll || []);
@@ -73,11 +75,25 @@ export async function detectProviders() {
       detail = d.detail;
     }
 
+    const modelEnv =
+      p.id === "openai"
+        ? "OPENAI_MODEL"
+        : p.id === "anthropic"
+          ? "ANTHROPIC_MODEL"
+          : p.id === "gemini"
+            ? "GEMINI_MODEL"
+            : p.id === "ollama-local"
+              ? "OLLAMA_MODEL"
+              : null;
+    const modelConfigured = modelEnv ? envPresent(modelEnv) : null;
+
     results.push({
       id: p.id,
       label: p.label,
       agents: p.agents || [],
       configured: configured && !disabled,
+      keyDetected: configured && !disabled,
+      modelConfigured,
       disabled,
       readyForActivation: !configured || disabled,
       detail,
@@ -90,6 +106,7 @@ export async function detectProviders() {
     providers: results,
     active: results.filter((r) => r.configured).map((r) => r.id),
     inactive: results.filter((r) => !r.configured).map((r) => r.id),
+    secretsExposed: false,
   };
 }
 

@@ -16,7 +16,7 @@
     {
       "id": "gemini",
       "label": "Google Gemini",
-      "envAny": ["GEMINI_API_KEY", "GOOGLE_GENERATIVE_AI_API_KEY"],
+      "envAny": ["GEMINI_API_KEY", "GOOGLE_API_KEY", "GOOGLE_GENERATIVE_AI_API_KEY"],
       "agents": ["gemini-research"],
       "respectDisabledFlag": "GEMINI_DISABLED"
     },

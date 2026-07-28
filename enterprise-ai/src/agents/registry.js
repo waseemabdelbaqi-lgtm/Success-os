@@ -1,11 +1,12 @@
 /**
- * Agent registry — modular specialists. New agents register here without touching app code.
+ * Agent registry — role-routed via AI Gateway + structured contracts + context selection.
  */
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { gatewayChat } from "../gateway/ai-gateway.js";
-import { parseJsonLoose } from "./base.js";
+import { validateWithRepair } from "../contracts/agent-output.js";
+import { selectContext, formatContextForPrompt } from "../context/selector.js";
 import { runTestingAgent } from "./testing.js";
 import { runVideoAgent } from "./video.js";
 import { runVoiceAgent } from "./voice.js";
@@ -15,125 +16,150 @@ const MANIFEST = JSON.parse(
   fs.readFileSync(path.join(__dirname, "../../config/agents.manifest.json"), "utf8"),
 );
 
-async function runJsonAgent(agentId, task, { preferredProviders, systemExtra = "" }) {
+const ROLE_BY_AGENT = {
+  engineering: "engineering",
+  backend: "backend",
+  frontend: "frontend",
+  database: "database",
+  security: "security",
+  performance: "performance",
+  curriculum: "curriculum",
+  research: "research",
+  translation: "documentation",
+  accessibility: "frontend",
+  documentation: "documentation",
+  deployment: "engineering",
+  monitoring: "engineering",
+  "gpt-engineering": "engineering",
+  "claude-curriculum": "curriculum",
+  "gemini-research": "research",
+};
+
+async function runStructuredAgent(agentId, task, { systemExtra = "", allowOllama = true } = {}) {
   const started = Date.now();
+  const role = ROLE_BY_AGENT[agentId] || "default";
+  const ctx = selectContext({
+    projectRoot: process.cwd(),
+    objective: task.goal,
+    agent: agentId,
+  });
   const system = `You are the Success OS AIOS ${agentId} agent.
 ${systemExtra}
-Return JSON only with keys: summary, findings, recommendations, risks, nextSteps (arrays where sensible).
-Never hardcode secrets. Never claim completed code changes unless files are explicitly provided.
-Preserve existing Success OS architecture — propose extensions only.`;
+Return ONLY JSON matching this schema:
+{"taskId":"","agent":"","provider":"","model":"","status":"completed|failed|needs_review","summary":"","assumptions":[],"sources":[],"filesProposed":[],"patches":[],"testsRequired":[],"risks":[],"tokenUsage":{},"estimatedCost":null,"errors":[]}
+Never hardcode secrets. Propose extensions only. Cite file paths from context when relevant.`;
+
   const user = JSON.stringify({
     taskId: task.id,
     title: task.title,
     goal: task.goal,
     complexity: task.complexity,
-    context: task.context || {},
+    executionMode: process.env.AIOS_EXECUTION_MODE || "review",
+    contextFiles: ctx.filePaths,
+    context: formatContextForPrompt(ctx).slice(0, 20000),
   });
+
   const chat = await gatewayChat({
-    preferred: preferredProviders,
+    role,
     system,
     user,
+    maxTokens: 2200,
+    json: true,
+    allowOllama: allowOllama && !/curriculum|research/i.test(agentId),
   });
-  const data = parseJsonLoose(chat.text) || {
-    summary: String(chat.text || "").slice(0, 800),
-    findings: [],
-    recommendations: [],
-    risks: chat.stub ? ["PROVIDER_KEYS_MISSING"] : [],
-    nextSteps: ["Configure AI provider credentials for live agent execution"],
-  };
+
+  const validated = await validateWithRepair(
+    chat.text,
+    {
+      taskId: task.id,
+      agent: agentId,
+      provider: chat.provider,
+      model: chat.model,
+      status: chat.stub ? "needs_review" : "completed",
+      tokenUsage: chat.tokenUsage || {},
+      estimatedCost: chat.estimatedCost ?? null,
+      fallbackSummary: String(chat.text || "").slice(0, 500),
+    },
+    async () =>
+      (
+        await gatewayChat({
+          role,
+          system: "Repair into valid AIOS agent JSON schema only.",
+          user: chat.text,
+          maxTokens: 1200,
+          json: true,
+          allowOllama: false,
+        })
+      ).text,
+  );
+
   return {
     agent: agentId,
     provider: chat.provider,
     model: chat.model,
     durationMs: Date.now() - started,
     stub: Boolean(chat.stub),
-    output: data,
+    routing: chat.routing || chat.selection,
+    contextFiles: ctx.filePaths,
+    contractValid: validated.ok,
+    repaired: Boolean(validated.repaired),
+    output: {
+      ...validated.data,
+      summary: validated.data.summary,
+      nextSteps: validated.data.testsRequired || [],
+      findings: validated.data.assumptions || [],
+      recommendations: validated.data.filesProposed || [],
+    },
     tried: chat.tried,
+    tokenUsage: chat.tokenUsage,
+    estimatedCost: chat.estimatedCost,
   };
 }
 
 const RUNNERS = {
-  engineering: (task) =>
-    runJsonAgent("engineering", task, {
-      preferredProviders: ["openai", "ollama-local", "anthropic"],
-      systemExtra: "Focus on architecture, integration, and safe bug-fix plans.",
+  engineering: (t) =>
+    runStructuredAgent("engineering", t, {
+      systemExtra: "Focus on architecture, integration, security-aware engineering plans.",
     }),
-  backend: (task) =>
-    runJsonAgent("backend", task, {
-      preferredProviders: ["openai", "ollama-local"],
-      systemExtra: "Focus on APIs, services, auth boundaries, and server-only secrets.",
+  backend: (t) =>
+    runStructuredAgent("backend", t, { systemExtra: "APIs, services, auth boundaries; server-only secrets." }),
+  frontend: (t) =>
+    runStructuredAgent("frontend", t, { systemExtra: "UI composition and non-breaking UX extensions." }),
+  database: (t) =>
+    runStructuredAgent("database", t, { systemExtra: "Schema advice only — do not mutate production schema." }),
+  security: (t) =>
+    runStructuredAgent("security", t, {
+      systemExtra: "OWASP: secrets, validation, sanitization, least privilege.",
+      allowOllama: false,
     }),
-  frontend: (task) =>
-    runJsonAgent("frontend", task, {
-      preferredProviders: ["openai", "ollama-local"],
-      systemExtra: "Focus on UI composition, reusable components, and non-breaking UX extensions.",
+  performance: (t) =>
+    runStructuredAgent("performance", t, { systemExtra: "Latency, bundle, caching, scalability risks." }),
+  curriculum: (t) =>
+    runStructuredAgent("curriculum", t, {
+      systemExtra: "Educational content. Never copy copyrighted textbooks.",
+      allowOllama: false,
     }),
-  database: (task) =>
-    runJsonAgent("database", task, {
-      preferredProviders: ["openai", "ollama-local"],
-      systemExtra: "Advise on schema evolution only as plans — never mutate production schema here.",
+  research: (t) =>
+    runStructuredAgent("research", t, {
+      systemExtra: "Official research/verification. Confidence VERIFIED|PARTIAL|UNVERIFIED. No pirated sources.",
+      allowOllama: false,
     }),
-  security: (task) =>
-    runJsonAgent("security", task, {
-      preferredProviders: ["openai", "anthropic", "ollama-local"],
-      systemExtra: "Apply OWASP thinking: secrets, validation, sanitization, least privilege.",
-    }),
-  performance: (task) =>
-    runJsonAgent("performance", task, {
-      preferredProviders: ["openai", "ollama-local"],
-      systemExtra: "Identify latency, bundle, caching, and scalability risks.",
-    }),
-  curriculum: (task) =>
-    runJsonAgent("curriculum", task, {
-      preferredProviders: ["anthropic", "ollama-local", "openai"],
-      systemExtra:
-        "Educational content only. Never copy copyrighted textbook prose. Prefer original Success OS content aligned to official outcomes.",
-    }),
-  research: (task) =>
-    runJsonAgent("research", task, {
-      preferredProviders: ["gemini", "ollama-local", "openai"],
-      systemExtra:
-        "Official curriculum research and verification. No pirated sources. Confidence must be VERIFIED|PARTIAL|UNVERIFIED.",
-    }),
-  translation: (task) =>
-    runJsonAgent("translation", task, {
-      preferredProviders: ["openai", "anthropic", "ollama-local"],
-      systemExtra: "i18n / multilingual educational language quality.",
-    }),
-  accessibility: (task) =>
-    runJsonAgent("accessibility", task, {
-      preferredProviders: ["openai", "ollama-local"],
-      systemExtra: "WCAG-oriented accessibility review and remediation plans.",
-    }),
-  documentation: (task) =>
-    runJsonAgent("documentation", task, {
-      preferredProviders: ["anthropic", "openai", "ollama-local"],
-      systemExtra: "Produce concise ADRs, setup notes, and operator docs.",
-    }),
-  deployment: (task) =>
-    runJsonAgent("deployment", task, {
-      preferredProviders: ["openai", "ollama-local"],
-      systemExtra: "Release, infra, rollback, and environment readiness plans.",
-    }),
-  monitoring: (task) =>
-    runJsonAgent("monitoring", task, {
-      preferredProviders: ["openai", "ollama-local"],
-      systemExtra: "Observability, alerts, SLOs, and operational dashboards.",
-    }),
+  translation: (t) => runStructuredAgent("translation", t, { systemExtra: "i18n / multilingual quality." }),
+  accessibility: (t) => runStructuredAgent("accessibility", t, { systemExtra: "WCAG accessibility remediation plans." }),
+  documentation: (t) =>
+    runStructuredAgent("documentation", t, { systemExtra: "ADRs, setup notes, operator docs clarity." }),
+  deployment: (t) => runStructuredAgent("deployment", t, { systemExtra: "Release/infra/rollback plans only." }),
+  monitoring: (t) => runStructuredAgent("monitoring", t, { systemExtra: "Observability, alerts, SLOs." }),
   video: runVideoAgent,
   voice: runVoiceAgent,
   testing: runTestingAgent,
-  // Back-compat aliases from earlier orchestrator naming
-  "gpt-engineering": (task) => RUNNERS.engineering(task),
-  "claude-curriculum": (task) => RUNNERS.curriculum(task),
-  "gemini-research": (task) => RUNNERS.research(task),
+  "gpt-engineering": (t) => RUNNERS.engineering(t),
+  "claude-curriculum": (t) => RUNNERS.curriculum(t),
+  "gemini-research": (t) => RUNNERS.research(t),
 };
 
 export function listAgents() {
-  return MANIFEST.agents.map((a) => ({
-    ...a,
-    runnable: Boolean(RUNNERS[a.id]),
-  }));
+  return MANIFEST.agents.map((a) => ({ ...a, runnable: Boolean(RUNNERS[a.id]) }));
 }
 
 export function getAgentRunner(agentId) {

@@ -1,15 +1,13 @@
 /**
- * SUCCESS OS — Enterprise AI Operating System (AIOS)
- *
- * AI Gateway → Master Orchestrator → Planning → Queue → Parallel Agents →
- * Aggregator → Quality → Security → Performance → Docs → Git → Report
- *
- * Additive permanent brain. Does not modify existing Success OS routes/pages/schema/business logic.
+ * SUCCESS OS — Enterprise AI Operating System (AIOS) v3
+ * REVIEW MODE by default — no automatic patches/commits/pushes/deploys.
  */
 import fs from "node:fs";
 import path from "node:path";
+import { loadAiosEnv } from "./env/load.js";
 import { detectProviders } from "./providers/detect.js";
 import { listGatewayProviders } from "./gateway/ai-gateway.js";
+import { runAllHealthChecks, registrySnapshot, circuitBreakerStatus } from "./providers/registry.js";
 import { planRequest } from "./planning/engine.js";
 import { dispatchParallel } from "./queue/dispatcher.js";
 import { aggregateResults } from "./result-aggregator.js";
@@ -18,9 +16,10 @@ import { validateSecurity } from "./security/validator.js";
 import { optimizePerformance } from "./performance/optimizer.js";
 import { generateRunDocumentation } from "./documentation/auto-docs.js";
 import { gitAutomationStatus, maybeAutoCommit } from "./git-automation.js";
-import { probeMcpAvailability, mcpUsagePolicy } from "./mcp/bridge.js";
+import { probeMcpAvailability, mcpUsagePolicy, listMcpTools } from "./mcp/bridge.js";
 import { listAgents } from "./agents/registry.js";
 import { buildExecutiveReport, formatAiosDisplay } from "./output/report-formatter.js";
+import { costStatus, persistUsage } from "./cost/guards.js";
 
 function ensureReportDir(root) {
   const dir = path.join(root, "data/master-ai-orchestrator/reports");
@@ -28,34 +27,53 @@ function ensureReportDir(root) {
   return dir;
 }
 
+function collectProposedFiles(merged) {
+  const files = new Set();
+  for (const key of Object.keys(merged || {})) {
+    const block = merged[key];
+    if (block?.filesProposed) for (const f of block.filesProposed) files.add(f);
+    if (block?.recommendations) {
+      for (const r of block.recommendations) if (typeof r === "string" && r.includes("/")) files.add(r);
+    }
+  }
+  for (const s of merged.summaries || []) {
+    /* no-op */
+  }
+  return [...files];
+}
+
 export async function runAIOS(userRequest, options = {}) {
+  loadAiosEnv({ root: options.projectRoot || process.cwd() });
   const started = Date.now();
   const projectRoot = options.projectRoot || process.cwd();
   const context = options.context || {};
+  const executionMode =
+    options.executionMode || process.env.AIOS_EXECUTION_MODE || "review";
+  const isExecute = executionMode === "execute" && options.allowExecute === true;
 
-  // Foundation probes
+  // Force auto-commit off unless explicitly enabled AND execute mode
+  if (process.env.AIOS_AUTO_COMMIT !== "true" || !isExecute) {
+    process.env.MASTER_ORCHESTRATOR_AUTO_COMMIT = "false";
+  }
+
   const providerDetection = await detectProviders();
   const mcp = await probeMcpAvailability({ callMcp: options.callMcp });
+  const mcpTools = listMcpTools();
   const agentsCatalog = listAgents();
+  const plan = planRequest(userRequest, { context: { ...context, executionMode } });
 
-  // Planning
-  const plan = planRequest(userRequest, { context });
-
-  // Parallel dispatch
   const taskResults = await dispatchParallel(plan.tasks, { maxParallel: options.maxParallel });
-
-  // Aggregate + conflict resolve
   const merged = aggregateResults(plan, taskResults);
+  const proposedFiles = collectProposedFiles(merged);
 
-  // Quality + Security + Performance
   const quality = validateQuality({
     merged,
-    filesTouched: options.filesTouched || [],
+    filesTouched: isExecute ? options.filesTouched || [] : [],
     projectRoot,
   });
   const security = validateSecurity({
     merged,
-    filesTouched: options.filesTouched || [],
+    filesTouched: isExecute ? options.filesTouched || [] : [],
   });
   const performance = optimizePerformance({
     plan,
@@ -63,7 +81,6 @@ export async function runAIOS(userRequest, options = {}) {
     durationMs: Date.now() - started,
   });
 
-  // Documentation
   const documentation = generateRunDocumentation({
     projectRoot,
     plan,
@@ -73,36 +90,33 @@ export async function runAIOS(userRequest, options = {}) {
     performance,
   });
 
-  // Git integration (safe defaults: off / dry-run)
   const gitStatus = gitAutomationStatus(projectRoot);
-  let gitResult = { skipped: true, reason: "quality_security_or_disabled" };
+  let gitResult = {
+    skipped: true,
+    reason: isExecute ? "execute_gates_or_disabled" : "REVIEW_MODE_NO_COMMIT",
+  };
   const gatesPass = quality.ok && security.ok;
-  if (gatesPass && options.allowGit !== false) {
+  // Never auto-apply patches in review mode. Even in execute mode, auto-commit stays off by default.
+  if (isExecute && gatesPass && process.env.AIOS_AUTO_COMMIT === "true" && options.allowGit === true) {
     gitResult = maybeAutoCommit({
       cwd: projectRoot,
-      message:
-        options.commitMessage ||
-        `chore(aios): ${plan.planId} — ${String(userRequest).slice(0, 60)}`,
+      message: options.commitMessage || `chore(aios): ${plan.planId}`,
       files: options.filesTouched || [],
     });
-  } else if (!gatesPass) {
-    gitResult = {
-      skipped: true,
-      reason: "GATES_FAILED",
-      qualityOk: quality.ok,
-      securityOk: security.ok,
-    };
   }
 
   const agentsUsed = [...new Set(taskResults.filter((t) => t.status === "COMPLETED").map((t) => t.agent))];
+  const realProviders = [...new Set(
+    taskResults
+      .filter((t) => t.status === "COMPLETED" && t.result?.provider && !t.result?.stub)
+      .map((t) => t.result.provider)
+      .filter((p) => p && p !== "offline-stub" && p !== "unconfigured"),
+  )];
+
   const testsExecuted = [];
   if (merged.testing) {
     for (const c of merged.testing.checks || []) {
-      testsExecuted.push({
-        name: c.name,
-        ok: Boolean(c.ok),
-        suite: "testing-agent",
-      });
+      testsExecuted.push({ name: c.name, ok: Boolean(c.ok), suite: "testing-agent" });
     }
     if (merged.testing.smoke) {
       testsExecuted.push({
@@ -113,20 +127,36 @@ export async function runAIOS(userRequest, options = {}) {
     }
   }
 
+  const tokenUsage = taskResults
+    .filter((t) => t.result?.tokenUsage)
+    .map((t) => ({ agent: t.agent, provider: t.result.provider, ...t.result.tokenUsage }));
+
   const remainingWork = [
     ...new Set(
       (merged.summaries || [])
         .flatMap((s) => s.nextSteps || [])
-        .concat(providerDetection.inactive.map((id) => `Activate provider adapter: ${id}`))
+        .concat(
+          providerDetection.inactive
+            .filter((id) => !["future-provider-slot", "playwright"].includes(id))
+            .map((id) => `Configure provider: ${id}`),
+        )
         .concat(performance.suggestions || []),
     ),
   ];
 
-  const suggestedNextStep =
-    remainingWork[0] ||
-    (gatesPass
-      ? "Review AIOS aggregated plans and approve implementation work"
-      : "Resolve quality/security rejects before applying changes");
+  const filesWouldModify = proposedFiles;
+  const reviewBlock = {
+    mode: isExecute ? "EXECUTE" : "REVIEW",
+    patchesApplied: false,
+    filesWouldModify,
+    testsThatWouldRun: testsExecuted.map((t) => t.name),
+    destructiveOperations: "none",
+    estimatedProviderUsage: realProviders,
+    approvalStatus: isExecute ? "EXECUTE_REQUESTED" : "REVIEW_ONLY",
+    note: isExecute
+      ? "Execute mode enabled for this run; patches still require explicit file application logic (not auto-applied)."
+      : "REVIEW MODE: analysis and proposals only — no application file modifications.",
+  };
 
   const status = !gatesPass
     ? "COMPLETED_WITH_GATE_FAILURES"
@@ -136,53 +166,75 @@ export async function runAIOS(userRequest, options = {}) {
 
   const report = {
     system: "SUCCESS-OS-AIOS",
-    version: "2.0.0",
+    version: "3.0.0",
     status,
+    executionMode: reviewBlock.mode,
     durationMs: Date.now() - started,
     foundation: {
       gatewayProviders: listGatewayProviders(),
       agentsRegistered: agentsCatalog.length,
       modular: true,
       providerIndependentAppLayer: true,
+      registry: registrySnapshot(),
+      circuitBreakers: circuitBreakerStatus(),
     },
     aiProvidersUsed: merged.providersUsed,
+    realProvidersParticipating: realProviders,
+    multiAgentLive: realProviders.length >= 2,
     agentsUsed,
     providerDetection,
-    mcp: { ...mcp, policy: mcpUsagePolicy() },
+    mcp: { ...mcp, policy: mcpUsagePolicy(), tools: mcpTools },
     plan,
+    review: reviewBlock,
     tasksCompleted: taskResults
       .filter((t) => t.status === "COMPLETED")
       .map((t) => ({
         taskId: t.taskId,
         agent: t.agent,
         provider: t.result?.provider,
+        model: t.result?.model,
         durationMs: t.durationMs,
+        contractValid: t.result?.contractValid,
+        tokenUsage: t.result?.tokenUsage,
+        estimatedCost: t.result?.estimatedCost,
       })),
     tasksFailed: taskResults.filter((t) => t.status === "FAILED"),
-    filesModified: options.filesTouched || [],
+    filesModified: isExecute ? options.filesTouched || [] : [],
+    filesProposed: filesWouldModify,
     testsExecuted,
     testsPassed: testsExecuted.length ? testsExecuted.every((t) => t.ok) : null,
+    tokenUsage,
+    cost: costStatus(),
     quality,
     security,
     performance,
     documentation,
     merged,
-    git: { status: gitStatus, result: gitResult, cursorProjectUpdate: "report-written" },
+    git: {
+      status: gitStatus,
+      result: gitResult,
+      autoCommit: process.env.AIOS_AUTO_COMMIT === "true",
+      autoPush: false,
+      autoDeploy: false,
+      cursorProjectUpdate: "report-written",
+    },
     remainingWork,
-    suggestedNextStep,
+    suggestedNextStep:
+      remainingWork[0] ||
+      (reviewBlock.mode === "REVIEW"
+        ? "Review proposals; run npm run ai:aios:execute only after explicit approval"
+        : "Apply approved patches manually after review"),
     continuousImprovement: {
       reviewGeneratedPlans: true,
       suggestions: performance.suggestions,
-      maintainability: "Prefer reusable AIOS modules over one-off scripts",
-      scalability: "Register new providers/agents via adapters — no app rewrites",
     },
   };
 
   report.executive = buildExecutiveReport(report);
+  persistUsage(projectRoot);
 
   const dir = ensureReportDir(projectRoot);
   const outPath = path.join(dir, `${plan.planId}.json`);
-  // documentation path backfill
   if (documentation?.path) {
     fs.writeFileSync(
       documentation.path,
@@ -191,11 +243,11 @@ export async function runAIOS(userRequest, options = {}) {
   }
   report.reportPath = outPath;
   report.documentation = { ...documentation, path: documentation.path };
+  // Ensure reports never contain env secrets
   fs.writeFileSync(outPath, `${JSON.stringify(report, null, 2)}\n`);
   return report;
 }
 
-/** Alias used by earlier CLI */
 export async function runMasterOrchestrator(userRequest, options) {
   return runAIOS(userRequest, options);
 }
@@ -204,4 +256,4 @@ export function formatOrchestratorDisplay(report) {
   return formatAiosDisplay(report);
 }
 
-export { formatAiosDisplay, buildExecutiveReport };
+export { formatAiosDisplay, buildExecutiveReport, runAllHealthChecks };

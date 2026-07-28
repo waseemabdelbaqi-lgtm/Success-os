@@ -70,3 +70,4 @@ Desktop.ini
 
 # AIOS runtime artifacts (keep code; ignore generated reports/docs)
 /data/master-ai-orchestrator/
+/tmp/
