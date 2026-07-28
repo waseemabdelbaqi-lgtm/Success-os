@@ -4,23 +4,24 @@ import path from "node:path";
 import { spawn } from "node:child_process";
 import {
   JORDAN_G1_MATH_BOOK_ID,
+  bookDir,
   listPdfCandidates,
   loadAcquisition,
-  loadCheckpoint,
-  loadExtraction,
-  loadPageExtractions,
-  loadReviewState,
-  saveReviewState,
-  bookDir,
+  readJsonIfExists,
   writeJson,
 } from "@/lib/curriculum-ai/store";
 import {
-  BookExtractionSchema,
-  validateBookExtraction,
-} from "@/lib/curriculum-ai/book-extraction-schema";
+  OFFICIAL_BOOK_TITLE_AR,
+  OFFICIAL_CATALOG_URL,
+  OFFICIAL_PDF_URL,
+  renderPreviewPngs,
+  validateOfficialPdf,
+} from "@/lib/curriculum-ai/pdf-validation";
 
 export const dynamic = "force-dynamic";
 export const runtime = "nodejs";
+
+export const maxDuration = 300;
 
 function json(data: unknown, status = 200) {
   return NextResponse.json(data, {
@@ -29,213 +30,223 @@ function json(data: unknown, status = 200) {
   });
 }
 
+function sourceDir(bookId = JORDAN_G1_MATH_BOOK_ID) {
+  return path.join(bookDir(bookId), "source");
+}
+
+function importStatusPath(bookId = JORDAN_G1_MATH_BOOK_ID) {
+  return path.join(bookDir(bookId), "import-status.json");
+}
+
+function downloadAttempt(bookId = JORDAN_G1_MATH_BOOK_ID) {
+  return readJsonIfExists<Record<string, unknown>>(
+    path.join(bookDir(bookId), "download-attempt.json"),
+  );
+}
+
+function getValidPdf(bookId = JORDAN_G1_MATH_BOOK_ID) {
+  const preferred = path.join(sourceDir(bookId), "MA.01.ST.BOOK_WEB.pdf");
+  const candidates = [
+    preferred,
+    ...listPdfCandidates(bookId).filter((p) => p !== preferred),
+  ];
+  for (const file of candidates) {
+    const v = validateOfficialPdf(file);
+    if (v.ok) return v;
+  }
+  return null;
+}
+
+function ensurePreviews(bookId: string, pdfPath: string, pageCount: number) {
+  const previewDir = path.join(bookDir(bookId), "previews");
+  const needed = Math.min(3, pageCount);
+  const existing = Array.from({ length: needed }, (_, i) =>
+    path.join(previewDir, `preview-page-${i + 1}.png`),
+  );
+  if (existing.every((p) => fs.existsSync(p))) {
+    return existing.map((p) => path.relative(process.cwd(), p));
+  }
+  const rendered = renderPreviewPngs(pdfPath, previewDir, [0, 1, 2].slice(0, needed));
+  return rendered.map((p) => path.relative(process.cwd(), p));
+}
+
 export async function GET(request: Request) {
   const url = new URL(request.url);
   const bookId = url.searchParams.get("bookId") || JORDAN_G1_MATH_BOOK_ID;
-  const page = url.searchParams.get("page");
+  const preview = url.searchParams.get("preview");
 
-  const acquisition = loadAcquisition(bookId);
-  const extraction = loadExtraction(bookId);
-  const checkpoint = loadCheckpoint(bookId);
-  const review = loadReviewState(bookId);
-  const pdfs = listPdfCandidates(bookId);
-
-  if (page) {
-    const pages = loadPageExtractionsSafe(bookId);
-    const idx = Number(page);
-    const record = pages.find(
-      (p) =>
-        Number((p as { pdfPageIndex?: number }).pdfPageIndex) === idx - 1 ||
-        Number((p as { officialPageNumber?: number }).officialPageNumber) ===
-          idx,
+  if (preview) {
+    const file = path.join(
+      bookDir(bookId),
+      "previews",
+      `preview-page-${Number(preview)}.png`,
     );
-    return json({ page: record || null, total: pages.length });
+    if (!fs.existsSync(file)) return json({ ok: false, error: "PREVIEW_MISSING" }, 404);
+    const buf = fs.readFileSync(file);
+    return new NextResponse(buf, {
+      status: 200,
+      headers: {
+        "Content-Type": "image/png",
+        "Cache-Control": "no-store",
+      },
+    });
   }
 
+  const valid = getValidPdf(bookId);
+  const attempt = downloadAttempt(bookId);
+  const acquisition = loadAcquisition(bookId);
+  const status = readJsonIfExists<Record<string, unknown>>(importStatusPath(bookId));
+
+  if (!valid) {
+    const failReason =
+      (status?.failReason as string) ||
+      (attempt?.failReason as string) ||
+      (Array.isArray(acquisition?.blockers) ? acquisition?.blockers?.[0] : null) ||
+      "لم يتم استيراد ملف PDF رسمي صالح بعد.";
+    return json({
+      imported: false,
+      message: "لم يتم استيراد الكتاب بعد",
+      failReason,
+      officialUrl: (attempt?.officialUrl as string) || OFFICIAL_PDF_URL,
+      catalogUrl: OFFICIAL_CATALOG_URL,
+      officialTitle: OFFICIAL_BOOK_TITLE_AR,
+      needsManualUpload: true,
+    });
+  }
+
+  const previews = ensurePreviews(bookId, valid.localFile, valid.pageCount);
+  writeJson(importStatusPath(bookId), {
+    imported: true,
+    officialUrl: (attempt?.officialUrl as string) || OFFICIAL_PDF_URL,
+    localFile: path.relative(process.cwd(), valid.localFile),
+    fileSize: valid.fileSize,
+    pageCount: valid.pageCount,
+    sha256: valid.sha256,
+    firstPageValid: valid.firstPageValid,
+    lastPageValid: valid.lastPageValid,
+    updatedAt: new Date().toISOString(),
+  });
+
   return json({
-    bookId,
-    acquisition,
-    extraction,
-    checkpoint,
-    review,
-    pdfAvailable: pdfs.length > 0,
-    pdfRelativePaths: pdfs.map((p) => path.relative(process.cwd(), p)),
-    controls: {
-      generateLesson: false,
-      canApproveMetadata: true,
-      canApproveStructure: true,
-      canReprocessPage: pdfs.length > 0,
-      canRejectBook: true,
-    },
+    imported: true,
+    officialTitle: OFFICIAL_BOOK_TITLE_AR,
+    officialUrl: (attempt?.officialUrl as string) || OFFICIAL_PDF_URL,
+    localFile: path.relative(process.cwd(), valid.localFile),
+    fileSize: valid.fileSize,
+    pageCount: valid.pageCount,
+    sha256: valid.sha256,
+    firstPageValid: valid.firstPageValid,
+    lastPageValid: valid.lastPageValid,
+    previews: previews.map((_, i) => `/api/admin/curriculum-ai/books/import?preview=${i + 1}`),
+    coverPreview: previews.length
+      ? `/api/admin/curriculum-ai/books/import?preview=1`
+      : null,
   });
 }
 
-function loadPageExtractionsSafe(bookId: string) {
-  try {
-    return loadPageExtractions(bookId);
-  } catch {
-    return [];
-  }
-}
-
-type ReviewAction =
-  | { action: "approve_metadata" }
-  | { action: "approve_structure" }
-  | { action: "reject_book"; reason?: string }
-  | {
-      action: "edit_metadata";
-      patch: Record<string, string | number>;
-    }
-  | {
-      action: "correct_unit";
-      partIndex: number;
-      unitIndex: number;
-      title?: string;
-      startPage?: number;
-      endPage?: number;
-    }
-  | {
-      action: "correct_lesson";
-      partIndex: number;
-      unitIndex: number;
-      lessonIndex: number;
-      title?: string;
-      startPage?: number;
-      endPage?: number;
-    }
-  | { action: "reprocess_page"; page: number }
-  | { action: "save_structure"; structure: unknown };
-
 export async function POST(request: Request) {
-  const body = (await request.json()) as ReviewAction & { bookId?: string };
-  const bookId = body.bookId || JORDAN_G1_MATH_BOOK_ID;
-  const review = loadReviewState(bookId) || {};
+  const bookId = JORDAN_G1_MATH_BOOK_ID;
+  const contentType = request.headers.get("content-type") || "";
 
-  if (body.action === "approve_metadata") {
-    saveReviewState(bookId, { ...review, metadataApproved: true });
-    return json({ ok: true, review: loadReviewState(bookId) });
-  }
-  if (body.action === "approve_structure") {
-    saveReviewState(bookId, { ...review, structureApproved: true });
-    return json({ ok: true, review: loadReviewState(bookId) });
-  }
-  if (body.action === "reject_book") {
-    saveReviewState(bookId, {
-      ...review,
-      rejected: true,
-      rejectReason: body.reason || "rejected_by_admin",
-      metadataApproved: false,
-      structureApproved: false,
-    });
-    return json({ ok: true, review: loadReviewState(bookId) });
-  }
-  if (body.action === "edit_metadata") {
-    const extraction = loadExtraction(bookId);
-    if (!extraction) return json({ ok: false, error: "NO_EXTRACTION" }, 404);
-    extraction.book = { ...extraction.book, ...body.patch } as typeof extraction.book;
-    const validated = BookExtractionSchema.parse(extraction);
-    writeJson(
-      path.join(bookDir(bookId), "extraction", "structure.json"),
-      validated,
-    );
-    saveReviewState(bookId, { ...review, metadataApproved: false, metadataEdited: true });
-    return json({ ok: true, extraction: validated });
-  }
-  if (body.action === "correct_unit") {
-    const extraction = loadExtraction(bookId);
-    if (!extraction) return json({ ok: false, error: "NO_EXTRACTION" }, 404);
-    const unit = extraction.parts[body.partIndex]?.units[body.unitIndex];
-    if (!unit) return json({ ok: false, error: "UNIT_NOT_FOUND" }, 404);
-    if (body.title != null) unit.title = body.title;
-    if (body.startPage != null) unit.startPage = body.startPage;
-    if (body.endPage != null) unit.endPage = body.endPage;
-    const validated = validateBookExtraction(extraction);
-    writeJson(
-      path.join(bookDir(bookId), "extraction", "structure.json"),
-      validated,
-    );
-    saveReviewState(bookId, { ...review, structureApproved: false });
-    return json({ ok: true, extraction: validated });
-  }
-  if (body.action === "correct_lesson") {
-    const extraction = loadExtraction(bookId);
-    if (!extraction) return json({ ok: false, error: "NO_EXTRACTION" }, 404);
-    const lesson =
-      extraction.parts[body.partIndex]?.units[body.unitIndex]?.lessons[
-        body.lessonIndex
-      ];
-    if (!lesson) return json({ ok: false, error: "LESSON_NOT_FOUND" }, 404);
-    if (body.title != null) lesson.title = body.title;
-    if (body.startPage != null) lesson.startPage = body.startPage;
-    if (body.endPage != null) lesson.endPage = body.endPage;
-    const validated = validateBookExtraction(extraction);
-    writeJson(
-      path.join(bookDir(bookId), "extraction", "structure.json"),
-      validated,
-    );
-    saveReviewState(bookId, { ...review, structureApproved: false });
-    return json({ ok: true, extraction: validated });
-  }
-  if (body.action === "save_structure") {
-    const validated = validateBookExtraction(body.structure);
-    writeJson(
-      path.join(bookDir(bookId), "extraction", "structure.json"),
-      validated,
-    );
-    saveReviewState(bookId, { ...review, structureApproved: false });
-    return json({ ok: true, extraction: validated });
-  }
-  if (body.action === "reprocess_page") {
-    const pdfs = listPdfCandidates(bookId);
-    if (!pdfs.length) {
+  // Multipart upload
+  if (contentType.includes("multipart/form-data")) {
+    const form = await request.formData();
+    const file = form.get("file");
+    if (!(file instanceof File)) {
+      return json({ ok: false, error: "FILE_REQUIRED" }, 400);
+    }
+    const destDir = sourceDir(bookId);
+    fs.mkdirSync(destDir, { recursive: true });
+    const dest = path.join(destDir, "MA.01.ST.BOOK_WEB.pdf");
+    const partial = `${dest}.upload-partial`;
+    const buf = Buffer.from(await file.arrayBuffer());
+    fs.writeFileSync(partial, buf);
+
+    const validation = validateOfficialPdf(partial);
+    if (!validation.ok) {
+      const rejected = path.join(
+        destDir,
+        `REJECTED_UPLOAD_${validation.reason}_${Date.now()}.bin`,
+      );
+      fs.renameSync(partial, rejected);
+      writeJson(importStatusPath(bookId), {
+        imported: false,
+        failReason: `UPLOAD_VALIDATION_FAILED:${validation.reason}`,
+        updatedAt: new Date().toISOString(),
+      });
       return json(
         {
           ok: false,
-          error: "PDF_MISSING",
-          message: "Official complete PDF is not available locally yet.",
+          imported: false,
+          message: "لم يتم استيراد الكتاب بعد",
+          failReason: `فشل التحقق من الملف المرفوع: ${validation.reason}`,
         },
-        409,
+        400,
       );
     }
-    const pageNum = Number(body.page);
-    if (!Number.isFinite(pageNum) || pageNum < 1) {
-      return json({ ok: false, error: "INVALID_PAGE" }, 400);
-    }
-    // Reset checkpoint to page-1 so extractor resumes from selected page without wiping earlier pages:
-    // delete only the selected page file, set checkpoint to pageNum-1.
-    const pageFile = path.join(
-      bookDir(bookId),
-      "extraction",
-      "pages",
-      `page-${String(pageNum).padStart(4, "0")}.json`,
-    );
-    if (fs.existsSync(pageFile)) fs.unlinkSync(pageFile);
-    writeJson(path.join(bookDir(bookId), "extraction", "checkpoints", "progress.json"), {
-      lastCompletedPage: pageNum - 1,
-      updatedAt: new Date().toISOString(),
-      reprocessRequestedPage: pageNum,
-    });
 
+    if (fs.existsSync(dest)) fs.unlinkSync(dest);
+    fs.renameSync(partial, dest);
+    // Clear stale previews then regenerate
+    const previewDir = path.join(bookDir(bookId), "previews");
+    if (fs.existsSync(previewDir)) {
+      for (const f of fs.readdirSync(previewDir)) {
+        if (f.endsWith(".png")) fs.unlinkSync(path.join(previewDir, f));
+      }
+    }
+    const previews = ensurePreviews(bookId, dest, validation.pageCount);
+    writeJson(importStatusPath(bookId), {
+      imported: true,
+      source: "manual_upload",
+      officialUrl: OFFICIAL_PDF_URL,
+      localFile: path.relative(process.cwd(), dest),
+      fileSize: validation.fileSize,
+      pageCount: validation.pageCount,
+      sha256: validation.sha256,
+      firstPageValid: true,
+      lastPageValid: true,
+      updatedAt: new Date().toISOString(),
+    });
+    return json({
+      ok: true,
+      imported: true,
+      officialTitle: OFFICIAL_BOOK_TITLE_AR,
+      officialUrl: OFFICIAL_PDF_URL,
+      localFile: path.relative(process.cwd(), dest),
+      fileSize: validation.fileSize,
+      pageCount: validation.pageCount,
+      sha256: validation.sha256,
+      firstPageValid: true,
+      lastPageValid: true,
+      previews: previews.map((_, i) => `/api/admin/curriculum-ai/books/import?preview=${i + 1}`),
+    });
+  }
+
+  const body = (await request.json().catch(() => ({}))) as { action?: string };
+  if (body.action === "redownload") {
+    // Fire Playwright download; do not claim success until validation passes on next GET.
+    writeJson(importStatusPath(bookId), {
+      imported: false,
+      failReason: "إعادة التنزيل الرسمي قيد التنفيذ…",
+      updatedAt: new Date().toISOString(),
+    });
     const child = spawn(
-      "python3",
-      [
-        path.join(process.cwd(), "scripts/curriculum-ai/extract-book.py"),
-        "--pdf",
-        pdfs[0],
-        "--book-dir",
-        bookDir(bookId),
-        "--batch-size",
-        "1",
-      ],
-      { detached: true, stdio: "ignore" },
+      "node",
+      [path.join(process.cwd(), "scripts/curriculum-ai/download-official-pdf.mjs")],
+      {
+        cwd: process.cwd(),
+        detached: true,
+        stdio: "ignore",
+      },
     );
     child.unref();
-    saveReviewState(bookId, {
-      ...review,
-      lastReprocessPage: pageNum,
-      lastReprocessAt: new Date().toISOString(),
+    return json({
+      ok: true,
+      started: true,
+      pid: child.pid,
+      message: "بدأت محاولة إعادة التنزيل الرسمي. حدّث الصفحة بعد اكتمالها.",
+      officialUrl: OFFICIAL_PDF_URL,
     });
-    return json({ ok: true, started: true, page: pageNum, pid: child.pid });
   }
 
   return json({ ok: false, error: "UNKNOWN_ACTION" }, 400);
