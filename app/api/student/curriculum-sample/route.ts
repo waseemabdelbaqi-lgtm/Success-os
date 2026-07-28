@@ -13,12 +13,31 @@ export async function GET() {
   );
   store.getDb();
   const sample = store.getLatestSampleLesson();
-  if (!sample) {
+  if (!sample || String(sample.status || "").startsWith("QUARANTINED")) {
     return NextResponse.json(
-      { ok: false, error: "NO_SAMPLE_LESSON" },
+      {
+        ok: false,
+        error: "NO_JORDAN_SAMPLE_LESSON",
+        status: "BLOCKED_PENDING_CURRICULUM_MAP_APPROVAL",
+        message:
+          "لا يوجد درس أردني معتمد. لازم اعتماد Evidence Pack أولاً. دروس OpenStax محظورة كمنهاج أردني.",
+      },
       { status: 404, headers: { "Cache-Control": "no-store" } },
     );
   }
+
+  const book = store.getBook(sample.book_id);
+  if (!book || book.country_code !== "JO") {
+    return NextResponse.json(
+      {
+        ok: false,
+        error: "SAMPLE_NOT_JORDAN_TRACEABLE",
+        status: "BLOCKED",
+      },
+      { status: 404, headers: { "Cache-Control": "no-store" } },
+    );
+  }
+
   return NextResponse.json(
     {
       ok: true,
@@ -27,6 +46,13 @@ export async function GET() {
       status: sample.status,
       sourcePages: sample.source_pages,
       content: JSON.parse(sample.content_json),
+      sourceTrace: {
+        country: "Jordan",
+        bookId: book.id,
+        bookTitle: book.title,
+        catalogUrl: book.catalog_url,
+        rights: book.rights_status,
+      },
     },
     { headers: { "Cache-Control": "no-store" } },
   );

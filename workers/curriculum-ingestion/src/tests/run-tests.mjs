@@ -23,9 +23,13 @@ function pass(name, ok, detail = "") {
 async function main() {
   getDb();
 
-  // discovery
+  // discovery (Jordan only — OpenStax excluded)
   const discovery = await runJordanDiscovery();
-  pass("discovery_test", discovery.jordanBooks > 0, `jordan=${discovery.jordanBooks}`);
+  pass(
+    "discovery_test",
+    discovery.uniqueJordanBooks > 0 && discovery.openStaxExcluded === true,
+    `uniqueJordan=${discovery.uniqueJordanBooks}`,
+  );
 
   // rights gate
   try {

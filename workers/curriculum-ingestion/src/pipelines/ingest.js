@@ -29,18 +29,13 @@ export async function runJordanDiscovery() {
   });
   try {
     upsertCountry("JO", "Jordan", "الأردن");
-    upsertCountry("OER", "Open Educational Resources", "مصادر تعليمية مفتوحة");
 
     const nccd = new JordanNccdAdapter();
     const nccdResult = await nccd.discoverCatalog();
     upsertSource(nccdResult.source);
     for (const book of nccdResult.books) upsertBook(book);
 
-    // Also index OpenStax OER for downloadable verification pipeline (not Jordan substitutes).
-    const oer = new OpenStaxOerAdapter();
-    const oerResult = await oer.discoverCatalog();
-    upsertSource(oerResult.source);
-    for (const book of oerResult.books) upsertBook(book);
+    const uniqueBooks = nccdResult.books.filter((b) => b.book_type !== "grade-catalog-page");
 
     updateJob(jobId, {
       status: "COMPLETED",
@@ -48,15 +43,19 @@ export async function runJordanDiscovery() {
       finished_at: nowIso(),
       result_json: JSON.stringify({
         jordanBooks: nccdResult.books.length,
-        oerBooks: oerResult.books.length,
+        uniqueJordanBooks: uniqueBooks.length,
+        oerBooks: 0,
         nccdStatus: nccdResult.source.status,
+        openStaxExcluded: true,
       }),
     });
     return {
       jobId,
       jordanBooks: nccdResult.books.length,
-      oerBooks: oerResult.books.length,
+      uniqueJordanBooks: uniqueBooks.length,
+      oerBooks: 0,
       nccdStatus: nccdResult.source.status,
+      openStaxExcluded: true,
     };
   } catch (err) {
     updateJob(jobId, {
@@ -66,6 +65,16 @@ export async function runJordanDiscovery() {
     });
     throw err;
   }
+}
+
+/** OpenStax discovery is separate curriculum/country=OER — never mixed into Jordan PASS. */
+export async function runOpenStaxDiscovery() {
+  upsertCountry("OER", "Open Educational Resources", "مصادر تعليمية مفتوحة");
+  const oer = new OpenStaxOerAdapter();
+  const oerResult = await oer.discoverCatalog();
+  upsertSource(oerResult.source);
+  for (const book of oerResult.books) upsertBook(book);
+  return { oerBooks: oerResult.books.length };
 }
 
 export async function downloadAndVerifyBook(bookId) {
@@ -79,12 +88,8 @@ export async function downloadAndVerifyBook(bookId) {
     return { status: BOOK_STATUS.SOURCE_ACCESS_BLOCKED };
   }
   if (!canStoreFullPdf(book.rights_status)) {
-    // Metadata-only path for official Jordan books.
-    updateBook(bookId, {
-      status: BOOK_STATUS.RIGHTS_RESTRICTED,
-      last_error: "FULL_PDF_STORAGE_NOT_PERMITTED_BY_RIGHTS_POLICY",
-    });
-    // Still probe accessibility without storing protected content when blocked network.
+    // Official Jordan textbooks: do not store full PDF. Probe access separately from rights.
+    // rights_status stays OFFICIAL_REFERENCE_ONLY; access status is independent.
     try {
       const probe = await fetch(book.official_url, {
         method: "GET",
@@ -98,6 +103,14 @@ export async function downloadAndVerifyBook(bookId) {
         });
         return { status: BOOK_STATUS.SOURCE_ACCESS_BLOCKED };
       }
+      updateBook(bookId, {
+        status: BOOK_STATUS.DISCOVERED,
+        last_error: "ACCESS_OK_BUT_FULL_PDF_STORAGE_NOT_PERMITTED_BY_RIGHTS_POLICY",
+      });
+      return {
+        status: BOOK_STATUS.DISCOVERED,
+        rightsNote: "OFFICIAL_REFERENCE_ONLY_NO_FULL_PDF_STORE",
+      };
     } catch (err) {
       updateBook(bookId, {
         status: BOOK_STATUS.SOURCE_ACCESS_BLOCKED,
@@ -105,7 +118,6 @@ export async function downloadAndVerifyBook(bookId) {
       });
       return { status: BOOK_STATUS.SOURCE_ACCESS_BLOCKED };
     }
-    return { status: BOOK_STATUS.RIGHTS_RESTRICTED };
   }
 
   updateBook(bookId, { status: BOOK_STATUS.DOWNLOADING, last_error: null });
@@ -283,6 +295,12 @@ doc.close()
 export async function createSampleLessonFromBook(bookId) {
   const book = getBook(bookId);
   if (!book) throw new Error("BOOK_NOT_FOUND");
+  // Never allow OpenStax / non-Jordan books to produce Jordan-branded lessons.
+  if (book.country_code === "JO") {
+    throw new Error(
+      "JORDAN_LESSON_BLOCKED: approve Curriculum Evidence Pack map before generating Jordan original lessons",
+    );
+  }
   if (!canStoreFullPdf(book.rights_status)) throw new Error("RIGHTS_GATE");
   const filePath = resolveObjectPath(book.storage_key);
   // Extract a concrete early section for original rewrite (do not copy protected/long prose).

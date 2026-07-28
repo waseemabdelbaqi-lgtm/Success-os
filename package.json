@@ -30,6 +30,7 @@
     "curriculum:worker": "node workers/curriculum-ingestion/src/index.js worker",
     "curriculum:discover:jordan": "node workers/curriculum-ingestion/src/index.js discover",
     "curriculum:ingest:phase": "node workers/curriculum-ingestion/src/index.js phase",
+    "curriculum:jordan:recovery": "node workers/curriculum-ingestion/src/index.js recovery",
     "curriculum:ingest:test": "node workers/curriculum-ingestion/src/tests/run-tests.mjs",
     "curriculum:extract:book": "python3 scripts/curriculum-ai/extract-book.py",
     "validate:books": "node scripts/validate-book-engine.mjs",

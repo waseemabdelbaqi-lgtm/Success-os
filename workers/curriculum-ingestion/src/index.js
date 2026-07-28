@@ -10,6 +10,7 @@ import {
   createSampleLessonFromBook,
   queueDownloadJobsForOpenBooks,
 } from "./pipelines/ingest.js";
+import { runJordanContentRecovery } from "./pipelines/jordan-recovery.js";
 import { getMetrics, listBooks, getLatestSampleLesson, updateBook } from "./db/store.js";
 import { BOOK_STATUS } from "./rights/policy.js";
 import { storageStats } from "./storage/object-store.js";
@@ -20,51 +21,15 @@ async function runDiscoveryCli() {
   console.log(JSON.stringify(await runJordanDiscovery(), null, 2));
 }
 
-async function runPhaseCli() {
-  const discovery = await runJordanDiscovery();
-  console.log("discovery", discovery);
-
-  // Probe Jordan blocked downloads independently (should not stop pipeline)
-  const jordanBlockedProbe = listBooks({ country_code: "JO" })
-    .filter((b) => b.official_url)
-    .slice(0, 3);
-  for (const b of jordanBlockedProbe) {
-    const r = await downloadAndVerifyBook(b.id);
-    console.log("jordan_probe", b.title, r.status);
-  }
-
-  // Download up to 3 open-license books
-  const openBooks = listBooks({ country_code: "OER" })
-    .filter((b) => b.official_url && b.rights_status === "OPEN_LICENSE")
-    .slice(0, 3);
-  const verified = [];
-  for (const b of openBooks) {
-    console.log("downloading", b.title);
-    const r = await downloadAndVerifyBook(b.id);
-    console.log("result", b.title, r.status, r.pageCount || "");
-    if (r.status === BOOK_STATUS.VERIFIED) verified.push(b.id);
-  }
-
-  let structured = null;
-  let sample = null;
-  if (verified[0]) {
-    structured = await extractStructure(verified[0], { maxPages: 30 });
-    sample = await createSampleLessonFromBook(verified[0]);
-  }
-
-  const metrics = getMetrics();
-  const report = {
-    discovery,
-    verifiedBookIds: verified,
-    structuredUnits: structured?.units?.length || 0,
-    structuredLessons: structured?.lessons?.length || 0,
-    sampleLessonTitle: sample?.title || null,
-    metrics,
-    storage: storageStats(),
-    queue: await queueHealth().catch((e) => ({ error: String(e.message || e) })),
-  };
+async function runRecoveryCli() {
+  const report = await runJordanContentRecovery();
   console.log(JSON.stringify(report, null, 2));
   return report;
+}
+
+async function runPhaseCli() {
+  // Phase now = Jordan Content Recovery only. OpenStax is NOT a Jordan substitute.
+  return runRecoveryCli();
 }
 
 async function startWorkers() {
@@ -119,7 +84,7 @@ if (mode === "discover") {
       console.error(e);
       process.exit(1);
     });
-} else if (mode === "phase") {
+} else if (mode === "phase" || mode === "recovery") {
   runPhaseCli()
     .then(() => process.exit(0))
     .catch((e) => {

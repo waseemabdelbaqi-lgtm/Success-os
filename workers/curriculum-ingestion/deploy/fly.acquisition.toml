@@ -1,0 +1,17 @@
+# Fly.io acquisition worker skeleton — set region explicitly (e.g. ams, fra, iad).
+# Does not bypass NCCD protections; used only for lawful public fetches.
+app = "success-os-curriculum-acquisition"
+primary_region = "fra"
+
+[build]
+  dockerfile = "Dockerfile.acquisition"
+
+[env]
+  CURRICULUM_STORAGE_BACKEND = "local"
+  ACQUISITION_REGION = "fra"
+  PLAYWRIGHT_ENABLED = "0"
+
+[[vm]]
+  cpu_kind = "shared"
+  cpus = 2
+  memory_mb = 4096

@@ -299,21 +299,54 @@ export function getMetrics() {
   return {
     countries: count(`SELECT COUNT(*) AS c FROM countries`),
     sources: count(`SELECT COUNT(*) AS c FROM sources`),
+    // Jordan-only counters — OpenStax/OER never inflate Jordan downloadable/verified
     jordanBooksDiscovered: count(`SELECT COUNT(*) AS c FROM books WHERE country_code='JO'`),
-    downloadableBooks: count(
-      `SELECT COUNT(*) AS c FROM books WHERE rights_status IN ('OPEN_LICENSE','PUBLIC_DOMAIN') AND official_url IS NOT NULL AND official_url != ''`,
+    uniqueJordanBooks: count(
+      `SELECT COUNT(*) AS c FROM books WHERE country_code='JO' AND book_type != 'grade-catalog-page'`,
     ),
-    blockedBooks: count(`SELECT COUNT(*) AS c FROM books WHERE status='SOURCE_ACCESS_BLOCKED'`),
-    rightsRestrictedBooks: count(`SELECT COUNT(*) AS c FROM books WHERE rights_status='OFFICIAL_REFERENCE_ONLY' OR rights_status='RIGHTS_RESTRICTED'`),
-    verifiedBooks: count(`SELECT COUNT(*) AS c FROM books WHERE status='VERIFIED' OR status IN ('EXTRACTING','STRUCTURED','AI_DRAFT','REVIEW_REQUIRED','APPROVED','PUBLISHED')`),
-    processedBooks: count(`SELECT COUNT(*) AS c FROM books WHERE status IN ('STRUCTURED','AI_DRAFT','REVIEW_REQUIRED','APPROVED','PUBLISHED')`),
-    detectedUnits: count(`SELECT COUNT(*) AS c FROM units`),
-    detectedLessons: count(`SELECT COUNT(*) AS c FROM lessons`),
+    downloadableBooks: count(
+      `SELECT COUNT(*) AS c FROM books
+       WHERE country_code='JO' AND official_url IS NOT NULL AND official_url != ''
+         AND status IN ('VERIFIED','DOWNLOADING','QUEUED')`,
+    ),
+    openStaxDownloadableBooks: count(
+      `SELECT COUNT(*) AS c FROM books WHERE country_code='OER' AND rights_status='OPEN_LICENSE' AND official_url IS NOT NULL AND official_url != ''`,
+    ),
+    blockedBooks: count(`SELECT COUNT(*) AS c FROM books WHERE country_code='JO' AND status='SOURCE_ACCESS_BLOCKED'`),
+    rightsRestrictedBooks: count(
+      `SELECT COUNT(*) AS c FROM books WHERE country_code='JO' AND (rights_status='RIGHTS_RESTRICTED' OR status='RIGHTS_RESTRICTED')`,
+    ),
+    officialReferenceOnlyBooks: count(
+      `SELECT COUNT(*) AS c FROM books WHERE country_code='JO' AND rights_status='OFFICIAL_REFERENCE_ONLY'`,
+    ),
+    verifiedBooks: count(
+      `SELECT COUNT(*) AS c FROM books WHERE country_code='JO' AND status IN ('VERIFIED','EXTRACTING','STRUCTURED','AI_DRAFT','REVIEW_REQUIRED','APPROVED','PUBLISHED')`,
+    ),
+    processedBooks: count(
+      `SELECT COUNT(*) AS c FROM books WHERE country_code='JO' AND status IN ('STRUCTURED','AI_DRAFT','REVIEW_REQUIRED','APPROVED','PUBLISHED')`,
+    ),
+    verifiedJordanBooks: count(
+      `SELECT COUNT(*) AS c FROM books WHERE country_code='JO' AND status IN ('VERIFIED','EXTRACTING','STRUCTURED','AI_DRAFT','REVIEW_REQUIRED','APPROVED','PUBLISHED')`,
+    ),
+    processedJordanBooks: count(
+      `SELECT COUNT(*) AS c FROM books WHERE country_code='JO' AND status IN ('STRUCTURED','AI_DRAFT','REVIEW_REQUIRED','APPROVED','PUBLISHED')`,
+    ),
+    detectedUnits: count(
+      `SELECT COUNT(*) AS c FROM units u JOIN books b ON b.id=u.book_id WHERE b.country_code='JO'`,
+    ),
+    detectedLessons: count(
+      `SELECT COUNT(*) AS c FROM lessons l JOIN books b ON b.id=l.book_id WHERE b.country_code='JO'`,
+    ),
     jobsQueued: count(`SELECT COUNT(*) AS c FROM jobs WHERE status IN ('QUEUED','RUNNING')`),
     jobsFailed: count(`SELECT COUNT(*) AS c FROM jobs WHERE status='FAILED'`),
     jobsCompleted: count(`SELECT COUNT(*) AS c FROM jobs WHERE status='COMPLETED'`),
     storageBytes: sumStorage(),
-    sampleLessons: count(`SELECT COUNT(*) AS c FROM sample_lessons`),
+    sampleLessons: count(
+      `SELECT COUNT(*) AS c FROM sample_lessons WHERE status NOT LIKE 'QUARANTINED%'`,
+    ),
+    jordanCurriculumStatus: "FAIL",
+    infrastructureStatus: "PASS",
+    globalProductionStatus: "NOT_READY",
   };
 }
 
@@ -369,6 +402,10 @@ export function saveSampleLesson(row) {
 
 export function getLatestSampleLesson() {
   return getDb()
-    .prepare(`SELECT * FROM sample_lessons ORDER BY updated_at DESC LIMIT 1`)
+    .prepare(
+      `SELECT * FROM sample_lessons
+       WHERE status NOT LIKE 'QUARANTINED%'
+       ORDER BY updated_at DESC LIMIT 1`,
+    )
     .get();
 }
