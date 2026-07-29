@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { defaultRecordedLessonFilters } from '@/app/data/recorded-lesson-filters.js';
+import { DEFAULT_TEACHER_RECORDED_COMMISSION_PERCENT } from '@/app/lib/admin/teacher-price-split.js';
 import { RecordedLessonsFilters } from '@/components/admin/recorded-lessons-filters.jsx';
 import { RecordedLessonsSubjectResults } from '@/components/admin/recorded-lessons-subject-results.jsx';
 import { TeacherPriceSplitPanel } from '@/components/admin/teacher-price-split.jsx';
@@ -285,8 +286,11 @@ export function EnterpriseAdminModulePage({ moduleId }) {
                   payload: {
                     defaultCommissionPercent: percent,
                     recordedLessonCommissionPercent:
-                      commissionDefaults.recordedLessonCommissionPercent ?? 30,
-                    globalCommissionPercent: commissionDefaults.globalCommissionPercent ?? 30,
+                      commissionDefaults.recordedLessonCommissionPercent ??
+                      DEFAULT_TEACHER_RECORDED_COMMISSION_PERCENT,
+                    globalCommissionPercent:
+                      commissionDefaults.globalCommissionPercent ??
+                      DEFAULT_TEACHER_RECORDED_COMMISSION_PERCENT,
                   },
                   user: 'owner',
                 }),

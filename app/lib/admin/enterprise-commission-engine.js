@@ -1,8 +1,8 @@
 /**
  * ADMIN-NEXT — Dynamic Commission Engine.
  * Platform-wide default 10% lives in config only — never hardcoded in UI or payment callers.
- * Recorded Lessons marketplace default (TEACHER_RECORDED) is 30% via globalCommissionPercent /
- * recordedLessonCommissionPercent and the marketplace commission engine.
+ * Recorded Lessons marketplace default (TEACHER_RECORDED) is 15% platform / 85% teacher
+ * via globalCommissionPercent / recordedLessonCommissionPercent and the marketplace engine.
  */
 
 import path from 'node:path';
@@ -49,6 +49,15 @@ function mergeCommissionDefaults(existing) {
     merged.recordedLessonCommissionPercent =
       merged.globalCommissionPercent ?? BASE_DEFAULTS.recordedLessonCommissionPercent;
   }
+  // Migrate cancelled TEACHER_RECORDED default (30% platform) → approved 15% platform / 85% teacher.
+  // Does not touch unrelated defaultCommissionPercent (platform-wide 10%).
+  const cancelledRecordedDefault = 30;
+  if (Number(merged.recordedLessonCommissionPercent) === cancelledRecordedDefault) {
+    merged.recordedLessonCommissionPercent = DEFAULT_TEACHER_RECORDED_COMMISSION_PERCENT;
+  }
+  if (Number(merged.globalCommissionPercent) === cancelledRecordedDefault) {
+    merged.globalCommissionPercent = DEFAULT_TEACHER_RECORDED_COMMISSION_PERCENT;
+  }
   return merged;
 }
 
@@ -60,9 +69,14 @@ export function ensureCommissionDefaults() {
     const merged = mergeCommissionDefaults(existing);
     const changed =
       existing.globalCommissionPercent == null ||
-      existing.recordedLessonCommissionPercent == null;
+      existing.recordedLessonCommissionPercent == null ||
+      Number(existing.recordedLessonCommissionPercent) === 30 ||
+      Number(existing.globalCommissionPercent) === 30;
     if (changed) {
-      merged.updatedAt = existing.updatedAt || erpNow();
+      merged.updatedAt = erpNow();
+      merged.updatedBy = existing.updatedBy || 'system';
+      merged.note =
+        'Owner-configurable. TEACHER_RECORDED default platform commission is 15% (teacher gross 85%).';
       erpWriteJson(DEFAULTS_FILE(), merged);
     }
     return merged;
@@ -242,7 +256,7 @@ function applyRuleAmount(rule, gross) {
 
 /**
  * Resolve commission for a payment context.
- * Recorded-lesson services use the marketplace cascade (default 30%).
+ * Recorded-lesson services use the marketplace cascade (default 15% platform / 85% teacher).
  * Other services keep legacy scoring with platform default 10%.
  */
 export function resolveCommission(context = {}) {

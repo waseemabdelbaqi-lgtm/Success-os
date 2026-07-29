@@ -66,11 +66,11 @@ const teacherFilters = parseRecordedLessonFilters({
 assert.equal(teacherGenderFilterVisible(teacherFilters), true);
 assert.equal(teacherFilters.teacherGender, 'female');
 
-// Teacher create → price → 30% → submit
+// Teacher create → price → 15% platform / 85% teacher → submit
 const teacherId = 'flow-teacher';
 const created = await createTeacherCourse(teacherId, {
   title: 'Teacher Algebra',
-  price: 50,
+  price: 100,
   subject: 'Math',
   teacherGender: 'female',
   country: 'Jordan',
@@ -79,7 +79,8 @@ const created = await createTeacherCourse(teacherId, {
   language: 'en',
   copyrightDeclarationAccepted: true,
 });
-assert.equal(created.pricingPreview.platformCommissionPercentage, 30);
+assert.equal(created.pricingPreview.platformCommissionPercentage, 15);
+assert.equal(created.pricingPreview.teacherEstimatedGrossShare, 85);
 const submitted = await submitTeacherCourseForReview(teacherId, created.course.id, {
   copyrightDeclarationAccepted: true,
 });
@@ -156,7 +157,7 @@ console.log(
       flows: [
         'student-s4s-preview',
         'student-teacher-gender-checkout-enrol',
-        'teacher-create-submit-30pct',
+        'teacher-create-submit-15pct-platform',
         'admin-approve-publish-manual',
         'aios-s4s-human-gates',
       ],

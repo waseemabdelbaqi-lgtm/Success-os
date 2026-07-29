@@ -1,6 +1,6 @@
 -- Recorded Lessons Marketplace — reversible schema
 -- Project: Success OS (auth.users IDs)
--- Default TEACHER_RECORDED commission: 30%
+-- Default TEACHER_RECORDED commission: 15% platform / 85% teacher gross
 
 BEGIN;
 
@@ -264,12 +264,12 @@ CREATE TABLE IF NOT EXISTS public.course_commission_rules (
 CREATE INDEX IF NOT EXISTS idx_course_commission_rules_scope
   ON public.course_commission_rules (scope, status, priority DESC);
 
--- Seed default TEACHER_RECORDED = 30%
+-- Seed default TEACHER_RECORDED = 15% platform commission (teacher gross 85%)
 INSERT INTO public.course_commission_rules (
   scope, source_type, percentage, priority, status, reason
 )
-SELECT 'lesson_source', 'TEACHER_RECORDED', 30, 0, 'ACTIVE',
-       'Default recorded teacher course commission'
+SELECT 'lesson_source', 'TEACHER_RECORDED', 15, 0, 'ACTIVE',
+       'Default recorded teacher course commission: 15% platform / 85% teacher gross'
 WHERE NOT EXISTS (
   SELECT 1 FROM public.course_commission_rules
   WHERE scope = 'lesson_source'

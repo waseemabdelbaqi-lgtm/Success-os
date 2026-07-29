@@ -2,14 +2,17 @@
 import assert from 'node:assert/strict';
 import {
   resolveMarketplaceCommission,
-  buildFinancialSnapshot,
   CALCULATION_VERSION,
   DEFAULT_TEACHER_COMMISSION_PERCENT,
+  DEFAULT_TEACHER_GROSS_SHARE_PERCENT,
 } from '../../app/lib/marketplace/commission-engine.js';
-import { calculateTeacherPriceSplit } from '../../app/lib/admin/teacher-price-split.js';
+import {
+  calculateTeacherPriceSplit,
+  DEFAULT_TEACHER_RECORDED_COMMISSION_PERCENT,
+} from '../../app/lib/admin/teacher-price-split.js';
 import { resolveCommissionCascade } from '../../app/lib/admin/commission-cascade.js';
 import { attemptMutateSnapshot, purchaseRecordedCourse } from '../../app/lib/marketplace/checkout.js';
-import { mem, memReset } from '../../app/lib/marketplace/in-memory-store.js';
+import { memReset } from '../../app/lib/marketplace/in-memory-store.js';
 import {
   createTeacherCourse,
   submitTeacherCourseForReview,
@@ -37,19 +40,25 @@ assert.equal(teacherGenderFilterVisible({ lessonSource: 'ALL' }), false);
 assert.equal(teacherGenderFilterVisible({ lessonSource: 'TEACHER_RECORDED' }), true);
 assert.equal(parseRecordedLessonFilters({ lessonSource: 'ALL', teacherGender: 'female' }).teacherGender, 'all');
 
-// 30% default commission
-assert.equal(DEFAULT_TEACHER_COMMISSION_PERCENT, 30);
-const split = calculateTeacherPriceSplit({ teacherPrice: 50, commissionPercent: 30 });
-assert.equal(split.teacherReceives, 35);
+// 15% platform / 85% teacher default
+assert.equal(DEFAULT_TEACHER_COMMISSION_PERCENT, 15);
+assert.equal(DEFAULT_TEACHER_GROSS_SHARE_PERCENT, 85);
+assert.equal(DEFAULT_TEACHER_RECORDED_COMMISSION_PERCENT, 15);
+
+const split = calculateTeacherPriceSplit({
+  teacherPrice: 100,
+  commissionPercent: DEFAULT_TEACHER_RECORDED_COMMISSION_PERCENT,
+});
+assert.equal(split.teacherReceives, 85);
 assert.equal(split.successOs, 15);
 
 const defaultRes = resolveMarketplaceCommission({
-  originalPrice: 50,
+  originalPrice: 100,
   sourceType: 'TEACHER_RECORDED',
 });
-assert.equal(defaultRes.effectiveCommissionPercentage, 30);
+assert.equal(defaultRes.effectiveCommissionPercentage, 15);
 assert.equal(defaultRes.platformCommissionAmount, 15);
-assert.equal(defaultRes.teacherGrossShare, 35);
+assert.equal(defaultRes.teacherGrossShare, 85);
 
 // S4S platform-owned
 const s4s = resolveMarketplaceCommission({
@@ -62,12 +71,12 @@ assert.equal(s4s.platformCommissionAmount, 40);
 
 // Override priority: campaign > course > teacher > partner > source > global
 const rules = [
-  { id: 'g', scope: 'global', percentage: 30, priority: 0, status: 'ACTIVE' },
+  { id: 'g', scope: 'global', percentage: 15, priority: 0, status: 'ACTIVE' },
   {
     id: 'src',
     scope: 'lesson_source',
     source_type: 'TEACHER_RECORDED',
-    percentage: 28,
+    percentage: 14,
     priority: 1,
     status: 'ACTIVE',
   },
@@ -75,7 +84,7 @@ const rules = [
     id: 'pt',
     scope: 'partner_type',
     partner_type: 'teacher',
-    percentage: 25,
+    percentage: 12,
     priority: 1,
     status: 'ACTIVE',
   },
@@ -83,7 +92,7 @@ const rules = [
     id: 't',
     scope: 'teacher_override',
     teacher_id: 'T1',
-    percentage: 20,
+    percentage: 10,
     priority: 1,
     status: 'ACTIVE',
   },
@@ -91,7 +100,7 @@ const rules = [
     id: 'c',
     scope: 'course_override',
     course_id: 'C1',
-    percentage: 15,
+    percentage: 8,
     priority: 1,
     status: 'ACTIVE',
   },
@@ -99,7 +108,7 @@ const rules = [
     id: 'camp',
     scope: 'special_campaign',
     campaign_id: 'CAMP1',
-    percentage: 10,
+    percentage: 5,
     priority: 1,
     status: 'ACTIVE',
   },
@@ -114,7 +123,7 @@ const campWin = resolveMarketplaceCommission({
   partnerType: 'teacher',
   rules,
 });
-assert.equal(campWin.effectiveCommissionPercentage, 10);
+assert.equal(campWin.effectiveCommissionPercentage, 5);
 assert.equal(campWin.appliedRule.scope, 'special_campaign');
 
 const courseWin = resolveMarketplaceCommission({
@@ -125,32 +134,39 @@ const courseWin = resolveMarketplaceCommission({
   partnerType: 'teacher',
   rules,
 });
-assert.equal(courseWin.effectiveCommissionPercentage, 15);
+assert.equal(courseWin.effectiveCommissionPercentage, 8);
 
-// Promotion calculation
+// Promotion calculation: paid 40 after £10 discount on £50 → 15% of 40 = 6, teacher 34
 const promo = resolveMarketplaceCommission({
   originalPrice: 50,
   discountAmount: 10,
   sourceType: 'TEACHER_RECORDED',
 });
 assert.equal(promo.paidAmount, 40);
-assert.equal(promo.platformCommissionAmount, 12);
-assert.equal(promo.teacherGrossShare, 28);
+assert.equal(promo.platformCommissionAmount, 6);
+assert.equal(promo.teacherGrossShare, 34);
 
-// Refund calculation
+// Refund calculation: gross teacher 85 on 100, refund 10 → final 75
 const refund = resolveMarketplaceCommission({
-  originalPrice: 50,
+  originalPrice: 100,
   sourceType: 'TEACHER_RECORDED',
   refundAmount: 10,
 });
 assert.equal(refund.refundAmount, 10);
-assert.equal(refund.teacherFinalPayable, 25); // 35 - 10
+assert.equal(refund.teacherGrossShare, 85);
+assert.equal(refund.teacherFinalPayable, 75);
 
 // Cascade resolution log
 const cascade = resolveCommissionCascade({
-  globalCommissionPercent: 30,
+  globalCommissionPercent: 15,
   rules,
-  context: { teacherId: 'T1', courseId: 'C1', campaignId: 'CAMP1', partnerType: 'teacher', sourceType: 'TEACHER_RECORDED' },
+  context: {
+    teacherId: 'T1',
+    courseId: 'C1',
+    campaignId: 'CAMP1',
+    partnerType: 'teacher',
+    sourceType: 'TEACHER_RECORDED',
+  },
   teacherPrice: 100,
 });
 assert.equal(cascade.winnerLayer, 'special_campaign');
@@ -162,7 +178,7 @@ const teacherId = 'teacher-1';
 const studentId = 'student-1';
 const created = await createTeacherCourse(teacherId, {
   title: 'Optics',
-  price: 50,
+  price: 100,
   subject: 'Physics',
   curriculum: 'MoE',
   grade: '11',
@@ -170,7 +186,8 @@ const created = await createTeacherCourse(teacherId, {
   copyrightDeclarationAccepted: true,
 });
 assert.equal(created.ok, true);
-assert.equal(created.pricingPreview.platformCommissionPercentage, 30);
+assert.equal(created.pricingPreview.platformCommissionPercentage, 15);
+assert.equal(created.pricingPreview.teacherEstimatedGrossShare, 85);
 assert.equal(created.pricingPreview.commissionEditableByTeacher, false);
 
 const submitted = await submitTeacherCourseForReview(teacherId, created.course.id, {
@@ -216,10 +233,15 @@ const purchase = await purchaseRecordedCourse({
   clientPrice: 0.01, // must be ignored
 });
 assert.equal(purchase.ok, true);
-assert.equal(purchase.purchase.paid_amount, 50);
-assert.equal(purchase.snapshot.effective_commission_percentage, 30);
+assert.equal(purchase.purchase.paid_amount, 100);
+assert.equal(purchase.snapshot.effective_commission_percentage, 15);
+assert.equal(purchase.snapshot.platform_commission_amount, 15);
+assert.equal(purchase.snapshot.teacher_gross_share, 85);
 assert.equal(purchase.snapshot.calculation_version, CALCULATION_VERSION);
-assert.ok(Object.isFrozen(purchase.snapshot) || attemptMutateSnapshot(purchase.snapshot.id, { paid_amount: 1 }).error === 'SNAPSHOT_IMMUTABLE');
+assert.ok(
+  Object.isFrozen(purchase.snapshot) ||
+    attemptMutateSnapshot(purchase.snapshot.id, { paid_amount: 1 }).error === 'SNAPSHOT_IMMUTABLE',
+);
 
 const dup = await purchaseRecordedCourse({
   studentId,
@@ -247,16 +269,22 @@ const ruleUp = await upsertCommissionRule({
 assert.equal(ruleUp.ok, true);
 assert.equal(ruleUp.audit.reason, 'Campaign adjustment');
 
-const teacherPreview = await previewTeacherPricing(50, 'USD', teacherId);
-assert.equal(teacherPreview.platformCommissionPercentage, 30);
+const teacherPreview = await previewTeacherPricing(100, 'GBP', teacherId);
+assert.equal(teacherPreview.platformCommissionPercentage, 15);
+assert.equal(teacherPreview.teacherEstimatedGrossShare, 85);
 
 console.log(
   JSON.stringify(
     {
       ok: true,
       suite: 'marketplace-commission-engine',
-      defaults: { teacherCommission: 30, teacherShareExample: '35/15 on 50' },
+      defaults: {
+        platformCommission: 15,
+        teacherGrossShare: 85,
+        example: '100 → teacher 85 / platform 15',
+      },
       taxonomy: RECORDED_LESSON_SOURCE_IDS,
+      calculationVersion: CALCULATION_VERSION,
     },
     null,
     2,

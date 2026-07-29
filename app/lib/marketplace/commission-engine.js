@@ -10,7 +10,7 @@
  * 6. global default
  *
  * Defaults:
- *   TEACHER_RECORDED → 30% platform / 70% teacher gross
+ *   TEACHER_RECORDED → 15% platform / 85% teacher gross (before fees/refunds/taxes)
  *   S4S_INTELLIGENCE → platform-owned (no teacher split)
  */
 
@@ -18,6 +18,7 @@ import { normalizeLessonSource } from '../../data/recorded-lesson-sources.js';
 import { resolveCommissionCascade } from '../admin/commission-cascade.js';
 import {
   DEFAULT_TEACHER_RECORDED_COMMISSION_PERCENT,
+  DEFAULT_TEACHER_RECORDED_GROSS_SHARE_PERCENT,
   isRecordedLessonService,
 } from '../admin/teacher-price-split.js';
 import {
@@ -27,8 +28,9 @@ import {
   toMinorUnits,
 } from './money.js';
 
-export const CALCULATION_VERSION = 'recorded-marketplace-v1';
+export const CALCULATION_VERSION = 'recorded-marketplace-v2';
 export const DEFAULT_TEACHER_COMMISSION_PERCENT = DEFAULT_TEACHER_RECORDED_COMMISSION_PERCENT;
+export const DEFAULT_TEACHER_GROSS_SHARE_PERCENT = DEFAULT_TEACHER_RECORDED_GROSS_SHARE_PERCENT;
 
 const S4S_DEFAULT_PLATFORM_PERCENT = 100;
 

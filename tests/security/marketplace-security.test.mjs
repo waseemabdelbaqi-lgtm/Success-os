@@ -43,7 +43,8 @@ const updated = await updateTeacherCourse(teacherId, created.course.id, {
 });
 assert.equal(updated.ok, true);
 assert.equal(updated.course.price, 90);
-assert.equal(updated.pricingPreview.platformCommissionPercentage, 30);
+assert.equal(updated.pricingPreview.platformCommissionPercentage, 15);
+assert.equal(updated.pricingPreview.teacherEstimatedGrossShare, Number((90 * 0.85).toFixed(2)));
 
 // Teacher cannot approve own course
 await submitTeacherCourseForReview(teacherId, created.course.id, {

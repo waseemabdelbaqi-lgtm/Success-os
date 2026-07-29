@@ -2,12 +2,12 @@
  * Teacher price split for Recorded Lessons / teacher services.
  *
  * Example (configurable rates — not hardcoded in UI callers):
- *   Teacher Price        50 USD
- *   Platform Commission  30%
- *   Teacher Receives     35 USD
- *   Success OS           15 USD
+ *   Course Price                 100
+ *   Teacher Gross Share          85%  → 85
+ *   Success OS Platform Commission 15% → 15
  *
  * Uses integer minor units for final money values.
+ * Default percent lives in this constant / admin config — never scatter magic numbers in UI.
  */
 
 import {
@@ -18,7 +18,11 @@ import {
   toMinorUnits,
 } from '../marketplace/money.js';
 
-export const DEFAULT_TEACHER_RECORDED_COMMISSION_PERCENT = 30;
+/** Default Success OS platform commission for TEACHER_RECORDED (teacher gross = 100 − this). */
+export const DEFAULT_TEACHER_RECORDED_COMMISSION_PERCENT = 15;
+
+/** Default teacher gross share percentage before fees/refunds/taxes/deductions. */
+export const DEFAULT_TEACHER_RECORDED_GROSS_SHARE_PERCENT = 100 - DEFAULT_TEACHER_RECORDED_COMMISSION_PERCENT;
 
 export function money2(n) {
   const v = Number(n);

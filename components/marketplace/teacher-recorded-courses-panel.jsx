@@ -132,7 +132,7 @@ export function TeacherRecordedCoursesPanel() {
         <h2>My Recorded Courses</h2>
         <p style={{ margin: '4px 0 12px', fontSize: 13 }}>
           Create drafts, submit for review, track sales and payouts. Default platform commission is
-          30% (read-only for teachers).
+          configurable (seeded 15% platform / 85% teacher gross) and read-only for teachers.
         </p>
       </header>
 

@@ -31,7 +31,7 @@ const rules = [
 ];
 
 const r = resolveCommissionCascade({
-  globalCommissionPercent: 30,
+  globalCommissionPercent: 15,
   rules,
   context: {
     teacherId: 'T1',

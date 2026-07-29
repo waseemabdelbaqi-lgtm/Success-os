@@ -13,7 +13,10 @@ import {
   RECORDED_LESSON_CONCRETE_SOURCES,
   lessonSourceLabel,
 } from './recorded-lesson-sources.js';
-import { calculateTeacherPriceSplit } from '../lib/admin/teacher-price-split.js';
+import {
+  calculateTeacherPriceSplit,
+  DEFAULT_TEACHER_RECORDED_COMMISSION_PERCENT,
+} from '../lib/admin/teacher-price-split.js';
 
 export const ENTERPRISE_ADMIN_SCHEMA = 'success-os.enterprise-admin.v2';
 export const ENTERPRISE_ADMIN_VERSION = '2.0.0';
@@ -314,7 +317,7 @@ export const ENTERPRISE_ADMIN_MODULES = Object.freeze({
     formatRow(row) {
       const split = calculateTeacherPriceSplit({
         teacherPrice: row.isFree ? 0 : row.price,
-        commissionPercent: row.commissionPercent ?? 30,
+        commissionPercent: row.commissionPercent ?? DEFAULT_TEACHER_RECORDED_COMMISSION_PERCENT,
         currency: row.currency || 'USD',
       });
       return {
