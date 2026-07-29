@@ -64,7 +64,7 @@ NOTO_NASKH_BOLD = "/usr/share/fonts/truetype/noto/NotoNaskhArabic-Bold.ttf"
 
 CONTENT = {
     "cover": {
-        "title_ar": "مدرسة اللورد",
+        "title_ar": "Lord School",  # English school name only (per client request)
         "subtitle_ar": "مقترح تطوير البرنامج الدولي",
         "line3": "وخطة النمو الاستراتيجية لخمس سنوات",
         "line4": "مع التركيز التنفيذي على السنة الأولى",
@@ -77,7 +77,7 @@ CONTENT = {
             "num": "1",
             "title": "الوضع التقريبي الحالي للمدرسة",
             "paras": [
-                "تمتلك مدرسة اللورد قاعدة مناسبة للنمو والتطوير، إلا أن الاستفادة الحالية من طاقتها الاستيعابية ما تزال أقل من الإمكانات المتاحة.",
+                "تمتلك Lord School قاعدة مناسبة للنمو والتطوير، إلا أن الاستفادة الحالية من طاقتها الاستيعابية ما تزال أقل من الإمكانات المتاحة.",
                 "الأرقام الواردة أدناه تقديرية وتحتاج إلى مطابقتها لاحقاً مع السجلات الرسمية للمدرسة.",
             ],
             "box_title": "ملخص الوضع الحالي",
@@ -146,6 +146,7 @@ CONTENT = {
             "title": "الخطة التطويرية لخمس سنوات",
             "year1_title": "السنة الأولى: سنة إعادة البناء والانطلاق",
             "year1_intro": "السنة الأولى هي محور الخطة، والهدف منها معالجة الأولويات المباشرة، بناء برنامج دولي منظم، رفع الثقة، وخلق نمو حقيقي في التسجيل.",
+            # Logical RTL columns: المرحلة (right) | الأعمال الرئيسية (left)
             "table_headers": ("المرحلة", "الأعمال الرئيسية"),
             "table_rows": [
                 (
@@ -379,6 +380,98 @@ def set_cell_border(cell, color=BURGUNDY_HEX, sz="8"):
     tcPr.append(tcBorders)
 
 
+def set_table_rtl(table):
+    """Force visual RTL column order so first logical column appears on the right."""
+    tbl = table._tbl
+    tblPr = tbl.tblPr if tbl.tblPr is not None else OxmlElement("w:tblPr")
+    if tbl.tblPr is None:
+        tbl.insert(0, tblPr)
+    bidi = tblPr.find(qn("w:bidiVisual"))
+    if bidi is None:
+        bidi = OxmlElement("w:bidiVisual")
+        tblPr.append(bidi)
+
+
+def set_table_full_width(table):
+    tbl = table._tbl
+    tblPr = tbl.tblPr
+    tblW = tblPr.find(qn("w:tblW"))
+    if tblW is None:
+        tblW = OxmlElement("w:tblW")
+        tblPr.append(tblW)
+    tblW.set(qn("w:type"), "pct")
+    tblW.set(qn("w:w"), "5000")  # 100%
+
+
+def set_cell_width(cell, cm_width: float):
+    tc = cell._tc
+    tcPr = tc.get_or_add_tcPr()
+    tcW = tcPr.find(qn("w:tcW"))
+    if tcW is None:
+        tcW = OxmlElement("w:tcW")
+        tcPr.append(tcW)
+    tcW.set(qn("w:type"), "dxa")
+    tcW.set(qn("w:w"), str(int(cm_width * 567)))
+
+
+def add_picture_paragraph(doc, image_path: Path, width_inches: float = 6.4):
+    p = doc.add_paragraph()
+    p.alignment = WD_ALIGN_PARAGRAPH.CENTER
+    set_paragraph_spacing(p, 8, 10, 1.0)
+    run = p.add_run()
+    run.add_picture(str(image_path), width=Inches(width_inches))
+    return p
+
+
+def add_rtl_phase_table(doc, headers, rows):
+    """
+    Clean RTL table:
+      Right: المرحلة (narrow)
+      Left: الأعمال الرئيسية (wide)
+    """
+    table = doc.add_table(rows=1 + len(rows), cols=2)
+    table.alignment = WD_TABLE_ALIGNMENT.CENTER
+    set_table_rtl(table)
+    set_table_full_width(table)
+
+    # headers[0]=المرحلة (right via bidiVisual), headers[1]=الأعمال
+    for i, text in enumerate(headers):
+        cell = table.rows[0].cells[i]
+        cell.paragraphs[0].clear()
+        p = cell.paragraphs[0]
+        set_paragraph_rtl(p, WD_ALIGN_PARAGRAPH.CENTER)
+        run = p.add_run(text)
+        set_run_font(run, "Amiri", 12, WHITE, True)
+        shade_cell(cell, BURGUNDY_HEX)
+        set_cell_border(cell, BURGUNDY_HEX, "12")
+
+    set_cell_width(table.rows[0].cells[0], 4.2)   # المرحلة
+    set_cell_width(table.rows[0].cells[1], 12.0)  # الأعمال
+
+    for r_idx, (phase, work) in enumerate(rows, start=1):
+        phase_cell = table.rows[r_idx].cells[0]
+        work_cell = table.rows[r_idx].cells[1]
+        for cell, text, color, bold in (
+            (phase_cell, phase, BURGUNDY, True),
+            (work_cell, work, DARK, False),
+        ):
+            cell.paragraphs[0].clear()
+            p = cell.paragraphs[0]
+            set_paragraph_rtl(p, WD_ALIGN_PARAGRAPH.RIGHT)
+            set_paragraph_spacing(p, 3, 3, 1.25)
+            run = p.add_run(text)
+            set_run_font(run, "Amiri", 11, color, bold)
+            set_cell_border(cell, "C9B7A0", "10")
+            if r_idx % 2 == 0:
+                shade_cell(cell, "FBF8F4")
+            else:
+                shade_cell(cell, "FFFFFF")
+        set_cell_width(phase_cell, 4.2)
+        set_cell_width(work_cell, 12.0)
+
+    return table
+
+
 def add_page_border(section, color=BURGUNDY_HEX, sz="24", space="24"):
     """Elegant double-feel border via page borders."""
     sectPr = section._sectPr
@@ -455,8 +548,8 @@ def build_docx(watermark_path: Path) -> Path:
     # Header EN
     add_en_paragraph(doc, HEADER_EN, size=11, bold=True, color=BURGUNDY, before=6, after=28)
 
-    # Cover titles
-    add_ar_paragraph(doc, cover["title_ar"], size=28, bold=True, color=BURGUNDY, align=WD_ALIGN_PARAGRAPH.CENTER, before=36, after=10)
+    # Cover titles — school name in English only
+    add_en_paragraph(doc, cover["title_ar"], size=30, bold=True, color=BURGUNDY, before=36, after=10)
     add_ar_paragraph(doc, cover["subtitle_ar"], size=20, bold=True, color=GOLD, align=WD_ALIGN_PARAGRAPH.CENTER, before=8, after=8)
     add_ar_paragraph(doc, cover["line3"], size=16, bold=False, color=DARK, align=WD_ALIGN_PARAGRAPH.CENTER, before=4, after=6)
     add_ar_paragraph(doc, cover["line4"], size=15, bold=True, color=BURGUNDY, align=WD_ALIGN_PARAGRAPH.CENTER, before=4, after=28)
@@ -475,43 +568,12 @@ def build_docx(watermark_path: Path) -> Path:
             # Section 5 is large — handled specially
             add_ar_paragraph(doc, f"{sec['num']}. {sec['title']}", size=16, bold=True, color=BURGUNDY, before=10, after=6)
             add_gold_rule(doc)
+            add_picture_paragraph(doc, ASSETS / "chart_roadmap.png", 6.5)
             add_ar_paragraph(doc, sec["year1_title"], size=14, bold=True, color=GOLD, before=8, after=6)
             add_ar_paragraph(doc, sec["year1_intro"], size=12, bold=False, color=DARK, before=2, after=10)
 
-            # Table
-            table = doc.add_table(rows=1 + len(sec["table_rows"]), cols=2)
-            table.alignment = WD_TABLE_ALIGNMENT.CENTER
-            table.autofit = True
-            # Header row: RTL so col0 = الأعمال, col1 = المرحلة visually right
-            # In Word RTL tables, first column appears on the right.
-            hdr = table.rows[0].cells
-            hdr[0].text = ""
-            hdr[1].text = ""
-            for i, text in enumerate(sec["table_headers"]):
-                cell = hdr[i]
-                cell.paragraphs[0].clear()
-                p = cell.paragraphs[0]
-                set_paragraph_rtl(p, WD_ALIGN_PARAGRAPH.CENTER)
-                run = p.add_run(text)
-                set_run_font(run, "Amiri", 11, WHITE, True)
-                shade_cell(cell, BURGUNDY_HEX)
-                set_cell_border(cell, BURGUNDY_HEX, "10")
-
-            for r_idx, (phase, work) in enumerate(sec["table_rows"], start=1):
-                row = table.rows[r_idx].cells
-                for col, text, color, bold in (
-                    (0, phase, BURGUNDY, True),
-                    (1, work, DARK, False),
-                ):
-                    cell = row[col]
-                    cell.paragraphs[0].clear()
-                    p = cell.paragraphs[0]
-                    set_paragraph_rtl(p, WD_ALIGN_PARAGRAPH.RIGHT)
-                    run = p.add_run(text)
-                    set_run_font(run, "Amiri", 11, color, bold)
-                    set_cell_border(cell, "C9B7A0", "8")
-                    if r_idx % 2 == 0:
-                        shade_cell(cell, "FBF8F4")
+            add_rtl_phase_table(doc, sec["table_headers"], sec["table_rows"])
+            add_picture_paragraph(doc, ASSETS / "chart_phases.png", 6.5)
 
             add_ar_paragraph(doc, sec["goals_title"], size=13, bold=True, color=GOLD, before=16, after=8)
             for b in sec["goals"]:
@@ -562,6 +624,7 @@ def build_docx(watermark_path: Path) -> Path:
 
         if sec.get("box_title"):
             box = doc.add_table(rows=1, cols=1)
+            set_table_rtl(box)
             cell = box.rows[0].cells[0]
             shade_cell(cell, "F4F0EC")
             set_cell_border(cell, GOLD_HEX, "10")
@@ -577,6 +640,8 @@ def build_docx(watermark_path: Path) -> Path:
                 run = p.add_run(f"• {b}")
                 set_run_font(run, "Amiri", 11.5, DARK, False)
             doc.add_paragraph()
+            if sec["num"] == "1":
+                add_picture_paragraph(doc, ASSETS / "chart_occupancy.png", 6.5)
         else:
             for b in sec.get("bullets", []):
                 add_ar_paragraph(doc, f"• {b}", size=12, before=1, after=3)
@@ -730,7 +795,20 @@ def build_pptx(watermark_path: Path) -> Path:
     add_slide_chrome(slide, prs, watermark_path)
     add_header_footer_pptx(slide, prs)
     c = CONTENT["cover"]
-    add_textbox(slide, PptInches(0.7), PptInches(1.8), PptInches(8.6), PptInches(0.7), c["title_ar"], 32, True, BURGUNDY, PP_ALIGN.CENTER)
+    add_textbox(
+        slide,
+        PptInches(0.7),
+        PptInches(1.8),
+        PptInches(8.6),
+        PptInches(0.7),
+        c["title_ar"],
+        34,
+        True,
+        BURGUNDY,
+        PP_ALIGN.CENTER,
+        font_name="Liberation Serif",
+        rtl=False,
+    )
     add_textbox(slide, PptInches(0.7), PptInches(2.55), PptInches(8.6), PptInches(0.55), c["subtitle_ar"], 22, True, GOLD, PP_ALIGN.CENTER)
     add_textbox(slide, PptInches(0.7), PptInches(3.15), PptInches(8.6), PptInches(0.4), c["line3"], 16, False, DARK, PP_ALIGN.CENTER)
     add_textbox(slide, PptInches(0.7), PptInches(3.55), PptInches(8.6), PptInches(0.4), c["line4"], 15, True, BURGUNDY, PP_ALIGN.CENTER)
@@ -749,7 +827,8 @@ def build_pptx(watermark_path: Path) -> Path:
         add_textbox(slide, PptInches(0.55), PptInches(y), PptInches(8.9), PptInches(0.55), para, 13, False, DARK)
         y += 0.55
     add_textbox(slide, PptInches(0.55), PptInches(y + 0.05), PptInches(8.9), PptInches(0.35), s1["box_title"], 14, True, BURGUNDY)
-    add_bullets_box(slide, PptInches(0.55), PptInches(y + 0.4), PptInches(8.9), PptInches(4.2), s1["bullets"], 12)
+    add_bullets_box(slide, PptInches(0.55), PptInches(y + 0.4), PptInches(8.9), PptInches(2.4), s1["bullets"], 11)
+    slide.shapes.add_picture(str(ASSETS / "chart_occupancy.png"), PptInches(1.2), PptInches(5.0), width=PptInches(7.6))
 
     # ---- Slide 3: Section 2 ----
     s2 = CONTENT["sections"][1]
@@ -777,30 +856,66 @@ def build_pptx(watermark_path: Path) -> Path:
     add_textbox(slide, PptInches(0.55), PptInches(1.2), PptInches(8.9), PptInches(0.85), s4["paras"][0], 12, False, DARK)
     add_bullets_box(slide, PptInches(0.55), PptInches(2.1), PptInches(8.9), PptInches(4.6), s4["bullets"], 12)
 
-    # ---- Slide 6: Year 1 plan + table ----
+    # ---- Slide 6: 5-year roadmap chart ----
     s5 = CONTENT["sections"][4]
     slide = prs.slides.add_slide(blank)
     add_slide_chrome(slide, prs, watermark_path)
     add_header_footer_pptx(slide, prs)
     add_textbox(slide, PptInches(0.55), PptInches(0.75), PptInches(8.9), PptInches(0.35), f"{s5['num']}. {s5['title']}", 16, True, BURGUNDY)
-    add_textbox(slide, PptInches(0.55), PptInches(1.15), PptInches(8.9), PptInches(0.35), s5["year1_title"], 14, True, GOLD)
-    add_textbox(slide, PptInches(0.55), PptInches(1.5), PptInches(8.9), PptInches(0.65), s5["year1_intro"], 12, False, DARK)
+    slide.shapes.add_picture(str(ASSETS / "chart_roadmap.png"), PptInches(0.7), PptInches(1.3), width=PptInches(8.6))
+    add_textbox(slide, PptInches(0.55), PptInches(5.3), PptInches(8.9), PptInches(0.9), s5["year1_intro"], 13, False, DARK)
 
-    # Simple table representation as text blocks
-    y = 2.25
-    for phase, work in s5["table_rows"]:
-        add_textbox(slide, PptInches(0.55), PptInches(y), PptInches(8.9), PptInches(0.28), phase, 12, True, BURGUNDY)
-        add_textbox(slide, PptInches(0.55), PptInches(y + 0.28), PptInches(8.9), PptInches(0.55), work, 11, False, DARK)
-        y += 0.9
-
-    # ---- Slide 7: Year 1 goals ----
+    # ---- Slide 7: Year 1 table (proper 2-col) ----
+    from pptx.enum.shapes import MSO_SHAPE
     slide = prs.slides.add_slide(blank)
     add_slide_chrome(slide, prs, watermark_path)
     add_header_footer_pptx(slide, prs)
-    add_textbox(slide, PptInches(0.55), PptInches(0.75), PptInches(8.9), PptInches(0.4), s5["goals_title"], 16, True, GOLD)
-    add_bullets_box(slide, PptInches(0.55), PptInches(1.25), PptInches(8.9), PptInches(5.5), s5["goals"], 13)
+    add_textbox(slide, PptInches(0.55), PptInches(0.7), PptInches(8.9), PptInches(0.35), s5["year1_title"], 15, True, GOLD)
+    # Header bar
+    hdr = slide.shapes.add_table(1 + len(s5["table_rows"]), 2, PptInches(0.5), PptInches(1.15), PptInches(9.0), PptInches(4.5)).table
+    # Right col first visually in RTL reading: col0 = الأعمال (wider left in LTR), col1 = المرحلة
+    # PowerPoint tables are LTR: put المرحلة in col1 (right), الأعمال in col0 (left)
+    hdr.cell(0, 0).text = s5["table_headers"][1]  # الأعمال الرئيسية
+    hdr.cell(0, 1).text = s5["table_headers"][0]  # المرحلة
+    for c in range(2):
+        cell = hdr.cell(0, c)
+        for p in cell.text_frame.paragraphs:
+            p.alignment = PP_ALIGN.CENTER
+            pPr = p._p.get_or_add_pPr()
+            pPr.set("rtl", "1")
+            for run in p.runs:
+                run.font.bold = True
+                run.font.size = PptPt(12)
+                run.font.color.rgb = PptRGB(*WHITE)
+                run.font.name = "Amiri"
+        cell.fill.solid()
+        cell.fill.fore_color.rgb = PptRGB(*BURGUNDY)
+    for r_idx, (phase, work) in enumerate(s5["table_rows"]):
+        hdr.cell(r_idx + 1, 0).text = work
+        hdr.cell(r_idx + 1, 1).text = phase
+        for c, bold, color in ((0, False, DARK), (1, True, BURGUNDY)):
+            cell = hdr.cell(r_idx + 1, c)
+            for p in cell.text_frame.paragraphs:
+                p.alignment = PP_ALIGN.RIGHT
+                pPr = p._p.get_or_add_pPr()
+                pPr.set("rtl", "1")
+                for run in p.runs:
+                    run.font.size = PptPt(11)
+                    run.font.bold = bold
+                    run.font.color.rgb = PptRGB(*color)
+                    run.font.name = "Amiri"
+    hdr.columns[0].width = PptInches(6.3)
+    hdr.columns[1].width = PptInches(2.7)
 
-    # ---- Slide 8: Years 2-5 ----
+    # ---- Slide 8: phases chart + goals ----
+    slide = prs.slides.add_slide(blank)
+    add_slide_chrome(slide, prs, watermark_path)
+    add_header_footer_pptx(slide, prs)
+    add_textbox(slide, PptInches(0.55), PptInches(0.7), PptInches(8.9), PptInches(0.35), s5["goals_title"], 15, True, GOLD)
+    slide.shapes.add_picture(str(ASSETS / "chart_phases.png"), PptInches(0.7), PptInches(1.1), width=PptInches(8.6))
+    add_bullets_box(slide, PptInches(0.55), PptInches(3.7), PptInches(8.9), PptInches(3.0), s5["goals"], 12)
+
+    # ---- Slide 9: Years 2-5 ----
     slide = prs.slides.add_slide(blank)
     add_slide_chrome(slide, prs, watermark_path)
     add_header_footer_pptx(slide, prs)
@@ -814,7 +929,7 @@ def build_pptx(watermark_path: Path) -> Path:
             y += 0.42 if year.get("paras") else 0.32
         y += 0.12
 
-    # ---- Slide 9: Section 6 ----
+    # ---- Slide 10: Section 6 ----
     s6 = CONTENT["sections"][5]
     slide = prs.slides.add_slide(blank)
     add_slide_chrome(slide, prs, watermark_path)
@@ -1072,10 +1187,10 @@ def build_pdf() -> Path:
 
 
 def build_html_document() -> str:
-    """Full HTML body for Story-based PDF (exact words preserved)."""
+    """Full HTML body for Story-based PDF (Arabic RTL + English school name)."""
     c = CONTENT["cover"]
     parts: list[str] = []
-    parts.append(f"<h1>{c['title_ar']}</h1>")
+    parts.append(f"<h1 class='school-en'>{c['title_ar']}</h1>")
     parts.append(f"<p class='sub'>{c['subtitle_ar']}</p>")
     parts.append(f"<p class='line3'>{c['line3']}</p>")
     parts.append(f"<p class='line4'>{c['line4']}</p>")
@@ -1088,15 +1203,19 @@ def build_html_document() -> str:
     for sec in CONTENT["sections"]:
         if sec["num"] == "5":
             parts.append(f"<h2>{sec['num']}. {sec['title']}</h2>")
+            parts.append("<p class='chart'><img src='chart_roadmap.png' width='520'/></p>")
             parts.append(f"<h3>{sec['year1_title']}</h3>")
             parts.append(f"<p>{sec['year1_intro']}</p>")
+            # MuPDF Story tables lay out LTR: put الأعمال on left (col0), المرحلة on right (col1)
+            # so Arabic reading starts at المرحلة on the right.
             parts.append("<table><thead><tr>")
-            parts.append(f"<th>{sec['table_headers'][0]}</th>")
             parts.append(f"<th>{sec['table_headers'][1]}</th>")
+            parts.append(f"<th class='phase'>{sec['table_headers'][0]}</th>")
             parts.append("</tr></thead><tbody>")
             for phase, work in sec["table_rows"]:
-                parts.append(f"<tr><td class='phase'>{phase}</td><td>{work}</td></tr>")
+                parts.append(f"<tr><td class='work'>{work}</td><td class='phase'>{phase}</td></tr>")
             parts.append("</tbody></table>")
+            parts.append("<p class='chart'><img src='chart_phases.png' width='520'/></p>")
             parts.append(f"<h3>{sec['goals_title']}</h3><ul>")
             for b in sec["goals"]:
                 parts.append(f"<li>{b}</li>")
@@ -1134,6 +1253,8 @@ def build_html_document() -> str:
             for b in sec["bullets"]:
                 parts.append(f"<li>{b}</li>")
             parts.append("</ul></div>")
+            if sec["num"] == "1":
+                parts.append("<p class='chart'><img src='chart_occupancy.png' width='520'/></p>")
         elif sec.get("bullets"):
             parts.append("<ul>")
             for b in sec["bullets"]:
@@ -1146,8 +1267,9 @@ def build_html_document() -> str:
 STORY_CSS = """
 @font-face { font-family: Amiri; src: url(Amiri-Regular.ttf); }
 @font-face { font-family: Amiri; src: url(Amiri-Bold.ttf); font-weight: bold; }
+@font-face { font-family: LiberationSerif; src: url(LiberationSerif-Bold.ttf); font-weight: bold; }
 body { font-family: Amiri; font-size: 11.5pt; direction: rtl; color: #232323; line-height: 1.5; }
-h1 { color: #8B1E2D; text-align: center; font-size: 28pt; margin: 1.2em 0 0.25em; font-weight: bold; }
+h1, .school-en { font-family: LiberationSerif, Amiri; color: #8B1E2D; text-align: center; font-size: 30pt; margin: 1.2em 0 0.25em; font-weight: bold; direction: ltr; }
 .sub { color: #B68A3A; text-align: center; font-size: 18pt; font-weight: bold; margin: 0.25em 0; }
 .line3 { text-align: center; font-size: 14pt; margin: 0.2em 0; }
 .line4 { color: #8B1E2D; text-align: center; font-size: 13pt; font-weight: bold; margin: 0.2em 0 0.6em; }
@@ -1158,14 +1280,18 @@ h2 { color: #8B1E2D; text-align: right; font-size: 14pt; margin: 0.85em 0 0.35em
 h3 { color: #B68A3A; text-align: right; font-size: 12.5pt; margin: 0.7em 0 0.3em; font-weight: bold; }
 .box { background-color: #F4F0EC; border: 1px solid #B68A3A; padding: 8px 12px; margin: 8px 0; }
 .principle { background-color: #F8F5F2; border: 1.5px solid #8B1E2D; padding: 10px 12px; margin: 10px 0; }
-.boxtitle { color: #8B1E2D; font-weight: bold; font-size: 12pt; margin: 0 0 6px; }
+.boxtitle { color: #8B1E2D; font-weight: bold; font-size: 12pt; margin: 0 0 6px; text-align: right; }
 ul { margin: 0.25em 0; padding-right: 1.2em; }
-li { margin: 0.22em 0; }
+li { margin: 0.22em 0; text-align: right; }
 p { margin: 0.35em 0; text-align: right; }
-table { width: 100%; border-collapse: collapse; margin: 8px 0; direction: rtl; }
-th { background-color: #8B1E2D; color: #FFFFFF; padding: 6px 8px; font-size: 11pt; }
-td { border: 0.5px solid #C9B7A0; padding: 6px 8px; font-size: 10.5pt; vertical-align: top; }
-td.phase { color: #8B1E2D; font-weight: bold; width: 30%; }
+.chart { text-align: center; margin: 10px 0; direction: ltr; }
+table { width: 100%; border-collapse: collapse; margin: 10px 0; direction: rtl; }
+th { background-color: #8B1E2D; color: #FFFFFF; padding: 8px 10px; font-size: 11pt; text-align: center; }
+td { border: 0.7px solid #C9B7A0; padding: 8px 10px; font-size: 10.5pt; vertical-align: top; text-align: right; }
+td.phase, th.phase { color: #8B1E2D; font-weight: bold; width: 28%; background-color: #FBF8F4; }
+th.phase { color: #FFFFFF; background-color: #8B1E2D; }
+td.work { width: 72%; }
+tr:nth-child(even) td.work { background-color: #FBF8F4; }
 .sign { text-align: center; color: #8B1E2D; font-weight: bold; font-size: 13pt; margin-top: 1.6em; }
 .signrole { text-align: center; color: #666666; font-size: 11pt; }
 hr.gold { border: none; border-top: 1.2px solid #B68A3A; margin: 14px 90px; }
@@ -1178,6 +1304,8 @@ def build_pdf_v2() -> Path:
     html = build_html_document()
     arch = fitz.Archive()
     arch.add(str(FONTS))
+    arch.add(str(ASSETS))
+    arch.add("/usr/share/fonts/truetype/liberation")
     story = fitz.Story(html=html, user_css=STORY_CSS, archive=arch)
 
     tmp = OUTPUT / "_story_body.pdf"
