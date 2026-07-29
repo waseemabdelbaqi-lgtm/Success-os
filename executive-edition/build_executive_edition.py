@@ -285,9 +285,14 @@ def set_run_font(run, name: str, size_pt: float, color: tuple[int, int, int], bo
     run.font.bold = bold
     run.font.color.rgb = RGBColor(*color)
     rPr = run._element.get_or_add_rPr()
-    rtl = OxmlElement("w:rtl")
-    # only mark Arabic runs as rtl when name is Amiri/Noto
-    if any(ord(c) > 0x0600 and ord(c) < 0x06FF for c in (run.text or "")):
+    # Mark Arabic / mixed Arabic runs as RTL so Word starts from the right
+    text = run.text or ""
+    if any("\u0600" <= c <= "\u06FF" for c in text) or name in ("Amiri", "Noto Naskh Arabic"):
+        for child in list(rPr):
+            if child.tag == qn("w:rtl"):
+                rPr.remove(child)
+        rtl = OxmlElement("w:rtl")
+        rtl.set(qn("w:val"), "1")
         rPr.append(rtl)
 
 
@@ -299,7 +304,12 @@ def set_paragraph_rtl(paragraph, align=WD_ALIGN_PARAGRAPH.RIGHT):
         bidi = OxmlElement("w:bidi")
         pPr.append(bidi)
     bidi.set(qn("w:val"), "1")
-    # Arabic complex script
+    # Force Word complex-script RTL paragraph
+    text_dir = pPr.find(qn("w:textDirection"))
+    if text_dir is None:
+        text_dir = OxmlElement("w:textDirection")
+        pPr.append(text_dir)
+    text_dir.set(qn("w:val"), "rl")
     jc = pPr.find(qn("w:jc"))
     if jc is None:
         jc = OxmlElement("w:jc")
@@ -323,7 +333,8 @@ def add_ar_paragraph(doc, text, size=12, bold=False, color=DARK, align=WD_ALIGN_
     p = doc.add_paragraph()
     set_paragraph_rtl(p, align)
     set_paragraph_spacing(p, before, after, 1.35)
-    run = p.add_run(text)
+    # RLM forces Word to begin the run from the right for Arabic
+    run = p.add_run("\u200f" + text if text and not text.startswith("\u200f") else text)
     set_run_font(run, font, size, color, bold)
     return p
 
@@ -932,72 +943,81 @@ def build_pptx(watermark_path: Path) -> Path:
 
 # ===================== PDF (high quality via PyMuPDF) =====================
 
+def protect_ltr_runs(text: str) -> str:
+    """Isolate Latin runs so Arabic RTL reading order stays intact."""
+    import re
+
+    # LRM markers keep English phrases like "Lord School" as one LTR island
+    return re.sub(
+        r"([A-Za-z][A-Za-z0-9 .,&|/\-]{0,80})",
+        lambda m: "\u200e" + m.group(1).strip() + "\u200e",
+        text,
+    )
+
+
 def shape_ar(text: str) -> str:
-    """Shape Arabic for PDF rendering."""
+    """Shape Arabic for visual LTR drawing (reshape + bidi), starting from the right."""
     import arabic_reshaper
     from bidi.algorithm import get_display
 
-    reshaped = arabic_reshaper.reshape(text)
+    # RLM anchors the paragraph as RTL before mixed English/numbers
+    anchored = "\u200f" + protect_ltr_runs(text)
+    reshaped = arabic_reshaper.reshape(anchored)
     return get_display(reshaped)
+
+
+_FONT_CACHE: dict[str, fitz.Font] = {}
+
+
+def pdf_font(fontfile: str) -> fitz.Font:
+    if fontfile not in _FONT_CACHE:
+        _FONT_CACHE[fontfile] = fitz.Font(fontfile=fontfile)
+    return _FONT_CACHE[fontfile]
 
 
 def draw_page_frame(page: fitz.Page):
     r = page.rect
-    # Outer burgundy
     page.draw_rect(fitz.Rect(18, 18, r.width - 18, r.height - 18), color=[c / 255 for c in BURGUNDY], width=2.2)
-    # Inner gold
     page.draw_rect(fitz.Rect(26, 26, r.width - 26, r.height - 26), color=[c / 255 for c in GOLD], width=0.7)
 
 
 def insert_watermark(page: fitz.Page, watermark_path: Path):
     r = page.rect
-    # Centered large watermark
     wm = fitz.Rect(r.width * 0.15, r.height * 0.28, r.width * 0.85, r.height * 0.72)
     page.insert_image(wm, filename=str(watermark_path), keep_proportion=True, overlay=False)
 
 
-def pdf_header_footer(page, font_en):
-    r = page.rect
-    page.insert_text(
-        fitz.Point(r.width / 2, 48),
-        HEADER_EN,
-        fontname="enbold",
-        fontsize=9.5,
-        color=[c / 255 for c in BURGUNDY],
-        overlay=True,
-    )
-    # center manually by measuring
-    tw = fitz.get_text_length(HEADER_EN, fontname="helv", fontsize=9.5)
-    # re-draw centered using text writer
-    page.draw_rect(fitz.Rect(40, 38, r.width - 40, 55), color=None, fill=None, width=0)  # no-op placeholder
-
-
 def draw_centered_en(page, y, text, fontsize, color, fontfile, bold=False):
-    font = fitz.Font(fontfile=fontfile)
-    tw = font.text_length(text, fontsize=fontsize)
-    x = (page.rect.width - tw) / 2
-    page.insert_text(fitz.Point(x, y), text, fontfile=fontfile, fontsize=fontsize, color=[c / 255 for c in color])
+    """English (or Latin) centered via TextWriter — reliable glyph embedding."""
+    font = pdf_font(fontfile)
+    tw = fitz.TextWriter(page.rect)
+    width = font.text_length(text, fontsize=fontsize)
+    x = (page.rect.width - width) / 2
+    tw.append((x, y), text, font=font, fontsize=fontsize)
+    tw.write_text(page, color=[c / 255 for c in color])
 
 
 def draw_rtl_text(page, y, text, fontsize, color, fontfile, right_margin=48, left_margin=48, align="right"):
-    """Draw a single line of Arabic (shaped) right-aligned."""
+    """Draw one shaped Arabic line starting from the RIGHT (true RTL block start)."""
     shaped = shape_ar(text)
-    font = fitz.Font(fontfile=fontfile)
-    tw = font.text_length(shaped, fontsize=fontsize)
+    font = pdf_font(fontfile)
+    tw_width = font.text_length(shaped, fontsize=fontsize)
     usable = page.rect.width - left_margin - right_margin
     if align == "center":
-        x = left_margin + (usable - tw) / 2
+        x = left_margin + (usable - tw_width) / 2
     else:
-        x = page.rect.width - right_margin - tw
-    page.insert_text(fitz.Point(x, y), shaped, fontfile=fontfile, fontsize=fontsize, color=[c / 255 for c in color])
-    return tw
+        x = page.rect.width - right_margin - tw_width
+    writer = fitz.TextWriter(page.rect)
+    writer.append((x, y), shaped, font=font, fontsize=fontsize)
+    writer.write_text(page, color=[c / 255 for c in color])
+    return tw_width
 
 
 def wrap_ar(text, fontfile, fontsize, max_width):
-    """Simple Arabic word wrap (words already in logical order)."""
-    font = fitz.Font(fontfile=fontfile)
+    """Arabic word wrap using visual width after shaping."""
+    font = pdf_font(fontfile)
     words = text.split()
-    lines = []
+    lines: list[str] = []
     cur = ""
     for w in words:
         trial = (cur + " " + w).strip()
@@ -1021,6 +1041,52 @@ def draw_wrapped_ar(page, y, text, fontsize, color, fontfile, max_width, right_m
     return y
 
 
+def draw_rtl_bullet_block(
+    page,
+    y,
+    text: str,
+    fontsize: float,
+    color,
+    fontfile: str,
+    max_width: float,
+    right_margin: float = 48,
+    line_h: float | None = None,
+):
+    """Draw a bullet ALWAYS on the far right, then Arabic text flowing leftward.
+
+    Avoids bidi reordering that can push '•' to the left when numbers/English appear.
+    """
+    line_h = line_h or fontsize * 1.5
+    font = pdf_font(fontfile)
+    bullet = "•"
+    bullet_w = font.text_length(bullet, fontsize=fontsize)
+    gap = 8.0
+    text_right_margin = right_margin + bullet_w + gap
+    text_max = max_width - bullet_w - gap
+    lines = wrap_ar(text, fontfile, fontsize, text_max)
+    if not lines:
+        lines = [""]
+
+    # Bullet on first line, pinned to the right edge
+    writer = fitz.TextWriter(page.rect)
+    bx = page.rect.width - right_margin - bullet_w
+    writer.append((bx, y), bullet, font=font, fontsize=fontsize)
+    writer.write_text(page, color=[c / 255 for c in color])
+
+    for i, line in enumerate(lines):
+        draw_rtl_text(
+            page,
+            y + i * line_h,
+            line,
+            fontsize,
+            color,
+            fontfile,
+            right_margin=text_right_margin,
+            align="right",
+        )
+    return y + len(lines) * line_h
+
+
 def new_pdf_page(doc):
     page = doc.new_page(width=612, height=792)
     draw_page_frame(page)
@@ -1030,140 +1096,225 @@ def new_pdf_page(doc):
     return page
 
 
+def insert_chart(page: fitz.Page, y: float, image_path: Path, max_width: float = 500) -> float:
+    """Insert a chart image centered; return new y below it."""
+    if not image_path.exists():
+        return y
+    img = fitz.open(image_path)
+    try:
+        rect = img[0].rect
+        aspect = rect.height / rect.width if rect.width else 0.45
+    finally:
+        img.close()
+    w = max_width
+    h = w * aspect
+    x0 = (page.rect.width - w) / 2
+    page.insert_image(fitz.Rect(x0, y, x0 + w, y + h), filename=str(image_path), keep_proportion=True)
+    return y + h + 12
+
+
+def measure_wrapped_height(text: str, fontfile: str, fontsize: float, max_width: float, line_h: float) -> float:
+    lines = wrap_ar(text, fontfile, fontsize, max_width)
+    return max(len(lines), 1) * line_h
+
+
 def build_pdf() -> Path:
+    """High-quality PDF with forced Arabic RTL via reshape + right-edge placement.
+
+    PyMuPDF Story ignores text-align:right for Arabic, so we draw every line
+    ourselves from the right margin.
+    """
     doc = fitz.open()
     font_ar = AMIRI_REG
     font_ar_bold = AMIRI_BOLD
-    max_w = 612 - 96
-
-    # Cover
-    page = new_pdf_page(doc)
-    c = CONTENT["cover"]
-    y = 220
-    y = draw_wrapped_ar(page, y, c["title_ar"], 30, BURGUNDY, font_ar_bold, max_w, align="center", line_h=42)
-    y = draw_wrapped_ar(page, y + 8, c["subtitle_ar"], 20, GOLD, font_ar_bold, max_w, align="center", line_h=32)
-    y = draw_wrapped_ar(page, y + 4, c["line3"], 15, DARK, font_ar, max_w, align="center", line_h=26)
-    y = draw_wrapped_ar(page, y + 2, c["line4"], 14, BURGUNDY, font_ar_bold, max_w, align="center", line_h=26)
-    # gold rule
-    page.draw_line(fitz.Point(180, y + 18), fitz.Point(432, y + 18), color=[c / 255 for c in GOLD], width=1.2)
-    y += 50
-    y = draw_wrapped_ar(page, y, c["prepared"], 13, DARK, font_ar, max_w, align="center", line_h=22)
-    y = draw_wrapped_ar(page, y + 4, c["role"], 11.5, GREY, font_ar, max_w, align="center", line_h=20)
-    y = draw_wrapped_ar(page, y + 40, c["note"], 10.5, GREY, font_ar, max_w, align="center", line_h=18)
+    left_m, right_m = 48.0, 48.0
+    max_w = 612 - left_m - right_m
+    bottom_limit = 742.0
 
     def ensure_space(page, y, need=60):
-        if y > 740 - need:
+        if y > bottom_limit - need:
             page = new_pdf_page(doc)
-            return page, 70
+            return page, 70.0
         return page, y
 
-    # Sections
+    def draw_title(page, y, text, size, color, bold=True, number: str | None = None):
+        ff = font_ar_bold if bold else font_ar
+        if number:
+            # Pin "1." on the far right so it never flips to the left
+            font = pdf_font(ff)
+            num = f"{number}."
+            nw = font.text_length(num, fontsize=size)
+            writer = fitz.TextWriter(page.rect)
+            writer.append((612 - right_m - nw, y), num, font=font, fontsize=size)
+            writer.write_text(page, color=[c / 255 for c in color])
+            y = draw_wrapped_ar(
+                page,
+                y,
+                text,
+                size,
+                color,
+                ff,
+                max_w - nw - 8,
+                right_margin=right_m + nw + 8,
+                line_h=size * 1.55,
+            )
+        else:
+            y = draw_wrapped_ar(page, y, text, size, color, ff, max_w, right_margin=right_m, line_h=size * 1.55)
+        page.draw_line(
+            fitz.Point(left_m, y + 3),
+            fitz.Point(612 - right_m, y + 3),
+            color=[c / 255 for c in GOLD],
+            width=0.9,
+        )
+        return y + 14
+
+    def draw_bullets(page, y, bullets, size=11.5, indent=0.0):
+        usable = max_w - indent
+        rm = right_m + indent
+        for b in bullets:
+            page, y = ensure_space(page, y, 40)
+            y = draw_rtl_bullet_block(
+                page, y + 2, b, size, DARK, font_ar, usable, right_margin=rm, line_h=size * 1.5
+            )
+        return page, y
+
+    def draw_shaded_box(page, y, title, bullets, fill=LIGHT_BOX, border=GOLD):
+        """Measure, paint fill/border first, then draw RTL text inside."""
+        title_h = measure_wrapped_height(title, font_ar_bold, 12, max_w - 20, 20)
+        body_h = sum(
+            measure_wrapped_height(b, font_ar, 11, max_w - 36, 16) + 4 for b in bullets
+        )
+        box_h = 18 + title_h + body_h + 14
+        page, y = ensure_space(page, y, min(box_h, 200))
+        if y + box_h > bottom_limit:
+            y = draw_wrapped_ar(page, y, title, 12, BURGUNDY, font_ar_bold, max_w, right_margin=right_m, line_h=20)
+            page, y = draw_bullets(page, y, bullets, size=11)
+            return page, y + 8
+
+        top = y
+        page.draw_rect(
+            fitz.Rect(left_m, top, 612 - right_m, top + box_h),
+            color=None,
+            fill=[c / 255 for c in fill],
+        )
+        page.draw_rect(
+            fitz.Rect(left_m, top, 612 - right_m, top + box_h),
+            color=[c / 255 for c in border],
+            width=1.1,
+        )
+        yy = top + 16
+        yy = draw_wrapped_ar(page, yy, title, 12, BURGUNDY, font_ar_bold, max_w - 20, right_margin=right_m + 10, line_h=20)
+        for b in bullets:
+            yy = draw_rtl_bullet_block(
+                page, yy + 2, b, 11, DARK, font_ar, max_w - 20, right_margin=right_m + 10, line_h=16
+            )
+        return page, top + box_h + 12
+
+    # ----- Cover -----
     page = new_pdf_page(doc)
-    y = 70
+    c = CONTENT["cover"]
+    y = 210.0
+    # School name is English — draw without Arabic shaping
+    draw_centered_en(page, y, c["title_ar"], 32, BURGUNDY, LIB_SERIF_BOLD)
+    y += 48
+    y = draw_wrapped_ar(page, y, c["subtitle_ar"], 20, GOLD, font_ar_bold, max_w, align="center", line_h=32)
+    y = draw_wrapped_ar(page, y + 4, c["line3"], 15, DARK, font_ar, max_w, align="center", line_h=26)
+    y = draw_wrapped_ar(page, y + 2, c["line4"], 14, BURGUNDY, font_ar_bold, max_w, align="center", line_h=26)
+    page.draw_line(fitz.Point(180, y + 16), fitz.Point(432, y + 16), color=[c / 255 for c in GOLD], width=1.2)
+    y += 48
+    y = draw_wrapped_ar(page, y, c["prepared"], 13, DARK, font_ar, max_w, align="center", line_h=22)
+    y = draw_wrapped_ar(page, y + 4, c["role"], 11.5, GREY, font_ar, max_w, align="center", line_h=20)
+    y = draw_wrapped_ar(page, y + 36, c["note"], 10.5, GREY, font_ar, max_w, align="center", line_h=18)
+
+    # ----- Body -----
+    page = new_pdf_page(doc)
+    y = 70.0
 
     for sec in CONTENT["sections"]:
         page, y = ensure_space(page, y, 80)
-        title = f"{sec['num']}. {sec['title']}"
-        y = draw_wrapped_ar(page, y, title, 15, BURGUNDY, font_ar_bold, max_w, line_h=24)
-        page.draw_line(fitz.Point(48, y + 4), fitz.Point(564, y + 4), color=[c / 255 for c in GOLD], width=0.9)
-        y += 18
+        y = draw_title(page, y, sec["title"], 15, BURGUNDY, number=sec["num"])
 
         if sec["num"] == "5":
-            y = draw_wrapped_ar(page, y, sec["year1_title"], 13, GOLD, font_ar_bold, max_w, line_h=22)
-            y = draw_wrapped_ar(page, y + 4, sec["year1_intro"], 11.5, DARK, font_ar, max_w, line_h=18)
+            page, y = ensure_space(page, y, 220)
+            y = insert_chart(page, y, ASSETS / "chart_roadmap.png", 500)
+            y = draw_wrapped_ar(page, y, sec["year1_title"], 13, GOLD, font_ar_bold, max_w, right_margin=right_m, line_h=22)
+            y = draw_wrapped_ar(page, y + 4, sec["year1_intro"], 11.5, DARK, font_ar, max_w, right_margin=right_m, line_h=18)
             y += 10
-            # table header bar
-            page, y = ensure_space(page, y, 100)
-            hdr_rect = fitz.Rect(48, y - 12, 564, y + 10)
-            page.draw_rect(hdr_rect, color=None, fill=[c / 255 for c in BURGUNDY])
-            # headers RTL: المرحلة on right, الأعمال on left half
-            draw_rtl_text(page, y + 4, sec["table_headers"][0], 11, WHITE, font_ar_bold, right_margin=58)
-            # left column header approx
-            shaped = shape_ar(sec["table_headers"][1])
-            font = fitz.Font(fontfile=font_ar_bold)
-            tw = font.text_length(shaped, fontsize=11)
-            page.insert_text(fitz.Point(60, y + 4), shaped, fontfile=font_ar_bold, fontsize=11, color=(1, 1, 1))
-            y += 22
-            for phase, work in sec["table_rows"]:
-                page, y = ensure_space(page, y, 70)
-                start = y
-                y = draw_wrapped_ar(page, y, phase, 11, BURGUNDY, font_ar_bold, max_w * 0.95, line_h=17)
-                y = draw_wrapped_ar(page, y + 2, work, 10.5, DARK, font_ar, max_w * 0.95, line_h=16)
-                page.draw_rect(fitz.Rect(48, start - 12, 564, y + 4), color=[c / 255 for c in (201, 183, 160)], width=0.4)
-                y += 12
 
+            for phase, work in sec["table_rows"]:
+                phase_h = measure_wrapped_height(phase, font_ar_bold, 11, max_w - 16, 17)
+                work_h = measure_wrapped_height(work, font_ar, 10.5, max_w - 16, 16)
+                card_h = 10 + phase_h + 8 + work_h + 12
+                page, y = ensure_space(page, y, min(card_h + 8, 160))
+                top = y
+                # Burgundy phase banner
+                page.draw_rect(
+                    fitz.Rect(left_m, top, 612 - right_m, top + phase_h + 10),
+                    color=None,
+                    fill=[c / 255 for c in BURGUNDY],
+                )
+                draw_wrapped_ar(
+                    page, top + 14, phase, 11, WHITE, font_ar_bold, max_w - 16, right_margin=right_m + 8, line_h=17
+                )
+                body_top = top + phase_h + 10
+                page.draw_rect(
+                    fitz.Rect(left_m, body_top, 612 - right_m, body_top + work_h + 14),
+                    color=[c / 255 for c in (201, 183, 160)],
+                    width=0.7,
+                )
+                draw_wrapped_ar(
+                    page, body_top + 12, work, 10.5, DARK, font_ar, max_w - 16, right_margin=right_m + 8, line_h=16
+                )
+                y = body_top + work_h + 22
+
+            page, y = ensure_space(page, y, 200)
+            y = insert_chart(page, y, ASSETS / "chart_phases.png", 500)
             page, y = ensure_space(page, y, 40)
-            y = draw_wrapped_ar(page, y + 6, sec["goals_title"], 13, GOLD, font_ar_bold, max_w, line_h=22)
-            for b in sec["goals"]:
-                page, y = ensure_space(page, y, 40)
-                y = draw_wrapped_ar(page, y + 2, f"• {b}", 11.5, DARK, font_ar, max_w, line_h=17)
+            y = draw_wrapped_ar(page, y, sec["goals_title"], 13, GOLD, font_ar_bold, max_w, right_margin=right_m, line_h=22)
+            page, y = draw_bullets(page, y, sec["goals"], size=11.5)
 
             for year in sec["years"]:
-                page, y = ensure_space(page, y, 60)
-                page.draw_line(fitz.Point(48, y + 2), fitz.Point(564, y + 2), color=[c / 255 for c in GOLD], width=0.7)
-                y += 16
-                y = draw_wrapped_ar(page, y, year["title"], 12.5, GOLD, font_ar_bold, max_w, line_h=20)
-                for b in year.get("bullets", []):
-                    page, y = ensure_space(page, y, 36)
-                    y = draw_wrapped_ar(page, y + 2, f"• {b}", 11.5, DARK, font_ar, max_w, line_h=17)
+                page, y = ensure_space(page, y, 55)
+                page.draw_line(
+                    fitz.Point(left_m, y + 2),
+                    fitz.Point(612 - right_m, y + 2),
+                    color=[c / 255 for c in GOLD],
+                    width=0.7,
+                )
+                y += 14
+                y = draw_wrapped_ar(page, y, year["title"], 12.5, BURGUNDY, font_ar_bold, max_w, right_margin=right_m, line_h=20)
+                if year.get("bullets"):
+                    page, y = draw_bullets(page, y, year["bullets"], size=11.5)
                 for para in year.get("paras", []):
                     page, y = ensure_space(page, y, 50)
-                    y = draw_wrapped_ar(page, y + 2, para, 11.5, DARK, font_ar, max_w, line_h=17)
+                    y = draw_wrapped_ar(page, y + 2, para, 11.5, DARK, font_ar, max_w, right_margin=right_m, line_h=17)
             continue
 
         if sec["num"] == "6":
             for para in sec["paras"]:
                 page, y = ensure_space(page, y, 70)
-                y = draw_wrapped_ar(page, y, para, 11.5, DARK, font_ar, max_w, line_h=18)
-            y += 10
-            page, y = ensure_space(page, y, 120)
-            box_top = y - 10
-            y = draw_wrapped_ar(page, y, sec["principle_title"], 13, BURGUNDY, font_ar_bold, max_w - 20, right_margin=58, line_h=20)
-            for b in sec["principles"]:
-                y = draw_wrapped_ar(page, y + 2, f"• {b}", 11.5, DARK, font_ar, max_w - 20, right_margin=58, line_h=17)
-            page.draw_rect(fitz.Rect(48, box_top, 564, y + 8), color=[c / 255 for c in BURGUNDY], width=1.0)
-            page.draw_rect(fitz.Rect(48, box_top, 564, y + 8), color=None, fill=[c / 255 for c in LIGHT_BOX], width=0)
-            # redraw text over fill — need to re-draw box content
-            # Actually fill covers text; redraw properly
-            # Re-render principle box cleanly on same page
-            # Undo by recreating: fill first then text — fix by drawing fill before text next time.
-            # For this page, re-draw text on top:
-            yy = box_top + 16
-            yy = draw_wrapped_ar(page, yy, sec["principle_title"], 13, BURGUNDY, font_ar_bold, max_w - 20, right_margin=58, line_h=20)
-            for b in sec["principles"]:
-                yy = draw_wrapped_ar(page, yy + 2, f"• {b}", 11.5, DARK, font_ar, max_w - 20, right_margin=58, line_h=17)
-            page.draw_rect(fitz.Rect(48, box_top, 564, y + 8), color=[c / 255 for c in BURGUNDY], width=1.2)
-            y = y + 30
-            y = draw_wrapped_ar(page, y + 20, sec["sign_name"], 13, BURGUNDY, font_ar_bold, max_w, align="center", line_h=22)
+                y = draw_wrapped_ar(page, y, para, 11.5, DARK, font_ar, max_w, right_margin=right_m, line_h=18)
+            page, y = draw_shaded_box(page, y + 8, sec["principle_title"], sec["principles"], fill=LIGHT_BOX, border=BURGUNDY)
+            page, y = ensure_space(page, y, 50)
+            y = draw_wrapped_ar(page, y + 10, sec["sign_name"], 13, BURGUNDY, font_ar_bold, max_w, align="center", line_h=22)
             y = draw_wrapped_ar(page, y + 4, sec["sign_role"], 11, GREY, font_ar, max_w, align="center", line_h=18)
             continue
 
         for para in sec.get("paras", []):
             page, y = ensure_space(page, y, 50)
-            y = draw_wrapped_ar(page, y, para, 11.5, DARK, font_ar, max_w, line_h=18)
+            y = draw_wrapped_ar(page, y, para, 11.5, DARK, font_ar, max_w, right_margin=right_m, line_h=18)
 
         if sec.get("box_title"):
-            page, y = ensure_space(page, y, 140)
-            box_top = y
-            y = draw_wrapped_ar(page, y + 14, sec["box_title"], 12, BURGUNDY, font_ar_bold, max_w - 16, right_margin=56, line_h=20)
-            for b in sec["bullets"]:
-                page, y = ensure_space(page, y, 40)
-                # if page changed mid-box, skip fancy box
-                y = draw_wrapped_ar(page, y + 2, f"• {b}", 11, DARK, font_ar, max_w - 16, right_margin=56, line_h=16)
-            # background then redraw — simpler: draw light rect first on next iteration
-            # Draw border around approximate region
-            page.draw_rect(fitz.Rect(48, box_top, 564, y + 8), color=[c / 255 for c in GOLD], width=0.9)
-            # fill behind by inserting then redrawing is hard; leave border only for clarity
-            y += 16
+            page, y = draw_shaded_box(page, y + 4, sec["box_title"], sec["bullets"], fill=(244, 240, 236), border=GOLD)
+            if sec["num"] == "1":
+                page, y = ensure_space(page, y, 220)
+                y = insert_chart(page, y, ASSETS / "chart_occupancy.png", 500)
         else:
-            for b in sec.get("bullets", []):
-                page, y = ensure_space(page, y, 40)
-                y = draw_wrapped_ar(page, y + 2, f"• {b}", 11.5, DARK, font_ar, max_w, line_h=17)
+            page, y = draw_bullets(page, y, sec.get("bullets", []), size=11.5)
 
-        y += 12
+        y += 10
 
     out = OUTPUT / "Lord_International_Program_Development_Plan_Executive.pdf"
-    # High quality: embed fonts, no compression artifacts
     doc.save(out, garbage=4, deflate=True, clean=True)
     doc.close()
     return out
@@ -1434,8 +1585,8 @@ def main():
     print("Building PPTX...")
     pptx_path = build_pptx(wm)
     print("  ->", pptx_path)
-    print("Building high-quality PDF...")
-    pdf_path = build_pdf_v2()
+    print("Building high-quality RTL PDF...")
+    pdf_path = build_pdf()
     print("  ->", pdf_path)
     print("DONE")
     for p in (docx_path, pptx_path, pdf_path):
