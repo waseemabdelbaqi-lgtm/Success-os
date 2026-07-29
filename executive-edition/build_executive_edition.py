@@ -1285,9 +1285,10 @@ ul { margin: 0.25em 0; padding-right: 1.2em; }
 li { margin: 0.22em 0; text-align: right; }
 p { margin: 0.35em 0; text-align: right; }
 .chart { text-align: center; margin: 10px 0; direction: ltr; }
-table { width: 100%; border-collapse: collapse; margin: 10px 0; direction: rtl; }
-th { background-color: #8B1E2D; color: #FFFFFF; padding: 8px 10px; font-size: 11pt; text-align: center; }
-td { border: 0.7px solid #C9B7A0; padding: 8px 10px; font-size: 10.5pt; vertical-align: top; text-align: right; }
+/* LTR column order + RTL cell text: col0=work (left), col1=phase (right) */
+table { width: 100%; border-collapse: collapse; margin: 10px 0; direction: ltr; }
+th { background-color: #8B1E2D; color: #FFFFFF; padding: 8px 10px; font-size: 11pt; text-align: center; direction: rtl; }
+td { border: 0.7px solid #C9B7A0; padding: 8px 10px; font-size: 10.5pt; vertical-align: top; text-align: right; direction: rtl; }
 td.phase, th.phase { color: #8B1E2D; font-weight: bold; width: 28%; background-color: #FBF8F4; }
 th.phase { color: #FFFFFF; background-color: #8B1E2D; }
 td.work { width: 72%; }
