@@ -255,13 +255,44 @@ function mapProbeToPartial(providerId, probe, { mode, liveExecuted }) {
   let liveProbeFinal = LiveProbeResult.NOT_RUN;
   let liveProbeExecuted = false;
 
-  // Missing credentials: never green; LLM → FAILED, specialty slots → SLOT/NOT_RUN, infra → NOT_RUN
-  if (!credentialsDetected && providerId !== "ollama") {
-    if (providerId === "playwright") {
+  // Playwright: never use API-credential logic; follow probe status machine.
+  if (providerId === "playwright") {
+    const raw = String(probe.status || probe.errorCategory || "");
+    liveProbeExecuted = Boolean(probe.liveProbeExecuted ?? liveExecuted);
+    if (raw === "READY" && probe.authenticationValid && probe.minimalRequestPassed) {
+      status = CanonicalStatus.READY;
+      liveProbeFinal = LiveProbeResult.PASSED;
+    } else if (raw === "NOT_INSTALLED" || enriched.notInstalled) {
       status = CanonicalStatus.NOT_INSTALLED;
       liveProbeFinal = LiveProbeResult.FAILED;
-      liveProbeExecuted = true;
-    } else if (meta.slotWhenUnconfigured || isMedia) {
+    } else if (raw === "CREDENTIALS_NOT_REQUIRED") {
+      status = CanonicalStatus.CREDENTIALS_NOT_REQUIRED;
+      liveProbeFinal = LiveProbeResult.NOT_VERIFIED;
+    } else if (raw === "BROWSER_NOT_INSTALLED") {
+      status = CanonicalStatus.BROWSER_NOT_INSTALLED;
+      liveProbeFinal = LiveProbeResult.FAILED;
+    } else if (raw === "BROWSER_LAUNCH_FAILED") {
+      status = CanonicalStatus.BROWSER_LAUNCH_FAILED;
+      liveProbeFinal = LiveProbeResult.FAILED;
+    } else if (raw === "LOCAL_APP_UNAVAILABLE") {
+      status = CanonicalStatus.LOCAL_APP_UNAVAILABLE;
+      liveProbeFinal = LiveProbeResult.FAILED;
+    } else if (raw === "TEST_ASSERTION_FAILED") {
+      status = CanonicalStatus.TEST_ASSERTION_FAILED;
+      liveProbeFinal = LiveProbeResult.FAILED;
+    } else if (raw === "REMOTE_TESTING_BLOCKED") {
+      status = CanonicalStatus.REMOTE_TESTING_BLOCKED;
+      liveProbeFinal = LiveProbeResult.FAILED;
+    } else if (raw === "PROBE_RUNNING") {
+      status = CanonicalStatus.PROBE_RUNNING;
+      liveProbeFinal = LiveProbeResult.RUNNING;
+    } else {
+      status = CanonicalStatus.PROBE_FAILED;
+      liveProbeFinal = LiveProbeResult.FAILED;
+    }
+  } else if (!credentialsDetected && providerId !== "ollama") {
+    // Missing credentials: never green; LLM → FAILED, specialty slots → SLOT/NOT_RUN, infra → NOT_RUN
+    if (meta.slotWhenUnconfigured || isMedia) {
       status = CanonicalStatus.SLOT;
       liveProbeFinal = LiveProbeResult.NOT_RUN;
       liveProbeExecuted = false;
@@ -282,10 +313,6 @@ function mapProbeToPartial(providerId, probe, { mode, liveExecuted }) {
     status = CanonicalStatus.READY;
     liveProbeFinal = LiveProbeResult.PASSED;
     liveProbeExecuted = true;
-  } else if (providerId === "playwright" && enriched.notInstalled) {
-    status = CanonicalStatus.NOT_INSTALLED;
-    liveProbeFinal = LiveProbeResult.FAILED;
-    liveProbeExecuted = true;
   } else if (probe.status === "READY" && probe.authenticationValid && probe.minimalRequestPassed) {
     status = CanonicalStatus.READY;
     liveProbeFinal = LiveProbeResult.PASSED;
@@ -297,7 +324,13 @@ function mapProbeToPartial(providerId, probe, { mode, liveExecuted }) {
     if (raw === "AUTHENTICATION_FAILED" || raw === "AUTH_FAILED") status = CanonicalStatus.AUTH_FAILED;
     else if (raw === "MODEL_UNAVAILABLE") status = CanonicalStatus.MODEL_UNAVAILABLE;
     else if (raw === "RATE_LIMITED") status = CanonicalStatus.RATE_LIMITED;
-    else if (raw === "NETWORK_ERROR" || raw === "TIMEOUT" || /timeout|aborted|fetch failed/i.test(String(probe.lastError || ""))) {
+    else if (
+      raw === "NETWORK_ERROR" ||
+      raw === "NETWORK_FAILED" ||
+      raw === "HTTP_TIMEOUT" ||
+      raw === "TIMEOUT" ||
+      /timeout|aborted|fetch failed/i.test(String(probe.lastError || probe.errorCategory || ""))
+    ) {
       status = CanonicalStatus.NETWORK_FAILED;
     } else if (raw === "NOT_CONFIGURED" || raw === "MODEL_NOT_CONFIGURED") {
       status = CanonicalStatus.NOT_CONFIGURED;
@@ -317,8 +350,8 @@ function mapProbeToPartial(providerId, probe, { mode, liveExecuted }) {
 
   let safeError;
   if (ready) safeError = "none";
-  else if (providerId === "playwright" && status === CanonicalStatus.NOT_INSTALLED) {
-    safeError = "Playwright not installed";
+  else if (providerId === "playwright") {
+    safeError = probe.lastError || status;
   } else if (!credentialsDetected && isMedia) {
     safeError =
       providerId === "heygen"
@@ -332,9 +365,18 @@ function mapProbeToPartial(providerId, probe, { mode, liveExecuted }) {
     safeError = "SUPABASE_URL and required keys missing";
   } else if (!credentialsDetected) {
     safeError = "credentials missing";
+  } else if (providerId === "heygen" && probe.errorCategory) {
+    safeError = probe.lastError || probe.errorCategory;
   } else {
     safeError = safeErrorFromProbe(probe, status);
   }
+
+  const latencyOut =
+    probe.latencyMs != null && Number.isFinite(Number(probe.latencyMs))
+      ? Number(probe.latencyMs)
+      : ready
+        ? "NOT_TESTED"
+        : "NOT_TESTED";
 
   return {
     providerId,
@@ -342,20 +384,28 @@ function mapProbeToPartial(providerId, probe, { mode, liveExecuted }) {
     liveProbe: ready ? LiveProbeResult.PASSED : liveProbeFinal,
     liveProbeExecuted: ready ? true : liveProbeExecuted,
     authenticated: ready ? true : Boolean(probe.authenticationValid),
-    credentialsDetected,
+    credentialsDetected: providerId === "playwright" ? false : credentialsDetected,
     result: ready ? "success" : liveProbeFinal === LiveProbeResult.NOT_RUN ? "not_run" : "failure",
     testedAt: completedAt,
     startedAt,
     completedAt,
-    latencyMs: ready && probe.latencyMs != null ? probe.latencyMs : "NOT_TESTED",
+    latencyMs: latencyOut,
     model: probe.model || (ready ? "unknown" : "NOT_TESTED"),
-    endpoint: probe.endpoint || "NOT_TESTED",
+    endpoint: probe.endpoint || probe.targetURL || "NOT_TESTED",
     errorCode: ready ? "none" : status,
     safeErrorMessage: ready ? "none" : safeError,
-    connectionReady: isMedia ? connectionReady : ready,
-    generationVerified: isMedia ? generationVerified : ready ? true : false,
+    connectionReady: isMedia ? Boolean(probe.connectionReady || connectionReady) : ready,
+    generationVerified: isMedia ? Boolean(probe.generationVerified) : ready ? true : false,
     deployPolicy: providerId === "vercel" ? "NEVER_AUTO_DEPLOY" : null,
     displayColor: colorForStatus(ready ? CanonicalStatus.READY : status),
+    // Playwright evidence fields
+    packageInstalled: probe.packageInstalled ?? null,
+    packageVersion: probe.packageVersion ?? null,
+    browserInstalled: probe.browserInstalled ?? null,
+    browserVersion: probe.browserVersion ?? null,
+    targetType: probe.targetType || (providerId === "playwright" ? "LOCAL" : null),
+    targetURL: probe.targetURL || null,
+    diagnostic: probe.diagnostic || null,
   };
 }
 

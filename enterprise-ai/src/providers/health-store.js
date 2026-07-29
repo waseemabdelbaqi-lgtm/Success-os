@@ -83,6 +83,12 @@ export function createEmptyProviderRecord(providerId) {
     connectionReady: false,
     generationVerified: false,
     deployPolicy: meta.deployPolicy || null,
+    packageInstalled: null,
+    packageVersion: null,
+    browserInstalled: null,
+    browserVersion: null,
+    targetType: null,
+    targetURL: null,
     displayColor: colorForStatus(CanonicalStatus.NOT_TESTED),
     healthSchemaVersion: HEALTH_SCHEMA_VERSION,
   };
@@ -133,8 +139,25 @@ export function normalizeProviderRecord(partial = {}, previous = null) {
     ),
     generationVerified: Boolean(partial.generationVerified),
     deployPolicy: meta.deployPolicy || partial.deployPolicy || base.deployPolicy,
+    packageInstalled:
+      partial.packageInstalled != null ? Boolean(partial.packageInstalled) : base.packageInstalled,
+    packageVersion: partial.packageVersion ?? base.packageVersion,
+    browserInstalled:
+      partial.browserInstalled != null ? Boolean(partial.browserInstalled) : base.browserInstalled,
+    browserVersion: partial.browserVersion ?? base.browserVersion,
+    targetType: partial.targetType ?? base.targetType,
+    targetURL: partial.targetURL != null ? redactSecrets(partial.targetURL) : base.targetURL,
+    // Never persist cookies / auth / storage
+    cookies: undefined,
+    passwords: undefined,
+    tokens: undefined,
+    storageState: undefined,
     healthSchemaVersion: HEALTH_SCHEMA_VERSION,
   };
+  delete record.cookies;
+  delete record.passwords;
+  delete record.tokens;
+  delete record.storageState;
 
   // Fill blanks — never leave empty cells
   for (const key of [

@@ -69,11 +69,11 @@ function infraCredentialsPresent(item) {
   return anyOk && allOk;
 }
 
-function probeMapFromLive(liveProbes = [], rootDir = process.cwd()) {
+function probeMapFromLive(liveProbes, rootDir = process.cwd()) {
   const byId = new Map();
-  const list = Array.isArray(liveProbes) ? liveProbes : [];
-  if (list.length) {
-    for (const p of list) {
+  // Explicit array (even empty) means "do not fall back to disk snapshot".
+  if (Array.isArray(liveProbes)) {
+    for (const p of liveProbes) {
       const id = p.provider || p.id;
       if (id) byId.set(id, p);
       if (id === "ollama") byId.set("ollama-local", { ...p, provider: "ollama-local" });
@@ -146,19 +146,20 @@ export async function summarizeFactories({
   // Prefer persisted health-state records over legacy snapshot / detection
   const healthState = loadHealthState(rootDir);
   const stateProbes =
-    liveProbes ||
-    (healthState?.providers || []).map((p) => ({
-      provider: p.providerId,
-      status: p.status,
-      authenticationValid: p.authenticated,
-      minimalRequestPassed: p.status === CanonicalStatus.READY,
-      latencyMs: p.latencyMs === "NOT_TESTED" ? null : p.latencyMs,
-      model: p.model === "NOT_TESTED" ? null : p.model,
-      checkedAt: p.testedAt === "NOT_TESTED" ? null : p.testedAt,
-      configured: p.credentialsDetected,
-      safeErrorMessage: p.safeErrorMessage,
-      testedAt: p.testedAt,
-    }));
+    liveProbes !== undefined
+      ? liveProbes
+      : (healthState?.providers || []).map((p) => ({
+          provider: p.providerId,
+          status: p.status,
+          authenticationValid: p.authenticated,
+          minimalRequestPassed: p.status === CanonicalStatus.READY,
+          latencyMs: p.latencyMs === "NOT_TESTED" ? null : p.latencyMs,
+          model: p.model === "NOT_TESTED" ? null : p.model,
+          checkedAt: p.testedAt === "NOT_TESTED" ? null : p.testedAt,
+          configured: p.credentialsDetected,
+          safeErrorMessage: p.safeErrorMessage,
+          testedAt: p.testedAt,
+        }));
   const liveById = probeMapFromLive(stateProbes, rootDir);
 
   const factories = MANIFEST.factories.map((factory) => {

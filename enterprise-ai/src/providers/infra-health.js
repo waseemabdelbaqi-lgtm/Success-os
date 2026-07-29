@@ -76,44 +76,121 @@ export async function wolframHealthCheck() {
   return report;
 }
 
+/**
+ * Classify HeyGen/network failures without exposing secrets.
+ * Distinguishes DNS, timeout, TLS, auth, rate limit, outage, unsupported endpoint.
+ */
+export function classifyHeyGenError(err, { httpStatus = null } = {}) {
+  const msg = String(err?.message || err || "");
+  const code = err?.code || err?.cause?.code || "";
+  const lower = msg.toLowerCase();
+  if (httpStatus === 401 || httpStatus === 403 || /AUTHENTICATION_FAILED/i.test(msg)) {
+    return { classification: "AUTHENTICATION_FAILED", safeMessage: "authentication failure" };
+  }
+  if (httpStatus === 429 || /rate.?limit|quota/i.test(lower)) {
+    return { classification: "RATE_LIMITED", safeMessage: "rate limit or quota detected" };
+  }
+  if (httpStatus === 404 || /unsupported.?endpoint|not found/i.test(lower)) {
+    return { classification: "UNSUPPORTED_ENDPOINT", safeMessage: "unsupported or missing endpoint" };
+  }
+  if (httpStatus != null && httpStatus >= 500) {
+    return { classification: "PROVIDER_OUTAGE", safeMessage: `provider HTTP ${httpStatus}` };
+  }
+  if (/ENOTFOUND|EAI_AGAIN|getaddrinfo|dns/i.test(msg + code)) {
+    return { classification: "DNS_FAILURE", safeMessage: "DNS failure resolving HeyGen host" };
+  }
+  if (/ECONNREFUSED|ECONNRESET|EHOSTUNREACH|ENETUNREACH/i.test(msg + code)) {
+    return { classification: "CONNECTION_FAILURE", safeMessage: "connection failure to HeyGen" };
+  }
+  if (/CERT|TLS|SSL|unable to verify/i.test(msg + code)) {
+    return { classification: "TLS_FAILURE", safeMessage: "TLS failure talking to HeyGen" };
+  }
+  if (/timeout|aborted|AbortError|UND_ERR_CONNECT_TIMEOUT/i.test(lower + code)) {
+    return { classification: "HTTP_TIMEOUT", safeMessage: "HTTP/connection timeout" };
+  }
+  if (/invalid.?key|incorrect.?api.?key/i.test(lower)) {
+    return { classification: "INVALID_KEY", safeMessage: "invalid API key reported by provider" };
+  }
+  return { classification: "NETWORK_FAILED", safeMessage: msg.slice(0, 160) || "network failure" };
+}
+
 export async function heygenHealthCheck() {
   const report = baseReport("heygen");
   const cred = firstEnv(["HEYGEN_API_KEY"]);
   if (!cred) return report;
   report.configured = true;
   report.keyDetected = true;
+  report.probeType = "account_capability";
+  report.generationVerified = false;
+  const timeoutMs = Number(process.env.HEYGEN_PROBE_TIMEOUT_MS || 12000);
   const result = await timed(async () => {
-    const res = await fetch("https://api.heygen.com/v2/avatars", {
-      headers: { "x-api-key": cred.value, Accept: "application/json" },
-      signal: AbortSignal.timeout(12000),
-    });
+    let res;
+    try {
+      res = await fetch("https://api.heygen.com/v2/avatars", {
+        headers: { "x-api-key": cred.value, Accept: "application/json" },
+        signal: AbortSignal.timeout(timeoutMs),
+      });
+    } catch (err) {
+      const classified = classifyHeyGenError(err);
+      const e = new Error(classified.safeMessage);
+      e.classification = classified.classification;
+      e.status = null;
+      throw e;
+    }
     if (res.status === 401 || res.status === 403) {
-      const err = new Error("AUTHENTICATION_FAILED");
+      const classified = classifyHeyGenError(new Error("AUTHENTICATION_FAILED"), {
+        httpStatus: res.status,
+      });
+      const err = new Error(classified.safeMessage);
+      err.classification = classified.classification;
       err.status = res.status;
       throw err;
     }
     if (!res.ok) {
-      const err = new Error(`HEYGEN_HTTP_${res.status}`);
+      const classified = classifyHeyGenError(new Error(`HEYGEN_HTTP_${res.status}`), {
+        httpStatus: res.status,
+      });
+      const err = new Error(classified.safeMessage);
+      err.classification = classified.classification;
       err.status = res.status;
       throw err;
     }
     return res.json().catch(() => ({}));
   });
   report.latencyMs = result.latencyMs;
-  report.networkReachable = true;
   if (!result.ok) {
-    const msg = String(result.err?.message || result.err);
-    report.authenticationValid = !/AUTH/i.test(msg);
-    report.status = /AUTH/i.test(msg)
-      ? ProviderStatus.AUTHENTICATION_FAILED
-      : ProviderStatus.PROVIDER_ERROR;
-    report.errorCategory = report.status;
-    report.lastError = msg;
+    const classified = classifyHeyGenError(result.err, { httpStatus: result.err?.status });
+    report.networkReachable = !["DNS_FAILURE", "CONNECTION_FAILURE"].includes(classified.classification);
+    report.authenticationValid = classified.classification !== "AUTHENTICATION_FAILED" &&
+      classified.classification !== "INVALID_KEY";
+    report.status =
+      classified.classification === "AUTHENTICATION_FAILED" || classified.classification === "INVALID_KEY"
+        ? ProviderStatus.AUTHENTICATION_FAILED
+        : classified.classification === "RATE_LIMITED"
+          ? ProviderStatus.RATE_LIMITED
+          : ProviderStatus.NETWORK_ERROR;
+    report.errorCategory = classified.classification;
+    report.lastError = classified.safeMessage;
+    report.diagnostic = {
+      classification: classified.classification,
+      timeoutMs,
+      endpoint: "https://api.heygen.com/v2/avatars",
+      createdVideo: false,
+    };
     return report;
   }
+  report.networkReachable = true;
   report.authenticationValid = true;
   report.minimalRequestPassed = true;
   report.status = ProviderStatus.READY;
+  report.connectionReady = true;
+  report.generationVerified = false;
+  report.diagnostic = {
+    classification: "OK",
+    timeoutMs,
+    endpoint: "https://api.heygen.com/v2/avatars",
+    createdVideo: false,
+  };
   return report;
 }
 
@@ -334,50 +411,7 @@ export async function browserbaseHealthCheck() {
   return report;
 }
 
-export async function playwrightHealthCheck() {
-  const report = baseReport("playwright");
-  // Module resolution alone is NOT green — require a live Chromium launch probe.
-  let chromium;
-  try {
-    ({ chromium } = await import("playwright"));
-    report.configured = true;
-  } catch {
-    try {
-      ({ chromium } = await import("@playwright/test"));
-      report.configured = true;
-    } catch {
-      report.lastError = "playwright not installed";
-      report.errorCategory = "NOT_INSTALLED";
-      return report;
-    }
-  }
-  const result = await timed(async () => {
-    const browser = await chromium.launch({ headless: true });
-    try {
-      const page = await browser.newPage();
-      await page.setContent("<html><body>AIOS_OK</body></html>");
-      const text = await page.locator("body").innerText();
-      return text.trim();
-    } finally {
-      await browser.close();
-    }
-  });
-  report.latencyMs = result.latencyMs;
-  report.networkReachable = true;
-  if (!result.ok) {
-    report.authenticationValid = false;
-    report.status = ProviderStatus.PROVIDER_ERROR;
-    report.errorCategory = ProviderStatus.PROVIDER_ERROR;
-    report.lastError = String(result.err?.message || result.err);
-    return report;
-  }
-  // Local tooling: "authenticated" means the runtime successfully executed the probe.
-  report.authenticationValid = true;
-  report.minimalRequestPassed = String(result.value || "") === "AIOS_OK";
-  report.status = report.minimalRequestPassed ? ProviderStatus.READY : ProviderStatus.PROVIDER_ERROR;
-  report.lastError = report.minimalRequestPassed ? null : "UNEXPECTED_RESPONSE";
-  return report;
-}
+export { playwrightHealthCheck } from "./playwright-health.js";
 
 export async function sentryHealthCheck() {
   const report = baseReport("sentry");
