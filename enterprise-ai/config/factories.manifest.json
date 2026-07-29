@@ -49,8 +49,10 @@
       "notes": [
         "Anthropic preferred for curriculum/documentation",
         "Gemini preferred for research/verification/long-context",
-        "Wolfram is optional for computational/math verification when configured"
-      ]
+        "Wolfram is optional for computational/math verification when configured",
+        "S4S_INTELLIGENCE_COURSE_PRODUCTION uses Education Factory then scientific/source verification"
+      ],
+      "taskTypes": ["S4S_INTELLIGENCE_COURSE_PRODUCTION"]
     },
     {
       "id": "media",
@@ -60,7 +62,31 @@
       "agents": ["video", "voice"],
       "notes": [
         "Media jobs are never auto-fired without approval",
-        "Blender remains offline/tooling-slot unless an approved pipeline is injected"
+        "Blender remains offline/tooling-slot unless an approved pipeline is injected",
+        "S4S_INTELLIGENCE_COURSE_PRODUCTION media stage always requires human approval",
+        "AI-generated courses never auto-publish; Vercel never auto-deploys"
+      ],
+      "taskTypes": ["S4S_INTELLIGENCE_COURSE_PRODUCTION"]
+    }
+  ],
+  "taskTypes": [
+    {
+      "id": "S4S_INTELLIGENCE_COURSE_PRODUCTION",
+      "label": "S4S Intelligence Course Production",
+      "factories": ["education", "media"],
+      "autoPublish": false,
+      "vercelAutoDeploy": false,
+      "humanApprovalRequired": true,
+      "stages": [
+        "plan",
+        "education",
+        "scientific_verification",
+        "media",
+        "source_verification",
+        "quality",
+        "human_approval",
+        "catalogue_draft",
+        "manual_publication"
       ]
     }
   ],

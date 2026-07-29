@@ -1,6 +1,8 @@
 /**
  * ADMIN-NEXT — Dynamic Commission Engine.
- * Default 10% lives in config only — never hardcoded in UI or payment callers.
+ * Platform-wide default 10% lives in config only — never hardcoded in UI or payment callers.
+ * Recorded Lessons marketplace default (TEACHER_RECORDED) is 30% via globalCommissionPercent /
+ * recordedLessonCommissionPercent and the marketplace commission engine.
  */
 
 import path from 'node:path';
@@ -17,20 +19,58 @@ import {
   erpWriteCollection,
   erpWriteJson,
 } from './enterprise-erp-store.js';
+import {
+  calculateTeacherPriceSplit,
+  isRecordedLessonService,
+  DEFAULT_TEACHER_RECORDED_COMMISSION_PERCENT,
+} from './teacher-price-split.js';
+import { resolveCommissionCascade } from './commission-cascade.js';
+import { resolveMarketplaceCommission } from '../marketplace/commission-engine.js';
 
 const DEFAULTS_FILE = () => path.join(erpRoot(), 'config', 'commission-defaults.json');
+
+const BASE_DEFAULTS = {
+  defaultCommissionPercent: 10,
+  /** Cascade root — Global Commission for Recorded Lessons teacher split. */
+  globalCommissionPercent: DEFAULT_TEACHER_RECORDED_COMMISSION_PERCENT,
+  /** Alias for Recorded Lessons callers; mirrors global when unset. */
+  recordedLessonCommissionPercent: DEFAULT_TEACHER_RECORDED_COMMISSION_PERCENT,
+  defaultCurrency: 'USD',
+  note: 'Owner-configurable. Never hardcode this value in application code paths.',
+};
+
+function mergeCommissionDefaults(existing) {
+  const merged = { ...BASE_DEFAULTS, ...existing };
+  if (existing.globalCommissionPercent == null) {
+    merged.globalCommissionPercent =
+      existing.recordedLessonCommissionPercent ?? BASE_DEFAULTS.globalCommissionPercent;
+  }
+  if (existing.recordedLessonCommissionPercent == null) {
+    merged.recordedLessonCommissionPercent =
+      merged.globalCommissionPercent ?? BASE_DEFAULTS.recordedLessonCommissionPercent;
+  }
+  return merged;
+}
 
 /** Seed configurable defaults (Owner can change anytime via API). */
 export function ensureCommissionDefaults() {
   erpEnsureDirs();
   const existing = erpReadJson(DEFAULTS_FILE());
-  if (existing) return existing;
+  if (existing) {
+    const merged = mergeCommissionDefaults(existing);
+    const changed =
+      existing.globalCommissionPercent == null ||
+      existing.recordedLessonCommissionPercent == null;
+    if (changed) {
+      merged.updatedAt = existing.updatedAt || erpNow();
+      erpWriteJson(DEFAULTS_FILE(), merged);
+    }
+    return merged;
+  }
   const defaults = {
-    defaultCommissionPercent: 10,
-    defaultCurrency: 'USD',
+    ...BASE_DEFAULTS,
     updatedAt: erpNow(),
     updatedBy: 'system',
-    note: 'Owner-configurable. Never hardcode this value in application code paths.',
   };
   erpWriteJson(DEFAULTS_FILE(), defaults);
   return defaults;
@@ -49,6 +89,16 @@ export function setCommissionDefaults(patch = {}, meta = {}) {
       patch.defaultCommissionPercent != null
         ? Number(patch.defaultCommissionPercent)
         : before.defaultCommissionPercent,
+    globalCommissionPercent:
+      patch.globalCommissionPercent != null
+        ? Number(patch.globalCommissionPercent)
+        : before.globalCommissionPercent,
+    recordedLessonCommissionPercent:
+      patch.recordedLessonCommissionPercent != null
+        ? Number(patch.recordedLessonCommissionPercent)
+        : patch.globalCommissionPercent != null
+          ? Number(patch.globalCommissionPercent)
+          : before.recordedLessonCommissionPercent,
     updatedAt: erpNow(),
     updatedBy: meta.user || 'owner',
   };
@@ -62,6 +112,70 @@ export function setCommissionDefaults(patch = {}, meta = {}) {
     reason: meta.reason || 'update_commission_defaults',
   });
   return { ok: true, defaults: next };
+}
+
+/**
+ * Preview Teacher Price split for Recorded Lessons (and teacher services).
+ */
+export function previewTeacherPriceSplit(input = {}) {
+  const defaults = ensureCommissionDefaults();
+  const service = input.service || 'recorded-lesson';
+  const cascade = previewCommissionCascade({
+    ...input,
+    service,
+    teacherPrice: input.teacherPrice ?? input.price ?? input.grossAmount ?? 0,
+  });
+  if (input.commissionPercent != null) {
+    return calculateTeacherPriceSplit({
+      teacherPrice: input.teacherPrice ?? input.price ?? input.grossAmount ?? 0,
+      commissionPercent: Number(input.commissionPercent),
+      currency: input.currency || defaults.defaultCurrency || 'USD',
+    });
+  }
+  return {
+    ...cascade.teacherPriceSplit,
+    cascadeSteps: cascade.cascadeSteps,
+    finalCommissionPercent: cascade.finalCommissionPercent,
+    winnerLayer: cascade.winnerLayer,
+  };
+}
+
+/**
+ * Preview Global → Source → Partner → Teacher → Course → Campaign → Final cascade.
+ */
+export function previewCommissionCascade(input = {}) {
+  const defaults = ensureCommissionDefaults();
+  const rules = erpActiveItemsSafe(erpReadCollection('commission-rules').items);
+  const globalPercent =
+    input.globalCommissionPercent != null
+      ? Number(input.globalCommissionPercent)
+      : isRecordedLessonService(input.service || 'recorded-lesson')
+        ? Number(
+            defaults.globalCommissionPercent ??
+              defaults.recordedLessonCommissionPercent ??
+              DEFAULT_TEACHER_RECORDED_COMMISSION_PERCENT,
+          )
+        : Number(defaults.globalCommissionPercent ?? defaults.defaultCommissionPercent ?? 10);
+
+  return resolveCommissionCascade({
+    globalCommissionPercent: globalPercent,
+    rules,
+    context: {
+      at: input.at,
+      partnerId: input.partnerId || input.teacherId,
+      teacherId: input.teacherId || input.partnerId,
+      courseId: input.courseId,
+      centerId: input.centerId,
+      partnerType: input.partnerType,
+      promotionId: input.promotionId || input.campaignId,
+      campaignId: input.campaignId || input.promotionId,
+      service: input.service || 'recorded-lesson',
+      sourceType: input.sourceType || input.lessonSource,
+      lessonSource: input.lessonSource || input.sourceType,
+    },
+    teacherPrice: input.teacherPrice ?? input.price ?? input.grossAmount ?? 0,
+    currency: input.currency || defaults.defaultCurrency || 'USD',
+  });
 }
 
 function scoreRule(rule, ctx) {
@@ -128,7 +242,8 @@ function applyRuleAmount(rule, gross) {
 
 /**
  * Resolve commission for a payment context.
- * Uses highest-scoring matching rule; falls back to Owner-configured default %.
+ * Recorded-lesson services use the marketplace cascade (default 30%).
+ * Other services keep legacy scoring with platform default 10%.
  */
 export function resolveCommission(context = {}) {
   const defaults = ensureCommissionDefaults();
@@ -143,15 +258,65 @@ export function resolveCommission(context = {}) {
     service: context.service || null,
     subscriptionId: context.subscriptionId || null,
     contractId: context.contractId || null,
-    promotionId: context.promotionId || null,
+    promotionId: context.promotionId || context.campaignId || null,
     vip: context.vip === true,
+    teacherId: context.teacherId || null,
+    centerId: context.centerId || null,
+    campaignId: context.campaignId || null,
+    courseId: context.courseId || null,
+    sourceType: context.sourceType || context.lessonSource || null,
   };
   const gross = Number(context.grossAmount || 0);
+
+  if (isRecordedLessonService(ctx.service) || ctx.sourceType) {
+    const market = resolveMarketplaceCommission({
+      originalPrice: gross,
+      discountAmount: Number(context.discount || context.discountAmount || 0),
+      currency: context.currency || defaults.defaultCurrency || 'USD',
+      sourceType: ctx.sourceType || 'TEACHER_RECORDED',
+      teacherId: ctx.teacherId || ctx.partnerId,
+      courseId: ctx.courseId,
+      partnerType: ctx.partnerType || 'teacher',
+      campaignId: ctx.campaignId,
+      promotionId: ctx.promotionId,
+      rules: erpActiveItemsSafe(erpReadCollection('commission-rules').items),
+      globalCommissionPercent: Number(
+        defaults.recordedLessonCommissionPercent ??
+          defaults.globalCommissionPercent ??
+          DEFAULT_TEACHER_RECORDED_COMMISSION_PERCENT,
+      ),
+      at: ctx.at,
+    });
+    return {
+      source: 'marketplace',
+      ruleId: market.appliedCommissionRuleId,
+      ruleName: market.appliedRule?.name,
+      pricingType: 'percentage',
+      percent: market.effectiveCommissionPercentage,
+      fixedAmount: 0,
+      commissionAmount: market.platformCommissionAmount,
+      teacherReceives: market.teacherGrossShare,
+      successOs: market.platformCommissionAmount,
+      winnerLayer: market.appliedRule?.scope,
+      calculationVersion: market.calculationVersion,
+      marketplace: market,
+      defaultsVersion: defaults.updatedAt,
+    };
+  }
+
+  const cascade = previewCommissionCascade({
+    ...ctx,
+    teacherPrice: gross,
+    grossAmount: gross,
+    currency: context.currency || defaults.defaultCurrency || 'USD',
+    service: ctx.service,
+  });
 
   const rules = erpActiveItemsSafe(erpReadCollection('commission-rules').items);
   let best = null;
   let bestScore = -1;
   for (const rule of rules) {
+    if (rule.overrideLayer || rule.layer || rule.scope) continue;
     const s = scoreRule(rule, ctx);
     if (s > bestScore) {
       bestScore = s;
@@ -159,16 +324,19 @@ export function resolveCommission(context = {}) {
     }
   }
 
-  if (!best) {
-    const percent = Number(defaults.defaultCommissionPercent);
+  if (cascade.winnerLayer !== 'global' || !best) {
+    const percent = cascade.finalCommissionPercent;
     const amount = Number(((gross * percent) / 100).toFixed(6));
     return {
-      source: 'default',
-      ruleId: null,
+      source: cascade.winnerLayer === 'global' ? 'default' : 'cascade',
+      ruleId: cascade.ruleId,
       pricingType: 'percentage',
       percent,
       fixedAmount: 0,
       commissionAmount: amount,
+      teacherReceives: cascade.teacherReceives,
+      successOs: cascade.successOs,
+      winnerLayer: cascade.winnerLayer,
       defaultsVersion: defaults.updatedAt,
     };
   }

@@ -19,7 +19,12 @@ import { assertCostBudget, estimateCostUsd } from "../cost/guards.js";
 import { selectContext } from "../context/selector.js";
 import { getMcpToolRegistry } from "../mcp/bridge.js";
 import { ProviderStatus } from "../providers/errors.js";
-import { summarizeFactories, factoryForAgent, listFactories } from "../factories/registry.js";
+import {
+  summarizeFactories,
+  factoryForAgent,
+  listFactories,
+  getFactoriesManifest,
+} from "../factories/registry.js";
 
 loadAiosEnv({ root: process.cwd() });
 process.env.AIOS_FORCE_OFFLINE_STUB = "true";
@@ -49,6 +54,14 @@ const factorySummary = await summarizeFactories({ providerDetection: detection }
 assert.equal(factorySummary.system, "SUCCESS-AI-OS");
 assert.ok(factorySummary.factories.some((f) => f.id === "coding"));
 assert.ok(factorySummary.infrastructure.some((i) => i.id === "vercel" && i.autoAction === "never-auto-deploy"));
+const factoriesManifest = getFactoriesManifest();
+assert.ok(
+  (factoriesManifest.taskTypes || []).some((t) => t.id === "S4S_INTELLIGENCE_COURSE_PRODUCTION"),
+);
+assert.equal(
+  factoriesManifest.taskTypes.find((t) => t.id === "S4S_INTELLIGENCE_COURSE_PRODUCTION").autoPublish,
+  false,
+);
 
 const eng = routeForRole("engineering");
 assert.equal(eng.order[0], process.env.AIOS_ENGINEERING_PROVIDER || "openai");
