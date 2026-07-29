@@ -50,10 +50,21 @@ assert.equal(factoryForAgent("curriculum"), "education");
 assert.equal(factoryForAgent("video"), "media");
 assert.ok(listFactories().length === 3);
 
-const factorySummary = await summarizeFactories({ providerDetection: detection });
+const factorySummary = await summarizeFactories({
+  providerDetection: detection,
+  liveProbes: [],
+});
 assert.equal(factorySummary.system, "SUCCESS-AI-OS");
 assert.ok(factorySummary.factories.some((f) => f.id === "coding"));
 assert.ok(factorySummary.infrastructure.some((i) => i.id === "vercel" && i.autoAction === "never-auto-deploy"));
+// Credential presence alone must never populate readyProviders / green
+for (const f of factorySummary.factories) {
+  assert.ok(
+    f.providers.every((p) => p.displayColor !== "green" && p.liveReady !== true),
+    `${f.id} must not show green without live probe`,
+  );
+}
+assert.ok(factorySummary.rule === "GREEN_ONLY_AFTER_LIVE_AUTHENTICATED_SUCCESS");
 const factoriesManifest = getFactoriesManifest();
 assert.ok(
   (factoriesManifest.taskTypes || []).some((t) => t.id === "S4S_INTELLIGENCE_COURSE_PRODUCTION"),

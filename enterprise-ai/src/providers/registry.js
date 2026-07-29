@@ -5,6 +5,12 @@ import { openaiChat, openaiConfigured, openaiHealthCheck, openaiModelConfigured 
 import { anthropicChat, anthropicConfigured, anthropicHealthCheck, anthropicModelConfigured } from "./anthropic.js";
 import { geminiChat, geminiConfigured, geminiHealthCheck, geminiModelConfigured } from "./gemini.js";
 import { ollamaChat, ollamaConfigured, ollamaHealthCheck, ollamaModelConfigured } from "./ollama-fallback.js";
+import { runInfrastructureHealthChecks } from "./infra-health.js";
+import {
+  buildInfrastructureDashboard,
+  isLiveAuthenticatedReady,
+  saveHealthSnapshot,
+} from "./live-status.js";
 import { ProviderStatus, AiosProviderError } from "./errors.js";
 
 const ROLE_ROUTES = {
@@ -190,17 +196,35 @@ export async function chatViaRegistry({
   throw err;
 }
 
-export async function runAllHealthChecks({ signal } = {}) {
-  const checks = await Promise.all([
-    openaiHealthCheck({ signal }),
-    anthropicHealthCheck({ signal }),
-    geminiHealthCheck({ signal }),
-    ollamaHealthCheck(),
+export async function runAllHealthChecks({ signal, rootDir = process.cwd(), persist = true } = {}) {
+  const checkedAt = new Date().toISOString();
+  const [llmChecks, infraChecks] = await Promise.all([
+    Promise.all([
+      openaiHealthCheck({ signal }),
+      anthropicHealthCheck({ signal }),
+      geminiHealthCheck({ signal }),
+      ollamaHealthCheck(),
+    ]),
+    runInfrastructureHealthChecks(),
   ]);
-  return {
-    checkedAt: new Date().toISOString(),
-    providers: checks,
-    ready: checks.filter((c) => c.status === ProviderStatus.READY).map((c) => c.provider),
+
+  const providers = [...llmChecks, ...infraChecks].map((c) => ({
+    ...c,
+    checkedAt: c.checkedAt || checkedAt,
+    liveReady: isLiveAuthenticatedReady({ ...c, checkedAt: c.checkedAt || checkedAt }),
+  }));
+
+  // Green / READY list: live authenticated success only (never credential presence).
+  const ready = providers.filter((c) => c.liveReady).map((c) => c.provider);
+  const dashboard = buildInfrastructureDashboard(providers, { checkedAt });
+
+  const snapshot = {
+    checkedAt,
+    rule: "GREEN_ONLY_AFTER_LIVE_AUTHENTICATED_SUCCESS",
+    ruleAr: "لا يظهر أي مزود باللون الأخضر إلا إذا نجح طلب حي موثّق خلال آخر فحص.",
+    providers,
+    ready,
+    dashboard,
     circuitBreakers: circuitBreakerStatus(),
     routingSample: {
       engineering: routeForRole("engineering"),
@@ -210,7 +234,18 @@ export async function runAllHealthChecks({ signal } = {}) {
       testing: routeForRole("testing"),
       security: routeForRole("security"),
     },
+    secretsExposed: false,
   };
+
+  if (persist) {
+    try {
+      snapshot.snapshotPath = saveHealthSnapshot(snapshot, rootDir);
+    } catch {
+      snapshot.snapshotPath = null;
+    }
+  }
+
+  return snapshot;
 }
 
 export function registrySnapshot() {

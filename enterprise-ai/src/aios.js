@@ -8,6 +8,7 @@ import { loadAiosEnv } from "./env/load.js";
 import { detectProviders } from "./providers/detect.js";
 import { listGatewayProviders } from "./gateway/ai-gateway.js";
 import { runAllHealthChecks, registrySnapshot, circuitBreakerStatus } from "./providers/registry.js";
+import { loadHealthSnapshot } from "./providers/live-status.js";
 import { planRequest } from "./planning/engine.js";
 import { dispatchParallel } from "./queue/dispatcher.js";
 import { aggregateResults } from "./result-aggregator.js";
@@ -58,7 +59,12 @@ export async function runAIOS(userRequest, options = {}) {
   }
 
   const providerDetection = await detectProviders();
-  const factories = await summarizeFactories({ providerDetection });
+  const lastHealth = loadHealthSnapshot(projectRoot);
+  const factories = await summarizeFactories({
+    providerDetection,
+    liveProbes: lastHealth?.providers || [],
+    rootDir: projectRoot,
+  });
   const mcp = await probeMcpAvailability({ callMcp: options.callMcp });
   const mcpTools = listMcpTools();
   const agentsCatalog = listAgents();

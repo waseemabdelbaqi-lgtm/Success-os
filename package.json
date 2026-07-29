@@ -31,7 +31,7 @@
     "ai:aios:health": "node scripts/run-master-ai-orchestrator.mjs --health",
     "ai:aios:factories": "node scripts/run-master-ai-orchestrator.mjs --factories",
     "ai:aios:execute": "node scripts/run-master-ai-orchestrator.mjs --execute",
-    "ai:aios:test": "node enterprise-ai/src/tests/smoke.mjs",
+    "ai:aios:test": "node enterprise-ai/src/tests/smoke.mjs && node enterprise-ai/src/tests/live-status.test.mjs",
     "ai:orchestrator": "node scripts/run-master-ai-orchestrator.mjs",
     "ai:orchestrator:detect": "node scripts/run-master-ai-orchestrator.mjs --detect",
     "ai:orchestrator:health": "node scripts/run-master-ai-orchestrator.mjs --health",

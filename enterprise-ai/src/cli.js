@@ -5,6 +5,7 @@ import { loadAiosEnv } from "./env/load.js";
 import { createLogger } from "./utils/logger.js";
 import { detectProviders } from "./providers/detect.js";
 import { createProviderRegistry, runAllHealthChecks } from "./providers/registry.js";
+import { buildInfrastructureDashboard, loadHealthSnapshot } from "./providers/live-status.js";
 import { runAIOS, formatAiosDisplay } from "./aios.js";
 import { getMcpToolRegistry } from "./mcp/bridge.js";
 import { summarizeFactories, listFactories } from "./factories/registry.js";
@@ -84,8 +85,26 @@ async function main() {
   }
 
   if (args.factories) {
-    const summary = await summarizeFactories();
-    console.log(JSON.stringify({ ...summary, catalog: listFactories() }, null, 2));
+    const snap = loadHealthSnapshot(rootDir);
+    const summary = await summarizeFactories({
+      liveProbes: snap?.providers || [],
+      rootDir,
+    });
+    const dashboard =
+      snap?.dashboard ||
+      buildInfrastructureDashboard(snap?.providers || [], { checkedAt: snap?.checkedAt || null });
+    console.log(
+      JSON.stringify(
+        {
+          ...summary,
+          catalog: listFactories(),
+          infrastructureDashboard: dashboard,
+          note: "Green only after live authenticated probe success in last health check",
+        },
+        null,
+        2,
+      ),
+    );
     return;
   }
 
@@ -98,11 +117,17 @@ async function main() {
   if (args.detect) {
     const detection = await detectProviders();
     const registry = createProviderRegistry({ rootDir, logger });
-    const factories = await summarizeFactories({ providerDetection: detection });
+    const snap = loadHealthSnapshot(rootDir);
+    const factories = await summarizeFactories({
+      providerDetection: detection,
+      liveProbes: snap?.providers || [],
+      rootDir,
+    });
     console.log(
       JSON.stringify(
         {
           ...detection,
+          note: "Detection lists credential presence only — green/READY requires live authenticated probe",
           factories,
           registry: registry.snapshot(),
           mcp: getMcpToolRegistry(),
@@ -116,12 +141,21 @@ async function main() {
   }
 
   if (args.health) {
-    const health = await runAllHealthChecks();
+    const health = await runAllHealthChecks({ rootDir, persist: true });
     console.log(
       JSON.stringify(
         {
           generatedAt: new Date().toISOString(),
-          ...health,
+          rule: health.rule,
+          ruleAr: health.ruleAr,
+          checkedAt: health.checkedAt,
+          ready: health.ready,
+          greenCount: health.dashboard?.greenCount ?? 0,
+          infrastructureDashboard: health.dashboard,
+          providers: health.providers,
+          circuitBreakers: health.circuitBreakers,
+          routingSample: health.routingSample,
+          snapshotPath: health.snapshotPath,
           mcp: getMcpToolRegistry(),
           secretsExposed: false,
         },

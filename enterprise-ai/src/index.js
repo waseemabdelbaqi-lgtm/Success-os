@@ -21,6 +21,15 @@ export {
   chatViaRegistry,
   validateConfiguredModels,
 } from "./providers/registry.js";
+export {
+  isLiveAuthenticatedReady,
+  displayColorForProbe,
+  buildInfrastructureDashboard,
+  loadHealthSnapshot,
+  saveHealthSnapshot,
+  AI_INFRASTRUCTURE_DISPLAY_IDS,
+} from "./providers/live-status.js";
+export { runInfrastructureHealthChecks } from "./providers/infra-health.js";
 export { loadAiosEnv } from "./env/load.js";
 export {
   getFactoriesManifest,

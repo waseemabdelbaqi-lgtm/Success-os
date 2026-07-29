@@ -148,11 +148,14 @@ export async function openaiHealthCheck({ signal } = {}) {
     latencyMs: null,
     status: ProviderStatus.NOT_CONFIGURED,
     errorCategory: null,
+    lastError: null,
+    checkedAt: new Date().toISOString(),
   };
   if (!report.configured) return report;
   if (!report.modelConfigured) {
     report.status = ProviderStatus.MODEL_NOT_CONFIGURED;
     report.errorCategory = ProviderStatus.MODEL_NOT_CONFIGURED;
+    report.lastError = ProviderStatus.MODEL_NOT_CONFIGURED;
     return report;
   }
   try {
@@ -167,14 +170,19 @@ export async function openaiHealthCheck({ signal } = {}) {
     report.latencyMs = Date.now() - started;
     report.minimalRequestPassed = String(r.text || "").trim() === "AIOS_OK";
     report.status = report.minimalRequestPassed ? ProviderStatus.READY : ProviderStatus.PROVIDER_ERROR;
-    if (!report.minimalRequestPassed) report.errorCategory = "UNEXPECTED_RESPONSE";
+    if (!report.minimalRequestPassed) {
+      report.errorCategory = "UNEXPECTED_RESPONSE";
+      report.lastError = "UNEXPECTED_RESPONSE";
+    }
   } catch (err) {
     const n = normalizeProviderError("openai", err);
     report.latencyMs = Date.now() - started;
     report.status = n.status;
     report.errorCategory = n.status;
+    report.lastError = n.message || n.status;
     report.networkReachable = n.status !== ProviderStatus.NETWORK_ERROR ? true : false;
     report.authenticationValid = n.status !== ProviderStatus.AUTHENTICATION_FAILED;
   }
+  report.checkedAt = new Date().toISOString();
   return report;
 }

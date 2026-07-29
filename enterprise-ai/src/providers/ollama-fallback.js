@@ -30,16 +30,22 @@ export async function ollamaHealthCheck() {
     model,
     modelInstalled: false,
     networkReachable: false,
-    authenticationValid: true,
+    authenticationValid: false,
     minimalRequestPassed: false,
     latencyMs: null,
     status: ProviderStatus.OPTIONAL_OFFLINE,
     errorCategory: null,
+    lastError: null,
+    checkedAt: new Date().toISOString(),
   };
   try {
     const tagsRes = await fetch(`${base}/api/tags`, { signal: AbortSignal.timeout(3000) });
     report.networkReachable = tagsRes.ok;
-    if (!tagsRes.ok) return report;
+    if (!tagsRes.ok) {
+      report.lastError = `HTTP_${tagsRes.status}`;
+      report.checkedAt = new Date().toISOString();
+      return report;
+    }
     const tags = await tagsRes.json();
     const names = (tags.models || []).map((m) => m.name);
     report.configured = true;
@@ -47,13 +53,17 @@ export async function ollamaHealthCheck() {
     if (!model) {
       report.status = ProviderStatus.MODEL_NOT_CONFIGURED;
       report.errorCategory = ProviderStatus.MODEL_NOT_CONFIGURED;
+      report.lastError = ProviderStatus.MODEL_NOT_CONFIGURED;
       report.latencyMs = Date.now() - started;
+      report.checkedAt = new Date().toISOString();
       return report;
     }
     if (!report.modelInstalled) {
       report.status = ProviderStatus.MODEL_UNAVAILABLE;
       report.errorCategory = ProviderStatus.MODEL_UNAVAILABLE;
+      report.lastError = ProviderStatus.MODEL_UNAVAILABLE;
       report.latencyMs = Date.now() - started;
+      report.checkedAt = new Date().toISOString();
       return report;
     }
     const r = await ollamaChat({
@@ -61,14 +71,20 @@ export async function ollamaHealthCheck() {
       user: "Return exactly: AIOS_OK",
       maxTokens: 16,
     });
+    // Local loopback: successful chat counts as authenticated live probe.
+    report.authenticationValid = true;
     report.minimalRequestPassed = String(r.text || "").trim() === "AIOS_OK";
     report.latencyMs = Date.now() - started;
     report.status = report.minimalRequestPassed ? ProviderStatus.READY : ProviderStatus.PROVIDER_ERROR;
+    if (!report.minimalRequestPassed) report.lastError = "UNEXPECTED_RESPONSE";
   } catch (err) {
     report.latencyMs = Date.now() - started;
     report.status = ProviderStatus.OPTIONAL_OFFLINE;
     report.errorCategory = normalizeProviderError("ollama", err).status;
+    report.lastError = String(err?.message || err);
+    report.authenticationValid = false;
   }
+  report.checkedAt = new Date().toISOString();
   return report;
 }
 
