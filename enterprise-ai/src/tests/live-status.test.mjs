@@ -58,6 +58,36 @@ assert.equal(row.displayColor, "green");
 assert.equal(row.النتيجة, "نجاح");
 assert.equal(row["زمن الاستجابة"], "120ms");
 assert.equal(row["آخر خطأ"], "—");
+assert.equal(row.Status, "READY");
+assert.equal(row.Latency, "120 ms");
+
+// Ollama live success (model + latency card fields)
+const ollamaOk = {
+  provider: "ollama",
+  status: ProviderStatus.READY,
+  authenticationValid: true,
+  minimalRequestPassed: true,
+  model: "qwen3:8b",
+  latencyMs: 1021,
+  checkedAt: "2026-07-18T00:00:00.000Z",
+};
+const ollamaRow = toInfrastructureRow(ollamaOk);
+assert.equal(ollamaRow.displayColor, "green");
+assert.equal(ollamaRow.Model, "qwen3:8b");
+assert.equal(ollamaRow.Status, "READY");
+assert.equal(ollamaRow.Latency, "1021 ms");
+
+const dashWithOllama = buildInfrastructureDashboard([ollamaOk], {
+  checkedAt: ollamaOk.checkedAt,
+});
+assert.ok(dashWithOllama.providers.find((p) => p.id === "ollama")?.displayColor === "green");
+assert.equal(dashWithOllama.providers.find((p) => p.id === "ollama")?.Model, "qwen3:8b");
+// ollama-local alias must also paint the ollama row
+const dashAlias = buildInfrastructureDashboard(
+  [{ ...ollamaOk, provider: "ollama-local" }],
+  { checkedAt: ollamaOk.checkedAt },
+);
+assert.equal(dashAlias.providers.find((p) => p.id === "ollama")?.displayColor, "green");
 
 // Keys present without probe → not green, Arabic fields populated
 const keysOnly = toInfrastructureRow({

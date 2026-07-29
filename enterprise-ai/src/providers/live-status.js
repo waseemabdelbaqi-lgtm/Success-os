@@ -22,6 +22,7 @@ export const AI_INFRASTRUCTURE_DISPLAY_IDS = Object.freeze([
   "openai",
   "anthropic",
   "gemini",
+  "ollama",
   "wolfram",
   "heygen",
   "elevenlabs",
@@ -96,13 +97,22 @@ export function toInfrastructureRow(probe = {}, { id, label } = {}) {
   const providerId = id || probe.provider || probe.id;
   const checkedAt = probe.checkedAt || probe.lastCheckedAt || null;
   const liveReady = isLiveAuthenticatedReady({ ...probe, checkedAt });
+  const status = liveReady ? ProviderStatus.READY : probe.status || ProviderStatus.NOT_CONFIGURED;
+  const model =
+    liveReady || probe.modelConfigured || probe.model
+      ? probe.model || null
+      : null;
   return {
     id: providerId,
     label: label || DISPLAY_LABELS[providerId] || providerId,
     provider: providerId,
     displayColor: liveReady ? "green" : "neutral",
     liveReady,
-    status: liveReady ? ProviderStatus.READY : probe.status || ProviderStatus.NOT_CONFIGURED,
+    status,
+    model,
+    Model: model || "—",
+    Status: status,
+    Latency: liveReady && probe.latencyMs != null ? `${probe.latencyMs} ms` : "—",
     configured: Boolean(probe.configured || probe.keyDetected),
     // UI fields (Arabic dashboard)
     lastTestAt: checkedAt,
@@ -153,11 +163,11 @@ export function buildInfrastructureDashboard(probes = [], { checkedAt = null } =
   for (const p of probes) {
     const id = p.provider || p.id;
     if (!id) continue;
-    byId.set(id, { ...p, checkedAt: p.checkedAt || checkedAt || p.lastCheckedAt || null });
-    // openai-images may share openai probe when images probe absent
-    if (id === "openai" && !byId.has("openai-images")) {
-      // do not auto-green openai-images from openai chat probe
-    }
+    const normalized = { ...p, checkedAt: p.checkedAt || checkedAt || p.lastCheckedAt || null };
+    byId.set(id, normalized);
+    // Alias ollama ↔ ollama-local so either probe id paints the Ollama row.
+    if (id === "ollama") byId.set("ollama-local", { ...normalized, provider: "ollama-local" });
+    if (id === "ollama-local") byId.set("ollama", { ...normalized, provider: "ollama" });
   }
 
   const rows = AI_INFRASTRUCTURE_DISPLAY_IDS.map((id) => {

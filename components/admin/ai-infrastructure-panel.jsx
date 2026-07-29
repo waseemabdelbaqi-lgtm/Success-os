@@ -25,6 +25,76 @@ function formatCell(value) {
   return String(value);
 }
 
+function ProviderCard({ provider: p }) {
+  const green = p.displayColor === 'green';
+  return (
+    <article
+      style={{
+        border: `1px solid ${green ? '#86efac' : '#e5e7eb'}`,
+        borderRadius: 12,
+        padding: '1rem 1.1rem',
+        background: green ? '#f0fdf4' : '#fff',
+      }}
+    >
+      <div style={{ display: 'flex', alignItems: 'center', marginBottom: 8 }}>
+        <Dot color={p.displayColor} />
+        <strong style={{ fontSize: 16 }}>{p.label || p.id}</strong>
+      </div>
+      <dl
+        style={{
+          margin: 0,
+          display: 'grid',
+          gap: 4,
+          fontSize: 13,
+          color: '#374151',
+        }}
+      >
+        <div>
+          <dt style={{ display: 'inline', color: '#6b7280' }}>Model: </dt>
+          <dd style={{ display: 'inline', margin: 0 }}>{formatCell(p.Model || p.model)}</dd>
+        </div>
+        <div>
+          <dt style={{ display: 'inline', color: '#6b7280' }}>Status: </dt>
+          <dd
+            style={{
+              display: 'inline',
+              margin: 0,
+              fontWeight: 600,
+              color: green ? '#15803d' : '#6b7280',
+            }}
+          >
+            {formatCell(p.Status || p.status)}
+          </dd>
+        </div>
+        <div>
+          <dt style={{ display: 'inline', color: '#6b7280' }}>Latency: </dt>
+          <dd style={{ display: 'inline', margin: 0 }}>
+            {formatCell(p.Latency || (p.latencyMs != null ? `${p.latencyMs} ms` : null))}
+          </dd>
+        </div>
+        <div>
+          <dt style={{ display: 'inline', color: '#6b7280' }}>آخر اختبار: </dt>
+          <dd style={{ display: 'inline', margin: 0 }}>
+            {formatCell(p['آخر اختبار'] || p.lastTestAt)}
+          </dd>
+        </div>
+        <div>
+          <dt style={{ display: 'inline', color: '#6b7280' }}>النتيجة: </dt>
+          <dd style={{ display: 'inline', margin: 0 }}>{formatCell(p.النتيجة || p.result)}</dd>
+        </div>
+        {!green ? (
+          <div>
+            <dt style={{ display: 'inline', color: '#6b7280' }}>آخر خطأ: </dt>
+            <dd style={{ display: 'inline', margin: 0, color: '#9ca3af' }}>
+              {formatCell(p['آخر خطأ'] || p.lastError)}
+            </dd>
+          </div>
+        ) : null}
+      </dl>
+    </article>
+  );
+}
+
 export function AiInfrastructurePanel() {
   const [data, setData] = useState(null);
   const [error, setError] = useState('');
@@ -111,47 +181,21 @@ export function AiInfrastructurePanel() {
         </p>
       ) : null}
 
-      <div style={{ overflowX: 'auto', border: '1px solid #e5e7eb', borderRadius: 12 }}>
-        <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: 14 }}>
-          <thead>
-            <tr style={{ background: '#f9fafb', textAlign: 'right' }}>
-              <th style={{ padding: '0.75rem', fontWeight: 600 }}>المزود</th>
-              <th style={{ padding: '0.75rem', fontWeight: 600 }}>آخر اختبار</th>
-              <th style={{ padding: '0.75rem', fontWeight: 600 }}>النتيجة</th>
-              <th style={{ padding: '0.75rem', fontWeight: 600 }}>زمن الاستجابة</th>
-              <th style={{ padding: '0.75rem', fontWeight: 600 }}>آخر خطأ</th>
-            </tr>
-          </thead>
-          <tbody>
-            {providers.length === 0 ? (
-              <tr>
-                <td colSpan={5} style={{ padding: '1rem', color: '#6b7280' }}>
-                  لا توجد نتائج بعد. شغّل فحصًا حيًا موثّقًا.
-                </td>
-              </tr>
-            ) : (
-              providers.map((p) => (
-                <tr key={p.id} style={{ borderTop: '1px solid #e5e7eb' }}>
-                  <td style={{ padding: '0.75rem' }}>
-                    <span style={{ display: 'inline-flex', alignItems: 'center' }}>
-                      <Dot color={p.displayColor} />
-                      {p.label || p.id}
-                    </span>
-                  </td>
-                  <td style={{ padding: '0.75rem' }}>{formatCell(p['آخر اختبار'] || p.lastTestAt)}</td>
-                  <td style={{ padding: '0.75rem' }}>{formatCell(p.النتيجة || p.result)}</td>
-                  <td style={{ padding: '0.75rem' }}>
-                    {formatCell(p['زمن الاستجابة'] ?? (p.latencyMs != null ? `${p.latencyMs}ms` : null))}
-                  </td>
-                  <td style={{ padding: '0.75rem', color: '#6b7280' }}>
-                    {formatCell(p['آخر خطأ'] || p.lastError)}
-                  </td>
-                </tr>
-              ))
-            )}
-          </tbody>
-        </table>
-      </div>
+      {providers.length === 0 ? (
+        <p style={{ color: '#6b7280' }}>لا توجد نتائج بعد. شغّل فحصًا حيًا موثّقًا.</p>
+      ) : (
+        <div
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fill, minmax(240px, 1fr))',
+            gap: 12,
+          }}
+        >
+          {providers.map((p) => (
+            <ProviderCard key={p.id} provider={p} />
+          ))}
+        </div>
+      )}
     </div>
   );
 }
