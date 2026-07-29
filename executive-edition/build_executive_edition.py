@@ -263,11 +263,7 @@ def create_watermark() -> Path:
     draw.text((x1, y1), success, font=font_success, fill=(*BURGUNDY, 55))
     draw.text((x2, y2), foursure, font=font_4sure, fill=(*GREY, 45))
 
-    # Thin decorative line under SUCCESS
-    line_y = y1 + th1 + 6
-    draw.line([(x1 + 20, line_y), (x1 + tw1 - 20, line_y)], fill=(*GOLD, 40), width=2)
-
-    # Rotate for classic diagonal watermark
+    # Rotate for classic diagonal watermark (no decorative line — avoids false "red line")
     img = img.rotate(32, expand=True, resample=Image.BICUBIC)
     # Crop transparent excess
     bbox = img.getbbox()
@@ -425,51 +421,39 @@ def add_picture_paragraph(doc, image_path: Path, width_inches: float = 6.4):
 
 def add_rtl_phase_table(doc, headers, rows):
     """
-    Clean RTL table:
-      Right: المرحلة (narrow)
-      Left: الأعمال الرئيسية (wide)
+    Card-style RTL rows (phase banner + work body) — avoids split-table red bars.
+    headers[0]=المرحلة, headers[1]=الأعمال الرئيسية
     """
-    table = doc.add_table(rows=1 + len(rows), cols=2)
-    table.alignment = WD_TABLE_ALIGNMENT.CENTER
-    set_table_rtl(table)
-    set_table_full_width(table)
+    for phase, work in rows:
+        table = doc.add_table(rows=2, cols=1)
+        table.alignment = WD_TABLE_ALIGNMENT.CENTER
+        set_table_rtl(table)
+        set_table_full_width(table)
 
-    # headers[0]=المرحلة (right via bidiVisual), headers[1]=الأعمال
-    for i, text in enumerate(headers):
-        cell = table.rows[0].cells[i]
-        cell.paragraphs[0].clear()
-        p = cell.paragraphs[0]
-        set_paragraph_rtl(p, WD_ALIGN_PARAGRAPH.CENTER)
-        run = p.add_run(text)
+        phase_cell = table.rows[0].cells[0]
+        phase_cell.paragraphs[0].clear()
+        p = phase_cell.paragraphs[0]
+        set_paragraph_rtl(p, WD_ALIGN_PARAGRAPH.RIGHT)
+        set_paragraph_spacing(p, 2, 2, 1.2)
+        run = p.add_run(phase)
         set_run_font(run, "Amiri", 12, WHITE, True)
-        shade_cell(cell, BURGUNDY_HEX)
-        set_cell_border(cell, BURGUNDY_HEX, "12")
+        shade_cell(phase_cell, BURGUNDY_HEX)
+        set_cell_border(phase_cell, BURGUNDY_HEX, "12")
 
-    set_cell_width(table.rows[0].cells[0], 4.2)   # المرحلة
-    set_cell_width(table.rows[0].cells[1], 12.0)  # الأعمال
+        work_cell = table.rows[1].cells[0]
+        work_cell.paragraphs[0].clear()
+        p = work_cell.paragraphs[0]
+        set_paragraph_rtl(p, WD_ALIGN_PARAGRAPH.RIGHT)
+        set_paragraph_spacing(p, 4, 4, 1.3)
+        run = p.add_run(work)
+        set_run_font(run, "Amiri", 11.5, DARK, False)
+        shade_cell(work_cell, "FBF8F4")
+        set_cell_border(work_cell, "C9B7A0", "10")
 
-    for r_idx, (phase, work) in enumerate(rows, start=1):
-        phase_cell = table.rows[r_idx].cells[0]
-        work_cell = table.rows[r_idx].cells[1]
-        for cell, text, color, bold in (
-            (phase_cell, phase, BURGUNDY, True),
-            (work_cell, work, DARK, False),
-        ):
-            cell.paragraphs[0].clear()
-            p = cell.paragraphs[0]
-            set_paragraph_rtl(p, WD_ALIGN_PARAGRAPH.RIGHT)
-            set_paragraph_spacing(p, 3, 3, 1.25)
-            run = p.add_run(text)
-            set_run_font(run, "Amiri", 11, color, bold)
-            set_cell_border(cell, "C9B7A0", "10")
-            if r_idx % 2 == 0:
-                shade_cell(cell, "FBF8F4")
-            else:
-                shade_cell(cell, "FFFFFF")
-        set_cell_width(phase_cell, 4.2)
-        set_cell_width(work_cell, 12.0)
-
-    return table
+        # spacer
+        sp = doc.add_paragraph()
+        set_paragraph_spacing(sp, 0, 6, 1.0)
+    return None
 
 
 def add_page_border(section, color=BURGUNDY_HEX, sz="24", space="24"):
@@ -577,13 +561,13 @@ def build_docx(watermark_path: Path) -> Path:
 
             add_ar_paragraph(doc, sec["goals_title"], size=13, bold=True, color=GOLD, before=16, after=8)
             for b in sec["goals"]:
-                add_ar_paragraph(doc, f"• {b}", size=12, before=1, after=4)
+                add_ar_paragraph(doc, f"\u200f• {b}", size=12, before=1, after=4)
 
             for year in sec["years"]:
                 add_gold_rule(doc)
-                add_ar_paragraph(doc, year["title"], size=13, bold=True, color=GOLD, before=8, after=6)
+                add_ar_paragraph(doc, year["title"], size=13, bold=True, color=BURGUNDY, before=8, after=6)
                 for b in year.get("bullets", []):
-                    add_ar_paragraph(doc, f"• {b}", size=12, before=1, after=3)
+                    add_ar_paragraph(doc, f"\u200f• {b}", size=12, before=1, after=3)
                 for para in year.get("paras", []):
                     add_ar_paragraph(doc, para, size=12, before=2, after=6)
             continue
@@ -608,7 +592,7 @@ def build_docx(watermark_path: Path) -> Path:
                 p = cell.add_paragraph()
                 set_paragraph_rtl(p, WD_ALIGN_PARAGRAPH.RIGHT)
                 set_paragraph_spacing(p, 2, 3, 1.3)
-                run = p.add_run(f"• {b}")
+                run = p.add_run(f"\u200f• {b}")
                 set_run_font(run, "Amiri", 12, DARK, False)
 
             add_ar_paragraph(doc, sec["sign_name"], size=13, bold=True, color=BURGUNDY, align=WD_ALIGN_PARAGRAPH.CENTER, before=28, after=2)
@@ -637,14 +621,14 @@ def build_docx(watermark_path: Path) -> Path:
                 p = cell.add_paragraph()
                 set_paragraph_rtl(p, WD_ALIGN_PARAGRAPH.RIGHT)
                 set_paragraph_spacing(p, 2, 3, 1.3)
-                run = p.add_run(f"• {b}")
+                run = p.add_run(f"\u200f• {b}")
                 set_run_font(run, "Amiri", 11.5, DARK, False)
             doc.add_paragraph()
             if sec["num"] == "1":
                 add_picture_paragraph(doc, ASSETS / "chart_occupancy.png", 6.5)
         else:
             for b in sec.get("bullets", []):
-                add_ar_paragraph(doc, f"• {b}", size=12, before=1, after=3)
+                add_ar_paragraph(doc, f"\u200f• {b}", size=12, before=1, after=3)
 
     out = OUTPUT / "Lord_International_Program_Development_Plan_Executive.docx"
     doc.save(out)
@@ -746,7 +730,7 @@ def add_bullets_box(slide, left, top, width, height, bullets, font_size=13, colo
         pPr.set("rtl", "1")
         p.space_after = PptPt(4)
         run = p.add_run()
-        run.text = f"• {b}"
+        run.text = f"\u200f• {b}"
         run.font.size = PptPt(font_size)
         run.font.color.rgb = PptRGB(*color)
         run.font.name = "Amiri"
@@ -925,7 +909,7 @@ def build_pptx(watermark_path: Path) -> Path:
         y += 0.32
         items = year.get("bullets") or year.get("paras") or []
         for item in items:
-            add_textbox(slide, PptInches(0.55), PptInches(y), PptInches(8.9), PptInches(0.45 if year.get("paras") else 0.32), f"• {item}" if year.get("bullets") else item, 11, False, DARK)
+            add_textbox(slide, PptInches(0.55), PptInches(y), PptInches(8.9), PptInches(0.45 if year.get("paras") else 0.32), f"\u200f• {item}" if year.get("bullets") else item, 11, False, DARK)
             y += 0.42 if year.get("paras") else 0.32
         y += 0.12
 
@@ -1186,118 +1170,192 @@ def build_pdf() -> Path:
 
 
 
+def _esc(text: str) -> str:
+    return (
+        text.replace("&", "&amp;")
+        .replace("<", "&lt;")
+        .replace(">", "&gt;")
+    )
+
+
+def rtl_bullet_html(text: str) -> str:
+    """Manual RTL bullet paragraph — Story's <ul>/<li> keeps markers on the left."""
+    safe = _esc(text)
+    return (
+        f"<p class='abullet' dir='rtl'>"
+        f"&#x200F;&#x202B;• {safe}&#x202C;</p>"
+    )
+
+
+def rtl_p(text: str, cls: str = "") -> str:
+    c = f" class='{cls}'" if cls else ""
+    return f"<p{c} dir='rtl'>{_esc(text)}</p>"
+
+
+def colored_title(text: str, para_cls: str, color_cls: str) -> str:
+    """Title as <p><span> — Story paints black/red bars if color is set on the <p> itself."""
+    return (
+        f"<p class='{para_cls}' dir='rtl'>"
+        f"<span class='{color_cls}'>{_esc(text)}</span></p>"
+    )
+
+
 def build_html_document() -> str:
     """Full HTML body for Story-based PDF (Arabic RTL + English school name)."""
     c = CONTENT["cover"]
     parts: list[str] = []
-    parts.append(f"<h1 class='school-en'>{c['title_ar']}</h1>")
-    parts.append(f"<p class='sub'>{c['subtitle_ar']}</p>")
-    parts.append(f"<p class='line3'>{c['line3']}</p>")
-    parts.append(f"<p class='line4'>{c['line4']}</p>")
+    # Cover: color on spans only (except English school name via dedicated class)
+    parts.append(f"<p class='school-en'><span class='t-burg'>{_esc(c['title_ar'])}</span></p>")
+    parts.append(f"<p class='sub' dir='rtl'><span class='t-gold'>{_esc(c['subtitle_ar'])}</span></p>")
+    parts.append(f"<p class='line3' dir='rtl'>{_esc(c['line3'])}</p>")
+    parts.append(f"<p class='line4' dir='rtl'><span class='t-burg'>{_esc(c['line4'])}</span></p>")
     parts.append("<hr class='gold'/>")
-    parts.append(f"<p class='meta'>{c['prepared']}</p>")
-    parts.append(f"<p class='meta grey'>{c['role']}</p>")
-    parts.append(f"<p class='note'>{c['note']}</p>")
+    parts.append(f"<p class='meta' dir='rtl'>{_esc(c['prepared'])}</p>")
+    parts.append(f"<p class='meta' dir='rtl'><span class='t-grey'>{_esc(c['role'])}</span></p>")
+    parts.append(f"<p class='note' dir='rtl'><span class='t-grey'>{_esc(c['note'])}</span></p>")
     parts.append("<div class='pagebreak'></div>")
 
     for sec in CONTENT["sections"]:
         if sec["num"] == "5":
-            parts.append(f"<h2>{sec['num']}. {sec['title']}</h2>")
-            parts.append("<p class='chart'><img src='chart_roadmap.png' width='520'/></p>")
-            parts.append(f"<h3>{sec['year1_title']}</h3>")
-            parts.append(f"<p>{sec['year1_intro']}</p>")
-            # MuPDF Story tables lay out LTR: put الأعمال on left (col0), المرحلة on right (col1)
-            # so Arabic reading starts at المرحلة on the right.
-            parts.append("<table><thead><tr>")
-            parts.append(f"<th>{sec['table_headers'][1]}</th>")
-            parts.append(f"<th class='phase'>{sec['table_headers'][0]}</th>")
-            parts.append("</tr></thead><tbody>")
+            parts.append(colored_title(f"{sec['num']}. {sec['title']}", "sec-title", "t-burg"))
+            parts.append("<hr class='rule'/>")
+            parts.append("<p class='chart'><img src='chart_roadmap.png' width='500'/></p>")
+            parts.append(colored_title(sec["year1_title"], "sub-title", "t-gold"))
+            parts.append(rtl_p(sec["year1_intro"]))
+            parts.append("<div class='rtable' dir='rtl'>")
             for phase, work in sec["table_rows"]:
-                parts.append(f"<tr><td class='work'>{work}</td><td class='phase'>{phase}</td></tr>")
-            parts.append("</tbody></table>")
-            parts.append("<p class='chart'><img src='chart_phases.png' width='520'/></p>")
-            parts.append(f"<h3>{sec['goals_title']}</h3><ul>")
+                parts.append("<div class='rtable-row' dir='rtl'>")
+                parts.append(
+                    "<div class='col-phase' dir='rtl'>"
+                    f"<p class='phase-label' dir='rtl'><span class='t-white'>{_esc(phase)}</span></p></div>"
+                )
+                parts.append(
+                    "<div class='col-work' dir='rtl'>"
+                    f"<p class='work-label' dir='rtl'>{_esc(work)}</p></div>"
+                )
+                parts.append("</div>")
+            parts.append("</div>")
+            parts.append("<p class='chart'><img src='chart_phases.png' width='500'/></p>")
+            parts.append("<div class='pagebreak'></div>")
+            parts.append(colored_title(sec["goals_title"], "sub-title", "t-gold"))
             for b in sec["goals"]:
-                parts.append(f"<li>{b}</li>")
-            parts.append("</ul>")
+                parts.append(rtl_bullet_html(b))
             for year in sec["years"]:
-                parts.append(f"<h3>{year['title']}</h3>")
+                parts.append(colored_title(year["title"], "year-head", "t-burg"))
                 if year.get("bullets"):
-                    parts.append("<ul>")
                     for b in year["bullets"]:
-                        parts.append(f"<li>{b}</li>")
-                    parts.append("</ul>")
+                        parts.append(rtl_bullet_html(b))
                 for para in year.get("paras", []):
-                    parts.append(f"<p>{para}</p>")
+                    parts.append(rtl_p(para))
             continue
 
         if sec["num"] == "6":
-            parts.append(f"<h2>{sec['num']}. {sec['title']}</h2>")
+            parts.append("<div class='pagebreak'></div>")
+            parts.append(colored_title(f"{sec['num']}. {sec['title']}", "sec-title", "t-burg"))
+            parts.append("<hr class='rule'/>")
             for para in sec["paras"]:
-                parts.append(f"<p>{para}</p>")
-            parts.append("<div class='principle'>")
-            parts.append(f"<div class='boxtitle'>{sec['principle_title']}</div><ul>")
+                parts.append(rtl_p(para))
+            parts.append("<div class='principle' dir='rtl'>")
+            parts.append(colored_title(sec["principle_title"], "boxtitle", "t-burg"))
             for b in sec["principles"]:
-                parts.append(f"<li>{b}</li>")
-            parts.append("</ul></div>")
-            parts.append(f"<p class='sign'>{sec['sign_name']}</p>")
-            parts.append(f"<p class='signrole'>{sec['sign_role']}</p>")
+                parts.append(rtl_bullet_html(b))
+            parts.append("</div>")
+            parts.append(
+                f"<p class='sign' dir='rtl'><span class='t-burg'>{_esc(sec['sign_name'])}</span></p>"
+            )
+            parts.append(
+                f"<p class='signrole' dir='rtl'><span class='t-grey'>{_esc(sec['sign_role'])}</span></p>"
+            )
             continue
 
-        parts.append(f"<h2>{sec['num']}. {sec['title']}</h2>")
+        parts.append(colored_title(f"{sec['num']}. {sec['title']}", "sec-title", "t-burg"))
+        parts.append("<hr class='rule'/>")
         for para in sec.get("paras", []):
-            parts.append(f"<p>{para}</p>")
+            parts.append(rtl_p(para))
         if sec.get("box_title"):
-            parts.append("<div class='box'>")
-            parts.append(f"<div class='boxtitle'>{sec['box_title']}</div><ul>")
+            parts.append("<div class='box' dir='rtl'>")
+            parts.append(colored_title(sec["box_title"], "boxtitle", "t-burg"))
             for b in sec["bullets"]:
-                parts.append(f"<li>{b}</li>")
-            parts.append("</ul></div>")
+                parts.append(rtl_bullet_html(b))
+            parts.append("</div>")
             if sec["num"] == "1":
-                parts.append("<p class='chart'><img src='chart_occupancy.png' width='520'/></p>")
+                parts.append("<p class='chart'><img src='chart_occupancy.png' width='500'/></p>")
         elif sec.get("bullets"):
-            parts.append("<ul>")
             for b in sec["bullets"]:
-                parts.append(f"<li>{b}</li>")
-            parts.append("</ul>")
+                parts.append(rtl_bullet_html(b))
 
-    return "<body>" + "\n".join(parts) + "</body>"
+    return "<body dir='rtl'>" + "\n".join(parts) + "</body>"
 
 
 STORY_CSS = """
 @font-face { font-family: Amiri; src: url(Amiri-Regular.ttf); }
 @font-face { font-family: Amiri; src: url(Amiri-Bold.ttf); font-weight: bold; }
 @font-face { font-family: LiberationSerif; src: url(LiberationSerif-Bold.ttf); font-weight: bold; }
-body { font-family: Amiri; font-size: 11.5pt; direction: rtl; color: #232323; line-height: 1.5; }
-h1, .school-en { font-family: LiberationSerif, Amiri; color: #8B1E2D; text-align: center; font-size: 30pt; margin: 1.2em 0 0.25em; font-weight: bold; direction: ltr; }
-.sub { color: #B68A3A; text-align: center; font-size: 18pt; font-weight: bold; margin: 0.25em 0; }
-.line3 { text-align: center; font-size: 14pt; margin: 0.2em 0; }
-.line4 { color: #8B1E2D; text-align: center; font-size: 13pt; font-weight: bold; margin: 0.2em 0 0.6em; }
-.meta { text-align: center; font-size: 12pt; margin: 0.25em 0; }
-.grey { color: #666666; }
-.note { text-align: center; color: #666666; font-size: 10.5pt; margin-top: 2.2em; }
-h2 { color: #8B1E2D; text-align: right; font-size: 14pt; margin: 0.85em 0 0.35em; border-bottom: 1px solid #B68A3A; padding-bottom: 3px; font-weight: bold; }
-h3 { color: #B68A3A; text-align: right; font-size: 12.5pt; margin: 0.7em 0 0.3em; font-weight: bold; }
-.box { background-color: #F4F0EC; border: 1px solid #B68A3A; padding: 8px 12px; margin: 8px 0; }
-.principle { background-color: #F8F5F2; border: 1.5px solid #8B1E2D; padding: 10px 12px; margin: 10px 0; }
-.boxtitle { color: #8B1E2D; font-weight: bold; font-size: 12pt; margin: 0 0 6px; text-align: right; }
-ul { margin: 0.25em 0; padding-right: 1.2em; }
-li { margin: 0.22em 0; text-align: right; }
-p { margin: 0.35em 0; text-align: right; }
-.chart { text-align: center; margin: 10px 0; direction: ltr; }
-/* LTR column order + RTL cell text: col0=work (left), col1=phase (right) */
-table { width: 100%; border-collapse: collapse; margin: 10px 0; direction: ltr; }
-th { background-color: #8B1E2D; color: #FFFFFF; padding: 8px 10px; font-size: 11pt; text-align: center; direction: rtl; }
-td { border: 0.7px solid #C9B7A0; padding: 8px 10px; font-size: 10.5pt; vertical-align: top; text-align: right; direction: rtl; }
-td.phase, th.phase { color: #8B1E2D; font-weight: bold; width: 28%; background-color: #FBF8F4; }
-th.phase { color: #FFFFFF; background-color: #8B1E2D; }
-td.work { width: 72%; }
-tr:nth-child(even) td.work { background-color: #FBF8F4; }
-.sign { text-align: center; color: #8B1E2D; font-weight: bold; font-size: 13pt; margin-top: 1.6em; }
-.signrole { text-align: center; color: #666666; font-size: 11pt; }
+* { direction: rtl; unicode-bidi: embed; }
+body { font-family: Amiri; font-size: 11.5pt; direction: rtl; color: #232323; line-height: 1.55; text-align: right; unicode-bidi: embed; }
+/* IMPORTANT: never set color on <p>/<h*> — Story draws solid black/red bars behind colored paragraphs.
+   Put colors only on <span class="t-*"> children. */
+.t-burg { color: #8B1E2D; }
+.t-gold { color: #B68A3A; }
+.t-grey { color: #666666; }
+.t-white { color: #FFFFFF; }
+.school-en { font-family: LiberationSerif, Amiri; text-align: center; font-size: 30pt; margin: 1.2em 0 0.25em; font-weight: bold; direction: ltr; unicode-bidi: isolate; }
+.sub { text-align: center; font-size: 18pt; font-weight: bold; margin: 0.25em 0; direction: rtl; }
+.line3 { text-align: center; font-size: 14pt; margin: 0.2em 0; direction: rtl; }
+.line4 { text-align: center; font-size: 13pt; font-weight: bold; margin: 0.2em 0 0.6em; direction: rtl; }
+.meta { text-align: center; font-size: 12pt; margin: 0.25em 0; direction: rtl; }
+.note { text-align: center; font-size: 10.5pt; margin-top: 2.2em; direction: rtl; }
+.sec-title { text-align: right; font-size: 14pt; margin: 0.85em 0 0.15em; font-weight: bold; direction: rtl; }
+.sub-title { text-align: right; font-size: 12.5pt; margin: 0.7em 0 0.3em; font-weight: bold; direction: rtl; }
+.year-head { text-align: right; font-size: 13pt; margin: 1.05em 0 0.25em; font-weight: bold; direction: rtl; }
+.rule { border: none; border-top: 1px solid #B68A3A; margin: 0 0 10px 0; }
+.box { background-color: #F4F0EC; border: 1px solid #B68A3A; padding: 8px 12px; margin: 8px 0; page-break-inside: avoid; direction: rtl; text-align: right; }
+.principle { background-color: #F8F5F2; border: 1.5px solid #8B1E2D; padding: 10px 12px; margin: 10px 0; page-break-inside: avoid; direction: rtl; text-align: right; }
+.boxtitle { font-weight: bold; font-size: 12pt; margin: 0 0 6px; text-align: right; direction: rtl; }
+.abullet { margin: 0.22em 0; padding: 0; text-align: right; direction: rtl; unicode-bidi: embed; }
+p { margin: 0.35em 0; text-align: right; direction: rtl; unicode-bidi: embed; }
+.chart { text-align: center; margin: 10px 0; direction: ltr; unicode-bidi: isolate; page-break-inside: avoid; }
+.rtable { width: 100%; margin: 8px 0 12px; direction: rtl; page-break-inside: avoid; }
+.rtable-row { direction: rtl; border: 1px solid #C9B7A0; margin: 0 0 8px 0; background-color: #FFFFFF; page-break-inside: avoid; }
+.col-phase { direction: rtl; text-align: right; background-color: #8B1E2D; padding: 7px 10px; }
+.phase-label { font-weight: bold; text-align: right; direction: rtl; margin: 0; }
+.col-work { direction: rtl; text-align: right; color: #232323; padding: 8px 10px; }
+.work-label { text-align: right; direction: rtl; margin: 0; }
+.sign { text-align: center; font-weight: bold; font-size: 13pt; margin-top: 1.6em; direction: rtl; }
+.signrole { text-align: center; font-size: 11pt; direction: rtl; }
 hr.gold { border: none; border-top: 1.2px solid #B68A3A; margin: 14px 90px; }
-.pagebreak { page-break-before: always; height: 0; }
+.pagebreak { page-break-before: always; height: 0; margin: 0; padding: 0; }
 """
+
+
+def scrub_story_bar_artifacts(doc: fitz.Document, content_top: float = 58.0) -> int:
+    """Remove Story page-break leaks: thin bars drawn into the header margin.
+
+    Keeps legitimate mid-page phase banners (taller burgundy strips ~26-40px).
+    """
+    removed = 0
+    for page in doc:
+        page_w = page.rect.width
+        to_scrub: list[fitz.Rect] = []
+        for d in page.get_drawings():
+            fill = d.get("fill")
+            r = d.get("rect")
+            if not fill or not r:
+                continue
+            rect = fitz.Rect(r)
+            # Leaked box/phase fragments sit above the content rect (header band)
+            if rect.y0 < content_top + 2 and rect.width >= page_w * 0.55 and rect.height <= 22:
+                to_scrub.append(rect)
+        unique: list[fitz.Rect] = []
+        for r in to_scrub:
+            if not any(abs(r.y0 - u.y0) < 2 and abs(r.x0 - u.x0) < 2 and abs(r.height - u.height) < 2 for u in unique):
+                unique.append(r)
+        if unique:
+            for r in unique:
+                page.add_redact_annot(r + (-1, -1, 1, 1), fill=(1, 1, 1))
+                removed += 1
+            page.apply_redactions(images=0)
+    return removed
 
 
 def build_pdf_v2() -> Path:
@@ -1321,6 +1379,10 @@ def build_pdf_v2() -> Path:
     writer.close()
 
     body = fitz.open(str(tmp))
+    n = scrub_story_bar_artifacts(body)
+    if n:
+        print(f"  scrubbed {n} story bar artifact(s)")
+
     final = fitz.open()
     wm = ASSETS / "success4sure_watermark.png"
 
