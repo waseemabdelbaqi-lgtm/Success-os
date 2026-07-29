@@ -15,6 +15,9 @@ import {
   loadHealthSnapshot,
   toInfrastructureRow,
 } from "../providers/live-status.js";
+import { loadHealthState } from "../providers/health-store.js";
+import { computeFactoryReadiness } from "../providers/health-runner.js";
+import { CanonicalStatus } from "../providers/status-model.js";
 import { ProviderStatus } from "../providers/errors.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -90,15 +93,22 @@ function probeMapFromLive(liveProbes = [], rootDir = process.cwd()) {
 
 function providerLiveRow(pid, detectionHit, liveProbe) {
   const credentialsPresent = Boolean(detectionHit?.configured);
-  const liveReady = isLiveAuthenticatedReady(liveProbe || {});
-  const displayColor = displayColorForProbe(liveProbe || {});
+  const liveReady =
+    liveProbe?.status === CanonicalStatus.READY ||
+    liveProbe?.status === "READY" ||
+    isLiveAuthenticatedReady(liveProbe || {});
+  const displayColor = liveReady
+    ? "green"
+    : credentialsPresent
+      ? "yellow"
+      : displayColorForProbe(liveProbe || {});
   let status;
-  if (liveReady) status = ProviderStatus.READY;
-  else if (detectionHit?.disabled) status = "DISABLED";
-  else if (liveProbe?.status) status = liveProbe.status;
-  else if (credentialsPresent) status = "CONFIGURED"; // keys only — never green
-  else if (detectionHit) status = "NOT_CONFIGURED";
-  else status = "SLOT";
+  if (liveReady) status = CanonicalStatus.READY;
+  else if (detectionHit?.disabled) status = CanonicalStatus.DISABLED;
+  else if (liveProbe?.status && liveProbe.status !== "CONFIGURED") status = liveProbe.status;
+  else if (credentialsPresent) status = CanonicalStatus.CREDENTIALS_DETECTED;
+  else if (detectionHit) status = CanonicalStatus.NOT_CONFIGURED;
+  else status = CanonicalStatus.SLOT;
 
   return {
     id: pid,
@@ -109,12 +119,15 @@ function providerLiveRow(pid, detectionHit, liveProbe) {
     detail: liveReady
       ? `live authenticated OK (${liveProbe.latencyMs ?? "?"}ms)`
       : credentialsPresent
-        ? "credentials present — awaiting live authenticated probe success"
+        ? "CREDENTIALS_DETECTED — awaiting live authenticated probe success"
         : detectionHit?.detail || "adapter-slot",
     status,
-    lastTestAt: liveProbe?.checkedAt || liveProbe?.lastCheckedAt || null,
-    lastError: liveReady ? null : liveProbe?.lastError || liveProbe?.errorCategory || null,
-    latencyMs: liveReady ? liveProbe?.latencyMs ?? null : null,
+    lastTestAt: liveProbe?.checkedAt || liveProbe?.testedAt || liveProbe?.lastCheckedAt || "NOT_TESTED",
+    lastError: liveReady
+      ? "none"
+      : liveProbe?.safeErrorMessage || liveProbe?.lastError || liveProbe?.errorCategory || "NOT_TESTED",
+    latencyMs: liveReady ? liveProbe?.latencyMs ?? "NOT_TESTED" : "NOT_TESTED",
+    model: liveProbe?.model || "NOT_TESTED",
   };
 }
 
@@ -126,10 +139,27 @@ export async function summarizeFactories({
   providerDetection,
   liveProbes,
   rootDir = process.cwd(),
+  factoryReadiness = null,
 } = {}) {
   const detection = providerDetection || (await detectProviders());
   const byId = new Map(detection.providers.map((p) => [p.id, p]));
-  const liveById = probeMapFromLive(liveProbes, rootDir);
+  // Prefer persisted health-state records over legacy snapshot / detection
+  const healthState = loadHealthState(rootDir);
+  const stateProbes =
+    liveProbes ||
+    (healthState?.providers || []).map((p) => ({
+      provider: p.providerId,
+      status: p.status,
+      authenticationValid: p.authenticated,
+      minimalRequestPassed: p.status === CanonicalStatus.READY,
+      latencyMs: p.latencyMs === "NOT_TESTED" ? null : p.latencyMs,
+      model: p.model === "NOT_TESTED" ? null : p.model,
+      checkedAt: p.testedAt === "NOT_TESTED" ? null : p.testedAt,
+      configured: p.credentialsDetected,
+      safeErrorMessage: p.safeErrorMessage,
+      testedAt: p.testedAt,
+    }));
+  const liveById = probeMapFromLive(stateProbes, rootDir);
 
   const factories = MANIFEST.factories.map((factory) => {
     const providerStatus = factory.providers.map((pid) =>
@@ -153,7 +183,7 @@ export async function summarizeFactories({
             ? "PARTIAL"
             : credentialed.length
               ? "AWAITING_LIVE_PROBE"
-              : "AWAITING_KEYS",
+              : "NOT_READY",
     };
   });
 
@@ -200,6 +230,16 @@ export async function summarizeFactories({
     });
   }
 
+  const records = [...liveById.values()].map((p) => ({
+    providerId: p.provider || p.id,
+    status: p.status,
+    authenticated: p.authenticationValid,
+    connectionReady: p.status === CanonicalStatus.READY || p.status === "READY",
+    generationVerified: false,
+    credentialsDetected: Boolean(p.configured || p.credentialsDetected),
+  }));
+  const computedReadiness = factoryReadiness || healthState?.factories || computeFactoryReadiness(records);
+
   return {
     system: MANIFEST.system,
     diagram: MANIFEST.diagram,
@@ -208,8 +248,10 @@ export async function summarizeFactories({
     ruleAr: "لا يظهر أي مزود باللون الأخضر إلا إذا نجح طلب حي موثّق خلال آخر فحص.",
     factories,
     infrastructure,
+    factoryReadiness: computedReadiness,
     agentFactoryMap: Object.fromEntries(AGENT_TO_FACTORY.entries()),
     checkedAt: new Date().toISOString(),
+    dataSource: healthState ? "persisted-probe-state" : "detection-only-never-green",
     secretsExposed: false,
   };
 }

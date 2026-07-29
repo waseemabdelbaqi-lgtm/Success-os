@@ -4,8 +4,9 @@ import { fileURLToPath } from "node:url";
 import { loadAiosEnv } from "./env/load.js";
 import { createLogger } from "./utils/logger.js";
 import { detectProviders } from "./providers/detect.js";
-import { createProviderRegistry, runAllHealthChecks } from "./providers/registry.js";
-import { buildInfrastructureDashboard, loadHealthSnapshot } from "./providers/live-status.js";
+import { createProviderRegistry } from "./providers/registry.js";
+import { runHealthCommand } from "./providers/health-runner.js";
+import { buildDashboardFromState, loadHealthState } from "./providers/health-store.js";
 import { runAIOS, formatAiosDisplay } from "./aios.js";
 import { getMcpToolRegistry } from "./mcp/bridge.js";
 import { summarizeFactories, listFactories } from "./factories/registry.js";
@@ -22,7 +23,12 @@ function parseArgs(argv) {
     execute: false,
     agents: false,
     smoke: false,
+    json: false,
     mode: null,
+    healthMode: null,
+    provider: null,
+    factory: null,
+    executionMode: null,
     objective: "",
     help: false,
   };
@@ -36,15 +42,36 @@ function parseArgs(argv) {
     else if (a === "--execute") out.execute = true;
     else if (a === "--agents") out.agents = true;
     else if (a === "--smoke") out.smoke = true;
-    else if (a === "--mode" && argv[i + 1]) {
-      out.mode = String(argv[++i]).toLowerCase();
-    } else if (a === "--help" || a === "-h") {
-      out.help = true;
+    else if (a === "--json") out.json = true;
+    else if (a === "--help" || a === "-h") out.help = true;
+    else if (a.startsWith("--mode=")) {
+      const v = a.slice("--mode=".length).toLowerCase();
+      if (["config", "live", "full"].includes(v)) out.healthMode = v;
+      else out.executionMode = v;
+    } else if (a === "--mode" && argv[i + 1]) {
+      const v = String(argv[++i]).toLowerCase();
+      if (["config", "live", "full"].includes(v)) out.healthMode = v;
+      else out.executionMode = v;
+    } else if (a.startsWith("--provider=")) {
+      out.provider = a.slice("--provider=".length).toLowerCase();
+      out.health = true;
+    } else if (a === "--provider" && argv[i + 1]) {
+      out.provider = String(argv[++i]).toLowerCase();
+      out.health = true;
+    } else if (a.startsWith("--factory=")) {
+      out.factory = a.slice("--factory=".length).toLowerCase();
+      out.health = true;
+    } else if (a === "--factory" && argv[i + 1]) {
+      out.factory = String(argv[++i]).toLowerCase();
+      out.health = true;
     } else {
       rest.push(a);
     }
   }
   out.objective = rest.join(" ").trim();
+  // Bare health defaults to live
+  if (out.health && !out.healthMode) out.healthMode = "live";
+  out.mode = out.executionMode;
   return out;
 }
 
@@ -58,14 +85,27 @@ Usage:
   npm run ai:aios:health
   npm run ai:aios:test
 
+Health (accurate live verification):
+  npm run ai:aios:health -- --mode=config
+  npm run ai:aios:health -- --mode=live
+  npm run ai:aios:health -- --mode=full
+  npm run ai:aios:health -- --provider=ollama --mode=live
+  npm run ai:aios:health -- --factory=education --mode=live
+  npm run ai:aios:health -- --mode=live --json
+
 Flags:
-  --detect     Provider configuration detection (no secrets)
-  --health     Live minimal health probes per provider
-  --factories  Success AI OS factory map (Coding / Education / Media)
-  --mcp        Print MCP tool registry status
-  --execute    Request execute mode (still no auto-commit/push/deploy)
-  --mode MODE  review | execute | dry-run
-  --agents     List registered agents
+  --detect              Credential/adapter detection only (never READY)
+  --health              Run provider health (default --mode=live)
+  --mode MODE           Health: config|live|full  OR run: review|execute|dry-run
+  --provider=<id>       Test one provider
+  --factory=<id>        Test one factory (coding|education|media|infrastructure)
+  --json                Machine-readable JSON (default for health)
+  --factories           Factory map + readiness from persisted probes
+  --mcp                 MCP tool registry
+  --execute             Execute mode (no auto-commit/push/deploy)
+  --agents              List agents
+
+Rule: green/READY only after authenticated live probe success.
 `);
 }
 
@@ -85,21 +125,29 @@ async function main() {
   }
 
   if (args.factories) {
-    const snap = loadHealthSnapshot(rootDir);
+    const state = loadHealthState(rootDir);
     const summary = await summarizeFactories({
-      liveProbes: snap?.providers || [],
+      liveProbes: (state?.providers || []).map((p) => ({
+        provider: p.providerId,
+        status: p.status === "READY" ? "READY" : p.status,
+        authenticationValid: p.authenticated,
+        minimalRequestPassed: p.status === "READY",
+        latencyMs: p.latencyMs === "NOT_TESTED" ? null : p.latencyMs,
+        model: p.model === "NOT_TESTED" ? null : p.model,
+        checkedAt: p.testedAt === "NOT_TESTED" ? null : p.testedAt,
+        configured: p.credentialsDetected,
+      })),
       rootDir,
+      factoryReadiness: state?.factories || null,
     });
-    const dashboard =
-      snap?.dashboard ||
-      buildInfrastructureDashboard(snap?.providers || [], { checkedAt: snap?.checkedAt || null });
     console.log(
       JSON.stringify(
         {
           ...summary,
           catalog: listFactories(),
-          infrastructureDashboard: dashboard,
-          note: "Green only after live authenticated probe success in last health check",
+          dashboard: buildDashboardFromState(state, rootDir),
+          factoryReadiness: state?.factories || summary.factoryReadiness,
+          note: "Factory readiness uses persisted live probe results only",
         },
         null,
         2,
@@ -117,18 +165,20 @@ async function main() {
   if (args.detect) {
     const detection = await detectProviders();
     const registry = createProviderRegistry({ rootDir, logger });
-    const snap = loadHealthSnapshot(rootDir);
-    const factories = await summarizeFactories({
-      providerDetection: detection,
-      liveProbes: snap?.providers || [],
+    const configHealth = await runHealthCommand({
+      mode: "config",
       rootDir,
+      persist: false,
     });
     console.log(
       JSON.stringify(
         {
           ...detection,
-          note: "Detection lists credential presence only — green/READY requires live authenticated probe",
-          factories,
+          note: "Detection/config never marks READY — live probe required",
+          configHealth: {
+            providers: configHealth.providers,
+            factories: configHealth.factories,
+          },
           registry: registry.snapshot(),
           mcp: getMcpToolRegistry(),
           secretsExposed: false,
@@ -141,22 +191,30 @@ async function main() {
   }
 
   if (args.health) {
-    const health = await runAllHealthChecks({ rootDir, persist: true });
+    const health = await runHealthCommand({
+      mode: args.healthMode || "live",
+      provider: args.provider,
+      factory: args.factory,
+      rootDir,
+      persist: true,
+    });
     console.log(
       JSON.stringify(
         {
           generatedAt: new Date().toISOString(),
-          rule: health.rule,
-          ruleAr: health.ruleAr,
+          rule: "GREEN_ONLY_AFTER_LIVE_AUTHENTICATED_SUCCESS",
+          ruleAr: "لا يظهر أي مزود باللون الأخضر إلا إذا نجح طلب حي موثّق خلال آخر فحص.",
+          mode: health.mode,
+          modes: health.modes,
           checkedAt: health.checkedAt,
           ready: health.ready,
           greenCount: health.dashboard?.greenCount ?? 0,
-          infrastructureDashboard: health.dashboard,
+          factories: health.factories,
+          dashboard: health.dashboard,
           providers: health.providers,
-          circuitBreakers: health.circuitBreakers,
-          routingSample: health.routingSample,
+          alerts: health.alerts,
           snapshotPath: health.snapshotPath,
-          mcp: getMcpToolRegistry(),
+          vercelAutoDeployBlocked: true,
           secretsExposed: false,
         },
         null,

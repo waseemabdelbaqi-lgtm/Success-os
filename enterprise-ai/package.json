@@ -10,7 +10,7 @@
   "scripts": {
     "detect": "node src/cli.js --detect",
     "agents": "node src/cli.js --agents",
-    "test": "node src/tests/smoke.mjs && node src/tests/live-status.test.mjs",
+    "test": "node src/tests/smoke.mjs && node src/tests/live-status.test.mjs && node src/tests/health-accuracy.test.mjs",
     "run": "node src/cli.js"
   }
 }

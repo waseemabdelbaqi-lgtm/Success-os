@@ -30,6 +30,20 @@ export {
   AI_INFRASTRUCTURE_DISPLAY_IDS,
 } from "./providers/live-status.js";
 export { runInfrastructureHealthChecks } from "./providers/infra-health.js";
+export { runHealthCommand, computeFactoryReadiness } from "./providers/health-runner.js";
+export {
+  loadHealthState,
+  buildDashboardFromState,
+  saveHealthState,
+} from "./providers/health-store.js";
+export {
+  CanonicalStatus,
+  LiveProbeResult,
+  colorForStatus,
+  hasReadyEvidence,
+  redactSecrets,
+  HEALTH_SCHEMA_VERSION,
+} from "./providers/status-model.js";
 export { loadAiosEnv } from "./env/load.js";
 export {
   getFactoriesManifest,

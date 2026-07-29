@@ -5,13 +5,9 @@ import { openaiChat, openaiConfigured, openaiHealthCheck, openaiModelConfigured 
 import { anthropicChat, anthropicConfigured, anthropicHealthCheck, anthropicModelConfigured } from "./anthropic.js";
 import { geminiChat, geminiConfigured, geminiHealthCheck, geminiModelConfigured } from "./gemini.js";
 import { ollamaChat, ollamaConfigured, ollamaHealthCheck, ollamaModelConfigured } from "./ollama-fallback.js";
-import { runInfrastructureHealthChecks } from "./infra-health.js";
-import {
-  buildInfrastructureDashboard,
-  isLiveAuthenticatedReady,
-  saveHealthSnapshot,
-} from "./live-status.js";
 import { ProviderStatus, AiosProviderError } from "./errors.js";
+import { runHealthCommand } from "./health-runner.js";
+import { CanonicalStatus } from "./status-model.js";
 
 const ROLE_ROUTES = {
   engineering: ["openai", "anthropic", "gemini", "ollama-local"],
@@ -196,35 +192,30 @@ export async function chatViaRegistry({
   throw err;
 }
 
-export async function runAllHealthChecks({ signal, rootDir = process.cwd(), persist = true } = {}) {
-  const checkedAt = new Date().toISOString();
-  const [llmChecks, infraChecks] = await Promise.all([
-    Promise.all([
-      openaiHealthCheck({ signal }),
-      anthropicHealthCheck({ signal }),
-      geminiHealthCheck({ signal }),
-      ollamaHealthCheck(),
-    ]),
-    runInfrastructureHealthChecks(),
-  ]);
-
-  const providers = [...llmChecks, ...infraChecks].map((c) => ({
-    ...c,
-    checkedAt: c.checkedAt || checkedAt,
-    liveReady: isLiveAuthenticatedReady({ ...c, checkedAt: c.checkedAt || checkedAt }),
-  }));
-
-  // Green / READY list: live authenticated success only (never credential presence).
-  const ready = providers.filter((c) => c.liveReady).map((c) => c.provider);
-  const dashboard = buildInfrastructureDashboard(providers, { checkedAt });
-
-  const snapshot = {
-    checkedAt,
+/**
+ * Live authenticated health checks (persisted). Green/READY only with probe evidence.
+ * Delegates to health-runner (config/live/full capable).
+ */
+export async function runAllHealthChecks({
+  rootDir = process.cwd(),
+  persist = true,
+  mode = "live",
+  provider = null,
+  factory = null,
+} = {}) {
+  const health = await runHealthCommand({ mode, provider, factory, rootDir, persist });
+  return {
+    checkedAt: health.checkedAt,
     rule: "GREEN_ONLY_AFTER_LIVE_AUTHENTICATED_SUCCESS",
     ruleAr: "لا يظهر أي مزود باللون الأخضر إلا إذا نجح طلب حي موثّق خلال آخر فحص.",
-    providers,
-    ready,
-    dashboard,
+    mode: health.mode,
+    modes: health.modes,
+    providers: health.providers,
+    ready: health.ready,
+    factories: health.factories,
+    dashboard: health.dashboard,
+    alerts: health.alerts,
+    snapshotPath: health.snapshotPath,
     circuitBreakers: circuitBreakerStatus(),
     routingSample: {
       engineering: routeForRole("engineering"),
@@ -234,18 +225,13 @@ export async function runAllHealthChecks({ signal, rootDir = process.cwd(), pers
       testing: routeForRole("testing"),
       security: routeForRole("security"),
     },
+    vercelAutoDeployBlocked: true,
     secretsExposed: false,
+    // backward-compat: treat READY records as liveReady
+    liveReadyProviders: (health.providers || [])
+      .filter((p) => p.status === CanonicalStatus.READY)
+      .map((p) => p.providerId),
   };
-
-  if (persist) {
-    try {
-      snapshot.snapshotPath = saveHealthSnapshot(snapshot, rootDir);
-    } catch {
-      snapshot.snapshotPath = null;
-    }
-  }
-
-  return snapshot;
 }
 
 export function registrySnapshot() {

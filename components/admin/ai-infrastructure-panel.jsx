@@ -1,9 +1,9 @@
 'use client';
 
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 
 function Dot({ color }) {
-  const bg = color === 'green' ? '#16a34a' : '#9ca3af';
+  const map = { green: '#16a34a', yellow: '#ca8a04', red: '#dc2626', grey: '#9ca3af', neutral: '#9ca3af' };
   return (
     <span
       aria-hidden
@@ -12,7 +12,7 @@ function Dot({ color }) {
         width: 10,
         height: 10,
         borderRadius: '50%',
-        background: bg,
+        background: map[color] || map.grey,
         marginInlineEnd: 8,
         flexShrink: 0,
       }}
@@ -20,85 +20,18 @@ function Dot({ color }) {
   );
 }
 
-function formatCell(value) {
-  if (value == null || value === '') return '—';
+function cell(value) {
+  if (value == null || value === '') return 'NOT_TESTED';
   return String(value);
-}
-
-function ProviderCard({ provider: p }) {
-  const green = p.displayColor === 'green';
-  return (
-    <article
-      style={{
-        border: `1px solid ${green ? '#86efac' : '#e5e7eb'}`,
-        borderRadius: 12,
-        padding: '1rem 1.1rem',
-        background: green ? '#f0fdf4' : '#fff',
-      }}
-    >
-      <div style={{ display: 'flex', alignItems: 'center', marginBottom: 8 }}>
-        <Dot color={p.displayColor} />
-        <strong style={{ fontSize: 16 }}>{p.label || p.id}</strong>
-      </div>
-      <dl
-        style={{
-          margin: 0,
-          display: 'grid',
-          gap: 4,
-          fontSize: 13,
-          color: '#374151',
-        }}
-      >
-        <div>
-          <dt style={{ display: 'inline', color: '#6b7280' }}>Model: </dt>
-          <dd style={{ display: 'inline', margin: 0 }}>{formatCell(p.Model || p.model)}</dd>
-        </div>
-        <div>
-          <dt style={{ display: 'inline', color: '#6b7280' }}>Status: </dt>
-          <dd
-            style={{
-              display: 'inline',
-              margin: 0,
-              fontWeight: 600,
-              color: green ? '#15803d' : '#6b7280',
-            }}
-          >
-            {formatCell(p.Status || p.status)}
-          </dd>
-        </div>
-        <div>
-          <dt style={{ display: 'inline', color: '#6b7280' }}>Latency: </dt>
-          <dd style={{ display: 'inline', margin: 0 }}>
-            {formatCell(p.Latency || (p.latencyMs != null ? `${p.latencyMs} ms` : null))}
-          </dd>
-        </div>
-        <div>
-          <dt style={{ display: 'inline', color: '#6b7280' }}>آخر اختبار: </dt>
-          <dd style={{ display: 'inline', margin: 0 }}>
-            {formatCell(p['آخر اختبار'] || p.lastTestAt)}
-          </dd>
-        </div>
-        <div>
-          <dt style={{ display: 'inline', color: '#6b7280' }}>النتيجة: </dt>
-          <dd style={{ display: 'inline', margin: 0 }}>{formatCell(p.النتيجة || p.result)}</dd>
-        </div>
-        {!green ? (
-          <div>
-            <dt style={{ display: 'inline', color: '#6b7280' }}>آخر خطأ: </dt>
-            <dd style={{ display: 'inline', margin: 0, color: '#9ca3af' }}>
-              {formatCell(p['آخر خطأ'] || p.lastError)}
-            </dd>
-          </div>
-        ) : null}
-      </dl>
-    </article>
-  );
 }
 
 export function AiInfrastructurePanel() {
   const [data, setData] = useState(null);
   const [error, setError] = useState('');
   const [busy, setBusy] = useState(false);
+  const [details, setDetails] = useState(null);
+  const [providerFilter, setProviderFilter] = useState('');
+  const [factoryFilter, setFactoryFilter] = useState('');
 
   const load = useCallback(async () => {
     setError('');
@@ -108,11 +41,15 @@ export function AiInfrastructurePanel() {
     setData(json);
   }, []);
 
-  const probe = useCallback(async () => {
+  const run = useCallback(async (body) => {
     setBusy(true);
     setError('');
     try {
-      const res = await fetch('/api/ai-infrastructure', { method: 'POST' });
+      const res = await fetch('/api/ai-infrastructure', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(body),
+      });
       const json = await res.json();
       if (!res.ok) throw new Error(json.error || 'PROBE_FAILED');
       setData(json);
@@ -129,8 +66,41 @@ export function AiInfrastructurePanel() {
 
   const providers = data?.providers || [];
 
+  const diagnosticText = useMemo(() => {
+    if (!data) return '';
+    return JSON.stringify(
+      {
+        checkedAt: data.checkedAt,
+        greenCount: data.greenCount,
+        factoryReadiness: data.factoryReadiness,
+        providers: providers.map((p) => ({
+          providerId: p.providerId,
+          status: p.Status || p.status,
+          liveProbe: p['Live Probe'] || p.liveProbe,
+          testedAt: p['Last Tested'] || p.testedAt,
+          latencyMs: p.latencyMs,
+          model: p['Model or Service'] || p.model,
+          error: p['Last Error'] || p.safeErrorMessage,
+        })),
+        secretsExposed: false,
+      },
+      null,
+      2,
+    );
+  }, [data, providers]);
+
+  const copyDiagnostic = async () => {
+    try {
+      await navigator.clipboard.writeText(diagnosticText);
+    } catch {
+      setError('COPY_FAILED');
+    }
+  };
+
+  const fr = data?.factoryReadiness || {};
+
   return (
-    <div dir="rtl" style={{ maxWidth: 1100, margin: '0 auto', padding: '1.5rem 1rem' }}>
+    <div dir="rtl" style={{ maxWidth: 1280, margin: '0 auto', padding: '1.5rem 1rem' }}>
       <header style={{ marginBottom: '1.25rem' }}>
         <h1 style={{ fontSize: '1.5rem', fontWeight: 700, margin: 0 }}>AI Infrastructure</h1>
         <p style={{ color: '#4b5563', margin: '0.5rem 0 0', lineHeight: 1.5 }}>
@@ -138,40 +108,92 @@ export function AiInfrastructurePanel() {
             'لا يظهر أي مزود باللون الأخضر إلا إذا نجح طلب حي موثّق خلال آخر فحص.'}
         </p>
         <p style={{ color: '#6b7280', fontSize: 13, margin: '0.35rem 0 0' }}>
-          آخر فحص: {formatCell(data?.checkedAt)} · أخضر: {data?.greenCount ?? 0} · المصدر:{' '}
-          {formatCell(data?.source)}
+          المصدر: {cell(data?.source)} · أخضر: {data?.greenCount ?? 0} · آخر فحص:{' '}
+          {cell(data?.checkedAt)}
         </p>
       </header>
 
-      <div style={{ display: 'flex', gap: 8, marginBottom: '1rem', flexWrap: 'wrap' }}>
+      <section
+        style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))',
+          gap: 10,
+          marginBottom: '1rem',
+        }}
+      >
+        {[
+          ['Coding Factory', fr.coding?.status || 'NOT_TESTED'],
+          ['Education Factory', fr.education?.status || 'NOT_TESTED'],
+          ['Media Factory', fr.media?.status || 'NOT_TESTED'],
+        ].map(([label, status]) => (
+          <div
+            key={label}
+            style={{
+              border: '1px solid #e5e7eb',
+              borderRadius: 10,
+              padding: '0.75rem',
+              background: '#fff',
+            }}
+          >
+            <div style={{ fontSize: 12, color: '#6b7280' }}>{label}</div>
+            <div style={{ fontWeight: 700, marginTop: 4 }}>{status}</div>
+          </div>
+        ))}
+      </section>
+
+      <div style={{ display: 'flex', gap: 8, marginBottom: '1rem', flexWrap: 'wrap', alignItems: 'center' }}>
+        <button type="button" disabled={busy} onClick={() => run({ mode: 'config' })} style={btn()}>
+          Run Configuration Check
+        </button>
+        <button type="button" disabled={busy} onClick={() => run({ mode: 'live' })} style={btnPrimary()}>
+          {busy ? 'Running…' : 'Run Live Probe'}
+        </button>
+        <button type="button" disabled={busy} onClick={() => run({ mode: 'full' })} style={btn()}>
+          Run Full Verification
+        </button>
+        <input
+          placeholder="provider id"
+          value={providerFilter}
+          onChange={(e) => setProviderFilter(e.target.value)}
+          style={inputStyle()}
+        />
         <button
           type="button"
-          onClick={() => load().catch((e) => setError(e.message || 'LOAD_FAILED'))}
-          disabled={busy}
-          style={{
-            padding: '0.5rem 0.9rem',
-            borderRadius: 8,
-            border: '1px solid #d1d5db',
-            background: '#fff',
-            cursor: 'pointer',
-          }}
+          disabled={busy || !providerFilter.trim()}
+          onClick={() => run({ mode: 'live', provider: providerFilter.trim() })}
+          style={btn()}
         >
-          تحديث العرض
+          Test One Provider
+        </button>
+        <select
+          value={factoryFilter}
+          onChange={(e) => setFactoryFilter(e.target.value)}
+          style={inputStyle()}
+        >
+          <option value="">factory…</option>
+          <option value="coding">coding</option>
+          <option value="education">education</option>
+          <option value="media">media</option>
+          <option value="infrastructure">infrastructure</option>
+        </select>
+        <button
+          type="button"
+          disabled={busy || !factoryFilter}
+          onClick={() => run({ mode: 'live', factory: factoryFilter })}
+          style={btn()}
+        >
+          Test Factory
+        </button>
+        <button type="button" disabled={busy} onClick={copyDiagnostic} style={btn()}>
+          Copy Safe Diagnostic Report
         </button>
         <button
           type="button"
-          onClick={probe}
-          disabled={busy}
-          style={{
-            padding: '0.5rem 0.9rem',
-            borderRadius: 8,
-            border: '1px solid #0f766e',
-            background: '#0f766e',
-            color: '#fff',
-            cursor: busy ? 'wait' : 'pointer',
-          }}
+          disabled
+          title="Requires explicit approval — not automatic"
+          style={{ ...btn(), opacity: 0.5 }}
         >
-          {busy ? 'جاري الفحص الحي…' : 'تشغيل فحص حي موثّق'}
+          Run Approved Generation Test
         </button>
       </div>
 
@@ -181,21 +203,170 @@ export function AiInfrastructurePanel() {
         </p>
       ) : null}
 
-      {providers.length === 0 ? (
-        <p style={{ color: '#6b7280' }}>لا توجد نتائج بعد. شغّل فحصًا حيًا موثّقًا.</p>
-      ) : (
+      <div style={{ overflowX: 'auto', border: '1px solid #e5e7eb', borderRadius: 12 }}>
+        <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: 13 }}>
+          <thead>
+            <tr style={{ background: '#f9fafb', textAlign: 'right' }}>
+              {[
+                'Provider',
+                'Factory',
+                'Adapter',
+                'Credentials',
+                'Live Probe',
+                'Status',
+                'Last Tested',
+                'Result',
+                'Latency',
+                'Model or Service',
+                'Last Successful Test',
+                'Last Error',
+                'Actions',
+              ].map((h) => (
+                <th key={h} style={{ padding: '0.65rem', fontWeight: 600, whiteSpace: 'nowrap' }}>
+                  {h}
+                </th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {providers.length === 0 ? (
+              <tr>
+                <td colSpan={13} style={{ padding: '1rem', color: '#6b7280' }}>
+                  NOT_TESTED — run a live probe to populate persisted health state.
+                </td>
+              </tr>
+            ) : (
+              providers.map((p) => (
+                <tr key={p.providerId || p.id} style={{ borderTop: '1px solid #e5e7eb' }}>
+                  <td style={{ padding: '0.65rem', whiteSpace: 'nowrap' }}>
+                    <span style={{ display: 'inline-flex', alignItems: 'center' }}>
+                      <Dot color={p.displayColor} />
+                      {cell(p.Provider || p.displayName || p.id)}
+                    </span>
+                  </td>
+                  <td style={{ padding: '0.65rem' }}>{cell(p.Factory || p.factory)}</td>
+                  <td style={{ padding: '0.65rem' }}>{cell(p.Adapter)}</td>
+                  <td style={{ padding: '0.65rem' }}>{cell(p.Credentials)}</td>
+                  <td style={{ padding: '0.65rem' }}>{cell(p['Live Probe'] || p.liveProbe)}</td>
+                  <td style={{ padding: '0.65rem', fontWeight: 600 }}>{cell(p.Status || p.status)}</td>
+                  <td style={{ padding: '0.65rem' }}>{cell(p['Last Tested'] || p.testedAt)}</td>
+                  <td style={{ padding: '0.65rem' }}>{cell(p.Result || p.result)}</td>
+                  <td style={{ padding: '0.65rem' }}>{cell(p.Latency)}</td>
+                  <td style={{ padding: '0.65rem' }}>{cell(p['Model or Service'] || p.model)}</td>
+                  <td style={{ padding: '0.65rem' }}>
+                    {cell(p['Last Successful Test'] || p.lastSuccessfulProbeAt)}
+                  </td>
+                  <td style={{ padding: '0.65rem', color: '#6b7280', maxWidth: 220 }}>
+                    {cell(p['Last Error'] || p.safeErrorMessage)}
+                  </td>
+                  <td style={{ padding: '0.65rem' }}>
+                    <button
+                      type="button"
+                      style={btnSmall()}
+                      onClick={() => {
+                        setDetails(p);
+                      }}
+                    >
+                      View Probe Details
+                    </button>
+                    <button
+                      type="button"
+                      style={btnSmall()}
+                      onClick={() =>
+                        setDetails({
+                          errorOnly: true,
+                          error: p['Last Error'] || p.safeErrorMessage,
+                          providerId: p.providerId,
+                        })
+                      }
+                    >
+                      View Error
+                    </button>
+                    <button
+                      type="button"
+                      style={btnSmall()}
+                      disabled={busy}
+                      onClick={() => run({ mode: 'live', provider: p.providerId })}
+                    >
+                      Retest
+                    </button>
+                  </td>
+                </tr>
+              ))
+            )}
+          </tbody>
+        </table>
+      </div>
+
+      {details ? (
         <div
+          role="dialog"
           style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fill, minmax(240px, 1fr))',
-            gap: 12,
+            marginTop: '1rem',
+            border: '1px solid #e5e7eb',
+            borderRadius: 12,
+            padding: '1rem',
+            background: '#fff',
           }}
         >
-          {providers.map((p) => (
-            <ProviderCard key={p.id} provider={p} />
-          ))}
+          <div style={{ display: 'flex', justifyContent: 'space-between', gap: 8 }}>
+            <strong>Probe details</strong>
+            <button type="button" onClick={() => setDetails(null)} style={btnSmall()}>
+              Close
+            </button>
+          </div>
+          <pre
+            style={{
+              marginTop: 8,
+              fontSize: 12,
+              overflow: 'auto',
+              background: '#f9fafb',
+              padding: 12,
+              borderRadius: 8,
+            }}
+          >
+            {JSON.stringify(details, null, 2)}
+          </pre>
         </div>
-      )}
+      ) : null}
+
+      {(data?.alerts || []).length ? (
+        <section style={{ marginTop: '1rem' }}>
+          <h2 style={{ fontSize: 16 }}>Alerts</h2>
+          <ul>
+            {data.alerts.map((a, i) => (
+              <li key={i} style={{ color: '#b45309' }}>
+                {a.type}: {a.providerId}
+              </li>
+            ))}
+          </ul>
+        </section>
+      ) : null}
     </div>
   );
+}
+
+function btn() {
+  return {
+    padding: '0.45rem 0.75rem',
+    borderRadius: 8,
+    border: '1px solid #d1d5db',
+    background: '#fff',
+    cursor: 'pointer',
+    fontSize: 13,
+  };
+}
+function btnPrimary() {
+  return { ...btn(), border: '1px solid #0f766e', background: '#0f766e', color: '#fff' };
+}
+function btnSmall() {
+  return { ...btn(), padding: '0.25rem 0.45rem', fontSize: 11, marginInlineEnd: 4 };
+}
+function inputStyle() {
+  return {
+    padding: '0.45rem 0.6rem',
+    borderRadius: 8,
+    border: '1px solid #d1d5db',
+    fontSize: 13,
+  };
 }
