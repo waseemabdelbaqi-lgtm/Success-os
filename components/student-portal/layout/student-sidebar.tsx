@@ -6,6 +6,7 @@ import { cn } from "@/lib/utils";
 const NAV_ITEMS = [
   { href: STUDENT_ROUTES.dashboard, labelKey: "dashboard", icon: "⌂" },
   { href: STUDENT_ROUTES.books, labelKey: "books", icon: "▤" },
+  { href: STUDENT_ROUTES.courses, labelKey: "courses", icon: "▣" },
   { href: STUDENT_ROUTES.favorites, labelKey: "savedBooks", icon: "♥" },
   { href: STUDENT_ROUTES.bookmarks, labelKey: "bookmarks", icon: "◆" },
   { href: STUDENT_ROUTES.highlights, labelKey: "highlights", icon: "✦" },

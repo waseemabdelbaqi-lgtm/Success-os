@@ -25,6 +25,7 @@
     "validate:books": "node scripts/validate-book-engine.mjs",
     "validate:jordan": "node scripts/validate-jordan-curriculum.mjs",
     "validate:generated-books": "node scripts/validate-generated-books.mjs",
+    "validate:course-structure": "node scripts/course-structure.test.mjs",
     "validate:master-directive": "node scripts/validate-master-directive.mjs",
     "validate:knowledge": "node scripts/validate-knowledge-engine.mjs",
     "knowledge:status": "node scripts/run-global-knowledge-engine.mjs --status",

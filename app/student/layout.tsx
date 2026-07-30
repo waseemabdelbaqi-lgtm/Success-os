@@ -7,6 +7,7 @@ import { StudentPortalShell } from "@/components/student-portal/layout/student-p
 const BOOK_PORTAL_PREFIXES = [
   "/student/dashboard",
   "/student/books",
+  "/student/courses",
   "/student/subjects",
   "/student/predictor",
   "/student/bookmarks",
