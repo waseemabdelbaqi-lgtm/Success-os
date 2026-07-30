@@ -20,14 +20,15 @@
   "estimatedDuration": 25,
   "difficulty": "core",
   "bloomLevel": "understand",
-  "skills": ["math", "lesson", "1", "count"],
+  "skills": ["SKL-00001", "SKL-00002", "SKL-00008"],
   "tags": [
     "JO",
     "JO-NATIONAL",
     "JO-NATIONAL-G01",
     "JO-NATIONAL-G01-MATH",
     "JO-NATIONAL-G01-MATH-B01",
-    "JO-NATIONAL-G01-MATH-B01-U01"
+    "JO-NATIONAL-G01-MATH-B01-U01",
+    "SUB-00001"
   ],
   "aiReady": false,
   "published": true,

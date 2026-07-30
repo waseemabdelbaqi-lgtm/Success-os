@@ -129,6 +129,7 @@ export type LessonMetadataRecord = {
   estimatedDuration: number;
   difficulty: LessonDifficulty;
   bloomLevel: BloomLevel;
+  /** Global Skill Registry ids, e.g. SKL-00001 */
   skills: string[];
   tags: string[];
   /** Always false until AI PRs (#52–53) explicitly enable */

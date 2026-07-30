@@ -1,0 +1,90 @@
+{
+  "schema": "success-os.global-skill-registry.v1",
+  "rule": "Skills are global (SKL-XXXXX). Lessons reference skill ids; countries do not fork skill identity.",
+  "skills": [
+    {
+      "id": "SKL-00001",
+      "code": "ARITHMETIC",
+      "name": { "en": "Arithmetic", "ar": "الحساب" },
+      "subjectIds": ["SUB-00001"],
+      "family": "math",
+      "order": 1,
+      "active": true
+    },
+    {
+      "id": "SKL-00002",
+      "code": "FRACTIONS",
+      "name": { "en": "Fractions", "ar": "الكسور" },
+      "subjectIds": ["SUB-00001"],
+      "family": "math",
+      "order": 2,
+      "active": true
+    },
+    {
+      "id": "SKL-00003",
+      "code": "VECTORS",
+      "name": { "en": "Vectors", "ar": "المتجهات" },
+      "subjectIds": ["SUB-00002"],
+      "family": "physics",
+      "order": 3,
+      "active": true
+    },
+    {
+      "id": "SKL-00004",
+      "code": "NEWTON_LAWS",
+      "name": { "en": "Newton Laws", "ar": "قوانين نيوتن" },
+      "subjectIds": ["SUB-00002"],
+      "family": "physics",
+      "order": 4,
+      "active": true
+    },
+    {
+      "id": "SKL-00005",
+      "code": "ACIDS",
+      "name": { "en": "Acids", "ar": "الأحماض" },
+      "subjectIds": ["SUB-00003"],
+      "family": "chemistry",
+      "order": 5,
+      "active": true
+    },
+    {
+      "id": "SKL-00006",
+      "code": "READING",
+      "name": { "en": "Reading", "ar": "القراءة" },
+      "subjectIds": ["SUB-00005", "SUB-00006"],
+      "family": "language",
+      "order": 6,
+      "active": true
+    },
+    {
+      "id": "SKL-00007",
+      "code": "WRITING",
+      "name": { "en": "Writing", "ar": "الكتابة" },
+      "subjectIds": ["SUB-00005", "SUB-00006"],
+      "family": "language",
+      "order": 7,
+      "active": true
+    },
+    {
+      "id": "SKL-00008",
+      "code": "CRITICAL_THINKING",
+      "name": { "en": "Critical Thinking", "ar": "التفكير النقدي" },
+      "subjectIds": [],
+      "family": "thinking",
+      "order": 8,
+      "active": true
+    }
+  ],
+  "counts": {
+    "skills": 8,
+    "active": 8,
+    "byFamily": {
+      "math": 2,
+      "physics": 2,
+      "chemistry": 1,
+      "language": 2,
+      "thinking": 1
+    }
+  },
+  "notes": "Append-only SKL-XXXXX registry. Math lessons default to SKL-00001 + SKL-00002 + SKL-00008."
+}

@@ -27,6 +27,7 @@ type Dashboard = {
     rejectedPackages: number;
     rightsWarnings: number;
     globalSubjects: number;
+    globalSkills: number;
   };
   queue: JobRow[];
   running: JobRow[];
@@ -283,6 +284,7 @@ export function CurriculumImportDashboard(): ReactNode {
                 ["Curricula", c.curricula],
                 ["Grades", c.grades],
                 ["Global Subjects", c.globalSubjects],
+                ["Global Skills", c.globalSkills],
                 ["Subjects", c.subjects],
                 ["Books", c.books],
                 ["Units", c.units],

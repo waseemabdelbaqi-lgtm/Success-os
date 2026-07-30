@@ -17,6 +17,7 @@ import {
   getGlobalSubjectRegistrySnapshot,
   resolveCountrySubject,
   getCrossCountryMathExamples,
+  getGlobalSkillRegistrySnapshot,
 } from "@/lib/curriculum-import-engine";
 
 export const runtime = "nodejs";
@@ -56,6 +57,13 @@ export async function GET(req: Request) {
       registry: getGlobalSubjectRegistrySnapshot(),
       crossCountryExamples: getCrossCountryMathExamples(),
       note: "Jordan → رياضيات → SUB-00001 · USA → Mathematics → SUB-00001 · Egypt → رياضيات → SUB-00001",
+    });
+  }
+  if (action === "global-skill-registry") {
+    return NextResponse.json({
+      ok: true,
+      registry: getGlobalSkillRegistrySnapshot(),
+      note: "SKL-00001 Arithmetic … SKL-00008 Critical Thinking — append-only global skill ids",
     });
   }
   if (action === "jordan-g1-math-example") {
@@ -114,6 +122,7 @@ export async function GET(req: Request) {
       validationErrors: result.validationErrors,
       rightsWarnings: result.rightsWarnings,
       globalSubjectRegistry: result.globalSubjectRegistry,
+      globalSkillRegistry: result.globalSkillRegistry,
     });
   }
   if (action === "connectors") {

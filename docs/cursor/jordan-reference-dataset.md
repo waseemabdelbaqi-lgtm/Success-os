@@ -84,6 +84,28 @@ Rules:
 - **append-only** — never reuse a retired `SUB-XXXXX` id  
 - **one global Math** — new countries add a *country alias*, never a second Math SUB id
 
+## Global Skill Registry
+
+Country-agnostic skills. Lessons store `skills: ["SKL-00001", …]`.
+
+| Global ID | Skill | Primary subjects |
+|-----------|-------|------------------|
+| `SKL-00001` | Arithmetic | SUB-00001 Mathematics |
+| `SKL-00002` | Fractions | SUB-00001 Mathematics |
+| `SKL-00003` | Vectors | SUB-00002 Physics |
+| `SKL-00004` | Newton Laws | SUB-00002 Physics |
+| `SKL-00005` | Acids | SUB-00003 Chemistry |
+| `SKL-00006` | Reading | SUB-00005 / SUB-00006 |
+| `SKL-00007` | Writing | SUB-00005 / SUB-00006 |
+| `SKL-00008` | Critical Thinking | cross-cutting |
+
+Schema: `success-os.global-skill-registry.v1`  
+Module: `lib/curriculum-import-engine/hierarchy/global-skill-registry.ts`  
+Sample: [`global-skill-registry.example.json`](../../content/demo/generated/global-skill-registry.example.json)  
+API: `GET /api/curriculum-import-engine?action=global-skill-registry`
+
+Rule: **append-only** — never reuse a retired `SKL-XXXXX` id.
+
 Fixture: `content/demo/jordan-reference-dataset.ts`  
 Sample tree JSON: [`content/demo/generated/jordan-reference-tree.example.json`](../../content/demo/generated/jordan-reference-tree.example.json)
 
@@ -112,7 +134,7 @@ Every lesson stores metadata only — **global lesson contract** + hierarchy pro
 | Estimated Duration | Minutes (e.g. `25`) |
 | Difficulty | `core` / `support` / `extension` / `advanced` |
 | Bloom Level | `remember`…`create` |
-| Skills | Skill tags |
+| Skills | Global Skill Registry ids (`SKL-XXXXX`) |
 | Tags | Hierarchy + topic tags |
 | AI Ready | `false` until AI PRs (#52–53) |
 | Published | Boolean publish flag |
@@ -190,7 +212,7 @@ Types: `types/curriculum-hierarchy.ts`
 
 `/admin/curriculum-import` displays:
 
-Countries · Curricula · Grades · Global Subjects · Subjects · Books · Units · Lessons · Verified / Pending / Rejected Packages · Import Queue · Import Progress · Validation Errors · Rights Warnings
+Countries · Curricula · Grades · Global Subjects · Global Skills · Subjects · Books · Units · Lessons · Verified / Pending / Rejected Packages · Import Queue · Import Progress · Validation Errors · Rights Warnings
 
 Primary action: **Run Jordan Reference Dataset**
 

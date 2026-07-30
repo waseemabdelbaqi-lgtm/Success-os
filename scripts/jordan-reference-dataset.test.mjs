@@ -18,9 +18,12 @@ const required = [
   "content/demo/generated/jordan-reference-ile-package.example.json",
   "content/demo/generated/jordan-reference-validation-report.example.json",
   "content/demo/generated/global-subject-registry.example.json",
+  "content/demo/generated/global-skill-registry.example.json",
   "lib/curriculum-import-engine/reference/jordan-dataset.ts",
   "lib/curriculum-import-engine/hierarchy/registry.ts",
   "lib/curriculum-import-engine/hierarchy/global-subject-registry.ts",
+  "lib/curriculum-import-engine/hierarchy/global-skill-registry.ts",
+  "types/global-skill-registry.ts",
   "docs/cursor/jordan-reference-dataset.md",
   "docs/cursor/adr/ADR-0050.2-jordan-reference-dataset.md",
   "docs/cursor/reports/pr-50.2-completion-report.md",
@@ -102,6 +105,32 @@ assert.ok(globalMod.includes("GLOBAL_SUBJECT_REGISTRY_SEED"));
 assert.ok(globalMod.includes("COUNTRY_SUBJECT_ALIAS_SEED"));
 assert.ok(globalMod.includes("resolveCountrySubject"));
 assert.ok(globalMod.includes("رياضيات"));
+
+const skillReg = JSON.parse(
+  fs.readFileSync(
+    path.join(root, "content/demo/generated/global-skill-registry.example.json"),
+    "utf8",
+  ),
+);
+assert.equal(skillReg.schema, "success-os.global-skill-registry.v1");
+assert.equal(skillReg.skills[0].id, "SKL-00001");
+assert.equal(skillReg.skills[0].name.en, "Arithmetic");
+assert.equal(skillReg.skills[1].name.en, "Fractions");
+assert.equal(skillReg.skills[2].name.en, "Vectors");
+assert.equal(skillReg.skills[3].name.en, "Newton Laws");
+assert.equal(skillReg.skills[4].name.en, "Acids");
+assert.equal(skillReg.skills[5].name.en, "Reading");
+assert.equal(skillReg.skills[6].name.en, "Writing");
+assert.equal(skillReg.skills[7].name.en, "Critical Thinking");
+assert.equal(skillReg.counts.skills, 8);
+
+const skillMod = fs.readFileSync(
+  path.join(root, "lib/curriculum-import-engine/hierarchy/global-skill-registry.ts"),
+  "utf8",
+);
+assert.ok(skillMod.includes("SKL-00001"));
+assert.ok(skillMod.includes("GLOBAL_SKILL_REGISTRY_SEED"));
+assert.ok(skillMod.includes("defaultSkillIdsForSubject"));
 for (const id of [
   "JO",
   "JO-NATIONAL",
@@ -242,6 +271,7 @@ for (const key of [
 }
 assert.equal(metadata.globalLessonId, "JO-NATIONAL-G01-MATH-B01-U01-L01");
 assert.equal(metadata.globalSubjectId, "SUB-00001");
+assert.deepEqual(metadata.skills, ["SKL-00001", "SKL-00002", "SKL-00008"]);
 assert.equal(metadata.countryId, "JO");
 assert.equal(metadata.curriculumId, "JO-NATIONAL");
 assert.equal(metadata.aiReady, false);
@@ -323,6 +353,7 @@ for (const label of [
   "Curricula",
   "Grades",
   "Global Subjects",
+  "Global Skills",
   "Subjects",
   "Books",
   "Units",
@@ -345,6 +376,7 @@ const api = fs.readFileSync(
 assert.ok(api.includes("run-jordan-reference-dataset"));
 assert.ok(api.includes("jordan-reference-dataset"));
 assert.ok(api.includes("global-subject-registry"));
+assert.ok(api.includes("global-skill-registry"));
 assert.ok(api.includes("resolveCountrySubject"));
 assert.ok(api.includes("localLabel"));
 

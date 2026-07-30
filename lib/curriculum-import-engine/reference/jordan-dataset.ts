@@ -29,6 +29,12 @@ import {
   requireGlobalSubjectByCode,
   resetGlobalSubjectRegistry,
 } from "../hierarchy/global-subject-registry";
+import {
+  defaultSkillIdsForSubject,
+  getGlobalSkillRegistrySnapshot,
+  resetGlobalSkillRegistry,
+} from "../hierarchy/global-skill-registry";
+import type { GlobalSkillRegistrySnapshot } from "@/types/global-skill-registry";
 import { evaluateRights } from "../rights/engine";
 import { buildIlePackagesFromBook } from "../ile-package-builder";
 import { runVerificationGates, allGatesPassed } from "../verification/engine";
@@ -120,6 +126,7 @@ export type JordanDatasetRunResult = {
   samplePackage: CompiledIlePackage | null;
   samplePath: string[];
   globalSubjectRegistry: GlobalSubjectRegistrySnapshot;
+  globalSkillRegistry: GlobalSkillRegistrySnapshot;
   validationReport: {
     totalLessons: number;
     verified: number;
@@ -186,6 +193,7 @@ export function runJordanReferenceDataset(opts?: { reset?: boolean }): JordanDat
   if (opts?.reset !== false) {
     resetHierarchyRegistry();
     resetGlobalSubjectRegistry();
+    resetGlobalSkillRegistry();
   }
 
   const ds = JORDAN_REFERENCE_DATASET;
@@ -324,10 +332,7 @@ export function runJordanReferenceDataset(opts?: { reset?: boolean }): JordanDat
             estimatedDuration: 25,
             difficulty: "core",
             bloomLevel: "understand",
-            skills: [
-              subject.code.toLowerCase(),
-              ...les.keywords.slice(0, 3),
-            ],
+            skills: defaultSkillIdsForSubject(globalSubject.id),
             tags: [
               ds.country.id,
               ds.curriculum.id,
@@ -335,6 +340,7 @@ export function runJordanReferenceDataset(opts?: { reset?: boolean }): JordanDat
               subject.id,
               book.id,
               unit.id,
+              globalSubject.id,
             ],
             aiReady: false,
             published: false,
@@ -570,6 +576,7 @@ export function runJordanReferenceDataset(opts?: { reset?: boolean }): JordanDat
     samplePackage,
     samplePath,
     globalSubjectRegistry: getGlobalSubjectRegistrySnapshot(),
+    globalSkillRegistry: getGlobalSkillRegistrySnapshot(),
     validationReport: {
       totalLessons: snap.counts.lessons,
       verified: snap.counts.verified,

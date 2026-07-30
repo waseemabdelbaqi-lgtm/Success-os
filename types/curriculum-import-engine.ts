@@ -234,6 +234,7 @@ export type ImportDashboardSnapshot = {
     rejectedPackages: number;
     rightsWarnings: number;
     globalSubjects: number;
+    globalSkills: number;
   };
   verificationSummary: Record<VerificationStatus, number>;
   rightsSummary: Record<RightsStatus, number>;

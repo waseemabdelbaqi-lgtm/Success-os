@@ -27,6 +27,12 @@ import {
   resetGlobalSubjectRegistry,
   resolveCountrySubject,
 } from "./hierarchy/global-subject-registry";
+import {
+  defaultSkillIdsForSubject,
+  getGlobalSkillRegistrySnapshot,
+  listGlobalSkills,
+  resetGlobalSkillRegistry,
+} from "./hierarchy/global-skill-registry";
 
 export {
   IMPORT_PIPELINE,
@@ -50,6 +56,10 @@ export {
   resetGlobalSubjectRegistry,
   resolveCountrySubject,
   getCrossCountryMathExamples,
+  getGlobalSkillRegistrySnapshot,
+  listGlobalSkills,
+  resetGlobalSkillRegistry,
+  defaultSkillIdsForSubject,
 };
 
 export { evaluateRights } from "./rights/engine";
@@ -115,8 +125,10 @@ export function engineStatus() {
         lesson: "JO-NATIONAL-G01-MATH-B01-U01-L01",
       },
       globalSubjectRegistry: "success-os.global-subject-registry.v1",
+      globalSkillRegistry: "success-os.global-skill-registry.v1",
     },
     globalSubjectRegistry: getGlobalSubjectRegistrySnapshot(),
+    globalSkillRegistry: getGlobalSkillRegistrySnapshot(),
     pipeline: IMPORT_PIPELINE.map((s) => s.id),
     connectors: listSourceConnectors().map((c) => ({
       id: c.id,
