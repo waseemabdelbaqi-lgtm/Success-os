@@ -65,15 +65,19 @@ def ensure_dirs() -> None:
 # ===================== Visual assets =====================
 
 def create_watermark() -> Path:
-    """Build soft background watermark from the official Success 4 Sure logo."""
+    """Build soft background watermark from the official Success 4 Sure logo (JPEG with world-map)."""
     import numpy as np
 
     path = ASSETS / "success4sure_watermark.png"
-    logo_src = Path(__file__).resolve().parents[1] / "public" / "brand" / "success4sure-logo-premium.webp"
-    jpeg_src = Path(__file__).resolve().parents[1] / "public" / "brand" / "success4sure-logo.jpeg"
-    src = logo_src if logo_src.exists() else jpeg_src
-    if not src.exists():
-        # fallback text watermark
+    brand = Path(__file__).resolve().parents[1] / "public" / "brand"
+    # Prefer full official logo (world-map background) then premium webp
+    candidates = [
+        brand / "success4sure-logo.jpeg",
+        brand / "success4sure-logo-premium.webp",
+        brand / "success4sure-logo-navy.webp",
+    ]
+    src = next((p for p in candidates if p.exists()), None)
+    if src is None:
         w, h = 1200, 700
         img = Image.new("RGBA", (w, h), (255, 255, 255, 0))
         draw = ImageDraw.Draw(img)
@@ -84,26 +88,33 @@ def create_watermark() -> Path:
 
     im = Image.open(src).convert("RGBA")
     arr = np.array(im)
-    # punch out cream/white background
-    light = (arr[:, :, 0] > 228) & (arr[:, :, 1] > 218) & (arr[:, :, 2] > 195)
-    arr[light, 3] = 0
-    mask = arr[:, :, 3] > 0
-    arr[mask, 3] = np.clip((arr[mask, 3].astype(float) * 0.20), 0, 48).astype(np.uint8)
-    logo = Image.fromarray(arr)
+    rgb = arr[:, :, :3].astype(np.int16)
 
-    # also save crisp logo (transparent bg) for cover
-    crisp = np.array(Image.open(src).convert("RGBA"))
-    light2 = (crisp[:, :, 0] > 228) & (crisp[:, :, 1] > 218) & (crisp[:, :, 2] > 195)
-    crisp[light2, 3] = 0
-    Image.fromarray(crisp).save(ASSETS / "success4sure_logo.png")
-    logo.save(ASSETS / "success4sure_logo_wm.png")
+    # Cover logo: only punch pure/near-white paper; KEEP grey world-map dots + brand ink
+    paper = (rgb[:, :, 0] >= 248) & (rgb[:, :, 1] >= 248) & (rgb[:, :, 2] >= 245)
+    cover = arr.copy()
+    cover[paper, 3] = 0
+    Image.fromarray(cover).save(ASSETS / "success4sure_logo.png")
 
-    # wide page watermark canvas
+    # Page watermark: soft-fade all non-paper pixels (logo + map)
+    wm = arr.copy()
+    wm[paper, 3] = 0
+    ink = ~paper
+    # Map dots softer than wordmark
+    brightness = rgb.mean(axis=2)
+    is_map = ink & (brightness > 170)
+    is_mark = ink & (brightness <= 170)
+    wm[is_map, 3] = 28
+    wm[is_mark, 3] = 46
+    Image.fromarray(wm).save(ASSETS / "success4sure_logo_wm.png")
+
+    # Wide canvas for DOCX header / legacy watermark path
     canvas = Image.new("RGBA", (1400, 900), (255, 255, 255, 0))
-    lw = 700
-    logo_r = logo.resize((lw, lw), Image.Resampling.LANCZOS)
+    lw = 720
+    logo_r = Image.fromarray(wm).resize((lw, lw), Image.Resampling.LANCZOS)
     canvas.alpha_composite(logo_r, ((1400 - lw) // 2, (900 - lw) // 2 - 20))
     canvas.save(path)
+    print(f"  logo source: {src.name}")
     return path
 
 
