@@ -21,6 +21,10 @@ import {
   findEquivalentLessons,
   runUniversalCurriculumMapping,
 } from "@/lib/universal-curriculum-mapping";
+import { buildS4sIntelligenceTeacherGreeting } from "./s4s-intelligence-teacher";
+import {
+  buildJordanDemoStudentSkillProgress,
+} from "@/lib/curriculum-import-engine/student/skill-progress";
 
 function sessionIdFor(ctx: StudentStackContext): string {
   const h = createHash("sha256")
@@ -78,15 +82,35 @@ export function runStudentLearningStack(
     ),
   );
 
-  // 2. AI Teacher (stub persona — no generation)
+  // 2. AI Teacher / S4S Intelligence Teacher greeting (no content generation)
   t = Date.now();
+  let progress = null as ReturnType<typeof buildJordanDemoStudentSkillProgress> | null;
+  try {
+    progress = buildJordanDemoStudentSkillProgress();
+  } catch {
+    progress = null;
+  }
+  const greeting = buildS4sIntelligenceTeacherGreeting({
+    studentName: "Ahmad",
+    progress,
+    preferSkillCode: "FRACTIONS",
+    locale: ctx.language === "ar" ? "ar" : "en",
+  });
   invocations.push(
     invoke(
       "ai_teacher",
-      "stub",
+      "foundation",
       {
-        persona: "success-os.ai-teacher.stub",
-        teachingGoal: "guide_to_verified_ile_package",
+        persona: "S4S Intelligence Teacher",
+        teachingGoal: "review_struggle_then_ile_package",
+        openLessonFlow: ["student", "open_lesson", "s4s_intelligence_teacher"],
+        greeting: {
+          displayEn: greeting.displayEn,
+          displayAr: greeting.displayAr,
+          struggleSkillId: greeting.struggleSkillId,
+          struggleSkillName: greeting.struggleSkillName,
+          source: greeting.source,
+        },
         generatesLessons: false,
         generatesVideos: false,
       },
@@ -286,7 +310,7 @@ export function getStudentAiLearningStackSnapshot(): StudentAiLearningStackSnaps
     path: [...STUDENT_AI_LEARNING_STACK_PATH],
     displayPath: [
       "Student",
-      "AI Teacher",
+      "S4S Intelligence Teacher",
       "Conversation Engine",
       "Reasoning Engine",
       "Knowledge Graph",

@@ -30,15 +30,30 @@
     },
     {
       "layerId": "ai_teacher",
-      "status": "stub",
+      "status": "foundation",
       "ok": true,
       "output": {
-        "persona": "success-os.ai-teacher.stub",
-        "teachingGoal": "guide_to_verified_ile_package",
+        "persona": "S4S Intelligence Teacher",
+        "teachingGoal": "review_struggle_then_ile_package",
+        "openLessonFlow": [
+          "student",
+          "open_lesson",
+          "s4s_intelligence_teacher"
+        ],
+        "greeting": {
+          "displayEn": "Hello Ahmad,\nLast time you struggled with Fractions.\nWould you like me to review them first?",
+          "displayAr": "مرحبًا Ahmad،\nفي المرة السابقة واجهت صعوبة في الكسور.\nهل تريد أن نراجعها أولًا؟",
+          "struggleSkillId": "SKL-00002",
+          "struggleSkillName": {
+            "en": "Fractions",
+            "ar": "الكسور"
+          },
+          "source": "skill_progress"
+        },
         "generatesLessons": false,
         "generatesVideos": false
       },
-      "durationMs": 0
+      "durationMs": 1
     },
     {
       "layerId": "conversation_engine",

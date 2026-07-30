@@ -5,33 +5,41 @@ Official student journey architecture.
 ```
 Student
 ↓
-AI Teacher
+Open Lesson
 ↓
-Conversation Engine
+S4S Intelligence Teacher appears
 ↓
-Reasoning Engine
+"Hello Ahmad,
+Last time you struggled with Fractions.
+Would you like me to review them first?"
 ↓
-Knowledge Graph
-↓
-Digital Books
-↓
-Videos
-↓
-Interactive Lesson Engine
-↓
-Quizzes
-↓
-Assessments
+Conversation Engine → Reasoning → Knowledge Graph → …
+→ Interactive Lesson Engine → Quizzes → Assessments
 ```
 
 Schema: `success-os.student-ai-learning-stack.v1` · ADR-0059
+
+## Open Lesson — S4S Intelligence Teacher
+
+When a student opens a lesson, the **S4S Intelligence Teacher** greets them using skill progress (missing/weak skills). Demo default:
+
+```
+Hello Ahmad,
+Last time you struggled with Fractions.
+Would you like me to review them first?
+```
+
+- Component: `components/student-ai-learning-stack/s4s-intelligence-teacher.tsx`
+- Builder: `lib/student-ai-learning-stack/s4s-intelligence-teacher.ts`
+- API: `GET /api/student-ai-learning-stack?action=greeting&studentName=Ahmad`
+- Mounted on student book lesson + ILE package pages (ILE runtime unmodified)
 
 ## Layer status
 
 | Layer | Status | Activates |
 |-------|--------|-----------|
 | Student | operational | #50.3 / #59 |
-| AI Teacher | stub | #56–57 / #59 |
+| S4S Intelligence Teacher (AI Teacher) | foundation | #59 |
 | Conversation Engine | stub | #59 |
 | Reasoning Engine | stub | #59 |
 | Knowledge Graph | foundation (wired) | #50.3 |
@@ -58,6 +66,7 @@ Base: `/api/student-ai-learning-stack`
 | `snapshot` | Layer contracts + path |
 | `plan` / `session` | Run orchestration for a student context |
 | `demo` | Snapshot + sample session plan |
+| `greeting` | S4S Intelligence Teacher open-lesson message |
 | `POST run-stack` | Demo run |
 
 Admin: `/admin/student-ai-learning-stack`

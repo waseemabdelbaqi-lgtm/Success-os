@@ -20,7 +20,8 @@ Full activation spans Digital Books (#55), AI Media (#56–57), Assessment (#58)
 3. **Interactive Lesson Engine** remains the only lesson renderer (ADR-0049).
 4. **Knowledge Graph** (and UCE mappings) inform Reasoning; they never replace ILE.
 5. Digital Books, Videos, Quizzes, and Assessments are **reserved layers** until their engine PRs land.
-6. AI Teacher / Conversation / Reasoning ship as **stubs** here; LLM generation is deferred.
+6. **S4S Intelligence Teacher** appears on Open Lesson with a personalized review prompt derived from skill progress (e.g. Fractions) — scripted, not LLM-generated lessons.
+7. Conversation / Reasoning remain **stubs** here; full LLM tutoring is deferred to later AI PRs.
 
 ## Consequences
 

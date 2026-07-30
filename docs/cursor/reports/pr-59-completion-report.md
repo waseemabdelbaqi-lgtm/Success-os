@@ -25,7 +25,8 @@ Student → AI Teacher → Conversation Engine → Reasoning Engine → Knowledg
 | Orchestration session plan | ✅ |
 | Knowledge Graph wired | ✅ |
 | ILE sole runtime referenced | ✅ |
-| AI Teacher / Conversation / Reasoning stubs | ✅ |
+| S4S Intelligence Teacher open-lesson greeting (Ahmad / Fractions) | ✅ |
+| Conversation / Reasoning stubs | ✅ |
 | Digital Books / Videos / Quizzes / Assessments reserved | ✅ |
 | No AI generation | ✅ |
 | Docs + ADR + Review | ✅ |
@@ -109,7 +110,7 @@ Stacked draft PR on `cursor/universal-curriculum-mapping-bca1` (#54).
 | PR URL | https://github.com/waseemabdelbaqi-lgtm/Success-os/pull/55 |
 | Branch | `cursor/student-ai-learning-stack-bca1` |
 | Base | `cursor/universal-curriculum-mapping-bca1` |
-| Roadmap order | **#59** (foundation; GitHub PR number may differ) |
+| Roadmap order | **#59** (GitHub PR **#55**) |
 | Preview | `/admin/student-ai-learning-stack` |
 | Architecture | Orchestration only; ILE sole runtime |
 | Testing | `validate:student-ai-learning-stack` |

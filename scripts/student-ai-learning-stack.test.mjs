@@ -19,6 +19,9 @@ const required = [
   "components/student-ai-learning-stack/stack-dashboard.tsx",
   "content/demo/generated/student-ai-learning-stack.example.json",
   "content/demo/generated/student-learning-session-plan.example.json",
+  "content/demo/generated/s4s-intelligence-teacher-greeting.example.json",
+  "lib/student-ai-learning-stack/s4s-intelligence-teacher.ts",
+  "components/student-ai-learning-stack/s4s-intelligence-teacher.tsx",
   "docs/cursor/student-ai-learning-stack.md",
   "docs/cursor/adr/ADR-0059-student-ai-learning-stack.md",
   "docs/cursor/reports/pr-59-completion-report.md",
@@ -30,7 +33,7 @@ for (const rel of required) {
 
 const expectedPath = [
   "Student",
-  "AI Teacher",
+  "S4S Intelligence Teacher",
   "Conversation Engine",
   "Reasoning Engine",
   "Knowledge Graph",
@@ -57,7 +60,8 @@ const byId = Object.fromEntries(snap.layers.map((l) => [l.id, l]));
 assert.equal(byId.student.status, "operational");
 assert.equal(byId.interactive_lesson_engine.status, "operational");
 assert.equal(byId.knowledge_graph.status, "foundation");
-assert.equal(byId.ai_teacher.status, "stub");
+assert.equal(byId.ai_teacher.status, "foundation");
+assert.ok(byId.ai_teacher.name.en.includes("S4S Intelligence Teacher"));
 assert.equal(byId.conversation_engine.status, "stub");
 assert.equal(byId.reasoning_engine.status, "stub");
 assert.equal(byId.digital_books.status, "reserved");
@@ -107,9 +111,45 @@ const api = fs.readFileSync(
   path.join(root, "app/api/student-ai-learning-stack/route.ts"),
   "utf8",
 );
-for (const action of ["status", "snapshot", "plan", "demo", "run-stack"]) {
+for (const action of ["status", "snapshot", "plan", "demo", "greeting", "run-stack"]) {
   assert.ok(api.includes(action), `api missing ${action}`);
 }
+
+const greeting = JSON.parse(
+  fs.readFileSync(
+    path.join(root, "content/demo/generated/s4s-intelligence-teacher-greeting.example.json"),
+    "utf8",
+  ),
+);
+assert.deepEqual(greeting.flow, [
+  "Student",
+  "Open Lesson",
+  "S4S Intelligence Teacher appears",
+]);
+assert.equal(
+  greeting.greeting.displayEn,
+  [
+    "Hello Ahmad,",
+    "Last time you struggled with Fractions.",
+    "Would you like me to review them first?",
+  ].join("\n"),
+);
+assert.ok(greeting.greeting.displayAr.includes("الكسور"));
+assert.equal(greeting.greeting.struggleSkillId, "SKL-00002");
+
+const lessonPage = fs.readFileSync(
+  path.join(
+    root,
+    "app/student/books/[bookId]/units/[unitId]/lessons/[lessonId]/page.tsx",
+  ),
+  "utf8",
+);
+assert.ok(lessonPage.includes("S4sIntelligenceTeacher"));
+assert.ok(lessonPage.includes('studentName="Ahmad"'));
+
+const aiTeacherOut = plan.invocations.find((i) => i.layerId === "ai_teacher");
+assert.ok(aiTeacherOut);
+assert.ok(aiTeacherOut.output.greeting.displayEn.includes("Fractions"));
 
 const roadmap = fs.readFileSync(
   path.join(root, "docs/cursor/learning-platform-roadmap.md"),

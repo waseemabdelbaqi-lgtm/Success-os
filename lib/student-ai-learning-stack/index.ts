@@ -10,6 +10,12 @@ export {
   getStudentAiLearningStackSnapshot,
   runStudentAiLearningStackDemo,
 } from "./orchestrator";
+export {
+  buildS4sIntelligenceTeacherGreeting,
+  resolveStruggleSkill,
+  type S4sTeacherGreeting,
+  type BuildS4sGreetingInput,
+} from "./s4s-intelligence-teacher";
 
 export function studentAiLearningStackStatus() {
   return {
@@ -17,6 +23,8 @@ export function studentAiLearningStackStatus() {
     role: "orchestration",
     path: [
       "Student",
+      "Open Lesson",
+      "S4S Intelligence Teacher",
       "AI Teacher",
       "Conversation Engine",
       "Reasoning Engine",
@@ -27,6 +35,8 @@ export function studentAiLearningStackStatus() {
       "Quizzes",
       "Assessments",
     ],
+    openLessonGreeting: true,
+    s4sIntelligenceTeacher: true,
     aiGeneration: false,
     videoGeneration: false,
     quizGeneration: false,

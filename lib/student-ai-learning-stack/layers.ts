@@ -39,17 +39,23 @@ export const STACK_LAYER_CONTRACTS: StackLayerContract[] = [
   {
     id: "ai_teacher",
     order: 2,
-    name: L("AI Teacher", "المعلم الذكي"),
+    name: L("S4S Intelligence Teacher", "معلم Success 4 Sure الذكي"),
     role: L(
-      "Orchestrates tutoring tone and teaching goals — does not invent curriculum",
-      "ينسّق أسلوب التدريس وأهدافه — لا يخترع المنهاج",
+      "Appears on Open Lesson with a personalized review prompt from skill progress",
+      "يظهر عند فتح الدرس برسالة مراجعة مخصصة من تقدّم المهارات",
     ),
-    status: "stub",
-    bindsTo: ["success-os.student-ai-learning-stack.v1"],
-    activatesInPr: "#56–57 / #59",
+    status: "foundation",
+    bindsTo: [
+      "success-os.student-ai-learning-stack.v1",
+      "success-os.student-skill-progress.v1",
+    ],
+    activatesInPr: "#59",
     generatesContent: false,
     rendersLessons: false,
-    notes: ["Stub persona + goal planner only. No AI lesson generation in this PR."],
+    notes: [
+      "Open Lesson greeting: Hello Ahmad — struggled with Fractions — review first?",
+      "No AI lesson generation — scripted prompt from missing/weak skills.",
+    ],
   },
   {
     id: "conversation_engine",

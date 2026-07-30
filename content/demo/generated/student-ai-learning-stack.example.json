@@ -2,7 +2,7 @@
   "schema": "success-os.student-ai-learning-stack.v1",
   "displayPath": [
     "Student",
-    "AI Teacher",
+    "S4S Intelligence Teacher",
     "Conversation Engine",
     "Reasoning Engine",
     "Knowledge Graph",
@@ -51,22 +51,24 @@
       "id": "ai_teacher",
       "order": 2,
       "name": {
-        "en": "AI Teacher",
-        "ar": "المعلم الذكي"
+        "en": "S4S Intelligence Teacher",
+        "ar": "معلم Success 4 Sure الذكي"
       },
       "role": {
-        "en": "Orchestrates tutoring tone and teaching goals — does not invent curriculum",
-        "ar": "ينسّق أسلوب التدريس وأهدافه — لا يخترع المنهاج"
+        "en": "Appears on Open Lesson with a personalized review prompt from skill progress",
+        "ar": "يظهر عند فتح الدرس برسالة مراجعة مخصصة من تقدّم المهارات"
       },
-      "status": "stub",
+      "status": "foundation",
       "bindsTo": [
-        "success-os.student-ai-learning-stack.v1"
+        "success-os.student-ai-learning-stack.v1",
+        "success-os.student-skill-progress.v1"
       ],
-      "activatesInPr": "#56–57 / #59",
+      "activatesInPr": "#59",
       "generatesContent": false,
       "rendersLessons": false,
       "notes": [
-        "Stub persona + goal planner only. No AI lesson generation in this PR."
+        "Open Lesson greeting: Hello Ahmad — struggled with Fractions — review first?",
+        "No AI lesson generation — scripted prompt from missing/weak skills."
       ]
     },
     {
@@ -250,8 +252,8 @@
   "counts": {
     "layers": 10,
     "operational": 2,
-    "foundation": 1,
-    "stub": 3,
+    "foundation": 2,
+    "stub": 2,
     "reserved": 4
   },
   "rules": [

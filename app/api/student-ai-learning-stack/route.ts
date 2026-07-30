@@ -1,10 +1,13 @@
 import { NextResponse } from "next/server";
 import {
+  buildS4sIntelligenceTeacherGreeting,
   getStudentAiLearningStackSnapshot,
   runStudentAiLearningStackDemo,
   runStudentLearningStack,
   studentAiLearningStackStatus,
 } from "@/lib/student-ai-learning-stack";
+import { runJordanReferenceDataset } from "@/lib/curriculum-import-engine";
+import { buildJordanDemoStudentSkillProgress } from "@/lib/curriculum-import-engine";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -59,6 +62,34 @@ export async function GET(req: Request) {
       ok: result.ok,
       ...result,
       note: snapshotNote(),
+    });
+  }
+
+  if (action === "greeting") {
+    // Seed demo hierarchy so Fractions appears as a missing skill after Math L01
+    try {
+      runJordanReferenceDataset({ reset: true });
+    } catch {
+      // continue with fallback Fractions greeting
+    }
+    const progress = (() => {
+      try {
+        return buildJordanDemoStudentSkillProgress();
+      } catch {
+        return null;
+      }
+    })();
+    const greeting = buildS4sIntelligenceTeacherGreeting({
+      studentName: url.searchParams.get("studentName") || "Ahmad",
+      progress,
+      preferSkillCode: url.searchParams.get("preferSkillCode") || "FRACTIONS",
+      locale: url.searchParams.get("locale") === "ar" ? "ar" : "en",
+    });
+    return NextResponse.json({
+      ok: true,
+      flow: ["Student", "Open Lesson", "S4S Intelligence Teacher appears"],
+      greeting,
+      note: 'Hello Ahmad — Last time you struggled with Fractions. Would you like me to review them first?',
     });
   }
 

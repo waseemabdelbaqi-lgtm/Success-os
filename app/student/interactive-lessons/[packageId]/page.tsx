@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import type { ReactNode } from "react";
 import { InteractiveLessonViewer } from "@/components/interactive-lesson-engine/interactive-lesson-viewer";
+import { S4sIntelligenceTeacher } from "@/components/student-ai-learning-stack/s4s-intelligence-teacher";
 import {
   getLocalized,
   resolveLessonPackage,
@@ -27,5 +28,14 @@ export default async function InteractiveLessonPackagePage({
   const locale = sp.lang === "en" ? "en" : "ar";
   const pkg = resolveLessonPackage({ packageId });
   if (!pkg) notFound();
-  return <InteractiveLessonViewer pkg={pkg} locale={locale} />;
+  return (
+    <>
+      <S4sIntelligenceTeacher
+        locale={locale}
+        studentName="Ahmad"
+        lessonKey={`ile/${packageId}`}
+      />
+      <InteractiveLessonViewer pkg={pkg} locale={locale} />
+    </>
+  );
 }
