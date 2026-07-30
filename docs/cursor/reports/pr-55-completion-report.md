@@ -12,6 +12,8 @@
 
 AI Teacher Engine is Success OS’s virtual-teacher orchestration layer (not a chatbot): conversation intents, curriculum-aware reasoning, durable student memory, grounding/safety, permissions, voice/whiteboard-ready contracts, APIs, and admin demo UI. Production turns are country-agnostic; Jordan fixtures exist only under explicit `demoMode`.
 
+**AI Digital Human Teacher (ADHT)** extends ATE with world-class presence architecture: localized teacher profiles, age-appropriate stages, personality memory, and provider-agnostic AI ports — without shipping live avatar video or speech SDKs (ADR-0055.1).
+
 ## 2. Architecture Changes
 
 Immutable path:
@@ -162,4 +164,6 @@ This document. **Not marked complete** under the Non-Negotiable Execution Protoc
 
 ## 18. Next Recommended PR
 
-**PR #56 — Digital Book Engine** (after a **repo hygiene PR** that clears full-repo lint/typecheck so Definition of Done is achievable), providing verified book-section IDs for ATE recommendations.
+1. **Repo hygiene PR** — clear full-repo lint/typecheck so Definition of Done is achievable.  
+2. **PR #56 — Digital Book Engine** — verified book sections for ATE/ADHT recommendations.  
+3. **Provider activation wave** (with #57 Media) — live ElevenLabs / speech / Tavus-or-equivalent adapters behind existing ADHT ports, still grounded by ATE.

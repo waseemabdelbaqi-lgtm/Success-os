@@ -39,6 +39,16 @@ Resolution applied: harden everything **inside ATE scope** to production pattern
 - Country-agnostic production path (Jordan fixtures only when `demoMode: true`)
 - Removed JO/Ahmad/Fractions defaults from memory production records
 - Fixed unrelated broken import blocking webpack compile (`book-commerce/protected-pdf`)
+- **AI Digital Human Teacher (ADHT)** architecture: presence contracts, localized/age-appropriate profiles, personality projection, provider-agnostic ports (OpenAI/Gemini/ElevenLabs/Tavus/HeyGen/LiveKit/LangGraph/vector DB) with live SDKs **refused** (ADR-0055.1)
+
+## ADHT verification
+
+| Gate | Result |
+|------|--------|
+| `npm run validate:ai-digital-human-teacher` | ✅ PASS |
+| ADHT ESLint (scoped) | ✅ PASS |
+| Live avatar / TTS / STT shipped | ❌ correctly **false** |
+| Provider invoke fakes success | ❌ correctly **refuses** |
 
 ## Explicit limitations (not faked as production)
 
