@@ -17,7 +17,12 @@ export type GlobalIdKind =
   | "unit"
   | "lesson"
   | "skill"
-  | "ile_package";
+  | "ile_package"
+  | "learning_objective"
+  | "competency"
+  | "standard"
+  | "assessment_objective"
+  | "mapping";
 
 export const GLOBAL_ID_PREFIX: Record<GlobalIdKind, string> = {
   world: "WLD",
@@ -32,6 +37,11 @@ export const GLOBAL_ID_PREFIX: Record<GlobalIdKind, string> = {
   lesson: "LSN",
   skill: "SKL",
   ile_package: "PKG",
+  learning_objective: "OBJ",
+  competency: "CMP",
+  standard: "STD",
+  assessment_objective: "ASO",
+  mapping: "MAP",
 };
 
 /** Format e.g. SUB-00001, CTR-00001 */

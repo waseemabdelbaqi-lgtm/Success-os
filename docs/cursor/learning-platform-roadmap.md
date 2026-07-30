@@ -52,7 +52,7 @@ Jordan Reference Dataset & Verification
 
 ↓
 
-🔄 PR #50.3
+✓ PR #50.3 / GitHub #53
 Global Curriculum Registry & Dynamic Curriculum Architecture
 ──────────────────────────────────────────
 • World → Country → Curriculum → Academic Year → Grade → … → ILE Package
@@ -65,7 +65,19 @@ Global Curriculum Registry & Dynamic Curriculum Architecture
 
 ↓
 
-PR #51
+🔄 PR #54
+Universal Curriculum Mapping Engine (UCE)
+──────────────────────────────────────────
+• Cross-curriculum relationships (not copies)
+• Mapping types + confidence + evidence
+• Global Learning Objective Registry
+• Global Skill Graph
+• Multilingual search index
+• Compatible with ILE / Global IDs
+
+↓
+
+PR #55
 Digital Book Engine
 ──────────────────────────────────────────
 • Interactive books
@@ -77,7 +89,7 @@ Digital Book Engine
 
 ↓
 
-PR #52–53
+PR #56–57
 AI Lesson & Media Engine
 ──────────────────────────────────────────
 • AI lesson generation
@@ -90,19 +102,17 @@ AI Lesson & Media Engine
 
 ↓
 
-PR #54–55
-Assessment & Virtual Labs
+PR #58
+Assessment Engine
 ──────────────────────────────────────────
 • Lesson quizzes
 • Unit tests
 • Final exams
 • Question bank
-• Interactive simulations
-• Virtual laboratories
 
 ↓
 
-PR #56–59
+PR #59
 Learning Intelligence
 ──────────────────────────────────────────
 • Learning analytics
@@ -132,11 +142,12 @@ Production Optimization
 | **#50** | Curriculum Import Engine (Jordan First) | **Done / open** | #49 + ADR-0050 |
 | **#50.1** | Jordan Curriculum Example (Reference) | **Done / open** | #50 + ADR-0050.1 |
 | **#50.2** | Jordan Reference Dataset & Verification | **Done / open** | #50.1 + ADR-0050.2 |
-| **#50.3** | Global Curriculum Registry & Dynamic Architecture | **In progress** | #50.2 + ADR-0050.3 |
-| #51 | Digital Book Engine | Planned | #49, #50, #50.3 |
-| #52–53 | AI Lesson & Media Engine | Planned | #49 (+ AI/media contracts) |
-| #54–55 | Assessment & Virtual Labs | Planned | #49 |
-| #56–59 | Learning Intelligence | Planned | #49–#55 usage signals |
+| **#50.3 / GH #53** | Global Curriculum Registry & Dynamic Architecture | **Done / open** | #50.2 + ADR-0050.3 |
+| **#54** | Universal Curriculum Mapping Engine | **In progress** | #53 + ADR-0054 |
+| #55 | Digital Book Engine | Planned | #49, #54 |
+| #56–57 | AI Lesson & Media Engine | Planned | #49 (+ AI/media contracts) |
+| #58 | Assessment Engine | Planned | #49 |
+| #59 | Learning Intelligence | Planned | #49–#58 usage signals |
 | #60 | Production Optimization | Planned | #49–#59 |
 
 ## Integration contract
@@ -146,11 +157,12 @@ Production Optimization
 | **#49** | Single lesson runtime — themes, blocks, nav, workspace, admin, AI placeholders |
 | **#50** | Ingest + verify curricula → map Book/Unit/Lesson → **emit ILE packages** (Jordan first) |
 | **#50.1 / #50.2** | Jordan reference hierarchy + metadata/verification standard → **one published ILE example** |
-| **#50.3** | Global Curriculum Registry + dynamic discovery → **unlimited countries/curricula** (Jordan first) |
-| **#51** | Digital book chrome & media → **ILE package output only** (no parallel reader runtime) |
-| **#52–53** | Fill AI / video / voice placeholders → **publish as ILE packages** |
-| **#54–55** | Assessment + labs as engine extensions on the same runtime |
-| **#56–59** | Analytics, adaptive tutor, parent & teacher surfaces over ILE progress |
+| **#50.3 / GH #53** | Global Curriculum Registry + dynamic discovery → **unlimited countries/curricula** (Jordan first) |
+| **#54** | Universal Curriculum Mapping Engine → **cross-curriculum relationships via Global IDs** |
+| **#55** | Digital book chrome & media → **ILE package output only** (no parallel reader runtime) |
+| **#56–57** | Fill AI / video / voice placeholders → **publish as ILE packages** |
+| **#58** | Assessment engine extensions on the same runtime |
+| **#59** | Analytics, adaptive tutor, parent & teacher surfaces over ILE progress |
 | **#60** | Harden the whole stack for global production |
 
 ## Non-negotiables
@@ -163,13 +175,13 @@ Production Optimization
 
 ## Next
 
-**PR #50.3 in progress** — Global Curriculum Registry & Dynamic Curriculum Architecture  
-(`cursor/global-curriculum-registry-bca1`).  
-Following merge: **PR #51 — Digital Book Engine** (ILE package output only).
+**PR #54 in progress** — Universal Curriculum Mapping Engine  
+(`cursor/universal-curriculum-mapping-bca1`).  
+Following merge: **PR #55 — Digital Book Engine** (ILE package output only).
 
 ## Policy
 
 Every completed order must end with a report under [`GLOBAL_PROGRESS_REVIEW_POLICY.md`](./GLOBAL_PROGRESS_REVIEW_POLICY.md).  
-Latest: [`reports/pr-50.3-completion-report.md`](./reports/pr-50.3-completion-report.md).
+Latest: [`reports/pr-54-completion-report.md`](./reports/pr-54-completion-report.md).
 
 **Definition of Done:** a PR cannot merge until tests, lint, typecheck, build, docs, roadmap, completion report, review, and ADR (if architecture changed) are all green — see policy § Definition of Done.
