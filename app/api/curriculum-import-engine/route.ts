@@ -15,6 +15,8 @@ import {
   runJordanPhase1Import,
   runJordanReferenceDataset,
   getGlobalSubjectRegistrySnapshot,
+  resolveCountrySubject,
+  getCrossCountryMathExamples,
 } from "@/lib/curriculum-import-engine";
 
 export const runtime = "nodejs";
@@ -39,9 +41,21 @@ export async function GET(req: Request) {
     return NextResponse.json({ ok: true, hierarchy: getHierarchySnapshot() });
   }
   if (action === "global-subject-registry") {
+    const country = url.searchParams.get("country");
+    const localLabel = url.searchParams.get("localLabel");
+    if (country && localLabel) {
+      const resolved = resolveCountrySubject(country, localLabel);
+      return NextResponse.json({
+        ok: Boolean(resolved.globalSubjectId),
+        resolve: resolved,
+        note: "Local labels differ by country; SUB-XXXXX is shared globally.",
+      });
+    }
     return NextResponse.json({
       ok: true,
       registry: getGlobalSubjectRegistrySnapshot(),
+      crossCountryExamples: getCrossCountryMathExamples(),
+      note: "Jordan → الرياضيات → SUB-00001 · USA → Mathematics → SUB-00001 · Egypt → الرياضيات → SUB-00001",
     });
   }
   if (action === "jordan-g1-math-example") {

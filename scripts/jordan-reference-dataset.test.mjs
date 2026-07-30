@@ -69,6 +69,29 @@ assert.equal(globalReg.subjects[2].id, "SUB-00003");
 assert.equal(globalReg.subjects[3].id, "SUB-00004");
 assert.equal(globalReg.subjects[3].code, "BIOLOGY");
 assert.equal(globalReg.counts.subjects, 9);
+assert.ok(Array.isArray(globalReg.crossCountryExamples));
+assert.equal(globalReg.crossCountryExamples.length, 3);
+assert.equal(globalReg.crossCountryExamples[0].globalSubjectId, "SUB-00001");
+assert.equal(globalReg.crossCountryExamples[1].globalSubjectId, "SUB-00001");
+assert.equal(globalReg.crossCountryExamples[2].globalSubjectId, "SUB-00001");
+assert.equal(globalReg.crossCountryExamples[0].localLabel, "رياضيات");
+assert.equal(globalReg.crossCountryExamples[1].localLabel, "Mathematics");
+assert.equal(globalReg.crossCountryExamples[2].localLabel, "رياضيات");
+assert.deepEqual(globalReg.crossCountryExamples[0].path, [
+  "Jordan",
+  "رياضيات",
+  "SUB-00001",
+]);
+assert.deepEqual(globalReg.crossCountryExamples[1].path, [
+  "USA",
+  "Mathematics",
+  "SUB-00001",
+]);
+assert.deepEqual(globalReg.crossCountryExamples[2].path, [
+  "Egypt",
+  "رياضيات",
+  "SUB-00001",
+]);
 
 const globalMod = fs.readFileSync(
   path.join(root, "lib/curriculum-import-engine/hierarchy/global-subject-registry.ts"),
@@ -76,6 +99,9 @@ const globalMod = fs.readFileSync(
 );
 assert.ok(globalMod.includes("SUB-00001"));
 assert.ok(globalMod.includes("GLOBAL_SUBJECT_REGISTRY_SEED"));
+assert.ok(globalMod.includes("COUNTRY_SUBJECT_ALIAS_SEED"));
+assert.ok(globalMod.includes("resolveCountrySubject"));
+assert.ok(globalMod.includes("رياضيات"));
 for (const id of [
   "JO",
   "JO-NATIONAL",
@@ -319,6 +345,12 @@ const api = fs.readFileSync(
 assert.ok(api.includes("run-jordan-reference-dataset"));
 assert.ok(api.includes("jordan-reference-dataset"));
 assert.ok(api.includes("global-subject-registry"));
+assert.ok(api.includes("resolveCountrySubject"));
+assert.ok(api.includes("localLabel"));
+
+assert.ok(dash.includes("رياضيات"));
+assert.ok(dash.includes("SUB-00001"));
+assert.ok(dash.includes("Mathematics"));
 
 const adr = fs.readFileSync(
   path.join(root, "docs/cursor/adr/ADR-0050.2-jordan-reference-dataset.md"),

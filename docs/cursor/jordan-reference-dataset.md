@@ -51,7 +51,15 @@ STEM subjects: `MATH` · `PHYSICS` · `CHEMISTRY` · `BIOLOGY`
 
 ## Global Subject Registry
 
-Country-agnostic subject identity. Hierarchical curriculum ids **map to** these codes — they do not replace them.
+Country-agnostic subject identity. Local labels differ; the **global id is shared**.
+
+```
+Jordan  → رياضيات     → SUB-00001
+USA     → Mathematics → SUB-00001
+Egypt   → رياضيات     → SUB-00001
+```
+
+Hierarchical curriculum ids (e.g. `JO-NATIONAL-G01-MATH`) also map to these codes — they do not replace them.
 
 | Global ID | Code | Name |
 |-----------|------|------|
@@ -68,9 +76,13 @@ Country-agnostic subject identity. Hierarchical curriculum ids **map to** these 
 Schema: `success-os.global-subject-registry.v1`  
 Module: `lib/curriculum-import-engine/hierarchy/global-subject-registry.ts`  
 Sample: [`global-subject-registry.example.json`](../../content/demo/generated/global-subject-registry.example.json)  
-API: `GET /api/curriculum-import-engine?action=global-subject-registry`
+API:
+- `GET /api/curriculum-import-engine?action=global-subject-registry`
+- `GET …&action=global-subject-registry&country=JO&localLabel=رياضيات` → `SUB-00001`
 
-Rule: **append-only** — never reuse a retired `SUB-XXXXX` id.
+Rules:
+- **append-only** — never reuse a retired `SUB-XXXXX` id  
+- **one global Math** — new countries add a *country alias*, never a second Math SUB id
 
 Fixture: `content/demo/jordan-reference-dataset.ts`  
 Sample tree JSON: [`content/demo/generated/jordan-reference-tree.example.json`](../../content/demo/generated/jordan-reference-tree.example.json)

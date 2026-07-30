@@ -236,6 +236,10 @@ export function CurriculumImportDashboard(): ReactNode {
             {dashboard.hierarchyPathExample.join(" → ")}
           </p>
         ) : null}
+        <p style={{ fontSize: 12, color: "#475569", margin: "0.35rem 0 0" }}>
+          Global Subject: Jordan → رياضيات → SUB-00001 · USA → Mathematics → SUB-00001 · Egypt →
+          رياضيات → SUB-00001
+        </p>
         {notice ? (
           <p style={{ color: "#0f766e", fontSize: 13, margin: "0.5rem 0 0" }}>{notice}</p>
         ) : null}

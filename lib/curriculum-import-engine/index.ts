@@ -20,9 +20,12 @@ import {
   resetHierarchyRegistry,
 } from "./hierarchy/registry";
 import {
+  getCrossCountryMathExamples,
   getGlobalSubjectRegistrySnapshot,
+  listCountrySubjectAliases,
   listGlobalSubjects,
   resetGlobalSubjectRegistry,
+  resolveCountrySubject,
 } from "./hierarchy/global-subject-registry";
 
 export {
@@ -43,7 +46,10 @@ export {
   resetHierarchyRegistry,
   getGlobalSubjectRegistrySnapshot,
   listGlobalSubjects,
+  listCountrySubjectAliases,
   resetGlobalSubjectRegistry,
+  resolveCountrySubject,
+  getCrossCountryMathExamples,
 };
 
 export { evaluateRights } from "./rights/engine";

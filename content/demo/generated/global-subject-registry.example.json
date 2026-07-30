@@ -1,5 +1,26 @@
 {
   "schema": "success-os.global-subject-registry.v1",
+  "rule": "Local labels are country-specific. Global SUB-XXXXX ids are universal.",
+  "crossCountryExamples": [
+    {
+      "countryId": "JO",
+      "localLabel": "رياضيات",
+      "globalSubjectId": "SUB-00001",
+      "path": ["Jordan", "رياضيات", "SUB-00001"]
+    },
+    {
+      "countryId": "US",
+      "localLabel": "Mathematics",
+      "globalSubjectId": "SUB-00001",
+      "path": ["USA", "Mathematics", "SUB-00001"]
+    },
+    {
+      "countryId": "EG",
+      "localLabel": "رياضيات",
+      "globalSubjectId": "SUB-00001",
+      "path": ["Egypt", "رياضيات", "SUB-00001"]
+    }
+  ],
   "subjects": [
     {
       "id": "SUB-00001",
@@ -74,10 +95,29 @@
       "active": true
     }
   ],
+  "countryAliases": [
+    {
+      "countryId": "JO",
+      "localLabel": "رياضيات",
+      "globalSubjectId": "SUB-00001",
+      "hierarchicalSubjectId": "JO-NATIONAL-G01-MATH"
+    },
+    {
+      "countryId": "US",
+      "localLabel": "Mathematics",
+      "globalSubjectId": "SUB-00001"
+    },
+    {
+      "countryId": "EG",
+      "localLabel": "رياضيات",
+      "globalSubjectId": "SUB-00001"
+    }
+  ],
   "counts": {
     "subjects": 9,
     "active": 9,
-    "stem": 5
+    "stem": 5,
+    "countryAliases": 6
   },
-  "notes": "Global Subject Registry — append-only SUB-XXXXX ids. Hierarchical curriculum ids map to these codes."
+  "notes": "Never create a second global Math id for another country — add a country alias only."
 }
