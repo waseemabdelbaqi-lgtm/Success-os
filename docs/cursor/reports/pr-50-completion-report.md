@@ -121,28 +121,28 @@ Admin: `/admin/curriculum-import`
 ## 9. Review
 
 PR:  
-https://github.com/waseemabdelbaqi-lgtm/Success-os/pull/50 _(created with this order)_
+https://github.com/waseemabdelbaqi-lgtm/Success-os/pull/50
 
 Branch:  
 `cursor/curriculum-import-engine-bca1`
 
 Latest Commit:  
-_(filled at ship time)_
+`75e0524ee770bf968d0da23cd8f255f95de441f4`
 
 Preview:  
 N/A
 
 Files Changed:  
-See §4
+28 files · +2,735 / −2 (vs ILE foundation branch)
 
 Architecture Notes:  
-Compiler-only import → ILE packages; ADR-0050; Jordan Phase 1; no render/AI/quiz/video.
+Compiler-only import → ILE packages; ADR-0050; Jordan Phase 1; no render/AI/quiz/video. Stacked on PR #49.
 
 Testing Status:  
-Contract validator green.
+`npm run validate:curriculum-import-engine` ✅
 
 Deployment Status:  
-PR open; not merged; no production deploy.
+Draft PR open against `cursor/interactive-lesson-engine-bca1`; not merged; no production deploy.
 
 Known Issues:  
 - In-memory store (not multi-instance durable)  
@@ -151,7 +151,7 @@ Known Issues:
 - Stacked on ILE branch (#49)
 
 Reviewer Notes:  
-Confirm no lesson rendering paths; confirm gates block publish; merge after #49 or with stacked base.
+Confirm no lesson rendering paths; confirm gates block publish; merge #49 first (or keep stacked base).
 
 ---
 
