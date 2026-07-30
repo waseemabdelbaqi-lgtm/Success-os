@@ -9,6 +9,8 @@ import type {
   ImportJobStatus,
 } from "@/types/curriculum-import-engine";
 import { getHierarchySnapshot } from "./hierarchy/registry";
+import { getGlobalSubjectRegistrySnapshot } from "./hierarchy/global-subject-registry";
+import { getGlobalSkillRegistrySnapshot } from "./hierarchy/global-skill-registry";
 
 const jobs = new Map<string, ImportJob>();
 const jobHistorySnapshots = new Map<string, ImportJob[]>();
@@ -112,6 +114,8 @@ export function buildDashboardSnapshot(): ImportDashboardSnapshot {
   }
 
   const hierarchy = getHierarchySnapshot();
+  const globalSubjects = getGlobalSubjectRegistrySnapshot();
+  const globalSkills = getGlobalSkillRegistrySnapshot();
 
   return {
     schema: "success-os.curriculum-import-engine.v1",
@@ -131,11 +135,19 @@ export function buildDashboardSnapshot(): ImportDashboardSnapshot {
       warnings: warnings + hierarchy.counts.warnings,
       countries: hierarchy.counts.countries,
       curricula: hierarchy.counts.curricula,
+      grades: hierarchy.counts.grades,
+      subjects: hierarchy.counts.subjects,
       units: hierarchy.counts.units,
       imported: hierarchy.counts.imported,
       verified: hierarchy.counts.verified,
       pending: hierarchy.counts.pending,
       published: hierarchy.counts.published,
+      verifiedPackages: hierarchy.counts.verifiedPackages,
+      pendingPackages: hierarchy.counts.pendingPackages,
+      rejectedPackages: hierarchy.counts.rejectedPackages,
+      rightsWarnings: hierarchy.counts.rightsWarnings,
+      globalSubjects: globalSubjects.counts.subjects,
+      globalSkills: globalSkills.counts.skills,
     },
     verificationSummary,
     rightsSummary,
@@ -144,14 +156,28 @@ export function buildDashboardSnapshot(): ImportDashboardSnapshot {
       .sort((a, b) => b.at.localeCompare(a.at))
       .slice(0, 50),
     hierarchyPathExample: [
-      "Jordan",
-      "National Curriculum",
-      "Grade 1",
-      "Mathematics",
-      "Part 1",
-      "Unit 1",
-      "Lesson 1",
-      "ILE Package",
+      "JO",
+      "JO-NATIONAL",
+      "JO-NATIONAL-G01",
+      "JO-NATIONAL-G01-MATH",
+      "JO-NATIONAL-G01-MATH-B01",
+      "JO-NATIONAL-G01-MATH-B01-U01",
+      "JO-NATIONAL-G01-MATH-B01-U01-L01",
+      "Verified ILE Package",
+      "Interactive Lesson Engine",
     ],
+    validationErrors: hierarchy.validationErrors,
+    rightsWarningsList: hierarchy.rightsWarnings,
+    importProgress: {
+      totalLessons: hierarchy.counts.lessons,
+      verified: hierarchy.counts.verified,
+      pending: hierarchy.counts.pending,
+      rejected: hierarchy.counts.rejected,
+      published: hierarchy.counts.published,
+      percentVerified:
+        hierarchy.counts.lessons > 0
+          ? Math.round((hierarchy.counts.verified / hierarchy.counts.lessons) * 100)
+          : 0,
+    },
   };
 }

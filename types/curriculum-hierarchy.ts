@@ -46,11 +46,14 @@ export type SemesterRecord = {
 };
 
 export type SubjectRecord = {
+  /** Hierarchical id within a curriculum, e.g. JO-NATIONAL-G01-MATH */
   id: string;
   gradeId: string;
   semesterId?: string;
   code: string;
   name: LocaleText;
+  /** Global Subject Registry id, e.g. SUB-00001 */
+  globalSubjectId: string;
 };
 
 export type BookRecord = {
@@ -75,6 +78,88 @@ export type UnitRecord = {
   overview?: LocaleText;
 };
 
+/** Per-dimension verification for the Jordan reference standard */
+export type LessonDimensionStatus = "pass" | "fail" | "pending" | "n/a";
+
+export type LessonVerificationReport = {
+  sourceStatus: LessonDimensionStatus;
+  rightsStatus: LessonDimensionStatus;
+  structureStatus: LessonDimensionStatus;
+  metadataStatus: LessonDimensionStatus;
+  packageStatus: LessonDimensionStatus;
+  publishingStatus: "published" | "rejected" | "pending" | "blocked";
+};
+
+export type BloomLevel =
+  | "remember"
+  | "understand"
+  | "apply"
+  | "analyze"
+  | "evaluate"
+  | "create";
+
+export type LessonDifficulty = "core" | "support" | "extension" | "advanced";
+
+/**
+ * Metadata-only lesson row — official global lesson contract.
+ * No AI content generation in import / dataset PRs.
+ */
+export type LessonMetadataRecord = {
+  /** Stable UUID (deterministic from globalLessonId) */
+  lessonUuid: string;
+  /** Hierarchical global id, e.g. JO-NATIONAL-G01-MATH-B01-U01-L01 */
+  globalLessonId: string;
+  /** Global Subject Registry id, e.g. SUB-00001 */
+  globalSubjectId: string;
+  curriculumId: string;
+  countryId: string;
+  language: "ar" | "en" | "bilingual";
+  /** Platform package / content version */
+  version: string;
+  /** Official curriculum edition version */
+  officialVersion: string;
+  /** Success OS platform schema/version tag */
+  platformVersion: string;
+  parentLesson: string | null;
+  childLessons: string[];
+  relatedLessons: string[];
+  prerequisites: string[];
+  /** Explicit dependency edges: this lesson depends on these lesson ids */
+  dependsOn: string[];
+  nextLessons: string[];
+  /** Estimated duration in minutes */
+  estimatedDuration: number;
+  difficulty: LessonDifficulty;
+  bloomLevel: BloomLevel;
+  /** Global Skill Registry ids, e.g. SKL-00001 */
+  skills: string[];
+  tags: string[];
+  /** Always false until AI PRs (#52–53) explicitly enable */
+  aiReady: boolean;
+  published: boolean;
+  verified: boolean;
+  archived: boolean;
+  /** Human-readable hierarchy projection */
+  country: string;
+  curriculum: string;
+  grade: string;
+  semester: string;
+  subject: string;
+  book: string;
+  unit: string;
+  lesson: string;
+  lessonOrder: number;
+  officialLessonTitle: LocaleText;
+  learningObjectives: LocaleText[];
+  keywords: string[];
+  references: { label: LocaleText; href?: string }[];
+  rightsStatus: RightsStatus;
+  verificationStatus: VerificationStatus;
+  packageVersion: string;
+  checksum: string;
+  verification: LessonVerificationReport;
+};
+
 export type LessonRecord = {
   id: string;
   unitId: string;
@@ -87,6 +172,7 @@ export type LessonRecord = {
   references: { label: LocaleText; href?: string }[];
   assets: ImportAsset[];
   activities: LocaleText[];
+  /** Structural synopsis only — never AI-rewritten lesson prose in dataset PRs */
   body: LocaleText;
   language: "ar" | "en" | "bilingual";
   version: string;
@@ -94,6 +180,10 @@ export type LessonRecord = {
   verificationStatus: VerificationStatus;
   published: boolean;
   ilePackageId?: string | null;
+  checksum?: string;
+  verification?: LessonVerificationReport;
+  /** Flattened metadata projection for the official reference standard */
+  metadata?: LessonMetadataRecord;
 };
 
 export type HierarchySnapshot = {
@@ -110,10 +200,15 @@ export type HierarchySnapshot = {
   counts: {
     countries: number;
     curricula: number;
+    grades: number;
+    subjects: number;
     books: number;
     units: number;
     lessons: number;
     packages: number;
+    verifiedPackages: number;
+    pendingPackages: number;
+    rejectedPackages: number;
     imported: number;
     verified: number;
     rejected: number;
@@ -121,5 +216,9 @@ export type HierarchySnapshot = {
     published: number;
     errors: number;
     warnings: number;
+    rightsWarnings: number;
   };
+  validationErrors: string[];
+  rightsWarnings: string[];
+  tree?: unknown;
 };

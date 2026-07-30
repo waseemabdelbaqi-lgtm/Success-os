@@ -76,6 +76,7 @@ export function seedJordanCountryCurriculum() {
     semesterId: IDS.semesterId,
     code: "MATH",
     name: { en: "Mathematics", ar: "الرياضيات" },
+    globalSubjectId: "SUB-00001",
   });
 }
 

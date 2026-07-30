@@ -133,12 +133,47 @@ export function bumpWarning() {
   warnings += 1;
 }
 
+export function updateLesson(id: string, patch: Partial<LessonRecord>) {
+  const cur = lessons.get(id);
+  if (!cur) throw new Error(`Lesson missing: ${id}`);
+  const next = { ...cur, ...patch, id };
+  lessons.set(id, next);
+  return next;
+}
+
 export function getHierarchySnapshot(): HierarchySnapshot {
   const lessonList = [...lessons.values()];
+  const pkgList = [...packages.values()];
   const verified = lessonList.filter((l) => l.verificationStatus === "verified").length;
   const rejected = lessonList.filter((l) => l.verificationStatus === "rejected").length;
-  const pending = lessonList.filter((l) => l.verificationStatus === "pending" || l.verificationStatus === "unverified").length;
+  const pending = lessonList.filter(
+    (l) => l.verificationStatus === "pending" || l.verificationStatus === "unverified",
+  ).length;
   const published = lessonList.filter((l) => l.published).length;
+  const verifiedPackages = pkgList.filter(
+    (p) => p.importMeta?.verificationStatus === "verified" || p.status === "published" || p.status === "preview",
+  ).length;
+  const rejectedPackages = pkgList.filter(
+    (p) => p.importMeta?.verificationStatus === "rejected" || p.status === "unpublished",
+  ).length;
+  const pendingPackages = Math.max(0, pkgList.length - verifiedPackages - rejectedPackages);
+
+  const validationErrors: string[] = [];
+  const rightsWarnings: string[] = [];
+  for (const l of lessonList) {
+    if (l.verificationStatus === "rejected") {
+      validationErrors.push(`${l.id}: rejected — cannot publish`);
+    }
+    if (l.verification?.metadataStatus === "fail") {
+      validationErrors.push(`${l.id}: metadata failed`);
+    }
+    if (l.rightsStatus === "restricted") {
+      rightsWarnings.push(`${l.id}: rights restricted — compile only`);
+    }
+    if (l.rightsStatus === "unknown") {
+      rightsWarnings.push(`${l.id}: rights unknown`);
+    }
+  }
 
   return {
     schema: "success-os.curriculum-hierarchy.v1",
@@ -150,22 +185,30 @@ export function getHierarchySnapshot(): HierarchySnapshot {
     books: [...books.values()],
     units: [...units.values()],
     lessons: lessonList,
-    packages: [...packages.values()],
+    packages: pkgList,
     counts: {
       countries: countries.size,
       curricula: curricula.size,
+      grades: grades.size,
+      subjects: subjects.size,
       books: books.size,
       units: units.size,
       lessons: lessons.size,
-      packages: packages.size,
+      packages: pkgList.length,
+      verifiedPackages,
+      pendingPackages,
+      rejectedPackages,
       imported: lessons.size,
       verified,
       rejected,
       pending,
       published,
-      errors,
-      warnings,
+      errors: errors + validationErrors.length,
+      warnings: warnings + rightsWarnings.length,
+      rightsWarnings: rightsWarnings.length,
     },
+    validationErrors,
+    rightsWarnings,
   };
 }
 
@@ -175,4 +218,8 @@ export function getLesson(id: string) {
 
 export function getPackage(id: string) {
   return packages.get(id) || null;
+}
+
+export function listLessons() {
+  return [...lessons.values()];
 }
