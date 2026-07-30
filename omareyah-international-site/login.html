@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Login | Omareyah International</title>
+  <link rel="icon" href="assets/logo.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body data-page="login">
+  <div id="site-util" class="util-bar"></div>
+  <header id="site-header"></header>
+  <main class="login-wrap">
+    <div class="login-card">
+      <img src="assets/logo-lockup.svg" alt="Omareyah International" height="44" />
+      <h1>Secure login</h1>
+      <p>Parent and staff access for the International Division portal. Authentication will connect at operational launch.</p>
+      <form class="login-form" onsubmit="event.preventDefault(); const n=document.getElementById('loginNote'); n.textContent='Login portal is prepared for launch. Please use Contact Us for current inquiries.';">
+        <label>Email<input type="email" required placeholder="name@email.com" /></label>
+        <label>Password<input type="password" required placeholder="••••••••" /></label>
+        <button class="btn btn-dark" type="submit">Sign In</button>
+      </form>
+      <p class="login-note" id="loginNote">Need help? <a href="contact.html">Contact the division desk</a>.</p>
+    </div>
+  </main>
+  <footer id="site-footer" class="site-footer"></footer>
+  <script src="site.js"></script>
+</body>
+</html>
