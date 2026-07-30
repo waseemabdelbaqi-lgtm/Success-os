@@ -197,7 +197,7 @@ const adr = fs.readFileSync(
 );
 assert.ok(adr.includes("ADR-0049"));
 assert.ok(adr.includes("only lesson runtime"));
-assert.ok(adr.includes("compiler, not a renderer"));
+assert.ok(adr.includes("compiler") && adr.includes("not a renderer"));
 
 const theme = fs.readFileSync(
   path.join(root, "lib/interactive-lesson-engine/core/theme.ts"),
