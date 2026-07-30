@@ -20,13 +20,16 @@ const required = [
   "content/demo/generated/global-subject-registry.example.json",
   "content/demo/generated/global-skill-registry.example.json",
   "content/demo/generated/student-skill-progress.example.json",
+  "content/demo/generated/lesson-dependency.example.json",
   "lib/curriculum-import-engine/reference/jordan-dataset.ts",
   "lib/curriculum-import-engine/hierarchy/registry.ts",
   "lib/curriculum-import-engine/hierarchy/global-subject-registry.ts",
   "lib/curriculum-import-engine/hierarchy/global-skill-registry.ts",
+  "lib/curriculum-import-engine/hierarchy/lesson-dependency.ts",
   "lib/curriculum-import-engine/student/skill-progress.ts",
   "types/global-skill-registry.ts",
   "types/student-skill-progress.ts",
+  "types/lesson-dependency.ts",
   "docs/cursor/jordan-reference-dataset.md",
   "docs/cursor/adr/ADR-0050.2-jordan-reference-dataset.md",
   "docs/cursor/reports/pr-50.2-completion-report.md",
@@ -241,6 +244,7 @@ for (const key of [
   "childLessons",
   "relatedLessons",
   "prerequisites",
+  "dependsOn",
   "nextLessons",
   "estimatedDuration",
   "difficulty",
@@ -307,6 +311,34 @@ const progressMod = fs.readFileSync(
 );
 assert.ok(progressMod.includes("buildStudentSkillProgress"));
 assert.ok(progressMod.includes("Recommended Lessons"));
+
+const depExample = JSON.parse(
+  fs.readFileSync(
+    path.join(root, "content/demo/generated/lesson-dependency.example.json"),
+    "utf8",
+  ),
+);
+assert.equal(depExample.schema, "success-os.lesson-dependency.v1");
+assert.deepEqual(depExample.pathPattern, [
+  "Lesson",
+  "depends on",
+  "Lesson",
+  "depends on",
+  "Lesson",
+]);
+assert.deepEqual(depExample.exampleChain.path, [
+  "JO-NATIONAL-G01-MATH-B01-U01-L01",
+  "JO-NATIONAL-G01-MATH-B01-U01-L02",
+  "JO-NATIONAL-G01-MATH-B01-U01-L03",
+]);
+assert.ok(depExample.exampleChain.displayPath.includes("depends on"));
+
+const depMod = fs.readFileSync(
+  path.join(root, "lib/curriculum-import-engine/hierarchy/lesson-dependency.ts"),
+  "utf8",
+);
+assert.ok(depMod.includes("buildLessonDependencyGraph"));
+assert.ok(depMod.includes("depends on"));
 assert.equal(metadata.countryId, "JO");
 assert.equal(metadata.curriculumId, "JO-NATIONAL");
 assert.equal(metadata.aiReady, false);
@@ -333,6 +365,7 @@ for (const token of [
   "childLessons",
   "relatedLessons",
   "prerequisites",
+  "dependsOn",
   "nextLessons",
   "estimatedDuration",
   "bloomLevel",
@@ -413,6 +446,7 @@ assert.ok(api.includes("jordan-reference-dataset"));
 assert.ok(api.includes("global-subject-registry"));
 assert.ok(api.includes("global-skill-registry"));
 assert.ok(api.includes("student-skill-progress"));
+assert.ok(api.includes("lesson-dependency"));
 assert.ok(api.includes("resolveCountrySubject"));
 assert.ok(api.includes("localLabel"));
 
@@ -421,6 +455,7 @@ assert.ok(dash.includes("SUB-00001"));
 assert.ok(dash.includes("Mathematics"));
 assert.ok(dash.includes("Completed Lessons"));
 assert.ok(dash.includes("Recommended Lessons"));
+assert.ok(dash.includes("depends on"));
 
 const adr = fs.readFileSync(
   path.join(root, "docs/cursor/adr/ADR-0050.2-jordan-reference-dataset.md"),

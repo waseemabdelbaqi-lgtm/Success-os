@@ -124,6 +124,8 @@ export type LessonMetadataRecord = {
   childLessons: string[];
   relatedLessons: string[];
   prerequisites: string[];
+  /** Explicit dependency edges: this lesson depends on these lesson ids */
+  dependsOn: string[];
   nextLessons: string[];
   /** Estimated duration in minutes */
   estimatedDuration: number;

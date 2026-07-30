@@ -1,0 +1,32 @@
+{
+  "schema": "success-os.lesson-dependency.v1",
+  "pathPattern": ["Lesson", "depends on", "Lesson", "depends on", "Lesson"],
+  "exampleChain": {
+    "id": "chain_JO-NATIONAL-G01-MATH-B01-U01-L01_to_JO-NATIONAL-G01-MATH-B01-U01-L03",
+    "path": [
+      "JO-NATIONAL-G01-MATH-B01-U01-L01",
+      "JO-NATIONAL-G01-MATH-B01-U01-L02",
+      "JO-NATIONAL-G01-MATH-B01-U01-L03"
+    ],
+    "displayPath": [
+      "JO-NATIONAL-G01-MATH-B01-U01-L03",
+      "depends on",
+      "JO-NATIONAL-G01-MATH-B01-U01-L02",
+      "depends on",
+      "JO-NATIONAL-G01-MATH-B01-U01-L01"
+    ],
+    "edges": [
+      {
+        "lessonId": "JO-NATIONAL-G01-MATH-B01-U01-L02",
+        "dependsOn": "JO-NATIONAL-G01-MATH-B01-U01-L01",
+        "kind": "sequence"
+      },
+      {
+        "lessonId": "JO-NATIONAL-G01-MATH-B01-U01-L03",
+        "dependsOn": "JO-NATIONAL-G01-MATH-B01-U01-L02",
+        "kind": "sequence"
+      }
+    ]
+  },
+  "notes": "Unlock order follows path (root → tip). Dependency reading order follows displayPath (tip depends on …)."
+}

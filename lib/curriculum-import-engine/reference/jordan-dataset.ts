@@ -40,6 +40,8 @@ import {
   buildStudentSkillProgress,
 } from "../student/skill-progress";
 import type { StudentSkillProgressRecord } from "@/types/student-skill-progress";
+import { buildJordanMathDependencyExample } from "../hierarchy/lesson-dependency";
+import type { LessonDependencyGraph } from "@/types/lesson-dependency";
 
 /** Granular skill ids so progress gaps are meaningful (not all lessons share the same set). */
 function skillIdsForJordanLesson(subjectCode: string, lessonId: string): string[] {
@@ -177,6 +179,7 @@ export type JordanDatasetRunResult = {
   globalSubjectRegistry: GlobalSubjectRegistrySnapshot;
   globalSkillRegistry: GlobalSkillRegistrySnapshot;
   studentSkillProgress: StudentSkillProgressRecord;
+  lessonDependency: LessonDependencyGraph;
   validationReport: {
     totalLessons: number;
     verified: number;
@@ -375,9 +378,10 @@ export function runJordanReferenceDataset(opts?: { reset?: boolean }): JordanDat
             officialVersion: OFFICIAL_VERSION,
             platformVersion: PLATFORM_VERSION,
             parentLesson: prev?.id ?? null,
-            childLessons: [],
+            childLessons: next ? [next.id] : [],
             relatedLessons,
             prerequisites: prev ? [prev.id] : [],
+            dependsOn: prev ? [prev.id] : [],
             nextLessons: next ? [next.id] : [],
             estimatedDuration: 25,
             difficulty: "core",
@@ -628,6 +632,7 @@ export function runJordanReferenceDataset(opts?: { reset?: boolean }): JordanDat
     globalSubjectRegistry: getGlobalSubjectRegistrySnapshot(),
     globalSkillRegistry: getGlobalSkillRegistrySnapshot(),
     studentSkillProgress: buildJordanDemoStudentSkillProgress(),
+    lessonDependency: buildJordanMathDependencyExample(),
     validationReport: {
       totalLessons: snap.counts.lessons,
       verified: snap.counts.verified,

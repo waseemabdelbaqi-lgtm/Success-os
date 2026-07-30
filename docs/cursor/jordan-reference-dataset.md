@@ -133,6 +133,33 @@ Demo: after completing `JO-NATIONAL-G01-MATH-B01-U01-L01` → recommends L02/L03
 
 No AI tutoring in this contract — recommendations are rule-based over verified lesson metadata.
 
+## Lesson dependency
+
+```
+Lesson
+↓ depends on
+Lesson
+↓ depends on
+Lesson
+```
+
+| Field | Role |
+|-------|------|
+| `dependsOn` | Explicit prerequisite lesson ids |
+| `prerequisites` / `parentLesson` | Compatibility aliases used when building the graph |
+| `nextLessons` / `childLessons` | Forward links (dependents) |
+
+Example (Math Unit 1):
+
+`JO-NATIONAL-G01-MATH-B01-U01-L03` → depends on → `…-L02` → depends on → `…-L01`
+
+Schema: `success-os.lesson-dependency.v1`  
+Module: `lib/curriculum-import-engine/hierarchy/lesson-dependency.ts`  
+Sample: [`lesson-dependency.example.json`](../../content/demo/generated/lesson-dependency.example.json)  
+API: `GET /api/curriculum-import-engine?action=lesson-dependency`
+
+Unlock order is the reverse of the display chain (complete L01 before L02 before L03).
+
 Fixture: `content/demo/jordan-reference-dataset.ts`  
 Sample tree JSON: [`content/demo/generated/jordan-reference-tree.example.json`](../../content/demo/generated/jordan-reference-tree.example.json)
 
@@ -157,6 +184,7 @@ Every lesson stores metadata only — **global lesson contract** + hierarchy pro
 | Child Lessons | Child lesson global ids |
 | Related Lessons | Sibling / related global ids |
 | Prerequisites | Prerequisite global ids |
+| Depends On | Explicit lesson dependency ids (`Lesson → depends on → Lesson`) |
 | Next Lessons | Next lesson global ids |
 | Estimated Duration | Minutes (e.g. `25`) |
 | Difficulty | `core` / `support` / `extension` / `advanced` |

@@ -10,12 +10,13 @@
   "officialVersion": "JO-NCCD-2025/2026",
   "platformVersion": "success-os.curriculum-hierarchy.v1",
   "parentLesson": null,
-  "childLessons": [],
+  "childLessons": ["JO-NATIONAL-G01-MATH-B01-U01-L02"],
   "relatedLessons": [
     "JO-NATIONAL-G01-MATH-B01-U01-L02",
     "JO-NATIONAL-G01-MATH-B01-U01-L03"
   ],
   "prerequisites": [],
+  "dependsOn": [],
   "nextLessons": ["JO-NATIONAL-G01-MATH-B01-U01-L02"],
   "estimatedDuration": 25,
   "difficulty": "core",

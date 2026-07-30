@@ -37,6 +37,11 @@ import {
   buildJordanDemoStudentSkillProgress,
   buildStudentSkillProgress,
 } from "./student/skill-progress";
+import {
+  buildJordanMathDependencyExample,
+  buildLessonDependencyGraph,
+  resolveLessonDependsOn,
+} from "./hierarchy/lesson-dependency";
 
 export {
   IMPORT_PIPELINE,
@@ -66,6 +71,9 @@ export {
   defaultSkillIdsForSubject,
   buildStudentSkillProgress,
   buildJordanDemoStudentSkillProgress,
+  buildLessonDependencyGraph,
+  buildJordanMathDependencyExample,
+  resolveLessonDependsOn,
 };
 
 export { evaluateRights } from "./rights/engine";
@@ -133,6 +141,7 @@ export function engineStatus() {
       globalSubjectRegistry: "success-os.global-subject-registry.v1",
       globalSkillRegistry: "success-os.global-skill-registry.v1",
       studentSkillProgress: "success-os.student-skill-progress.v1",
+      lessonDependency: "success-os.lesson-dependency.v1",
     },
     globalSubjectRegistry: getGlobalSubjectRegistrySnapshot(),
     globalSkillRegistry: getGlobalSkillRegistrySnapshot(),
@@ -144,6 +153,7 @@ export function engineStatus() {
       "Weak Skills",
       "Recommended Lessons",
     ],
+    lessonDependencyPath: ["Lesson", "depends on", "Lesson", "depends on", "Lesson"],
     pipeline: IMPORT_PIPELINE.map((s) => s.id),
     connectors: listSourceConnectors().map((c) => ({
       id: c.id,

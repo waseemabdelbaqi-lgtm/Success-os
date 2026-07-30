@@ -20,6 +20,8 @@ import {
   getGlobalSkillRegistrySnapshot,
   buildStudentSkillProgress,
   buildJordanDemoStudentSkillProgress,
+  buildJordanMathDependencyExample,
+  buildLessonDependencyGraph,
 } from "@/lib/curriculum-import-engine";
 
 export const runtime = "nodejs";
@@ -66,6 +68,22 @@ export async function GET(req: Request) {
       ok: true,
       registry: getGlobalSkillRegistrySnapshot(),
       note: "SKL-00001 Arithmetic … SKL-00008 Critical Thinking — append-only global skill ids",
+    });
+  }
+  if (action === "lesson-dependency") {
+    runJordanReferenceDataset({ reset: true });
+    const subjectId = url.searchParams.get("subjectId") || "SUB-00001";
+    const rootLessonId =
+      url.searchParams.get("rootLessonId") || "JO-NATIONAL-G01-MATH-B01-U01-L01";
+    const graph =
+      subjectId === "SUB-00001" && !url.searchParams.get("subjectId")
+        ? buildJordanMathDependencyExample()
+        : buildLessonDependencyGraph({ subjectId, rootLessonId });
+    return NextResponse.json({
+      ok: true,
+      dependency: graph,
+      note: "Lesson → depends on → Lesson → depends on → Lesson",
+      exampleChain: graph.chains[0]?.displayPath || null,
     });
   }
   if (action === "student-skill-progress") {
@@ -148,6 +166,7 @@ export async function GET(req: Request) {
       globalSubjectRegistry: result.globalSubjectRegistry,
       globalSkillRegistry: result.globalSkillRegistry,
       studentSkillProgress: result.studentSkillProgress,
+      lessonDependency: result.lessonDependency,
     });
   }
   if (action === "connectors") {
