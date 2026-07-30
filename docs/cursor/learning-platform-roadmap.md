@@ -1,117 +1,128 @@
-# Success OS — Learning Platform Roadmap (PR #49 → #60)
+# SUCCESS OS Learning Platform Roadmap
 
 Official dependency sequence after the **Interactive Lesson Engine** foundation.
 
-**Rule:** Each PR builds on the previous. Do not skip foundations. Do not merge curriculum/AI/video/assessment into the ILE engine PR.
+**Rule:** Each stage builds on the previous. Do not skip foundations. Do not fork a second lesson runtime — every later PR publishes or consumes **ILE packages** (`success-os.interactive-lesson-engine.v1`).
 
 ```
-PR #49  ✅ Interactive Lesson Engine (Foundation)
-│
-├── Core Lesson Engine
-├── Interactive Slide Engine
-├── Block Library
-├── Lesson Navigation
-├── Student Workspace
-├── Admin Lesson Builder
-├── Theme System
-├── Performance & Accessibility
-└── AI Integration Placeholders
-│
+✓ PR #49
+Interactive Lesson Engine (ILE Foundation)
+──────────────────────────────────────────
+• Single Lesson Runtime
+• Interactive Slide Engine
+• Block Library
+• Lesson Navigation
+• Student Workspace
+• Admin Lesson Builder
+• AI Integration Layer (placeholders)
+• Theme System
+• Performance & Accessibility
+
 ↓
-PR #50  Curriculum Import Engine
-├── Jordan First
-├── Curriculum Verification
-├── Book Structure
-├── Units
-├── Lessons
-└── Metadata
-│
+
+PR #50
+Curriculum Import Engine (Jordan First)
+──────────────────────────────────────────
+• Curriculum ingestion
+• Official curriculum verification
+• Book → Unit → Lesson mapping
+• Metadata extraction
+• ILE package generation
+• Jordan as the first supported curriculum
+
 ↓
-PR #51  Digital Book Engine
-├── Interactive Books
-├── Images
-├── Equations
-├── Diagrams
-├── References
-└── Responsive Reading
-│
+
+PR #51
+Digital Book Engine
+──────────────────────────────────────────
+• Interactive books
+• Rich media
+• Diagrams
+• Mathematical rendering
+• Responsive reading
+• ILE package output only
+
 ↓
-PR #52  AI Lesson Generation
-├── AI Explanations
-├── Lesson Summaries
-├── Examples
-├── AI Diagrams
-└── AI Notes
-│
+
+PR #52–53
+AI Lesson & Media Engine
+──────────────────────────────────────────
+• AI lesson generation
+• AI summaries
+• AI teacher
+• Human recorded lessons
+• AI video generation
+• Voice & captions
+• All content published as ILE packages
+
 ↓
-PR #53  Video & Media Engine
-├── Human Recorded Lessons
-├── AI Teacher Videos
-├── Voice Generation
-├── Captions
-└── Media Synchronization
-│
+
+PR #54–55
+Assessment & Virtual Labs
+──────────────────────────────────────────
+• Lesson quizzes
+• Unit tests
+• Final exams
+• Question bank
+• Interactive simulations
+• Virtual laboratories
+
 ↓
-PR #54  Assessment Engine
-├── Lesson Quiz
-├── Unit Test
-├── Subject Final
-├── Question Bank
-└── AI Feedback
-│
+
+PR #56–59
+Learning Intelligence
+──────────────────────────────────────────
+• Learning analytics
+• Adaptive learning
+• AI Tutor
+• Parent Portal
+• Teacher Workspace
+
 ↓
-PR #55  Virtual Labs & Simulations
-│
-↓
-PR #56  Student Learning Analytics
-│
-↓
-PR #57  Adaptive Learning & AI Tutor
-│
-↓
-PR #58  Parent Portal Integration
-│
-↓
-PR #59  Teacher Workspace
-│
-↓
-PR #60  Production Optimization
+
+PR #60
+Production Optimization
+──────────────────────────────────────────
+• Performance tuning
+• Scalability
+• Monitoring
+• Security hardening
+• Cost optimization
+• Global production readiness
 ```
 
 ## Status
 
 | PR | Title | Status | Depends on |
 |----|-------|--------|------------|
-| **#49** | Interactive Lesson Engine (Foundation) | **Done (this foundation)** | Platform portals / books shell |
-| #50 | Curriculum Import Engine (Jordan first) | Planned | #49 |
+| **#49** | Interactive Lesson Engine (ILE Foundation) | **Done** | Platform portals / books shell |
+| #50 | Curriculum Import Engine (Jordan First) | Planned | #49 |
 | #51 | Digital Book Engine | Planned | #49, #50 |
-| #52 | AI Lesson Generation | Planned | #49 (+ AI contracts) |
-| #53 | Video & Media Engine | Planned | #49, #52 contracts |
-| #54 | Assessment Engine | Planned | #49 |
-| #55 | Virtual Labs & Simulations | Planned | #49 |
-| #56 | Student Learning Analytics | Planned | #49–#54 usage signals |
-| #57 | Adaptive Learning & AI Tutor | Planned | #49, #52, #54, #56 |
-| #58 | Parent Portal Integration | Planned | #56 |
-| #59 | Teacher Workspace | Planned | #49, #54, #56 |
+| #52–53 | AI Lesson & Media Engine | Planned | #49 (+ AI/media contracts) |
+| #54–55 | Assessment & Virtual Labs | Planned | #49 |
+| #56–59 | Learning Intelligence | Planned | #49–#55 usage signals |
 | #60 | Production Optimization | Planned | #49–#59 |
 
 ## Integration contract
 
-Every later PR **consumes** `success-os.interactive-lesson-engine.v1` packages (or adapters that emit them).
+| Stage | Contract with ILE |
+|-------|-------------------|
+| **#49** | Single lesson runtime — themes, blocks, nav, workspace, admin, AI placeholders |
+| **#50** | Ingest + verify curricula → map Book/Unit/Lesson → **emit ILE packages** (Jordan first) |
+| **#51** | Digital book chrome & media → **ILE package output only** (no parallel reader runtime) |
+| **#52–53** | Fill AI / video / voice placeholders → **publish as ILE packages** |
+| **#54–55** | Assessment + labs as engine extensions on the same runtime |
+| **#56–59** | Analytics, adaptive tutor, parent & teacher surfaces over ILE progress |
+| **#60** | Harden the whole stack for global production |
 
-- **#50** imports curricula → emits books/units/lessons metadata → maps into ILE packages  
-- **#51** enriches digital book reading chrome (does not fork a second lesson runtime)  
-- **#52–#53** fill ILE AI / media placeholders (`generationEnabled` stays gated until those PRs)  
-- **#54** adds assessment blocks/workflows as engine extensions — not a parallel lesson viewer  
-- **#55–#60** plug into the same viewer, workspace, and analytics surfaces  
+## Non-negotiables
 
-## Non-negotiables (carry forward)
-
-- Curriculum-agnostic engine core (country logic lives in import adapters, not ILE)
-- No silent AI video generation
+- **One lesson runtime** (ILE) — no forks
+- Country / curriculum logic lives in **import adapters** (#50), not in the engine core
+- No silent AI video generation until #52–53 explicitly enables it
 - Preserve existing routes; extend, don’t redesign portals
 - Human verification for national curriculum content (#50)
 
 ## Next
 
-When ready to execute: open **PR #50 — Curriculum Import Engine (Jordan First)** on a new branch off the preferred base, consuming ILE packages only.
+When ready to execute: **PR #50 — Curriculum Import Engine (Jordan First)** on a new branch off the preferred base, generating ILE packages only.

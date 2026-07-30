@@ -168,6 +168,8 @@ npm run validate:interactive-lesson-engine
 
 ## What comes next
 
-See the official sequence **PR #49 → #60** in [`learning-platform-roadmap.md`](./learning-platform-roadmap.md).
+See the official sequence in [`learning-platform-roadmap.md`](./learning-platform-roadmap.md):
 
-Next executable PR after this foundation: **#50 Curriculum Import Engine (Jordan First)** — still must not fork a second lesson runtime; it feeds ILE packages.
+`#49 ILE ✓ → #50 Curriculum Import (Jordan) → #51 Digital Books → #52–53 AI & Media → #54–55 Assessment & Labs → #56–59 Learning Intelligence → #60 Production`
+
+Next executable PR after this foundation: **#50 Curriculum Import Engine (Jordan First)** — feeds ILE packages; does not fork a second lesson runtime.

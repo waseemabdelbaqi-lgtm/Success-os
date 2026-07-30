@@ -182,7 +182,11 @@ const roadmap = fs.readFileSync(
 assert.ok(roadmap.includes("PR #49"));
 assert.ok(roadmap.includes("PR #50"));
 assert.ok(roadmap.includes("Curriculum Import Engine"));
+assert.ok(roadmap.includes("Single Lesson Runtime"));
+assert.ok(roadmap.includes("ILE package"));
 assert.ok(roadmap.includes("PR #60"));
+assert.ok(roadmap.includes("Learning Intelligence"));
+assert.ok(roadmap.includes("Production Optimization"));
 
 const theme = fs.readFileSync(
   path.join(root, "lib/interactive-lesson-engine/core/theme.ts"),
