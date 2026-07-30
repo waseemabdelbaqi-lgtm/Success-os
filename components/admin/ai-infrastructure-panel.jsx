@@ -108,8 +108,17 @@ export function AiInfrastructurePanel() {
             'لا يظهر أي مزود باللون الأخضر إلا إذا نجح طلب حي موثّق خلال آخر فحص.'}
         </p>
         <p style={{ color: '#6b7280', fontSize: 13, margin: '0.35rem 0 0' }}>
-          المصدر: {cell(data?.source)} · أخضر: {data?.greenCount ?? 0} · آخر فحص:{' '}
-          {cell(data?.checkedAt)}
+          المصدر: {cell(data?.source)} · أخضر: {data?.greenCount ?? 0} · معتمد ⭐:{' '}
+          {data?.certifiedCount ?? 0} · آخر فحص: {cell(data?.checkedAt)}
+        </p>
+        <p style={{ color: '#374151', fontSize: 12, margin: '0.5rem 0 0', letterSpacing: 0.2 }}>
+          {(data?.lifecycleLadder || [
+            'SLOT',
+            'CONFIGURED',
+            'LIVE VERIFIED',
+            'READY',
+            'PRODUCTION CERTIFIED ⭐',
+          ]).join(' → ')}
         </p>
       </header>
 
@@ -213,6 +222,7 @@ export function AiInfrastructurePanel() {
                 'Adapter',
                 'Credentials',
                 'Live Probe',
+                'Lifecycle',
                 'Status',
                 'Last Tested',
                 'Result',
@@ -231,7 +241,7 @@ export function AiInfrastructurePanel() {
           <tbody>
             {providers.length === 0 ? (
               <tr>
-                <td colSpan={13} style={{ padding: '1rem', color: '#6b7280' }}>
+                <td colSpan={14} style={{ padding: '1rem', color: '#6b7280' }}>
                   NOT_TESTED — run a live probe to populate persisted health state.
                 </td>
               </tr>
@@ -242,12 +252,20 @@ export function AiInfrastructurePanel() {
                     <span style={{ display: 'inline-flex', alignItems: 'center' }}>
                       <Dot color={p.displayColor} />
                       {cell(p.Provider || p.displayName || p.id)}
+                      {p.productionCertified || p.Lifecycle === 'PRODUCTION_CERTIFIED' ? (
+                        <span style={{ marginInlineStart: 6 }} title="PRODUCTION CERTIFIED">
+                          ⭐
+                        </span>
+                      ) : null}
                     </span>
                   </td>
                   <td style={{ padding: '0.65rem' }}>{cell(p.Factory || p.factory)}</td>
                   <td style={{ padding: '0.65rem' }}>{cell(p.Adapter)}</td>
                   <td style={{ padding: '0.65rem' }}>{cell(p.Credentials)}</td>
                   <td style={{ padding: '0.65rem' }}>{cell(p['Live Probe'] || p.liveProbe)}</td>
+                  <td style={{ padding: '0.65rem', fontSize: 11 }} title={p['Lifecycle Ladder']}>
+                    {cell(p.Lifecycle || p.lifecycleStage)}
+                  </td>
                   <td style={{ padding: '0.65rem', fontWeight: 600 }}>{cell(p.Status || p.status)}</td>
                   <td style={{ padding: '0.65rem' }}>{cell(p['Last Tested'] || p.testedAt)}</td>
                   <td style={{ padding: '0.65rem' }}>{cell(p.Result || p.result)}</td>

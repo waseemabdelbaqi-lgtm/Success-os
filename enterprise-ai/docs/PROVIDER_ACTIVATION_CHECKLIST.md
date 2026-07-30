@@ -1,14 +1,39 @@
 # SUCCESS AI OS — Provider Activation Checklist
 
+**Lifecycle ladder (no skipping):**
+
+```
+SLOT
+  ↓
+CONFIGURED
+  ↓
+LIVE VERIFIED
+  ↓
+READY          ← dashboard green
+  ↓
+PRODUCTION CERTIFIED ⭐
+```
+
+| Stage | Meaning | Colour |
+|-------|---------|--------|
+| **SLOT** | Listed in config; no usable credentials/adapter yet | grey |
+| **CONFIGURED** | Credentials/package detected — never green alone | yellow |
+| **LIVE VERIFIED** | Authenticated live probe succeeded | yellow |
+| **READY** | Live verified + persisted evidence complete | **green** |
+| **PRODUCTION CERTIFIED ⭐** | READY + stability streak (default 3) and/or explicit certify flag; media also needs `generationVerified` | **green + ⭐** |
+
+No provider may jump from SLOT/CONFIGURED to READY or PRODUCTION CERTIFIED.
+
 **Rule:** No provider may skip from `SLOT` / `NOT_CONFIGURED` / `CREDENTIALS_DETECTED` to `READY`.
 
 Every provider must pass, in order:
 
-1. **Configuration detected** — required env vars present (no secrets logged)
+1. **Configuration detected** — required env vars present (no secrets logged) → CONFIGURED
 2. **Authentication probe** — authenticated, non-destructive API/local call
-3. **Capability probe** — minimal capability confirmed (not paid media generation)
-4. **Persisted evidence** — written to health state store
+3. **Capability probe** — minimal capability confirmed (not paid media generation) → LIVE VERIFIED
+4. **Persisted evidence** — written to health state store → READY
 5. **Dashboard READY** — green only when evidence is complete
+6. **Production certification** — consecutive successful probes and/or `AIOS_CERTIFY_<PROVIDER>=true` → ⭐
 
 ## Required activation order
 
@@ -31,10 +56,11 @@ Every provider must pass, in order:
 ## Status progression (example: Playwright)
 
 ```
-NOT_INSTALLED
-  → CREDENTIALS_NOT_REQUIRED (package available; no API key needed)
-  → PROBE_RUNNING
-  → READY   (only after Chromium launch + local smoke + persisted evidence)
+SLOT / NOT_INSTALLED
+  → CONFIGURED (package available; CREDENTIALS_NOT_REQUIRED)
+  → LIVE VERIFIED (Chromium launch + local smoke passed)
+  → READY (evidence persisted — dashboard green)
+  → PRODUCTION CERTIFIED ⭐ (after certify streak / explicit flag)
 ```
 
 Failure statuses (examples): `BROWSER_NOT_INSTALLED`, `BROWSER_LAUNCH_FAILED`,

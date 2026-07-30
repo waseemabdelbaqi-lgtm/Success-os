@@ -40,18 +40,33 @@ function readJson(rel) {
 }
 
 function colorForStatus(status) {
-  if (status === "READY") return "green";
+  if (status === "READY" || status === "PRODUCTION_CERTIFIED") return "green";
   if (
-    ["DEGRADED", "RATE_LIMITED", "PROBE_PENDING", "PROBE_RUNNING", "CREDENTIALS_DETECTED", "CREDENTIALS_NOT_REQUIRED", "LOCAL_APP_UNAVAILABLE"].includes(
-      status,
-    )
+    [
+      "DEGRADED",
+      "RATE_LIMITED",
+      "PROBE_PENDING",
+      "PROBE_RUNNING",
+      "CREDENTIALS_DETECTED",
+      "CREDENTIALS_NOT_REQUIRED",
+      "CONFIGURED",
+      "LIVE_VERIFIED",
+      "LOCAL_APP_UNAVAILABLE",
+    ].includes(status)
   ) {
     return "yellow";
   }
   if (
-    ["AUTH_FAILED", "MODEL_UNAVAILABLE", "NETWORK_FAILED", "PROBE_FAILED", "BROWSER_NOT_INSTALLED", "BROWSER_LAUNCH_FAILED", "TEST_ASSERTION_FAILED", "REMOTE_TESTING_BLOCKED"].includes(
-      status,
-    )
+    [
+      "AUTH_FAILED",
+      "MODEL_UNAVAILABLE",
+      "NETWORK_FAILED",
+      "PROBE_FAILED",
+      "BROWSER_NOT_INSTALLED",
+      "BROWSER_LAUNCH_FAILED",
+      "TEST_ASSERTION_FAILED",
+      "REMOTE_TESTING_BLOCKED",
+    ].includes(status)
   ) {
     return "red";
   }
@@ -100,6 +115,15 @@ function buildDashboard(state) {
       Credentials: rec.credentialsDetected ? "detected" : "missing",
       "Live Probe": rec.liveProbe || "NOT_RUN",
       Status: status,
+      Lifecycle: rec.lifecycleStage || "SLOT",
+      "Lifecycle Ladder": Array.isArray(rec.lifecycleProgress)
+        ? rec.lifecycleProgress
+            .map((s) =>
+              s.current ? `[${s.label}${s.mark ? ` ${s.mark}` : ""}]` : s.reached ? s.label : "·",
+            )
+            .join(" → ")
+        : "SLOT → CONFIGURED → LIVE VERIFIED → READY → PRODUCTION CERTIFIED ⭐",
+      productionCertified: Boolean(rec.productionCertified),
       "Last Tested": rec.testedAt || "NOT_TESTED",
       Result: rec.result || "NOT_TESTED",
       Latency:
@@ -116,9 +140,17 @@ function buildDashboard(state) {
   return {
     rule: "GREEN_ONLY_AFTER_LIVE_AUTHENTICATED_SUCCESS",
     ruleAr: "لا يظهر أي مزود باللون الأخضر إلا إذا نجح طلب حي موثّق خلال آخر فحص.",
+    lifecycleLadder: [
+      "SLOT",
+      "CONFIGURED",
+      "LIVE VERIFIED",
+      "READY",
+      "PRODUCTION CERTIFIED ⭐",
+    ],
     checkedAt: state?.checkedAt || null,
     source: state ? "persisted-probe-state" : "empty-not-tested",
     greenCount: providers.filter((p) => p.displayColor === "green").length,
+    certifiedCount: providers.filter((p) => p.Lifecycle === "PRODUCTION_CERTIFIED").length,
     providers,
     factories: state?.factories || null,
     factoryReadiness: state?.factories || null,

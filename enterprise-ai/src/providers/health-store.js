@@ -8,9 +8,13 @@ import {
   CanonicalStatus,
   HEALTH_SCHEMA_VERSION,
   LiveProbeResult,
+  ProviderLifecycle,
+  colorForLifecycle,
   colorForStatus,
+  deriveLifecycleStage,
   emptyResultFields,
   hasReadyEvidence,
+  lifecycleProgress,
   PROVIDER_FACTORY,
   PROVIDER_META,
   redactSecrets,
@@ -89,6 +93,9 @@ export function createEmptyProviderRecord(providerId) {
     browserVersion: null,
     targetType: null,
     targetURL: null,
+    lifecycleStage: ProviderLifecycle.SLOT,
+    lifecycleProgress: lifecycleProgress(ProviderLifecycle.SLOT),
+    productionCertified: false,
     displayColor: colorForStatus(CanonicalStatus.NOT_TESTED),
     healthSchemaVersion: HEALTH_SCHEMA_VERSION,
   };
@@ -180,11 +187,22 @@ export function normalizeProviderRecord(partial = {}, previous = null) {
     }
   }
 
-  if (status === CanonicalStatus.READY) {
+  if (
+    status === CanonicalStatus.READY ||
+    status === CanonicalStatus.PRODUCTION_CERTIFIED ||
+    status === CanonicalStatus.LIVE_VERIFIED
+  ) {
     record.errorCode = record.errorCode === "NOT_TESTED" ? "none" : record.errorCode;
     record.safeErrorMessage =
       record.safeErrorMessage === "NOT_TESTED" ? "none" : record.safeErrorMessage;
-    if (!hasReadyEvidence({ ...record, errorCode: record.errorCode === "none" ? null : record.errorCode })) {
+    if (
+      (status === CanonicalStatus.READY || status === CanonicalStatus.PRODUCTION_CERTIFIED) &&
+      !hasReadyEvidence({
+        ...record,
+        status: CanonicalStatus.READY,
+        errorCode: record.errorCode === "none" ? null : record.errorCode,
+      })
+    ) {
       record.status = CanonicalStatus.PROBE_FAILED;
       record.liveProbe = LiveProbeResult.FAILED;
       record.result = "failure";
@@ -193,11 +211,12 @@ export function normalizeProviderRecord(partial = {}, previous = null) {
     }
   }
 
-  record.displayColor = colorForStatus(record.status);
-
-  // Consecutive counters
+  // Consecutive counters (before lifecycle so streak informs PRODUCTION_CERTIFIED)
   if (previous) {
-    if (record.status === CanonicalStatus.READY) {
+    if (
+      record.status === CanonicalStatus.READY ||
+      record.status === CanonicalStatus.PRODUCTION_CERTIFIED
+    ) {
       record.consecutiveSuccesses = (previous.consecutiveSuccesses || 0) + 1;
       record.consecutiveFailures = 0;
       record.lastSuccessfulProbeAt = record.testedAt;
@@ -223,10 +242,28 @@ export function normalizeProviderRecord(partial = {}, previous = null) {
       if (previous.lastSuccessfulProbeAt) record.lastSuccessfulProbeAt = previous.lastSuccessfulProbeAt;
       if (previous.lastFailedProbeAt) record.lastFailedProbeAt = previous.lastFailedProbeAt;
     }
-  } else if (record.status === CanonicalStatus.READY) {
+  } else if (
+    record.status === CanonicalStatus.READY ||
+    record.status === CanonicalStatus.PRODUCTION_CERTIFIED
+  ) {
     record.consecutiveSuccesses = 1;
     record.lastSuccessfulProbeAt = record.testedAt;
   }
+
+  record.lifecycleStage = deriveLifecycleStage(record, previous?.lifecycleStage || null);
+  record.lifecycleProgress = lifecycleProgress(record.lifecycleStage);
+  record.productionCertified = record.lifecycleStage === ProviderLifecycle.PRODUCTION_CERTIFIED;
+
+  // Elevate status to PRODUCTION_CERTIFIED when lifecycle reaches the star tier
+  if (
+    record.productionCertified &&
+    (record.status === CanonicalStatus.READY || record.status === CanonicalStatus.PRODUCTION_CERTIFIED)
+  ) {
+    record.status = CanonicalStatus.PRODUCTION_CERTIFIED;
+  }
+
+  record.displayColor =
+    colorForLifecycle(record.lifecycleStage) || colorForStatus(record.status);
 
   return record;
 }
@@ -237,8 +274,10 @@ export function evaluateAlerts(previousState, nextRecords) {
   for (const rec of nextRecords) {
     const prev = prevMap.get(rec.providerId);
     if (
-      prev?.status === CanonicalStatus.READY &&
+      (prev?.status === CanonicalStatus.READY ||
+        prev?.status === CanonicalStatus.PRODUCTION_CERTIFIED) &&
       rec.status !== CanonicalStatus.READY &&
+      rec.status !== CanonicalStatus.PRODUCTION_CERTIFIED &&
       rec.status !== CanonicalStatus.NOT_CONFIGURED &&
       rec.status !== CanonicalStatus.SLOT &&
       rec.status !== CanonicalStatus.NOT_TESTED
@@ -381,6 +420,11 @@ export function buildDashboardFromState(state, rootDir = process.cwd()) {
       Credentials: rec.credentialsDetected ? "detected" : "missing",
       "Live Probe": rec.liveProbe,
       Status: rec.status,
+      Lifecycle: rec.lifecycleStage || ProviderLifecycle.SLOT,
+      "Lifecycle Ladder": (rec.lifecycleProgress || [])
+        .map((s) => (s.current ? `[${s.label}${s.mark ? ` ${s.mark}` : ""}]` : s.reached ? s.label : "·"))
+        .join(" → "),
+      productionCertified: Boolean(rec.productionCertified),
       "Last Tested": rec.testedAt,
       Result: rec.result,
       Latency: rec.latencyMs === "NOT_TESTED" || rec.latencyMs == null ? "NOT_TESTED" : `${rec.latencyMs} ms`,
@@ -395,9 +439,18 @@ export function buildDashboardFromState(state, rootDir = process.cwd()) {
   return {
     rule: "GREEN_ONLY_AFTER_LIVE_AUTHENTICATED_SUCCESS",
     ruleAr: "لا يظهر أي مزود باللون الأخضر إلا إذا نجح طلب حي موثّق خلال آخر فحص.",
+    lifecycleLadder: [
+      "SLOT",
+      "CONFIGURED",
+      "LIVE VERIFIED",
+      "READY",
+      "PRODUCTION CERTIFIED ⭐",
+    ],
     checkedAt: state?.checkedAt || null,
     source: state ? "persisted-probe-state" : "empty-not-tested",
     greenCount: providers.filter((p) => p.displayColor === "green").length,
+    certifiedCount: providers.filter((p) => p.lifecycleStage === ProviderLifecycle.PRODUCTION_CERTIFIED)
+      .length,
     providers,
     alerts: state?.alerts || [],
     healthSchemaVersion: HEALTH_SCHEMA_VERSION,

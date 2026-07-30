@@ -31,7 +31,7 @@
     "ai:aios:health": "node scripts/run-master-ai-orchestrator.mjs --health",
     "ai:aios:factories": "node scripts/run-master-ai-orchestrator.mjs --factories",
     "ai:aios:execute": "node scripts/run-master-ai-orchestrator.mjs --execute",
-    "ai:aios:test": "node enterprise-ai/src/tests/smoke.mjs && node enterprise-ai/src/tests/live-status.test.mjs && node enterprise-ai/src/tests/health-accuracy.test.mjs && node enterprise-ai/src/tests/playwright-health.test.mjs",
+    "ai:aios:test": "node enterprise-ai/src/tests/smoke.mjs && node enterprise-ai/src/tests/live-status.test.mjs && node enterprise-ai/src/tests/health-accuracy.test.mjs && node enterprise-ai/src/tests/playwright-health.test.mjs && node enterprise-ai/src/tests/lifecycle.test.mjs",
     "test:e2e:smoke": "playwright test --config=playwright.config.ts",
     "test:e2e:smoke:headed": "playwright test --config=playwright.config.ts --headed",
     "ai:orchestrator": "node scripts/run-master-ai-orchestrator.mjs",

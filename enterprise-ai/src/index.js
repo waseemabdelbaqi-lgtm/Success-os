@@ -39,8 +39,13 @@ export {
 export {
   CanonicalStatus,
   LiveProbeResult,
+  ProviderLifecycle,
+  LIFECYCLE_LADDER,
   colorForStatus,
+  colorForLifecycle,
+  deriveLifecycleStage,
   hasReadyEvidence,
+  hasProductionCertificationEvidence,
   redactSecrets,
   HEALTH_SCHEMA_VERSION,
 } from "./providers/status-model.js";

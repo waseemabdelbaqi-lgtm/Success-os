@@ -3,9 +3,40 @@
  * READY requires authenticated live probe evidence — never slot/adapter/credentials alone.
  */
 
-export const HEALTH_SCHEMA_VERSION = 2;
+export const HEALTH_SCHEMA_VERSION = 3;
 
-/** Canonical provider statuses (section 1). */
+/**
+ * Canonical provider lifecycle (no skipping):
+ *   SLOT → CONFIGURED → LIVE_VERIFIED → READY → PRODUCTION_CERTIFIED ⭐
+ *
+ * Failure statuses (AUTH_FAILED, NETWORK_FAILED, …) are orthogonal and
+ * never advance the ladder. Green is only READY or PRODUCTION_CERTIFIED.
+ */
+export const ProviderLifecycle = Object.freeze({
+  SLOT: "SLOT",
+  CONFIGURED: "CONFIGURED",
+  LIVE_VERIFIED: "LIVE_VERIFIED",
+  READY: "READY",
+  PRODUCTION_CERTIFIED: "PRODUCTION_CERTIFIED",
+});
+
+export const LIFECYCLE_ORDER = Object.freeze([
+  ProviderLifecycle.SLOT,
+  ProviderLifecycle.CONFIGURED,
+  ProviderLifecycle.LIVE_VERIFIED,
+  ProviderLifecycle.READY,
+  ProviderLifecycle.PRODUCTION_CERTIFIED,
+]);
+
+export const LIFECYCLE_LADDER = Object.freeze([
+  { stage: ProviderLifecycle.SLOT, label: "SLOT", mark: "" },
+  { stage: ProviderLifecycle.CONFIGURED, label: "CONFIGURED", mark: "" },
+  { stage: ProviderLifecycle.LIVE_VERIFIED, label: "LIVE VERIFIED", mark: "" },
+  { stage: ProviderLifecycle.READY, label: "READY", mark: "" },
+  { stage: ProviderLifecycle.PRODUCTION_CERTIFIED, label: "PRODUCTION CERTIFIED", mark: "⭐" },
+]);
+
+/** Canonical provider statuses (detail / failure codes). */
 export const CanonicalStatus = Object.freeze({
   NOT_IMPLEMENTED: "NOT_IMPLEMENTED",
   SLOT: "SLOT",
@@ -14,9 +45,12 @@ export const CanonicalStatus = Object.freeze({
   NOT_CONFIGURED: "NOT_CONFIGURED",
   CREDENTIALS_DETECTED: "CREDENTIALS_DETECTED",
   CREDENTIALS_NOT_REQUIRED: "CREDENTIALS_NOT_REQUIRED",
+  CONFIGURED: "CONFIGURED",
+  LIVE_VERIFIED: "LIVE_VERIFIED",
   PROBE_PENDING: "PROBE_PENDING",
   PROBE_RUNNING: "PROBE_RUNNING",
   READY: "READY",
+  PRODUCTION_CERTIFIED: "PRODUCTION_CERTIFIED",
   DEGRADED: "DEGRADED",
   RATE_LIMITED: "RATE_LIMITED",
   AUTH_FAILED: "AUTH_FAILED",
@@ -49,7 +83,7 @@ export const StatusColor = Object.freeze({
   red: "red",
 });
 
-const GREEN = new Set([CanonicalStatus.READY]);
+const GREEN = new Set([CanonicalStatus.READY, CanonicalStatus.PRODUCTION_CERTIFIED]);
 const YELLOW = new Set([
   CanonicalStatus.DEGRADED,
   CanonicalStatus.RATE_LIMITED,
@@ -57,6 +91,8 @@ const YELLOW = new Set([
   CanonicalStatus.PROBE_RUNNING,
   CanonicalStatus.CREDENTIALS_DETECTED,
   CanonicalStatus.CREDENTIALS_NOT_REQUIRED,
+  CanonicalStatus.CONFIGURED,
+  CanonicalStatus.LIVE_VERIFIED,
   CanonicalStatus.LOCAL_APP_UNAVAILABLE,
 ]);
 const RED = new Set([
@@ -87,20 +123,124 @@ export function colorForStatus(status) {
   return StatusColor.grey;
 }
 
+export function colorForLifecycle(stage) {
+  if (stage === ProviderLifecycle.PRODUCTION_CERTIFIED || stage === ProviderLifecycle.READY) {
+    return StatusColor.green;
+  }
+  if (stage === ProviderLifecycle.LIVE_VERIFIED || stage === ProviderLifecycle.CONFIGURED) {
+    return StatusColor.yellow;
+  }
+  return StatusColor.grey;
+}
+
 /**
- * READY evidence gate (section 9).
- * Missing any required field → cannot be READY.
+ * READY evidence gate.
+ * Missing any required field → cannot be READY / PRODUCTION_CERTIFIED.
  */
 export function hasReadyEvidence(record = {}) {
+  const err = record.errorCode;
+  const errOk = !err || err === "none" || err === null;
   return (
     record.authenticated === true &&
     record.liveProbeExecuted === true &&
     (record.result === "success" || record.liveProbe === LiveProbeResult.PASSED) &&
     Boolean(record.testedAt || record.completedAt) &&
+    record.testedAt !== "NOT_TESTED" &&
     (record.latencyMs == null || Number.isFinite(Number(record.latencyMs))) &&
-    !record.errorCode &&
-    record.status === CanonicalStatus.READY
+    errOk &&
+    (record.status === CanonicalStatus.READY ||
+      record.status === CanonicalStatus.PRODUCTION_CERTIFIED ||
+      record.status === CanonicalStatus.LIVE_VERIFIED)
   );
+}
+
+/**
+ * PRODUCTION CERTIFIED requires READY evidence plus stability / approval.
+ * Media also requires generationVerified. Never auto-certify from SLOT/CONFIGURED.
+ */
+export function hasProductionCertificationEvidence(record = {}) {
+  const streak = Number(process.env.AIOS_PRODUCTION_CERTIFY_STREAK || 3);
+  const media = ["heygen", "elevenlabs", "openai-images", "blender"].includes(record.providerId);
+  const envFlag =
+    process.env[`AIOS_CERTIFY_${String(record.providerId || "").toUpperCase().replace(/-/g, "_")}`] ===
+    "true";
+  const readyOk =
+    hasReadyEvidence({ ...record, status: CanonicalStatus.READY, errorCode: record.errorCode === "none" ? null : record.errorCode }) ||
+    record.status === CanonicalStatus.READY ||
+    record.status === CanonicalStatus.PRODUCTION_CERTIFIED;
+  if (!readyOk) return false;
+  if (media && !record.generationVerified) return false;
+  if (record.productionCertified === true || envFlag) return true;
+  return Number(record.consecutiveSuccesses || 0) >= streak;
+}
+
+/**
+ * Derive lifecycle stage. Never skips ahead.
+ * Failures keep the highest previously earned non-failure stage when provided.
+ */
+export function deriveLifecycleStage(record = {}, previousStage = null) {
+  const prevIdx = Math.max(0, LIFECYCLE_ORDER.indexOf(previousStage));
+  const status = record.status;
+  const configured =
+    Boolean(record.credentialsDetected) ||
+    status === CanonicalStatus.CREDENTIALS_DETECTED ||
+    status === CanonicalStatus.CREDENTIALS_NOT_REQUIRED ||
+    status === CanonicalStatus.CONFIGURED ||
+    record.packageInstalled === true;
+  const liveOk =
+    record.liveProbe === LiveProbeResult.PASSED ||
+    (record.authenticated === true &&
+      record.liveProbeExecuted === true &&
+      (record.result === "success" || record.minimalRequestPassed === true));
+  const readyOk =
+    (status === CanonicalStatus.READY || status === CanonicalStatus.PRODUCTION_CERTIFIED) &&
+    hasReadyEvidence({
+      ...record,
+      status: CanonicalStatus.READY,
+      errorCode: record.errorCode === "none" ? null : record.errorCode,
+    });
+
+  let stage = ProviderLifecycle.SLOT;
+  if (configured) stage = ProviderLifecycle.CONFIGURED;
+  if (configured && liveOk) stage = ProviderLifecycle.LIVE_VERIFIED;
+  if (readyOk) stage = ProviderLifecycle.READY;
+  if (readyOk && hasProductionCertificationEvidence(record)) {
+    stage = ProviderLifecycle.PRODUCTION_CERTIFIED;
+  }
+
+  // Do not regress below previous stage on transient yellow states (PROBE_RUNNING etc.)
+  // but DO regress on hard failure after a probe attempt that clears live success.
+  const failureStatuses = new Set([
+    CanonicalStatus.AUTH_FAILED,
+    CanonicalStatus.NETWORK_FAILED,
+    CanonicalStatus.PROBE_FAILED,
+    CanonicalStatus.MODEL_UNAVAILABLE,
+    CanonicalStatus.BROWSER_NOT_INSTALLED,
+    CanonicalStatus.BROWSER_LAUNCH_FAILED,
+    CanonicalStatus.TEST_ASSERTION_FAILED,
+    CanonicalStatus.REMOTE_TESTING_BLOCKED,
+    CanonicalStatus.NOT_INSTALLED,
+  ]);
+  if (failureStatuses.has(status) && !liveOk) {
+    // Stay at CONFIGURED if credentials remain, else SLOT
+    stage = configured ? ProviderLifecycle.CONFIGURED : ProviderLifecycle.SLOT;
+  } else if (!failureStatuses.has(status)) {
+    const nextIdx = LIFECYCLE_ORDER.indexOf(stage);
+    if (prevIdx > nextIdx && prevIdx >= LIFECYCLE_ORDER.indexOf(ProviderLifecycle.READY) && readyOk) {
+      stage = LIFECYCLE_ORDER[prevIdx];
+    }
+  }
+
+  return stage;
+}
+
+export function lifecycleProgress(stage) {
+  const idx = LIFECYCLE_ORDER.indexOf(stage);
+  return LIFECYCLE_LADDER.map((step, i) => ({
+    ...step,
+    reached: idx >= 0 && i <= idx,
+    current: step.stage === stage,
+  }));
 }
 
 /** Map legacy ProviderStatus / probe fields → canonical status. */
