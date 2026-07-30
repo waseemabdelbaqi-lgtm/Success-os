@@ -78,17 +78,20 @@ Universal Curriculum Mapping Engine (UCE)
 ↓
 
 🔄 PR #55
-AI Teacher Engine (ATE)
+AI Teacher Engine (ATE) + Digital Human Teacher Architecture
 ──────────────────────────────────────────
-• Virtual teacher (not a chatbot)
+• Virtual teacher (not a chatbot) — center of the platform
 • Conversation Engine + Reasoning Engine
 • Student Memory across conversations
 • Knowledge-grounded, curriculum-aware teaching
 • Lesson-aware recommendations
 • Voice-ready + Whiteboard-ready architecture
+• AI Digital Human Teacher (ADHT) presence contracts
+• Localized + age-appropriate teacher profiles (admin-configurable)
+• Provider-agnostic AI stack ports (OpenAI, Gemini, ElevenLabs, Tavus, …)
 • Multimodal + multilingual contracts
 • APIs, permissions, orchestration
-• No avatars / animations / AI videos / live classrooms
+• No live avatar video / TTS / STT SDKs in this wave
 
 ↓
 
@@ -157,7 +160,7 @@ Production Optimization
 | **#50.2** | Jordan Reference Dataset & Verification | **Done / open** | #50.1 + ADR-0050.2 |
 | **#50.3 / GH #53** | Global Curriculum Registry & Dynamic Architecture | **Done / open** | #50.2 + ADR-0050.3 |
 | **#54** | Universal Curriculum Mapping Engine | **Done / open** | #53 + ADR-0054 |
-| **#55** | AI Teacher Engine (ATE) | **In progress** | #54 + ADR-0055 |
+| **#55** | AI Teacher Engine + Digital Human Architecture | **In progress** | #54 + ADR-0055 / ADR-0055.1 |
 | #56 | Digital Book Engine | Planned | #49, #55 |
 | #57 | AI Lesson & Media Engine | Planned | #49 (+ AI/media contracts) |
 | #58 | Assessment Engine | Planned | #49 |
@@ -173,7 +176,7 @@ Production Optimization
 | **#50.1 / #50.2** | Jordan reference hierarchy + metadata/verification standard → **one published ILE example** |
 | **#50.3 / GH #53** | Global Curriculum Registry + dynamic discovery → **unlimited countries/curricula** (Jordan first) |
 | **#54** | Universal Curriculum Mapping Engine → **cross-curriculum relationships via Global IDs** |
-| **#55** | AI Teacher Engine → **grounded teaching turns; ILE sole runtime; voice/whiteboard architecture** |
+| **#55** | AI Teacher Engine + Digital Human architecture → **grounded teaching; localized teacher profiles; provider-agnostic ports; ILE sole runtime** |
 | **#56** | Digital book chrome & media → **ILE package output only** (no parallel reader runtime) |
 | **#57** | Fill AI / video / voice placeholders → **publish as ILE packages** |
 | **#58** | Assessment engine extensions on the same runtime |
