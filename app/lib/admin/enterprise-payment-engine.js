@@ -87,6 +87,10 @@ export function processSuccessfulPayment(input = {}, meta = {}) {
   const platformCommission = money(commission.commissionAmount);
   const partnerShare = money(Math.max(0, afterDiscounts - platformCommission - gatewayFees));
   const companyShare = money(platformCommission);
+  const teacherReceives = money(
+    commission.teacherReceives != null ? commission.teacherReceives : partnerShare,
+  );
+  const successOs = money(commission.successOs != null ? commission.successOs : companyShare);
   const netAmount = money(afterDiscounts - gatewayFees);
   const converted = input.targetCurrency
     ? convertCurrency(netAmount, currency, input.targetCurrency)
@@ -100,18 +104,23 @@ export function processSuccessfulPayment(input = {}, meta = {}) {
     currency,
     targetCurrency: input.targetCurrency || currency,
     grossAmount: gross,
+    teacherPrice: afterDiscounts,
     discount,
     coupon,
     taxes,
     gatewayFees,
     platformCommission,
+    platformCommissionPercent: commission.percent ?? null,
     partnerShare,
     companyShare,
+    teacherReceives,
+    successOs,
     netAmount,
     convertedNet: converted,
     commission,
     partnerId: input.partnerId || null,
     partnerType: input.partnerType || null,
+    service: input.service || null,
     gateway: input.gateway || null,
     status: 'completed',
     meta: input.meta || {},

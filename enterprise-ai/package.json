@@ -1,0 +1,16 @@
+{
+  "name": "success-os-master-ai-orchestrator",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Enterprise AI Operating System (AIOS) for Success OS — additive permanent brain",
+  "bin": {
+    "success-os-aios": "./src/cli.js"
+  },
+  "scripts": {
+    "detect": "node src/cli.js --detect",
+    "agents": "node src/cli.js --agents",
+    "test": "node src/tests/smoke.mjs && node src/tests/live-status.test.mjs && node src/tests/health-accuracy.test.mjs && node src/tests/playwright-health.test.mjs && node src/tests/lifecycle.test.mjs",
+    "run": "node src/cli.js"
+  }
+}

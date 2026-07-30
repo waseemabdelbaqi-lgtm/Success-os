@@ -1,6 +1,13 @@
 'use client';
 
 import { useCallback, useEffect, useMemo, useState } from 'react';
+import { defaultRecordedLessonFilters } from '@/app/data/recorded-lesson-filters.js';
+import { DEFAULT_TEACHER_RECORDED_COMMISSION_PERCENT } from '@/app/lib/admin/teacher-price-split.js';
+import { RecordedLessonsFilters } from '@/components/admin/recorded-lessons-filters.jsx';
+import { RecordedLessonsSubjectResults } from '@/components/admin/recorded-lessons-subject-results.jsx';
+import { TeacherPriceSplitPanel } from '@/components/admin/teacher-price-split.jsx';
+import { CommissionCascadePanel } from '@/components/admin/commission-cascade-panel.jsx';
+import { MarketplaceAdminReviewPanel } from '@/components/marketplace/admin-review-panel.jsx';
 
 const emptyForm = {};
 
@@ -8,6 +15,7 @@ export function EnterpriseAdminModulePage({ moduleId }) {
   const [data, setData] = useState(null);
   const [q, setQ] = useState('');
   const [status, setStatus] = useState('');
+  const [catalogFilters, setCatalogFilters] = useState(() => defaultRecordedLessonFilters());
   const [error, setError] = useState('');
   const [busy, setBusy] = useState(false);
   const [selected, setSelected] = useState([]);
@@ -16,11 +24,15 @@ export function EnterpriseAdminModulePage({ moduleId }) {
   const [permMatrix, setPermMatrix] = useState(null);
   const [financeSummary, setFinanceSummary] = useState(null);
   const [commissionDefaults, setCommissionDefaults] = useState(null);
+  const [priceSplit, setPriceSplit] = useState(null);
+  const [commissionCascade, setCommissionCascade] = useState(null);
 
   const isPermissions = moduleId === 'permissions';
   const isFinance = moduleId === 'finance';
   const isCommission = moduleId === 'commission-rules';
   const isPaymentSplits = moduleId === 'payment-splits';
+  const isRecordedLessons = moduleId === 'recorded-lessons';
+  const isPayouts = moduleId === 'payouts';
 
   const load = useCallback(async () => {
     setError('');
@@ -36,6 +48,12 @@ export function EnterpriseAdminModulePage({ moduleId }) {
     if (isCommission) {
       const res = await fetch('/api/enterprise-admin?view=commission-defaults', { cache: 'no-store' });
       setCommissionDefaults(await res.json());
+      const cascadeRes = await fetch(
+        '/api/enterprise-admin?view=commission-cascade&teacherPrice=50&service=recorded-lesson&partnerType=teacher&sourceType=TEACHER_RECORDED',
+        { cache: 'no-store' },
+      );
+      const cascadeJson = await cascadeRes.json();
+      setCommissionCascade(cascadeJson.cascade || null);
     }
     const params = new URLSearchParams({
       view: 'module',
@@ -43,14 +61,56 @@ export function EnterpriseAdminModulePage({ moduleId }) {
       q,
       status,
     });
+    if (isRecordedLessons) {
+      params.set('lessonSource', catalogFilters.lessonSource || 'ALL');
+      params.set('country', catalogFilters.country || 'all');
+      params.set('educationalSystem', catalogFilters.educationalSystem || 'all');
+      params.set('curriculum', catalogFilters.curriculum || 'all');
+      params.set('qualification', catalogFilters.qualification || 'all');
+      params.set('grade', catalogFilters.grade || 'all');
+      params.set('subjectFamily', catalogFilters.subjectFamily || 'all');
+      params.set('subject', catalogFilters.subject || 'all');
+      params.set('teacherGender', catalogFilters.teacherGender || 'all');
+      params.set('language', catalogFilters.language || 'all');
+      params.set('subtitleLanguage', catalogFilters.subtitleLanguage || 'all');
+      params.set('price', catalogFilters.price || 'all');
+      params.set('rating', catalogFilters.rating || 'all');
+      params.set('duration', catalogFilters.duration || 'all');
+      params.set('level', catalogFilters.level || 'all');
+      params.set('sort', catalogFilters.sort || 'newest');
+      params.set('catalogSort', catalogFilters.sort || 'newest');
+    }
     const res = await fetch(`/api/enterprise-admin?${params}`, { cache: 'no-store' });
     if (!res.ok) throw new Error('Failed to load module');
     setData(await res.json());
-  }, [moduleId, q, status, isPermissions, isFinance, isCommission]);
+  }, [moduleId, q, status, catalogFilters, isPermissions, isFinance, isCommission, isRecordedLessons]);
 
   useEffect(() => {
     load().catch((e) => setError(e.message || 'load failed'));
   }, [load]);
+
+  useEffect(() => {
+    if (!isRecordedLessons || !mode) {
+      setPriceSplit(null);
+      return;
+    }
+    const price = form.price;
+    if (price === '' || price == null) {
+      setPriceSplit(null);
+      return;
+    }
+    const params = new URLSearchParams({
+      view: 'teacher-price-split',
+      teacherPrice: String(price),
+      service: 'recorded-lesson',
+      sourceType: form.lessonSource || 'TEACHER_RECORDED',
+      currency: 'USD',
+    });
+    fetch(`/api/enterprise-admin?${params}`, { cache: 'no-store' })
+      .then((r) => r.json())
+      .then((json) => setPriceSplit(json.split || null))
+      .catch(() => setPriceSplit(null));
+  }, [isRecordedLessons, mode, form.price, form.lessonSource]);
 
   async function runAction(action, payload = {}) {
     setBusy(true);
@@ -122,7 +182,11 @@ export function EnterpriseAdminModulePage({ moduleId }) {
               disabled={busy}
               onClick={() => {
                 setMode('add');
-                setForm({ status: 'active' });
+                setForm(
+                  isRecordedLessons
+                    ? { status: 'DRAFT', lessonSource: 'S4S_INTELLIGENCE', price: 50 }
+                    : { status: 'active' },
+                );
               }}
             >
               Add
@@ -191,6 +255,22 @@ export function EnterpriseAdminModulePage({ moduleId }) {
       {error ? <p style={{ color: '#b91c1c' }}>{error}</p> : null}
 
       {isFinance && financeSummary ? <FinanceSummaryCards summary={financeSummary} /> : null}
+      {(isRecordedLessons || isFinance || isPayouts) && <MarketplaceAdminReviewPanel moduleId={moduleId} />}
+      {isRecordedLessons ? (
+        <>
+          <RecordedLessonsFilters
+            filters={catalogFilters}
+            facets={data?.facets}
+            total={data?.total || 0}
+            onChange={setCatalogFilters}
+            lessonSource={catalogFilters.lessonSource}
+            onLessonSourceChange={(v) =>
+              setCatalogFilters((f) => ({ ...f, lessonSource: v, teacherGender: 'all' }))
+            }
+          />
+          <RecordedLessonsSubjectResults grouped={data?.grouped} />
+        </>
+      ) : null}
       {isCommission && commissionDefaults ? (
         <CommissionDefaultsBar
           defaults={commissionDefaults}
@@ -203,7 +283,15 @@ export function EnterpriseAdminModulePage({ moduleId }) {
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
                   action: 'setCommissionDefaults',
-                  payload: { defaultCommissionPercent: percent },
+                  payload: {
+                    defaultCommissionPercent: percent,
+                    recordedLessonCommissionPercent:
+                      commissionDefaults.recordedLessonCommissionPercent ??
+                      DEFAULT_TEACHER_RECORDED_COMMISSION_PERCENT,
+                    globalCommissionPercent:
+                      commissionDefaults.globalCommissionPercent ??
+                      DEFAULT_TEACHER_RECORDED_COMMISSION_PERCENT,
+                  },
                   user: 'owner',
                 }),
               });
@@ -218,6 +306,8 @@ export function EnterpriseAdminModulePage({ moduleId }) {
           }}
         />
       ) : null}
+      {isCommission && commissionCascade ? <CommissionCascadePanel cascade={commissionCascade} /> : null}
+      {isRecordedLessons && mode ? <TeacherPriceSplitPanel split={priceSplit} /> : null}
 
       <div style={{ display: 'flex', gap: 8, margin: '12px 0', flexWrap: 'wrap' }}>
         <input

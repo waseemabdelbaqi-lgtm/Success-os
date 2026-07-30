@@ -1,0 +1,132 @@
+{
+  "version": 1,
+  "system": "SUCCESS-AI-OS",
+  "diagram": [
+    "SUCCESS AI OS",
+    "  ├── Coding Factory      → Claude Code, OpenAI, Cursor",
+    "  ├── Education Factory   → Claude, Gemini, Wolfram",
+    "  └── Media Factory       → HeyGen, ElevenLabs, OpenAI Images, Blender",
+    "         ↓",
+    "  Master Orchestrator (AIOS)",
+    "         ↓",
+    "  GitHub • Supabase • Browserbase",
+    "         ↓",
+    "  Playwright • Sentry",
+    "         ↓",
+    "  Vercel"
+  ],
+  "factories": [
+    {
+      "id": "coding",
+      "label": "Coding Factory",
+      "mission": "Engineering, architecture, APIs, databases, security, performance, deployment tooling",
+      "providers": ["anthropic", "openai", "cursor", "ollama-local"],
+      "agents": [
+        "engineering",
+        "backend",
+        "frontend",
+        "database",
+        "security",
+        "performance",
+        "deployment",
+        "monitoring",
+        "documentation",
+        "testing",
+        "accessibility"
+      ],
+      "notes": [
+        "Claude Code / Anthropic preferred for deep code reasoning when configured",
+        "OpenAI preferred for engineering/API/security workloads via AIOS_ENGINEERING_PROVIDER",
+        "Cursor is the human+agent IDE surface; AIOS does not replace Cursor"
+      ]
+    },
+    {
+      "id": "education",
+      "label": "Education Factory",
+      "mission": "Curriculum, lessons, assessments, research, verification, translation",
+      "providers": ["anthropic", "gemini", "wolfram", "openai"],
+      "agents": ["curriculum", "research", "translation", "documentation"],
+      "notes": [
+        "Anthropic preferred for curriculum/documentation",
+        "Gemini preferred for research/verification/long-context",
+        "Wolfram is optional for computational/math verification when configured",
+        "S4S_INTELLIGENCE_COURSE_PRODUCTION uses Education Factory then scientific/source verification"
+      ],
+      "taskTypes": ["S4S_INTELLIGENCE_COURSE_PRODUCTION"]
+    },
+    {
+      "id": "media",
+      "label": "Media Factory",
+      "mission": "Lesson video, narration, images, and optional 3D/animation pipelines",
+      "providers": ["heygen", "elevenlabs", "openai-images", "blender"],
+      "agents": ["video", "voice"],
+      "notes": [
+        "Media jobs are never auto-fired without approval",
+        "Blender remains offline/tooling-slot unless an approved pipeline is injected",
+        "S4S_INTELLIGENCE_COURSE_PRODUCTION media stage always requires human approval",
+        "AI-generated courses never auto-publish; Vercel never auto-deploys"
+      ],
+      "taskTypes": ["S4S_INTELLIGENCE_COURSE_PRODUCTION"]
+    }
+  ],
+  "taskTypes": [
+    {
+      "id": "S4S_INTELLIGENCE_COURSE_PRODUCTION",
+      "label": "S4S Intelligence Course Production",
+      "factories": ["education", "media"],
+      "autoPublish": false,
+      "vercelAutoDeploy": false,
+      "humanApprovalRequired": true,
+      "stages": [
+        "plan",
+        "education",
+        "scientific_verification",
+        "media",
+        "source_verification",
+        "quality",
+        "human_approval",
+        "catalogue_draft",
+        "manual_publication"
+      ]
+    }
+  ],
+  "infrastructure": [
+    {
+      "id": "github",
+      "layer": "source-control",
+      "role": "repos, PRs, CI signals",
+      "envAny": ["GITHUB_TOKEN", "GH_TOKEN"]
+    },
+    {
+      "id": "supabase",
+      "layer": "data",
+      "role": "auth/data backend",
+      "envAll": ["SUPABASE_URL"],
+      "envAny": ["SUPABASE_SERVICE_ROLE_KEY", "SUPABASE_ANON_KEY"]
+    },
+    {
+      "id": "browserbase",
+      "layer": "browser-cloud",
+      "role": "remote browser sessions for automation",
+      "envAny": ["BROWSERBASE_API_KEY", "BROWSERBASE_PROJECT_ID"]
+    },
+    {
+      "id": "playwright",
+      "layer": "testing",
+      "role": "local/e2e route and console validation",
+      "detect": "playwright-module"
+    },
+    {
+      "id": "sentry",
+      "layer": "observability",
+      "role": "error monitoring",
+      "envAny": ["SENTRY_DSN", "NEXT_PUBLIC_SENTRY_DSN"]
+    },
+    {
+      "id": "vercel",
+      "layer": "deploy",
+      "role": "hosting/deploy target — never auto-deployed by AIOS",
+      "envAny": ["VERCEL_TOKEN", "VERCEL_PROJECT_ID"]
+    }
+  ]
+}

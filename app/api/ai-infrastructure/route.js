@@ -1,0 +1,636 @@
+/**
+ * AI Infrastructure dashboard API.
+ * GET reads persisted probe state from disk (no Next bundling of enterprise-ai).
+ * POST spawns the AIOS health CLI for live/config/full probes.
+ */
+import { spawn } from "node:child_process";
+import fs from "node:fs";
+import path from "node:path";
+
+export const runtime = "nodejs";
+export const dynamic = "force-dynamic";
+
+const rootDir = process.cwd();
+const STATE_REL = "data/master-ai-orchestrator/health/provider-health-state.json";
+const HISTORY_REL = "data/master-ai-orchestrator/health/provider-health-history.json";
+
+const DISPLAY_IDS = [
+  "openai",
+  "anthropic",
+  "gemini",
+  "ollama",
+  "wolfram",
+  "heygen",
+  "elevenlabs",
+  "openai-images",
+  "github",
+  "supabase",
+  "browserbase",
+  "playwright",
+  "sentry",
+  "vercel",
+];
+
+function readJson(rel) {
+  try {
+    return JSON.parse(fs.readFileSync(path.join(rootDir, rel), "utf8"));
+  } catch {
+    return null;
+  }
+}
+
+function colorForStatus(status) {
+  if (
+    status === "READY" ||
+    status === "PRODUCTION_CERTIFIED" ||
+    status === "MISSION_CRITICAL"
+  ) {
+    return "green";
+  }
+  if (
+    [
+      "DEGRADED",
+      "RATE_LIMITED",
+      "PROBE_PENDING",
+      "PROBE_RUNNING",
+      "CREDENTIALS_DETECTED",
+      "CREDENTIALS_NOT_REQUIRED",
+      "CONFIGURED",
+      "LIVE_VERIFIED",
+      "LOCAL_APP_UNAVAILABLE",
+    ].includes(status)
+  ) {
+    return "yellow";
+  }
+  if (
+    [
+      "AUTH_FAILED",
+      "MODEL_UNAVAILABLE",
+      "NETWORK_FAILED",
+      "PROBE_FAILED",
+      "BROWSER_NOT_INSTALLED",
+      "BROWSER_LAUNCH_FAILED",
+      "TEST_ASSERTION_FAILED",
+      "REMOTE_TESTING_BLOCKED",
+    ].includes(status)
+  ) {
+    return "red";
+  }
+  return "grey";
+}
+
+function emptyRow(id) {
+  return {
+    providerId: id,
+    id,
+    displayName: id,
+    Provider: id,
+    Factory: "NOT_TESTED",
+    Adapter: "NOT_TESTED",
+    Credentials: "NOT_TESTED",
+    "Live Probe": "NOT_RUN",
+    Status: "NOT_TESTED",
+    status: "NOT_TESTED",
+    "Last Tested": "NOT_TESTED",
+    testedAt: "NOT_TESTED",
+    Result: "not_tested",
+    Latency: "NOT_TESTED",
+    latencyMs: "NOT_TESTED",
+    "Model or Service": "NOT_TESTED",
+    model: "NOT_TESTED",
+    "Last Successful Test": "NOT_TESTED",
+    "Last Error": "NOT_TESTED",
+    safeErrorMessage: "NOT_TESTED",
+    displayColor: "grey",
+    liveProbe: "NOT_RUN",
+  };
+}
+
+function buildDashboard(state) {
+  const byId = new Map((state?.providers || []).map((p) => [p.providerId, p]));
+  const providers = DISPLAY_IDS.map((id) => {
+    const rec = byId.get(id);
+    if (!rec) return emptyRow(id);
+    const status = rec.status || "NOT_TESTED";
+    return {
+      ...rec,
+      id: rec.providerId,
+      Provider: rec.displayName || rec.providerId,
+      Factory: rec.factory || "NOT_TESTED",
+      Adapter: rec.adapterAvailable ? "available" : "missing",
+      Credentials: rec.credentialsDetected ? "detected" : "missing",
+      "Live Probe": rec.liveProbe || "NOT_RUN",
+      Status: status,
+      Lifecycle: rec.lifecycleStage || "SLOT",
+      "Lifecycle Ladder": Array.isArray(rec.lifecycleProgress)
+        ? rec.lifecycleProgress
+            .map((s) =>
+              s.current ? `[${s.label}${s.mark ? ` ${s.mark}` : ""}]` : s.reached ? s.label : "·",
+            )
+            .join(" → ")
+        : "SLOT → NOT_CONFIGURED → CREDENTIALS_DETECTED → PROBE_RUNNING → READY 🟢 → PRODUCTION_CERTIFIED ⭐ → MISSION_CRITICAL ⭐⭐",
+      productionCertified: Boolean(rec.productionCertified),
+      missionCritical: Boolean(rec.missionCritical),
+      displayMark:
+        rec.displayMark ||
+        (rec.lifecycleStage === "MISSION_CRITICAL"
+          ? "🟢⭐⭐"
+          : rec.lifecycleStage === "PRODUCTION_CERTIFIED"
+            ? "🟢⭐"
+            : rec.lifecycleStage === "READY"
+              ? "🟢"
+              : rec.lifecycleStage === "CREDENTIALS_DETECTED" ||
+                  rec.lifecycleStage === "PROBE_RUNNING"
+                ? "🟡"
+                : "⚪"),
+      Mark:
+        rec.displayMark ||
+        (rec.lifecycleStage === "MISSION_CRITICAL"
+          ? "🟢⭐⭐"
+          : rec.lifecycleStage === "PRODUCTION_CERTIFIED"
+            ? "🟢⭐"
+            : rec.lifecycleStage === "READY"
+              ? "🟢"
+              : rec.lifecycleStage === "CREDENTIALS_DETECTED" ||
+                  rec.lifecycleStage === "PROBE_RUNNING"
+                ? "🟡"
+                : "⚪"),
+      "Last Tested": rec.testedAt || "NOT_TESTED",
+      Result: rec.result || "NOT_TESTED",
+      Latency:
+        rec.latencyMs === "NOT_TESTED" || rec.latencyMs == null
+          ? "NOT_TESTED"
+          : `${rec.latencyMs} ms`,
+      "Model or Service": rec.model || "NOT_TESTED",
+      "Last Successful Test": rec.lastSuccessfulProbeAt || "NOT_TESTED",
+      "Last Error":
+        rec.safeErrorMessage === "none" ? "none" : rec.safeErrorMessage || "NOT_TESTED",
+      displayColor: rec.displayColor || colorForStatus(status),
+    };
+  });
+  return {
+    rule: "GREEN_ONLY_AFTER_LIVE_AUTHENTICATED_SUCCESS",
+    ruleAr: "لا يظهر أي مزود باللون الأخضر إلا إذا نجح طلب حي موثّق خلال آخر فحص.",
+    lifecycleLadder: [
+      "SLOT ⚪",
+      "NOT_CONFIGURED ⚪",
+      "CREDENTIALS_DETECTED 🟡",
+      "PROBE_RUNNING 🟡",
+      "READY 🟢",
+      "PRODUCTION_CERTIFIED 🟢⭐",
+      "MISSION_CRITICAL 🟢⭐⭐",
+    ],
+    trustMarks: {
+      SLOT: "⚪",
+      NOT_CONFIGURED: "⚪",
+      CREDENTIALS_DETECTED: "🟡",
+      PROBE_RUNNING: "🟡",
+      READY: "🟢",
+      PRODUCTION_CERTIFIED: "🟢⭐",
+      MISSION_CRITICAL: "🟢⭐⭐",
+    },
+    checkedAt: state?.checkedAt || null,
+    source: state ? "persisted-probe-state" : "empty-not-tested",
+    greenCount: providers.filter((p) => p.displayColor === "green").length,
+    certifiedCount: providers.filter(
+      (p) =>
+        p.Lifecycle === "PRODUCTION_CERTIFIED" || p.Lifecycle === "MISSION_CRITICAL",
+    ).length,
+    missionCriticalCount: providers.filter((p) => p.Lifecycle === "MISSION_CRITICAL").length,
+    providers,
+    factories: state?.factories || null,
+    factoryReadiness: state?.factories || null,
+    alerts: state?.alerts || [],
+    vercelAutoDeployBlocked: true,
+    secretsExposed: false,
+    probeRequired: !state,
+    actions: [
+      "Run Configuration Check",
+      "Run Live Probe",
+      "Run Full Verification",
+      "Test One Provider",
+      "Test Factory",
+      "View Probe Details",
+      "View Error",
+      "Copy Safe Diagnostic Report",
+      "PRODUCTION CERTIFIED ⭐",
+      "MISSION CRITICAL ⭐⭐",
+    ],
+  };
+}
+
+function runCliHealth({ mode = "live", provider = null, factory = null } = {}) {
+  return new Promise((resolve, reject) => {
+    const args = [path.join(rootDir, "enterprise-ai/src/cli.js"), "--health", `--mode=${mode}`];
+    if (provider) args.push(`--provider=${provider}`);
+    if (factory) args.push(`--factory=${factory}`);
+    const child = spawn(process.execPath, args, {
+      cwd: rootDir,
+      env: { ...process.env },
+      stdio: ["ignore", "pipe", "pipe"],
+    });
+    let stdout = "";
+    let stderr = "";
+    child.stdout.on("data", (d) => {
+      stdout += d;
+    });
+    child.stderr.on("data", (d) => {
+      stderr += d;
+    });
+    child.on("error", reject);
+    child.on("close", (code) => {
+      try {
+        const json = JSON.parse(stdout);
+        resolve(json);
+      } catch (err) {
+        reject(
+          new Error(
+            `HEALTH_CLI_FAILED code=${code} err=${stderr.slice(0, 300)} out=${stdout.slice(0, 300)}`,
+          ),
+        );
+      }
+    });
+  });
+}
+
+export async function GET(request) {
+  try {
+    const url = new URL(request.url);
+    const providerId = url.searchParams.get("provider");
+    const state = readJson(STATE_REL);
+    const history = readJson(HISTORY_REL);
+    const dashboard = buildDashboard(state);
+    let probeDetails = null;
+    if (providerId) {
+      const row = dashboard.providers.find((p) => p.providerId === providerId || p.id === providerId);
+      probeDetails = {
+        provider: row || null,
+        history: history?.byProvider?.[providerId] || [],
+      };
+    }
+    return Response.json({
+      ...dashboard,
+      probeDetails,
+      ...(() => {
+        try {
+          // Lazy read continuous governance files (backward compatible if missing)
+          const gov = readJson("data/master-ai-orchestrator/health/continuous-governance.json");
+          const alertLog = readJson("data/master-ai-orchestrator/health/continuous-alerts.json");
+          return {
+            continuousMonitoring: true,
+            governance: gov
+              ? {
+                  lastTickAt: gov.lastTickAt,
+                  nextDueByProvider: gov.nextDueByProvider,
+                  scheduler: gov.scheduler,
+                }
+              : null,
+            lifecycleTimeline: (gov?.history || []).slice(-50),
+            certificationHistory: gov?.certifications || [],
+            downgradeHistory: gov?.downgrades || [],
+            failoverHistory: gov?.failovers || [],
+            recoveryHistory: gov?.recoveries || [],
+            alertHistory: (alertLog?.entries || []).slice(-50),
+            factoryHealth: state?.factoryHealth || null,
+            last100Probes: Object.entries(history?.byProvider || {}).flatMap(([id, list]) =>
+              (list || []).map((e) => ({ ...e, providerId: id })),
+            ).sort((a, b) => String(a.testedAt).localeCompare(String(b.testedAt))).slice(-100),
+            ...(() => {
+              const metrics = readJson("data/master-ai-orchestrator/routing/provider-metrics.json");
+              const costLedger = readJson("data/master-ai-orchestrator/routing/cost-ledger.json");
+              const providers = Object.entries(metrics?.providers || {}).map(([providerId, raw]) => {
+                const total = Number(raw.totalRequests || 0);
+                const successes = Number(raw.successes || 0);
+                const failures = Number(raw.failures || 0);
+                const latencies = [...(raw.latencies || [])].map(Number).filter(Number.isFinite).sort((a, b) => a - b);
+                const avg =
+                  latencies.length
+                    ? Math.round(latencies.reduce((a, b) => a + b, 0) / latencies.length)
+                    : null;
+                const p95 = latencies.length
+                  ? latencies[Math.min(latencies.length - 1, Math.ceil(0.95 * latencies.length) - 1)]
+                  : null;
+                return {
+                  providerId,
+                  averageLatencyMs: avg,
+                  p95LatencyMs: p95,
+                  successRate: total ? Number((successes / total).toFixed(4)) : null,
+                  failureRate: total ? Number((failures / total).toFixed(4)) : null,
+                  currentLoad: raw.currentLoad || 0,
+                  requestsDay: raw.requestsToday || 0,
+                  requestsMonth: raw.requestsMonth || 0,
+                  averageCostUsd:
+                    total > 0 ? Number((Number(raw.totalCostUsd || 0) / total).toFixed(6)) : null,
+                };
+              });
+              const costProviders = Object.entries(costLedger?.byProvider || {}).map(([providerId, v]) => ({
+                providerId,
+                spentUsd: Number(v.spentUsd || 0),
+                requests: v.requests || 0,
+              }));
+              return {
+                routingEnabled: true,
+                activeRoutingDecisions: (metrics?.decisions || []).slice(-30),
+                liveRequestRouting: (metrics?.decisions || []).slice(-30),
+                fallbackEvents: (metrics?.failovers || []).slice(-30),
+                reliabilityDashboard: providers,
+                providerLoad: providers.map((p) => ({
+                  providerId: p.providerId,
+                  currentLoad: p.currentLoad,
+                  requestsDay: p.requestsDay,
+                })),
+                costDashboard: {
+                  month: costLedger?.month || null,
+                  totalSpentUsd: Number(
+                    costProviders.reduce((a, r) => a + r.spentUsd, 0).toFixed(6),
+                  ),
+                  providers: costProviders,
+                  recent: (costLedger?.entries || []).slice(-30),
+                },
+                currentProviderRankings: (metrics?.decisions || [])
+                  .slice(-10)
+                  .map((d) => ({
+                    taskType: d.taskType,
+                    selected: d.selected,
+                    ranking: d.ranking || [],
+                    at: d.at,
+                  })),
+                factoryUtilization: state?.factoryHealth?.factories || state?.factories || null,
+              };
+            })(),
+          };
+        } catch {
+          return { continuousMonitoring: false };
+        }
+      })(),
+    });
+  } catch (error) {
+    return Response.json(
+      {
+        error: String(error?.message || error),
+        ruleAr: "لا يظهر أي مزود باللون الأخضر إلا إذا نجح طلب حي موثّق خلال آخر فحص.",
+        providers: [],
+        greenCount: 0,
+      },
+      { status: 500 },
+    );
+  }
+}
+
+export async function POST(request) {
+  try {
+    const body = await request.json().catch(() => ({}));
+    if (body.action === "route" || body.action === "route-benchmark" || body.action === "route-cost" || body.action === "route-dashboard") {
+      const args = [path.join(rootDir, "enterprise-ai/src/cli.js"), "--route", "--json"];
+      if (body.action === "route-benchmark") args.push("--benchmark");
+      else if (body.action === "route-cost") args.push("--cost");
+      else if (body.action === "route-dashboard") args.push("--dashboard");
+      else {
+        if (body.task) args.push(`--task=${body.task}`);
+        if (body.explain) args.push("--explain");
+        if (body.simulate) args.push("--simulate");
+        if (body.factory) args.push(`--factory=${body.factory}`);
+      }
+      const result = await new Promise((resolve, reject) => {
+        const child = spawn(process.execPath, args, {
+          cwd: rootDir,
+          env: { ...process.env },
+          stdio: ["ignore", "pipe", "pipe"],
+        });
+        let stdout = "";
+        let stderr = "";
+        child.stdout.on("data", (d) => {
+          stdout += d;
+        });
+        child.stderr.on("data", (d) => {
+          stderr += d;
+        });
+        child.on("error", reject);
+        child.on("close", (code) => {
+          try {
+            resolve(JSON.parse(stdout));
+          } catch {
+            reject(new Error(`ROUTE_CLI_FAILED code=${code} ${stderr.slice(0, 200)}`));
+          }
+        });
+      });
+      const state = readJson(STATE_REL);
+      const dashboard = buildDashboard(state);
+      const extras =
+        body.action === "route-dashboard" && result
+          ? {
+              routingEnabled: true,
+              activeRoutingDecisions: result.liveRequestRouting || [],
+              liveRequestRouting: result.liveRequestRouting || [],
+              fallbackEvents: result.fallbackEvents || [],
+              reliabilityDashboard: result.reliabilityDashboard || [],
+              providerLoad: result.providerLoad || [],
+              costDashboard: result.costDashboard || null,
+              currentProviderRankings: result.currentRankings || result.activeRouting || [],
+              factoryUtilization: result.factoryUtilization || null,
+            }
+          : {};
+      return Response.json({
+        ...dashboard,
+        ...extras,
+        routingResult: result,
+        source: `routing-${body.action}`,
+        vercelAutoDeployBlocked: true,
+        secretsExposed: false,
+      });
+    }
+    if (body.action === "continuous" || body.action === "recover" || body.action === "failover-test" || body.action === "history") {
+      const args = [path.join(rootDir, "enterprise-ai/src/cli.js"), "--health", "--json"];
+      if (body.action === "continuous") {
+        args.push("--continuous", "--once");
+      } else if (body.action === "recover") {
+        if (!body.provider) {
+          return Response.json(
+            { ok: false, error: "PROVIDER_REQUIRED", message: "recover requires provider" },
+            { status: 400 },
+          );
+        }
+        args.push("--recover", `--provider=${body.provider}`);
+      } else if (body.action === "failover-test") {
+        args.push("--failover-test");
+        if (body.provider) args.push(`--provider=${body.provider}`);
+        if (body.factory) args.push(`--factory=${body.factory}`);
+      } else if (body.action === "history") {
+        args.push("--history");
+      }
+      const result = await new Promise((resolve, reject) => {
+        const child = spawn(process.execPath, args, {
+          cwd: rootDir,
+          env: { ...process.env },
+          stdio: ["ignore", "pipe", "pipe"],
+        });
+        let stdout = "";
+        let stderr = "";
+        child.stdout.on("data", (d) => {
+          stdout += d;
+        });
+        child.stderr.on("data", (d) => {
+          stderr += d;
+        });
+        child.on("error", reject);
+        child.on("close", (code) => {
+          try {
+            resolve(JSON.parse(stdout));
+          } catch {
+            reject(new Error(`GOVERNANCE_CLI_FAILED code=${code} ${stderr.slice(0, 200)}`));
+          }
+        });
+      });
+      const state = readJson(STATE_REL);
+      const dashboard = buildDashboard(state);
+      return Response.json({
+        ...dashboard,
+        ...result,
+        source: `governance-${body.action}`,
+        vercelAutoDeployBlocked: true,
+        secretsExposed: false,
+      });
+    }
+    if (body.action === "approved-generation-test") {
+      return Response.json(
+        {
+          ok: false,
+          error: "APPROVAL_REQUIRED",
+          message:
+            "Paid media generation tests require explicit admin approval and are not run automatically.",
+          generationVerified: false,
+        },
+        { status: 403 },
+      );
+    }
+    if (body.action === "mission-critical") {
+      const provider = body.provider;
+      if (!provider) {
+        return Response.json(
+          {
+            ok: false,
+            error: "PROVIDER_REQUIRED",
+            message: "mission-critical requires provider id",
+          },
+          { status: 400 },
+        );
+      }
+      const promoted = await new Promise((resolve, reject) => {
+        const args = [
+          path.join(rootDir, "enterprise-ai/src/cli.js"),
+          "--health",
+          `--provider=${provider}`,
+          "--mission-critical",
+          "--json",
+        ];
+        const child = spawn(process.execPath, args, {
+          cwd: rootDir,
+          env: { ...process.env },
+          stdio: ["ignore", "pipe", "pipe"],
+        });
+        let stdout = "";
+        let stderr = "";
+        child.stdout.on("data", (d) => {
+          stdout += d;
+        });
+        child.stderr.on("data", (d) => {
+          stderr += d;
+        });
+        child.on("error", reject);
+        child.on("close", (code) => {
+          try {
+            resolve(JSON.parse(stdout));
+          } catch {
+            reject(new Error(`MISSION_CRITICAL_CLI_FAILED code=${code} ${stderr.slice(0, 200)}`));
+          }
+        });
+      });
+      const state = readJson(STATE_REL);
+      const dashboard = buildDashboard(state);
+      return Response.json({
+        ...dashboard,
+        ...promoted,
+        source: "mission-critical",
+        vercelAutoDeployBlocked: true,
+        secretsExposed: false,
+      });
+    }
+    if (body.action === "certify") {
+      const provider = body.provider;
+      if (!provider) {
+        return Response.json(
+          { ok: false, error: "PROVIDER_REQUIRED", message: "certify requires provider id" },
+          { status: 400 },
+        );
+      }
+      // CLI --certify runs a live probe then promotes READY → PRODUCTION CERTIFIED ⭐
+      const certify = await new Promise((resolve, reject) => {
+        const args = [
+          path.join(rootDir, "enterprise-ai/src/cli.js"),
+          "--health",
+          `--provider=${provider}`,
+          "--certify",
+          "--json",
+        ];
+        const child = spawn(process.execPath, args, {
+          cwd: rootDir,
+          env: { ...process.env },
+          stdio: ["ignore", "pipe", "pipe"],
+        });
+        let stdout = "";
+        let stderr = "";
+        child.stdout.on("data", (d) => {
+          stdout += d;
+        });
+        child.stderr.on("data", (d) => {
+          stderr += d;
+        });
+        child.on("error", reject);
+        child.on("close", (code) => {
+          try {
+            resolve(JSON.parse(stdout));
+          } catch {
+            reject(new Error(`CERTIFY_CLI_FAILED code=${code} ${stderr.slice(0, 200)}`));
+          }
+        });
+      });
+      const state = readJson(STATE_REL);
+      const dashboard = buildDashboard(state);
+      return Response.json({
+        ...dashboard,
+        ...certify,
+        source: "production-certify",
+        vercelAutoDeployBlocked: true,
+        secretsExposed: false,
+      });
+    }
+    const mode = ["config", "live", "full"].includes(body.mode) ? body.mode : "live";
+    const health = await runCliHealth({
+      mode,
+      provider: body.provider || null,
+      factory: body.factory || null,
+    });
+    const state = readJson(STATE_REL);
+    const dashboard = buildDashboard(state);
+    return Response.json({
+      ...dashboard,
+      source: "live-probe",
+      mode: health.mode || mode,
+      modes: health.modes,
+      factoryReadiness: health.factories || dashboard.factoryReadiness,
+      snapshotPath: health.snapshotPath || null,
+      vercelAutoDeployBlocked: true,
+      secretsExposed: false,
+    });
+  } catch (error) {
+    return Response.json(
+      {
+        error: String(error?.message || error),
+        ruleAr: "لا يظهر أي مزود باللون الأخضر إلا إذا نجح طلب حي موثّق خلال آخر فحص.",
+        providers: [],
+        greenCount: 0,
+      },
+      { status: 500 },
+    );
+  }
+}

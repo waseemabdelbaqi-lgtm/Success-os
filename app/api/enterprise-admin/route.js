@@ -12,6 +12,8 @@ import {
   listCommissionRules,
   mutateCommissionRule,
   previewCommission,
+  previewCommissionCascade,
+  previewTeacherPriceSplit,
   setCommissionDefaults,
 } from '../../lib/admin/enterprise-commission-engine.js';
 import {
@@ -68,12 +70,72 @@ export async function GET(request) {
       listModuleItems(moduleId, {
         q: searchParams.get('q') || '',
         status: searchParams.get('status') || '',
-        sort: searchParams.get('sort') || 'updatedAt',
+        lessonSource: searchParams.get('lessonSource') || 'ALL',
+        country: searchParams.get('country') || 'all',
+        educationalSystem: searchParams.get('educationalSystem') || 'all',
+        curriculum: searchParams.get('curriculum') || 'all',
+        qualification: searchParams.get('qualification') || 'all',
+        grade: searchParams.get('grade') || 'all',
+        subjectFamily: searchParams.get('subjectFamily') || 'all',
+        subject: searchParams.get('subject') || 'all',
+        teacherGender: searchParams.get('teacherGender') || 'all',
+        language: searchParams.get('language') || 'all',
+        subtitleLanguage: searchParams.get('subtitleLanguage') || 'all',
+        price: searchParams.get('price') || 'all',
+        rating: searchParams.get('rating') || 'all',
+        duration: searchParams.get('duration') || 'all',
+        level: searchParams.get('level') || 'all',
+        catalogSort: searchParams.get('catalogSort') || searchParams.get('sort') || 'newest',
+        sort: searchParams.get('sort') || (moduleId === 'recorded-lessons' ? 'newest' : 'updatedAt'),
         dir: searchParams.get('dir') || 'desc',
         page: searchParams.get('page'),
         pageSize: searchParams.get('pageSize'),
         includeDeleted: searchParams.get('includeDeleted'),
       }),
+      { headers: { 'Cache-Control': 'no-store' } },
+    );
+  }
+
+  if (view === 'teacher-price-split') {
+    return Response.json(
+      {
+        ok: true,
+        split: previewTeacherPriceSplit({
+          teacherPrice: searchParams.get('teacherPrice') || searchParams.get('price') || 0,
+          commissionPercent: searchParams.get('commissionPercent') || undefined,
+          currency: searchParams.get('currency') || undefined,
+          service: searchParams.get('service') || 'recorded-lesson',
+          partnerId: searchParams.get('partnerId') || undefined,
+          teacherId: searchParams.get('teacherId') || undefined,
+          courseId: searchParams.get('courseId') || undefined,
+          partnerType: searchParams.get('partnerType') || undefined,
+          promotionId: searchParams.get('promotionId') || undefined,
+          campaignId: searchParams.get('campaignId') || undefined,
+          sourceType: searchParams.get('sourceType') || 'TEACHER_RECORDED',
+        }),
+      },
+      { headers: { 'Cache-Control': 'no-store' } },
+    );
+  }
+
+  if (view === 'commission-cascade') {
+    return Response.json(
+      {
+        ok: true,
+        cascade: previewCommissionCascade({
+          teacherPrice: searchParams.get('teacherPrice') || searchParams.get('price') || 50,
+          currency: searchParams.get('currency') || undefined,
+          service: searchParams.get('service') || 'recorded-lesson',
+          partnerId: searchParams.get('partnerId') || undefined,
+          teacherId: searchParams.get('teacherId') || undefined,
+          courseId: searchParams.get('courseId') || undefined,
+          partnerType: searchParams.get('partnerType') || undefined,
+          promotionId: searchParams.get('promotionId') || undefined,
+          campaignId: searchParams.get('campaignId') || undefined,
+          globalCommissionPercent: searchParams.get('globalCommissionPercent') || undefined,
+          sourceType: searchParams.get('sourceType') || 'TEACHER_RECORDED',
+        }),
+      },
       { headers: { 'Cache-Control': 'no-store' } },
     );
   }
