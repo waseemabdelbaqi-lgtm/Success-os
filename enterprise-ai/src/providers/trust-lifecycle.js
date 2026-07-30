@@ -112,27 +112,36 @@ export function canGrantLifecycleStage(currentStage, targetStage) {
 
 export function isCurrentlyReady(record = {}) {
   const stage = normalizeLifecycleStage(record.lifecycleStage);
+  const readyEvidence = hasReadyEvidence({
+    ...record,
+    status: CanonicalStatus.READY,
+    errorCode: record.errorCode === "none" ? null : record.errorCode,
+  });
   return (
-    (record.status === CanonicalStatus.READY || stage === ProviderLifecycle.READY) &&
-    hasReadyEvidence({
-      ...record,
-      status: CanonicalStatus.READY,
-      errorCode: record.errorCode === "none" ? null : record.errorCode,
-    }) &&
-    stage !== ProviderLifecycle.PRODUCTION_CERTIFIED &&
-    stage !== ProviderLifecycle.MISSION_CRITICAL
+    stage === ProviderLifecycle.READY &&
+    (record.status === CanonicalStatus.READY || readyEvidence) &&
+    readyEvidence
   );
 }
 
-export function isProductionCertifiedTier(record = {}) {
+export function isCurrentlyProductionCertified(record = {}) {
   const stage = normalizeLifecycleStage(record.lifecycleStage);
-  return (
-    record.status === CanonicalStatus.PRODUCTION_CERTIFIED ||
-    record.status === CanonicalStatus.MISSION_CRITICAL ||
-    stage === ProviderLifecycle.PRODUCTION_CERTIFIED ||
-    stage === ProviderLifecycle.MISSION_CRITICAL ||
-    record.productionCertified === true
-  );
+  const readyEvidence = hasReadyEvidence({
+    ...record,
+    status: CanonicalStatus.READY,
+    errorCode: record.errorCode === "none" ? null : record.errorCode,
+  });
+  return stage === ProviderLifecycle.PRODUCTION_CERTIFIED && readyEvidence;
+}
+
+export function isCurrentlyMissionCritical(record = {}) {
+  const stage = normalizeLifecycleStage(record.lifecycleStage);
+  const readyEvidence = hasReadyEvidence({
+    ...record,
+    status: CanonicalStatus.READY,
+    errorCode: record.errorCode === "none" ? null : record.errorCode,
+  });
+  return stage === ProviderLifecycle.MISSION_CRITICAL && readyEvidence;
 }
 
 /**
@@ -184,13 +193,19 @@ export function evaluateReadyRequirements(record = {}) {
       ),
       "Credentials/adapter alone never grant READY",
     ),
+    requirement(
+      "notHistoricalStateAlone",
+      !(record.authenticated !== true && Boolean(record.lifecycleStage)),
+      "Historical lifecycle state alone never grants READY",
+    ),
   ];
   return summarizeRequirements(reqs);
 }
 
 /**
- * PRODUCTION_CERTIFIED grant checklist — only after fresh live probe left provider READY
- * (or already certified for idempotent re-certify).
+ * PRODUCTION_CERTIFIED grant checklist.
+ * New grant requires exact READY after fresh live probe.
+ * Already PRODUCTION_CERTIFIED / MISSION_CRITICAL → idempotent if live evidence still holds.
  */
 export function evaluateProductionCertifyRequirements(record = {}, { historyStats = null } = {}) {
   const cfg = trustConfig();
@@ -200,55 +215,44 @@ export function evaluateProductionCertifyRequirements(record = {}, { historyStat
     ...record,
     status: CanonicalStatus.READY,
   });
-  const currentlyReady =
-    record.status === CanonicalStatus.READY && stage === ProviderLifecycle.READY;
-  const alreadyCertified =
-    stage === ProviderLifecycle.PRODUCTION_CERTIFIED ||
-    stage === ProviderLifecycle.MISSION_CRITICAL ||
-    record.status === CanonicalStatus.PRODUCTION_CERTIFIED ||
-    record.status === CanonicalStatus.MISSION_CRITICAL;
+  const currentlyReady = isCurrentlyReady(record);
+  const alreadyProductionCertified = isCurrentlyProductionCertified(record);
+  const alreadyMissionCritical = isCurrentlyMissionCritical(record);
+  const alreadyAtOrAbove = alreadyProductionCertified || alreadyMissionCritical;
 
   const grantGate = canGrantLifecycleStage(
-    currentlyReady
-      ? ProviderLifecycle.READY
-      : alreadyCertified
-        ? stage
-        : stage,
+    currentlyReady ? ProviderLifecycle.READY : stage,
     ProviderLifecycle.PRODUCTION_CERTIFIED,
   );
-  // Idempotent re-certify of PRODUCTION_CERTIFIED / MISSION_CRITICAL is allowed
-  const stageOk = currentlyReady
-    ? grantGate.ok
-    : alreadyCertified
-      ? true
-      : false;
+  const stageOk = currentlyReady ? grantGate.ok : alreadyAtOrAbove;
 
   const reqs = [
     requirement(
-      "targetStage",
-      currentlyReady || alreadyCertified,
-      "Provider must be READY after fresh live probe (or already PRODUCTION_CERTIFIED)",
+      "currentlyReady",
+      currentlyReady || alreadyAtOrAbove,
+      "Provider must be currently READY after fresh live probe (PRODUCTION_CERTIFIED/MISSION_CRITICAL are idempotent)",
       {
         status: record.status,
         lifecycleStage: stage,
         currentlyReady,
-        alreadyCertified,
+        alreadyProductionCertified,
+        alreadyMissionCritical,
       },
     ),
     requirement(
       "noStageSkip",
       stageOk,
-      currentlyReady || alreadyCertified
-        ? alreadyCertified
+      currentlyReady
+        ? grantGate.message || "READY → PRODUCTION_CERTIFIED allowed"
+        : alreadyAtOrAbove
           ? "Already at or above PRODUCTION_CERTIFIED (idempotent)"
-          : grantGate.message || "Stage advance allowed"
-        : grantGate.message || "Stage skip forbidden",
+          : grantGate.message || "Stage skip forbidden",
       { reason: grantGate.reason, from: grantGate.from, to: grantGate.to },
     ),
     requirement(
       "readyEvidence",
-      readyEvidence.ok || alreadyCertified,
-      "Authenticated live probe evidence with persistence required",
+      readyEvidence.ok,
+      "Authenticated live probe evidence with persistence required — adapters/credentials/history alone are insufficient",
       { failedRequirements: readyEvidence.failedRequirements },
     ),
     requirement(
@@ -275,7 +279,6 @@ export function evaluateProductionCertifyRequirements(record = {}, { historyStat
   ];
 
   if (historyStats && historyStats.successRate !== "NOT_TESTED") {
-    // Informational only for certify — always pass, but include observed rate
     reqs.push(
       requirement(
         "observedSuccessRate",
@@ -379,7 +382,9 @@ export function evaluateProviderSpecificMissionRules(record = {}) {
 }
 
 /**
- * MISSION_CRITICAL grant checklist — only from PRODUCTION_CERTIFIED after fresh live probe.
+ * MISSION_CRITICAL grant checklist.
+ * New grant requires exact PRODUCTION_CERTIFIED after fresh live probe.
+ * Already MISSION_CRITICAL → idempotent if live evidence still holds.
  */
 export function evaluateMissionCriticalRequirements(
   record = {},
@@ -387,25 +392,15 @@ export function evaluateMissionCriticalRequirements(
 ) {
   const cfg = trustConfig();
   const stage = normalizeLifecycleStage(record.lifecycleStage);
-  const alreadyMc =
-    stage === ProviderLifecycle.MISSION_CRITICAL ||
-    record.status === CanonicalStatus.MISSION_CRITICAL;
-  const productionOk =
-    alreadyMc ||
-    stage === ProviderLifecycle.PRODUCTION_CERTIFIED ||
-    record.status === CanonicalStatus.PRODUCTION_CERTIFIED ||
-    (record.productionCertified === true &&
-      hasReadyEvidence({
-        ...record,
-        status: CanonicalStatus.READY,
-        errorCode: record.errorCode === "none" ? null : record.errorCode,
-      }));
+  const alreadyMc = isCurrentlyMissionCritical(record);
+  const currentlyProductionCertified = isCurrentlyProductionCertified(record);
+  const productionOk = currentlyProductionCertified || alreadyMc;
 
   const grantGate = canGrantLifecycleStage(
     alreadyMc ? ProviderLifecycle.MISSION_CRITICAL : ProviderLifecycle.PRODUCTION_CERTIFIED,
     ProviderLifecycle.MISSION_CRITICAL,
   );
-  const stageOk = alreadyMc ? true : productionOk && grantGate.ok;
+  const stageOk = alreadyMc ? true : currentlyProductionCertified && grantGate.ok;
 
   const successRate =
     historyStats && historyStats.successRate !== "NOT_TESTED"
@@ -427,15 +422,22 @@ export function evaluateMissionCriticalRequirements(
     record.latencyMs === "NOT_TESTED" ||
     Number(record.latencyMs) <= cfg.missionCriticalMaxLatencyMs;
 
+  const readyEvidence = evaluateReadyRequirements({
+    ...record,
+    status: CanonicalStatus.READY,
+  });
+
   const reqs = [
     requirement(
-      "productionCertified",
+      "currentlyProductionCertified",
       productionOk,
-      "Provider must remain PRODUCTION_CERTIFIED after fresh live probe",
+      "Provider must be currently PRODUCTION_CERTIFIED after fresh live probe (MISSION_CRITICAL is idempotent)",
       {
         status: record.status,
         lifecycleStage: stage,
-        productionCertified: Boolean(record.productionCertified),
+        currentlyProductionCertified,
+        alreadyMissionCritical: alreadyMc,
+        productionCertifiedFlag: Boolean(record.productionCertified),
       },
     ),
     requirement(
@@ -443,14 +445,16 @@ export function evaluateMissionCriticalRequirements(
       stageOk,
       alreadyMc
         ? "Already MISSION_CRITICAL (idempotent)"
-        : grantGate.message ||
-          "MISSION_CRITICAL requires PRODUCTION_CERTIFIED — no skip from READY",
+        : currentlyProductionCertified
+          ? grantGate.message || "PRODUCTION_CERTIFIED → MISSION_CRITICAL allowed"
+          : "MISSION_CRITICAL requires PRODUCTION_CERTIFIED — no skip from READY or below",
       { reason: grantGate.reason, from: grantGate.from, to: grantGate.to },
     ),
     requirement(
       "readyEvidence",
-      evaluateReadyRequirements({ ...record, status: CanonicalStatus.READY }).ok,
-      "Fresh authenticated live probe evidence required",
+      readyEvidence.ok,
+      "Fresh authenticated live probe evidence required — adapters/credentials/history alone are insufficient",
+      { failedRequirements: readyEvidence.failedRequirements },
     ),
     requirement(
       "minConsecutiveSuccesses",

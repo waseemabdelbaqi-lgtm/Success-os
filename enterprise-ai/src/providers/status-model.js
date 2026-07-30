@@ -213,53 +213,41 @@ export function hasReadyEvidence(record = {}) {
 }
 
 /**
- * PRODUCTION CERTIFIED evidence — explicit grant only (CLI --certify).
- * Never auto-promote via streak. Media requires generationVerified at grant time.
+ * PRODUCTION CERTIFIED evidence — explicit grant flag only (CLI --certify).
+ * Never from status string, streak, adapters, or historical stage alone.
+ * Still requires live READY-class evidence to remain in force.
  */
 export function hasProductionCertificationEvidence(record = {}) {
-  if (record.missionCritical === true || record.status === CanonicalStatus.MISSION_CRITICAL) {
-    return true;
-  }
-  if (record.status === CanonicalStatus.PRODUCTION_CERTIFIED) return true;
-  if (record.productionCertified !== true) return false;
-  // Explicit flag alone is not enough without READY-class evidence still holding
-  return (
-    hasReadyEvidence({
-      ...record,
-      status: CanonicalStatus.READY,
-      errorCode: record.errorCode === "none" ? null : record.errorCode,
-    }) ||
-    record.status === CanonicalStatus.READY ||
-    record.status === CanonicalStatus.PRODUCTION_CERTIFIED ||
-    record.status === CanonicalStatus.MISSION_CRITICAL
-  );
+  const explicit =
+    record.productionCertified === true || record.missionCritical === true;
+  if (!explicit) return false;
+  return hasReadyEvidence({
+    ...record,
+    status: CanonicalStatus.READY,
+    errorCode: record.errorCode === "none" ? null : record.errorCode,
+  });
 }
 
 /**
- * MISSION CRITICAL evidence — explicit grant only (CLI --mission-critical).
- * Never skip from READY; never auto-promote via streak alone.
+ * MISSION CRITICAL evidence — explicit grant flag only (CLI --mission-critical).
+ * Never skip from READY; never from historical stage alone.
  */
 export function hasMissionCriticalEvidence(record = {}) {
-  if (record.status === CanonicalStatus.MISSION_CRITICAL) return true;
   if (record.missionCritical !== true) return false;
-  return hasProductionCertificationEvidence({
+  return hasReadyEvidence({
     ...record,
-    productionCertified: true,
-    missionCritical: false,
-    status:
-      record.status === CanonicalStatus.MISSION_CRITICAL
-        ? CanonicalStatus.PRODUCTION_CERTIFIED
-        : record.status,
+    status: CanonicalStatus.READY,
+    errorCode: record.errorCode === "none" ? null : record.errorCode,
   });
 }
 
 /**
  * Derive lifecycle stage. Never skips ahead.
- * Failures keep the highest previously earned non-failure stage when provided.
+ * Star tiers require explicit grant flags + live READY evidence.
+ * Historical previousStage alone must never restore PRODUCTION_CERTIFIED / MISSION_CRITICAL.
  */
 export function deriveLifecycleStage(record = {}, previousStage = null) {
   const prev = normalizeLifecycleStage(previousStage);
-  const prevIdx = Math.max(0, LIFECYCLE_ORDER.indexOf(prev));
   const status = record.status;
 
   const adapterOk =
@@ -335,14 +323,14 @@ export function deriveLifecycleStage(record = {}, previousStage = null) {
       : adapterOk
         ? ProviderLifecycle.NOT_CONFIGURED
         : ProviderLifecycle.SLOT;
-  } else if (!failureStatuses.has(status)) {
-    const nextIdx = LIFECYCLE_ORDER.indexOf(stage);
-    if (
-      prevIdx > nextIdx &&
-      prevIdx >= LIFECYCLE_ORDER.indexOf(ProviderLifecycle.READY) &&
-      readyOk
-    ) {
-      stage = LIFECYCLE_ORDER[prevIdx];
+  } else if (!failureStatuses.has(status) && readyOk) {
+    // May retain READY across transient yellow re-entry, but NEVER restore star
+    // tiers from previousStage without explicit grant flags (checked above).
+    const readyIdx = LIFECYCLE_ORDER.indexOf(ProviderLifecycle.READY);
+    const stageIdx = LIFECYCLE_ORDER.indexOf(stage);
+    const prevIdx = LIFECYCLE_ORDER.indexOf(prev);
+    if (stageIdx < readyIdx && prevIdx >= readyIdx) {
+      stage = ProviderLifecycle.READY;
     }
   }
 

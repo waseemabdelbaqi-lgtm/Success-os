@@ -110,8 +110,8 @@ Flags:
   --mode MODE           Health: config|live|full  OR run: review|execute|dry-run
   --provider=<id>       Test one provider
   --factory=<id>        Test one factory (coding|education|media|infrastructure)
-  --certify             Mark READY provider as PRODUCTION CERTIFIED ⭐ (requires --provider)
-  --mission-critical    Elevate PRODUCTION CERTIFIED → MISSION CRITICAL ⭐⭐ (requires --provider)
+  --certify             Grant PRODUCTION_CERTIFIED 🟢⭐ from READY (requires --provider)
+  --mission-critical    Grant MISSION_CRITICAL 🟢⭐⭐ from PRODUCTION_CERTIFIED (requires --provider)
   --json                Machine-readable JSON (default for health)
   --factories           Factory map + readiness from persisted probes
   --mcp                 MCP tool registry
@@ -119,7 +119,7 @@ Flags:
   --agents              List agents
 
 Lifecycle: SLOT ⚪ → NOT_CONFIGURED ⚪ → CREDENTIALS_DETECTED 🟡 → PROBE_RUNNING 🟡 → READY 🟢 → PRODUCTION_CERTIFIED 🟢⭐ → MISSION_CRITICAL 🟢⭐⭐
-Rule: green only after authenticated live probe success. Star tiers require explicit --certify / --mission-critical (no stage skip).
+Rule: live authenticated probe + persisted evidence only. Star tiers require explicit --certify / --mission-critical. No stage skipping.
 `);
 }
 

@@ -137,6 +137,36 @@ const mcRec = normalizeProviderRecord(
 assert.equal(mcRec.lifecycleStage, ProviderLifecycle.MISSION_CRITICAL);
 assert.equal(mcRec.displayMark, "🟢⭐⭐");
 
+// Historical previousStage alone must NEVER restore star tiers without explicit flags
+const noHistoryStar = deriveLifecycleStage(
+  {
+    status: CanonicalStatus.READY,
+    credentialsDetected: true,
+    authenticated: true,
+    liveProbeExecuted: true,
+    liveProbe: "PASSED",
+    result: "success",
+    testedAt: "2026-07-30T00:00:00.000Z",
+    latencyMs: 50,
+    errorCode: "none",
+    productionCertified: false,
+    missionCritical: false,
+  },
+  ProviderLifecycle.MISSION_CRITICAL,
+);
+assert.equal(noHistoryStar, ProviderLifecycle.READY);
+assert.equal(displayMarkForLifecycle(noHistoryStar), "🟢");
+
+// Credentials/adapter alone never READY
+assert.notEqual(
+  deriveLifecycleStage({
+    status: CanonicalStatus.CREDENTIALS_DETECTED,
+    credentialsDetected: true,
+    adapterAvailable: true,
+  }),
+  ProviderLifecycle.READY,
+);
+
 // Media cannot certify without generationVerified
 const mediaReady = {
   providerId: "heygen",
@@ -226,7 +256,9 @@ assert.ok(
   });
   assert.equal(skipMc.ok, false);
   assert.ok(
-    skipMc.diagnostics[0]?.failedRequirements?.some((r) => r.id === "productionCertified"),
+    skipMc.diagnostics[0]?.failedRequirements?.some(
+      (r) => r.id === "currentlyProductionCertified" || r.id === "noStageSkip",
+    ),
   );
 
   const ok = await certifyProviders({

@@ -897,6 +897,7 @@ export async function certifyProviders({
     }
 
     const certifiedAt = new Date().toISOString();
+    const keepMissionCritical = prev.missionCritical === true;
     const rec = normalizeProviderRecord(
       {
         ...prev,
@@ -908,9 +909,10 @@ export async function certifyProviders({
         errorCode: "none",
         safeErrorMessage: "none",
         productionCertified: true,
-        missionCritical: false,
+        missionCritical: keepMissionCritical,
         certifyNote: note,
-        certifiedAt,
+        certifiedAt: prev.certifiedAt || certifiedAt,
+        lastCertifiedAt: certifiedAt,
         certificationEvidence: diagnostic.evidence,
         certificationRequirements: summary.requirements,
         consecutiveSuccesses: Math.max(

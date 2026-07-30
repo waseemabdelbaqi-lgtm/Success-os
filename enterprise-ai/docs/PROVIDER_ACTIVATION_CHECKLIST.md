@@ -35,11 +35,11 @@ MISSION_CRITICAL 🟢⭐⭐
 - Never infer readiness from adapters, configuration files, or detected credentials alone.
 - `PRODUCTION_CERTIFIED` is granted **only** by:
   `npm run ai:aios:health -- --provider=<id> --certify`
-  (fresh live probe → verify requirements → reject with structured diagnostics if not READY).
+  (fresh live probe → provider must be **currently READY** → verify rules including media `generationVerified` → persist evidence/audit → reject with full structured diagnostics on any failure).
 - `MISSION_CRITICAL` is granted **only** by:
   `npm run ai:aios:health -- --provider=<id> --mission-critical`
-  (fresh live probe → confirm PRODUCTION_CERTIFIED → operational thresholds → audit).
-- Media providers additionally require `generationVerified=true` for star tiers.
+  (fresh live probe → provider must be **currently PRODUCTION_CERTIFIED** → operational thresholds → persist evidence/audit → reject with complete structured diagnostic on any failure).
+- Historical lifecycle stage, adapters, manifests, credentials, or config files alone never advance READY / PRODUCTION_CERTIFIED / MISSION_CRITICAL.
 
 ## Mission-critical operational thresholds (configurable)
 
