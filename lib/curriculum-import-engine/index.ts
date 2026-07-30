@@ -78,7 +78,16 @@ export function engineStatus() {
     referenceDataset: {
       id: "jordan-reference-dataset.v1",
       grade: "Grade 1",
-      subjects: ["Mathematics", "Arabic", "English", "Science", "Islamic Education", "Social Studies"],
+      subjects: [
+        "Mathematics",
+        "Physics",
+        "Chemistry",
+        "Arabic",
+        "English",
+        "Science",
+        "Islamic Education",
+        "Social Studies",
+      ],
       metadataOnly: true,
       aiGeneration: false,
       idConvention: {

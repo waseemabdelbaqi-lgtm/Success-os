@@ -34,12 +34,18 @@ JO
         │   │   └── …-U02 → L01–L02
         │   └── JO-NATIONAL-G01-MATH-B02
         │       └── …-U01-L01 (rights restricted)
+        ├── JO-NATIONAL-G01-PHYSICS
+        │   └── …-B01-U01-L01
+        ├── JO-NATIONAL-G01-CHEMISTRY
+        │   └── …-B01-U01-L01
         ├── JO-NATIONAL-G01-AR
         ├── JO-NATIONAL-G01-EN (includes one rejected lesson)
         ├── JO-NATIONAL-G01-SCI
         ├── JO-NATIONAL-G01-ISL
         └── JO-NATIONAL-G01-SOC
 ```
+
+STEM trio (canonical subject codes): `MATH` · `PHYSICS` · `CHEMISTRY`
 
 Fixture: `content/demo/jordan-reference-dataset.ts`  
 Sample tree JSON: [`content/demo/generated/jordan-reference-tree.example.json`](../../content/demo/generated/jordan-reference-tree.example.json)

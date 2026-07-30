@@ -245,6 +245,60 @@ export const JORDAN_REFERENCE_DATASET = {
           ],
         },
         {
+          id: JO_IDS.subject("PHYSICS"),
+          code: "PHYSICS",
+          name: L("Physics", "الفيزياء"),
+          books: [
+            {
+              id: JO_IDS.book("PHYSICS", 1),
+              part: "Book 1",
+              title: L("Physics — Grade 1 — Book 1", "الفيزياء - الصف الأول - الكتاب 1"),
+              units: [
+                {
+                  id: JO_IDS.unit("PHYSICS", 1, 1),
+                  order: 1,
+                  title: L("Unit 1 — Motion around us", "الوحدة 1 — الحركة من حولنا"),
+                  lessons: [
+                    lesson(
+                      JO_IDS.lesson("PHYSICS", 1, 1, 1),
+                      1,
+                      "Lesson 1 — Push and pull",
+                      "الدرس 1 — الدفع والسحب",
+                    ),
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+        {
+          id: JO_IDS.subject("CHEMISTRY"),
+          code: "CHEMISTRY",
+          name: L("Chemistry", "الكيمياء"),
+          books: [
+            {
+              id: JO_IDS.book("CHEMISTRY", 1),
+              part: "Book 1",
+              title: L("Chemistry — Grade 1 — Book 1", "الكيمياء - الصف الأول - الكتاب 1"),
+              units: [
+                {
+                  id: JO_IDS.unit("CHEMISTRY", 1, 1),
+                  order: 1,
+                  title: L("Unit 1 — Materials", "الوحدة 1 — المواد"),
+                  lessons: [
+                    lesson(
+                      JO_IDS.lesson("CHEMISTRY", 1, 1, 1),
+                      1,
+                      "Lesson 1 — Solids and liquids",
+                      "الدرس 1 — المواد الصلبة والسائلة",
+                    ),
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+        {
           id: JO_IDS.subject("AR"),
           code: "AR",
           name: L("Arabic", "اللغة العربية"),

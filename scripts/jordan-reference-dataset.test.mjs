@@ -34,6 +34,8 @@ const dataset = fs.readFileSync(
 assert.ok(dataset.includes("success-os.jordan-reference-dataset.v1"));
 for (const subject of [
   "Mathematics",
+  "Physics",
+  "Chemistry",
   "Arabic",
   "English",
   "Science",
@@ -42,6 +44,10 @@ for (const subject of [
 ]) {
   assert.ok(dataset.includes(subject), `missing subject ${subject}`);
 }
+assert.ok(dataset.includes('JO_IDS.subject("PHYSICS")'));
+assert.ok(dataset.includes('JO_IDS.subject("CHEMISTRY")'));
+assert.ok(dataset.includes('JO_IDS.lesson("PHYSICS", 1, 1, 1)'));
+assert.ok(dataset.includes('JO_IDS.lesson("CHEMISTRY", 1, 1, 1)'));
 for (const id of [
   "JO",
   "JO-NATIONAL",
@@ -100,14 +106,26 @@ const tree = JSON.parse(
 );
 assert.equal(tree.country, "Jordan");
 assert.equal(tree.grade, "Grade 1");
-assert.ok(tree.subjects.length >= 6);
+assert.ok(tree.subjects.length >= 8);
 assert.equal(tree.subjects[0].code, "MATH");
+assert.equal(tree.subjects[1].code, "PHYSICS");
+assert.equal(tree.subjects[2].code, "CHEMISTRY");
 assert.equal(tree.idConvention.lesson, "JO-NATIONAL-G01-MATH-B01-U01-L01");
 assert.equal(tree.subjects[0].id, "JO-NATIONAL-G01-MATH");
+assert.equal(tree.subjects[1].id, "JO-NATIONAL-G01-PHYSICS");
+assert.equal(tree.subjects[2].id, "JO-NATIONAL-G01-CHEMISTRY");
 assert.equal(tree.subjects[0].books[0].id, "JO-NATIONAL-G01-MATH-B01");
 assert.equal(
   tree.subjects[0].books[0].units[0].lessons[0].id,
   "JO-NATIONAL-G01-MATH-B01-U01-L01",
+);
+assert.equal(
+  tree.subjects[1].books[0].units[0].lessons[0].id,
+  "JO-NATIONAL-G01-PHYSICS-B01-U01-L01",
+);
+assert.equal(
+  tree.subjects[2].books[0].units[0].lessons[0].id,
+  "JO-NATIONAL-G01-CHEMISTRY-B01-U01-L01",
 );
 
 const metadata = JSON.parse(
@@ -215,9 +233,15 @@ const report = JSON.parse(
     "utf8",
   ),
 );
-assert.equal(report.counts.lessons, 13);
+assert.equal(report.counts.subjects, 8);
+assert.equal(report.counts.lessons, 15);
 assert.equal(report.counts.published, 1);
 assert.equal(report.counts.rejected, 1);
+assert.deepEqual(report.stemSubjects, [
+  "JO-NATIONAL-G01-MATH",
+  "JO-NATIONAL-G01-PHYSICS",
+  "JO-NATIONAL-G01-CHEMISTRY",
+]);
 assert.ok(report.pipeline.rejectedNeverPublish);
 assert.ok(report.pipeline.ileOnlyRuntime);
 

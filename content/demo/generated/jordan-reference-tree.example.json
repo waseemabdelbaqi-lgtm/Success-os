@@ -94,6 +94,58 @@
       ]
     },
     {
+      "code": "PHYSICS",
+      "id": "JO-NATIONAL-G01-PHYSICS",
+      "name": "Physics",
+      "books": [
+        {
+          "id": "JO-NATIONAL-G01-PHYSICS-B01",
+          "part": "Book 1",
+          "units": [
+            {
+              "id": "JO-NATIONAL-G01-PHYSICS-B01-U01",
+              "title": "Unit 1 — Motion around us",
+              "lessons": [
+                {
+                  "id": "JO-NATIONAL-G01-PHYSICS-B01-U01-L01",
+                  "order": 1,
+                  "title": "Lesson 1 — Push and pull",
+                  "verificationStatus": "verified",
+                  "rightsStatus": "verified"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "code": "CHEMISTRY",
+      "id": "JO-NATIONAL-G01-CHEMISTRY",
+      "name": "Chemistry",
+      "books": [
+        {
+          "id": "JO-NATIONAL-G01-CHEMISTRY-B01",
+          "part": "Book 1",
+          "units": [
+            {
+              "id": "JO-NATIONAL-G01-CHEMISTRY-B01-U01",
+              "title": "Unit 1 — Materials",
+              "lessons": [
+                {
+                  "id": "JO-NATIONAL-G01-CHEMISTRY-B01-U01-L01",
+                  "order": 1,
+                  "title": "Lesson 1 — Solids and liquids",
+                  "verificationStatus": "verified",
+                  "rightsStatus": "verified"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
       "code": "AR",
       "id": "JO-NATIONAL-G01-AR",
       "name": "Arabic",
