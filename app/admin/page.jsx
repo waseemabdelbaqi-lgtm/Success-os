@@ -15,6 +15,18 @@ export default function AdminPage() {
         </div>
 
         <section className="os-card admin-card" style={{ marginBottom: '1rem' }}>
+          <span>ILE</span>
+          <h2>Interactive Lesson Engine</h2>
+          <p>
+            Foundation admin editor — create/reorder blocks, preview, version, publish. No
+            curriculum import. No AI video generation.
+          </p>
+          <a className="button" href="/admin/interactive-lessons">
+            Open Lesson Editor →
+          </a>
+        </section>
+
+        <section className="os-card admin-card" style={{ marginBottom: '1rem' }}>
           <span>ADMIN-01</span>
           <h2>Enterprise Admin Dashboard</h2>
           <p>

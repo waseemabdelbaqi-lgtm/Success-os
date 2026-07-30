@@ -8,6 +8,7 @@ const BOOK_PORTAL_PREFIXES = [
   "/student/dashboard",
   "/student/books",
   "/student/courses",
+  "/student/interactive-lessons",
   "/student/subjects",
   "/student/predictor",
   "/student/bookmarks",

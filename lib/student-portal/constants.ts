@@ -4,6 +4,7 @@ export const STUDENT_ROUTES = {
   dashboard: `${STUDENT_ROUTE_PREFIX}/dashboard`,
   books: `${STUDENT_ROUTE_PREFIX}/books`,
   courses: `${STUDENT_ROUTE_PREFIX}/courses`,
+  interactiveLessons: `${STUDENT_ROUTE_PREFIX}/interactive-lessons`,
   bookmarks: `${STUDENT_ROUTE_PREFIX}/bookmarks`,
   notes: `${STUDENT_ROUTE_PREFIX}/notes`,
   highlights: `${STUDENT_ROUTE_PREFIX}/highlights`,
