@@ -19,11 +19,14 @@ const required = [
   "content/demo/generated/jordan-reference-validation-report.example.json",
   "content/demo/generated/global-subject-registry.example.json",
   "content/demo/generated/global-skill-registry.example.json",
+  "content/demo/generated/student-skill-progress.example.json",
   "lib/curriculum-import-engine/reference/jordan-dataset.ts",
   "lib/curriculum-import-engine/hierarchy/registry.ts",
   "lib/curriculum-import-engine/hierarchy/global-subject-registry.ts",
   "lib/curriculum-import-engine/hierarchy/global-skill-registry.ts",
+  "lib/curriculum-import-engine/student/skill-progress.ts",
   "types/global-skill-registry.ts",
+  "types/student-skill-progress.ts",
   "docs/cursor/jordan-reference-dataset.md",
   "docs/cursor/adr/ADR-0050.2-jordan-reference-dataset.md",
   "docs/cursor/reports/pr-50.2-completion-report.md",
@@ -271,7 +274,39 @@ for (const key of [
 }
 assert.equal(metadata.globalLessonId, "JO-NATIONAL-G01-MATH-B01-U01-L01");
 assert.equal(metadata.globalSubjectId, "SUB-00001");
-assert.deepEqual(metadata.skills, ["SKL-00001", "SKL-00002", "SKL-00008"]);
+assert.deepEqual(metadata.skills, ["SKL-00001", "SKL-00008"]);
+
+const studentProgress = JSON.parse(
+  fs.readFileSync(
+    path.join(root, "content/demo/generated/student-skill-progress.example.json"),
+    "utf8",
+  ),
+);
+assert.equal(studentProgress.schema, "success-os.student-skill-progress.v1");
+assert.deepEqual(studentProgress.path, [
+  "Student",
+  "Completed Lessons",
+  "Completed Skills",
+  "Missing Skills",
+  "Weak Skills",
+  "Recommended Lessons",
+]);
+assert.equal(studentProgress.completedLessons[0].lessonId, "JO-NATIONAL-G01-MATH-B01-U01-L01");
+assert.ok(studentProgress.completedSkills.some((s) => s.skillId === "SKL-00001"));
+assert.ok(studentProgress.missingSkills.some((s) => s.skillId === "SKL-00002"));
+assert.ok(studentProgress.weakSkills.some((s) => s.skillId === "SKL-00001"));
+assert.ok(
+  studentProgress.recommendedLessons.some(
+    (l) => l.lessonId === "JO-NATIONAL-G01-MATH-B01-U01-L02",
+  ),
+);
+
+const progressMod = fs.readFileSync(
+  path.join(root, "lib/curriculum-import-engine/student/skill-progress.ts"),
+  "utf8",
+);
+assert.ok(progressMod.includes("buildStudentSkillProgress"));
+assert.ok(progressMod.includes("Recommended Lessons"));
 assert.equal(metadata.countryId, "JO");
 assert.equal(metadata.curriculumId, "JO-NATIONAL");
 assert.equal(metadata.aiReady, false);
@@ -377,12 +412,15 @@ assert.ok(api.includes("run-jordan-reference-dataset"));
 assert.ok(api.includes("jordan-reference-dataset"));
 assert.ok(api.includes("global-subject-registry"));
 assert.ok(api.includes("global-skill-registry"));
+assert.ok(api.includes("student-skill-progress"));
 assert.ok(api.includes("resolveCountrySubject"));
 assert.ok(api.includes("localLabel"));
 
 assert.ok(dash.includes("رياضيات"));
 assert.ok(dash.includes("SUB-00001"));
 assert.ok(dash.includes("Mathematics"));
+assert.ok(dash.includes("Completed Lessons"));
+assert.ok(dash.includes("Recommended Lessons"));
 
 const adr = fs.readFileSync(
   path.join(root, "docs/cursor/adr/ADR-0050.2-jordan-reference-dataset.md"),

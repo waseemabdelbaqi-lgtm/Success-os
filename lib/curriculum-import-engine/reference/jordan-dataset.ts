@@ -35,6 +35,55 @@ import {
   resetGlobalSkillRegistry,
 } from "../hierarchy/global-skill-registry";
 import type { GlobalSkillRegistrySnapshot } from "@/types/global-skill-registry";
+import {
+  buildJordanDemoStudentSkillProgress,
+  buildStudentSkillProgress,
+} from "../student/skill-progress";
+import type { StudentSkillProgressRecord } from "@/types/student-skill-progress";
+
+/** Granular skill ids so progress gaps are meaningful (not all lessons share the same set). */
+function skillIdsForJordanLesson(subjectCode: string, lessonId: string): string[] {
+  if (lessonId === "JO-NATIONAL-G01-MATH-B01-U01-L01") {
+    return ["SKL-00001", "SKL-00008"]; // Arithmetic + Critical Thinking
+  }
+  if (lessonId === "JO-NATIONAL-G01-MATH-B01-U01-L02") {
+    return ["SKL-00001", "SKL-00002"]; // Arithmetic + Fractions
+  }
+  if (lessonId === "JO-NATIONAL-G01-MATH-B01-U01-L03") {
+    return ["SKL-00002", "SKL-00008"]; // Fractions + Critical Thinking
+  }
+  if (lessonId === "JO-NATIONAL-G01-MATH-B01-U02-L01") {
+    return ["SKL-00001"]; // Arithmetic reinforcement
+  }
+  if (lessonId === "JO-NATIONAL-G01-MATH-B01-U02-L02") {
+    return ["SKL-00002"]; // Fractions (pending lesson)
+  }
+  if (lessonId === "JO-NATIONAL-G01-MATH-B02-U01-L01") {
+    return ["SKL-00001", "SKL-00002"];
+  }
+  if (subjectCode === "PHYSICS") {
+    return ["SKL-00003", "SKL-00004", "SKL-00008"];
+  }
+  if (subjectCode === "CHEMISTRY") {
+    return ["SKL-00005", "SKL-00008"];
+  }
+  if (subjectCode === "AR" || subjectCode === "EN") {
+    return ["SKL-00006", "SKL-00007", "SKL-00008"];
+  }
+  return defaultSkillIdsForSubject(
+    subjectCode === "MATH"
+      ? "SUB-00001"
+      : subjectCode === "BIOLOGY"
+        ? "SUB-00004"
+        : subjectCode === "SCI"
+          ? "SUB-00007"
+          : subjectCode === "ISL"
+            ? "SUB-00008"
+            : subjectCode === "SOC"
+              ? "SUB-00009"
+              : "SUB-00001",
+  );
+}
 import { evaluateRights } from "../rights/engine";
 import { buildIlePackagesFromBook } from "../ile-package-builder";
 import { runVerificationGates, allGatesPassed } from "../verification/engine";
@@ -127,6 +176,7 @@ export type JordanDatasetRunResult = {
   samplePath: string[];
   globalSubjectRegistry: GlobalSubjectRegistrySnapshot;
   globalSkillRegistry: GlobalSkillRegistrySnapshot;
+  studentSkillProgress: StudentSkillProgressRecord;
   validationReport: {
     totalLessons: number;
     verified: number;
@@ -332,7 +382,7 @@ export function runJordanReferenceDataset(opts?: { reset?: boolean }): JordanDat
             estimatedDuration: 25,
             difficulty: "core",
             bloomLevel: "understand",
-            skills: defaultSkillIdsForSubject(globalSubject.id),
+            skills: skillIdsForJordanLesson(subject.code, les.id),
             tags: [
               ds.country.id,
               ds.curriculum.id,
@@ -577,6 +627,7 @@ export function runJordanReferenceDataset(opts?: { reset?: boolean }): JordanDat
     samplePath,
     globalSubjectRegistry: getGlobalSubjectRegistrySnapshot(),
     globalSkillRegistry: getGlobalSkillRegistrySnapshot(),
+    studentSkillProgress: buildJordanDemoStudentSkillProgress(),
     validationReport: {
       totalLessons: snap.counts.lessons,
       verified: snap.counts.verified,

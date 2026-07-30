@@ -33,6 +33,10 @@ import {
   listGlobalSkills,
   resetGlobalSkillRegistry,
 } from "./hierarchy/global-skill-registry";
+import {
+  buildJordanDemoStudentSkillProgress,
+  buildStudentSkillProgress,
+} from "./student/skill-progress";
 
 export {
   IMPORT_PIPELINE,
@@ -60,6 +64,8 @@ export {
   listGlobalSkills,
   resetGlobalSkillRegistry,
   defaultSkillIdsForSubject,
+  buildStudentSkillProgress,
+  buildJordanDemoStudentSkillProgress,
 };
 
 export { evaluateRights } from "./rights/engine";
@@ -126,9 +132,18 @@ export function engineStatus() {
       },
       globalSubjectRegistry: "success-os.global-subject-registry.v1",
       globalSkillRegistry: "success-os.global-skill-registry.v1",
+      studentSkillProgress: "success-os.student-skill-progress.v1",
     },
     globalSubjectRegistry: getGlobalSubjectRegistrySnapshot(),
     globalSkillRegistry: getGlobalSkillRegistrySnapshot(),
+    studentSkillProgressPath: [
+      "Student",
+      "Completed Lessons",
+      "Completed Skills",
+      "Missing Skills",
+      "Weak Skills",
+      "Recommended Lessons",
+    ],
     pipeline: IMPORT_PIPELINE.map((s) => s.id),
     connectors: listSourceConnectors().map((c) => ({
       id: c.id,

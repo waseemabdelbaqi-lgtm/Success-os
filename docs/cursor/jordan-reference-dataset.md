@@ -106,6 +106,33 @@ API: `GET /api/curriculum-import-engine?action=global-skill-registry`
 
 Rule: **append-only** — never reuse a retired `SKL-XXXXX` id.
 
+## Student skill progress
+
+```
+Student
+↓ Completed Lessons
+↓ Completed Skills
+↓ Missing Skills
+↓ Weak Skills
+↓ Recommended Lessons
+```
+
+| Stage | Meaning |
+|-------|---------|
+| Completed Lessons | Hierarchical lesson ids the student finished |
+| Completed Skills | Union of `SKL-XXXXX` from those lessons |
+| Missing Skills | Target skills not yet in completed set |
+| Weak Skills | Skills started but not covered by all teaching lessons |
+| Recommended Lessons | Next ILE lessons that address missing/weak skills |
+
+Schema: `success-os.student-skill-progress.v1`  
+Module: `lib/curriculum-import-engine/student/skill-progress.ts`  
+Sample: [`student-skill-progress.example.json`](../../content/demo/generated/student-skill-progress.example.json)  
+API: `GET /api/curriculum-import-engine?action=student-skill-progress`  
+Demo: after completing `JO-NATIONAL-G01-MATH-B01-U01-L01` → recommends L02/L03 for Fractions / weak Arithmetic.
+
+No AI tutoring in this contract — recommendations are rule-based over verified lesson metadata.
+
 Fixture: `content/demo/jordan-reference-dataset.ts`  
 Sample tree JSON: [`content/demo/generated/jordan-reference-tree.example.json`](../../content/demo/generated/jordan-reference-tree.example.json)
 

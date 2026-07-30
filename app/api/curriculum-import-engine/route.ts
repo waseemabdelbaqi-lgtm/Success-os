@@ -18,6 +18,8 @@ import {
   resolveCountrySubject,
   getCrossCountryMathExamples,
   getGlobalSkillRegistrySnapshot,
+  buildStudentSkillProgress,
+  buildJordanDemoStudentSkillProgress,
 } from "@/lib/curriculum-import-engine";
 
 export const runtime = "nodejs";
@@ -64,6 +66,28 @@ export async function GET(req: Request) {
       ok: true,
       registry: getGlobalSkillRegistrySnapshot(),
       note: "SKL-00001 Arithmetic … SKL-00008 Critical Thinking — append-only global skill ids",
+    });
+  }
+  if (action === "student-skill-progress") {
+    // Ensure Jordan reference hierarchy is seeded for skill/lesson lookups
+    runJordanReferenceDataset({ reset: true });
+    const completedParam = url.searchParams.get("completedLessonIds");
+    const completedLessonIds = completedParam
+      ? completedParam.split(",").map((s) => s.trim()).filter(Boolean)
+      : ["JO-NATIONAL-G01-MATH-B01-U01-L01"];
+    const progress =
+      completedParam || url.searchParams.get("studentId")
+        ? buildStudentSkillProgress({
+            studentId: url.searchParams.get("studentId") || "student_jo_demo_001",
+            countryId: url.searchParams.get("countryId") || "JO",
+            curriculumId: url.searchParams.get("curriculumId") || "JO-NATIONAL",
+            completedLessonIds,
+          })
+        : buildJordanDemoStudentSkillProgress();
+    return NextResponse.json({
+      ok: true,
+      progress,
+      note: "Student → Completed Lessons → Completed Skills → Missing Skills → Weak Skills → Recommended Lessons",
     });
   }
   if (action === "jordan-g1-math-example") {
@@ -123,6 +147,7 @@ export async function GET(req: Request) {
       rightsWarnings: result.rightsWarnings,
       globalSubjectRegistry: result.globalSubjectRegistry,
       globalSkillRegistry: result.globalSkillRegistry,
+      studentSkillProgress: result.studentSkillProgress,
     });
   }
   if (action === "connectors") {
