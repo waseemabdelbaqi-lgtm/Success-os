@@ -4,8 +4,8 @@
  * Student → AI Teacher → Conversation → Reasoning → Student Memory →
  * Knowledge Graph → Curriculum Registry → ILE → Digital Books → Videos → Assessments
  *
- * Architecture / APIs / memory / permissions only — no avatars, animations,
- * AI videos, or live classrooms.
+ * Production path is country-agnostic. Demo helpers may seed reference fixtures
+ * only when `demoMode: true`.
  */
 import { createHash } from "node:crypto";
 import type {
@@ -40,15 +40,19 @@ import { reasonTeachingMove } from "./reasoning";
 import { SAFETY_RULES } from "./grounding";
 import { getVoiceSessionContract } from "./voice";
 import { getWhiteboardSessionContract } from "./whiteboard";
+import { saveTeachingTurn } from "./store";
+import { logger } from "@/lib/logger";
+import { AppError } from "@/lib/logger";
 import { buildKnowledgeGraph } from "@/lib/curriculum-import-engine/knowledge-graph/build";
 import { buildJordanMathDependencyExample } from "@/lib/curriculum-import-engine/hierarchy/lesson-dependency";
 import { runJordanReferenceDataset } from "@/lib/curriculum-import-engine/reference/jordan-dataset";
+import { buildJordanDemoStudentSkillProgress } from "@/lib/curriculum-import-engine/student/skill-progress";
 import {
   findEquivalentLessons,
   runUniversalCurriculumMapping,
 } from "@/lib/universal-curriculum-mapping";
 import { buildS4sIntelligenceTeacherGreeting } from "@/lib/student-ai-learning-stack/s4s-intelligence-teacher";
-import { buildJordanDemoStudentSkillProgress } from "@/lib/curriculum-import-engine/student/skill-progress";
+import type { StudentSkillProgressRecord } from "@/types/student-skill-progress";
 
 const MULTIMODAL_KINDS: MultimodalInputKind[] = [
   "text",
@@ -61,6 +65,11 @@ const MULTIMODAL_KINDS: MultimodalInputKind[] = [
   "video_conversation",
   "live_whiteboard",
 ];
+
+export type AteRunOptions = AteSessionContext & {
+  /** Explicit demo path may seed reference fixtures (Jordan first reference). */
+  demoMode?: boolean;
+};
 
 function sessionIdFor(ctx: AteSessionContext): string {
   if (ctx.sessionId) return ctx.sessionId;
@@ -83,11 +92,12 @@ function invoke(
   status: AteLayerInvocation["status"],
   output: Record<string, unknown>,
   started: number,
+  ok = true,
 ): AteLayerInvocation {
   return {
     layerId,
     status,
-    ok: true,
+    ok,
     output,
     durationMs: Math.max(0, Date.now() - started),
   };
@@ -95,21 +105,60 @@ function invoke(
 
 function resolveIlePackageId(focus: string): string {
   if (focus.startsWith("ile_")) return focus;
-  if (focus.includes("JO-NATIONAL")) return `ile_${focus}`;
-  return "ile_JO-NATIONAL-G01-MATH-B01-U01-L01";
+  return `ile_${focus}`;
+}
+
+function requireProductionContext(ctx: AteRunOptions) {
+  if (!ctx.studentId?.trim()) {
+    throw new AppError({
+      code: "VALIDATION_ERROR",
+      message: "studentId is required",
+      statusCode: 422,
+    });
+  }
+  if (!ctx.demoMode) {
+    if (!ctx.countryId?.trim() || !ctx.curriculumId?.trim() || !ctx.focusLessonId?.trim()) {
+      throw new AppError({
+        code: "VALIDATION_ERROR",
+        message:
+          "Production ATE turns require countryId, curriculumId, and focusLessonId. Use demoMode for fixture demos only.",
+        statusCode: 422,
+      });
+    }
+    if (!ctx.utterance?.trim()) {
+      throw new AppError({
+        code: "VALIDATION_ERROR",
+        message: "utterance is required",
+        statusCode: 422,
+      });
+    }
+  }
 }
 
 /**
  * Run one AI Teacher teaching turn through the full ATE path.
  */
-export function runAiTeacherTurn(ctx: AteSessionContext): AteTeachingTurn {
+export function runAiTeacherTurn(ctx: AteRunOptions): AteTeachingTurn {
+  requireProductionContext(ctx);
+
   const invocations: AteLayerInvocation[] = [];
   const sessionId = sessionIdFor(ctx);
-  const language = ctx.language === "ar" ? "ar" : ctx.language === "bilingual" ? "en" : "en";
-  const utterance = ctx.utterance || "Help me with this lesson";
-  const focus =
-    ctx.focusLessonId || "JO-NATIONAL-G01-MATH-B01-U01-L01";
-  const studentName = ctx.studentName || "Ahmad";
+  const language =
+    ctx.language === "ar" ? "ar" : ctx.language === "bilingual" ? "en" : "en";
+  const utterance = ctx.utterance || "";
+  const focus = ctx.focusLessonId || "";
+  const studentName = (ctx.studentName || "").trim();
+
+  // Optional demo bootstrap — never in production path
+  if (ctx.demoMode) {
+    try {
+      runJordanReferenceDataset({ reset: true });
+    } catch (error) {
+      logger.warn("ATE demo bootstrap skipped", {
+        error: error instanceof Error ? error.message : String(error),
+      });
+    }
+  }
 
   // 1. Student
   let t = Date.now();
@@ -119,29 +168,32 @@ export function runAiTeacherTurn(ctx: AteSessionContext): AteTeachingTurn {
       "operational",
       {
         studentId: ctx.studentId,
-        studentName,
+        studentName: studentName || null,
         countryId: ctx.countryId || null,
         curriculumId: ctx.curriculumId || null,
         gradeId: ctx.gradeId || null,
         language,
-        utterance,
+        utterance: utterance || null,
+        demoMode: Boolean(ctx.demoMode),
       },
       t,
     ),
   );
 
-  // 2. AI Teacher persona (S4S Intelligence Teacher greeting context)
+  // 2. AI Teacher persona
   t = Date.now();
-  let progress = null as ReturnType<typeof buildJordanDemoStudentSkillProgress> | null;
-  try {
-    progress = buildJordanDemoStudentSkillProgress();
-  } catch {
-    progress = null;
+  let progress: StudentSkillProgressRecord | null = null;
+  if (ctx.demoMode) {
+    try {
+      progress = buildJordanDemoStudentSkillProgress();
+    } catch {
+      progress = null;
+    }
   }
   const greeting = buildS4sIntelligenceTeacherGreeting({
-    studentName,
+    studentName: studentName || "Student",
     progress,
-    preferSkillCode: "FRACTIONS",
+    preferSkillCode: ctx.demoMode ? "FRACTIONS" : undefined,
     locale: language === "ar" ? "ar" : "en",
   });
   invocations.push(
@@ -187,49 +239,68 @@ export function runAiTeacherTurn(ctx: AteSessionContext): AteTeachingTurn {
     ),
   );
 
-  // 4 + 5 prep: memory (read before reasoning; write after)
-  let memory = getOrCreateStudentMemory(ctx.studentId, { studentName });
-  if (ctx.curriculumId || ctx.gradeId) {
-    memory = upsertStudentMemory({
-      studentId: ctx.studentId,
-      studentName,
-      currentCurriculumId: ctx.curriculumId || memory.currentCurriculumId,
-      gradeId: ctx.gradeId || memory.gradeId,
-      preferredLanguage: language,
-    });
-  }
+  // Memory read / context merge
+  let memory = getOrCreateStudentMemory(ctx.studentId, {
+    studentName: studentName || undefined,
+  });
+  memory = upsertStudentMemory({
+    studentId: ctx.studentId,
+    studentName: studentName || memory.studentName,
+    currentCurriculumId: ctx.curriculumId || memory.currentCurriculumId,
+    gradeId: ctx.gradeId || memory.gradeId,
+    preferredLanguage: language || memory.preferredLanguage,
+    subjectIds: ctx.subjectGlobalId
+      ? Array.from(new Set([...memory.subjectIds, ctx.subjectGlobalId]))
+      : memory.subjectIds,
+  });
 
-  // Knowledge graph + UCE for grounding
+  // Knowledge graph (registry-backed; demo may have seeded data)
   let kgRefs: string[] = [];
   let kgCounts = { nodes: 0, edges: 0 };
+  let kgOk = true;
   try {
-    runJordanReferenceDataset({ reset: true });
-    const graph = buildKnowledgeGraph({
-      lessonDependency: buildJordanMathDependencyExample(),
-    });
+    const graph = buildKnowledgeGraph(
+      ctx.demoMode
+        ? { lessonDependency: buildJordanMathDependencyExample() }
+        : {},
+    );
     kgRefs = graph.nodes.slice(0, 12).map((n) => n.id);
     kgCounts = { nodes: graph.counts.nodes, edges: graph.counts.edges };
-  } catch {
-    kgRefs = [];
+  } catch (error) {
+    kgOk = false;
+    logger.warn("ATE knowledge graph unavailable", {
+      error: error instanceof Error ? error.message : String(error),
+    });
   }
 
-  const uceFocus = focus.startsWith("LSN-") ? focus : "LSN-01001";
+  // UCE equivalents — only when focus is a Global lesson id
   let equivalents: { globalId: string; relation: string; confidence: number }[] =
     [];
-  try {
-    runUniversalCurriculumMapping({ reset: false });
-    equivalents = findEquivalentLessons(uceFocus).map((m) => ({
-      globalId: m.target.globalId,
-      relation: m.relation,
-      confidence: m.confidence,
-    }));
-  } catch {
-    equivalents = [];
+  if (focus.startsWith("LSN-")) {
+    try {
+      runUniversalCurriculumMapping({ reset: false });
+      equivalents = findEquivalentLessons(focus).map((m) => ({
+        globalId: m.target.globalId,
+        relation: m.relation,
+        confidence: m.confidence,
+      }));
+    } catch (error) {
+      logger.warn("ATE UCE lookup unavailable", {
+        error: error instanceof Error ? error.message : String(error),
+      });
+    }
   }
 
-  const ilePackageId = resolveIlePackageId(focus);
+  const ilePackageId = focus ? resolveIlePackageId(focus) : null;
   const teachingStyle: TeachingStyle =
     ctx.teachingStyle || memory.preferredTeachingStyle || "step_by_step";
+
+  const topicEn =
+    greeting.struggleSkillName?.en ||
+    (focus ? `Lesson ${focus}` : "this lesson");
+  const topicAr =
+    greeting.struggleSkillName?.ar ||
+    (focus ? `الدرس ${focus}` : "هذا الدرس");
 
   // 4. Reasoning Engine
   t = Date.now();
@@ -237,13 +308,13 @@ export function runAiTeacherTurn(ctx: AteSessionContext): AteTeachingTurn {
     intent,
     teachingStyle,
     learningPace: memory.learningPace,
-    topicEn: greeting.struggleSkillName?.en || "Fractions",
-    topicAr: greeting.struggleSkillName?.ar || "الكسور",
-    focusLessonId: focus,
+    topicEn,
+    topicAr,
+    focusLessonId: focus || undefined,
     weakSkillIds: memory.weakSkillIds,
     equivalents,
     grounding: {
-      focusLessonId: focus,
+      focusLessonId: focus || null,
       curriculumId: ctx.curriculumId || memory.currentCurriculumId,
       knowledgeGraphNodeIds: kgRefs,
       uceEquivalentIds: equivalents.map((e) => e.globalId),
@@ -268,11 +339,10 @@ export function runAiTeacherTurn(ctx: AteSessionContext): AteTeachingTurn {
     ),
   );
 
-  // 5. Student Memory (write turn)
+  // 5. Student Memory write
   t = Date.now();
-  const studentTurnId = conversationTurnId(ctx.studentId, utterance);
   appendConversationTurn(ctx.studentId, {
-    id: studentTurnId,
+    id: conversationTurnId(ctx.studentId, utterance || "(empty)"),
     role: "student",
     text: utterance,
     language,
@@ -317,6 +387,7 @@ export function runAiTeacherTurn(ctx: AteSessionContext): AteTeachingTurn {
         learningStyle: memory.learningStyle,
         historyLength: memory.conversationHistory.length,
         affectLast: memory.affectLast,
+        durable: true,
       },
       t,
     ),
@@ -335,6 +406,7 @@ export function runAiTeacherTurn(ctx: AteSessionContext): AteTeachingTurn {
         sampleNodeIds: kgRefs,
       },
       t,
+      kgOk,
     ),
   );
 
@@ -346,7 +418,8 @@ export function runAiTeacherTurn(ctx: AteSessionContext): AteTeachingTurn {
       "foundation",
       {
         curriculumId: ctx.curriculumId || memory.currentCurriculumId,
-        focusLessonId: focus,
+        countryId: ctx.countryId || null,
+        focusLessonId: focus || null,
         uceEquivalents: equivalents.slice(0, 5),
         inventsFacts: false,
       },
@@ -367,10 +440,11 @@ export function runAiTeacherTurn(ctx: AteSessionContext): AteTeachingTurn {
         soleRuntime: true,
       },
       t,
+      ilePackageId != null,
     ),
   );
 
-  // 9. Digital Books (reserved)
+  // 9–11 reserved
   t = Date.now();
   invocations.push(
     invoke(
@@ -380,8 +454,6 @@ export function runAiTeacherTurn(ctx: AteSessionContext): AteTeachingTurn {
       t,
     ),
   );
-
-  // 10. Videos (reserved)
   t = Date.now();
   invocations.push(
     invoke(
@@ -391,8 +463,6 @@ export function runAiTeacherTurn(ctx: AteSessionContext): AteTeachingTurn {
       t,
     ),
   );
-
-  // 11. Assessments (reserved)
   t = Date.now();
   invocations.push(
     invoke(
@@ -408,7 +478,7 @@ export function runAiTeacherTurn(ctx: AteSessionContext): AteTeachingTurn {
     ),
   );
 
-  return {
+  const turn: AteTeachingTurn = {
     schema: "success-os.ate-teaching-turn.v1",
     sessionId,
     studentId: ctx.studentId,
@@ -433,14 +503,31 @@ export function runAiTeacherTurn(ctx: AteSessionContext): AteTeachingTurn {
       "AI Teacher Engine orchestration — not a chatbot.",
       "Grounded in curriculum registry, knowledge graph, and ILE packages.",
       "No avatars, animations, AI videos, or live classrooms.",
+      ctx.demoMode
+        ? "demoMode=true — reference fixtures may be seeded."
+        : "Production path — no country-specific defaults.",
       ...SAFETY_RULES.slice(0, 3),
     ],
   };
+
+  saveTeachingTurn(turn);
+  logger.info("ATE teaching turn completed", {
+    sessionId,
+    studentId: ctx.studentId,
+    intent,
+    uncertain: turn.teacherReply.uncertain,
+    demoMode: Boolean(ctx.demoMode),
+  });
+
+  return turn;
 }
 
 export function getAiTeacherEngineSnapshot(): AiTeacherEngineSnapshot {
   const layers = ATE_LAYER_CONTRACTS.map((l) => ({ ...l, notes: [...l.notes] }));
-  const capabilities = ATE_CAPABILITIES.map((c) => ({ ...c, notes: [...c.notes] }));
+  const capabilities = ATE_CAPABILITIES.map((c) => ({
+    ...c,
+    notes: [...c.notes],
+  }));
   return {
     schema: "success-os.ai-teacher-engine.v1",
     path: [...AI_TEACHER_ENGINE_PATH],
@@ -476,6 +563,7 @@ export function getAiTeacherEngineSnapshot(): AiTeacherEngineSnapshot {
       "Never invent curriculum facts; state uncertainty when ungrounded.",
       "Interactive Lesson Engine is the only lesson renderer.",
       "Voice and whiteboard are architecture-ready only in this PR.",
+      "Production turns require countryId, curriculumId, focusLessonId.",
     ],
     notes: [
       "PR #55 — AI Teacher Engine (ATE).",
@@ -485,6 +573,9 @@ export function getAiTeacherEngineSnapshot(): AiTeacherEngineSnapshot {
   };
 }
 
+/**
+ * Explicit demo runner — Jordan reference fixtures only inside demoMode.
+ */
 export function runAiTeacherEngineDemo(opts?: {
   studentId?: string;
   studentName?: string;
@@ -503,6 +594,7 @@ export function runAiTeacherEngineDemo(opts?: {
       opts?.focusLessonId || "JO-NATIONAL-G01-MATH-B01-U01-L01",
     language: "en",
     utterance: opts?.utterance || "I don't understand this.",
+    demoMode: true,
   });
 
   const ok =
@@ -528,5 +620,6 @@ export function runAiTeacherEngineDemo(opts?: {
     turn,
     aiGeneration: false,
     copiesCurricula: false,
+    demoMode: true as const,
   };
 }

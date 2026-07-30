@@ -22,7 +22,7 @@ Success OS needs a **virtual teacher**, not a chatbot: something that teaches, l
 
 4. **Reasoning Engine** selects pedagogical moves (style, pace, re-explain, recommendations) using memory, Knowledge Graph, Global Curriculum Registry, and UCE mappings.
 
-5. **Student Memory** persists name, language, curriculum, grade, subjects, completed/weak/strong skills, prior questions, goals, pace, style, and conversation history across turns.
+5. **Student Memory** persists name, language, curriculum, grade, subjects, completed/weak/strong skills, prior questions, goals, pace, style, and conversation history across turns in a durable store (`library/ai-teacher-engine/`, swap-ready for Firestore). Production turns are **country-agnostic** and require explicit curriculum context; Jordan fixtures may run only under explicit `demoMode`.
 
 6. **Safety:** never invent curriculum facts; ground in approved curriculum / verified books / platform KB; state uncertainty when ungrounded.
 

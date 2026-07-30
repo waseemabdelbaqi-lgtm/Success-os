@@ -66,8 +66,8 @@ function paceForIntent(
 export function reasonTeachingMove(input: ReasoningInput): ReasoningResult {
   const teachingStyle = styleForIntent(input.intent, input.teachingStyle);
   const learningPace = paceForIntent(input.intent, input.learningPace);
-  const topicEn = input.topicEn || "Fractions";
-  const topicAr = input.topicAr || "الكسور";
+  const topicEn = input.topicEn || "this lesson";
+  const topicAr = input.topicAr || "هذا الدرس";
   const g = input.grounding;
 
   let nextMove = "route_to_ile_package";
@@ -201,10 +201,10 @@ export function reasonTeachingMove(input: ReasoningInput): ReasoningResult {
 }
 
 function buildRecommendations(input: ReasoningInput): AteRecommendation[] {
-  const focus =
-    input.focusLessonId || "JO-NATIONAL-G01-MATH-B01-U01-L01";
-  const recs: AteRecommendation[] = [
-    {
+  const focus = input.focusLessonId || null;
+  const recs: AteRecommendation[] = [];
+  if (focus) {
+    recs.push({
       kind: "lesson",
       targetId: focus,
       label: L("Focus lesson", "الدرس الحالي"),
@@ -213,8 +213,8 @@ function buildRecommendations(input: ReasoningInput): AteRecommendation[] {
         "درس واعٍ بالمنهج لهذه الجلسة",
       ),
       ready: true,
-    },
-  ];
+    });
+  }
 
   const weak = input.weakSkillIds?.[0];
   if (weak) {

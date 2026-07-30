@@ -278,6 +278,8 @@ export type AteSessionContext = {
   multimodal?: MultimodalInput[];
   teachingStyle?: TeachingStyle;
   sessionId?: string;
+  /** When true, may seed reference fixtures. Production callers must omit. */
+  demoMode?: boolean;
 };
 
 export type AteLayerInvocation = {

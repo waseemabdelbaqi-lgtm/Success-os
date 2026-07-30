@@ -9,22 +9,18 @@
     "SUB-00001"
   ],
   "completedLessonIds": [],
-  "weakSkillIds": [
-    "SKL-00002"
-  ],
+  "weakSkillIds": [],
   "strongSkillIds": [],
   "previousQuestionIds": [
-    "turn_8588f12a463e"
+    "turn_cdae5d0b3bf9"
   ],
-  "learningGoals": [
-    "Master fractions before decimals"
-  ],
+  "learningGoals": [],
   "learningPace": "normal",
   "learningStyle": "mixed",
   "preferredTeachingStyle": "simplified",
   "conversationHistory": [
     {
-      "id": "turn_8588f12a463e",
+      "id": "turn_cdae5d0b3bf9",
       "role": "student",
       "text": "I don't understand this.",
       "language": "en",
@@ -41,10 +37,10 @@
       ],
       "grounded": true,
       "uncertaintyStated": false,
-      "createdAt": "2026-07-30T23:14:01.849Z"
+      "createdAt": "2026-07-30T23:32:04.761Z"
     },
     {
-      "id": "turn_6f1194ee4693",
+      "id": "turn_248d0a89cfd7",
       "role": "teacher",
       "text": "No problem.\nLet's explain it differently.",
       "language": "en",
@@ -52,9 +48,9 @@
       "affect": "engaged",
       "grounded": true,
       "uncertaintyStated": false,
-      "createdAt": "2026-07-30T23:14:01.849Z"
+      "createdAt": "2026-07-30T23:32:04.762Z"
     }
   ],
   "affectLast": "engaged",
-  "updatedAt": "2026-07-30T23:14:01.849Z"
+  "updatedAt": "2026-07-30T23:32:04.762Z"
 }

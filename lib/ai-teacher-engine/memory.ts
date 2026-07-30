@@ -1,5 +1,6 @@
 /**
- * Student Memory — remembers across conversations.
+ * Student Memory — durable across conversations (library/ai-teacher-engine).
+ * No country-specific defaults in production records.
  */
 import type {
   AffectSignal,
@@ -9,27 +10,30 @@ import type {
   StudentMemoryRecord,
   TeachingStyle,
 } from "@/types/ai-teacher-engine";
-
-const store = new Map<string, StudentMemoryRecord>();
+import {
+  deleteStudentMemory,
+  loadStudentMemory,
+  saveStudentMemory,
+} from "./store";
 
 function nowIso() {
   return new Date().toISOString();
 }
 
-function defaultMemory(studentId: string, studentName = "Ahmad"): StudentMemoryRecord {
+function emptyMemory(studentId: string, studentName = ""): StudentMemoryRecord {
   return {
     schema: "success-os.student-memory.v1",
     studentId,
-    studentName,
-    preferredLanguage: "en",
-    currentCurriculumId: "JO-NATIONAL",
-    gradeId: "GRD-00001",
-    subjectIds: ["SUB-00001"],
+    studentName: studentName.trim(),
+    preferredLanguage: "",
+    currentCurriculumId: null,
+    gradeId: null,
+    subjectIds: [],
     completedLessonIds: [],
-    weakSkillIds: ["SKL-00002"],
+    weakSkillIds: [],
     strongSkillIds: [],
     previousQuestionIds: [],
-    learningGoals: ["Master fractions before decimals"],
+    learningGoals: [],
     learningPace: "normal",
     learningStyle: "mixed",
     preferredTeachingStyle: "step_by_step",
@@ -37,86 +41,6 @@ function defaultMemory(studentId: string, studentName = "Ahmad"): StudentMemoryR
     affectLast: "neutral",
     updatedAt: nowIso(),
   };
-}
-
-export function getOrCreateStudentMemory(
-  studentId: string,
-  opts?: { studentName?: string },
-): StudentMemoryRecord {
-  const existing = store.get(studentId);
-  if (existing) {
-    if (opts?.studentName && opts.studentName !== existing.studentName) {
-      existing.studentName = opts.studentName;
-      existing.updatedAt = nowIso();
-    }
-    return cloneMemory(existing);
-  }
-  const created = defaultMemory(studentId, opts?.studentName || "Ahmad");
-  store.set(studentId, created);
-  return cloneMemory(created);
-}
-
-export function upsertStudentMemory(
-  patch: Partial<StudentMemoryRecord> & { studentId: string },
-): StudentMemoryRecord {
-  const current = store.get(patch.studentId) || defaultMemory(patch.studentId);
-  const next: StudentMemoryRecord = {
-    ...current,
-    ...patch,
-    schema: "success-os.student-memory.v1",
-    studentId: patch.studentId,
-    subjectIds: patch.subjectIds ?? current.subjectIds,
-    completedLessonIds: patch.completedLessonIds ?? current.completedLessonIds,
-    weakSkillIds: patch.weakSkillIds ?? current.weakSkillIds,
-    strongSkillIds: patch.strongSkillIds ?? current.strongSkillIds,
-    previousQuestionIds: patch.previousQuestionIds ?? current.previousQuestionIds,
-    learningGoals: patch.learningGoals ?? current.learningGoals,
-    conversationHistory: patch.conversationHistory ?? current.conversationHistory,
-    updatedAt: nowIso(),
-  };
-  store.set(patch.studentId, next);
-  return cloneMemory(next);
-}
-
-export function appendConversationTurn(
-  studentId: string,
-  turn: ConversationTurn,
-): StudentMemoryRecord {
-  const current = store.get(studentId) || defaultMemory(studentId);
-  const history = [...current.conversationHistory, turn].slice(-100);
-  const next: StudentMemoryRecord = {
-    ...current,
-    conversationHistory: history,
-    affectLast: turn.affect || current.affectLast,
-    previousQuestionIds:
-      turn.role === "student"
-        ? [...current.previousQuestionIds, turn.id].slice(-50)
-        : current.previousQuestionIds,
-    updatedAt: nowIso(),
-  };
-  store.set(studentId, next);
-  return cloneMemory(next);
-}
-
-export function updateLearningPreferences(
-  studentId: string,
-  prefs: {
-    learningPace?: LearningPace;
-    learningStyle?: LearningStyle;
-    preferredTeachingStyle?: TeachingStyle;
-    preferredLanguage?: string;
-    affectLast?: AffectSignal;
-  },
-): StudentMemoryRecord {
-  return upsertStudentMemory({ studentId, ...prefs });
-}
-
-export function resetStudentMemoryStore() {
-  store.clear();
-}
-
-export function listStudentMemoryIds(): string[] {
-  return [...store.keys()];
 }
 
 function cloneMemory(m: StudentMemoryRecord): StudentMemoryRecord {
@@ -133,4 +57,89 @@ function cloneMemory(m: StudentMemoryRecord): StudentMemoryRecord {
       multimodal: t.multimodal ? t.multimodal.map((x) => ({ ...x })) : undefined,
     })),
   };
+}
+
+export function getOrCreateStudentMemory(
+  studentId: string,
+  opts?: { studentName?: string },
+): StudentMemoryRecord {
+  const existing = loadStudentMemory(studentId);
+  if (existing) {
+    if (opts?.studentName && opts.studentName.trim() && opts.studentName !== existing.studentName) {
+      existing.studentName = opts.studentName.trim();
+      existing.updatedAt = nowIso();
+      return cloneMemory(saveStudentMemory(existing));
+    }
+    return cloneMemory(existing);
+  }
+  const created = emptyMemory(studentId, opts?.studentName || "");
+  return cloneMemory(saveStudentMemory(created));
+}
+
+export function upsertStudentMemory(
+  patch: Partial<StudentMemoryRecord> & { studentId: string },
+): StudentMemoryRecord {
+  const current =
+    loadStudentMemory(patch.studentId) || emptyMemory(patch.studentId);
+  const next: StudentMemoryRecord = {
+    ...current,
+    ...patch,
+    schema: "success-os.student-memory.v1",
+    studentId: patch.studentId,
+    subjectIds: patch.subjectIds ?? current.subjectIds,
+    completedLessonIds: patch.completedLessonIds ?? current.completedLessonIds,
+    weakSkillIds: patch.weakSkillIds ?? current.weakSkillIds,
+    strongSkillIds: patch.strongSkillIds ?? current.strongSkillIds,
+    previousQuestionIds: patch.previousQuestionIds ?? current.previousQuestionIds,
+    learningGoals: patch.learningGoals ?? current.learningGoals,
+    conversationHistory: patch.conversationHistory ?? current.conversationHistory,
+    updatedAt: nowIso(),
+  };
+  return cloneMemory(saveStudentMemory(next));
+}
+
+export function appendConversationTurn(
+  studentId: string,
+  turn: ConversationTurn,
+): StudentMemoryRecord {
+  const current = loadStudentMemory(studentId) || emptyMemory(studentId);
+  const history = [...current.conversationHistory, turn].slice(-100);
+  const next: StudentMemoryRecord = {
+    ...current,
+    conversationHistory: history,
+    affectLast: turn.affect || current.affectLast,
+    previousQuestionIds:
+      turn.role === "student"
+        ? [...current.previousQuestionIds, turn.id].slice(-50)
+        : current.previousQuestionIds,
+    updatedAt: nowIso(),
+  };
+  return cloneMemory(saveStudentMemory(next));
+}
+
+export function updateLearningPreferences(
+  studentId: string,
+  prefs: {
+    learningPace?: LearningPace;
+    learningStyle?: LearningStyle;
+    preferredTeachingStyle?: TeachingStyle;
+    preferredLanguage?: string;
+    affectLast?: AffectSignal;
+  },
+): StudentMemoryRecord {
+  return upsertStudentMemory({ studentId, ...prefs });
+}
+
+export function resetStudentMemoryStore() {
+  // Compatibility shim — clears one student only via delete when id known.
+  // Full store reset is test-only via resetAteStoreForTests().
+}
+
+export function clearStudentMemory(studentId: string): boolean {
+  return deleteStudentMemory(studentId);
+}
+
+export function listStudentMemoryIds(): string[] {
+  // Durable files are hashed; callers should use known student IDs.
+  return [];
 }

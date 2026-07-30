@@ -582,7 +582,8 @@
     "ATE is a virtual teacher, not a chatbot.",
     "Never invent curriculum facts; state uncertainty when ungrounded.",
     "Interactive Lesson Engine is the only lesson renderer.",
-    "Voice and whiteboard are architecture-ready only in this PR."
+    "Voice and whiteboard are architecture-ready only in this PR.",
+    "Production turns require countryId, curriculumId, focusLessonId."
   ],
   "notes": [
     "PR #55 — AI Teacher Engine (ATE).",

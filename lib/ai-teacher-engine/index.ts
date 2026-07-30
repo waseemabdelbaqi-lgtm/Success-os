@@ -10,16 +10,21 @@ export { ATE_CAPABILITIES } from "./capabilities";
 export {
   ATE_PERMISSIONS,
   ALL_ATE_PERMISSIONS,
-  ATE_ROLE_PERMISSIONS,
   getAtePermissionsForRole,
   roleHasAtePermission,
   hasAtePermission,
 } from "./permissions";
 export {
+  ATE_PLATFORM_PERMISSIONS,
+  ATE_PUBLIC_ACTIONS,
+  requireAtePermission,
+} from "./auth-guard";
+export {
   getOrCreateStudentMemory,
   upsertStudentMemory,
   appendConversationTurn,
   updateLearningPreferences,
+  clearStudentMemory,
   resetStudentMemoryStore,
   listStudentMemoryIds,
 } from "./memory";
@@ -39,6 +44,20 @@ export {
   getAiTeacherEngineSnapshot,
   runAiTeacherEngineDemo,
 } from "./orchestrator";
+export {
+  getAteMetrics,
+  loadTeachingTurn,
+  saveTeachingTurn,
+  appendAteAudit,
+  resetAteStoreForTests,
+  loadStudentMemory,
+} from "./store";
+export {
+  ateTurnRequestSchema,
+  ateMemoryWriteSchema,
+  ateDemoRequestSchema,
+  formatZodError,
+} from "./validation";
 
 export function aiTeacherEngineStatus() {
   return {
@@ -60,12 +79,14 @@ export function aiTeacherEngineStatus() {
     ],
     conversationEngine: true,
     studentMemory: true,
+    durableMemory: true,
     knowledgeGrounded: true,
     curriculumAware: true,
     lessonAwareRecommendations: true,
     voiceReadyArchitecture: true,
     whiteboardReadyArchitecture: true,
     multilingual: true,
+    countryAgnosticProductionPath: true,
     avatars: false,
     animations: false,
     aiVideos: false,

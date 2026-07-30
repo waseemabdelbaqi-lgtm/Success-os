@@ -21,31 +21,21 @@ Student
 ↓ Assessments
 ```
 
-## What this PR builds
+## Production vs demo
 
-| Area | Status |
-|------|--------|
-| Architecture & layer contracts | ✓ |
-| Conversation Engine (intents / controls / affect) | ✓ operational |
-| Reasoning Engine (curriculum-aware moves) | ✓ operational |
-| Student Memory | ✓ operational |
-| Knowledge-grounded replies + uncertainty | ✓ |
-| Lesson-aware recommendations | ✓ foundation |
-| Voice-ready contract | ✓ architecture |
-| Whiteboard-ready contract | ✓ architecture |
-| Multilingual (en/ar) reply surfaces | ✓ |
-| Permissions (`ate:*`) | ✓ |
-| APIs + admin dashboard | ✓ |
-| Avatars / animations / AI videos / live classrooms | ✗ out of scope |
+| Mode | Behavior |
+|------|----------|
+| **Production** (`demoMode` omitted/false) | Requires `studentId`, `countryId`, `curriculumId`, `focusLessonId`, `utterance`. No Jordan/name/skill defaults. |
+| **Demo** (`action=demo` or `demoMode: true`) | May seed Jordan reference fixtures for local demos only. |
 
-## Student controls
+## Durable storage
 
-Explain again · Explain differently · Easier example · Harder question · Translate · Summarize · Test me · Skip · Continue · Go back · Teach slowly · Teach faster · Don’t understand
+Runtime data (gitignored under `/library/`):
 
-## Multimodal contracts
-
-Text, voice, image, screenshot, homework photo, PDF, handwritten solution.  
-Future reserved: video conversations, live whiteboard.
+- `library/ai-teacher-engine/memory/`
+- `library/ai-teacher-engine/sessions/`
+- `library/ai-teacher-engine/audit/`
+- `library/ai-teacher-engine/metrics/`
 
 ## Safety
 
@@ -53,50 +43,44 @@ Future reserved: video conversations, live whiteboard.
 - Ground in approved curriculum, verified digital books, and platform KB.
 - When uncertain, state uncertainty instead of guessing.
 
+## Permissions
+
+Platform permissions in `types/permissions.ts`:
+
+`ate:session:start` · `ate:session:chat` · `ate:memory:read` · `ate:memory:write` · `ate:recommend` · `ate:admin` · `ate:voice:use` · `ate:whiteboard:use`
+
+Protected routes enforce via `requireAtePermission`. For local contract tests only: `ATE_DEV_OPEN=1`.
+
 ## APIs
 
-Base: `/api/ai-teacher-engine`
+Base: `/api/ai-teacher-engine`  
+Envelope: `{ success, data|error, meta }` via `withApiHandler`.
 
-| Method | Action | Purpose |
-|--------|--------|---------|
-| GET | `status` | Engine status |
-| GET | `snapshot` / `architecture` | Full ATE snapshot |
-| GET/POST | `demo` | Demo teaching turn (“I don’t understand”) |
-| GET/POST | `chat` / `turn` / `session` | Run a grounded teaching turn |
-| GET | `memory` | Read student memory |
-| POST | `memory` / `memory:write` | Update memory |
-| POST | `memory:reset` | Clear in-memory store |
-| GET | `recommend` | Lesson-aware recommendations |
-| GET | `permissions` | ATE permissions for a role |
-| GET | `voice` / `whiteboard` | Ready-architecture contracts |
+| Method | Action | Auth |
+|--------|--------|------|
+| GET | `status`, `snapshot`, `architecture`, `demo`, `voice`, `whiteboard`, `permissions` | Public |
+| GET/POST | `chat` / `turn` | `ate:session:chat` |
+| GET | `memory`, `session-record` | `ate:memory:read` |
+| POST | `memory` / `memory:write` | `ate:memory:write` |
+| POST | `memory:clear` | `ate:admin` |
+| GET | `recommend` | `ate:recommend` |
+| GET | `metrics` | `ate:admin` |
 
 Admin: `/admin/ai-teacher-engine`
 
 ## Validation
 
 ```bash
-npm run validate:ai-teacher-engine
+ATE_DEV_OPEN=1 npm run validate:ai-teacher-engine
 ```
 
-## Examples
+Runs contract + integration + API handler e2e scripts.
 
-- [`ai-teacher-engine.example.json`](../../content/demo/generated/ai-teacher-engine.example.json)
-- [`ate-teaching-turn.example.json`](../../content/demo/generated/ate-teaching-turn.example.json)
-- [`ate-student-memory.example.json`](../../content/demo/generated/ate-student-memory.example.json)
+## Protocol status
 
-## Integration points
+See [`reports/pr-55-protocol-verification.md`](./reports/pr-55-protocol-verification.md).  
+ATE-scoped gates are green; full-repo lint/typecheck/build remain blocked by pre-existing debt — PR is **not declared complete** under the Non-Negotiable Execution Protocol until those pass.
 
-| System | Role |
-|--------|------|
-| Global Curriculum Registry (#50.3) | Curriculum grounding |
-| UCE (#54) | Cross-curriculum equivalents / prereqs |
-| Knowledge Graph (#50.3) | Skill/lesson relationships |
-| ILE (#49) | Sole lesson runtime |
-| Digital Book Engine (#56) | Book section recommendations |
-| AI Lesson & Media (#57) | Verified video recommendations |
-| Assessment Engine (#58) | Practice / mini-quiz / assessments |
-| Learning Intelligence (#59) | Deeper intelligence on top of ATE |
+## Out of scope (mission)
 
-## Related
-
-S4S Intelligence Teacher greeting and re-explain flows remain available via the Student AI Learning Stack module and are invoked by ATE orchestration.
+Avatars · Animations · AI-generated videos · Live classrooms · Digital Book/Video/Assessment engines (#56–#58)

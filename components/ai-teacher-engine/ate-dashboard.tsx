@@ -74,8 +74,13 @@ export function AiTeacherEngineDashboard() {
       setError("");
       try {
         const res = await fetch("/api/ai-teacher-engine?action=demo");
-        const data = await res.json();
-        if (!data.ok) throw new Error(data.error || "Failed");
+        const payload = await res.json();
+        const data = payload.success ? payload.data : payload;
+        if (!res.ok || data.ok === false) {
+          throw new Error(
+            payload?.error?.message || data?.error || "Failed to load ATE demo",
+          );
+        }
         setSnapshot(data.snapshot);
         setTurn(data.turn);
       } catch (e) {
@@ -106,8 +111,8 @@ export function AiTeacherEngineDashboard() {
           AI Teacher Engine
         </h1>
         <p style={{ color: "#64748b", margin: "0.45rem 0 0", fontSize: 14, lineHeight: 1.5 }}>
-          Virtual teacher — not a chatbot. Teaches, listens, remembers, guides, and adapts.
-          Architecture, APIs, memory, and orchestration only.
+          Virtual teacher — not a chatbot. Durable memory, grounded turns, country-agnostic
+          production path. Demo action may seed the Jordan reference fixture only.
         </p>
         <p style={{ fontSize: 12, color: "#334155", margin: "0.55rem 0 0", lineHeight: 1.45 }}>
           Student → AI Teacher → Conversation → Reasoning → Student Memory → Knowledge Graph →
@@ -183,13 +188,13 @@ export function AiTeacherEngineDashboard() {
             {String(turn.teacherReply.uncertain)} · ILE: {turn.ilePackageId}
           </p>
           <p style={{ fontSize: 12, color: "#64748b", margin: "0.35rem 0 0" }}>
-            Memory: {turn.memory.studentName} · pace {turn.memory.learningPace} · history{" "}
-            {turn.memory.conversationHistory.length} · weak skills{" "}
+            Memory: {turn.memory.studentName || "(unnamed)"} · pace {turn.memory.learningPace} ·
+            history {turn.memory.conversationHistory.length} · weak skills{" "}
             {turn.memory.weakSkillIds.join(", ") || "—"}
           </p>
           <p style={{ fontSize: 12, color: "#0f766e", margin: "0.5rem 0 0" }}>
             Avatars/animations/AI videos/live classroom: not built. AI content generated:{" "}
-            {String(turn.aiContentGenerated)}.
+            {String(turn.aiContentGenerated)}. Durable store: library/ai-teacher-engine/
           </p>
         </section>
       ) : null}

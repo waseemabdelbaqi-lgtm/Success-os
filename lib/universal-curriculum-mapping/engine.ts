@@ -233,7 +233,7 @@ export function runUniversalCurriculumMapping(opts?: { reset?: boolean }) {
       searchDemo.counts.total >= 1 &&
       RELATION_TYPES.every((r) => snapshot.relationTypes.includes(r)) &&
       RELATION_TYPES.every((r) => (snapshot.counts.byRelation[r] || 0) >= 1),
-    schema: snapshot.schema as const,
+    schema: snapshot.schema,
     snapshot,
     pathwayFromJordanG8: pathwayHits,
     searchDemo,

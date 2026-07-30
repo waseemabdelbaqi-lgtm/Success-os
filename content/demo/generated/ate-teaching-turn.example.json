@@ -1,6 +1,6 @@
 {
   "schema": "success-os.ate-teaching-turn.v1",
-  "sessionId": "ate_5c8829c8ce803665",
+  "sessionId": "ate_757453a624881680",
   "studentId": "student_demo_001",
   "intent": "dont_understand",
   "affect": "confused",
@@ -54,18 +54,6 @@
         "confidence": 0.8
       },
       {
-        "kind": "uce_mapping",
-        "globalId": "LSN-01002",
-        "label": "Cross-curriculum equivalent",
-        "confidence": 0.75
-      },
-      {
-        "kind": "uce_mapping",
-        "globalId": "LSN-01003",
-        "label": "Cross-curriculum equivalent",
-        "confidence": 0.75
-      },
-      {
         "kind": "ile_package",
         "globalId": "ile_JO-NATIONAL-G01-MATH-B01-U01-L01",
         "label": "ILE package",
@@ -91,45 +79,6 @@
       "reason": {
         "en": "Curriculum-aware lesson for this session",
         "ar": "درس واعٍ بالمنهج لهذه الجلسة"
-      },
-      "ready": true
-    },
-    {
-      "kind": "prerequisite_lesson",
-      "targetId": "SKL-00002",
-      "label": {
-        "en": "Prerequisite / weak skill review",
-        "ar": "مراجعة متطلب / مهارة ضعيفة"
-      },
-      "reason": {
-        "en": "Student memory marks this skill as weak",
-        "ar": "ذاكرة الطالب تعتبر هذه المهارة ضعيفة"
-      },
-      "ready": true
-    },
-    {
-      "kind": "lesson",
-      "targetId": "LSN-01002",
-      "label": {
-        "en": "Mapped lesson (equivalent)",
-        "ar": "درس مواءَم (equivalent)"
-      },
-      "reason": {
-        "en": "UCE mapping confidence 0.86",
-        "ar": "ثقة مواءمة UCE 0.86"
-      },
-      "ready": true
-    },
-    {
-      "kind": "lesson",
-      "targetId": "LSN-01003",
-      "label": {
-        "en": "Mapped lesson (advanced)",
-        "ar": "درس مواءَم (advanced)"
-      },
-      "reason": {
-        "en": "UCE mapping confidence 0.7",
-        "ar": "ثقة مواءمة UCE 0.7"
       },
       "ready": true
     },
@@ -187,22 +136,18 @@
       "SUB-00001"
     ],
     "completedLessonIds": [],
-    "weakSkillIds": [
-      "SKL-00002"
-    ],
+    "weakSkillIds": [],
     "strongSkillIds": [],
     "previousQuestionIds": [
-      "turn_8588f12a463e"
+      "turn_cdae5d0b3bf9"
     ],
-    "learningGoals": [
-      "Master fractions before decimals"
-    ],
+    "learningGoals": [],
     "learningPace": "normal",
     "learningStyle": "mixed",
     "preferredTeachingStyle": "simplified",
     "conversationHistory": [
       {
-        "id": "turn_8588f12a463e",
+        "id": "turn_cdae5d0b3bf9",
         "role": "student",
         "text": "I don't understand this.",
         "language": "en",
@@ -219,10 +164,10 @@
         ],
         "grounded": true,
         "uncertaintyStated": false,
-        "createdAt": "2026-07-30T23:14:01.849Z"
+        "createdAt": "2026-07-30T23:32:04.761Z"
       },
       {
-        "id": "turn_6f1194ee4693",
+        "id": "turn_248d0a89cfd7",
         "role": "teacher",
         "text": "No problem.\nLet's explain it differently.",
         "language": "en",
@@ -230,11 +175,11 @@
         "affect": "engaged",
         "grounded": true,
         "uncertaintyStated": false,
-        "createdAt": "2026-07-30T23:14:01.849Z"
+        "createdAt": "2026-07-30T23:32:04.762Z"
       }
     ],
     "affectLast": "engaged",
-    "updatedAt": "2026-07-30T23:14:01.849Z"
+    "updatedAt": "2026-07-30T23:32:04.762Z"
   },
   "voice": {
     "schema": "success-os.ate-voice.v1",
@@ -292,7 +237,8 @@
         "curriculumId": "JO-NATIONAL",
         "gradeId": "GRD-00001",
         "language": "en",
-        "utterance": "I don't understand this."
+        "utterance": "I don't understand this.",
+        "demoMode": true
       },
       "durationMs": 0
     },
@@ -317,7 +263,7 @@
         "aiVideos": false,
         "liveClassroom": false
       },
-      "durationMs": 1
+      "durationMs": 0
     },
     {
       "layerId": "conversation_engine",
@@ -339,7 +285,7 @@
         "llm": false,
         "controlsRecognized": true
       },
-      "durationMs": 0
+      "durationMs": 1
     },
     {
       "layerId": "reasoning_engine",
@@ -358,7 +304,7 @@
           "Question",
           "Checks understanding"
         ],
-        "recommendationCount": 7,
+        "recommendationCount": 4,
         "generatesContent": false
       },
       "durationMs": 1
@@ -373,16 +319,15 @@
         "preferredLanguage": "en",
         "currentCurriculumId": "JO-NATIONAL",
         "gradeId": "GRD-00001",
-        "weakSkillIds": [
-          "SKL-00002"
-        ],
+        "weakSkillIds": [],
         "strongSkillIds": [],
         "learningPace": "normal",
         "learningStyle": "mixed",
         "historyLength": 2,
-        "affectLast": "engaged"
+        "affectLast": "engaged",
+        "durable": true
       },
-      "durationMs": 0
+      "durationMs": 2
     },
     {
       "layerId": "knowledge_graph",
@@ -415,19 +360,9 @@
       "ok": true,
       "output": {
         "curriculumId": "JO-NATIONAL",
+        "countryId": "JO",
         "focusLessonId": "JO-NATIONAL-G01-MATH-B01-U01-L01",
-        "uceEquivalents": [
-          {
-            "globalId": "LSN-01002",
-            "relation": "equivalent",
-            "confidence": 0.86
-          },
-          {
-            "globalId": "LSN-01003",
-            "relation": "advanced",
-            "confidence": 0.7
-          }
-        ],
+        "uceEquivalents": [],
         "inventsFacts": false
       },
       "durationMs": 0
@@ -488,6 +423,7 @@
     "AI Teacher Engine orchestration — not a chatbot.",
     "Grounded in curriculum registry, knowledge graph, and ILE packages.",
     "No avatars, animations, AI videos, or live classrooms.",
+    "demoMode=true — reference fixtures may be seeded.",
     "Never invent curriculum facts.",
     "Always ground explanations in the approved curriculum, verified digital books, and platform knowledge base.",
     "When uncertain, clearly state uncertainty instead of guessing."

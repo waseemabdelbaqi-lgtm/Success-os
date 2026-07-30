@@ -1,241 +1,265 @@
-import { NextResponse } from "next/server";
+import type { ZodError } from "zod";
 import {
   aiTeacherEngineStatus,
+  clearStudentMemory,
   getAiTeacherEngineSnapshot,
   getAtePermissionsForRole,
   getOrCreateStudentMemory,
-  resetStudentMemoryStore,
+  loadTeachingTurn,
+  requireAtePermission,
+  ATE_PLATFORM_PERMISSIONS,
   runAiTeacherEngineDemo,
   runAiTeacherTurn,
   upsertStudentMemory,
+  getAteMetrics,
+  ateDemoRequestSchema,
+  ateMemoryWriteSchema,
+  ateTurnRequestSchema,
+  formatZodError,
+  appendAteAudit,
 } from "@/lib/ai-teacher-engine";
+import { withApiHandler, jsonResponse } from "@/lib/api/handler";
+import {
+  createErrorResponse,
+  createSuccessResponse,
+} from "@/lib/api/response";
+import { AppError } from "@/lib/logger";
 import { USER_ROLES, type UserRole } from "@/types/roles";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
-/**
- * AI Teacher Engine API — architecture, memory, orchestration.
- * Never builds avatars, animations, AI videos, or live classrooms.
- * Never invents curriculum facts.
- */
-export async function GET(req: Request) {
+function pathNote() {
+  return "Student → AI Teacher → Conversation → Reasoning → Student Memory → Knowledge Graph → Curriculum Registry → ILE → Digital Books → Videos → Assessments";
+}
+
+function validationError(error: ZodError) {
+  return jsonResponse(
+    createErrorResponse("VALIDATION_ERROR", "Invalid AI Teacher Engine request", {
+      issues: formatZodError(error),
+    }),
+    422,
+  );
+}
+
+export const GET = withApiHandler(async (req: Request) => {
   const url = new URL(req.url);
   const action = url.searchParams.get("action") || "status";
 
   if (action === "status") {
-    return NextResponse.json({ ok: true, ...aiTeacherEngineStatus() });
+    return jsonResponse(createSuccessResponse({ ...aiTeacherEngineStatus() }));
   }
 
   if (action === "snapshot" || action === "architecture") {
-    const snapshot = getAiTeacherEngineSnapshot();
-    return NextResponse.json({
-      ok: true,
-      snapshot,
-      note: pathNote(),
-    });
+    return jsonResponse(
+      createSuccessResponse({
+        snapshot: getAiTeacherEngineSnapshot(),
+        note: pathNote(),
+      }),
+    );
+  }
+
+  if (action === "metrics") {
+    await requireAtePermission(ATE_PLATFORM_PERMISSIONS.ADMIN);
+    return jsonResponse(createSuccessResponse({ metrics: getAteMetrics() }));
   }
 
   if (action === "demo") {
-    const result = runAiTeacherEngineDemo({
+    const parsed = ateDemoRequestSchema.safeParse({
       studentId: url.searchParams.get("studentId") || undefined,
       studentName: url.searchParams.get("studentName") || undefined,
       utterance: url.searchParams.get("utterance") || undefined,
       focusLessonId: url.searchParams.get("focusLessonId") || undefined,
     });
-    return NextResponse.json({
-      ...result,
-      ok: result.ok,
-      note: pathNote(),
-    });
+    if (!parsed.success) return validationError(parsed.error);
+    const result = runAiTeacherEngineDemo(parsed.data);
+    return jsonResponse(
+      createSuccessResponse({
+        ...result,
+        note: pathNote(),
+      }),
+    );
   }
 
   if (action === "chat" || action === "session" || action === "turn") {
-    const turn = runAiTeacherTurn({
-      studentId: url.searchParams.get("studentId") || "student_demo_001",
-      studentName: url.searchParams.get("studentName") || "Ahmad",
-      countryId: url.searchParams.get("countryId") || "JO",
-      curriculumId: url.searchParams.get("curriculumId") || "JO-NATIONAL",
-      gradeId: url.searchParams.get("gradeId") || "GRD-00001",
-      subjectGlobalId: url.searchParams.get("subjectGlobalId") || "SUB-00001",
-      focusLessonId:
-        url.searchParams.get("focusLessonId") ||
-        "JO-NATIONAL-G01-MATH-B01-U01-L01",
-      language: (url.searchParams.get("language") as "ar" | "en") || "en",
-      utterance:
-        url.searchParams.get("utterance") || "Help me with this lesson",
-      teachingStyle:
-        (url.searchParams.get("teachingStyle") as
-          | "direct"
-          | "socratic"
-          | "example_first"
-          | "visual"
-          | "step_by_step"
-          | "story"
-          | "simplified") || undefined,
+    await requireAtePermission(ATE_PLATFORM_PERMISSIONS.SESSION_CHAT);
+    const parsed = ateTurnRequestSchema.safeParse({
+      studentId: url.searchParams.get("studentId"),
+      studentName: url.searchParams.get("studentName") || undefined,
+      countryId: url.searchParams.get("countryId"),
+      curriculumId: url.searchParams.get("curriculumId"),
+      gradeId: url.searchParams.get("gradeId") || undefined,
+      subjectGlobalId: url.searchParams.get("subjectGlobalId") || undefined,
+      focusLessonId: url.searchParams.get("focusLessonId"),
+      language: url.searchParams.get("language") || undefined,
+      utterance: url.searchParams.get("utterance"),
+      teachingStyle: url.searchParams.get("teachingStyle") || undefined,
       sessionId: url.searchParams.get("sessionId") || undefined,
+      demoMode: url.searchParams.get("demoMode") === "true",
     });
-    return NextResponse.json({
-      ok: true,
-      turn,
-      note: "Grounded teaching turn — ILE package referenced; no AI media generated",
-    });
+    if (!parsed.success) return validationError(parsed.error);
+    const turn = runAiTeacherTurn(parsed.data);
+    return jsonResponse(
+      createSuccessResponse({
+        turn,
+        note: "Grounded teaching turn — durable session saved; no AI media generated",
+      }),
+    );
   }
 
   if (action === "memory") {
-    const studentId = url.searchParams.get("studentId") || "student_demo_001";
+    await requireAtePermission(ATE_PLATFORM_PERMISSIONS.MEMORY_READ);
+    const studentId = url.searchParams.get("studentId");
+    if (!studentId) {
+      throw new AppError({
+        code: "VALIDATION_ERROR",
+        message: "studentId is required",
+        statusCode: 422,
+      });
+    }
     const memory = getOrCreateStudentMemory(studentId, {
       studentName: url.searchParams.get("studentName") || undefined,
     });
-    return NextResponse.json({ ok: true, memory });
+    return jsonResponse(createSuccessResponse({ memory }));
+  }
+
+  if (action === "session-record") {
+    await requireAtePermission(ATE_PLATFORM_PERMISSIONS.MEMORY_READ);
+    const sessionId = url.searchParams.get("sessionId");
+    if (!sessionId) {
+      throw new AppError({
+        code: "VALIDATION_ERROR",
+        message: "sessionId is required",
+        statusCode: 422,
+      });
+    }
+    const turn = loadTeachingTurn(sessionId);
+    if (!turn) {
+      throw new AppError({
+        code: "NOT_FOUND",
+        message: "Teaching turn session not found",
+        statusCode: 404,
+      });
+    }
+    return jsonResponse(createSuccessResponse({ turn }));
   }
 
   if (action === "recommend") {
-    const turn = runAiTeacherTurn({
-      studentId: url.searchParams.get("studentId") || "student_demo_001",
-      studentName: url.searchParams.get("studentName") || "Ahmad",
-      curriculumId: url.searchParams.get("curriculumId") || "JO-NATIONAL",
-      focusLessonId:
-        url.searchParams.get("focusLessonId") ||
-        "JO-NATIONAL-G01-MATH-B01-U01-L01",
+    await requireAtePermission(ATE_PLATFORM_PERMISSIONS.RECOMMEND);
+    const parsed = ateTurnRequestSchema.safeParse({
+      studentId: url.searchParams.get("studentId"),
+      studentName: url.searchParams.get("studentName") || undefined,
+      countryId: url.searchParams.get("countryId"),
+      curriculumId: url.searchParams.get("curriculumId"),
+      focusLessonId: url.searchParams.get("focusLessonId"),
       utterance: url.searchParams.get("utterance") || "Recommend a lesson",
       language: "en",
+      demoMode: url.searchParams.get("demoMode") === "true",
     });
-    return NextResponse.json({
-      ok: true,
-      recommendations: turn.recommendations,
-      ilePackageId: turn.ilePackageId,
-      note: "Lesson-aware recommendations; books/videos/quizzes may be reserved",
-    });
+    if (!parsed.success) return validationError(parsed.error);
+    const turn = runAiTeacherTurn(parsed.data);
+    return jsonResponse(
+      createSuccessResponse({
+        recommendations: turn.recommendations,
+        ilePackageId: turn.ilePackageId,
+        note: "Lesson-aware recommendations; books/videos/quizzes may be reserved",
+      }),
+    );
   }
 
   if (action === "permissions") {
     const role = (url.searchParams.get("role") || USER_ROLES.STUDENT) as UserRole;
-    return NextResponse.json({
-      ok: true,
-      role,
-      permissions: getAtePermissionsForRole(role),
-    });
+    return jsonResponse(
+      createSuccessResponse({
+        role,
+        permissions: getAtePermissionsForRole(role),
+      }),
+    );
   }
 
   if (action === "voice") {
-    const snapshot = getAiTeacherEngineSnapshot();
-    return NextResponse.json({ ok: true, voice: snapshot.voice });
+    return jsonResponse(
+      createSuccessResponse({ voice: getAiTeacherEngineSnapshot().voice }),
+    );
   }
 
   if (action === "whiteboard") {
-    const snapshot = getAiTeacherEngineSnapshot();
-    return NextResponse.json({ ok: true, whiteboard: snapshot.whiteboard });
+    return jsonResponse(
+      createSuccessResponse({
+        whiteboard: getAiTeacherEngineSnapshot().whiteboard,
+      }),
+    );
   }
 
-  return NextResponse.json({ ok: false, error: "Unknown action" }, { status: 400 });
-}
+  return jsonResponse(
+    createErrorResponse("VALIDATION_ERROR", "Unknown action", { action }),
+    400,
+  );
+});
 
-function pathNote() {
-  return "Student → AI Teacher → Conversation → Reasoning → Student Memory → Knowledge Graph → Curriculum Registry → ILE → Digital Books → Videos → Assessments";
-}
-
-export async function POST(req: Request) {
+export const POST = withApiHandler(async (req: Request) => {
   let body: Record<string, unknown> = {};
   try {
     body = (await req.json()) as Record<string, unknown>;
   } catch {
-    body = {};
+    throw new AppError({
+      code: "VALIDATION_ERROR",
+      message: "Request body must be valid JSON",
+      statusCode: 422,
+    });
   }
+
   const action = String(body.action || "");
 
   if (action === "chat" || action === "turn" || action === "run") {
-    const turn = runAiTeacherTurn({
-      studentId:
-        typeof body.studentId === "string" ? body.studentId : "student_demo_001",
-      studentName:
-        typeof body.studentName === "string" ? body.studentName : "Ahmad",
-      countryId: typeof body.countryId === "string" ? body.countryId : "JO",
-      curriculumId:
-        typeof body.curriculumId === "string" ? body.curriculumId : "JO-NATIONAL",
-      gradeId: typeof body.gradeId === "string" ? body.gradeId : "GRD-00001",
-      subjectGlobalId:
-        typeof body.subjectGlobalId === "string"
-          ? body.subjectGlobalId
-          : "SUB-00001",
-      focusLessonId:
-        typeof body.focusLessonId === "string"
-          ? body.focusLessonId
-          : "JO-NATIONAL-G01-MATH-B01-U01-L01",
-      language: body.language === "ar" ? "ar" : "en",
-      utterance:
-        typeof body.utterance === "string"
-          ? body.utterance
-          : "I don't understand this.",
-      sessionId: typeof body.sessionId === "string" ? body.sessionId : undefined,
-    });
-    return NextResponse.json({
-      ok: true,
-      turn,
-      note: "ATE teaching turn — grounded, no avatars/animations/AI videos",
-    });
+    await requireAtePermission(ATE_PLATFORM_PERMISSIONS.SESSION_CHAT);
+    const parsed = ateTurnRequestSchema.safeParse(body);
+    if (!parsed.success) return validationError(parsed.error);
+    const turn = runAiTeacherTurn(parsed.data);
+    return jsonResponse(
+      createSuccessResponse({
+        turn,
+        note: "ATE teaching turn — grounded, durable, no avatars/animations/AI videos",
+      }),
+    );
   }
 
   if (action === "memory:write" || action === "memory") {
-    const studentId =
-      typeof body.studentId === "string" ? body.studentId : "student_demo_001";
-    const memory = upsertStudentMemory({
-      studentId,
-      studentName:
-        typeof body.studentName === "string" ? body.studentName : undefined,
-      preferredLanguage:
-        typeof body.preferredLanguage === "string"
-          ? body.preferredLanguage
-          : undefined,
-      currentCurriculumId:
-        typeof body.currentCurriculumId === "string"
-          ? body.currentCurriculumId
-          : undefined,
-      gradeId: typeof body.gradeId === "string" ? body.gradeId : undefined,
-      learningPace:
-        body.learningPace === "slow" ||
-        body.learningPace === "normal" ||
-        body.learningPace === "fast"
-          ? body.learningPace
-          : undefined,
-      learningStyle:
-        typeof body.learningStyle === "string"
-          ? (body.learningStyle as
-              | "visual"
-              | "auditory"
-              | "kinesthetic"
-              | "reading_writing"
-              | "mixed")
-          : undefined,
-      learningGoals: Array.isArray(body.learningGoals)
-        ? body.learningGoals.filter((g): g is string => typeof g === "string")
-        : undefined,
-      weakSkillIds: Array.isArray(body.weakSkillIds)
-        ? body.weakSkillIds.filter((g): g is string => typeof g === "string")
-        : undefined,
-      strongSkillIds: Array.isArray(body.strongSkillIds)
-        ? body.strongSkillIds.filter((g): g is string => typeof g === "string")
-        : undefined,
-    });
-    return NextResponse.json({ ok: true, memory });
+    await requireAtePermission(ATE_PLATFORM_PERMISSIONS.MEMORY_WRITE);
+    const parsed = ateMemoryWriteSchema.safeParse(body);
+    if (!parsed.success) return validationError(parsed.error);
+    const memory = upsertStudentMemory(parsed.data);
+    return jsonResponse(createSuccessResponse({ memory }));
   }
 
-  if (action === "memory:reset") {
-    resetStudentMemoryStore();
-    return NextResponse.json({ ok: true, reset: true });
+  if (action === "memory:clear") {
+    await requireAtePermission(ATE_PLATFORM_PERMISSIONS.ADMIN);
+    const studentId = typeof body.studentId === "string" ? body.studentId : "";
+    if (!studentId) {
+      throw new AppError({
+        code: "VALIDATION_ERROR",
+        message: "studentId is required to clear memory",
+        statusCode: 422,
+      });
+    }
+    const cleared = clearStudentMemory(studentId);
+    appendAteAudit({
+      kind: "memory.clear",
+      studentId,
+      ok: cleared,
+    });
+    return jsonResponse(createSuccessResponse({ cleared, studentId }));
   }
 
   if (action === "demo") {
-    const result = runAiTeacherEngineDemo({
-      studentId: typeof body.studentId === "string" ? body.studentId : undefined,
-      studentName:
-        typeof body.studentName === "string" ? body.studentName : undefined,
-      utterance: typeof body.utterance === "string" ? body.utterance : undefined,
-      focusLessonId:
-        typeof body.focusLessonId === "string" ? body.focusLessonId : undefined,
-    });
-    return NextResponse.json({ ...result, ok: result.ok });
+    const parsed = ateDemoRequestSchema.safeParse(body);
+    if (!parsed.success) return validationError(parsed.error);
+    const result = runAiTeacherEngineDemo(parsed.data);
+    return jsonResponse(createSuccessResponse(result));
   }
 
-  return NextResponse.json({ ok: false, error: "Unknown action" }, { status: 400 });
-}
+  return jsonResponse(
+    createErrorResponse("VALIDATION_ERROR", "Unknown action", { action }),
+    400,
+  );
+});

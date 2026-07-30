@@ -61,8 +61,8 @@ export async function GET(req: Request) {
       focusLessonId: url.searchParams.get("focusLessonId") || undefined,
     });
     return NextResponse.json({
-      ok: result.ok,
       ...result,
+      ok: result.ok,
       note: snapshotNote(),
     });
   }
