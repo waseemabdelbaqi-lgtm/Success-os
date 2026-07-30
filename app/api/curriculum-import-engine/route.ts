@@ -18,6 +18,7 @@ import {
   resolveCountrySubject,
   getCrossCountryMathExamples,
   getGlobalSkillRegistrySnapshot,
+  getMathSkillPathway,
   buildStudentSkillProgress,
   buildJordanDemoStudentSkillProgress,
   buildJordanMathDependencyExample,
@@ -67,7 +68,16 @@ export async function GET(req: Request) {
     return NextResponse.json({
       ok: true,
       registry: getGlobalSkillRegistrySnapshot(),
-      note: "SKL-00001 Arithmetic … SKL-00008 Critical Thinking — append-only global skill ids",
+      note: "SKL-00001…SKL-00012 — append-only. Math pathway: Fractions → Decimals → Percentages → Algebra → Functions",
+    });
+  }
+  if (action === "skill-pathway") {
+    const pathway = getMathSkillPathway();
+    return NextResponse.json({
+      ok: true,
+      pathway,
+      note: "Fractions → Decimals → Percentages → Algebra → Functions",
+      displayPath: pathway.displayPath,
     });
   }
   if (action === "lesson-dependency") {

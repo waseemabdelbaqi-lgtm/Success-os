@@ -1,0 +1,31 @@
+{
+  "schema": "success-os.global-skill-registry.v1/pathway",
+  "id": "pathway_math_fractions_to_functions",
+  "note": "Fractions → Decimals → Percentages → Algebra → Functions",
+  "path": [
+    "SKL-00002",
+    "SKL-00009",
+    "SKL-00010",
+    "SKL-00011",
+    "SKL-00012"
+  ],
+  "labels": ["Fractions", "Decimals", "Percentages", "Algebra", "Functions"],
+  "displayPath": [
+    "Functions",
+    "depends on",
+    "Algebra",
+    "depends on",
+    "Percentages",
+    "depends on",
+    "Decimals",
+    "depends on",
+    "Fractions"
+  ],
+  "edges": [
+    { "skillId": "SKL-00009", "dependsOn": "SKL-00002", "kind": "pathway" },
+    { "skillId": "SKL-00010", "dependsOn": "SKL-00009", "kind": "pathway" },
+    { "skillId": "SKL-00011", "dependsOn": "SKL-00010", "kind": "pathway" },
+    { "skillId": "SKL-00012", "dependsOn": "SKL-00011", "kind": "pathway" }
+  ],
+  "unlockOrder": "Complete Fractions before Decimals before Percentages before Algebra before Functions"
+}

@@ -30,7 +30,9 @@ import {
 import {
   defaultSkillIdsForSubject,
   getGlobalSkillRegistrySnapshot,
+  getMathSkillPathway,
   listGlobalSkills,
+  MATH_SKILL_PATHWAY_IDS,
   resetGlobalSkillRegistry,
 } from "./hierarchy/global-skill-registry";
 import {
@@ -66,7 +68,9 @@ export {
   resolveCountrySubject,
   getCrossCountryMathExamples,
   getGlobalSkillRegistrySnapshot,
+  getMathSkillPathway,
   listGlobalSkills,
+  MATH_SKILL_PATHWAY_IDS,
   resetGlobalSkillRegistry,
   defaultSkillIdsForSubject,
   buildStudentSkillProgress,

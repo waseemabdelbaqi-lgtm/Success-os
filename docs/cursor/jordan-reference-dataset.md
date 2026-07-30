@@ -98,11 +98,34 @@ Country-agnostic skills. Lessons store `skills: ["SKL-00001", …]`.
 | `SKL-00006` | Reading | SUB-00005 / SUB-00006 |
 | `SKL-00007` | Writing | SUB-00005 / SUB-00006 |
 | `SKL-00008` | Critical Thinking | cross-cutting |
+| `SKL-00009` | Decimals | SUB-00001 Mathematics |
+| `SKL-00010` | Percentages | SUB-00001 Mathematics |
+| `SKL-00011` | Algebra | SUB-00001 Mathematics |
+| `SKL-00012` | Functions | SUB-00001 Mathematics |
+
+### Math skill pathway
+
+```
+Fractions
+↓
+Decimals
+↓
+Percentages
+↓
+Algebra
+↓
+Functions
+```
+
+Ids: `SKL-00002` → `SKL-00009` → `SKL-00010` → `SKL-00011` → `SKL-00012`  
+(Each skill `dependsOn` the previous; Fractions also depends on Arithmetic.)
 
 Schema: `success-os.global-skill-registry.v1`  
 Module: `lib/curriculum-import-engine/hierarchy/global-skill-registry.ts`  
-Sample: [`global-skill-registry.example.json`](../../content/demo/generated/global-skill-registry.example.json)  
-API: `GET /api/curriculum-import-engine?action=global-skill-registry`
+Samples: [`global-skill-registry.example.json`](../../content/demo/generated/global-skill-registry.example.json), [`skill-pathway.example.json`](../../content/demo/generated/skill-pathway.example.json)  
+API:
+- `GET /api/curriculum-import-engine?action=global-skill-registry`
+- `GET /api/curriculum-import-engine?action=skill-pathway`
 
 Rule: **append-only** — never reuse a retired `SKL-XXXXX` id.
 

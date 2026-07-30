@@ -248,6 +248,9 @@ export function CurriculumImportDashboard(): ReactNode {
         <p style={{ fontSize: 12, color: "#475569", margin: "0.25rem 0 0" }}>
           Lesson → depends on → Lesson → depends on → Lesson
         </p>
+        <p style={{ fontSize: 12, color: "#475569", margin: "0.25rem 0 0" }}>
+          Fractions → Decimals → Percentages → Algebra → Functions
+        </p>
         {notice ? (
           <p style={{ color: "#0f766e", fontSize: 13, margin: "0.5rem 0 0" }}>{notice}</p>
         ) : null}
