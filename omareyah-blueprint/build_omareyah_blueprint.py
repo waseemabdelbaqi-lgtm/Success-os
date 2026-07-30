@@ -65,29 +65,45 @@ def ensure_dirs() -> None:
 # ===================== Visual assets =====================
 
 def create_watermark() -> Path:
-    path = ASSETS / "success4sure_watermark.png"
-    w, h = 1200, 700
-    img = Image.new("RGBA", (w, h), (255, 255, 255, 0))
-    draw = ImageDraw.Draw(img)
-    try:
-        font_big = ImageFont.truetype(str(FONTS / "Amiri-Bold.ttf"), 72)
-        font_small = ImageFont.truetype("/usr/share/fonts/truetype/liberation/LiberationSerif-Regular.ttf", 28)
-    except OSError:
-        font_big = ImageFont.load_default()
-        font_small = font_big
+    """Build soft background watermark from the official Success 4 Sure logo."""
+    import numpy as np
 
-    text1 = "SUCCESS 4 SURE"
-    text2 = "Strategic Implementation Partner"
-    bbox1 = draw.textbbox((0, 0), text1, font=font_big)
-    bbox2 = draw.textbbox((0, 0), text2, font=font_small)
-    x1 = (w - (bbox1[2] - bbox1[0])) // 2
-    x2 = (w - (bbox2[2] - bbox2[0])) // 2
-    y1 = h // 2 - 50
-    draw.text((x1, y1), text1, font=font_big, fill=(*BURGUNDY, 42))
-    draw.text((x2, y1 + 85), text2, font=font_small, fill=(*GOLD, 48))
-    # thin gold frame suggestion
-    draw.rectangle([40, 40, w - 40, h - 40], outline=(*GOLD, 28), width=2)
-    img.save(path)
+    path = ASSETS / "success4sure_watermark.png"
+    logo_src = Path(__file__).resolve().parents[1] / "public" / "brand" / "success4sure-logo-premium.webp"
+    jpeg_src = Path(__file__).resolve().parents[1] / "public" / "brand" / "success4sure-logo.jpeg"
+    src = logo_src if logo_src.exists() else jpeg_src
+    if not src.exists():
+        # fallback text watermark
+        w, h = 1200, 700
+        img = Image.new("RGBA", (w, h), (255, 255, 255, 0))
+        draw = ImageDraw.Draw(img)
+        font_big = ImageFont.truetype(str(FONTS / "Amiri-Bold.ttf"), 72)
+        draw.text((200, 280), "SUCCESS 4 SURE", font=font_big, fill=(*BURGUNDY, 40))
+        img.save(path)
+        return path
+
+    im = Image.open(src).convert("RGBA")
+    arr = np.array(im)
+    # punch out cream/white background
+    light = (arr[:, :, 0] > 228) & (arr[:, :, 1] > 218) & (arr[:, :, 2] > 195)
+    arr[light, 3] = 0
+    mask = arr[:, :, 3] > 0
+    arr[mask, 3] = np.clip((arr[mask, 3].astype(float) * 0.20), 0, 48).astype(np.uint8)
+    logo = Image.fromarray(arr)
+
+    # also save crisp logo (transparent bg) for cover
+    crisp = np.array(Image.open(src).convert("RGBA"))
+    light2 = (crisp[:, :, 0] > 228) & (crisp[:, :, 1] > 218) & (crisp[:, :, 2] > 195)
+    crisp[light2, 3] = 0
+    Image.fromarray(crisp).save(ASSETS / "success4sure_logo.png")
+    logo.save(ASSETS / "success4sure_logo_wm.png")
+
+    # wide page watermark canvas
+    canvas = Image.new("RGBA", (1400, 900), (255, 255, 255, 0))
+    lw = 700
+    logo_r = logo.resize((lw, lw), Image.Resampling.LANCZOS)
+    canvas.alpha_composite(logo_r, ((1400 - lw) // 2, (900 - lw) // 2 - 20))
+    canvas.save(path)
     return path
 
 
@@ -228,11 +244,11 @@ def create_charts() -> dict[str, Path]:
     ax.set_ylim(0, 3)
     ax.axis("off")
     layers = [
-        (0.3, "تشخيص", "بيانات · زيارات · مقابلات"),
-        (2.2, "تصميم", "أولويات · حوكمة · خطة"),
+        (7.9, "تشخيص", "بيانات · زيارات · مقابلات"),
+        (6.0, "تصميم", "أولويات · حوكمة · خطة"),
         (4.1, "تنفيذ", "برامج · فرق · إيقاع"),
-        (6.0, "قياس", "مؤشرات · مراجعات"),
-        (7.9, "تحسين", "دورة مستمرة"),
+        (2.2, "قياس", "مؤشرات · مراجعات"),
+        (0.3, "تحسين", "دورة مستمرة"),
     ]
     for i, (x0, title, sub) in enumerate(layers):
         color = f"#{BURGUNDY_HEX}" if i % 2 == 0 else f"#{GOLD_HEX}"
@@ -242,11 +258,11 @@ def create_charts() -> dict[str, Path]:
         ax.text(x0 + 0.85, 1.7, title, ha="center", va="center", color="white", fontproperties=fp, fontsize=12)
         ax.text(x0 + 0.85, 1.15, sub, ha="center", va="center", color="white", fontproperties=fp, fontsize=7.5)
         if i < len(layers) - 1:
-            ax.text(x0 + 1.78, 1.45, ">", ha="center", va="center", color="#888888", fontsize=14, fontweight="bold")
+            ax.text(x0 - 0.08, 1.45, "<", ha="center", va="center", color="#888888", fontsize=14, fontweight="bold")
     ax.set_title(
-        "منهجية التحول: تشخيص ثم تصميم ثم تنفيذ ثم قياس ثم تحسين",
+        "منهجية التحول (من اليمين): تشخيص ثم تصميم ثم تنفيذ ثم قياس ثم تحسين",
         fontproperties=fp,
-        fontsize=12,
+        fontsize=11,
         color=f"#{BURGUNDY_HEX}",
     )
     fig.tight_layout()
@@ -295,6 +311,58 @@ def create_charts() -> dict[str, Path]:
     fig.tight_layout()
     paths["governance"] = ASSETS / "chart_governance.png"
     fig.savefig(paths["governance"], bbox_inches="tight", facecolor="white")
+    plt.close(fig)
+
+    # 7) Visual identity separation — International vs National
+    fig, ax = plt.subplots(figsize=(10.2, 4.8), dpi=180)
+    fig.patch.set_facecolor("white")
+    ax.set_xlim(0, 10)
+    ax.set_ylim(0, 10)
+    ax.axis("off")
+    ax.set_title(
+        "فصل الهوية البصرية: قسم الإنترناشونال × المنهاج الوطني",
+        fontproperties=fp,
+        fontsize=13,
+        color=f"#{BURGUNDY_HEX}",
+        pad=8,
+    )
+    # two columns
+    left = FancyBboxPatch((0.4, 1.2), 4.2, 7.2, boxstyle="round,pad=0.05,rounding_size=0.2",
+                          facecolor=f"#{BURGUNDY_HEX}", edgecolor=f"#{GOLD_HEX}", linewidth=1.5)
+    right = FancyBboxPatch((5.4, 1.2), 4.2, 7.2, boxstyle="round,pad=0.05,rounding_size=0.2",
+                           facecolor="#5A5A5A", edgecolor=f"#{GOLD_HEX}", linewidth=1.5)
+    ax.add_patch(left)
+    ax.add_patch(right)
+    ax.text(2.5, 7.7, "Omareyah International", ha="center", color="white", fontsize=11, fontweight="bold")
+    ax.text(2.5, 7.15, "قسم الإنترناشونال", ha="center", color="white", fontproperties=fp, fontsize=12)
+    ax.text(7.5, 7.7, "National Track", ha="center", color="white", fontsize=11, fontweight="bold")
+    ax.text(7.5, 7.15, "المنهاج الوطني الأردني", ha="center", color="white", fontproperties=fp, fontsize=12)
+    left_items = [
+        "نظام ألوان وشعار فرعي للقسم",
+        "ترويسة ونماذج قبول خاصة",
+        "لافتات وممرات معرّفة",
+        "قوالب تواصل أسري مستقلة",
+        "فعاليات وتسويق باسم القسم",
+        "معايير عرض صفّي دولية",
+    ]
+    right_items = [
+        "هوية المسار الوطني كما هي",
+        "نماذج ووزارة/مدرسة وطنية",
+        "لافتات ومساحات المسار الوطني",
+        "تواصل مرتبط بالمسار الوطني",
+        "فعاليات المسار الوطني منفصلة",
+        "معايير عرض صفّي وطنية",
+    ]
+    for i, (a, b) in enumerate(zip(left_items, right_items)):
+        yy = 6.3 - i * 0.85
+        ax.text(2.5, yy, a, ha="center", color="white", fontproperties=fp, fontsize=9)
+        ax.text(7.5, yy, b, ha="center", color="white", fontproperties=fp, fontsize=9)
+    ax.text(5, 0.55, "فصل تقريبي مرحلي — مؤسسة واحدة بهويتين مساريتين واضحتين", ha="center", fontproperties=fp, fontsize=10, color=f"#{GREY_HEX}")
+    # divider arrow concept
+    ax.annotate("", xy=(5.3, 5), xytext=(4.7, 5), arrowprops=dict(arrowstyle="<->", color=f"#{GOLD_HEX}", lw=2))
+    fig.tight_layout()
+    paths["identity"] = ASSETS / "chart_identity_separation.png"
+    fig.savefig(paths["identity"], bbox_inches="tight", facecolor="white")
     plt.close(fig)
 
     return paths
@@ -514,18 +582,25 @@ def add_page_border(section, color=BURGUNDY_HEX, sz="24", space="18") -> None:
 
 
 def add_watermark_header(section, watermark_path: Path) -> None:
+    """Place Success 4 Sure logo watermark in the header of every page."""
     header = section.header
     header.is_linked_to_previous = False
-    # Clear default
     for p in header.paragraphs:
         p.clear()
     p = header.paragraphs[0] if header.paragraphs else header.add_paragraph()
     p.alignment = WD_ALIGN_PARAGRAPH.CENTER
+    set_spacing(p, 0, 0, 1.0)
     run = p.add_run()
-    # subtle watermark via floating isn't trivial; use small centered image + header text
-    if watermark_path.exists():
-        run.add_picture(str(watermark_path), width=Inches(2.2))
-    # Also put EN header in first section footer/header text via document body margins
+    logo = ASSETS / "success4sure_logo_wm.png"
+    img = logo if logo.exists() else watermark_path
+    if img.exists():
+        run.add_picture(str(img), width=Inches(1.35))
+    # EN header line
+    p2 = header.add_paragraph()
+    p2.alignment = WD_ALIGN_PARAGRAPH.CENTER
+    set_spacing(p2, 0, 2, 1.0)
+    r2 = p2.add_run(HEADER_EN)
+    set_run_font(r2, LIB, 8, BURGUNDY, True)
 
 
 def configure_section(section) -> None:
@@ -575,7 +650,10 @@ def build_docx(charts: dict[str, Path], watermark: Path) -> Path:
     doc = Document()
     section = doc.sections[0]
     configure_section(section)
+    add_watermark_header(section, watermark)
     add_footer(section)
+    # more top margin for header logo
+    section.top_margin = Cm(2.6)
 
     style = doc.styles["Normal"]
     style.font.name = AMIRI
@@ -583,13 +661,21 @@ def build_docx(charts: dict[str, Path], watermark: Path) -> Path:
     style._element.rPr.rFonts.set(qn("w:cs"), AMIRI)
 
     # ---- Cover ----
-    add_en(doc, HEADER_EN, size=10, bold=True, color=BURGUNDY, before=4, after=18)
+    add_en(doc, HEADER_EN, size=10, bold=True, color=BURGUNDY, before=4, after=10)
     add_gold_rule(doc)
-    add_en(doc, "OMAREYAH INTERNATIONAL DIVISION", size=22, bold=True, color=BURGUNDY, before=28, after=6)
-    add_ar(doc, "مخطط التحول التعليمي التنفيذي", size=22, bold=True, color=BURGUNDY, align=WD_ALIGN_PARAGRAPH.CENTER, before=8, after=4)
-    add_ar(doc, "Master Strategic Consulting Project", size=13, bold=False, color=GOLD, align=WD_ALIGN_PARAGRAPH.CENTER, before=2, after=10)
+    logo_path = ASSETS / "success4sure_logo.png"
+    if logo_path.exists():
+        p = doc.add_paragraph()
+        p.alignment = WD_ALIGN_PARAGRAPH.CENTER
+        set_spacing(p, 8, 4, 1.0)
+        run = p.add_run()
+        run.add_picture(str(logo_path), width=Inches(1.7))
+        add_en(doc, "Strategic Implementation Partner", size=9, bold=False, color=GOLD, before=0, after=10)
+    add_en(doc, "OMAREYAH INTERNATIONAL DIVISION", size=20, bold=True, color=BURGUNDY, before=12, after=6)
+    add_ar(doc, "مخطط التحول التعليمي التنفيذي", size=20, bold=True, color=BURGUNDY, align=WD_ALIGN_PARAGRAPH.CENTER, before=6, after=4)
+    add_ar(doc, "Master Strategic Consulting Project", size=12, bold=False, color=GOLD, align=WD_ALIGN_PARAGRAPH.CENTER, before=2, after=8)
     add_gold_rule(doc)
-    add_ar(doc, "وثيقة استراتيجية موجهة إلى مجلس الإدارة", size=13, bold=True, color=DARK, align=WD_ALIGN_PARAGRAPH.CENTER, before=16, after=4)
+    add_ar(doc, "وثيقة استراتيجية موجهة إلى مجلس الإدارة", size=13, bold=True, color=DARK, align=WD_ALIGN_PARAGRAPH.CENTER, before=12, after=4)
     add_ar(
         doc,
         "الإجابة المهنية على سؤال المجلس: لماذا تعيين الأستاذ وسيم اللبدي مديراً للبرامج الدولية وقائداً للتحول التعليمي؟",
@@ -598,21 +684,29 @@ def build_docx(charts: dict[str, Path], watermark: Path) -> Path:
         color=GREY,
         align=WD_ALIGN_PARAGRAPH.CENTER,
         before=4,
-        after=14,
+        after=10,
+    )
+    add_callout(
+        doc,
+        "محور مركزي في هذه النسخة",
+        [
+            "تغيير/فصل الهوية البصرية والتشغيلية لقسم الإنترناشونال عن هوية المنهاج الوطني الأردني داخل المدرسة.",
+            "الفصل تقريبي ومرحلي — ليس قطيعة فورية — مع إبقاء العمريّة مؤسسة جامعة بهويتين مساريتين واضحتين.",
+            "Success 4 Sure شريك تنفيذ فقط؛ العلامة الأمامية للأسرة تبقى Omareyah International Division.",
+        ],
     )
     add_callout(
         doc,
         "مبادئ هذه الوثيقة",
         [
             "العلامة الأساسية هي قسم العمريّة الدولي — وليست Success 4 Sure.",
-            "Success 4 Sure تُقدَّم حصراً كشريك تنفيذ استراتيجي ومنظومة خدمات داعمة.",
             "لا مبالغة في الإنجازات الشخصية؛ التوصيات مبنية على ممارسات إدارة تعليمية دولية قابلة للقياس.",
             "كل توصية مرتبطة بهدف تشغيلي ومؤشر أداء وآلية متابعة.",
         ],
     )
     add_ar(doc, "إعداد: الأستاذ وسيم اللبدي", size=12, bold=True, color=BURGUNDY, align=WD_ALIGN_PARAGRAPH.CENTER, before=10, after=2)
     add_ar(doc, "الأدوار المقترحة: مدير البرامج الدولية · قائد التحول التعليمي · مدير الاستراتيجية الأكاديمية", size=11, color=GREY, align=WD_ALIGN_PARAGRAPH.CENTER, before=0, after=2)
-    add_en(doc, "Confidential — Board Use Only", size=9, bold=False, color=GREY, before=18, after=4)
+    add_en(doc, "Confidential — Board Use Only", size=9, bold=False, color=GREY, before=14, after=4)
 
     doc.add_page_break()
 
@@ -621,7 +715,8 @@ def build_docx(charts: dict[str, Path], watermark: Path) -> Path:
     add_ar(
         doc,
         "صُممت هذه الوثيقة كـ«مخطط تحول تعليمي تنفيذي» بمستوى وثائق مجالس الإدارات في مؤسسات الاستشارات الدولية. "
-        "الغرض ليس عرضاً تسويقياً، بل تمكين المجلس من اتخاذ قرار تعيين قيادي مبني على منطق التشخيص، المنهجية، الحوكمة، وخارطة التنفيذ.",
+        "الغرض ليس عرضاً تسويقياً، بل تمكين المجلس من اتخاذ قرار تعيين قيادي مبني على منطق التشخيص، المنهجية، الحوكمة، وخارطة التنفيذ — "
+        "مع تركيز خاص على فصل هوية القسم الدولي عن هوية المنهاج الوطني.",
     )
     add_table(
         doc,
@@ -631,7 +726,9 @@ def build_docx(charts: dict[str, Path], watermark: Path) -> Path:
             ["2. تحليل الوضع الحالي", "فهم التحديات والفرص وتموضع السوق"],
             ["3. لماذا التحول ضروري؟", "تبرير استراتيجي للتغيير"],
             ["4–5. من هو وسيم؟ ولماذا مختلف؟", "معيار الاختيار القيادي"],
-            ["6–8. كيف سيُحدث التحول؟", "نموذج العمل + المنظومة"],
+            ["6. كيف سيُحدث التحول؟", "مسارات التنفيذ"],
+            ["6أ. فصل الهوية البصرية", "إنترناشونال × المنهاج الوطني"],
+            ["7–8. الشريك والمنظومة", "قدرات التنفيذ دون خلط العلامة"],
             ["9–11. خطط التنفيذ", "100 يوم · سنة · 2–5 سنوات"],
             ["12–14. النتائج والمخاطر والحوكمة", "قابلية القياس والرقابة"],
             ["15. التوصية النهائية", "قرار المجلس"],
@@ -647,7 +744,8 @@ def build_docx(charts: dict[str, Path], watermark: Path) -> Path:
     )
     add_ar(
         doc,
-        "تقترح هذه الوثيقة تعيين الأستاذ وسيم اللبدي في موقع قيادي يجمع إدارة البرامج الدولية مع قيادة التحول التعليمي، مع الاستفادة المنظمة من قدرات Success 4 Sure كشريك تنفيذ — دون نقل هوية المدرسة إلى الشريك.",
+        "تقترح هذه الوثيقة تعيين الأستاذ وسيم اللبدي في موقع قيادي يجمع إدارة البرامج الدولية مع قيادة التحول التعليمي، مع الاستفادة المنظمة من قدرات Success 4 Sure كشريك تنفيذ — دون نقل هوية المدرسة إلى الشريك. "
+        "ويشمل التحول أولوية واضحة: فصل الهوية البصرية والتشغيلية لقسم الإنترناشونال عن هوية المنهاج الوطني الأردني داخل المدرسة بفصل تقريبي مرحلي.",
     )
     add_subtitle(doc, "الخلاصة القرارِية")
     add_table(
@@ -818,6 +916,7 @@ def build_docx(charts: dict[str, Path], watermark: Path) -> Path:
             ["إشراك الأسرة", "تقويم تواصل فصلي وقنوات استجابة", "رضا التواصل · زمن الرد"],
             ["تجربة الطالب", "معايير سلوك تعلم ودعم إرشادي", "الاستبقاء · مؤشرات المشاركة"],
             ["ضمان الجودة", "لجنة جودة ومراجعات داخلية فصلية", "عدد المراجعات · نسبة الإغلاق"],
+            ["الهوية البصرية", "فصل تقريبي لهوية الإنترناشونال عن المنهاج الوطني", "% نقاط التماس المفصولة"],
         ],
     )
     add_subtitle(doc, "تفصيل تشغيلي مختصر للمسارات ذات الأولوية")
@@ -826,6 +925,59 @@ def build_docx(charts: dict[str, Path], watermark: Path) -> Path:
     add_ar(doc, "في القبول: تحويل الاستفسار إلى مسار واضح (رد أولي، جولة، مقابلة، عرض قيمة، متابعة) مع قياس زمن كل مرحلة.", size=11)
     add_ar(doc, "مع المعلمين: ربط التطوير المهني بما يُلاحظ في الصف، لا بحضور ورش منفصلة عن التطبيق.", size=11)
     add_ar(doc, "مع الأسرة: قناة استجابة بزمن مستهدف، ورسالة فصلية موجزة عما تحقق أكاديمياً وتشغيلياً.", size=11)
+
+    # ========== 6أ Visual identity separation ==========
+    add_section_title(doc, "6أ", "فصل الهوية البصرية: الإنترناشونال عن المنهاج الوطني")
+    add_ar(
+        doc,
+        "في مدرسة تضم مساراً دولياً ومنهاجاً وطنياً أردنياً، يُعد اختلاط الهوية البصرية والتشغيلية من أسرع مصادر التشويش على ولي الأمر وعلى تموضع القسم الدولي. "
+        "الهدف هنا ليس تقسيم المدرسة إلى كيانين متعاديين، بل بناء «فصل تقريبي مرحلي» يجعل تجربة Omareyah International Division واضحة ومستقلة بصرياً وتشغيلياً عن مسار المنهاج الوطني، مع بقاء العمريّة مؤسسة جامعة.",
+    )
+    add_image(doc, charts.get("identity", Path()), 6.35)
+    add_subtitle(doc, "لماذا الفصل ضروري؟")
+    for t in [
+        "ولي الأمر يحتاج أن يميّز عرض القيمة الدولي عن المسار الوطني دون ارتباك في الألوان واللافتات والنماذج.",
+        "التسويق التربوي يضعف إذا بقيت صور ومواد القسم الدولي تبدو كامتداد غير متمايز للمسار الوطني.",
+        "الجودة والقبول والإرشاد تعمل بكفاءة أعلى عندما تكون نقاط التماس (نماذج، رسائل، بوابات) مفصولة تقريباً.",
+        "الكوادر تقلّ لديها حالات «خلط الإجراءات» بين المسارين.",
+    ]:
+        add_bullet(doc, t)
+
+    add_subtitle(doc, "أبعاد الفصل التقريبي (لكل شيء تقريباً)")
+    add_table(
+        doc,
+        ["البُعد", "مسار الإنترناشونال", "مسار المنهاج الوطني", "حد أدنى للسنة 1"],
+        [
+            ["الشعار/الألوان", "نظام بصري فرعي للقسم الدولي", "هوية المسار الوطني كما هي", "دليل ألوان وقوالب معتمدة"],
+            ["الترويسة والشهادات", "قوالب International Division", "قوالب المسار الوطني", "فصل 100% للمخرجات الرسمية"],
+            ["القبول والتواصل", "رحلة ولي أمر مستقلة", "قناة المسار الوطني", "نماذج وردود منفصلة"],
+            ["اللافتات والممرات", "مناطق تعريف بصرية للقسم", "لافتات المسار الوطني", "لافتات أساسية في مداخل القسم"],
+            ["الفصول والعرض", "معايير عرض دولية", "معايير عرض وطنية", "checklist صفّي مختلف"],
+            ["الرقمي", "مساحة/قوالب للقسم الدولي", "قنوات المسار الوطني", "فصل القوالب والبريد"],
+            ["الفعاليات والتسويق", "باسم Omareyah International", "فعاليات المسار الوطني", "تقويم حملات غير مختلط"],
+            ["الزي/الشارات (إن وُجد)", "تمييز بسيط وآمن", "سياسة المسار الوطني", "قرار مجلس قبل التطبيق"],
+        ],
+    )
+    add_subtitle(doc, "خطة التنفيذ المرحلية للفصل")
+    add_table(
+        doc,
+        ["المرحلة", "الأعمال", "المخرج", "مؤشر"],
+        [
+            ["الأيام 1–30", "تدقيق اختلاط الهوية الحالي (مطبوعات، لافتات، رقمي، قبول)", "خريطة فجوات", "اكتمال التدقيق"],
+            ["الأيام 31–100", "إطلاق الحد الأدنى: دليل هوية مختصر + قوالب ترويسة/قبول/رسائل", "دليل + حزمة قوالب", "% القوالب المفعّلة"],
+            ["الشهور 4–8", "تطبيق على اللافتات ونقاط التماس الأسرية والمنصات", "بيئة بصرية أوضح", "≥80% نقاط تماس مفصولة"],
+            ["نهاية السنة 1", "مراجعة أثر الفصل على وضوح التموضع ورضا الفهم الأسري", "تقرير هوية للمجلس", "تحسن بند «وضوح البرنامج»"],
+        ],
+    )
+    add_callout(
+        doc,
+        "ضوابط مهمة",
+        [
+            "الفصل تقريبي ومرحلي — لا يُطلب هدم كامل للهوية المشتركة للمؤسسة الأم دفعة واحدة.",
+            "أي تمييز بالزي أو الرموز يخضع لقرار إداري/مجلس ويُنفَّذ بحساسية اجتماعية.",
+            "Success 4 Sure قد تدعم التنفيذ التصميمي والتشغيلي، لكن الواجهة الأسرية تبقى باسم العمريّة الدولية.",
+        ],
+    )
 
     # ========== 7 S4S Support ==========
     add_section_title(doc, "7", "الدعم الاستراتيجي من Success 4 Sure")
@@ -979,6 +1131,7 @@ def build_docx(charts: dict[str, Path], watermark: Path) -> Path:
             ["خلط هوية الشريك بالمدرسة", "تشويش العلامة", "متوسط", "دليل تواصل وهوية إلزامي"],
             ["اتساع المبادرات فوق القدرة", "فشل التنفيذ", "مرتفع إن لم يُضبط", "سقف 5 أولويات في المائة يوم"],
             ["قيود مالية", "تأجيل أثر", "متوسط", "مبادرات مرحلية بعائد واضح وموازنة ربعية"],
+            ["فشل فصل الهوية عن المسار الوطني", "تشويش أسري وتموضع ضعيف", "متوسط–مرتفع", "خطة هوية مرحلية + قياس نقاط التماس"],
         ],
     )
 
@@ -1071,6 +1224,7 @@ def build_docx(charts: dict[str, Path], watermark: Path) -> Path:
             "اعتماد الدور القيادي المقترح وصلاحياته.",
             "اعتماد إطار المائة يوم ومؤشرات السنة الأولى بعد ضبط خط الأساس.",
             "اعتماد سياسة الهوية: العمريّة أولاً، والشريك للتنفيذ فقط.",
+            "اعتماد مسار فصل الهوية البصرية للإنترناشونال عن المنهاج الوطني (مرحلي/تقريبي).",
             "مراجعة ربع سنوية ملزمة أمام المجلس.",
         ],
     )
@@ -1106,7 +1260,7 @@ def build_docx(charts: dict[str, Path], watermark: Path) -> Path:
     return out
 
 
-def package(docx_path: Path) -> Path:
+def package(docx_path: Path, pdf_path: Path | None = None) -> Path:
     import shutil
     import zipfile
 
@@ -1114,19 +1268,28 @@ def package(docx_path: Path) -> Path:
     ARTIFACTS.mkdir(parents=True, exist_ok=True)
     shutil.copy2(docx_path, PUBLIC / docx_path.name)
     shutil.copy2(docx_path, ARTIFACTS / docx_path.name)
+    if pdf_path and pdf_path.exists():
+        shutil.copy2(pdf_path, PUBLIC / pdf_path.name)
+        shutil.copy2(pdf_path, ARTIFACTS / pdf_path.name)
     zip_path = ARTIFACTS / "Omareyah_Executive_Blueprint.zip"
     with zipfile.ZipFile(zip_path, "w", compression=zipfile.ZIP_DEFLATED) as zf:
         zf.write(docx_path, docx_path.name)
+        if pdf_path and pdf_path.exists():
+            zf.write(pdf_path, pdf_path.name)
         for p in sorted(ASSETS.glob("chart_*.png")):
             zf.write(p, f"assets/{p.name}")
+        logo = ASSETS / "success4sure_logo.png"
+        if logo.exists():
+            zf.write(logo, "assets/success4sure_logo.png")
     shutil.copy2(zip_path, PUBLIC / zip_path.name)
     return zip_path
 
 
 def main() -> None:
     ensure_dirs()
-    print("Creating watermark...")
+    print("Creating Success 4 Sure logo watermark...")
     wm = create_watermark()
+    print("  ->", wm)
     print("Creating executive charts...")
     charts = create_charts()
     for k, v in charts.items():
@@ -1134,7 +1297,12 @@ def main() -> None:
     print("Building premium Arabic DOCX...")
     docx_path = build_docx(charts, wm)
     print(f"  -> {docx_path} ({docx_path.stat().st_size:,} bytes)")
-    zip_path = package(docx_path)
+    print("Building high-quality framed PDF...")
+    from pdf_engine import build_pdf
+
+    pdf_path = build_pdf(charts)
+    print(f"  -> {pdf_path} ({pdf_path.stat().st_size:,} bytes)")
+    zip_path = package(docx_path, pdf_path)
     print(f"Packaged: {zip_path}")
     print("DONE")
 
