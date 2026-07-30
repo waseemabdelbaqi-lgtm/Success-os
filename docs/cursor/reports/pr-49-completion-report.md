@@ -320,3 +320,23 @@ Source of truth: `docs/cursor/learning-platform-roadmap.md`
 - AI Lesson Generator publishes ILE packages only.  
 
 **Full ADR:** [`docs/cursor/adr/ADR-0049-interactive-lesson-engine-single-runtime.md`](../adr/ADR-0049-interactive-lesson-engine-single-runtime.md)
+
+---
+
+## 15. Definition of Done
+
+PR **cannot be merged** until all gates below are green.
+
+| Gate | Status | Evidence |
+|------|--------|----------|
+| ✅ Tests pass | ✅ Pass | `validate:interactive-lesson-engine` + `validate:course-structure` |
+| ✅ Lint passes | ❌ Fail (pre-existing) | `npm run lint` exit 1 — **0 hits** in ILE/course-structure paths; failures in unrelated AI/ME book files |
+| ✅ Typecheck passes | ❌ Fail (pre-existing / env) | `npm run typecheck` exit 2 — **0 hits** in ILE paths; stale `.next/types` + unrelated student-portal errors |
+| ✅ Build passes | ❌ Fail (pre-existing) | `npm run build` — missing `lib/student/middle-east-live-book-store` from `book-commerce/protected-pdf` (not introduced by ILE) |
+| ✅ Documentation updated | ✅ Pass | ILE docs, tech selection, milestone, ADR-0049 |
+| ✅ Roadmap updated | ✅ Pass | `learning-platform-roadmap.md` |
+| ✅ Completion report generated | ✅ Pass | this file |
+| ✅ Review section completed | ✅ Pass | Section 9 |
+| ✅ ADR added (if architecture changed) | ✅ Pass | ADR-0049 |
+
+**Merge readiness:** ⛔ **Not merge-ready under DoD** until repo-level lint, typecheck, and build are green (failures currently outside ILE surface). ILE contract tests and docs/ADR/roadmap gates are satisfied.

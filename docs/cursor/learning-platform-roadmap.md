@@ -131,3 +131,5 @@ When ready to execute: **PR #50 — Curriculum Import Engine (Jordan First)** on
 
 Every completed order must end with a report under [`GLOBAL_PROGRESS_REVIEW_POLICY.md`](./GLOBAL_PROGRESS_REVIEW_POLICY.md).  
 Latest: [`reports/pr-49-completion-report.md`](./reports/pr-49-completion-report.md).
+
+**Definition of Done:** a PR cannot merge until tests, lint, typecheck, build, docs, roadmap, completion report, review, and ADR (if architecture changed) are all green — see policy § Definition of Done.

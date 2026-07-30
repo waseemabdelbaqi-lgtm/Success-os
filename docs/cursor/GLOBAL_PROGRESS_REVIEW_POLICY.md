@@ -22,6 +22,25 @@ At the end of every completed order, **automatically** generate a comprehensive 
 12. **Recommendations**  
 13. **Next Order** — complete implementation order for the next PR  
 14. **Architecture Decision Record (ADR)** — when an architectural decision is made or affirmed; link the ADR under `docs/cursor/adr/`  
+15. **Definition of Done** — merge gate checklist (must be green before merge)  
+
+## Definition of Done (merge gate)
+
+A PR **cannot be merged** until:
+
+| Gate | Requirement |
+|------|-------------|
+| ✅ Tests pass | Contract / unit / required validate scripts for the change |
+| ✅ Lint passes | `npm run lint` |
+| ✅ Typecheck passes | `npm run typecheck` |
+| ✅ Build passes | `npm run build` |
+| ✅ Documentation updated | Feature/architecture docs under `docs/cursor/` |
+| ✅ Roadmap updated | `learning-platform-roadmap.md` reflects status |
+| ✅ Completion report generated | `docs/cursor/reports/pr-<N>-completion-report.md` |
+| ✅ Review section completed | Section 9 of the completion report filled |
+| ✅ ADR added (if architecture changed) | Under `docs/cursor/adr/` when runtime/contracts change |
+
+Record gate results in section **15** of every completion report.  
 
 ## Sync rules
 
