@@ -71,7 +71,6 @@
 .oi-brand img {
   width: 46px;
   height: 46px;
-  filter: brightness(0) invert(1) opacity(0.95);
 }
 
 .oi-brand-text {
@@ -200,6 +199,17 @@
   margin-inline-start: max(20px, calc((100% - 1120px) / 2));
 }
 
+.oi-hero-en {
+  margin: 0 0 10px;
+  font-family: var(--oi-display);
+  font-size: 0.95rem;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--oi-champagne);
+  animation: oiRise 0.9s ease both;
+}
+
 .oi-hero-brand {
   font-family: var(--oi-display);
   font-size: clamp(2.8rem, 7vw, 5.4rem);
@@ -207,7 +217,7 @@
   line-height: 1.05;
   margin: 0 0 18px;
   letter-spacing: 0.01em;
-  animation: oiRise 0.9s ease both;
+  animation: oiRise 0.9s ease 0.06s both;
 }
 
 .oi-hero-brand em {

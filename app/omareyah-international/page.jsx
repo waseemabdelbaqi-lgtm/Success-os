@@ -56,7 +56,7 @@ export default function OmareyahInternationalPage() {
       <header className="oi-nav">
         <div className="oi-shell oi-nav-inner">
           <a className="oi-brand" href="#top" aria-label="العمرية الدولية">
-            <img src="/omareyah-international/logo.svg" alt="" width={46} height={46} />
+            <img src="/omareyah-international/logo-light.svg" alt="" width={46} height={46} />
             <span className="oi-brand-text">
               <strong>العمرية الدولية</strong>
               <span>Omareyah International</span>
@@ -109,6 +109,7 @@ export default function OmareyahInternationalPage() {
           </div>
           <div className="oi-hero-scrim" aria-hidden="true" />
           <div className="oi-hero-copy">
+            <p className="oi-hero-en">Omareyah International</p>
             <h1 className="oi-hero-brand">
               العمرية <em>الدولية</em>
             </h1>
