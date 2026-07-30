@@ -165,3 +165,9 @@ AdminLessonEditor
 ```bash
 npm run validate:interactive-lesson-engine
 ```
+
+## What comes next
+
+See the official sequence **PR #49 → #60** in [`learning-platform-roadmap.md`](./learning-platform-roadmap.md).
+
+Next executable PR after this foundation: **#50 Curriculum Import Engine (Jordan First)** — still must not fork a second lesson runtime; it feeds ILE packages.

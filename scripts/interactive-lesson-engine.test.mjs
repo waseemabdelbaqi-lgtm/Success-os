@@ -82,6 +82,7 @@ const requiredFiles = [
   "lib/interactive-lesson-engine/adapters/index.ts",
   "docs/cursor/ile-technology-selection.md",
   "docs/cursor/interactive-lesson-engine.md",
+  "docs/cursor/learning-platform-roadmap.md",
   "content/demo/interactive-lesson-engine.ts",
   "components/interactive-lesson-engine/block-renderer.tsx",
   "components/interactive-lesson-engine/slide-engine.tsx",
@@ -173,6 +174,15 @@ const masterDoc = fs.readFileSync(
 assert.ok(masterDoc.includes("Architecture"));
 assert.ok(masterDoc.includes("Extension points"));
 assert.ok(masterDoc.includes("mermaid"));
+
+const roadmap = fs.readFileSync(
+  path.join(root, "docs/cursor/learning-platform-roadmap.md"),
+  "utf8",
+);
+assert.ok(roadmap.includes("PR #49"));
+assert.ok(roadmap.includes("PR #50"));
+assert.ok(roadmap.includes("Curriculum Import Engine"));
+assert.ok(roadmap.includes("PR #60"));
 
 const theme = fs.readFileSync(
   path.join(root, "lib/interactive-lesson-engine/core/theme.ts"),

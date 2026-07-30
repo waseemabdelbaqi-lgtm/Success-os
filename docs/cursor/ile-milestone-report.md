@@ -32,3 +32,9 @@
 ```bash
 npm run validate:interactive-lesson-engine
 ```
+
+## Roadmap lock
+
+Foundation unlocks the learning platform sequence documented in [`learning-platform-roadmap.md`](./learning-platform-roadmap.md):
+
+`#49 ILE ✅ → #50 Curriculum Import → #51 Digital Books → #52 AI Lessons → #53 Video/Media → #54 Assessment → #55 Labs → #56 Analytics → #57 Adaptive Tutor → #58 Parent → #59 Teacher → #60 Production`
