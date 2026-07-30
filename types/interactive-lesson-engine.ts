@@ -76,6 +76,15 @@ export type ContentBlockType =
   | "svg_diagram"
   | "mermaid_diagram"
   | "interactive_chart"
+  | "table"
+  | "code"
+  | "timeline"
+  | "callout"
+  | "warning"
+  | "definition"
+  | "example"
+  | "accordion"
+  | "tabs"
   | "embedded_media"
   | "audio"
   | "video_placeholder"
@@ -96,6 +105,15 @@ export const CONTENT_BLOCK_TYPES: ContentBlockType[] = [
   "svg_diagram",
   "mermaid_diagram",
   "interactive_chart",
+  "table",
+  "code",
+  "timeline",
+  "callout",
+  "warning",
+  "definition",
+  "example",
+  "accordion",
+  "tabs",
   "embedded_media",
   "audio",
   "video_placeholder",
@@ -167,6 +185,22 @@ export type ContentBlock = {
     labels: string[];
     values: number[];
   };
+  /** Simple table model */
+  table?: {
+    headers: LocaleText[];
+    rows: LocaleText[][];
+  };
+  /** Code fence */
+  code?: {
+    language: string;
+    source: string;
+  };
+  /** Timeline / accordion / tabs items */
+  items?: {
+    id: string;
+    title: LocaleText;
+    body: LocaleText;
+  }[];
   mediaUrl?: string | null;
   downloadUrl?: string | null;
   protected?: boolean;
@@ -239,6 +273,8 @@ export type InteractiveLessonPackage = {
     offlineReady: boolean;
   };
   changelog?: { at: string; note: string; by?: string }[];
+  /** Opaque engine metadata (versioning snapshots, builder flags) — never country-specific */
+  engineMeta?: Record<string, unknown>;
   updatedAt: string;
   createdAt: string;
 };

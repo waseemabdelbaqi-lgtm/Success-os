@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useCallback, useEffect, useMemo, useState, type ReactNode } from "react";
+import { useCallback, useEffect, useMemo, useState, type CSSProperties, type ReactNode } from "react";
 import type {
   InteractiveLessonPackage,
   LearningMode,
@@ -18,6 +18,9 @@ import {
   markSectionComplete,
   saveWorkspace,
 } from "@/lib/interactive-lesson-engine/workspace-store";
+import { resolveTheme, themeToCssVars, type IleThemeId } from "@/lib/interactive-lesson-engine/core/theme";
+import { ILE_A11Y } from "@/lib/interactive-lesson-engine/core/performance";
+import { searchPackage } from "@/lib/interactive-lesson-engine/core/hierarchy";
 import { BlockRenderer } from "./block-renderer";
 import { SlideEngine } from "./slide-engine";
 import { LessonNavigation } from "./lesson-navigation";
@@ -28,11 +31,13 @@ type Locale = "en" | "ar";
 type InteractiveLessonViewerProps = {
   pkg: InteractiveLessonPackage;
   locale?: Locale;
+  themeId?: IleThemeId;
 };
 
 export function InteractiveLessonViewer({
   pkg,
   locale = "ar",
+  themeId,
 }: InteractiveLessonViewerProps): ReactNode {
   const sections = useMemo(
     () => LESSON_SECTION_ORDER.filter((id) => (pkg.sections[id] || []).length > 0 || id === "interactive_slides"),
@@ -45,6 +50,17 @@ export function InteractiveLessonViewer({
   const [aiReply, setAiReply] = useState<string | null>(null);
   const outlines = useMemo(() => buildOutlines(pkg), [pkg]);
   const modeUi = modeConfig(mode);
+  const theme = useMemo(() => {
+    if (themeId) return resolveTheme(themeId);
+    if (pkg.accessibility.highContrast) return resolveTheme("high-contrast");
+    if (mode === "presentation") return resolveTheme("presentation");
+    return resolveTheme("success-light");
+  }, [themeId, pkg.accessibility.highContrast, mode]);
+  const cssVars = useMemo(() => themeToCssVars(theme), [theme]);
+  const searchHits = useMemo(
+    () => (searchQuery.trim() ? searchPackage(pkg, searchQuery, locale) : []),
+    [pkg, searchQuery, locale],
+  );
 
   useEffect(() => {
     setWorkspace(getWorkspace(pkg.id));
@@ -77,14 +93,38 @@ export function InteractiveLessonViewer({
       dir={locale === "ar" ? "rtl" : "ltr"}
       data-ile-viewer="true"
       data-mode={mode}
+      data-ile-theme={theme.id}
       style={{
+        ...(cssVars as React.CSSProperties),
         maxWidth: 1200,
         margin: "0 auto",
         paddingBottom: "2rem",
-        background: modeUi.presentationChrome ? "#042f2e" : "transparent",
+        background: cssVars["--ile-bg"],
+        color: cssVars["--ile-text"],
+        fontFamily: cssVars["--ile-font-body"],
         minHeight: "100vh",
       }}
     >
+      <a
+        href="#ile-lesson-content"
+        style={{
+          position: "absolute",
+          left: -9999,
+          top: 8,
+          background: cssVars["--ile-primary"],
+          color: cssVars["--ile-primary-text"],
+          padding: "0.35rem 0.6rem",
+          zIndex: 50,
+        }}
+        onFocus={(e) => {
+          e.currentTarget.style.left = "8px";
+        }}
+        onBlur={(e) => {
+          e.currentTarget.style.left = "-9999px";
+        }}
+      >
+        {ILE_A11Y.skipLinkLabel[locale]}
+      </a>
       <LessonNavigation
         pkg={pkg}
         locale={locale}
@@ -156,14 +196,21 @@ export function InteractiveLessonViewer({
           `}</style>
 
           <main
+            id="ile-lesson-content"
+            tabIndex={-1}
             style={{
-              border: modeUi.presentationChrome ? "none" : "1px solid #e2e8f0",
-              borderRadius: 12,
-              background: modeUi.presentationChrome ? "transparent" : "#fff",
+              border: modeUi.presentationChrome ? "none" : `1px solid ${cssVars["--ile-border"]}`,
+              borderRadius: cssVars["--ile-radius-lg"],
+              background: modeUi.presentationChrome ? "transparent" : cssVars["--ile-surface"],
               padding: modeUi.presentationChrome ? 0 : "1rem",
               minHeight: 360,
             }}
           >
+            {searchHits.length > 0 && searchQuery.trim() ? (
+              <p style={{ fontSize: 12, color: cssVars["--ile-text-muted"], marginTop: 0 }}>
+                {locale === "ar" ? `${searchHits.length} نتيجة` : `${searchHits.length} hits`}
+              </p>
+            ) : null}
             <h2 style={{ marginTop: 0, fontSize: 18, color: modeUi.presentationChrome ? "#ecfdf5" : undefined }}>
               {getLocalized(LESSON_SECTION_LABELS[sectionId], locale)}
             </h2>
@@ -259,12 +306,34 @@ export function InteractiveLessonViewer({
               onSaveDrawing={(dataUrl) =>
                 setWorkspace(saveWorkspace(pkg.id, { drawingDataUrl: dataUrl }))
               }
-              onAiAsk={(prompt) => {
-                setAiReply(
-                  locale === "ar"
-                    ? `ضمن «${getLocalized(pkg.title, "ar")}» / ${getLocalized(LESSON_SECTION_LABELS[sectionId], "ar")}: ${prompt} — ركّز على أهداف هذا الدرس (توليد الفيديو غير مفعّل في هذه المرحلة).`
-                    : `On “${getLocalized(pkg.title, "en")}” / ${getLocalized(LESSON_SECTION_LABELS[sectionId], "en")}: ${prompt} — stay on this lesson’s objectives (video generation disabled in this phase).`,
-                );
+              onAiAsk={async (prompt) => {
+                try {
+                  const res = await fetch("/api/interactive-lesson-engine/ai/tutor", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({
+                      lessonId: pkg.id,
+                      locale,
+                      prompt,
+                    }),
+                  });
+                  const data = (await res.json()) as {
+                    message?: string;
+                    generationEnabled?: boolean;
+                  };
+                  setAiReply(
+                    data.message ||
+                      (locale === "ar"
+                        ? "طبقة الذكاء الاصطناعي جاهزة كعقد فقط — التوليد معطّل في هذا الأساس."
+                        : "AI layer contract ready — generation disabled in this foundation."),
+                  );
+                } catch {
+                  setAiReply(
+                    locale === "ar"
+                      ? `ضمن «${getLocalized(pkg.title, "ar")}»: ${prompt} — التوليد غير مفعّل.`
+                      : `On “${getLocalized(pkg.title, "en")}”: ${prompt} — generation disabled.`,
+                  );
+                }
               }}
             />
           ) : null}

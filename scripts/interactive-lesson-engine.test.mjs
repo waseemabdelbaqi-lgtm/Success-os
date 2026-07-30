@@ -36,6 +36,15 @@ const BLOCK_TYPES = [
   "svg_diagram",
   "mermaid_diagram",
   "interactive_chart",
+  "table",
+  "code",
+  "timeline",
+  "callout",
+  "warning",
+  "definition",
+  "example",
+  "accordion",
+  "tabs",
   "embedded_media",
   "audio",
   "video_placeholder",
@@ -59,6 +68,12 @@ const requiredFiles = [
   "lib/interactive-lesson-engine/future-placeholders.ts",
   "lib/interactive-lesson-engine/workspace-store.ts",
   "lib/interactive-lesson-engine/index.ts",
+  "lib/interactive-lesson-engine/core/theme.ts",
+  "lib/interactive-lesson-engine/core/i18n.ts",
+  "lib/interactive-lesson-engine/core/versioning.ts",
+  "lib/interactive-lesson-engine/core/hierarchy.ts",
+  "lib/interactive-lesson-engine/core/performance.ts",
+  "lib/interactive-lesson-engine/ai/integration-layer.ts",
   "lib/interactive-lesson-engine/adapters/formula-adapter.tsx",
   "lib/interactive-lesson-engine/adapters/diagram-adapter.tsx",
   "lib/interactive-lesson-engine/adapters/rich-text-adapter.tsx",
@@ -66,6 +81,7 @@ const requiredFiles = [
   "lib/interactive-lesson-engine/adapters/pdf-adapter.tsx",
   "lib/interactive-lesson-engine/adapters/index.ts",
   "docs/cursor/ile-technology-selection.md",
+  "docs/cursor/interactive-lesson-engine.md",
   "content/demo/interactive-lesson-engine.ts",
   "components/interactive-lesson-engine/block-renderer.tsx",
   "components/interactive-lesson-engine/slide-engine.tsx",
@@ -74,8 +90,10 @@ const requiredFiles = [
   "components/interactive-lesson-engine/student-workspace-panel.tsx",
   "components/interactive-lesson-engine/interactive-lesson-viewer.tsx",
   "components/interactive-lesson-engine/admin-lesson-editor.tsx",
+  "components/interactive-lesson-engine/library/index.tsx",
   "app/api/interactive-lesson-engine/route.js",
   "app/api/interactive-lesson-engine/placeholders/[capability]/route.js",
+  "app/api/interactive-lesson-engine/ai/[capability]/route.ts",
   "app/student/interactive-lessons/page.tsx",
   "app/admin/interactive-lessons/page.tsx",
   "app/student/books/[bookId]/units/[unitId]/lessons/[lessonId]/page.tsx",
@@ -135,7 +153,7 @@ assert.ok(placeholders.includes("virtual_labs"));
 assert.ok(placeholders.includes("final_exams"));
 
 assert.equal(SECTIONS.length, 17);
-assert.equal(BLOCK_TYPES.length, 18);
+assert.equal(BLOCK_TYPES.length, 27);
 assert.equal(MODES.length, 5);
 
 const techDoc = fs.readFileSync(
@@ -148,6 +166,85 @@ assert.ok(techDoc.includes("TipTap"));
 assert.ok(techDoc.includes("React Three Fiber"));
 assert.ok(techDoc.includes("PDF.js"));
 
+const masterDoc = fs.readFileSync(
+  path.join(root, "docs/cursor/interactive-lesson-engine.md"),
+  "utf8",
+);
+assert.ok(masterDoc.includes("Architecture"));
+assert.ok(masterDoc.includes("Extension points"));
+assert.ok(masterDoc.includes("mermaid"));
+
+const theme = fs.readFileSync(
+  path.join(root, "lib/interactive-lesson-engine/core/theme.ts"),
+  "utf8",
+);
+assert.ok(theme.includes("success-light"));
+assert.ok(theme.includes("themeToCssVars"));
+
+const aiLayer = fs.readFileSync(
+  path.join(root, "lib/interactive-lesson-engine/ai/integration-layer.ts"),
+  "utf8",
+);
+assert.ok(aiLayer.includes("generationEnabled: false"));
+assert.ok(aiLayer.includes("ai_teacher"));
+assert.ok(aiLayer.includes("ai_video"));
+assert.ok(aiLayer.includes("AI_GENERATION_DISABLED"));
+
+const aiRoute = fs.readFileSync(
+  path.join(root, "app/api/interactive-lesson-engine/ai/[capability]/route.ts"),
+  "utf8",
+);
+assert.ok(aiRoute.includes("invokeAiCapability"));
+
+const renderer = fs.readFileSync(
+  path.join(root, "components/interactive-lesson-engine/block-renderer.tsx"),
+  "utf8",
+);
+for (const t of ["table", "code", "timeline", "callout", "warning", "definition", "example", "accordion", "tabs"]) {
+  assert.ok(renderer.includes(`"${t}"`) || renderer.includes(`'${t}'`) || renderer.includes(`=== "${t}"`), `renderer missing ${t}`);
+}
+
+const library = fs.readFileSync(
+  path.join(root, "components/interactive-lesson-engine/library/index.tsx"),
+  "utf8",
+);
+for (const name of [
+  "FormulaViewer",
+  "DiagramViewer",
+  "ImageViewer",
+  "InteractiveTable",
+  "Timeline",
+  "Accordion",
+  "Tabs",
+  "Callout",
+  "WarningBlock",
+  "DefinitionBlock",
+  "ExampleBlock",
+  "PracticeBlock",
+  "MediaBlock",
+]) {
+  assert.ok(library.includes(`export function ${name}`), `library missing ${name}`);
+}
+
+const admin = fs.readFileSync(
+  path.join(root, "components/interactive-lesson-engine/admin-lesson-editor.tsx"),
+  "utf8",
+);
+assert.ok(admin.includes("draggable"));
+assert.ok(admin.includes("Create book shell"));
+assert.ok(admin.includes("listVersionHistory"));
+
+const viewer = fs.readFileSync(
+  path.join(root, "components/interactive-lesson-engine/interactive-lesson-viewer.tsx"),
+  "utf8",
+);
+assert.ok(viewer.includes("themeToCssVars"));
+assert.ok(viewer.includes("ILE_A11Y"));
+
+const indexSrc = fs.readFileSync(path.join(root, "lib/interactive-lesson-engine/index.ts"), "utf8");
+assert.ok(indexSrc.includes("master-foundation"));
+assert.ok(indexSrc.includes("countrySpecificLogic: false"));
+
 const pkgJson = JSON.parse(fs.readFileSync(path.join(root, "package.json"), "utf8"));
 for (const dep of ["katex", "mermaid", "@tiptap/react", "three", "@react-three/fiber", "pdfjs-dist"]) {
   assert.ok(pkgJson.dependencies?.[dep], `missing dependency ${dep}`);
@@ -158,12 +255,14 @@ console.log(
   JSON.stringify(
     {
       schema: "success-os.interactive-lesson-engine.v1",
+      phase: "master-foundation",
       sections: SECTIONS,
       blockTypes: BLOCK_TYPES,
       learningModes: MODES,
       filesChecked: requiredFiles.length,
       curriculumIngestion: false,
       aiVideoGeneration: false,
+      countrySpecificLogic: false,
     },
     null,
     2,

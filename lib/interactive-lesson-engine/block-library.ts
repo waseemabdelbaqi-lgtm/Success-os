@@ -46,6 +46,51 @@ export const BLOCK_LIBRARY_META: Record<
     reusable: true,
     description: { en: "Simple chart data", ar: "بيانات مخطط بسيطة" },
   },
+  table: {
+    label: { en: "Table", ar: "جدول" },
+    reusable: true,
+    description: { en: "Structured data table", ar: "جدول بيانات منظّم" },
+  },
+  code: {
+    label: { en: "Code block", ar: "كتلة شيفرة" },
+    reusable: true,
+    description: { en: "Syntax-highlighted code fence", ar: "سياج شيفرة" },
+  },
+  timeline: {
+    label: { en: "Timeline", ar: "خط زمني" },
+    reusable: true,
+    description: { en: "Sequential timeline items", ar: "عناصر خط زمني متسلسلة" },
+  },
+  callout: {
+    label: { en: "Callout", ar: "تنبيه معلوماتي" },
+    reusable: true,
+    description: { en: "Highlighted informational callout", ar: "تنبيه معلوماتي بارز" },
+  },
+  warning: {
+    label: { en: "Warning", ar: "تحذير" },
+    reusable: true,
+    description: { en: "Caution / safety warning block", ar: "كتلة تحذير / سلامة" },
+  },
+  definition: {
+    label: { en: "Definition", ar: "تعريف" },
+    reusable: true,
+    description: { en: "Term + meaning definition", ar: "مصطلح ومعنى" },
+  },
+  example: {
+    label: { en: "Example", ar: "مثال" },
+    reusable: true,
+    description: { en: "Worked or illustrative example", ar: "مثال محلول أو توضيحي" },
+  },
+  accordion: {
+    label: { en: "Accordion", ar: "أكورديون" },
+    reusable: true,
+    description: { en: "Expandable sections", ar: "أقسام قابلة للطي" },
+  },
+  tabs: {
+    label: { en: "Tabs", ar: "تبويبات" },
+    reusable: true,
+    description: { en: "Tabbed content panels", ar: "لوحات محتوى بتبويبات" },
+  },
   embedded_media: {
     label: { en: "Embedded media", ar: "وسائط مضمّنة" },
     reusable: true,
@@ -146,6 +191,9 @@ export function createBlock(
     alt: partial.alt,
     svgMarkup: partial.svgMarkup,
     chart: partial.chart,
+    table: partial.table,
+    code: partial.code,
+    items: partial.items,
     mediaUrl: partial.mediaUrl ?? null,
     downloadUrl: partial.downloadUrl ?? null,
     protected: partial.protected,

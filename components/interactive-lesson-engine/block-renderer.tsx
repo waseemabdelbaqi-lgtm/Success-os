@@ -6,6 +6,16 @@ import type { ContentBlock } from "@/types/interactive-lesson-engine";
 import { getLocalized } from "@/lib/interactive-lesson-engine";
 import { isPlaceholderBlock } from "@/lib/interactive-lesson-engine/block-library";
 import { FormulaAdapter } from "@/lib/interactive-lesson-engine/adapters/formula-adapter";
+import {
+  Accordion,
+  Callout,
+  DefinitionBlock,
+  ExampleBlock,
+  InteractiveTable,
+  Tabs,
+  Timeline,
+  WarningBlock,
+} from "./library";
 
 const DiagramAdapter = dynamic(
   () =>
@@ -134,6 +144,64 @@ export function BlockRenderer({
 
       {block.type === "interactive_chart" && chart ? (
         <MiniChart labels={chart.labels} values={chart.values} />
+      ) : null}
+
+      {block.type === "table" && block.table ? (
+        <InteractiveTable headers={block.table.headers} rows={block.table.rows} locale={locale} />
+      ) : null}
+
+      {block.type === "code" && block.code ? (
+        <pre
+          data-ile-component="code-block"
+          style={{
+            margin: 0,
+            padding: "0.75rem",
+            borderRadius: 8,
+            background: "#0f172a",
+            color: "#e2e8f0",
+            overflowX: "auto",
+            fontSize: 12,
+            fontFamily: "ui-monospace, SFMono-Regular, Menlo, monospace",
+          }}
+        >
+          <code data-language={block.code.language}>{block.code.source}</code>
+        </pre>
+      ) : null}
+
+      {block.type === "timeline" && block.items ? (
+        <Timeline items={block.items} locale={locale} />
+      ) : null}
+
+      {block.type === "callout" ? (
+        <Callout title={block.title} locale={locale}>
+          {text}
+        </Callout>
+      ) : null}
+
+      {block.type === "warning" ? (
+        <WarningBlock title={block.title} locale={locale}>
+          {text}
+        </WarningBlock>
+      ) : null}
+
+      {block.type === "definition" ? (
+        <DefinitionBlock title={block.title} locale={locale}>
+          {text}
+        </DefinitionBlock>
+      ) : null}
+
+      {block.type === "example" ? (
+        <ExampleBlock title={block.title} locale={locale}>
+          {text}
+        </ExampleBlock>
+      ) : null}
+
+      {block.type === "accordion" && block.items ? (
+        <Accordion items={block.items} locale={locale} />
+      ) : null}
+
+      {block.type === "tabs" && block.items ? (
+        <Tabs items={block.items} locale={locale} />
       ) : null}
 
       {block.type === "audio" ? (

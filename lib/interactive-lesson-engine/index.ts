@@ -20,6 +20,36 @@ import { FUTURE_CAPABILITY_PLACEHOLDERS } from "./future-placeholders";
 import { DEMO_INTERACTIVE_LESSON } from "@/content/demo/interactive-lesson-engine";
 import { STUDENT_ROUTES } from "@/lib/student-portal/constants";
 import { ADAPTER_REGISTRY } from "./adapters";
+import { ILE_THEMES } from "./core/theme";
+import { listEngineLocales } from "./core/i18n";
+import { ILE_A11Y, ILE_PERFORMANCE } from "./core/performance";
+import { listAiCapabilities } from "./ai/integration-layer";
+
+export { resolveTheme, themeToCssVars, ILE_THEMES } from "./core/theme";
+export type { IleThemeId, IleThemeTokens } from "./core/theme";
+export { t, locText, dirForLocale, listEngineLocales } from "./core/i18n";
+export type { IleLocale } from "./core/i18n";
+export {
+  bumpPackageVersion,
+  listVersionHistory,
+  setPublishState,
+  summarizePackage,
+} from "./core/versioning";
+export {
+  buildBreadcrumbs,
+  buildLessonSectionOutline,
+  buildSlideOutline,
+  adjacentIndex,
+  searchPackage,
+} from "./core/hierarchy";
+export { ILE_A11Y, ILE_PERFORMANCE, shouldVirtualizeSlides } from "./core/performance";
+export {
+  AI_INTEGRATION_LAYER,
+  getAiCapability,
+  invokeAiCapability,
+  listAiCapabilities,
+} from "./ai/integration-layer";
+export type { IleAiCapabilityId, AiCapabilityContract } from "./ai/integration-layer";
 
 function books(): BookDefinition[] {
   return DEMO_BOOKS as BookDefinition[];
@@ -36,23 +66,34 @@ export function getLocalized(
 export function engineStatus() {
   return {
     schema: "success-os.interactive-lesson-engine.v1",
-    phase: "quality-foundation",
+    phase: "master-foundation",
+    phases: [
+      "core-architecture",
+      "navigation-engine",
+      "interactive-slide-engine",
+      "student-workspace",
+      "ai-integration-layer",
+      "lesson-builder-admin",
+      "component-library",
+      "performance-a11y",
+      "testing",
+      "documentation",
+    ],
     booksFirst: true,
     curriculumIngestion: false,
     aiVideoGeneration: false,
+    countrySpecificLogic: false,
     blockLibrary: listBlockLibrary(),
     sectionOrder: LESSON_SECTION_ORDER,
     learningModes: LEARNING_MODES,
+    themes: Object.keys(ILE_THEMES),
+    locales: listEngineLocales(),
     adapters: ADAPTER_REGISTRY,
+    aiCapabilities: listAiCapabilities(),
     futureCapabilities: FUTURE_CAPABILITY_PLACEHOLDERS,
     performance: {
-      lazyLoad: true,
-      virtualizeSlides: true,
-      offlineReadyArchitecture: true,
-      mobileFirst: true,
-      accessibility: true,
-      keyboardNavigation: true,
-      dynamicHeavyImports: ["mermaid", "three", "pdfjs", "tiptap"],
+      ...ILE_PERFORMANCE,
+      a11y: ILE_A11Y,
     },
     estimatedMonthlyCostUsd: {
       shippedOssAdapters: 0,
