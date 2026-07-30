@@ -1,6 +1,5 @@
 (function () {
   const page = document.body.dataset.page || 'home';
-  const onHero = document.body.dataset.hero === 'true';
 
   const links = [
     { href: 'index.html', id: 'home', label: 'Home' },
@@ -13,39 +12,40 @@
     { href: 'contact.html', id: 'contact', label: 'Contact Us' },
   ];
 
-  const util = document.getElementById('site-util');
-  if (util) {
-    util.innerHTML = `
-      <div class="shell util-inner">
-        <div class="util-links">
-          <span>Lord International Division · Amman, Jordan</span>
-        </div>
-        <div class="util-links">
-          <div class="lang-switch" aria-label="Language">
-            <a class="active" href="#" data-lang="en">EN</a>
-            <a href="ar/index.html" data-lang="ar">AR</a>
+  const top = document.getElementById('site-top');
+  if (top) {
+    top.innerHTML = `
+      <div class="shell topbar-inner">
+        <span>Tla’ Al-Ali, Amman · +962 7 8058 1111</span>
+        <div class="top-actions">
+          <div class="lang" aria-label="Language">
+            <a class="on" href="index.html">EN</a>
+            <a href="ar/index.html">AR</a>
           </div>
-          <a href="login.html">Parent / Staff Login</a>
+          <a href="https://lordsacademy.k12net.com" target="_blank" rel="noopener noreferrer">School Portal</a>
+          <a href="login.html">Login</a>
         </div>
       </div>`;
   }
 
   const header = document.getElementById('site-header');
   if (header) {
-    header.className = 'site-header' + (onHero ? ' on-hero' : '');
     header.innerHTML = `
-      <div class="shell nav-row">
-        <a class="brand" href="index.html" aria-label="Lord International home">
-          <img class="brand-lockup" src="assets/logo-lockup.svg" alt="Lord International" height="46" />
-          <img class="brand-lockup-light" src="assets/logo-lockup-light.svg" alt="Lord International" height="46" />
+      <div class="shell header-row">
+        <a class="brand" href="index.html" aria-label="Lords International Academy home">
+          <img src="assets/logo.png" alt="Lords International Academy logo" width="64" height="64" />
+          <span class="brand-copy">
+            <strong>LORDS</strong>
+            <span>International Academy</span>
+          </span>
         </a>
-        <nav class="nav-links" id="navLinks" aria-label="Primary">
+        <nav class="nav" id="navLinks" aria-label="Primary">
           ${links
             .map((l) => `<a href="${l.href}" class="${page === l.id ? 'active' : ''}">${l.label}</a>`)
             .join('')}
         </nav>
-        <div class="nav-actions">
-          <a class="btn-login" href="login.html">Login</a>
+        <div class="header-cta">
+          <a class="btn btn-orange" href="contact.html">Register Interest</a>
           <button type="button" class="menu-btn" id="menuBtn" aria-expanded="false" aria-label="Open menu">
             <span></span><span></span><span></span>
           </button>
@@ -57,7 +57,6 @@
     btn?.addEventListener('click', () => {
       const open = nav.classList.toggle('open');
       btn.setAttribute('aria-expanded', open ? 'true' : 'false');
-      btn.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
     });
   }
 
@@ -67,8 +66,9 @@
       <div class="shell">
         <div class="footer-grid">
           <div class="footer-brand">
-            <img src="assets/logo-lockup-light.svg" alt="Lord International" height="42" />
-            <p>A distinct international division of Lord School — built for global pathways, clear identity, and disciplined growth.</p>
+            <img src="assets/logo.png" alt="Lords International Academy" width="72" height="72" />
+            <strong>Lords International Academy</strong>
+            <p>Boys &amp; girls international pathways in Tla’ Al-Ali, Amman — clear identity, disciplined growth, and family-ready communication.</p>
           </div>
           <div>
             <h4>Explore</h4>
@@ -89,17 +89,18 @@
             </ul>
           </div>
           <div>
-            <h4>Note</h4>
+            <h4>Contact</h4>
             <ul>
-              <li>Proposed International Division identity</li>
+              <li>+962 7 8058 1111</li>
+              <li>Tla’ Al-Ali, Amman</li>
+              <li><a href="https://lordsacademy.k12net.com" target="_blank" rel="noopener noreferrer">lordsacademy.k12net.com</a></li>
               <li>Strategic partner: Success 4 Sure</li>
-              <li>Focused on Lord School’s international track</li>
             </ul>
           </div>
         </div>
         <div class="footer-bottom">
-          <span>© ${new Date().getFullYear()} Lord International Division</span>
-          <span>Independent digital identity for the international programme</span>
+          <span>© ${new Date().getFullYear()} Lords International Academy</span>
+          <span>International division digital experience</span>
         </div>
       </div>`;
   }

@@ -3,27 +3,27 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Login | Lord International</title>
-  <link rel="icon" href="assets/logo.svg" type="image/svg+xml" />
+  <title>Login | Lords International Academy</title>
+  <link rel="icon" href="assets/logo.png" type="image/png" />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body data-page="login">
-  <div id="site-util" class="util-bar"></div>
-  <header id="site-header"></header>
+  <div id="site-top" class="topbar"></div>
+  <header id="site-header" class="header"></header>
   <main class="login-wrap">
     <div class="login-card">
-      <img src="assets/logo-lockup.svg" alt="Lord International" height="44" />
+      <img src="assets/logo.png" alt="Lords International Academy" width="86" height="86" />
       <h1>Secure login</h1>
-      <p>Parent and staff access for the Lord International portal. Authentication will connect at operational launch.</p>
-      <form class="login-form" onsubmit="event.preventDefault(); const n=document.getElementById('loginNote'); n.textContent='Login portal is prepared for launch. Please use Contact Us for current inquiries.';">
+      <p>Parent and staff access. Use the school portal for current accounts, or contact the desk for launch access.</p>
+      <form class="login-form" onsubmit="event.preventDefault(); document.getElementById('loginNote').textContent='For live accounts, use the school portal. This login screen is prepared for the international division launch.';">
         <label>Email<input type="email" required placeholder="name@email.com" /></label>
         <label>Password<input type="password" required placeholder="••••••••" /></label>
-        <button class="btn btn-dark" type="submit">Sign In</button>
+        <button class="btn btn-navy" type="submit">Sign In</button>
       </form>
-      <p class="login-note" id="loginNote">Need help? <a href="contact.html">Contact the division desk</a>.</p>
+      <p class="login-note" id="loginNote"><a href="https://lordsacademy.k12net.com" target="_blank" rel="noopener noreferrer">Open school portal</a> · <a href="contact.html">Contact us</a></p>
     </div>
   </main>
-  <footer id="site-footer" class="site-footer"></footer>
+  <footer id="site-footer" class="footer"></footer>
   <script src="site.js"></script>
 </body>
 </html>

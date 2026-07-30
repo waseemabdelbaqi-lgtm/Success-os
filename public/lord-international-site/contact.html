@@ -3,34 +3,33 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Contact Us | Lord International</title>
-  <link rel="icon" href="assets/logo.svg" type="image/svg+xml" />
+  <title>Contact Us | Lords International Academy</title>
+  <link rel="icon" href="assets/logo.png" type="image/png" />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body data-page="contact">
-  <div id="site-util" class="util-bar"></div>
-  <header id="site-header"></header>
+  <div id="site-top" class="topbar"></div>
+  <header id="site-header" class="header"></header>
   <main>
     <section class="page-hero">
       <div class="shell">
-        <span class="kicker">Contact Us</span>
-        <h1>Register interest in Lord International</h1>
-        <p class="lede">Share your details and we will respond with next steps for visits, pathway counselling, and admissions readiness.</p>
+        <div class="label">Contact Us</div>
+        <h1>Register interest</h1>
+        <p>Share your details for visits, pathway counselling, or admissions conversations.</p>
       </div>
     </section>
     <section class="section">
       <div class="shell contact-grid">
-        <div class="info-card">
-          <span class="kicker">Direct</span>
-          <h2 style="font-family:var(--display);font-size:1.7rem;margin:8px 0 14px;font-weight:600">Division desk</h2>
-          <ul class="checklist">
-            <li><strong>Email</strong><span><a href="mailto:international@lordschool.edu.jo">international@lordschool.edu.jo</a></span></li>
-            <li><strong>City</strong><span>Amman, Jordan</span></li>
-            <li><strong>Hours</strong><span>Sunday–Thursday · by appointment</span></li>
-            <li><strong>School</strong><span>Lord School · International Division</span></li>
+        <div class="info-box">
+          <h3>Division desk</h3>
+          <ul class="checklist" style="border:0">
+            <li><strong>Phone</strong><span><a href="tel:+962780581111">+962 7 8058 1111</a></span></li>
+            <li><strong>Location</strong><span>Tla’ Al-Ali, Amman</span></li>
+            <li><strong>Portal</strong><span><a href="https://lordsacademy.k12net.com" target="_blank" rel="noopener noreferrer">lordsacademy.k12net.com</a></span></li>
+            <li><strong>Email</strong><span><a href="mailto:info@lordsacademy.edu.jo">info@lordsacademy.edu.jo</a></span></li>
           </ul>
         </div>
-        <form class="contact-form" action="mailto:international@lordschool.edu.jo" method="post" enctype="text/plain">
+        <form class="form" action="mailto:info@lordsacademy.edu.jo" method="post" enctype="text/plain">
           <label>Full name<input name="name" required placeholder="Your name" /></label>
           <label>Email<input type="email" name="email" required placeholder="you@example.com" /></label>
           <label>Phone<input name="phone" placeholder="+962…" /></label>
@@ -43,12 +42,12 @@
             </select>
           </label>
           <label>Message<textarea name="message" placeholder="Tell us about your child’s current year and goals"></textarea></label>
-          <button class="btn btn-primary" type="submit">Send Message</button>
+          <button class="btn btn-orange" type="submit">Send Message</button>
         </form>
       </div>
     </section>
   </main>
-  <footer id="site-footer" class="site-footer"></footer>
+  <footer id="site-footer" class="footer"></footer>
   <script src="site.js"></script>
 </body>
 </html>
