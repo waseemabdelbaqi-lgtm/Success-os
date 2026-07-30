@@ -9,7 +9,13 @@
     "SKL-00011",
     "SKL-00012"
   ],
-  "labels": ["Fractions", "Decimals", "Percentages", "Algebra", "Functions"],
+  "labels": [
+    "Fractions",
+    "Decimals",
+    "Percentages",
+    "Algebra",
+    "Functions"
+  ],
   "displayPath": [
     "Functions",
     "depends on",
@@ -22,10 +28,26 @@
     "Fractions"
   ],
   "edges": [
-    { "skillId": "SKL-00009", "dependsOn": "SKL-00002", "kind": "pathway" },
-    { "skillId": "SKL-00010", "dependsOn": "SKL-00009", "kind": "pathway" },
-    { "skillId": "SKL-00011", "dependsOn": "SKL-00010", "kind": "pathway" },
-    { "skillId": "SKL-00012", "dependsOn": "SKL-00011", "kind": "pathway" }
+    {
+      "skillId": "SKL-00009",
+      "dependsOn": "SKL-00002",
+      "kind": "pathway"
+    },
+    {
+      "skillId": "SKL-00010",
+      "dependsOn": "SKL-00009",
+      "kind": "pathway"
+    },
+    {
+      "skillId": "SKL-00011",
+      "dependsOn": "SKL-00010",
+      "kind": "pathway"
+    },
+    {
+      "skillId": "SKL-00012",
+      "dependsOn": "SKL-00011",
+      "kind": "pathway"
+    }
   ],
   "unlockOrder": "Complete Fractions before Decimals before Percentages before Algebra before Functions"
 }

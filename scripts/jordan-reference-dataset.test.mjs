@@ -47,23 +47,21 @@ const dataset = fs.readFileSync(
 assert.ok(dataset.includes("success-os.jordan-reference-dataset.v1"));
 for (const subject of [
   "Mathematics",
-  "Physics",
-  "Chemistry",
-  "Biology",
   "Arabic",
   "English",
   "Science",
   "Islamic Education",
   "Social Studies",
+  "Art",
+  "Physical Education",
 ]) {
   assert.ok(dataset.includes(subject), `missing subject ${subject}`);
 }
-assert.ok(dataset.includes('JO_IDS.subject("PHYSICS")'));
-assert.ok(dataset.includes('JO_IDS.subject("CHEMISTRY")'));
-assert.ok(dataset.includes('JO_IDS.subject("BIOLOGY")'));
-assert.ok(dataset.includes('JO_IDS.lesson("PHYSICS", 1, 1, 1)'));
-assert.ok(dataset.includes('JO_IDS.lesson("CHEMISTRY", 1, 1, 1)'));
-assert.ok(dataset.includes('JO_IDS.lesson("BIOLOGY", 1, 1, 1)'));
+assert.ok(!dataset.includes('JO_IDS.subject("PHYSICS")'));
+assert.ok(!dataset.includes('JO_IDS.subject("CHEMISTRY")'));
+assert.ok(!dataset.includes('JO_IDS.subject("BIOLOGY")'));
+assert.ok(dataset.includes('JO_IDS.subject("ART")'));
+assert.ok(dataset.includes('JO_IDS.subject("PE")'));
 
 const globalReg = JSON.parse(
   fs.readFileSync(
@@ -75,10 +73,13 @@ assert.equal(globalReg.schema, "success-os.global-subject-registry.v1");
 assert.equal(globalReg.subjects[0].id, "SUB-00001");
 assert.equal(globalReg.subjects[0].name.en, "Mathematics");
 assert.equal(globalReg.subjects[1].id, "SUB-00002");
+assert.equal(globalReg.subjects[1].code, "SCI");
 assert.equal(globalReg.subjects[2].id, "SUB-00003");
+assert.equal(globalReg.subjects[2].code, "PHYSICS");
 assert.equal(globalReg.subjects[3].id, "SUB-00004");
-assert.equal(globalReg.subjects[3].code, "BIOLOGY");
-assert.equal(globalReg.counts.subjects, 9);
+assert.equal(globalReg.subjects[3].code, "CHEMISTRY");
+assert.equal(globalReg.subjects[4].code, "BIOLOGY");
+assert.equal(globalReg.counts.subjects, 11);
 assert.ok(Array.isArray(globalReg.crossCountryExamples));
 assert.equal(globalReg.crossCountryExamples.length, 3);
 assert.equal(globalReg.crossCountryExamples[0].globalSubjectId, "SUB-00001");
@@ -127,7 +128,11 @@ assert.equal(skillReg.skills[8].name.en, "Decimals");
 assert.equal(skillReg.skills[9].name.en, "Percentages");
 assert.equal(skillReg.skills[10].name.en, "Algebra");
 assert.equal(skillReg.skills[11].name.en, "Functions");
-assert.equal(skillReg.counts.skills, 12);
+assert.equal(skillReg.skills[12].name.en, "Counting");
+assert.equal(skillReg.skills[13].name.en, "Addition");
+assert.equal(skillReg.skills[14].name.en, "Observation");
+assert.equal(skillReg.skills[15].name.en, "Scientific Thinking");
+assert.equal(skillReg.counts.skills, 16);
 assert.deepEqual(skillReg.mathPathway.labels, [
   "Fractions",
   "Decimals",
@@ -157,6 +162,7 @@ const skillMod = fs.readFileSync(
 );
 assert.ok(skillMod.includes("SKL-00001"));
 assert.ok(skillMod.includes("SKL-00012"));
+assert.ok(skillMod.includes("SKL-00016"));
 assert.ok(skillMod.includes("GLOBAL_SKILL_REGISTRY_SEED"));
 assert.ok(skillMod.includes("MATH_SKILL_PATHWAY_IDS"));
 assert.ok(skillMod.includes("getMathSkillPathway"));
@@ -219,34 +225,25 @@ const tree = JSON.parse(
 );
 assert.equal(tree.country, "Jordan");
 assert.equal(tree.grade, "Grade 1");
-assert.ok(tree.subjects.length >= 9);
+assert.equal(tree.subjects.length, 8);
 assert.equal(tree.subjects[0].code, "MATH");
-assert.equal(tree.subjects[1].code, "PHYSICS");
-assert.equal(tree.subjects[2].code, "CHEMISTRY");
-assert.equal(tree.subjects[3].code, "BIOLOGY");
+assert.deepEqual(
+  tree.subjects.map((s) => s.code),
+  ["MATH", "AR", "EN", "SCI", "ISL", "SOC", "ART", "PE"],
+);
 assert.equal(tree.idConvention.lesson, "JO-NATIONAL-G01-MATH-B01-U01-L01");
 assert.equal(tree.subjects[0].id, "JO-NATIONAL-G01-MATH");
 assert.equal(tree.subjects[0].globalSubjectId, "SUB-00001");
-assert.equal(tree.subjects[1].globalSubjectId, "SUB-00002");
-assert.equal(tree.subjects[2].globalSubjectId, "SUB-00003");
-assert.equal(tree.subjects[3].globalSubjectId, "SUB-00004");
+assert.equal(tree.subjects.find((s) => s.code === "SCI").globalSubjectId, "SUB-00002");
+assert.equal(tree.subjects.find((s) => s.code === "AR").globalSubjectId, "SUB-00006");
 assert.equal(tree.subjects[0].books[0].id, "JO-NATIONAL-G01-MATH-B01");
 assert.equal(
   tree.subjects[0].books[0].units[0].lessons[0].id,
   "JO-NATIONAL-G01-MATH-B01-U01-L01",
 );
-assert.equal(
-  tree.subjects[1].books[0].units[0].lessons[0].id,
-  "JO-NATIONAL-G01-PHYSICS-B01-U01-L01",
-);
-assert.equal(
-  tree.subjects[2].books[0].units[0].lessons[0].id,
-  "JO-NATIONAL-G01-CHEMISTRY-B01-U01-L01",
-);
-assert.equal(
-  tree.subjects[3].books[0].units[0].lessons[0].id,
-  "JO-NATIONAL-G01-BIOLOGY-B01-U01-L01",
-);
+assert.ok(!JSON.stringify(tree).includes("PHYSICS"));
+assert.ok(!JSON.stringify(tree).includes("CHEMISTRY"));
+assert.ok(!JSON.stringify(tree).includes("BIOLOGY"));
 
 const metadata = JSON.parse(
   fs.readFileSync(
@@ -350,12 +347,12 @@ assert.deepEqual(depExample.pathPattern, [
   "depends on",
   "Lesson",
 ]);
-assert.deepEqual(depExample.exampleChain.path, [
+assert.deepEqual(depExample.chains[0].path, [
   "JO-NATIONAL-G01-MATH-B01-U01-L01",
   "JO-NATIONAL-G01-MATH-B01-U01-L02",
   "JO-NATIONAL-G01-MATH-B01-U01-L03",
 ]);
-assert.ok(depExample.exampleChain.displayPath.includes("depends on"));
+assert.ok(depExample.chains[0].displayPath.includes("depends on"));
 
 const depMod = fs.readFileSync(
   path.join(root, "lib/curriculum-import-engine/hierarchy/lesson-dependency.ts"),
@@ -419,21 +416,20 @@ const report = JSON.parse(
     "utf8",
   ),
 );
-assert.equal(report.counts.subjects, 9);
-assert.equal(report.counts.lessons, 16);
+assert.equal(report.counts.subjects, 8);
+assert.equal(report.counts.lessons, 15);
 assert.equal(report.counts.published, 1);
 assert.equal(report.counts.rejected, 1);
-assert.equal(report.counts.globalSubjects, 9);
-assert.deepEqual(report.stemSubjects, [
-  "JO-NATIONAL-G01-MATH",
-  "JO-NATIONAL-G01-PHYSICS",
-  "JO-NATIONAL-G01-CHEMISTRY",
-  "JO-NATIONAL-G01-BIOLOGY",
-]);
+assert.equal(report.counts.globalSubjects, 11);
+assert.deepEqual(report.excludedUntilOfficial, ["PHYSICS", "CHEMISTRY", "BIOLOGY"]);
+assert.ok(report.g01Subjects.includes("JO-NATIONAL-G01-MATH"));
+assert.ok(report.g01Subjects.includes("JO-NATIONAL-G01-SCI"));
+assert.ok(!report.g01Subjects.includes("JO-NATIONAL-G01-PHYSICS"));
 assert.ok(report.globalSubjectRegistry[0].includes("SUB-00001"));
-assert.ok(report.globalSubjectRegistry[3].includes("SUB-00004"));
+assert.ok(report.globalSubjectRegistry[1].includes("Science"));
 assert.ok(report.pipeline.rejectedNeverPublish);
 assert.ok(report.pipeline.ileOnlyRuntime);
+assert.ok(report.pipeline.dynamicDiscovery);
 
 const dash = fs.readFileSync(
   path.join(root, "components/curriculum-import-engine/import-dashboard.tsx"),

@@ -19,7 +19,10 @@
         "ar": "الدرس 1 — العدّ حتى ثلاثة"
       },
       "globalSubjectId": "SUB-00001",
-      "skills": ["SKL-00001", "SKL-00008"],
+      "skills": [
+        "SKL-00001",
+        "SKL-00008"
+      ],
       "ilePackageId": "ile_JO-NATIONAL-G01-MATH-B01-U01-L01",
       "published": true
     }
@@ -28,31 +31,46 @@
     {
       "skillId": "SKL-00001",
       "code": "ARITHMETIC",
-      "name": { "en": "Arithmetic", "ar": "الحساب" }
+      "name": {
+        "en": "Arithmetic",
+        "ar": "الحساب"
+      }
     },
     {
       "skillId": "SKL-00008",
       "code": "CRITICAL_THINKING",
-      "name": { "en": "Critical Thinking", "ar": "التفكير النقدي" }
+      "name": {
+        "en": "Critical Thinking",
+        "ar": "التفكير النقدي"
+      }
     }
   ],
   "missingSkills": [
     {
       "skillId": "SKL-00002",
       "code": "FRACTIONS",
-      "name": { "en": "Fractions", "ar": "الكسور" }
+      "name": {
+        "en": "Fractions",
+        "ar": "الكسور"
+      }
     }
   ],
   "weakSkills": [
     {
       "skillId": "SKL-00001",
       "code": "ARITHMETIC",
-      "name": { "en": "Arithmetic", "ar": "الحساب" }
+      "name": {
+        "en": "Arithmetic",
+        "ar": "الحساب"
+      }
     },
     {
       "skillId": "SKL-00008",
       "code": "CRITICAL_THINKING",
-      "name": { "en": "Critical Thinking", "ar": "التفكير النقدي" }
+      "name": {
+        "en": "Critical Thinking",
+        "ar": "التفكير النقدي"
+      }
     }
   ],
   "recommendedLessons": [
@@ -63,9 +81,17 @@
         "ar": "الدرس 2 — العدّ حتى خمسة"
       },
       "globalSubjectId": "SUB-00001",
-      "skills": ["SKL-00001", "SKL-00002"],
+      "skills": [
+        "SKL-00001",
+        "SKL-00002"
+      ],
+      "ilePackageId": null,
+      "published": false,
       "reason": "missing_skill",
-      "targetSkillIds": ["SKL-00002", "SKL-00001"]
+      "targetSkillIds": [
+        "SKL-00002",
+        "SKL-00001"
+      ]
     },
     {
       "lessonId": "JO-NATIONAL-G01-MATH-B01-U01-L03",
@@ -74,9 +100,17 @@
         "ar": "الدرس 3 — مقارنة مجموعات صغيرة"
       },
       "globalSubjectId": "SUB-00001",
-      "skills": ["SKL-00002", "SKL-00008"],
+      "skills": [
+        "SKL-00002",
+        "SKL-00008"
+      ],
+      "ilePackageId": null,
+      "published": false,
       "reason": "missing_skill",
-      "targetSkillIds": ["SKL-00002", "SKL-00008"]
+      "targetSkillIds": [
+        "SKL-00002",
+        "SKL-00008"
+      ]
     },
     {
       "lessonId": "JO-NATIONAL-G01-MATH-B01-U02-L01",
@@ -85,9 +119,15 @@
         "ar": "الدرس 1 — الدائرة والمربع"
       },
       "globalSubjectId": "SUB-00001",
-      "skills": ["SKL-00001"],
+      "skills": [
+        "SKL-00001"
+      ],
+      "ilePackageId": null,
+      "published": false,
       "reason": "weak_skill",
-      "targetSkillIds": ["SKL-00001"]
+      "targetSkillIds": [
+        "SKL-00001"
+      ]
     }
   ],
   "counts": {
@@ -96,6 +136,5 @@
     "missingSkills": 1,
     "weakSkills": 2,
     "recommendedLessons": 3
-  },
-  "notes": "Weak = skill started but not covered by all verified lessons that teach it. Recommendations are ILE lessons only — no AI."
+  }
 }

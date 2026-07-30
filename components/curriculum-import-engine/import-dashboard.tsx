@@ -251,6 +251,10 @@ export function CurriculumImportDashboard(): ReactNode {
         <p style={{ fontSize: 12, color: "#475569", margin: "0.25rem 0 0" }}>
           Fractions → Decimals → Percentages → Algebra → Functions
         </p>
+        <p style={{ fontSize: 12, color: "#475569", margin: "0.25rem 0 0" }}>
+          World → Country → Curriculum → Academic Year → Grade → Subject → Book → Unit → Lesson →
+          ILE Package (discovered dynamically; Jordan is first implementation only)
+        </p>
         {notice ? (
           <p style={{ color: "#0f766e", fontSize: 13, margin: "0.5rem 0 0" }}>{notice}</p>
         ) : null}

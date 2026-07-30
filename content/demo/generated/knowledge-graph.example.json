@@ -1,0 +1,171 @@
+{
+  "schema": "success-os.knowledge-graph.v1",
+  "pathPatterns": {
+    "lessons": [
+      "Lesson",
+      "requires",
+      "Lesson",
+      "requires",
+      "Lesson"
+    ],
+    "skills": [
+      "Skill",
+      "depends on",
+      "Skill",
+      "depends on",
+      "Skill"
+    ]
+  },
+  "nodes": [
+    {
+      "id": "SKL-00001",
+      "kind": "skill",
+      "label": "Arithmetic",
+      "globalSubjectId": "SUB-00001"
+    },
+    {
+      "id": "SKL-00002",
+      "kind": "skill",
+      "label": "Fractions",
+      "globalSubjectId": "SUB-00001"
+    },
+    {
+      "id": "SKL-00003",
+      "kind": "skill",
+      "label": "Vectors",
+      "globalSubjectId": "SUB-00003"
+    },
+    {
+      "id": "SKL-00004",
+      "kind": "skill",
+      "label": "Newton Laws",
+      "globalSubjectId": "SUB-00003"
+    },
+    {
+      "id": "SKL-00005",
+      "kind": "skill",
+      "label": "Acids",
+      "globalSubjectId": "SUB-00004"
+    },
+    {
+      "id": "SKL-00006",
+      "kind": "skill",
+      "label": "Reading",
+      "globalSubjectId": "SUB-00006"
+    },
+    {
+      "id": "SKL-00007",
+      "kind": "skill",
+      "label": "Writing",
+      "globalSubjectId": "SUB-00006"
+    },
+    {
+      "id": "SKL-00008",
+      "kind": "skill",
+      "label": "Critical Thinking"
+    },
+    {
+      "id": "SKL-00009",
+      "kind": "skill",
+      "label": "Decimals",
+      "globalSubjectId": "SUB-00001"
+    },
+    {
+      "id": "SKL-00010",
+      "kind": "skill",
+      "label": "Percentages",
+      "globalSubjectId": "SUB-00001"
+    },
+    {
+      "id": "SKL-00011",
+      "kind": "skill",
+      "label": "Algebra",
+      "globalSubjectId": "SUB-00001"
+    },
+    {
+      "id": "SKL-00012",
+      "kind": "skill",
+      "label": "Functions",
+      "globalSubjectId": "SUB-00001"
+    },
+    {
+      "id": "SKL-00013",
+      "kind": "skill",
+      "label": "Counting",
+      "globalSubjectId": "SUB-00001"
+    },
+    {
+      "id": "SKL-00014",
+      "kind": "skill",
+      "label": "Addition",
+      "globalSubjectId": "SUB-00001"
+    },
+    {
+      "id": "SKL-00015",
+      "kind": "skill",
+      "label": "Observation",
+      "globalSubjectId": "SUB-00002"
+    },
+    {
+      "id": "SKL-00016",
+      "kind": "skill",
+      "label": "Scientific Thinking",
+      "globalSubjectId": "SUB-00002"
+    }
+  ],
+  "edges": [
+    {
+      "from": "SKL-00002",
+      "to": "SKL-00001",
+      "kind": "depends_on"
+    },
+    {
+      "from": "SKL-00004",
+      "to": "SKL-00003",
+      "kind": "depends_on"
+    },
+    {
+      "from": "SKL-00007",
+      "to": "SKL-00006",
+      "kind": "depends_on"
+    },
+    {
+      "from": "SKL-00009",
+      "to": "SKL-00002",
+      "kind": "depends_on"
+    },
+    {
+      "from": "SKL-00010",
+      "to": "SKL-00009",
+      "kind": "depends_on"
+    },
+    {
+      "from": "SKL-00011",
+      "to": "SKL-00010",
+      "kind": "depends_on"
+    },
+    {
+      "from": "SKL-00012",
+      "to": "SKL-00011",
+      "kind": "depends_on"
+    },
+    {
+      "from": "SKL-00014",
+      "to": "SKL-00013",
+      "kind": "depends_on"
+    },
+    {
+      "from": "SKL-00016",
+      "to": "SKL-00015",
+      "kind": "depends_on"
+    }
+  ],
+  "counts": {
+    "nodes": 16,
+    "edges": 9,
+    "lessonNodes": 0,
+    "skillNodes": 16,
+    "requiresEdges": 0,
+    "dependsOnEdges": 9
+  }
+}

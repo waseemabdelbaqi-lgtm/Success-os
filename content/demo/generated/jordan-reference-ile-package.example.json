@@ -30,6 +30,195 @@
     "unitId": "JO-NATIONAL-G01-MATH-B01-U01",
     "lessonId": "JO-NATIONAL-G01-MATH-B01-U01-L01"
   },
+  "sections": {
+    "overview": [
+      {
+        "id": "JO-NATIONAL-G01-MATH-B01-U01-L01_overview",
+        "type": "rich_text",
+        "title": {
+          "en": "Overview",
+          "ar": "نظرة عامة"
+        },
+        "text": {
+          "en": "We count objects one by one: one, two, three.",
+          "ar": "نعدّ الأشياء واحدًا واحدًا: واحد، اثنان، ثلاثة."
+        },
+        "src": null,
+        "mediaUrl": null,
+        "downloadUrl": null
+      }
+    ],
+    "learning_objectives": [
+      {
+        "id": "JO-NATIONAL-G01-MATH-B01-U01-L01_obj_0",
+        "type": "rich_text",
+        "title": {
+          "en": "Objective 1",
+          "ar": "هدف 1"
+        },
+        "text": {
+          "en": "Identify core idea of Lesson 1 — Count to three",
+          "ar": "تحديد الفكرة الأساسية لـ الدرس 1 — العدّ حتى ثلاثة"
+        },
+        "src": null,
+        "mediaUrl": null,
+        "downloadUrl": null
+      },
+      {
+        "id": "JO-NATIONAL-G01-MATH-B01-U01-L01_obj_1",
+        "type": "rich_text",
+        "title": {
+          "en": "Objective 2",
+          "ar": "هدف 2"
+        },
+        "text": {
+          "en": "Apply Lesson 1 — Count to three in a simple classroom task",
+          "ar": "تطبيق الدرس 1 — العدّ حتى ثلاثة في مهمة صفية بسيطة"
+        },
+        "src": null,
+        "mediaUrl": null,
+        "downloadUrl": null
+      }
+    ],
+    "interactive_slides": [],
+    "concepts": [
+      {
+        "id": "JO-NATIONAL-G01-MATH-B01-U01-L01_def",
+        "type": "definition",
+        "title": {
+          "en": "Lesson 1 — Count to three",
+          "ar": "الدرس 1 — العدّ حتى ثلاثة"
+        },
+        "text": {
+          "en": "We count objects one by one: one, two, three.",
+          "ar": "نعدّ الأشياء واحدًا واحدًا: واحد، اثنان، ثلاثة."
+        },
+        "src": null,
+        "mediaUrl": null,
+        "downloadUrl": null
+      }
+    ],
+    "attachments": [
+      {
+        "id": "JO-NATIONAL-G01-MATH-B01-U01-L01_asset",
+        "type": "downloadable_resource",
+        "title": {
+          "en": "Counting dots",
+          "ar": "نقاط العد"
+        },
+        "text": {
+          "en": "Counting dots",
+          "ar": "نقاط العد"
+        },
+        "src": null,
+        "mediaUrl": null,
+        "downloadUrl": null,
+        "placeholderStatus": "planned"
+      }
+    ],
+    "lesson_summary": [
+      {
+        "id": "JO-NATIONAL-G01-MATH-B01-U01-L01_summary",
+        "type": "rich_text",
+        "title": {
+          "en": "Summary",
+          "ar": "ملخص"
+        },
+        "text": {
+          "en": "We count objects one by one: one, two, three.",
+          "ar": "نعدّ الأشياء واحدًا واحدًا: واحد، اثنان، ثلاثة."
+        },
+        "src": null,
+        "mediaUrl": null,
+        "downloadUrl": null
+      }
+    ],
+    "next_lesson": []
+  },
+  "slides": [
+    {
+      "id": "JO-NATIONAL-G01-MATH-B01-U01-L01_slide_1",
+      "order": 1,
+      "title": {
+        "en": "Lesson 1 — Count to three",
+        "ar": "الدرس 1 — العدّ حتى ثلاثة"
+      },
+      "kind": "concept",
+      "blocks": [
+        {
+          "id": "JO-NATIONAL-G01-MATH-B01-U01-L01_overview",
+          "type": "rich_text",
+          "title": {
+            "en": "Overview",
+            "ar": "نظرة عامة"
+          },
+          "text": {
+            "en": "We count objects one by one: one, two, three.",
+            "ar": "نعدّ الأشياء واحدًا واحدًا: واحد، اثنان، ثلاثة."
+          },
+          "src": null,
+          "mediaUrl": null,
+          "downloadUrl": null
+        },
+        {
+          "id": "JO-NATIONAL-G01-MATH-B01-U01-L01_def",
+          "type": "definition",
+          "title": {
+            "en": "Lesson 1 — Count to three",
+            "ar": "الدرس 1 — العدّ حتى ثلاثة"
+          },
+          "text": {
+            "en": "We count objects one by one: one, two, three.",
+            "ar": "نعدّ الأشياء واحدًا واحدًا: واحد، اثنان، ثلاثة."
+          },
+          "src": null,
+          "mediaUrl": null,
+          "downloadUrl": null
+        }
+      ]
+    },
+    {
+      "id": "JO-NATIONAL-G01-MATH-B01-U01-L01_slide_2",
+      "order": 2,
+      "title": {
+        "en": "Objectives",
+        "ar": "الأهداف"
+      },
+      "kind": "intro",
+      "blocks": [
+        {
+          "id": "JO-NATIONAL-G01-MATH-B01-U01-L01_obj_0",
+          "type": "rich_text",
+          "title": {
+            "en": "Objective 1",
+            "ar": "هدف 1"
+          },
+          "text": {
+            "en": "Identify core idea of Lesson 1 — Count to three",
+            "ar": "تحديد الفكرة الأساسية لـ الدرس 1 — العدّ حتى ثلاثة"
+          },
+          "src": null,
+          "mediaUrl": null,
+          "downloadUrl": null
+        },
+        {
+          "id": "JO-NATIONAL-G01-MATH-B01-U01-L01_obj_1",
+          "type": "rich_text",
+          "title": {
+            "en": "Objective 2",
+            "ar": "هدف 2"
+          },
+          "text": {
+            "en": "Apply Lesson 1 — Count to three in a simple classroom task",
+            "ar": "تطبيق الدرس 1 — العدّ حتى ثلاثة في مهمة صفية بسيطة"
+          },
+          "src": null,
+          "mediaUrl": null,
+          "downloadUrl": null
+        }
+      ]
+    }
+  ],
   "objectives": [
     {
       "en": "Identify core idea of Lesson 1 — Count to three",
@@ -41,49 +230,186 @@
     }
   ],
   "concepts": [
-    { "en": "lesson", "ar": "lesson" },
-    { "en": "1", "ar": "1" },
-    { "en": "count", "ar": "count" },
-    { "en": "to", "ar": "to" },
-    { "en": "three", "ar": "three" }
-  ],
-  "slides": [
     {
-      "id": "JO-NATIONAL-G01-MATH-B01-U01-L01_slide_1",
-      "order": 1,
-      "title": {
-        "en": "Lesson 1 — Count to three",
-        "ar": "الدرس 1 — العدّ حتى ثلاثة"
-      },
-      "kind": "concept",
-      "blocks": [
-        { "type": "rich_text", "id": "JO-NATIONAL-G01-MATH-B01-U01-L01_overview" },
-        { "type": "definition", "id": "JO-NATIONAL-G01-MATH-B01-U01-L01_def" }
-      ]
+      "en": "lesson",
+      "ar": "lesson"
     },
     {
-      "id": "JO-NATIONAL-G01-MATH-B01-U01-L01_slide_2",
-      "order": 2,
-      "title": { "en": "Objectives", "ar": "الأهداف" },
-      "kind": "intro",
-      "blocks": [
-        { "type": "rich_text", "id": "JO-NATIONAL-G01-MATH-B01-U01-L01_obj_0" },
-        { "type": "rich_text", "id": "JO-NATIONAL-G01-MATH-B01-U01-L01_obj_1" }
-      ]
+      "en": "1",
+      "ar": "1"
+    },
+    {
+      "en": "count",
+      "ar": "count"
+    },
+    {
+      "en": "to",
+      "ar": "to"
+    },
+    {
+      "en": "three",
+      "ar": "three"
     }
   ],
-  "importMeta": {
-    "jobId": "jordan_reference_dataset",
-    "sourceId": "JO-NCCD-REFERENCE",
-    "connectorId": "jordan-reference-dataset",
-    "country": "Jordan",
-    "curriculum": "Jordan National Curriculum",
-    "verificationStatus": "verified",
-    "rightsStatus": "verified",
-    "checksum": "8c2065b25bd8d0f5e05576bce000b08a5878994cb1ec1ffddc61965092a51610"
+  "nextLesson": null,
+  "futureCapabilities": [
+    {
+      "id": "ai_teacher_video",
+      "status": "placeholder",
+      "label": {
+        "en": "AI teacher video",
+        "ar": "فيديو معلّم ذكي"
+      },
+      "apiPath": "/api/interactive-lesson-engine/placeholders/ai-teacher-video",
+      "notes": {
+        "en": "Placeholder only — do not generate AI videos in this phase.",
+        "ar": "موضع فقط — لا توليد فيديو ذكي في هذه المرحلة."
+      }
+    },
+    {
+      "id": "human_recorded_lesson",
+      "status": "placeholder",
+      "label": {
+        "en": "Human recorded lesson",
+        "ar": "درس مسجّل بشريًا"
+      },
+      "apiPath": "/api/interactive-lesson-engine/placeholders/human-recorded",
+      "notes": {
+        "en": "Reserved for marketplace / teacher uploads.",
+        "ar": "محجوز لسوق الدروس / رفع المعلّم."
+      }
+    },
+    {
+      "id": "voice_narration",
+      "status": "placeholder",
+      "label": {
+        "en": "Voice narration",
+        "ar": "سرد صوتي"
+      },
+      "apiPath": "/api/interactive-lesson-engine/placeholders/voice-narration",
+      "notes": {
+        "en": "Placeholder for multilingual narration tracks.",
+        "ar": "موضع لمسارات السرد متعددة اللغات."
+      }
+    },
+    {
+      "id": "interactive_simulations",
+      "status": "placeholder",
+      "label": {
+        "en": "Interactive simulations",
+        "ar": "محاكاة تفاعلية"
+      },
+      "apiPath": "/api/interactive-lesson-engine/placeholders/simulations",
+      "notes": {
+        "en": "3D / interactive sim runtime not shipped yet.",
+        "ar": "محرك المحاكاة ثلاثية الأبعاد غير مُصدَّر بعد."
+      }
+    },
+    {
+      "id": "virtual_labs",
+      "status": "placeholder",
+      "label": {
+        "en": "Virtual labs",
+        "ar": "مختبرات افتراضية"
+      },
+      "apiPath": "/api/interactive-lesson-engine/placeholders/virtual-labs",
+      "notes": {
+        "en": "Placeholder for lab procedures.",
+        "ar": "موضع لإجراءات المختبر."
+      }
+    },
+    {
+      "id": "adaptive_learning",
+      "status": "placeholder",
+      "label": {
+        "en": "Adaptive learning",
+        "ar": "تعلّم تكيّفي"
+      },
+      "apiPath": "/api/interactive-lesson-engine/placeholders/adaptive",
+      "notes": {
+        "en": "Path adaptation reserved for later phases.",
+        "ar": "تكيّف المسار محجوز لمراحل لاحقة."
+      }
+    },
+    {
+      "id": "quiz_engine",
+      "status": "placeholder",
+      "label": {
+        "en": "Quiz engine",
+        "ar": "محرك الاختبارات"
+      },
+      "apiPath": "/api/interactive-lesson-engine/placeholders/quiz-engine",
+      "notes": {
+        "en": "Inline practice exists; full quiz engine later.",
+        "ar": "تدريب مضمّن موجود؛ محرك اختبار كامل لاحقًا."
+      }
+    },
+    {
+      "id": "unit_tests",
+      "status": "placeholder",
+      "label": {
+        "en": "Unit tests",
+        "ar": "اختبارات الوحدة"
+      },
+      "apiPath": "/api/interactive-lesson-engine/placeholders/unit-tests",
+      "notes": {
+        "en": "Unit-level assessment placeholder.",
+        "ar": "موضع تقييم على مستوى الوحدة."
+      }
+    },
+    {
+      "id": "final_exams",
+      "status": "placeholder",
+      "label": {
+        "en": "Final exams",
+        "ar": "امتحانات نهائية"
+      },
+      "apiPath": "/api/interactive-lesson-engine/placeholders/final-exams",
+      "notes": {
+        "en": "Subject / stage finals — not generated here.",
+        "ar": "نهائيات المادة / المرحلة — لا تُولَّد هنا."
+      }
+    }
+  ],
+  "accessibility": {
+    "captions": true,
+    "keyboardNav": true,
+    "readingMode": true,
+    "highContrast": true
   },
+  "performance": {
+    "lazyLoad": true,
+    "virtualizeSlides": true,
+    "offlineReady": true
+  },
+  "changelog": [
+    {
+      "at": "2026-07-30T22:04:18.818Z",
+      "note": "Compiled by Curriculum Import Engine",
+      "by": "curriculum-import"
+    }
+  ],
   "engineMeta": {
     "compiledBy": "success-os.curriculum-import-engine.v1",
+    "noAiGeneration": true,
+    "noQuizGeneration": true,
+    "noVideoGeneration": true,
+    "keywords": [
+      "lesson",
+      "1",
+      "count",
+      "to",
+      "three"
+    ],
+    "references": [
+      {
+        "label": {
+          "en": "NCCD structure baseline",
+          "ar": "خط أساس بنية المركز الوطني"
+        },
+        "href": "https://nccd.gov.jo"
+      }
+    ],
     "referenceDataset": "jordan-reference-dataset.v1",
     "hierarchyPath": [
       "JO",
@@ -96,10 +422,105 @@
       "JO-NATIONAL-G01-MATH-B01-U01-L01",
       "Verified ILE Package",
       "Interactive Lesson Engine"
-    ],
-    "noAiGeneration": true,
-    "noQuizGeneration": true,
-    "noVideoGeneration": true
+    ]
   },
-  "notes": "Sample verified ILE package for JO-NATIONAL-G01-MATH-B01-U01-L01. ILE remains the only educational runtime."
+  "createdAt": "2026-07-30T22:04:18.818Z",
+  "updatedAt": "2026-07-30T22:04:18.818Z",
+  "importMeta": {
+    "jobId": "jordan_reference_dataset",
+    "sourceId": "JO-NCCD-REFERENCE",
+    "connectorId": "jordan-reference-dataset",
+    "checksum": "8c2065b25bd8d0f5e05576bce000b08a5878994cb1ec1ffddc61965092a51610",
+    "rightsStatus": "verified",
+    "verificationStatus": "verified",
+    "gates": [
+      {
+        "gate": "source_verification",
+        "passed": true,
+        "severity": "info",
+        "message": {
+          "en": "Source authority present",
+          "ar": "سلطة المصدر موجودة"
+        },
+        "details": {
+          "sourceId": "JO-NCCD-REFERENCE",
+          "connectorId": "jordan-reference-dataset"
+        }
+      },
+      {
+        "gate": "rights_verification",
+        "passed": true,
+        "severity": "info",
+        "message": {
+          "en": "Rights verification passed",
+          "ar": "اجتاز التحقق من الحقوق"
+        },
+        "details": {
+          "license": "structure-reference-only",
+          "rightsStatus": "verified"
+        }
+      },
+      {
+        "gate": "duplicate_detection",
+        "passed": true,
+        "severity": "info",
+        "message": {
+          "en": "No duplicate detected",
+          "ar": "لا تكرار"
+        },
+        "details": {
+          "checksum": "8c2065b25bd8d0f5e05576bce000b08a5878994cb1ec1ffddc61965092a51610"
+        }
+      },
+      {
+        "gate": "metadata_validation",
+        "passed": true,
+        "severity": "info",
+        "message": {
+          "en": "Metadata complete",
+          "ar": "البيانات الوصفية مكتملة"
+        }
+      },
+      {
+        "gate": "structure_validation",
+        "passed": true,
+        "severity": "info",
+        "message": {
+          "en": "Book → Unit → Lesson structure valid",
+          "ar": "بنية كتاب←وحدة←درس صالحة"
+        },
+        "details": {
+          "units": 1,
+          "lessons": 1
+        }
+      },
+      {
+        "gate": "asset_validation",
+        "passed": true,
+        "severity": "info",
+        "message": {
+          "en": "Assets validated (1 cataloged; placeholders allowed)",
+          "ar": "الأصول موثّقة (1؛ المواضع مسموحة)"
+        },
+        "details": {
+          "assetCount": 1
+        }
+      },
+      {
+        "gate": "package_validation",
+        "passed": true,
+        "severity": "info",
+        "message": {
+          "en": "ILE packages valid",
+          "ar": "حزم ILE صالحة"
+        },
+        "details": {
+          "packageCount": 1
+        }
+      }
+    ],
+    "compiledAt": "2026-07-30T22:04:18.818Z",
+    "country": "Jordan",
+    "curriculum": "Jordan National Curriculum"
+  }
 }

@@ -1,0 +1,271 @@
+{
+  "schema": "success-os.global-curriculum-registry.v1",
+  "hierarchy": [
+    "World",
+    "Country",
+    "Curriculum",
+    "Academic Year",
+    "Grade",
+    "Semester (if applicable)",
+    "Subject",
+    "Book",
+    "Unit",
+    "Lesson",
+    "ILE Package"
+  ],
+  "world": {
+    "globalId": "WLD-00001",
+    "name": {
+      "en": "World",
+      "ar": "العالم"
+    }
+  },
+  "counts": {
+    "countries": 1,
+    "curricula": 1,
+    "academicYears": 1,
+    "grades": 1,
+    "semesters": 1,
+    "subjects": 8,
+    "books": 9,
+    "units": 10,
+    "lessons": 15,
+    "packages": 1
+  },
+  "countries": [
+    {
+      "globalId": "CTR-00001",
+      "code": "JO",
+      "name": {
+        "en": "Jordan",
+        "ar": "الأردن"
+      },
+      "active": true
+    }
+  ],
+  "curricula": [
+    {
+      "globalId": "CUR-00001",
+      "countryGlobalId": "CTR-00001",
+      "code": "NATIONAL",
+      "name": {
+        "en": "Jordan National Curriculum",
+        "ar": "المنهاج الوطني الأردني"
+      },
+      "kind": "national",
+      "active": true
+    }
+  ],
+  "academicYears": [
+    {
+      "globalId": "AYR-00001",
+      "curriculumGlobalId": "CUR-00001",
+      "label": "2025/2026",
+      "active": true
+    }
+  ],
+  "grades": [
+    {
+      "globalId": "GRD-00001",
+      "academicYearGlobalId": "AYR-00001",
+      "curriculumGlobalId": "CUR-00001",
+      "code": "G01",
+      "name": {
+        "en": "Grade 1",
+        "ar": "الصف الأول"
+      },
+      "order": 1,
+      "hierarchicalId": "JO-NATIONAL-G01"
+    }
+  ],
+  "semesters": [
+    {
+      "globalId": "SEM-00001",
+      "gradeGlobalId": "GRD-00001",
+      "code": "S01",
+      "name": {
+        "en": "Semester 1",
+        "ar": "الفصل الدراسي الأول"
+      },
+      "order": 1,
+      "hierarchicalId": "JO-NATIONAL-G01-S01"
+    }
+  ],
+  "subjectBindings": [
+    {
+      "hierarchicalId": "JO-NATIONAL-G01-AR",
+      "gradeGlobalId": "GRD-00001",
+      "semesterGlobalId": "SEM-00001",
+      "subjectGlobalId": "SUB-00006",
+      "localLabel": {
+        "en": "Arabic",
+        "ar": "اللغة العربية"
+      },
+      "localCode": "AR"
+    },
+    {
+      "hierarchicalId": "JO-NATIONAL-G01-EN",
+      "gradeGlobalId": "GRD-00001",
+      "semesterGlobalId": "SEM-00001",
+      "subjectGlobalId": "SUB-00007",
+      "localLabel": {
+        "en": "English",
+        "ar": "اللغة الإنجليزية"
+      },
+      "localCode": "EN"
+    },
+    {
+      "hierarchicalId": "JO-NATIONAL-G01-MATH",
+      "gradeGlobalId": "GRD-00001",
+      "semesterGlobalId": "SEM-00001",
+      "subjectGlobalId": "SUB-00001",
+      "localLabel": {
+        "en": "Mathematics",
+        "ar": "الرياضيات"
+      },
+      "localCode": "MATH"
+    },
+    {
+      "hierarchicalId": "JO-NATIONAL-G01-SCI",
+      "gradeGlobalId": "GRD-00001",
+      "semesterGlobalId": "SEM-00001",
+      "subjectGlobalId": "SUB-00002",
+      "localLabel": {
+        "en": "Science",
+        "ar": "العلوم"
+      },
+      "localCode": "SCI"
+    },
+    {
+      "hierarchicalId": "JO-NATIONAL-G01-ISL",
+      "gradeGlobalId": "GRD-00001",
+      "semesterGlobalId": "SEM-00001",
+      "subjectGlobalId": "SUB-00008",
+      "localLabel": {
+        "en": "Islamic Education",
+        "ar": "التربية الإسلامية"
+      },
+      "localCode": "ISL"
+    },
+    {
+      "hierarchicalId": "JO-NATIONAL-G01-SOC",
+      "gradeGlobalId": "GRD-00001",
+      "semesterGlobalId": "SEM-00001",
+      "subjectGlobalId": "SUB-00009",
+      "localLabel": {
+        "en": "Social Studies",
+        "ar": "التربية الاجتماعية"
+      },
+      "localCode": "SOC"
+    },
+    {
+      "hierarchicalId": "JO-NATIONAL-G01-ART",
+      "gradeGlobalId": "GRD-00001",
+      "semesterGlobalId": "SEM-00001",
+      "subjectGlobalId": "SUB-00010",
+      "localLabel": {
+        "en": "Art",
+        "ar": "التربية الفنية"
+      },
+      "localCode": "ART"
+    },
+    {
+      "hierarchicalId": "JO-NATIONAL-G01-PE",
+      "gradeGlobalId": "GRD-00001",
+      "semesterGlobalId": "SEM-00001",
+      "subjectGlobalId": "SUB-00011",
+      "localLabel": {
+        "en": "Physical Education",
+        "ar": "التربية الرياضية"
+      },
+      "localCode": "PE"
+    }
+  ],
+  "sampleLesson": {
+    "globalId": "LSN-00005",
+    "hierarchicalId": "JO-NATIONAL-G01-MATH-B01-U01-L01",
+    "unitGlobalId": "UNT-00003",
+    "bookGlobalId": "BOK-00003",
+    "subjectGlobalId": "SUB-00001",
+    "countryGlobalId": "CTR-00001",
+    "curriculumGlobalId": "CUR-00001",
+    "academicYearGlobalId": "AYR-00001",
+    "gradeGlobalId": "GRD-00001",
+    "semesterGlobalId": "SEM-00001",
+    "order": 1,
+    "officialLessonName": {
+      "en": "Lesson 1 — Count to three",
+      "ar": "الدرس 1 — العدّ حتى ثلاثة"
+    },
+    "language": "bilingual",
+    "learningObjectives": [
+      {
+        "en": "Identify core idea of Lesson 1 — Count to three",
+        "ar": "تحديد الفكرة الأساسية لـ الدرس 1 — العدّ حتى ثلاثة"
+      },
+      {
+        "en": "Apply Lesson 1 — Count to three in a simple classroom task",
+        "ar": "تطبيق الدرس 1 — العدّ حتى ثلاثة في مهمة صفية بسيطة"
+      }
+    ],
+    "skills": [],
+    "prerequisites": [],
+    "nextLessons": [],
+    "estimatedDuration": 20,
+    "difficulty": "core",
+    "bloomLevel": "understand",
+    "keywords": [
+      "lesson",
+      "1",
+      "count",
+      "to",
+      "three"
+    ],
+    "references": [
+      {
+        "label": {
+          "en": "Jordan National Curriculum — Grade 1",
+          "ar": "المنهاج الوطني الأردني — الصف الأول"
+        }
+      }
+    ],
+    "rightsStatus": "cleared",
+    "verificationStatus": "verified",
+    "packageVersion": "2025.1",
+    "checksum": "",
+    "published": false,
+    "archived": false,
+    "ilePackageGlobalId": "PKG-00001",
+    "ilePackageId": "ile_JO-NATIONAL-G01-MATH-B01-U01-L01"
+  },
+  "packages": [
+    {
+      "globalId": "PKG-00001",
+      "packageId": "ile_JO-NATIONAL-G01-MATH-B01-U01-L01",
+      "lessonGlobalId": "LSN-00005",
+      "lessonHierarchicalId": "JO-NATIONAL-G01-MATH-B01-U01-L01",
+      "schema": "success-os.interactive-lesson-engine.v1"
+    }
+  ],
+  "assertions": {
+    "jordanIsFirstImplementation": true,
+    "physicsAbsentFromG01": true,
+    "chemistryAbsentFromG01": true,
+    "biologyAbsentFromG01": true,
+    "g01SubjectCodes": [
+      "AR",
+      "EN",
+      "MATH",
+      "SCI",
+      "ISL",
+      "SOC",
+      "ART",
+      "PE"
+    ]
+  },
+  "notes": [
+    "Jordan is the first reference implementation — not a hardcoded platform model.",
+    "Grades/subjects/books are discovered from official curriculum sources.",
+    "Global IDs (CTR/CUR/AYR/GRD/SEM/SUB/BOK/UNT/LSN/SKL/PKG) are immutable."
+  ]
+}

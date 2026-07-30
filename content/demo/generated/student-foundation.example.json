@@ -1,0 +1,149 @@
+{
+  "schema": "success-os.student-foundation.v1",
+  "studentId": "student_jo_demo_001",
+  "countryId": "JO",
+  "curriculumId": "JO-NATIONAL",
+  "completedLessons": [],
+  "completedSkills": [],
+  "missingSkills": [
+    {
+      "skillId": "SKL-00001",
+      "code": "ARITHMETIC",
+      "name": {
+        "en": "Arithmetic",
+        "ar": "الحساب"
+      }
+    },
+    {
+      "skillId": "SKL-00002",
+      "code": "FRACTIONS",
+      "name": {
+        "en": "Fractions",
+        "ar": "الكسور"
+      }
+    },
+    {
+      "skillId": "SKL-00003",
+      "code": "VECTORS",
+      "name": {
+        "en": "Vectors",
+        "ar": "المتجهات"
+      }
+    },
+    {
+      "skillId": "SKL-00004",
+      "code": "NEWTON_LAWS",
+      "name": {
+        "en": "Newton Laws",
+        "ar": "قوانين نيوتن"
+      }
+    },
+    {
+      "skillId": "SKL-00005",
+      "code": "ACIDS",
+      "name": {
+        "en": "Acids",
+        "ar": "الأحماض"
+      }
+    },
+    {
+      "skillId": "SKL-00006",
+      "code": "READING",
+      "name": {
+        "en": "Reading",
+        "ar": "القراءة"
+      }
+    },
+    {
+      "skillId": "SKL-00007",
+      "code": "WRITING",
+      "name": {
+        "en": "Writing",
+        "ar": "الكتابة"
+      }
+    },
+    {
+      "skillId": "SKL-00008",
+      "code": "CRITICAL_THINKING",
+      "name": {
+        "en": "Critical Thinking",
+        "ar": "التفكير النقدي"
+      }
+    },
+    {
+      "skillId": "SKL-00009",
+      "code": "DECIMALS",
+      "name": {
+        "en": "Decimals",
+        "ar": "الأعداد العشرية"
+      }
+    },
+    {
+      "skillId": "SKL-00010",
+      "code": "PERCENTAGES",
+      "name": {
+        "en": "Percentages",
+        "ar": "النسب المئوية"
+      }
+    },
+    {
+      "skillId": "SKL-00011",
+      "code": "ALGEBRA",
+      "name": {
+        "en": "Algebra",
+        "ar": "الجبر"
+      }
+    },
+    {
+      "skillId": "SKL-00012",
+      "code": "FUNCTIONS",
+      "name": {
+        "en": "Functions",
+        "ar": "الدوال"
+      }
+    },
+    {
+      "skillId": "SKL-00013",
+      "code": "COUNTING",
+      "name": {
+        "en": "Counting",
+        "ar": "العدّ"
+      }
+    },
+    {
+      "skillId": "SKL-00014",
+      "code": "ADDITION",
+      "name": {
+        "en": "Addition",
+        "ar": "الجمع"
+      }
+    },
+    {
+      "skillId": "SKL-00015",
+      "code": "OBSERVATION",
+      "name": {
+        "en": "Observation",
+        "ar": "الملاحظة"
+      }
+    },
+    {
+      "skillId": "SKL-00016",
+      "code": "SCIENTIFIC_THINKING",
+      "name": {
+        "en": "Scientific Thinking",
+        "ar": "التفكير العلمي"
+      }
+    }
+  ],
+  "weakSkills": [],
+  "recommendedLessons": [],
+  "learningPath": null,
+  "counts": {
+    "completedLessons": 0,
+    "completedSkills": 0,
+    "missingSkills": 16,
+    "weakSkills": 0,
+    "recommendedLessons": 0,
+    "learningPathSteps": 0
+  }
+}

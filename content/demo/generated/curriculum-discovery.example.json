@@ -1,0 +1,262 @@
+{
+  "schema": "success-os.curriculum-discovery.v1",
+  "sourceId": "JO-NCCD-G01-2025-2026",
+  "countryCode": "JO",
+  "curriculumCode": "NATIONAL",
+  "academicYear": "2025/2026",
+  "detected": {
+    "grades": [
+      {
+        "code": "G01",
+        "name": {
+          "en": "Grade 1",
+          "ar": "الصف الأول"
+        },
+        "order": 1,
+        "hierarchicalId": "JO-NATIONAL-G01",
+        "semesterCodes": [
+          "S01"
+        ],
+        "subjects": [
+          {
+            "localCode": "AR",
+            "localLabel": {
+              "en": "Arabic",
+              "ar": "اللغة العربية"
+            },
+            "aliasLabel": "لغة عربية",
+            "globalSubjectId": "SUB-00006",
+            "hierarchicalId": "JO-NATIONAL-G01-AR",
+            "bookCount": 1,
+            "unitCount": 1,
+            "lessonCount": 2
+          },
+          {
+            "localCode": "EN",
+            "localLabel": {
+              "en": "English",
+              "ar": "اللغة الإنجليزية"
+            },
+            "aliasLabel": "English",
+            "globalSubjectId": "SUB-00007",
+            "hierarchicalId": "JO-NATIONAL-G01-EN",
+            "bookCount": 1,
+            "unitCount": 1,
+            "lessonCount": 2
+          },
+          {
+            "localCode": "MATH",
+            "localLabel": {
+              "en": "Mathematics",
+              "ar": "الرياضيات"
+            },
+            "aliasLabel": "رياضيات",
+            "globalSubjectId": "SUB-00001",
+            "hierarchicalId": "JO-NATIONAL-G01-MATH",
+            "bookCount": 2,
+            "unitCount": 3,
+            "lessonCount": 6
+          },
+          {
+            "localCode": "SCI",
+            "localLabel": {
+              "en": "Science",
+              "ar": "العلوم"
+            },
+            "aliasLabel": "علوم",
+            "globalSubjectId": "SUB-00002",
+            "hierarchicalId": "JO-NATIONAL-G01-SCI",
+            "bookCount": 1,
+            "unitCount": 1,
+            "lessonCount": 1
+          },
+          {
+            "localCode": "ISL",
+            "localLabel": {
+              "en": "Islamic Education",
+              "ar": "التربية الإسلامية"
+            },
+            "aliasLabel": "تربية إسلامية",
+            "globalSubjectId": "SUB-00008",
+            "hierarchicalId": "JO-NATIONAL-G01-ISL",
+            "bookCount": 1,
+            "unitCount": 1,
+            "lessonCount": 1
+          },
+          {
+            "localCode": "SOC",
+            "localLabel": {
+              "en": "Social Studies",
+              "ar": "التربية الاجتماعية"
+            },
+            "aliasLabel": "تربية اجتماعية",
+            "globalSubjectId": "SUB-00009",
+            "hierarchicalId": "JO-NATIONAL-G01-SOC",
+            "bookCount": 1,
+            "unitCount": 1,
+            "lessonCount": 1
+          },
+          {
+            "localCode": "ART",
+            "localLabel": {
+              "en": "Art",
+              "ar": "التربية الفنية"
+            },
+            "aliasLabel": "تربية فنية",
+            "globalSubjectId": "SUB-00010",
+            "hierarchicalId": "JO-NATIONAL-G01-ART",
+            "bookCount": 1,
+            "unitCount": 1,
+            "lessonCount": 1
+          },
+          {
+            "localCode": "PE",
+            "localLabel": {
+              "en": "Physical Education",
+              "ar": "التربية الرياضية"
+            },
+            "aliasLabel": "تربية رياضية",
+            "globalSubjectId": "SUB-00011",
+            "hierarchicalId": "JO-NATIONAL-G01-PE",
+            "bookCount": 1,
+            "unitCount": 1,
+            "lessonCount": 1
+          }
+        ]
+      }
+    ],
+    "subjects": [
+      {
+        "localCode": "AR",
+        "localLabel": {
+          "en": "Arabic",
+          "ar": "اللغة العربية"
+        },
+        "aliasLabel": "لغة عربية",
+        "globalSubjectId": "SUB-00006",
+        "hierarchicalId": "JO-NATIONAL-G01-AR",
+        "bookCount": 1,
+        "unitCount": 1,
+        "lessonCount": 2
+      },
+      {
+        "localCode": "EN",
+        "localLabel": {
+          "en": "English",
+          "ar": "اللغة الإنجليزية"
+        },
+        "aliasLabel": "English",
+        "globalSubjectId": "SUB-00007",
+        "hierarchicalId": "JO-NATIONAL-G01-EN",
+        "bookCount": 1,
+        "unitCount": 1,
+        "lessonCount": 2
+      },
+      {
+        "localCode": "MATH",
+        "localLabel": {
+          "en": "Mathematics",
+          "ar": "الرياضيات"
+        },
+        "aliasLabel": "رياضيات",
+        "globalSubjectId": "SUB-00001",
+        "hierarchicalId": "JO-NATIONAL-G01-MATH",
+        "bookCount": 2,
+        "unitCount": 3,
+        "lessonCount": 6
+      },
+      {
+        "localCode": "SCI",
+        "localLabel": {
+          "en": "Science",
+          "ar": "العلوم"
+        },
+        "aliasLabel": "علوم",
+        "globalSubjectId": "SUB-00002",
+        "hierarchicalId": "JO-NATIONAL-G01-SCI",
+        "bookCount": 1,
+        "unitCount": 1,
+        "lessonCount": 1
+      },
+      {
+        "localCode": "ISL",
+        "localLabel": {
+          "en": "Islamic Education",
+          "ar": "التربية الإسلامية"
+        },
+        "aliasLabel": "تربية إسلامية",
+        "globalSubjectId": "SUB-00008",
+        "hierarchicalId": "JO-NATIONAL-G01-ISL",
+        "bookCount": 1,
+        "unitCount": 1,
+        "lessonCount": 1
+      },
+      {
+        "localCode": "SOC",
+        "localLabel": {
+          "en": "Social Studies",
+          "ar": "التربية الاجتماعية"
+        },
+        "aliasLabel": "تربية اجتماعية",
+        "globalSubjectId": "SUB-00009",
+        "hierarchicalId": "JO-NATIONAL-G01-SOC",
+        "bookCount": 1,
+        "unitCount": 1,
+        "lessonCount": 1
+      },
+      {
+        "localCode": "ART",
+        "localLabel": {
+          "en": "Art",
+          "ar": "التربية الفنية"
+        },
+        "aliasLabel": "تربية فنية",
+        "globalSubjectId": "SUB-00010",
+        "hierarchicalId": "JO-NATIONAL-G01-ART",
+        "bookCount": 1,
+        "unitCount": 1,
+        "lessonCount": 1
+      },
+      {
+        "localCode": "PE",
+        "localLabel": {
+          "en": "Physical Education",
+          "ar": "التربية الرياضية"
+        },
+        "aliasLabel": "تربية رياضية",
+        "globalSubjectId": "SUB-00011",
+        "hierarchicalId": "JO-NATIONAL-G01-PE",
+        "bookCount": 1,
+        "unitCount": 1,
+        "lessonCount": 1
+      }
+    ],
+    "semesters": [
+      {
+        "code": "S01",
+        "name": {
+          "en": "Semester 1",
+          "ar": "الفصل الدراسي الأول"
+        },
+        "gradeCode": "G01"
+      }
+    ],
+    "books": 9,
+    "units": 10,
+    "lessons": 15,
+    "learningObjectives": 30,
+    "references": 15,
+    "assets": 0
+  },
+  "excludedGlobalSubjects": [
+    "SUB-00003 Physics",
+    "SUB-00004 Chemistry",
+    "SUB-00005 Biology"
+  ],
+  "unresolvedLocalSubjects": [],
+  "notes": [
+    "Subjects are discovered from the official source only.",
+    "Physics/Chemistry/Biology appear only when present in the official grade document.",
+    "Global Subject Registry resolves local labels → SUB-XXXXX."
+  ]
+}

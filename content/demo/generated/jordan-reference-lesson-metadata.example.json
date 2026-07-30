@@ -1,5 +1,4 @@
 {
-  "schema": "success-os.curriculum-hierarchy.v1/lesson-metadata",
   "lessonUuid": "ab95e208-bf7b-5da8-9bfa-f9c1bbd56e0f",
   "globalLessonId": "JO-NATIONAL-G01-MATH-B01-U01-L01",
   "globalSubjectId": "SUB-00001",
@@ -10,18 +9,25 @@
   "officialVersion": "JO-NCCD-2025/2026",
   "platformVersion": "success-os.curriculum-hierarchy.v1",
   "parentLesson": null,
-  "childLessons": ["JO-NATIONAL-G01-MATH-B01-U01-L02"],
+  "childLessons": [
+    "JO-NATIONAL-G01-MATH-B01-U01-L02"
+  ],
   "relatedLessons": [
     "JO-NATIONAL-G01-MATH-B01-U01-L02",
     "JO-NATIONAL-G01-MATH-B01-U01-L03"
   ],
   "prerequisites": [],
   "dependsOn": [],
-  "nextLessons": ["JO-NATIONAL-G01-MATH-B01-U01-L02"],
+  "nextLessons": [
+    "JO-NATIONAL-G01-MATH-B01-U01-L02"
+  ],
   "estimatedDuration": 25,
   "difficulty": "core",
   "bloomLevel": "understand",
-  "skills": ["SKL-00001", "SKL-00008"],
+  "skills": [
+    "SKL-00001",
+    "SKL-00008"
+  ],
   "tags": [
     "JO",
     "JO-NATIONAL",
@@ -58,7 +64,13 @@
       "ar": "تطبيق الدرس 1 — العدّ حتى ثلاثة في مهمة صفية بسيطة"
     }
   ],
-  "keywords": ["lesson", "1", "count", "to", "three"],
+  "keywords": [
+    "lesson",
+    "1",
+    "count",
+    "to",
+    "three"
+  ],
   "references": [
     {
       "label": {
@@ -79,6 +91,5 @@
     "metadataStatus": "pass",
     "packageStatus": "pass",
     "publishingStatus": "published"
-  },
-  "notes": "Global lesson metadata contract for JO-NATIONAL-G01-MATH-B01-U01-L01. AI Ready remains false until AI PRs."
+  }
 }

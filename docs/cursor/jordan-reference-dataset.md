@@ -28,26 +28,24 @@ Helpers: `JO_IDS` / `JO_CANONICAL_LESSON_ID` in `content/demo/jordan-reference-d
 JO
 └── JO-NATIONAL
     └── JO-NATIONAL-G01
-        ├── JO-NATIONAL-G01-MATH
+        ├── JO-NATIONAL-G01-MATH          (SUB-00001)
         │   ├── JO-NATIONAL-G01-MATH-B01
         │   │   ├── …-U01 → L01–L03
         │   │   └── …-U02 → L01–L02
         │   └── JO-NATIONAL-G01-MATH-B02
         │       └── …-U01-L01 (rights restricted)
-        ├── JO-NATIONAL-G01-PHYSICS      (SUB-00002)
-        │   └── …-B01-U01-L01
-        ├── JO-NATIONAL-G01-CHEMISTRY    (SUB-00003)
-        │   └── …-B01-U01-L01
-        ├── JO-NATIONAL-G01-BIOLOGY      (SUB-00004)
-        │   └── …-B01-U01-L01
-        ├── JO-NATIONAL-G01-AR
-        ├── JO-NATIONAL-G01-EN (includes one rejected lesson)
-        ├── JO-NATIONAL-G01-SCI
-        ├── JO-NATIONAL-G01-ISL
-        └── JO-NATIONAL-G01-SOC
+        ├── JO-NATIONAL-G01-AR            (SUB-00006)
+        ├── JO-NATIONAL-G01-EN            (SUB-00007; includes one rejected lesson)
+        ├── JO-NATIONAL-G01-SCI           (SUB-00002)
+        ├── JO-NATIONAL-G01-ISL           (SUB-00008)
+        ├── JO-NATIONAL-G01-SOC           (SUB-00009)
+        ├── JO-NATIONAL-G01-ART           (SUB-00010)
+        └── JO-NATIONAL-G01-PE            (SUB-00011)
 ```
 
-STEM subjects: `MATH` · `PHYSICS` · `CHEMISTRY` · `BIOLOGY`
+Official Grade 1 subjects (discovered; see PR #50.3):  
+`AR · EN · MATH · SCI · ISL · SOC · ART · PE`  
+Physics / Chemistry / Biology are **not** present at Grade 1.
 
 ## Global Subject Registry
 
@@ -64,14 +62,18 @@ Hierarchical curriculum ids (e.g. `JO-NATIONAL-G01-MATH`) also map to these code
 | Global ID | Code | Name |
 |-----------|------|------|
 | `SUB-00001` | MATH | Mathematics |
-| `SUB-00002` | PHYSICS | Physics |
-| `SUB-00003` | CHEMISTRY | Chemistry |
-| `SUB-00004` | BIOLOGY | Biology |
-| `SUB-00005` | AR | Arabic |
-| `SUB-00006` | EN | English |
-| `SUB-00007` | SCI | Science |
+| `SUB-00002` | SCI | Science |
+| `SUB-00003` | PHYSICS | Physics |
+| `SUB-00004` | CHEMISTRY | Chemistry |
+| `SUB-00005` | BIOLOGY | Biology |
+| `SUB-00006` | AR | Arabic |
+| `SUB-00007` | EN | English |
 | `SUB-00008` | ISL | Islamic Education |
 | `SUB-00009` | SOC | Social Studies |
+| `SUB-00010` | ART | Art |
+| `SUB-00011` | PE | Physical Education |
+
+See also [`global-curriculum-registry.md`](./global-curriculum-registry.md) (PR #50.3).
 
 Schema: `success-os.global-subject-registry.v1`  
 Module: `lib/curriculum-import-engine/hierarchy/global-subject-registry.ts`  
@@ -92,16 +94,20 @@ Country-agnostic skills. Lessons store `skills: ["SKL-00001", …]`.
 |-----------|-------|------------------|
 | `SKL-00001` | Arithmetic | SUB-00001 Mathematics |
 | `SKL-00002` | Fractions | SUB-00001 Mathematics |
-| `SKL-00003` | Vectors | SUB-00002 Physics |
-| `SKL-00004` | Newton Laws | SUB-00002 Physics |
-| `SKL-00005` | Acids | SUB-00003 Chemistry |
-| `SKL-00006` | Reading | SUB-00005 / SUB-00006 |
-| `SKL-00007` | Writing | SUB-00005 / SUB-00006 |
+| `SKL-00003` | Vectors | SUB-00003 Physics |
+| `SKL-00004` | Newton Laws | SUB-00003 Physics |
+| `SKL-00005` | Acids | SUB-00004 Chemistry |
+| `SKL-00006` | Reading | SUB-00006 / SUB-00007 |
+| `SKL-00007` | Writing | SUB-00006 / SUB-00007 |
 | `SKL-00008` | Critical Thinking | cross-cutting |
 | `SKL-00009` | Decimals | SUB-00001 Mathematics |
 | `SKL-00010` | Percentages | SUB-00001 Mathematics |
 | `SKL-00011` | Algebra | SUB-00001 Mathematics |
 | `SKL-00012` | Functions | SUB-00001 Mathematics |
+| `SKL-00013` | Counting | SUB-00001 Mathematics |
+| `SKL-00014` | Addition | SUB-00001 Mathematics |
+| `SKL-00015` | Observation | SUB-00002 Science |
+| `SKL-00016` | Scientific Thinking | SUB-00002 Science |
 
 ### Math skill pathway
 

@@ -245,87 +245,6 @@ export const JORDAN_REFERENCE_DATASET = {
           ],
         },
         {
-          id: JO_IDS.subject("PHYSICS"),
-          code: "PHYSICS",
-          name: L("Physics", "الفيزياء"),
-          books: [
-            {
-              id: JO_IDS.book("PHYSICS", 1),
-              part: "Book 1",
-              title: L("Physics — Grade 1 — Book 1", "الفيزياء - الصف الأول - الكتاب 1"),
-              units: [
-                {
-                  id: JO_IDS.unit("PHYSICS", 1, 1),
-                  order: 1,
-                  title: L("Unit 1 — Motion around us", "الوحدة 1 — الحركة من حولنا"),
-                  lessons: [
-                    lesson(
-                      JO_IDS.lesson("PHYSICS", 1, 1, 1),
-                      1,
-                      "Lesson 1 — Push and pull",
-                      "الدرس 1 — الدفع والسحب",
-                    ),
-                  ],
-                },
-              ],
-            },
-          ],
-        },
-        {
-          id: JO_IDS.subject("CHEMISTRY"),
-          code: "CHEMISTRY",
-          name: L("Chemistry", "الكيمياء"),
-          books: [
-            {
-              id: JO_IDS.book("CHEMISTRY", 1),
-              part: "Book 1",
-              title: L("Chemistry — Grade 1 — Book 1", "الكيمياء - الصف الأول - الكتاب 1"),
-              units: [
-                {
-                  id: JO_IDS.unit("CHEMISTRY", 1, 1),
-                  order: 1,
-                  title: L("Unit 1 — Materials", "الوحدة 1 — المواد"),
-                  lessons: [
-                    lesson(
-                      JO_IDS.lesson("CHEMISTRY", 1, 1, 1),
-                      1,
-                      "Lesson 1 — Solids and liquids",
-                      "الدرس 1 — المواد الصلبة والسائلة",
-                    ),
-                  ],
-                },
-              ],
-            },
-          ],
-        },
-        {
-          id: JO_IDS.subject("BIOLOGY"),
-          code: "BIOLOGY",
-          name: L("Biology", "الأحياء"),
-          books: [
-            {
-              id: JO_IDS.book("BIOLOGY", 1),
-              part: "Book 1",
-              title: L("Biology — Grade 1 — Book 1", "الأحياء - الصف الأول - الكتاب 1"),
-              units: [
-                {
-                  id: JO_IDS.unit("BIOLOGY", 1, 1),
-                  order: 1,
-                  title: L("Unit 1 — Living world", "الوحدة 1 — عالم الأحياء"),
-                  lessons: [
-                    lesson(
-                      JO_IDS.lesson("BIOLOGY", 1, 1, 1),
-                      1,
-                      "Lesson 1 — Plants need water",
-                      "الدرس 1 — النباتات تحتاج الماء",
-                    ),
-                  ],
-                },
-              ],
-            },
-          ],
-        },
-        {
           id: JO_IDS.subject("AR"),
           code: "AR",
           name: L("Arabic", "اللغة العربية"),
@@ -476,6 +395,63 @@ export const JORDAN_REFERENCE_DATASET = {
                       1,
                       "Lesson 1 — Family members",
                       "الدرس 1 — أفراد الأسرة",
+                    ),
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+        {
+          id: JO_IDS.subject("ART"),
+          code: "ART",
+          name: L("Art", "التربية الفنية"),
+          books: [
+            {
+              id: JO_IDS.book("ART", 1),
+              part: "Book 1",
+              title: L("Art — Grade 1 — Book 1", "التربية الفنية - الصف الأول - الكتاب 1"),
+              units: [
+                {
+                  id: JO_IDS.unit("ART", 1, 1),
+                  order: 1,
+                  title: L("Unit 1 — Colors", "الوحدة 1 — الألوان"),
+                  lessons: [
+                    lesson(
+                      JO_IDS.lesson("ART", 1, 1, 1),
+                      1,
+                      "Lesson 1 — Primary colors",
+                      "الدرس 1 — الألوان الأساسية",
+                    ),
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+        {
+          id: JO_IDS.subject("PE"),
+          code: "PE",
+          name: L("Physical Education", "التربية الرياضية"),
+          books: [
+            {
+              id: JO_IDS.book("PE", 1),
+              part: "Book 1",
+              title: L(
+                "Physical Education — Grade 1 — Book 1",
+                "التربية الرياضية - الصف الأول - الكتاب 1",
+              ),
+              units: [
+                {
+                  id: JO_IDS.unit("PE", 1, 1),
+                  order: 1,
+                  title: L("Unit 1 — Movement", "الوحدة 1 — الحركة"),
+                  lessons: [
+                    lesson(
+                      JO_IDS.lesson("PE", 1, 1, 1),
+                      1,
+                      "Lesson 1 — Warm-up games",
+                      "الدرس 1 — ألعاب الإحماء",
                     ),
                   ],
                 },
