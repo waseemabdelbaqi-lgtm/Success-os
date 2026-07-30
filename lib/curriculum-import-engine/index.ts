@@ -13,6 +13,11 @@ import {
   rollbackJob,
 } from "./store";
 import { createImportJob, runImportJob, runJordanPhase1Import } from "./runner";
+import { runJordanGrade1MathReference } from "./reference/jordan-g1-math";
+import {
+  getHierarchySnapshot,
+  resetHierarchyRegistry,
+} from "./hierarchy/registry";
 
 export {
   IMPORT_PIPELINE,
@@ -26,6 +31,9 @@ export {
   createImportJob,
   runImportJob,
   runJordanPhase1Import,
+  runJordanGrade1MathReference,
+  getHierarchySnapshot,
+  resetHierarchyRegistry,
 };
 
 export { evaluateRights } from "./rights/engine";
@@ -41,7 +49,7 @@ export function engineStatus() {
     role: "compiler",
     rendersLessons: false,
     runtime: "success-os.interactive-lesson-engine.v1",
-    adr: ["ADR-0049", "ADR-0050"],
+    adr: ["ADR-0049", "ADR-0050", "ADR-0050.1"],
     phase1: {
       country: "Jordan",
       curriculum: "Jordan National Curriculum",
@@ -49,6 +57,21 @@ export function engineStatus() {
       lessonRewrite: false,
       videoGeneration: false,
       quizGeneration: false,
+    },
+    referenceImplementation: {
+      id: "jordan-g1-math",
+      path: [
+        "Jordan",
+        "National Curriculum",
+        "Grade 1",
+        "Mathematics",
+        "Part 1",
+        "Unit 1",
+        "Lesson 1",
+        "ILE Package",
+      ],
+      hierarchySchema: "success-os.curriculum-hierarchy.v1",
+      genericConnectorsOnly: true,
     },
     pipeline: IMPORT_PIPELINE.map((s) => s.id),
     connectors: listSourceConnectors().map((c) => ({

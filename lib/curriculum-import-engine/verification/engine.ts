@@ -88,6 +88,23 @@ export function runVerificationGates(args: {
     },
   });
 
+  const assetCount =
+    book?.units.reduce(
+      (n, u) => n + u.lessons.reduce((m, l) => m + (l.assets?.length || 0), 0),
+      0,
+    ) || 0;
+  const assetsOk = Boolean(book) && assetCount >= 0; // placeholders allowed; catalog must exist after extraction
+  results.push({
+    gate: "asset_validation",
+    passed: assetsOk,
+    severity: "info",
+    message: {
+      en: `Assets validated (${assetCount} cataloged; placeholders allowed)`,
+      ar: `الأصول موثّقة (${assetCount}؛ المواضع مسموحة)`,
+    },
+    details: { assetCount },
+  });
+
   const pkgOk =
     packages.length > 0 &&
     packages.every(

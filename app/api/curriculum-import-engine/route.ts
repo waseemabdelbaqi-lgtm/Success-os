@@ -5,11 +5,13 @@ import {
   buildDashboardSnapshot,
   createImportJob,
   engineStatus,
+  getHierarchySnapshot,
   getJob,
   listJobs,
   listSourceConnectors,
   rollbackJob,
   runImportJob,
+  runJordanGrade1MathReference,
   runJordanPhase1Import,
 } from "@/lib/curriculum-import-engine";
 
@@ -30,6 +32,39 @@ export async function GET(req: Request) {
   }
   if (action === "dashboard") {
     return NextResponse.json({ ok: true, dashboard: buildDashboardSnapshot() });
+  }
+  if (action === "hierarchy") {
+    return NextResponse.json({ ok: true, hierarchy: getHierarchySnapshot() });
+  }
+  if (action === "jordan-g1-math-example") {
+    const result = runJordanGrade1MathReference({ reset: true, publish: true });
+    return NextResponse.json({
+      ok: result.ok,
+      reference: true,
+      result: {
+        published: result.published,
+        hierarchyPath: result.hierarchyPath,
+        lessonId: result.lessonId,
+        packageId: result.packageId,
+        gates: result.gates,
+        errors: result.errors,
+        package: result.package
+          ? {
+              id: result.package.id,
+              schema: result.package.schema,
+              title: result.package.title,
+              status: result.package.status,
+              source: result.package.source,
+              objectives: result.package.objectives,
+              filters: result.package.filters,
+              slideCount: result.package.slides.length,
+              importMeta: result.package.importMeta,
+              engineMeta: result.package.engineMeta,
+            }
+          : null,
+        counts: result.snapshot.counts,
+      },
+    });
   }
   if (action === "connectors") {
     return NextResponse.json({
@@ -96,6 +131,24 @@ export async function POST(req: Request) {
       ok: true,
       job: summarizeJob(job, true),
       note: "Jordan Phase 1 — ILE packages only; no AI/video/quiz generation",
+    });
+  }
+
+  if (action === "run-jordan-g1-math") {
+    const result = runJordanGrade1MathReference({ reset: true, publish: true });
+    return NextResponse.json({
+      ok: result.ok,
+      note: "Jordan Grade 1 Math reference — hierarchy → verified ILE package → publish",
+      result: {
+        published: result.published,
+        hierarchyPath: result.hierarchyPath,
+        lessonId: result.lessonId,
+        packageId: result.packageId,
+        gates: result.gates,
+        errors: result.errors,
+        package: result.package,
+        counts: result.snapshot.counts,
+      },
     });
   }
 

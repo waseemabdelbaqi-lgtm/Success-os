@@ -1,5 +1,6 @@
 import type { SourceConnector } from "./types";
 import { jordanNccdConnector } from "./jordan-nccd";
+import { jordanG1MathConnector } from "./jordan-g1-math";
 import {
   curriculumAuthorityConnector,
   internalSuccessOsConnector,
@@ -10,6 +11,7 @@ import {
 } from "./stubs";
 
 export const SOURCE_CONNECTORS: SourceConnector[] = [
+  jordanG1MathConnector,
   jordanNccdConnector,
   ministryEducationConnector,
   curriculumAuthorityConnector,
@@ -28,4 +30,4 @@ export function getSourceConnector(id: string): SourceConnector | null {
 }
 
 export type { SourceConnector };
-export { jordanNccdConnector };
+export { jordanNccdConnector, jordanG1MathConnector };

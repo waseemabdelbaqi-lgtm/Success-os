@@ -13,14 +13,6 @@ export type PipelineStageDef = {
   rendersLessons: false;
 };
 
-export const IMPORT_PIPELINE: PipelineStageDef[] = IMPORT_PIPELINE_STAGES.map((id, order) => ({
-  id,
-  order,
-  required: true as const,
-  rendersLessons: false as const,
-  label: STAGE_LABELS[id],
-}));
-
 const STAGE_LABELS: Record<ImportPipelineStageId, { en: string; ar: string }> = {
   source_discovery: { en: "Source Discovery", ar: "اكتشاف المصدر" },
   source_verification: { en: "Source Verification", ar: "التحقق من المصدر" },
@@ -35,6 +27,14 @@ const STAGE_LABELS: Record<ImportPipelineStageId, { en: string; ar: string }> = 
   validation: { en: "Validation", ar: "التحقق من الحزمة" },
   publishing_queue: { en: "Publishing Queue", ar: "طابور النشر" },
 };
+
+export const IMPORT_PIPELINE: PipelineStageDef[] = IMPORT_PIPELINE_STAGES.map((id, order) => ({
+  id,
+  order,
+  required: true as const,
+  rendersLessons: false as const,
+  label: STAGE_LABELS[id],
+}));
 
 export function nextStage(
   current: ImportPipelineStageId | null,

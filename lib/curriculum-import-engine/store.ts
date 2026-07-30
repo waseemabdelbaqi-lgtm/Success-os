@@ -8,6 +8,7 @@ import type {
   ImportJobEvent,
   ImportJobStatus,
 } from "@/types/curriculum-import-engine";
+import { getHierarchySnapshot } from "./hierarchy/registry";
 
 const jobs = new Map<string, ImportJob>();
 const jobHistorySnapshots = new Map<string, ImportJob[]>();
@@ -110,6 +111,8 @@ export function buildDashboardSnapshot(): ImportDashboardSnapshot {
     rightsSummary[r] = (rightsSummary[r] || 0) + 1;
   }
 
+  const hierarchy = getHierarchySnapshot();
+
   return {
     schema: "success-os.curriculum-import-engine.v1",
     queue: by("queued"),
@@ -121,11 +124,18 @@ export function buildDashboardSnapshot(): ImportDashboardSnapshot {
       running: by("running").length,
       completed: by("completed").length,
       rejected: by("rejected").length + by("failed").length,
-      packages,
-      books,
-      lessons,
-      errors,
-      warnings,
+      packages: Math.max(packages, hierarchy.counts.packages),
+      books: Math.max(books, hierarchy.counts.books),
+      lessons: Math.max(lessons, hierarchy.counts.lessons),
+      errors: errors + hierarchy.counts.errors,
+      warnings: warnings + hierarchy.counts.warnings,
+      countries: hierarchy.counts.countries,
+      curricula: hierarchy.counts.curricula,
+      units: hierarchy.counts.units,
+      imported: hierarchy.counts.imported,
+      verified: hierarchy.counts.verified,
+      pending: hierarchy.counts.pending,
+      published: hierarchy.counts.published,
     },
     verificationSummary,
     rightsSummary,
@@ -133,5 +143,15 @@ export function buildDashboardSnapshot(): ImportDashboardSnapshot {
       .flatMap((j) => j.events.map((e) => ({ ...e, message: `[${j.id}] ${e.message}` })))
       .sort((a, b) => b.at.localeCompare(a.at))
       .slice(0, 50),
+    hierarchyPathExample: [
+      "Jordan",
+      "National Curriculum",
+      "Grade 1",
+      "Mathematics",
+      "Part 1",
+      "Unit 1",
+      "Lesson 1",
+      "ILE Package",
+    ],
   };
 }
