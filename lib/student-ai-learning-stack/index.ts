@@ -48,7 +48,8 @@ export function studentAiLearningStackStatus() {
     quizGeneration: false,
     assessmentGeneration: false,
     ileSoleRuntime: true,
-    adr: ["ADR-0049", "ADR-0050", "ADR-0054", "ADR-0059"],
+    adr: ["ADR-0049", "ADR-0050", "ADR-0054", "ADR-0055", "ADR-0059"],
     parentPr: "#54 Universal Curriculum Mapping Engine",
+    atePr: "#55 AI Teacher Engine",
   };
 }
