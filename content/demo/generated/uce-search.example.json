@@ -1,0 +1,331 @@
+{
+  "schema": "success-os.uce-search.v1",
+  "query": {
+    "q": "cell",
+    "limit": 15
+  },
+  "hits": [
+    {
+      "id": "doc_LSN-01001",
+      "kind": "lesson",
+      "globalId": "LSN-01001",
+      "title": {
+        "en": "Jordan G8 Science — Cell structure",
+        "ar": "الأردن صف 8 علوم — تركيب الخلية"
+      },
+      "countryGlobalId": "CTR-00001",
+      "curriculumGlobalId": "CUR-00001",
+      "subjectGlobalId": "SUB-00002",
+      "lessonGlobalId": "LSN-01001",
+      "skillIds": [],
+      "objectiveIds": [],
+      "standardIds": [],
+      "keywords": [],
+      "language": "ar",
+      "searchText": "lsn-01001 jo-national-g08-sci-b01-u01-l01 jordan g8 science — cell structure الأردن صف 8 علوم — تركيب الخلية lesson ctr-00001 cur-00001 sub-00002 ar"
+    },
+    {
+      "id": "doc_LSN-01002",
+      "kind": "lesson",
+      "globalId": "LSN-01002",
+      "title": {
+        "en": "IGCSE Combined Science — Cells",
+        "ar": "IGCSE العلوم المشتركة — الخلايا"
+      },
+      "countryGlobalId": "CTR-00003",
+      "curriculumGlobalId": "CUR-00002",
+      "subjectGlobalId": "SUB-00002",
+      "lessonGlobalId": "LSN-01002",
+      "skillIds": [],
+      "objectiveIds": [],
+      "standardIds": [],
+      "keywords": [],
+      "language": "en",
+      "searchText": "lsn-01002 igcse combined science — cells igcse العلوم المشتركة — الخلايا lesson ctr-00003 cur-00002 sub-00002 en"
+    },
+    {
+      "id": "doc_LSN-01003",
+      "kind": "lesson",
+      "globalId": "LSN-01003",
+      "title": {
+        "en": "AP Biology — Cell structure",
+        "ar": "AP Biology — تركيب الخلية"
+      },
+      "countryGlobalId": "CTR-00002",
+      "curriculumGlobalId": "CUR-00003",
+      "subjectGlobalId": "SUB-00005",
+      "lessonGlobalId": "LSN-01003",
+      "skillIds": [],
+      "objectiveIds": [],
+      "standardIds": [],
+      "keywords": [],
+      "language": "en",
+      "searchText": "lsn-01003 ap biology — cell structure ap biology — تركيب الخلية lesson ctr-00002 cur-00003 sub-00005 en"
+    },
+    {
+      "id": "doc_LSN-01005",
+      "kind": "lesson",
+      "globalId": "LSN-01005",
+      "title": {
+        "en": "IB MYP Science — Cells",
+        "ar": "IB MYP العلوم — الخلايا"
+      },
+      "countryGlobalId": "CTR-00004",
+      "curriculumGlobalId": "CUR-00005",
+      "subjectGlobalId": "SUB-00002",
+      "lessonGlobalId": "LSN-01005",
+      "skillIds": [],
+      "objectiveIds": [],
+      "standardIds": [],
+      "keywords": [],
+      "language": "en",
+      "searchText": "lsn-01005 ib myp science — cells ib myp العلوم — الخلايا lesson ctr-00004 cur-00005 sub-00002 en"
+    },
+    {
+      "id": "doc_LSN-01006",
+      "kind": "lesson",
+      "globalId": "LSN-01006",
+      "title": {
+        "en": "Cambridge Lower Secondary — Cells",
+        "ar": "Cambridge المرحلة الإعدادية — الخلايا"
+      },
+      "countryGlobalId": "CTR-00003",
+      "curriculumGlobalId": "CUR-00006",
+      "subjectGlobalId": "SUB-00002",
+      "lessonGlobalId": "LSN-01006",
+      "skillIds": [],
+      "objectiveIds": [],
+      "standardIds": [],
+      "keywords": [],
+      "language": "en",
+      "searchText": "lsn-01006 cambridge lower secondary — cells cambridge المرحلة الإعدادية — الخلايا lesson ctr-00003 cur-00006 sub-00002 en"
+    },
+    {
+      "id": "doc_OBJ-00001",
+      "kind": "learning_objective",
+      "globalId": "OBJ-00001",
+      "title": {
+        "en": "Describe the basic structure of a plant and animal cell",
+        "ar": "وصف التركيب الأساسي لخلية نباتية وخلية حيوانية"
+      },
+      "subjectGlobalId": "SUB-00002",
+      "skillIds": [
+        "SKL-00015",
+        "SKL-00016"
+      ],
+      "objectiveIds": [
+        "OBJ-00001"
+      ],
+      "standardIds": [],
+      "keywords": [
+        "cell",
+        "organelle",
+        "membrane",
+        "خلية"
+      ],
+      "searchText": "obj-00001 obj_cell_structure describe the basic structure of a plant and animal cell وصف التركيب الأساسي لخلية نباتية وخلية حيوانية cell organelle membrane خلية skl-00015 skl-00016 lsn-01001 lsn-01002 lsn-01005 lsn-01006"
+    },
+    {
+      "id": "doc_OBJ-00002",
+      "kind": "learning_objective",
+      "globalId": "OBJ-00002",
+      "title": {
+        "en": "Explain how cells contribute to living systems",
+        "ar": "شرح كيف تساهم الخلايا في الأنظمة الحية"
+      },
+      "subjectGlobalId": "SUB-00002",
+      "skillIds": [
+        "SKL-00016",
+        "SKL-00008"
+      ],
+      "objectiveIds": [
+        "OBJ-00002"
+      ],
+      "standardIds": [],
+      "keywords": [
+        "systems",
+        "organism",
+        "cell",
+        "أنظمة"
+      ],
+      "searchText": "obj-00002 obj_living_systems explain how cells contribute to living systems شرح كيف تساهم الخلايا في الأنظمة الحية systems organism cell أنظمة skl-00016 skl-00008 lsn-01004 lsn-01003 lsn-01001"
+    },
+    {
+      "id": "doc_STD-00002",
+      "kind": "standard",
+      "globalId": "STD-00002",
+      "title": {
+        "en": "Combined Science — Cells",
+        "ar": "العلوم المشتركة — الخلايا"
+      },
+      "skillIds": [],
+      "objectiveIds": [
+        "OBJ-00001"
+      ],
+      "standardIds": [
+        "STD-00002"
+      ],
+      "keywords": [
+        "IGCSE",
+        "IGCSE-CS-CELLS"
+      ],
+      "searchText": "std-00002 igcse-cs-cells igcse combined science — cells العلوم المشتركة — الخلايا"
+    },
+    {
+      "id": "doc_ASO-00001",
+      "kind": "assessment_objective",
+      "globalId": "ASO-00001",
+      "title": {
+        "en": "Identify and label major cell structures",
+        "ar": "تحديد وتسمية التراكيب الرئيسية للخلية"
+      },
+      "skillIds": [
+        "SKL-00015"
+      ],
+      "objectiveIds": [
+        "OBJ-00001"
+      ],
+      "standardIds": [],
+      "keywords": [
+        "ASO_DESCRIBE_CELL"
+      ],
+      "searchText": "aso-00001 aso_describe_cell identify and label major cell structures تحديد وتسمية التراكيب الرئيسية للخلية"
+    },
+    {
+      "id": "doc_MAP-00001",
+      "kind": "mapping",
+      "globalId": "MAP-00001",
+      "title": {
+        "en": "Jordan G8 Science cell topic ≈ IGCSE Combined Science cells",
+        "ar": "موضوع الخلية في علوم الصف 8 ≈ خلايا IGCSE"
+      },
+      "countryGlobalId": "CTR-00001",
+      "curriculumGlobalId": "CUR-00001",
+      "subjectGlobalId": "SUB-00002",
+      "lessonGlobalId": "LSN-01001",
+      "skillIds": [],
+      "objectiveIds": [],
+      "standardIds": [],
+      "keywords": [
+        "equivalent",
+        "0.86"
+      ],
+      "language": "ar",
+      "searchText": "map-00001 equivalent lsn-01001 lsn-01002 jordan g8 science — cell structure الأردن صف 8 علوم — تركيب الخلية igcse combined science — cells igcse العلوم المشتركة — الخلايا jordan g8 science cell topic ≈ igcse combined science cells موضوع الخلية في علوم الصف 8 ≈ خلايا igcse cell biology topic alignment across secondary science frameworks مواءمة موضوع بيولوجيا الخلية عبر أطر العلوم الثانوية cambridge igcse combined science topic list قائمة موضوعات igcse"
+    },
+    {
+      "id": "doc_MAP-00002",
+      "kind": "mapping",
+      "globalId": "MAP-00002",
+      "title": {
+        "en": "IGCSE cells partially cover AP Biology cell structure depth",
+        "ar": "خلايا IGCSE تغطي جزئيًا عمق تركيب الخلية في AP"
+      },
+      "countryGlobalId": "CTR-00003",
+      "curriculumGlobalId": "CUR-00002",
+      "subjectGlobalId": "SUB-00002",
+      "lessonGlobalId": "LSN-01002",
+      "skillIds": [],
+      "objectiveIds": [],
+      "standardIds": [],
+      "keywords": [
+        "partially_equivalent",
+        "0.72"
+      ],
+      "language": "en",
+      "searchText": "map-00002 partially_equivalent lsn-01002 lsn-01003 igcse combined science — cells igcse العلوم المشتركة — الخلايا ap biology — cell structure ap biology — تركيب الخلية igcse cells partially cover ap biology cell structure depth خلايا igcse تغطي جزئيًا عمق تركيب الخلية في ap cell biology topic alignment across secondary science frameworks مواءمة موضوع بيولوجيا الخلية عبر أطر العلوم الثانوية ap biology unit 2 cell structure ap biology الوحدة 2"
+    },
+    {
+      "id": "doc_MAP-00003",
+      "kind": "mapping",
+      "globalId": "MAP-00003",
+      "title": {
+        "en": "AP Biology cells related to NGSS MS-LS1 performance expectations",
+        "ar": "خلايا AP مرتبطة بتوقعات أداء NGSS MS-LS1"
+      },
+      "countryGlobalId": "CTR-00002",
+      "curriculumGlobalId": "CUR-00003",
+      "subjectGlobalId": "SUB-00005",
+      "lessonGlobalId": "LSN-01003",
+      "skillIds": [],
+      "objectiveIds": [],
+      "standardIds": [],
+      "keywords": [
+        "related",
+        "0.8"
+      ],
+      "language": "en",
+      "searchText": "map-00003 related lsn-01003 lsn-01004 ap biology — cell structure ap biology — تركيب الخلية us ngss — from molecules to organisms ngss — من الجزيئات إلى الكائنات ap biology cells related to ngss ms-ls1 performance expectations خلايا ap مرتبطة بتوقعات أداء ngss ms-ls1 cell biology topic alignment across secondary science frameworks مواءمة موضوع بيولوجيا الخلية عبر أطر العلوم الثانوية ngss ms-ls1 from molecules to organisms ngss ms-ls1"
+    },
+    {
+      "id": "doc_MAP-00004",
+      "kind": "mapping",
+      "globalId": "MAP-00004",
+      "title": {
+        "en": "NGSS cell concepts ≈ IB MYP Science cells",
+        "ar": "مفاهيم الخلية في NGSS ≈ خلايا IB MYP"
+      },
+      "countryGlobalId": "CTR-00002",
+      "curriculumGlobalId": "CUR-00004",
+      "subjectGlobalId": "SUB-00002",
+      "lessonGlobalId": "LSN-01004",
+      "skillIds": [],
+      "objectiveIds": [],
+      "standardIds": [],
+      "keywords": [
+        "equivalent",
+        "0.78"
+      ],
+      "language": "en",
+      "searchText": "map-00004 equivalent lsn-01004 lsn-01005 us ngss — from molecules to organisms ngss — من الجزيئات إلى الكائنات ib myp science — cells ib myp العلوم — الخلايا ngss cell concepts ≈ ib myp science cells مفاهيم الخلية في ngss ≈ خلايا ib myp cell biology topic alignment across secondary science frameworks مواءمة موضوع بيولوجيا الخلية عبر أطر العلوم الثانوية ib myp sciences guide — cells دليل ib myp للعلوم — الخلايا"
+    },
+    {
+      "id": "doc_MAP-00005",
+      "kind": "mapping",
+      "globalId": "MAP-00005",
+      "title": {
+        "en": "IB MYP cells continue themes introduced in Cambridge Lower Secondary",
+        "ar": "خلايا IB MYP تتابع موضوعات Cambridge Lower Secondary"
+      },
+      "countryGlobalId": "CTR-00004",
+      "curriculumGlobalId": "CUR-00005",
+      "subjectGlobalId": "SUB-00002",
+      "lessonGlobalId": "LSN-01005",
+      "skillIds": [],
+      "objectiveIds": [],
+      "standardIds": [],
+      "keywords": [
+        "continuation",
+        "0.74"
+      ],
+      "language": "en",
+      "searchText": "map-00005 continuation lsn-01005 lsn-01006 ib myp science — cells ib myp العلوم — الخلايا cambridge lower secondary — cells cambridge المرحلة الإعدادية — الخلايا ib myp cells continue themes introduced in cambridge lower secondary خلايا ib myp تتابع موضوعات cambridge lower secondary cell biology topic alignment across secondary science frameworks مواءمة موضوع بيولوجيا الخلية عبر أطر العلوم الثانوية cambridge lower secondary science stage 8 cambridge المرحلة 8"
+    },
+    {
+      "id": "doc_MAP-00006",
+      "kind": "mapping",
+      "globalId": "MAP-00006",
+      "title": {
+        "en": "Placeholder link for future AI recommendations — no AI content generated",
+        "ar": "رابط نائب لتوصيات الذكاء الاصطناعي — لا توليد محتوى"
+      },
+      "countryGlobalId": "CTR-00003",
+      "curriculumGlobalId": "CUR-00006",
+      "subjectGlobalId": "SUB-00002",
+      "lessonGlobalId": "LSN-01006",
+      "skillIds": [],
+      "objectiveIds": [],
+      "standardIds": [],
+      "keywords": [
+        "related",
+        "0.4"
+      ],
+      "language": "en",
+      "searchText": "map-00006 related lsn-01006 lsn-01999 cambridge lower secondary — cells cambridge المرحلة الإعدادية — الخلايا future ai recommendations (placeholder) توصيات الذكاء الاصطناعي المستقبلية (عنصر نائب) placeholder link for future ai recommendations — no ai content generated رابط نائب لتوصيات الذكاء الاصطناعي — لا توليد محتوى reserved for future ai recommendation engine محجوز لمحرك توصيات الذكاء الاصطناعي"
+    }
+  ],
+  "counts": {
+    "total": 19,
+    "returned": 15
+  }
+}

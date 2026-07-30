@@ -1,0 +1,75 @@
+{
+  "schema": "success-os.global-learning-objective-registry.v1",
+  "objectives": [
+    {
+      "globalId": "OBJ-00001",
+      "code": "OBJ_CELL_STRUCTURE",
+      "statement": {
+        "en": "Describe the basic structure of a plant and animal cell",
+        "ar": "وصف التركيب الأساسي لخلية نباتية وخلية حيوانية"
+      },
+      "skillIds": [
+        "SKL-00015",
+        "SKL-00016"
+      ],
+      "lessonIds": [
+        "LSN-01001",
+        "LSN-01002",
+        "LSN-01005",
+        "LSN-01006"
+      ],
+      "assessmentObjectiveIds": [
+        "ASO-00001"
+      ],
+      "digitalBookIds": [],
+      "videoIds": [],
+      "aiTutorReady": false,
+      "subjectGlobalIds": [
+        "SUB-00002",
+        "SUB-00005"
+      ],
+      "keywords": [
+        "cell",
+        "organelle",
+        "membrane",
+        "خلية"
+      ],
+      "bloomLevel": "understand",
+      "active": true
+    },
+    {
+      "globalId": "OBJ-00002",
+      "code": "OBJ_LIVING_SYSTEMS",
+      "statement": {
+        "en": "Explain how cells contribute to living systems",
+        "ar": "شرح كيف تساهم الخلايا في الأنظمة الحية"
+      },
+      "skillIds": [
+        "SKL-00016",
+        "SKL-00008"
+      ],
+      "lessonIds": [
+        "LSN-01004",
+        "LSN-01003",
+        "LSN-01001"
+      ],
+      "assessmentObjectiveIds": [],
+      "digitalBookIds": [],
+      "videoIds": [],
+      "aiTutorReady": false,
+      "subjectGlobalIds": [
+        "SUB-00002",
+        "SUB-00005"
+      ],
+      "keywords": [
+        "systems",
+        "organism",
+        "cell",
+        "أنظمة"
+      ],
+      "bloomLevel": "analyze",
+      "active": true
+    }
+  ],
+  "note": "Objectives link lessons, skills, assessments; digital books/videos/AI tutors reserved."
+}

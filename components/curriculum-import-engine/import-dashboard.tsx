@@ -255,6 +255,13 @@ export function CurriculumImportDashboard(): ReactNode {
           World → Country → Curriculum → Academic Year → Grade → Subject → Book → Unit → Lesson →
           ILE Package (discovered dynamically; Jordan is first implementation only)
         </p>
+        <p style={{ fontSize: 12, color: "#475569", margin: "0.25rem 0 0" }}>
+          UCE: Jordan G8 Science → IGCSE → AP Biology → NGSS → IB MYP → Cambridge LS → Future AI
+          Recommendations (relationships only) ·{" "}
+          <a href="/admin/universal-curriculum-mapping" style={{ color: "#0f766e" }}>
+            Open Mapping Engine
+          </a>
+        </p>
         {notice ? (
           <p style={{ color: "#0f766e", fontSize: 13, margin: "0.5rem 0 0" }}>{notice}</p>
         ) : null}

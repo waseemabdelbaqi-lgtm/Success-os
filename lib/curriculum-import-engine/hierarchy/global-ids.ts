@@ -21,6 +21,11 @@ const counters: Record<GlobalIdKind, number> = {
   lesson: 0,
   skill: 0,
   ile_package: 0,
+  learning_objective: 0,
+  competency: 0,
+  standard: 0,
+  assessment_objective: 0,
+  mapping: 0,
 };
 
 const reserved = new Map<string, string>(); // stableKey → globalId
