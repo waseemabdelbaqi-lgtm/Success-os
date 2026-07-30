@@ -61,6 +61,7 @@ for (const gate of [
   "duplicate_detection",
   "metadata_validation",
   "structure_validation",
+  "asset_validation",
   "package_validation",
 ]) {
   assert.ok(types.includes(`"${gate}"`), `gate missing ${gate}`);
@@ -90,8 +91,11 @@ const dashboard = fs.readFileSync(
   path.join(root, "components/curriculum-import-engine/import-dashboard.tsx"),
   "utf8",
 );
-assert.ok(dashboard.includes("Never renders"));
-assert.ok(dashboard.includes("Run Jordan Phase 1 Import"));
+assert.ok(dashboard.includes("never renders") || dashboard.includes("Never renders"));
+assert.ok(
+  dashboard.includes("Run Jordan G1 Math Reference") ||
+    dashboard.includes("Run Jordan Phase 1 Import"),
+);
 
 const adr = fs.readFileSync(
   path.join(root, "docs/cursor/adr/ADR-0050-curriculum-import-compiler.md"),

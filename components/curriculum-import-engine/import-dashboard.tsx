@@ -13,6 +13,13 @@ type Dashboard = {
     lessons: number;
     errors: number;
     warnings: number;
+    countries: number;
+    curricula: number;
+    units: number;
+    imported: number;
+    verified: number;
+    pending: number;
+    published: number;
   };
   queue: JobRow[];
   running: JobRow[];
@@ -21,6 +28,7 @@ type Dashboard = {
   verificationSummary: Record<string, number>;
   rightsSummary: Record<string, number>;
   history: { at: string; stage: string; level: string; message: string }[];
+  hierarchyPathExample?: string[];
 };
 
 type JobRow = {
@@ -42,7 +50,7 @@ type JobRow = {
 
 /**
  * IMPORT_DASHBOARD — ops surface for Curriculum Import Engine.
- * Does not render lesson content; shows jobs / verification / package counts only.
+ * Does not render lesson content; shows hierarchy + jobs + package counts only.
  */
 export function CurriculumImportDashboard(): ReactNode {
   const [dashboard, setDashboard] = useState<Dashboard | null>(null);
@@ -69,7 +77,31 @@ export function CurriculumImportDashboard(): ReactNode {
     void refresh();
   }, [refresh]);
 
-  async function runJordan() {
+  async function runJordanG1Math() {
+    setBusy(true);
+    setNotice("");
+    try {
+      const res = await fetch("/api/curriculum-import-engine", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ action: "run-jordan-g1-math" }),
+      });
+      const data = await res.json();
+      if (!data.ok) throw new Error((data.errors || data.error || ["Import failed"]).toString());
+      const r = data.result;
+      setNotice(
+        `Jordan G1 Math reference: ${r.published ? "PUBLISHED" : "compiled"} · ${r.packageId} · path ${r.hierarchyPath?.join(" → ")}`,
+      );
+      setDetail(JSON.stringify(r, null, 2));
+      await refresh();
+    } catch (e) {
+      setError(e instanceof Error ? e.message : String(e));
+    } finally {
+      setBusy(false);
+    }
+  }
+
+  async function runJordanG5() {
     setBusy(true);
     setNotice("");
     try {
@@ -81,7 +113,7 @@ export function CurriculumImportDashboard(): ReactNode {
       const data = await res.json();
       if (!data.ok) throw new Error(data.error || "Import failed");
       setNotice(
-        `Jordan import ${data.job.status}: ${data.job.packageCount} ILE packages · ${data.job.lessonCount} lessons`,
+        `Jordan G5 Science import ${data.job.status}: ${data.job.packageCount} ILE packages`,
       );
       setDetail(JSON.stringify(data.job, null, 2));
       await refresh();
@@ -123,13 +155,22 @@ export function CurriculumImportDashboard(): ReactNode {
   const c = dashboard?.counts;
 
   return (
-    <div dir="ltr" style={{ maxWidth: 1100, margin: "0 auto", padding: "1.25rem 1rem" }}>
+    <div
+      dir="ltr"
+      data-cie-dashboard="true"
+      style={{ maxWidth: 1100, margin: "0 auto", padding: "1.25rem 1rem" }}
+    >
       <header style={{ marginBottom: "1rem" }}>
         <h1 style={{ margin: 0, fontSize: "1.45rem" }}>Curriculum Import Engine</h1>
         <p style={{ color: "#64748b", margin: "0.35rem 0 0", fontSize: 13 }}>
-          Compiler only — transforms verified curriculum into ILE packages. Never renders lessons.
-          Jordan Phase 1 · No AI rewrite · No videos · No quizzes.
+          Reference implementation: Jordan → Grade → Subject → Book → Unit → Lesson → ILE Package.
+          Compiler only — never renders. No AI rewrite / videos / quizzes.
         </p>
+        {dashboard?.hierarchyPathExample ? (
+          <p style={{ fontSize: 12, color: "#0f766e", margin: "0.5rem 0 0" }}>
+            {dashboard.hierarchyPathExample.join(" → ")}
+          </p>
+        ) : null}
         {notice ? (
           <p style={{ color: "#0f766e", fontSize: 13, margin: "0.5rem 0 0" }}>{notice}</p>
         ) : null}
@@ -139,8 +180,11 @@ export function CurriculumImportDashboard(): ReactNode {
       </header>
 
       <div style={{ display: "flex", gap: 8, flexWrap: "wrap", marginBottom: 14 }}>
-        <button type="button" style={btn(true)} disabled={busy} onClick={() => void runJordan()}>
-          {busy ? "Running…" : "Run Jordan Phase 1 Import"}
+        <button type="button" style={btn(true)} disabled={busy} onClick={() => void runJordanG1Math()}>
+          {busy ? "Running…" : "Run Jordan G1 Math Reference"}
+        </button>
+        <button type="button" style={btn()} disabled={busy} onClick={() => void runJordanG5()}>
+          Run Jordan G5 Science Import
         </button>
         <button type="button" style={btn()} disabled={busy} onClick={() => void refresh()}>
           Refresh dashboard
@@ -150,7 +194,7 @@ export function CurriculumImportDashboard(): ReactNode {
       <section
         style={{
           display: "grid",
-          gridTemplateColumns: "repeat(auto-fill,minmax(140px,1fr))",
+          gridTemplateColumns: "repeat(auto-fill,minmax(120px,1fr))",
           gap: 8,
           marginBottom: 16,
         }}
@@ -158,20 +202,24 @@ export function CurriculumImportDashboard(): ReactNode {
         {c
           ? (
               [
-                ["Jobs", c.jobs],
-                ["Running", c.running],
-                ["Completed", c.completed],
-                ["Rejected", c.rejected],
-                ["Packages", c.packages],
+                ["Countries", c.countries],
+                ["Curricula", c.curricula],
                 ["Books", c.books],
+                ["Units", c.units],
                 ["Lessons", c.lessons],
+                ["Packages", c.packages],
+                ["Imported", c.imported],
+                ["Verified", c.verified],
+                ["Rejected", c.rejected],
+                ["Pending", c.pending],
+                ["Published", c.published],
                 ["Errors", c.errors],
                 ["Warnings", c.warnings],
               ] as const
             ).map(([label, value]) => (
               <div key={label} style={card()}>
                 <div style={{ fontSize: 11, color: "#64748b" }}>{label}</div>
-                <div style={{ fontSize: 22, fontWeight: 700 }}>{value}</div>
+                <div style={{ fontSize: 22, fontWeight: 700 }}>{value ?? 0}</div>
               </div>
             ))
           : null}
@@ -224,6 +272,15 @@ export function CurriculumImportDashboard(): ReactNode {
       </section>
 
       <section style={{ ...card(), marginTop: 12 }}>
+        <h2 style={{ marginTop: 0, fontSize: 15 }}>Admin Flow</h2>
+        <p style={{ fontSize: 12, color: "#475569", marginTop: 0 }}>
+          Create Country → Attach Curriculum → Create Grades → Create Subjects → Import Books →
+          Detect Units → Detect Lessons → Verify Structure → Generate ILE Packages → Approve →
+          Publish
+        </p>
+      </section>
+
+      <section style={{ ...card(), marginTop: 12 }}>
         <h2 style={{ marginTop: 0, fontSize: 15 }}>Import History</h2>
         <ul style={{ margin: 0, paddingInlineStart: 18, fontSize: 12, color: "#475569" }}>
           {(dashboard?.history || []).slice(0, 20).map((e, i) => (
@@ -236,7 +293,7 @@ export function CurriculumImportDashboard(): ReactNode {
 
       {detail ? (
         <section style={{ ...card(), marginTop: 12 }}>
-          <h2 style={{ marginTop: 0, fontSize: 15 }}>Last job detail (ILE package refs)</h2>
+          <h2 style={{ marginTop: 0, fontSize: 15 }}>Last result (ILE package JSON)</h2>
           <pre
             style={{
               fontSize: 11,
@@ -284,9 +341,6 @@ function JobTable({
               <div style={{ fontSize: 11, color: "#64748b" }}>
                 {j.status} · {j.connectorId} · stage {j.currentStage || "—"} · pkg{" "}
                 {j.packageCount} · lessons {j.lessonCount}
-              </div>
-              <div style={{ fontSize: 11, color: "#64748b" }}>
-                verify {j.verificationStatus || "—"} · rights {j.rightsStatus || "—"}
               </div>
               <div style={{ display: "flex", gap: 6, marginTop: 6 }}>
                 <button type="button" style={btn()} onClick={() => onRetry(j.id)}>

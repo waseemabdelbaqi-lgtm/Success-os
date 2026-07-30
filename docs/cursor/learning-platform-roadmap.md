@@ -97,6 +97,7 @@ Production Optimization
 |----|-------|--------|------------|
 | **#49** | Interactive Lesson Engine (ILE Foundation) | **Done** | Platform portals / books shell |
 | **#50** | Curriculum Import Engine (Jordan First) | **In progress** | #49 + ADR-0050 |
+| **#50.1** | Jordan Curriculum Example (Reference) | **In progress** | #50 + ADR-0050.1 |
 | #51 | Digital Book Engine | Planned | #49, #50 |
 | #52–53 | AI Lesson & Media Engine | Planned | #49 (+ AI/media contracts) |
 | #54–55 | Assessment & Virtual Labs | Planned | #49 |
@@ -125,7 +126,8 @@ Production Optimization
 
 ## Next
 
-**PR #50 in progress** on `cursor/curriculum-import-engine-bca1`.  
+**PR #50 / #50.1 in progress** — Curriculum Import + Jordan G1 Math reference  
+(`cursor/curriculum-import-engine-bca1`, `cursor/jordan-curriculum-reference-bca1`).  
 Following merge: **PR #51 — Digital Book Engine** (ILE package output only).
 
 ## Policy

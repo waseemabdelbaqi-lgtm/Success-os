@@ -28,6 +28,7 @@
     "validate:course-structure": "node scripts/course-structure.test.mjs",
     "validate:interactive-lesson-engine": "node scripts/interactive-lesson-engine.test.mjs",
     "validate:curriculum-import-engine": "node scripts/curriculum-import-engine.test.mjs",
+    "validate:jordan-curriculum-reference": "node scripts/jordan-curriculum-reference.test.mjs",
     "validate:master-directive": "node scripts/validate-master-directive.mjs",
     "validate:knowledge": "node scripts/validate-knowledge-engine.mjs",
     "knowledge:status": "node scripts/run-global-knowledge-engine.mjs --status",

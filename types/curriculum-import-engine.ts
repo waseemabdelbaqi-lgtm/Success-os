@@ -54,6 +54,7 @@ export type VerificationGateId =
   | "duplicate_detection"
   | "metadata_validation"
   | "structure_validation"
+  | "asset_validation"
   | "package_validation";
 
 export const VERIFICATION_GATES: VerificationGateId[] = [
@@ -62,6 +63,7 @@ export const VERIFICATION_GATES: VerificationGateId[] = [
   "duplicate_detection",
   "metadata_validation",
   "structure_validation",
+  "asset_validation",
   "package_validation",
 ];
 
@@ -218,8 +220,16 @@ export type ImportDashboardSnapshot = {
     lessons: number;
     errors: number;
     warnings: number;
+    countries: number;
+    curricula: number;
+    units: number;
+    imported: number;
+    verified: number;
+    pending: number;
+    published: number;
   };
   verificationSummary: Record<VerificationStatus, number>;
   rightsSummary: Record<RightsStatus, number>;
   history: ImportJobEvent[];
+  hierarchyPathExample?: string[];
 };
