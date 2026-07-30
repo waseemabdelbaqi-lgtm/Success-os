@@ -55,7 +55,7 @@ export async function GET(req: Request) {
       ok: true,
       registry: getGlobalSubjectRegistrySnapshot(),
       crossCountryExamples: getCrossCountryMathExamples(),
-      note: "Jordan → الرياضيات → SUB-00001 · USA → Mathematics → SUB-00001 · Egypt → الرياضيات → SUB-00001",
+      note: "Jordan → رياضيات → SUB-00001 · USA → Mathematics → SUB-00001 · Egypt → رياضيات → SUB-00001",
     });
   }
   if (action === "jordan-g1-math-example") {
