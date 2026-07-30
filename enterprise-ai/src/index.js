@@ -54,9 +54,16 @@ export {
   hasProductionCertificationEvidence,
   hasMissionCriticalEvidence,
   isGreenStatus,
+  displayMarkForLifecycle,
   redactSecrets,
   HEALTH_SCHEMA_VERSION,
 } from "./providers/status-model.js";
+export {
+  evaluateProductionCertifyRequirements,
+  evaluateMissionCriticalRequirements,
+  buildStructuredDiagnostic,
+  trustConfig,
+} from "./providers/trust-lifecycle.js";
 export { loadAiosEnv } from "./env/load.js";
 export {
   getFactoriesManifest,

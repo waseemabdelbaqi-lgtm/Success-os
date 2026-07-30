@@ -114,13 +114,13 @@ export function AiInfrastructurePanel() {
         </p>
         <p style={{ color: '#374151', fontSize: 12, margin: '0.5rem 0 0', letterSpacing: 0.2 }}>
           {(data?.lifecycleLadder || [
-            'SLOT',
-            'NOT_CONFIGURED',
-            'CREDENTIALS_DETECTED',
-            'PROBE_RUNNING',
+            'SLOT ⚪',
+            'NOT_CONFIGURED ⚪',
+            'CREDENTIALS_DETECTED 🟡',
+            'PROBE_RUNNING 🟡',
             'READY 🟢',
-            'PRODUCTION_CERTIFIED ⭐',
-            'MISSION_CRITICAL ⭐⭐',
+            'PRODUCTION_CERTIFIED 🟢⭐',
+            'MISSION_CRITICAL 🟢⭐⭐',
           ]).join(' → ')}
         </p>
       </header>
@@ -273,15 +273,23 @@ export function AiInfrastructurePanel() {
                     <span style={{ display: 'inline-flex', alignItems: 'center' }}>
                       <Dot color={p.displayColor} />
                       {cell(p.Provider || p.displayName || p.id)}
-                      {p.missionCritical || p.Lifecycle === 'MISSION_CRITICAL' ? (
-                        <span style={{ marginInlineStart: 6 }} title="MISSION CRITICAL">
-                          ⭐⭐
-                        </span>
-                      ) : p.productionCertified || p.Lifecycle === 'PRODUCTION_CERTIFIED' ? (
-                        <span style={{ marginInlineStart: 6 }} title="PRODUCTION CERTIFIED">
-                          ⭐
-                        </span>
-                      ) : null}
+                      <span
+                        style={{ marginInlineStart: 6, fontSize: 14 }}
+                        title={cell(p.Lifecycle || p.lifecycleStage)}
+                      >
+                        {p.displayMark ||
+                          p.Mark ||
+                          (p.missionCritical || p.Lifecycle === 'MISSION_CRITICAL'
+                            ? '🟢⭐⭐'
+                            : p.productionCertified || p.Lifecycle === 'PRODUCTION_CERTIFIED'
+                              ? '🟢⭐'
+                              : p.Lifecycle === 'READY' || p.Status === 'READY'
+                                ? '🟢'
+                                : p.Lifecycle === 'CREDENTIALS_DETECTED' ||
+                                    p.Lifecycle === 'PROBE_RUNNING'
+                                  ? '🟡'
+                                  : '⚪')}
+                      </span>
                     </span>
                   </td>
                   <td style={{ padding: '0.65rem' }}>{cell(p.Factory || p.factory)}</td>

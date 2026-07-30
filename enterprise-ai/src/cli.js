@@ -118,8 +118,8 @@ Flags:
   --execute             Execute mode (no auto-commit/push/deploy)
   --agents              List agents
 
-Lifecycle: SLOT → NOT_CONFIGURED → CREDENTIALS_DETECTED → PROBE_RUNNING → READY 🟢 → PRODUCTION_CERTIFIED ⭐ → MISSION_CRITICAL ⭐⭐
-Rule: green only after authenticated live probe success (READY / PRODUCTION_CERTIFIED / MISSION_CRITICAL).
+Lifecycle: SLOT ⚪ → NOT_CONFIGURED ⚪ → CREDENTIALS_DETECTED 🟡 → PROBE_RUNNING 🟡 → READY 🟢 → PRODUCTION_CERTIFIED 🟢⭐ → MISSION_CRITICAL 🟢⭐⭐
+Rule: green only after authenticated live probe success. Star tiers require explicit --certify / --mission-critical (no stage skip).
 `);
 }
 
@@ -238,7 +238,7 @@ async function main() {
           {
             generatedAt: new Date().toISOString(),
             action: "MISSION_CRITICAL",
-            mark: "⭐⭐",
+            mark: "🟢⭐⭐",
             ...promoted,
             secretsExposed: false,
           },
@@ -283,7 +283,7 @@ async function main() {
           {
             generatedAt: new Date().toISOString(),
             action: "PRODUCTION_CERTIFIED",
-            mark: "⭐",
+            mark: "🟢⭐",
             ...certified,
             secretsExposed: false,
           },

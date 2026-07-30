@@ -3,15 +3,22 @@
  * READY requires authenticated live probe evidence — never slot/adapter/credentials alone.
  */
 
-export const HEALTH_SCHEMA_VERSION = 4;
+export const HEALTH_SCHEMA_VERSION = 5;
 
 /**
- * Canonical provider lifecycle (no skipping):
+ * Canonical provider trust lifecycle (no skipping):
  *   SLOT → NOT_CONFIGURED → CREDENTIALS_DETECTED → PROBE_RUNNING
- *     → READY 🟢 → PRODUCTION_CERTIFIED ⭐ → MISSION_CRITICAL ⭐⭐
+ *     → READY → PRODUCTION_CERTIFIED → MISSION_CRITICAL
  *
- * Failure statuses (AUTH_FAILED, NETWORK_FAILED, …) are orthogonal and
- * never advance the ladder. Green is only READY / PRODUCTION_CERTIFIED / MISSION_CRITICAL.
+ * Display marks:
+ *   ⚪ SLOT / NOT_CONFIGURED
+ *   🟡 CREDENTIALS_DETECTED / PROBE_RUNNING (transitional)
+ *   🟢 READY
+ *   🟢⭐ PRODUCTION_CERTIFIED
+ *   🟢⭐⭐ MISSION_CRITICAL
+ *
+ * Star tiers are granted only by explicit CLI promotion after a fresh live probe.
+ * Never infer READY from adapters, config files, or credentials alone.
  */
 export const ProviderLifecycle = Object.freeze({
   SLOT: "SLOT",
@@ -37,18 +44,24 @@ export const LIFECYCLE_ORDER = Object.freeze([
 ]);
 
 export const LIFECYCLE_LADDER = Object.freeze([
-  { stage: ProviderLifecycle.SLOT, label: "SLOT", mark: "" },
-  { stage: ProviderLifecycle.NOT_CONFIGURED, label: "NOT_CONFIGURED", mark: "" },
-  { stage: ProviderLifecycle.CREDENTIALS_DETECTED, label: "CREDENTIALS_DETECTED", mark: "" },
-  { stage: ProviderLifecycle.PROBE_RUNNING, label: "PROBE_RUNNING", mark: "" },
+  { stage: ProviderLifecycle.SLOT, label: "SLOT", mark: "⚪" },
+  { stage: ProviderLifecycle.NOT_CONFIGURED, label: "NOT_CONFIGURED", mark: "⚪" },
+  { stage: ProviderLifecycle.CREDENTIALS_DETECTED, label: "CREDENTIALS_DETECTED", mark: "🟡" },
+  { stage: ProviderLifecycle.PROBE_RUNNING, label: "PROBE_RUNNING", mark: "🟡" },
   { stage: ProviderLifecycle.READY, label: "READY", mark: "🟢" },
-  { stage: ProviderLifecycle.PRODUCTION_CERTIFIED, label: "PRODUCTION_CERTIFIED", mark: "⭐" },
-  { stage: ProviderLifecycle.MISSION_CRITICAL, label: "MISSION_CRITICAL", mark: "⭐⭐" },
+  { stage: ProviderLifecycle.PRODUCTION_CERTIFIED, label: "PRODUCTION_CERTIFIED", mark: "🟢⭐" },
+  { stage: ProviderLifecycle.MISSION_CRITICAL, label: "MISSION_CRITICAL", mark: "🟢⭐⭐" },
 ]);
 
 export const LIFECYCLE_LADDER_LABELS = Object.freeze(
-  LIFECYCLE_LADDER.map((s) => `${s.label}${s.mark ? ` ${s.mark}` : ""}`),
+  LIFECYCLE_LADDER.map((s) => `${s.label} ${s.mark}`),
 );
+
+export function displayMarkForLifecycle(stage) {
+  const s = normalizeLifecycleStage(stage);
+  const hit = LIFECYCLE_LADDER.find((x) => x.stage === s);
+  return hit?.mark || "⚪";
+}
 
 /** Map legacy / alias stage names onto the official ladder. */
 export function normalizeLifecycleStage(stage) {
@@ -200,16 +213,17 @@ export function hasReadyEvidence(record = {}) {
 }
 
 /**
- * PRODUCTION CERTIFIED requires READY evidence plus stability / approval.
- * Media also requires generationVerified. Never auto-certify from SLOT/NOT_CONFIGURED.
+ * PRODUCTION CERTIFIED evidence — explicit grant only (CLI --certify).
+ * Never auto-promote via streak. Media requires generationVerified at grant time.
  */
 export function hasProductionCertificationEvidence(record = {}) {
-  const streak = Number(process.env.AIOS_PRODUCTION_CERTIFY_STREAK || 3);
-  const media = ["heygen", "elevenlabs", "openai-images", "blender"].includes(record.providerId);
-  const envFlag =
-    process.env[`AIOS_CERTIFY_${String(record.providerId || "").toUpperCase().replace(/-/g, "_")}`] ===
-    "true";
-  const readyOk =
+  if (record.missionCritical === true || record.status === CanonicalStatus.MISSION_CRITICAL) {
+    return true;
+  }
+  if (record.status === CanonicalStatus.PRODUCTION_CERTIFIED) return true;
+  if (record.productionCertified !== true) return false;
+  // Explicit flag alone is not enough without READY-class evidence still holding
+  return (
     hasReadyEvidence({
       ...record,
       status: CanonicalStatus.READY,
@@ -217,43 +231,26 @@ export function hasProductionCertificationEvidence(record = {}) {
     }) ||
     record.status === CanonicalStatus.READY ||
     record.status === CanonicalStatus.PRODUCTION_CERTIFIED ||
-    record.status === CanonicalStatus.MISSION_CRITICAL;
-  if (!readyOk) return false;
-  if (media && !record.generationVerified) return false;
-  if (
-    record.productionCertified === true ||
-    record.missionCritical === true ||
-    record.status === CanonicalStatus.PRODUCTION_CERTIFIED ||
-    record.status === CanonicalStatus.MISSION_CRITICAL ||
-    envFlag
-  ) {
-    return true;
-  }
-  return Number(record.consecutiveSuccesses || 0) >= streak;
+    record.status === CanonicalStatus.MISSION_CRITICAL
+  );
 }
 
 /**
- * MISSION CRITICAL requires PRODUCTION CERTIFIED plus explicit elevation.
- * Never skip from READY directly to MISSION_CRITICAL.
+ * MISSION CRITICAL evidence — explicit grant only (CLI --mission-critical).
+ * Never skip from READY; never auto-promote via streak alone.
  */
 export function hasMissionCriticalEvidence(record = {}) {
-  const streak = Number(process.env.AIOS_MISSION_CRITICAL_STREAK || 10);
-  const media = ["heygen", "elevenlabs", "openai-images", "blender"].includes(record.providerId);
-  const envFlag =
-    process.env[
-      `AIOS_MISSION_CRITICAL_${String(record.providerId || "").toUpperCase().replace(/-/g, "_")}`
-    ] === "true";
-  if (!hasProductionCertificationEvidence(record)) return false;
-  if (media && !record.generationVerified) return false;
-  if (record.missionCritical === true || envFlag) return true;
   if (record.status === CanonicalStatus.MISSION_CRITICAL) return true;
-  return (
-    Number(record.consecutiveSuccesses || 0) >= streak &&
-    (record.productionCertified === true ||
-      record.status === CanonicalStatus.PRODUCTION_CERTIFIED ||
-      record.lifecycleStage === ProviderLifecycle.PRODUCTION_CERTIFIED ||
-      record.lifecycleStage === ProviderLifecycle.MISSION_CRITICAL)
-  );
+  if (record.missionCritical !== true) return false;
+  return hasProductionCertificationEvidence({
+    ...record,
+    productionCertified: true,
+    missionCritical: false,
+    status:
+      record.status === CanonicalStatus.MISSION_CRITICAL
+        ? CanonicalStatus.PRODUCTION_CERTIFIED
+        : record.status,
+  });
 }
 
 /**

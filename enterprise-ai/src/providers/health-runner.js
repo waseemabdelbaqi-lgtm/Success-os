@@ -20,7 +20,6 @@ import {
 import {
   CanonicalStatus,
   LiveProbeResult,
-  ProviderLifecycle,
   PROVIDER_FACTORY,
   PROVIDER_META,
   colorForStatus,
@@ -30,13 +29,21 @@ import {
 } from "./status-model.js";
 import {
   appendHistory,
+  appendTrustAudit,
   buildDashboardFromState,
   createEmptyProviderRecord,
   evaluateAlerts,
+  historyStatsFor,
   loadHealthState,
   normalizeProviderRecord,
   saveHealthState,
 } from "./health-store.js";
+import {
+  buildStructuredDiagnostic,
+  evaluateMissionCriticalRequirements,
+  evaluateProductionCertifyRequirements,
+  trustConfig,
+} from "./trust-lifecycle.js";
 import { firstEnv } from "./base.js";
 
 const ALL_PROVIDER_IDS = [
@@ -802,9 +809,8 @@ export async function runHealthCommand({
 }
 
 /**
- * Explicit PRODUCTION CERTIFIED approval.
- * Requires provider already READY. Cannot certify from SLOT / NOT_CONFIGURED /
- * CREDENTIALS_DETECTED / PROBE_RUNNING. Media also needs generationVerified.
+ * Explicit PRODUCTION CERTIFIED grant (CLI --certify only).
+ * Fresh live probe must leave provider READY. Structured diagnostics on every failure.
  */
 export async function certifyProviders({
   providerIds = [],
@@ -814,57 +820,83 @@ export async function certifyProviders({
 } = {}) {
   const previous = loadHealthState(rootDir);
   if (!previous?.providers?.length) {
+    const diagnostic = buildStructuredDiagnostic({
+      action: "PRODUCTION_CERTIFIED",
+      providerId: providerIds[0] || null,
+      ok: false,
+      requirements: [
+        {
+          id: "healthState",
+          ok: false,
+          message: "Run a live probe to READY before PRODUCTION CERTIFIED",
+        },
+      ],
+      note,
+    });
+    if (persist) appendTrustAudit({ ...diagnostic, outcome: "rejected" }, rootDir);
     return {
       ok: false,
       error: "NO_HEALTH_STATE",
       message: "Run a live probe to READY before PRODUCTION CERTIFIED",
       certified: [],
+      rejected: [{ providerId: providerIds[0] || null, reason: "NO_HEALTH_STATE", diagnostic }],
+      diagnostics: [diagnostic],
     };
   }
   const ids = (providerIds.length ? providerIds : []).map((id) =>
     id === "claude" ? "anthropic" : id === "ollama-local" ? "ollama" : id,
   );
   if (!ids.length) {
-    return { ok: false, error: "PROVIDER_REQUIRED", certified: [] };
+    return { ok: false, error: "PROVIDER_REQUIRED", certified: [], rejected: [], diagnostics: [] };
   }
 
   const certified = [];
   const rejected = [];
+  const diagnostics = [];
   const byId = new Map(previous.providers.map((p) => [p.providerId, p]));
+  const cfg = trustConfig();
 
   for (const id of ids) {
     const prev = byId.get(id);
     if (!prev) {
-      rejected.push({ providerId: id, reason: "UNKNOWN_PROVIDER" });
+      const diagnostic = buildStructuredDiagnostic({
+        action: "PRODUCTION_CERTIFIED",
+        providerId: id,
+        ok: false,
+        requirements: [{ id: "providerKnown", ok: false, message: "Unknown provider id" }],
+        note,
+      });
+      rejected.push({ providerId: id, reason: "UNKNOWN_PROVIDER", diagnostic });
+      diagnostics.push(diagnostic);
       continue;
     }
-    const media = ["heygen", "elevenlabs", "openai-images", "blender"].includes(id);
-    const readyEnough =
-      prev.status === CanonicalStatus.READY ||
-      prev.status === CanonicalStatus.PRODUCTION_CERTIFIED ||
-      prev.status === CanonicalStatus.MISSION_CRITICAL ||
-      prev.lifecycleStage === ProviderLifecycle.READY ||
-      prev.lifecycleStage === ProviderLifecycle.PRODUCTION_CERTIFIED ||
-      prev.lifecycleStage === ProviderLifecycle.MISSION_CRITICAL;
-    if (!readyEnough) {
+
+    const summary = evaluateProductionCertifyRequirements(prev, {
+      historyStats: historyStatsFor(id, rootDir),
+    });
+    const diagnostic = buildStructuredDiagnostic({
+      action: "PRODUCTION_CERTIFIED",
+      providerId: id,
+      ok: summary.ok,
+      requirements: summary.requirements,
+      record: prev,
+      note,
+    });
+    diagnostics.push(diagnostic);
+
+    if (!summary.ok) {
       rejected.push({
         providerId: id,
-        reason: "NOT_READY",
+        reason: "REQUIREMENTS_FAILED",
         status: prev.status,
         lifecycleStage: prev.lifecycleStage,
-        message: "PRODUCTION CERTIFIED requires READY first — no stage skipping",
-      });
-      continue;
-    }
-    if (media && !prev.generationVerified) {
-      rejected.push({
-        providerId: id,
-        reason: "GENERATION_NOT_VERIFIED",
-        message: "Media providers require generationVerified before PRODUCTION CERTIFIED",
+        message: "PRODUCTION CERTIFIED rejected — see failedRequirements",
+        diagnostic,
       });
       continue;
     }
 
+    const certifiedAt = new Date().toISOString();
     const rec = normalizeProviderRecord(
       {
         ...prev,
@@ -876,15 +908,28 @@ export async function certifyProviders({
         errorCode: "none",
         safeErrorMessage: "none",
         productionCertified: true,
-        missionCritical: prev.missionCritical === true,
+        missionCritical: false,
         certifyNote: note,
-        certifiedAt: new Date().toISOString(),
-        consecutiveSuccesses: Math.max(Number(prev.consecutiveSuccesses || 0), 3),
+        certifiedAt,
+        certificationEvidence: diagnostic.evidence,
+        certificationRequirements: summary.requirements,
+        consecutiveSuccesses: Math.max(
+          Number(prev.consecutiveSuccesses || 0),
+          cfg.productionCertifyMinStreak,
+        ),
       },
       prev,
     );
     byId.set(id, rec);
     certified.push(id);
+    diagnostic.ok = true;
+    diagnostic.evidence = {
+      ...diagnostic.evidence,
+      certifiedAt,
+      lifecycleStage: rec.lifecycleStage,
+      status: rec.status,
+      displayMark: rec.displayMark,
+    };
   }
 
   const records = ALL_PROVIDER_IDS.map((id) => byId.get(id) || createEmptyProviderRecord(id));
@@ -912,45 +957,60 @@ export async function certifyProviders({
   };
 
   let snapshotPath = null;
-  if (persist && certified.length) {
-    snapshotPath = saveHealthState(state, rootDir);
-    appendHistory(
-      certified.map((id) => {
-        const r = byId.get(id);
-        return {
-          providerId: id,
-          status: r.status,
-          liveProbe: r.liveProbe,
-          testedAt: r.testedAt,
-          latencyMs: r.latencyMs,
-          model: r.model,
-          safeErrorMessage: r.safeErrorMessage,
-          mode: "certify",
-          lifecycleStage: r.lifecycleStage,
-        };
-      }),
+  let auditPath = null;
+  if (persist) {
+    auditPath = appendTrustAudit(
+      diagnostics.map((d) => ({
+        ...d,
+        outcome: d.ok ? "granted" : "rejected",
+        at: checkedAt,
+      })),
       rootDir,
     );
+    if (certified.length) {
+      snapshotPath = saveHealthState(state, rootDir);
+      appendHistory(
+        certified.map((id) => {
+          const r = byId.get(id);
+          return {
+            providerId: id,
+            status: r.status,
+            liveProbe: r.liveProbe,
+            testedAt: r.testedAt,
+            latencyMs: r.latencyMs,
+            model: r.model,
+            safeErrorMessage: r.safeErrorMessage,
+            mode: "certify",
+            lifecycleStage: r.lifecycleStage,
+            certifiedAt: r.certifiedAt,
+          };
+        }),
+        rootDir,
+      );
+    }
   }
 
   return {
     ok: certified.length > 0,
     certified,
     rejected,
+    diagnostics,
     checkedAt,
     snapshotPath,
+    auditPath,
     dashboard: buildDashboardFromState(state, rootDir),
     factories,
     ready: state.ready,
     missionCritical: state.missionCritical,
     providers: records,
-    rule: "PRODUCTION_CERTIFIED requires READY — no stage skipping",
+    trustConfig: cfg,
+    rule: "PRODUCTION_CERTIFIED requires READY after fresh live probe — no stage skipping",
   };
 }
 
 /**
- * Explicit MISSION CRITICAL ⭐⭐ elevation.
- * Requires PRODUCTION CERTIFIED first — no skip from READY.
+ * Explicit MISSION CRITICAL grant (CLI --mission-critical only).
+ * Requires PRODUCTION_CERTIFIED after fresh live probe + operational thresholds.
  */
 export async function promoteMissionCritical({
   providerIds = [],
@@ -960,56 +1020,90 @@ export async function promoteMissionCritical({
 } = {}) {
   const previous = loadHealthState(rootDir);
   if (!previous?.providers?.length) {
+    const diagnostic = buildStructuredDiagnostic({
+      action: "MISSION_CRITICAL",
+      providerId: providerIds[0] || null,
+      ok: false,
+      requirements: [
+        {
+          id: "healthState",
+          ok: false,
+          message: "PRODUCTION CERTIFIED required before MISSION CRITICAL",
+        },
+      ],
+      note,
+    });
+    if (persist) appendTrustAudit({ ...diagnostic, outcome: "rejected" }, rootDir);
     return {
       ok: false,
       error: "NO_HEALTH_STATE",
       message: "PRODUCTION CERTIFIED required before MISSION CRITICAL",
       missionCritical: [],
+      rejected: [{ providerId: providerIds[0] || null, reason: "NO_HEALTH_STATE", diagnostic }],
+      diagnostics: [diagnostic],
     };
   }
   const ids = (providerIds.length ? providerIds : []).map((id) =>
     id === "claude" ? "anthropic" : id === "ollama-local" ? "ollama" : id,
   );
   if (!ids.length) {
-    return { ok: false, error: "PROVIDER_REQUIRED", missionCritical: [] };
+    return {
+      ok: false,
+      error: "PROVIDER_REQUIRED",
+      missionCritical: [],
+      rejected: [],
+      diagnostics: [],
+    };
   }
 
   const promoted = [];
   const rejected = [];
+  const diagnostics = [];
   const byId = new Map(previous.providers.map((p) => [p.providerId, p]));
+  const cfg = trustConfig();
 
   for (const id of ids) {
     const prev = byId.get(id);
     if (!prev) {
-      rejected.push({ providerId: id, reason: "UNKNOWN_PROVIDER" });
+      const diagnostic = buildStructuredDiagnostic({
+        action: "MISSION_CRITICAL",
+        providerId: id,
+        ok: false,
+        requirements: [{ id: "providerKnown", ok: false, message: "Unknown provider id" }],
+        note,
+      });
+      rejected.push({ providerId: id, reason: "UNKNOWN_PROVIDER", diagnostic });
+      diagnostics.push(diagnostic);
       continue;
     }
-    const media = ["heygen", "elevenlabs", "openai-images", "blender"].includes(id);
-    const certifiedEnough =
-      prev.status === CanonicalStatus.PRODUCTION_CERTIFIED ||
-      prev.status === CanonicalStatus.MISSION_CRITICAL ||
-      prev.lifecycleStage === ProviderLifecycle.PRODUCTION_CERTIFIED ||
-      prev.lifecycleStage === ProviderLifecycle.MISSION_CRITICAL ||
-      prev.productionCertified === true;
-    if (!certifiedEnough) {
+
+    const summary = evaluateMissionCriticalRequirements(prev, {
+      historyStats: historyStatsFor(id, rootDir),
+      alerts: previous.alerts || [],
+    });
+    const diagnostic = buildStructuredDiagnostic({
+      action: "MISSION_CRITICAL",
+      providerId: id,
+      ok: summary.ok,
+      requirements: summary.requirements,
+      record: prev,
+      note,
+    });
+    diagnostics.push(diagnostic);
+
+    if (!summary.ok) {
       rejected.push({
         providerId: id,
-        reason: "NOT_PRODUCTION_CERTIFIED",
+        reason: "REQUIREMENTS_FAILED",
         status: prev.status,
         lifecycleStage: prev.lifecycleStage,
-        message: "MISSION CRITICAL requires PRODUCTION CERTIFIED first — no stage skipping",
-      });
-      continue;
-    }
-    if (media && !prev.generationVerified) {
-      rejected.push({
-        providerId: id,
-        reason: "GENERATION_NOT_VERIFIED",
-        message: "Media providers require generationVerified before MISSION CRITICAL",
+        message: "MISSION CRITICAL rejected — see failedRequirements",
+        diagnostic,
       });
       continue;
     }
 
+    const missionCriticalAt = new Date().toISOString();
     const rec = normalizeProviderRecord(
       {
         ...prev,
@@ -1023,16 +1117,31 @@ export async function promoteMissionCritical({
         productionCertified: true,
         missionCritical: true,
         missionCriticalNote: note,
-        missionCriticalAt: new Date().toISOString(),
+        missionCriticalAt,
+        missionCriticalEvidence: diagnostic.evidence,
+        missionCriticalRequirements: summary.requirements,
         consecutiveSuccesses: Math.max(
           Number(prev.consecutiveSuccesses || 0),
-          Number(process.env.AIOS_MISSION_CRITICAL_STREAK || 10),
+          cfg.missionCriticalMinStreak,
         ),
+        fallbackPolicyDeclared:
+          prev.fallbackPolicyDeclared === true ||
+          process.env.AIOS_FALLBACK_POLICY_DECLARED === "true" ||
+          id === "ollama" ||
+          id === "playwright",
       },
       prev,
     );
     byId.set(id, rec);
     promoted.push(id);
+    diagnostic.ok = true;
+    diagnostic.evidence = {
+      ...diagnostic.evidence,
+      missionCriticalAt,
+      lifecycleStage: rec.lifecycleStage,
+      status: rec.status,
+      displayMark: rec.displayMark,
+    };
   }
 
   const records = ALL_PROVIDER_IDS.map((id) => byId.get(id) || createEmptyProviderRecord(id));
@@ -1060,39 +1169,54 @@ export async function promoteMissionCritical({
   };
 
   let snapshotPath = null;
-  if (persist && promoted.length) {
-    snapshotPath = saveHealthState(state, rootDir);
-    appendHistory(
-      promoted.map((id) => {
-        const r = byId.get(id);
-        return {
-          providerId: id,
-          status: r.status,
-          liveProbe: r.liveProbe,
-          testedAt: r.testedAt,
-          latencyMs: r.latencyMs,
-          model: r.model,
-          safeErrorMessage: r.safeErrorMessage,
-          mode: "mission-critical",
-          lifecycleStage: r.lifecycleStage,
-        };
-      }),
+  let auditPath = null;
+  if (persist) {
+    auditPath = appendTrustAudit(
+      diagnostics.map((d) => ({
+        ...d,
+        outcome: d.ok ? "granted" : "rejected",
+        at: checkedAt,
+      })),
       rootDir,
     );
+    if (promoted.length) {
+      snapshotPath = saveHealthState(state, rootDir);
+      appendHistory(
+        promoted.map((id) => {
+          const r = byId.get(id);
+          return {
+            providerId: id,
+            status: r.status,
+            liveProbe: r.liveProbe,
+            testedAt: r.testedAt,
+            latencyMs: r.latencyMs,
+            model: r.model,
+            safeErrorMessage: r.safeErrorMessage,
+            mode: "mission-critical",
+            lifecycleStage: r.lifecycleStage,
+            missionCriticalAt: r.missionCriticalAt,
+          };
+        }),
+        rootDir,
+      );
+    }
   }
 
   return {
     ok: promoted.length > 0,
     missionCritical: promoted,
     rejected,
+    diagnostics,
     checkedAt,
     snapshotPath,
+    auditPath,
     dashboard: buildDashboardFromState(state, rootDir),
     factories,
     ready: state.ready,
     certified: state.certified,
     providers: records,
-    rule: "MISSION_CRITICAL requires PRODUCTION_CERTIFIED — no stage skipping",
+    trustConfig: cfg,
+    rule: "MISSION_CRITICAL requires PRODUCTION_CERTIFIED after fresh live probe — no stage skipping",
   };
 }
 

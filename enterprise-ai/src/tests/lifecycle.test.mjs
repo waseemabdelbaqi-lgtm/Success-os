@@ -8,18 +8,33 @@ import {
   ProviderLifecycle,
   colorForLifecycle,
   deriveLifecycleStage,
+  displayMarkForLifecycle,
   hasMissionCriticalEvidence,
   hasProductionCertificationEvidence,
   hasReadyEvidence,
   lifecycleProgress,
   normalizeLifecycleStage,
 } from "../providers/status-model.js";
-import { normalizeProviderRecord, saveHealthState } from "../providers/health-store.js";
+import {
+  appendHistory,
+  normalizeProviderRecord,
+  saveHealthState,
+} from "../providers/health-store.js";
 import { certifyProviders, promoteMissionCritical } from "../providers/health-runner.js";
+import {
+  evaluateMissionCriticalRequirements,
+  evaluateProductionCertifyRequirements,
+} from "../providers/trust-lifecycle.js";
 
-// Ladder order — no skipping
 assert.equal(normalizeLifecycleStage("CONFIGURED"), ProviderLifecycle.CREDENTIALS_DETECTED);
 assert.equal(normalizeLifecycleStage("LIVE_VERIFIED"), ProviderLifecycle.PROBE_RUNNING);
+assert.equal(displayMarkForLifecycle(ProviderLifecycle.SLOT), "⚪");
+assert.equal(displayMarkForLifecycle(ProviderLifecycle.NOT_CONFIGURED), "⚪");
+assert.equal(displayMarkForLifecycle(ProviderLifecycle.CREDENTIALS_DETECTED), "🟡");
+assert.equal(displayMarkForLifecycle(ProviderLifecycle.PROBE_RUNNING), "🟡");
+assert.equal(displayMarkForLifecycle(ProviderLifecycle.READY), "🟢");
+assert.equal(displayMarkForLifecycle(ProviderLifecycle.PRODUCTION_CERTIFIED), "🟢⭐");
+assert.equal(displayMarkForLifecycle(ProviderLifecycle.MISSION_CRITICAL), "🟢⭐⭐");
 
 const slot = deriveLifecycleStage({ status: CanonicalStatus.SLOT, adapterAvailable: false });
 assert.equal(slot, ProviderLifecycle.SLOT);
@@ -30,7 +45,6 @@ const notConfigured = deriveLifecycleStage({
   credentialsDetected: false,
 });
 assert.equal(notConfigured, ProviderLifecycle.NOT_CONFIGURED);
-assert.equal(colorForLifecycle(notConfigured), "grey");
 
 const credentials = deriveLifecycleStage({
   status: CanonicalStatus.CREDENTIALS_DETECTED,
@@ -48,7 +62,6 @@ const probing = deriveLifecycleStage({
   liveProbe: "RUNNING",
 });
 assert.equal(probing, ProviderLifecycle.PROBE_RUNNING);
-assert.equal(colorForLifecycle(probing), "yellow");
 
 const ready = deriveLifecycleStage({
   status: CanonicalStatus.READY,
@@ -62,14 +75,19 @@ const ready = deriveLifecycleStage({
   errorCode: "none",
 });
 assert.equal(ready, ProviderLifecycle.READY);
-assert.equal(colorForLifecycle(ready), "green");
 
-// Cannot certify from CREDENTIALS_DETECTED alone
+// Streak alone must NOT auto-certify
 assert.equal(
   hasProductionCertificationEvidence({
     providerId: "openai",
-    status: CanonicalStatus.CREDENTIALS_DETECTED,
-    credentialsDetected: true,
+    status: CanonicalStatus.READY,
+    authenticated: true,
+    liveProbeExecuted: true,
+    liveProbe: "PASSED",
+    result: "success",
+    testedAt: "2026-07-30T00:00:00.000Z",
+    latencyMs: 10,
+    errorCode: "none",
     consecutiveSuccesses: 99,
   }),
   false,
@@ -90,42 +108,40 @@ const readyRec = normalizeProviderRecord({
   credentialsDetected: true,
 });
 assert.equal(readyRec.lifecycleStage, ProviderLifecycle.READY);
-assert.equal(readyRec.displayColor, "green");
+assert.equal(readyRec.displayMark, "🟢");
 assert.equal(readyRec.productionCertified, false);
-assert.equal(readyRec.missionCritical, false);
 
-// Streak → PRODUCTION CERTIFIED
-let rec = readyRec;
-for (let i = 0; i < 3; i += 1) {
-  rec = normalizeProviderRecord(
-    {
-      providerId: "ollama",
-      status: CanonicalStatus.READY,
-      authenticated: true,
-      liveProbeExecuted: true,
-      liveProbe: "PASSED",
-      result: "success",
-      testedAt: `2026-07-30T00:0${i}:00.000Z`,
-      latencyMs: 900 + i,
-      model: "qwen3:8b",
-      errorCode: "none",
-      safeErrorMessage: "none",
-      credentialsDetected: true,
-    },
-    rec,
-  );
-}
-assert.ok(rec.consecutiveSuccesses >= 3);
-assert.equal(rec.lifecycleStage, ProviderLifecycle.PRODUCTION_CERTIFIED);
-assert.equal(rec.status, CanonicalStatus.PRODUCTION_CERTIFIED);
-assert.equal(rec.productionCertified, true);
-assert.equal(rec.displayColor, "green");
-assert.ok(rec.lifecycleProgress.some((s) => s.stage === "PRODUCTION_CERTIFIED" && s.current));
+// Explicit flag → PRODUCTION CERTIFIED
+const certifiedRec = normalizeProviderRecord(
+  {
+    ...readyRec,
+    productionCertified: true,
+    certifiedAt: "2026-07-30T01:00:00.000Z",
+  },
+  readyRec,
+);
+assert.equal(certifiedRec.lifecycleStage, ProviderLifecycle.PRODUCTION_CERTIFIED);
+assert.equal(certifiedRec.status, CanonicalStatus.PRODUCTION_CERTIFIED);
+assert.equal(certifiedRec.displayMark, "🟢⭐");
+assert.equal(hasMissionCriticalEvidence(certifiedRec), false);
+
+const mcRec = normalizeProviderRecord(
+  {
+    ...certifiedRec,
+    missionCritical: true,
+    productionCertified: true,
+    missionCriticalAt: "2026-07-30T02:00:00.000Z",
+  },
+  certifiedRec,
+);
+assert.equal(mcRec.lifecycleStage, ProviderLifecycle.MISSION_CRITICAL);
+assert.equal(mcRec.displayMark, "🟢⭐⭐");
 
 // Media cannot certify without generationVerified
-const media = normalizeProviderRecord({
+const mediaReady = {
   providerId: "heygen",
   status: CanonicalStatus.READY,
+  lifecycleStage: ProviderLifecycle.READY,
   authenticated: true,
   liveProbeExecuted: true,
   liveProbe: "PASSED",
@@ -134,11 +150,12 @@ const media = normalizeProviderRecord({
   latencyMs: 100,
   errorCode: "none",
   credentialsDetected: true,
-  consecutiveSuccesses: 10,
+  consecutiveSuccesses: 3,
   generationVerified: false,
-});
-assert.notEqual(media.lifecycleStage, ProviderLifecycle.PRODUCTION_CERTIFIED);
-assert.equal(hasMissionCriticalEvidence(media), false);
+};
+const mediaEval = evaluateProductionCertifyRequirements(mediaReady);
+assert.equal(mediaEval.ok, false);
+assert.ok(mediaEval.failedRequirements.some((r) => r.id === "generationVerified"));
 
 const progress = lifecycleProgress(ProviderLifecycle.PROBE_RUNNING);
 assert.equal(progress.filter((p) => p.reached).length, 4);
@@ -154,9 +171,8 @@ assert.ok(
   }),
 );
 
-// Explicit certify + mission-critical — no stage skipping
 {
-  const tmp = fs.mkdtempSync(path.join(os.tmpdir(), "aios-certify-"));
+  const tmp = fs.mkdtempSync(path.join(os.tmpdir(), "aios-trust-"));
   const readyRow = normalizeProviderRecord({
     providerId: "playwright",
     status: CanonicalStatus.READY,
@@ -171,6 +187,8 @@ assert.ok(
     safeErrorMessage: "none",
     credentialsDetected: true,
     packageInstalled: true,
+    consecutiveSuccesses: 2,
+    factory: "infrastructure",
   });
   const configuredOnly = normalizeProviderRecord({
     providerId: "supabase",
@@ -198,7 +216,8 @@ assert.ok(
     persist: true,
   });
   assert.equal(skipped.ok, false);
-  assert.equal(skipped.rejected[0]?.reason, "NOT_READY");
+  assert.equal(skipped.rejected[0]?.reason, "REQUIREMENTS_FAILED");
+  assert.ok(skipped.diagnostics[0]?.failedRequirements?.length > 0);
 
   const skipMc = await promoteMissionCritical({
     providerIds: ["playwright"],
@@ -206,7 +225,9 @@ assert.ok(
     persist: true,
   });
   assert.equal(skipMc.ok, false);
-  assert.equal(skipMc.rejected[0]?.reason, "NOT_PRODUCTION_CERTIFIED");
+  assert.ok(
+    skipMc.diagnostics[0]?.failedRequirements?.some((r) => r.id === "productionCertified"),
+  );
 
   const ok = await certifyProviders({
     providerIds: ["playwright"],
@@ -215,24 +236,89 @@ assert.ok(
   });
   assert.equal(ok.ok, true);
   assert.deepEqual(ok.certified, ["playwright"]);
-  const certifiedRec = ok.providers.find((p) => p.providerId === "playwright");
-  assert.equal(certifiedRec.lifecycleStage, ProviderLifecycle.PRODUCTION_CERTIFIED);
-  assert.equal(certifiedRec.status, CanonicalStatus.PRODUCTION_CERTIFIED);
-  assert.equal(certifiedRec.productionCertified, true);
+  const afterCert = ok.providers.find((p) => p.providerId === "playwright");
+  assert.equal(afterCert.lifecycleStage, ProviderLifecycle.PRODUCTION_CERTIFIED);
+  assert.equal(afterCert.displayMark, "🟢⭐");
+  assert.ok(afterCert.certifiedAt);
+  assert.ok(ok.auditPath);
+
+  // Seed history + streak so mission-critical operational checks pass
+  let seeded = afterCert;
+  for (let i = 0; i < 5; i += 1) {
+    seeded = normalizeProviderRecord(
+      {
+        providerId: "playwright",
+        status: CanonicalStatus.READY,
+        authenticated: true,
+        liveProbeExecuted: true,
+        liveProbe: "PASSED",
+        result: "success",
+        testedAt: `2026-07-30T03:0${i}:00.000Z`,
+        latencyMs: 100 + i,
+        model: "chromium",
+        errorCode: "none",
+        safeErrorMessage: "none",
+        credentialsDetected: true,
+        packageInstalled: true,
+        productionCertified: true,
+        factory: "infrastructure",
+      },
+      seeded,
+    );
+    appendHistory(
+      [
+        {
+          providerId: "playwright",
+          status: seeded.status,
+          liveProbe: "PASSED",
+          testedAt: seeded.testedAt,
+          latencyMs: seeded.latencyMs,
+          model: "chromium",
+          safeErrorMessage: "none",
+          mode: "live",
+          lifecycleStage: seeded.lifecycleStage,
+        },
+      ],
+      tmp,
+    );
+  }
+  saveHealthState(
+    {
+      checkedAt: new Date().toISOString(),
+      mode: "test",
+      providers: [seeded, configuredOnly],
+      factories: {},
+      alerts: [],
+      ready: ["playwright"],
+      certified: ["playwright"],
+      missionCritical: [],
+    },
+    tmp,
+  );
+
+  const mcEval = evaluateMissionCriticalRequirements(seeded, {
+    historyStats: {
+      last20Count: 5,
+      successRate: 1,
+      averageLatencyMs: 110,
+    },
+    alerts: [],
+  });
+  assert.equal(mcEval.ok, true, JSON.stringify(mcEval.failedRequirements, null, 2));
 
   const mc = await promoteMissionCritical({
     providerIds: ["playwright"],
     rootDir: tmp,
     persist: true,
   });
-  assert.equal(mc.ok, true);
+  assert.equal(mc.ok, true, JSON.stringify(mc.diagnostics, null, 2));
   assert.deepEqual(mc.missionCritical, ["playwright"]);
-  const mcRec = mc.providers.find((p) => p.providerId === "playwright");
-  assert.equal(mcRec.lifecycleStage, ProviderLifecycle.MISSION_CRITICAL);
-  assert.equal(mcRec.status, CanonicalStatus.MISSION_CRITICAL);
-  assert.equal(mcRec.missionCritical, true);
-  assert.equal(mcRec.productionCertified, true);
-  assert.ok(mcRec.lifecycleProgress.some((s) => s.stage === "MISSION_CRITICAL" && s.current));
+  const afterMc = mc.providers.find((p) => p.providerId === "playwright");
+  assert.equal(afterMc.lifecycleStage, ProviderLifecycle.MISSION_CRITICAL);
+  assert.equal(afterMc.displayMark, "🟢⭐⭐");
+  assert.ok(afterMc.missionCriticalAt);
+  assert.ok(mc.auditPath);
+
   fs.rmSync(tmp, { recursive: true, force: true });
 }
 

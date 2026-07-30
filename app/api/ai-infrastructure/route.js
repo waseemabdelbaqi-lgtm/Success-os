@@ -131,6 +131,30 @@ function buildDashboard(state) {
         : "SLOT → NOT_CONFIGURED → CREDENTIALS_DETECTED → PROBE_RUNNING → READY 🟢 → PRODUCTION_CERTIFIED ⭐ → MISSION_CRITICAL ⭐⭐",
       productionCertified: Boolean(rec.productionCertified),
       missionCritical: Boolean(rec.missionCritical),
+      displayMark:
+        rec.displayMark ||
+        (rec.lifecycleStage === "MISSION_CRITICAL"
+          ? "🟢⭐⭐"
+          : rec.lifecycleStage === "PRODUCTION_CERTIFIED"
+            ? "🟢⭐"
+            : rec.lifecycleStage === "READY"
+              ? "🟢"
+              : rec.lifecycleStage === "CREDENTIALS_DETECTED" ||
+                  rec.lifecycleStage === "PROBE_RUNNING"
+                ? "🟡"
+                : "⚪"),
+      Mark:
+        rec.displayMark ||
+        (rec.lifecycleStage === "MISSION_CRITICAL"
+          ? "🟢⭐⭐"
+          : rec.lifecycleStage === "PRODUCTION_CERTIFIED"
+            ? "🟢⭐"
+            : rec.lifecycleStage === "READY"
+              ? "🟢"
+              : rec.lifecycleStage === "CREDENTIALS_DETECTED" ||
+                  rec.lifecycleStage === "PROBE_RUNNING"
+                ? "🟡"
+                : "⚪"),
       "Last Tested": rec.testedAt || "NOT_TESTED",
       Result: rec.result || "NOT_TESTED",
       Latency:
@@ -148,14 +172,23 @@ function buildDashboard(state) {
     rule: "GREEN_ONLY_AFTER_LIVE_AUTHENTICATED_SUCCESS",
     ruleAr: "لا يظهر أي مزود باللون الأخضر إلا إذا نجح طلب حي موثّق خلال آخر فحص.",
     lifecycleLadder: [
-      "SLOT",
-      "NOT_CONFIGURED",
-      "CREDENTIALS_DETECTED",
-      "PROBE_RUNNING",
+      "SLOT ⚪",
+      "NOT_CONFIGURED ⚪",
+      "CREDENTIALS_DETECTED 🟡",
+      "PROBE_RUNNING 🟡",
       "READY 🟢",
-      "PRODUCTION_CERTIFIED ⭐",
-      "MISSION_CRITICAL ⭐⭐",
+      "PRODUCTION_CERTIFIED 🟢⭐",
+      "MISSION_CRITICAL 🟢⭐⭐",
     ],
+    trustMarks: {
+      SLOT: "⚪",
+      NOT_CONFIGURED: "⚪",
+      CREDENTIALS_DETECTED: "🟡",
+      PROBE_RUNNING: "🟡",
+      READY: "🟢",
+      PRODUCTION_CERTIFIED: "🟢⭐",
+      MISSION_CRITICAL: "🟢⭐⭐",
+    },
     checkedAt: state?.checkedAt || null,
     source: state ? "persisted-probe-state" : "empty-not-tested",
     greenCount: providers.filter((p) => p.displayColor === "green").length,

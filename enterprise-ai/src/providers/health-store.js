@@ -13,6 +13,7 @@ import {
   colorForLifecycle,
   colorForStatus,
   deriveLifecycleStage,
+  displayMarkForLifecycle,
   emptyResultFields,
   hasReadyEvidence,
   isGreenStatus,
@@ -24,6 +25,7 @@ import {
 
 const STATE_REL = "data/master-ai-orchestrator/health/provider-health-state.json";
 const HISTORY_REL = "data/master-ai-orchestrator/health/provider-health-history.json";
+const AUDIT_REL = "data/master-ai-orchestrator/health/provider-trust-audit.json";
 const DEFAULT_HISTORY_LIMIT = Number(process.env.AIOS_HEALTH_HISTORY_LIMIT || 20);
 const LATENCY_ALERT_MS = Number(process.env.AIOS_HEALTH_LATENCY_ALERT_MS || 15000);
 
@@ -33,6 +35,10 @@ export function healthStatePath(rootDir = process.cwd()) {
 
 export function healthHistoryPath(rootDir = process.cwd()) {
   return path.join(rootDir, HISTORY_REL);
+}
+
+export function healthAuditPath(rootDir = process.cwd()) {
+  return path.join(rootDir, AUDIT_REL);
 }
 
 function ensureDir(file) {
@@ -99,6 +105,7 @@ export function createEmptyProviderRecord(providerId) {
     lifecycleProgress: lifecycleProgress(ProviderLifecycle.SLOT),
     productionCertified: false,
     missionCritical: false,
+    displayMark: displayMarkForLifecycle(ProviderLifecycle.SLOT),
     displayColor: colorForStatus(CanonicalStatus.NOT_TESTED),
     healthSchemaVersion: HEALTH_SCHEMA_VERSION,
   };
@@ -275,6 +282,7 @@ export function normalizeProviderRecord(partial = {}, previous = null) {
 
   record.displayColor =
     colorForLifecycle(record.lifecycleStage) || colorForStatus(record.status);
+  record.displayMark = displayMarkForLifecycle(record.lifecycleStage);
 
   return record;
 }
@@ -359,6 +367,29 @@ export function appendHistory(entries, rootDir = process.cwd(), limit = DEFAULT_
   return next;
 }
 
+export function loadTrustAudit(rootDir = process.cwd()) {
+  try {
+    return JSON.parse(fs.readFileSync(healthAuditPath(rootDir), "utf8"));
+  } catch {
+    return { version: HEALTH_SCHEMA_VERSION, entries: [] };
+  }
+}
+
+/** Persist structured promotion/rejection audit (no secrets). */
+export function appendTrustAudit(entries, rootDir = process.cwd()) {
+  const list = Array.isArray(entries) ? entries : [entries];
+  const prev = loadTrustAudit(rootDir);
+  const next = {
+    version: HEALTH_SCHEMA_VERSION,
+    savedAt: new Date().toISOString(),
+    entries: [...(prev.entries || []), ...list].slice(-500),
+  };
+  const file = healthAuditPath(rootDir);
+  ensureDir(file);
+  fs.writeFileSync(file, `${JSON.stringify(next, null, 2)}\n`, "utf8");
+  return file;
+}
+
 export function saveHealthState(state, rootDir = process.cwd()) {
   const file = healthStatePath(rootDir);
   ensureDir(file);
@@ -377,7 +408,7 @@ export function historyStatsFor(providerId, rootDir = process.cwd()) {
   const hist = loadHealthHistory(rootDir);
   const list = hist.byProvider?.[providerId] || [];
   const last20 = list.slice(-20);
-  const successes = last20.filter((e) => e.status === CanonicalStatus.READY).length;
+  const successes = last20.filter((e) => isGreenStatus(e.status)).length;
   const latencies = last20
     .map((e) => Number(e.latencyMs))
     .filter((n) => Number.isFinite(n));
@@ -385,10 +416,10 @@ export function historyStatsFor(providerId, rootDir = process.cwd()) {
     ? Math.round(latencies.reduce((a, b) => a + b, 0) / latencies.length)
     : "NOT_TESTED";
   const lastError =
-    [...last20].reverse().find((e) => e.status !== CanonicalStatus.READY)?.safeErrorMessage ||
+    [...last20].reverse().find((e) => !isGreenStatus(e.status))?.safeErrorMessage ||
     "NOT_TESTED";
   const lastSuccess =
-    [...last20].reverse().find((e) => e.status === CanonicalStatus.READY)?.testedAt || "NOT_TESTED";
+    [...last20].reverse().find((e) => isGreenStatus(e.status))?.testedAt || "NOT_TESTED";
   return {
     last20Count: last20.length,
     successRate: last20.length ? Number((successes / last20.length).toFixed(3)) : "NOT_TESTED",
@@ -435,6 +466,8 @@ export function buildDashboardFromState(state, rootDir = process.cwd()) {
         .join(" → "),
       productionCertified: Boolean(rec.productionCertified),
       missionCritical: Boolean(rec.missionCritical),
+      displayMark: rec.displayMark || displayMarkForLifecycle(rec.lifecycleStage),
+      Mark: rec.displayMark || displayMarkForLifecycle(rec.lifecycleStage),
       "Last Tested": rec.testedAt,
       Result: rec.result,
       Latency: rec.latencyMs === "NOT_TESTED" || rec.latencyMs == null ? "NOT_TESTED" : `${rec.latencyMs} ms`,
@@ -447,9 +480,18 @@ export function buildDashboardFromState(state, rootDir = process.cwd()) {
   });
 
   return {
-    rule: "GREEN_ONLY_AFTER_LIVE_AUTHENTICATED_SUCCESS",
+    rule: "STRICT_TRUST_LIFECYCLE_NO_STAGE_SKIP",
     ruleAr: "لا يظهر أي مزود باللون الأخضر إلا إذا نجح طلب حي موثّق خلال آخر فحص.",
     lifecycleLadder: [...LIFECYCLE_LADDER_LABELS],
+    trustMarks: {
+      SLOT: "⚪",
+      NOT_CONFIGURED: "⚪",
+      CREDENTIALS_DETECTED: "🟡",
+      PROBE_RUNNING: "🟡",
+      READY: "🟢",
+      PRODUCTION_CERTIFIED: "🟢⭐",
+      MISSION_CRITICAL: "🟢⭐⭐",
+    },
     checkedAt: state?.checkedAt || null,
     source: state ? "persisted-probe-state" : "empty-not-tested",
     greenCount: providers.filter((p) => p.displayColor === "green").length,

@@ -1,45 +1,58 @@
 # SUCCESS AI OS — Provider Activation Checklist
 
-**Lifecycle ladder (no skipping):**
+**Trust lifecycle ladder (no skipping):**
 
 ```
-SLOT
+SLOT ⚪
   ↓
-NOT_CONFIGURED
+NOT_CONFIGURED ⚪
   ↓
-CREDENTIALS_DETECTED
+CREDENTIALS_DETECTED 🟡
   ↓
-PROBE_RUNNING
+PROBE_RUNNING 🟡
   ↓
 READY 🟢
   ↓
-PRODUCTION_CERTIFIED ⭐
+PRODUCTION_CERTIFIED 🟢⭐
   ↓
-MISSION_CRITICAL ⭐⭐
+MISSION_CRITICAL 🟢⭐⭐
 ```
 
-| Stage | Meaning | Colour |
-|-------|---------|--------|
-| **SLOT** | Listed in config; no usable adapter yet | grey |
-| **NOT_CONFIGURED** | Adapter present; credentials missing | grey |
-| **CREDENTIALS_DETECTED** | Credentials/package detected — never green alone | yellow |
-| **PROBE_RUNNING** | Live probe in progress or intermediate after credentials | yellow |
-| **READY 🟢** | Live verified + persisted evidence complete | **green** |
-| **PRODUCTION_CERTIFIED ⭐** | READY + stability streak (default 3) and/or explicit certify | **green + ⭐** |
-| **MISSION_CRITICAL ⭐⭐** | PRODUCTION_CERTIFIED + explicit elevation (or high streak) | **green + ⭐⭐** |
+| Stage | Meaning | Mark |
+|-------|---------|------|
+| **SLOT** | Listed; no usable adapter | ⚪ |
+| **NOT_CONFIGURED** | Adapter present; credentials missing | ⚪ |
+| **CREDENTIALS_DETECTED** | Credentials/package detected — never green alone | 🟡 |
+| **PROBE_RUNNING** | Live probe in progress / transitional | 🟡 |
+| **READY** | Authenticated live probe + persisted evidence | 🟢 |
+| **PRODUCTION_CERTIFIED** | Explicit `--certify` from READY only | 🟢⭐ |
+| **MISSION_CRITICAL** | Explicit `--mission-critical` from PRODUCTION_CERTIFIED only | 🟢⭐⭐ |
 
-No provider may jump stages. Green is only READY / PRODUCTION_CERTIFIED / MISSION_CRITICAL.
+**Hard rules**
 
-**Rule:** No provider may skip from `SLOT` / `NOT_CONFIGURED` / `CREDENTIALS_DETECTED` to `READY`.
+- Stage skipping is forbidden.
+- READY requires a successful authenticated live probe with persisted evidence.
+- Never infer readiness from adapters, configuration files, or detected credentials alone.
+- `PRODUCTION_CERTIFIED` is granted **only** by:
+  `npm run ai:aios:health -- --provider=<id> --certify`
+  (fresh live probe → verify requirements → reject with structured diagnostics if not READY).
+- `MISSION_CRITICAL` is granted **only** by:
+  `npm run ai:aios:health -- --provider=<id> --mission-critical`
+  (fresh live probe → confirm PRODUCTION_CERTIFIED → operational thresholds → audit).
+- Media providers additionally require `generationVerified=true` for star tiers.
 
-Every provider must pass, in order:
+## Mission-critical operational thresholds (configurable)
 
-1. **Slot / adapter** — provider listed → SLOT or NOT_CONFIGURED
-2. **Credentials detected** — required env vars present (no secrets logged) → CREDENTIALS_DETECTED
-3. **Live probe** — authenticated, non-destructive API/local call → PROBE_RUNNING → READY
-4. **Persisted evidence** — written to health state store → READY 🟢
-5. **Production certification** — consecutive successes and/or `--certify` / `AIOS_CERTIFY_<PROVIDER>=true` → ⭐
-6. **Mission critical** — PRODUCTION_CERTIFIED + `--mission-critical` / `AIOS_MISSION_CRITICAL_<PROVIDER>=true` → ⭐⭐
+| Env | Default | Meaning |
+|-----|---------|---------|
+| `AIOS_PRODUCTION_CERTIFY_MIN_STREAK` | 1 | Min consecutive successes for certify |
+| `AIOS_MISSION_CRITICAL_MIN_STREAK` | 5 | Min consecutive successes |
+| `AIOS_MISSION_CRITICAL_SUCCESS_RATE` | 0.9 | Min success rate over recent history |
+| `AIOS_MISSION_CRITICAL_MAX_LATENCY_MS` | 15000 | Max current/avg latency |
+| `AIOS_MISSION_CRITICAL_MIN_HISTORY` | 3 | Preferred history sample size |
+| `AIOS_FALLBACK_POLICY_DECLARED` | — | Required for most text providers |
+
+Failed verification immediately blocks promotion and returns `diagnostics[].failedRequirements`.
 
 ## Required activation order
 
@@ -59,31 +72,6 @@ Every provider must pass, in order:
 | 12 | HeyGen | media | Account/avatars only — no video generation in standard health |
 | 13 | OpenAI Images | media | Separate from text; generation requires approval |
 
-## Status progression (example: Playwright)
-
-```
-SLOT / NOT_INSTALLED
-  → NOT_CONFIGURED / CREDENTIALS_DETECTED (package available; CREDENTIALS_NOT_REQUIRED)
-  → PROBE_RUNNING (Chromium launch in progress)
-  → READY 🟢 (evidence persisted — dashboard green)
-  → PRODUCTION_CERTIFIED ⭐ (after certify streak / explicit --certify)
-  → MISSION_CRITICAL ⭐⭐ (after --mission-critical / high streak)
-```
-
-Failure statuses (examples): `BROWSER_NOT_INSTALLED`, `BROWSER_LAUNCH_FAILED`,
-`LOCAL_APP_UNAVAILABLE`, `TEST_ASSERTION_FAILED`, `PROBE_FAILED`, `NETWORK_FAILED`, `AUTH_FAILED`.
-
-## Media providers
-
-Standard health may set `CONNECTION_READY=true` without `GENERATION_VERIFIED`.
-
-Paid generation (HeyGen video, ElevenLabs audio, OpenAI images) requires:
-
-- explicit admin action
-- visible cost warning
-- approval
-- temporary output acknowledgement
-
 ## Commands
 
 ```bash
@@ -93,10 +81,10 @@ npm run ai:aios:health -- --mode=config --provider=playwright
 # Live probe one provider
 npm run ai:aios:health -- --mode=live --provider=playwright
 
-# Explicit PRODUCTION CERTIFIED ⭐ (requires READY first)
+# Explicit PRODUCTION CERTIFIED 🟢⭐ (requires READY after fresh live probe)
 npm run ai:aios:health -- --provider=playwright --certify
 
-# Explicit MISSION CRITICAL ⭐⭐ (requires PRODUCTION CERTIFIED first)
+# Explicit MISSION CRITICAL 🟢⭐⭐ (requires PRODUCTION_CERTIFIED + operational checks)
 npm run ai:aios:health -- --provider=playwright --mission-critical
 
 # Full live sweep
@@ -112,3 +100,4 @@ PLAYWRIGHT_BASE_URL=http://localhost:3000 npm run test:e2e:smoke
 - Do not deploy / merge from health probes
 - Vercel health never deploys
 - Remote Playwright URLs require `PLAYWRIGHT_ALLOW_REMOTE=true`
+- Trust audit: `data/master-ai-orchestrator/health/provider-trust-audit.json` (gitignored)
