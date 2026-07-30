@@ -126,3 +126,8 @@ Production Optimization
 ## Next
 
 When ready to execute: **PR #50 — Curriculum Import Engine (Jordan First)** on a new branch off the preferred base, generating ILE packages only.
+
+## Policy
+
+Every completed order must end with a report under [`GLOBAL_PROGRESS_REVIEW_POLICY.md`](./GLOBAL_PROGRESS_REVIEW_POLICY.md).  
+Latest: [`reports/pr-49-completion-report.md`](./reports/pr-49-completion-report.md).
