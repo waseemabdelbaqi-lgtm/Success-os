@@ -19,6 +19,11 @@ import {
   getHierarchySnapshot,
   resetHierarchyRegistry,
 } from "./hierarchy/registry";
+import {
+  getGlobalSubjectRegistrySnapshot,
+  listGlobalSubjects,
+  resetGlobalSubjectRegistry,
+} from "./hierarchy/global-subject-registry";
 
 export {
   IMPORT_PIPELINE,
@@ -36,6 +41,9 @@ export {
   runJordanReferenceDataset,
   getHierarchySnapshot,
   resetHierarchyRegistry,
+  getGlobalSubjectRegistrySnapshot,
+  listGlobalSubjects,
+  resetGlobalSubjectRegistry,
 };
 
 export { evaluateRights } from "./rights/engine";
@@ -82,6 +90,7 @@ export function engineStatus() {
         "Mathematics",
         "Physics",
         "Chemistry",
+        "Biology",
         "Arabic",
         "English",
         "Science",
@@ -99,7 +108,9 @@ export function engineStatus() {
         unit: "JO-NATIONAL-G01-MATH-B01-U01",
         lesson: "JO-NATIONAL-G01-MATH-B01-U01-L01",
       },
+      globalSubjectRegistry: "success-os.global-subject-registry.v1",
     },
+    globalSubjectRegistry: getGlobalSubjectRegistrySnapshot(),
     pipeline: IMPORT_PIPELINE.map((s) => s.id),
     connectors: listSourceConnectors().map((c) => ({
       id: c.id,

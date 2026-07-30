@@ -11,13 +11,16 @@ const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 
 const required = [
   "types/curriculum-hierarchy.ts",
+  "types/global-subject-registry.ts",
   "content/demo/jordan-reference-dataset.ts",
   "content/demo/generated/jordan-reference-tree.example.json",
   "content/demo/generated/jordan-reference-lesson-metadata.example.json",
   "content/demo/generated/jordan-reference-ile-package.example.json",
   "content/demo/generated/jordan-reference-validation-report.example.json",
+  "content/demo/generated/global-subject-registry.example.json",
   "lib/curriculum-import-engine/reference/jordan-dataset.ts",
   "lib/curriculum-import-engine/hierarchy/registry.ts",
+  "lib/curriculum-import-engine/hierarchy/global-subject-registry.ts",
   "docs/cursor/jordan-reference-dataset.md",
   "docs/cursor/adr/ADR-0050.2-jordan-reference-dataset.md",
   "docs/cursor/reports/pr-50.2-completion-report.md",
@@ -36,6 +39,7 @@ for (const subject of [
   "Mathematics",
   "Physics",
   "Chemistry",
+  "Biology",
   "Arabic",
   "English",
   "Science",
@@ -46,8 +50,32 @@ for (const subject of [
 }
 assert.ok(dataset.includes('JO_IDS.subject("PHYSICS")'));
 assert.ok(dataset.includes('JO_IDS.subject("CHEMISTRY")'));
+assert.ok(dataset.includes('JO_IDS.subject("BIOLOGY")'));
 assert.ok(dataset.includes('JO_IDS.lesson("PHYSICS", 1, 1, 1)'));
 assert.ok(dataset.includes('JO_IDS.lesson("CHEMISTRY", 1, 1, 1)'));
+assert.ok(dataset.includes('JO_IDS.lesson("BIOLOGY", 1, 1, 1)'));
+
+const globalReg = JSON.parse(
+  fs.readFileSync(
+    path.join(root, "content/demo/generated/global-subject-registry.example.json"),
+    "utf8",
+  ),
+);
+assert.equal(globalReg.schema, "success-os.global-subject-registry.v1");
+assert.equal(globalReg.subjects[0].id, "SUB-00001");
+assert.equal(globalReg.subjects[0].name.en, "Mathematics");
+assert.equal(globalReg.subjects[1].id, "SUB-00002");
+assert.equal(globalReg.subjects[2].id, "SUB-00003");
+assert.equal(globalReg.subjects[3].id, "SUB-00004");
+assert.equal(globalReg.subjects[3].code, "BIOLOGY");
+assert.equal(globalReg.counts.subjects, 9);
+
+const globalMod = fs.readFileSync(
+  path.join(root, "lib/curriculum-import-engine/hierarchy/global-subject-registry.ts"),
+  "utf8",
+);
+assert.ok(globalMod.includes("SUB-00001"));
+assert.ok(globalMod.includes("GLOBAL_SUBJECT_REGISTRY_SEED"));
 for (const id of [
   "JO",
   "JO-NATIONAL",
@@ -106,14 +134,17 @@ const tree = JSON.parse(
 );
 assert.equal(tree.country, "Jordan");
 assert.equal(tree.grade, "Grade 1");
-assert.ok(tree.subjects.length >= 8);
+assert.ok(tree.subjects.length >= 9);
 assert.equal(tree.subjects[0].code, "MATH");
 assert.equal(tree.subjects[1].code, "PHYSICS");
 assert.equal(tree.subjects[2].code, "CHEMISTRY");
+assert.equal(tree.subjects[3].code, "BIOLOGY");
 assert.equal(tree.idConvention.lesson, "JO-NATIONAL-G01-MATH-B01-U01-L01");
 assert.equal(tree.subjects[0].id, "JO-NATIONAL-G01-MATH");
-assert.equal(tree.subjects[1].id, "JO-NATIONAL-G01-PHYSICS");
-assert.equal(tree.subjects[2].id, "JO-NATIONAL-G01-CHEMISTRY");
+assert.equal(tree.subjects[0].globalSubjectId, "SUB-00001");
+assert.equal(tree.subjects[1].globalSubjectId, "SUB-00002");
+assert.equal(tree.subjects[2].globalSubjectId, "SUB-00003");
+assert.equal(tree.subjects[3].globalSubjectId, "SUB-00004");
 assert.equal(tree.subjects[0].books[0].id, "JO-NATIONAL-G01-MATH-B01");
 assert.equal(
   tree.subjects[0].books[0].units[0].lessons[0].id,
@@ -127,6 +158,10 @@ assert.equal(
   tree.subjects[2].books[0].units[0].lessons[0].id,
   "JO-NATIONAL-G01-CHEMISTRY-B01-U01-L01",
 );
+assert.equal(
+  tree.subjects[3].books[0].units[0].lessons[0].id,
+  "JO-NATIONAL-G01-BIOLOGY-B01-U01-L01",
+);
 
 const metadata = JSON.parse(
   fs.readFileSync(
@@ -137,6 +172,7 @@ const metadata = JSON.parse(
 for (const key of [
   "lessonUuid",
   "globalLessonId",
+  "globalSubjectId",
   "curriculumId",
   "countryId",
   "language",
@@ -179,6 +215,7 @@ for (const key of [
   assert.ok(key in metadata, `metadata missing ${key}`);
 }
 assert.equal(metadata.globalLessonId, "JO-NATIONAL-G01-MATH-B01-U01-L01");
+assert.equal(metadata.globalSubjectId, "SUB-00001");
 assert.equal(metadata.countryId, "JO");
 assert.equal(metadata.curriculumId, "JO-NATIONAL");
 assert.equal(metadata.aiReady, false);
@@ -196,6 +233,7 @@ const hierarchyTypes = fs.readFileSync(
 for (const token of [
   "lessonUuid",
   "globalLessonId",
+  "globalSubjectId",
   "curriculumId",
   "countryId",
   "officialVersion",
@@ -233,15 +271,19 @@ const report = JSON.parse(
     "utf8",
   ),
 );
-assert.equal(report.counts.subjects, 8);
-assert.equal(report.counts.lessons, 15);
+assert.equal(report.counts.subjects, 9);
+assert.equal(report.counts.lessons, 16);
 assert.equal(report.counts.published, 1);
 assert.equal(report.counts.rejected, 1);
+assert.equal(report.counts.globalSubjects, 9);
 assert.deepEqual(report.stemSubjects, [
   "JO-NATIONAL-G01-MATH",
   "JO-NATIONAL-G01-PHYSICS",
   "JO-NATIONAL-G01-CHEMISTRY",
+  "JO-NATIONAL-G01-BIOLOGY",
 ]);
+assert.ok(report.globalSubjectRegistry[0].includes("SUB-00001"));
+assert.ok(report.globalSubjectRegistry[3].includes("SUB-00004"));
 assert.ok(report.pipeline.rejectedNeverPublish);
 assert.ok(report.pipeline.ileOnlyRuntime);
 
@@ -254,6 +296,7 @@ for (const label of [
   "Countries",
   "Curricula",
   "Grades",
+  "Global Subjects",
   "Subjects",
   "Books",
   "Units",
@@ -275,6 +318,7 @@ const api = fs.readFileSync(
 );
 assert.ok(api.includes("run-jordan-reference-dataset"));
 assert.ok(api.includes("jordan-reference-dataset"));
+assert.ok(api.includes("global-subject-registry"));
 
 const adr = fs.readFileSync(
   path.join(root, "docs/cursor/adr/ADR-0050.2-jordan-reference-dataset.md"),

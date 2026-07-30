@@ -233,6 +233,7 @@ export type ImportDashboardSnapshot = {
     pendingPackages: number;
     rejectedPackages: number;
     rightsWarnings: number;
+    globalSubjects: number;
   };
   verificationSummary: Record<VerificationStatus, number>;
   rightsSummary: Record<RightsStatus, number>;

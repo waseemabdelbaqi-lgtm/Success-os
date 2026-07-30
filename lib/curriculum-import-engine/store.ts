@@ -9,6 +9,7 @@ import type {
   ImportJobStatus,
 } from "@/types/curriculum-import-engine";
 import { getHierarchySnapshot } from "./hierarchy/registry";
+import { getGlobalSubjectRegistrySnapshot } from "./hierarchy/global-subject-registry";
 
 const jobs = new Map<string, ImportJob>();
 const jobHistorySnapshots = new Map<string, ImportJob[]>();
@@ -112,6 +113,7 @@ export function buildDashboardSnapshot(): ImportDashboardSnapshot {
   }
 
   const hierarchy = getHierarchySnapshot();
+  const globalSubjects = getGlobalSubjectRegistrySnapshot();
 
   return {
     schema: "success-os.curriculum-import-engine.v1",
@@ -142,6 +144,7 @@ export function buildDashboardSnapshot(): ImportDashboardSnapshot {
       pendingPackages: hierarchy.counts.pendingPackages,
       rejectedPackages: hierarchy.counts.rejectedPackages,
       rightsWarnings: hierarchy.counts.rightsWarnings,
+      globalSubjects: globalSubjects.counts.subjects,
     },
     verificationSummary,
     rightsSummary,

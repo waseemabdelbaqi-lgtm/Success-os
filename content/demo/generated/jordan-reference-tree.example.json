@@ -17,6 +17,7 @@
     {
       "code": "MATH",
       "id": "JO-NATIONAL-G01-MATH",
+      "globalSubjectId": "SUB-00001",
       "name": "Mathematics",
       "books": [
         {
@@ -96,6 +97,7 @@
     {
       "code": "PHYSICS",
       "id": "JO-NATIONAL-G01-PHYSICS",
+      "globalSubjectId": "SUB-00002",
       "name": "Physics",
       "books": [
         {
@@ -122,6 +124,7 @@
     {
       "code": "CHEMISTRY",
       "id": "JO-NATIONAL-G01-CHEMISTRY",
+      "globalSubjectId": "SUB-00003",
       "name": "Chemistry",
       "books": [
         {
@@ -146,8 +149,36 @@
       ]
     },
     {
+      "code": "BIOLOGY",
+      "id": "JO-NATIONAL-G01-BIOLOGY",
+      "globalSubjectId": "SUB-00004",
+      "name": "Biology",
+      "books": [
+        {
+          "id": "JO-NATIONAL-G01-BIOLOGY-B01",
+          "part": "Book 1",
+          "units": [
+            {
+              "id": "JO-NATIONAL-G01-BIOLOGY-B01-U01",
+              "title": "Unit 1 — Living world",
+              "lessons": [
+                {
+                  "id": "JO-NATIONAL-G01-BIOLOGY-B01-U01-L01",
+                  "order": 1,
+                  "title": "Lesson 1 — Plants need water",
+                  "verificationStatus": "verified",
+                  "rightsStatus": "verified"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
       "code": "AR",
       "id": "JO-NATIONAL-G01-AR",
+      "globalSubjectId": "SUB-00005",
       "name": "Arabic",
       "books": [
         {
@@ -181,6 +212,7 @@
     {
       "code": "EN",
       "id": "JO-NATIONAL-G01-EN",
+      "globalSubjectId": "SUB-00006",
       "name": "English",
       "books": [
         {
@@ -214,6 +246,7 @@
     {
       "code": "SCI",
       "id": "JO-NATIONAL-G01-SCI",
+      "globalSubjectId": "SUB-00007",
       "name": "Science",
       "books": [
         {
@@ -240,6 +273,7 @@
     {
       "code": "ISL",
       "id": "JO-NATIONAL-G01-ISL",
+      "globalSubjectId": "SUB-00008",
       "name": "Islamic Education",
       "books": [
         {
@@ -266,6 +300,7 @@
     {
       "code": "SOC",
       "id": "JO-NATIONAL-G01-SOC",
+      "globalSubjectId": "SUB-00009",
       "name": "Social Studies",
       "books": [
         {

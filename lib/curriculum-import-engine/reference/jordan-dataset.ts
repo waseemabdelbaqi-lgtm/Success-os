@@ -24,6 +24,11 @@ import {
   JO_CANONICAL_LESSON_ID,
   JORDAN_REFERENCE_DATASET,
 } from "@/content/demo/jordan-reference-dataset";
+import {
+  getGlobalSubjectRegistrySnapshot,
+  requireGlobalSubjectByCode,
+  resetGlobalSubjectRegistry,
+} from "../hierarchy/global-subject-registry";
 import { evaluateRights } from "../rights/engine";
 import { buildIlePackagesFromBook } from "../ile-package-builder";
 import { runVerificationGates, allGatesPassed } from "../verification/engine";
@@ -36,6 +41,7 @@ import type {
   LessonMetadataRecord,
   LessonVerificationReport,
 } from "@/types/curriculum-hierarchy";
+import type { GlobalSubjectRegistrySnapshot } from "@/types/global-subject-registry";
 
 const SOURCE: CurriculumSourceRef = {
   id: JORDAN_REFERENCE_DATASET.source.id,
@@ -113,6 +119,7 @@ export type JordanDatasetRunResult = {
   sampleMetadata: LessonMetadataRecord | null;
   samplePackage: CompiledIlePackage | null;
   samplePath: string[];
+  globalSubjectRegistry: GlobalSubjectRegistrySnapshot;
   validationReport: {
     totalLessons: number;
     verified: number;
@@ -144,26 +151,30 @@ export function buildSampleTree() {
       id: grade.semesterId,
       name: grade.semesterName.en,
     },
-    subjects: grade.subjects.map((s) => ({
-      id: s.id,
-      code: s.code,
-      name: s.name.en,
-      books: s.books.map((b) => ({
-        id: b.id,
-        part: b.part,
-        units: b.units.map((u) => ({
-          id: u.id,
-          title: u.title.en,
-          lessons: u.lessons.map((l) => ({
-            id: l.id,
-            order: l.order,
-            title: l.title.en,
-            verificationStatus: l.verificationStatus,
-            rightsStatus: l.rightsStatus,
+    subjects: grade.subjects.map((s) => {
+      const global = requireGlobalSubjectByCode(s.code);
+      return {
+        id: s.id,
+        globalSubjectId: global.id,
+        code: s.code,
+        name: s.name.en,
+        books: s.books.map((b) => ({
+          id: b.id,
+          part: b.part,
+          units: b.units.map((u) => ({
+            id: u.id,
+            title: u.title.en,
+            lessons: u.lessons.map((l) => ({
+              id: l.id,
+              order: l.order,
+              title: l.title.en,
+              verificationStatus: l.verificationStatus,
+              rightsStatus: l.rightsStatus,
+            })),
           })),
         })),
-      })),
-    })),
+      };
+    }),
   };
 }
 
@@ -172,7 +183,10 @@ export function buildSampleTree() {
  * Compiles + publishes the first fully verified Math lesson as the ILE example.
  */
 export function runJordanReferenceDataset(opts?: { reset?: boolean }): JordanDatasetRunResult {
-  if (opts?.reset !== false) resetHierarchyRegistry();
+  if (opts?.reset !== false) {
+    resetHierarchyRegistry();
+    resetGlobalSubjectRegistry();
+  }
 
   const ds = JORDAN_REFERENCE_DATASET;
   const grade = ds.grades[0]!;
@@ -222,12 +236,14 @@ export function runJordanReferenceDataset(opts?: { reset?: boolean }): JordanDat
   const rights = evaluateRights(SOURCE);
 
   for (const subject of grade.subjects) {
+    const globalSubject = requireGlobalSubjectByCode(subject.code);
     createSubject({
       id: subject.id,
       gradeId: grade.id,
       semesterId: grade.semesterId,
       code: subject.code,
       name: subject.name,
+      globalSubjectId: globalSubject.id,
     });
 
     for (const book of subject.books) {
@@ -293,6 +309,7 @@ export function runJordanReferenceDataset(opts?: { reset?: boolean }): JordanDat
           const metadata: LessonMetadataRecord = {
             lessonUuid: lessonUuidFromGlobalId(les.id),
             globalLessonId: les.id,
+            globalSubjectId: globalSubject.id,
             curriculumId: ds.curriculum.id,
             countryId: ds.country.id,
             language: "bilingual",
@@ -552,6 +569,7 @@ export function runJordanReferenceDataset(opts?: { reset?: boolean }): JordanDat
     sampleMetadata,
     samplePackage,
     samplePath,
+    globalSubjectRegistry: getGlobalSubjectRegistrySnapshot(),
     validationReport: {
       totalLessons: snap.counts.lessons,
       verified: snap.counts.verified,

@@ -1,0 +1,83 @@
+{
+  "schema": "success-os.global-subject-registry.v1",
+  "subjects": [
+    {
+      "id": "SUB-00001",
+      "code": "MATH",
+      "name": { "en": "Mathematics", "ar": "الرياضيات" },
+      "family": "stem",
+      "order": 1,
+      "active": true
+    },
+    {
+      "id": "SUB-00002",
+      "code": "PHYSICS",
+      "name": { "en": "Physics", "ar": "الفيزياء" },
+      "family": "stem",
+      "order": 2,
+      "active": true
+    },
+    {
+      "id": "SUB-00003",
+      "code": "CHEMISTRY",
+      "name": { "en": "Chemistry", "ar": "الكيمياء" },
+      "family": "stem",
+      "order": 3,
+      "active": true
+    },
+    {
+      "id": "SUB-00004",
+      "code": "BIOLOGY",
+      "name": { "en": "Biology", "ar": "الأحياء" },
+      "family": "stem",
+      "order": 4,
+      "active": true
+    },
+    {
+      "id": "SUB-00005",
+      "code": "AR",
+      "name": { "en": "Arabic", "ar": "اللغة العربية" },
+      "family": "language",
+      "order": 5,
+      "active": true
+    },
+    {
+      "id": "SUB-00006",
+      "code": "EN",
+      "name": { "en": "English", "ar": "اللغة الإنجليزية" },
+      "family": "language",
+      "order": 6,
+      "active": true
+    },
+    {
+      "id": "SUB-00007",
+      "code": "SCI",
+      "name": { "en": "Science", "ar": "العلوم" },
+      "family": "stem",
+      "order": 7,
+      "active": true
+    },
+    {
+      "id": "SUB-00008",
+      "code": "ISL",
+      "name": { "en": "Islamic Education", "ar": "التربية الإسلامية" },
+      "family": "religious",
+      "order": 8,
+      "active": true
+    },
+    {
+      "id": "SUB-00009",
+      "code": "SOC",
+      "name": { "en": "Social Studies", "ar": "التربية الاجتماعية" },
+      "family": "humanities",
+      "order": 9,
+      "active": true
+    }
+  ],
+  "counts": {
+    "subjects": 9,
+    "active": 9,
+    "stem": 5
+  },
+  "notes": "Global Subject Registry — append-only SUB-XXXXX ids. Hierarchical curriculum ids map to these codes."
+}

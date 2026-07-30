@@ -13,7 +13,19 @@
   "stemSubjects": [
     "JO-NATIONAL-G01-MATH",
     "JO-NATIONAL-G01-PHYSICS",
-    "JO-NATIONAL-G01-CHEMISTRY"
+    "JO-NATIONAL-G01-CHEMISTRY",
+    "JO-NATIONAL-G01-BIOLOGY"
+  ],
+  "globalSubjectRegistry": [
+    "SUB-00001 Mathematics",
+    "SUB-00002 Physics",
+    "SUB-00003 Chemistry",
+    "SUB-00004 Biology",
+    "SUB-00005 Arabic",
+    "SUB-00006 English",
+    "SUB-00007 Science",
+    "SUB-00008 Islamic Education",
+    "SUB-00009 Social Studies"
   ],
   "samplePath": [
     "JO",
@@ -31,32 +43,33 @@
     "countries": 1,
     "curricula": 1,
     "grades": 1,
-    "subjects": 8,
-    "books": 9,
-    "units": 10,
-    "lessons": 15,
+    "subjects": 9,
+    "books": 10,
+    "units": 11,
+    "lessons": 16,
     "packages": 1,
     "verifiedPackages": 1,
     "pendingPackages": 0,
     "rejectedPackages": 0,
-    "verified": 12,
+    "verified": 13,
     "pending": 2,
     "rejected": 1,
     "published": 1,
-    "rightsWarnings": 1
+    "rightsWarnings": 1,
+    "globalSubjects": 9
   },
   "validationReport": {
-    "totalLessons": 15,
-    "verified": 12,
+    "totalLessons": 16,
+    "verified": 13,
     "pending": 2,
     "rejected": 1,
     "published": 1,
     "packages": 1,
     "gateSummary": {
-      "source_pass": 15,
-      "rights_pass": 13,
-      "structure_pass": 15,
-      "metadata_pass": 15,
+      "source_pass": 16,
+      "rights_pass": 14,
+      "structure_pass": 16,
+      "metadata_pass": 16,
       "package_pass": 1,
       "published": 1,
       "rejected": 1

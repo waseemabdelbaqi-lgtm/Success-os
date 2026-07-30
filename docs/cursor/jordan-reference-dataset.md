@@ -34,9 +34,11 @@ JO
         │   │   └── …-U02 → L01–L02
         │   └── JO-NATIONAL-G01-MATH-B02
         │       └── …-U01-L01 (rights restricted)
-        ├── JO-NATIONAL-G01-PHYSICS
+        ├── JO-NATIONAL-G01-PHYSICS      (SUB-00002)
         │   └── …-B01-U01-L01
-        ├── JO-NATIONAL-G01-CHEMISTRY
+        ├── JO-NATIONAL-G01-CHEMISTRY    (SUB-00003)
+        │   └── …-B01-U01-L01
+        ├── JO-NATIONAL-G01-BIOLOGY      (SUB-00004)
         │   └── …-B01-U01-L01
         ├── JO-NATIONAL-G01-AR
         ├── JO-NATIONAL-G01-EN (includes one rejected lesson)
@@ -45,7 +47,30 @@ JO
         └── JO-NATIONAL-G01-SOC
 ```
 
-STEM trio (canonical subject codes): `MATH` · `PHYSICS` · `CHEMISTRY`
+STEM subjects: `MATH` · `PHYSICS` · `CHEMISTRY` · `BIOLOGY`
+
+## Global Subject Registry
+
+Country-agnostic subject identity. Hierarchical curriculum ids **map to** these codes — they do not replace them.
+
+| Global ID | Code | Name |
+|-----------|------|------|
+| `SUB-00001` | MATH | Mathematics |
+| `SUB-00002` | PHYSICS | Physics |
+| `SUB-00003` | CHEMISTRY | Chemistry |
+| `SUB-00004` | BIOLOGY | Biology |
+| `SUB-00005` | AR | Arabic |
+| `SUB-00006` | EN | English |
+| `SUB-00007` | SCI | Science |
+| `SUB-00008` | ISL | Islamic Education |
+| `SUB-00009` | SOC | Social Studies |
+
+Schema: `success-os.global-subject-registry.v1`  
+Module: `lib/curriculum-import-engine/hierarchy/global-subject-registry.ts`  
+Sample: [`global-subject-registry.example.json`](../../content/demo/generated/global-subject-registry.example.json)  
+API: `GET /api/curriculum-import-engine?action=global-subject-registry`
+
+Rule: **append-only** — never reuse a retired `SUB-XXXXX` id.
 
 Fixture: `content/demo/jordan-reference-dataset.ts`  
 Sample tree JSON: [`content/demo/generated/jordan-reference-tree.example.json`](../../content/demo/generated/jordan-reference-tree.example.json)
@@ -60,6 +85,7 @@ Every lesson stores metadata only — **global lesson contract** + hierarchy pro
 |-------|-----------------|
 | Lesson UUID | Deterministic UUID from global id |
 | Global Lesson ID | `JO-NATIONAL-G01-MATH-B01-U01-L01` |
+| Global Subject ID | `SUB-00001` (Mathematics) |
 | Curriculum ID | `JO-NATIONAL` |
 | Country ID | `JO` |
 | Language | `ar` / `en` / `bilingual` |
@@ -137,7 +163,8 @@ Schema id: `success-os.curriculum-hierarchy.v1`
 | Curriculum | id, countryId, academicYear, kind |
 | Grade | id, curriculumId, code, order |
 | Semester | id, gradeId, code, order |
-| Subject | id, gradeId, semesterId?, code |
+| Subject | id (hierarchical), globalSubjectId (`SUB-XXXXX`), gradeId, code |
+| Global Subject | id (`SUB-XXXXX`), code, name, family, order, active |
 | Book | id, subjectId, part, version, rights, verification, checksum |
 | Unit | id, bookId, order, title |
 | Lesson | id, unitId, objectives, keywords, references, rights, verification, checksum, metadata, published, ilePackageId |
@@ -151,7 +178,7 @@ Types: `types/curriculum-hierarchy.ts`
 
 `/admin/curriculum-import` displays:
 
-Countries · Curricula · Grades · Subjects · Books · Units · Lessons · Verified / Pending / Rejected Packages · Import Queue · Import Progress · Validation Errors · Rights Warnings
+Countries · Curricula · Grades · Global Subjects · Subjects · Books · Units · Lessons · Verified / Pending / Rejected Packages · Import Queue · Import Progress · Validation Errors · Rights Warnings
 
 Primary action: **Run Jordan Reference Dataset**
 

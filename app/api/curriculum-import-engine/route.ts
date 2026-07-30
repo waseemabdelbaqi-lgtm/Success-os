@@ -14,6 +14,7 @@ import {
   runJordanGrade1MathReference,
   runJordanPhase1Import,
   runJordanReferenceDataset,
+  getGlobalSubjectRegistrySnapshot,
 } from "@/lib/curriculum-import-engine";
 
 export const runtime = "nodejs";
@@ -36,6 +37,12 @@ export async function GET(req: Request) {
   }
   if (action === "hierarchy") {
     return NextResponse.json({ ok: true, hierarchy: getHierarchySnapshot() });
+  }
+  if (action === "global-subject-registry") {
+    return NextResponse.json({
+      ok: true,
+      registry: getGlobalSubjectRegistrySnapshot(),
+    });
   }
   if (action === "jordan-g1-math-example") {
     const result = runJordanGrade1MathReference({ reset: true, publish: true });
@@ -92,6 +99,7 @@ export async function GET(req: Request) {
       validationReport: result.validationReport,
       validationErrors: result.validationErrors,
       rightsWarnings: result.rightsWarnings,
+      globalSubjectRegistry: result.globalSubjectRegistry,
     });
   }
   if (action === "connectors") {

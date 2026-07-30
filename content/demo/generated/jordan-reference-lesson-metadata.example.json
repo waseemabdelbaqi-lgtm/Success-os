@@ -2,6 +2,7 @@
   "schema": "success-os.curriculum-hierarchy.v1/lesson-metadata",
   "lessonUuid": "ab95e208-bf7b-5da8-9bfa-f9c1bbd56e0f",
   "globalLessonId": "JO-NATIONAL-G01-MATH-B01-U01-L01",
+  "globalSubjectId": "SUB-00001",
   "curriculumId": "JO-NATIONAL",
   "countryId": "JO",
   "language": "bilingual",

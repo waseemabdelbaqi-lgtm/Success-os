@@ -299,6 +299,33 @@ export const JORDAN_REFERENCE_DATASET = {
           ],
         },
         {
+          id: JO_IDS.subject("BIOLOGY"),
+          code: "BIOLOGY",
+          name: L("Biology", "الأحياء"),
+          books: [
+            {
+              id: JO_IDS.book("BIOLOGY", 1),
+              part: "Book 1",
+              title: L("Biology — Grade 1 — Book 1", "الأحياء - الصف الأول - الكتاب 1"),
+              units: [
+                {
+                  id: JO_IDS.unit("BIOLOGY", 1, 1),
+                  order: 1,
+                  title: L("Unit 1 — Living world", "الوحدة 1 — عالم الأحياء"),
+                  lessons: [
+                    lesson(
+                      JO_IDS.lesson("BIOLOGY", 1, 1, 1),
+                      1,
+                      "Lesson 1 — Plants need water",
+                      "الدرس 1 — النباتات تحتاج الماء",
+                    ),
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+        {
           id: JO_IDS.subject("AR"),
           code: "AR",
           name: L("Arabic", "اللغة العربية"),

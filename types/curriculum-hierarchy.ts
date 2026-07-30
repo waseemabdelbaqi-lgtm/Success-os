@@ -46,11 +46,14 @@ export type SemesterRecord = {
 };
 
 export type SubjectRecord = {
+  /** Hierarchical id within a curriculum, e.g. JO-NATIONAL-G01-MATH */
   id: string;
   gradeId: string;
   semesterId?: string;
   code: string;
   name: LocaleText;
+  /** Global Subject Registry id, e.g. SUB-00001 */
+  globalSubjectId: string;
 };
 
 export type BookRecord = {
@@ -106,6 +109,8 @@ export type LessonMetadataRecord = {
   lessonUuid: string;
   /** Hierarchical global id, e.g. JO-NATIONAL-G01-MATH-B01-U01-L01 */
   globalLessonId: string;
+  /** Global Subject Registry id, e.g. SUB-00001 */
+  globalSubjectId: string;
   curriculumId: string;
   countryId: string;
   language: "ar" | "en" | "bilingual";
