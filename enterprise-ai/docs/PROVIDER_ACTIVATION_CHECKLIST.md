@@ -54,6 +54,27 @@ MISSION_CRITICAL 🟢⭐⭐
 
 Failed verification immediately blocks promotion and returns `diagnostics[].failedRequirements`.
 
+## Continuous monitoring (auto health / downgrade / recovery)
+
+```bash
+npm run ai:aios:health -- --continuous --once
+npm run ai:aios:health -- --recover --provider=openai
+npm run ai:aios:health -- --failover-test --factory=coding
+npm run ai:aios:health -- --history
+```
+
+Intervals (configurable): READY 30m · PRODUCTION_CERTIFIED 15m · MISSION_CRITICAL 5m  
+(`AIOS_HEALTH_INTERVAL_READY_MS`, `_CERTIFIED_MS`, `_MISSION_MS`).
+
+Auto-downgrade only (never auto-promote; never paid media generation):
+
+- `MISSION_CRITICAL` → `PRODUCTION_CERTIFIED` on failure
+- `PRODUCTION_CERTIFIED` → `READY` after `AIOS_DOWNGRADE_CERT_FAILURES` (default 3)
+- Live READY failure → `PROBE_FAILED`
+
+Priority: `AIOS_PRIORITY_CODING`, `AIOS_PRIORITY_EDUCATION`, `AIOS_PRIORITY_MEDIA`.  
+Alerts: `AIOS_ALERT_CHANNELS=console,file,webhook`.
+
 ## Required activation order
 
 | # | Provider | Factory | Notes |
