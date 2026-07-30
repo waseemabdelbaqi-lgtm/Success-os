@@ -174,6 +174,15 @@ export function AiInfrastructurePanel() {
         >
           Test One Provider
         </button>
+        <button
+          type="button"
+          disabled={busy || !providerFilter.trim()}
+          onClick={() => run({ action: 'certify', provider: providerFilter.trim() })}
+          style={btnPrimary()}
+          title="Requires READY first"
+        >
+          PRODUCTION CERTIFIED ⭐
+        </button>
         <select
           value={factoryFilter}
           onChange={(e) => setFactoryFilter(e.target.value)}
@@ -307,6 +316,25 @@ export function AiInfrastructurePanel() {
                       onClick={() => run({ mode: 'live', provider: p.providerId })}
                     >
                       Retest
+                    </button>
+                    <button
+                      type="button"
+                      style={btnSmall()}
+                      disabled={
+                        busy ||
+                        p.productionCertified ||
+                        p.Lifecycle === 'PRODUCTION_CERTIFIED' ||
+                        !(
+                          p.Status === 'READY' ||
+                          p.status === 'READY' ||
+                          p.Lifecycle === 'READY' ||
+                          p.lifecycleStage === 'READY'
+                        )
+                      }
+                      title="Promote READY → PRODUCTION CERTIFIED ⭐"
+                      onClick={() => run({ action: 'certify', provider: p.providerId })}
+                    >
+                      ⭐ Certify
                     </button>
                   </td>
                 </tr>

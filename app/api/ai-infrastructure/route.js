@@ -249,6 +249,55 @@ export async function POST(request) {
         { status: 403 },
       );
     }
+    if (body.action === "certify") {
+      const provider = body.provider;
+      if (!provider) {
+        return Response.json(
+          { ok: false, error: "PROVIDER_REQUIRED", message: "certify requires provider id" },
+          { status: 400 },
+        );
+      }
+      // CLI --certify runs a live probe then promotes READY → PRODUCTION CERTIFIED ⭐
+      const certify = await new Promise((resolve, reject) => {
+        const args = [
+          path.join(rootDir, "enterprise-ai/src/cli.js"),
+          "--health",
+          `--provider=${provider}`,
+          "--certify",
+          "--json",
+        ];
+        const child = spawn(process.execPath, args, {
+          cwd: rootDir,
+          env: { ...process.env },
+          stdio: ["ignore", "pipe", "pipe"],
+        });
+        let stdout = "";
+        let stderr = "";
+        child.stdout.on("data", (d) => {
+          stdout += d;
+        });
+        child.stderr.on("data", (d) => {
+          stderr += d;
+        });
+        child.on("error", reject);
+        child.on("close", (code) => {
+          try {
+            resolve(JSON.parse(stdout));
+          } catch {
+            reject(new Error(`CERTIFY_CLI_FAILED code=${code} ${stderr.slice(0, 200)}`));
+          }
+        });
+      });
+      const state = readJson(STATE_REL);
+      const dashboard = buildDashboard(state);
+      return Response.json({
+        ...dashboard,
+        ...certify,
+        source: "production-certify",
+        vercelAutoDeployBlocked: true,
+        secretsExposed: false,
+      });
+    }
     const mode = ["config", "live", "full"].includes(body.mode) ? body.mode : "live";
     const health = await runCliHealth({
       mode,

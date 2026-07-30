@@ -1,5 +1,8 @@
 #!/usr/bin/env node
 import assert from "node:assert/strict";
+import fs from "node:fs";
+import os from "node:os";
+import path from "node:path";
 import {
   CanonicalStatus,
   ProviderLifecycle,
@@ -9,7 +12,8 @@ import {
   hasReadyEvidence,
   lifecycleProgress,
 } from "../providers/status-model.js";
-import { normalizeProviderRecord } from "../providers/health-store.js";
+import { normalizeProviderRecord, saveHealthState } from "../providers/health-store.js";
+import { certifyProviders } from "../providers/health-runner.js";
 
 // Ladder order — no skipping
 const slot = deriveLifecycleStage({ status: CanonicalStatus.SLOT });
@@ -122,5 +126,63 @@ assert.ok(hasReadyEvidence({
   latencyMs: 10,
   errorCode: null,
 }));
+
+// Explicit certifyProviders() — READY only, no stage skipping
+{
+  const tmp = fs.mkdtempSync(path.join(os.tmpdir(), "aios-certify-"));
+  const ready = normalizeProviderRecord({
+    providerId: "playwright",
+    status: CanonicalStatus.READY,
+    authenticated: true,
+    liveProbeExecuted: true,
+    liveProbe: "PASSED",
+    result: "success",
+    testedAt: "2026-07-30T00:00:00.000Z",
+    latencyMs: 120,
+    model: "chromium",
+    errorCode: "none",
+    safeErrorMessage: "none",
+    credentialsDetected: true,
+    packageInstalled: true,
+  });
+  const configuredOnly = normalizeProviderRecord({
+    providerId: "supabase",
+    status: CanonicalStatus.CREDENTIALS_DETECTED,
+    credentialsDetected: true,
+  });
+  saveHealthState(
+    {
+      checkedAt: new Date().toISOString(),
+      mode: "test",
+      providers: [ready, configuredOnly],
+      factories: {},
+      alerts: [],
+      ready: ["playwright"],
+      certified: [],
+    },
+    tmp,
+  );
+
+  const skipped = await certifyProviders({
+    providerIds: ["supabase"],
+    rootDir: tmp,
+    persist: true,
+  });
+  assert.equal(skipped.ok, false);
+  assert.equal(skipped.rejected[0]?.reason, "NOT_READY");
+
+  const ok = await certifyProviders({
+    providerIds: ["playwright"],
+    rootDir: tmp,
+    persist: true,
+  });
+  assert.equal(ok.ok, true);
+  assert.deepEqual(ok.certified, ["playwright"]);
+  const certifiedRec = ok.providers.find((p) => p.providerId === "playwright");
+  assert.equal(certifiedRec.lifecycleStage, ProviderLifecycle.PRODUCTION_CERTIFIED);
+  assert.equal(certifiedRec.status, CanonicalStatus.PRODUCTION_CERTIFIED);
+  assert.equal(certifiedRec.productionCertified, true);
+  fs.rmSync(tmp, { recursive: true, force: true });
+}
 
 console.log("lifecycle.test.mjs: OK");

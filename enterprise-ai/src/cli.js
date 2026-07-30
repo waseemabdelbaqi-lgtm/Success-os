@@ -5,8 +5,9 @@ import { loadAiosEnv } from "./env/load.js";
 import { createLogger } from "./utils/logger.js";
 import { detectProviders } from "./providers/detect.js";
 import { createProviderRegistry } from "./providers/registry.js";
-import { runHealthCommand } from "./providers/health-runner.js";
+import { runHealthCommand, certifyProviders } from "./providers/health-runner.js";
 import { buildDashboardFromState, loadHealthState } from "./providers/health-store.js";
+import { CanonicalStatus } from "./providers/status-model.js";
 import { runAIOS, formatAiosDisplay } from "./aios.js";
 import { getMcpToolRegistry } from "./mcp/bridge.js";
 import { summarizeFactories, listFactories } from "./factories/registry.js";
@@ -28,6 +29,7 @@ function parseArgs(argv) {
     healthMode: null,
     provider: null,
     factory: null,
+    certify: false,
     executionMode: null,
     objective: "",
     help: false,
@@ -43,7 +45,10 @@ function parseArgs(argv) {
     else if (a === "--agents") out.agents = true;
     else if (a === "--smoke") out.smoke = true;
     else if (a === "--json") out.json = true;
-    else if (a === "--help" || a === "-h") out.help = true;
+    else if (a === "--certify") {
+      out.certify = true;
+      out.health = true;
+    } else if (a === "--help" || a === "-h") out.help = true;
     else if (a.startsWith("--mode=")) {
       const v = a.slice("--mode=".length).toLowerCase();
       if (["config", "live", "full"].includes(v)) out.healthMode = v;
@@ -90,6 +95,7 @@ Health (accurate live verification):
   npm run ai:aios:health -- --mode=live
   npm run ai:aios:health -- --mode=full
   npm run ai:aios:health -- --provider=ollama --mode=live
+  npm run ai:aios:health -- --provider=playwright --certify
   npm run ai:aios:health -- --factory=education --mode=live
   npm run ai:aios:health -- --mode=live --json
 
@@ -99,12 +105,14 @@ Flags:
   --mode MODE           Health: config|live|full  OR run: review|execute|dry-run
   --provider=<id>       Test one provider
   --factory=<id>        Test one factory (coding|education|media|infrastructure)
+  --certify             Mark READY provider as PRODUCTION CERTIFIED ⭐ (requires --provider)
   --json                Machine-readable JSON (default for health)
   --factories           Factory map + readiness from persisted probes
   --mcp                 MCP tool registry
   --execute             Execute mode (no auto-commit/push/deploy)
   --agents              List agents
 
+Lifecycle: SLOT → CONFIGURED → LIVE VERIFIED → READY → PRODUCTION CERTIFIED ⭐
 Rule: green/READY only after authenticated live probe success.
 `);
 }
@@ -191,6 +199,51 @@ async function main() {
   }
 
   if (args.health) {
+    if (args.certify) {
+      if (!args.provider) {
+        console.log(
+          JSON.stringify(
+            {
+              ok: false,
+              error: "PROVIDER_REQUIRED",
+              message: "--certify requires --provider=<id> (provider must already be READY)",
+            },
+            null,
+            2,
+          ),
+        );
+        process.exitCode = 1;
+        return;
+      }
+      // Ensure latest live evidence then certify
+      await runHealthCommand({
+        mode: args.healthMode || "live",
+        provider: args.provider,
+        rootDir,
+        persist: true,
+      });
+      const certified = await certifyProviders({
+        providerIds: [args.provider],
+        rootDir,
+        persist: true,
+      });
+      console.log(
+        JSON.stringify(
+          {
+            generatedAt: new Date().toISOString(),
+            action: "PRODUCTION_CERTIFIED",
+            mark: "⭐",
+            ...certified,
+            secretsExposed: false,
+          },
+          null,
+          2,
+        ),
+      );
+      if (!certified.ok) process.exitCode = 2;
+      return;
+    }
+
     const health = await runHealthCommand({
       mode: args.healthMode || "live",
       provider: args.provider,
@@ -204,11 +257,20 @@ async function main() {
           generatedAt: new Date().toISOString(),
           rule: "GREEN_ONLY_AFTER_LIVE_AUTHENTICATED_SUCCESS",
           ruleAr: "لا يظهر أي مزود باللون الأخضر إلا إذا نجح طلب حي موثّق خلال آخر فحص.",
+          lifecycleLadder: [
+            "SLOT",
+            "CONFIGURED",
+            "LIVE VERIFIED",
+            "READY",
+            "PRODUCTION CERTIFIED ⭐",
+          ],
           mode: health.mode,
           modes: health.modes,
           checkedAt: health.checkedAt,
           ready: health.ready,
+          certified: health.certified || [],
           greenCount: health.dashboard?.greenCount ?? 0,
+          certifiedCount: health.dashboard?.certifiedCount ?? 0,
           factories: health.factories,
           dashboard: health.dashboard,
           providers: health.providers,

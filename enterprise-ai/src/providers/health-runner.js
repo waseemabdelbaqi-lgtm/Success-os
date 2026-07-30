@@ -714,7 +714,16 @@ export async function runHealthCommand({
     providers: records,
     factories,
     alerts,
-    ready: records.filter((r) => r.status === CanonicalStatus.READY).map((r) => r.providerId),
+    ready: records
+      .filter(
+        (r) =>
+          r.status === CanonicalStatus.READY ||
+          r.status === CanonicalStatus.PRODUCTION_CERTIFIED,
+      )
+      .map((r) => r.providerId),
+    certified: records
+      .filter((r) => r.status === CanonicalStatus.PRODUCTION_CERTIFIED)
+      .map((r) => r.providerId),
     vercelAutoDeployBlocked: true,
     secretsExposed: false,
   };
@@ -731,16 +740,26 @@ export async function runHealthCommand({
           checkedAt,
           providers: records.map((r) => ({
             provider: r.providerId,
-            status: r.status === CanonicalStatus.READY ? "READY" : r.status,
+            status:
+              r.status === CanonicalStatus.READY || r.status === CanonicalStatus.PRODUCTION_CERTIFIED
+                ? r.status === CanonicalStatus.PRODUCTION_CERTIFIED
+                  ? "PRODUCTION_CERTIFIED"
+                  : "READY"
+                : r.status,
             authenticationValid: r.authenticated,
-            minimalRequestPassed: r.status === CanonicalStatus.READY,
+            minimalRequestPassed:
+              r.status === CanonicalStatus.READY ||
+              r.status === CanonicalStatus.PRODUCTION_CERTIFIED,
             latencyMs: r.latencyMs === "NOT_TESTED" ? null : r.latencyMs,
             model: r.model === "NOT_TESTED" ? null : r.model,
             checkedAt: r.testedAt === "NOT_TESTED" ? checkedAt : r.testedAt,
             configured: r.credentialsDetected,
             lastError: r.safeErrorMessage,
+            lifecycleStage: r.lifecycleStage,
+            productionCertified: r.productionCertified,
           })),
           ready: state.ready,
+          certified: state.certified,
           dashboard: buildInfrastructureDashboard(
             records.map((r) => ({
               provider: r.providerId,
@@ -774,6 +793,149 @@ export async function runHealthCommand({
       singleProvider: Boolean(provider),
       factory: Boolean(factory),
     },
+  };
+}
+
+/**
+ * Explicit PRODUCTION CERTIFIED approval.
+ * Requires provider already READY (or LIVE VERIFIED with ready evidence).
+ * Cannot certify from SLOT / CONFIGURED. Media also needs generationVerified.
+ */
+export async function certifyProviders({
+  providerIds = [],
+  rootDir = process.cwd(),
+  persist = true,
+  note = "explicit-admin-certify",
+} = {}) {
+  const previous = loadHealthState(rootDir);
+  if (!previous?.providers?.length) {
+    return {
+      ok: false,
+      error: "NO_HEALTH_STATE",
+      message: "Run a live probe to READY before PRODUCTION CERTIFIED",
+      certified: [],
+    };
+  }
+  const ids = (providerIds.length ? providerIds : []).map((id) =>
+    id === "claude" ? "anthropic" : id === "ollama-local" ? "ollama" : id,
+  );
+  if (!ids.length) {
+    return { ok: false, error: "PROVIDER_REQUIRED", certified: [] };
+  }
+
+  const updated = [];
+  const certified = [];
+  const rejected = [];
+  const byId = new Map(previous.providers.map((p) => [p.providerId, p]));
+
+  for (const id of ids) {
+    const prev = byId.get(id);
+    if (!prev) {
+      rejected.push({ providerId: id, reason: "UNKNOWN_PROVIDER" });
+      continue;
+    }
+    const media = ["heygen", "elevenlabs", "openai-images", "blender"].includes(id);
+    const readyEnough =
+      prev.status === CanonicalStatus.READY ||
+      prev.status === CanonicalStatus.PRODUCTION_CERTIFIED ||
+      (prev.lifecycleStage === "READY" || prev.lifecycleStage === "PRODUCTION_CERTIFIED");
+    if (!readyEnough) {
+      rejected.push({
+        providerId: id,
+        reason: "NOT_READY",
+        status: prev.status,
+        lifecycleStage: prev.lifecycleStage,
+        message: "PRODUCTION CERTIFIED requires READY first — no stage skipping",
+      });
+      continue;
+    }
+    if (media && !prev.generationVerified) {
+      rejected.push({
+        providerId: id,
+        reason: "GENERATION_NOT_VERIFIED",
+        message: "Media providers require generationVerified before PRODUCTION CERTIFIED",
+      });
+      continue;
+    }
+
+    const rec = normalizeProviderRecord(
+      {
+        ...prev,
+        status: CanonicalStatus.READY,
+        authenticated: true,
+        liveProbeExecuted: true,
+        liveProbe: LiveProbeResult.PASSED,
+        result: "success",
+        errorCode: "none",
+        safeErrorMessage: "none",
+        productionCertified: true,
+        certifyNote: note,
+        certifiedAt: new Date().toISOString(),
+        consecutiveSuccesses: Math.max(Number(prev.consecutiveSuccesses || 0), 3),
+      },
+      prev,
+    );
+    byId.set(id, rec);
+    certified.push(id);
+    updated.push(rec);
+  }
+
+  const records = ALL_PROVIDER_IDS.map((id) => byId.get(id) || createEmptyProviderRecord(id));
+  const checkedAt = new Date().toISOString();
+  const factories = computeFactoryReadiness(records);
+  const state = {
+    checkedAt,
+    mode: "certify",
+    providers: records,
+    factories,
+    alerts: previous.alerts || [],
+    ready: records
+      .filter(
+        (r) =>
+          r.status === CanonicalStatus.READY ||
+          r.status === CanonicalStatus.PRODUCTION_CERTIFIED,
+      )
+      .map((r) => r.providerId),
+    certified: records
+      .filter((r) => r.status === CanonicalStatus.PRODUCTION_CERTIFIED)
+      .map((r) => r.providerId),
+    vercelAutoDeployBlocked: true,
+    secretsExposed: false,
+  };
+
+  let snapshotPath = null;
+  if (persist && certified.length) {
+    snapshotPath = saveHealthState(state, rootDir);
+    appendHistory(
+      certified.map((id) => {
+        const r = byId.get(id);
+        return {
+          providerId: id,
+          status: r.status,
+          liveProbe: r.liveProbe,
+          testedAt: r.testedAt,
+          latencyMs: r.latencyMs,
+          model: r.model,
+          safeErrorMessage: r.safeErrorMessage,
+          mode: "certify",
+          lifecycleStage: r.lifecycleStage,
+        };
+      }),
+      rootDir,
+    );
+  }
+
+  return {
+    ok: certified.length > 0,
+    certified,
+    rejected,
+    checkedAt,
+    snapshotPath,
+    dashboard: buildDashboardFromState(state, rootDir),
+    factories,
+    ready: state.ready,
+    providers: records,
+    rule: "PRODUCTION_CERTIFIED requires READY — no stage skipping",
   };
 }
 

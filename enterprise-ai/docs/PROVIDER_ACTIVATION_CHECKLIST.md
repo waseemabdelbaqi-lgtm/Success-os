@@ -86,6 +86,9 @@ npm run ai:aios:health -- --mode=config --provider=playwright
 # Live probe one provider
 npm run ai:aios:health -- --mode=live --provider=playwright
 
+# Explicit PRODUCTION CERTIFIED ⭐ (requires READY first)
+npm run ai:aios:health -- --provider=playwright --certify
+
 # Full live sweep
 npm run ai:aios:health -- --mode=live
 
