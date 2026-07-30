@@ -46,16 +46,42 @@ Sample tree JSON: [`content/demo/generated/jordan-reference-tree.example.json`](
 
 ## Lesson metadata (required fields)
 
-Every lesson stores metadata only:
+Every lesson stores metadata only — **global lesson contract** + hierarchy projection.
+
+### Global lesson fields
+
+| Field | Example / notes |
+|-------|-----------------|
+| Lesson UUID | Deterministic UUID from global id |
+| Global Lesson ID | `JO-NATIONAL-G01-MATH-B01-U01-L01` |
+| Curriculum ID | `JO-NATIONAL` |
+| Country ID | `JO` |
+| Language | `ar` / `en` / `bilingual` |
+| Version | Platform content version (`1.0.0`) |
+| Official Version | Official curriculum edition (`JO-NCCD-2025/2026`) |
+| Platform Version | `success-os.curriculum-hierarchy.v1` |
+| Parent Lesson | Previous lesson global id or `null` |
+| Child Lessons | Child lesson global ids |
+| Related Lessons | Sibling / related global ids |
+| Prerequisites | Prerequisite global ids |
+| Next Lessons | Next lesson global ids |
+| Estimated Duration | Minutes (e.g. `25`) |
+| Difficulty | `core` / `support` / `extension` / `advanced` |
+| Bloom Level | `remember`…`create` |
+| Skills | Skill tags |
+| Tags | Hierarchy + topic tags |
+| AI Ready | `false` until AI PRs (#52–53) |
+| Published | Boolean publish flag |
+| Verified | Boolean verification flag |
+| Archived | Boolean archive flag |
+
+### Hierarchy / packaging fields
 
 | Field | Description |
 |-------|-------------|
-| Country | e.g. Jordan |
-| Curriculum | e.g. Jordan National Curriculum |
-| Grade / Semester / Subject / Book / Unit / Lesson | Hierarchy projection |
+| Country / Curriculum / Grade / Semester / Subject / Book / Unit / Lesson | Human-readable projection |
 | Lesson Order | Integer order within unit |
 | Official Lesson Title | LocaleText |
-| Language | ar / en / bilingual |
 | Learning Objectives | LocaleText[] |
 | Keywords | string[] |
 | References | label + optional href |
@@ -109,7 +135,7 @@ Schema id: `success-os.curriculum-hierarchy.v1`
 | Book | id, subjectId, part, version, rights, verification, checksum |
 | Unit | id, bookId, order, title |
 | Lesson | id, unitId, objectives, keywords, references, rights, verification, checksum, metadata, published, ilePackageId |
-| LessonMetadataRecord | flattened metadata projection (see above) |
+| LessonMetadataRecord | global lesson contract (UUID, globalLessonId, graph, Bloom, flags) + hierarchy projection |
 | LessonVerificationReport | six-dimension verification |
 | ILE Package | `success-os.interactive-lesson-engine.v1` |
 

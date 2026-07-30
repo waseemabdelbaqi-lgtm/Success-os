@@ -52,8 +52,24 @@ const SOURCE: CurriculumSourceRef = {
   license: JORDAN_REFERENCE_DATASET.source.license,
 };
 
+const PLATFORM_VERSION = "success-os.curriculum-hierarchy.v1";
+const OFFICIAL_VERSION = "JO-NCCD-2025/2026";
+const CONTENT_VERSION = "1.0.0";
+
 function checksumOf(parts: string[]) {
   return createHash("sha256").update(parts.join("|")).digest("hex");
+}
+
+/** Deterministic UUID v5-shaped id from global lesson id (stable across seeds). */
+function lessonUuidFromGlobalId(globalLessonId: string): string {
+  const h = createHash("sha256").update(`success-os.lesson.uuid:${globalLessonId}`).digest("hex");
+  return [
+    h.slice(0, 8),
+    h.slice(8, 12),
+    `5${h.slice(13, 16)}`,
+    `${((parseInt(h.slice(16, 18), 16) & 0x3f) | 0x80).toString(16).padStart(2, "0")}${h.slice(18, 20)}`,
+    h.slice(20, 32),
+  ].join("-");
 }
 
 function buildVerification(args: {
@@ -236,7 +252,8 @@ export function runJordanReferenceDataset(opts?: { reset?: boolean }): JordanDat
           title: unit.title,
         });
 
-        for (const les of unit.lessons) {
+        for (let lessonIdx = 0; lessonIdx < unit.lessons.length; lessonIdx++) {
+          const les = unit.lessons[lessonIdx]!;
           const rejected = les.verificationStatus === "rejected" || les.rightsStatus === "rejected";
           const metaOk = Boolean(les.title.en || les.title.ar) && les.objectives.length > 0;
           const structureOk = Boolean(unit.id && book.id && les.id);
@@ -261,7 +278,51 @@ export function runJordanReferenceDataset(opts?: { reset?: boolean }): JordanDat
             rejected,
           });
 
+          const prev = unit.lessons[lessonIdx - 1];
+          const next = unit.lessons[lessonIdx + 1];
+          const relatedLessons = unit.lessons
+            .filter((l) => l.id !== les.id)
+            .map((l) => l.id);
+          const verificationStatus = rejected
+            ? "rejected"
+            : rightsOk && metaOk
+              ? les.verificationStatus
+              : "pending";
+          const verified = verificationStatus === "verified";
+
           const metadata: LessonMetadataRecord = {
+            lessonUuid: lessonUuidFromGlobalId(les.id),
+            globalLessonId: les.id,
+            curriculumId: ds.curriculum.id,
+            countryId: ds.country.id,
+            language: "bilingual",
+            version: CONTENT_VERSION,
+            officialVersion: OFFICIAL_VERSION,
+            platformVersion: PLATFORM_VERSION,
+            parentLesson: prev?.id ?? null,
+            childLessons: [],
+            relatedLessons,
+            prerequisites: prev ? [prev.id] : [],
+            nextLessons: next ? [next.id] : [],
+            estimatedDuration: 25,
+            difficulty: "core",
+            bloomLevel: "understand",
+            skills: [
+              subject.code.toLowerCase(),
+              ...les.keywords.slice(0, 3),
+            ],
+            tags: [
+              ds.country.id,
+              ds.curriculum.id,
+              grade.id,
+              subject.id,
+              book.id,
+              unit.id,
+            ],
+            aiReady: false,
+            published: false,
+            verified,
+            archived: false,
             country: ds.country.name.en,
             curriculum: ds.curriculum.name.en,
             grade: grade.name.en,
@@ -272,17 +333,12 @@ export function runJordanReferenceDataset(opts?: { reset?: boolean }): JordanDat
             lesson: les.title.en,
             lessonOrder: les.order,
             officialLessonTitle: les.title,
-            language: "bilingual",
             learningObjectives: les.objectives,
             keywords: les.keywords,
             references: les.references,
             rightsStatus: les.rightsStatus,
-            verificationStatus: rejected
-              ? "rejected"
-              : rightsOk && metaOk
-                ? les.verificationStatus
-                : "pending",
-            packageVersion: "1",
+            verificationStatus,
+            packageVersion: CONTENT_VERSION,
             checksum,
             verification,
           };
@@ -425,6 +481,7 @@ export function runJordanReferenceDataset(opts?: { reset?: boolean }): JordanDat
                 metadata: {
                   ...metadata,
                   verificationStatus: "verified",
+                  verified: true,
                   verification: {
                     ...verification,
                     packageStatus: "pass",
@@ -443,6 +500,10 @@ export function runJordanReferenceDataset(opts?: { reset?: boolean }): JordanDat
                   metadata: published.metadata
                     ? {
                         ...published.metadata,
+                        published: true,
+                        verified: true,
+                        aiReady: false,
+                        archived: false,
                         verification: {
                           ...published.metadata.verification,
                           publishingStatus: "published",

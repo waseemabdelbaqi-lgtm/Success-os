@@ -87,8 +87,51 @@ export type LessonVerificationReport = {
   publishingStatus: "published" | "rejected" | "pending" | "blocked";
 };
 
-/** Metadata-only lesson row — no AI content generation */
+export type BloomLevel =
+  | "remember"
+  | "understand"
+  | "apply"
+  | "analyze"
+  | "evaluate"
+  | "create";
+
+export type LessonDifficulty = "core" | "support" | "extension" | "advanced";
+
+/**
+ * Metadata-only lesson row — official global lesson contract.
+ * No AI content generation in import / dataset PRs.
+ */
 export type LessonMetadataRecord = {
+  /** Stable UUID (deterministic from globalLessonId) */
+  lessonUuid: string;
+  /** Hierarchical global id, e.g. JO-NATIONAL-G01-MATH-B01-U01-L01 */
+  globalLessonId: string;
+  curriculumId: string;
+  countryId: string;
+  language: "ar" | "en" | "bilingual";
+  /** Platform package / content version */
+  version: string;
+  /** Official curriculum edition version */
+  officialVersion: string;
+  /** Success OS platform schema/version tag */
+  platformVersion: string;
+  parentLesson: string | null;
+  childLessons: string[];
+  relatedLessons: string[];
+  prerequisites: string[];
+  nextLessons: string[];
+  /** Estimated duration in minutes */
+  estimatedDuration: number;
+  difficulty: LessonDifficulty;
+  bloomLevel: BloomLevel;
+  skills: string[];
+  tags: string[];
+  /** Always false until AI PRs (#52–53) explicitly enable */
+  aiReady: boolean;
+  published: boolean;
+  verified: boolean;
+  archived: boolean;
+  /** Human-readable hierarchy projection */
   country: string;
   curriculum: string;
   grade: string;
@@ -99,7 +142,6 @@ export type LessonMetadataRecord = {
   lesson: string;
   lessonOrder: number;
   officialLessonTitle: LocaleText;
-  language: "ar" | "en" | "bilingual";
   learningObjectives: LocaleText[];
   keywords: string[];
   references: { label: LocaleText; href?: string }[];

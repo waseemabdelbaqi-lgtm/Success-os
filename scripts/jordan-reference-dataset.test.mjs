@@ -117,6 +117,28 @@ const metadata = JSON.parse(
   ),
 );
 for (const key of [
+  "lessonUuid",
+  "globalLessonId",
+  "curriculumId",
+  "countryId",
+  "language",
+  "version",
+  "officialVersion",
+  "platformVersion",
+  "parentLesson",
+  "childLessons",
+  "relatedLessons",
+  "prerequisites",
+  "nextLessons",
+  "estimatedDuration",
+  "difficulty",
+  "bloomLevel",
+  "skills",
+  "tags",
+  "aiReady",
+  "published",
+  "verified",
+  "archived",
   "country",
   "curriculum",
   "grade",
@@ -127,7 +149,6 @@ for (const key of [
   "lesson",
   "lessonOrder",
   "officialLessonTitle",
-  "language",
   "learningObjectives",
   "keywords",
   "references",
@@ -139,7 +160,40 @@ for (const key of [
 ]) {
   assert.ok(key in metadata, `metadata missing ${key}`);
 }
+assert.equal(metadata.globalLessonId, "JO-NATIONAL-G01-MATH-B01-U01-L01");
+assert.equal(metadata.countryId, "JO");
+assert.equal(metadata.curriculumId, "JO-NATIONAL");
+assert.equal(metadata.aiReady, false);
+assert.equal(metadata.published, true);
+assert.equal(metadata.verified, true);
+assert.equal(metadata.archived, false);
+assert.equal(metadata.parentLesson, null);
+assert.deepEqual(metadata.nextLessons, ["JO-NATIONAL-G01-MATH-B01-U01-L02"]);
 assert.equal(metadata.verification.publishingStatus, "published");
+
+const hierarchyTypes = fs.readFileSync(
+  path.join(root, "types/curriculum-hierarchy.ts"),
+  "utf8",
+);
+for (const token of [
+  "lessonUuid",
+  "globalLessonId",
+  "curriculumId",
+  "countryId",
+  "officialVersion",
+  "platformVersion",
+  "parentLesson",
+  "childLessons",
+  "relatedLessons",
+  "prerequisites",
+  "nextLessons",
+  "estimatedDuration",
+  "bloomLevel",
+  "aiReady",
+  "archived",
+]) {
+  assert.ok(hierarchyTypes.includes(token), `type missing ${token}`);
+}
 
 const ile = JSON.parse(
   fs.readFileSync(
