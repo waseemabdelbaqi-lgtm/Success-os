@@ -42,6 +42,11 @@ import {
 import type { StudentSkillProgressRecord } from "@/types/student-skill-progress";
 import { buildJordanMathDependencyExample } from "../hierarchy/lesson-dependency";
 import type { LessonDependencyGraph } from "@/types/lesson-dependency";
+import { JORDAN_NATIONAL_G1_OFFICIAL_SOURCE } from "@/content/demo/official-sources/jordan-national-g1";
+import {
+  ingestOfficialCurriculumSource,
+  resetGlobalCurriculumRegistry,
+} from "../hierarchy/global-curriculum-registry";
 
 /** Granular skill ids so progress gaps are meaningful (not all lessons share the same set). */
 function skillIdsForJordanLesson(subjectCode: string, lessonId: string): string[] {
@@ -63,28 +68,30 @@ function skillIdsForJordanLesson(subjectCode: string, lessonId: string): string[
   if (lessonId === "JO-NATIONAL-G01-MATH-B02-U01-L01") {
     return ["SKL-00001", "SKL-00002"];
   }
-  if (subjectCode === "PHYSICS") {
-    return ["SKL-00003", "SKL-00004", "SKL-00008"];
-  }
-  if (subjectCode === "CHEMISTRY") {
-    return ["SKL-00005", "SKL-00008"];
-  }
   if (subjectCode === "AR" || subjectCode === "EN") {
     return ["SKL-00006", "SKL-00007", "SKL-00008"];
   }
-  return defaultSkillIdsForSubject(
-    subjectCode === "MATH"
-      ? "SUB-00001"
-      : subjectCode === "BIOLOGY"
-        ? "SUB-00004"
-        : subjectCode === "SCI"
-          ? "SUB-00007"
-          : subjectCode === "ISL"
-            ? "SUB-00008"
-            : subjectCode === "SOC"
-              ? "SUB-00009"
-              : "SUB-00001",
-  );
+  if (subjectCode === "SCI") {
+    return ["SKL-00015", "SKL-00016", "SKL-00008"]; // Observation + Scientific Thinking
+  }
+  if (subjectCode === "MATH") {
+    return defaultSkillIdsForSubject("SUB-00001");
+  }
+  // Resolve via global subject code → SUB id (never hardcode grade-level STEM forks)
+  const codeToSub: Record<string, string> = {
+    MATH: "SUB-00001",
+    SCI: "SUB-00002",
+    PHYSICS: "SUB-00003",
+    CHEMISTRY: "SUB-00004",
+    BIOLOGY: "SUB-00005",
+    AR: "SUB-00006",
+    EN: "SUB-00007",
+    ISL: "SUB-00008",
+    SOC: "SUB-00009",
+    ART: "SUB-00010",
+    PE: "SUB-00011",
+  };
+  return defaultSkillIdsForSubject(codeToSub[subjectCode] || "SUB-00001");
 }
 import { evaluateRights } from "../rights/engine";
 import { buildIlePackagesFromBook } from "../ile-package-builder";
@@ -248,6 +255,10 @@ export function runJordanReferenceDataset(opts?: { reset?: boolean }): JordanDat
     resetGlobalSubjectRegistry();
     resetGlobalSkillRegistry();
   }
+
+  // Keep Global Curriculum Registry in sync via discovery (Jordan = first source, not a hardcoded model).
+  resetGlobalCurriculumRegistry();
+  ingestOfficialCurriculumSource(JORDAN_NATIONAL_G1_OFFICIAL_SOURCE);
 
   const ds = JORDAN_REFERENCE_DATASET;
   const grade = ds.grades[0]!;

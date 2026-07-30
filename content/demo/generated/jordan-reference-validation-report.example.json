@@ -1,98 +1,68 @@
 {
-  "schema": "success-os.jordan-reference-validation.v1",
-  "dataset": "success-os.jordan-reference-dataset.v1",
-  "idConvention": {
-    "country": "JO",
-    "curriculum": "JO-NATIONAL",
-    "grade": "JO-NATIONAL-G01",
-    "subject": "JO-NATIONAL-G01-MATH",
-    "book": "JO-NATIONAL-G01-MATH-B01",
-    "unit": "JO-NATIONAL-G01-MATH-B01-U01",
-    "lesson": "JO-NATIONAL-G01-MATH-B01-U01-L01"
-  },
-  "stemSubjects": [
-    "JO-NATIONAL-G01-MATH",
-    "JO-NATIONAL-G01-PHYSICS",
-    "JO-NATIONAL-G01-CHEMISTRY",
-    "JO-NATIONAL-G01-BIOLOGY"
-  ],
-  "globalSubjectRegistry": [
-    "SUB-00001 Mathematics",
-    "SUB-00002 Physics",
-    "SUB-00003 Chemistry",
-    "SUB-00004 Biology",
-    "SUB-00005 Arabic",
-    "SUB-00006 English",
-    "SUB-00007 Science",
-    "SUB-00008 Islamic Education",
-    "SUB-00009 Social Studies"
-  ],
-  "samplePath": [
-    "JO",
-    "JO-NATIONAL",
-    "JO-NATIONAL-G01",
-    "JO-NATIONAL-G01-MATH",
-    "JO-NATIONAL-G01-S01",
-    "JO-NATIONAL-G01-MATH-B01",
-    "JO-NATIONAL-G01-MATH-B01-U01",
-    "JO-NATIONAL-G01-MATH-B01-U01-L01",
-    "Verified ILE Package",
-    "Interactive Lesson Engine"
-  ],
+  "schema": "success-os.jordan-reference-dataset.v1/validation",
   "counts": {
     "countries": 1,
     "curricula": 1,
     "grades": 1,
-    "subjects": 9,
-    "books": 10,
-    "units": 11,
-    "lessons": 16,
+    "subjects": 8,
+    "books": 9,
+    "units": 10,
+    "lessons": 15,
     "packages": 1,
     "verifiedPackages": 1,
     "pendingPackages": 0,
     "rejectedPackages": 0,
-    "verified": 13,
-    "pending": 2,
+    "imported": 15,
+    "verified": 12,
     "rejected": 1,
+    "pending": 2,
     "published": 1,
+    "errors": 1,
+    "warnings": 1,
     "rightsWarnings": 1,
-    "globalSubjects": 9
+    "globalSubjects": 11
   },
-  "validationReport": {
-    "totalLessons": 16,
-    "verified": 13,
-    "pending": 2,
-    "rejected": 1,
-    "published": 1,
-    "packages": 1,
-    "gateSummary": {
-      "source_pass": 16,
-      "rights_pass": 14,
-      "structure_pass": 16,
-      "metadata_pass": 16,
-      "package_pass": 1,
-      "published": 1,
-      "rejected": 1
-    }
-  },
-  "validationErrors": [
-    "JO-NATIONAL-G01-EN-B01-U01-L02: rejected — cannot publish"
+  "g01Subjects": [
+    "JO-NATIONAL-G01-MATH",
+    "JO-NATIONAL-G01-AR",
+    "JO-NATIONAL-G01-EN",
+    "JO-NATIONAL-G01-SCI",
+    "JO-NATIONAL-G01-ISL",
+    "JO-NATIONAL-G01-SOC",
+    "JO-NATIONAL-G01-ART",
+    "JO-NATIONAL-G01-PE"
   ],
-  "rightsWarnings": [
-    "JO-NATIONAL-G01-MATH-B02-U01-L01: rights restricted — compile only"
+  "excludedUntilOfficial": [
+    "PHYSICS",
+    "CHEMISTRY",
+    "BIOLOGY"
+  ],
+  "globalSubjectRegistry": [
+    "SUB-00001 Mathematics",
+    "SUB-00002 Science",
+    "SUB-00003 Physics",
+    "SUB-00004 Chemistry",
+    "SUB-00005 Biology",
+    "SUB-00006 Arabic",
+    "SUB-00007 English",
+    "SUB-00008 Islamic Education",
+    "SUB-00009 Social Studies",
+    "SUB-00010 Art",
+    "SUB-00011 Physical Education"
   ],
   "pipeline": {
-    "officialSource": true,
-    "verification": true,
-    "metadata": true,
-    "book": true,
-    "unit": true,
-    "lesson": true,
-    "ilePackage": true,
-    "interactiveLessonEngine": true,
     "rejectedNeverPublish": true,
-    "noCurriculumSpecificRenderer": true,
-    "ileOnlyRuntime": true
+    "ileOnlyRuntime": true,
+    "aiGeneration": false,
+    "dynamicDiscovery": true
   },
-  "notes": "Example validation report for docs/tests. Live report is produced by runJordanReferenceDataset()."
+  "gateSummary": {
+    "source_pass": 15,
+    "rights_pass": 13,
+    "structure_pass": 15,
+    "metadata_pass": 15,
+    "package_pass": 1,
+    "published": 1,
+    "rejected": 1
+  }
 }

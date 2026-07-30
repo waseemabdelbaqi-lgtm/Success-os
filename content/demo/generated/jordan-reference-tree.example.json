@@ -1,5 +1,9 @@
 {
-  "schema": "success-os.jordan-reference-dataset.v1",
+  "schema": "success-os.jordan-reference-dataset.v1/tree",
+  "country": "Jordan",
+  "curriculum": "Jordan National Curriculum",
+  "grade": "Grade 1",
+  "semester": "Semester 1",
   "idConvention": {
     "country": "JO",
     "curriculum": "JO-NATIONAL",
@@ -9,15 +13,11 @@
     "unit": "JO-NATIONAL-G01-MATH-B01-U01",
     "lesson": "JO-NATIONAL-G01-MATH-B01-U01-L01"
   },
-  "country": "Jordan",
-  "curriculum": "Jordan National Curriculum",
-  "grade": "Grade 1",
-  "semester": "Semester 1",
   "subjects": [
     {
-      "code": "MATH",
       "id": "JO-NATIONAL-G01-MATH",
       "globalSubjectId": "SUB-00001",
+      "code": "MATH",
       "name": "Mathematics",
       "books": [
         {
@@ -95,90 +95,9 @@
       ]
     },
     {
-      "code": "PHYSICS",
-      "id": "JO-NATIONAL-G01-PHYSICS",
-      "globalSubjectId": "SUB-00002",
-      "name": "Physics",
-      "books": [
-        {
-          "id": "JO-NATIONAL-G01-PHYSICS-B01",
-          "part": "Book 1",
-          "units": [
-            {
-              "id": "JO-NATIONAL-G01-PHYSICS-B01-U01",
-              "title": "Unit 1 — Motion around us",
-              "lessons": [
-                {
-                  "id": "JO-NATIONAL-G01-PHYSICS-B01-U01-L01",
-                  "order": 1,
-                  "title": "Lesson 1 — Push and pull",
-                  "verificationStatus": "verified",
-                  "rightsStatus": "verified"
-                }
-              ]
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "code": "CHEMISTRY",
-      "id": "JO-NATIONAL-G01-CHEMISTRY",
-      "globalSubjectId": "SUB-00003",
-      "name": "Chemistry",
-      "books": [
-        {
-          "id": "JO-NATIONAL-G01-CHEMISTRY-B01",
-          "part": "Book 1",
-          "units": [
-            {
-              "id": "JO-NATIONAL-G01-CHEMISTRY-B01-U01",
-              "title": "Unit 1 — Materials",
-              "lessons": [
-                {
-                  "id": "JO-NATIONAL-G01-CHEMISTRY-B01-U01-L01",
-                  "order": 1,
-                  "title": "Lesson 1 — Solids and liquids",
-                  "verificationStatus": "verified",
-                  "rightsStatus": "verified"
-                }
-              ]
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "code": "BIOLOGY",
-      "id": "JO-NATIONAL-G01-BIOLOGY",
-      "globalSubjectId": "SUB-00004",
-      "name": "Biology",
-      "books": [
-        {
-          "id": "JO-NATIONAL-G01-BIOLOGY-B01",
-          "part": "Book 1",
-          "units": [
-            {
-              "id": "JO-NATIONAL-G01-BIOLOGY-B01-U01",
-              "title": "Unit 1 — Living world",
-              "lessons": [
-                {
-                  "id": "JO-NATIONAL-G01-BIOLOGY-B01-U01-L01",
-                  "order": 1,
-                  "title": "Lesson 1 — Plants need water",
-                  "verificationStatus": "verified",
-                  "rightsStatus": "verified"
-                }
-              ]
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "code": "AR",
       "id": "JO-NATIONAL-G01-AR",
-      "globalSubjectId": "SUB-00005",
+      "globalSubjectId": "SUB-00006",
+      "code": "AR",
       "name": "Arabic",
       "books": [
         {
@@ -210,9 +129,9 @@
       ]
     },
     {
-      "code": "EN",
       "id": "JO-NATIONAL-G01-EN",
-      "globalSubjectId": "SUB-00006",
+      "globalSubjectId": "SUB-00007",
+      "code": "EN",
       "name": "English",
       "books": [
         {
@@ -244,9 +163,9 @@
       ]
     },
     {
-      "code": "SCI",
       "id": "JO-NATIONAL-G01-SCI",
-      "globalSubjectId": "SUB-00007",
+      "globalSubjectId": "SUB-00002",
+      "code": "SCI",
       "name": "Science",
       "books": [
         {
@@ -271,9 +190,9 @@
       ]
     },
     {
-      "code": "ISL",
       "id": "JO-NATIONAL-G01-ISL",
       "globalSubjectId": "SUB-00008",
+      "code": "ISL",
       "name": "Islamic Education",
       "books": [
         {
@@ -298,9 +217,9 @@
       ]
     },
     {
-      "code": "SOC",
       "id": "JO-NATIONAL-G01-SOC",
       "globalSubjectId": "SUB-00009",
+      "code": "SOC",
       "name": "Social Studies",
       "books": [
         {
@@ -323,7 +242,61 @@
           ]
         }
       ]
+    },
+    {
+      "id": "JO-NATIONAL-G01-ART",
+      "globalSubjectId": "SUB-00010",
+      "code": "ART",
+      "name": "Art",
+      "books": [
+        {
+          "id": "JO-NATIONAL-G01-ART-B01",
+          "part": "Book 1",
+          "units": [
+            {
+              "id": "JO-NATIONAL-G01-ART-B01-U01",
+              "title": "Unit 1 — Colors",
+              "lessons": [
+                {
+                  "id": "JO-NATIONAL-G01-ART-B01-U01-L01",
+                  "order": 1,
+                  "title": "Lesson 1 — Primary colors",
+                  "verificationStatus": "verified",
+                  "rightsStatus": "verified"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "JO-NATIONAL-G01-PE",
+      "globalSubjectId": "SUB-00011",
+      "code": "PE",
+      "name": "Physical Education",
+      "books": [
+        {
+          "id": "JO-NATIONAL-G01-PE-B01",
+          "part": "Book 1",
+          "units": [
+            {
+              "id": "JO-NATIONAL-G01-PE-B01-U01",
+              "title": "Unit 1 — Movement",
+              "lessons": [
+                {
+                  "id": "JO-NATIONAL-G01-PE-B01-U01-L01",
+                  "order": 1,
+                  "title": "Lesson 1 — Warm-up games",
+                  "verificationStatus": "verified",
+                  "rightsStatus": "verified"
+                }
+              ]
+            }
+          ]
+        }
+      ]
     }
   ],
-  "notes": "Official Jordan hierarchical ID convention for PR #50.2. Metadata standard only — no AI lesson generation."
+  "note": "Subjects discovered from official Grade 1 source — Physics/Chemistry/Biology absent."
 }

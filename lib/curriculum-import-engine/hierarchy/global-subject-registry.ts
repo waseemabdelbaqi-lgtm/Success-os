@@ -1,10 +1,25 @@
 /**
  * Global Subject Registry store — SUB-XXXXX identities shared across countries.
  *
+ * Canonical seed (PR #50.3 permanent foundation):
+ *   SUB-00001 Mathematics
+ *   SUB-00002 Science
+ *   SUB-00003 Physics
+ *   SUB-00004 Chemistry
+ *   SUB-00005 Biology
+ *   SUB-00006 Arabic
+ *   SUB-00007 English
+ *   SUB-00008 Islamic Education
+ *   SUB-00009 Social Studies
+ *   SUB-00010 Art
+ *   SUB-00011 Physical Education
+ *
  * Local labels are country-specific; global ids are universal:
  *   Jordan → الرياضيات → SUB-00001
  *   USA    → Mathematics → SUB-00001
  *   Egypt  → الرياضيات → SUB-00001
+ *
+ * Append-only — never reuse retired ids.
  */
 import type {
   CountrySubjectAlias,
@@ -34,49 +49,49 @@ export const GLOBAL_SUBJECT_REGISTRY_SEED: GlobalSubjectRecord[] = [
   },
   {
     id: subId(2),
-    code: "PHYSICS",
-    name: L("Physics", "الفيزياء"),
+    code: "SCI",
+    name: L("Science", "العلوم"),
     family: "stem",
     order: 2,
     active: true,
   },
   {
     id: subId(3),
-    code: "CHEMISTRY",
-    name: L("Chemistry", "الكيمياء"),
+    code: "PHYSICS",
+    name: L("Physics", "الفيزياء"),
     family: "stem",
     order: 3,
     active: true,
   },
   {
     id: subId(4),
-    code: "BIOLOGY",
-    name: L("Biology", "الأحياء"),
+    code: "CHEMISTRY",
+    name: L("Chemistry", "الكيمياء"),
     family: "stem",
     order: 4,
     active: true,
   },
   {
     id: subId(5),
-    code: "AR",
-    name: L("Arabic", "اللغة العربية"),
-    family: "language",
+    code: "BIOLOGY",
+    name: L("Biology", "الأحياء"),
+    family: "stem",
     order: 5,
     active: true,
   },
   {
     id: subId(6),
-    code: "EN",
-    name: L("English", "اللغة الإنجليزية"),
+    code: "AR",
+    name: L("Arabic", "اللغة العربية"),
     family: "language",
     order: 6,
     active: true,
   },
   {
     id: subId(7),
-    code: "SCI",
-    name: L("Science", "العلوم"),
-    family: "stem",
+    code: "EN",
+    name: L("English", "اللغة الإنجليزية"),
+    family: "language",
     order: 7,
     active: true,
   },
@@ -96,13 +111,30 @@ export const GLOBAL_SUBJECT_REGISTRY_SEED: GlobalSubjectRecord[] = [
     order: 9,
     active: true,
   },
+  {
+    id: subId(10),
+    code: "ART",
+    name: L("Art", "التربية الفنية"),
+    family: "arts",
+    order: 10,
+    active: true,
+  },
+  {
+    id: subId(11),
+    code: "PE",
+    name: L("Physical Education", "التربية الرياضية"),
+    family: "other",
+    order: 11,
+    active: true,
+  },
 ];
 
 /**
- * Country-local labels for Mathematics all resolve to SUB-00001.
+ * Country-local labels → Global Subject Registry id.
  * Future countries append aliases only — never create a second global Math id.
  */
 export const COUNTRY_SUBJECT_ALIAS_SEED: CountrySubjectAlias[] = [
+  // Mathematics — cross-country
   {
     countryId: "JO",
     countryName: L("Jordan", "الأردن"),
@@ -125,30 +157,84 @@ export const COUNTRY_SUBJECT_ALIAS_SEED: CountrySubjectAlias[] = [
     language: "ar",
     globalSubjectId: "SUB-00001",
   },
-  // Additional JO STEM aliases for completeness
+  // Jordan Grade 1 official local labels
+  {
+    countryId: "JO",
+    countryName: L("Jordan", "الأردن"),
+    localLabel: "لغة عربية",
+    language: "ar",
+    globalSubjectId: "SUB-00006",
+    hierarchicalSubjectId: "JO-NATIONAL-G01-AR",
+  },
+  {
+    countryId: "JO",
+    countryName: L("Jordan", "الأردن"),
+    localLabel: "English",
+    language: "en",
+    globalSubjectId: "SUB-00007",
+    hierarchicalSubjectId: "JO-NATIONAL-G01-EN",
+  },
+  {
+    countryId: "JO",
+    countryName: L("Jordan", "الأردن"),
+    localLabel: "علوم",
+    language: "ar",
+    globalSubjectId: "SUB-00002",
+    hierarchicalSubjectId: "JO-NATIONAL-G01-SCI",
+  },
+  {
+    countryId: "JO",
+    countryName: L("Jordan", "الأردن"),
+    localLabel: "تربية إسلامية",
+    language: "ar",
+    globalSubjectId: "SUB-00008",
+    hierarchicalSubjectId: "JO-NATIONAL-G01-ISL",
+  },
+  {
+    countryId: "JO",
+    countryName: L("Jordan", "الأردن"),
+    localLabel: "تربية اجتماعية",
+    language: "ar",
+    globalSubjectId: "SUB-00009",
+    hierarchicalSubjectId: "JO-NATIONAL-G01-SOC",
+  },
+  {
+    countryId: "JO",
+    countryName: L("Jordan", "الأردن"),
+    localLabel: "تربية فنية",
+    language: "ar",
+    globalSubjectId: "SUB-00010",
+    hierarchicalSubjectId: "JO-NATIONAL-G01-ART",
+  },
+  {
+    countryId: "JO",
+    countryName: L("Jordan", "الأردن"),
+    localLabel: "تربية رياضية",
+    language: "ar",
+    globalSubjectId: "SUB-00011",
+    hierarchicalSubjectId: "JO-NATIONAL-G01-PE",
+  },
+  // Higher-grade STEM aliases (not attached to G01 unless discovered)
   {
     countryId: "JO",
     countryName: L("Jordan", "الأردن"),
     localLabel: "فيزياء",
     language: "ar",
-    globalSubjectId: "SUB-00002",
-    hierarchicalSubjectId: "JO-NATIONAL-G01-PHYSICS",
+    globalSubjectId: "SUB-00003",
   },
   {
     countryId: "JO",
     countryName: L("Jordan", "الأردن"),
     localLabel: "كيمياء",
     language: "ar",
-    globalSubjectId: "SUB-00003",
-    hierarchicalSubjectId: "JO-NATIONAL-G01-CHEMISTRY",
+    globalSubjectId: "SUB-00004",
   },
   {
     countryId: "JO",
     countryName: L("Jordan", "الأردن"),
     localLabel: "أحياء",
     language: "ar",
-    globalSubjectId: "SUB-00004",
-    hierarchicalSubjectId: "JO-NATIONAL-G01-BIOLOGY",
+    globalSubjectId: "SUB-00005",
   },
 ];
 

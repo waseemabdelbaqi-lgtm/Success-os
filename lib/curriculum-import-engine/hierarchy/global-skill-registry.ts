@@ -13,6 +13,10 @@
  *   SKL-00010 Percentages
  *   SKL-00011 Algebra
  *   SKL-00012 Functions
+ *   SKL-00013 Counting
+ *   SKL-00014 Addition
+ *   SKL-00015 Observation
+ *   SKL-00016 Scientific Thinking
  *
  * Math pathway:
  *   Fractions → Decimals → Percentages → Algebra → Functions
@@ -59,7 +63,7 @@ export const GLOBAL_SKILL_REGISTRY_SEED: GlobalSkillRecord[] = [
     id: sklId(3),
     code: "VECTORS",
     name: L("Vectors", "المتجهات"),
-    subjectIds: ["SUB-00002"],
+    subjectIds: ["SUB-00003"], // Physics
     dependsOn: [],
     family: "physics",
     order: 3,
@@ -69,7 +73,7 @@ export const GLOBAL_SKILL_REGISTRY_SEED: GlobalSkillRecord[] = [
     id: sklId(4),
     code: "NEWTON_LAWS",
     name: L("Newton Laws", "قوانين نيوتن"),
-    subjectIds: ["SUB-00002"],
+    subjectIds: ["SUB-00003"], // Physics
     dependsOn: [sklId(3)],
     family: "physics",
     order: 4,
@@ -79,7 +83,7 @@ export const GLOBAL_SKILL_REGISTRY_SEED: GlobalSkillRecord[] = [
     id: sklId(5),
     code: "ACIDS",
     name: L("Acids", "الأحماض"),
-    subjectIds: ["SUB-00003"],
+    subjectIds: ["SUB-00004"], // Chemistry
     dependsOn: [],
     family: "chemistry",
     order: 5,
@@ -89,7 +93,7 @@ export const GLOBAL_SKILL_REGISTRY_SEED: GlobalSkillRecord[] = [
     id: sklId(6),
     code: "READING",
     name: L("Reading", "القراءة"),
-    subjectIds: ["SUB-00005", "SUB-00006"],
+    subjectIds: ["SUB-00006", "SUB-00007"], // Arabic, English
     dependsOn: [],
     family: "language",
     order: 6,
@@ -99,7 +103,7 @@ export const GLOBAL_SKILL_REGISTRY_SEED: GlobalSkillRecord[] = [
     id: sklId(7),
     code: "WRITING",
     name: L("Writing", "الكتابة"),
-    subjectIds: ["SUB-00005", "SUB-00006"],
+    subjectIds: ["SUB-00006", "SUB-00007"],
     dependsOn: [sklId(6)],
     family: "language",
     order: 7,
@@ -153,6 +157,46 @@ export const GLOBAL_SKILL_REGISTRY_SEED: GlobalSkillRecord[] = [
     dependsOn: [sklId(11)], // Algebra
     family: "math",
     order: 12,
+    active: true,
+  },
+  {
+    id: sklId(13),
+    code: "COUNTING",
+    name: L("Counting", "العدّ"),
+    subjectIds: ["SUB-00001"],
+    dependsOn: [],
+    family: "math",
+    order: 13,
+    active: true,
+  },
+  {
+    id: sklId(14),
+    code: "ADDITION",
+    name: L("Addition", "الجمع"),
+    subjectIds: ["SUB-00001"],
+    dependsOn: [sklId(13)], // Counting
+    family: "math",
+    order: 14,
+    active: true,
+  },
+  {
+    id: sklId(15),
+    code: "OBSERVATION",
+    name: L("Observation", "الملاحظة"),
+    subjectIds: ["SUB-00002"], // Science
+    dependsOn: [],
+    family: "other",
+    order: 15,
+    active: true,
+  },
+  {
+    id: sklId(16),
+    code: "SCIENTIFIC_THINKING",
+    name: L("Scientific Thinking", "التفكير العلمي"),
+    subjectIds: ["SUB-00002"],
+    dependsOn: [sklId(15)], // Observation
+    family: "thinking",
+    order: 16,
     active: true,
   },
 ];

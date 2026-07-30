@@ -1,32 +1,220 @@
 {
   "schema": "success-os.lesson-dependency.v1",
-  "pathPattern": ["Lesson", "depends on", "Lesson", "depends on", "Lesson"],
-  "exampleChain": {
-    "id": "chain_JO-NATIONAL-G01-MATH-B01-U01-L01_to_JO-NATIONAL-G01-MATH-B01-U01-L03",
-    "path": [
-      "JO-NATIONAL-G01-MATH-B01-U01-L01",
-      "JO-NATIONAL-G01-MATH-B01-U01-L02",
-      "JO-NATIONAL-G01-MATH-B01-U01-L03"
-    ],
-    "displayPath": [
-      "JO-NATIONAL-G01-MATH-B01-U01-L03",
-      "depends on",
-      "JO-NATIONAL-G01-MATH-B01-U01-L02",
-      "depends on",
-      "JO-NATIONAL-G01-MATH-B01-U01-L01"
-    ],
-    "edges": [
-      {
-        "lessonId": "JO-NATIONAL-G01-MATH-B01-U01-L02",
-        "dependsOn": "JO-NATIONAL-G01-MATH-B01-U01-L01",
-        "kind": "sequence"
+  "pathPattern": [
+    "Lesson",
+    "depends on",
+    "Lesson",
+    "depends on",
+    "Lesson"
+  ],
+  "nodes": [
+    {
+      "lessonId": "JO-NATIONAL-G01-MATH-B01-U01-L01",
+      "title": {
+        "en": "Lesson 1 — Count to three",
+        "ar": "الدرس 1 — العدّ حتى ثلاثة"
       },
-      {
-        "lessonId": "JO-NATIONAL-G01-MATH-B01-U01-L03",
-        "dependsOn": "JO-NATIONAL-G01-MATH-B01-U01-L02",
-        "kind": "sequence"
-      }
-    ]
-  },
-  "notes": "Unlock order follows path (root → tip). Dependency reading order follows displayPath (tip depends on …)."
+      "globalSubjectId": "SUB-00001",
+      "dependsOn": [],
+      "dependents": [
+        "JO-NATIONAL-G01-MATH-B01-U01-L02"
+      ]
+    },
+    {
+      "lessonId": "JO-NATIONAL-G01-MATH-B01-U01-L02",
+      "title": {
+        "en": "Lesson 2 — Count to five",
+        "ar": "الدرس 2 — العدّ حتى خمسة"
+      },
+      "globalSubjectId": "SUB-00001",
+      "dependsOn": [
+        "JO-NATIONAL-G01-MATH-B01-U01-L01"
+      ],
+      "dependents": [
+        "JO-NATIONAL-G01-MATH-B01-U01-L03"
+      ]
+    },
+    {
+      "lessonId": "JO-NATIONAL-G01-MATH-B01-U01-L03",
+      "title": {
+        "en": "Lesson 3 — Compare small sets",
+        "ar": "الدرس 3 — مقارنة مجموعات صغيرة"
+      },
+      "globalSubjectId": "SUB-00001",
+      "dependsOn": [
+        "JO-NATIONAL-G01-MATH-B01-U01-L02"
+      ],
+      "dependents": []
+    },
+    {
+      "lessonId": "JO-NATIONAL-G01-MATH-B01-U02-L01",
+      "title": {
+        "en": "Lesson 1 — Circles and squares",
+        "ar": "الدرس 1 — الدائرة والمربع"
+      },
+      "globalSubjectId": "SUB-00001",
+      "dependsOn": [],
+      "dependents": [
+        "JO-NATIONAL-G01-MATH-B01-U02-L02"
+      ]
+    },
+    {
+      "lessonId": "JO-NATIONAL-G01-MATH-B01-U02-L02",
+      "title": {
+        "en": "Lesson 2 — Triangles",
+        "ar": "الدرس 2 — المثلث"
+      },
+      "globalSubjectId": "SUB-00001",
+      "dependsOn": [
+        "JO-NATIONAL-G01-MATH-B01-U02-L01"
+      ],
+      "dependents": []
+    },
+    {
+      "lessonId": "JO-NATIONAL-G01-MATH-B02-U01-L01",
+      "title": {
+        "en": "Lesson 1 — Putting together",
+        "ar": "الدرس 1 — الجمع معًا"
+      },
+      "globalSubjectId": "SUB-00001",
+      "dependsOn": [],
+      "dependents": []
+    }
+  ],
+  "edges": [
+    {
+      "lessonId": "JO-NATIONAL-G01-MATH-B01-U01-L02",
+      "dependsOn": "JO-NATIONAL-G01-MATH-B01-U01-L01",
+      "kind": "sequence"
+    },
+    {
+      "lessonId": "JO-NATIONAL-G01-MATH-B01-U01-L03",
+      "dependsOn": "JO-NATIONAL-G01-MATH-B01-U01-L02",
+      "kind": "sequence"
+    },
+    {
+      "lessonId": "JO-NATIONAL-G01-MATH-B01-U02-L02",
+      "dependsOn": "JO-NATIONAL-G01-MATH-B01-U02-L01",
+      "kind": "sequence"
+    }
+  ],
+  "chains": [
+    {
+      "id": "chain_JO-NATIONAL-G01-MATH-B01-U01-L01_to_JO-NATIONAL-G01-MATH-B01-U01-L03",
+      "path": [
+        "JO-NATIONAL-G01-MATH-B01-U01-L01",
+        "JO-NATIONAL-G01-MATH-B01-U01-L02",
+        "JO-NATIONAL-G01-MATH-B01-U01-L03"
+      ],
+      "displayPath": [
+        "JO-NATIONAL-G01-MATH-B01-U01-L03",
+        "depends on",
+        "JO-NATIONAL-G01-MATH-B01-U01-L02",
+        "depends on",
+        "JO-NATIONAL-G01-MATH-B01-U01-L01"
+      ],
+      "nodes": [
+        {
+          "lessonId": "JO-NATIONAL-G01-MATH-B01-U01-L01",
+          "title": {
+            "en": "Lesson 1 — Count to three",
+            "ar": "الدرس 1 — العدّ حتى ثلاثة"
+          },
+          "globalSubjectId": "SUB-00001",
+          "dependsOn": [],
+          "dependents": [
+            "JO-NATIONAL-G01-MATH-B01-U01-L02"
+          ]
+        },
+        {
+          "lessonId": "JO-NATIONAL-G01-MATH-B01-U01-L02",
+          "title": {
+            "en": "Lesson 2 — Count to five",
+            "ar": "الدرس 2 — العدّ حتى خمسة"
+          },
+          "globalSubjectId": "SUB-00001",
+          "dependsOn": [
+            "JO-NATIONAL-G01-MATH-B01-U01-L01"
+          ],
+          "dependents": [
+            "JO-NATIONAL-G01-MATH-B01-U01-L03"
+          ]
+        },
+        {
+          "lessonId": "JO-NATIONAL-G01-MATH-B01-U01-L03",
+          "title": {
+            "en": "Lesson 3 — Compare small sets",
+            "ar": "الدرس 3 — مقارنة مجموعات صغيرة"
+          },
+          "globalSubjectId": "SUB-00001",
+          "dependsOn": [
+            "JO-NATIONAL-G01-MATH-B01-U01-L02"
+          ],
+          "dependents": []
+        }
+      ],
+      "edges": [
+        {
+          "lessonId": "JO-NATIONAL-G01-MATH-B01-U01-L02",
+          "dependsOn": "JO-NATIONAL-G01-MATH-B01-U01-L01",
+          "kind": "sequence"
+        },
+        {
+          "lessonId": "JO-NATIONAL-G01-MATH-B01-U01-L03",
+          "dependsOn": "JO-NATIONAL-G01-MATH-B01-U01-L02",
+          "kind": "sequence"
+        }
+      ]
+    },
+    {
+      "id": "chain_JO-NATIONAL-G01-MATH-B01-U02-L01_to_JO-NATIONAL-G01-MATH-B01-U02-L02",
+      "path": [
+        "JO-NATIONAL-G01-MATH-B01-U02-L01",
+        "JO-NATIONAL-G01-MATH-B01-U02-L02"
+      ],
+      "displayPath": [
+        "JO-NATIONAL-G01-MATH-B01-U02-L02",
+        "depends on",
+        "JO-NATIONAL-G01-MATH-B01-U02-L01"
+      ],
+      "nodes": [
+        {
+          "lessonId": "JO-NATIONAL-G01-MATH-B01-U02-L01",
+          "title": {
+            "en": "Lesson 1 — Circles and squares",
+            "ar": "الدرس 1 — الدائرة والمربع"
+          },
+          "globalSubjectId": "SUB-00001",
+          "dependsOn": [],
+          "dependents": [
+            "JO-NATIONAL-G01-MATH-B01-U02-L02"
+          ]
+        },
+        {
+          "lessonId": "JO-NATIONAL-G01-MATH-B01-U02-L02",
+          "title": {
+            "en": "Lesson 2 — Triangles",
+            "ar": "الدرس 2 — المثلث"
+          },
+          "globalSubjectId": "SUB-00001",
+          "dependsOn": [
+            "JO-NATIONAL-G01-MATH-B01-U02-L01"
+          ],
+          "dependents": []
+        }
+      ],
+      "edges": [
+        {
+          "lessonId": "JO-NATIONAL-G01-MATH-B01-U02-L02",
+          "dependsOn": "JO-NATIONAL-G01-MATH-B01-U02-L01",
+          "kind": "sequence"
+        }
+      ]
+    }
+  ],
+  "counts": {
+    "nodes": 6,
+    "edges": 3,
+    "chains": 2
+  }
 }

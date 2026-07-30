@@ -14,13 +14,16 @@ import {
   runJordanGrade1MathReference,
   runJordanPhase1Import,
   runJordanReferenceDataset,
+  runGlobalCurriculumRegistry,
   getGlobalSubjectRegistrySnapshot,
   resolveCountrySubject,
   getCrossCountryMathExamples,
   getGlobalSkillRegistrySnapshot,
   getMathSkillPathway,
+  buildKnowledgeGraph,
   buildStudentSkillProgress,
   buildJordanDemoStudentSkillProgress,
+  toStudentFoundation,
   buildJordanMathDependencyExample,
   buildLessonDependencyGraph,
 } from "@/lib/curriculum-import-engine";
@@ -64,11 +67,49 @@ export async function GET(req: Request) {
       note: "Jordan → رياضيات → SUB-00001 · USA → Mathematics → SUB-00001 · Egypt → رياضيات → SUB-00001",
     });
   }
+  if (action === "global-curriculum-registry") {
+    const result = runGlobalCurriculumRegistry({ reset: true });
+    return NextResponse.json({
+      ok: result.ok,
+      registry: result.registry,
+      discovery: result.discovery,
+      assertions: result.assertions,
+      note: "World → Country → Curriculum → Academic Year → Grade → Semester? → Subject → Book → Unit → Lesson → ILE Package",
+    });
+  }
+  if (action === "curriculum-discovery") {
+    const result = runGlobalCurriculumRegistry({ reset: true });
+    return NextResponse.json({
+      ok: result.ok,
+      discovery: result.discovery,
+      note: "Grades/subjects/books discovered from official sources only — never hardcoded.",
+    });
+  }
+  if (action === "knowledge-graph") {
+    runJordanReferenceDataset({ reset: true });
+    const graph = buildKnowledgeGraph({
+      lessonDependency: buildJordanMathDependencyExample(),
+    });
+    return NextResponse.json({
+      ok: true,
+      graph,
+      note: "Lesson → requires → Lesson · Skill → depends on → Skill",
+    });
+  }
+  if (action === "student-foundation") {
+    runJordanReferenceDataset({ reset: true });
+    const foundation = toStudentFoundation(buildJordanDemoStudentSkillProgress());
+    return NextResponse.json({
+      ok: true,
+      foundation,
+      note: "Data model only — Completed Lessons/Skills → Missing/Weak → Recommended → Learning Path",
+    });
+  }
   if (action === "global-skill-registry") {
     return NextResponse.json({
       ok: true,
       registry: getGlobalSkillRegistrySnapshot(),
-      note: "SKL-00001…SKL-00012 — append-only. Math pathway: Fractions → Decimals → Percentages → Algebra → Functions",
+      note: "SKL-00001…SKL-00016 — append-only. Math pathway: Fractions → Decimals → Percentages → Algebra → Functions",
     });
   }
   if (action === "skill-pathway") {
@@ -270,6 +311,15 @@ export async function POST(req: Request) {
     return NextResponse.json({
       ok: result.ok,
       note: "Jordan reference dataset — metadata standard + verified ILE example (no AI)",
+      result,
+    });
+  }
+
+  if (action === "run-global-curriculum-registry") {
+    const result = runGlobalCurriculumRegistry({ reset: true });
+    return NextResponse.json({
+      ok: result.ok,
+      note: "Global Curriculum Registry — dynamic discovery; Jordan is first implementation only",
       result,
     });
   }

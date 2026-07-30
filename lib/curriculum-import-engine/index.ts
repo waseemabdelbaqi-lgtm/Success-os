@@ -15,6 +15,7 @@ import {
 import { createImportJob, runImportJob, runJordanPhase1Import } from "./runner";
 import { runJordanGrade1MathReference } from "./reference/jordan-g1-math";
 import { runJordanReferenceDataset } from "./reference/jordan-dataset";
+import { runGlobalCurriculumRegistry } from "./reference/global-curriculum";
 import {
   getHierarchySnapshot,
   resetHierarchyRegistry,
@@ -36,9 +37,16 @@ import {
   resetGlobalSkillRegistry,
 } from "./hierarchy/global-skill-registry";
 import {
+  getGlobalCurriculumRegistrySnapshot,
+  resetGlobalCurriculumRegistry,
+} from "./hierarchy/global-curriculum-registry";
+import { discoverCurriculum } from "./discovery/discover";
+import { buildKnowledgeGraph } from "./knowledge-graph/build";
+import {
   buildJordanDemoStudentSkillProgress,
   buildStudentSkillProgress,
 } from "./student/skill-progress";
+import { toStudentFoundation, emptyStudentFoundation } from "./student/foundation";
 import {
   buildJordanMathDependencyExample,
   buildLessonDependencyGraph,
@@ -59,6 +67,7 @@ export {
   runJordanPhase1Import,
   runJordanGrade1MathReference,
   runJordanReferenceDataset,
+  runGlobalCurriculumRegistry,
   getHierarchySnapshot,
   resetHierarchyRegistry,
   getGlobalSubjectRegistrySnapshot,
@@ -73,8 +82,14 @@ export {
   MATH_SKILL_PATHWAY_IDS,
   resetGlobalSkillRegistry,
   defaultSkillIdsForSubject,
+  getGlobalCurriculumRegistrySnapshot,
+  resetGlobalCurriculumRegistry,
+  discoverCurriculum,
+  buildKnowledgeGraph,
   buildStudentSkillProgress,
   buildJordanDemoStudentSkillProgress,
+  toStudentFoundation,
+  emptyStudentFoundation,
   buildLessonDependencyGraph,
   buildJordanMathDependencyExample,
   resolveLessonDependsOn,
@@ -93,7 +108,7 @@ export function engineStatus() {
     role: "compiler",
     rendersLessons: false,
     runtime: "success-os.interactive-lesson-engine.v1",
-    adr: ["ADR-0049", "ADR-0050", "ADR-0050.1", "ADR-0050.2"],
+    adr: ["ADR-0049", "ADR-0050", "ADR-0050.1", "ADR-0050.2", "ADR-0050.3"],
     phase1: {
       country: "Jordan",
       curriculum: "Jordan National Curriculum",
@@ -101,6 +116,25 @@ export function engineStatus() {
       lessonRewrite: false,
       videoGeneration: false,
       quizGeneration: false,
+    },
+    globalCurriculumRegistry: {
+      schema: "success-os.global-curriculum-registry.v1",
+      hierarchy: [
+        "World",
+        "Country",
+        "Curriculum",
+        "Academic Year",
+        "Grade",
+        "Semester (if applicable)",
+        "Subject",
+        "Book",
+        "Unit",
+        "Lesson",
+        "ILE Package",
+      ],
+      jordanIsFirstImplementationOnly: true,
+      dynamicDiscovery: true,
+      noHardcodedSubjects: true,
     },
     referenceImplementation: {
       id: "jordan-g1-math",
@@ -121,16 +155,16 @@ export function engineStatus() {
       id: "jordan-reference-dataset.v1",
       grade: "Grade 1",
       subjects: [
-        "Mathematics",
-        "Physics",
-        "Chemistry",
-        "Biology",
         "Arabic",
         "English",
+        "Mathematics",
         "Science",
         "Islamic Education",
         "Social Studies",
+        "Art",
+        "Physical Education",
       ],
+      excludedUntilOfficial: ["Physics", "Chemistry", "Biology"],
       metadataOnly: true,
       aiGeneration: false,
       idConvention: {
@@ -146,6 +180,8 @@ export function engineStatus() {
       globalSkillRegistry: "success-os.global-skill-registry.v1",
       studentSkillProgress: "success-os.student-skill-progress.v1",
       lessonDependency: "success-os.lesson-dependency.v1",
+      studentFoundation: "success-os.student-foundation.v1",
+      knowledgeGraph: "success-os.knowledge-graph.v1",
     },
     globalSubjectRegistry: getGlobalSubjectRegistrySnapshot(),
     globalSkillRegistry: getGlobalSkillRegistrySnapshot(),
@@ -156,8 +192,10 @@ export function engineStatus() {
       "Missing Skills",
       "Weak Skills",
       "Recommended Lessons",
+      "Learning Path",
     ],
-    lessonDependencyPath: ["Lesson", "depends on", "Lesson", "depends on", "Lesson"],
+    lessonDependencyPath: ["Lesson", "requires", "Lesson", "requires", "Lesson"],
+    skillDependencyPath: ["Skill", "depends on", "Skill", "depends on", "Skill"],
     pipeline: IMPORT_PIPELINE.map((s) => s.id),
     connectors: listSourceConnectors().map((c) => ({
       id: c.id,
