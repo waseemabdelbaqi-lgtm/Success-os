@@ -20,9 +20,11 @@ import {
 import {
   CanonicalStatus,
   LiveProbeResult,
+  ProviderLifecycle,
   PROVIDER_FACTORY,
   PROVIDER_META,
   colorForStatus,
+  isGreenStatus,
   redactSecrets,
   toCanonicalStatus,
 } from "./status-model.js";
@@ -714,15 +716,16 @@ export async function runHealthCommand({
     providers: records,
     factories,
     alerts,
-    ready: records
+    ready: records.filter((r) => isGreenStatus(r.status)).map((r) => r.providerId),
+    certified: records
       .filter(
         (r) =>
-          r.status === CanonicalStatus.READY ||
-          r.status === CanonicalStatus.PRODUCTION_CERTIFIED,
+          r.status === CanonicalStatus.PRODUCTION_CERTIFIED ||
+          r.status === CanonicalStatus.MISSION_CRITICAL,
       )
       .map((r) => r.providerId),
-    certified: records
-      .filter((r) => r.status === CanonicalStatus.PRODUCTION_CERTIFIED)
+    missionCritical: records
+      .filter((r) => r.status === CanonicalStatus.MISSION_CRITICAL)
       .map((r) => r.providerId),
     vercelAutoDeployBlocked: true,
     secretsExposed: false,
@@ -740,16 +743,15 @@ export async function runHealthCommand({
           checkedAt,
           providers: records.map((r) => ({
             provider: r.providerId,
-            status:
-              r.status === CanonicalStatus.READY || r.status === CanonicalStatus.PRODUCTION_CERTIFIED
-                ? r.status === CanonicalStatus.PRODUCTION_CERTIFIED
+            status: isGreenStatus(r.status)
+              ? r.status === CanonicalStatus.MISSION_CRITICAL
+                ? "MISSION_CRITICAL"
+                : r.status === CanonicalStatus.PRODUCTION_CERTIFIED
                   ? "PRODUCTION_CERTIFIED"
                   : "READY"
-                : r.status,
+              : r.status,
             authenticationValid: r.authenticated,
-            minimalRequestPassed:
-              r.status === CanonicalStatus.READY ||
-              r.status === CanonicalStatus.PRODUCTION_CERTIFIED,
+            minimalRequestPassed: isGreenStatus(r.status),
             latencyMs: r.latencyMs === "NOT_TESTED" ? null : r.latencyMs,
             model: r.model === "NOT_TESTED" ? null : r.model,
             checkedAt: r.testedAt === "NOT_TESTED" ? checkedAt : r.testedAt,
@@ -757,26 +759,29 @@ export async function runHealthCommand({
             lastError: r.safeErrorMessage,
             lifecycleStage: r.lifecycleStage,
             productionCertified: r.productionCertified,
+            missionCritical: r.missionCritical,
           })),
           ready: state.ready,
           certified: state.certified,
+          missionCritical: state.missionCritical,
           dashboard: buildInfrastructureDashboard(
             records.map((r) => ({
               provider: r.providerId,
-              status: r.status === CanonicalStatus.READY ? "READY" : r.status,
+              status: r.status,
               authenticationValid: r.authenticated,
-              minimalRequestPassed: r.status === CanonicalStatus.READY,
+              minimalRequestPassed: isGreenStatus(r.status),
               latencyMs: r.latencyMs === "NOT_TESTED" ? null : r.latencyMs,
               model: r.model === "NOT_TESTED" ? null : r.model,
-              checkedAt: r.testedAt === "NOT_TESTED" ? null : r.testedAt,
+              checkedAt: r.testedAt === "NOT_TESTED" ? checkedAt : r.testedAt,
+              configured: r.credentialsDetected,
+              lastError: r.safeErrorMessage,
             })),
-            { checkedAt },
           ),
         },
         rootDir,
       );
     } catch {
-      /* legacy snapshot optional */
+      /* optional legacy writer */
     }
   }
 
@@ -798,8 +803,8 @@ export async function runHealthCommand({
 
 /**
  * Explicit PRODUCTION CERTIFIED approval.
- * Requires provider already READY (or LIVE VERIFIED with ready evidence).
- * Cannot certify from SLOT / CONFIGURED. Media also needs generationVerified.
+ * Requires provider already READY. Cannot certify from SLOT / NOT_CONFIGURED /
+ * CREDENTIALS_DETECTED / PROBE_RUNNING. Media also needs generationVerified.
  */
 export async function certifyProviders({
   providerIds = [],
@@ -823,7 +828,6 @@ export async function certifyProviders({
     return { ok: false, error: "PROVIDER_REQUIRED", certified: [] };
   }
 
-  const updated = [];
   const certified = [];
   const rejected = [];
   const byId = new Map(previous.providers.map((p) => [p.providerId, p]));
@@ -838,7 +842,10 @@ export async function certifyProviders({
     const readyEnough =
       prev.status === CanonicalStatus.READY ||
       prev.status === CanonicalStatus.PRODUCTION_CERTIFIED ||
-      (prev.lifecycleStage === "READY" || prev.lifecycleStage === "PRODUCTION_CERTIFIED");
+      prev.status === CanonicalStatus.MISSION_CRITICAL ||
+      prev.lifecycleStage === ProviderLifecycle.READY ||
+      prev.lifecycleStage === ProviderLifecycle.PRODUCTION_CERTIFIED ||
+      prev.lifecycleStage === ProviderLifecycle.MISSION_CRITICAL;
     if (!readyEnough) {
       rejected.push({
         providerId: id,
@@ -869,6 +876,7 @@ export async function certifyProviders({
         errorCode: "none",
         safeErrorMessage: "none",
         productionCertified: true,
+        missionCritical: prev.missionCritical === true,
         certifyNote: note,
         certifiedAt: new Date().toISOString(),
         consecutiveSuccesses: Math.max(Number(prev.consecutiveSuccesses || 0), 3),
@@ -877,7 +885,6 @@ export async function certifyProviders({
     );
     byId.set(id, rec);
     certified.push(id);
-    updated.push(rec);
   }
 
   const records = ALL_PROVIDER_IDS.map((id) => byId.get(id) || createEmptyProviderRecord(id));
@@ -889,15 +896,16 @@ export async function certifyProviders({
     providers: records,
     factories,
     alerts: previous.alerts || [],
-    ready: records
+    ready: records.filter((r) => isGreenStatus(r.status)).map((r) => r.providerId),
+    certified: records
       .filter(
         (r) =>
-          r.status === CanonicalStatus.READY ||
-          r.status === CanonicalStatus.PRODUCTION_CERTIFIED,
+          r.status === CanonicalStatus.PRODUCTION_CERTIFIED ||
+          r.status === CanonicalStatus.MISSION_CRITICAL,
       )
       .map((r) => r.providerId),
-    certified: records
-      .filter((r) => r.status === CanonicalStatus.PRODUCTION_CERTIFIED)
+    missionCritical: records
+      .filter((r) => r.status === CanonicalStatus.MISSION_CRITICAL)
       .map((r) => r.providerId),
     vercelAutoDeployBlocked: true,
     secretsExposed: false,
@@ -934,8 +942,157 @@ export async function certifyProviders({
     dashboard: buildDashboardFromState(state, rootDir),
     factories,
     ready: state.ready,
+    missionCritical: state.missionCritical,
     providers: records,
     rule: "PRODUCTION_CERTIFIED requires READY — no stage skipping",
+  };
+}
+
+/**
+ * Explicit MISSION CRITICAL ⭐⭐ elevation.
+ * Requires PRODUCTION CERTIFIED first — no skip from READY.
+ */
+export async function promoteMissionCritical({
+  providerIds = [],
+  rootDir = process.cwd(),
+  persist = true,
+  note = "explicit-admin-mission-critical",
+} = {}) {
+  const previous = loadHealthState(rootDir);
+  if (!previous?.providers?.length) {
+    return {
+      ok: false,
+      error: "NO_HEALTH_STATE",
+      message: "PRODUCTION CERTIFIED required before MISSION CRITICAL",
+      missionCritical: [],
+    };
+  }
+  const ids = (providerIds.length ? providerIds : []).map((id) =>
+    id === "claude" ? "anthropic" : id === "ollama-local" ? "ollama" : id,
+  );
+  if (!ids.length) {
+    return { ok: false, error: "PROVIDER_REQUIRED", missionCritical: [] };
+  }
+
+  const promoted = [];
+  const rejected = [];
+  const byId = new Map(previous.providers.map((p) => [p.providerId, p]));
+
+  for (const id of ids) {
+    const prev = byId.get(id);
+    if (!prev) {
+      rejected.push({ providerId: id, reason: "UNKNOWN_PROVIDER" });
+      continue;
+    }
+    const media = ["heygen", "elevenlabs", "openai-images", "blender"].includes(id);
+    const certifiedEnough =
+      prev.status === CanonicalStatus.PRODUCTION_CERTIFIED ||
+      prev.status === CanonicalStatus.MISSION_CRITICAL ||
+      prev.lifecycleStage === ProviderLifecycle.PRODUCTION_CERTIFIED ||
+      prev.lifecycleStage === ProviderLifecycle.MISSION_CRITICAL ||
+      prev.productionCertified === true;
+    if (!certifiedEnough) {
+      rejected.push({
+        providerId: id,
+        reason: "NOT_PRODUCTION_CERTIFIED",
+        status: prev.status,
+        lifecycleStage: prev.lifecycleStage,
+        message: "MISSION CRITICAL requires PRODUCTION CERTIFIED first — no stage skipping",
+      });
+      continue;
+    }
+    if (media && !prev.generationVerified) {
+      rejected.push({
+        providerId: id,
+        reason: "GENERATION_NOT_VERIFIED",
+        message: "Media providers require generationVerified before MISSION CRITICAL",
+      });
+      continue;
+    }
+
+    const rec = normalizeProviderRecord(
+      {
+        ...prev,
+        status: CanonicalStatus.PRODUCTION_CERTIFIED,
+        authenticated: true,
+        liveProbeExecuted: true,
+        liveProbe: LiveProbeResult.PASSED,
+        result: "success",
+        errorCode: "none",
+        safeErrorMessage: "none",
+        productionCertified: true,
+        missionCritical: true,
+        missionCriticalNote: note,
+        missionCriticalAt: new Date().toISOString(),
+        consecutiveSuccesses: Math.max(
+          Number(prev.consecutiveSuccesses || 0),
+          Number(process.env.AIOS_MISSION_CRITICAL_STREAK || 10),
+        ),
+      },
+      prev,
+    );
+    byId.set(id, rec);
+    promoted.push(id);
+  }
+
+  const records = ALL_PROVIDER_IDS.map((id) => byId.get(id) || createEmptyProviderRecord(id));
+  const checkedAt = new Date().toISOString();
+  const factories = computeFactoryReadiness(records);
+  const state = {
+    checkedAt,
+    mode: "mission-critical",
+    providers: records,
+    factories,
+    alerts: previous.alerts || [],
+    ready: records.filter((r) => isGreenStatus(r.status)).map((r) => r.providerId),
+    certified: records
+      .filter(
+        (r) =>
+          r.status === CanonicalStatus.PRODUCTION_CERTIFIED ||
+          r.status === CanonicalStatus.MISSION_CRITICAL,
+      )
+      .map((r) => r.providerId),
+    missionCritical: records
+      .filter((r) => r.status === CanonicalStatus.MISSION_CRITICAL)
+      .map((r) => r.providerId),
+    vercelAutoDeployBlocked: true,
+    secretsExposed: false,
+  };
+
+  let snapshotPath = null;
+  if (persist && promoted.length) {
+    snapshotPath = saveHealthState(state, rootDir);
+    appendHistory(
+      promoted.map((id) => {
+        const r = byId.get(id);
+        return {
+          providerId: id,
+          status: r.status,
+          liveProbe: r.liveProbe,
+          testedAt: r.testedAt,
+          latencyMs: r.latencyMs,
+          model: r.model,
+          safeErrorMessage: r.safeErrorMessage,
+          mode: "mission-critical",
+          lifecycleStage: r.lifecycleStage,
+        };
+      }),
+      rootDir,
+    );
+  }
+
+  return {
+    ok: promoted.length > 0,
+    missionCritical: promoted,
+    rejected,
+    checkedAt,
+    snapshotPath,
+    dashboard: buildDashboardFromState(state, rootDir),
+    factories,
+    ready: state.ready,
+    certified: state.certified,
+    providers: records,
+    rule: "MISSION_CRITICAL requires PRODUCTION_CERTIFIED — no stage skipping",
   };
 }
 

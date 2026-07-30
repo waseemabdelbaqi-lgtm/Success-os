@@ -30,7 +30,12 @@ export {
   AI_INFRASTRUCTURE_DISPLAY_IDS,
 } from "./providers/live-status.js";
 export { runInfrastructureHealthChecks } from "./providers/infra-health.js";
-export { runHealthCommand, computeFactoryReadiness } from "./providers/health-runner.js";
+export {
+  runHealthCommand,
+  computeFactoryReadiness,
+  certifyProviders,
+  promoteMissionCritical,
+} from "./providers/health-runner.js";
 export {
   loadHealthState,
   buildDashboardFromState,
@@ -41,11 +46,14 @@ export {
   LiveProbeResult,
   ProviderLifecycle,
   LIFECYCLE_LADDER,
+  LIFECYCLE_LADDER_LABELS,
   colorForStatus,
   colorForLifecycle,
   deriveLifecycleStage,
   hasReadyEvidence,
   hasProductionCertificationEvidence,
+  hasMissionCriticalEvidence,
+  isGreenStatus,
   redactSecrets,
   HEALTH_SCHEMA_VERSION,
 } from "./providers/status-model.js";

@@ -7,6 +7,7 @@ import path from "node:path";
 import {
   CanonicalStatus,
   HEALTH_SCHEMA_VERSION,
+  LIFECYCLE_LADDER_LABELS,
   LiveProbeResult,
   ProviderLifecycle,
   colorForLifecycle,
@@ -14,6 +15,7 @@ import {
   deriveLifecycleStage,
   emptyResultFields,
   hasReadyEvidence,
+  isGreenStatus,
   lifecycleProgress,
   PROVIDER_FACTORY,
   PROVIDER_META,
@@ -96,6 +98,7 @@ export function createEmptyProviderRecord(providerId) {
     lifecycleStage: ProviderLifecycle.SLOT,
     lifecycleProgress: lifecycleProgress(ProviderLifecycle.SLOT),
     productionCertified: false,
+    missionCritical: false,
     displayColor: colorForStatus(CanonicalStatus.NOT_TESTED),
     healthSchemaVersion: HEALTH_SCHEMA_VERSION,
   };
@@ -190,13 +193,14 @@ export function normalizeProviderRecord(partial = {}, previous = null) {
   if (
     status === CanonicalStatus.READY ||
     status === CanonicalStatus.PRODUCTION_CERTIFIED ||
+    status === CanonicalStatus.MISSION_CRITICAL ||
     status === CanonicalStatus.LIVE_VERIFIED
   ) {
     record.errorCode = record.errorCode === "NOT_TESTED" ? "none" : record.errorCode;
     record.safeErrorMessage =
       record.safeErrorMessage === "NOT_TESTED" ? "none" : record.safeErrorMessage;
     if (
-      (status === CanonicalStatus.READY || status === CanonicalStatus.PRODUCTION_CERTIFIED) &&
+      isGreenStatus(status) &&
       !hasReadyEvidence({
         ...record,
         status: CanonicalStatus.READY,
@@ -211,12 +215,9 @@ export function normalizeProviderRecord(partial = {}, previous = null) {
     }
   }
 
-  // Consecutive counters (before lifecycle so streak informs PRODUCTION_CERTIFIED)
+  // Consecutive counters (before lifecycle so streak informs certification tiers)
   if (previous) {
-    if (
-      record.status === CanonicalStatus.READY ||
-      record.status === CanonicalStatus.PRODUCTION_CERTIFIED
-    ) {
+    if (isGreenStatus(record.status)) {
       record.consecutiveSuccesses = (previous.consecutiveSuccesses || 0) + 1;
       record.consecutiveFailures = 0;
       record.lastSuccessfulProbeAt = record.testedAt;
@@ -242,22 +243,32 @@ export function normalizeProviderRecord(partial = {}, previous = null) {
       if (previous.lastSuccessfulProbeAt) record.lastSuccessfulProbeAt = previous.lastSuccessfulProbeAt;
       if (previous.lastFailedProbeAt) record.lastFailedProbeAt = previous.lastFailedProbeAt;
     }
-  } else if (
-    record.status === CanonicalStatus.READY ||
-    record.status === CanonicalStatus.PRODUCTION_CERTIFIED
-  ) {
+  } else if (isGreenStatus(record.status)) {
     record.consecutiveSuccesses = 1;
     record.lastSuccessfulProbeAt = record.testedAt;
   }
 
+  // Elevation flags from previous/partial are already on `record` via spread;
+  // deriveLifecycleStage reads them before we recompute display flags.
   record.lifecycleStage = deriveLifecycleStage(record, previous?.lifecycleStage || null);
   record.lifecycleProgress = lifecycleProgress(record.lifecycleStage);
-  record.productionCertified = record.lifecycleStage === ProviderLifecycle.PRODUCTION_CERTIFIED;
+  record.missionCritical = record.lifecycleStage === ProviderLifecycle.MISSION_CRITICAL;
+  record.productionCertified =
+    record.missionCritical ||
+    record.lifecycleStage === ProviderLifecycle.PRODUCTION_CERTIFIED;
 
-  // Elevate status to PRODUCTION_CERTIFIED when lifecycle reaches the star tier
+  // Elevate status to match lifecycle star tiers
   if (
+    record.missionCritical &&
+    (record.status === CanonicalStatus.READY ||
+      record.status === CanonicalStatus.PRODUCTION_CERTIFIED ||
+      record.status === CanonicalStatus.MISSION_CRITICAL)
+  ) {
+    record.status = CanonicalStatus.MISSION_CRITICAL;
+  } else if (
     record.productionCertified &&
-    (record.status === CanonicalStatus.READY || record.status === CanonicalStatus.PRODUCTION_CERTIFIED)
+    (record.status === CanonicalStatus.READY ||
+      record.status === CanonicalStatus.PRODUCTION_CERTIFIED)
   ) {
     record.status = CanonicalStatus.PRODUCTION_CERTIFIED;
   }
@@ -274,10 +285,8 @@ export function evaluateAlerts(previousState, nextRecords) {
   for (const rec of nextRecords) {
     const prev = prevMap.get(rec.providerId);
     if (
-      (prev?.status === CanonicalStatus.READY ||
-        prev?.status === CanonicalStatus.PRODUCTION_CERTIFIED) &&
-      rec.status !== CanonicalStatus.READY &&
-      rec.status !== CanonicalStatus.PRODUCTION_CERTIFIED &&
+      isGreenStatus(prev?.status) &&
+      !isGreenStatus(rec.status) &&
       rec.status !== CanonicalStatus.NOT_CONFIGURED &&
       rec.status !== CanonicalStatus.SLOT &&
       rec.status !== CanonicalStatus.NOT_TESTED
@@ -425,6 +434,7 @@ export function buildDashboardFromState(state, rootDir = process.cwd()) {
         .map((s) => (s.current ? `[${s.label}${s.mark ? ` ${s.mark}` : ""}]` : s.reached ? s.label : "·"))
         .join(" → "),
       productionCertified: Boolean(rec.productionCertified),
+      missionCritical: Boolean(rec.missionCritical),
       "Last Tested": rec.testedAt,
       Result: rec.result,
       Latency: rec.latencyMs === "NOT_TESTED" || rec.latencyMs == null ? "NOT_TESTED" : `${rec.latencyMs} ms`,
@@ -439,18 +449,18 @@ export function buildDashboardFromState(state, rootDir = process.cwd()) {
   return {
     rule: "GREEN_ONLY_AFTER_LIVE_AUTHENTICATED_SUCCESS",
     ruleAr: "لا يظهر أي مزود باللون الأخضر إلا إذا نجح طلب حي موثّق خلال آخر فحص.",
-    lifecycleLadder: [
-      "SLOT",
-      "CONFIGURED",
-      "LIVE VERIFIED",
-      "READY",
-      "PRODUCTION CERTIFIED ⭐",
-    ],
+    lifecycleLadder: [...LIFECYCLE_LADDER_LABELS],
     checkedAt: state?.checkedAt || null,
     source: state ? "persisted-probe-state" : "empty-not-tested",
     greenCount: providers.filter((p) => p.displayColor === "green").length,
-    certifiedCount: providers.filter((p) => p.lifecycleStage === ProviderLifecycle.PRODUCTION_CERTIFIED)
-      .length,
+    certifiedCount: providers.filter(
+      (p) =>
+        p.lifecycleStage === ProviderLifecycle.PRODUCTION_CERTIFIED ||
+        p.lifecycleStage === ProviderLifecycle.MISSION_CRITICAL,
+    ).length,
+    missionCriticalCount: providers.filter(
+      (p) => p.lifecycleStage === ProviderLifecycle.MISSION_CRITICAL,
+    ).length,
     providers,
     alerts: state?.alerts || [],
     healthSchemaVersion: HEALTH_SCHEMA_VERSION,

@@ -40,7 +40,13 @@ function readJson(rel) {
 }
 
 function colorForStatus(status) {
-  if (status === "READY" || status === "PRODUCTION_CERTIFIED") return "green";
+  if (
+    status === "READY" ||
+    status === "PRODUCTION_CERTIFIED" ||
+    status === "MISSION_CRITICAL"
+  ) {
+    return "green";
+  }
   if (
     [
       "DEGRADED",
@@ -122,8 +128,9 @@ function buildDashboard(state) {
               s.current ? `[${s.label}${s.mark ? ` ${s.mark}` : ""}]` : s.reached ? s.label : "·",
             )
             .join(" → ")
-        : "SLOT → CONFIGURED → LIVE VERIFIED → READY → PRODUCTION CERTIFIED ⭐",
+        : "SLOT → NOT_CONFIGURED → CREDENTIALS_DETECTED → PROBE_RUNNING → READY 🟢 → PRODUCTION_CERTIFIED ⭐ → MISSION_CRITICAL ⭐⭐",
       productionCertified: Boolean(rec.productionCertified),
+      missionCritical: Boolean(rec.missionCritical),
       "Last Tested": rec.testedAt || "NOT_TESTED",
       Result: rec.result || "NOT_TESTED",
       Latency:
@@ -142,15 +149,21 @@ function buildDashboard(state) {
     ruleAr: "لا يظهر أي مزود باللون الأخضر إلا إذا نجح طلب حي موثّق خلال آخر فحص.",
     lifecycleLadder: [
       "SLOT",
-      "CONFIGURED",
-      "LIVE VERIFIED",
-      "READY",
-      "PRODUCTION CERTIFIED ⭐",
+      "NOT_CONFIGURED",
+      "CREDENTIALS_DETECTED",
+      "PROBE_RUNNING",
+      "READY 🟢",
+      "PRODUCTION_CERTIFIED ⭐",
+      "MISSION_CRITICAL ⭐⭐",
     ],
     checkedAt: state?.checkedAt || null,
     source: state ? "persisted-probe-state" : "empty-not-tested",
     greenCount: providers.filter((p) => p.displayColor === "green").length,
-    certifiedCount: providers.filter((p) => p.Lifecycle === "PRODUCTION_CERTIFIED").length,
+    certifiedCount: providers.filter(
+      (p) =>
+        p.Lifecycle === "PRODUCTION_CERTIFIED" || p.Lifecycle === "MISSION_CRITICAL",
+    ).length,
+    missionCriticalCount: providers.filter((p) => p.Lifecycle === "MISSION_CRITICAL").length,
     providers,
     factories: state?.factories || null,
     factoryReadiness: state?.factories || null,
@@ -167,6 +180,8 @@ function buildDashboard(state) {
       "View Probe Details",
       "View Error",
       "Copy Safe Diagnostic Report",
+      "PRODUCTION CERTIFIED ⭐",
+      "MISSION CRITICAL ⭐⭐",
     ],
   };
 }
@@ -248,6 +263,58 @@ export async function POST(request) {
         },
         { status: 403 },
       );
+    }
+    if (body.action === "mission-critical") {
+      const provider = body.provider;
+      if (!provider) {
+        return Response.json(
+          {
+            ok: false,
+            error: "PROVIDER_REQUIRED",
+            message: "mission-critical requires provider id",
+          },
+          { status: 400 },
+        );
+      }
+      const promoted = await new Promise((resolve, reject) => {
+        const args = [
+          path.join(rootDir, "enterprise-ai/src/cli.js"),
+          "--health",
+          `--provider=${provider}`,
+          "--mission-critical",
+          "--json",
+        ];
+        const child = spawn(process.execPath, args, {
+          cwd: rootDir,
+          env: { ...process.env },
+          stdio: ["ignore", "pipe", "pipe"],
+        });
+        let stdout = "";
+        let stderr = "";
+        child.stdout.on("data", (d) => {
+          stdout += d;
+        });
+        child.stderr.on("data", (d) => {
+          stderr += d;
+        });
+        child.on("error", reject);
+        child.on("close", (code) => {
+          try {
+            resolve(JSON.parse(stdout));
+          } catch {
+            reject(new Error(`MISSION_CRITICAL_CLI_FAILED code=${code} ${stderr.slice(0, 200)}`));
+          }
+        });
+      });
+      const state = readJson(STATE_REL);
+      const dashboard = buildDashboard(state);
+      return Response.json({
+        ...dashboard,
+        ...promoted,
+        source: "mission-critical",
+        vercelAutoDeployBlocked: true,
+        secretsExposed: false,
+      });
     }
     if (body.action === "certify") {
       const provider = body.provider;

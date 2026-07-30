@@ -109,15 +109,18 @@ export function AiInfrastructurePanel() {
         </p>
         <p style={{ color: '#6b7280', fontSize: 13, margin: '0.35rem 0 0' }}>
           المصدر: {cell(data?.source)} · أخضر: {data?.greenCount ?? 0} · معتمد ⭐:{' '}
-          {data?.certifiedCount ?? 0} · آخر فحص: {cell(data?.checkedAt)}
+          {data?.certifiedCount ?? 0} · حرج ⭐⭐: {data?.missionCriticalCount ?? 0} · آخر فحص:{' '}
+          {cell(data?.checkedAt)}
         </p>
         <p style={{ color: '#374151', fontSize: 12, margin: '0.5rem 0 0', letterSpacing: 0.2 }}>
           {(data?.lifecycleLadder || [
             'SLOT',
-            'CONFIGURED',
-            'LIVE VERIFIED',
-            'READY',
-            'PRODUCTION CERTIFIED ⭐',
+            'NOT_CONFIGURED',
+            'CREDENTIALS_DETECTED',
+            'PROBE_RUNNING',
+            'READY 🟢',
+            'PRODUCTION_CERTIFIED ⭐',
+            'MISSION_CRITICAL ⭐⭐',
           ]).join(' → ')}
         </p>
       </header>
@@ -182,6 +185,15 @@ export function AiInfrastructurePanel() {
           title="Requires READY first"
         >
           PRODUCTION CERTIFIED ⭐
+        </button>
+        <button
+          type="button"
+          disabled={busy || !providerFilter.trim()}
+          onClick={() => run({ action: 'mission-critical', provider: providerFilter.trim() })}
+          style={btnPrimary()}
+          title="Requires PRODUCTION CERTIFIED first"
+        >
+          MISSION CRITICAL ⭐⭐
         </button>
         <select
           value={factoryFilter}
@@ -261,7 +273,11 @@ export function AiInfrastructurePanel() {
                     <span style={{ display: 'inline-flex', alignItems: 'center' }}>
                       <Dot color={p.displayColor} />
                       {cell(p.Provider || p.displayName || p.id)}
-                      {p.productionCertified || p.Lifecycle === 'PRODUCTION_CERTIFIED' ? (
+                      {p.missionCritical || p.Lifecycle === 'MISSION_CRITICAL' ? (
+                        <span style={{ marginInlineStart: 6 }} title="MISSION CRITICAL">
+                          ⭐⭐
+                        </span>
+                      ) : p.productionCertified || p.Lifecycle === 'PRODUCTION_CERTIFIED' ? (
                         <span style={{ marginInlineStart: 6 }} title="PRODUCTION CERTIFIED">
                           ⭐
                         </span>
@@ -324,6 +340,8 @@ export function AiInfrastructurePanel() {
                         busy ||
                         p.productionCertified ||
                         p.Lifecycle === 'PRODUCTION_CERTIFIED' ||
+                        p.missionCritical ||
+                        p.Lifecycle === 'MISSION_CRITICAL' ||
                         !(
                           p.Status === 'READY' ||
                           p.status === 'READY' ||
@@ -335,6 +353,24 @@ export function AiInfrastructurePanel() {
                       onClick={() => run({ action: 'certify', provider: p.providerId })}
                     >
                       ⭐ Certify
+                    </button>
+                    <button
+                      type="button"
+                      style={btnSmall()}
+                      disabled={
+                        busy ||
+                        p.missionCritical ||
+                        p.Lifecycle === 'MISSION_CRITICAL' ||
+                        !(
+                          p.productionCertified ||
+                          p.Lifecycle === 'PRODUCTION_CERTIFIED' ||
+                          p.Status === 'PRODUCTION_CERTIFIED'
+                        )
+                      }
+                      title="Promote PRODUCTION CERTIFIED → MISSION CRITICAL ⭐⭐"
+                      onClick={() => run({ action: 'mission-critical', provider: p.providerId })}
+                    >
+                      ⭐⭐ Critical
                     </button>
                   </td>
                 </tr>

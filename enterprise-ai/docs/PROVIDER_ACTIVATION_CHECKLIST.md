@@ -5,41 +5,47 @@
 ```
 SLOT
   ↓
-CONFIGURED
+NOT_CONFIGURED
   ↓
-LIVE VERIFIED
+CREDENTIALS_DETECTED
   ↓
-READY          ← dashboard green
+PROBE_RUNNING
   ↓
-PRODUCTION CERTIFIED ⭐
+READY 🟢
+  ↓
+PRODUCTION_CERTIFIED ⭐
+  ↓
+MISSION_CRITICAL ⭐⭐
 ```
 
 | Stage | Meaning | Colour |
 |-------|---------|--------|
-| **SLOT** | Listed in config; no usable credentials/adapter yet | grey |
-| **CONFIGURED** | Credentials/package detected — never green alone | yellow |
-| **LIVE VERIFIED** | Authenticated live probe succeeded | yellow |
-| **READY** | Live verified + persisted evidence complete | **green** |
-| **PRODUCTION CERTIFIED ⭐** | READY + stability streak (default 3) and/or explicit certify flag; media also needs `generationVerified` | **green + ⭐** |
+| **SLOT** | Listed in config; no usable adapter yet | grey |
+| **NOT_CONFIGURED** | Adapter present; credentials missing | grey |
+| **CREDENTIALS_DETECTED** | Credentials/package detected — never green alone | yellow |
+| **PROBE_RUNNING** | Live probe in progress or intermediate after credentials | yellow |
+| **READY 🟢** | Live verified + persisted evidence complete | **green** |
+| **PRODUCTION_CERTIFIED ⭐** | READY + stability streak (default 3) and/or explicit certify | **green + ⭐** |
+| **MISSION_CRITICAL ⭐⭐** | PRODUCTION_CERTIFIED + explicit elevation (or high streak) | **green + ⭐⭐** |
 
-No provider may jump from SLOT/CONFIGURED to READY or PRODUCTION CERTIFIED.
+No provider may jump stages. Green is only READY / PRODUCTION_CERTIFIED / MISSION_CRITICAL.
 
 **Rule:** No provider may skip from `SLOT` / `NOT_CONFIGURED` / `CREDENTIALS_DETECTED` to `READY`.
 
 Every provider must pass, in order:
 
-1. **Configuration detected** — required env vars present (no secrets logged) → CONFIGURED
-2. **Authentication probe** — authenticated, non-destructive API/local call
-3. **Capability probe** — minimal capability confirmed (not paid media generation) → LIVE VERIFIED
-4. **Persisted evidence** — written to health state store → READY
-5. **Dashboard READY** — green only when evidence is complete
-6. **Production certification** — consecutive successful probes and/or `AIOS_CERTIFY_<PROVIDER>=true` → ⭐
+1. **Slot / adapter** — provider listed → SLOT or NOT_CONFIGURED
+2. **Credentials detected** — required env vars present (no secrets logged) → CREDENTIALS_DETECTED
+3. **Live probe** — authenticated, non-destructive API/local call → PROBE_RUNNING → READY
+4. **Persisted evidence** — written to health state store → READY 🟢
+5. **Production certification** — consecutive successes and/or `--certify` / `AIOS_CERTIFY_<PROVIDER>=true` → ⭐
+6. **Mission critical** — PRODUCTION_CERTIFIED + `--mission-critical` / `AIOS_MISSION_CRITICAL_<PROVIDER>=true` → ⭐⭐
 
 ## Required activation order
 
 | # | Provider | Factory | Notes |
 |---|----------|---------|--------|
-| 1 | Playwright | infrastructure | Local Chromium smoke — **current checkpoint** |
+| 1 | Playwright | infrastructure | Local Chromium smoke |
 | 2 | Supabase | infrastructure | Authorised read; service-role server-only |
 | 3 | GitHub | infrastructure | Authenticated user/repo read; no commits/PRs |
 | 4 | OpenAI | coding / education | Minimal text; configured model required |
@@ -57,10 +63,11 @@ Every provider must pass, in order:
 
 ```
 SLOT / NOT_INSTALLED
-  → CONFIGURED (package available; CREDENTIALS_NOT_REQUIRED)
-  → LIVE VERIFIED (Chromium launch + local smoke passed)
-  → READY (evidence persisted — dashboard green)
-  → PRODUCTION CERTIFIED ⭐ (after certify streak / explicit flag)
+  → NOT_CONFIGURED / CREDENTIALS_DETECTED (package available; CREDENTIALS_NOT_REQUIRED)
+  → PROBE_RUNNING (Chromium launch in progress)
+  → READY 🟢 (evidence persisted — dashboard green)
+  → PRODUCTION_CERTIFIED ⭐ (after certify streak / explicit --certify)
+  → MISSION_CRITICAL ⭐⭐ (after --mission-critical / high streak)
 ```
 
 Failure statuses (examples): `BROWSER_NOT_INSTALLED`, `BROWSER_LAUNCH_FAILED`,
@@ -88,6 +95,9 @@ npm run ai:aios:health -- --mode=live --provider=playwright
 
 # Explicit PRODUCTION CERTIFIED ⭐ (requires READY first)
 npm run ai:aios:health -- --provider=playwright --certify
+
+# Explicit MISSION CRITICAL ⭐⭐ (requires PRODUCTION CERTIFIED first)
+npm run ai:aios:health -- --provider=playwright --mission-critical
 
 # Full live sweep
 npm run ai:aios:health -- --mode=live
