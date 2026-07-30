@@ -91,20 +91,19 @@ def draw_watermark(page: fitz.Page) -> None:
 def draw_header_footer(page: fitz.Page, page_no: int, total: int) -> None:
     font = pdf_font(LIB_BOLD)
     tw = fitz.TextWriter(page.rect)
-    fs = 8.2
+    fs = 7.8
     w = font.text_length(HEADER, fontsize=fs)
-    tw.append(((page.rect.width - w) / 2, 44), HEADER, font=font, fontsize=fs)
+    tw.append(((page.rect.width - w) / 2, 40), HEADER, font=font, fontsize=fs)
     tw.write_text(page, color=BURGUNDY)
     font2 = pdf_font(LIB)
-    fw = font2.text_length(FOOTER, fontsize=7.5)
+    fw = font2.text_length(FOOTER, fontsize=7.0)
     tw2 = fitz.TextWriter(page.rect)
-    tw2.append(((page.rect.width - fw) / 2, page.rect.height - 36), FOOTER, font=font2, fontsize=7.5)
+    tw2.append(((page.rect.width - fw) / 2, page.rect.height - 30), FOOTER, font=font2, fontsize=7.0)
     pg = f"{page_no} / {total}"
-    pw = font2.text_length(pg, fontsize=7.5)
-    tw2.append(((page.rect.width - pw) / 2, page.rect.height - 24), pg, font=font2, fontsize=7.5)
+    pw = font2.text_length(pg, fontsize=7.0)
+    tw2.append(((page.rect.width - pw) / 2, page.rect.height - 18), pg, font=font2, fontsize=7.0)
     tw2.write_text(page, color=GREY)
-    # gold rule under header
-    page.draw_line(fitz.Point(48, 50), fitz.Point(page.rect.width - 48, 50), color=GOLD, width=0.7)
+    page.draw_line(fitz.Point(42, 46), fitz.Point(page.rect.width - 42, 46), color=GOLD, width=0.65)
 
 
 def new_page(doc: fitz.Document) -> fitz.Page:
@@ -114,7 +113,7 @@ def new_page(doc: fitz.Document) -> fitz.Page:
     return page
 
 
-def draw_rtl(page, y, text, size, color_rgb, bold=False, right=48, left=48, align="right"):
+def draw_rtl(page, y, text, size, color_rgb, bold=False, right=42, left=42, align="right"):
     ff = AMIRI_BOLD if bold else AMIRI
     shaped = shape_ar(text)
     font = pdf_font(ff)
@@ -137,7 +136,7 @@ def draw_en(page, y, text, size, color_rgb, bold=False, align="center"):
     if align == "center":
         x = (page.rect.width - w) / 2
     else:
-        x = 48
+        x = 42
     tw = fitz.TextWriter(page.rect)
     tw.append((x, y), text, font=font, fontsize=size)
     tw.write_text(page, color=[c / 255 for c in color_rgb])
@@ -160,15 +159,15 @@ def wrap_ar(text, size, max_w, bold=False):
     return lines
 
 
-def draw_wrapped(page, y, text, size, color_rgb, max_w, bold=False, right=48, line_h=None, align="right"):
-    line_h = line_h or size * 1.55
+def draw_wrapped(page, y, text, size, color_rgb, max_w, bold=False, right=42, line_h=None, align="right"):
+    line_h = line_h or size * 1.32
     for line in wrap_ar(text, size, max_w, bold):
         draw_rtl(page, y, line, size, color_rgb, bold=bold, right=right, align=align)
         y += line_h
     return y
 
 
-def draw_bullet(page, y, text, size=10.5, max_w=500, right=48):
+def draw_bullet(page, y, text, size=10, max_w=510, right=42):
     font = pdf_font(AMIRI)
     bullet = "•"
     bw = font.text_length(bullet, fontsize=size)
@@ -176,31 +175,30 @@ def draw_bullet(page, y, text, size=10.5, max_w=500, right=48):
     tw = fitz.TextWriter(page.rect)
     tw.append((bx, y), bullet, font=font, fontsize=size)
     tw.write_text(page, color=DARK)
-    y2 = draw_wrapped(page, y, text, size, DARK_RGB, max_w - bw - 8, right=right + bw + 7, line_h=size * 1.45)
+    y2 = draw_wrapped(page, y, text, size, DARK_RGB, max_w - bw - 6, right=right + bw + 6, line_h=size * 1.28)
     return y2
 
 
-def draw_title(page, y, num, title, size=13.5):
-    # number pinned right
+def draw_title(page, y, num, title, size=12.2):
     font = pdf_font(AMIRI_BOLD)
     num_s = f"{num}."
     nw = font.text_length(num_s, fontsize=size)
     tw = fitz.TextWriter(page.rect)
-    tw.append((page.rect.width - 48 - nw, y), num_s, font=font, fontsize=size)
+    tw.append((page.rect.width - 42 - nw, y), num_s, font=font, fontsize=size)
     tw.write_text(page, color=BURGUNDY)
-    y = draw_wrapped(page, y, title, size, BURGUNDY_RGB, 500 - nw - 8, bold=True, right=48 + nw + 8, line_h=size * 1.5)
-    page.draw_line(fitz.Point(48, y + 2), fitz.Point(page.rect.width - 48, y + 2), color=GOLD, width=0.9)
-    return y + 14
+    y = draw_wrapped(page, y, title, size, BURGUNDY_RGB, 510 - nw - 6, bold=True, right=42 + nw + 6, line_h=size * 1.35)
+    page.draw_line(fitz.Point(42, y + 1), fitz.Point(page.rect.width - 42, y + 1), color=GOLD, width=0.75)
+    return y + 9
 
 
-def ensure(doc, page, y, need=70):
-    if y > 780 - need:
+def ensure(doc, page, y, need=55):
+    if y > 812 - need:
         page = new_page(doc)
-        return page, 62.0
+        return page, 56.0
     return page, y
 
 
-def insert_chart(page, y, path: Path, max_w=500):
+def insert_chart(page, y, path: Path, max_w=440):
     if not path.exists():
         return y
     img = fitz.open(path)
@@ -209,19 +207,24 @@ def insert_chart(page, y, path: Path, max_w=500):
     finally:
         img.close()
     h = max_w * aspect
+    # if chart too tall for remaining space, shrink width
+    remain = 800 - y
+    if h > remain - 20 and remain > 80:
+        max_w = max(280, max_w * (remain - 20) / h)
+        h = max_w * aspect
     x0 = (page.rect.width - max_w) / 2
     page.insert_image(fitz.Rect(x0, y, x0 + max_w, y + h), filename=str(path), keep_proportion=True)
-    return y + h + 10
+    return y + h + 6
 
 
 def draw_table(page, y, headers, rows, col_w=None, doc=None):
     """Simple RTL table as stacked cards if many cols; otherwise grid."""
     page_w = page.rect.width
-    left, right = 48, 48
+    left, right = 42, 42
     usable = page_w - left - right
     n = len(headers)
     widths = col_w or [usable / n] * n
-    row_h_min = 22
+    row_h_min = 17
 
     def draw_row(vals, header=False, yy=None):
         nonlocal page, y
@@ -232,7 +235,7 @@ def draw_table(page, y, headers, rows, col_w=None, doc=None):
             lines = wrap_ar(val, 8.5 if not header else 9, widths[i] - 10, bold=header)
             cells_lines.append(lines)
             max_lines = max(max_lines, len(lines))
-        h = max(row_h_min, max_lines * 12 + 10)
+        h = max(row_h_min, max_lines * 10.2 + 6)
         if doc is not None:
             page, yy = ensure(doc, page, yy if yy is not None else y, h + 8)
             y = yy
@@ -281,12 +284,12 @@ def build_pdf(charts: dict[str, Path]) -> Path:
     page = track(new_page(doc))
     logo = ASSETS / "success4sure_logo.png"
     if logo.exists():
-        page.insert_image(fitz.Rect(210, 70, 385, 245), filename=str(logo), keep_proportion=True)
-    draw_en(page, 270, "SUCCESS 4 SURE", 11, GREY_RGB, bold=True)
-    draw_en(page, 286, "Strategic Implementation Partner", 9, GOLD_RGB)
-    page.draw_line(fitz.Point(120, 300), fitz.Point(475, 300), color=GOLD, width=1.0)
-    draw_en(page, 330, "OMAREYAH INTERNATIONAL DIVISION", 16, BURGUNDY_RGB, bold=True)
-    y = draw_wrapped(page, 365, "مخطط التحول التعليمي التنفيذي", 20, BURGUNDY_RGB, 460, bold=True, align="center", line_h=28)
+        page.insert_image(fitz.Rect(230, 55, 365, 190), filename=str(logo), keep_proportion=True)
+    draw_en(page, 205, "SUCCESS 4 SURE", 10, GREY_RGB, bold=True)
+    draw_en(page, 220, "Strategic Implementation Partner", 8.5, GOLD_RGB)
+    page.draw_line(fitz.Point(120, 232), fitz.Point(475, 232), color=GOLD, width=0.9)
+    draw_en(page, 255, "OMAREYAH INTERNATIONAL DIVISION", 14, BURGUNDY_RGB, bold=True)
+    y = draw_wrapped(page, 280, "مخطط التحول التعليمي التنفيذي", 17, BURGUNDY_RGB, 470, bold=True, align="center", line_h=23)
     y = draw_wrapped(page, y + 6, "وثيقة استراتيجية لمجلس الإدارة", 13, DARK_RGB, 460, bold=True, align="center")
     y = draw_wrapped(
         page,
@@ -307,11 +310,29 @@ def build_pdf(charts: dict[str, Path]) -> Path:
         bold=True,
         align="center",
     )
-    draw_wrapped(page, 720, "إعداد: الأستاذ وسيم اللبدي — سري لمجلس الإدارة", 11, GREY_RGB, 460, align="center")
+    
+    y_auth = min(y + 28, 480)
+    draw_wrapped(page, y_auth, "إعداد: الأستاذ وسيم اللبدي — سري لمجلس الإدارة", 10.5, GREY_RGB, 460, align="center")
+    # Compact contents to fill cover whitespace
+    yb = y_auth + 36
+    page.draw_rect(fitz.Rect(70, yb, 525, yb + 210), color=GOLD, width=0.8)
+    page.draw_rect(fitz.Rect(70, yb, 525, yb + 210), color=None, fill=LIGHT)
+    yb = draw_wrapped(page, yb + 18, "محتويات الوثيقة (مختصر)", 12, BURGUNDY_RGB, 420, bold=True, align="center")
+    toc_items = [
+        "1–3: الملخص والوضع الحالي وضرورة التحول",
+        "4–6: القيادة المقترحة ومسارات التحول والهوية",
+        "7–8: شريك التنفيذ والمنظومة",
+        "9–11: 100 يوم · سنة 1 · سنوات 2–5 وفتح فروع",
+        "12–15: النتائج · المخاطر · الحوكمة · التوصية",
+    ]
+    yy = yb + 6
+    for item in toc_items:
+        yy = draw_bullet(page, yy + 2, item, size=10.2, max_w=420, right=90)
+
 
     # ---- Identity focus (priority pages) ----
     page = track(new_page(doc))
-    y = 62
+    y = 56
     y = draw_title(page, y, "A", "فصل الهوية البصرية: الإنترناشونال عن المنهاج الوطني")
     y = draw_wrapped(
         page,
@@ -333,7 +354,7 @@ def build_pdf(charts: dict[str, Path]) -> Path:
     page, y = ensure(doc, page, y, 120)
     if page not in pages_meta:
         track(page)
-    y = insert_chart(page, y + 4, charts.get("identity", Path()), 500)
+    y = insert_chart(page, y + 2, charts.get("identity", Path()), 360)
 
     page, y = ensure(doc, page, y, 80)
     if page not in pages_meta:
@@ -374,11 +395,11 @@ def build_pdf(charts: dict[str, Path]) -> Path:
     )
 
     # Helper to add a standard content page block
-    def section(num, title, paras, bullets=None, table=None, chart_key=None, new=True):
+    def section(num, title, paras, bullets=None, table=None, chart_key=None, new=False):
         nonlocal page, y
         if new:
             page = track(new_page(doc))
-            y = 62.0
+            y = 56.0
         else:
             page, y = ensure(doc, page, y, 90)
             if page not in pages_meta:
@@ -408,8 +429,8 @@ def build_pdf(charts: dict[str, Path]) -> Path:
             page, y = ensure(doc, page, y, 160)
             if page not in pages_meta:
                 track(page)
-            y = insert_chart(page, y + 2, charts[chart_key], 490)
-        y += 8
+            y = insert_chart(page, y + 1, charts[chart_key], 360)
+        y += 3
 
     section(
         "1",
@@ -578,7 +599,7 @@ def build_pdf(charts: dict[str, Path]) -> Path:
     # branch chart on same flow if available
     if charts.get("branches"):
         page, y = ensure(doc, page, y, 140)
-        y = insert_chart(page, y + 2, charts["branches"], 490)
+        y = insert_chart(page, y + 1, charts["branches"], 340)
 
     section(
         "12",

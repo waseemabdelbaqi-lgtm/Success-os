@@ -449,35 +449,35 @@ def set_paragraph_rtl(paragraph, align=WD_ALIGN_PARAGRAPH.RIGHT) -> None:
         jc.set(qn("w:val"), "left")
 
 
-def set_spacing(paragraph, before=0, after=6, line=1.28) -> None:
+def set_spacing(paragraph, before=0, after=3, line=1.18) -> None:
     pf = paragraph.paragraph_format
     pf.space_before = Pt(before)
     pf.space_after = Pt(after)
     pf.line_spacing = line
 
 
-def add_ar(doc, text, size=11.5, bold=False, color=DARK, align=WD_ALIGN_PARAGRAPH.RIGHT, before=0, after=6):
+def add_ar(doc, text, size=11, bold=False, color=DARK, align=WD_ALIGN_PARAGRAPH.RIGHT, before=0, after=3):
     p = doc.add_paragraph()
     set_paragraph_rtl(p, align)
-    set_spacing(p, before, after, 1.35)
+    set_spacing(p, before, after, 1.2)
     run = p.add_run("\u200f" + text if text and not text.startswith("\u200f") else text)
     set_run_font(run, AMIRI, size, color, bold)
     return p
 
 
-def add_en(doc, text, size=10, bold=False, color=BURGUNDY, align=WD_ALIGN_PARAGRAPH.CENTER, before=0, after=4):
+def add_en(doc, text, size=10, bold=False, color=BURGUNDY, align=WD_ALIGN_PARAGRAPH.CENTER, before=0, after=2):
     p = doc.add_paragraph()
     p.alignment = align
-    set_spacing(p, before, after, 1.2)
+    set_spacing(p, before, after, 1.1)
     run = p.add_run(text)
     set_run_font(run, LIB, size, color, bold)
     return p
 
 
-def add_bullet(doc, text, size=11.5, color=DARK, before=0, after=3):
+def add_bullet(doc, text, size=10.5, color=DARK, before=0, after=1):
     p = doc.add_paragraph()
     set_paragraph_rtl(p, WD_ALIGN_PARAGRAPH.RIGHT)
-    set_spacing(p, before, after, 1.3)
+    set_spacing(p, before, after, 1.15)
     run = p.add_run("\u200f• " + text)
     set_run_font(run, AMIRI, size, color, False)
     return p
@@ -486,12 +486,12 @@ def add_bullet(doc, text, size=11.5, color=DARK, before=0, after=3):
 def add_gold_rule(doc) -> None:
     p = doc.add_paragraph()
     p.alignment = WD_ALIGN_PARAGRAPH.CENTER
-    set_spacing(p, 2, 8, 1.0)
+    set_spacing(p, 1, 4, 1.0)
     pPr = p._p.get_or_add_pPr()
     pBdr = OxmlElement("w:pBdr")
     bottom = OxmlElement("w:bottom")
     bottom.set(qn("w:val"), "single")
-    bottom.set(qn("w:sz"), "12")
+    bottom.set(qn("w:sz"), "10")
     bottom.set(qn("w:space"), "1")
     bottom.set(qn("w:color"), GOLD_HEX)
     pBdr.append(bottom)
@@ -499,12 +499,12 @@ def add_gold_rule(doc) -> None:
 
 
 def add_section_title(doc, num: str, title: str) -> None:
-    add_ar(doc, f"{num}. {title}", size=15, bold=True, color=BURGUNDY, before=14, after=4)
+    add_ar(doc, f"{num}. {title}", size=13.5, bold=True, color=BURGUNDY, before=8, after=2)
     add_gold_rule(doc)
 
 
 def add_subtitle(doc, text: str) -> None:
-    add_ar(doc, text, size=12.5, bold=True, color=GOLD, before=10, after=4)
+    add_ar(doc, text, size=11.5, bold=True, color=GOLD, before=6, after=2)
 
 
 def shade_cell(cell, hex_color: str) -> None:
@@ -540,11 +540,11 @@ def set_table_rtl(table) -> None:
     bidi.set(qn("w:val"), "1")
 
 
-def fill_cell(cell, text, size=10.5, bold=False, color=DARK, fill=None, align=WD_ALIGN_PARAGRAPH.RIGHT):
+def fill_cell(cell, text, size=9.5, bold=False, color=DARK, fill=None, align=WD_ALIGN_PARAGRAPH.RIGHT):
     cell.text = ""
     p = cell.paragraphs[0]
     set_paragraph_rtl(p, align)
-    set_spacing(p, 2, 2, 1.2)
+    set_spacing(p, 1, 1, 1.1)
     run = p.add_run("\u200f" + text if text else "")
     set_run_font(run, AMIRI, size, color, bold)
     if fill:
@@ -557,16 +557,18 @@ def add_table(doc, headers, rows, col_widths=None, header_fill=BURGUNDY_HEX, hea
     table.alignment = WD_TABLE_ALIGNMENT.CENTER
     set_table_rtl(table)
     for i, h in enumerate(headers):
-        fill_cell(table.rows[0].cells[i], h, size=10.5, bold=True, color=header_color, fill=header_fill)
+        fill_cell(table.rows[0].cells[i], h, size=9.5, bold=True, color=header_color, fill=header_fill)
     for r_i, row in enumerate(rows):
         fill = LIGHT_HEX if r_i % 2 == 0 else "FFFFFF"
         for c_i, val in enumerate(row):
-            fill_cell(table.rows[r_i + 1].cells[c_i], val, size=10, bold=False, color=DARK, fill=fill)
+            fill_cell(table.rows[r_i + 1].cells[c_i], val, size=9, bold=False, color=DARK, fill=fill)
     if col_widths:
         for row in table.rows:
             for i, w in enumerate(col_widths):
                 row.cells[i].width = Cm(w)
-    doc.add_paragraph()
+    # minimal spacer after table
+    p = doc.add_paragraph()
+    set_spacing(p, 0, 2, 1.0)
     return table
 
 
@@ -575,28 +577,29 @@ def add_callout(doc, title: str, bullets: list[str], border=GOLD_HEX, fill=SOFT_
     set_table_rtl(table)
     cell = table.rows[0].cells[0]
     shade_cell(cell, fill)
-    set_cell_border(cell, border, "12")
+    set_cell_border(cell, border, "10")
     cell.text = ""
     p = cell.paragraphs[0]
     set_paragraph_rtl(p)
-    set_spacing(p, 4, 4, 1.25)
+    set_spacing(p, 2, 2, 1.15)
     run = p.add_run("\u200f" + title)
-    set_run_font(run, AMIRI, 11.5, BURGUNDY, True)
+    set_run_font(run, AMIRI, 10.5, BURGUNDY, True)
     for b in bullets:
         p2 = cell.add_paragraph()
         set_paragraph_rtl(p2)
-        set_spacing(p2, 1, 2, 1.25)
+        set_spacing(p2, 0, 1, 1.12)
         run2 = p2.add_run("\u200f• " + b)
-        set_run_font(run2, AMIRI, 10.5, DARK, False)
-    doc.add_paragraph()
+        set_run_font(run2, AMIRI, 9.5, DARK, False)
+    p = doc.add_paragraph()
+    set_spacing(p, 0, 2, 1.0)
 
 
-def add_image(doc, path: Path, width_in=6.4) -> None:
+def add_image(doc, path: Path, width_in=5.5) -> None:
     if not path.exists():
         return
     p = doc.add_paragraph()
     p.alignment = WD_ALIGN_PARAGRAPH.CENTER
-    set_spacing(p, 6, 8, 1.0)
+    set_spacing(p, 2, 3, 1.0)
     run = p.add_run()
     run.add_picture(str(path), width=Inches(width_in))
 
@@ -628,28 +631,28 @@ def add_watermark_header(section, watermark_path: Path) -> None:
     logo = ASSETS / "success4sure_logo_wm.png"
     img = logo if logo.exists() else watermark_path
     if img.exists():
-        run.add_picture(str(img), width=Inches(1.35))
+        run.add_picture(str(img), width=Inches(0.85))
     # EN header line
     p2 = header.add_paragraph()
     p2.alignment = WD_ALIGN_PARAGRAPH.CENTER
-    set_spacing(p2, 0, 2, 1.0)
+    set_spacing(p2, 0, 0, 1.0)
     r2 = p2.add_run(HEADER_EN)
-    set_run_font(r2, LIB, 8, BURGUNDY, True)
+    set_run_font(r2, LIB, 7.5, BURGUNDY, True)
 
 
 def configure_section(section) -> None:
     section.page_width = Cm(21.0)
     section.page_height = Cm(29.7)
-    section.top_margin = Cm(2.0)
-    section.bottom_margin = Cm(2.0)
-    section.left_margin = Cm(1.8)
-    section.right_margin = Cm(1.8)
+    section.top_margin = Cm(1.6)
+    section.bottom_margin = Cm(1.5)
+    section.left_margin = Cm(1.5)
+    section.right_margin = Cm(1.5)
     # section bidi
     sectPr = section._sectPr
     bidi = OxmlElement("w:bidi")
     bidi.set(qn("w:val"), "1")
     sectPr.append(bidi)
-    add_page_border(section, BURGUNDY_HEX, "26", "16")
+    add_page_border(section, BURGUNDY_HEX, "22", "14")
 
 
 def add_footer(section) -> None:
@@ -686,8 +689,8 @@ def build_docx(charts: dict[str, Path], watermark: Path) -> Path:
     configure_section(section)
     add_watermark_header(section, watermark)
     add_footer(section)
-    # more top margin for header logo
-    section.top_margin = Cm(2.6)
+    # tighter top margin with compact header logo
+    section.top_margin = Cm(2.0)
 
     style = doc.styles["Normal"]
     style.font.name = AMIRI
@@ -695,30 +698,30 @@ def build_docx(charts: dict[str, Path], watermark: Path) -> Path:
     style._element.rPr.rFonts.set(qn("w:cs"), AMIRI)
 
     # ---- Cover ----
-    add_en(doc, HEADER_EN, size=10, bold=True, color=BURGUNDY, before=4, after=10)
+    add_en(doc, HEADER_EN, size=9, bold=True, color=BURGUNDY, before=2, after=4)
     add_gold_rule(doc)
     logo_path = ASSETS / "success4sure_logo.png"
     if logo_path.exists():
         p = doc.add_paragraph()
         p.alignment = WD_ALIGN_PARAGRAPH.CENTER
-        set_spacing(p, 8, 4, 1.0)
+        set_spacing(p, 4, 2, 1.0)
         run = p.add_run()
-        run.add_picture(str(logo_path), width=Inches(1.7))
-        add_en(doc, "Strategic Implementation Partner", size=9, bold=False, color=GOLD, before=0, after=10)
-    add_en(doc, "OMAREYAH INTERNATIONAL DIVISION", size=20, bold=True, color=BURGUNDY, before=12, after=6)
-    add_ar(doc, "مخطط التحول التعليمي التنفيذي", size=20, bold=True, color=BURGUNDY, align=WD_ALIGN_PARAGRAPH.CENTER, before=6, after=4)
-    add_ar(doc, "Master Strategic Consulting Project", size=12, bold=False, color=GOLD, align=WD_ALIGN_PARAGRAPH.CENTER, before=2, after=8)
+        run.add_picture(str(logo_path), width=Inches(1.35))
+        add_en(doc, "Strategic Implementation Partner", size=8, bold=False, color=GOLD, before=0, after=4)
+    add_en(doc, "OMAREYAH INTERNATIONAL DIVISION", size=18, bold=True, color=BURGUNDY, before=6, after=3)
+    add_ar(doc, "مخطط التحول التعليمي التنفيذي", size=18, bold=True, color=BURGUNDY, align=WD_ALIGN_PARAGRAPH.CENTER, before=3, after=2)
+    add_ar(doc, "Master Strategic Consulting Project", size=11, bold=False, color=GOLD, align=WD_ALIGN_PARAGRAPH.CENTER, before=1, after=4)
     add_gold_rule(doc)
-    add_ar(doc, "وثيقة استراتيجية موجهة إلى مجلس الإدارة", size=13, bold=True, color=DARK, align=WD_ALIGN_PARAGRAPH.CENTER, before=12, after=4)
+    add_ar(doc, "وثيقة استراتيجية موجهة إلى مجلس الإدارة", size=12, bold=True, color=DARK, align=WD_ALIGN_PARAGRAPH.CENTER, before=6, after=2)
     add_ar(
         doc,
         "الإجابة المهنية على سؤال المجلس: لماذا تعيين الأستاذ وسيم اللبدي مديراً للبرامج الدولية وقائداً للتحول التعليمي؟",
-        size=12,
+        size=11,
         bold=False,
         color=GREY,
         align=WD_ALIGN_PARAGRAPH.CENTER,
-        before=4,
-        after=10,
+        before=2,
+        after=6,
     )
     add_callout(
         doc,
@@ -738,9 +741,9 @@ def build_docx(charts: dict[str, Path], watermark: Path) -> Path:
             "كل توصية مرتبطة بهدف تشغيلي ومؤشر أداء وآلية متابعة.",
         ],
     )
-    add_ar(doc, "إعداد: الأستاذ وسيم اللبدي", size=12, bold=True, color=BURGUNDY, align=WD_ALIGN_PARAGRAPH.CENTER, before=10, after=2)
+    add_ar(doc, "إعداد: الأستاذ وسيم اللبدي", size=12, bold=True, color=BURGUNDY, align=WD_ALIGN_PARAGRAPH.CENTER, before=6, after=1)
     add_ar(doc, "الأدوار المقترحة: مدير البرامج الدولية · قائد التحول التعليمي · مدير الاستراتيجية الأكاديمية", size=11, color=GREY, align=WD_ALIGN_PARAGRAPH.CENTER, before=0, after=2)
-    add_en(doc, "Confidential — Board Use Only", size=9, bold=False, color=GREY, before=14, after=4)
+    add_en(doc, "Confidential — Board Use Only", size=9, bold=False, color=GREY, before=6, after=2)
 
     doc.add_page_break()
 
@@ -895,7 +898,7 @@ def build_docx(charts: dict[str, Path], watermark: Path) -> Path:
     )
 
     add_subtitle(doc, "4.4 منهجية التحول")
-    add_image(doc, charts["method"], 6.3)
+    add_image(doc, charts["method"], 5.2)
     add_ar(
         doc,
         "المنهجية المقترحة دورة خماسية: تشخيص مبني على أدلة، تصميم أولويات محدودة، تنفيذ بإيقاع أسبوعي، قياس بمؤشرات متفق عليها مع المجلس، وتحسين مستمر. "
@@ -969,7 +972,7 @@ def build_docx(charts: dict[str, Path], watermark: Path) -> Path:
         "في مدرسة تضم مساراً دولياً ومنهاجاً وطنياً أردنياً، يُعد اختلاط الهوية البصرية والتشغيلية من أسرع مصادر التشويش على ولي الأمر وعلى تموضع القسم الدولي. "
         "الهدف هنا ليس تقسيم المدرسة إلى كيانين متعاديين، بل بناء «فصل تقريبي مرحلي» يجعل تجربة Omareyah International Division واضحة ومستقلة بصرياً وتشغيلياً عن مسار المنهاج الوطني، مع بقاء العمريّة مؤسسة جامعة.",
     )
-    add_image(doc, charts.get("identity", Path()), 6.35)
+    add_image(doc, charts.get("identity", Path()), 5.3)
     add_subtitle(doc, "لماذا الفصل ضروري؟")
     for t in [
         "ولي الأمر يحتاج أن يميّز عرض القيمة الدولي عن المسار الوطني دون ارتباك في الألوان واللافتات والنماذج.",
@@ -1051,7 +1054,7 @@ def build_docx(charts: dict[str, Path], watermark: Path) -> Path:
         "تعيين موظف واحد — مهما كانت كفاءته — يظل محدوداً بطاقته الفردية. المنظومة تعني أن المدرسة تحصل على شبكة قدرات: تدريب، محتوى، إرشاد، تحليلات، وبرامج إثراء، "
         "تحت حوكمة المدير وباسم العمريّة. هذا يقلل مخاطر الانقطاع، ويسرّع التنفيذ، ويحافظ على استمرارية المعرفة المؤسسية.",
     )
-    add_image(doc, charts["ecosystem"], 6.35)
+    add_image(doc, charts["ecosystem"], 5.2)
     add_callout(
         doc,
         "قاعدة الهوية",
@@ -1063,7 +1066,7 @@ def build_docx(charts: dict[str, Path], watermark: Path) -> Path:
 
     # ========== 9 100-day plan ==========
     add_section_title(doc, "9", "خطة المائة يوم")
-    add_image(doc, charts["days100"], 6.3)
+    add_image(doc, charts["days100"], 5.1)
     add_subtitle(doc, "الأيام 1–30: التشخيص والحوكمة")
     add_table(
         doc,
@@ -1116,7 +1119,7 @@ def build_docx(charts: dict[str, Path], watermark: Path) -> Path:
             ["12", "إقفال سنوي وخارطة السنة 2", "تقرير سنوي + موازنة مبادرات"],
         ],
     )
-    add_image(doc, charts["kpi"], 6.35)
+    add_image(doc, charts["kpi"], 5.2)
     add_ar(
         doc,
         "لوحة المؤشرات أعلاه إرشادية لوضع أهداف قابلة للنقاش مع المجلس بعد اعتماد خط الأساس الحقيقي من بيانات المدرسة.",
@@ -1126,7 +1129,7 @@ def build_docx(charts: dict[str, Path], watermark: Path) -> Path:
 
     # ========== 11 Years 2-5 ==========
     add_section_title(doc, "11", "السنوات 2–5 — خارطة الطريق الاستراتيجية")
-    add_image(doc, charts["roadmap"], 6.35)
+    add_image(doc, charts["roadmap"], 5.2)
     add_table(
         doc,
         ["المحور", "السنة 2", "السنة 3", "السنوات 4–5"],
@@ -1146,7 +1149,7 @@ def build_docx(charts: dict[str, Path], watermark: Path) -> Path:
         "المنطق الاستشاري: يُنسخ فقط ما ثبت نجاحه تشغيلياً ومالياً وهويتياً في الموقع الأم. التوسع المبكر دون جاهزية يُضعف السمعة ويُكرّر المشاكل.",
     )
     if charts.get("branches"):
-        add_image(doc, charts["branches"], 6.35)
+        add_image(doc, charts["branches"], 5.1)
     add_table(
         doc,
         ["المرحلة", "التركيز", "شروط المرور للمرحلة التالية", "مخرج للمجلس"],
@@ -1214,7 +1217,7 @@ def build_docx(charts: dict[str, Path], watermark: Path) -> Path:
 
     # ========== Implementation framework detail ==========
     add_section_title(doc, "14", "نموذج الحوكمة")
-    add_image(doc, charts["governance"], 6.35)
+    add_image(doc, charts["governance"], 5.2)
     add_subtitle(doc, "إيقاع التقارير")
     add_table(
         doc,
@@ -1269,8 +1272,6 @@ def build_docx(charts: dict[str, Path], watermark: Path) -> Path:
             ["إغلاق توصيات الجودة", "المغلقة في الموعد ÷ الصادرة", "محاضر اللجنة", "شهري"],
         ],
     )
-
-    doc.add_page_break()
 
     # ========== 15 Recommendation ==========
     add_section_title(doc, "15", "التوصية النهائية لمجلس الإدارة")
@@ -1329,7 +1330,7 @@ def build_docx(charts: dict[str, Path], watermark: Path) -> Path:
     ]:
         add_bullet(doc, t)
 
-    add_ar(doc, "الأستاذ وسيم اللبدي", size=12, bold=True, color=BURGUNDY, align=WD_ALIGN_PARAGRAPH.CENTER, before=18, after=2)
+    add_ar(doc, "الأستاذ وسيم اللبدي", size=12, bold=True, color=BURGUNDY, align=WD_ALIGN_PARAGRAPH.CENTER, before=8, after=2)
     add_ar(doc, "مقترح: مدير البرامج الدولية وقائد التحول التعليمي", size=11, color=GREY, align=WD_ALIGN_PARAGRAPH.CENTER, before=0, after=2)
     add_en(doc, "Omareyah International Division — Board Decision Document", size=9, color=GREY, before=10, after=2)
 
