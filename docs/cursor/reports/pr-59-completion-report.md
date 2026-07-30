@@ -26,7 +26,8 @@ Student → AI Teacher → Conversation Engine → Reasoning Engine → Knowledg
 | Knowledge Graph wired | ✅ |
 | ILE sole runtime referenced | ✅ |
 | S4S Intelligence Teacher open-lesson greeting (Ahmad / Fractions) | ✅ |
-| Conversation / Reasoning stubs | ✅ |
+| Don’t-understand → re-explain path (Animation→…→Check) | ✅ |
+| Conversation / Reasoning foundations | ✅ |
 | Digital Books / Videos / Quizzes / Assessments reserved | ✅ |
 | No AI generation | ✅ |
 | Docs + ADR + Review | ✅ |

@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import type { ReactNode } from "react";
 import { InteractiveLessonViewer } from "@/components/interactive-lesson-engine/interactive-lesson-viewer";
 import { S4sIntelligenceTeacher } from "@/components/student-ai-learning-stack/s4s-intelligence-teacher";
+import { S4sTeacherDock } from "@/components/student-ai-learning-stack/s4s-teacher-dock";
 import {
   getLocalized,
   resolveLessonPackage,
@@ -35,6 +36,7 @@ export default async function InteractiveLessonPackagePage({
         studentName="Ahmad"
         lessonKey={`ile/${packageId}`}
       />
+      <S4sTeacherDock locale={locale} topicEn="Fractions" topicAr="الكسور" />
       <InteractiveLessonViewer pkg={pkg} locale={locale} />
     </>
   );

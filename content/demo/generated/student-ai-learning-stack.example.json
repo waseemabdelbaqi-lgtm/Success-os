@@ -82,7 +82,7 @@
         "en": "Turns student utterances into structured tutoring intents",
         "ar": "يحوّل كلام الطالب إلى نوايا تعليمية منظمة"
       },
-      "status": "stub",
+      "status": "foundation",
       "bindsTo": [
         "success-os.student-ai-learning-stack.v1"
       ],
@@ -90,7 +90,8 @@
       "generatesContent": false,
       "rendersLessons": false,
       "notes": [
-        "Deterministic intent parse stub; LLM wiring reserved."
+        "Recognizes “I don't understand this.” → dont_understand intent.",
+        "LLM free-form chat reserved for later AI PRs."
       ]
     },
     {
@@ -104,16 +105,18 @@
         "en": "Selects next pedagogical move from skills, gaps, and mappings",
         "ar": "يختار الخطوة التربوية التالية من المهارات والفجوات والمواءمات"
       },
-      "status": "stub",
+      "status": "foundation",
       "bindsTo": [
         "success-os.universal-curriculum-mapping.v1",
-        "success-os.student-skill-progress.v1"
+        "success-os.student-skill-progress.v1",
+        "success-os.s4s-re-explain.v1"
       ],
       "activatesInPr": "#59",
       "generatesContent": false,
       "rendersLessons": false,
       "notes": [
-        "Rule-based planner stub using skill gaps + UCE mappings when available."
+        "Re-explain path: Animation → Drawing → Example → Question → Checks understanding.",
+        "No AI lesson generation — scripted pedagogy only."
       ]
     },
     {
@@ -252,8 +255,8 @@
   "counts": {
     "layers": 10,
     "operational": 2,
-    "foundation": 2,
-    "stub": 2,
+    "foundation": 4,
+    "stub": 0,
     "reserved": 4
   },
   "rules": [

@@ -16,6 +16,14 @@ export {
   type S4sTeacherGreeting,
   type BuildS4sGreetingInput,
 } from "./s4s-intelligence-teacher";
+export {
+  buildReExplainSequence,
+  isDontUnderstandUtterance,
+  type ReExplainSequence,
+  type ReExplainStep,
+  type ReExplainStepId,
+  type BuildReExplainInput,
+} from "./re-explain";
 
 export function studentAiLearningStackStatus() {
   return {

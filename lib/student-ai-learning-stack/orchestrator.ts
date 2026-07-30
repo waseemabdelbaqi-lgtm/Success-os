@@ -23,6 +23,10 @@ import {
 } from "@/lib/universal-curriculum-mapping";
 import { buildS4sIntelligenceTeacherGreeting } from "./s4s-intelligence-teacher";
 import {
+  buildReExplainSequence,
+  isDontUnderstandUtterance,
+} from "./re-explain";
+import {
   buildJordanDemoStudentSkillProgress,
 } from "@/lib/curriculum-import-engine/student/skill-progress";
 
@@ -120,9 +124,12 @@ export function runStudentLearningStack(
 
   // 3. Conversation Engine (deterministic intent stub)
   t = Date.now();
-  const utterance = (ctx.utterance || "").toLowerCase();
-  const intent =
-    utterance.includes("quiz") || utterance.includes("اختبار")
+  const rawUtterance = ctx.utterance || "";
+  const utterance = rawUtterance.toLowerCase();
+  const dontUnderstand = isDontUnderstandUtterance(rawUtterance);
+  const intent = dontUnderstand
+    ? "dont_understand"
+    : utterance.includes("quiz") || utterance.includes("اختبار")
       ? "request_quiz"
       : utterance.includes("video") || utterance.includes("فيديو")
         ? "request_video"
@@ -132,13 +139,18 @@ export function runStudentLearningStack(
   invocations.push(
     invoke(
       "conversation_engine",
-      "stub",
-      { intent, utterance: ctx.utterance || null, llm: false },
+      dontUnderstand ? "foundation" : "stub",
+      {
+        intent,
+        utterance: rawUtterance || null,
+        studentLine: dontUnderstand ? "I don't understand this." : null,
+        llm: false,
+      },
       t,
     ),
   );
 
-  // 4. Reasoning Engine (rule stub + UCE equivalents when focus is a mapped lesson)
+  // 4. Reasoning Engine — re-explain path when student doesn't understand
   t = Date.now();
   const focus =
     ctx.focusLessonId || "JO-NATIONAL-G01-MATH-B01-U01-L01";
@@ -155,8 +167,16 @@ export function runStudentLearningStack(
   } catch {
     equivalents = [];
   }
-  const nextMove =
-    intent === "request_quiz"
+  const reExplain = dontUnderstand
+    ? buildReExplainSequence({
+        studentUtterance: rawUtterance || "I don't understand this.",
+        topicEn: "Fractions",
+        topicAr: "الكسور",
+      })
+    : null;
+  const nextMove = dontUnderstand
+    ? "re_explain_differently"
+    : intent === "request_quiz"
       ? "defer_quiz_until_assessment_engine"
       : intent === "request_video"
         ? "defer_video_until_media_engine"
@@ -164,10 +184,15 @@ export function runStudentLearningStack(
   invocations.push(
     invoke(
       "reasoning_engine",
-      "stub",
+      dontUnderstand ? "foundation" : "stub",
       {
         nextMove,
         focusLessonId: focus,
+        teacherLine: dontUnderstand
+          ? "No problem.\nLet's explain it differently."
+          : null,
+        reExplainPath: reExplain?.displayPath || null,
+        reExplainSteps: reExplain?.path || null,
         crossCurriculumEquivalents: equivalents.slice(0, 5),
         generatesContent: false,
       },
@@ -355,18 +380,25 @@ export function runStudentAiLearningStackDemo(opts?: {
     subjectGlobalId: "SUB-00001",
     focusLessonId: opts?.focusLessonId || "JO-NATIONAL-G01-MATH-B01-U01-L01",
     language: "en",
-    utterance: opts?.utterance || "Help me with this lesson",
+    utterance: opts?.utterance || "I don't understand this.",
   });
+  const reasoning = plan.invocations.find((i) => i.layerId === "reasoning_engine");
   return {
     ok:
       snapshot.path.length === 10 &&
       plan.invocations.length === 10 &&
       plan.aiContentGenerated === false &&
       plan.ilePackageId != null &&
-      snapshot.layers.every((l) => l.generatesContent === false),
+      snapshot.layers.every((l) => l.generatesContent === false) &&
+      reasoning?.output.nextMove === "re_explain_differently",
     schema: snapshot.schema,
     snapshot,
     plan,
+    reExplain: buildReExplainSequence({
+      studentUtterance: "I don't understand this.",
+      topicEn: "Fractions",
+      topicAr: "الكسور",
+    }),
     aiGeneration: false,
     copiesCurricula: false,
   };

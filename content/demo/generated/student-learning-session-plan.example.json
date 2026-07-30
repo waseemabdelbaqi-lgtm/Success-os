@@ -1,6 +1,6 @@
 {
   "schema": "success-os.student-learning-session-plan.v1",
-  "sessionId": "sals_d5121445fde668d5",
+  "sessionId": "sals_fdf52b3e542617e1",
   "studentId": "student_demo_001",
   "path": [
     "student",
@@ -24,7 +24,7 @@
         "countryId": "JO",
         "curriculumId": "JO-NATIONAL",
         "language": "en",
-        "utterance": "Help me with this lesson"
+        "utterance": "I don't understand this."
       },
       "durationMs": 0
     },
@@ -53,26 +53,46 @@
         "generatesLessons": false,
         "generatesVideos": false
       },
-      "durationMs": 1
+      "durationMs": 0
     },
     {
       "layerId": "conversation_engine",
-      "status": "stub",
+      "status": "foundation",
       "ok": true,
       "output": {
-        "intent": "request_help",
-        "utterance": "Help me with this lesson",
+        "intent": "dont_understand",
+        "utterance": "I don't understand this.",
+        "studentLine": "I don't understand this.",
         "llm": false
       },
       "durationMs": 0
     },
     {
       "layerId": "reasoning_engine",
-      "status": "stub",
+      "status": "foundation",
       "ok": true,
       "output": {
-        "nextMove": "route_to_ile_package",
+        "nextMove": "re_explain_differently",
         "focusLessonId": "JO-NATIONAL-G01-MATH-B01-U01-L01",
+        "teacherLine": "No problem.\nLet's explain it differently.",
+        "reExplainPath": [
+          "Student: I don't understand this.",
+          "Teacher: No problem. Let's explain it differently.",
+          "Animation",
+          "Drawing",
+          "Example",
+          "Question",
+          "Checks understanding"
+        ],
+        "reExplainSteps": [
+          "student_utterance",
+          "teacher_response",
+          "animation",
+          "drawing",
+          "example",
+          "question",
+          "check_understanding"
+        ],
         "crossCurriculumEquivalents": [
           {
             "globalId": "LSN-01002",
@@ -87,7 +107,7 @@
         ],
         "generatesContent": false
       },
-      "durationMs": 1
+      "durationMs": 2
     },
     {
       "layerId": "knowledge_graph",
@@ -112,7 +132,7 @@
           "SKL-00012"
         ]
       },
-      "durationMs": 10
+      "durationMs": 11
     },
     {
       "layerId": "digital_books",

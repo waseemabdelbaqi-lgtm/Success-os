@@ -1,7 +1,9 @@
 import { NextResponse } from "next/server";
 import {
+  buildReExplainSequence,
   buildS4sIntelligenceTeacherGreeting,
   getStudentAiLearningStackSnapshot,
+  isDontUnderstandUtterance,
   runStudentAiLearningStackDemo,
   runStudentLearningStack,
   studentAiLearningStackStatus,
@@ -62,6 +64,23 @@ export async function GET(req: Request) {
       ok: result.ok,
       ...result,
       note: snapshotNote(),
+    });
+  }
+
+  if (action === "re-explain") {
+    const utterance =
+      url.searchParams.get("utterance") || "I don't understand this.";
+    const sequence = buildReExplainSequence({
+      studentUtterance: utterance,
+      topicEn: url.searchParams.get("topicEn") || "Fractions",
+      topicAr: url.searchParams.get("topicAr") || "الكسور",
+    });
+    return NextResponse.json({
+      ok: true,
+      matched: isDontUnderstandUtterance(utterance),
+      flow: sequence.displayPath,
+      sequence,
+      note: "Student doesn't understand → Teacher re-explains via Animation → Drawing → Example → Question → Check",
     });
   }
 

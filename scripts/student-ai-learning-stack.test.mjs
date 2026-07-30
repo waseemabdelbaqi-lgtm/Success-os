@@ -20,8 +20,12 @@ const required = [
   "content/demo/generated/student-ai-learning-stack.example.json",
   "content/demo/generated/student-learning-session-plan.example.json",
   "content/demo/generated/s4s-intelligence-teacher-greeting.example.json",
+  "content/demo/generated/s4s-re-explain.example.json",
   "lib/student-ai-learning-stack/s4s-intelligence-teacher.ts",
+  "lib/student-ai-learning-stack/re-explain.ts",
   "components/student-ai-learning-stack/s4s-intelligence-teacher.tsx",
+  "components/student-ai-learning-stack/s4s-re-explain-flow.tsx",
+  "components/student-ai-learning-stack/s4s-teacher-dock.tsx",
   "docs/cursor/student-ai-learning-stack.md",
   "docs/cursor/adr/ADR-0059-student-ai-learning-stack.md",
   "docs/cursor/reports/pr-59-completion-report.md",
@@ -62,13 +66,15 @@ assert.equal(byId.interactive_lesson_engine.status, "operational");
 assert.equal(byId.knowledge_graph.status, "foundation");
 assert.equal(byId.ai_teacher.status, "foundation");
 assert.ok(byId.ai_teacher.name.en.includes("S4S Intelligence Teacher"));
-assert.equal(byId.conversation_engine.status, "stub");
-assert.equal(byId.reasoning_engine.status, "stub");
+assert.equal(byId.conversation_engine.status, "foundation");
+assert.equal(byId.reasoning_engine.status, "foundation");
 assert.equal(byId.digital_books.status, "reserved");
 assert.equal(byId.videos.status, "reserved");
 assert.equal(byId.quizzes.status, "reserved");
 assert.equal(byId.assessments.status, "reserved");
 assert.equal(byId.interactive_lesson_engine.rendersLessons, true);
+assert.equal(snap.counts.stub, 0);
+assert.equal(snap.counts.foundation, 4);
 
 const plan = JSON.parse(
   fs.readFileSync(
@@ -111,9 +117,60 @@ const api = fs.readFileSync(
   path.join(root, "app/api/student-ai-learning-stack/route.ts"),
   "utf8",
 );
-for (const action of ["status", "snapshot", "plan", "demo", "greeting", "run-stack"]) {
+for (const action of [
+  "status",
+  "snapshot",
+  "plan",
+  "demo",
+  "greeting",
+  "re-explain",
+  "run-stack",
+]) {
   assert.ok(api.includes(action), `api missing ${action}`);
 }
+
+const reExplain = JSON.parse(
+  fs.readFileSync(
+    path.join(root, "content/demo/generated/s4s-re-explain.example.json"),
+    "utf8",
+  ),
+);
+assert.equal(reExplain.schema, "success-os.s4s-re-explain.v1");
+assert.equal(reExplain.generatesContent, false);
+assert.equal(reExplain.checksUnderstanding, true);
+assert.equal(reExplain.studentLine.en, "I don't understand this.");
+assert.ok(reExplain.teacherLine.en.includes("No problem."));
+assert.ok(reExplain.teacherLine.en.includes("Let's explain it differently."));
+assert.deepEqual(reExplain.path, [
+  "student_utterance",
+  "teacher_response",
+  "animation",
+  "drawing",
+  "example",
+  "question",
+  "check_understanding",
+]);
+assert.deepEqual(reExplain.displayPath, [
+  "Student: I don't understand this.",
+  "Teacher: No problem. Let's explain it differently.",
+  "Animation",
+  "Drawing",
+  "Example",
+  "Question",
+  "Checks understanding",
+]);
+
+const reasoning = plan.invocations.find((i) => i.layerId === "reasoning_engine");
+assert.equal(reasoning.output.nextMove, "re_explain_differently");
+
+const dockPage = fs.readFileSync(
+  path.join(
+    root,
+    "app/student/books/[bookId]/units/[unitId]/lessons/[lessonId]/page.tsx",
+  ),
+  "utf8",
+);
+assert.ok(dockPage.includes("S4sTeacherDock"));
 
 const greeting = JSON.parse(
   fs.readFileSync(

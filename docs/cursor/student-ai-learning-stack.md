@@ -34,14 +34,28 @@ Would you like me to review them first?
 - API: `GET /api/student-ai-learning-stack?action=greeting&studentName=Ahmad`
 - Mounted on student book lesson + ILE package pages (ILE runtime unmodified)
 
+## “I don’t understand” → re-explain differently
+
+```
+Student: I don't understand this.
+↓
+Teacher: No problem. Let's explain it differently.
+↓ Animation → Drawing → Example → Question → Checks understanding
+```
+
+- Builder: `lib/student-ai-learning-stack/re-explain.ts`
+- UI: `S4sTeacherDock` (“I don't understand this”) + `S4sReExplainFlow`
+- API: `GET /api/student-ai-learning-stack?action=re-explain`
+- Scripted pedagogy only — no AI lesson generation
+
 ## Layer status
 
 | Layer | Status | Activates |
 |-------|--------|-----------|
 | Student | operational | #50.3 / #59 |
 | S4S Intelligence Teacher (AI Teacher) | foundation | #59 |
-| Conversation Engine | stub | #59 |
-| Reasoning Engine | stub | #59 |
+| Conversation Engine | foundation | #59 |
+| Reasoning Engine | foundation | #59 |
 | Knowledge Graph | foundation (wired) | #50.3 |
 | Digital Books | reserved | #55 |
 | Videos | reserved | #56–57 |
@@ -67,6 +81,7 @@ Base: `/api/student-ai-learning-stack`
 | `plan` / `session` | Run orchestration for a student context |
 | `demo` | Snapshot + sample session plan |
 | `greeting` | S4S Intelligence Teacher open-lesson message |
+| `re-explain` | Don’t-understand → Animation→Drawing→Example→Question→Check |
 | `POST run-stack` | Demo run |
 
 Admin: `/admin/student-ai-learning-stack`
