@@ -96,7 +96,7 @@ Production Optimization
 | PR | Title | Status | Depends on |
 |----|-------|--------|------------|
 | **#49** | Interactive Lesson Engine (ILE Foundation) | **Done** | Platform portals / books shell |
-| #50 | Curriculum Import Engine (Jordan First) | Planned | #49 |
+| **#50** | Curriculum Import Engine (Jordan First) | **In progress** | #49 + ADR-0050 |
 | #51 | Digital Book Engine | Planned | #49, #50 |
 | #52–53 | AI Lesson & Media Engine | Planned | #49 (+ AI/media contracts) |
 | #54–55 | Assessment & Virtual Labs | Planned | #49 |
@@ -125,7 +125,8 @@ Production Optimization
 
 ## Next
 
-When ready to execute: **PR #50 — Curriculum Import Engine (Jordan First)** on a new branch off the preferred base, generating ILE packages only.
+**PR #50 in progress** on `cursor/curriculum-import-engine-bca1`.  
+Following merge: **PR #51 — Digital Book Engine** (ILE package output only).
 
 ## Policy
 

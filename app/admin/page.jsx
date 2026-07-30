@@ -27,6 +27,18 @@ export default function AdminPage() {
         </section>
 
         <section className="os-card admin-card" style={{ marginBottom: '1rem' }}>
+          <span>CIE</span>
+          <h2>Curriculum Import Engine</h2>
+          <p>
+            Jordan-first compiler — verified curriculum → ILE packages only. Never renders
+            lessons. No AI rewrite, videos, or quizzes.
+          </p>
+          <a className="button" href="/admin/curriculum-import">
+            Open Import Dashboard →
+          </a>
+        </section>
+
+        <section className="os-card admin-card" style={{ marginBottom: '1rem' }}>
           <span>ADMIN-01</span>
           <h2>Enterprise Admin Dashboard</h2>
           <p>

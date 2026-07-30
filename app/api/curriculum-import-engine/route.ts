@@ -1,0 +1,174 @@
+import { NextResponse } from "next/server";
+import type { ImportPipelineStageId } from "@/types/curriculum-import-engine";
+import { IMPORT_PIPELINE_STAGES } from "@/types/curriculum-import-engine";
+import {
+  buildDashboardSnapshot,
+  createImportJob,
+  engineStatus,
+  getJob,
+  listJobs,
+  listSourceConnectors,
+  rollbackJob,
+  runImportJob,
+  runJordanPhase1Import,
+} from "@/lib/curriculum-import-engine";
+
+export const runtime = "nodejs";
+export const dynamic = "force-dynamic";
+
+/**
+ * Curriculum Import Engine API — compiler only.
+ * Never returns rendered lesson HTML; packages are ILE JSON.
+ */
+export async function GET(req: Request) {
+  const url = new URL(req.url);
+  const action = url.searchParams.get("action") || "status";
+  const jobId = url.searchParams.get("jobId");
+
+  if (action === "status") {
+    return NextResponse.json({ ok: true, ...engineStatus() });
+  }
+  if (action === "dashboard") {
+    return NextResponse.json({ ok: true, dashboard: buildDashboardSnapshot() });
+  }
+  if (action === "connectors") {
+    return NextResponse.json({
+      ok: true,
+      connectors: listSourceConnectors().map((c) => ({
+        id: c.id,
+        type: c.type,
+        label: c.label,
+        countries: c.countries,
+      })),
+    });
+  }
+  if (action === "jobs") {
+    return NextResponse.json({
+      ok: true,
+      jobs: listJobs().map(summarizeJob),
+    });
+  }
+  if (action === "job" && jobId) {
+    const job = getJob(jobId);
+    if (!job) return NextResponse.json({ ok: false, error: "Not found" }, { status: 404 });
+    return NextResponse.json({ ok: true, job: summarizeJob(job, true) });
+  }
+
+  return NextResponse.json({ ok: false, error: "Unknown action" }, { status: 400 });
+}
+
+export async function POST(req: Request) {
+  let body: Record<string, unknown> = {};
+  try {
+    body = (await req.json()) as Record<string, unknown>;
+  } catch {
+    body = {};
+  }
+  const action = String(body.action || "");
+
+  if (action === "create") {
+    const job = createImportJob({
+      connectorId: typeof body.connectorId === "string" ? body.connectorId : "jordan-nccd",
+      country: typeof body.country === "string" ? body.country : "Jordan",
+      curriculum:
+        typeof body.curriculum === "string"
+          ? body.curriculum
+          : "Jordan National Curriculum",
+    });
+    return NextResponse.json({ ok: true, job: summarizeJob(job) });
+  }
+
+  if (action === "run") {
+    const jobId = typeof body.jobId === "string" ? body.jobId : "";
+    if (!jobId) return NextResponse.json({ ok: false, error: "jobId required" }, { status: 400 });
+    const fromStage =
+      typeof body.fromStage === "string" &&
+      IMPORT_PIPELINE_STAGES.includes(body.fromStage as ImportPipelineStageId)
+        ? (body.fromStage as ImportPipelineStageId)
+        : undefined;
+    const job = await runImportJob(jobId, { fromStage });
+    return NextResponse.json({ ok: true, job: summarizeJob(job, true) });
+  }
+
+  if (action === "run-jordan") {
+    const job = await runJordanPhase1Import();
+    return NextResponse.json({
+      ok: true,
+      job: summarizeJob(job, true),
+      note: "Jordan Phase 1 — ILE packages only; no AI/video/quiz generation",
+    });
+  }
+
+  if (action === "rollback") {
+    const jobId = typeof body.jobId === "string" ? body.jobId : "";
+    const job = rollbackJob(jobId);
+    if (!job) return NextResponse.json({ ok: false, error: "Nothing to rollback" }, { status: 400 });
+    return NextResponse.json({ ok: true, job: summarizeJob(job, true) });
+  }
+
+  if (action === "retry") {
+    const jobId = typeof body.jobId === "string" ? body.jobId : "";
+    if (!jobId) return NextResponse.json({ ok: false, error: "jobId required" }, { status: 400 });
+    const existing = getJob(jobId);
+    if (!existing) return NextResponse.json({ ok: false, error: "Not found" }, { status: 404 });
+    const job = await runImportJob(jobId, {
+      fromStage: existing.checkpoint?.stage || undefined,
+    });
+    return NextResponse.json({ ok: true, job: summarizeJob(job, true) });
+  }
+
+  return NextResponse.json({ ok: false, error: "Unknown action" }, { status: 400 });
+}
+
+function summarizeJob(job: ReturnType<typeof getJob> extends infer J ? NonNullable<J> : never, full = false) {
+  const base = {
+    id: job.id,
+    status: job.status,
+    country: job.country,
+    curriculum: job.curriculum,
+    connectorId: job.connectorId,
+    currentStage: job.currentStage,
+    stagesCompleted: job.stagesCompleted,
+    packageCount: job.packageCount,
+    bookCount: job.bookCount,
+    lessonCount: job.lessonCount,
+    errors: job.errors,
+    warnings: job.warnings,
+    version: job.version,
+    gates: job.gates.map((g) => ({ gate: g.gate, passed: g.passed })),
+    verificationStatus: job.book?.metadata.verificationStatus || "pending",
+    rightsStatus: job.book?.metadata.rightsStatus || "unknown",
+    updatedAt: job.updatedAt,
+    completedAt: job.completedAt,
+  };
+  if (!full) return base;
+  return {
+    ...base,
+    source: job.source,
+    book: job.book
+      ? {
+          id: job.book.id,
+          title: job.book.title,
+          checksum: job.book.checksum,
+          units: job.book.units.length,
+          lessons: job.lessonCount,
+          metadata: job.book.metadata,
+        }
+      : null,
+    packages: job.packages.map((p) => ({
+      id: p.id,
+      schema: p.schema,
+      title: p.title,
+      status: p.status,
+      version: p.version,
+      source: p.source,
+      importMeta: p.importMeta,
+      objectives: p.objectives,
+      slideCount: p.slides.length,
+      // Never include a rendered view — package JSON only
+    })),
+    events: job.events.slice(-30),
+    history: job.history,
+    checkpoint: job.checkpoint,
+  };
+}
