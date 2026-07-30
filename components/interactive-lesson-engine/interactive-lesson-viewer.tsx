@@ -95,7 +95,7 @@ export function InteractiveLessonViewer({
       data-mode={mode}
       data-ile-theme={theme.id}
       style={{
-        ...(cssVars as React.CSSProperties),
+        ...(cssVars as CSSProperties),
         maxWidth: 1200,
         margin: "0 auto",
         paddingBottom: "2rem",
