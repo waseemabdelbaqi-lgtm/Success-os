@@ -117,7 +117,7 @@ Production Optimization
 
 ## Non-negotiables
 
-- **One lesson runtime** (ILE) — no forks
+- **One lesson runtime** (ILE) — no forks — **[ADR-0049](./adr/ADR-0049-interactive-lesson-engine-single-runtime.md)**
 - Country / curriculum logic lives in **import adapters** (#50), not in the engine core
 - No silent AI video generation until #52–53 explicitly enables it
 - Preserve existing routes; extend, don’t redesign portals

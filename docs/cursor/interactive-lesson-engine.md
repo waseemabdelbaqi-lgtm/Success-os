@@ -10,6 +10,7 @@ Curriculum-agnostic learning engine for Success OS. Schema: `success-os.interact
 - Reusable across country / curriculum / subject / language
 - Lessons are interactive blocks — not a static PDF or single video
 - Books-first bridge today; national curricula plug in later via the same package model
+- **ADR-0049:** ILE is the **only** lesson runtime — see [`adr/ADR-0049-interactive-lesson-engine-single-runtime.md`](./adr/ADR-0049-interactive-lesson-engine-single-runtime.md)
 
 ## Architecture
 

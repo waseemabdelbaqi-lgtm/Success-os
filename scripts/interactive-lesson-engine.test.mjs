@@ -83,6 +83,8 @@ const requiredFiles = [
   "docs/cursor/ile-technology-selection.md",
   "docs/cursor/interactive-lesson-engine.md",
   "docs/cursor/learning-platform-roadmap.md",
+  "docs/cursor/adr/ADR-0049-interactive-lesson-engine-single-runtime.md",
+  "docs/cursor/adr/README.md",
   "content/demo/interactive-lesson-engine.ts",
   "components/interactive-lesson-engine/block-renderer.tsx",
   "components/interactive-lesson-engine/slide-engine.tsx",
@@ -187,6 +189,15 @@ assert.ok(roadmap.includes("ILE package"));
 assert.ok(roadmap.includes("PR #60"));
 assert.ok(roadmap.includes("Learning Intelligence"));
 assert.ok(roadmap.includes("Production Optimization"));
+assert.ok(roadmap.includes("ADR-0049"));
+
+const adr = fs.readFileSync(
+  path.join(root, "docs/cursor/adr/ADR-0049-interactive-lesson-engine-single-runtime.md"),
+  "utf8",
+);
+assert.ok(adr.includes("ADR-0049"));
+assert.ok(adr.includes("only lesson runtime"));
+assert.ok(adr.includes("compiler, not a renderer"));
 
 const theme = fs.readFileSync(
   path.join(root, "lib/interactive-lesson-engine/core/theme.ts"),

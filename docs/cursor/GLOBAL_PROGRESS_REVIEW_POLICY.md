@@ -21,6 +21,7 @@ At the end of every completed order, **automatically** generate a comprehensive 
 11. **Blockers**  
 12. **Recommendations**  
 13. **Next Order** — complete implementation order for the next PR  
+14. **Architecture Decision Record (ADR)** — when an architectural decision is made or affirmed; link the ADR under `docs/cursor/adr/`  
 
 ## Sync rules
 

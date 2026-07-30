@@ -297,3 +297,26 @@ Source of truth: `docs/cursor/learning-platform-roadmap.md`
 - **ILE package output only** — single lesson runtime  
 - Human verification for national content  
 - No silent overwrite of published packages  
+
+---
+
+## 14. Architecture Decision Record (ADR)
+
+**Decision ID:** ADR-0049
+
+**Decision:** Interactive Lesson Engine (ILE) is the only lesson runtime.
+
+**Reason:** Avoid multiple renderers and duplicated learning experiences.
+
+**Alternatives Considered:**
+
+- Multiple lesson runtimes ❌  
+- Curriculum-specific renderers ❌  
+
+**Consequences:**
+
+- All future content must compile into ILE packages.  
+- Curriculum Import Engine becomes a compiler, not a renderer.  
+- AI Lesson Generator publishes ILE packages only.  
+
+**Full ADR:** [`docs/cursor/adr/ADR-0049-interactive-lesson-engine-single-runtime.md`](../adr/ADR-0049-interactive-lesson-engine-single-runtime.md)
