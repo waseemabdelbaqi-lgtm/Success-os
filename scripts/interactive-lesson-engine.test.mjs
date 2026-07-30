@@ -34,11 +34,14 @@ const BLOCK_TYPES = [
   "formula",
   "image",
   "svg_diagram",
+  "mermaid_diagram",
   "interactive_chart",
   "embedded_media",
   "audio",
   "video_placeholder",
   "simulation_placeholder",
+  "scene_3d",
+  "pdf_document",
   "downloadable_resource",
   "notes",
   "ai_explanation",
@@ -56,6 +59,13 @@ const requiredFiles = [
   "lib/interactive-lesson-engine/future-placeholders.ts",
   "lib/interactive-lesson-engine/workspace-store.ts",
   "lib/interactive-lesson-engine/index.ts",
+  "lib/interactive-lesson-engine/adapters/formula-adapter.tsx",
+  "lib/interactive-lesson-engine/adapters/diagram-adapter.tsx",
+  "lib/interactive-lesson-engine/adapters/rich-text-adapter.tsx",
+  "lib/interactive-lesson-engine/adapters/scene-3d-adapter.tsx",
+  "lib/interactive-lesson-engine/adapters/pdf-adapter.tsx",
+  "lib/interactive-lesson-engine/adapters/index.ts",
+  "docs/cursor/ile-technology-selection.md",
   "content/demo/interactive-lesson-engine.ts",
   "components/interactive-lesson-engine/block-renderer.tsx",
   "components/interactive-lesson-engine/slide-engine.tsx",
@@ -125,8 +135,23 @@ assert.ok(placeholders.includes("virtual_labs"));
 assert.ok(placeholders.includes("final_exams"));
 
 assert.equal(SECTIONS.length, 17);
-assert.equal(BLOCK_TYPES.length, 15);
+assert.equal(BLOCK_TYPES.length, 18);
 assert.equal(MODES.length, 5);
+
+const techDoc = fs.readFileSync(
+  path.join(root, "docs/cursor/ile-technology-selection.md"),
+  "utf8",
+);
+assert.ok(techDoc.includes("KaTeX"));
+assert.ok(techDoc.includes("Mermaid"));
+assert.ok(techDoc.includes("TipTap"));
+assert.ok(techDoc.includes("React Three Fiber"));
+assert.ok(techDoc.includes("PDF.js"));
+
+const pkgJson = JSON.parse(fs.readFileSync(path.join(root, "package.json"), "utf8"));
+for (const dep of ["katex", "mermaid", "@tiptap/react", "three", "@react-three/fiber", "pdfjs-dist"]) {
+  assert.ok(pkgJson.dependencies?.[dep], `missing dependency ${dep}`);
+}
 
 console.log("interactive-lesson-engine.test.mjs: OK");
 console.log(

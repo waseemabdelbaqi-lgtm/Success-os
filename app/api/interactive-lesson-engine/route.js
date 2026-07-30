@@ -23,6 +23,10 @@ export async function GET(request) {
       return Response.json({ ok: true, ...engineStatus() });
     }
 
+    if (action === "adapters") {
+      return Response.json({ ok: true, adapters: engineStatus().adapters });
+    }
+
     if (action === "blocks") {
       return Response.json({ ok: true, blocks: listBlockLibrary() });
     }
@@ -77,7 +81,7 @@ export async function GET(request) {
 
     return Response.json({
       ok: true,
-      actions: ["status", "blocks", "placeholders", "catalog", "lesson"],
+      actions: ["status", "blocks", "adapters", "placeholders", "catalog", "lesson"],
       note: "Do not import curricula yet. Do not generate AI videos yet.",
     });
   } catch (error) {

@@ -1,10 +1,19 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import { useRef, type ReactNode } from "react";
 import type {
   LessonSectionId,
   StudentWorkspaceState,
 } from "@/types/interactive-lesson-engine";
+
+const RichTextAdapter = dynamic(
+  () =>
+    import("@/lib/interactive-lesson-engine/adapters/rich-text-adapter").then(
+      (m) => m.RichTextAdapter,
+    ),
+  { ssr: false, loading: () => <div style={{ padding: 8, fontSize: 12 }}>Loading editor…</div> },
+);
 
 type Locale = "en" | "ar";
 
@@ -78,24 +87,15 @@ export function StudentWorkspacePanel({
         {locale === "ar" ? "مساحة عمل الطالب" : "Student workspace"}
       </h3>
 
-      <label style={{ fontSize: 12, color: "#64748b", display: "block" }}>
-        {locale === "ar" ? "ملاحظات" : "Notes"}
-        <textarea
-          value={workspace.notes}
-          onChange={(e) => onNotesChange(e.target.value)}
-          rows={5}
-          style={{
-            display: "block",
-            width: "100%",
-            marginTop: 4,
-            border: "1px solid #cbd5e1",
-            borderRadius: 8,
-            padding: "0.5rem",
-            fontSize: 13,
-            resize: "vertical",
-          }}
-        />
-      </label>
+      <div style={{ fontSize: 12, color: "#64748b", marginBottom: 4 }}>
+        {locale === "ar" ? "ملاحظات (TipTap)" : "Notes (TipTap)"}
+      </div>
+      <RichTextAdapter
+        value={workspace.notes}
+        onChange={onNotesChange}
+        dir={locale === "ar" ? "rtl" : "ltr"}
+        placeholder={locale === "ar" ? "اكتب ملاحظاتك…" : "Write your notes…"}
+      />
 
       <div style={{ display: "flex", gap: 6, marginTop: 8, flexWrap: "wrap" }}>
         <button
@@ -174,29 +174,7 @@ export function StudentWorkspacePanel({
 
       <div style={{ marginTop: 10, fontSize: 12, color: "#64748b" }}>
         {locale === "ar" ? "التقدّم المحفوظ" : "Saved progress"}: {workspace.progressPercent}%
-        <div>
-          {locale === "ar" ? "متابعة من" : "Continue at"}:{" "}
-          {workspace.continueAt?.sectionId || "—"}
-        </div>
       </div>
-
-      {workspace.highlights.length ? (
-        <ul style={{ margin: "8px 0 0", paddingInlineStart: 16, fontSize: 11 }}>
-          {workspace.highlights.slice(-5).map((h) => (
-            <li key={h.id} style={{ background: h.color, marginBottom: 4, padding: 2 }}>
-              {h.text.slice(0, 80)}
-            </li>
-          ))}
-        </ul>
-      ) : null}
-
-      {workspace.bookmarks.length ? (
-        <ul style={{ margin: "8px 0 0", paddingInlineStart: 16, fontSize: 11 }}>
-          {workspace.bookmarks.slice(-5).map((b) => (
-            <li key={b.id}>{b.label}</li>
-          ))}
-        </ul>
-      ) : null}
     </aside>
   );
 }

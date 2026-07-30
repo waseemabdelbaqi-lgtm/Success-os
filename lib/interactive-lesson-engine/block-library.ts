@@ -33,6 +33,14 @@ export const BLOCK_LIBRARY_META: Record<
     reusable: true,
     description: { en: "Inline SVG diagram", ar: "مخطط SVG مضمّن" },
   },
+  mermaid_diagram: {
+    label: { en: "Mermaid diagram", ar: "مخطط Mermaid" },
+    reusable: true,
+    description: {
+      en: "Timelines, flowcharts, sequence diagrams (Mermaid)",
+      ar: "جداول زمنية ومخططات تدفق وتسلسل (Mermaid)",
+    },
+  },
   interactive_chart: {
     label: { en: "Interactive chart", ar: "مخطط تفاعلي" },
     reusable: true,
@@ -62,6 +70,22 @@ export const BLOCK_LIBRARY_META: Record<
     description: {
       en: "Reserved for interactive sims / virtual labs",
       ar: "محجوز للمحاكاة / المختبرات الافتراضية",
+    },
+  },
+  scene_3d: {
+    label: { en: "3D scene", ar: "مشهد ثلاثي الأبعاد" },
+    reusable: true,
+    description: {
+      en: "Three.js / R3F scene for labs and spatial concepts",
+      ar: "مشهد Three.js / R3F للمختبرات والمفاهيم المكانية",
+    },
+  },
+  pdf_document: {
+    label: { en: "PDF document", ar: "مستند PDF" },
+    reusable: true,
+    description: {
+      en: "In-browser PDF page via PDF.js",
+      ar: "صفحة PDF داخل المتصفح عبر PDF.js",
     },
   },
   downloadable_resource: {
@@ -116,6 +140,8 @@ export function createBlock(
     title: partial.title,
     text: partial.text,
     formula: partial.formula,
+    mermaidSource: partial.mermaidSource,
+    stemDomain: partial.stemDomain,
     src: partial.src ?? null,
     alt: partial.alt,
     svgMarkup: partial.svgMarkup,

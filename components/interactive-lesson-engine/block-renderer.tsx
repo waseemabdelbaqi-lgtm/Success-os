@@ -1,9 +1,28 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import { useMemo, useState, type ReactNode } from "react";
 import type { ContentBlock } from "@/types/interactive-lesson-engine";
 import { getLocalized } from "@/lib/interactive-lesson-engine";
 import { isPlaceholderBlock } from "@/lib/interactive-lesson-engine/block-library";
+import { FormulaAdapter } from "@/lib/interactive-lesson-engine/adapters/formula-adapter";
+
+const DiagramAdapter = dynamic(
+  () =>
+    import("@/lib/interactive-lesson-engine/adapters/diagram-adapter").then((m) => m.DiagramAdapter),
+  { ssr: false, loading: () => <div style={{ padding: 12, color: "#64748b" }}>Loading diagram…</div> },
+);
+
+const Scene3dAdapter = dynamic(
+  () =>
+    import("@/lib/interactive-lesson-engine/adapters/scene-3d-adapter").then((m) => m.Scene3dAdapter),
+  { ssr: false, loading: () => <div style={{ padding: 12, color: "#64748b" }}>Loading 3D…</div> },
+);
+
+const PdfAdapter = dynamic(
+  () => import("@/lib/interactive-lesson-engine/adapters/pdf-adapter").then((m) => m.PdfAdapter),
+  { ssr: false, loading: () => <div style={{ padding: 12, color: "#64748b" }}>Loading PDF…</div> },
+);
 
 type Locale = "en" | "ar";
 
@@ -12,27 +31,6 @@ type BlockRendererProps = {
   locale?: Locale;
   lazy?: boolean;
 };
-
-function FormulaView({ formula }: { formula: string }) {
-  return (
-    <div
-      dir="ltr"
-      style={{
-        fontFamily: "ui-monospace, SFMono-Regular, Menlo, monospace",
-        background: "#0f172a",
-        color: "#e2e8f0",
-        borderRadius: 10,
-        padding: "0.85rem 1rem",
-        fontSize: 18,
-        letterSpacing: 0.5,
-        overflowX: "auto",
-      }}
-      aria-label="formula"
-    >
-      {formula}
-    </div>
-  );
-}
 
 function MiniChart({
   labels,
@@ -73,8 +71,11 @@ export function BlockRenderer({
 
   const title = getLocalized(block.title, locale);
   const text = getLocalized(block.text, locale);
-
   const chart = useMemo(() => block.chart, [block.chart]);
+  const mermaidSource =
+    block.mermaidSource ||
+    (typeof block.meta?.mermaid === "string" ? block.meta.mermaid : "") ||
+    (block.type === "mermaid_diagram" ? text : "");
 
   return (
     <article
@@ -88,15 +89,19 @@ export function BlockRenderer({
         marginBottom: 10,
       }}
     >
-      {title ? (
-        <h4 style={{ margin: "0 0 0.5rem", fontSize: 15 }}>{title}</h4>
-      ) : null}
+      {title ? <h4 style={{ margin: "0 0 0.5rem", fontSize: 15 }}>{title}</h4> : null}
 
       {block.type === "rich_text" || block.type === "notes" || block.type === "ai_explanation" ? (
         <p style={{ margin: 0, whiteSpace: "pre-wrap", lineHeight: 1.65 }}>{text}</p>
       ) : null}
 
-      {block.type === "formula" && block.formula ? <FormulaView formula={block.formula} /> : null}
+      {block.type === "formula" && block.formula ? (
+        <FormulaAdapter
+          formula={block.formula}
+          stemDomain={block.stemDomain || "math"}
+          fallbackText={text}
+        />
+      ) : null}
 
       {block.type === "image" ? (
         block.src ? (
@@ -121,6 +126,10 @@ export function BlockRenderer({
           role="img"
           aria-label={title || "diagram"}
         />
+      ) : null}
+
+      {block.type === "mermaid_diagram" && mermaidSource ? (
+        <DiagramAdapter source={mermaidSource} title={title} />
       ) : null}
 
       {block.type === "interactive_chart" && chart ? (
@@ -162,6 +171,28 @@ export function BlockRenderer({
             <p style={{ margin: 0, opacity: 0.85 }}>{text}</p>
           </div>
         </div>
+      ) : null}
+
+      {block.type === "scene_3d" ? (
+        <Scene3dAdapter
+          title={title}
+          description={text}
+          variant={
+            (block.meta?.variant as "molecule" | "orbit" | "lab" | "generic") || "molecule"
+          }
+        />
+      ) : null}
+
+      {block.type === "pdf_document" ? (
+        block.src ? (
+          <PdfAdapter src={block.src} title={title} page={Number(block.meta?.page || 1)} />
+        ) : (
+          <p style={{ margin: 0, fontSize: 13, color: "#b45309" }}>
+            {locale === "ar"
+              ? "أضف مصدر PDF في src لعرض الصفحة."
+              : "Set block.src to a PDF URL to render the page."}
+          </p>
+        )
       ) : null}
 
       {block.type === "downloadable_resource" ? (

@@ -58,8 +58,17 @@ export const DEMO_INTERACTIVE_LESSON: InteractiveLessonPackage = {
         }),
         createBlock("formula", {
           id: "s1-f",
-          title: loc("Example formula block", "كتلة معادلة مثال"),
-          formula: "I = Q / t",
+          title: loc("Example formula block (KaTeX)", "كتلة معادلة مثال (KaTeX)"),
+          formula: "I = \\frac{Q}{t}",
+          stemDomain: "physics",
+        }),
+        createBlock("mermaid_diagram", {
+          id: "s1-mmd",
+          title: loc("Lesson flow", "مسار الدرس"),
+          mermaidSource: `flowchart LR
+  A[Overview] --> B[Slides]
+  B --> C[Practice]
+  C --> D[Progress]`,
         }),
       ],
     },
@@ -74,6 +83,15 @@ export const DEMO_INTERACTIVE_LESSON: InteractiveLessonPackage = {
           title: loc("Block map", "خريطة الكتل"),
           svgMarkup:
             '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 140"><rect width="360" height="140" rx="12" fill="#f0fdfa"/><rect x="16" y="40" width="70" height="60" rx="8" fill="#99f6e4"/><rect x="100" y="40" width="70" height="60" rx="8" fill="#5eead4"/><rect x="184" y="40" width="70" height="60" rx="8" fill="#2dd4bf"/><rect x="268" y="40" width="70" height="60" rx="8" fill="#14b8a6"/><text x="180" y="24" text-anchor="middle" fill="#115e59" font-size="12">Reusable blocks</text></svg>',
+        }),
+        createBlock("scene_3d", {
+          id: "s2-3d",
+          title: loc("3D concept shell", "هيكل مفهوم ثلاثي الأبعاد"),
+          text: loc(
+            "React Three Fiber demo — virtual labs expand later.",
+            "عرض React Three Fiber — المختبرات الافتراضية لاحقًا.",
+          ),
+          meta: { variant: "molecule" },
         }),
         createBlock("interactive_chart", {
           id: "s2-chart",
@@ -181,8 +199,14 @@ export const DEMO_INTERACTIVE_LESSON: InteractiveLessonPackage = {
       }),
     ],
     simulation_3d: [
-      createBlock("simulation_placeholder", {
+      createBlock("scene_3d", {
         id: "sim",
+        title: loc("Virtual lab shell", "هيكل مختبر افتراضي"),
+        text: loc("Orbit / molecule demos via R3F", "عروض مدار / جزيء عبر R3F"),
+        meta: { variant: "orbit" },
+      }),
+      createBlock("simulation_placeholder", {
+        id: "sim-ph",
         placeholderStatus: "planned",
       }),
     ],

@@ -19,6 +19,7 @@ import { listBlockLibrary } from "./block-library";
 import { FUTURE_CAPABILITY_PLACEHOLDERS } from "./future-placeholders";
 import { DEMO_INTERACTIVE_LESSON } from "@/content/demo/interactive-lesson-engine";
 import { STUDENT_ROUTES } from "@/lib/student-portal/constants";
+import { ADAPTER_REGISTRY } from "./adapters";
 
 function books(): BookDefinition[] {
   return DEMO_BOOKS as BookDefinition[];
@@ -35,13 +36,14 @@ export function getLocalized(
 export function engineStatus() {
   return {
     schema: "success-os.interactive-lesson-engine.v1",
-    phase: "foundation",
+    phase: "quality-foundation",
     booksFirst: true,
     curriculumIngestion: false,
     aiVideoGeneration: false,
     blockLibrary: listBlockLibrary(),
     sectionOrder: LESSON_SECTION_ORDER,
     learningModes: LEARNING_MODES,
+    adapters: ADAPTER_REGISTRY,
     futureCapabilities: FUTURE_CAPABILITY_PLACEHOLDERS,
     performance: {
       lazyLoad: true,
@@ -50,6 +52,11 @@ export function engineStatus() {
       mobileFirst: true,
       accessibility: true,
       keyboardNavigation: true,
+      dynamicHeavyImports: ["mermaid", "three", "pdfjs", "tiptap"],
+    },
+    estimatedMonthlyCostUsd: {
+      shippedOssAdapters: 0,
+      gatedAiMediaWhenEnabled: "usage-based (OpenAI/Claude/Gemini/HeyGen/ElevenLabs)",
     },
   };
 }

@@ -74,11 +74,14 @@ export type ContentBlockType =
   | "formula"
   | "image"
   | "svg_diagram"
+  | "mermaid_diagram"
   | "interactive_chart"
   | "embedded_media"
   | "audio"
   | "video_placeholder"
   | "simulation_placeholder"
+  | "scene_3d"
+  | "pdf_document"
   | "downloadable_resource"
   | "notes"
   | "ai_explanation"
@@ -91,11 +94,14 @@ export const CONTENT_BLOCK_TYPES: ContentBlockType[] = [
   "formula",
   "image",
   "svg_diagram",
+  "mermaid_diagram",
   "interactive_chart",
   "embedded_media",
   "audio",
   "video_placeholder",
   "simulation_placeholder",
+  "scene_3d",
+  "pdf_document",
   "downloadable_resource",
   "notes",
   "ai_explanation",
@@ -149,6 +155,10 @@ export type ContentBlock = {
   text?: LocaleText;
   /** LaTeX or plain formula string */
   formula?: string;
+  /** Mermaid source (flowcharts, timelines, sequence) */
+  mermaidSource?: string;
+  /** Subject hint for STEM rendering (math | chemistry | physics | biology) */
+  stemDomain?: "math" | "chemistry" | "physics" | "biology" | "general";
   src?: string | null;
   alt?: LocaleText;
   svgMarkup?: string;
