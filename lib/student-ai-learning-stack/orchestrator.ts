@@ -239,7 +239,7 @@ export function runStudentLearningStack(
     invoke(
       "digital_books",
       "reserved",
-      { digitalBookIds: [], activatesInPr: "#55", generated: false },
+      { digitalBookIds: [], activatesInPr: "#56", generated: false },
       t,
     ),
   );
@@ -250,7 +250,7 @@ export function runStudentLearningStack(
     invoke(
       "videos",
       "reserved",
-      { videoIds: [], activatesInPr: "#56–57", generated: false },
+      { videoIds: [], activatesInPr: "#57", generated: false },
       t,
     ),
   );
@@ -360,9 +360,9 @@ export function getStudentAiLearningStackSnapshot(): StudentAiLearningStackSnaps
       "Knowledge Graph + UCE inform reasoning; they do not replace ILE.",
     ],
     notes: [
-      "Foundation for Learning Intelligence (roadmap #59).",
-      "Full AI Teacher / Conversation / Reasoning activate with #56–57 / #59.",
-      "Digital Books #55 · Videos #56–57 · Quizzes/Assessments #58.",
+      "Foundation helpers for Learning Intelligence (roadmap #59).",
+      "Official AI Teacher path is PR #55 ATE (ADR-0055).",
+      "Digital Books #56 · Videos #57 · Quizzes/Assessments #58.",
     ],
   };
 }

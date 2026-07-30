@@ -1,0 +1,597 @@
+{
+  "schema": "success-os.ai-teacher-engine.v1",
+  "path": [
+    "student",
+    "ai_teacher",
+    "conversation_engine",
+    "reasoning_engine",
+    "student_memory",
+    "knowledge_graph",
+    "curriculum_registry",
+    "interactive_lesson_engine",
+    "digital_books",
+    "videos",
+    "assessments"
+  ],
+  "displayPath": [
+    "Student",
+    "AI Teacher",
+    "Conversation Engine",
+    "Reasoning Engine",
+    "Student Memory",
+    "Knowledge Graph",
+    "Curriculum Registry",
+    "Interactive Lesson Engine",
+    "Digital Books",
+    "Videos",
+    "Assessments"
+  ],
+  "layers": [
+    {
+      "id": "student",
+      "order": 1,
+      "name": {
+        "en": "Student",
+        "ar": "الطالب"
+      },
+      "role": {
+        "en": "Learner identity and intent enter the AI Teacher",
+        "ar": "هوية المتعلم ونيّته تدخل المعلم الذكي"
+      },
+      "status": "operational",
+      "bindsTo": [
+        "success-os.student-foundation.v1"
+      ],
+      "activatesInPr": "#50.3 / #55",
+      "generatesContent": false,
+      "rendersLessons": false,
+      "notes": [
+        "Student foundation data model already exists."
+      ]
+    },
+    {
+      "id": "ai_teacher",
+      "order": 2,
+      "name": {
+        "en": "AI Teacher",
+        "ar": "المعلم الذكي"
+      },
+      "role": {
+        "en": "Virtual teacher persona — teaches, guides, motivates, adapts (not a chatbot)",
+        "ar": "شخصية معلم افتراضي — يعلّم ويوجّه ويحفّز ويتكيّف (ليس روبوت محادثة)"
+      },
+      "status": "operational",
+      "bindsTo": [
+        "success-os.ai-teacher-engine.v1",
+        "success-os.student-skill-progress.v1",
+        "success-os.s4s-re-explain.v1"
+      ],
+      "activatesInPr": "#55",
+      "generatesContent": false,
+      "rendersLessons": false,
+      "notes": [
+        "Product persona includes S4S Intelligence Teacher.",
+        "No avatars, animations, AI videos, or live classrooms in this PR."
+      ]
+    },
+    {
+      "id": "conversation_engine",
+      "order": 3,
+      "name": {
+        "en": "Conversation Engine",
+        "ar": "محرك المحادثة"
+      },
+      "role": {
+        "en": "Turns utterances and multimodal inputs into tutoring intents and controls",
+        "ar": "يحوّل الكلام والمدخلات متعددة الوسائط إلى نوايا وضوابط تعليمية"
+      },
+      "status": "operational",
+      "bindsTo": [
+        "success-os.ai-teacher-engine.v1"
+      ],
+      "activatesInPr": "#55",
+      "generatesContent": false,
+      "rendersLessons": false,
+      "notes": [
+        "Recognizes student control phrases and affect signals.",
+        "Voice/interrupt contracts ready; LLM free-form chat may deepen later."
+      ]
+    },
+    {
+      "id": "reasoning_engine",
+      "order": 4,
+      "name": {
+        "en": "Reasoning Engine",
+        "ar": "محرك الاستدلال"
+      },
+      "role": {
+        "en": "Curriculum-aware pedagogical moves from memory, skills, and mappings",
+        "ar": "خطوات تربوية واعية بالمنهج من الذاكرة والمهارات والمواءمات"
+      },
+      "status": "operational",
+      "bindsTo": [
+        "success-os.universal-curriculum-mapping.v1",
+        "success-os.student-memory.v1",
+        "success-os.s4s-re-explain.v1"
+      ],
+      "activatesInPr": "#55",
+      "generatesContent": false,
+      "rendersLessons": false,
+      "notes": [
+        "Selects teaching style, difficulty, recommendations.",
+        "Never invents curriculum facts."
+      ]
+    },
+    {
+      "id": "student_memory",
+      "order": 5,
+      "name": {
+        "en": "Student Memory",
+        "ar": "ذاكرة الطالب"
+      },
+      "role": {
+        "en": "Remembers name, language, curriculum, skills, goals, pace, style, history",
+        "ar": "تتذكر الاسم واللغة والمنهج والمهارات والأهداف والوتيرة والأسلوب والتاريخ"
+      },
+      "status": "operational",
+      "bindsTo": [
+        "success-os.student-memory.v1"
+      ],
+      "activatesInPr": "#55",
+      "generatesContent": false,
+      "rendersLessons": false,
+      "notes": [
+        "Persists across conversations within the ATE memory store."
+      ]
+    },
+    {
+      "id": "knowledge_graph",
+      "order": 6,
+      "name": {
+        "en": "Knowledge Graph",
+        "ar": "شبكة المعرفة"
+      },
+      "role": {
+        "en": "Resolves lesson/skill relationships for grounded teaching",
+        "ar": "يحل علاقات الدروس والمهارات للتدريس الموثّق"
+      },
+      "status": "foundation",
+      "bindsTo": [
+        "success-os.knowledge-graph.v1"
+      ],
+      "activatesInPr": "#50.3",
+      "generatesContent": false,
+      "rendersLessons": false,
+      "notes": [
+        "Wired to CIE knowledge graph foundation."
+      ]
+    },
+    {
+      "id": "curriculum_registry",
+      "order": 7,
+      "name": {
+        "en": "Curriculum Registry",
+        "ar": "سجل المناهج"
+      },
+      "role": {
+        "en": "Grounds answers in Global Curriculum Registry + UCE mappings",
+        "ar": "يرسّخ الإجابات في السجل العالمي للمناهج ومواءمات UCE"
+      },
+      "status": "foundation",
+      "bindsTo": [
+        "success-os.global-curriculum-registry.v1",
+        "success-os.universal-curriculum-mapping.v1"
+      ],
+      "activatesInPr": "#50.3 / #54",
+      "generatesContent": false,
+      "rendersLessons": false,
+      "notes": [
+        "Never invents curriculum entities."
+      ]
+    },
+    {
+      "id": "interactive_lesson_engine",
+      "order": 8,
+      "name": {
+        "en": "Interactive Lesson Engine",
+        "ar": "محرك الدروس التفاعلية"
+      },
+      "role": {
+        "en": "Sole lesson runtime — consumes ILE packages only",
+        "ar": "وقت تشغيل الدرس الوحيد — يستهلك حزم ILE فقط"
+      },
+      "status": "operational",
+      "bindsTo": [
+        "success-os.interactive-lesson-engine.v1"
+      ],
+      "activatesInPr": "#49",
+      "generatesContent": false,
+      "rendersLessons": true,
+      "notes": [
+        "ADR-0049 — never fork a second lesson runtime."
+      ]
+    },
+    {
+      "id": "digital_books",
+      "order": 9,
+      "name": {
+        "en": "Digital Books",
+        "ar": "الكتب الرقمية"
+      },
+      "role": {
+        "en": "Recommend verified digital book sections",
+        "ar": "يوصي بأقسام كتب رقمية موثّقة"
+      },
+      "status": "reserved",
+      "bindsTo": [
+        "success-os.digital-book-engine.v1"
+      ],
+      "activatesInPr": "#56",
+      "generatesContent": false,
+      "rendersLessons": false,
+      "notes": [
+        "Integration point only until Digital Book Engine."
+      ]
+    },
+    {
+      "id": "videos",
+      "order": 10,
+      "name": {
+        "en": "Videos",
+        "ar": "الفيديوهات"
+      },
+      "role": {
+        "en": "Recommend verified video assets",
+        "ar": "يوصي بأصول فيديو موثّقة"
+      },
+      "status": "reserved",
+      "bindsTo": [
+        "success-os.ai-media-engine.v1"
+      ],
+      "activatesInPr": "#57",
+      "generatesContent": false,
+      "rendersLessons": false,
+      "notes": [
+        "No AI video generation in this PR."
+      ]
+    },
+    {
+      "id": "assessments",
+      "order": 11,
+      "name": {
+        "en": "Assessments",
+        "ar": "التقييمات"
+      },
+      "role": {
+        "en": "Practice, mini-quiz, and assessment hooks",
+        "ar": "خطافات تدريب واختبارات قصيرة وتقييمات"
+      },
+      "status": "reserved",
+      "bindsTo": [
+        "success-os.assessment-engine.v1"
+      ],
+      "activatesInPr": "#58",
+      "generatesContent": false,
+      "rendersLessons": false,
+      "notes": [
+        "Mini-quiz contracts exist; generation deferred to Assessment Engine."
+      ]
+    }
+  ],
+  "capabilities": [
+    {
+      "id": "answer_questions",
+      "name": {
+        "en": "Answer questions naturally",
+        "ar": "الإجابة على الأسئلة بشكل طبيعي"
+      },
+      "status": "foundation",
+      "generatesContent": false,
+      "notes": [
+        "Grounded replies only; uncertainty stated when ungrounded."
+      ]
+    },
+    {
+      "id": "explain_multi_style",
+      "name": {
+        "en": "Explain with multiple teaching styles",
+        "ar": "الشرح بأساليب تعليم متعددة"
+      },
+      "status": "foundation",
+      "generatesContent": false,
+      "notes": [
+        "direct | socratic | example_first | visual | step_by_step | story | simplified"
+      ]
+    },
+    {
+      "id": "simplify_concepts",
+      "name": {
+        "en": "Simplify difficult concepts",
+        "ar": "تبسيط المفاهيم الصعبة"
+      },
+      "status": "foundation",
+      "generatesContent": false,
+      "notes": [
+        "Triggered by teach_slowly / dont_understand / simplify controls."
+      ]
+    },
+    {
+      "id": "detect_misconceptions",
+      "name": {
+        "en": "Detect misconceptions",
+        "ar": "اكتشاف المفاهيم الخاطئة"
+      },
+      "status": "stub",
+      "generatesContent": false,
+      "notes": [
+        "Signal from wrong-answer / confusion patterns; full NLP later."
+      ]
+    },
+    {
+      "id": "correct_wrong_answers",
+      "name": {
+        "en": "Correct wrong answers",
+        "ar": "تصحيح الإجابات الخاطئة"
+      },
+      "status": "stub",
+      "generatesContent": false,
+      "notes": [
+        "Correction templates grounded in curriculum citations."
+      ]
+    },
+    {
+      "id": "ask_follow_ups",
+      "name": {
+        "en": "Ask follow-up questions",
+        "ar": "طرح أسئلة متابعة"
+      },
+      "status": "foundation",
+      "generatesContent": false,
+      "notes": [
+        "Scripted follow-ups after explanations and re-explain checks."
+      ]
+    },
+    {
+      "id": "generate_examples",
+      "name": {
+        "en": "Generate examples",
+        "ar": "توليد أمثلة"
+      },
+      "status": "stub",
+      "generatesContent": false,
+      "notes": [
+        "Example slots reserved; no free-form AI content generation."
+      ]
+    },
+    {
+      "id": "generate_harder_easier_examples",
+      "name": {
+        "en": "Harder / easier examples",
+        "ar": "أمثلة أصعب / أسهل"
+      },
+      "status": "foundation",
+      "generatesContent": false,
+      "notes": [
+        "Intent routing for easier_example / harder_question."
+      ]
+    },
+    {
+      "id": "create_practice_questions",
+      "name": {
+        "en": "Create practice questions",
+        "ar": "إنشاء أسئلة تدريب"
+      },
+      "status": "reserved",
+      "generatesContent": false,
+      "notes": [
+        "Activates with Assessment Engine (#58)."
+      ]
+    },
+    {
+      "id": "create_mini_quizzes",
+      "name": {
+        "en": "Create mini quizzes",
+        "ar": "إنشاء اختبارات قصيرة"
+      },
+      "status": "reserved",
+      "generatesContent": false,
+      "notes": [
+        "test_me intent defers to Assessment Engine."
+      ]
+    },
+    {
+      "id": "recommend_lessons",
+      "name": {
+        "en": "Recommend lessons",
+        "ar": "توصية بالدروس"
+      },
+      "status": "foundation",
+      "generatesContent": false,
+      "notes": [
+        "Uses focus lesson + UCE equivalents."
+      ]
+    },
+    {
+      "id": "recommend_videos",
+      "name": {
+        "en": "Recommend videos",
+        "ar": "توصية بالفيديوهات"
+      },
+      "status": "reserved",
+      "generatesContent": false,
+      "notes": [
+        "Integration point until #57."
+      ]
+    },
+    {
+      "id": "recommend_digital_book_sections",
+      "name": {
+        "en": "Recommend digital book sections",
+        "ar": "توصية بأقسام الكتب الرقمية"
+      },
+      "status": "reserved",
+      "generatesContent": false,
+      "notes": [
+        "Integration point until #56."
+      ]
+    },
+    {
+      "id": "recommend_prerequisites",
+      "name": {
+        "en": "Recommend prerequisite lessons",
+        "ar": "توصية بدروس المتطلبات السابقة"
+      },
+      "status": "foundation",
+      "generatesContent": false,
+      "notes": [
+        "From lesson dependencies + weak skills."
+      ]
+    },
+    {
+      "id": "encourage_learner",
+      "name": {
+        "en": "Encourage the learner",
+        "ar": "تشجيع المتعلم"
+      },
+      "status": "foundation",
+      "generatesContent": false,
+      "notes": [
+        "Affect-aware encouragement lines."
+      ]
+    },
+    {
+      "id": "detect_frustration",
+      "name": {
+        "en": "Detect frustration",
+        "ar": "اكتشاف الإحباط"
+      },
+      "status": "foundation",
+      "generatesContent": false,
+      "notes": [
+        "Heuristic from utterance patterns."
+      ]
+    },
+    {
+      "id": "detect_confidence",
+      "name": {
+        "en": "Detect confidence",
+        "ar": "اكتشاف الثقة"
+      },
+      "status": "foundation",
+      "generatesContent": false,
+      "notes": [
+        "Heuristic from utterance patterns."
+      ]
+    },
+    {
+      "id": "adapt_explanations",
+      "name": {
+        "en": "Adapt explanations",
+        "ar": "تكييف الشرح"
+      },
+      "status": "foundation",
+      "generatesContent": false,
+      "notes": [
+        "Uses memory pace/style + teaching style + re-explain path."
+      ]
+    }
+  ],
+  "studentControls": [
+    "explain_again",
+    "explain_differently",
+    "easier_example",
+    "harder_question",
+    "translate",
+    "summarize",
+    "test_me",
+    "skip",
+    "continue",
+    "go_back",
+    "teach_slowly",
+    "teach_faster",
+    "dont_understand",
+    "ask_question",
+    "request_lesson",
+    "request_video",
+    "request_book",
+    "request_help",
+    "unknown"
+  ],
+  "multimodalKinds": [
+    "text",
+    "voice",
+    "image",
+    "screenshot",
+    "homework_photo",
+    "pdf",
+    "handwritten_solution",
+    "video_conversation",
+    "live_whiteboard"
+  ],
+  "voice": {
+    "schema": "success-os.ate-voice.v1",
+    "enabled": true,
+    "naturalConversation": true,
+    "interruptible": true,
+    "pauseable": true,
+    "continuable": true,
+    "multiVoice": true,
+    "implementationStatus": "ready_architecture",
+    "notes": [
+      "Student can interrupt; teacher can pause and continue naturally.",
+      "Different voices will be supported.",
+      "No avatar or live classroom implementation in PR #55."
+    ]
+  },
+  "whiteboard": {
+    "schema": "success-os.ate-whiteboard.v1",
+    "enabled": true,
+    "canDrawDiagrams": true,
+    "canWriteEquations": true,
+    "canHighlightTextbook": true,
+    "canAnimateExplanations": true,
+    "canPointToFigures": true,
+    "canSolveStepByStep": true,
+    "implementationStatus": "ready_architecture",
+    "notes": [
+      "Diagrams, equations, textbook highlights, animated explanations, figure pointing, step-by-step solve.",
+      "No animation system or live whiteboard UI in PR #55."
+    ]
+  },
+  "counts": {
+    "layers": 11,
+    "operational": 6,
+    "foundation": 2,
+    "stub": 0,
+    "reserved": 3,
+    "capabilities": 18
+  },
+  "safety": {
+    "neverInventCurriculumFacts": true,
+    "groundInApprovedCurriculum": true,
+    "stateUncertaintyWhenUnsure": true
+  },
+  "outOfScope": [
+    "Avatars",
+    "Animations",
+    "AI-generated videos",
+    "Live classrooms"
+  ],
+  "rules": [
+    "Path order is immutable for the AI Teacher Engine.",
+    "ATE is a virtual teacher, not a chatbot.",
+    "Never invent curriculum facts; state uncertainty when ungrounded.",
+    "Interactive Lesson Engine is the only lesson renderer.",
+    "Voice and whiteboard are architecture-ready only in this PR."
+  ],
+  "notes": [
+    "PR #55 — AI Teacher Engine (ATE).",
+    "Parent: #54 Universal Curriculum Mapping Engine.",
+    "Digital Books #56 · Media #57 · Assessments #58 · Learning Intelligence #59."
+  ],
+  "aiGeneration": false,
+  "avatars": false,
+  "animations": false,
+  "aiVideos": false,
+  "liveClassrooms": false
+}

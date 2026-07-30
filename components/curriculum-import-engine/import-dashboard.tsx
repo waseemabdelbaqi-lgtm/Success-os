@@ -263,8 +263,12 @@ export function CurriculumImportDashboard(): ReactNode {
           </a>
         </p>
         <p style={{ fontSize: 12, color: "#475569", margin: "0.25rem 0 0" }}>
-          Student → AI Teacher → Conversation → Reasoning → Knowledge Graph → Digital Books →
-          Videos → ILE → Quizzes → Assessments ·{" "}
+          Student → AI Teacher → Conversation → Reasoning → Student Memory → Knowledge Graph →
+          Curriculum Registry → ILE → Digital Books → Videos → Assessments ·{" "}
+          <a href="/admin/ai-teacher-engine" style={{ color: "#0f766e" }}>
+            AI Teacher Engine
+          </a>
+          {" · "}
           <a href="/admin/student-ai-learning-stack" style={{ color: "#0f766e" }}>
             Open Learning Stack
           </a>

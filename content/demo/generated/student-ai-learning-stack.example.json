@@ -30,11 +30,11 @@
       "order": 1,
       "name": {
         "en": "Student",
-        "ar": "الطالب"
+        "ar": "\u0627\u0644\u0637\u0627\u0644\u0628"
       },
       "role": {
         "en": "Learner identity and intent enter the stack",
-        "ar": "هوية المتعلم ونيّته تدخل المكدس"
+        "ar": "\u0647\u0648\u064a\u0629 \u0627\u0644\u0645\u062a\u0639\u0644\u0645 \u0648\u0646\u064a\u0651\u062a\u0647 \u062a\u062f\u062e\u0644 \u0627\u0644\u0645\u0643\u062f\u0633"
       },
       "status": "operational",
       "bindsTo": [
@@ -52,11 +52,11 @@
       "order": 2,
       "name": {
         "en": "AI Teacher",
-        "ar": "المعلم الذكي"
+        "ar": "\u0627\u0644\u0645\u0639\u0644\u0645 \u0627\u0644\u0630\u0643\u064a"
       },
       "role": {
-        "en": "S4S Intelligence Teacher — open-lesson greeting and re-explain tutoring persona",
-        "ar": "معلم Success 4 Sure الذكي — تحية فتح الدرس وشخصية إعادة الشرح"
+        "en": "S4S Intelligence Teacher \u2014 open-lesson greeting and re-explain tutoring persona",
+        "ar": "\u0645\u0639\u0644\u0645 Success 4 Sure \u0627\u0644\u0630\u0643\u064a \u2014 \u062a\u062d\u064a\u0629 \u0641\u062a\u062d \u0627\u0644\u062f\u0631\u0633 \u0648\u0634\u062e\u0635\u064a\u0629 \u0625\u0639\u0627\u062f\u0629 \u0627\u0644\u0634\u0631\u062d"
       },
       "status": "foundation",
       "bindsTo": [
@@ -69,9 +69,9 @@
       "rendersLessons": false,
       "notes": [
         "Product persona: S4S Intelligence Teacher.",
-        "Open Lesson greeting: Hello Ahmad — struggled with Fractions — review first?",
-        "Re-explain: Animation → Drawing → Example → Question → Checks understanding.",
-        "No AI lesson generation — scripted prompts only."
+        "Open Lesson greeting: Hello Ahmad \u2014 struggled with Fractions \u2014 review first?",
+        "Re-explain: Animation \u2192 Drawing \u2192 Example \u2192 Question \u2192 Checks understanding.",
+        "No AI lesson generation \u2014 scripted prompts only."
       ]
     },
     {
@@ -79,11 +79,11 @@
       "order": 3,
       "name": {
         "en": "Conversation Engine",
-        "ar": "محرك المحادثة"
+        "ar": "\u0645\u062d\u0631\u0643 \u0627\u0644\u0645\u062d\u0627\u062f\u062b\u0629"
       },
       "role": {
         "en": "Turns student utterances into structured tutoring intents",
-        "ar": "يحوّل كلام الطالب إلى نوايا تعليمية منظمة"
+        "ar": "\u064a\u062d\u0648\u0651\u0644 \u0643\u0644\u0627\u0645 \u0627\u0644\u0637\u0627\u0644\u0628 \u0625\u0644\u0649 \u0646\u0648\u0627\u064a\u0627 \u062a\u0639\u0644\u064a\u0645\u064a\u0629 \u0645\u0646\u0638\u0645\u0629"
       },
       "status": "foundation",
       "bindsTo": [
@@ -93,7 +93,7 @@
       "generatesContent": false,
       "rendersLessons": false,
       "notes": [
-        "Recognizes “I don't understand this.” → dont_understand intent.",
+        "Recognizes \u201cI don't understand this.\u201d \u2192 dont_understand intent.",
         "LLM free-form chat reserved for later AI PRs."
       ]
     },
@@ -102,11 +102,11 @@
       "order": 4,
       "name": {
         "en": "Reasoning Engine",
-        "ar": "محرك الاستدلال"
+        "ar": "\u0645\u062d\u0631\u0643 \u0627\u0644\u0627\u0633\u062a\u062f\u0644\u0627\u0644"
       },
       "role": {
         "en": "Selects next pedagogical move from skills, gaps, and mappings",
-        "ar": "يختار الخطوة التربوية التالية من المهارات والفجوات والمواءمات"
+        "ar": "\u064a\u062e\u062a\u0627\u0631 \u0627\u0644\u062e\u0637\u0648\u0629 \u0627\u0644\u062a\u0631\u0628\u0648\u064a\u0629 \u0627\u0644\u062a\u0627\u0644\u064a\u0629 \u0645\u0646 \u0627\u0644\u0645\u0647\u0627\u0631\u0627\u062a \u0648\u0627\u0644\u0641\u062c\u0648\u0627\u062a \u0648\u0627\u0644\u0645\u0648\u0627\u0621\u0645\u0627\u062a"
       },
       "status": "foundation",
       "bindsTo": [
@@ -118,8 +118,8 @@
       "generatesContent": false,
       "rendersLessons": false,
       "notes": [
-        "Re-explain path: Animation → Drawing → Example → Question → Checks understanding.",
-        "No AI lesson generation — scripted pedagogy only."
+        "Re-explain path: Animation \u2192 Drawing \u2192 Example \u2192 Question \u2192 Checks understanding.",
+        "No AI lesson generation \u2014 scripted pedagogy only."
       ]
     },
     {
@@ -127,11 +127,11 @@
       "order": 5,
       "name": {
         "en": "Knowledge Graph",
-        "ar": "شبكة المعرفة"
+        "ar": "\u0634\u0628\u0643\u0629 \u0627\u0644\u0645\u0639\u0631\u0641\u0629"
       },
       "role": {
         "en": "Resolves lesson/skill relationships for the session",
-        "ar": "يحل علاقات الدروس والمهارات للجلسة"
+        "ar": "\u064a\u062d\u0644 \u0639\u0644\u0627\u0642\u0627\u062a \u0627\u0644\u062f\u0631\u0648\u0633 \u0648\u0627\u0644\u0645\u0647\u0627\u0631\u0627\u062a \u0644\u0644\u062c\u0644\u0633\u0629"
       },
       "status": "foundation",
       "bindsTo": [
@@ -149,17 +149,17 @@
       "order": 6,
       "name": {
         "en": "Digital Books",
-        "ar": "الكتب الرقمية"
+        "ar": "\u0627\u0644\u0643\u062a\u0628 \u0627\u0644\u0631\u0642\u0645\u064a\u0629"
       },
       "role": {
-        "en": "Provides book context for the lesson — ILE package output only later",
-        "ar": "يوفر سياق الكتاب للدرس — مخرجات حزم ILE لاحقًا فقط"
+        "en": "Provides book context for the lesson \u2014 ILE package output only later",
+        "ar": "\u064a\u0648\u0641\u0631 \u0633\u064a\u0627\u0642 \u0627\u0644\u0643\u062a\u0627\u0628 \u0644\u0644\u062f\u0631\u0633 \u2014 \u0645\u062e\u0631\u062c\u0627\u062a \u062d\u0632\u0645 ILE \u0644\u0627\u062d\u0642\u064b\u0627 \u0641\u0642\u0637"
       },
       "status": "reserved",
       "bindsTo": [
         "success-os.digital-book-engine.v1"
       ],
-      "activatesInPr": "#55",
+      "activatesInPr": "#56",
       "generatesContent": false,
       "rendersLessons": false,
       "notes": [
@@ -171,17 +171,17 @@
       "order": 7,
       "name": {
         "en": "Videos",
-        "ar": "الفيديوهات"
+        "ar": "\u0627\u0644\u0641\u064a\u062f\u064a\u0648\u0647\u0627\u062a"
       },
       "role": {
         "en": "Attaches verified video assets to the session plan",
-        "ar": "يربط أصول الفيديو الموثّقة بخطة الجلسة"
+        "ar": "\u064a\u0631\u0628\u0637 \u0623\u0635\u0648\u0644 \u0627\u0644\u0641\u064a\u062f\u064a\u0648 \u0627\u0644\u0645\u0648\u062b\u0651\u0642\u0629 \u0628\u062e\u0637\u0629 \u0627\u0644\u062c\u0644\u0633\u0629"
       },
       "status": "reserved",
       "bindsTo": [
         "success-os.ai-media-engine.v1"
       ],
-      "activatesInPr": "#56–57",
+      "activatesInPr": "#57",
       "generatesContent": false,
       "rendersLessons": false,
       "notes": [
@@ -193,11 +193,11 @@
       "order": 8,
       "name": {
         "en": "Interactive Lesson Engine",
-        "ar": "محرك الدروس التفاعلية"
+        "ar": "\u0645\u062d\u0631\u0643 \u0627\u0644\u062f\u0631\u0648\u0633 \u0627\u0644\u062a\u0641\u0627\u0639\u0644\u064a\u0629"
       },
       "role": {
-        "en": "Sole lesson runtime — consumes ILE packages only",
-        "ar": "وقت تشغيل الدرس الوحيد — يستهلك حزم ILE فقط"
+        "en": "Sole lesson runtime \u2014 consumes ILE packages only",
+        "ar": "\u0648\u0642\u062a \u062a\u0634\u063a\u064a\u0644 \u0627\u0644\u062f\u0631\u0633 \u0627\u0644\u0648\u062d\u064a\u062f \u2014 \u064a\u0633\u062a\u0647\u0644\u0643 \u062d\u0632\u0645 ILE \u0641\u0642\u0637"
       },
       "status": "operational",
       "bindsTo": [
@@ -207,7 +207,7 @@
       "generatesContent": false,
       "rendersLessons": true,
       "notes": [
-        "ADR-0049 — never fork a second lesson runtime."
+        "ADR-0049 \u2014 never fork a second lesson runtime."
       ]
     },
     {
@@ -215,11 +215,11 @@
       "order": 9,
       "name": {
         "en": "Quizzes",
-        "ar": "الاختبارات القصيرة"
+        "ar": "\u0627\u0644\u0627\u062e\u062a\u0628\u0627\u0631\u0627\u062a \u0627\u0644\u0642\u0635\u064a\u0631\u0629"
       },
       "role": {
         "en": "Formative checks after the lesson runtime",
-        "ar": "فحوصات تكوينية بعد تشغيل الدرس"
+        "ar": "\u0641\u062d\u0648\u0635\u0627\u062a \u062a\u0643\u0648\u064a\u0646\u064a\u0629 \u0628\u0639\u062f \u062a\u0634\u063a\u064a\u0644 \u0627\u0644\u062f\u0631\u0633"
       },
       "status": "reserved",
       "bindsTo": [
@@ -237,11 +237,11 @@
       "order": 10,
       "name": {
         "en": "Assessments",
-        "ar": "التقييمات"
+        "ar": "\u0627\u0644\u062a\u0642\u064a\u064a\u0645\u0627\u062a"
       },
       "role": {
         "en": "Summative / unit / exam assessments on the same stack",
-        "ar": "تقييمات ختامية / وحدة / امتحان على نفس المكدس"
+        "ar": "\u062a\u0642\u064a\u064a\u0645\u0627\u062a \u062e\u062a\u0627\u0645\u064a\u0629 / \u0648\u062d\u062f\u0629 / \u0627\u0645\u062a\u062d\u0627\u0646 \u0639\u0644\u0649 \u0646\u0641\u0633 \u0627\u0644\u0645\u0643\u062f\u0633"
       },
       "status": "reserved",
       "bindsTo": [
@@ -269,9 +269,9 @@
     "Knowledge Graph + UCE inform reasoning; they do not replace ILE."
   ],
   "notes": [
-    "Foundation for Learning Intelligence (roadmap #59).",
-    "Full AI Teacher / Conversation / Reasoning activate with #56–57 / #59.",
-    "Digital Books #55 · Videos #56–57 · Quizzes/Assessments #58."
+    "Foundation helpers for Learning Intelligence (roadmap #59).",
+    "Official AI Teacher path is PR #55 ATE (ADR-0055).",
+    "Digital Books #56 \u00b7 Videos #57 \u00b7 Quizzes/Assessments #58."
   ],
   "aiGeneration": false
 }

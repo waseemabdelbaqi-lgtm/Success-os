@@ -1,0 +1,60 @@
+{
+  "schema": "success-os.student-memory.v1",
+  "studentId": "student_demo_001",
+  "studentName": "Ahmad",
+  "preferredLanguage": "en",
+  "currentCurriculumId": "JO-NATIONAL",
+  "gradeId": "GRD-00001",
+  "subjectIds": [
+    "SUB-00001"
+  ],
+  "completedLessonIds": [],
+  "weakSkillIds": [
+    "SKL-00002"
+  ],
+  "strongSkillIds": [],
+  "previousQuestionIds": [
+    "turn_8588f12a463e"
+  ],
+  "learningGoals": [
+    "Master fractions before decimals"
+  ],
+  "learningPace": "normal",
+  "learningStyle": "mixed",
+  "preferredTeachingStyle": "simplified",
+  "conversationHistory": [
+    {
+      "id": "turn_8588f12a463e",
+      "role": "student",
+      "text": "I don't understand this.",
+      "language": "en",
+      "intent": "dont_understand",
+      "affect": "confused",
+      "multimodal": [
+        {
+          "kind": "text",
+          "ready": true,
+          "notes": [
+            "Default text channel"
+          ]
+        }
+      ],
+      "grounded": true,
+      "uncertaintyStated": false,
+      "createdAt": "2026-07-30T23:14:01.849Z"
+    },
+    {
+      "id": "turn_6f1194ee4693",
+      "role": "teacher",
+      "text": "No problem.\nLet's explain it differently.",
+      "language": "en",
+      "intent": "dont_understand",
+      "affect": "engaged",
+      "grounded": true,
+      "uncertaintyStated": false,
+      "createdAt": "2026-07-30T23:14:01.849Z"
+    }
+  ],
+  "affectLast": "engaged",
+  "updatedAt": "2026-07-30T23:14:01.849Z"
+}

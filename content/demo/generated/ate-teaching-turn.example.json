@@ -1,0 +1,495 @@
+{
+  "schema": "success-os.ate-teaching-turn.v1",
+  "sessionId": "ate_5c8829c8ce803665",
+  "studentId": "student_demo_001",
+  "intent": "dont_understand",
+  "affect": "confused",
+  "teachingStyle": "simplified",
+  "teacherReply": {
+    "text": {
+      "en": "No problem.\nLet's explain it differently.",
+      "ar": "لا بأس.\nدعنا نشرحها بطريقة مختلفة."
+    },
+    "citations": [
+      {
+        "kind": "curriculum_registry",
+        "globalId": "JO-NATIONAL",
+        "label": "Current curriculum",
+        "confidence": 0.95
+      },
+      {
+        "kind": "curriculum_registry",
+        "globalId": "JO-NATIONAL-G01-MATH-B01-U01-L01",
+        "label": "Focus lesson",
+        "confidence": 0.9
+      },
+      {
+        "kind": "knowledge_graph",
+        "globalId": "SKL-00001",
+        "label": "Knowledge graph node",
+        "confidence": 0.8
+      },
+      {
+        "kind": "knowledge_graph",
+        "globalId": "SKL-00002",
+        "label": "Knowledge graph node",
+        "confidence": 0.8
+      },
+      {
+        "kind": "knowledge_graph",
+        "globalId": "SKL-00003",
+        "label": "Knowledge graph node",
+        "confidence": 0.8
+      },
+      {
+        "kind": "knowledge_graph",
+        "globalId": "SKL-00004",
+        "label": "Knowledge graph node",
+        "confidence": 0.8
+      },
+      {
+        "kind": "knowledge_graph",
+        "globalId": "SKL-00005",
+        "label": "Knowledge graph node",
+        "confidence": 0.8
+      },
+      {
+        "kind": "uce_mapping",
+        "globalId": "LSN-01002",
+        "label": "Cross-curriculum equivalent",
+        "confidence": 0.75
+      },
+      {
+        "kind": "uce_mapping",
+        "globalId": "LSN-01003",
+        "label": "Cross-curriculum equivalent",
+        "confidence": 0.75
+      },
+      {
+        "kind": "ile_package",
+        "globalId": "ile_JO-NATIONAL-G01-MATH-B01-U01-L01",
+        "label": "ILE package",
+        "confidence": 0.95
+      }
+    ],
+    "uncertain": false,
+    "uncertaintyNote": null,
+    "inventsCurriculumFacts": false
+  },
+  "followUpQuestion": {
+    "en": "Does this new explanation make more sense?",
+    "ar": "هل أصبح هذا الشرح أوضح؟"
+  },
+  "recommendations": [
+    {
+      "kind": "lesson",
+      "targetId": "JO-NATIONAL-G01-MATH-B01-U01-L01",
+      "label": {
+        "en": "Focus lesson",
+        "ar": "الدرس الحالي"
+      },
+      "reason": {
+        "en": "Curriculum-aware lesson for this session",
+        "ar": "درس واعٍ بالمنهج لهذه الجلسة"
+      },
+      "ready": true
+    },
+    {
+      "kind": "prerequisite_lesson",
+      "targetId": "SKL-00002",
+      "label": {
+        "en": "Prerequisite / weak skill review",
+        "ar": "مراجعة متطلب / مهارة ضعيفة"
+      },
+      "reason": {
+        "en": "Student memory marks this skill as weak",
+        "ar": "ذاكرة الطالب تعتبر هذه المهارة ضعيفة"
+      },
+      "ready": true
+    },
+    {
+      "kind": "lesson",
+      "targetId": "LSN-01002",
+      "label": {
+        "en": "Mapped lesson (equivalent)",
+        "ar": "درس مواءَم (equivalent)"
+      },
+      "reason": {
+        "en": "UCE mapping confidence 0.86",
+        "ar": "ثقة مواءمة UCE 0.86"
+      },
+      "ready": true
+    },
+    {
+      "kind": "lesson",
+      "targetId": "LSN-01003",
+      "label": {
+        "en": "Mapped lesson (advanced)",
+        "ar": "درس مواءَم (advanced)"
+      },
+      "reason": {
+        "en": "UCE mapping confidence 0.7",
+        "ar": "ثقة مواءمة UCE 0.7"
+      },
+      "ready": true
+    },
+    {
+      "kind": "digital_book_section",
+      "targetId": null,
+      "label": {
+        "en": "Digital book section",
+        "ar": "قسم كتاب رقمي"
+      },
+      "reason": {
+        "en": "Reserved for Digital Book Engine",
+        "ar": "محجوز لمحرك الكتب الرقمية"
+      },
+      "ready": false,
+      "activatesInPr": "#56"
+    },
+    {
+      "kind": "video",
+      "targetId": null,
+      "label": {
+        "en": "Verified video",
+        "ar": "فيديو موثّق"
+      },
+      "reason": {
+        "en": "Reserved for AI Lesson & Media Engine",
+        "ar": "محجوز لمحرك الدروس والوسائط"
+      },
+      "ready": false,
+      "activatesInPr": "#57"
+    },
+    {
+      "kind": "mini_quiz",
+      "targetId": null,
+      "label": {
+        "en": "Mini quiz",
+        "ar": "اختبار قصير"
+      },
+      "reason": {
+        "en": "Reserved for Assessment Engine",
+        "ar": "محجوز لمحرك التقييم"
+      },
+      "ready": false,
+      "activatesInPr": "#58"
+    }
+  ],
+  "memory": {
+    "schema": "success-os.student-memory.v1",
+    "studentId": "student_demo_001",
+    "studentName": "Ahmad",
+    "preferredLanguage": "en",
+    "currentCurriculumId": "JO-NATIONAL",
+    "gradeId": "GRD-00001",
+    "subjectIds": [
+      "SUB-00001"
+    ],
+    "completedLessonIds": [],
+    "weakSkillIds": [
+      "SKL-00002"
+    ],
+    "strongSkillIds": [],
+    "previousQuestionIds": [
+      "turn_8588f12a463e"
+    ],
+    "learningGoals": [
+      "Master fractions before decimals"
+    ],
+    "learningPace": "normal",
+    "learningStyle": "mixed",
+    "preferredTeachingStyle": "simplified",
+    "conversationHistory": [
+      {
+        "id": "turn_8588f12a463e",
+        "role": "student",
+        "text": "I don't understand this.",
+        "language": "en",
+        "intent": "dont_understand",
+        "affect": "confused",
+        "multimodal": [
+          {
+            "kind": "text",
+            "ready": true,
+            "notes": [
+              "Default text channel"
+            ]
+          }
+        ],
+        "grounded": true,
+        "uncertaintyStated": false,
+        "createdAt": "2026-07-30T23:14:01.849Z"
+      },
+      {
+        "id": "turn_6f1194ee4693",
+        "role": "teacher",
+        "text": "No problem.\nLet's explain it differently.",
+        "language": "en",
+        "intent": "dont_understand",
+        "affect": "engaged",
+        "grounded": true,
+        "uncertaintyStated": false,
+        "createdAt": "2026-07-30T23:14:01.849Z"
+      }
+    ],
+    "affectLast": "engaged",
+    "updatedAt": "2026-07-30T23:14:01.849Z"
+  },
+  "voice": {
+    "schema": "success-os.ate-voice.v1",
+    "enabled": true,
+    "naturalConversation": true,
+    "interruptible": true,
+    "pauseable": true,
+    "continuable": true,
+    "multiVoice": true,
+    "implementationStatus": "ready_architecture",
+    "notes": [
+      "Student can interrupt; teacher can pause and continue naturally.",
+      "Different voices will be supported.",
+      "No avatar or live classroom implementation in PR #55."
+    ]
+  },
+  "whiteboard": {
+    "schema": "success-os.ate-whiteboard.v1",
+    "enabled": true,
+    "canDrawDiagrams": true,
+    "canWriteEquations": true,
+    "canHighlightTextbook": true,
+    "canAnimateExplanations": true,
+    "canPointToFigures": true,
+    "canSolveStepByStep": true,
+    "implementationStatus": "ready_architecture",
+    "notes": [
+      "Diagrams, equations, textbook highlights, animated explanations, figure pointing, step-by-step solve.",
+      "No animation system or live whiteboard UI in PR #55."
+    ]
+  },
+  "ilePackageId": "ile_JO-NATIONAL-G01-MATH-B01-U01-L01",
+  "path": [
+    "student",
+    "ai_teacher",
+    "conversation_engine",
+    "reasoning_engine",
+    "student_memory",
+    "knowledge_graph",
+    "curriculum_registry",
+    "interactive_lesson_engine",
+    "digital_books",
+    "videos",
+    "assessments"
+  ],
+  "invocations": [
+    {
+      "layerId": "student",
+      "status": "operational",
+      "ok": true,
+      "output": {
+        "studentId": "student_demo_001",
+        "studentName": "Ahmad",
+        "countryId": "JO",
+        "curriculumId": "JO-NATIONAL",
+        "gradeId": "GRD-00001",
+        "language": "en",
+        "utterance": "I don't understand this."
+      },
+      "durationMs": 0
+    },
+    {
+      "layerId": "ai_teacher",
+      "status": "operational",
+      "ok": true,
+      "output": {
+        "persona": "AI Teacher / S4S Intelligence Teacher",
+        "notAChatbot": true,
+        "greeting": {
+          "displayEn": "Hello Ahmad,\nLast time you struggled with Fractions.\nWould you like me to review them first?",
+          "displayAr": "مرحبًا Ahmad،\nفي المرة السابقة واجهت صعوبة في الكسور.\nهل تريد أن نراجعها أولًا؟",
+          "struggleSkillId": "SKL-00002",
+          "struggleSkillName": {
+            "en": "Fractions",
+            "ar": "الكسور"
+          }
+        },
+        "avatars": false,
+        "animations": false,
+        "aiVideos": false,
+        "liveClassroom": false
+      },
+      "durationMs": 1
+    },
+    {
+      "layerId": "conversation_engine",
+      "status": "operational",
+      "ok": true,
+      "output": {
+        "intent": "dont_understand",
+        "affect": "confused",
+        "utterance": "I don't understand this.",
+        "multimodal": [
+          {
+            "kind": "text",
+            "ready": true,
+            "notes": [
+              "Default text channel"
+            ]
+          }
+        ],
+        "llm": false,
+        "controlsRecognized": true
+      },
+      "durationMs": 0
+    },
+    {
+      "layerId": "reasoning_engine",
+      "status": "operational",
+      "ok": true,
+      "output": {
+        "nextMove": "re_explain_differently",
+        "teachingStyle": "simplified",
+        "learningPace": "normal",
+        "reExplainPath": [
+          "Student: I don't understand this.",
+          "Teacher: No problem. Let's explain it differently.",
+          "Animation",
+          "Drawing",
+          "Example",
+          "Question",
+          "Checks understanding"
+        ],
+        "recommendationCount": 7,
+        "generatesContent": false
+      },
+      "durationMs": 1
+    },
+    {
+      "layerId": "student_memory",
+      "status": "operational",
+      "ok": true,
+      "output": {
+        "schema": "success-os.student-memory.v1",
+        "studentName": "Ahmad",
+        "preferredLanguage": "en",
+        "currentCurriculumId": "JO-NATIONAL",
+        "gradeId": "GRD-00001",
+        "weakSkillIds": [
+          "SKL-00002"
+        ],
+        "strongSkillIds": [],
+        "learningPace": "normal",
+        "learningStyle": "mixed",
+        "historyLength": 2,
+        "affectLast": "engaged"
+      },
+      "durationMs": 0
+    },
+    {
+      "layerId": "knowledge_graph",
+      "status": "foundation",
+      "ok": true,
+      "output": {
+        "schema": "success-os.knowledge-graph.v1",
+        "nodeCount": 22,
+        "edgeCount": 12,
+        "sampleNodeIds": [
+          "SKL-00001",
+          "SKL-00002",
+          "SKL-00003",
+          "SKL-00004",
+          "SKL-00005",
+          "SKL-00006",
+          "SKL-00007",
+          "SKL-00008",
+          "SKL-00009",
+          "SKL-00010",
+          "SKL-00011",
+          "SKL-00012"
+        ]
+      },
+      "durationMs": 0
+    },
+    {
+      "layerId": "curriculum_registry",
+      "status": "foundation",
+      "ok": true,
+      "output": {
+        "curriculumId": "JO-NATIONAL",
+        "focusLessonId": "JO-NATIONAL-G01-MATH-B01-U01-L01",
+        "uceEquivalents": [
+          {
+            "globalId": "LSN-01002",
+            "relation": "equivalent",
+            "confidence": 0.86
+          },
+          {
+            "globalId": "LSN-01003",
+            "relation": "advanced",
+            "confidence": 0.7
+          }
+        ],
+        "inventsFacts": false
+      },
+      "durationMs": 0
+    },
+    {
+      "layerId": "interactive_lesson_engine",
+      "status": "operational",
+      "ok": true,
+      "output": {
+        "runtime": "success-os.interactive-lesson-engine.v1",
+        "ilePackageId": "ile_JO-NATIONAL-G01-MATH-B01-U01-L01",
+        "rendersLessons": true,
+        "soleRuntime": true
+      },
+      "durationMs": 0
+    },
+    {
+      "layerId": "digital_books",
+      "status": "reserved",
+      "ok": true,
+      "output": {
+        "digitalBookIds": [],
+        "activatesInPr": "#56",
+        "generated": false
+      },
+      "durationMs": 0
+    },
+    {
+      "layerId": "videos",
+      "status": "reserved",
+      "ok": true,
+      "output": {
+        "videoIds": [],
+        "activatesInPr": "#57",
+        "generated": false
+      },
+      "durationMs": 0
+    },
+    {
+      "layerId": "assessments",
+      "status": "reserved",
+      "ok": true,
+      "output": {
+        "assessmentPlanId": null,
+        "miniQuizReady": false,
+        "activatesInPr": "#58",
+        "generated": false
+      },
+      "durationMs": 0
+    }
+  ],
+  "avatarsBuilt": false,
+  "animationsBuilt": false,
+  "aiVideosBuilt": false,
+  "liveClassroomBuilt": false,
+  "aiContentGenerated": false,
+  "notes": [
+    "AI Teacher Engine orchestration — not a chatbot.",
+    "Grounded in curriculum registry, knowledge graph, and ILE packages.",
+    "No avatars, animations, AI videos, or live classrooms.",
+    "Never invent curriculum facts.",
+    "Always ground explanations in the approved curriculum, verified digital books, and platform knowledge base.",
+    "When uncertain, clearly state uncertainty instead of guessing."
+  ]
+}

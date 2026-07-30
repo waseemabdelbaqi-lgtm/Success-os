@@ -42,11 +42,11 @@
         ],
         "greeting": {
           "displayEn": "Hello Ahmad,\nLast time you struggled with Fractions.\nWould you like me to review them first?",
-          "displayAr": "مرحبًا Ahmad،\nفي المرة السابقة واجهت صعوبة في الكسور.\nهل تريد أن نراجعها أولًا؟",
+          "displayAr": "\u0645\u0631\u062d\u0628\u064b\u0627 Ahmad\u060c\n\u0641\u064a \u0627\u0644\u0645\u0631\u0629 \u0627\u0644\u0633\u0627\u0628\u0642\u0629 \u0648\u0627\u062c\u0647\u062a \u0635\u0639\u0648\u0628\u0629 \u0641\u064a \u0627\u0644\u0643\u0633\u0648\u0631.\n\u0647\u0644 \u062a\u0631\u064a\u062f \u0623\u0646 \u0646\u0631\u0627\u062c\u0639\u0647\u0627 \u0623\u0648\u0644\u064b\u0627\u061f",
           "struggleSkillId": "SKL-00002",
           "struggleSkillName": {
             "en": "Fractions",
-            "ar": "الكسور"
+            "ar": "\u0627\u0644\u0643\u0633\u0648\u0631"
           },
           "source": "skill_progress"
         },
@@ -140,7 +140,7 @@
       "ok": true,
       "output": {
         "digitalBookIds": [],
-        "activatesInPr": "#55",
+        "activatesInPr": "#56",
         "generated": false
       },
       "durationMs": 0
@@ -151,7 +151,7 @@
       "ok": true,
       "output": {
         "videoIds": [],
-        "activatesInPr": "#56–57",
+        "activatesInPr": "#57",
         "generated": false
       },
       "durationMs": 0
@@ -217,7 +217,7 @@
   "videoIds": [],
   "aiContentGenerated": false,
   "notes": [
-    "Orchestration only — no AI lesson/video/quiz/assessment generation.",
+    "Orchestration only \u2014 no AI lesson/video/quiz/assessment generation.",
     "ILE is the sole lesson runtime (ADR-0049).",
     "Digital Books / Videos / Quizzes / Assessments reserved for later PRs."
   ]

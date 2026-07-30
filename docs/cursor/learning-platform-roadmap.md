@@ -77,7 +77,22 @@ Universal Curriculum Mapping Engine (UCE)
 
 ↓
 
-PR #55
+🔄 PR #55
+AI Teacher Engine (ATE)
+──────────────────────────────────────────
+• Virtual teacher (not a chatbot)
+• Conversation Engine + Reasoning Engine
+• Student Memory across conversations
+• Knowledge-grounded, curriculum-aware teaching
+• Lesson-aware recommendations
+• Voice-ready + Whiteboard-ready architecture
+• Multimodal + multilingual contracts
+• APIs, permissions, orchestration
+• No avatars / animations / AI videos / live classrooms
+
+↓
+
+PR #56
 Digital Book Engine
 ──────────────────────────────────────────
 • Interactive books
@@ -89,12 +104,11 @@ Digital Book Engine
 
 ↓
 
-PR #56–57
+PR #57
 AI Lesson & Media Engine
 ──────────────────────────────────────────
 • AI lesson generation
 • AI summaries
-• AI teacher
 • Human recorded lessons
 • AI video generation
 • Voice & captions
@@ -112,14 +126,12 @@ Assessment Engine
 
 ↓
 
-🔄 PR #59
-Student AI Learning Stack / Learning Intelligence (Foundation)
+PR #59
+Learning Intelligence
 ──────────────────────────────────────────
-• Student → AI Teacher → Conversation → Reasoning
-  → Knowledge Graph → Digital Books → Videos
-  → Interactive Lesson Engine → Quizzes → Assessments
-• Orchestration session plans (no AI content generation)
-• Layer contracts + stubs/reserved hooks for #55–#58
+• Deeper intelligence on top of ATE
+• Student AI Learning Stack activation
+• Adaptive long-horizon planning
 • ILE sole runtime
 
 ↓
@@ -145,10 +157,11 @@ Production Optimization
 | **#50.2** | Jordan Reference Dataset & Verification | **Done / open** | #50.1 + ADR-0050.2 |
 | **#50.3 / GH #53** | Global Curriculum Registry & Dynamic Architecture | **Done / open** | #50.2 + ADR-0050.3 |
 | **#54** | Universal Curriculum Mapping Engine | **Done / open** | #53 + ADR-0054 |
-| #55 | Digital Book Engine | Planned | #49, #54 |
-| #56–57 | AI Lesson & Media Engine | Planned | #49 (+ AI/media contracts) |
+| **#55** | AI Teacher Engine (ATE) | **In progress** | #54 + ADR-0055 |
+| #56 | Digital Book Engine | Planned | #49, #55 |
+| #57 | AI Lesson & Media Engine | Planned | #49 (+ AI/media contracts) |
 | #58 | Assessment Engine | Planned | #49 |
-| **#59** | Student AI Learning Stack (Foundation) | **In progress** | #54 + ADR-0059 |
+| #59 | Learning Intelligence | Planned | #55 + ADR-0059 |
 | #60 | Production Optimization | Planned | #49–#59 |
 
 ## Integration contract
@@ -160,29 +173,31 @@ Production Optimization
 | **#50.1 / #50.2** | Jordan reference hierarchy + metadata/verification standard → **one published ILE example** |
 | **#50.3 / GH #53** | Global Curriculum Registry + dynamic discovery → **unlimited countries/curricula** (Jordan first) |
 | **#54** | Universal Curriculum Mapping Engine → **cross-curriculum relationships via Global IDs** |
-| **#55** | Digital book chrome & media → **ILE package output only** (no parallel reader runtime) |
-| **#56–57** | Fill AI / video / voice placeholders → **publish as ILE packages** |
+| **#55** | AI Teacher Engine → **grounded teaching turns; ILE sole runtime; voice/whiteboard architecture** |
+| **#56** | Digital book chrome & media → **ILE package output only** (no parallel reader runtime) |
+| **#57** | Fill AI / video / voice placeholders → **publish as ILE packages** |
 | **#58** | Assessment engine extensions on the same runtime |
-| **#59** | Student AI Learning Stack orchestration → **AI Teacher path; ILE sole runtime** |
+| **#59** | Learning Intelligence → **deepens ATE; ILE sole runtime** |
 | **#60** | Harden the whole stack for global production |
 
 ## Non-negotiables
 
 - **One lesson runtime** (ILE) — no forks — **[ADR-0049](./adr/ADR-0049-interactive-lesson-engine-single-runtime.md)**
 - Country / curriculum logic lives in **import adapters** (#50), not in the engine core
-- No silent AI video generation until #52–53 explicitly enables it
+- No silent AI video generation until the Media Engine explicitly enables it
 - Preserve existing routes; extend, don’t redesign portals
 - Human verification for national curriculum content (#50)
+- AI Teacher never invents curriculum facts — **[ADR-0055](./adr/ADR-0055-ai-teacher-engine.md)**
 
 ## Next
 
-**PR #59 in progress** — Student AI Learning Stack (Foundation)  
-(`cursor/student-ai-learning-stack-bca1`).  
-Parallel track still open: **PR #55 — Digital Book Engine** (fills Digital Books layer).
+**PR #55 in progress** — AI Teacher Engine (ATE)  
+(`cursor/student-ai-learning-stack-bca1` / GitHub PR #55).  
+Next after merge: **PR #56 — Digital Book Engine**.
 
 ## Policy
 
 Every completed order must end with a report under [`GLOBAL_PROGRESS_REVIEW_POLICY.md`](./GLOBAL_PROGRESS_REVIEW_POLICY.md).  
-Latest: [`reports/pr-59-completion-report.md`](./reports/pr-59-completion-report.md).
+Latest: [`reports/pr-55-completion-report.md`](./reports/pr-55-completion-report.md).
 
 **Definition of Done:** a PR cannot merge until tests, lint, typecheck, build, docs, roadmap, completion report, review, and ADR (if architecture changed) are all green — see policy § Definition of Done.

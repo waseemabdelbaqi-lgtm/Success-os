@@ -1,9 +1,10 @@
 # ADR-0059 — Student AI Learning Stack (Orchestration Foundation)
 
-**Status:** Accepted  
+**Status:** Accepted (foundation retained; product path superseded for #55 by ADR-0055 ATE)  
 **Date:** 2026-07-30  
-**PR:** #59 Student AI Learning Stack (Foundation)  
-**Depends on:** ADR-0049 (ILE), ADR-0050 / ADR-0050.3 (CIE / GCR), ADR-0054 (UCE)
+**PR:** Originally #59 foundation; S4S greeting + re-explain consumed by **PR #55 AI Teacher Engine**  
+**Depends on:** ADR-0049 (ILE), ADR-0050 / ADR-0050.3 (CIE / GCR), ADR-0054 (UCE)  
+**Superseding path ADR:** [ADR-0055](./ADR-0055-ai-teacher-engine.md) (AI Teacher Engine official path includes Student Memory + Curriculum Registry)
 
 ## Context
 
