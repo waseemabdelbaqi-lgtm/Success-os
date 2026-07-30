@@ -1,0 +1,227 @@
+{
+  "schema": "success-os.jordan-reference-dataset.v1",
+  "country": "Jordan",
+  "curriculum": "Jordan National Curriculum",
+  "grade": "Grade 1",
+  "semester": "Semester 1",
+  "subjects": [
+    {
+      "code": "MATH",
+      "name": "Mathematics",
+      "books": [
+        {
+          "id": "JO-G1-MATH-B1",
+          "part": "Book 1",
+          "units": [
+            {
+              "id": "jo_g1_math_u1",
+              "title": "Unit 1 — Numbers around us",
+              "lessons": [
+                {
+                  "id": "jo_g1_math_u1_l1",
+                  "order": 1,
+                  "title": "Lesson 1 — Count to three",
+                  "verificationStatus": "verified",
+                  "rightsStatus": "verified"
+                },
+                {
+                  "id": "jo_g1_math_u1_l2",
+                  "order": 2,
+                  "title": "Lesson 2 — Count to five",
+                  "verificationStatus": "verified",
+                  "rightsStatus": "verified"
+                },
+                {
+                  "id": "jo_g1_math_u1_l3",
+                  "order": 3,
+                  "title": "Lesson 3 — Compare small sets",
+                  "verificationStatus": "verified",
+                  "rightsStatus": "verified"
+                }
+              ]
+            },
+            {
+              "id": "jo_g1_math_u2",
+              "title": "Unit 2 — Shapes",
+              "lessons": [
+                {
+                  "id": "jo_g1_math_u2_l1",
+                  "order": 1,
+                  "title": "Lesson 1 — Circles and squares",
+                  "verificationStatus": "verified",
+                  "rightsStatus": "verified"
+                },
+                {
+                  "id": "jo_g1_math_u2_l2",
+                  "order": 2,
+                  "title": "Lesson 2 — Triangles",
+                  "verificationStatus": "pending",
+                  "rightsStatus": "verified"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "JO-G1-MATH-B2",
+          "part": "Book 2",
+          "units": [
+            {
+              "id": "jo_g1_math_b2_u1",
+              "title": "Unit 1 — Addition readiness",
+              "lessons": [
+                {
+                  "id": "jo_g1_math_b2_u1_l1",
+                  "order": 1,
+                  "title": "Lesson 1 — Putting together",
+                  "verificationStatus": "pending",
+                  "rightsStatus": "restricted"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "code": "AR",
+      "name": "Arabic",
+      "books": [
+        {
+          "id": "JO-G1-AR-B1",
+          "part": "Book 1",
+          "units": [
+            {
+              "id": "jo_g1_ar_u1",
+              "title": "Unit 1 — Letters",
+              "lessons": [
+                {
+                  "id": "jo_g1_ar_u1_l1",
+                  "order": 1,
+                  "title": "Lesson 1 — Letter Alif",
+                  "verificationStatus": "verified",
+                  "rightsStatus": "verified"
+                },
+                {
+                  "id": "jo_g1_ar_u1_l2",
+                  "order": 2,
+                  "title": "Lesson 2 — Letter Ba",
+                  "verificationStatus": "verified",
+                  "rightsStatus": "verified"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "code": "EN",
+      "name": "English",
+      "books": [
+        {
+          "id": "JO-G1-EN-B1",
+          "part": "Book 1",
+          "units": [
+            {
+              "id": "jo_g1_en_u1",
+              "title": "Unit 1 — Hello",
+              "lessons": [
+                {
+                  "id": "jo_g1_en_u1_l1",
+                  "order": 1,
+                  "title": "Lesson 1 — Greetings",
+                  "verificationStatus": "verified",
+                  "rightsStatus": "verified"
+                },
+                {
+                  "id": "jo_g1_en_u1_l2",
+                  "order": 2,
+                  "title": "Lesson 2 — My name",
+                  "verificationStatus": "rejected",
+                  "rightsStatus": "rejected"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "code": "SCI",
+      "name": "Science",
+      "books": [
+        {
+          "id": "JO-G1-SCI-B1",
+          "part": "Book 1",
+          "units": [
+            {
+              "id": "jo_g1_sci_u1",
+              "title": "Unit 1 — Living things",
+              "lessons": [
+                {
+                  "id": "jo_g1_sci_u1_l1",
+                  "order": 1,
+                  "title": "Lesson 1 — Plants and animals",
+                  "verificationStatus": "verified",
+                  "rightsStatus": "verified"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "code": "ISL",
+      "name": "Islamic Education",
+      "books": [
+        {
+          "id": "JO-G1-ISL-B1",
+          "part": "Book 1",
+          "units": [
+            {
+              "id": "jo_g1_isl_u1",
+              "title": "Unit 1 — Good manners",
+              "lessons": [
+                {
+                  "id": "jo_g1_isl_u1_l1",
+                  "order": 1,
+                  "title": "Lesson 1 — Saying salaam",
+                  "verificationStatus": "verified",
+                  "rightsStatus": "verified"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "code": "SOC",
+      "name": "Social Studies",
+      "books": [
+        {
+          "id": "JO-G1-SOC-B1",
+          "part": "Book 1",
+          "units": [
+            {
+              "id": "jo_g1_soc_u1",
+              "title": "Unit 1 — My family",
+              "lessons": [
+                {
+                  "id": "jo_g1_soc_u1_l1",
+                  "order": 1,
+                  "title": "Lesson 1 — Family members",
+                  "verificationStatus": "verified",
+                  "rightsStatus": "verified"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "notes": "Official Jordan reference tree for PR #50.2. Metadata standard only — no AI lesson generation."
+}

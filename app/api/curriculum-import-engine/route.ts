@@ -13,6 +13,7 @@ import {
   runImportJob,
   runJordanGrade1MathReference,
   runJordanPhase1Import,
+  runJordanReferenceDataset,
 } from "@/lib/curriculum-import-engine";
 
 export const runtime = "nodejs";
@@ -64,6 +65,33 @@ export async function GET(req: Request) {
           : null,
         counts: result.snapshot.counts,
       },
+    });
+  }
+  if (action === "jordan-reference-dataset") {
+    const result = runJordanReferenceDataset({ reset: true });
+    return NextResponse.json({
+      ok: result.ok,
+      dataset: "success-os.jordan-reference-dataset.v1",
+      tree: result.tree,
+      samplePath: result.samplePath,
+      sampleMetadata: result.sampleMetadata,
+      samplePackage: result.samplePackage
+        ? {
+            id: result.samplePackage.id,
+            schema: result.samplePackage.schema,
+            title: result.samplePackage.title,
+            status: result.samplePackage.status,
+            filters: result.samplePackage.filters,
+            source: result.samplePackage.source,
+            objectives: result.samplePackage.objectives,
+            importMeta: result.samplePackage.importMeta,
+            engineMeta: result.samplePackage.engineMeta,
+          }
+        : null,
+      counts: result.counts,
+      validationReport: result.validationReport,
+      validationErrors: result.validationErrors,
+      rightsWarnings: result.rightsWarnings,
     });
   }
   if (action === "connectors") {
@@ -149,6 +177,15 @@ export async function POST(req: Request) {
         package: result.package,
         counts: result.snapshot.counts,
       },
+    });
+  }
+
+  if (action === "run-jordan-reference-dataset") {
+    const result = runJordanReferenceDataset({ reset: true });
+    return NextResponse.json({
+      ok: result.ok,
+      note: "Jordan reference dataset — metadata standard + verified ILE example (no AI)",
+      result,
     });
   }
 

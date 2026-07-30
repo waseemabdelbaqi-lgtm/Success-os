@@ -1,0 +1,71 @@
+{
+  "schema": "success-os.jordan-reference-validation.v1",
+  "dataset": "success-os.jordan-reference-dataset.v1",
+  "samplePath": [
+    "Jordan",
+    "National Curriculum",
+    "Grade 1",
+    "Mathematics",
+    "Semester 1",
+    "Book 1",
+    "Unit 1",
+    "Lesson 1",
+    "Verified ILE Package",
+    "Interactive Lesson Engine"
+  ],
+  "counts": {
+    "countries": 1,
+    "curricula": 1,
+    "grades": 1,
+    "subjects": 6,
+    "books": 7,
+    "units": 8,
+    "lessons": 13,
+    "packages": 1,
+    "verifiedPackages": 1,
+    "pendingPackages": 0,
+    "rejectedPackages": 0,
+    "verified": 10,
+    "pending": 2,
+    "rejected": 1,
+    "published": 1,
+    "rightsWarnings": 1
+  },
+  "validationReport": {
+    "totalLessons": 13,
+    "verified": 10,
+    "pending": 2,
+    "rejected": 1,
+    "published": 1,
+    "packages": 1,
+    "gateSummary": {
+      "source_pass": 13,
+      "rights_pass": 11,
+      "structure_pass": 13,
+      "metadata_pass": 13,
+      "package_pass": 1,
+      "published": 1,
+      "rejected": 1
+    }
+  },
+  "validationErrors": [
+    "jo_g1_en_u1_l2: rejected — cannot publish"
+  ],
+  "rightsWarnings": [
+    "jo_g1_math_b2_u1_l1: rights restricted — compile only"
+  ],
+  "pipeline": {
+    "officialSource": true,
+    "verification": true,
+    "metadata": true,
+    "book": true,
+    "unit": true,
+    "lesson": true,
+    "ilePackage": true,
+    "interactiveLessonEngine": true,
+    "rejectedNeverPublish": true,
+    "noCurriculumSpecificRenderer": true,
+    "ileOnlyRuntime": true
+  },
+  "notes": "Example validation report for docs/tests. Live report is produced by runJordanReferenceDataset()."
+}

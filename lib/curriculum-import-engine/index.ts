@@ -14,6 +14,7 @@ import {
 } from "./store";
 import { createImportJob, runImportJob, runJordanPhase1Import } from "./runner";
 import { runJordanGrade1MathReference } from "./reference/jordan-g1-math";
+import { runJordanReferenceDataset } from "./reference/jordan-dataset";
 import {
   getHierarchySnapshot,
   resetHierarchyRegistry,
@@ -32,6 +33,7 @@ export {
   runImportJob,
   runJordanPhase1Import,
   runJordanGrade1MathReference,
+  runJordanReferenceDataset,
   getHierarchySnapshot,
   resetHierarchyRegistry,
 };
@@ -49,7 +51,7 @@ export function engineStatus() {
     role: "compiler",
     rendersLessons: false,
     runtime: "success-os.interactive-lesson-engine.v1",
-    adr: ["ADR-0049", "ADR-0050", "ADR-0050.1"],
+    adr: ["ADR-0049", "ADR-0050", "ADR-0050.1", "ADR-0050.2"],
     phase1: {
       country: "Jordan",
       curriculum: "Jordan National Curriculum",
@@ -72,6 +74,13 @@ export function engineStatus() {
       ],
       hierarchySchema: "success-os.curriculum-hierarchy.v1",
       genericConnectorsOnly: true,
+    },
+    referenceDataset: {
+      id: "jordan-reference-dataset.v1",
+      grade: "Grade 1",
+      subjects: ["Mathematics", "Arabic", "English", "Science", "Islamic Education", "Social Studies"],
+      metadataOnly: true,
+      aiGeneration: false,
     },
     pipeline: IMPORT_PIPELINE.map((s) => s.id),
     connectors: listSourceConnectors().map((c) => ({

@@ -75,6 +75,41 @@ export type UnitRecord = {
   overview?: LocaleText;
 };
 
+/** Per-dimension verification for the Jordan reference standard */
+export type LessonDimensionStatus = "pass" | "fail" | "pending" | "n/a";
+
+export type LessonVerificationReport = {
+  sourceStatus: LessonDimensionStatus;
+  rightsStatus: LessonDimensionStatus;
+  structureStatus: LessonDimensionStatus;
+  metadataStatus: LessonDimensionStatus;
+  packageStatus: LessonDimensionStatus;
+  publishingStatus: "published" | "rejected" | "pending" | "blocked";
+};
+
+/** Metadata-only lesson row — no AI content generation */
+export type LessonMetadataRecord = {
+  country: string;
+  curriculum: string;
+  grade: string;
+  semester: string;
+  subject: string;
+  book: string;
+  unit: string;
+  lesson: string;
+  lessonOrder: number;
+  officialLessonTitle: LocaleText;
+  language: "ar" | "en" | "bilingual";
+  learningObjectives: LocaleText[];
+  keywords: string[];
+  references: { label: LocaleText; href?: string }[];
+  rightsStatus: RightsStatus;
+  verificationStatus: VerificationStatus;
+  packageVersion: string;
+  checksum: string;
+  verification: LessonVerificationReport;
+};
+
 export type LessonRecord = {
   id: string;
   unitId: string;
@@ -87,6 +122,7 @@ export type LessonRecord = {
   references: { label: LocaleText; href?: string }[];
   assets: ImportAsset[];
   activities: LocaleText[];
+  /** Structural synopsis only — never AI-rewritten lesson prose in dataset PRs */
   body: LocaleText;
   language: "ar" | "en" | "bilingual";
   version: string;
@@ -94,6 +130,10 @@ export type LessonRecord = {
   verificationStatus: VerificationStatus;
   published: boolean;
   ilePackageId?: string | null;
+  checksum?: string;
+  verification?: LessonVerificationReport;
+  /** Flattened metadata projection for the official reference standard */
+  metadata?: LessonMetadataRecord;
 };
 
 export type HierarchySnapshot = {
@@ -110,10 +150,15 @@ export type HierarchySnapshot = {
   counts: {
     countries: number;
     curricula: number;
+    grades: number;
+    subjects: number;
     books: number;
     units: number;
     lessons: number;
     packages: number;
+    verifiedPackages: number;
+    pendingPackages: number;
+    rejectedPackages: number;
     imported: number;
     verified: number;
     rejected: number;
@@ -121,5 +166,9 @@ export type HierarchySnapshot = {
     published: number;
     errors: number;
     warnings: number;
+    rightsWarnings: number;
   };
+  validationErrors: string[];
+  rightsWarnings: string[];
+  tree?: unknown;
 };

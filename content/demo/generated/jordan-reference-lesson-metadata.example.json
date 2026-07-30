@@ -1,0 +1,50 @@
+{
+  "schema": "success-os.curriculum-hierarchy.v1/lesson-metadata",
+  "country": "Jordan",
+  "curriculum": "Jordan National Curriculum",
+  "grade": "Grade 1",
+  "semester": "Semester 1",
+  "subject": "Mathematics",
+  "book": "Mathematics — Grade 1 — Book 1",
+  "unit": "Unit 1 — Numbers around us",
+  "lesson": "Lesson 1 — Count to three",
+  "lessonOrder": 1,
+  "officialLessonTitle": {
+    "en": "Lesson 1 — Count to three",
+    "ar": "الدرس 1 — العدّ حتى ثلاثة"
+  },
+  "language": "bilingual",
+  "learningObjectives": [
+    {
+      "en": "Identify core idea of Lesson 1 — Count to three",
+      "ar": "تحديد الفكرة الأساسية لـ الدرس 1 — العدّ حتى ثلاثة"
+    },
+    {
+      "en": "Apply Lesson 1 — Count to three in a simple classroom task",
+      "ar": "تطبيق الدرس 1 — العدّ حتى ثلاثة في مهمة صفية بسيطة"
+    }
+  ],
+  "keywords": ["lesson", "1", "count", "to", "three"],
+  "references": [
+    {
+      "label": {
+        "en": "NCCD structure baseline",
+        "ar": "خط أساس بنية المركز الوطني"
+      },
+      "href": "https://nccd.gov.jo"
+    }
+  ],
+  "rightsStatus": "verified",
+  "verificationStatus": "verified",
+  "packageVersion": "1",
+  "checksum": "e4813bfd59e6173d17728da1466db31b6a4078119e896149b9af68cde6a69f7c",
+  "verification": {
+    "sourceStatus": "pass",
+    "rightsStatus": "pass",
+    "structureStatus": "pass",
+    "metadataStatus": "pass",
+    "packageStatus": "pass",
+    "publishingStatus": "published"
+  },
+  "notes": "Sample metadata projection for the published Jordan reference lesson. Rejected lessons never publish."
+}
