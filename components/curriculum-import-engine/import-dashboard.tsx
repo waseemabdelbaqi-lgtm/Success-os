@@ -273,6 +273,10 @@ export function CurriculumImportDashboard(): ReactNode {
             Digital Human Teacher
           </a>
           {" · "}
+          <a href="/admin/education-intelligence-core" style={{ color: "#0f766e" }}>
+            Education Intelligence
+          </a>
+          {" · "}
           <a href="/admin/student-ai-learning-stack" style={{ color: "#0f766e" }}>
             Open Learning Stack
           </a>

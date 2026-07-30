@@ -78,14 +78,15 @@ Universal Curriculum Mapping Engine (UCE)
 ↓
 
 🔄 PR #55
-AI Teacher Engine (ATE) + Digital Human Teacher Architecture
+AI Teacher Engine + Digital Human + Education Intelligence Core
 ──────────────────────────────────────────
 • Virtual teacher (not a chatbot) — center of the platform
 • Conversation Engine + Reasoning Engine
 • Student Memory across conversations
 • Knowledge-grounded, curriculum-aware teaching
-• Lesson-aware recommendations
-• Voice-ready + Whiteboard-ready architecture
+• Education Intelligence Core (Learning DNA after every interaction)
+• Adaptive explanations (never repeat the same fingerprint)
+• Predictions: next / review / confusion / exam risk
 • AI Digital Human Teacher (ADHT) presence contracts
 • Localized + age-appropriate teacher profiles (admin-configurable)
 • Provider-agnostic AI stack ports (OpenAI, Gemini, ElevenLabs, Tavus, …)
@@ -132,7 +133,7 @@ Assessment Engine
 PR #59
 Learning Intelligence
 ──────────────────────────────────────────
-• Deeper intelligence on top of ATE
+• Deeper ML on top of Education Intelligence Core (ADR-0055.2)
 • Student AI Learning Stack activation
 • Adaptive long-horizon planning
 • ILE sole runtime
@@ -160,7 +161,7 @@ Production Optimization
 | **#50.2** | Jordan Reference Dataset & Verification | **Done / open** | #50.1 + ADR-0050.2 |
 | **#50.3 / GH #53** | Global Curriculum Registry & Dynamic Architecture | **Done / open** | #50.2 + ADR-0050.3 |
 | **#54** | Universal Curriculum Mapping Engine | **Done / open** | #53 + ADR-0054 |
-| **#55** | AI Teacher Engine + Digital Human Architecture | **In progress** | #54 + ADR-0055 / ADR-0055.1 |
+| **#55** | AI Teacher + Digital Human + Education Intelligence | **In progress** | #54 + ADR-0055 / .1 / .2 |
 | #56 | Digital Book Engine | Planned | #49, #55 |
 | #57 | AI Lesson & Media Engine | Planned | #49 (+ AI/media contracts) |
 | #58 | Assessment Engine | Planned | #49 |

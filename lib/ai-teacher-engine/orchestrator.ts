@@ -43,6 +43,7 @@ import { getWhiteboardSessionContract } from "./whiteboard";
 import { saveTeachingTurn } from "./store";
 import { logger } from "@/lib/logger";
 import { AppError } from "@/lib/logger";
+import { processEducationalInteraction } from "@/lib/education-intelligence-core";
 import { buildKnowledgeGraph } from "@/lib/curriculum-import-engine/knowledge-graph/build";
 import { buildJordanMathDependencyExample } from "@/lib/curriculum-import-engine/hierarchy/lesson-dependency";
 import { runJordanReferenceDataset } from "@/lib/curriculum-import-engine/reference/jordan-dataset";
@@ -511,6 +512,35 @@ export function runAiTeacherTurn(ctx: AteRunOptions): AteTeachingTurn {
   };
 
   saveTeachingTurn(turn);
+
+  // Education Intelligence Core — every interaction updates Learning DNA
+  try {
+    const eic = processEducationalInteraction({
+      studentId: ctx.studentId,
+      studentName: studentName || undefined,
+      utterance,
+      intent,
+      affect,
+      focusLessonId: focus || undefined,
+      language,
+      weakSkillIds: memory.weakSkillIds,
+      strongSkillIds: memory.strongSkillIds,
+      completedLessonIds: memory.completedLessonIds,
+      preferredLearningStyle: memory.learningStyle,
+      preferredTeacherStyle: reasoned.teachingStyle,
+      currentGoals: memory.learningGoals,
+      prerequisiteSkillId: memory.weakSkillIds[0] || null,
+    });
+    turn.notes = [
+      ...turn.notes,
+      `EIC Learning DNA updated (interactions=${eic.dna.interactionCount}, mode=${eic.strategy.mode}).`,
+    ];
+  } catch (error) {
+    logger.warn("EIC update skipped", {
+      error: error instanceof Error ? error.message : String(error),
+    });
+  }
+
   logger.info("ATE teaching turn completed", {
     sessionId,
     studentId: ctx.studentId,

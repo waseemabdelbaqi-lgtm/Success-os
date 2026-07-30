@@ -14,6 +14,8 @@ AI Teacher Engine is Success OS’s virtual-teacher orchestration layer (not a c
 
 **AI Digital Human Teacher (ADHT)** extends ATE with world-class presence architecture: localized teacher profiles, age-appropriate stages, personality memory, and provider-agnostic AI ports — without shipping live avatar video or speech SDKs (ADR-0055.1).
 
+**Education Intelligence Core (EIC)** adds Learning DNA (updated after every interaction), adaptive explanation novelty, predictions, and experienced-teacher insights (ADR-0055.2). Heuristic teacher intelligence now; deeper ML in #59.
+
 ## 2. Architecture Changes
 
 Immutable path:

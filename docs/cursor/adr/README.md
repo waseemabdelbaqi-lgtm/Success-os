@@ -12,6 +12,7 @@ Success OS ADRs for learning-platform and platform architecture decisions.
 | [ADR-0054](./ADR-0054-universal-curriculum-mapping.md) | Universal Curriculum Mapping Engine relates curricula via Global IDs (never copies content) | Accepted |
 | [ADR-0055](./ADR-0055-ai-teacher-engine.md) | AI Teacher Engine — virtual teacher path, memory, grounding (not a chatbot) | Accepted |
 | [ADR-0055.1](./ADR-0055.1-ai-digital-human-teacher.md) | AI Digital Human Teacher — presence, localized profiles, provider-agnostic ports (no live avatars yet) | Accepted |
+| [ADR-0055.2](./ADR-0055.2-education-intelligence-core.md) | Education Intelligence Core — Learning DNA, adaptive strategy, predictions (heuristic teacher intelligence) | Accepted |
 | [ADR-0059](./ADR-0059-student-ai-learning-stack.md) | Student AI Learning Stack foundation (greeting/re-explain); path superseded by ADR-0055 for #55 | Accepted |
 
 ## Convention

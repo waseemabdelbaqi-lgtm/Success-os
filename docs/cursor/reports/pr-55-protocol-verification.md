@@ -50,6 +50,17 @@ Resolution applied: harden everything **inside ATE scope** to production pattern
 | Live avatar / TTS / STT shipped | ❌ correctly **false** |
 | Provider invoke fakes success | ❌ correctly **refuses** |
 
+## EIC verification
+
+| Gate | Result |
+|------|--------|
+| `npm run validate:education-intelligence-core` | ✅ PASS |
+| Learning DNA updated every interaction | ✅ PASS |
+| Explanation fingerprints never repeat | ✅ PASS |
+| Repeated-confusion insight utterance | ✅ PASS |
+| Invents curriculum facts | ❌ correctly **false** |
+| Engine honesty (`heuristic_teacher_intelligence`) | ✅ labeled (ML deepen in #59) |
+
 ## Explicit limitations (not faked as production)
 
 - Voice / whiteboard: architecture contracts only (mission)
