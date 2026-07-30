@@ -65,7 +65,7 @@ Global Curriculum Registry & Dynamic Curriculum Architecture
 
 ↓
 
-🔄 PR #54
+✓ PR #54
 Universal Curriculum Mapping Engine (UCE)
 ──────────────────────────────────────────
 • Cross-curriculum relationships (not copies)
@@ -112,14 +112,15 @@ Assessment Engine
 
 ↓
 
-PR #59
-Learning Intelligence
+🔄 PR #59
+Student AI Learning Stack / Learning Intelligence (Foundation)
 ──────────────────────────────────────────
-• Learning analytics
-• Adaptive learning
-• AI Tutor
-• Parent Portal
-• Teacher Workspace
+• Student → AI Teacher → Conversation → Reasoning
+  → Knowledge Graph → Digital Books → Videos
+  → Interactive Lesson Engine → Quizzes → Assessments
+• Orchestration session plans (no AI content generation)
+• Layer contracts + stubs/reserved hooks for #55–#58
+• ILE sole runtime
 
 ↓
 
@@ -143,11 +144,11 @@ Production Optimization
 | **#50.1** | Jordan Curriculum Example (Reference) | **Done / open** | #50 + ADR-0050.1 |
 | **#50.2** | Jordan Reference Dataset & Verification | **Done / open** | #50.1 + ADR-0050.2 |
 | **#50.3 / GH #53** | Global Curriculum Registry & Dynamic Architecture | **Done / open** | #50.2 + ADR-0050.3 |
-| **#54** | Universal Curriculum Mapping Engine | **In progress** | #53 + ADR-0054 |
+| **#54** | Universal Curriculum Mapping Engine | **Done / open** | #53 + ADR-0054 |
 | #55 | Digital Book Engine | Planned | #49, #54 |
 | #56–57 | AI Lesson & Media Engine | Planned | #49 (+ AI/media contracts) |
 | #58 | Assessment Engine | Planned | #49 |
-| #59 | Learning Intelligence | Planned | #49–#58 usage signals |
+| **#59** | Student AI Learning Stack (Foundation) | **In progress** | #54 + ADR-0059 |
 | #60 | Production Optimization | Planned | #49–#59 |
 
 ## Integration contract
@@ -162,7 +163,7 @@ Production Optimization
 | **#55** | Digital book chrome & media → **ILE package output only** (no parallel reader runtime) |
 | **#56–57** | Fill AI / video / voice placeholders → **publish as ILE packages** |
 | **#58** | Assessment engine extensions on the same runtime |
-| **#59** | Analytics, adaptive tutor, parent & teacher surfaces over ILE progress |
+| **#59** | Student AI Learning Stack orchestration → **AI Teacher path; ILE sole runtime** |
 | **#60** | Harden the whole stack for global production |
 
 ## Non-negotiables
@@ -175,13 +176,13 @@ Production Optimization
 
 ## Next
 
-**PR #54 in progress** — Universal Curriculum Mapping Engine  
-(`cursor/universal-curriculum-mapping-bca1`).  
-Following merge: **PR #55 — Digital Book Engine** (ILE package output only).
+**PR #59 in progress** — Student AI Learning Stack (Foundation)  
+(`cursor/student-ai-learning-stack-bca1`).  
+Parallel track still open: **PR #55 — Digital Book Engine** (fills Digital Books layer).
 
 ## Policy
 
 Every completed order must end with a report under [`GLOBAL_PROGRESS_REVIEW_POLICY.md`](./GLOBAL_PROGRESS_REVIEW_POLICY.md).  
-Latest: [`reports/pr-54-completion-report.md`](./reports/pr-54-completion-report.md).
+Latest: [`reports/pr-59-completion-report.md`](./reports/pr-59-completion-report.md).
 
 **Definition of Done:** a PR cannot merge until tests, lint, typecheck, build, docs, roadmap, completion report, review, and ADR (if architecture changed) are all green — see policy § Definition of Done.

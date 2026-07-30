@@ -1,0 +1,269 @@
+{
+  "schema": "success-os.student-ai-learning-stack.v1",
+  "displayPath": [
+    "Student",
+    "AI Teacher",
+    "Conversation Engine",
+    "Reasoning Engine",
+    "Knowledge Graph",
+    "Digital Books",
+    "Videos",
+    "Interactive Lesson Engine",
+    "Quizzes",
+    "Assessments"
+  ],
+  "path": [
+    "student",
+    "ai_teacher",
+    "conversation_engine",
+    "reasoning_engine",
+    "knowledge_graph",
+    "digital_books",
+    "videos",
+    "interactive_lesson_engine",
+    "quizzes",
+    "assessments"
+  ],
+  "layers": [
+    {
+      "id": "student",
+      "order": 1,
+      "name": {
+        "en": "Student",
+        "ar": "الطالب"
+      },
+      "role": {
+        "en": "Learner identity and intent enter the stack",
+        "ar": "هوية المتعلم ونيّته تدخل المكدس"
+      },
+      "status": "operational",
+      "bindsTo": [
+        "success-os.student-foundation.v1"
+      ],
+      "activatesInPr": "#50.3 / #59",
+      "generatesContent": false,
+      "rendersLessons": false,
+      "notes": [
+        "Student foundation data model already exists; no AI required."
+      ]
+    },
+    {
+      "id": "ai_teacher",
+      "order": 2,
+      "name": {
+        "en": "AI Teacher",
+        "ar": "المعلم الذكي"
+      },
+      "role": {
+        "en": "Orchestrates tutoring tone and teaching goals — does not invent curriculum",
+        "ar": "ينسّق أسلوب التدريس وأهدافه — لا يخترع المنهاج"
+      },
+      "status": "stub",
+      "bindsTo": [
+        "success-os.student-ai-learning-stack.v1"
+      ],
+      "activatesInPr": "#56–57 / #59",
+      "generatesContent": false,
+      "rendersLessons": false,
+      "notes": [
+        "Stub persona + goal planner only. No AI lesson generation in this PR."
+      ]
+    },
+    {
+      "id": "conversation_engine",
+      "order": 3,
+      "name": {
+        "en": "Conversation Engine",
+        "ar": "محرك المحادثة"
+      },
+      "role": {
+        "en": "Turns student utterances into structured tutoring intents",
+        "ar": "يحوّل كلام الطالب إلى نوايا تعليمية منظمة"
+      },
+      "status": "stub",
+      "bindsTo": [
+        "success-os.student-ai-learning-stack.v1"
+      ],
+      "activatesInPr": "#59",
+      "generatesContent": false,
+      "rendersLessons": false,
+      "notes": [
+        "Deterministic intent parse stub; LLM wiring reserved."
+      ]
+    },
+    {
+      "id": "reasoning_engine",
+      "order": 4,
+      "name": {
+        "en": "Reasoning Engine",
+        "ar": "محرك الاستدلال"
+      },
+      "role": {
+        "en": "Selects next pedagogical move from skills, gaps, and mappings",
+        "ar": "يختار الخطوة التربوية التالية من المهارات والفجوات والمواءمات"
+      },
+      "status": "stub",
+      "bindsTo": [
+        "success-os.universal-curriculum-mapping.v1",
+        "success-os.student-skill-progress.v1"
+      ],
+      "activatesInPr": "#59",
+      "generatesContent": false,
+      "rendersLessons": false,
+      "notes": [
+        "Rule-based planner stub using skill gaps + UCE mappings when available."
+      ]
+    },
+    {
+      "id": "knowledge_graph",
+      "order": 5,
+      "name": {
+        "en": "Knowledge Graph",
+        "ar": "شبكة المعرفة"
+      },
+      "role": {
+        "en": "Resolves lesson/skill relationships for the session",
+        "ar": "يحل علاقات الدروس والمهارات للجلسة"
+      },
+      "status": "foundation",
+      "bindsTo": [
+        "success-os.knowledge-graph.v1"
+      ],
+      "activatesInPr": "#50.3",
+      "generatesContent": false,
+      "rendersLessons": false,
+      "notes": [
+        "Wired to existing CIE knowledge graph foundation."
+      ]
+    },
+    {
+      "id": "digital_books",
+      "order": 6,
+      "name": {
+        "en": "Digital Books",
+        "ar": "الكتب الرقمية"
+      },
+      "role": {
+        "en": "Provides book context for the lesson — ILE package output only later",
+        "ar": "يوفر سياق الكتاب للدرس — مخرجات حزم ILE لاحقًا فقط"
+      },
+      "status": "reserved",
+      "bindsTo": [
+        "success-os.digital-book-engine.v1"
+      ],
+      "activatesInPr": "#55",
+      "generatesContent": false,
+      "rendersLessons": false,
+      "notes": [
+        "Reserved for Digital Book Engine. No book generation here."
+      ]
+    },
+    {
+      "id": "videos",
+      "order": 7,
+      "name": {
+        "en": "Videos",
+        "ar": "الفيديوهات"
+      },
+      "role": {
+        "en": "Attaches verified video assets to the session plan",
+        "ar": "يربط أصول الفيديو الموثّقة بخطة الجلسة"
+      },
+      "status": "reserved",
+      "bindsTo": [
+        "success-os.ai-media-engine.v1"
+      ],
+      "activatesInPr": "#56–57",
+      "generatesContent": false,
+      "rendersLessons": false,
+      "notes": [
+        "No AI video generation in this PR."
+      ]
+    },
+    {
+      "id": "interactive_lesson_engine",
+      "order": 8,
+      "name": {
+        "en": "Interactive Lesson Engine",
+        "ar": "محرك الدروس التفاعلية"
+      },
+      "role": {
+        "en": "Sole lesson runtime — consumes ILE packages only",
+        "ar": "وقت تشغيل الدرس الوحيد — يستهلك حزم ILE فقط"
+      },
+      "status": "operational",
+      "bindsTo": [
+        "success-os.interactive-lesson-engine.v1"
+      ],
+      "activatesInPr": "#49",
+      "generatesContent": false,
+      "rendersLessons": true,
+      "notes": [
+        "ADR-0049 — never fork a second lesson runtime."
+      ]
+    },
+    {
+      "id": "quizzes",
+      "order": 9,
+      "name": {
+        "en": "Quizzes",
+        "ar": "الاختبارات القصيرة"
+      },
+      "role": {
+        "en": "Formative checks after the lesson runtime",
+        "ar": "فحوصات تكوينية بعد تشغيل الدرس"
+      },
+      "status": "reserved",
+      "bindsTo": [
+        "success-os.assessment-engine.v1"
+      ],
+      "activatesInPr": "#58",
+      "generatesContent": false,
+      "rendersLessons": false,
+      "notes": [
+        "No quiz generation in this PR."
+      ]
+    },
+    {
+      "id": "assessments",
+      "order": 10,
+      "name": {
+        "en": "Assessments",
+        "ar": "التقييمات"
+      },
+      "role": {
+        "en": "Summative / unit / exam assessments on the same stack",
+        "ar": "تقييمات ختامية / وحدة / امتحان على نفس المكدس"
+      },
+      "status": "reserved",
+      "bindsTo": [
+        "success-os.assessment-engine.v1"
+      ],
+      "activatesInPr": "#58",
+      "generatesContent": false,
+      "rendersLessons": false,
+      "notes": [
+        "No assessment generation in this PR."
+      ]
+    }
+  ],
+  "counts": {
+    "layers": 10,
+    "operational": 2,
+    "foundation": 1,
+    "stub": 3,
+    "reserved": 4
+  },
+  "rules": [
+    "Path order is fixed for the student journey.",
+    "No layer may generate lessons/videos/quizzes/assessments in this PR.",
+    "Interactive Lesson Engine is the only lesson renderer.",
+    "Knowledge Graph + UCE inform reasoning; they do not replace ILE."
+  ],
+  "notes": [
+    "Foundation for Learning Intelligence (roadmap #59).",
+    "Full AI Teacher / Conversation / Reasoning activate with #56–57 / #59.",
+    "Digital Books #55 · Videos #56–57 · Quizzes/Assessments #58."
+  ],
+  "aiGeneration": false
+}

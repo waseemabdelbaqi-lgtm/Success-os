@@ -262,6 +262,13 @@ export function CurriculumImportDashboard(): ReactNode {
             Open Mapping Engine
           </a>
         </p>
+        <p style={{ fontSize: 12, color: "#475569", margin: "0.25rem 0 0" }}>
+          Student → AI Teacher → Conversation → Reasoning → Knowledge Graph → Digital Books →
+          Videos → ILE → Quizzes → Assessments ·{" "}
+          <a href="/admin/student-ai-learning-stack" style={{ color: "#0f766e" }}>
+            Open Learning Stack
+          </a>
+        </p>
         {notice ? (
           <p style={{ color: "#0f766e", fontSize: 13, margin: "0.5rem 0 0" }}>{notice}</p>
         ) : null}

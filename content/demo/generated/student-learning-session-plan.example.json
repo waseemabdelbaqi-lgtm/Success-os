@@ -1,0 +1,189 @@
+{
+  "schema": "success-os.student-learning-session-plan.v1",
+  "sessionId": "sals_d5121445fde668d5",
+  "studentId": "student_demo_001",
+  "path": [
+    "student",
+    "ai_teacher",
+    "conversation_engine",
+    "reasoning_engine",
+    "knowledge_graph",
+    "digital_books",
+    "videos",
+    "interactive_lesson_engine",
+    "quizzes",
+    "assessments"
+  ],
+  "invocations": [
+    {
+      "layerId": "student",
+      "status": "operational",
+      "ok": true,
+      "output": {
+        "studentId": "student_demo_001",
+        "countryId": "JO",
+        "curriculumId": "JO-NATIONAL",
+        "language": "en",
+        "utterance": "Help me with this lesson"
+      },
+      "durationMs": 0
+    },
+    {
+      "layerId": "ai_teacher",
+      "status": "stub",
+      "ok": true,
+      "output": {
+        "persona": "success-os.ai-teacher.stub",
+        "teachingGoal": "guide_to_verified_ile_package",
+        "generatesLessons": false,
+        "generatesVideos": false
+      },
+      "durationMs": 0
+    },
+    {
+      "layerId": "conversation_engine",
+      "status": "stub",
+      "ok": true,
+      "output": {
+        "intent": "request_help",
+        "utterance": "Help me with this lesson",
+        "llm": false
+      },
+      "durationMs": 0
+    },
+    {
+      "layerId": "reasoning_engine",
+      "status": "stub",
+      "ok": true,
+      "output": {
+        "nextMove": "route_to_ile_package",
+        "focusLessonId": "JO-NATIONAL-G01-MATH-B01-U01-L01",
+        "crossCurriculumEquivalents": [
+          {
+            "globalId": "LSN-01002",
+            "relation": "equivalent",
+            "confidence": 0.86
+          },
+          {
+            "globalId": "LSN-01003",
+            "relation": "advanced",
+            "confidence": 0.7
+          }
+        ],
+        "generatesContent": false
+      },
+      "durationMs": 1
+    },
+    {
+      "layerId": "knowledge_graph",
+      "status": "foundation",
+      "ok": true,
+      "output": {
+        "schema": "success-os.knowledge-graph.v1",
+        "nodeCount": 22,
+        "edgeCount": 12,
+        "sampleNodeIds": [
+          "SKL-00001",
+          "SKL-00002",
+          "SKL-00003",
+          "SKL-00004",
+          "SKL-00005",
+          "SKL-00006",
+          "SKL-00007",
+          "SKL-00008",
+          "SKL-00009",
+          "SKL-00010",
+          "SKL-00011",
+          "SKL-00012"
+        ]
+      },
+      "durationMs": 10
+    },
+    {
+      "layerId": "digital_books",
+      "status": "reserved",
+      "ok": true,
+      "output": {
+        "digitalBookIds": [],
+        "activatesInPr": "#55",
+        "generated": false
+      },
+      "durationMs": 0
+    },
+    {
+      "layerId": "videos",
+      "status": "reserved",
+      "ok": true,
+      "output": {
+        "videoIds": [],
+        "activatesInPr": "#56–57",
+        "generated": false
+      },
+      "durationMs": 0
+    },
+    {
+      "layerId": "interactive_lesson_engine",
+      "status": "operational",
+      "ok": true,
+      "output": {
+        "runtime": "success-os.interactive-lesson-engine.v1",
+        "ilePackageId": "ile_JO-NATIONAL-G01-MATH-B01-U01-L01",
+        "rendersLessons": true,
+        "soleRuntime": true
+      },
+      "durationMs": 0
+    },
+    {
+      "layerId": "quizzes",
+      "status": "reserved",
+      "ok": true,
+      "output": {
+        "quizPlanId": null,
+        "activatesInPr": "#58",
+        "generated": false
+      },
+      "durationMs": 0
+    },
+    {
+      "layerId": "assessments",
+      "status": "reserved",
+      "ok": true,
+      "output": {
+        "assessmentPlanId": null,
+        "activatesInPr": "#58",
+        "generated": false
+      },
+      "durationMs": 0
+    }
+  ],
+  "ilePackageId": "ile_JO-NATIONAL-G01-MATH-B01-U01-L01",
+  "knowledgeGraphRefs": [
+    "SKL-00001",
+    "SKL-00002",
+    "SKL-00003",
+    "SKL-00004",
+    "SKL-00005",
+    "SKL-00006",
+    "SKL-00007",
+    "SKL-00008",
+    "SKL-00009",
+    "SKL-00010",
+    "SKL-00011",
+    "SKL-00012"
+  ],
+  "recommendedLessonIds": [
+    "JO-NATIONAL-G01-MATH-B01-U01-L01",
+    "LSN-01002",
+    "LSN-01003"
+  ],
+  "quizPlanId": null,
+  "assessmentPlanId": null,
+  "digitalBookIds": [],
+  "videoIds": [],
+  "aiContentGenerated": false,
+  "notes": [
+    "Orchestration only — no AI lesson/video/quiz/assessment generation.",
+    "ILE is the sole lesson runtime (ADR-0049).",
+    "Digital Books / Videos / Quizzes / Assessments reserved for later PRs."
+  ]
+}
