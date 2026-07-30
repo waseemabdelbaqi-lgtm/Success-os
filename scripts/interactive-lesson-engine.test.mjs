@@ -85,6 +85,8 @@ const requiredFiles = [
   "docs/cursor/learning-platform-roadmap.md",
   "docs/cursor/adr/ADR-0049-interactive-lesson-engine-single-runtime.md",
   "docs/cursor/adr/README.md",
+  "docs/cursor/GLOBAL_PROGRESS_REVIEW_POLICY.md",
+  "docs/cursor/reports/pr-49-completion-report.md",
   "content/demo/interactive-lesson-engine.ts",
   "components/interactive-lesson-engine/block-renderer.tsx",
   "components/interactive-lesson-engine/slide-engine.tsx",
@@ -198,6 +200,23 @@ const adr = fs.readFileSync(
 assert.ok(adr.includes("ADR-0049"));
 assert.ok(adr.includes("only lesson runtime"));
 assert.ok(adr.includes("compiler") && adr.includes("not a renderer"));
+
+const policy = fs.readFileSync(
+  path.join(root, "docs/cursor/GLOBAL_PROGRESS_REVIEW_POLICY.md"),
+  "utf8",
+);
+assert.ok(policy.includes("Definition of Done"));
+assert.ok(policy.includes("Lint passes"));
+assert.ok(policy.includes("Typecheck passes"));
+assert.ok(policy.includes("Build passes"));
+assert.ok(policy.includes("Completion report generated"));
+
+const completion = fs.readFileSync(
+  path.join(root, "docs/cursor/reports/pr-49-completion-report.md"),
+  "utf8",
+);
+assert.ok(completion.includes("## 15. Definition of Done"));
+assert.ok(completion.includes("ADR-0049"));
 
 const theme = fs.readFileSync(
   path.join(root, "lib/interactive-lesson-engine/core/theme.ts"),
