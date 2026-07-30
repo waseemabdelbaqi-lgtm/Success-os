@@ -1,5 +1,14 @@
 {
   "schema": "success-os.curriculum-hierarchy.v1/lesson-metadata",
+  "ids": {
+    "country": "JO",
+    "curriculum": "JO-NATIONAL",
+    "grade": "JO-NATIONAL-G01",
+    "subject": "JO-NATIONAL-G01-MATH",
+    "book": "JO-NATIONAL-G01-MATH-B01",
+    "unit": "JO-NATIONAL-G01-MATH-B01-U01",
+    "lesson": "JO-NATIONAL-G01-MATH-B01-U01-L01"
+  },
   "country": "Jordan",
   "curriculum": "Jordan National Curriculum",
   "grade": "Grade 1",
@@ -37,7 +46,7 @@
   "rightsStatus": "verified",
   "verificationStatus": "verified",
   "packageVersion": "1",
-  "checksum": "e4813bfd59e6173d17728da1466db31b6a4078119e896149b9af68cde6a69f7c",
+  "checksum": "8c2065b25bd8d0f5e05576bce000b08a5878994cb1ec1ffddc61965092a51610",
   "verification": {
     "sourceStatus": "pass",
     "rightsStatus": "pass",
@@ -46,5 +55,5 @@
     "packageStatus": "pass",
     "publishingStatus": "published"
   },
-  "notes": "Sample metadata projection for the published Jordan reference lesson. Rejected lessons never publish."
+  "notes": "Sample metadata for JO-NATIONAL-G01-MATH-B01-U01-L01. Rejected lessons never publish."
 }

@@ -1,7 +1,16 @@
 /**
  * Jordan National Curriculum — official reference dataset (metadata standard).
- * Grade 1 skeleton with multiple subjects. Metadata only — no AI content.
- * Schema companion: success-os.curriculum-hierarchy.v1
+ * Hierarchical ID convention (every future country must follow the same shape):
+ *
+ *   Country    JO
+ *   Curriculum JO-NATIONAL
+ *   Grade      JO-NATIONAL-G01
+ *   Subject    JO-NATIONAL-G01-MATH
+ *   Book       JO-NATIONAL-G01-MATH-B01
+ *   Unit       JO-NATIONAL-G01-MATH-B01-U01
+ *   Lesson     JO-NATIONAL-G01-MATH-B01-U01-L01
+ *
+ * Metadata only — no AI content. Schema companion: success-os.curriculum-hierarchy.v1
  */
 import type { LocaleText } from "@/types/interactive-lesson-engine";
 import type { RightsStatus, VerificationStatus } from "@/types/curriculum-import-engine";
@@ -51,6 +60,24 @@ export type JordanGradeSeed = {
   subjects: JordanSubjectSeed[];
 };
 
+/** Official hierarchical ID helpers — Country → … → Lesson */
+export const JO_IDS = {
+  country: "JO",
+  curriculum: "JO-NATIONAL",
+  grade: "JO-NATIONAL-G01",
+  semester: "JO-NATIONAL-G01-S01",
+  subject: (code: string) => `JO-NATIONAL-G01-${code}`,
+  book: (subjectCode: string, book: number) =>
+    `JO-NATIONAL-G01-${subjectCode}-B${String(book).padStart(2, "0")}`,
+  unit: (subjectCode: string, book: number, unit: number) =>
+    `JO-NATIONAL-G01-${subjectCode}-B${String(book).padStart(2, "0")}-U${String(unit).padStart(2, "0")}`,
+  lesson: (subjectCode: string, book: number, unit: number, lesson: number) =>
+    `JO-NATIONAL-G01-${subjectCode}-B${String(book).padStart(2, "0")}-U${String(unit).padStart(2, "0")}-L${String(lesson).padStart(2, "0")}`,
+} as const;
+
+/** Canonical published reference lesson */
+export const JO_CANONICAL_LESSON_ID = JO_IDS.lesson("MATH", 1, 1, 1);
+
 function L(en: string, ar: string): LocaleText {
   return { en, ar };
 }
@@ -91,81 +118,126 @@ function lesson(
 /** Official Jordan reference tree — Grade 1 National Curriculum (Semester 1 focus) */
 export const JORDAN_REFERENCE_DATASET = {
   schema: "success-os.jordan-reference-dataset.v1" as const,
+  idConvention: {
+    pattern:
+      "{COUNTRY} / {COUNTRY}-{CURRICULUM} / …-G{nn} / …-{SUBJECT} / …-B{nn} / …-U{nn} / …-L{nn}",
+    example: {
+      country: JO_IDS.country,
+      curriculum: JO_IDS.curriculum,
+      grade: JO_IDS.grade,
+      subject: JO_IDS.subject("MATH"),
+      book: JO_IDS.book("MATH", 1),
+      unit: JO_IDS.unit("MATH", 1, 1),
+      lesson: JO_CANONICAL_LESSON_ID,
+    },
+  },
   country: {
-    id: "country_jordan",
+    id: JO_IDS.country,
     code: "JO",
     name: L("Jordan", "الأردن"),
   },
   curriculum: {
-    id: "curr_jordan_national",
+    id: JO_IDS.curriculum,
     name: L("Jordan National Curriculum", "المنهاج الوطني الأردني"),
     academicYear: "2025/2026",
     kind: "national" as const,
   },
   source: {
-    id: "src_jo_nccd_reference",
+    id: "JO-NCCD-REFERENCE",
     authority: "National Center for Curriculum Development (NCCD)",
     license: "structure-reference-only",
     connectorId: "jordan-reference-dataset",
   },
   grades: [
     {
-      id: "grade_jo_1",
-      code: "G1",
+      id: JO_IDS.grade,
+      code: "G01",
       name: L("Grade 1", "الصف الأول"),
       order: 1,
-      semesterId: "sem_jo_g1_s1",
+      semesterId: JO_IDS.semester,
       semesterName: L("Semester 1", "الفصل الدراسي الأول"),
       subjects: [
         {
-          id: "subj_jo_g1_math",
+          id: JO_IDS.subject("MATH"),
           code: "MATH",
           name: L("Mathematics", "الرياضيات"),
           books: [
             {
-              id: "JO-G1-MATH-B1",
+              id: JO_IDS.book("MATH", 1),
               part: "Book 1",
               title: L("Mathematics — Grade 1 — Book 1", "الرياضيات - الصف الأول - الكتاب 1"),
               units: [
                 {
-                  id: "jo_g1_math_u1",
+                  id: JO_IDS.unit("MATH", 1, 1),
                   order: 1,
                   title: L("Unit 1 — Numbers around us", "الوحدة 1 — الأعداد من حولنا"),
                   lessons: [
-                    lesson("jo_g1_math_u1_l1", 1, "Lesson 1 — Count to three", "الدرس 1 — العدّ حتى ثلاثة"),
-                    lesson("jo_g1_math_u1_l2", 2, "Lesson 2 — Count to five", "الدرس 2 — العدّ حتى خمسة"),
-                    lesson("jo_g1_math_u1_l3", 3, "Lesson 3 — Compare small sets", "الدرس 3 — مقارنة مجموعات صغيرة"),
+                    lesson(
+                      JO_IDS.lesson("MATH", 1, 1, 1),
+                      1,
+                      "Lesson 1 — Count to three",
+                      "الدرس 1 — العدّ حتى ثلاثة",
+                    ),
+                    lesson(
+                      JO_IDS.lesson("MATH", 1, 1, 2),
+                      2,
+                      "Lesson 2 — Count to five",
+                      "الدرس 2 — العدّ حتى خمسة",
+                    ),
+                    lesson(
+                      JO_IDS.lesson("MATH", 1, 1, 3),
+                      3,
+                      "Lesson 3 — Compare small sets",
+                      "الدرس 3 — مقارنة مجموعات صغيرة",
+                    ),
                   ],
                 },
                 {
-                  id: "jo_g1_math_u2",
+                  id: JO_IDS.unit("MATH", 1, 2),
                   order: 2,
                   title: L("Unit 2 — Shapes", "الوحدة 2 — الأشكال"),
                   lessons: [
-                    lesson("jo_g1_math_u2_l1", 1, "Lesson 1 — Circles and squares", "الدرس 1 — الدائرة والمربع"),
-                    lesson("jo_g1_math_u2_l2", 2, "Lesson 2 — Triangles", "الدرس 2 — المثلث", {
-                      verificationStatus: "pending",
-                      packageEligible: false,
-                    }),
+                    lesson(
+                      JO_IDS.lesson("MATH", 1, 2, 1),
+                      1,
+                      "Lesson 1 — Circles and squares",
+                      "الدرس 1 — الدائرة والمربع",
+                    ),
+                    lesson(
+                      JO_IDS.lesson("MATH", 1, 2, 2),
+                      2,
+                      "Lesson 2 — Triangles",
+                      "الدرس 2 — المثلث",
+                      {
+                        verificationStatus: "pending",
+                        packageEligible: false,
+                      },
+                    ),
                   ],
                 },
               ],
             },
             {
-              id: "JO-G1-MATH-B2",
+              id: JO_IDS.book("MATH", 2),
               part: "Book 2",
               title: L("Mathematics — Grade 1 — Book 2", "الرياضيات - الصف الأول - الكتاب 2"),
               units: [
                 {
-                  id: "jo_g1_math_b2_u1",
+                  id: JO_IDS.unit("MATH", 2, 1),
                   order: 1,
                   title: L("Unit 1 — Addition readiness", "الوحدة 1 — الاستعداد للجمع"),
                   lessons: [
-                    lesson("jo_g1_math_b2_u1_l1", 1, "Lesson 1 — Putting together", "الدرس 1 — الجمع معًا", {
-                      rightsStatus: "restricted",
-                      verificationStatus: "pending",
-                      packageEligible: false,
-                    }),
+                    lesson(
+                      JO_IDS.lesson("MATH", 2, 1, 1),
+                      1,
+                      "Lesson 1 — Putting together",
+                      "الدرس 1 — الجمع معًا",
+                      {
+                        rightsStatus: "restricted",
+                        verificationStatus: "pending",
+                        packageEligible: false,
+                      },
+                    ),
                   ],
                 },
               ],
@@ -173,22 +245,32 @@ export const JORDAN_REFERENCE_DATASET = {
           ],
         },
         {
-          id: "subj_jo_g1_ar",
+          id: JO_IDS.subject("AR"),
           code: "AR",
           name: L("Arabic", "اللغة العربية"),
           books: [
             {
-              id: "JO-G1-AR-B1",
+              id: JO_IDS.book("AR", 1),
               part: "Book 1",
               title: L("Arabic — Grade 1 — Book 1", "اللغة العربية - الصف الأول - الكتاب 1"),
               units: [
                 {
-                  id: "jo_g1_ar_u1",
+                  id: JO_IDS.unit("AR", 1, 1),
                   order: 1,
                   title: L("Unit 1 — Letters", "الوحدة 1 — الحروف"),
                   lessons: [
-                    lesson("jo_g1_ar_u1_l1", 1, "Lesson 1 — Letter Alif", "الدرس 1 — حرف الألف"),
-                    lesson("jo_g1_ar_u1_l2", 2, "Lesson 2 — Letter Ba", "الدرس 2 — حرف الباء"),
+                    lesson(
+                      JO_IDS.lesson("AR", 1, 1, 1),
+                      1,
+                      "Lesson 1 — Letter Alif",
+                      "الدرس 1 — حرف الألف",
+                    ),
+                    lesson(
+                      JO_IDS.lesson("AR", 1, 1, 2),
+                      2,
+                      "Lesson 2 — Letter Ba",
+                      "الدرس 2 — حرف الباء",
+                    ),
                   ],
                 },
               ],
@@ -196,26 +278,37 @@ export const JORDAN_REFERENCE_DATASET = {
           ],
         },
         {
-          id: "subj_jo_g1_en",
+          id: JO_IDS.subject("EN"),
           code: "EN",
           name: L("English", "اللغة الإنجليزية"),
           books: [
             {
-              id: "JO-G1-EN-B1",
+              id: JO_IDS.book("EN", 1),
               part: "Book 1",
               title: L("English — Grade 1 — Book 1", "الإنجليزية - الصف الأول - الكتاب 1"),
               units: [
                 {
-                  id: "jo_g1_en_u1",
+                  id: JO_IDS.unit("EN", 1, 1),
                   order: 1,
                   title: L("Unit 1 — Hello", "الوحدة 1 — مرحبًا"),
                   lessons: [
-                    lesson("jo_g1_en_u1_l1", 1, "Lesson 1 — Greetings", "الدرس 1 — التحيات"),
-                    lesson("jo_g1_en_u1_l2", 2, "Lesson 2 — My name", "الدرس 2 — اسمي", {
-                      verificationStatus: "rejected",
-                      rightsStatus: "rejected",
-                      packageEligible: false,
-                    }),
+                    lesson(
+                      JO_IDS.lesson("EN", 1, 1, 1),
+                      1,
+                      "Lesson 1 — Greetings",
+                      "الدرس 1 — التحيات",
+                    ),
+                    lesson(
+                      JO_IDS.lesson("EN", 1, 1, 2),
+                      2,
+                      "Lesson 2 — My name",
+                      "الدرس 2 — اسمي",
+                      {
+                        verificationStatus: "rejected",
+                        rightsStatus: "rejected",
+                        packageEligible: false,
+                      },
+                    ),
                   ],
                 },
               ],
@@ -223,21 +316,26 @@ export const JORDAN_REFERENCE_DATASET = {
           ],
         },
         {
-          id: "subj_jo_g1_sci",
+          id: JO_IDS.subject("SCI"),
           code: "SCI",
           name: L("Science", "العلوم"),
           books: [
             {
-              id: "JO-G1-SCI-B1",
+              id: JO_IDS.book("SCI", 1),
               part: "Book 1",
               title: L("Science — Grade 1 — Book 1", "العلوم - الصف الأول - الكتاب 1"),
               units: [
                 {
-                  id: "jo_g1_sci_u1",
+                  id: JO_IDS.unit("SCI", 1, 1),
                   order: 1,
                   title: L("Unit 1 — Living things", "الوحدة 1 — الكائنات الحية"),
                   lessons: [
-                    lesson("jo_g1_sci_u1_l1", 1, "Lesson 1 — Plants and animals", "الدرس 1 — النباتات والحيوانات"),
+                    lesson(
+                      JO_IDS.lesson("SCI", 1, 1, 1),
+                      1,
+                      "Lesson 1 — Plants and animals",
+                      "الدرس 1 — النباتات والحيوانات",
+                    ),
                   ],
                 },
               ],
@@ -245,21 +343,29 @@ export const JORDAN_REFERENCE_DATASET = {
           ],
         },
         {
-          id: "subj_jo_g1_isl",
+          id: JO_IDS.subject("ISL"),
           code: "ISL",
           name: L("Islamic Education", "التربية الإسلامية"),
           books: [
             {
-              id: "JO-G1-ISL-B1",
+              id: JO_IDS.book("ISL", 1),
               part: "Book 1",
-              title: L("Islamic Education — Grade 1 — Book 1", "التربية الإسلامية - الصف الأول - الكتاب 1"),
+              title: L(
+                "Islamic Education — Grade 1 — Book 1",
+                "التربية الإسلامية - الصف الأول - الكتاب 1",
+              ),
               units: [
                 {
-                  id: "jo_g1_isl_u1",
+                  id: JO_IDS.unit("ISL", 1, 1),
                   order: 1,
                   title: L("Unit 1 — Good manners", "الوحدة 1 — الآداب"),
                   lessons: [
-                    lesson("jo_g1_isl_u1_l1", 1, "Lesson 1 — Saying salaam", "الدرس 1 — إلقاء السلام"),
+                    lesson(
+                      JO_IDS.lesson("ISL", 1, 1, 1),
+                      1,
+                      "Lesson 1 — Saying salaam",
+                      "الدرس 1 — إلقاء السلام",
+                    ),
                   ],
                 },
               ],
@@ -267,21 +373,29 @@ export const JORDAN_REFERENCE_DATASET = {
           ],
         },
         {
-          id: "subj_jo_g1_soc",
+          id: JO_IDS.subject("SOC"),
           code: "SOC",
           name: L("Social Studies", "التربية الاجتماعية"),
           books: [
             {
-              id: "JO-G1-SOC-B1",
+              id: JO_IDS.book("SOC", 1),
               part: "Book 1",
-              title: L("Social Studies — Grade 1 — Book 1", "التربية الاجتماعية - الصف الأول - الكتاب 1"),
+              title: L(
+                "Social Studies — Grade 1 — Book 1",
+                "التربية الاجتماعية - الصف الأول - الكتاب 1",
+              ),
               units: [
                 {
-                  id: "jo_g1_soc_u1",
+                  id: JO_IDS.unit("SOC", 1, 1),
                   order: 1,
                   title: L("Unit 1 — My family", "الوحدة 1 — أسرتي"),
                   lessons: [
-                    lesson("jo_g1_soc_u1_l1", 1, "Lesson 1 — Family members", "الدرس 1 — أفراد الأسرة"),
+                    lesson(
+                      JO_IDS.lesson("SOC", 1, 1, 1),
+                      1,
+                      "Lesson 1 — Family members",
+                      "الدرس 1 — أفراد الأسرة",
+                    ),
                   ],
                 },
               ],

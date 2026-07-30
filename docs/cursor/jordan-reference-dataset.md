@@ -4,24 +4,41 @@ Jordan is the **official reference curriculum implementation**. This is not “j
 
 **Hard rules:** ILE is the only educational runtime (ADR-0049). Import is a compiler (ADR-0050). No AI lessons / summaries / videos / quizzes. No curriculum-specific renderer.
 
+## Hierarchical ID convention (official)
+
+Every future country must use the same nested ID shape:
+
+| Level | ID |
+|-------|----|
+| Country | `JO` |
+| Curriculum | `JO-NATIONAL` |
+| Grade | `JO-NATIONAL-G01` |
+| Subject | `JO-NATIONAL-G01-MATH` |
+| Book | `JO-NATIONAL-G01-MATH-B01` |
+| Unit | `JO-NATIONAL-G01-MATH-B01-U01` |
+| Lesson | `JO-NATIONAL-G01-MATH-B01-U01-L01` |
+
+Pattern: `{COUNTRY}` → `{COUNTRY}-{CURRICULUM}` → `…-G{nn}` → `…-{SUBJECT}` → `…-B{nn}` → `…-U{nn}` → `…-L{nn}`
+
+Helpers: `JO_IDS` / `JO_CANONICAL_LESSON_ID` in `content/demo/jordan-reference-dataset.ts`
+
 ## Reference tree
 
 ```
-Jordan
-└── National Curriculum
-    └── Grade 1
-        ├── Mathematics
-        │   ├── Semester 1
-        │   │   ├── Book 1
-        │   │   │   ├── Unit 1 → Lessons 1–3
-        │   │   │   └── Unit 2 → Lessons 1–2
-        │   │   └── Book 2
-        │   │       └── Unit 1 → Lesson 1 (rights restricted)
-        ├── Arabic
-        ├── English (includes one rejected lesson)
-        ├── Science
-        ├── Islamic Education
-        └── Social Studies
+JO
+└── JO-NATIONAL
+    └── JO-NATIONAL-G01
+        ├── JO-NATIONAL-G01-MATH
+        │   ├── JO-NATIONAL-G01-MATH-B01
+        │   │   ├── …-U01 → L01–L03
+        │   │   └── …-U02 → L01–L02
+        │   └── JO-NATIONAL-G01-MATH-B02
+        │       └── …-U01-L01 (rights restricted)
+        ├── JO-NATIONAL-G01-AR
+        ├── JO-NATIONAL-G01-EN (includes one rejected lesson)
+        ├── JO-NATIONAL-G01-SCI
+        ├── JO-NATIONAL-G01-ISL
+        └── JO-NATIONAL-G01-SOC
 ```
 
 Fixture: `content/demo/jordan-reference-dataset.ts`  
@@ -72,7 +89,9 @@ Official Source → Verification → Metadata → Book → Unit → Lesson
 
 Canonical published example:
 
-`Jordan → Grade 1 → Mathematics → Semester 1 → Book 1 → Unit 1 → Lesson 1 → Verified ILE Package → ILE`
+`JO → JO-NATIONAL → JO-NATIONAL-G01 → JO-NATIONAL-G01-MATH → JO-NATIONAL-G01-MATH-B01 → JO-NATIONAL-G01-MATH-B01-U01 → JO-NATIONAL-G01-MATH-B01-U01-L01 → Verified ILE Package → ILE`
+
+Package id: `ile_JO-NATIONAL-G01-MATH-B01-U01-L01`
 
 Sample package: [`jordan-reference-ile-package.example.json`](../../content/demo/generated/jordan-reference-ile-package.example.json)
 

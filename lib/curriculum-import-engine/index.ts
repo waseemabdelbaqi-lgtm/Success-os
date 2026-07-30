@@ -81,6 +81,15 @@ export function engineStatus() {
       subjects: ["Mathematics", "Arabic", "English", "Science", "Islamic Education", "Social Studies"],
       metadataOnly: true,
       aiGeneration: false,
+      idConvention: {
+        country: "JO",
+        curriculum: "JO-NATIONAL",
+        grade: "JO-NATIONAL-G01",
+        subject: "JO-NATIONAL-G01-MATH",
+        book: "JO-NATIONAL-G01-MATH-B01",
+        unit: "JO-NATIONAL-G01-MATH-B01-U01",
+        lesson: "JO-NATIONAL-G01-MATH-B01-U01-L01",
+      },
     },
     pipeline: IMPORT_PIPELINE.map((s) => s.id),
     connectors: listSourceConnectors().map((c) => ({

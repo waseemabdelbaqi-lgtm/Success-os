@@ -20,7 +20,10 @@ import {
   resetHierarchyRegistry,
   updateLesson,
 } from "../hierarchy/registry";
-import { JORDAN_REFERENCE_DATASET } from "@/content/demo/jordan-reference-dataset";
+import {
+  JO_CANONICAL_LESSON_ID,
+  JORDAN_REFERENCE_DATASET,
+} from "@/content/demo/jordan-reference-dataset";
 import { evaluateRights } from "../rights/engine";
 import { buildIlePackagesFromBook } from "../ile-package-builder";
 import { runVerificationGates, allGatesPassed } from "../verification/engine";
@@ -108,11 +111,25 @@ export type JordanDatasetRunResult = {
 export function buildSampleTree() {
   const grade = JORDAN_REFERENCE_DATASET.grades[0]!;
   return {
-    country: JORDAN_REFERENCE_DATASET.country.name.en,
-    curriculum: JORDAN_REFERENCE_DATASET.curriculum.name.en,
-    grade: grade.name.en,
-    semester: grade.semesterName.en,
+    idConvention: JORDAN_REFERENCE_DATASET.idConvention.example,
+    country: {
+      id: JORDAN_REFERENCE_DATASET.country.id,
+      name: JORDAN_REFERENCE_DATASET.country.name.en,
+    },
+    curriculum: {
+      id: JORDAN_REFERENCE_DATASET.curriculum.id,
+      name: JORDAN_REFERENCE_DATASET.curriculum.name.en,
+    },
+    grade: {
+      id: grade.id,
+      name: grade.name.en,
+    },
+    semester: {
+      id: grade.semesterId,
+      name: grade.semesterName.en,
+    },
     subjects: grade.subjects.map((s) => ({
+      id: s.id,
       code: s.code,
       name: s.name.en,
       books: s.books.map((b) => ({
@@ -166,7 +183,7 @@ export function runJordanReferenceDataset(opts?: { reset?: boolean }): JordanDat
   createSemester({
     id: grade.semesterId,
     gradeId: grade.id,
-    code: "S1",
+    code: "S01",
     name: grade.semesterName,
     order: 1,
   });
@@ -174,14 +191,14 @@ export function runJordanReferenceDataset(opts?: { reset?: boolean }): JordanDat
   let samplePackage: CompiledIlePackage | null = null;
   let sampleMetadata: LessonMetadataRecord | null = null;
   const samplePath = [
-    "Jordan",
-    "National Curriculum",
-    "Grade 1",
-    "Mathematics",
-    "Semester 1",
-    "Book 1",
-    "Unit 1",
-    "Lesson 1",
+    "JO",
+    "JO-NATIONAL",
+    "JO-NATIONAL-G01",
+    "JO-NATIONAL-G01-MATH",
+    "JO-NATIONAL-G01-S01",
+    "JO-NATIONAL-G01-MATH-B01",
+    "JO-NATIONAL-G01-MATH-B01-U01",
+    "JO-NATIONAL-G01-MATH-B01-U01-L01",
     "Verified ILE Package",
     "Interactive Lesson Engine",
   ];
@@ -306,8 +323,9 @@ export function runJordanReferenceDataset(opts?: { reset?: boolean }): JordanDat
           });
 
           // Compile + publish only the canonical Math Book1 Unit1 Lesson1 when verified
+          // Canonical ID: JO-NATIONAL-G01-MATH-B01-U01-L01
           if (
-            les.id === "jo_g1_math_u1_l1" &&
+            les.id === JO_CANONICAL_LESSON_ID &&
             les.packageEligible &&
             !rejected &&
             rightsOk &&

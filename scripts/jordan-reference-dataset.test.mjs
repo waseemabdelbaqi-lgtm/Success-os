@@ -42,7 +42,17 @@ for (const subject of [
 ]) {
   assert.ok(dataset.includes(subject), `missing subject ${subject}`);
 }
-assert.ok(dataset.includes("jo_g1_math_u1_l1"));
+for (const id of [
+  "JO",
+  "JO-NATIONAL",
+  "JO-NATIONAL-G01",
+  "JO-NATIONAL-G01-MATH",
+  "JO-NATIONAL-G01-MATH-B01",
+  "JO-NATIONAL-G01-MATH-B01-U01",
+  "JO-NATIONAL-G01-MATH-B01-U01-L01",
+]) {
+  assert.ok(dataset.includes(id), `missing hierarchical id ${id}`);
+}
 assert.ok(dataset.includes('verificationStatus: "rejected"'));
 assert.ok(dataset.includes('rightsStatus: "restricted"'));
 
@@ -77,7 +87,8 @@ const runner = fs.readFileSync(
 assert.ok(runner.includes("runJordanReferenceDataset"));
 assert.ok(runner.includes("buildVerification"));
 assert.ok(runner.includes("approveAndPublishLesson"));
-assert.ok(runner.includes("jo_g1_math_u1_l1"));
+assert.ok(runner.includes("JO_CANONICAL_LESSON_ID"));
+assert.ok(runner.includes("JO-NATIONAL-G01-MATH-B01-U01-L01"));
 assert.ok(runner.includes("noAiGeneration"));
 assert.ok(runner.includes("Rejected") || runner.includes("rejected"));
 
@@ -91,6 +102,13 @@ assert.equal(tree.country, "Jordan");
 assert.equal(tree.grade, "Grade 1");
 assert.ok(tree.subjects.length >= 6);
 assert.equal(tree.subjects[0].code, "MATH");
+assert.equal(tree.idConvention.lesson, "JO-NATIONAL-G01-MATH-B01-U01-L01");
+assert.equal(tree.subjects[0].id, "JO-NATIONAL-G01-MATH");
+assert.equal(tree.subjects[0].books[0].id, "JO-NATIONAL-G01-MATH-B01");
+assert.equal(
+  tree.subjects[0].books[0].units[0].lessons[0].id,
+  "JO-NATIONAL-G01-MATH-B01-U01-L01",
+);
 
 const metadata = JSON.parse(
   fs.readFileSync(
@@ -130,9 +148,11 @@ const ile = JSON.parse(
   ),
 );
 assert.equal(ile.schema, "success-os.interactive-lesson-engine.v1");
-assert.equal(ile.id, "ile_jo_g1_math_u1_l1");
+assert.equal(ile.id, "ile_JO-NATIONAL-G01-MATH-B01-U01-L01");
+assert.equal(ile.source.lessonId, "JO-NATIONAL-G01-MATH-B01-U01-L01");
 assert.equal(ile.status, "published");
 assert.ok(ile.engineMeta.noAiGeneration);
+assert.ok(ile.engineMeta.hierarchyPath.includes("JO-NATIONAL-G01-MATH-B01-U01-L01"));
 assert.ok(ile.engineMeta.hierarchyPath.includes("Interactive Lesson Engine"));
 
 const report = JSON.parse(

@@ -1,6 +1,6 @@
 {
   "schema": "success-os.interactive-lesson-engine.v1",
-  "id": "ile_jo_g1_math_u1_l1",
+  "id": "ile_JO-NATIONAL-G01-MATH-B01-U01-L01",
   "version": 1,
   "status": "published",
   "title": {
@@ -26,9 +26,9 @@
   "language": "bilingual",
   "source": {
     "kind": "book",
-    "bookId": "JO-G1-MATH-B1",
-    "unitId": "jo_g1_math_u1",
-    "lessonId": "jo_g1_math_u1_l1"
+    "bookId": "JO-NATIONAL-G01-MATH-B01",
+    "unitId": "JO-NATIONAL-G01-MATH-B01-U01",
+    "lessonId": "JO-NATIONAL-G01-MATH-B01-U01-L01"
   },
   "objectives": [
     {
@@ -49,7 +49,7 @@
   ],
   "slides": [
     {
-      "id": "jo_g1_math_u1_l1_slide_1",
+      "id": "JO-NATIONAL-G01-MATH-B01-U01-L01_slide_1",
       "order": 1,
       "title": {
         "en": "Lesson 1 — Count to three",
@@ -57,43 +57,43 @@
       },
       "kind": "concept",
       "blocks": [
-        { "type": "rich_text", "id": "jo_g1_math_u1_l1_overview" },
-        { "type": "definition", "id": "jo_g1_math_u1_l1_def" }
+        { "type": "rich_text", "id": "JO-NATIONAL-G01-MATH-B01-U01-L01_overview" },
+        { "type": "definition", "id": "JO-NATIONAL-G01-MATH-B01-U01-L01_def" }
       ]
     },
     {
-      "id": "jo_g1_math_u1_l1_slide_2",
+      "id": "JO-NATIONAL-G01-MATH-B01-U01-L01_slide_2",
       "order": 2,
       "title": { "en": "Objectives", "ar": "الأهداف" },
       "kind": "intro",
       "blocks": [
-        { "type": "rich_text", "id": "jo_g1_math_u1_l1_obj_0" },
-        { "type": "rich_text", "id": "jo_g1_math_u1_l1_obj_1" }
+        { "type": "rich_text", "id": "JO-NATIONAL-G01-MATH-B01-U01-L01_obj_0" },
+        { "type": "rich_text", "id": "JO-NATIONAL-G01-MATH-B01-U01-L01_obj_1" }
       ]
     }
   ],
   "importMeta": {
     "jobId": "jordan_reference_dataset",
-    "sourceId": "src_jo_nccd_reference",
+    "sourceId": "JO-NCCD-REFERENCE",
     "connectorId": "jordan-reference-dataset",
     "country": "Jordan",
     "curriculum": "Jordan National Curriculum",
     "verificationStatus": "verified",
     "rightsStatus": "verified",
-    "checksum": "e4813bfd59e6173d17728da1466db31b6a4078119e896149b9af68cde6a69f7c"
+    "checksum": "8c2065b25bd8d0f5e05576bce000b08a5878994cb1ec1ffddc61965092a51610"
   },
   "engineMeta": {
     "compiledBy": "success-os.curriculum-import-engine.v1",
     "referenceDataset": "jordan-reference-dataset.v1",
     "hierarchyPath": [
-      "Jordan",
-      "National Curriculum",
-      "Grade 1",
-      "Mathematics",
-      "Semester 1",
-      "Book 1",
-      "Unit 1",
-      "Lesson 1",
+      "JO",
+      "JO-NATIONAL",
+      "JO-NATIONAL-G01",
+      "JO-NATIONAL-G01-MATH",
+      "JO-NATIONAL-G01-S01",
+      "JO-NATIONAL-G01-MATH-B01",
+      "JO-NATIONAL-G01-MATH-B01-U01",
+      "JO-NATIONAL-G01-MATH-B01-U01-L01",
       "Verified ILE Package",
       "Interactive Lesson Engine"
     ],
@@ -101,5 +101,5 @@
     "noQuizGeneration": true,
     "noVideoGeneration": true
   },
-  "notes": "Sample verified ILE package from the Jordan reference dataset. ILE remains the only educational runtime."
+  "notes": "Sample verified ILE package for JO-NATIONAL-G01-MATH-B01-U01-L01. ILE remains the only educational runtime."
 }

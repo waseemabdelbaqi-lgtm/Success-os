@@ -1,5 +1,14 @@
 {
   "schema": "success-os.jordan-reference-dataset.v1",
+  "idConvention": {
+    "country": "JO",
+    "curriculum": "JO-NATIONAL",
+    "grade": "JO-NATIONAL-G01",
+    "subject": "JO-NATIONAL-G01-MATH",
+    "book": "JO-NATIONAL-G01-MATH-B01",
+    "unit": "JO-NATIONAL-G01-MATH-B01-U01",
+    "lesson": "JO-NATIONAL-G01-MATH-B01-U01-L01"
+  },
   "country": "Jordan",
   "curriculum": "Jordan National Curriculum",
   "grade": "Grade 1",
@@ -7,32 +16,33 @@
   "subjects": [
     {
       "code": "MATH",
+      "id": "JO-NATIONAL-G01-MATH",
       "name": "Mathematics",
       "books": [
         {
-          "id": "JO-G1-MATH-B1",
+          "id": "JO-NATIONAL-G01-MATH-B01",
           "part": "Book 1",
           "units": [
             {
-              "id": "jo_g1_math_u1",
+              "id": "JO-NATIONAL-G01-MATH-B01-U01",
               "title": "Unit 1 — Numbers around us",
               "lessons": [
                 {
-                  "id": "jo_g1_math_u1_l1",
+                  "id": "JO-NATIONAL-G01-MATH-B01-U01-L01",
                   "order": 1,
                   "title": "Lesson 1 — Count to three",
                   "verificationStatus": "verified",
                   "rightsStatus": "verified"
                 },
                 {
-                  "id": "jo_g1_math_u1_l2",
+                  "id": "JO-NATIONAL-G01-MATH-B01-U01-L02",
                   "order": 2,
                   "title": "Lesson 2 — Count to five",
                   "verificationStatus": "verified",
                   "rightsStatus": "verified"
                 },
                 {
-                  "id": "jo_g1_math_u1_l3",
+                  "id": "JO-NATIONAL-G01-MATH-B01-U01-L03",
                   "order": 3,
                   "title": "Lesson 3 — Compare small sets",
                   "verificationStatus": "verified",
@@ -41,18 +51,18 @@
               ]
             },
             {
-              "id": "jo_g1_math_u2",
+              "id": "JO-NATIONAL-G01-MATH-B01-U02",
               "title": "Unit 2 — Shapes",
               "lessons": [
                 {
-                  "id": "jo_g1_math_u2_l1",
+                  "id": "JO-NATIONAL-G01-MATH-B01-U02-L01",
                   "order": 1,
                   "title": "Lesson 1 — Circles and squares",
                   "verificationStatus": "verified",
                   "rightsStatus": "verified"
                 },
                 {
-                  "id": "jo_g1_math_u2_l2",
+                  "id": "JO-NATIONAL-G01-MATH-B01-U02-L02",
                   "order": 2,
                   "title": "Lesson 2 — Triangles",
                   "verificationStatus": "pending",
@@ -63,15 +73,15 @@
           ]
         },
         {
-          "id": "JO-G1-MATH-B2",
+          "id": "JO-NATIONAL-G01-MATH-B02",
           "part": "Book 2",
           "units": [
             {
-              "id": "jo_g1_math_b2_u1",
+              "id": "JO-NATIONAL-G01-MATH-B02-U01",
               "title": "Unit 1 — Addition readiness",
               "lessons": [
                 {
-                  "id": "jo_g1_math_b2_u1_l1",
+                  "id": "JO-NATIONAL-G01-MATH-B02-U01-L01",
                   "order": 1,
                   "title": "Lesson 1 — Putting together",
                   "verificationStatus": "pending",
@@ -85,25 +95,26 @@
     },
     {
       "code": "AR",
+      "id": "JO-NATIONAL-G01-AR",
       "name": "Arabic",
       "books": [
         {
-          "id": "JO-G1-AR-B1",
+          "id": "JO-NATIONAL-G01-AR-B01",
           "part": "Book 1",
           "units": [
             {
-              "id": "jo_g1_ar_u1",
+              "id": "JO-NATIONAL-G01-AR-B01-U01",
               "title": "Unit 1 — Letters",
               "lessons": [
                 {
-                  "id": "jo_g1_ar_u1_l1",
+                  "id": "JO-NATIONAL-G01-AR-B01-U01-L01",
                   "order": 1,
                   "title": "Lesson 1 — Letter Alif",
                   "verificationStatus": "verified",
                   "rightsStatus": "verified"
                 },
                 {
-                  "id": "jo_g1_ar_u1_l2",
+                  "id": "JO-NATIONAL-G01-AR-B01-U01-L02",
                   "order": 2,
                   "title": "Lesson 2 — Letter Ba",
                   "verificationStatus": "verified",
@@ -117,25 +128,26 @@
     },
     {
       "code": "EN",
+      "id": "JO-NATIONAL-G01-EN",
       "name": "English",
       "books": [
         {
-          "id": "JO-G1-EN-B1",
+          "id": "JO-NATIONAL-G01-EN-B01",
           "part": "Book 1",
           "units": [
             {
-              "id": "jo_g1_en_u1",
+              "id": "JO-NATIONAL-G01-EN-B01-U01",
               "title": "Unit 1 — Hello",
               "lessons": [
                 {
-                  "id": "jo_g1_en_u1_l1",
+                  "id": "JO-NATIONAL-G01-EN-B01-U01-L01",
                   "order": 1,
                   "title": "Lesson 1 — Greetings",
                   "verificationStatus": "verified",
                   "rightsStatus": "verified"
                 },
                 {
-                  "id": "jo_g1_en_u1_l2",
+                  "id": "JO-NATIONAL-G01-EN-B01-U01-L02",
                   "order": 2,
                   "title": "Lesson 2 — My name",
                   "verificationStatus": "rejected",
@@ -149,18 +161,19 @@
     },
     {
       "code": "SCI",
+      "id": "JO-NATIONAL-G01-SCI",
       "name": "Science",
       "books": [
         {
-          "id": "JO-G1-SCI-B1",
+          "id": "JO-NATIONAL-G01-SCI-B01",
           "part": "Book 1",
           "units": [
             {
-              "id": "jo_g1_sci_u1",
+              "id": "JO-NATIONAL-G01-SCI-B01-U01",
               "title": "Unit 1 — Living things",
               "lessons": [
                 {
-                  "id": "jo_g1_sci_u1_l1",
+                  "id": "JO-NATIONAL-G01-SCI-B01-U01-L01",
                   "order": 1,
                   "title": "Lesson 1 — Plants and animals",
                   "verificationStatus": "verified",
@@ -174,18 +187,19 @@
     },
     {
       "code": "ISL",
+      "id": "JO-NATIONAL-G01-ISL",
       "name": "Islamic Education",
       "books": [
         {
-          "id": "JO-G1-ISL-B1",
+          "id": "JO-NATIONAL-G01-ISL-B01",
           "part": "Book 1",
           "units": [
             {
-              "id": "jo_g1_isl_u1",
+              "id": "JO-NATIONAL-G01-ISL-B01-U01",
               "title": "Unit 1 — Good manners",
               "lessons": [
                 {
-                  "id": "jo_g1_isl_u1_l1",
+                  "id": "JO-NATIONAL-G01-ISL-B01-U01-L01",
                   "order": 1,
                   "title": "Lesson 1 — Saying salaam",
                   "verificationStatus": "verified",
@@ -199,18 +213,19 @@
     },
     {
       "code": "SOC",
+      "id": "JO-NATIONAL-G01-SOC",
       "name": "Social Studies",
       "books": [
         {
-          "id": "JO-G1-SOC-B1",
+          "id": "JO-NATIONAL-G01-SOC-B01",
           "part": "Book 1",
           "units": [
             {
-              "id": "jo_g1_soc_u1",
+              "id": "JO-NATIONAL-G01-SOC-B01-U01",
               "title": "Unit 1 — My family",
               "lessons": [
                 {
-                  "id": "jo_g1_soc_u1_l1",
+                  "id": "JO-NATIONAL-G01-SOC-B01-U01-L01",
                   "order": 1,
                   "title": "Lesson 1 — Family members",
                   "verificationStatus": "verified",
@@ -223,5 +238,5 @@
       ]
     }
   ],
-  "notes": "Official Jordan reference tree for PR #50.2. Metadata standard only — no AI lesson generation."
+  "notes": "Official Jordan hierarchical ID convention for PR #50.2. Metadata standard only — no AI lesson generation."
 }
