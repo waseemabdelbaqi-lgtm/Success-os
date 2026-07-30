@@ -80,6 +80,34 @@ export {
   buildStructuredDiagnostic,
   trustConfig,
 } from "./providers/trust-lifecycle.js";
+export {
+  Capabilities,
+  listCapabilityRegistry,
+  resolveRequiredCapability,
+  providerSupportsCapability,
+  PROVIDER_CAPABILITIES,
+} from "./providers/capability-registry.js";
+export {
+  estimateRequestCost,
+  checkBudget,
+  costDashboard,
+  recordActualCost,
+} from "./providers/cost-engine.js";
+export {
+  getProviderMetrics,
+  metricsDashboard,
+  computeReliabilityScore,
+} from "./providers/router-metrics.js";
+export {
+  rankProvidersForTask,
+  routeTask,
+  explainRoute,
+  simulateRoute,
+  executeWithFallback,
+  benchmarkRouting,
+  routerDashboard,
+  scoreCandidate,
+} from "./providers/provider-router.js";
 export { loadAiosEnv } from "./env/load.js";
 export {
   getFactoriesManifest,

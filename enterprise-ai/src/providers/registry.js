@@ -8,6 +8,7 @@ import { ollamaChat, ollamaConfigured, ollamaHealthCheck, ollamaModelConfigured 
 import { ProviderStatus, AiosProviderError } from "./errors.js";
 import { runHealthCommand } from "./health-runner.js";
 import { CanonicalStatus } from "./status-model.js";
+import { rankProvidersForTask } from "./provider-router.js";
 
 const ROLE_ROUTES = {
   engineering: ["openai", "anthropic", "gemini", "ollama-local"],
@@ -138,11 +139,41 @@ export async function chatViaRegistry({
   json = false,
   signal,
   allowOllama = true,
+  taskType = null,
+  factory = null,
+  rootDir = process.cwd(),
 } = {}) {
   const routing = routeForRole(role);
+  // Intelligent router: prefer READY+ ranked providers when available (never below READY)
+  const task =
+    taskType ||
+    (["curriculum", "research", "verification", "multimodal"].includes(role)
+      ? "education"
+      : "coding");
+  let order = [...routing.order];
+  let routerDecision = null;
+  try {
+    routerDecision = rankProvidersForTask({
+      taskType: task,
+      factory,
+      preferred: routing.order,
+      prompt: String(user || "").slice(0, 4000),
+      rootDir,
+      estimatedOutputTokens: Math.min(Number(maxTokens) || 500, 2000),
+    });
+    if (routerDecision.candidates?.length) {
+      const ranked = routerDecision.candidates.map((c) => c.providerId);
+      const rest = order.filter((id) => !ranked.includes(id));
+      order = [...ranked, ...rest];
+    }
+  } catch {
+    // Fall back to static role order — router must never break chat
+    routerDecision = null;
+  }
+
   const tried = [];
-  for (const id of routing.order) {
-    if (id === "ollama-local" && !allowOllama) {
+  for (const id of order) {
+    if ((id === "ollama-local" || id === "ollama") && !allowOllama) {
       tried.push({ provider: id, status: "skipped_disallowed" });
       continue;
     }
@@ -150,7 +181,7 @@ export async function chatViaRegistry({
       tried.push({ provider: id, status: "circuit_open" });
       continue;
     }
-    const adapter = adapters[id];
+    const adapter = adapters[id] || adapters[id === "ollama" ? "ollama-local" : id];
     if (!adapter) {
       tried.push({ provider: id, status: "unknown" });
       continue;
@@ -171,7 +202,15 @@ export async function chatViaRegistry({
       return {
         ...result,
         role,
-        routing,
+        routing: {
+          ...routing,
+          order,
+          intelligentRouter: Boolean(routerDecision?.selected),
+          selected: routerDecision?.selected?.providerId || null,
+          explanation: routerDecision
+            ? `lifecycle=${routerDecision.selected?.lifecycleStage || "n/a"}`
+            : null,
+        },
         tried,
         selection: id,
       };

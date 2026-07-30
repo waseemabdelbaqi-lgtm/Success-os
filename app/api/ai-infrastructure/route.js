@@ -295,6 +295,69 @@ export async function GET(request) {
             last100Probes: Object.entries(history?.byProvider || {}).flatMap(([id, list]) =>
               (list || []).map((e) => ({ ...e, providerId: id })),
             ).sort((a, b) => String(a.testedAt).localeCompare(String(b.testedAt))).slice(-100),
+            ...(() => {
+              const metrics = readJson("data/master-ai-orchestrator/routing/provider-metrics.json");
+              const costLedger = readJson("data/master-ai-orchestrator/routing/cost-ledger.json");
+              const providers = Object.entries(metrics?.providers || {}).map(([providerId, raw]) => {
+                const total = Number(raw.totalRequests || 0);
+                const successes = Number(raw.successes || 0);
+                const failures = Number(raw.failures || 0);
+                const latencies = [...(raw.latencies || [])].map(Number).filter(Number.isFinite).sort((a, b) => a - b);
+                const avg =
+                  latencies.length
+                    ? Math.round(latencies.reduce((a, b) => a + b, 0) / latencies.length)
+                    : null;
+                const p95 = latencies.length
+                  ? latencies[Math.min(latencies.length - 1, Math.ceil(0.95 * latencies.length) - 1)]
+                  : null;
+                return {
+                  providerId,
+                  averageLatencyMs: avg,
+                  p95LatencyMs: p95,
+                  successRate: total ? Number((successes / total).toFixed(4)) : null,
+                  failureRate: total ? Number((failures / total).toFixed(4)) : null,
+                  currentLoad: raw.currentLoad || 0,
+                  requestsDay: raw.requestsToday || 0,
+                  requestsMonth: raw.requestsMonth || 0,
+                  averageCostUsd:
+                    total > 0 ? Number((Number(raw.totalCostUsd || 0) / total).toFixed(6)) : null,
+                };
+              });
+              const costProviders = Object.entries(costLedger?.byProvider || {}).map(([providerId, v]) => ({
+                providerId,
+                spentUsd: Number(v.spentUsd || 0),
+                requests: v.requests || 0,
+              }));
+              return {
+                routingEnabled: true,
+                activeRoutingDecisions: (metrics?.decisions || []).slice(-30),
+                liveRequestRouting: (metrics?.decisions || []).slice(-30),
+                fallbackEvents: (metrics?.failovers || []).slice(-30),
+                reliabilityDashboard: providers,
+                providerLoad: providers.map((p) => ({
+                  providerId: p.providerId,
+                  currentLoad: p.currentLoad,
+                  requestsDay: p.requestsDay,
+                })),
+                costDashboard: {
+                  month: costLedger?.month || null,
+                  totalSpentUsd: Number(
+                    costProviders.reduce((a, r) => a + r.spentUsd, 0).toFixed(6),
+                  ),
+                  providers: costProviders,
+                  recent: (costLedger?.entries || []).slice(-30),
+                },
+                currentProviderRankings: (metrics?.decisions || [])
+                  .slice(-10)
+                  .map((d) => ({
+                    taskType: d.taskType,
+                    selected: d.selected,
+                    ranking: d.ranking || [],
+                    at: d.at,
+                  })),
+                factoryUtilization: state?.factoryHealth?.factories || state?.factories || null,
+              };
+            })(),
           };
         } catch {
           return { continuousMonitoring: false };
@@ -317,6 +380,65 @@ export async function GET(request) {
 export async function POST(request) {
   try {
     const body = await request.json().catch(() => ({}));
+    if (body.action === "route" || body.action === "route-benchmark" || body.action === "route-cost" || body.action === "route-dashboard") {
+      const args = [path.join(rootDir, "enterprise-ai/src/cli.js"), "--route", "--json"];
+      if (body.action === "route-benchmark") args.push("--benchmark");
+      else if (body.action === "route-cost") args.push("--cost");
+      else if (body.action === "route-dashboard") args.push("--dashboard");
+      else {
+        if (body.task) args.push(`--task=${body.task}`);
+        if (body.explain) args.push("--explain");
+        if (body.simulate) args.push("--simulate");
+        if (body.factory) args.push(`--factory=${body.factory}`);
+      }
+      const result = await new Promise((resolve, reject) => {
+        const child = spawn(process.execPath, args, {
+          cwd: rootDir,
+          env: { ...process.env },
+          stdio: ["ignore", "pipe", "pipe"],
+        });
+        let stdout = "";
+        let stderr = "";
+        child.stdout.on("data", (d) => {
+          stdout += d;
+        });
+        child.stderr.on("data", (d) => {
+          stderr += d;
+        });
+        child.on("error", reject);
+        child.on("close", (code) => {
+          try {
+            resolve(JSON.parse(stdout));
+          } catch {
+            reject(new Error(`ROUTE_CLI_FAILED code=${code} ${stderr.slice(0, 200)}`));
+          }
+        });
+      });
+      const state = readJson(STATE_REL);
+      const dashboard = buildDashboard(state);
+      const extras =
+        body.action === "route-dashboard" && result
+          ? {
+              routingEnabled: true,
+              activeRoutingDecisions: result.liveRequestRouting || [],
+              liveRequestRouting: result.liveRequestRouting || [],
+              fallbackEvents: result.fallbackEvents || [],
+              reliabilityDashboard: result.reliabilityDashboard || [],
+              providerLoad: result.providerLoad || [],
+              costDashboard: result.costDashboard || null,
+              currentProviderRankings: result.currentRankings || result.activeRouting || [],
+              factoryUtilization: result.factoryUtilization || null,
+            }
+          : {};
+      return Response.json({
+        ...dashboard,
+        ...extras,
+        routingResult: result,
+        source: `routing-${body.action}`,
+        vercelAutoDeployBlocked: true,
+        secretsExposed: false,
+      });
+    }
     if (body.action === "continuous" || body.action === "recover" || body.action === "failover-test" || body.action === "history") {
       const args = [path.join(rootDir, "enterprise-ai/src/cli.js"), "--health", "--json"];
       if (body.action === "continuous") {

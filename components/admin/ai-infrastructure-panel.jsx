@@ -153,6 +153,160 @@ export function AiInfrastructurePanel() {
         ))}
       </section>
 
+      {(data?.routingEnabled || data?.activeRoutingDecisions || data?.costDashboard) ? (
+        <section style={{ marginBottom: '1.25rem' }}>
+          <h2 style={{ fontSize: 16, margin: '0 0 0.5rem' }}>Intelligent Routing & Cost</h2>
+          <p style={{ margin: '0 0 0.75rem', fontSize: 12, color: '#6b7280' }}>
+            Never routes below READY · Rank: MISSION_CRITICAL → PRODUCTION_CERTIFIED → READY · then
+            reliability / success / latency / cost / load
+          </p>
+          <div
+            style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))',
+              gap: 10,
+              marginBottom: '0.75rem',
+            }}
+          >
+            <div style={{ border: '1px solid #e5e7eb', borderRadius: 10, padding: '0.75rem', background: '#fff' }}>
+              <div style={{ fontSize: 12, color: '#6b7280' }}>Cost (month)</div>
+              <div style={{ fontWeight: 700, marginTop: 4 }}>
+                ${cell(data?.costDashboard?.totalSpentUsd ?? 0)} · {cell(data?.costDashboard?.month)}
+              </div>
+              <div style={{ fontSize: 11, color: '#6b7280', marginTop: 6 }}>
+                {(data?.costDashboard?.providers || [])
+                  .slice(0, 5)
+                  .map((p) => `${p.providerId}: $${p.spentUsd}`)
+                  .join(' · ') || 'No spend recorded'}
+              </div>
+            </div>
+            <div style={{ border: '1px solid #e5e7eb', borderRadius: 10, padding: '0.75rem', background: '#fff' }}>
+              <div style={{ fontSize: 12, color: '#6b7280' }}>Provider load</div>
+              <div style={{ fontSize: 11, color: '#374151', marginTop: 6 }}>
+                {(data?.providerLoad || [])
+                  .slice(0, 8)
+                  .map((p) => `${p.providerId}: load ${p.currentLoad} / day ${p.requestsDay}`)
+                  .join(' · ') || 'No load data'}
+              </div>
+            </div>
+            <div style={{ border: '1px solid #e5e7eb', borderRadius: 10, padding: '0.75rem', background: '#fff' }}>
+              <div style={{ fontSize: 12, color: '#6b7280' }}>Fallback events</div>
+              <div style={{ fontWeight: 700, marginTop: 4 }}>{data?.fallbackEvents?.length || 0}</div>
+              <div style={{ fontSize: 11, color: '#6b7280', marginTop: 6 }}>
+                {(data?.fallbackEvents || [])
+                  .slice(-3)
+                  .reverse()
+                  .map((e) => `${e.from}→${e.to} (${e.reason})`)
+                  .join(' · ') || 'None'}
+              </div>
+            </div>
+          </div>
+
+          {Array.isArray(data?.currentProviderRankings) && data.currentProviderRankings.length > 0 ? (
+            <div style={{ marginBottom: '0.75rem', overflowX: 'auto' }}>
+              <h3 style={{ fontSize: 14, margin: '0 0 0.35rem' }}>Current provider rankings</h3>
+              <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: 12 }}>
+                <thead>
+                  <tr style={{ background: '#f9fafb', textAlign: 'right' }}>
+                    {['When', 'Task', 'Selected', 'Top ranking'].map((h) => (
+                      <th key={h} style={{ padding: '0.4rem' }}>
+                        {h}
+                      </th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody>
+                  {data.currentProviderRankings
+                    .slice()
+                    .reverse()
+                    .slice(0, 8)
+                    .map((r, i) => (
+                      <tr key={`${r.at}-${i}`} style={{ borderTop: '1px solid #e5e7eb' }}>
+                        <td style={{ padding: '0.4rem' }}>{cell(r.at)}</td>
+                        <td style={{ padding: '0.4rem' }}>{cell(r.taskType)}</td>
+                        <td style={{ padding: '0.4rem' }}>{cell(r.selected)}</td>
+                        <td style={{ padding: '0.4rem' }}>
+                          {(r.ranking || [])
+                            .slice(0, 4)
+                            .map((x) => `${x.rank || ''}:${x.providerId}`)
+                            .join(' · ') || '—'}
+                        </td>
+                      </tr>
+                    ))}
+                </tbody>
+              </table>
+            </div>
+          ) : null}
+
+          {Array.isArray(data?.reliabilityDashboard) && data.reliabilityDashboard.length > 0 ? (
+            <div style={{ marginBottom: '0.75rem', overflowX: 'auto' }}>
+              <h3 style={{ fontSize: 14, margin: '0 0 0.35rem' }}>Reliability dashboard</h3>
+              <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: 12 }}>
+                <thead>
+                  <tr style={{ background: '#f9fafb', textAlign: 'right' }}>
+                    {['Provider', 'Success', 'Fail', 'Avg lat', 'p95', 'Cost/req', 'Day', 'Month'].map((h) => (
+                      <th key={h} style={{ padding: '0.4rem' }}>
+                        {h}
+                      </th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody>
+                  {data.reliabilityDashboard.map((p) => (
+                    <tr key={p.providerId} style={{ borderTop: '1px solid #e5e7eb' }}>
+                      <td style={{ padding: '0.4rem' }}>{p.providerId}</td>
+                      <td style={{ padding: '0.4rem' }}>{cell(p.successRate)}</td>
+                      <td style={{ padding: '0.4rem' }}>{cell(p.failureRate)}</td>
+                      <td style={{ padding: '0.4rem' }}>
+                        {p.averageLatencyMs != null ? `${p.averageLatencyMs} ms` : '—'}
+                      </td>
+                      <td style={{ padding: '0.4rem' }}>
+                        {p.p95LatencyMs != null ? `${p.p95LatencyMs} ms` : '—'}
+                      </td>
+                      <td style={{ padding: '0.4rem' }}>{cell(p.averageCostUsd)}</td>
+                      <td style={{ padding: '0.4rem' }}>{cell(p.requestsDay)}</td>
+                      <td style={{ padding: '0.4rem' }}>{cell(p.requestsMonth)}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          ) : null}
+
+          {Array.isArray(data?.liveRequestRouting) && data.liveRequestRouting.length > 0 ? (
+            <div style={{ maxHeight: 160, overflow: 'auto', fontSize: 12, color: '#374151' }}>
+              <h3 style={{ fontSize: 14, margin: '0 0 0.35rem' }}>Live request routing</h3>
+              {data.liveRequestRouting
+                .slice()
+                .reverse()
+                .slice(0, 20)
+                .map((e, i) => (
+                  <div key={`${e.at}-${i}`} style={{ padding: '0.25rem 0', borderBottom: '1px solid #f3f4f6' }}>
+                    {cell(e.at)} · {cell(e.taskType)} → {cell(e.selected)} · factory {cell(e.factory)} ·
+                    rejected {cell(e.rejectedCount)}
+                  </div>
+                ))}
+            </div>
+          ) : null}
+
+          {data?.routingResult ? (
+            <pre
+              style={{
+                marginTop: '0.75rem',
+                padding: '0.75rem',
+                background: '#f9fafb',
+                borderRadius: 8,
+                fontSize: 11,
+                overflow: 'auto',
+                maxHeight: 220,
+              }}
+            >
+              {JSON.stringify(data.routingResult, null, 2)}
+            </pre>
+          ) : null}
+        </section>
+      ) : null}
+
       {data?.factoryHealth?.factories ? (
         <section style={{ marginBottom: '1rem', overflowX: 'auto' }}>
           <h2 style={{ fontSize: 16, margin: '0 0 0.5rem' }}>Factory Health</h2>
@@ -249,11 +403,36 @@ export function AiInfrastructurePanel() {
         </button>
         <button
           type="button"
-          disabled={busy || !factoryFilter}
+          disabled={busy}
           onClick={() => run({ action: 'failover-test', factory: factoryFilter })}
           style={btn()}
         >
           Failover Test
+        </button>
+        <button
+          type="button"
+          disabled={busy}
+          onClick={() => run({ action: 'route-dashboard' })}
+          style={btn()}
+          title="Refresh intelligent routing dashboard"
+        >
+          Routing Dashboard
+        </button>
+        <button
+          type="button"
+          disabled={busy}
+          onClick={() => run({ action: 'route-benchmark' })}
+          style={btn()}
+        >
+          Route Benchmark
+        </button>
+        <button
+          type="button"
+          disabled={busy}
+          onClick={() => run({ action: 'route-cost' })}
+          style={btn()}
+        >
+          Cost Engine
         </button>
         <input
           placeholder="provider id"

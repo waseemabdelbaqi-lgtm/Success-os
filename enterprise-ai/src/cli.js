@@ -21,6 +21,16 @@ import {
   buildContinuousDashboardExtras,
 } from "./providers/continuous-governance.js";
 import { continuousConfig } from "./providers/continuous-config.js";
+import {
+  routeTask,
+  simulateRoute,
+  explainRoute,
+  rankProvidersForTask,
+  benchmarkRouting,
+  routerDashboard,
+  listCapabilityRegistry,
+} from "./providers/provider-router.js";
+import { estimateRequestCost } from "./providers/cost-engine.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const rootDir = path.resolve(__dirname, "../..");
@@ -46,6 +56,15 @@ function parseArgs(argv) {
     failoverTest: false,
     history: false,
     once: false,
+    route: false,
+    explain: false,
+    benchmark: false,
+    cost: false,
+    simulate: false,
+    dashboard: false,
+    task: null,
+    tokens: null,
+    priority: "normal",
     executionMode: null,
     objective: "",
     help: false,
@@ -81,6 +100,37 @@ function parseArgs(argv) {
       out.health = true;
     } else if (a === "--once") {
       out.once = true;
+    } else if (a === "--route") {
+      out.route = true;
+    } else if (a === "--explain") {
+      out.explain = true;
+      out.route = true;
+    } else if (a === "--benchmark") {
+      out.benchmark = true;
+      out.route = true;
+    } else if (a === "--cost") {
+      out.cost = true;
+      out.route = true;
+    } else if (a === "--simulate") {
+      out.simulate = true;
+      out.route = true;
+    } else if (a === "--dashboard") {
+      out.dashboard = true;
+      out.route = true;
+    } else if (a.startsWith("--task=")) {
+      out.task = a.slice("--task=".length).toLowerCase();
+      out.route = true;
+    } else if (a === "--task" && argv[i + 1]) {
+      out.task = String(argv[++i]).toLowerCase();
+      out.route = true;
+    } else if (a.startsWith("--tokens=")) {
+      out.tokens = Number(a.slice("--tokens=".length));
+    } else if (a === "--tokens" && argv[i + 1]) {
+      out.tokens = Number(argv[++i]);
+    } else if (a.startsWith("--priority=")) {
+      out.priority = a.slice("--priority=".length).toLowerCase();
+    } else if (a === "--priority" && argv[i + 1]) {
+      out.priority = String(argv[++i]).toLowerCase();
     } else if (a === "--help" || a === "-h") out.help = true;
     else if (a.startsWith("--mode=")) {
       const v = a.slice("--mode=".length).toLowerCase();
@@ -136,6 +186,11 @@ Health (accurate live verification):
   npm run ai:aios:health -- --failover-test --factory=coding
   npm run ai:aios:health -- --history
   npm run ai:aios:health -- --mode=live --json
+  npm run ai:aios:route -- --task=coding
+  npm run ai:aios:route -- --task=coding --explain
+  npm run ai:aios:route -- --benchmark
+  npm run ai:aios:route -- --cost
+  npm run ai:aios:route -- --task=chat --simulate
 
 Flags:
   --detect              Credential/adapter detection only (never READY)
@@ -150,6 +205,12 @@ Flags:
   --failover-test       Simulate/select highest healthy fallback
   --history             Print continuous governance history
   --once                With --continuous: run one tick then exit
+  --route               Intelligent provider routing & cost optimization
+  --task=<name>         Task/capability for routing (chat|coding|education|…)
+  --explain             Explain ranking for --task (deterministic)
+  --benchmark           Benchmark ranking across common tasks
+  --cost                Show cost estimates and monthly budgets
+  --simulate            Simulate fallback chain without executing providers
   --json                Machine-readable JSON (default for health)
   --factories           Factory map + readiness from persisted probes
   --mcp                 MCP tool registry
@@ -158,6 +219,7 @@ Flags:
 
 Lifecycle: SLOT ⚪ → NOT_CONFIGURED ⚪ → CREDENTIALS_DETECTED 🟡 → PROBE_RUNNING 🟡 → READY 🟢 → PRODUCTION_CERTIFIED 🟢⭐ → MISSION_CRITICAL 🟢⭐⭐
 Continuous: auto-downgrade + recovery + failover only. Never auto-promote. Never paid media generation.
+Routing: never below READY. Rank MISSION_CRITICAL > PRODUCTION_CERTIFIED > READY, then reliability/success/latency/cost/load.
 `);
 }
 
@@ -239,6 +301,158 @@ async function main() {
         2,
       ),
     );
+    return;
+  }
+
+  if (args.route) {
+    const task = String(args.task || "").trim();
+    const tokens = Math.max(1, Number(args.tokens || 2000));
+    const priority = String(args.priority || "normal");
+    const factory = args.factory || null;
+    const preferred = args.provider ? [args.provider] : [];
+
+    if (args.benchmark) {
+      const report = benchmarkRouting({ rootDir });
+      console.log(JSON.stringify({ ok: true, mode: "route-benchmark", ...report }, null, 2));
+      return;
+    }
+
+    if (args.dashboard) {
+      const dash = routerDashboard(rootDir);
+      console.log(JSON.stringify({ ok: true, mode: "route-dashboard", ...dash }, null, 2));
+      return;
+    }
+
+    if (args.cost && !task) {
+      const dash = routerDashboard(rootDir);
+      console.log(
+        JSON.stringify(
+          {
+            ok: true,
+            mode: "route-cost",
+            cost: dash.costDashboard,
+            sampleEstimates: [
+              {
+                task: "chat",
+                providerId: "openai",
+                estimate: estimateRequestCost({
+                  providerId: "openai",
+                  taskType: "chat",
+                  inputTokens: tokens,
+                  expectedOutputTokens: 500,
+                }),
+              },
+              {
+                task: "coding",
+                providerId: "anthropic",
+                estimate: estimateRequestCost({
+                  providerId: "anthropic",
+                  taskType: "coding",
+                  inputTokens: tokens,
+                  expectedOutputTokens: 500,
+                }),
+              },
+              {
+                task: "avatar_video",
+                providerId: "heygen",
+                estimate: estimateRequestCost({
+                  providerId: "heygen",
+                  taskType: "avatar_video",
+                  capability: "avatar_video",
+                }),
+              },
+              {
+                task: "speech",
+                providerId: "elevenlabs",
+                estimate: estimateRequestCost({
+                  providerId: "elevenlabs",
+                  taskType: "speech",
+                  capability: "speech",
+                  speechChars: 1000,
+                }),
+              },
+              {
+                task: "browser_automation",
+                providerId: "playwright",
+                estimate: estimateRequestCost({
+                  providerId: "playwright",
+                  taskType: "browser_automation",
+                  capability: "browser_automation",
+                }),
+              },
+            ],
+            capabilities: listCapabilityRegistry(),
+          },
+          null,
+          2,
+        ),
+      );
+      return;
+    }
+
+    if (!task) {
+      console.error(
+        JSON.stringify({
+          ok: false,
+          error: "TASK_REQUIRED",
+          message: "Missing --task=<name> for --route (or use --benchmark / --cost)",
+        }),
+      );
+      process.exitCode = 1;
+      return;
+    }
+
+    if (args.simulate) {
+      const sim = simulateRoute({
+        taskType: task,
+        factory,
+        priority,
+        preferred,
+        rootDir,
+        estimatedInputTokens: tokens,
+      });
+      console.log(JSON.stringify({ ok: sim.ok !== false, mode: "route-simulate", ...sim }, null, 2));
+      if (sim.ok === false) process.exitCode = 1;
+      return;
+    }
+
+    if (args.explain || args.cost) {
+      const decision = rankProvidersForTask({
+        taskType: task,
+        factory,
+        priority,
+        preferred,
+        rootDir,
+        estimatedInputTokens: tokens,
+      });
+      const explained = explainRoute(decision);
+      console.log(
+        JSON.stringify(
+          {
+            ok: explained.ok,
+            mode: args.cost ? "route-cost-task" : "route-explain",
+            ...explained,
+            selectedCost: decision.selected?.costEstimate || null,
+            candidates: decision.candidates,
+          },
+          null,
+          2,
+        ),
+      );
+      if (!explained.ok) process.exitCode = 1;
+      return;
+    }
+
+    const decision = routeTask({
+      taskType: task,
+      factory,
+      priority,
+      preferred,
+      rootDir,
+      estimatedInputTokens: tokens,
+    });
+    console.log(JSON.stringify({ ok: decision.ok !== false, mode: "route-decision", ...decision }, null, 2));
+    if (decision.ok === false) process.exitCode = 1;
     return;
   }
 
