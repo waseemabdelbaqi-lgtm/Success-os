@@ -268,7 +268,39 @@ export async function GET(request) {
         history: history?.byProvider?.[providerId] || [],
       };
     }
-    return Response.json({ ...dashboard, probeDetails });
+    return Response.json({
+      ...dashboard,
+      probeDetails,
+      ...(() => {
+        try {
+          // Lazy read continuous governance files (backward compatible if missing)
+          const gov = readJson("data/master-ai-orchestrator/health/continuous-governance.json");
+          const alertLog = readJson("data/master-ai-orchestrator/health/continuous-alerts.json");
+          return {
+            continuousMonitoring: true,
+            governance: gov
+              ? {
+                  lastTickAt: gov.lastTickAt,
+                  nextDueByProvider: gov.nextDueByProvider,
+                  scheduler: gov.scheduler,
+                }
+              : null,
+            lifecycleTimeline: (gov?.history || []).slice(-50),
+            certificationHistory: gov?.certifications || [],
+            downgradeHistory: gov?.downgrades || [],
+            failoverHistory: gov?.failovers || [],
+            recoveryHistory: gov?.recoveries || [],
+            alertHistory: (alertLog?.entries || []).slice(-50),
+            factoryHealth: state?.factoryHealth || null,
+            last100Probes: Object.entries(history?.byProvider || {}).flatMap(([id, list]) =>
+              (list || []).map((e) => ({ ...e, providerId: id })),
+            ).sort((a, b) => String(a.testedAt).localeCompare(String(b.testedAt))).slice(-100),
+          };
+        } catch {
+          return { continuousMonitoring: false };
+        }
+      })(),
+    });
   } catch (error) {
     return Response.json(
       {
@@ -285,6 +317,58 @@ export async function GET(request) {
 export async function POST(request) {
   try {
     const body = await request.json().catch(() => ({}));
+    if (body.action === "continuous" || body.action === "recover" || body.action === "failover-test" || body.action === "history") {
+      const args = [path.join(rootDir, "enterprise-ai/src/cli.js"), "--health", "--json"];
+      if (body.action === "continuous") {
+        args.push("--continuous", "--once");
+      } else if (body.action === "recover") {
+        if (!body.provider) {
+          return Response.json(
+            { ok: false, error: "PROVIDER_REQUIRED", message: "recover requires provider" },
+            { status: 400 },
+          );
+        }
+        args.push("--recover", `--provider=${body.provider}`);
+      } else if (body.action === "failover-test") {
+        args.push("--failover-test");
+        if (body.provider) args.push(`--provider=${body.provider}`);
+        if (body.factory) args.push(`--factory=${body.factory}`);
+      } else if (body.action === "history") {
+        args.push("--history");
+      }
+      const result = await new Promise((resolve, reject) => {
+        const child = spawn(process.execPath, args, {
+          cwd: rootDir,
+          env: { ...process.env },
+          stdio: ["ignore", "pipe", "pipe"],
+        });
+        let stdout = "";
+        let stderr = "";
+        child.stdout.on("data", (d) => {
+          stdout += d;
+        });
+        child.stderr.on("data", (d) => {
+          stderr += d;
+        });
+        child.on("error", reject);
+        child.on("close", (code) => {
+          try {
+            resolve(JSON.parse(stdout));
+          } catch {
+            reject(new Error(`GOVERNANCE_CLI_FAILED code=${code} ${stderr.slice(0, 200)}`));
+          }
+        });
+      });
+      const state = readJson(STATE_REL);
+      const dashboard = buildDashboard(state);
+      return Response.json({
+        ...dashboard,
+        ...result,
+        source: `governance-${body.action}`,
+        vercelAutoDeployBlocked: true,
+        secretsExposed: false,
+      });
+    }
     if (body.action === "approved-generation-test") {
       return Response.json(
         {

@@ -37,6 +37,22 @@ export {
   promoteMissionCritical,
 } from "./providers/health-runner.js";
 export {
+  continuousConfig,
+  continuousIntervals,
+  factoryPriorities,
+} from "./providers/continuous-config.js";
+export {
+  runContinuousTick,
+  runContinuousScheduler,
+  recoverProvider,
+  runFailoverTest,
+  getContinuousHistory,
+  computeFactoryHealthReport,
+  rankFactoryProviders,
+  applyAutomaticDowngrade,
+  buildContinuousDashboardExtras,
+} from "./providers/continuous-governance.js";
+export {
   loadHealthState,
   buildDashboardFromState,
   saveHealthState,

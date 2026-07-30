@@ -11,6 +11,16 @@ import { CanonicalStatus, LIFECYCLE_LADDER_LABELS } from "./providers/status-mod
 import { runAIOS, formatAiosDisplay } from "./aios.js";
 import { getMcpToolRegistry } from "./mcp/bridge.js";
 import { summarizeFactories, listFactories } from "./factories/registry.js";
+import {
+  getContinuousHistory,
+  recoverProvider,
+  runContinuousScheduler,
+  runContinuousTick,
+  runFailoverTest,
+  computeFactoryHealthReport,
+  buildContinuousDashboardExtras,
+} from "./providers/continuous-governance.js";
+import { continuousConfig } from "./providers/continuous-config.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const rootDir = path.resolve(__dirname, "../..");
@@ -31,6 +41,11 @@ function parseArgs(argv) {
     factory: null,
     certify: false,
     missionCritical: false,
+    continuous: false,
+    recover: false,
+    failoverTest: false,
+    history: false,
+    once: false,
     executionMode: null,
     objective: "",
     help: false,
@@ -52,6 +67,20 @@ function parseArgs(argv) {
     } else if (a === "--mission-critical") {
       out.missionCritical = true;
       out.health = true;
+    } else if (a === "--continuous") {
+      out.continuous = true;
+      out.health = true;
+    } else if (a === "--recover") {
+      out.recover = true;
+      out.health = true;
+    } else if (a === "--failover-test") {
+      out.failoverTest = true;
+      out.health = true;
+    } else if (a === "--history") {
+      out.history = true;
+      out.health = true;
+    } else if (a === "--once") {
+      out.once = true;
     } else if (a === "--help" || a === "-h") out.help = true;
     else if (a.startsWith("--mode=")) {
       const v = a.slice("--mode=".length).toLowerCase();
@@ -102,6 +131,10 @@ Health (accurate live verification):
   npm run ai:aios:health -- --provider=playwright --certify
   npm run ai:aios:health -- --provider=playwright --mission-critical
   npm run ai:aios:health -- --factory=education --mode=live
+  npm run ai:aios:health -- --continuous --once
+  npm run ai:aios:health -- --recover --provider=openai
+  npm run ai:aios:health -- --failover-test --factory=coding
+  npm run ai:aios:health -- --history
   npm run ai:aios:health -- --mode=live --json
 
 Flags:
@@ -112,6 +145,11 @@ Flags:
   --factory=<id>        Test one factory (coding|education|media|infrastructure)
   --certify             Grant PRODUCTION_CERTIFIED 🟢⭐ from READY (requires --provider)
   --mission-critical    Grant MISSION_CRITICAL 🟢⭐⭐ from PRODUCTION_CERTIFIED (requires --provider)
+  --continuous          Automatic continuous health (use --once for single tick)
+  --recover             Retry + downgrade + failover for --provider
+  --failover-test       Simulate/select highest healthy fallback
+  --history             Print continuous governance history
+  --once                With --continuous: run one tick then exit
   --json                Machine-readable JSON (default for health)
   --factories           Factory map + readiness from persisted probes
   --mcp                 MCP tool registry
@@ -119,7 +157,7 @@ Flags:
   --agents              List agents
 
 Lifecycle: SLOT ⚪ → NOT_CONFIGURED ⚪ → CREDENTIALS_DETECTED 🟡 → PROBE_RUNNING 🟡 → READY 🟢 → PRODUCTION_CERTIFIED 🟢⭐ → MISSION_CRITICAL 🟢⭐⭐
-Rule: live authenticated probe + persisted evidence only. Star tiers require explicit --certify / --mission-critical. No stage skipping.
+Continuous: auto-downgrade + recovery + failover only. Never auto-promote. Never paid media generation.
 `);
 }
 
@@ -205,6 +243,100 @@ async function main() {
   }
 
   if (args.health) {
+    if (args.history) {
+      const hist = getContinuousHistory({ rootDir, limit: 100 });
+      console.log(JSON.stringify({ generatedAt: new Date().toISOString(), ...hist }, null, 2));
+      return;
+    }
+
+    if (args.failoverTest) {
+      const result = await runFailoverTest({
+        providerId: args.provider,
+        factory: args.factory,
+        rootDir,
+        live: true,
+      });
+      console.log(
+        JSON.stringify(
+          { generatedAt: new Date().toISOString(), action: "FAILOVER_TEST", ...result },
+          null,
+          2,
+        ),
+      );
+      if (!result.ok) process.exitCode = 2;
+      return;
+    }
+
+    if (args.recover) {
+      if (!args.provider) {
+        console.log(
+          JSON.stringify({
+            ok: false,
+            error: "PROVIDER_REQUIRED",
+            message: "--recover requires --provider=<id>",
+          }),
+        );
+        process.exitCode = 1;
+        return;
+      }
+      const result = await recoverProvider({
+        providerId: args.provider,
+        rootDir,
+        persist: true,
+      });
+      console.log(
+        JSON.stringify(
+          { generatedAt: new Date().toISOString(), action: "RECOVER", ...result },
+          null,
+          2,
+        ),
+      );
+      if (!result.ok && !result.recovered) process.exitCode = 2;
+      return;
+    }
+
+    if (args.continuous) {
+      if (args.once || args.provider || args.factory) {
+        const tick = await runContinuousTick({
+          rootDir,
+          forceAll: Boolean(args.once && !args.provider && !args.factory),
+          provider: args.provider,
+          factory: args.factory,
+        });
+        console.log(
+          JSON.stringify(
+            {
+              generatedAt: new Date().toISOString(),
+              action: "CONTINUOUS_TICK",
+              ...tick,
+              continuousExtras: buildContinuousDashboardExtras(rootDir),
+            },
+            null,
+            2,
+          ),
+        );
+        return;
+      }
+      const scheduled = await runContinuousScheduler({
+        rootDir,
+        once: false,
+        maxTicks: Number(process.env.AIOS_CONTINUOUS_MAX_TICKS || 3),
+      });
+      console.log(
+        JSON.stringify(
+          {
+            generatedAt: new Date().toISOString(),
+            action: "CONTINUOUS_SCHEDULER",
+            config: continuousConfig(),
+            ...scheduled,
+          },
+          null,
+          2,
+        ),
+      );
+      return;
+    }
+
     if (args.missionCritical) {
       if (!args.provider) {
         console.log(

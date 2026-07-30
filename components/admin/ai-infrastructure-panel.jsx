@@ -134,9 +134,9 @@ export function AiInfrastructurePanel() {
         }}
       >
         {[
-          ['Coding Factory', fr.coding?.status || 'NOT_TESTED'],
-          ['Education Factory', fr.education?.status || 'NOT_TESTED'],
-          ['Media Factory', fr.media?.status || 'NOT_TESTED'],
+          ['Coding Factory', fr.coding?.status || data?.factoryHealth?.factories?.coding?.readiness || 'NOT_TESTED'],
+          ['Education Factory', fr.education?.status || data?.factoryHealth?.factories?.education?.readiness || 'NOT_TESTED'],
+          ['Media Factory', fr.media?.status || data?.factoryHealth?.factories?.media?.readiness || 'NOT_TESTED'],
         ].map(([label, status]) => (
           <div
             key={label}
@@ -153,6 +153,73 @@ export function AiInfrastructurePanel() {
         ))}
       </section>
 
+      {data?.factoryHealth?.factories ? (
+        <section style={{ marginBottom: '1rem', overflowX: 'auto' }}>
+          <h2 style={{ fontSize: 16, margin: '0 0 0.5rem' }}>Factory Health</h2>
+          <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: 12 }}>
+            <thead>
+              <tr style={{ background: '#f9fafb', textAlign: 'right' }}>
+                {['Factory', 'Score', 'Selected', 'Certified', 'Mission', 'Fallback', 'Latency', 'Success'].map(
+                  (h) => (
+                    <th key={h} style={{ padding: '0.5rem' }}>
+                      {h}
+                    </th>
+                  ),
+                )}
+              </tr>
+            </thead>
+            <tbody>
+              {Object.entries(data.factoryHealth.factories).map(([name, f]) => (
+                <tr key={name} style={{ borderTop: '1px solid #e5e7eb' }}>
+                  <td style={{ padding: '0.5rem' }}>{name}</td>
+                  <td style={{ padding: '0.5rem' }}>{cell(f.overallHealthScore)}</td>
+                  <td style={{ padding: '0.5rem' }}>{cell(f.selectedProvider)}</td>
+                  <td style={{ padding: '0.5rem' }}>{(f.certifiedProviders || []).join(', ') || '—'}</td>
+                  <td style={{ padding: '0.5rem' }}>
+                    {(f.missionCriticalProviders || []).join(', ') || '—'}
+                  </td>
+                  <td style={{ padding: '0.5rem' }}>{f.fallbackAvailability ? 'yes' : 'no'}</td>
+                  <td style={{ padding: '0.5rem' }}>
+                    {f.averageLatencyMs != null ? `${f.averageLatencyMs} ms` : 'NOT_TESTED'}
+                  </td>
+                  <td style={{ padding: '0.5rem' }}>{cell(f.successRate)}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </section>
+      ) : null}
+
+      {Array.isArray(data?.lifecycleTimeline) && data.lifecycleTimeline.length > 0 ? (
+        <section style={{ marginBottom: '1rem' }}>
+          <h2 style={{ fontSize: 16, margin: '0 0 0.5rem' }}>Live Lifecycle Timeline</h2>
+          <div style={{ maxHeight: 180, overflow: 'auto', fontSize: 12, color: '#374151' }}>
+            {data.lifecycleTimeline
+              .slice()
+              .reverse()
+              .slice(0, 30)
+              .map((e, i) => (
+                <div key={`${e.timestamp}-${i}`} style={{ padding: '0.25rem 0', borderBottom: '1px solid #f3f4f6' }}>
+                  {cell(e.timestamp)} · {cell(e.providerId)} · {cell(e.eventType)} ·{' '}
+                  {cell(e.lifecycleBefore)} → {cell(e.lifecycleAfter)} ·{' '}
+                  {e.success ? 'ok' : 'fail'}
+                </div>
+              ))}
+          </div>
+        </section>
+      ) : null}
+
+      {(data?.downgradeHistory?.length || data?.failoverHistory?.length) ? (
+        <section style={{ marginBottom: '1rem', fontSize: 12 }}>
+          <h2 style={{ fontSize: 16, margin: '0 0 0.5rem' }}>Downgrade / Failover History</h2>
+          <p style={{ margin: 0, color: '#6b7280' }}>
+            Downgrades: {data?.downgradeHistory?.length || 0} · Failovers:{' '}
+            {data?.failoverHistory?.length || 0} · Last tick:{' '}
+            {cell(data?.governance?.lastTickAt)}
+          </p>
+        </section>
+      ) : null}
+
       <div style={{ display: 'flex', gap: 8, marginBottom: '1rem', flexWrap: 'wrap', alignItems: 'center' }}>
         <button type="button" disabled={busy} onClick={() => run({ mode: 'config' })} style={btn()}>
           Run Configuration Check
@@ -162,6 +229,31 @@ export function AiInfrastructurePanel() {
         </button>
         <button type="button" disabled={busy} onClick={() => run({ mode: 'full' })} style={btn()}>
           Run Full Verification
+        </button>
+        <button
+          type="button"
+          disabled={busy}
+          onClick={() => run({ action: 'continuous' })}
+          style={btn()}
+          title="One continuous health tick (no auto-promote)"
+        >
+          Continuous Tick
+        </button>
+        <button
+          type="button"
+          disabled={busy}
+          onClick={() => run({ action: 'history' })}
+          style={btn()}
+        >
+          Governance History
+        </button>
+        <button
+          type="button"
+          disabled={busy || !factoryFilter}
+          onClick={() => run({ action: 'failover-test', factory: factoryFilter })}
+          style={btn()}
+        >
+          Failover Test
         </button>
         <input
           placeholder="provider id"
