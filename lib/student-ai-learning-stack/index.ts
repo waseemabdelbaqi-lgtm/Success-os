@@ -31,8 +31,6 @@ export function studentAiLearningStackStatus() {
     role: "orchestration",
     path: [
       "Student",
-      "Open Lesson",
-      "S4S Intelligence Teacher",
       "AI Teacher",
       "Conversation Engine",
       "Reasoning Engine",

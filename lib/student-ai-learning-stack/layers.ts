@@ -39,22 +39,25 @@ export const STACK_LAYER_CONTRACTS: StackLayerContract[] = [
   {
     id: "ai_teacher",
     order: 2,
-    name: L("S4S Intelligence Teacher", "معلم Success 4 Sure الذكي"),
+    name: L("AI Teacher", "المعلم الذكي"),
     role: L(
-      "Appears on Open Lesson with a personalized review prompt from skill progress",
-      "يظهر عند فتح الدرس برسالة مراجعة مخصصة من تقدّم المهارات",
+      "S4S Intelligence Teacher — open-lesson greeting and re-explain tutoring persona",
+      "معلم Success 4 Sure الذكي — تحية فتح الدرس وشخصية إعادة الشرح",
     ),
     status: "foundation",
     bindsTo: [
       "success-os.student-ai-learning-stack.v1",
       "success-os.student-skill-progress.v1",
+      "success-os.s4s-re-explain.v1",
     ],
     activatesInPr: "#59",
     generatesContent: false,
     rendersLessons: false,
     notes: [
+      "Product persona: S4S Intelligence Teacher.",
       "Open Lesson greeting: Hello Ahmad — struggled with Fractions — review first?",
-      "No AI lesson generation — scripted prompt from missing/weak skills.",
+      "Re-explain: Animation → Drawing → Example → Question → Checks understanding.",
+      "No AI lesson generation — scripted prompts only.",
     ],
   },
   {

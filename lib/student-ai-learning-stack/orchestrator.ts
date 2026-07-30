@@ -335,7 +335,7 @@ export function getStudentAiLearningStackSnapshot(): StudentAiLearningStackSnaps
     path: [...STUDENT_AI_LEARNING_STACK_PATH],
     displayPath: [
       "Student",
-      "S4S Intelligence Teacher",
+      "AI Teacher",
       "Conversation Engine",
       "Reasoning Engine",
       "Knowledge Graph",

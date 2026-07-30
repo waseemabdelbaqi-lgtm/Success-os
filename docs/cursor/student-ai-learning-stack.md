@@ -5,19 +5,28 @@ Official student journey architecture.
 ```
 Student
 ↓
-Open Lesson
+AI Teacher
 ↓
-S4S Intelligence Teacher appears
+Conversation Engine
 ↓
-"Hello Ahmad,
-Last time you struggled with Fractions.
-Would you like me to review them first?"
+Reasoning Engine
 ↓
-Conversation Engine → Reasoning → Knowledge Graph → …
-→ Interactive Lesson Engine → Quizzes → Assessments
+Knowledge Graph
+↓
+Digital Books
+↓
+Videos
+↓
+Interactive Lesson Engine
+↓
+Quizzes
+↓
+Assessments
 ```
 
 Schema: `success-os.student-ai-learning-stack.v1` · ADR-0059
+
+**AI Teacher persona:** S4S Intelligence Teacher (open-lesson greeting + don’t-understand re-explain).
 
 ## Open Lesson — S4S Intelligence Teacher
 
@@ -53,7 +62,7 @@ Teacher: No problem. Let's explain it differently.
 | Layer | Status | Activates |
 |-------|--------|-----------|
 | Student | operational | #50.3 / #59 |
-| S4S Intelligence Teacher (AI Teacher) | foundation | #59 |
+| AI Teacher (S4S Intelligence Teacher persona) | foundation | #59 |
 | Conversation Engine | foundation | #59 |
 | Reasoning Engine | foundation | #59 |
 | Knowledge Graph | foundation (wired) | #50.3 |

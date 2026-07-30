@@ -37,7 +37,7 @@ for (const rel of required) {
 
 const expectedPath = [
   "Student",
-  "S4S Intelligence Teacher",
+  "AI Teacher",
   "Conversation Engine",
   "Reasoning Engine",
   "Knowledge Graph",
@@ -65,7 +65,8 @@ assert.equal(byId.student.status, "operational");
 assert.equal(byId.interactive_lesson_engine.status, "operational");
 assert.equal(byId.knowledge_graph.status, "foundation");
 assert.equal(byId.ai_teacher.status, "foundation");
-assert.ok(byId.ai_teacher.name.en.includes("S4S Intelligence Teacher"));
+assert.equal(byId.ai_teacher.name.en, "AI Teacher");
+assert.ok(byId.ai_teacher.role.en.includes("S4S Intelligence Teacher"));
 assert.equal(byId.conversation_engine.status, "foundation");
 assert.equal(byId.reasoning_engine.status, "foundation");
 assert.equal(byId.digital_books.status, "reserved");

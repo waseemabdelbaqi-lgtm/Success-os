@@ -2,7 +2,7 @@
   "schema": "success-os.student-ai-learning-stack.v1",
   "displayPath": [
     "Student",
-    "S4S Intelligence Teacher",
+    "AI Teacher",
     "Conversation Engine",
     "Reasoning Engine",
     "Knowledge Graph",
@@ -51,24 +51,27 @@
       "id": "ai_teacher",
       "order": 2,
       "name": {
-        "en": "S4S Intelligence Teacher",
-        "ar": "معلم Success 4 Sure الذكي"
+        "en": "AI Teacher",
+        "ar": "المعلم الذكي"
       },
       "role": {
-        "en": "Appears on Open Lesson with a personalized review prompt from skill progress",
-        "ar": "يظهر عند فتح الدرس برسالة مراجعة مخصصة من تقدّم المهارات"
+        "en": "S4S Intelligence Teacher — open-lesson greeting and re-explain tutoring persona",
+        "ar": "معلم Success 4 Sure الذكي — تحية فتح الدرس وشخصية إعادة الشرح"
       },
       "status": "foundation",
       "bindsTo": [
         "success-os.student-ai-learning-stack.v1",
-        "success-os.student-skill-progress.v1"
+        "success-os.student-skill-progress.v1",
+        "success-os.s4s-re-explain.v1"
       ],
       "activatesInPr": "#59",
       "generatesContent": false,
       "rendersLessons": false,
       "notes": [
+        "Product persona: S4S Intelligence Teacher.",
         "Open Lesson greeting: Hello Ahmad — struggled with Fractions — review first?",
-        "No AI lesson generation — scripted prompt from missing/weak skills."
+        "Re-explain: Animation → Drawing → Example → Question → Checks understanding.",
+        "No AI lesson generation — scripted prompts only."
       ]
     },
     {

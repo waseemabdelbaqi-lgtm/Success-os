@@ -70,12 +70,12 @@ export function StudentAiLearningStackDashboard() {
           Student AI Learning Stack
         </h1>
         <p style={{ color: "#64748b", margin: "0.4rem 0 0", fontSize: 14 }}>
-          Student → Open Lesson → S4S Intelligence Teacher → Conversation → Reasoning → Knowledge
-          Graph → Digital Books → Videos → ILE → Quizzes → Assessments
+          Student → AI Teacher → Conversation → Reasoning → Knowledge Graph → Digital Books →
+          Videos → ILE → Quizzes → Assessments
         </p>
         <p style={{ fontSize: 12, color: "#0f766e", margin: "0.5rem 0 0" }}>
-          Demo greeting: “Hello Ahmad, Last time you struggled with Fractions…” — no AI lesson
-          generation. ILE is the sole runtime.
+          Open Lesson greeting + “I don’t understand” → Animation → Drawing → Example → Question →
+          Check. No AI lesson generation. ILE is the sole runtime.
         </p>
         {error ? (
           <p style={{ color: "#b91c1c", fontSize: 13, margin: "0.5rem 0 0" }}>{error}</p>
