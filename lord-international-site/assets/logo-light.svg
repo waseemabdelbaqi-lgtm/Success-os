@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none" role="img" aria-label="Lord International">
+  <circle cx="32" cy="32" r="30" stroke="#E8D5B8" stroke-width="1.75"/>
+  <circle cx="32" cy="32" r="22" stroke="#A8C4BC" stroke-width="1.1" opacity="0.75"/>
+  <path d="M14 34c6.5-12 13.5-18 18-18s11.5 6 18 18" stroke="#F5F6F8" stroke-width="2" stroke-linecap="round"/>
+  <path d="M32 12v34" stroke="#F5F6F8" stroke-width="1.7" stroke-linecap="round"/>
+  <circle cx="32" cy="28" r="3.2" fill="#E8D5B8"/>
+  <path d="M22 46h20" stroke="#E8D5B8" stroke-width="1.8" stroke-linecap="round"/>
+</svg>

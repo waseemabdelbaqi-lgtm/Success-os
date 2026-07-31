@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Contact Us | Lords International Academy</title>
+  <link rel="icon" href="assets/logo.png" type="image/png" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body data-page="contact">
+  <div id="site-top" class="topbar"></div>
+  <header id="site-header" class="header"></header>
+  <main>
+    <section class="page-hero">
+      <div class="shell">
+        <div class="label">Contact Us</div>
+        <h1>Register interest</h1>
+        <p>Share your details for visits, pathway counselling, or admissions conversations.</p>
+      </div>
+    </section>
+    <section class="section">
+      <div class="shell contact-grid">
+        <div class="info-box">
+          <h3>Division desk</h3>
+          <ul class="checklist" style="border:0">
+            <li><strong>Phone</strong><span><a href="tel:+962780581111">+962 7 8058 1111</a></span></li>
+            <li><strong>Location</strong><span>Tla’ Al-Ali, Amman</span></li>
+            <li><strong>Portal</strong><span><a href="https://lordsacademy.k12net.com" target="_blank" rel="noopener noreferrer">lordsacademy.k12net.com</a></span></li>
+            <li><strong>Email</strong><span><a href="mailto:info@lordsacademy.edu.jo">info@lordsacademy.edu.jo</a></span></li>
+          </ul>
+        </div>
+        <form class="form" action="mailto:info@lordsacademy.edu.jo" method="post" enctype="text/plain">
+          <label>Full name<input name="name" required placeholder="Your name" /></label>
+          <label>Email<input type="email" name="email" required placeholder="you@example.com" /></label>
+          <label>Phone<input name="phone" placeholder="+962…" /></label>
+          <label>Interest
+            <select name="interest">
+              <option>Admissions interest</option>
+              <option>Campus visit</option>
+              <option>Pathway counselling</option>
+              <option>Partnership / board inquiry</option>
+            </select>
+          </label>
+          <label>Message<textarea name="message" placeholder="Tell us about your child’s current year and goals"></textarea></label>
+          <button class="btn btn-orange" type="submit">Send Message</button>
+        </form>
+      </div>
+    </section>
+  </main>
+  <footer id="site-footer" class="footer"></footer>
+  <script src="site.js"></script>
+</body>
+</html>
