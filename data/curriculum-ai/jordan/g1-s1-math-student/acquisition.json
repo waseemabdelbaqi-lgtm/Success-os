@@ -1,0 +1,63 @@
+{
+  "target": {
+    "country": "Jordan",
+    "curriculum": "Jordanian National Curriculum",
+    "grade": "1",
+    "semester": "1",
+    "subject": "Mathematics",
+    "bookType": "Student Book"
+  },
+  "officialTitleAr": "الرياضيات — الصف الأول — الفصل الدراسي الأول — كتاب الطالب",
+  "officialSourceUrl": "https://nccd.gov.jo/EBV4.0/Root_Storage/AR/Math/2025/G01/MA.01.ST.BOOK_WEB.pdf",
+  "catalogUrl": "https://www.nccd.gov.jo/ar/pages/TextBooksGrade/68",
+  "editionHint": "2025 NCCD web edition (MA.01.ST.BOOK_WEB) — current applicable edition pending MoE node/79818 live confirmation",
+  "academicYearHint": "2025/2026 (pending MoE live verification)",
+  "authority": "المركز الوطني لتطوير المناهج (NCCD) / وزارة التربية والتعليم الأردنية",
+  "rightsStatus": "All rights reserved by NCCD / Jordan MoE. Local extraction for curriculum alignment only; do not republish protected textbook prose.",
+  "downloadStatus": "incomplete_capture_rejected",
+  "blockers": [
+    "NCCD_LIVE_TLS_BLOCKED: official PDF URL https://nccd.gov.jo/EBV4.0/Root_Storage/AR/Math/2025/G01/MA.01.ST.BOOK_WEB.pdf could not be downloaded from this environment (status=0, error=fetch failed).",
+    "WAYBACK_TRUNCATED_CAPTURE_REJECTED: REJECTED_INCOMPLETE_wayback_truncation_5MiB_of_109MiB.pdf is an incomplete archive of the official PDF (Wayback stored ~5MiB of ~109MiB; missing %%EOF). Not used."
+  ],
+  "searchOrderResults": [
+    {
+      "source": "existing-project-files",
+      "result": "no PDFs found"
+    },
+    {
+      "source": "private-curriculum-storage",
+      "result": "directories missing / empty of official PDFs"
+    },
+    {
+      "source": "database-records",
+      "result": "[('book-jo-g1-s1-math', 'الرياضيات — كتاب الطالب — الفصل الدراسي الأول (محرك Gate 2 — اختبار محرك فقط)', 0, 'https://www.nccd.gov.jo/ar/pages/TextBooksGrade/68'), ('engine-jo-g1-s1-math-student-book', 'الرياضيات — كتاب الطالب — الفصل الدراسي الأول (نسخة تفاعلية Success OS)', 0, 'https://www.nccd.gov.jo/ar/pages/TextBooksGrade/68'), ('engine-jo-kg1-year-math-companion', 'الرياضيات — كتاب تفاعلي Success OS — عام دراسي', 0, 'https://nccd.gov.jo/ar/pages/PublicationsKG'), ('engine-jo-g1-s2-math-comp"
+    },
+    {
+      "source": "official-nccd",
+      "result": "catalog https://www.nccd.gov.jo/ar/pages/TextBooksGrade/68 -> status=0 error=fetch failed; pdf https://nccd.gov.jo/EBV4.0/Root_Storage/AR/Math/2025/G01/MA.01.ST.BOOK_WEB.pdf -> status=0 error=fetch failed"
+    },
+    {
+      "source": "official-moe",
+      "result": "https://moe.gov.jo/ar/node/79818 -> status=0 error=fetch failed"
+    }
+  ],
+  "localPdfPath": null,
+  "rejectedArtifacts": [
+    "data/curriculum-ai/jordan/g1-s1-math-student/source/REJECTED_INCOMPLETE_wayback_truncation_5MiB_of_109MiB.pdf"
+  ],
+  "identityEvidence": {
+    "catalogContextAr": "الرياضيات الصف الأول - الفصل الدراسي الأول كتاب الطالب",
+    "filename": "MA.01.ST.BOOK_WEB.pdf",
+    "catalogArchiveEvidence": "https://web.archive.org/web/20260517203233/https://nccd.gov.jo/ar/pages/TextBooksGrade/68",
+    "semester2SiblingNotUsed": "https://nccd.gov.jo/EBV4.0/Root_Storage/AR/Math/2025/G01/2/MT01/SE/MA.01.ST2.pdf"
+  },
+  "fileVerification": {
+    "fileSizeBytes": 0,
+    "sha256": "",
+    "completePdf": false,
+    "expectedApproxBytesFromArchiveHeader": 114618482
+  },
+  "retrievedAt": "2026-07-28T21:12:39.947Z",
+  "step2ExtractionAllowed": false,
+  "curriculumGenerationAllowed": false
+}

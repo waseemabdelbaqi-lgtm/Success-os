@@ -1,0 +1,9 @@
+# Place the complete official NCCD PDF here when live download is possible:
+# MA.01.ST.BOOK_WEB.pdf
+#
+# Official URL:
+# https://nccd.gov.jo/EBV4.0/Root_Storage/AR/Math/2025/G01/MA.01.ST.BOOK_WEB.pdf
+#
+# Then run:
+#   npm run curriculum:acquire:jo-g1-math
+#   npm run curriculum:extract:book -- --pdf data/curriculum-ai/jordan/g1-s1-math-student/source/MA.01.ST.BOOK_WEB.pdf --book-dir data/curriculum-ai/jordan/g1-s1-math-student

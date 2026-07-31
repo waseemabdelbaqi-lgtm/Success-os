@@ -1,0 +1,13 @@
+{
+  "name": "curriculum-ingestion-worker",
+  "private": true,
+  "type": "module",
+  "version": "1.0.0",
+  "description": "Global Curriculum Ingestion Engine worker (BullMQ + SQLite/Postgres-ready + S3-compatible storage)",
+  "scripts": {
+    "worker": "node src/index.js worker",
+    "discover": "node src/index.js discover",
+    "phase": "node src/index.js phase",
+    "test": "node src/tests/run-tests.mjs"
+  }
+}

@@ -67,3 +67,19 @@ Desktop.ini
 
 # Generated / local curriculum & ERP stores (too large for git)
 /library/
+
+# Official curriculum PDF binaries (too large / rights-sensitive)
+/data/curriculum-ai/**/source/*.pdf
+/data/curriculum-ai/**/source.pdf
+/data/curriculum-ai/**/upload-sessions/
+/data/curriculum-ai/**/REJECTED_*
+!/data/curriculum-ai/**/source/.gitkeep
+
+# Page extraction dumps (keep structure.json + acquisition.json)
+/data/curriculum-ai/**/extraction/pages/
+/data/book-engine/
+
+# Curriculum ingestion engine
+data/curriculum-ingestion/
+workers/curriculum-ingestion/node_modules/
+workers/curriculum-ingestion/.wwebjs_auth/

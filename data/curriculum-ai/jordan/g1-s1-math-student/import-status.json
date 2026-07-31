@@ -1,0 +1,6 @@
+{
+  "imported": false,
+  "failReason": "NCCD_LIVE_TLS_BLOCKED: Playwright/Chrome وcurl فشلا بـ ERR_CONNECTION_RESET / ECONNRESET عند الاتصال بـ nccd.gov.jo. لا يوجد ملف PDF رسمي كامل محلياً.",
+  "officialUrl": "https://nccd.gov.jo/EBV4.0/Root_Storage/AR/Math/2025/G01/MA.01.ST.BOOK_WEB.pdf",
+  "updatedAt": "2026-07-28T21:22:15.032481Z"
+}
