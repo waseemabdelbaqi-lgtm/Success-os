@@ -1,0 +1,2473 @@
+{
+  "schema": "success-os.jordan-grade-curriculum-tree.v1",
+  "countryCode": "JO",
+  "curriculumId": "JO-NATIONAL",
+  "gradeId": "JO-NATIONAL-G04",
+  "grade": "الصف 4",
+  "gradeNumber": 4,
+  "stageAr": "التعليم الأساسي",
+  "semesters": [
+    "الفصل الدراسي الأول",
+    "الفصل الدراسي الثاني"
+  ],
+  "officialCatalogUrl": "https://www.nccd.gov.jo/ar/pages/TextBooksGrade/71",
+  "catalogueStatus": "official-nccd-url-national-profile-aligned",
+  "verificationStatus": "framework-aligned-pending-baseline",
+  "baselineStatus": "framework-scaffold",
+  "subjects": [
+    {
+      "subjectId": "JO-NATIONAL-G04-AR",
+      "subjectAr": "اللغة العربية",
+      "subjectFamily": "arabic",
+      "gradeBand": "lower-basic",
+      "catalogueStatus": "official-nccd-url-national-profile-aligned",
+      "officialCatalogUrl": "https://www.nccd.gov.jo/ar/pages/TextBooksGrade/71",
+      "book": {
+        "bookId": "JO-NATIONAL-G04-AR-B01",
+        "titleAr": "كتاب SUCCESS OS — اللغة العربية — الصف 4",
+        "contentOrigin": "success-os-original-curriculum-aligned",
+        "rights": {
+          "copyBookText": false,
+          "generateOriginalOnly": true
+        }
+      },
+      "units": [
+        {
+          "unitId": "JO-NATIONAL-G04-AR-B01-U01",
+          "titleAr": "القراءة والفهم",
+          "lessons": [
+            {
+              "lessonId": "JO-NATIONAL-G04-AR-B01-U01-L01",
+              "titleAr": "القراءة والفهم — مقدمة ومفاهيم",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في اللغة العربية ضمن القراءة والفهم بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 4.",
+                "أن يطبّق مهارة مرتبطة بـ«القراءة والفهم — مقدمة ومفاهيم» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G04-AR-B01-U01-L02",
+              "titleAr": "القراءة والفهم — بناء المهارة",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في اللغة العربية ضمن القراءة والفهم بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 4.",
+                "أن يطبّق مهارة مرتبطة بـ«القراءة والفهم — بناء المهارة» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G04-AR-B01-U01-L03",
+              "titleAr": "القراءة والفهم — تطبيق ومثال",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في اللغة العربية ضمن القراءة والفهم بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 4.",
+                "أن يطبّق مهارة مرتبطة بـ«القراءة والفهم — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G04-AR-B01-U01-L04",
+              "titleAr": "القراءة والفهم — تقويم وتعزيز",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في اللغة العربية ضمن القراءة والفهم بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 4.",
+                "أن يطبّق مهارة مرتبطة بـ«القراءة والفهم — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            }
+          ]
+        },
+        {
+          "unitId": "JO-NATIONAL-G04-AR-B01-U02",
+          "titleAr": "الكتابة والإملاء",
+          "lessons": [
+            {
+              "lessonId": "JO-NATIONAL-G04-AR-B01-U02-L01",
+              "titleAr": "الكتابة والإملاء — مقدمة ومفاهيم",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في اللغة العربية ضمن الكتابة والإملاء بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 4.",
+                "أن يطبّق مهارة مرتبطة بـ«الكتابة والإملاء — مقدمة ومفاهيم» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G04-AR-B01-U02-L02",
+              "titleAr": "الكتابة والإملاء — بناء المهارة",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في اللغة العربية ضمن الكتابة والإملاء بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 4.",
+                "أن يطبّق مهارة مرتبطة بـ«الكتابة والإملاء — بناء المهارة» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G04-AR-B01-U02-L03",
+              "titleAr": "الكتابة والإملاء — تطبيق ومثال",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في اللغة العربية ضمن الكتابة والإملاء بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 4.",
+                "أن يطبّق مهارة مرتبطة بـ«الكتابة والإملاء — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G04-AR-B01-U02-L04",
+              "titleAr": "الكتابة والإملاء — تقويم وتعزيز",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في اللغة العربية ضمن الكتابة والإملاء بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 4.",
+                "أن يطبّق مهارة مرتبطة بـ«الكتابة والإملاء — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            }
+          ]
+        },
+        {
+          "unitId": "JO-NATIONAL-G04-AR-B01-U03",
+          "titleAr": "القواعد الأساسية",
+          "lessons": [
+            {
+              "lessonId": "JO-NATIONAL-G04-AR-B01-U03-L01",
+              "titleAr": "القواعد الأساسية — مقدمة ومفاهيم",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في اللغة العربية ضمن القواعد الأساسية بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 4.",
+                "أن يطبّق مهارة مرتبطة بـ«القواعد الأساسية — مقدمة ومفاهيم» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G04-AR-B01-U03-L02",
+              "titleAr": "القواعد الأساسية — بناء المهارة",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في اللغة العربية ضمن القواعد الأساسية بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 4.",
+                "أن يطبّق مهارة مرتبطة بـ«القواعد الأساسية — بناء المهارة» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G04-AR-B01-U03-L03",
+              "titleAr": "القواعد الأساسية — تطبيق ومثال",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في اللغة العربية ضمن القواعد الأساسية بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 4.",
+                "أن يطبّق مهارة مرتبطة بـ«القواعد الأساسية — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G04-AR-B01-U03-L04",
+              "titleAr": "القواعد الأساسية — تقويم وتعزيز",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في اللغة العربية ضمن القواعد الأساسية بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 4.",
+                "أن يطبّق مهارة مرتبطة بـ«القواعد الأساسية — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            }
+          ]
+        },
+        {
+          "unitId": "JO-NATIONAL-G04-AR-B01-U04",
+          "titleAr": "التعبير الكتابي",
+          "lessons": [
+            {
+              "lessonId": "JO-NATIONAL-G04-AR-B01-U04-L01",
+              "titleAr": "التعبير الكتابي — مقدمة ومفاهيم",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في اللغة العربية ضمن التعبير الكتابي بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 4.",
+                "أن يطبّق مهارة مرتبطة بـ«التعبير الكتابي — مقدمة ومفاهيم» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G04-AR-B01-U04-L02",
+              "titleAr": "التعبير الكتابي — بناء المهارة",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في اللغة العربية ضمن التعبير الكتابي بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 4.",
+                "أن يطبّق مهارة مرتبطة بـ«التعبير الكتابي — بناء المهارة» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G04-AR-B01-U04-L03",
+              "titleAr": "التعبير الكتابي — تطبيق ومثال",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في اللغة العربية ضمن التعبير الكتابي بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 4.",
+                "أن يطبّق مهارة مرتبطة بـ«التعبير الكتابي — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G04-AR-B01-U04-L04",
+              "titleAr": "التعبير الكتابي — تقويم وتعزيز",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في اللغة العربية ضمن التعبير الكتابي بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 4.",
+                "أن يطبّق مهارة مرتبطة بـ«التعبير الكتابي — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            }
+          ]
+        }
+      ],
+      "counts": {
+        "units": 4,
+        "lessons": 16,
+        "outcomes": 48
+      }
+    },
+    {
+      "subjectId": "JO-NATIONAL-G04-EN",
+      "subjectAr": "اللغة الإنجليزية",
+      "subjectFamily": "english",
+      "gradeBand": "lower-basic",
+      "catalogueStatus": "official-nccd-url-national-profile-aligned",
+      "officialCatalogUrl": "https://www.nccd.gov.jo/ar/pages/TextBooksGrade/71",
+      "book": {
+        "bookId": "JO-NATIONAL-G04-EN-B01",
+        "titleAr": "كتاب SUCCESS OS — اللغة الإنجليزية — الصف 4",
+        "contentOrigin": "success-os-original-curriculum-aligned",
+        "rights": {
+          "copyBookText": false,
+          "generateOriginalOnly": true
+        }
+      },
+      "units": [
+        {
+          "unitId": "JO-NATIONAL-G04-EN-B01-U01",
+          "titleAr": "Listening & Speaking",
+          "lessons": [
+            {
+              "lessonId": "JO-NATIONAL-G04-EN-B01-U01-L01",
+              "titleAr": "Listening & Speaking — مقدمة ومفاهيم",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في اللغة الإنجليزية ضمن Listening & Speaking بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 4.",
+                "أن يطبّق مهارة مرتبطة بـ«Listening & Speaking — مقدمة ومفاهيم» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G04-EN-B01-U01-L02",
+              "titleAr": "Listening & Speaking — بناء المهارة",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في اللغة الإنجليزية ضمن Listening & Speaking بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 4.",
+                "أن يطبّق مهارة مرتبطة بـ«Listening & Speaking — بناء المهارة» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G04-EN-B01-U01-L03",
+              "titleAr": "Listening & Speaking — تطبيق ومثال",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في اللغة الإنجليزية ضمن Listening & Speaking بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 4.",
+                "أن يطبّق مهارة مرتبطة بـ«Listening & Speaking — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G04-EN-B01-U01-L04",
+              "titleAr": "Listening & Speaking — تقويم وتعزيز",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في اللغة الإنجليزية ضمن Listening & Speaking بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 4.",
+                "أن يطبّق مهارة مرتبطة بـ«Listening & Speaking — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            }
+          ]
+        },
+        {
+          "unitId": "JO-NATIONAL-G04-EN-B01-U02",
+          "titleAr": "Phonics & Vocabulary",
+          "lessons": [
+            {
+              "lessonId": "JO-NATIONAL-G04-EN-B01-U02-L01",
+              "titleAr": "Phonics & Vocabulary — مقدمة ومفاهيم",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في اللغة الإنجليزية ضمن Phonics & Vocabulary بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 4.",
+                "أن يطبّق مهارة مرتبطة بـ«Phonics & Vocabulary — مقدمة ومفاهيم» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G04-EN-B01-U02-L02",
+              "titleAr": "Phonics & Vocabulary — بناء المهارة",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في اللغة الإنجليزية ضمن Phonics & Vocabulary بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 4.",
+                "أن يطبّق مهارة مرتبطة بـ«Phonics & Vocabulary — بناء المهارة» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G04-EN-B01-U02-L03",
+              "titleAr": "Phonics & Vocabulary — تطبيق ومثال",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في اللغة الإنجليزية ضمن Phonics & Vocabulary بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 4.",
+                "أن يطبّق مهارة مرتبطة بـ«Phonics & Vocabulary — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G04-EN-B01-U02-L04",
+              "titleAr": "Phonics & Vocabulary — تقويم وتعزيز",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في اللغة الإنجليزية ضمن Phonics & Vocabulary بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 4.",
+                "أن يطبّق مهارة مرتبطة بـ«Phonics & Vocabulary — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            }
+          ]
+        },
+        {
+          "unitId": "JO-NATIONAL-G04-EN-B01-U03",
+          "titleAr": "Reading Basics",
+          "lessons": [
+            {
+              "lessonId": "JO-NATIONAL-G04-EN-B01-U03-L01",
+              "titleAr": "Reading Basics — مقدمة ومفاهيم",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في اللغة الإنجليزية ضمن Reading Basics بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 4.",
+                "أن يطبّق مهارة مرتبطة بـ«Reading Basics — مقدمة ومفاهيم» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G04-EN-B01-U03-L02",
+              "titleAr": "Reading Basics — بناء المهارة",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في اللغة الإنجليزية ضمن Reading Basics بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 4.",
+                "أن يطبّق مهارة مرتبطة بـ«Reading Basics — بناء المهارة» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G04-EN-B01-U03-L03",
+              "titleAr": "Reading Basics — تطبيق ومثال",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في اللغة الإنجليزية ضمن Reading Basics بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 4.",
+                "أن يطبّق مهارة مرتبطة بـ«Reading Basics — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G04-EN-B01-U03-L04",
+              "titleAr": "Reading Basics — تقويم وتعزيز",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في اللغة الإنجليزية ضمن Reading Basics بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 4.",
+                "أن يطبّق مهارة مرتبطة بـ«Reading Basics — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            }
+          ]
+        },
+        {
+          "unitId": "JO-NATIONAL-G04-EN-B01-U04",
+          "titleAr": "Simple Writing",
+          "lessons": [
+            {
+              "lessonId": "JO-NATIONAL-G04-EN-B01-U04-L01",
+              "titleAr": "Simple Writing — مقدمة ومفاهيم",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في اللغة الإنجليزية ضمن Simple Writing بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 4.",
+                "أن يطبّق مهارة مرتبطة بـ«Simple Writing — مقدمة ومفاهيم» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G04-EN-B01-U04-L02",
+              "titleAr": "Simple Writing — بناء المهارة",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في اللغة الإنجليزية ضمن Simple Writing بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 4.",
+                "أن يطبّق مهارة مرتبطة بـ«Simple Writing — بناء المهارة» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G04-EN-B01-U04-L03",
+              "titleAr": "Simple Writing — تطبيق ومثال",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في اللغة الإنجليزية ضمن Simple Writing بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 4.",
+                "أن يطبّق مهارة مرتبطة بـ«Simple Writing — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G04-EN-B01-U04-L04",
+              "titleAr": "Simple Writing — تقويم وتعزيز",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في اللغة الإنجليزية ضمن Simple Writing بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 4.",
+                "أن يطبّق مهارة مرتبطة بـ«Simple Writing — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            }
+          ]
+        }
+      ],
+      "counts": {
+        "units": 4,
+        "lessons": 16,
+        "outcomes": 48
+      }
+    },
+    {
+      "subjectId": "JO-NATIONAL-G04-MATH",
+      "subjectAr": "الرياضيات",
+      "subjectFamily": "math",
+      "gradeBand": "lower-basic",
+      "catalogueStatus": "official-nccd-url-national-profile-aligned",
+      "officialCatalogUrl": "https://www.nccd.gov.jo/ar/pages/TextBooksGrade/71",
+      "book": {
+        "bookId": "JO-NATIONAL-G04-MATH-B01",
+        "titleAr": "كتاب SUCCESS OS — الرياضيات — الصف 4",
+        "contentOrigin": "success-os-original-curriculum-aligned",
+        "rights": {
+          "copyBookText": false,
+          "generateOriginalOnly": true
+        }
+      },
+      "units": [
+        {
+          "unitId": "JO-NATIONAL-G04-MATH-B01-U01",
+          "titleAr": "الأعداد والعمليات",
+          "lessons": [
+            {
+              "lessonId": "JO-NATIONAL-G04-MATH-B01-U01-L01",
+              "titleAr": "الأعداد والعمليات — مقدمة ومفاهيم",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في الرياضيات ضمن الأعداد والعمليات بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 4.",
+                "أن يطبّق مهارة مرتبطة بـ«الأعداد والعمليات — مقدمة ومفاهيم» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G04-MATH-B01-U01-L02",
+              "titleAr": "الأعداد والعمليات — بناء المهارة",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في الرياضيات ضمن الأعداد والعمليات بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 4.",
+                "أن يطبّق مهارة مرتبطة بـ«الأعداد والعمليات — بناء المهارة» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G04-MATH-B01-U01-L03",
+              "titleAr": "الأعداد والعمليات — تطبيق ومثال",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في الرياضيات ضمن الأعداد والعمليات بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 4.",
+                "أن يطبّق مهارة مرتبطة بـ«الأعداد والعمليات — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G04-MATH-B01-U01-L04",
+              "titleAr": "الأعداد والعمليات — تقويم وتعزيز",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في الرياضيات ضمن الأعداد والعمليات بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 4.",
+                "أن يطبّق مهارة مرتبطة بـ«الأعداد والعمليات — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            }
+          ]
+        },
+        {
+          "unitId": "JO-NATIONAL-G04-MATH-B01-U02",
+          "titleAr": "القيمة المكانية",
+          "lessons": [
+            {
+              "lessonId": "JO-NATIONAL-G04-MATH-B01-U02-L01",
+              "titleAr": "القيمة المكانية — مقدمة ومفاهيم",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في الرياضيات ضمن القيمة المكانية بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 4.",
+                "أن يطبّق مهارة مرتبطة بـ«القيمة المكانية — مقدمة ومفاهيم» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G04-MATH-B01-U02-L02",
+              "titleAr": "القيمة المكانية — بناء المهارة",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في الرياضيات ضمن القيمة المكانية بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 4.",
+                "أن يطبّق مهارة مرتبطة بـ«القيمة المكانية — بناء المهارة» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G04-MATH-B01-U02-L03",
+              "titleAr": "القيمة المكانية — تطبيق ومثال",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في الرياضيات ضمن القيمة المكانية بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 4.",
+                "أن يطبّق مهارة مرتبطة بـ«القيمة المكانية — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G04-MATH-B01-U02-L04",
+              "titleAr": "القيمة المكانية — تقويم وتعزيز",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في الرياضيات ضمن القيمة المكانية بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 4.",
+                "أن يطبّق مهارة مرتبطة بـ«القيمة المكانية — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            }
+          ]
+        },
+        {
+          "unitId": "JO-NATIONAL-G04-MATH-B01-U03",
+          "titleAr": "الهندسة والقياس",
+          "lessons": [
+            {
+              "lessonId": "JO-NATIONAL-G04-MATH-B01-U03-L01",
+              "titleAr": "الهندسة والقياس — مقدمة ومفاهيم",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في الرياضيات ضمن الهندسة والقياس بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 4.",
+                "أن يطبّق مهارة مرتبطة بـ«الهندسة والقياس — مقدمة ومفاهيم» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G04-MATH-B01-U03-L02",
+              "titleAr": "الهندسة والقياس — بناء المهارة",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في الرياضيات ضمن الهندسة والقياس بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 4.",
+                "أن يطبّق مهارة مرتبطة بـ«الهندسة والقياس — بناء المهارة» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G04-MATH-B01-U03-L03",
+              "titleAr": "الهندسة والقياس — تطبيق ومثال",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في الرياضيات ضمن الهندسة والقياس بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 4.",
+                "أن يطبّق مهارة مرتبطة بـ«الهندسة والقياس — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G04-MATH-B01-U03-L04",
+              "titleAr": "الهندسة والقياس — تقويم وتعزيز",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في الرياضيات ضمن الهندسة والقياس بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 4.",
+                "أن يطبّق مهارة مرتبطة بـ«الهندسة والقياس — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            }
+          ]
+        },
+        {
+          "unitId": "JO-NATIONAL-G04-MATH-B01-U04",
+          "titleAr": "البيانات البسيطة",
+          "lessons": [
+            {
+              "lessonId": "JO-NATIONAL-G04-MATH-B01-U04-L01",
+              "titleAr": "البيانات البسيطة — مقدمة ومفاهيم",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في الرياضيات ضمن البيانات البسيطة بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 4.",
+                "أن يطبّق مهارة مرتبطة بـ«البيانات البسيطة — مقدمة ومفاهيم» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G04-MATH-B01-U04-L02",
+              "titleAr": "البيانات البسيطة — بناء المهارة",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في الرياضيات ضمن البيانات البسيطة بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 4.",
+                "أن يطبّق مهارة مرتبطة بـ«البيانات البسيطة — بناء المهارة» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G04-MATH-B01-U04-L03",
+              "titleAr": "البيانات البسيطة — تطبيق ومثال",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في الرياضيات ضمن البيانات البسيطة بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 4.",
+                "أن يطبّق مهارة مرتبطة بـ«البيانات البسيطة — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G04-MATH-B01-U04-L04",
+              "titleAr": "البيانات البسيطة — تقويم وتعزيز",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في الرياضيات ضمن البيانات البسيطة بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 4.",
+                "أن يطبّق مهارة مرتبطة بـ«البيانات البسيطة — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            }
+          ]
+        }
+      ],
+      "counts": {
+        "units": 4,
+        "lessons": 16,
+        "outcomes": 48
+      }
+    },
+    {
+      "subjectId": "JO-NATIONAL-G04-SCI",
+      "subjectAr": "العلوم",
+      "subjectFamily": "science",
+      "gradeBand": "lower-basic",
+      "catalogueStatus": "official-nccd-url-national-profile-aligned",
+      "officialCatalogUrl": "https://www.nccd.gov.jo/ar/pages/TextBooksGrade/71",
+      "book": {
+        "bookId": "JO-NATIONAL-G04-SCI-B01",
+        "titleAr": "كتاب SUCCESS OS — العلوم — الصف 4",
+        "contentOrigin": "success-os-original-curriculum-aligned",
+        "rights": {
+          "copyBookText": false,
+          "generateOriginalOnly": true
+        }
+      },
+      "units": [
+        {
+          "unitId": "JO-NATIONAL-G04-SCI-B01-U01",
+          "titleAr": "الكائنات الحية",
+          "lessons": [
+            {
+              "lessonId": "JO-NATIONAL-G04-SCI-B01-U01-L01",
+              "titleAr": "الكائنات الحية — مقدمة ومفاهيم",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في العلوم ضمن الكائنات الحية بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 4.",
+                "أن يطبّق مهارة مرتبطة بـ«الكائنات الحية — مقدمة ومفاهيم» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G04-SCI-B01-U01-L02",
+              "titleAr": "الكائنات الحية — بناء المهارة",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في العلوم ضمن الكائنات الحية بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 4.",
+                "أن يطبّق مهارة مرتبطة بـ«الكائنات الحية — بناء المهارة» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G04-SCI-B01-U01-L03",
+              "titleAr": "الكائنات الحية — تطبيق ومثال",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في العلوم ضمن الكائنات الحية بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 4.",
+                "أن يطبّق مهارة مرتبطة بـ«الكائنات الحية — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G04-SCI-B01-U01-L04",
+              "titleAr": "الكائنات الحية — تقويم وتعزيز",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في العلوم ضمن الكائنات الحية بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 4.",
+                "أن يطبّق مهارة مرتبطة بـ«الكائنات الحية — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            }
+          ]
+        },
+        {
+          "unitId": "JO-NATIONAL-G04-SCI-B01-U02",
+          "titleAr": "المادة والطاقة",
+          "lessons": [
+            {
+              "lessonId": "JO-NATIONAL-G04-SCI-B01-U02-L01",
+              "titleAr": "المادة والطاقة — مقدمة ومفاهيم",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في العلوم ضمن المادة والطاقة بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 4.",
+                "أن يطبّق مهارة مرتبطة بـ«المادة والطاقة — مقدمة ومفاهيم» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G04-SCI-B01-U02-L02",
+              "titleAr": "المادة والطاقة — بناء المهارة",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في العلوم ضمن المادة والطاقة بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 4.",
+                "أن يطبّق مهارة مرتبطة بـ«المادة والطاقة — بناء المهارة» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G04-SCI-B01-U02-L03",
+              "titleAr": "المادة والطاقة — تطبيق ومثال",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في العلوم ضمن المادة والطاقة بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 4.",
+                "أن يطبّق مهارة مرتبطة بـ«المادة والطاقة — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G04-SCI-B01-U02-L04",
+              "titleAr": "المادة والطاقة — تقويم وتعزيز",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في العلوم ضمن المادة والطاقة بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 4.",
+                "أن يطبّق مهارة مرتبطة بـ«المادة والطاقة — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            }
+          ]
+        },
+        {
+          "unitId": "JO-NATIONAL-G04-SCI-B01-U03",
+          "titleAr": "الأرض والفضاء",
+          "lessons": [
+            {
+              "lessonId": "JO-NATIONAL-G04-SCI-B01-U03-L01",
+              "titleAr": "الأرض والفضاء — مقدمة ومفاهيم",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في العلوم ضمن الأرض والفضاء بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 4.",
+                "أن يطبّق مهارة مرتبطة بـ«الأرض والفضاء — مقدمة ومفاهيم» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G04-SCI-B01-U03-L02",
+              "titleAr": "الأرض والفضاء — بناء المهارة",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في العلوم ضمن الأرض والفضاء بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 4.",
+                "أن يطبّق مهارة مرتبطة بـ«الأرض والفضاء — بناء المهارة» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G04-SCI-B01-U03-L03",
+              "titleAr": "الأرض والفضاء — تطبيق ومثال",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في العلوم ضمن الأرض والفضاء بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 4.",
+                "أن يطبّق مهارة مرتبطة بـ«الأرض والفضاء — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G04-SCI-B01-U03-L04",
+              "titleAr": "الأرض والفضاء — تقويم وتعزيز",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في العلوم ضمن الأرض والفضاء بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 4.",
+                "أن يطبّق مهارة مرتبطة بـ«الأرض والفضاء — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            }
+          ]
+        },
+        {
+          "unitId": "JO-NATIONAL-G04-SCI-B01-U04",
+          "titleAr": "الصحة والسلامة",
+          "lessons": [
+            {
+              "lessonId": "JO-NATIONAL-G04-SCI-B01-U04-L01",
+              "titleAr": "الصحة والسلامة — مقدمة ومفاهيم",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في العلوم ضمن الصحة والسلامة بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 4.",
+                "أن يطبّق مهارة مرتبطة بـ«الصحة والسلامة — مقدمة ومفاهيم» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G04-SCI-B01-U04-L02",
+              "titleAr": "الصحة والسلامة — بناء المهارة",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في العلوم ضمن الصحة والسلامة بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 4.",
+                "أن يطبّق مهارة مرتبطة بـ«الصحة والسلامة — بناء المهارة» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G04-SCI-B01-U04-L03",
+              "titleAr": "الصحة والسلامة — تطبيق ومثال",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في العلوم ضمن الصحة والسلامة بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 4.",
+                "أن يطبّق مهارة مرتبطة بـ«الصحة والسلامة — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G04-SCI-B01-U04-L04",
+              "titleAr": "الصحة والسلامة — تقويم وتعزيز",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في العلوم ضمن الصحة والسلامة بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 4.",
+                "أن يطبّق مهارة مرتبطة بـ«الصحة والسلامة — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            }
+          ]
+        }
+      ],
+      "counts": {
+        "units": 4,
+        "lessons": 16,
+        "outcomes": 48
+      }
+    },
+    {
+      "subjectId": "JO-NATIONAL-G04-ISLAM",
+      "subjectAr": "التربية الإسلامية",
+      "subjectFamily": "islamic",
+      "gradeBand": "lower-basic",
+      "catalogueStatus": "official-nccd-url-national-profile-aligned",
+      "officialCatalogUrl": "https://www.nccd.gov.jo/ar/pages/TextBooksGrade/71",
+      "book": {
+        "bookId": "JO-NATIONAL-G04-ISLAM-B01",
+        "titleAr": "كتاب SUCCESS OS — التربية الإسلامية — الصف 4",
+        "contentOrigin": "success-os-original-curriculum-aligned",
+        "rights": {
+          "copyBookText": false,
+          "generateOriginalOnly": true
+        }
+      },
+      "units": [
+        {
+          "unitId": "JO-NATIONAL-G04-ISLAM-B01-U01",
+          "titleAr": "العقيدة الميسرة",
+          "lessons": [
+            {
+              "lessonId": "JO-NATIONAL-G04-ISLAM-B01-U01-L01",
+              "titleAr": "العقيدة الميسرة — مقدمة ومفاهيم",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في التربية الإسلامية ضمن العقيدة الميسرة بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 4.",
+                "أن يطبّق مهارة مرتبطة بـ«العقيدة الميسرة — مقدمة ومفاهيم» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G04-ISLAM-B01-U01-L02",
+              "titleAr": "العقيدة الميسرة — بناء المهارة",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في التربية الإسلامية ضمن العقيدة الميسرة بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 4.",
+                "أن يطبّق مهارة مرتبطة بـ«العقيدة الميسرة — بناء المهارة» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G04-ISLAM-B01-U01-L03",
+              "titleAr": "العقيدة الميسرة — تطبيق ومثال",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في التربية الإسلامية ضمن العقيدة الميسرة بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 4.",
+                "أن يطبّق مهارة مرتبطة بـ«العقيدة الميسرة — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G04-ISLAM-B01-U01-L04",
+              "titleAr": "العقيدة الميسرة — تقويم وتعزيز",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في التربية الإسلامية ضمن العقيدة الميسرة بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 4.",
+                "أن يطبّق مهارة مرتبطة بـ«العقيدة الميسرة — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            }
+          ]
+        },
+        {
+          "unitId": "JO-NATIONAL-G04-ISLAM-B01-U02",
+          "titleAr": "العبادات الأساسية",
+          "lessons": [
+            {
+              "lessonId": "JO-NATIONAL-G04-ISLAM-B01-U02-L01",
+              "titleAr": "العبادات الأساسية — مقدمة ومفاهيم",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في التربية الإسلامية ضمن العبادات الأساسية بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 4.",
+                "أن يطبّق مهارة مرتبطة بـ«العبادات الأساسية — مقدمة ومفاهيم» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G04-ISLAM-B01-U02-L02",
+              "titleAr": "العبادات الأساسية — بناء المهارة",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في التربية الإسلامية ضمن العبادات الأساسية بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 4.",
+                "أن يطبّق مهارة مرتبطة بـ«العبادات الأساسية — بناء المهارة» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G04-ISLAM-B01-U02-L03",
+              "titleAr": "العبادات الأساسية — تطبيق ومثال",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في التربية الإسلامية ضمن العبادات الأساسية بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 4.",
+                "أن يطبّق مهارة مرتبطة بـ«العبادات الأساسية — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G04-ISLAM-B01-U02-L04",
+              "titleAr": "العبادات الأساسية — تقويم وتعزيز",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في التربية الإسلامية ضمن العبادات الأساسية بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 4.",
+                "أن يطبّق مهارة مرتبطة بـ«العبادات الأساسية — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            }
+          ]
+        },
+        {
+          "unitId": "JO-NATIONAL-G04-ISLAM-B01-U03",
+          "titleAr": "الأخلاق والآداب",
+          "lessons": [
+            {
+              "lessonId": "JO-NATIONAL-G04-ISLAM-B01-U03-L01",
+              "titleAr": "الأخلاق والآداب — مقدمة ومفاهيم",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في التربية الإسلامية ضمن الأخلاق والآداب بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 4.",
+                "أن يطبّق مهارة مرتبطة بـ«الأخلاق والآداب — مقدمة ومفاهيم» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G04-ISLAM-B01-U03-L02",
+              "titleAr": "الأخلاق والآداب — بناء المهارة",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في التربية الإسلامية ضمن الأخلاق والآداب بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 4.",
+                "أن يطبّق مهارة مرتبطة بـ«الأخلاق والآداب — بناء المهارة» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G04-ISLAM-B01-U03-L03",
+              "titleAr": "الأخلاق والآداب — تطبيق ومثال",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في التربية الإسلامية ضمن الأخلاق والآداب بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 4.",
+                "أن يطبّق مهارة مرتبطة بـ«الأخلاق والآداب — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G04-ISLAM-B01-U03-L04",
+              "titleAr": "الأخلاق والآداب — تقويم وتعزيز",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في التربية الإسلامية ضمن الأخلاق والآداب بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 4.",
+                "أن يطبّق مهارة مرتبطة بـ«الأخلاق والآداب — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            }
+          ]
+        },
+        {
+          "unitId": "JO-NATIONAL-G04-ISLAM-B01-U04",
+          "titleAr": "قصص قرآنية ونبوية",
+          "lessons": [
+            {
+              "lessonId": "JO-NATIONAL-G04-ISLAM-B01-U04-L01",
+              "titleAr": "قصص قرآنية ونبوية — مقدمة ومفاهيم",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في التربية الإسلامية ضمن قصص قرآنية ونبوية بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 4.",
+                "أن يطبّق مهارة مرتبطة بـ«قصص قرآنية ونبوية — مقدمة ومفاهيم» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G04-ISLAM-B01-U04-L02",
+              "titleAr": "قصص قرآنية ونبوية — بناء المهارة",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في التربية الإسلامية ضمن قصص قرآنية ونبوية بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 4.",
+                "أن يطبّق مهارة مرتبطة بـ«قصص قرآنية ونبوية — بناء المهارة» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G04-ISLAM-B01-U04-L03",
+              "titleAr": "قصص قرآنية ونبوية — تطبيق ومثال",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في التربية الإسلامية ضمن قصص قرآنية ونبوية بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 4.",
+                "أن يطبّق مهارة مرتبطة بـ«قصص قرآنية ونبوية — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G04-ISLAM-B01-U04-L04",
+              "titleAr": "قصص قرآنية ونبوية — تقويم وتعزيز",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في التربية الإسلامية ضمن قصص قرآنية ونبوية بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 4.",
+                "أن يطبّق مهارة مرتبطة بـ«قصص قرآنية ونبوية — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            }
+          ]
+        }
+      ],
+      "counts": {
+        "units": 4,
+        "lessons": 16,
+        "outcomes": 48
+      }
+    },
+    {
+      "subjectId": "JO-NATIONAL-G04-SOCIAL",
+      "subjectAr": "الدراسات الاجتماعية",
+      "subjectFamily": "social",
+      "gradeBand": "lower-basic",
+      "catalogueStatus": "official-nccd-url-national-profile-aligned",
+      "officialCatalogUrl": "https://www.nccd.gov.jo/ar/pages/TextBooksGrade/71",
+      "book": {
+        "bookId": "JO-NATIONAL-G04-SOCIAL-B01",
+        "titleAr": "كتاب SUCCESS OS — الدراسات الاجتماعية — الصف 4",
+        "contentOrigin": "success-os-original-curriculum-aligned",
+        "rights": {
+          "copyBookText": false,
+          "generateOriginalOnly": true
+        }
+      },
+      "units": [
+        {
+          "unitId": "JO-NATIONAL-G04-SOCIAL-B01-U01",
+          "titleAr": "الأسرة والمجتمع",
+          "lessons": [
+            {
+              "lessonId": "JO-NATIONAL-G04-SOCIAL-B01-U01-L01",
+              "titleAr": "الأسرة والمجتمع — مقدمة ومفاهيم",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في الدراسات الاجتماعية ضمن الأسرة والمجتمع بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 4.",
+                "أن يطبّق مهارة مرتبطة بـ«الأسرة والمجتمع — مقدمة ومفاهيم» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G04-SOCIAL-B01-U01-L02",
+              "titleAr": "الأسرة والمجتمع — بناء المهارة",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في الدراسات الاجتماعية ضمن الأسرة والمجتمع بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 4.",
+                "أن يطبّق مهارة مرتبطة بـ«الأسرة والمجتمع — بناء المهارة» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G04-SOCIAL-B01-U01-L03",
+              "titleAr": "الأسرة والمجتمع — تطبيق ومثال",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في الدراسات الاجتماعية ضمن الأسرة والمجتمع بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 4.",
+                "أن يطبّق مهارة مرتبطة بـ«الأسرة والمجتمع — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G04-SOCIAL-B01-U01-L04",
+              "titleAr": "الأسرة والمجتمع — تقويم وتعزيز",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في الدراسات الاجتماعية ضمن الأسرة والمجتمع بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 4.",
+                "أن يطبّق مهارة مرتبطة بـ«الأسرة والمجتمع — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            }
+          ]
+        },
+        {
+          "unitId": "JO-NATIONAL-G04-SOCIAL-B01-U02",
+          "titleAr": "الوطن والرمز",
+          "lessons": [
+            {
+              "lessonId": "JO-NATIONAL-G04-SOCIAL-B01-U02-L01",
+              "titleAr": "الوطن والرمز — مقدمة ومفاهيم",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في الدراسات الاجتماعية ضمن الوطن والرمز بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 4.",
+                "أن يطبّق مهارة مرتبطة بـ«الوطن والرمز — مقدمة ومفاهيم» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G04-SOCIAL-B01-U02-L02",
+              "titleAr": "الوطن والرمز — بناء المهارة",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في الدراسات الاجتماعية ضمن الوطن والرمز بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 4.",
+                "أن يطبّق مهارة مرتبطة بـ«الوطن والرمز — بناء المهارة» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G04-SOCIAL-B01-U02-L03",
+              "titleAr": "الوطن والرمز — تطبيق ومثال",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في الدراسات الاجتماعية ضمن الوطن والرمز بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 4.",
+                "أن يطبّق مهارة مرتبطة بـ«الوطن والرمز — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G04-SOCIAL-B01-U02-L04",
+              "titleAr": "الوطن والرمز — تقويم وتعزيز",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في الدراسات الاجتماعية ضمن الوطن والرمز بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 4.",
+                "أن يطبّق مهارة مرتبطة بـ«الوطن والرمز — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            }
+          ]
+        },
+        {
+          "unitId": "JO-NATIONAL-G04-SOCIAL-B01-U03",
+          "titleAr": "المهن والخدمات",
+          "lessons": [
+            {
+              "lessonId": "JO-NATIONAL-G04-SOCIAL-B01-U03-L01",
+              "titleAr": "المهن والخدمات — مقدمة ومفاهيم",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في الدراسات الاجتماعية ضمن المهن والخدمات بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 4.",
+                "أن يطبّق مهارة مرتبطة بـ«المهن والخدمات — مقدمة ومفاهيم» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G04-SOCIAL-B01-U03-L02",
+              "titleAr": "المهن والخدمات — بناء المهارة",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في الدراسات الاجتماعية ضمن المهن والخدمات بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 4.",
+                "أن يطبّق مهارة مرتبطة بـ«المهن والخدمات — بناء المهارة» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G04-SOCIAL-B01-U03-L03",
+              "titleAr": "المهن والخدمات — تطبيق ومثال",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في الدراسات الاجتماعية ضمن المهن والخدمات بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 4.",
+                "أن يطبّق مهارة مرتبطة بـ«المهن والخدمات — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G04-SOCIAL-B01-U03-L04",
+              "titleAr": "المهن والخدمات — تقويم وتعزيز",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في الدراسات الاجتماعية ضمن المهن والخدمات بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 4.",
+                "أن يطبّق مهارة مرتبطة بـ«المهن والخدمات — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            }
+          ]
+        },
+        {
+          "unitId": "JO-NATIONAL-G04-SOCIAL-B01-U04",
+          "titleAr": "التاريخ المحلي المبسط",
+          "lessons": [
+            {
+              "lessonId": "JO-NATIONAL-G04-SOCIAL-B01-U04-L01",
+              "titleAr": "التاريخ المحلي المبسط — مقدمة ومفاهيم",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في الدراسات الاجتماعية ضمن التاريخ المحلي المبسط بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 4.",
+                "أن يطبّق مهارة مرتبطة بـ«التاريخ المحلي المبسط — مقدمة ومفاهيم» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G04-SOCIAL-B01-U04-L02",
+              "titleAr": "التاريخ المحلي المبسط — بناء المهارة",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في الدراسات الاجتماعية ضمن التاريخ المحلي المبسط بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 4.",
+                "أن يطبّق مهارة مرتبطة بـ«التاريخ المحلي المبسط — بناء المهارة» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G04-SOCIAL-B01-U04-L03",
+              "titleAr": "التاريخ المحلي المبسط — تطبيق ومثال",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في الدراسات الاجتماعية ضمن التاريخ المحلي المبسط بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 4.",
+                "أن يطبّق مهارة مرتبطة بـ«التاريخ المحلي المبسط — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G04-SOCIAL-B01-U04-L04",
+              "titleAr": "التاريخ المحلي المبسط — تقويم وتعزيز",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في الدراسات الاجتماعية ضمن التاريخ المحلي المبسط بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 4.",
+                "أن يطبّق مهارة مرتبطة بـ«التاريخ المحلي المبسط — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            }
+          ]
+        }
+      ],
+      "counts": {
+        "units": 4,
+        "lessons": 16,
+        "outcomes": 48
+      }
+    },
+    {
+      "subjectId": "JO-NATIONAL-G04-DIGITAL",
+      "subjectAr": "المهارات الرقمية",
+      "subjectFamily": "digital",
+      "gradeBand": "lower-basic",
+      "catalogueStatus": "official-nccd-url-national-profile-aligned",
+      "officialCatalogUrl": "https://www.nccd.gov.jo/ar/pages/TextBooksGrade/71",
+      "book": {
+        "bookId": "JO-NATIONAL-G04-DIGITAL-B01",
+        "titleAr": "كتاب SUCCESS OS — المهارات الرقمية — الصف 4",
+        "contentOrigin": "success-os-original-curriculum-aligned",
+        "rights": {
+          "copyBookText": false,
+          "generateOriginalOnly": true
+        }
+      },
+      "units": [
+        {
+          "unitId": "JO-NATIONAL-G04-DIGITAL-B01-U01",
+          "titleAr": "أساسيات الحاسوب",
+          "lessons": [
+            {
+              "lessonId": "JO-NATIONAL-G04-DIGITAL-B01-U01-L01",
+              "titleAr": "أساسيات الحاسوب — مقدمة ومفاهيم",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في المهارات الرقمية ضمن أساسيات الحاسوب بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 4.",
+                "أن يطبّق مهارة مرتبطة بـ«أساسيات الحاسوب — مقدمة ومفاهيم» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G04-DIGITAL-B01-U01-L02",
+              "titleAr": "أساسيات الحاسوب — بناء المهارة",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في المهارات الرقمية ضمن أساسيات الحاسوب بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 4.",
+                "أن يطبّق مهارة مرتبطة بـ«أساسيات الحاسوب — بناء المهارة» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G04-DIGITAL-B01-U01-L03",
+              "titleAr": "أساسيات الحاسوب — تطبيق ومثال",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في المهارات الرقمية ضمن أساسيات الحاسوب بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 4.",
+                "أن يطبّق مهارة مرتبطة بـ«أساسيات الحاسوب — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G04-DIGITAL-B01-U01-L04",
+              "titleAr": "أساسيات الحاسوب — تقويم وتعزيز",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في المهارات الرقمية ضمن أساسيات الحاسوب بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 4.",
+                "أن يطبّق مهارة مرتبطة بـ«أساسيات الحاسوب — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            }
+          ]
+        },
+        {
+          "unitId": "JO-NATIONAL-G04-DIGITAL-B01-U02",
+          "titleAr": "السلامة الرقمية",
+          "lessons": [
+            {
+              "lessonId": "JO-NATIONAL-G04-DIGITAL-B01-U02-L01",
+              "titleAr": "السلامة الرقمية — مقدمة ومفاهيم",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في المهارات الرقمية ضمن السلامة الرقمية بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 4.",
+                "أن يطبّق مهارة مرتبطة بـ«السلامة الرقمية — مقدمة ومفاهيم» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G04-DIGITAL-B01-U02-L02",
+              "titleAr": "السلامة الرقمية — بناء المهارة",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في المهارات الرقمية ضمن السلامة الرقمية بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 4.",
+                "أن يطبّق مهارة مرتبطة بـ«السلامة الرقمية — بناء المهارة» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G04-DIGITAL-B01-U02-L03",
+              "titleAr": "السلامة الرقمية — تطبيق ومثال",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في المهارات الرقمية ضمن السلامة الرقمية بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 4.",
+                "أن يطبّق مهارة مرتبطة بـ«السلامة الرقمية — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G04-DIGITAL-B01-U02-L04",
+              "titleAr": "السلامة الرقمية — تقويم وتعزيز",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في المهارات الرقمية ضمن السلامة الرقمية بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 4.",
+                "أن يطبّق مهارة مرتبطة بـ«السلامة الرقمية — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            }
+          ]
+        },
+        {
+          "unitId": "JO-NATIONAL-G04-DIGITAL-B01-U03",
+          "titleAr": "الرسم والوسائط",
+          "lessons": [
+            {
+              "lessonId": "JO-NATIONAL-G04-DIGITAL-B01-U03-L01",
+              "titleAr": "الرسم والوسائط — مقدمة ومفاهيم",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في المهارات الرقمية ضمن الرسم والوسائط بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 4.",
+                "أن يطبّق مهارة مرتبطة بـ«الرسم والوسائط — مقدمة ومفاهيم» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G04-DIGITAL-B01-U03-L02",
+              "titleAr": "الرسم والوسائط — بناء المهارة",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في المهارات الرقمية ضمن الرسم والوسائط بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 4.",
+                "أن يطبّق مهارة مرتبطة بـ«الرسم والوسائط — بناء المهارة» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G04-DIGITAL-B01-U03-L03",
+              "titleAr": "الرسم والوسائط — تطبيق ومثال",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في المهارات الرقمية ضمن الرسم والوسائط بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 4.",
+                "أن يطبّق مهارة مرتبطة بـ«الرسم والوسائط — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G04-DIGITAL-B01-U03-L04",
+              "titleAr": "الرسم والوسائط — تقويم وتعزيز",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في المهارات الرقمية ضمن الرسم والوسائط بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 4.",
+                "أن يطبّق مهارة مرتبطة بـ«الرسم والوسائط — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            }
+          ]
+        },
+        {
+          "unitId": "JO-NATIONAL-G04-DIGITAL-B01-U04",
+          "titleAr": "حل المشكلات البسيط",
+          "lessons": [
+            {
+              "lessonId": "JO-NATIONAL-G04-DIGITAL-B01-U04-L01",
+              "titleAr": "حل المشكلات البسيط — مقدمة ومفاهيم",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في المهارات الرقمية ضمن حل المشكلات البسيط بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 4.",
+                "أن يطبّق مهارة مرتبطة بـ«حل المشكلات البسيط — مقدمة ومفاهيم» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G04-DIGITAL-B01-U04-L02",
+              "titleAr": "حل المشكلات البسيط — بناء المهارة",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في المهارات الرقمية ضمن حل المشكلات البسيط بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 4.",
+                "أن يطبّق مهارة مرتبطة بـ«حل المشكلات البسيط — بناء المهارة» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G04-DIGITAL-B01-U04-L03",
+              "titleAr": "حل المشكلات البسيط — تطبيق ومثال",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في المهارات الرقمية ضمن حل المشكلات البسيط بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 4.",
+                "أن يطبّق مهارة مرتبطة بـ«حل المشكلات البسيط — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G04-DIGITAL-B01-U04-L04",
+              "titleAr": "حل المشكلات البسيط — تقويم وتعزيز",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في المهارات الرقمية ضمن حل المشكلات البسيط بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 4.",
+                "أن يطبّق مهارة مرتبطة بـ«حل المشكلات البسيط — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            }
+          ]
+        }
+      ],
+      "counts": {
+        "units": 4,
+        "lessons": 16,
+        "outcomes": 48
+      }
+    },
+    {
+      "subjectId": "JO-NATIONAL-G04-PE",
+      "subjectAr": "التربية الرياضية",
+      "subjectFamily": "pe",
+      "gradeBand": "lower-basic",
+      "catalogueStatus": "official-nccd-url-national-profile-aligned",
+      "officialCatalogUrl": "https://www.nccd.gov.jo/ar/pages/TextBooksGrade/71",
+      "book": {
+        "bookId": "JO-NATIONAL-G04-PE-B01",
+        "titleAr": "كتاب SUCCESS OS — التربية الرياضية — الصف 4",
+        "contentOrigin": "success-os-original-curriculum-aligned",
+        "rights": {
+          "copyBookText": false,
+          "generateOriginalOnly": true
+        }
+      },
+      "units": [
+        {
+          "unitId": "JO-NATIONAL-G04-PE-B01-U01",
+          "titleAr": "المهارات الحركية",
+          "lessons": [
+            {
+              "lessonId": "JO-NATIONAL-G04-PE-B01-U01-L01",
+              "titleAr": "المهارات الحركية — مقدمة ومفاهيم",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في التربية الرياضية ضمن المهارات الحركية بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 4.",
+                "أن يطبّق مهارة مرتبطة بـ«المهارات الحركية — مقدمة ومفاهيم» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G04-PE-B01-U01-L02",
+              "titleAr": "المهارات الحركية — بناء المهارة",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في التربية الرياضية ضمن المهارات الحركية بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 4.",
+                "أن يطبّق مهارة مرتبطة بـ«المهارات الحركية — بناء المهارة» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G04-PE-B01-U01-L03",
+              "titleAr": "المهارات الحركية — تطبيق ومثال",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في التربية الرياضية ضمن المهارات الحركية بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 4.",
+                "أن يطبّق مهارة مرتبطة بـ«المهارات الحركية — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G04-PE-B01-U01-L04",
+              "titleAr": "المهارات الحركية — تقويم وتعزيز",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في التربية الرياضية ضمن المهارات الحركية بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 4.",
+                "أن يطبّق مهارة مرتبطة بـ«المهارات الحركية — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            }
+          ]
+        },
+        {
+          "unitId": "JO-NATIONAL-G04-PE-B01-U02",
+          "titleAr": "الألعاب المنظمة",
+          "lessons": [
+            {
+              "lessonId": "JO-NATIONAL-G04-PE-B01-U02-L01",
+              "titleAr": "الألعاب المنظمة — مقدمة ومفاهيم",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في التربية الرياضية ضمن الألعاب المنظمة بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 4.",
+                "أن يطبّق مهارة مرتبطة بـ«الألعاب المنظمة — مقدمة ومفاهيم» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G04-PE-B01-U02-L02",
+              "titleAr": "الألعاب المنظمة — بناء المهارة",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في التربية الرياضية ضمن الألعاب المنظمة بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 4.",
+                "أن يطبّق مهارة مرتبطة بـ«الألعاب المنظمة — بناء المهارة» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G04-PE-B01-U02-L03",
+              "titleAr": "الألعاب المنظمة — تطبيق ومثال",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في التربية الرياضية ضمن الألعاب المنظمة بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 4.",
+                "أن يطبّق مهارة مرتبطة بـ«الألعاب المنظمة — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G04-PE-B01-U02-L04",
+              "titleAr": "الألعاب المنظمة — تقويم وتعزيز",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في التربية الرياضية ضمن الألعاب المنظمة بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 4.",
+                "أن يطبّق مهارة مرتبطة بـ«الألعاب المنظمة — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            }
+          ]
+        },
+        {
+          "unitId": "JO-NATIONAL-G04-PE-B01-U03",
+          "titleAr": "اللياقة",
+          "lessons": [
+            {
+              "lessonId": "JO-NATIONAL-G04-PE-B01-U03-L01",
+              "titleAr": "اللياقة — مقدمة ومفاهيم",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في التربية الرياضية ضمن اللياقة بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 4.",
+                "أن يطبّق مهارة مرتبطة بـ«اللياقة — مقدمة ومفاهيم» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G04-PE-B01-U03-L02",
+              "titleAr": "اللياقة — بناء المهارة",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في التربية الرياضية ضمن اللياقة بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 4.",
+                "أن يطبّق مهارة مرتبطة بـ«اللياقة — بناء المهارة» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G04-PE-B01-U03-L03",
+              "titleAr": "اللياقة — تطبيق ومثال",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في التربية الرياضية ضمن اللياقة بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 4.",
+                "أن يطبّق مهارة مرتبطة بـ«اللياقة — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G04-PE-B01-U03-L04",
+              "titleAr": "اللياقة — تقويم وتعزيز",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في التربية الرياضية ضمن اللياقة بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 4.",
+                "أن يطبّق مهارة مرتبطة بـ«اللياقة — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            }
+          ]
+        },
+        {
+          "unitId": "JO-NATIONAL-G04-PE-B01-U04",
+          "titleAr": "السلامة الرياضية",
+          "lessons": [
+            {
+              "lessonId": "JO-NATIONAL-G04-PE-B01-U04-L01",
+              "titleAr": "السلامة الرياضية — مقدمة ومفاهيم",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في التربية الرياضية ضمن السلامة الرياضية بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 4.",
+                "أن يطبّق مهارة مرتبطة بـ«السلامة الرياضية — مقدمة ومفاهيم» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G04-PE-B01-U04-L02",
+              "titleAr": "السلامة الرياضية — بناء المهارة",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في التربية الرياضية ضمن السلامة الرياضية بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 4.",
+                "أن يطبّق مهارة مرتبطة بـ«السلامة الرياضية — بناء المهارة» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G04-PE-B01-U04-L03",
+              "titleAr": "السلامة الرياضية — تطبيق ومثال",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في التربية الرياضية ضمن السلامة الرياضية بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 4.",
+                "أن يطبّق مهارة مرتبطة بـ«السلامة الرياضية — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G04-PE-B01-U04-L04",
+              "titleAr": "السلامة الرياضية — تقويم وتعزيز",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في التربية الرياضية ضمن السلامة الرياضية بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 4.",
+                "أن يطبّق مهارة مرتبطة بـ«السلامة الرياضية — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            }
+          ]
+        }
+      ],
+      "counts": {
+        "units": 4,
+        "lessons": 16,
+        "outcomes": 48
+      }
+    },
+    {
+      "subjectId": "JO-NATIONAL-G04-ARTS",
+      "subjectAr": "التربية الفنية والموسيقية والمسرحية",
+      "subjectFamily": "arts",
+      "gradeBand": "lower-basic",
+      "catalogueStatus": "official-nccd-url-national-profile-aligned",
+      "officialCatalogUrl": "https://www.nccd.gov.jo/ar/pages/TextBooksGrade/71",
+      "book": {
+        "bookId": "JO-NATIONAL-G04-ARTS-B01",
+        "titleAr": "كتاب SUCCESS OS — التربية الفنية والموسيقية والمسرحية — الصف 4",
+        "contentOrigin": "success-os-original-curriculum-aligned",
+        "rights": {
+          "copyBookText": false,
+          "generateOriginalOnly": true
+        }
+      },
+      "units": [
+        {
+          "unitId": "JO-NATIONAL-G04-ARTS-B01-U01",
+          "titleAr": "عناصر الفن",
+          "lessons": [
+            {
+              "lessonId": "JO-NATIONAL-G04-ARTS-B01-U01-L01",
+              "titleAr": "عناصر الفن — مقدمة ومفاهيم",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في التربية الفنية والموسيقية والمسرحية ضمن عناصر الفن بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 4.",
+                "أن يطبّق مهارة مرتبطة بـ«عناصر الفن — مقدمة ومفاهيم» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G04-ARTS-B01-U01-L02",
+              "titleAr": "عناصر الفن — بناء المهارة",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في التربية الفنية والموسيقية والمسرحية ضمن عناصر الفن بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 4.",
+                "أن يطبّق مهارة مرتبطة بـ«عناصر الفن — بناء المهارة» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G04-ARTS-B01-U01-L03",
+              "titleAr": "عناصر الفن — تطبيق ومثال",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في التربية الفنية والموسيقية والمسرحية ضمن عناصر الفن بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 4.",
+                "أن يطبّق مهارة مرتبطة بـ«عناصر الفن — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G04-ARTS-B01-U01-L04",
+              "titleAr": "عناصر الفن — تقويم وتعزيز",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في التربية الفنية والموسيقية والمسرحية ضمن عناصر الفن بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 4.",
+                "أن يطبّق مهارة مرتبطة بـ«عناصر الفن — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            }
+          ]
+        },
+        {
+          "unitId": "JO-NATIONAL-G04-ARTS-B01-U02",
+          "titleAr": "الموسيقى المدرسية",
+          "lessons": [
+            {
+              "lessonId": "JO-NATIONAL-G04-ARTS-B01-U02-L01",
+              "titleAr": "الموسيقى المدرسية — مقدمة ومفاهيم",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في التربية الفنية والموسيقية والمسرحية ضمن الموسيقى المدرسية بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 4.",
+                "أن يطبّق مهارة مرتبطة بـ«الموسيقى المدرسية — مقدمة ومفاهيم» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G04-ARTS-B01-U02-L02",
+              "titleAr": "الموسيقى المدرسية — بناء المهارة",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في التربية الفنية والموسيقية والمسرحية ضمن الموسيقى المدرسية بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 4.",
+                "أن يطبّق مهارة مرتبطة بـ«الموسيقى المدرسية — بناء المهارة» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G04-ARTS-B01-U02-L03",
+              "titleAr": "الموسيقى المدرسية — تطبيق ومثال",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في التربية الفنية والموسيقية والمسرحية ضمن الموسيقى المدرسية بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 4.",
+                "أن يطبّق مهارة مرتبطة بـ«الموسيقى المدرسية — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G04-ARTS-B01-U02-L04",
+              "titleAr": "الموسيقى المدرسية — تقويم وتعزيز",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في التربية الفنية والموسيقية والمسرحية ضمن الموسيقى المدرسية بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 4.",
+                "أن يطبّق مهارة مرتبطة بـ«الموسيقى المدرسية — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            }
+          ]
+        },
+        {
+          "unitId": "JO-NATIONAL-G04-ARTS-B01-U03",
+          "titleAr": "المسرح المدرسي",
+          "lessons": [
+            {
+              "lessonId": "JO-NATIONAL-G04-ARTS-B01-U03-L01",
+              "titleAr": "المسرح المدرسي — مقدمة ومفاهيم",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في التربية الفنية والموسيقية والمسرحية ضمن المسرح المدرسي بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 4.",
+                "أن يطبّق مهارة مرتبطة بـ«المسرح المدرسي — مقدمة ومفاهيم» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G04-ARTS-B01-U03-L02",
+              "titleAr": "المسرح المدرسي — بناء المهارة",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في التربية الفنية والموسيقية والمسرحية ضمن المسرح المدرسي بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 4.",
+                "أن يطبّق مهارة مرتبطة بـ«المسرح المدرسي — بناء المهارة» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G04-ARTS-B01-U03-L03",
+              "titleAr": "المسرح المدرسي — تطبيق ومثال",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في التربية الفنية والموسيقية والمسرحية ضمن المسرح المدرسي بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 4.",
+                "أن يطبّق مهارة مرتبطة بـ«المسرح المدرسي — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G04-ARTS-B01-U03-L04",
+              "titleAr": "المسرح المدرسي — تقويم وتعزيز",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في التربية الفنية والموسيقية والمسرحية ضمن المسرح المدرسي بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 4.",
+                "أن يطبّق مهارة مرتبطة بـ«المسرح المدرسي — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            }
+          ]
+        },
+        {
+          "unitId": "JO-NATIONAL-G04-ARTS-B01-U04",
+          "titleAr": "المشاريع الإبداعية",
+          "lessons": [
+            {
+              "lessonId": "JO-NATIONAL-G04-ARTS-B01-U04-L01",
+              "titleAr": "المشاريع الإبداعية — مقدمة ومفاهيم",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في التربية الفنية والموسيقية والمسرحية ضمن المشاريع الإبداعية بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 4.",
+                "أن يطبّق مهارة مرتبطة بـ«المشاريع الإبداعية — مقدمة ومفاهيم» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G04-ARTS-B01-U04-L02",
+              "titleAr": "المشاريع الإبداعية — بناء المهارة",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في التربية الفنية والموسيقية والمسرحية ضمن المشاريع الإبداعية بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 4.",
+                "أن يطبّق مهارة مرتبطة بـ«المشاريع الإبداعية — بناء المهارة» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G04-ARTS-B01-U04-L03",
+              "titleAr": "المشاريع الإبداعية — تطبيق ومثال",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في التربية الفنية والموسيقية والمسرحية ضمن المشاريع الإبداعية بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 4.",
+                "أن يطبّق مهارة مرتبطة بـ«المشاريع الإبداعية — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G04-ARTS-B01-U04-L04",
+              "titleAr": "المشاريع الإبداعية — تقويم وتعزيز",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في التربية الفنية والموسيقية والمسرحية ضمن المشاريع الإبداعية بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 4.",
+                "أن يطبّق مهارة مرتبطة بـ«المشاريع الإبداعية — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            }
+          ]
+        }
+      ],
+      "counts": {
+        "units": 4,
+        "lessons": 16,
+        "outcomes": 48
+      }
+    }
+  ],
+  "counts": {
+    "subjects": 9,
+    "units": 36,
+    "lessons": 144,
+    "outcomes": 432
+  }
+}

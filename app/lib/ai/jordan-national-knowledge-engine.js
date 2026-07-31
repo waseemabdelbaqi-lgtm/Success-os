@@ -12,6 +12,7 @@ import { nationalProfile } from '../../data/national-curricula.js';
 import {
   jordanAuthority,
   jordanGradeRegistry,
+  jordanSubjectsForGrade,
 } from '../../data/jordan-curriculum.js';
 import {
   JO_PHASE,
@@ -32,29 +33,8 @@ export const ENGINE_VERSION = '1.0.0';
 
 /** NCCD-verified subject lists (official catalogue review). */
 const NCCD_VERIFIED_SUBJECTS = {
-  'الصف 1': [
-    'اللغة العربية',
-    'اللغة الإنجليزية',
-    'الرياضيات',
-    'العلوم',
-    'التربية الإسلامية',
-    'الدراسات الاجتماعية',
-    'المهارات الرقمية',
-    'التربية الرياضية',
-    'التربية الفنية والموسيقية والمسرحية',
-  ],
-  'الصف 11': [
-    'اللغة العربية',
-    'اللغة الإنجليزية',
-    'الرياضيات',
-    'الفيزياء',
-    'الكيمياء',
-    'العلوم الحياتية',
-    'علوم الأرض والبيئة',
-    'المهارات الرقمية',
-    'التربية الإسلامية',
-    'تاريخ الأردن',
-  ],
+  'الصف 1': jordanSubjectsForGrade('الصف 1'),
+  'الصف 11': jordanSubjectsForGrade('الصف 11'),
 };
 
 function rootDir() {
@@ -108,6 +88,16 @@ function catalogUrlForGrade(grade) {
 }
 
 function catalogueStatusForGrade(grade) {
+  const registry = jordanGradeRegistry.find((g) => g.grade === grade);
+  if (registry?.catalogueStatus === 'subject-list-verified') {
+    return 'verified-against-NCCD-catalogue';
+  }
+  if (registry?.catalogueStatus === 'subject-list-aligned-to-g11-verified') {
+    return 'official-nccd-url-national-profile-aligned';
+  }
+  if (registry?.catalogueStatus === 'official-nccd-url-national-profile-aligned') {
+    return 'official-nccd-url-national-profile-aligned';
+  }
   if (NCCD_VERIFIED_SUBJECTS[grade]) return 'verified-against-NCCD-catalogue';
   if (grade === 'رياض الأطفال') return 'verified-structure-national-profile';
   if (catalogUrlForGrade(grade)) return 'official-nccd-url-national-profile-aligned';
@@ -116,6 +106,7 @@ function catalogueStatusForGrade(grade) {
 
 /**
  * Expand national JO stages into grade×subject cells (national only).
+ * Academic grades 1–12 prefer band-aware lists from jordan-curriculum registry.
  */
 export function buildJordanNationalMatrix() {
   const profile = nationalProfile('JO');
@@ -127,14 +118,14 @@ export function buildJordanNationalMatrix() {
     const isBtec = /btec|مهني/i.test(stageName);
     for (const grade of stage.grades || []) {
       let subjects = [...(stage.subjects || [])];
-      // NCCD verified lists apply to academic/basic tracks only — never overwrite BTEC pathway subjects.
-      if (!isBtec && NCCD_VERIFIED_SUBJECTS[grade]) {
-        subjects = [...NCCD_VERIFIED_SUBJECTS[grade]];
-      }
-      if (grade === 'الصف 1') {
-        subjects = subjects.map((s) =>
-          s === 'الفنون' ? 'التربية الفنية والموسيقية والمسرحية' : s,
-        );
+      // Academic/basic tracks: prefer registry band lists (G1–G12). Never overwrite BTEC pathway.
+      if (!isBtec) {
+        const registrySubjects = jordanSubjectsForGrade(grade);
+        if (registrySubjects.length) {
+          subjects = [...registrySubjects];
+        } else if (NCCD_VERIFIED_SUBJECTS[grade]) {
+          subjects = [...NCCD_VERIFIED_SUBJECTS[grade]];
+        }
       }
       for (const subject of subjects) {
         if (isExcludedInternationalLabel(subject)) continue;
@@ -142,7 +133,7 @@ export function buildJordanNationalMatrix() {
           stage: stageName,
           grade,
           subject,
-          officialCatalogUrl: catalogUrlForGrade(grade),
+          officialCatalogUrl: catalogUrlForGrade(grade) || null,
           catalogueStatus: catalogueStatusForGrade(grade),
         });
       }
