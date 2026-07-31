@@ -1,0 +1,30 @@
+{
+  "schema": "success-os.jordan-national-grade-knowledge.v1",
+  "phase": "JO-01",
+  "grade": "رياض الأطفال",
+  "officialCatalogUrl": null,
+  "catalogueStatus": "verified-structure-national-profile",
+  "subjects": [
+    {
+      "subject": "اللغة والتواصل",
+      "stage": "رياض الأطفال",
+      "verificationPercent": 97.3
+    },
+    {
+      "subject": "الرياضيات المبكرة",
+      "stage": "رياض الأطفال",
+      "verificationPercent": 97.3
+    },
+    {
+      "subject": "العلوم والاستكشاف",
+      "stage": "رياض الأطفال",
+      "verificationPercent": 97.3
+    },
+    {
+      "subject": "المهارات الحياتية",
+      "stage": "رياض الأطفال",
+      "verificationPercent": 97.3
+    }
+  ],
+  "builtAt": "2026-07-31T17:36:32.879Z"
+}

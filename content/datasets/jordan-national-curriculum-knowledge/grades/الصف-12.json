@@ -1,0 +1,100 @@
+{
+  "schema": "success-os.jordan-national-grade-knowledge.v1",
+  "phase": "JO-01",
+  "grade": "الصف 12",
+  "officialCatalogUrl": "https://www.nccd.gov.jo/ar/pages/TextBooksGrade/83",
+  "catalogueStatus": "official-nccd-url-national-profile-aligned",
+  "subjects": [
+    {
+      "subject": "اللغة العربية",
+      "stage": "التعليم الثانوي — المسار الأكاديمي",
+      "verificationPercent": 97.9
+    },
+    {
+      "subject": "اللغة الإنجليزية",
+      "stage": "التعليم الثانوي — المسار الأكاديمي",
+      "verificationPercent": 97.9
+    },
+    {
+      "subject": "الرياضيات",
+      "stage": "التعليم الثانوي — المسار الأكاديمي",
+      "verificationPercent": 97.9
+    },
+    {
+      "subject": "الفيزياء",
+      "stage": "التعليم الثانوي — المسار الأكاديمي",
+      "verificationPercent": 97.9
+    },
+    {
+      "subject": "الكيمياء",
+      "stage": "التعليم الثانوي — المسار الأكاديمي",
+      "verificationPercent": 97.9
+    },
+    {
+      "subject": "العلوم الحياتية",
+      "stage": "التعليم الثانوي — المسار الأكاديمي",
+      "verificationPercent": 97.9
+    },
+    {
+      "subject": "علوم الأرض والبيئة",
+      "stage": "التعليم الثانوي — المسار الأكاديمي",
+      "verificationPercent": 97.9
+    },
+    {
+      "subject": "المهارات الرقمية",
+      "stage": "التعليم الثانوي — المسار الأكاديمي",
+      "verificationPercent": 97.9
+    },
+    {
+      "subject": "التربية الإسلامية",
+      "stage": "التعليم الثانوي — المسار الأكاديمي",
+      "verificationPercent": 97.9
+    },
+    {
+      "subject": "تاريخ الأردن",
+      "stage": "التعليم الثانوي — المسار الأكاديمي",
+      "verificationPercent": 97.9
+    },
+    {
+      "subject": "الأعمال",
+      "stage": "التعليم الثانوي — المسار المهني BTEC",
+      "verificationPercent": 97.9
+    },
+    {
+      "subject": "الهندسة",
+      "stage": "التعليم الثانوي — المسار المهني BTEC",
+      "verificationPercent": 97.9
+    },
+    {
+      "subject": "تكنولوجيا المعلومات",
+      "stage": "التعليم الثانوي — المسار المهني BTEC",
+      "verificationPercent": 97.9
+    },
+    {
+      "subject": "الضيافة",
+      "stage": "التعليم الثانوي — المسار المهني BTEC",
+      "verificationPercent": 97.9
+    },
+    {
+      "subject": "السفر والسياحة",
+      "stage": "التعليم الثانوي — المسار المهني BTEC",
+      "verificationPercent": 97.9
+    },
+    {
+      "subject": "الفنون والتصميم",
+      "stage": "التعليم الثانوي — المسار المهني BTEC",
+      "verificationPercent": 97.9
+    },
+    {
+      "subject": "الزراعة",
+      "stage": "التعليم الثانوي — المسار المهني BTEC",
+      "verificationPercent": 97.9
+    },
+    {
+      "subject": "البناء والإنشاءات",
+      "stage": "التعليم الثانوي — المسار المهني BTEC",
+      "verificationPercent": 97.9
+    }
+  ],
+  "builtAt": "2026-07-31T17:36:32.879Z"
+}

@@ -71,6 +71,7 @@
     "jo:knowledge:status": "node scripts/run-jordan-national-knowledge.mjs --status",
     "jo:knowledge:dashboard": "node scripts/run-jordan-national-knowledge.mjs --dashboard",
     "jo:knowledge:harvest": "node scripts/run-jordan-national-knowledge.mjs --harvest-nccd",
+    "jo:install-curriculum": "node scripts/install-jordan-curriculum.mjs",
     "jo:produce": "node scripts/run-jordan-book-production.mjs",
     "jo:produce:next": "node scripts/run-jordan-book-production.mjs --next",
     "jo:produce:math": "node scripts/run-jordan-book-production.mjs --subject=الرياضيات",

@@ -41,8 +41,21 @@ function rootDir() {
   return process.cwd();
 }
 
+/**
+ * Canonical in-repo Jordan National Curriculum knowledge store.
+ * Kept under content/datasets/ (committed) so the full curriculum ships with the project.
+ * Optional override: JO_KNOWLEDGE_ROOT=/path
+ */
 export function knowledgeRoot() {
-  return path.join(rootDir(), 'library', 'jordan-national-curriculum-knowledge');
+  if (process.env.JO_KNOWLEDGE_ROOT) {
+    return path.resolve(process.env.JO_KNOWLEDGE_ROOT);
+  }
+  return path.join(
+    rootDir(),
+    'content',
+    'datasets',
+    'jordan-national-curriculum-knowledge',
+  );
 }
 
 function ensureDirs() {
