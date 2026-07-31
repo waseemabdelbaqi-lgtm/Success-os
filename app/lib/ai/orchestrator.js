@@ -1,6 +1,7 @@
 import {AI_TASKS,providersFor} from './provider-registry';
+import {ollamaGenerateText} from './local-ollama';
 
-const providerProfiles={openai:{quality:10,latency:7,cost:5},gemini:{quality:9,latency:8,cost:7},heygen:{quality:9,latency:7,cost:5},synthesia:{quality:9,latency:6,cost:5},'mistral-ocr':{quality:9,latency:9,cost:8}};
+const providerProfiles={'ollama-local':{quality:8,latency:6,cost:10},openai:{quality:10,latency:7,cost:5},gemini:{quality:0,latency:0,cost:0},heygen:{quality:9,latency:7,cost:5},synthesia:{quality:9,latency:6,cost:5},'mistral-ocr':{quality:9,latency:9,cost:8}};
 const taskWeights={default:{quality:.6,latency:.25,cost:.15},[AI_TASKS.QUALITY]:{quality:.85,latency:.1,cost:.05},[AI_TASKS.LESSON_WRITING]:{quality:.8,latency:.15,cost:.05},[AI_TASKS.OCR]:{quality:.75,latency:.15,cost:.1}};
 const circuits=new Map();
 const safeError=error=>String(error?.message||error||'PROVIDER_FAILED').slice(0,120);
@@ -9,19 +10,23 @@ function circuitOpen(id){const c=circuits.get(id);return Boolean(c?.openUntil>Da
 function success(id,ms){circuits.set(id,{failures:0,openUntil:0,lastLatencyMs:ms,lastSuccess:new Date().toISOString()})}
 function failure(id){const old=circuits.get(id)||{failures:0},failures=old.failures+1;circuits.set(id,{...old,failures,openUntil:failures>=3?Date.now()+60000:0,lastFailure:new Date().toISOString()})}
 function score(id,task,preferred=[]){const p=providerProfiles[id]||{quality:5,latency:5,cost:5},w=taskWeights[task]||taskWeights.default,bonus=preferred.includes(id)?20-preferred.indexOf(id):0;return p.quality*w.quality+p.latency*w.latency+p.cost*w.cost+bonus}
-function ranked(task,preferred=[]){return providersFor(task).filter(p=>!circuitOpen(p.id)).sort((a,b)=>score(b.id,task,preferred)-score(a.id,task,preferred))}
+function ranked(task,preferred=[]){
+  const prefs=preferred?.length?preferred:['ollama-local'];
+  return providersFor(task).filter(p=>!circuitOpen(p.id)).sort((a,b)=>score(b.id,task,prefs)-score(a.id,task,prefs));
+}
 async function invoke(provider,fn){const started=Date.now();try{const result=await fn();success(provider,Date.now()-started);return result}catch(error){failure(provider);throw error}}
 async function openAIText({prompt,maxOutputTokens=3000,effort='medium',safetyIdentifier='success-os-orchestrator'}){
  const key=process.env.OPENAI_CONTENT_API_KEY||process.env.OPENAI_API_KEY,model=process.env.OPENAI_TEXT_MODEL||'gpt-5.6-luna';
  const r=await fetch('https://api.openai.com/v1/responses',{method:'POST',headers:{'Content-Type':'application/json',Authorization:`Bearer ${key}`},body:JSON.stringify({model,input:prompt,reasoning:{effort},max_output_tokens:maxOutputTokens,safety_identifier:safetyIdentifier})});
  if(!r.ok)throw new Error(`OPENAI_${r.status}`);const d=await r.json();return d.output_text||d.output?.flatMap(x=>x.content||[]).map(x=>x.text||'').join('')||'';
 }
-async function geminiText({prompt,maxOutputTokens=3000}){
- const model=process.env.GEMINI_TEXT_MODEL||'gemini-2.5-pro';
- const r=await fetch('https://generativelanguage.googleapis.com/v1beta/interactions',{method:'POST',headers:{'Content-Type':'application/json','x-goog-api-key':process.env.GEMINI_API_KEY},body:JSON.stringify({model,input:prompt,generation_config:{max_output_tokens:maxOutputTokens}})});
- if(!r.ok)throw new Error(`GEMINI_${r.status}`);const d=await r.json();return d.output_text||d.outputs?.map(x=>x.text||'').join('')||d.steps?.flatMap(x=>x.content||[]).map(x=>x.text||'').join('')||'';
+async function geminiText(){
+  throw new Error('GEMINI_DISABLED');
 }
-const textAdapters={openai:openAIText,gemini:geminiText};
+async function ollamaLocalText({prompt,maxOutputTokens=3000}){
+  return ollamaGenerateText({prompt,maxOutputTokens,think:false});
+}
+const textAdapters={openai:openAIText,gemini:geminiText,'ollama-local':ollamaLocalText};
 export async function generateText(options){
  const candidates=ranked(options.task||AI_TASKS.REASONING,options.preferred),attempts=[];
  if(!candidates.length)throw Object.assign(new Error('NO_TEXT_PROVIDER_CONFIGURED'),{attempts});

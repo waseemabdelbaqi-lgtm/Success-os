@@ -22,6 +22,8 @@
     "validate:content": "node scripts/validate-content-quality.mjs",
     "validate:curricula": "node scripts/validate-national-curricula.mjs",
     "validate:ai": "node scripts/validate-ai-orchestrator.mjs",
+    "ai:local:setup": "node scripts/setup-local-ollama.mjs",
+    "ai:local:test": "node scripts/test-local-ollama.mjs",
     "validate:books": "node scripts/validate-book-engine.mjs",
     "validate:jordan": "node scripts/validate-jordan-curriculum.mjs",
     "validate:generated-books": "node scripts/validate-generated-books.mjs",
