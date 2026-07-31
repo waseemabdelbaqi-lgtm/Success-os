@@ -1,0 +1,17 @@
+{
+  "globalId": "JOR-IMAGE-001977",
+  "kind": "educationalImage",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "مخطط تعليمي لوحدة الموارد الطبيعية",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G11-SCI-U03-L01",
+  "relationships": {
+    "lessonId": "JOR-G11-SCI-U03-L01",
+    "belongsTo": "JOR-G11-SCI-U03-L01"
+  },
+  "createdAt": "2026-07-31T17:56:57.309Z",
+  "updatedAt": "2026-07-31T17:56:57.309Z",
+  "src": null
+}

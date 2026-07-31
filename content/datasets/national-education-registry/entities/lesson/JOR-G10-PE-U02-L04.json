@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-G10-PE-U02-L04",
+  "kind": "lesson",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "التدريب — تقويم وتعزيز",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G10-PE-U02",
+  "relationships": {
+    "unitId": "JOR-G10-PE-U02",
+    "bookId": "JOR-BOOK-000003",
+    "subjectId": "JOR-G10-PE",
+    "gradeId": "JOR-G10",
+    "belongsTo": "JOR-G10-PE-U02"
+  },
+  "createdAt": "2026-07-31T17:56:56.687Z",
+  "updatedAt": "2026-07-31T17:56:56.687Z",
+  "lessonCode": "L04",
+  "sequence": 4,
+  "legacyLessonId": "L2.4",
+  "keywords": [
+    "مهارة حركية",
+    "لياقة",
+    "تعاون"
+  ]
+}

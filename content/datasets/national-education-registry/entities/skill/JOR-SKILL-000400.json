@@ -1,0 +1,35 @@
+{
+  "globalId": "JOR-SKILL-000400",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«القيمة المكانية — بناء المهارة» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-000864",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-000864",
+      "JOR-OUTCOME-000865",
+      "JOR-OUTCOME-000866",
+      "JOR-OUTCOME-001296",
+      "JOR-OUTCOME-001297",
+      "JOR-OUTCOME-001298",
+      "JOR-OUTCOME-001728",
+      "JOR-OUTCOME-001729",
+      "JOR-OUTCOME-001730",
+      "JOR-OUTCOME-002160",
+      "JOR-OUTCOME-002161",
+      "JOR-OUTCOME-002162"
+    ],
+    "lessonIds": [
+      "JOR-G01-MATH-U02-L02",
+      "JOR-G02-MATH-U02-L02",
+      "JOR-G03-MATH-U02-L02",
+      "JOR-G04-MATH-U02-L02"
+    ],
+    "belongsTo": "JOR-OUTCOME-000864"
+  },
+  "createdAt": "2026-07-31T17:56:56.725Z",
+  "updatedAt": "2026-07-31T17:56:56.813Z"
+}

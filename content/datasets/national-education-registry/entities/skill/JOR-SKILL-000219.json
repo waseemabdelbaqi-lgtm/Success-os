@@ -1,0 +1,31 @@
+{
+  "globalId": "JOR-SKILL-000219",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«التفاعلات الكيميائية — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-000450",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-000450",
+      "JOR-OUTCOME-000451",
+      "JOR-OUTCOME-000452",
+      "JOR-OUTCOME-004514",
+      "JOR-OUTCOME-004515",
+      "JOR-OUTCOME-004516",
+      "JOR-OUTCOME-005170",
+      "JOR-OUTCOME-005171",
+      "JOR-OUTCOME-005172"
+    ],
+    "lessonIds": [
+      "JOR-G10-SCI-U03-L04",
+      "JOR-G08-SCI-U03-L04",
+      "JOR-G09-SCI-U03-L04"
+    ],
+    "belongsTo": "JOR-OUTCOME-000450"
+  },
+  "createdAt": "2026-07-31T17:56:56.703Z",
+  "updatedAt": "2026-07-31T17:56:57.201Z"
+}

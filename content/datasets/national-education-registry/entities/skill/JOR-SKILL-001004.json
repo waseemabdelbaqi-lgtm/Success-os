@@ -1,0 +1,35 @@
+{
+  "globalId": "JOR-SKILL-001004",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يتعرف المتعلم مفهومًا محوريًا في الرياضيات المبكرة ضمن العد والتصنيف بما يتوافق مع إطار المنهاج الوطني الأردني لـرياض الأطفال.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-007009",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-007009",
+      "JOR-OUTCOME-007010",
+      "JOR-OUTCOME-007011",
+      "JOR-OUTCOME-007012",
+      "JOR-OUTCOME-007013",
+      "JOR-OUTCOME-007014",
+      "JOR-OUTCOME-007015",
+      "JOR-OUTCOME-007016",
+      "JOR-OUTCOME-007017",
+      "JOR-OUTCOME-007018",
+      "JOR-OUTCOME-007019",
+      "JOR-OUTCOME-007020"
+    ],
+    "lessonIds": [
+      "JOR-GKG-EMATH-U01-L01",
+      "JOR-GKG-EMATH-U01-L02",
+      "JOR-GKG-EMATH-U01-L03",
+      "JOR-GKG-EMATH-U01-L04"
+    ],
+    "belongsTo": "JOR-OUTCOME-007009"
+  },
+  "createdAt": "2026-07-31T17:56:57.555Z",
+  "updatedAt": "2026-07-31T17:56:57.557Z"
+}

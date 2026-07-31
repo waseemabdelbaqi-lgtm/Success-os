@@ -1,0 +1,23 @@
+{
+  "globalId": "JOR-SKILL-001008",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«العد والتصنيف — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-007018",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-007018",
+      "JOR-OUTCOME-007019",
+      "JOR-OUTCOME-007020"
+    ],
+    "lessonIds": [
+      "JOR-GKG-EMATH-U01-L04"
+    ],
+    "belongsTo": "JOR-OUTCOME-007018"
+  },
+  "createdAt": "2026-07-31T17:56:57.557Z",
+  "updatedAt": "2026-07-31T17:56:57.557Z"
+}

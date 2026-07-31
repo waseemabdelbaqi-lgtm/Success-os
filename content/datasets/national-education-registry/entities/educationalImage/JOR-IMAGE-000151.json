@@ -1,0 +1,17 @@
+{
+  "globalId": "JOR-IMAGE-000151",
+  "kind": "educationalImage",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "مخطط تعليمي لوحدة الموجات والطاقة",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G10-SCI-U02-L03",
+  "relationships": {
+    "lessonId": "JOR-G10-SCI-U02-L03",
+    "belongsTo": "JOR-G10-SCI-U02-L03"
+  },
+  "createdAt": "2026-07-31T17:56:56.702Z",
+  "updatedAt": "2026-07-31T17:56:56.702Z",
+  "src": null
+}

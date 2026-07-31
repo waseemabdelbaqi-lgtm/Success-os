@@ -1,0 +1,28 @@
+{
+  "globalId": "JOR-G07-التربيةا-U03-L03",
+  "kind": "lesson",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "حقوق الطفل — تطبيق ومثال",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G07-التربيةا-U03",
+  "relationships": {
+    "unitId": "JOR-G07-التربيةا-U03",
+    "bookId": "JOR-BOOK-000074",
+    "subjectId": "JOR-G07-التربيةا",
+    "gradeId": "JOR-G07",
+    "belongsTo": "JOR-G07-التربيةا-U03"
+  },
+  "createdAt": "2026-07-31T17:56:56.981Z",
+  "updatedAt": "2026-07-31T17:56:56.987Z",
+  "lessonCode": "L03",
+  "sequence": 3,
+  "legacyLessonId": "L3.3",
+  "keywords": [
+    "مواطنة",
+    "حق",
+    "واجب"
+  ],
+  "_deduped": true
+}

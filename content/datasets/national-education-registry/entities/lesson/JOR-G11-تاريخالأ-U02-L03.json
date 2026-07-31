@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-G11-تاريخالأ-U02-L03",
+  "kind": "lesson",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "القضايا التاريخية — تطبيق ومثال",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G11-تاريخالأ-U02",
+  "relationships": {
+    "unitId": "JOR-G11-تاريخالأ-U02",
+    "bookId": "JOR-BOOK-000117",
+    "subjectId": "JOR-G11-تاريخالأ",
+    "gradeId": "JOR-G11",
+    "belongsTo": "JOR-G11-تاريخالأ-U02"
+  },
+  "createdAt": "2026-07-31T17:56:57.301Z",
+  "updatedAt": "2026-07-31T17:56:57.301Z",
+  "lessonCode": "L03",
+  "sequence": 3,
+  "legacyLessonId": "L2.3",
+  "keywords": [
+    "حدث",
+    "مصدر",
+    "سبب"
+  ]
+}

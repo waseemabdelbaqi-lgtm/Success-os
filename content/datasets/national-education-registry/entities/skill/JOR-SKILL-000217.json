@@ -1,0 +1,31 @@
+{
+  "globalId": "JOR-SKILL-000217",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«التفاعلات الكيميائية — بناء المهارة» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-000444",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-000444",
+      "JOR-OUTCOME-000445",
+      "JOR-OUTCOME-000446",
+      "JOR-OUTCOME-004508",
+      "JOR-OUTCOME-004509",
+      "JOR-OUTCOME-004510",
+      "JOR-OUTCOME-005164",
+      "JOR-OUTCOME-005165",
+      "JOR-OUTCOME-005166"
+    ],
+    "lessonIds": [
+      "JOR-G10-SCI-U03-L02",
+      "JOR-G08-SCI-U03-L02",
+      "JOR-G09-SCI-U03-L02"
+    ],
+    "belongsTo": "JOR-OUTCOME-000444"
+  },
+  "createdAt": "2026-07-31T17:56:56.703Z",
+  "updatedAt": "2026-07-31T17:56:57.200Z"
+}

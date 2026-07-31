@@ -1,0 +1,31 @@
+{
+  "globalId": "JOR-SKILL-000636",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«القوى والحركة — بناء المهارة» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-002720",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-002720",
+      "JOR-OUTCOME-002721",
+      "JOR-OUTCOME-002722",
+      "JOR-OUTCOME-003280",
+      "JOR-OUTCOME-003281",
+      "JOR-OUTCOME-003282",
+      "JOR-OUTCOME-003840",
+      "JOR-OUTCOME-003841",
+      "JOR-OUTCOME-003842"
+    ],
+    "lessonIds": [
+      "JOR-G05-SCI-U02-L02",
+      "JOR-G06-SCI-U02-L02",
+      "JOR-G07-SCI-U02-L02"
+    ],
+    "belongsTo": "JOR-OUTCOME-002720"
+  },
+  "createdAt": "2026-07-31T17:56:56.865Z",
+  "updatedAt": "2026-07-31T17:56:57.009Z"
+}

@@ -1,0 +1,21 @@
+{
+  "globalId": "JOR-G01-ARAB-U03",
+  "kind": "unit",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "القواعد الأساسية",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-BOOK-000021",
+  "relationships": {
+    "bookId": "JOR-BOOK-000021",
+    "subjectId": "JOR-G01-ARAB",
+    "gradeId": "JOR-G01",
+    "belongsTo": "JOR-BOOK-000021"
+  },
+  "createdAt": "2026-07-31T17:56:56.735Z",
+  "updatedAt": "2026-07-31T17:56:56.735Z",
+  "unitCode": "U03",
+  "sequence": 3,
+  "legacyUnitId": "U3"
+}

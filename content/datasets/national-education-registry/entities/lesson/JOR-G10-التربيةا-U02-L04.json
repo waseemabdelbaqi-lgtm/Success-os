@@ -1,0 +1,28 @@
+{
+  "globalId": "JOR-G10-التربيةا-U02-L04",
+  "kind": "lesson",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "المشاركة المدنية — تقويم وتعزيز",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G10-التربيةا-U02",
+  "relationships": {
+    "unitId": "JOR-G10-التربيةا-U02",
+    "bookId": "JOR-BOOK-000004",
+    "subjectId": "JOR-G10-التربيةا",
+    "gradeId": "JOR-G10",
+    "belongsTo": "JOR-G10-التربيةا-U02"
+  },
+  "createdAt": "2026-07-31T17:56:56.689Z",
+  "updatedAt": "2026-07-31T17:56:56.691Z",
+  "lessonCode": "L04",
+  "sequence": 4,
+  "legacyLessonId": "L2.4",
+  "keywords": [
+    "مواطنة",
+    "حق",
+    "واجب"
+  ],
+  "_deduped": true
+}

@@ -1,0 +1,70 @@
+{
+  "schema": "success-os.jordan-national-grade-knowledge.v1",
+  "phase": "JO-01",
+  "grade": "الصف 7",
+  "officialCatalogUrl": "https://www.nccd.gov.jo/ar/pages/TextBooksGrade/74",
+  "catalogueStatus": "official-nccd-url-national-profile-aligned",
+  "subjects": [
+    {
+      "subject": "اللغة العربية",
+      "stage": "التعليم الأساسي",
+      "verificationPercent": 97.9
+    },
+    {
+      "subject": "اللغة الإنجليزية",
+      "stage": "التعليم الأساسي",
+      "verificationPercent": 97.9
+    },
+    {
+      "subject": "الرياضيات",
+      "stage": "التعليم الأساسي",
+      "verificationPercent": 97.9
+    },
+    {
+      "subject": "العلوم",
+      "stage": "التعليم الأساسي",
+      "verificationPercent": 97.9
+    },
+    {
+      "subject": "التربية الإسلامية",
+      "stage": "التعليم الأساسي",
+      "verificationPercent": 97.9
+    },
+    {
+      "subject": "الدراسات الاجتماعية",
+      "stage": "التعليم الأساسي",
+      "verificationPercent": 97.9
+    },
+    {
+      "subject": "التربية الوطنية والمدنية",
+      "stage": "التعليم الأساسي",
+      "verificationPercent": 97.9
+    },
+    {
+      "subject": "المهارات الرقمية",
+      "stage": "التعليم الأساسي",
+      "verificationPercent": 97.9
+    },
+    {
+      "subject": "التربية المهنية",
+      "stage": "التعليم الأساسي",
+      "verificationPercent": 97.9
+    },
+    {
+      "subject": "الثقافة المالية",
+      "stage": "التعليم الأساسي",
+      "verificationPercent": 97.9
+    },
+    {
+      "subject": "الفنون",
+      "stage": "التعليم الأساسي",
+      "verificationPercent": 97.9
+    },
+    {
+      "subject": "التربية الرياضية",
+      "stage": "التعليم الأساسي",
+      "verificationPercent": 97.9
+    }
+  ],
+  "builtAt": "2026-07-31T17:55:35.495Z"
+}

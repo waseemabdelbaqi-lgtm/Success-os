@@ -1,0 +1,31 @@
+{
+  "globalId": "JOR-SKILL-000515",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«الألعاب الجماعية — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-002439",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-002439",
+      "JOR-OUTCOME-002440",
+      "JOR-OUTCOME-002441",
+      "JOR-OUTCOME-002999",
+      "JOR-OUTCOME-003000",
+      "JOR-OUTCOME-003001",
+      "JOR-OUTCOME-003559",
+      "JOR-OUTCOME-003560",
+      "JOR-OUTCOME-003561"
+    ],
+    "lessonIds": [
+      "JOR-G05-PE-U01-L03",
+      "JOR-G06-PE-U01-L03",
+      "JOR-G07-PE-U01-L03"
+    ],
+    "belongsTo": "JOR-OUTCOME-002439"
+  },
+  "createdAt": "2026-07-31T17:56:56.839Z",
+  "updatedAt": "2026-07-31T17:56:56.973Z"
+}

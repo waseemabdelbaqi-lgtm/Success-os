@@ -1,0 +1,35 @@
+{
+  "globalId": "JOR-SKILL-000417",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«الكائنات الحية — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-000906",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-000906",
+      "JOR-OUTCOME-000907",
+      "JOR-OUTCOME-000908",
+      "JOR-OUTCOME-001338",
+      "JOR-OUTCOME-001339",
+      "JOR-OUTCOME-001340",
+      "JOR-OUTCOME-001770",
+      "JOR-OUTCOME-001771",
+      "JOR-OUTCOME-001772",
+      "JOR-OUTCOME-002202",
+      "JOR-OUTCOME-002203",
+      "JOR-OUTCOME-002204"
+    ],
+    "lessonIds": [
+      "JOR-G01-SCI-U01-L04",
+      "JOR-G02-SCI-U01-L04",
+      "JOR-G03-SCI-U01-L04",
+      "JOR-G04-SCI-U01-L04"
+    ],
+    "belongsTo": "JOR-OUTCOME-000906"
+  },
+  "createdAt": "2026-07-31T17:56:56.727Z",
+  "updatedAt": "2026-07-31T17:56:56.817Z"
+}

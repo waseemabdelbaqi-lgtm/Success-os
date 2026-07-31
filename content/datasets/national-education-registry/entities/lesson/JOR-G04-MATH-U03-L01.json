@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-G04-MATH-U03-L01",
+  "kind": "lesson",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "الهندسة والقياس — مقدمة ومفاهيم",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G04-MATH-U03",
+  "relationships": {
+    "unitId": "JOR-G04-MATH-U03",
+    "bookId": "JOR-BOOK-000045",
+    "subjectId": "JOR-G04-MATH",
+    "gradeId": "JOR-G04",
+    "belongsTo": "JOR-G04-MATH-U03"
+  },
+  "createdAt": "2026-07-31T17:56:56.814Z",
+  "updatedAt": "2026-07-31T17:56:56.814Z",
+  "lessonCode": "L01",
+  "sequence": 1,
+  "legacyLessonId": "L3.1",
+  "keywords": [
+    "عدد",
+    "عملية",
+    "نمط"
+  ]
+}

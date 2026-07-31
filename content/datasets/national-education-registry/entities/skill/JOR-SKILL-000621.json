@@ -1,0 +1,31 @@
+{
+  "globalId": "JOR-SKILL-000621",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«الهندسة والمساحة — بناء المهارة» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-002684",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-002684",
+      "JOR-OUTCOME-002685",
+      "JOR-OUTCOME-002686",
+      "JOR-OUTCOME-003244",
+      "JOR-OUTCOME-003245",
+      "JOR-OUTCOME-003246",
+      "JOR-OUTCOME-003804",
+      "JOR-OUTCOME-003805",
+      "JOR-OUTCOME-003806"
+    ],
+    "lessonIds": [
+      "JOR-G05-MATH-U03-L02",
+      "JOR-G06-MATH-U03-L02",
+      "JOR-G07-MATH-U03-L02"
+    ],
+    "belongsTo": "JOR-OUTCOME-002684"
+  },
+  "createdAt": "2026-07-31T17:56:56.861Z",
+  "updatedAt": "2026-07-31T17:56:57.004Z"
+}

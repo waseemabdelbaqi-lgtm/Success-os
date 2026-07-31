@@ -1,0 +1,19 @@
+{
+  "globalId": "JOR-BOOK-000072",
+  "kind": "book",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "Success OS — التربية الإسلامية",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G07-ISL",
+  "relationships": {
+    "subjectId": "JOR-G07-ISL",
+    "gradeId": "JOR-G07",
+    "belongsTo": "JOR-G07-ISL"
+  },
+  "createdAt": "2026-07-31T17:56:56.967Z",
+  "updatedAt": "2026-07-31T17:56:56.967Z",
+  "legacyBookId": "jordan__التعليم-الأساسي__jordan-national-curriculum__الصف-7__التربية-الإسلامية__ar",
+  "officialSource": "https://www.nccd.gov.jo/ar/pages/TextBooksGrade/74"
+}

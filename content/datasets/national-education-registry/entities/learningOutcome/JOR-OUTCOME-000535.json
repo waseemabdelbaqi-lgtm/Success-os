@@ -1,0 +1,18 @@
+{
+  "globalId": "JOR-OUTCOME-000535",
+  "kind": "learningOutcome",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«Grammar in Use — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G10-ENG-U02-L04",
+  "relationships": {
+    "lessonId": "JOR-G10-ENG-U02-L04",
+    "belongsTo": "JOR-G10-ENG-U02-L04"
+  },
+  "createdAt": "2026-07-31T17:56:56.709Z",
+  "updatedAt": "2026-07-31T17:56:56.709Z",
+  "text": "أن يطبّق مهارة مرتبطة بـ«Grammar in Use — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+  "sequence": 2
+}

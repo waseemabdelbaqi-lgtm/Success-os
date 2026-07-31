@@ -1,0 +1,20 @@
+{
+  "globalId": "JOR-G07-الثقافةا",
+  "kind": "subject",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "الثقافة المالية",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G07",
+  "relationships": {
+    "gradeId": "JOR-G07",
+    "educationalSystemId": "JOR-SYS-000001",
+    "countryId": "JOR",
+    "belongsTo": "JOR-G07"
+  },
+  "createdAt": "2026-07-31T17:56:56.989Z",
+  "updatedAt": "2026-07-31T17:56:56.989Z",
+  "subjectCode": "الثقافةا",
+  "gradeCode": "G07"
+}

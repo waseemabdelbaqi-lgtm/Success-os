@@ -1,0 +1,18 @@
+{
+  "globalId": "JOR-OUTCOME-004446",
+  "kind": "learningOutcome",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«النسب والتناسب — مقدمة ومفاهيم» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G08-MATH-U02-L01",
+  "relationships": {
+    "lessonId": "JOR-G08-MATH-U02-L01",
+    "belongsTo": "JOR-G08-MATH-U02-L01"
+  },
+  "createdAt": "2026-07-31T17:56:57.090Z",
+  "updatedAt": "2026-07-31T17:56:57.090Z",
+  "text": "أن يطبّق مهارة مرتبطة بـ«النسب والتناسب — مقدمة ومفاهيم» بخطوات واضحة قابلة للتحقق.",
+  "sequence": 2
+}

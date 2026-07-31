@@ -1,0 +1,19 @@
+{
+  "globalId": "JOR-BOOK-000100",
+  "kind": "book",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "Success OS — الثقافة المالية",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G09-الثقافةا",
+  "relationships": {
+    "subjectId": "JOR-G09-الثقافةا",
+    "gradeId": "JOR-G09",
+    "belongsTo": "JOR-G09-الثقافةا"
+  },
+  "createdAt": "2026-07-31T17:56:57.168Z",
+  "updatedAt": "2026-07-31T17:56:57.168Z",
+  "legacyBookId": "jordan__التعليم-الأساسي__jordan-national-curriculum__الصف-9__الثقافة-المالية__ar",
+  "officialSource": "https://www.nccd.gov.jo/ar/pages/TextBooksGrade/76"
+}

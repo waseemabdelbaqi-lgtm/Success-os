@@ -1,0 +1,21 @@
+{
+  "globalId": "JOR-G02-ISL-U02",
+  "kind": "unit",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "العبادات الأساسية",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-BOOK-000023",
+  "relationships": {
+    "bookId": "JOR-BOOK-000023",
+    "subjectId": "JOR-G02-ISL",
+    "gradeId": "JOR-G02",
+    "belongsTo": "JOR-BOOK-000023"
+  },
+  "createdAt": "2026-07-31T17:56:56.741Z",
+  "updatedAt": "2026-07-31T17:56:56.741Z",
+  "unitCode": "U02",
+  "sequence": 2,
+  "legacyUnitId": "U2"
+}

@@ -1,0 +1,21 @@
+{
+  "globalId": "JOR-G12-ARAB-U02",
+  "kind": "unit",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "النحو والبلاغة",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-BOOK-000124",
+  "relationships": {
+    "bookId": "JOR-BOOK-000124",
+    "subjectId": "JOR-G12-ARAB",
+    "gradeId": "JOR-G12",
+    "belongsTo": "JOR-BOOK-000124"
+  },
+  "createdAt": "2026-07-31T17:56:57.363Z",
+  "updatedAt": "2026-07-31T17:56:57.363Z",
+  "unitCode": "U02",
+  "sequence": 2,
+  "legacyUnitId": "U2"
+}

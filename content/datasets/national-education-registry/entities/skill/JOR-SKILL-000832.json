@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-SKILL-000832",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«الكيمياء الحياتية والبيئية — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-005611",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-005611",
+      "JOR-OUTCOME-005612",
+      "JOR-OUTCOME-005613",
+      "JOR-OUTCOME-006075",
+      "JOR-OUTCOME-006076",
+      "JOR-OUTCOME-006077"
+    ],
+    "lessonIds": [
+      "JOR-G11-الكيمياء-U04-L03",
+      "JOR-G12-الكيمياء-U04-L03"
+    ],
+    "belongsTo": "JOR-OUTCOME-005611"
+  },
+  "createdAt": "2026-07-31T17:56:57.273Z",
+  "updatedAt": "2026-07-31T17:56:57.351Z"
+}

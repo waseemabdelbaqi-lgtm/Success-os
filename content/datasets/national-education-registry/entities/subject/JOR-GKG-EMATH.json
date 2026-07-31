@@ -1,0 +1,20 @@
+{
+  "globalId": "JOR-GKG-EMATH",
+  "kind": "subject",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "الرياضيات المبكرة",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-GKG",
+  "relationships": {
+    "gradeId": "JOR-GKG",
+    "educationalSystemId": "JOR-SYS-000001",
+    "countryId": "JOR",
+    "belongsTo": "JOR-GKG"
+  },
+  "createdAt": "2026-07-31T17:56:57.555Z",
+  "updatedAt": "2026-07-31T17:56:57.555Z",
+  "subjectCode": "EMATH",
+  "gradeCode": "GKG"
+}

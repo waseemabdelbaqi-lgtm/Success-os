@@ -1,0 +1,35 @@
+{
+  "globalId": "JOR-SKILL-000332",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«قصص قرآنية ونبوية — مقدمة ومفاهيم» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-000693",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-000693",
+      "JOR-OUTCOME-000694",
+      "JOR-OUTCOME-000695",
+      "JOR-OUTCOME-001125",
+      "JOR-OUTCOME-001126",
+      "JOR-OUTCOME-001127",
+      "JOR-OUTCOME-001557",
+      "JOR-OUTCOME-001558",
+      "JOR-OUTCOME-001559",
+      "JOR-OUTCOME-001989",
+      "JOR-OUTCOME-001990",
+      "JOR-OUTCOME-001991"
+    ],
+    "lessonIds": [
+      "JOR-G01-ISL-U04-L01",
+      "JOR-G02-ISL-U04-L01",
+      "JOR-G03-ISL-U04-L01",
+      "JOR-G04-ISL-U04-L01"
+    ],
+    "belongsTo": "JOR-OUTCOME-000693"
+  },
+  "createdAt": "2026-07-31T17:56:56.716Z",
+  "updatedAt": "2026-07-31T17:56:56.800Z"
+}

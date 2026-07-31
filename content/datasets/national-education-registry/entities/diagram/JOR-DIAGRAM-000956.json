@@ -1,0 +1,16 @@
+{
+  "globalId": "JOR-DIAGRAM-000956",
+  "kind": "diagram",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "مخطط تعليمي لوحدة Reading Comprehension",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G05-ENG-U03-L04",
+  "relationships": {
+    "lessonId": "JOR-G05-ENG-U03-L04",
+    "belongsTo": "JOR-G05-ENG-U03-L04"
+  },
+  "createdAt": "2026-07-31T17:56:56.878Z",
+  "updatedAt": "2026-07-31T17:56:56.878Z"
+}

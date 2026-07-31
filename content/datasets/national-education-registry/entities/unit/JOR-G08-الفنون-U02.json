@@ -1,0 +1,21 @@
+{
+  "globalId": "JOR-G08-الفنون-U02",
+  "kind": "unit",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "الأداء",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-BOOK-000092",
+  "relationships": {
+    "bookId": "JOR-BOOK-000092",
+    "subjectId": "JOR-G08-الفنون",
+    "gradeId": "JOR-G08",
+    "belongsTo": "JOR-BOOK-000092"
+  },
+  "createdAt": "2026-07-31T17:56:57.104Z",
+  "updatedAt": "2026-07-31T17:56:57.104Z",
+  "unitCode": "U02",
+  "sequence": 2,
+  "legacyUnitId": "U2"
+}

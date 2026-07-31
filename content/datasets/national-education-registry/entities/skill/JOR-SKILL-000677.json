@@ -1,0 +1,31 @@
+{
+  "globalId": "JOR-SKILL-000677",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«Grammar Foundations — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-002819",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-002819",
+      "JOR-OUTCOME-002820",
+      "JOR-OUTCOME-002821",
+      "JOR-OUTCOME-003379",
+      "JOR-OUTCOME-003380",
+      "JOR-OUTCOME-003381",
+      "JOR-OUTCOME-003939",
+      "JOR-OUTCOME-003940",
+      "JOR-OUTCOME-003941"
+    ],
+    "lessonIds": [
+      "JOR-G05-ENG-U02-L03",
+      "JOR-G06-ENG-U02-L03",
+      "JOR-G07-ENG-U02-L03"
+    ],
+    "belongsTo": "JOR-OUTCOME-002819"
+  },
+  "createdAt": "2026-07-31T17:56:56.876Z",
+  "updatedAt": "2026-07-31T17:56:57.022Z"
+}

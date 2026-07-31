@@ -1,0 +1,31 @@
+{
+  "globalId": "JOR-SKILL-000007",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«تاريخ الأردن الحديث — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-000007",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-000007",
+      "JOR-OUTCOME-000008",
+      "JOR-OUTCOME-000009",
+      "JOR-OUTCOME-004071",
+      "JOR-OUTCOME-004072",
+      "JOR-OUTCOME-004073",
+      "JOR-OUTCOME-004727",
+      "JOR-OUTCOME-004728",
+      "JOR-OUTCOME-004729"
+    ],
+    "lessonIds": [
+      "JOR-G10-التاريخ-U01-L03",
+      "JOR-G08-التاريخ-U01-L03",
+      "JOR-G09-التاريخ-U01-L03"
+    ],
+    "belongsTo": "JOR-OUTCOME-000007"
+  },
+  "createdAt": "2026-07-31T17:56:56.682Z",
+  "updatedAt": "2026-07-31T17:56:57.132Z"
+}

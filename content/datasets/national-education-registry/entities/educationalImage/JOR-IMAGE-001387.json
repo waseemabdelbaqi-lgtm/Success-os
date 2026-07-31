@@ -1,0 +1,17 @@
+{
+  "globalId": "JOR-IMAGE-001387",
+  "kind": "educationalImage",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "مخطط تعليمي لوحدة العلاقات الإقليمية",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G08-التاريخ-U03-L03",
+  "relationships": {
+    "lessonId": "JOR-G08-التاريخ-U03-L03",
+    "belongsTo": "JOR-G08-التاريخ-U03-L03"
+  },
+  "createdAt": "2026-07-31T17:56:57.042Z",
+  "updatedAt": "2026-07-31T17:56:57.042Z",
+  "src": null
+}

@@ -1,0 +1,31 @@
+{
+  "globalId": "JOR-SKILL-000194",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«الهندسة الإقليدية — بناء المهارة» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-000396",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-000396",
+      "JOR-OUTCOME-000397",
+      "JOR-OUTCOME-000398",
+      "JOR-OUTCOME-004460",
+      "JOR-OUTCOME-004461",
+      "JOR-OUTCOME-004462",
+      "JOR-OUTCOME-005116",
+      "JOR-OUTCOME-005117",
+      "JOR-OUTCOME-005118"
+    ],
+    "lessonIds": [
+      "JOR-G10-MATH-U03-L02",
+      "JOR-G08-MATH-U03-L02",
+      "JOR-G09-MATH-U03-L02"
+    ],
+    "belongsTo": "JOR-OUTCOME-000396"
+  },
+  "createdAt": "2026-07-31T17:56:56.701Z",
+  "updatedAt": "2026-07-31T17:56:57.193Z"
+}

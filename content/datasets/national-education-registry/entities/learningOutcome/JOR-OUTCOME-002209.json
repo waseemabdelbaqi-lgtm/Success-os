@@ -1,0 +1,18 @@
+{
+  "globalId": "JOR-OUTCOME-002209",
+  "kind": "learningOutcome",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«المادة والطاقة — بناء المهارة» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G04-SCI-U02-L02",
+  "relationships": {
+    "lessonId": "JOR-G04-SCI-U02-L02",
+    "belongsTo": "JOR-G04-SCI-U02-L02"
+  },
+  "createdAt": "2026-07-31T17:56:56.817Z",
+  "updatedAt": "2026-07-31T17:56:56.817Z",
+  "text": "أن يطبّق مهارة مرتبطة بـ«المادة والطاقة — بناء المهارة» بخطوات واضحة قابلة للتحقق.",
+  "sequence": 2
+}

@@ -1,0 +1,23 @@
+{
+  "globalId": "JOR-SKILL-001058",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«قصص قصيرة — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-007138",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-007138",
+      "JOR-OUTCOME-007139",
+      "JOR-OUTCOME-007140"
+    ],
+    "lessonIds": [
+      "JOR-GKG-اللغةوال-U03-L04"
+    ],
+    "belongsTo": "JOR-OUTCOME-007138"
+  },
+  "createdAt": "2026-07-31T17:56:57.587Z",
+  "updatedAt": "2026-07-31T17:56:57.587Z"
+}

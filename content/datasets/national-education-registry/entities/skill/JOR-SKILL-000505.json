@@ -1,0 +1,31 @@
+{
+  "globalId": "JOR-SKILL-000505",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«السيرة النبوية — بناء المهارة» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-002412",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-002412",
+      "JOR-OUTCOME-002413",
+      "JOR-OUTCOME-002414",
+      "JOR-OUTCOME-002972",
+      "JOR-OUTCOME-002973",
+      "JOR-OUTCOME-002974",
+      "JOR-OUTCOME-003532",
+      "JOR-OUTCOME-003533",
+      "JOR-OUTCOME-003534"
+    ],
+    "lessonIds": [
+      "JOR-G05-ISL-U03-L02",
+      "JOR-G06-ISL-U03-L02",
+      "JOR-G07-ISL-U03-L02"
+    ],
+    "belongsTo": "JOR-OUTCOME-002412"
+  },
+  "createdAt": "2026-07-31T17:56:56.836Z",
+  "updatedAt": "2026-07-31T17:56:56.970Z"
+}

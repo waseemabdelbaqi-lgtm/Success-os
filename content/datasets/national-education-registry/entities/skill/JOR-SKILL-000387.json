@@ -1,0 +1,35 @@
+{
+  "globalId": "JOR-SKILL-000387",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«المهن والخدمات — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-000834",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-000834",
+      "JOR-OUTCOME-000835",
+      "JOR-OUTCOME-000836",
+      "JOR-OUTCOME-001266",
+      "JOR-OUTCOME-001267",
+      "JOR-OUTCOME-001268",
+      "JOR-OUTCOME-001698",
+      "JOR-OUTCOME-001699",
+      "JOR-OUTCOME-001700",
+      "JOR-OUTCOME-002130",
+      "JOR-OUTCOME-002131",
+      "JOR-OUTCOME-002132"
+    ],
+    "lessonIds": [
+      "JOR-G01-SOC-U03-L04",
+      "JOR-G02-SOC-U03-L04",
+      "JOR-G03-SOC-U03-L04",
+      "JOR-G04-SOC-U03-L04"
+    ],
+    "belongsTo": "JOR-OUTCOME-000834"
+  },
+  "createdAt": "2026-07-31T17:56:56.724Z",
+  "updatedAt": "2026-07-31T17:56:56.811Z"
+}

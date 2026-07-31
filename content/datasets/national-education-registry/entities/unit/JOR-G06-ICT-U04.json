@@ -1,0 +1,21 @@
+{
+  "globalId": "JOR-G06-ICT-U04",
+  "kind": "unit",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "مقدمة البرمجة",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-BOOK-000071",
+  "relationships": {
+    "bookId": "JOR-BOOK-000071",
+    "subjectId": "JOR-G06-ICT",
+    "gradeId": "JOR-G06",
+    "belongsTo": "JOR-BOOK-000071"
+  },
+  "createdAt": "2026-07-31T17:56:56.965Z",
+  "updatedAt": "2026-07-31T17:56:56.965Z",
+  "unitCode": "U04",
+  "sequence": 4,
+  "legacyUnitId": "U4"
+}

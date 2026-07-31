@@ -1,0 +1,31 @@
+{
+  "globalId": "JOR-SKILL-000062",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«الروح الرياضية — بناء المهارة» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-000124",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-000124",
+      "JOR-OUTCOME-000125",
+      "JOR-OUTCOME-000126",
+      "JOR-OUTCOME-004188",
+      "JOR-OUTCOME-004189",
+      "JOR-OUTCOME-004190",
+      "JOR-OUTCOME-004844",
+      "JOR-OUTCOME-004845",
+      "JOR-OUTCOME-004846"
+    ],
+    "lessonIds": [
+      "JOR-G10-PE-U03-L02",
+      "JOR-G08-PE-U03-L02",
+      "JOR-G09-PE-U03-L02"
+    ],
+    "belongsTo": "JOR-OUTCOME-000124"
+  },
+  "createdAt": "2026-07-31T17:56:56.687Z",
+  "updatedAt": "2026-07-31T17:56:57.151Z"
+}

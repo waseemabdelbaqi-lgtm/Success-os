@@ -1,0 +1,31 @@
+{
+  "globalId": "JOR-SKILL-000109",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«سيادة القانون — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-000215",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-000215",
+      "JOR-OUTCOME-000216",
+      "JOR-OUTCOME-000180",
+      "JOR-OUTCOME-004279",
+      "JOR-OUTCOME-004280",
+      "JOR-OUTCOME-004244",
+      "JOR-OUTCOME-004935",
+      "JOR-OUTCOME-004936",
+      "JOR-OUTCOME-004900"
+    ],
+    "lessonIds": [
+      "JOR-G10-التربيةا-U03-L04",
+      "JOR-G08-التربيةا-U03-L04",
+      "JOR-G09-التربيةا-U03-L04"
+    ],
+    "belongsTo": "JOR-OUTCOME-000215"
+  },
+  "createdAt": "2026-07-31T17:56:56.691Z",
+  "updatedAt": "2026-07-31T17:56:57.165Z"
+}

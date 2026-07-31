@@ -1,0 +1,31 @@
+{
+  "globalId": "JOR-SKILL-000304",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«شبكات وإنترنت — بناء المهارة» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-000624",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-000624",
+      "JOR-OUTCOME-000625",
+      "JOR-OUTCOME-000626",
+      "JOR-OUTCOME-004688",
+      "JOR-OUTCOME-004689",
+      "JOR-OUTCOME-004690",
+      "JOR-OUTCOME-005344",
+      "JOR-OUTCOME-005345",
+      "JOR-OUTCOME-005346"
+    ],
+    "lessonIds": [
+      "JOR-G10-ICT-U02-L02",
+      "JOR-G08-ICT-U02-L02",
+      "JOR-G09-ICT-U02-L02"
+    ],
+    "belongsTo": "JOR-OUTCOME-000624"
+  },
+  "createdAt": "2026-07-31T17:56:56.713Z",
+  "updatedAt": "2026-07-31T17:56:57.230Z"
+}

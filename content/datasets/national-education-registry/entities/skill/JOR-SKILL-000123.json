@@ -1,0 +1,31 @@
+{
+  "globalId": "JOR-SKILL-000123",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«المصارف المبسطة — مقدمة ومفاهيم» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-000237",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-000237",
+      "JOR-OUTCOME-000238",
+      "JOR-OUTCOME-000239",
+      "JOR-OUTCOME-004301",
+      "JOR-OUTCOME-004302",
+      "JOR-OUTCOME-004303",
+      "JOR-OUTCOME-004957",
+      "JOR-OUTCOME-004958",
+      "JOR-OUTCOME-004959"
+    ],
+    "lessonIds": [
+      "JOR-G10-الثقافةا-U02-L01",
+      "JOR-G08-الثقافةا-U02-L01",
+      "JOR-G09-الثقافةا-U02-L01"
+    ],
+    "belongsTo": "JOR-OUTCOME-000237"
+  },
+  "createdAt": "2026-07-31T17:56:56.695Z",
+  "updatedAt": "2026-07-31T17:56:57.170Z"
+}

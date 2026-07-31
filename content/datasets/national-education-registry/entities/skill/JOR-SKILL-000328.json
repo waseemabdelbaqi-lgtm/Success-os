@@ -1,0 +1,35 @@
+{
+  "globalId": "JOR-SKILL-000328",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«الأخلاق والآداب — بناء المهارة» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-000684",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-000684",
+      "JOR-OUTCOME-000685",
+      "JOR-OUTCOME-000686",
+      "JOR-OUTCOME-001116",
+      "JOR-OUTCOME-001117",
+      "JOR-OUTCOME-001118",
+      "JOR-OUTCOME-001548",
+      "JOR-OUTCOME-001549",
+      "JOR-OUTCOME-001550",
+      "JOR-OUTCOME-001980",
+      "JOR-OUTCOME-001981",
+      "JOR-OUTCOME-001982"
+    ],
+    "lessonIds": [
+      "JOR-G01-ISL-U03-L02",
+      "JOR-G02-ISL-U03-L02",
+      "JOR-G03-ISL-U03-L02",
+      "JOR-G04-ISL-U03-L02"
+    ],
+    "belongsTo": "JOR-OUTCOME-000684"
+  },
+  "createdAt": "2026-07-31T17:56:56.715Z",
+  "updatedAt": "2026-07-31T17:56:56.799Z"
+}

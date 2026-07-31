@@ -1,0 +1,16 @@
+{
+  "globalId": "JOR-DIAGRAM-002389",
+  "kind": "diagram",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "مخطط تعليمي لوحدة الحواس والملاحظة",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-GKG-SCI-U02-L01",
+  "relationships": {
+    "lessonId": "JOR-GKG-SCI-U02-L01",
+    "belongsTo": "JOR-GKG-SCI-U02-L01"
+  },
+  "createdAt": "2026-07-31T17:56:57.570Z",
+  "updatedAt": "2026-07-31T17:56:57.570Z"
+}

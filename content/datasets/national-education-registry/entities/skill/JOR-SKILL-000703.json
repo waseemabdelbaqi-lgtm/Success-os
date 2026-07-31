@@ -1,0 +1,31 @@
+{
+  "globalId": "JOR-SKILL-000703",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«البلاغة المبسطة — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-002882",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-002882",
+      "JOR-OUTCOME-002883",
+      "JOR-OUTCOME-002884",
+      "JOR-OUTCOME-003442",
+      "JOR-OUTCOME-003443",
+      "JOR-OUTCOME-003444",
+      "JOR-OUTCOME-004002",
+      "JOR-OUTCOME-004003",
+      "JOR-OUTCOME-004004"
+    ],
+    "lessonIds": [
+      "JOR-G05-ARAB-U03-L04",
+      "JOR-G06-ARAB-U03-L04",
+      "JOR-G07-ARAB-U03-L04"
+    ],
+    "belongsTo": "JOR-OUTCOME-002882"
+  },
+  "createdAt": "2026-07-31T17:56:56.883Z",
+  "updatedAt": "2026-07-31T17:56:57.030Z"
+}

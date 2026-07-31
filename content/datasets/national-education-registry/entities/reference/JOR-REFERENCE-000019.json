@@ -1,0 +1,21 @@
+{
+  "globalId": "JOR-REFERENCE-000019",
+  "kind": "reference",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "CK-12 Foundation — Mathematics Concept Verification",
+  "language": "en",
+  "status": "active",
+  "parentId": "JOR-SYS-000001",
+  "relationships": {
+    "educationalSystemId": "JOR-SYS-000001",
+    "lessonIds": [],
+    "belongsTo": "JOR-SYS-000001"
+  },
+  "createdAt": "2026-07-31T17:56:57.599Z",
+  "updatedAt": "2026-07-31T17:56:57.599Z",
+  "url": "https://www.ck12.org",
+  "publisher": "CK-12 Foundation",
+  "category": "Mathematical References",
+  "legacySourceId": "jo-ref-ck12-math"
+}

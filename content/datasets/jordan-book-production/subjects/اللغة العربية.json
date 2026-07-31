@@ -1,0 +1,22 @@
+{
+  "subject": "اللغة العربية",
+  "totalGrades": 12,
+  "published": 12,
+  "pending": 1,
+  "complete": false,
+  "bookIds": [
+    "jordan__التعليم-الأساسي__jordan-national-curriculum__الصف-1__اللغة-العربية__ar",
+    "jordan__التعليم-الأساسي__jordan-national-curriculum__الصف-2__اللغة-العربية__ar",
+    "jordan__التعليم-الأساسي__jordan-national-curriculum__الصف-3__اللغة-العربية__ar",
+    "jordan__التعليم-الأساسي__jordan-national-curriculum__الصف-4__اللغة-العربية__ar",
+    "jordan__التعليم-الأساسي__jordan-national-curriculum__الصف-5__اللغة-العربية__ar",
+    "jordan__التعليم-الأساسي__jordan-national-curriculum__الصف-6__اللغة-العربية__ar",
+    "jordan__التعليم-الأساسي__jordan-national-curriculum__الصف-7__اللغة-العربية__ar",
+    "jordan__التعليم-الأساسي__jordan-national-curriculum__الصف-8__اللغة-العربية__ar",
+    "jordan__التعليم-الأساسي__jordan-national-curriculum__الصف-9__اللغة-العربية__ar",
+    "jordan__التعليم-الأساسي__jordan-national-curriculum__الصف-10__اللغة-العربية__ar",
+    "jordan__التعليم-الثانوي-المسار-الأكاديمي__jordan-national-curriculum__الصف-11__اللغة-العربية__ar",
+    "jordan__التعليم-الثانوي-المسار-الأكاديمي__jordan-national-curriculum__الصف-12__اللغة-العربية__ar"
+  ],
+  "updatedAt": "2026-07-31T17:55:42.668Z"
+}

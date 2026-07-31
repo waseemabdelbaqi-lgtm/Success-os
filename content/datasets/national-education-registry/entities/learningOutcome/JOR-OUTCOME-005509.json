@@ -1,0 +1,18 @@
+{
+  "globalId": "JOR-OUTCOME-005509",
+  "kind": "learningOutcome",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يتعرف المتعلم مفهومًا محوريًا في العلوم الحياتية ضمن قضايا علمية معاصرة بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 11.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G11-SCI-U04-L01",
+  "relationships": {
+    "lessonId": "JOR-G11-SCI-U04-L01",
+    "belongsTo": "JOR-G11-SCI-U04-L01"
+  },
+  "createdAt": "2026-07-31T17:56:57.259Z",
+  "updatedAt": "2026-07-31T17:56:57.259Z",
+  "text": "أن يتعرف المتعلم مفهومًا محوريًا في العلوم الحياتية ضمن قضايا علمية معاصرة بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 11.",
+  "sequence": 1
+}

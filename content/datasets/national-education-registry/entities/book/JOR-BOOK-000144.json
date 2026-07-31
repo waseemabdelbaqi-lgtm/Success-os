@@ -1,0 +1,19 @@
+{
+  "globalId": "JOR-BOOK-000144",
+  "kind": "book",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "Success OS — العلوم والاستكشاف",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-GKG-SCI",
+  "relationships": {
+    "subjectId": "JOR-GKG-SCI",
+    "gradeId": "JOR-GKG",
+    "belongsTo": "JOR-GKG-SCI"
+  },
+  "createdAt": "2026-07-31T17:56:57.567Z",
+  "updatedAt": "2026-07-31T17:56:57.567Z",
+  "legacyBookId": "jordan__رياض-الأطفال__jordan-national-curriculum__رياض-الأطفال__العلوم-والاستكشاف__ar",
+  "officialSource": "https://moe.gov.jo/"
+}

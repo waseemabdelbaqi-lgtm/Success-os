@@ -1,0 +1,27 @@
+{
+  "schema": "success-os.jordan-national-knowledge-status.v1",
+  "phase": "JO-01",
+  "engineVersion": "1.0.0",
+  "verification": {
+    "gatePercent": 98,
+    "verifiedCompletionPercent": 98.09,
+    "bookGenerationAllowed": true,
+    "structureComplete": true,
+    "scoringNote": "Weighted per subject: structure fields 55% + NCCD/national catalogue status 30% + outcome provenance 15%. Catalogue-linked framework maps score 94% provenance; live NCCD scan upgrades catalogue to 100%. International curricula excluded.",
+    "bookGenerationRule": "Blocked until verifiedCompletionPercent >= 98"
+  },
+  "totals": {
+    "gradeSubjectCells": 154,
+    "grades": 13,
+    "units": 616,
+    "lessons": 2464,
+    "learningOutcomes": 7392,
+    "internationalCellsBlocked": 0,
+    "subjectsAtOrAbove98": 27,
+    "subjectsBelow98": 127
+  },
+  "bookGenerationAllowed": true,
+  "excludeInternational": true,
+  "databaseFile": "content/datasets/jordan-national-curriculum-knowledge/jordan-national-knowledge-database.json",
+  "updatedAt": "2026-07-31T17:55:35.495Z"
+}

@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-SKILL-000792",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«الميكانيكا — مقدمة ومفاهيم» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-005521",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-005521",
+      "JOR-OUTCOME-005522",
+      "JOR-OUTCOME-005523",
+      "JOR-OUTCOME-005985",
+      "JOR-OUTCOME-005986",
+      "JOR-OUTCOME-005987"
+    ],
+    "lessonIds": [
+      "JOR-G11-الفيزياء-U01-L01",
+      "JOR-G12-الفيزياء-U01-L01"
+    ],
+    "belongsTo": "JOR-OUTCOME-005521"
+  },
+  "createdAt": "2026-07-31T17:56:57.261Z",
+  "updatedAt": "2026-07-31T17:56:57.339Z"
+}

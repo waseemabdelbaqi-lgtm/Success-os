@@ -1,0 +1,35 @@
+{
+  "globalId": "JOR-SKILL-000426",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«الأرض والفضاء — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-000927",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-000927",
+      "JOR-OUTCOME-000928",
+      "JOR-OUTCOME-000929",
+      "JOR-OUTCOME-001359",
+      "JOR-OUTCOME-001360",
+      "JOR-OUTCOME-001361",
+      "JOR-OUTCOME-001791",
+      "JOR-OUTCOME-001792",
+      "JOR-OUTCOME-001793",
+      "JOR-OUTCOME-002223",
+      "JOR-OUTCOME-002224",
+      "JOR-OUTCOME-002225"
+    ],
+    "lessonIds": [
+      "JOR-G01-SCI-U03-L03",
+      "JOR-G02-SCI-U03-L03",
+      "JOR-G03-SCI-U03-L03",
+      "JOR-G04-SCI-U03-L03"
+    ],
+    "belongsTo": "JOR-OUTCOME-000927"
+  },
+  "createdAt": "2026-07-31T17:56:56.728Z",
+  "updatedAt": "2026-07-31T17:56:56.819Z"
+}

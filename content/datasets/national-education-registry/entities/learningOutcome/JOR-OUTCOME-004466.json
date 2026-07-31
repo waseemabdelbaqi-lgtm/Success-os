@@ -1,0 +1,18 @@
+{
+  "globalId": "JOR-OUTCOME-004466",
+  "kind": "learningOutcome",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يتعرف المتعلم مفهومًا محوريًا في الرياضيات ضمن الهندسة الإقليدية بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 8.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G08-MATH-U03-L04",
+  "relationships": {
+    "lessonId": "JOR-G08-MATH-U03-L04",
+    "belongsTo": "JOR-G08-MATH-U03-L04"
+  },
+  "createdAt": "2026-07-31T17:56:57.093Z",
+  "updatedAt": "2026-07-31T17:56:57.093Z",
+  "text": "أن يتعرف المتعلم مفهومًا محوريًا في الرياضيات ضمن الهندسة الإقليدية بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 8.",
+  "sequence": 1
+}

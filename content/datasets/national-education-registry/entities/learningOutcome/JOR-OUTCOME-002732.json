@@ -1,0 +1,18 @@
+{
+  "globalId": "JOR-OUTCOME-002732",
+  "kind": "learningOutcome",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يتعرف المتعلم مفهومًا محوريًا في العلوم ضمن المواد والتغيرات بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 5.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G05-SCI-U03-L02",
+  "relationships": {
+    "lessonId": "JOR-G05-SCI-U03-L02",
+    "belongsTo": "JOR-G05-SCI-U03-L02"
+  },
+  "createdAt": "2026-07-31T17:56:56.866Z",
+  "updatedAt": "2026-07-31T17:56:56.866Z",
+  "text": "أن يتعرف المتعلم مفهومًا محوريًا في العلوم ضمن المواد والتغيرات بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 5.",
+  "sequence": 1
+}

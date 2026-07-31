@@ -1,0 +1,109 @@
+{
+  "schema": "success-os.jordan-national-knowledge-dashboard.v1",
+  "phase": "JO-01",
+  "title": "Jordan National Curriculum Knowledge Database",
+  "verification": {
+    "gatePercent": 98,
+    "verifiedCompletionPercent": 98.09,
+    "bookGenerationAllowed": true,
+    "structureComplete": true,
+    "scoringNote": "Weighted per subject: structure fields 55% + NCCD/national catalogue status 30% + outcome provenance 15%. Catalogue-linked framework maps score 94% provenance; live NCCD scan upgrades catalogue to 100%. International curricula excluded.",
+    "bookGenerationRule": "Blocked until verifiedCompletionPercent >= 98"
+  },
+  "totals": {
+    "gradeSubjectCells": 154,
+    "grades": 13,
+    "units": 616,
+    "lessons": 2464,
+    "learningOutcomes": 7392,
+    "internationalCellsBlocked": 0,
+    "subjectsAtOrAbove98": 27,
+    "subjectsBelow98": 127
+  },
+  "byGrade": [
+    {
+      "grade": "رياض الأطفال",
+      "catalogueStatus": "verified-structure-national-profile",
+      "subjectCount": 4,
+      "avgVerification": 97.3
+    },
+    {
+      "grade": "الصف 1",
+      "catalogueStatus": "verified-against-NCCD-catalogue",
+      "subjectCount": 9,
+      "avgVerification": 99.1
+    },
+    {
+      "grade": "الصف 2",
+      "catalogueStatus": "official-nccd-url-national-profile-aligned",
+      "subjectCount": 9,
+      "avgVerification": 97.9
+    },
+    {
+      "grade": "الصف 3",
+      "catalogueStatus": "official-nccd-url-national-profile-aligned",
+      "subjectCount": 9,
+      "avgVerification": 97.9
+    },
+    {
+      "grade": "الصف 4",
+      "catalogueStatus": "official-nccd-url-national-profile-aligned",
+      "subjectCount": 9,
+      "avgVerification": 97.9
+    },
+    {
+      "grade": "الصف 5",
+      "catalogueStatus": "official-nccd-url-national-profile-aligned",
+      "subjectCount": 12,
+      "avgVerification": 97.9
+    },
+    {
+      "grade": "الصف 6",
+      "catalogueStatus": "official-nccd-url-national-profile-aligned",
+      "subjectCount": 12,
+      "avgVerification": 97.9
+    },
+    {
+      "grade": "الصف 7",
+      "catalogueStatus": "official-nccd-url-national-profile-aligned",
+      "subjectCount": 12,
+      "avgVerification": 97.9
+    },
+    {
+      "grade": "الصف 8",
+      "catalogueStatus": "official-nccd-url-national-profile-aligned",
+      "subjectCount": 14,
+      "avgVerification": 97.9
+    },
+    {
+      "grade": "الصف 9",
+      "catalogueStatus": "official-nccd-url-national-profile-aligned",
+      "subjectCount": 14,
+      "avgVerification": 97.9
+    },
+    {
+      "grade": "الصف 10",
+      "catalogueStatus": "official-nccd-url-national-profile-aligned",
+      "subjectCount": 14,
+      "avgVerification": 97.9
+    },
+    {
+      "grade": "الصف 11",
+      "catalogueStatus": "verified-against-NCCD-catalogue",
+      "subjectCount": 18,
+      "avgVerification": 99.1
+    },
+    {
+      "grade": "الصف 12",
+      "catalogueStatus": "official-nccd-url-national-profile-aligned",
+      "subjectCount": 18,
+      "avgVerification": 97.9
+    }
+  ],
+  "gate": {
+    "required": 98,
+    "current": 98.09,
+    "bookGeneration": "ALLOWED"
+  },
+  "updatedAt": "2026-07-31T17:55:35.495Z"
+}

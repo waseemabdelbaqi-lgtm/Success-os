@@ -17,6 +17,7 @@ import { buildGrade1EcosystemDashboard as liveG1Dashboard } from './jordan-grade
 import { listLibraryBooks } from './library-store.js';
 import { isJordanNationalBookId } from '../../data/jordan-national-knowledge-sources.js';
 import { subjectCodeFromLabel } from '../../data/national-education-registry.js';
+import { knowledgeRoot } from './jordan-national-knowledge-engine.js';
 import {
   KG_VERSION,
   KG_NODE_KINDS,
@@ -87,9 +88,7 @@ function loadEcosystemPackage(subject, lessonId) {
 
 function knowledgePath(subject) {
   return path.join(
-    process.cwd(),
-    'library',
-    'jordan-national-curriculum-knowledge',
+    knowledgeRoot(),
     'subjects',
     `${fileKey(G1_GRADE)}__${fileKey(subject)}.json`,
   );

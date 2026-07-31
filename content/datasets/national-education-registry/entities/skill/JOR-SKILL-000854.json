@@ -1,0 +1,51 @@
+{
+  "globalId": "JOR-SKILL-000854",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يتعرف المتعلم مفهومًا محوريًا في اللغة العربية ضمن الأدب والنقد بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 11.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-005665",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-005665",
+      "JOR-OUTCOME-005666",
+      "JOR-OUTCOME-005667",
+      "JOR-OUTCOME-005668",
+      "JOR-OUTCOME-005669",
+      "JOR-OUTCOME-005670",
+      "JOR-OUTCOME-005671",
+      "JOR-OUTCOME-005672",
+      "JOR-OUTCOME-005673",
+      "JOR-OUTCOME-005674",
+      "JOR-OUTCOME-005675",
+      "JOR-OUTCOME-005676",
+      "JOR-OUTCOME-006129",
+      "JOR-OUTCOME-006130",
+      "JOR-OUTCOME-006131",
+      "JOR-OUTCOME-006132",
+      "JOR-OUTCOME-006133",
+      "JOR-OUTCOME-006134",
+      "JOR-OUTCOME-006135",
+      "JOR-OUTCOME-006136",
+      "JOR-OUTCOME-006137",
+      "JOR-OUTCOME-006138",
+      "JOR-OUTCOME-006139",
+      "JOR-OUTCOME-006140"
+    ],
+    "lessonIds": [
+      "JOR-G11-ARAB-U01-L01",
+      "JOR-G11-ARAB-U01-L02",
+      "JOR-G11-ARAB-U01-L03",
+      "JOR-G11-ARAB-U01-L04",
+      "JOR-G12-ARAB-U01-L01",
+      "JOR-G12-ARAB-U01-L02",
+      "JOR-G12-ARAB-U01-L03",
+      "JOR-G12-ARAB-U01-L04"
+    ],
+    "belongsTo": "JOR-OUTCOME-005665"
+  },
+  "createdAt": "2026-07-31T17:56:57.282Z",
+  "updatedAt": "2026-07-31T17:56:57.363Z"
+}

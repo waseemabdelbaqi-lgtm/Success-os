@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-G12-الهندسة-U01-L01",
+  "kind": "lesson",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أساسيات المسار — مقدمة ومفاهيم",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G12-الهندسة-U01",
+  "relationships": {
+    "unitId": "JOR-G12-الهندسة-U01",
+    "bookId": "JOR-BOOK-000141",
+    "subjectId": "JOR-G12-الهندسة",
+    "gradeId": "JOR-G12",
+    "belongsTo": "JOR-G12-الهندسة-U01"
+  },
+  "createdAt": "2026-07-31T17:56:57.533Z",
+  "updatedAt": "2026-07-31T17:56:57.533Z",
+  "lessonCode": "L01",
+  "sequence": 1,
+  "legacyLessonId": "L1.1",
+  "keywords": [
+    "معيار",
+    "أداة",
+    "عملية"
+  ]
+}

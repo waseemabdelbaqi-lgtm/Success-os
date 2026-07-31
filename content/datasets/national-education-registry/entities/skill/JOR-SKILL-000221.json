@@ -1,0 +1,31 @@
+{
+  "globalId": "JOR-SKILL-000221",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«الأرض والموارد — مقدمة ومفاهيم» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-000453",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-000453",
+      "JOR-OUTCOME-000454",
+      "JOR-OUTCOME-000455",
+      "JOR-OUTCOME-004517",
+      "JOR-OUTCOME-004518",
+      "JOR-OUTCOME-004519",
+      "JOR-OUTCOME-005173",
+      "JOR-OUTCOME-005174",
+      "JOR-OUTCOME-005175"
+    ],
+    "lessonIds": [
+      "JOR-G10-SCI-U04-L01",
+      "JOR-G08-SCI-U04-L01",
+      "JOR-G09-SCI-U04-L01"
+    ],
+    "belongsTo": "JOR-OUTCOME-000453"
+  },
+  "createdAt": "2026-07-31T17:56:56.703Z",
+  "updatedAt": "2026-07-31T17:56:57.202Z"
+}

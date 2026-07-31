@@ -1,0 +1,47 @@
+{
+  "sourceId": "jo-ref-nccd-teacher-guides",
+  "title": "NCCD Teacher Guides (via official NCCD portal)",
+  "publisher": "NCCD",
+  "organization": "National Center for Curriculum Development",
+  "country": "Jordan",
+  "educationalSystem": "Jordan National Curriculum",
+  "subject": "all",
+  "grade": "all",
+  "language": "ar",
+  "publicationYear": 2025,
+  "version": "2025-2026",
+  "officialUrl": "https://www.nccd.gov.jo",
+  "licenseType": "official-framework-reference",
+  "copyrightStatus": "all-rights-reserved-by-publisher-reference-only",
+  "verificationDate": "2026-07-31T17:54:29.642Z",
+  "reliabilityScore": 97,
+  "status": "verified",
+  "category": "Teacher Guides",
+  "copyBookText": false,
+  "note": "Index teacher-guide resources from NCCD catalogues — do not copy guide prose",
+  "history": [
+    {
+      "event": "registered",
+      "at": "2026-07-31T17:54:29.642Z",
+      "version": "2025-2026",
+      "note": "JO-05 seed registration"
+    },
+    {
+      "event": "rebuilt",
+      "at": "2026-07-31T17:55:32.918Z",
+      "version": "2025-2026"
+    },
+    {
+      "event": "rebuilt",
+      "at": "2026-07-31T17:55:35.796Z",
+      "version": "2025-2026"
+    }
+  ],
+  "validation": {
+    "ok": true,
+    "warnings": [
+      "SHARED_URL_WITH:jo-ref-nccd-portal"
+    ],
+    "validatedAt": "2026-07-31T17:55:35.796Z"
+  }
+}

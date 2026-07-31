@@ -1,0 +1,31 @@
+{
+  "globalId": "JOR-SKILL-000245",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«معارض ومشاريع — بناء المهارة» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-000504",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-000504",
+      "JOR-OUTCOME-000505",
+      "JOR-OUTCOME-000506",
+      "JOR-OUTCOME-004568",
+      "JOR-OUTCOME-004569",
+      "JOR-OUTCOME-004570",
+      "JOR-OUTCOME-005224",
+      "JOR-OUTCOME-005225",
+      "JOR-OUTCOME-005226"
+    ],
+    "lessonIds": [
+      "JOR-G10-الفنون-U04-L02",
+      "JOR-G08-الفنون-U04-L02",
+      "JOR-G09-الفنون-U04-L02"
+    ],
+    "belongsTo": "JOR-OUTCOME-000504"
+  },
+  "createdAt": "2026-07-31T17:56:56.705Z",
+  "updatedAt": "2026-07-31T17:56:57.210Z"
+}

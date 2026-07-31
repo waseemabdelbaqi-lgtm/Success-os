@@ -1,0 +1,31 @@
+{
+  "globalId": "JOR-SKILL-000504",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«السيرة النبوية — مقدمة ومفاهيم» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-002409",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-002409",
+      "JOR-OUTCOME-002410",
+      "JOR-OUTCOME-002411",
+      "JOR-OUTCOME-002969",
+      "JOR-OUTCOME-002970",
+      "JOR-OUTCOME-002971",
+      "JOR-OUTCOME-003529",
+      "JOR-OUTCOME-003530",
+      "JOR-OUTCOME-003531"
+    ],
+    "lessonIds": [
+      "JOR-G05-ISL-U03-L01",
+      "JOR-G06-ISL-U03-L01",
+      "JOR-G07-ISL-U03-L01"
+    ],
+    "belongsTo": "JOR-OUTCOME-002409"
+  },
+  "createdAt": "2026-07-31T17:56:56.836Z",
+  "updatedAt": "2026-07-31T17:56:56.969Z"
+}

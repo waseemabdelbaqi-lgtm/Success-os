@@ -30,9 +30,28 @@ export const MIN_QUALITY = 95;
 
 const ROOT = () => process.cwd();
 const LIBRARY = () => path.join(ROOT(), 'library');
-const BOOKS = () => path.join(LIBRARY(), 'global-knowledge', 'books');
-const QUALITY = () =>
-  path.join(LIBRARY(), 'global-knowledge', 'quality-reviews');
+const BOOKS = () => {
+  const committed = path.join(
+    ROOT(),
+    'content',
+    'datasets',
+    'global-knowledge',
+    'books',
+  );
+  if (fs.existsSync(committed)) return committed;
+  return path.join(LIBRARY(), 'global-knowledge', 'books');
+};
+const QUALITY = () => {
+  const committed = path.join(
+    ROOT(),
+    'content',
+    'datasets',
+    'global-knowledge',
+    'quality-reviews',
+  );
+  if (fs.existsSync(committed)) return committed;
+  return path.join(LIBRARY(), 'global-knowledge', 'quality-reviews');
+};
 const EXPANSION = () =>
   path.join(LIBRARY(), 'middle-east-library-expansion');
 const RELEASES = () => path.join(EXPANSION(), 'releases');

@@ -1,0 +1,51 @@
+{
+  "globalId": "JOR-SKILL-000884",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يتعرف المتعلم مفهومًا محوريًا في المهارات الرقمية ضمن أمن معلومات بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 11.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-005737",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-005737",
+      "JOR-OUTCOME-005738",
+      "JOR-OUTCOME-005739",
+      "JOR-OUTCOME-005740",
+      "JOR-OUTCOME-005741",
+      "JOR-OUTCOME-005742",
+      "JOR-OUTCOME-005743",
+      "JOR-OUTCOME-005744",
+      "JOR-OUTCOME-005745",
+      "JOR-OUTCOME-005746",
+      "JOR-OUTCOME-005747",
+      "JOR-OUTCOME-005748",
+      "JOR-OUTCOME-006201",
+      "JOR-OUTCOME-006202",
+      "JOR-OUTCOME-006203",
+      "JOR-OUTCOME-006204",
+      "JOR-OUTCOME-006205",
+      "JOR-OUTCOME-006206",
+      "JOR-OUTCOME-006207",
+      "JOR-OUTCOME-006208",
+      "JOR-OUTCOME-006209",
+      "JOR-OUTCOME-006210",
+      "JOR-OUTCOME-006211",
+      "JOR-OUTCOME-006212"
+    ],
+    "lessonIds": [
+      "JOR-G11-ICT-U03-L01",
+      "JOR-G11-ICT-U03-L02",
+      "JOR-G11-ICT-U03-L03",
+      "JOR-G11-ICT-U03-L04",
+      "JOR-G12-ICT-U03-L01",
+      "JOR-G12-ICT-U03-L02",
+      "JOR-G12-ICT-U03-L03",
+      "JOR-G12-ICT-U03-L04"
+    ],
+    "belongsTo": "JOR-OUTCOME-005737"
+  },
+  "createdAt": "2026-07-31T17:56:57.294Z",
+  "updatedAt": "2026-07-31T17:56:57.376Z"
+}

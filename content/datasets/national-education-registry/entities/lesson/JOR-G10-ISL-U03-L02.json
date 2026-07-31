@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-G10-ISL-U03-L02",
+  "kind": "lesson",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "السيرة والمجتمع — بناء المهارة",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G10-ISL-U03",
+  "relationships": {
+    "unitId": "JOR-G10-ISL-U03",
+    "bookId": "JOR-BOOK-000002",
+    "subjectId": "JOR-G10-ISL",
+    "gradeId": "JOR-G10",
+    "belongsTo": "JOR-G10-ISL-U03"
+  },
+  "createdAt": "2026-07-31T17:56:56.685Z",
+  "updatedAt": "2026-07-31T17:56:56.685Z",
+  "lessonCode": "L02",
+  "sequence": 2,
+  "legacyLessonId": "L3.2",
+  "keywords": [
+    "عقيدة",
+    "عبادة",
+    "خلق"
+  ]
+}

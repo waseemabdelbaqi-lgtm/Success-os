@@ -1,0 +1,23 @@
+{
+  "globalId": "JOR-SKILL-001048",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«الاستماع والتحدث — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-007114",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-007114",
+      "JOR-OUTCOME-007115",
+      "JOR-OUTCOME-007116"
+    ],
+    "lessonIds": [
+      "JOR-GKG-اللغةوال-U01-L04"
+    ],
+    "belongsTo": "JOR-OUTCOME-007114"
+  },
+  "createdAt": "2026-07-31T17:56:57.581Z",
+  "updatedAt": "2026-07-31T17:56:57.581Z"
+}

@@ -1,0 +1,18 @@
+{
+  "globalId": "JOR-OUTCOME-005072",
+  "kind": "learningOutcome",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«التنمية — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G09-SOC-U03-L03",
+  "relationships": {
+    "lessonId": "JOR-G09-SOC-U03-L03",
+    "belongsTo": "JOR-G09-SOC-U03-L03"
+  },
+  "createdAt": "2026-07-31T17:56:57.186Z",
+  "updatedAt": "2026-07-31T17:56:57.186Z",
+  "text": "أن يطبّق مهارة مرتبطة بـ«التنمية — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+  "sequence": 2
+}

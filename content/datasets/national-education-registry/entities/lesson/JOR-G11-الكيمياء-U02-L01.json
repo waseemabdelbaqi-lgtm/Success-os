@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-G11-الكيمياء-U02-L01",
+  "kind": "lesson",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "الروابط والتفاعلات — مقدمة ومفاهيم",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G11-الكيمياء-U02",
+  "relationships": {
+    "unitId": "JOR-G11-الكيمياء-U02",
+    "bookId": "JOR-BOOK-000113",
+    "subjectId": "JOR-G11-الكيمياء",
+    "gradeId": "JOR-G11",
+    "belongsTo": "JOR-G11-الكيمياء-U02"
+  },
+  "createdAt": "2026-07-31T17:56:57.269Z",
+  "updatedAt": "2026-07-31T17:56:57.269Z",
+  "lessonCode": "L01",
+  "sequence": 1,
+  "legacyLessonId": "L2.1",
+  "keywords": [
+    "ذرة",
+    "مركب",
+    "تفاعل"
+  ]
+}

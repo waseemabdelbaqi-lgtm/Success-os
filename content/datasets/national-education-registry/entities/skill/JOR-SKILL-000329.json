@@ -1,0 +1,35 @@
+{
+  "globalId": "JOR-SKILL-000329",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«الأخلاق والآداب — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-000687",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-000687",
+      "JOR-OUTCOME-000688",
+      "JOR-OUTCOME-000689",
+      "JOR-OUTCOME-001119",
+      "JOR-OUTCOME-001120",
+      "JOR-OUTCOME-001121",
+      "JOR-OUTCOME-001551",
+      "JOR-OUTCOME-001552",
+      "JOR-OUTCOME-001553",
+      "JOR-OUTCOME-001983",
+      "JOR-OUTCOME-001984",
+      "JOR-OUTCOME-001985"
+    ],
+    "lessonIds": [
+      "JOR-G01-ISL-U03-L03",
+      "JOR-G02-ISL-U03-L03",
+      "JOR-G03-ISL-U03-L03",
+      "JOR-G04-ISL-U03-L03"
+    ],
+    "belongsTo": "JOR-OUTCOME-000687"
+  },
+  "createdAt": "2026-07-31T17:56:56.716Z",
+  "updatedAt": "2026-07-31T17:56:56.799Z"
+}

@@ -1,0 +1,16 @@
+{
+  "globalId": "JOR-DIAGRAM-002044",
+  "kind": "diagram",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "مخطط تعليمي لوحدة الموجات والضوء",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G12-الفيزياء-U03-L04",
+  "relationships": {
+    "lessonId": "JOR-G12-الفيزياء-U03-L04",
+    "belongsTo": "JOR-G12-الفيزياء-U03-L04"
+  },
+  "createdAt": "2026-07-31T17:56:57.343Z",
+  "updatedAt": "2026-07-31T17:56:57.343Z"
+}

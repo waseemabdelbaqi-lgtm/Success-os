@@ -1,0 +1,51 @@
+{
+  "globalId": "JOR-SKILL-000801",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يتعرف المتعلم مفهومًا محوريًا في الفيزياء ضمن الموجات والضوء بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 11.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-005545",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-005545",
+      "JOR-OUTCOME-005546",
+      "JOR-OUTCOME-005547",
+      "JOR-OUTCOME-005548",
+      "JOR-OUTCOME-005549",
+      "JOR-OUTCOME-005550",
+      "JOR-OUTCOME-005551",
+      "JOR-OUTCOME-005552",
+      "JOR-OUTCOME-005553",
+      "JOR-OUTCOME-005554",
+      "JOR-OUTCOME-005555",
+      "JOR-OUTCOME-005556",
+      "JOR-OUTCOME-006009",
+      "JOR-OUTCOME-006010",
+      "JOR-OUTCOME-006011",
+      "JOR-OUTCOME-006012",
+      "JOR-OUTCOME-006013",
+      "JOR-OUTCOME-006014",
+      "JOR-OUTCOME-006015",
+      "JOR-OUTCOME-006016",
+      "JOR-OUTCOME-006017",
+      "JOR-OUTCOME-006018",
+      "JOR-OUTCOME-006019",
+      "JOR-OUTCOME-006020"
+    ],
+    "lessonIds": [
+      "JOR-G11-الفيزياء-U03-L01",
+      "JOR-G11-الفيزياء-U03-L02",
+      "JOR-G11-الفيزياء-U03-L03",
+      "JOR-G11-الفيزياء-U03-L04",
+      "JOR-G12-الفيزياء-U03-L01",
+      "JOR-G12-الفيزياء-U03-L02",
+      "JOR-G12-الفيزياء-U03-L03",
+      "JOR-G12-الفيزياء-U03-L04"
+    ],
+    "belongsTo": "JOR-OUTCOME-005545"
+  },
+  "createdAt": "2026-07-31T17:56:57.264Z",
+  "updatedAt": "2026-07-31T17:56:57.343Z"
+}

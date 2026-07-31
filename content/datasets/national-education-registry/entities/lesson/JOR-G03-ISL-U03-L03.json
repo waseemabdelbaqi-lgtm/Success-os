@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-G03-ISL-U03-L03",
+  "kind": "lesson",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "الأخلاق والآداب — تطبيق ومثال",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G03-ISL-U03",
+  "relationships": {
+    "unitId": "JOR-G03-ISL-U03",
+    "bookId": "JOR-BOOK-000032",
+    "subjectId": "JOR-G03-ISL",
+    "gradeId": "JOR-G03",
+    "belongsTo": "JOR-G03-ISL-U03"
+  },
+  "createdAt": "2026-07-31T17:56:56.769Z",
+  "updatedAt": "2026-07-31T17:56:56.769Z",
+  "lessonCode": "L03",
+  "sequence": 3,
+  "legacyLessonId": "L3.3",
+  "keywords": [
+    "عقيدة",
+    "عبادة",
+    "خلق"
+  ]
+}

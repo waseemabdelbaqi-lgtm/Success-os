@@ -1,0 +1,23 @@
+{
+  "globalId": "JOR-SKILL-001051",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«الحروف والأصوات — بناء المهارة» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-007120",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-007120",
+      "JOR-OUTCOME-007121",
+      "JOR-OUTCOME-007122"
+    ],
+    "lessonIds": [
+      "JOR-GKG-اللغةوال-U02-L02"
+    ],
+    "belongsTo": "JOR-OUTCOME-007120"
+  },
+  "createdAt": "2026-07-31T17:56:57.582Z",
+  "updatedAt": "2026-07-31T17:56:57.582Z"
+}

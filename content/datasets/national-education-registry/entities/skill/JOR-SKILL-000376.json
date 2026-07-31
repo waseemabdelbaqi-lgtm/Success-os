@@ -1,0 +1,35 @@
+{
+  "globalId": "JOR-SKILL-000376",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«الأسرة والمجتمع — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-000807",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-000807",
+      "JOR-OUTCOME-000808",
+      "JOR-OUTCOME-000809",
+      "JOR-OUTCOME-001239",
+      "JOR-OUTCOME-001240",
+      "JOR-OUTCOME-001241",
+      "JOR-OUTCOME-001671",
+      "JOR-OUTCOME-001672",
+      "JOR-OUTCOME-001673",
+      "JOR-OUTCOME-002103",
+      "JOR-OUTCOME-002104",
+      "JOR-OUTCOME-002105"
+    ],
+    "lessonIds": [
+      "JOR-G01-SOC-U01-L03",
+      "JOR-G02-SOC-U01-L03",
+      "JOR-G03-SOC-U01-L03",
+      "JOR-G04-SOC-U01-L03"
+    ],
+    "belongsTo": "JOR-OUTCOME-000807"
+  },
+  "createdAt": "2026-07-31T17:56:56.722Z",
+  "updatedAt": "2026-07-31T17:56:56.809Z"
+}

@@ -1,0 +1,31 @@
+{
+  "globalId": "JOR-SKILL-000292",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«المشاريع اللغوية — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-000603",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-000603",
+      "JOR-OUTCOME-000604",
+      "JOR-OUTCOME-000605",
+      "JOR-OUTCOME-004667",
+      "JOR-OUTCOME-004668",
+      "JOR-OUTCOME-004669",
+      "JOR-OUTCOME-005323",
+      "JOR-OUTCOME-005324",
+      "JOR-OUTCOME-005325"
+    ],
+    "lessonIds": [
+      "JOR-G10-ARAB-U04-L03",
+      "JOR-G08-ARAB-U04-L03",
+      "JOR-G09-ARAB-U04-L03"
+    ],
+    "belongsTo": "JOR-OUTCOME-000603"
+  },
+  "createdAt": "2026-07-31T17:56:56.712Z",
+  "updatedAt": "2026-07-31T17:56:57.227Z"
+}

@@ -1,0 +1,35 @@
+{
+  "globalId": "JOR-SKILL-000396",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«الأعداد والعمليات — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-000855",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-000855",
+      "JOR-OUTCOME-000856",
+      "JOR-OUTCOME-000857",
+      "JOR-OUTCOME-001287",
+      "JOR-OUTCOME-001288",
+      "JOR-OUTCOME-001289",
+      "JOR-OUTCOME-001719",
+      "JOR-OUTCOME-001720",
+      "JOR-OUTCOME-001721",
+      "JOR-OUTCOME-002151",
+      "JOR-OUTCOME-002152",
+      "JOR-OUTCOME-002153"
+    ],
+    "lessonIds": [
+      "JOR-G01-MATH-U01-L03",
+      "JOR-G02-MATH-U01-L03",
+      "JOR-G03-MATH-U01-L03",
+      "JOR-G04-MATH-U01-L03"
+    ],
+    "belongsTo": "JOR-OUTCOME-000855"
+  },
+  "createdAt": "2026-07-31T17:56:56.725Z",
+  "updatedAt": "2026-07-31T17:56:56.813Z"
+}

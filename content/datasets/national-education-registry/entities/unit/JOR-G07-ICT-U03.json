@@ -1,0 +1,21 @@
+{
+  "globalId": "JOR-G07-ICT-U03",
+  "kind": "unit",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "البحث الآمن",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-BOOK-000082",
+  "relationships": {
+    "bookId": "JOR-BOOK-000082",
+    "subjectId": "JOR-G07-ICT",
+    "gradeId": "JOR-G07",
+    "belongsTo": "JOR-BOOK-000082"
+  },
+  "createdAt": "2026-07-31T17:56:57.036Z",
+  "updatedAt": "2026-07-31T17:56:57.036Z",
+  "unitCode": "U03",
+  "sequence": 3,
+  "legacyUnitId": "U3"
+}

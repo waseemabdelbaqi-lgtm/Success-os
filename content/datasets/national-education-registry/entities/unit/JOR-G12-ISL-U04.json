@@ -1,0 +1,21 @@
+{
+  "globalId": "JOR-G12-ISL-U04",
+  "kind": "unit",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "الهوية والقيم",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-BOOK-000118",
+  "relationships": {
+    "bookId": "JOR-BOOK-000118",
+    "subjectId": "JOR-G12-ISL",
+    "gradeId": "JOR-G12",
+    "belongsTo": "JOR-BOOK-000118"
+  },
+  "createdAt": "2026-07-31T17:56:57.319Z",
+  "updatedAt": "2026-07-31T17:56:57.319Z",
+  "unitCode": "U04",
+  "sequence": 4,
+  "legacyUnitId": "U4"
+}

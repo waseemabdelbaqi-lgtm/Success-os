@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-G02-ARTS-U03-L02",
+  "kind": "lesson",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "المسرح المدرسي — بناء المهارة",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G02-ARTS-U03",
+  "relationships": {
+    "unitId": "JOR-G02-ARTS-U03",
+    "bookId": "JOR-BOOK-000025",
+    "subjectId": "JOR-G02-ARTS",
+    "gradeId": "JOR-G02",
+    "belongsTo": "JOR-G02-ARTS-U03"
+  },
+  "createdAt": "2026-07-31T17:56:56.748Z",
+  "updatedAt": "2026-07-31T17:56:56.748Z",
+  "lessonCode": "L02",
+  "sequence": 2,
+  "legacyLessonId": "L3.2",
+  "keywords": [
+    "خط",
+    "لون",
+    "إيقاع"
+  ]
+}

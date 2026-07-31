@@ -1,0 +1,51 @@
+{
+  "globalId": "JOR-SKILL-000864",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يتعرف المتعلم مفهومًا محوريًا في اللغة العربية ضمن الكتابة الأكاديمية بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 11.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-005689",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-005689",
+      "JOR-OUTCOME-005690",
+      "JOR-OUTCOME-005691",
+      "JOR-OUTCOME-005692",
+      "JOR-OUTCOME-005693",
+      "JOR-OUTCOME-005694",
+      "JOR-OUTCOME-005695",
+      "JOR-OUTCOME-005696",
+      "JOR-OUTCOME-005697",
+      "JOR-OUTCOME-005698",
+      "JOR-OUTCOME-005699",
+      "JOR-OUTCOME-005700",
+      "JOR-OUTCOME-006153",
+      "JOR-OUTCOME-006154",
+      "JOR-OUTCOME-006155",
+      "JOR-OUTCOME-006156",
+      "JOR-OUTCOME-006157",
+      "JOR-OUTCOME-006158",
+      "JOR-OUTCOME-006159",
+      "JOR-OUTCOME-006160",
+      "JOR-OUTCOME-006161",
+      "JOR-OUTCOME-006162",
+      "JOR-OUTCOME-006163",
+      "JOR-OUTCOME-006164"
+    ],
+    "lessonIds": [
+      "JOR-G11-ARAB-U03-L01",
+      "JOR-G11-ARAB-U03-L02",
+      "JOR-G11-ARAB-U03-L03",
+      "JOR-G11-ARAB-U03-L04",
+      "JOR-G12-ARAB-U03-L01",
+      "JOR-G12-ARAB-U03-L02",
+      "JOR-G12-ARAB-U03-L03",
+      "JOR-G12-ARAB-U03-L04"
+    ],
+    "belongsTo": "JOR-OUTCOME-005689"
+  },
+  "createdAt": "2026-07-31T17:56:57.286Z",
+  "updatedAt": "2026-07-31T17:56:57.367Z"
+}

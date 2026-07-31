@@ -1,0 +1,31 @@
+{
+  "globalId": "JOR-SKILL-000259",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«Grammar in Use — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-000531",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-000531",
+      "JOR-OUTCOME-000532",
+      "JOR-OUTCOME-000533",
+      "JOR-OUTCOME-004595",
+      "JOR-OUTCOME-004596",
+      "JOR-OUTCOME-004597",
+      "JOR-OUTCOME-005251",
+      "JOR-OUTCOME-005252",
+      "JOR-OUTCOME-005253"
+    ],
+    "lessonIds": [
+      "JOR-G10-ENG-U02-L03",
+      "JOR-G08-ENG-U02-L03",
+      "JOR-G09-ENG-U02-L03"
+    ],
+    "belongsTo": "JOR-OUTCOME-000531"
+  },
+  "createdAt": "2026-07-31T17:56:56.706Z",
+  "updatedAt": "2026-07-31T17:56:57.215Z"
+}

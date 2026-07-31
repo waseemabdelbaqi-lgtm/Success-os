@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-G01-SOC-U01-L03",
+  "kind": "lesson",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "الأسرة والمجتمع — تطبيق ومثال",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G01-SOC-U01",
+  "relationships": {
+    "unitId": "JOR-G01-SOC-U01",
+    "bookId": "JOR-BOOK-000017",
+    "subjectId": "JOR-G01-SOC",
+    "gradeId": "JOR-G01",
+    "belongsTo": "JOR-G01-SOC-U01"
+  },
+  "createdAt": "2026-07-31T17:56:56.722Z",
+  "updatedAt": "2026-07-31T17:56:56.722Z",
+  "lessonCode": "L03",
+  "sequence": 3,
+  "legacyLessonId": "L1.3",
+  "keywords": [
+    "مجتمع",
+    "مؤسسة",
+    "موارد"
+  ]
+}

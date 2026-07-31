@@ -1,0 +1,19 @@
+{
+  "globalId": "JOR-BOOK-000078",
+  "kind": "book",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "Success OS — العلوم",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G07-SCI",
+  "relationships": {
+    "subjectId": "JOR-G07-SCI",
+    "gradeId": "JOR-G07",
+    "belongsTo": "JOR-G07-SCI"
+  },
+  "createdAt": "2026-07-31T17:56:57.007Z",
+  "updatedAt": "2026-07-31T17:56:57.007Z",
+  "legacyBookId": "jordan__التعليم-الأساسي__jordan-national-curriculum__الصف-7__العلوم__ar",
+  "officialSource": "https://www.nccd.gov.jo/ar/pages/TextBooksGrade/74"
+}

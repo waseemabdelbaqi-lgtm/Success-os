@@ -1,0 +1,18 @@
+{
+  "globalId": "JOR-OUTCOME-006653",
+  "kind": "learningOutcome",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يتعرف المتعلم مفهومًا محوريًا في تكنولوجيا المعلومات ضمن قضايا علمية معاصرة بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 11.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G11-SCI-U04-L01",
+  "relationships": {
+    "lessonId": "JOR-G11-SCI-U04-L01",
+    "belongsTo": "JOR-G11-SCI-U04-L01"
+  },
+  "createdAt": "2026-07-31T17:56:57.465Z",
+  "updatedAt": "2026-07-31T17:56:57.465Z",
+  "text": "أن يتعرف المتعلم مفهومًا محوريًا في تكنولوجيا المعلومات ضمن قضايا علمية معاصرة بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 11.",
+  "sequence": 1
+}

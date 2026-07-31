@@ -1,0 +1,966 @@
+{
+  "schema": "success-os.jordan-production-queue.v1",
+  "phase": "JO-02_JORDAN_BOOK_PRODUCTION",
+  "totalJobs": 154,
+  "subjects": [
+    "الرياضيات المبكرة",
+    "الرياضيات",
+    "اللغة والتواصل",
+    "اللغة العربية",
+    "اللغة الإنجليزية",
+    "العلوم والاستكشاف",
+    "العلوم",
+    "الفيزياء",
+    "الكيمياء",
+    "العلوم الحياتية",
+    "علوم الأرض والبيئة",
+    "التربية الإسلامية",
+    "الدراسات الاجتماعية",
+    "التربية الوطنية والمدنية",
+    "التاريخ",
+    "تاريخ الأردن",
+    "الجغرافيا",
+    "المهارات الرقمية",
+    "الثقافة المالية",
+    "المهارات الحياتية",
+    "التربية المهنية",
+    "التربية الرياضية",
+    "الفنون",
+    "التربية الفنية والموسيقية والمسرحية",
+    "الفنون والتصميم",
+    "الأعمال",
+    "الهندسة",
+    "تكنولوجيا المعلومات",
+    "الضيافة",
+    "السفر والسياحة",
+    "الزراعة",
+    "البناء والإنشاءات"
+  ],
+  "jobs": [
+    {
+      "bookId": "jordan__رياض-الأطفال__jordan-national-curriculum__رياض-الأطفال__الرياضيات-المبكرة__ar",
+      "subject": "الرياضيات المبكرة",
+      "grade": "رياض الأطفال",
+      "stage": "رياض الأطفال"
+    },
+    {
+      "bookId": "jordan__التعليم-الأساسي__jordan-national-curriculum__الصف-1__الرياضيات__ar",
+      "subject": "الرياضيات",
+      "grade": "الصف 1",
+      "stage": "التعليم الأساسي"
+    },
+    {
+      "bookId": "jordan__التعليم-الأساسي__jordan-national-curriculum__الصف-2__الرياضيات__ar",
+      "subject": "الرياضيات",
+      "grade": "الصف 2",
+      "stage": "التعليم الأساسي"
+    },
+    {
+      "bookId": "jordan__التعليم-الأساسي__jordan-national-curriculum__الصف-3__الرياضيات__ar",
+      "subject": "الرياضيات",
+      "grade": "الصف 3",
+      "stage": "التعليم الأساسي"
+    },
+    {
+      "bookId": "jordan__التعليم-الأساسي__jordan-national-curriculum__الصف-4__الرياضيات__ar",
+      "subject": "الرياضيات",
+      "grade": "الصف 4",
+      "stage": "التعليم الأساسي"
+    },
+    {
+      "bookId": "jordan__التعليم-الأساسي__jordan-national-curriculum__الصف-5__الرياضيات__ar",
+      "subject": "الرياضيات",
+      "grade": "الصف 5",
+      "stage": "التعليم الأساسي"
+    },
+    {
+      "bookId": "jordan__التعليم-الأساسي__jordan-national-curriculum__الصف-6__الرياضيات__ar",
+      "subject": "الرياضيات",
+      "grade": "الصف 6",
+      "stage": "التعليم الأساسي"
+    },
+    {
+      "bookId": "jordan__التعليم-الأساسي__jordan-national-curriculum__الصف-7__الرياضيات__ar",
+      "subject": "الرياضيات",
+      "grade": "الصف 7",
+      "stage": "التعليم الأساسي"
+    },
+    {
+      "bookId": "jordan__التعليم-الأساسي__jordan-national-curriculum__الصف-8__الرياضيات__ar",
+      "subject": "الرياضيات",
+      "grade": "الصف 8",
+      "stage": "التعليم الأساسي"
+    },
+    {
+      "bookId": "jordan__التعليم-الأساسي__jordan-national-curriculum__الصف-9__الرياضيات__ar",
+      "subject": "الرياضيات",
+      "grade": "الصف 9",
+      "stage": "التعليم الأساسي"
+    },
+    {
+      "bookId": "jordan__التعليم-الأساسي__jordan-national-curriculum__الصف-10__الرياضيات__ar",
+      "subject": "الرياضيات",
+      "grade": "الصف 10",
+      "stage": "التعليم الأساسي"
+    },
+    {
+      "bookId": "jordan__التعليم-الثانوي-المسار-الأكاديمي__jordan-national-curriculum__الصف-11__الرياضيات__ar",
+      "subject": "الرياضيات",
+      "grade": "الصف 11",
+      "stage": "التعليم الثانوي — المسار الأكاديمي"
+    },
+    {
+      "bookId": "jordan__التعليم-الثانوي-المسار-الأكاديمي__jordan-national-curriculum__الصف-12__الرياضيات__ar",
+      "subject": "الرياضيات",
+      "grade": "الصف 12",
+      "stage": "التعليم الثانوي — المسار الأكاديمي"
+    },
+    {
+      "bookId": "jordan__رياض-الأطفال__jordan-national-curriculum__رياض-الأطفال__اللغة-والتواصل__ar",
+      "subject": "اللغة والتواصل",
+      "grade": "رياض الأطفال",
+      "stage": "رياض الأطفال"
+    },
+    {
+      "bookId": "jordan__التعليم-الأساسي__jordan-national-curriculum__الصف-1__اللغة-العربية__ar",
+      "subject": "اللغة العربية",
+      "grade": "الصف 1",
+      "stage": "التعليم الأساسي"
+    },
+    {
+      "bookId": "jordan__التعليم-الأساسي__jordan-national-curriculum__الصف-2__اللغة-العربية__ar",
+      "subject": "اللغة العربية",
+      "grade": "الصف 2",
+      "stage": "التعليم الأساسي"
+    },
+    {
+      "bookId": "jordan__التعليم-الأساسي__jordan-national-curriculum__الصف-3__اللغة-العربية__ar",
+      "subject": "اللغة العربية",
+      "grade": "الصف 3",
+      "stage": "التعليم الأساسي"
+    },
+    {
+      "bookId": "jordan__التعليم-الأساسي__jordan-national-curriculum__الصف-4__اللغة-العربية__ar",
+      "subject": "اللغة العربية",
+      "grade": "الصف 4",
+      "stage": "التعليم الأساسي"
+    },
+    {
+      "bookId": "jordan__التعليم-الأساسي__jordan-national-curriculum__الصف-5__اللغة-العربية__ar",
+      "subject": "اللغة العربية",
+      "grade": "الصف 5",
+      "stage": "التعليم الأساسي"
+    },
+    {
+      "bookId": "jordan__التعليم-الأساسي__jordan-national-curriculum__الصف-6__اللغة-العربية__ar",
+      "subject": "اللغة العربية",
+      "grade": "الصف 6",
+      "stage": "التعليم الأساسي"
+    },
+    {
+      "bookId": "jordan__التعليم-الأساسي__jordan-national-curriculum__الصف-7__اللغة-العربية__ar",
+      "subject": "اللغة العربية",
+      "grade": "الصف 7",
+      "stage": "التعليم الأساسي"
+    },
+    {
+      "bookId": "jordan__التعليم-الأساسي__jordan-national-curriculum__الصف-8__اللغة-العربية__ar",
+      "subject": "اللغة العربية",
+      "grade": "الصف 8",
+      "stage": "التعليم الأساسي"
+    },
+    {
+      "bookId": "jordan__التعليم-الأساسي__jordan-national-curriculum__الصف-9__اللغة-العربية__ar",
+      "subject": "اللغة العربية",
+      "grade": "الصف 9",
+      "stage": "التعليم الأساسي"
+    },
+    {
+      "bookId": "jordan__التعليم-الأساسي__jordan-national-curriculum__الصف-10__اللغة-العربية__ar",
+      "subject": "اللغة العربية",
+      "grade": "الصف 10",
+      "stage": "التعليم الأساسي"
+    },
+    {
+      "bookId": "jordan__التعليم-الثانوي-المسار-الأكاديمي__jordan-national-curriculum__الصف-11__اللغة-العربية__ar",
+      "subject": "اللغة العربية",
+      "grade": "الصف 11",
+      "stage": "التعليم الثانوي — المسار الأكاديمي"
+    },
+    {
+      "bookId": "jordan__التعليم-الثانوي-المسار-الأكاديمي__jordan-national-curriculum__الصف-12__اللغة-العربية__ar",
+      "subject": "اللغة العربية",
+      "grade": "الصف 12",
+      "stage": "التعليم الثانوي — المسار الأكاديمي"
+    },
+    {
+      "bookId": "jordan__التعليم-الأساسي__jordan-national-curriculum__الصف-1__اللغة-الإنجليزية__ar",
+      "subject": "اللغة الإنجليزية",
+      "grade": "الصف 1",
+      "stage": "التعليم الأساسي"
+    },
+    {
+      "bookId": "jordan__التعليم-الأساسي__jordan-national-curriculum__الصف-2__اللغة-الإنجليزية__ar",
+      "subject": "اللغة الإنجليزية",
+      "grade": "الصف 2",
+      "stage": "التعليم الأساسي"
+    },
+    {
+      "bookId": "jordan__التعليم-الأساسي__jordan-national-curriculum__الصف-3__اللغة-الإنجليزية__ar",
+      "subject": "اللغة الإنجليزية",
+      "grade": "الصف 3",
+      "stage": "التعليم الأساسي"
+    },
+    {
+      "bookId": "jordan__التعليم-الأساسي__jordan-national-curriculum__الصف-4__اللغة-الإنجليزية__ar",
+      "subject": "اللغة الإنجليزية",
+      "grade": "الصف 4",
+      "stage": "التعليم الأساسي"
+    },
+    {
+      "bookId": "jordan__التعليم-الأساسي__jordan-national-curriculum__الصف-5__اللغة-الإنجليزية__ar",
+      "subject": "اللغة الإنجليزية",
+      "grade": "الصف 5",
+      "stage": "التعليم الأساسي"
+    },
+    {
+      "bookId": "jordan__التعليم-الأساسي__jordan-national-curriculum__الصف-6__اللغة-الإنجليزية__ar",
+      "subject": "اللغة الإنجليزية",
+      "grade": "الصف 6",
+      "stage": "التعليم الأساسي"
+    },
+    {
+      "bookId": "jordan__التعليم-الأساسي__jordan-national-curriculum__الصف-7__اللغة-الإنجليزية__ar",
+      "subject": "اللغة الإنجليزية",
+      "grade": "الصف 7",
+      "stage": "التعليم الأساسي"
+    },
+    {
+      "bookId": "jordan__التعليم-الأساسي__jordan-national-curriculum__الصف-8__اللغة-الإنجليزية__ar",
+      "subject": "اللغة الإنجليزية",
+      "grade": "الصف 8",
+      "stage": "التعليم الأساسي"
+    },
+    {
+      "bookId": "jordan__التعليم-الأساسي__jordan-national-curriculum__الصف-9__اللغة-الإنجليزية__ar",
+      "subject": "اللغة الإنجليزية",
+      "grade": "الصف 9",
+      "stage": "التعليم الأساسي"
+    },
+    {
+      "bookId": "jordan__التعليم-الأساسي__jordan-national-curriculum__الصف-10__اللغة-الإنجليزية__ar",
+      "subject": "اللغة الإنجليزية",
+      "grade": "الصف 10",
+      "stage": "التعليم الأساسي"
+    },
+    {
+      "bookId": "jordan__التعليم-الثانوي-المسار-الأكاديمي__jordan-national-curriculum__الصف-11__اللغة-الإنجليزية__ar",
+      "subject": "اللغة الإنجليزية",
+      "grade": "الصف 11",
+      "stage": "التعليم الثانوي — المسار الأكاديمي"
+    },
+    {
+      "bookId": "jordan__التعليم-الثانوي-المسار-الأكاديمي__jordan-national-curriculum__الصف-12__اللغة-الإنجليزية__ar",
+      "subject": "اللغة الإنجليزية",
+      "grade": "الصف 12",
+      "stage": "التعليم الثانوي — المسار الأكاديمي"
+    },
+    {
+      "bookId": "jordan__رياض-الأطفال__jordan-national-curriculum__رياض-الأطفال__العلوم-والاستكشاف__ar",
+      "subject": "العلوم والاستكشاف",
+      "grade": "رياض الأطفال",
+      "stage": "رياض الأطفال"
+    },
+    {
+      "bookId": "jordan__التعليم-الأساسي__jordan-national-curriculum__الصف-1__العلوم__ar",
+      "subject": "العلوم",
+      "grade": "الصف 1",
+      "stage": "التعليم الأساسي"
+    },
+    {
+      "bookId": "jordan__التعليم-الأساسي__jordan-national-curriculum__الصف-2__العلوم__ar",
+      "subject": "العلوم",
+      "grade": "الصف 2",
+      "stage": "التعليم الأساسي"
+    },
+    {
+      "bookId": "jordan__التعليم-الأساسي__jordan-national-curriculum__الصف-3__العلوم__ar",
+      "subject": "العلوم",
+      "grade": "الصف 3",
+      "stage": "التعليم الأساسي"
+    },
+    {
+      "bookId": "jordan__التعليم-الأساسي__jordan-national-curriculum__الصف-4__العلوم__ar",
+      "subject": "العلوم",
+      "grade": "الصف 4",
+      "stage": "التعليم الأساسي"
+    },
+    {
+      "bookId": "jordan__التعليم-الأساسي__jordan-national-curriculum__الصف-5__العلوم__ar",
+      "subject": "العلوم",
+      "grade": "الصف 5",
+      "stage": "التعليم الأساسي"
+    },
+    {
+      "bookId": "jordan__التعليم-الأساسي__jordan-national-curriculum__الصف-6__العلوم__ar",
+      "subject": "العلوم",
+      "grade": "الصف 6",
+      "stage": "التعليم الأساسي"
+    },
+    {
+      "bookId": "jordan__التعليم-الأساسي__jordan-national-curriculum__الصف-7__العلوم__ar",
+      "subject": "العلوم",
+      "grade": "الصف 7",
+      "stage": "التعليم الأساسي"
+    },
+    {
+      "bookId": "jordan__التعليم-الأساسي__jordan-national-curriculum__الصف-8__العلوم__ar",
+      "subject": "العلوم",
+      "grade": "الصف 8",
+      "stage": "التعليم الأساسي"
+    },
+    {
+      "bookId": "jordan__التعليم-الأساسي__jordan-national-curriculum__الصف-9__العلوم__ar",
+      "subject": "العلوم",
+      "grade": "الصف 9",
+      "stage": "التعليم الأساسي"
+    },
+    {
+      "bookId": "jordan__التعليم-الأساسي__jordan-national-curriculum__الصف-10__العلوم__ar",
+      "subject": "العلوم",
+      "grade": "الصف 10",
+      "stage": "التعليم الأساسي"
+    },
+    {
+      "bookId": "jordan__التعليم-الثانوي-المسار-الأكاديمي__jordan-national-curriculum__الصف-11__الفيزياء__ar",
+      "subject": "الفيزياء",
+      "grade": "الصف 11",
+      "stage": "التعليم الثانوي — المسار الأكاديمي"
+    },
+    {
+      "bookId": "jordan__التعليم-الثانوي-المسار-الأكاديمي__jordan-national-curriculum__الصف-12__الفيزياء__ar",
+      "subject": "الفيزياء",
+      "grade": "الصف 12",
+      "stage": "التعليم الثانوي — المسار الأكاديمي"
+    },
+    {
+      "bookId": "jordan__التعليم-الثانوي-المسار-الأكاديمي__jordan-national-curriculum__الصف-11__الكيمياء__ar",
+      "subject": "الكيمياء",
+      "grade": "الصف 11",
+      "stage": "التعليم الثانوي — المسار الأكاديمي"
+    },
+    {
+      "bookId": "jordan__التعليم-الثانوي-المسار-الأكاديمي__jordan-national-curriculum__الصف-12__الكيمياء__ar",
+      "subject": "الكيمياء",
+      "grade": "الصف 12",
+      "stage": "التعليم الثانوي — المسار الأكاديمي"
+    },
+    {
+      "bookId": "jordan__التعليم-الثانوي-المسار-الأكاديمي__jordan-national-curriculum__الصف-11__العلوم-الحياتية__ar",
+      "subject": "العلوم الحياتية",
+      "grade": "الصف 11",
+      "stage": "التعليم الثانوي — المسار الأكاديمي"
+    },
+    {
+      "bookId": "jordan__التعليم-الثانوي-المسار-الأكاديمي__jordan-national-curriculum__الصف-12__العلوم-الحياتية__ar",
+      "subject": "العلوم الحياتية",
+      "grade": "الصف 12",
+      "stage": "التعليم الثانوي — المسار الأكاديمي"
+    },
+    {
+      "bookId": "jordan__التعليم-الثانوي-المسار-الأكاديمي__jordan-national-curriculum__الصف-11__علوم-الأرض-والبيئة__ar",
+      "subject": "علوم الأرض والبيئة",
+      "grade": "الصف 11",
+      "stage": "التعليم الثانوي — المسار الأكاديمي"
+    },
+    {
+      "bookId": "jordan__التعليم-الثانوي-المسار-الأكاديمي__jordan-national-curriculum__الصف-12__علوم-الأرض-والبيئة__ar",
+      "subject": "علوم الأرض والبيئة",
+      "grade": "الصف 12",
+      "stage": "التعليم الثانوي — المسار الأكاديمي"
+    },
+    {
+      "bookId": "jordan__التعليم-الأساسي__jordan-national-curriculum__الصف-1__التربية-الإسلامية__ar",
+      "subject": "التربية الإسلامية",
+      "grade": "الصف 1",
+      "stage": "التعليم الأساسي"
+    },
+    {
+      "bookId": "jordan__التعليم-الأساسي__jordan-national-curriculum__الصف-2__التربية-الإسلامية__ar",
+      "subject": "التربية الإسلامية",
+      "grade": "الصف 2",
+      "stage": "التعليم الأساسي"
+    },
+    {
+      "bookId": "jordan__التعليم-الأساسي__jordan-national-curriculum__الصف-3__التربية-الإسلامية__ar",
+      "subject": "التربية الإسلامية",
+      "grade": "الصف 3",
+      "stage": "التعليم الأساسي"
+    },
+    {
+      "bookId": "jordan__التعليم-الأساسي__jordan-national-curriculum__الصف-4__التربية-الإسلامية__ar",
+      "subject": "التربية الإسلامية",
+      "grade": "الصف 4",
+      "stage": "التعليم الأساسي"
+    },
+    {
+      "bookId": "jordan__التعليم-الأساسي__jordan-national-curriculum__الصف-5__التربية-الإسلامية__ar",
+      "subject": "التربية الإسلامية",
+      "grade": "الصف 5",
+      "stage": "التعليم الأساسي"
+    },
+    {
+      "bookId": "jordan__التعليم-الأساسي__jordan-national-curriculum__الصف-6__التربية-الإسلامية__ar",
+      "subject": "التربية الإسلامية",
+      "grade": "الصف 6",
+      "stage": "التعليم الأساسي"
+    },
+    {
+      "bookId": "jordan__التعليم-الأساسي__jordan-national-curriculum__الصف-7__التربية-الإسلامية__ar",
+      "subject": "التربية الإسلامية",
+      "grade": "الصف 7",
+      "stage": "التعليم الأساسي"
+    },
+    {
+      "bookId": "jordan__التعليم-الأساسي__jordan-national-curriculum__الصف-8__التربية-الإسلامية__ar",
+      "subject": "التربية الإسلامية",
+      "grade": "الصف 8",
+      "stage": "التعليم الأساسي"
+    },
+    {
+      "bookId": "jordan__التعليم-الأساسي__jordan-national-curriculum__الصف-9__التربية-الإسلامية__ar",
+      "subject": "التربية الإسلامية",
+      "grade": "الصف 9",
+      "stage": "التعليم الأساسي"
+    },
+    {
+      "bookId": "jordan__التعليم-الأساسي__jordan-national-curriculum__الصف-10__التربية-الإسلامية__ar",
+      "subject": "التربية الإسلامية",
+      "grade": "الصف 10",
+      "stage": "التعليم الأساسي"
+    },
+    {
+      "bookId": "jordan__التعليم-الثانوي-المسار-الأكاديمي__jordan-national-curriculum__الصف-11__التربية-الإسلامية__ar",
+      "subject": "التربية الإسلامية",
+      "grade": "الصف 11",
+      "stage": "التعليم الثانوي — المسار الأكاديمي"
+    },
+    {
+      "bookId": "jordan__التعليم-الثانوي-المسار-الأكاديمي__jordan-national-curriculum__الصف-12__التربية-الإسلامية__ar",
+      "subject": "التربية الإسلامية",
+      "grade": "الصف 12",
+      "stage": "التعليم الثانوي — المسار الأكاديمي"
+    },
+    {
+      "bookId": "jordan__التعليم-الأساسي__jordan-national-curriculum__الصف-1__الدراسات-الاجتماعية__ar",
+      "subject": "الدراسات الاجتماعية",
+      "grade": "الصف 1",
+      "stage": "التعليم الأساسي"
+    },
+    {
+      "bookId": "jordan__التعليم-الأساسي__jordan-national-curriculum__الصف-2__الدراسات-الاجتماعية__ar",
+      "subject": "الدراسات الاجتماعية",
+      "grade": "الصف 2",
+      "stage": "التعليم الأساسي"
+    },
+    {
+      "bookId": "jordan__التعليم-الأساسي__jordan-national-curriculum__الصف-3__الدراسات-الاجتماعية__ar",
+      "subject": "الدراسات الاجتماعية",
+      "grade": "الصف 3",
+      "stage": "التعليم الأساسي"
+    },
+    {
+      "bookId": "jordan__التعليم-الأساسي__jordan-national-curriculum__الصف-4__الدراسات-الاجتماعية__ar",
+      "subject": "الدراسات الاجتماعية",
+      "grade": "الصف 4",
+      "stage": "التعليم الأساسي"
+    },
+    {
+      "bookId": "jordan__التعليم-الأساسي__jordan-national-curriculum__الصف-5__الدراسات-الاجتماعية__ar",
+      "subject": "الدراسات الاجتماعية",
+      "grade": "الصف 5",
+      "stage": "التعليم الأساسي"
+    },
+    {
+      "bookId": "jordan__التعليم-الأساسي__jordan-national-curriculum__الصف-6__الدراسات-الاجتماعية__ar",
+      "subject": "الدراسات الاجتماعية",
+      "grade": "الصف 6",
+      "stage": "التعليم الأساسي"
+    },
+    {
+      "bookId": "jordan__التعليم-الأساسي__jordan-national-curriculum__الصف-7__الدراسات-الاجتماعية__ar",
+      "subject": "الدراسات الاجتماعية",
+      "grade": "الصف 7",
+      "stage": "التعليم الأساسي"
+    },
+    {
+      "bookId": "jordan__التعليم-الأساسي__jordan-national-curriculum__الصف-8__الدراسات-الاجتماعية__ar",
+      "subject": "الدراسات الاجتماعية",
+      "grade": "الصف 8",
+      "stage": "التعليم الأساسي"
+    },
+    {
+      "bookId": "jordan__التعليم-الأساسي__jordan-national-curriculum__الصف-9__الدراسات-الاجتماعية__ar",
+      "subject": "الدراسات الاجتماعية",
+      "grade": "الصف 9",
+      "stage": "التعليم الأساسي"
+    },
+    {
+      "bookId": "jordan__التعليم-الأساسي__jordan-national-curriculum__الصف-10__الدراسات-الاجتماعية__ar",
+      "subject": "الدراسات الاجتماعية",
+      "grade": "الصف 10",
+      "stage": "التعليم الأساسي"
+    },
+    {
+      "bookId": "jordan__التعليم-الأساسي__jordan-national-curriculum__الصف-5__التربية-الوطنية-والمدنية__ar",
+      "subject": "التربية الوطنية والمدنية",
+      "grade": "الصف 5",
+      "stage": "التعليم الأساسي"
+    },
+    {
+      "bookId": "jordan__التعليم-الأساسي__jordan-national-curriculum__الصف-6__التربية-الوطنية-والمدنية__ar",
+      "subject": "التربية الوطنية والمدنية",
+      "grade": "الصف 6",
+      "stage": "التعليم الأساسي"
+    },
+    {
+      "bookId": "jordan__التعليم-الأساسي__jordan-national-curriculum__الصف-7__التربية-الوطنية-والمدنية__ar",
+      "subject": "التربية الوطنية والمدنية",
+      "grade": "الصف 7",
+      "stage": "التعليم الأساسي"
+    },
+    {
+      "bookId": "jordan__التعليم-الأساسي__jordan-national-curriculum__الصف-8__التربية-الوطنية-والمدنية__ar",
+      "subject": "التربية الوطنية والمدنية",
+      "grade": "الصف 8",
+      "stage": "التعليم الأساسي"
+    },
+    {
+      "bookId": "jordan__التعليم-الأساسي__jordan-national-curriculum__الصف-9__التربية-الوطنية-والمدنية__ar",
+      "subject": "التربية الوطنية والمدنية",
+      "grade": "الصف 9",
+      "stage": "التعليم الأساسي"
+    },
+    {
+      "bookId": "jordan__التعليم-الأساسي__jordan-national-curriculum__الصف-10__التربية-الوطنية-والمدنية__ar",
+      "subject": "التربية الوطنية والمدنية",
+      "grade": "الصف 10",
+      "stage": "التعليم الأساسي"
+    },
+    {
+      "bookId": "jordan__التعليم-الأساسي__jordan-national-curriculum__الصف-8__التاريخ__ar",
+      "subject": "التاريخ",
+      "grade": "الصف 8",
+      "stage": "التعليم الأساسي"
+    },
+    {
+      "bookId": "jordan__التعليم-الأساسي__jordan-national-curriculum__الصف-9__التاريخ__ar",
+      "subject": "التاريخ",
+      "grade": "الصف 9",
+      "stage": "التعليم الأساسي"
+    },
+    {
+      "bookId": "jordan__التعليم-الأساسي__jordan-national-curriculum__الصف-10__التاريخ__ar",
+      "subject": "التاريخ",
+      "grade": "الصف 10",
+      "stage": "التعليم الأساسي"
+    },
+    {
+      "bookId": "jordan__التعليم-الثانوي-المسار-الأكاديمي__jordan-national-curriculum__الصف-11__تاريخ-الأردن__ar",
+      "subject": "تاريخ الأردن",
+      "grade": "الصف 11",
+      "stage": "التعليم الثانوي — المسار الأكاديمي"
+    },
+    {
+      "bookId": "jordan__التعليم-الثانوي-المسار-الأكاديمي__jordan-national-curriculum__الصف-12__تاريخ-الأردن__ar",
+      "subject": "تاريخ الأردن",
+      "grade": "الصف 12",
+      "stage": "التعليم الثانوي — المسار الأكاديمي"
+    },
+    {
+      "bookId": "jordan__التعليم-الأساسي__jordan-national-curriculum__الصف-8__الجغرافيا__ar",
+      "subject": "الجغرافيا",
+      "grade": "الصف 8",
+      "stage": "التعليم الأساسي"
+    },
+    {
+      "bookId": "jordan__التعليم-الأساسي__jordan-national-curriculum__الصف-9__الجغرافيا__ar",
+      "subject": "الجغرافيا",
+      "grade": "الصف 9",
+      "stage": "التعليم الأساسي"
+    },
+    {
+      "bookId": "jordan__التعليم-الأساسي__jordan-national-curriculum__الصف-10__الجغرافيا__ar",
+      "subject": "الجغرافيا",
+      "grade": "الصف 10",
+      "stage": "التعليم الأساسي"
+    },
+    {
+      "bookId": "jordan__التعليم-الأساسي__jordan-national-curriculum__الصف-1__المهارات-الرقمية__ar",
+      "subject": "المهارات الرقمية",
+      "grade": "الصف 1",
+      "stage": "التعليم الأساسي"
+    },
+    {
+      "bookId": "jordan__التعليم-الأساسي__jordan-national-curriculum__الصف-2__المهارات-الرقمية__ar",
+      "subject": "المهارات الرقمية",
+      "grade": "الصف 2",
+      "stage": "التعليم الأساسي"
+    },
+    {
+      "bookId": "jordan__التعليم-الأساسي__jordan-national-curriculum__الصف-3__المهارات-الرقمية__ar",
+      "subject": "المهارات الرقمية",
+      "grade": "الصف 3",
+      "stage": "التعليم الأساسي"
+    },
+    {
+      "bookId": "jordan__التعليم-الأساسي__jordan-national-curriculum__الصف-4__المهارات-الرقمية__ar",
+      "subject": "المهارات الرقمية",
+      "grade": "الصف 4",
+      "stage": "التعليم الأساسي"
+    },
+    {
+      "bookId": "jordan__التعليم-الأساسي__jordan-national-curriculum__الصف-5__المهارات-الرقمية__ar",
+      "subject": "المهارات الرقمية",
+      "grade": "الصف 5",
+      "stage": "التعليم الأساسي"
+    },
+    {
+      "bookId": "jordan__التعليم-الأساسي__jordan-national-curriculum__الصف-6__المهارات-الرقمية__ar",
+      "subject": "المهارات الرقمية",
+      "grade": "الصف 6",
+      "stage": "التعليم الأساسي"
+    },
+    {
+      "bookId": "jordan__التعليم-الأساسي__jordan-national-curriculum__الصف-7__المهارات-الرقمية__ar",
+      "subject": "المهارات الرقمية",
+      "grade": "الصف 7",
+      "stage": "التعليم الأساسي"
+    },
+    {
+      "bookId": "jordan__التعليم-الأساسي__jordan-national-curriculum__الصف-8__المهارات-الرقمية__ar",
+      "subject": "المهارات الرقمية",
+      "grade": "الصف 8",
+      "stage": "التعليم الأساسي"
+    },
+    {
+      "bookId": "jordan__التعليم-الأساسي__jordan-national-curriculum__الصف-9__المهارات-الرقمية__ar",
+      "subject": "المهارات الرقمية",
+      "grade": "الصف 9",
+      "stage": "التعليم الأساسي"
+    },
+    {
+      "bookId": "jordan__التعليم-الأساسي__jordan-national-curriculum__الصف-10__المهارات-الرقمية__ar",
+      "subject": "المهارات الرقمية",
+      "grade": "الصف 10",
+      "stage": "التعليم الأساسي"
+    },
+    {
+      "bookId": "jordan__التعليم-الثانوي-المسار-الأكاديمي__jordan-national-curriculum__الصف-11__المهارات-الرقمية__ar",
+      "subject": "المهارات الرقمية",
+      "grade": "الصف 11",
+      "stage": "التعليم الثانوي — المسار الأكاديمي"
+    },
+    {
+      "bookId": "jordan__التعليم-الثانوي-المسار-الأكاديمي__jordan-national-curriculum__الصف-12__المهارات-الرقمية__ar",
+      "subject": "المهارات الرقمية",
+      "grade": "الصف 12",
+      "stage": "التعليم الثانوي — المسار الأكاديمي"
+    },
+    {
+      "bookId": "jordan__التعليم-الأساسي__jordan-national-curriculum__الصف-5__الثقافة-المالية__ar",
+      "subject": "الثقافة المالية",
+      "grade": "الصف 5",
+      "stage": "التعليم الأساسي"
+    },
+    {
+      "bookId": "jordan__التعليم-الأساسي__jordan-national-curriculum__الصف-6__الثقافة-المالية__ar",
+      "subject": "الثقافة المالية",
+      "grade": "الصف 6",
+      "stage": "التعليم الأساسي"
+    },
+    {
+      "bookId": "jordan__التعليم-الأساسي__jordan-national-curriculum__الصف-7__الثقافة-المالية__ar",
+      "subject": "الثقافة المالية",
+      "grade": "الصف 7",
+      "stage": "التعليم الأساسي"
+    },
+    {
+      "bookId": "jordan__التعليم-الأساسي__jordan-national-curriculum__الصف-8__الثقافة-المالية__ar",
+      "subject": "الثقافة المالية",
+      "grade": "الصف 8",
+      "stage": "التعليم الأساسي"
+    },
+    {
+      "bookId": "jordan__التعليم-الأساسي__jordan-national-curriculum__الصف-9__الثقافة-المالية__ar",
+      "subject": "الثقافة المالية",
+      "grade": "الصف 9",
+      "stage": "التعليم الأساسي"
+    },
+    {
+      "bookId": "jordan__التعليم-الأساسي__jordan-national-curriculum__الصف-10__الثقافة-المالية__ar",
+      "subject": "الثقافة المالية",
+      "grade": "الصف 10",
+      "stage": "التعليم الأساسي"
+    },
+    {
+      "bookId": "jordan__رياض-الأطفال__jordan-national-curriculum__رياض-الأطفال__المهارات-الحياتية__ar",
+      "subject": "المهارات الحياتية",
+      "grade": "رياض الأطفال",
+      "stage": "رياض الأطفال"
+    },
+    {
+      "bookId": "jordan__التعليم-الأساسي__jordan-national-curriculum__الصف-5__التربية-المهنية__ar",
+      "subject": "التربية المهنية",
+      "grade": "الصف 5",
+      "stage": "التعليم الأساسي"
+    },
+    {
+      "bookId": "jordan__التعليم-الأساسي__jordan-national-curriculum__الصف-6__التربية-المهنية__ar",
+      "subject": "التربية المهنية",
+      "grade": "الصف 6",
+      "stage": "التعليم الأساسي"
+    },
+    {
+      "bookId": "jordan__التعليم-الأساسي__jordan-national-curriculum__الصف-7__التربية-المهنية__ar",
+      "subject": "التربية المهنية",
+      "grade": "الصف 7",
+      "stage": "التعليم الأساسي"
+    },
+    {
+      "bookId": "jordan__التعليم-الأساسي__jordan-national-curriculum__الصف-8__التربية-المهنية__ar",
+      "subject": "التربية المهنية",
+      "grade": "الصف 8",
+      "stage": "التعليم الأساسي"
+    },
+    {
+      "bookId": "jordan__التعليم-الأساسي__jordan-national-curriculum__الصف-9__التربية-المهنية__ar",
+      "subject": "التربية المهنية",
+      "grade": "الصف 9",
+      "stage": "التعليم الأساسي"
+    },
+    {
+      "bookId": "jordan__التعليم-الأساسي__jordan-national-curriculum__الصف-10__التربية-المهنية__ar",
+      "subject": "التربية المهنية",
+      "grade": "الصف 10",
+      "stage": "التعليم الأساسي"
+    },
+    {
+      "bookId": "jordan__التعليم-الأساسي__jordan-national-curriculum__الصف-1__التربية-الرياضية__ar",
+      "subject": "التربية الرياضية",
+      "grade": "الصف 1",
+      "stage": "التعليم الأساسي"
+    },
+    {
+      "bookId": "jordan__التعليم-الأساسي__jordan-national-curriculum__الصف-2__التربية-الرياضية__ar",
+      "subject": "التربية الرياضية",
+      "grade": "الصف 2",
+      "stage": "التعليم الأساسي"
+    },
+    {
+      "bookId": "jordan__التعليم-الأساسي__jordan-national-curriculum__الصف-3__التربية-الرياضية__ar",
+      "subject": "التربية الرياضية",
+      "grade": "الصف 3",
+      "stage": "التعليم الأساسي"
+    },
+    {
+      "bookId": "jordan__التعليم-الأساسي__jordan-national-curriculum__الصف-4__التربية-الرياضية__ar",
+      "subject": "التربية الرياضية",
+      "grade": "الصف 4",
+      "stage": "التعليم الأساسي"
+    },
+    {
+      "bookId": "jordan__التعليم-الأساسي__jordan-national-curriculum__الصف-5__التربية-الرياضية__ar",
+      "subject": "التربية الرياضية",
+      "grade": "الصف 5",
+      "stage": "التعليم الأساسي"
+    },
+    {
+      "bookId": "jordan__التعليم-الأساسي__jordan-national-curriculum__الصف-6__التربية-الرياضية__ar",
+      "subject": "التربية الرياضية",
+      "grade": "الصف 6",
+      "stage": "التعليم الأساسي"
+    },
+    {
+      "bookId": "jordan__التعليم-الأساسي__jordan-national-curriculum__الصف-7__التربية-الرياضية__ar",
+      "subject": "التربية الرياضية",
+      "grade": "الصف 7",
+      "stage": "التعليم الأساسي"
+    },
+    {
+      "bookId": "jordan__التعليم-الأساسي__jordan-national-curriculum__الصف-8__التربية-الرياضية__ar",
+      "subject": "التربية الرياضية",
+      "grade": "الصف 8",
+      "stage": "التعليم الأساسي"
+    },
+    {
+      "bookId": "jordan__التعليم-الأساسي__jordan-national-curriculum__الصف-9__التربية-الرياضية__ar",
+      "subject": "التربية الرياضية",
+      "grade": "الصف 9",
+      "stage": "التعليم الأساسي"
+    },
+    {
+      "bookId": "jordan__التعليم-الأساسي__jordan-national-curriculum__الصف-10__التربية-الرياضية__ar",
+      "subject": "التربية الرياضية",
+      "grade": "الصف 10",
+      "stage": "التعليم الأساسي"
+    },
+    {
+      "bookId": "jordan__التعليم-الأساسي__jordan-national-curriculum__الصف-5__الفنون__ar",
+      "subject": "الفنون",
+      "grade": "الصف 5",
+      "stage": "التعليم الأساسي"
+    },
+    {
+      "bookId": "jordan__التعليم-الأساسي__jordan-national-curriculum__الصف-6__الفنون__ar",
+      "subject": "الفنون",
+      "grade": "الصف 6",
+      "stage": "التعليم الأساسي"
+    },
+    {
+      "bookId": "jordan__التعليم-الأساسي__jordan-national-curriculum__الصف-7__الفنون__ar",
+      "subject": "الفنون",
+      "grade": "الصف 7",
+      "stage": "التعليم الأساسي"
+    },
+    {
+      "bookId": "jordan__التعليم-الأساسي__jordan-national-curriculum__الصف-8__الفنون__ar",
+      "subject": "الفنون",
+      "grade": "الصف 8",
+      "stage": "التعليم الأساسي"
+    },
+    {
+      "bookId": "jordan__التعليم-الأساسي__jordan-national-curriculum__الصف-9__الفنون__ar",
+      "subject": "الفنون",
+      "grade": "الصف 9",
+      "stage": "التعليم الأساسي"
+    },
+    {
+      "bookId": "jordan__التعليم-الأساسي__jordan-national-curriculum__الصف-10__الفنون__ar",
+      "subject": "الفنون",
+      "grade": "الصف 10",
+      "stage": "التعليم الأساسي"
+    },
+    {
+      "bookId": "jordan__التعليم-الأساسي__jordan-national-curriculum__الصف-1__التربية-الفنية-والموسيقية-والمسرحية__ar",
+      "subject": "التربية الفنية والموسيقية والمسرحية",
+      "grade": "الصف 1",
+      "stage": "التعليم الأساسي"
+    },
+    {
+      "bookId": "jordan__التعليم-الأساسي__jordan-national-curriculum__الصف-2__التربية-الفنية-والموسيقية-والمسرحية__ar",
+      "subject": "التربية الفنية والموسيقية والمسرحية",
+      "grade": "الصف 2",
+      "stage": "التعليم الأساسي"
+    },
+    {
+      "bookId": "jordan__التعليم-الأساسي__jordan-national-curriculum__الصف-3__التربية-الفنية-والموسيقية-والمسرحية__ar",
+      "subject": "التربية الفنية والموسيقية والمسرحية",
+      "grade": "الصف 3",
+      "stage": "التعليم الأساسي"
+    },
+    {
+      "bookId": "jordan__التعليم-الأساسي__jordan-national-curriculum__الصف-4__التربية-الفنية-والموسيقية-والمسرحية__ar",
+      "subject": "التربية الفنية والموسيقية والمسرحية",
+      "grade": "الصف 4",
+      "stage": "التعليم الأساسي"
+    },
+    {
+      "bookId": "jordan__التعليم-الثانوي-المسار-المهني-btec__jordan-national-curriculum__الصف-11__الفنون-والتصميم__ar",
+      "subject": "الفنون والتصميم",
+      "grade": "الصف 11",
+      "stage": "التعليم الثانوي — المسار المهني BTEC"
+    },
+    {
+      "bookId": "jordan__التعليم-الثانوي-المسار-المهني-btec__jordan-national-curriculum__الصف-12__الفنون-والتصميم__ar",
+      "subject": "الفنون والتصميم",
+      "grade": "الصف 12",
+      "stage": "التعليم الثانوي — المسار المهني BTEC"
+    },
+    {
+      "bookId": "jordan__التعليم-الثانوي-المسار-المهني-btec__jordan-national-curriculum__الصف-11__الأعمال__ar",
+      "subject": "الأعمال",
+      "grade": "الصف 11",
+      "stage": "التعليم الثانوي — المسار المهني BTEC"
+    },
+    {
+      "bookId": "jordan__التعليم-الثانوي-المسار-المهني-btec__jordan-national-curriculum__الصف-12__الأعمال__ar",
+      "subject": "الأعمال",
+      "grade": "الصف 12",
+      "stage": "التعليم الثانوي — المسار المهني BTEC"
+    },
+    {
+      "bookId": "jordan__التعليم-الثانوي-المسار-المهني-btec__jordan-national-curriculum__الصف-11__الهندسة__ar",
+      "subject": "الهندسة",
+      "grade": "الصف 11",
+      "stage": "التعليم الثانوي — المسار المهني BTEC"
+    },
+    {
+      "bookId": "jordan__التعليم-الثانوي-المسار-المهني-btec__jordan-national-curriculum__الصف-12__الهندسة__ar",
+      "subject": "الهندسة",
+      "grade": "الصف 12",
+      "stage": "التعليم الثانوي — المسار المهني BTEC"
+    },
+    {
+      "bookId": "jordan__التعليم-الثانوي-المسار-المهني-btec__jordan-national-curriculum__الصف-11__تكنولوجيا-المعلومات__ar",
+      "subject": "تكنولوجيا المعلومات",
+      "grade": "الصف 11",
+      "stage": "التعليم الثانوي — المسار المهني BTEC"
+    },
+    {
+      "bookId": "jordan__التعليم-الثانوي-المسار-المهني-btec__jordan-national-curriculum__الصف-12__تكنولوجيا-المعلومات__ar",
+      "subject": "تكنولوجيا المعلومات",
+      "grade": "الصف 12",
+      "stage": "التعليم الثانوي — المسار المهني BTEC"
+    },
+    {
+      "bookId": "jordan__التعليم-الثانوي-المسار-المهني-btec__jordan-national-curriculum__الصف-11__الضيافة__ar",
+      "subject": "الضيافة",
+      "grade": "الصف 11",
+      "stage": "التعليم الثانوي — المسار المهني BTEC"
+    },
+    {
+      "bookId": "jordan__التعليم-الثانوي-المسار-المهني-btec__jordan-national-curriculum__الصف-12__الضيافة__ar",
+      "subject": "الضيافة",
+      "grade": "الصف 12",
+      "stage": "التعليم الثانوي — المسار المهني BTEC"
+    },
+    {
+      "bookId": "jordan__التعليم-الثانوي-المسار-المهني-btec__jordan-national-curriculum__الصف-11__السفر-والسياحة__ar",
+      "subject": "السفر والسياحة",
+      "grade": "الصف 11",
+      "stage": "التعليم الثانوي — المسار المهني BTEC"
+    },
+    {
+      "bookId": "jordan__التعليم-الثانوي-المسار-المهني-btec__jordan-national-curriculum__الصف-12__السفر-والسياحة__ar",
+      "subject": "السفر والسياحة",
+      "grade": "الصف 12",
+      "stage": "التعليم الثانوي — المسار المهني BTEC"
+    },
+    {
+      "bookId": "jordan__التعليم-الثانوي-المسار-المهني-btec__jordan-national-curriculum__الصف-11__الزراعة__ar",
+      "subject": "الزراعة",
+      "grade": "الصف 11",
+      "stage": "التعليم الثانوي — المسار المهني BTEC"
+    },
+    {
+      "bookId": "jordan__التعليم-الثانوي-المسار-المهني-btec__jordan-national-curriculum__الصف-12__الزراعة__ar",
+      "subject": "الزراعة",
+      "grade": "الصف 12",
+      "stage": "التعليم الثانوي — المسار المهني BTEC"
+    },
+    {
+      "bookId": "jordan__التعليم-الثانوي-المسار-المهني-btec__jordan-national-curriculum__الصف-11__البناء-والإنشاءات__ar",
+      "subject": "البناء والإنشاءات",
+      "grade": "الصف 11",
+      "stage": "التعليم الثانوي — المسار المهني BTEC"
+    },
+    {
+      "bookId": "jordan__التعليم-الثانوي-المسار-المهني-btec__jordan-national-curriculum__الصف-12__البناء-والإنشاءات__ar",
+      "subject": "البناء والإنشاءات",
+      "grade": "الصف 12",
+      "stage": "التعليم الثانوي — المسار المهني BTEC"
+    }
+  ],
+  "builtAt": "2026-07-31T17:56:54.164Z"
+}

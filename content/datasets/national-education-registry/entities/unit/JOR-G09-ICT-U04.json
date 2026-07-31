@@ -1,0 +1,21 @@
+{
+  "globalId": "JOR-G09-ICT-U04",
+  "kind": "unit",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "مشاريع رقمية",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-BOOK-000108",
+  "relationships": {
+    "bookId": "JOR-BOOK-000108",
+    "subjectId": "JOR-G09-ICT",
+    "gradeId": "JOR-G09",
+    "belongsTo": "JOR-BOOK-000108"
+  },
+  "createdAt": "2026-07-31T17:56:57.233Z",
+  "updatedAt": "2026-07-31T17:56:57.233Z",
+  "unitCode": "U04",
+  "sequence": 4,
+  "legacyUnitId": "U4"
+}

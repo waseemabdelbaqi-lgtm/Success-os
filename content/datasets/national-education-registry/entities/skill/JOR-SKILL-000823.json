@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-SKILL-000823",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«الروابط والتفاعلات — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-005590",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-005590",
+      "JOR-OUTCOME-005591",
+      "JOR-OUTCOME-005592",
+      "JOR-OUTCOME-006054",
+      "JOR-OUTCOME-006055",
+      "JOR-OUTCOME-006056"
+    ],
+    "lessonIds": [
+      "JOR-G11-الكيمياء-U02-L04",
+      "JOR-G12-الكيمياء-U02-L04"
+    ],
+    "belongsTo": "JOR-OUTCOME-005590"
+  },
+  "createdAt": "2026-07-31T17:56:57.270Z",
+  "updatedAt": "2026-07-31T17:56:57.348Z"
+}

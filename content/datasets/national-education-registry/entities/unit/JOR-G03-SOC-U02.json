@@ -1,0 +1,21 @@
+{
+  "globalId": "JOR-G03-SOC-U02",
+  "kind": "unit",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "الوطن والرمز",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-BOOK-000035",
+  "relationships": {
+    "bookId": "JOR-BOOK-000035",
+    "subjectId": "JOR-G03-SOC",
+    "gradeId": "JOR-G03",
+    "belongsTo": "JOR-BOOK-000035"
+  },
+  "createdAt": "2026-07-31T17:56:56.778Z",
+  "updatedAt": "2026-07-31T17:56:56.778Z",
+  "unitCode": "U02",
+  "sequence": 2,
+  "legacyUnitId": "U2"
+}

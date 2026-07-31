@@ -1,0 +1,31 @@
+{
+  "globalId": "JOR-SKILL-000686",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«Guided Writing — بناء المهارة» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-002840",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-002840",
+      "JOR-OUTCOME-002841",
+      "JOR-OUTCOME-002842",
+      "JOR-OUTCOME-003400",
+      "JOR-OUTCOME-003401",
+      "JOR-OUTCOME-003402",
+      "JOR-OUTCOME-003960",
+      "JOR-OUTCOME-003961",
+      "JOR-OUTCOME-003962"
+    ],
+    "lessonIds": [
+      "JOR-G05-ENG-U04-L02",
+      "JOR-G06-ENG-U04-L02",
+      "JOR-G07-ENG-U04-L02"
+    ],
+    "belongsTo": "JOR-OUTCOME-002840"
+  },
+  "createdAt": "2026-07-31T17:56:56.878Z",
+  "updatedAt": "2026-07-31T17:56:57.024Z"
+}

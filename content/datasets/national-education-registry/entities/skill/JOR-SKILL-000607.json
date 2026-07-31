@@ -1,0 +1,31 @@
+{
+  "globalId": "JOR-SKILL-000607",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«التراث — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-002651",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-002651",
+      "JOR-OUTCOME-002652",
+      "JOR-OUTCOME-002653",
+      "JOR-OUTCOME-003211",
+      "JOR-OUTCOME-003212",
+      "JOR-OUTCOME-003213",
+      "JOR-OUTCOME-003771",
+      "JOR-OUTCOME-003772",
+      "JOR-OUTCOME-003773"
+    ],
+    "lessonIds": [
+      "JOR-G05-SOC-U04-L03",
+      "JOR-G06-SOC-U04-L03",
+      "JOR-G07-SOC-U04-L03"
+    ],
+    "belongsTo": "JOR-OUTCOME-002651"
+  },
+  "createdAt": "2026-07-31T17:56:56.858Z",
+  "updatedAt": "2026-07-31T17:56:57.000Z"
+}

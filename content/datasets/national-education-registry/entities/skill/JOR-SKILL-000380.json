@@ -1,0 +1,35 @@
+{
+  "globalId": "JOR-SKILL-000380",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«الوطن والرمز — بناء المهارة» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-000816",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-000816",
+      "JOR-OUTCOME-000817",
+      "JOR-OUTCOME-000818",
+      "JOR-OUTCOME-001248",
+      "JOR-OUTCOME-001249",
+      "JOR-OUTCOME-001250",
+      "JOR-OUTCOME-001680",
+      "JOR-OUTCOME-001681",
+      "JOR-OUTCOME-001682",
+      "JOR-OUTCOME-002112",
+      "JOR-OUTCOME-002113",
+      "JOR-OUTCOME-002114"
+    ],
+    "lessonIds": [
+      "JOR-G01-SOC-U02-L02",
+      "JOR-G02-SOC-U02-L02",
+      "JOR-G03-SOC-U02-L02",
+      "JOR-G04-SOC-U02-L02"
+    ],
+    "belongsTo": "JOR-OUTCOME-000816"
+  },
+  "createdAt": "2026-07-31T17:56:56.723Z",
+  "updatedAt": "2026-07-31T17:56:56.810Z"
+}

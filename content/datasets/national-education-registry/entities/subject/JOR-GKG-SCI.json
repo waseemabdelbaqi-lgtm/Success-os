@@ -1,0 +1,20 @@
+{
+  "globalId": "JOR-GKG-SCI",
+  "kind": "subject",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "العلوم والاستكشاف",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-GKG",
+  "relationships": {
+    "gradeId": "JOR-GKG",
+    "educationalSystemId": "JOR-SYS-000001",
+    "countryId": "JOR",
+    "belongsTo": "JOR-GKG"
+  },
+  "createdAt": "2026-07-31T17:56:57.567Z",
+  "updatedAt": "2026-07-31T17:56:57.567Z",
+  "subjectCode": "SCI",
+  "gradeCode": "GKG"
+}

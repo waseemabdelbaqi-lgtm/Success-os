@@ -1,0 +1,20 @@
+{
+  "globalId": "JOR-BOOK-000111",
+  "kind": "book",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "Success OS — علوم الأرض والبيئة",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G11-SCI",
+  "relationships": {
+    "subjectId": "JOR-G11-SCI",
+    "gradeId": "JOR-G11",
+    "belongsTo": "JOR-G11-SCI"
+  },
+  "createdAt": "2026-07-31T17:56:57.253Z",
+  "updatedAt": "2026-07-31T17:56:57.306Z",
+  "legacyBookId": "jordan__التعليم-الثانوي-المسار-الأكاديمي__jordan-national-curriculum__الصف-11__علوم-الأرض-والبيئة__ar",
+  "officialSource": "https://www.nccd.gov.jo/ar/pages/TextBooksGrade/117",
+  "_deduped": true
+}

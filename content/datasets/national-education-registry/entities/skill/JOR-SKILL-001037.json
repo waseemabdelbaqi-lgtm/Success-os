@@ -1,0 +1,23 @@
+{
+  "globalId": "JOR-SKILL-001037",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«المواد من حولنا — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-007087",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-007087",
+      "JOR-OUTCOME-007088",
+      "JOR-OUTCOME-007089"
+    ],
+    "lessonIds": [
+      "JOR-GKG-SCI-U03-L03"
+    ],
+    "belongsTo": "JOR-OUTCOME-007087"
+  },
+  "createdAt": "2026-07-31T17:56:57.574Z",
+  "updatedAt": "2026-07-31T17:56:57.574Z"
+}

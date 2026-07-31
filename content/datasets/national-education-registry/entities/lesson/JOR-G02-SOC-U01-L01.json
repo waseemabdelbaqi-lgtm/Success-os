@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-G02-SOC-U01-L01",
+  "kind": "lesson",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "الأسرة والمجتمع — مقدمة ومفاهيم",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G02-SOC-U01",
+  "relationships": {
+    "unitId": "JOR-G02-SOC-U01",
+    "bookId": "JOR-BOOK-000026",
+    "subjectId": "JOR-G02-SOC",
+    "gradeId": "JOR-G02",
+    "belongsTo": "JOR-G02-SOC-U01"
+  },
+  "createdAt": "2026-07-31T17:56:56.749Z",
+  "updatedAt": "2026-07-31T17:56:56.749Z",
+  "lessonCode": "L01",
+  "sequence": 1,
+  "legacyLessonId": "L1.1",
+  "keywords": [
+    "مجتمع",
+    "مؤسسة",
+    "موارد"
+  ]
+}

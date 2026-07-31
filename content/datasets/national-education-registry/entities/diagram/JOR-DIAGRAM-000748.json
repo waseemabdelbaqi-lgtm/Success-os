@@ -1,0 +1,16 @@
+{
+  "globalId": "JOR-DIAGRAM-000748",
+  "kind": "diagram",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "مخطط تعليمي لوحدة الأرض والفضاء",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G04-SCI-U03-L04",
+  "relationships": {
+    "lessonId": "JOR-G04-SCI-U03-L04",
+    "belongsTo": "JOR-G04-SCI-U03-L04"
+  },
+  "createdAt": "2026-07-31T17:56:56.819Z",
+  "updatedAt": "2026-07-31T17:56:56.819Z"
+}

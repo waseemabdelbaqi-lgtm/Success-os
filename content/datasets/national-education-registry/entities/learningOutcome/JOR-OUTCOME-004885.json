@@ -1,0 +1,19 @@
+{
+  "globalId": "JOR-OUTCOME-004885",
+  "kind": "learningOutcome",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G09-التربيةا-U02-L03",
+  "relationships": {
+    "lessonId": "JOR-G09-التربيةا-U02-L03",
+    "belongsTo": "JOR-G09-التربيةا-U02-L03"
+  },
+  "createdAt": "2026-07-31T17:56:57.156Z",
+  "updatedAt": "2026-07-31T17:56:57.163Z",
+  "text": "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة.",
+  "sequence": 3,
+  "_deduped": true
+}

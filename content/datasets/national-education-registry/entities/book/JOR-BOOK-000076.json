@@ -1,0 +1,19 @@
+{
+  "globalId": "JOR-BOOK-000076",
+  "kind": "book",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "Success OS — الدراسات الاجتماعية",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G07-SOC",
+  "relationships": {
+    "subjectId": "JOR-G07-SOC",
+    "gradeId": "JOR-G07",
+    "belongsTo": "JOR-G07-SOC"
+  },
+  "createdAt": "2026-07-31T17:56:56.995Z",
+  "updatedAt": "2026-07-31T17:56:56.995Z",
+  "legacyBookId": "jordan__التعليم-الأساسي__jordan-national-curriculum__الصف-7__الدراسات-الاجتماعية__ar",
+  "officialSource": "https://www.nccd.gov.jo/ar/pages/TextBooksGrade/74"
+}

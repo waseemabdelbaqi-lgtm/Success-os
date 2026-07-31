@@ -1,0 +1,19 @@
+{
+  "globalId": "JOR-BOOK-000117",
+  "kind": "book",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "Success OS — تاريخ الأردن",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G11-تاريخالأ",
+  "relationships": {
+    "subjectId": "JOR-G11-تاريخالأ",
+    "gradeId": "JOR-G11",
+    "belongsTo": "JOR-G11-تاريخالأ"
+  },
+  "createdAt": "2026-07-31T17:56:57.299Z",
+  "updatedAt": "2026-07-31T17:56:57.299Z",
+  "legacyBookId": "jordan__التعليم-الثانوي-المسار-الأكاديمي__jordan-national-curriculum__الصف-11__تاريخ-الأردن__ar",
+  "officialSource": "https://www.nccd.gov.jo/ar/pages/TextBooksGrade/117"
+}

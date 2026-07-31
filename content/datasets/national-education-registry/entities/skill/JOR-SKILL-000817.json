@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-SKILL-000817",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«بنية الذرة والجدول الدوري — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-005575",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-005575",
+      "JOR-OUTCOME-005576",
+      "JOR-OUTCOME-005577",
+      "JOR-OUTCOME-006039",
+      "JOR-OUTCOME-006040",
+      "JOR-OUTCOME-006041"
+    ],
+    "lessonIds": [
+      "JOR-G11-الكيمياء-U01-L03",
+      "JOR-G12-الكيمياء-U01-L03"
+    ],
+    "belongsTo": "JOR-OUTCOME-005575"
+  },
+  "createdAt": "2026-07-31T17:56:57.268Z",
+  "updatedAt": "2026-07-31T17:56:57.347Z"
+}

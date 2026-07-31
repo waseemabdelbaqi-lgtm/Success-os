@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-G05-PE-U01-L03",
+  "kind": "lesson",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "الألعاب الجماعية — تطبيق ومثال",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G05-PE-U01",
+  "relationships": {
+    "unitId": "JOR-G05-PE-U01",
+    "bookId": "JOR-BOOK-000051",
+    "subjectId": "JOR-G05-PE",
+    "gradeId": "JOR-G05",
+    "belongsTo": "JOR-G05-PE-U01"
+  },
+  "createdAt": "2026-07-31T17:56:56.839Z",
+  "updatedAt": "2026-07-31T17:56:56.839Z",
+  "lessonCode": "L03",
+  "sequence": 3,
+  "legacyLessonId": "L1.3",
+  "keywords": [
+    "مهارة حركية",
+    "لياقة",
+    "تعاون"
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-G10-الجغرافي-U02-L03",
+  "kind": "lesson",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "البيئات الأردنية — تطبيق ومثال",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G10-الجغرافي-U02",
+  "relationships": {
+    "unitId": "JOR-G10-الجغرافي-U02",
+    "bookId": "JOR-BOOK-000006",
+    "subjectId": "JOR-G10-الجغرافي",
+    "gradeId": "JOR-G10",
+    "belongsTo": "JOR-G10-الجغرافي-U02"
+  },
+  "createdAt": "2026-07-31T17:56:56.697Z",
+  "updatedAt": "2026-07-31T17:56:56.697Z",
+  "lessonCode": "L03",
+  "sequence": 3,
+  "legacyLessonId": "L2.3",
+  "keywords": [
+    "مكان",
+    "إقليم",
+    "توزيع"
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-G12-السفروال-U01-L03",
+  "kind": "lesson",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أساسيات المسار — تطبيق ومثال",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G12-السفروال-U01",
+  "relationships": {
+    "unitId": "JOR-G12-السفروال-U01",
+    "bookId": "JOR-BOOK-000138",
+    "subjectId": "JOR-G12-السفروال",
+    "gradeId": "JOR-G12",
+    "belongsTo": "JOR-G12-السفروال-U01"
+  },
+  "createdAt": "2026-07-31T17:56:57.501Z",
+  "updatedAt": "2026-07-31T17:56:57.501Z",
+  "lessonCode": "L03",
+  "sequence": 3,
+  "legacyLessonId": "L1.3",
+  "keywords": [
+    "معيار",
+    "أداة",
+    "عملية"
+  ]
+}

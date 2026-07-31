@@ -1,0 +1,21 @@
+{
+  "globalId": "JOR-GKG-EMATH-U01",
+  "kind": "unit",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "العد والتصنيف",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-BOOK-000143",
+  "relationships": {
+    "bookId": "JOR-BOOK-000143",
+    "subjectId": "JOR-GKG-EMATH",
+    "gradeId": "JOR-GKG",
+    "belongsTo": "JOR-BOOK-000143"
+  },
+  "createdAt": "2026-07-31T17:56:57.555Z",
+  "updatedAt": "2026-07-31T17:56:57.555Z",
+  "unitCode": "U01",
+  "sequence": 1,
+  "legacyUnitId": "U1"
+}

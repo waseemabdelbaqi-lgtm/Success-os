@@ -1,0 +1,16 @@
+{
+  "globalId": "JOR-DIAGRAM-000064",
+  "kind": "diagram",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "مخطط تعليمي لوحدة ريادة مصغرة",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G10-التربيةا-U04-L04",
+  "relationships": {
+    "lessonId": "JOR-G10-التربيةا-U04-L04",
+    "belongsTo": "JOR-G10-التربيةا-U04-L04"
+  },
+  "createdAt": "2026-07-31T17:56:56.690Z",
+  "updatedAt": "2026-07-31T17:56:56.690Z"
+}

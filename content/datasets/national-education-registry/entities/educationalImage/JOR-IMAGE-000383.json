@@ -1,0 +1,17 @@
+{
+  "globalId": "JOR-IMAGE-000383",
+  "kind": "educationalImage",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "مخطط تعليمي لوحدة قصص قرآنية ونبوية",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G02-ISL-U04-L03",
+  "relationships": {
+    "lessonId": "JOR-G02-ISL-U04-L03",
+    "belongsTo": "JOR-G02-ISL-U04-L03"
+  },
+  "createdAt": "2026-07-31T17:56:56.743Z",
+  "updatedAt": "2026-07-31T17:56:56.743Z",
+  "src": null
+}

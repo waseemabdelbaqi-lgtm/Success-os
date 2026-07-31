@@ -1,0 +1,31 @@
+{
+  "globalId": "JOR-SKILL-000499",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«أحكام العبادات — مقدمة ومفاهيم» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-002397",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-002397",
+      "JOR-OUTCOME-002398",
+      "JOR-OUTCOME-002399",
+      "JOR-OUTCOME-002957",
+      "JOR-OUTCOME-002958",
+      "JOR-OUTCOME-002959",
+      "JOR-OUTCOME-003517",
+      "JOR-OUTCOME-003518",
+      "JOR-OUTCOME-003519"
+    ],
+    "lessonIds": [
+      "JOR-G05-ISL-U02-L01",
+      "JOR-G06-ISL-U02-L01",
+      "JOR-G07-ISL-U02-L01"
+    ],
+    "belongsTo": "JOR-OUTCOME-002397"
+  },
+  "createdAt": "2026-07-31T17:56:56.835Z",
+  "updatedAt": "2026-07-31T17:56:56.968Z"
+}

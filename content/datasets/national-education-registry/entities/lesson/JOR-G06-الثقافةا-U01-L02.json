@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-G06-الثقافةا-U01-L02",
+  "kind": "lesson",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "النقود والقيمة — بناء المهارة",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G06-الثقافةا-U01",
+  "relationships": {
+    "unitId": "JOR-G06-الثقافةا-U01",
+    "bookId": "JOR-BOOK-000064",
+    "subjectId": "JOR-G06-الثقافةا",
+    "gradeId": "JOR-G06",
+    "belongsTo": "JOR-G06-الثقافةا-U01"
+  },
+  "createdAt": "2026-07-31T17:56:56.910Z",
+  "updatedAt": "2026-07-31T17:56:56.910Z",
+  "lessonCode": "L02",
+  "sequence": 2,
+  "legacyLessonId": "L1.2",
+  "keywords": [
+    "دخل",
+    "مصروف",
+    "ادخار"
+  ]
+}

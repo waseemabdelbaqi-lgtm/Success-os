@@ -1,0 +1,19 @@
+{
+  "globalId": "JOR-BOOK-000101",
+  "kind": "book",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "Success OS — الجغرافيا",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G09-الجغرافي",
+  "relationships": {
+    "subjectId": "JOR-G09-الجغرافي",
+    "gradeId": "JOR-G09",
+    "belongsTo": "JOR-G09-الجغرافي"
+  },
+  "createdAt": "2026-07-31T17:56:57.175Z",
+  "updatedAt": "2026-07-31T17:56:57.175Z",
+  "legacyBookId": "jordan__التعليم-الأساسي__jordan-national-curriculum__الصف-9__الجغرافيا__ar",
+  "officialSource": "https://www.nccd.gov.jo/ar/pages/TextBooksGrade/76"
+}

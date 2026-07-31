@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-G01-ARAB-U03-L04",
+  "kind": "lesson",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "القواعد الأساسية — تقويم وتعزيز",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G01-ARAB-U03",
+  "relationships": {
+    "unitId": "JOR-G01-ARAB-U03",
+    "bookId": "JOR-BOOK-000021",
+    "subjectId": "JOR-G01-ARAB",
+    "gradeId": "JOR-G01",
+    "belongsTo": "JOR-G01-ARAB-U03"
+  },
+  "createdAt": "2026-07-31T17:56:56.736Z",
+  "updatedAt": "2026-07-31T17:56:56.736Z",
+  "lessonCode": "L04",
+  "sequence": 4,
+  "legacyLessonId": "L3.4",
+  "keywords": [
+    "نص",
+    "معنى",
+    "أسلوب"
+  ]
+}

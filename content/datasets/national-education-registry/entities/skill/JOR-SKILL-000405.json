@@ -1,0 +1,35 @@
+{
+  "globalId": "JOR-SKILL-000405",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«الهندسة والقياس — بناء المهارة» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-000876",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-000876",
+      "JOR-OUTCOME-000877",
+      "JOR-OUTCOME-000878",
+      "JOR-OUTCOME-001308",
+      "JOR-OUTCOME-001309",
+      "JOR-OUTCOME-001310",
+      "JOR-OUTCOME-001740",
+      "JOR-OUTCOME-001741",
+      "JOR-OUTCOME-001742",
+      "JOR-OUTCOME-002172",
+      "JOR-OUTCOME-002173",
+      "JOR-OUTCOME-002174"
+    ],
+    "lessonIds": [
+      "JOR-G01-MATH-U03-L02",
+      "JOR-G02-MATH-U03-L02",
+      "JOR-G03-MATH-U03-L02",
+      "JOR-G04-MATH-U03-L02"
+    ],
+    "belongsTo": "JOR-OUTCOME-000876"
+  },
+  "createdAt": "2026-07-31T17:56:56.726Z",
+  "updatedAt": "2026-07-31T17:56:56.814Z"
+}

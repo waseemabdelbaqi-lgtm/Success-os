@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-G08-الجغرافي-U04-L02",
+  "kind": "lesson",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "قضايا جغرافية — بناء المهارة",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G08-الجغرافي-U04",
+  "relationships": {
+    "unitId": "JOR-G08-الجغرافي-U04",
+    "bookId": "JOR-BOOK-000088",
+    "subjectId": "JOR-G08-الجغرافي",
+    "gradeId": "JOR-G08",
+    "belongsTo": "JOR-G08-الجغرافي-U04"
+  },
+  "createdAt": "2026-07-31T17:56:57.080Z",
+  "updatedAt": "2026-07-31T17:56:57.080Z",
+  "lessonCode": "L02",
+  "sequence": 2,
+  "legacyLessonId": "L4.2",
+  "keywords": [
+    "مكان",
+    "إقليم",
+    "توزيع"
+  ]
+}

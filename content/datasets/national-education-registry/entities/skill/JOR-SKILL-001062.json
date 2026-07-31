@@ -1,0 +1,23 @@
+{
+  "globalId": "JOR-SKILL-001062",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«التعبير الشفوي — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-007147",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-007147",
+      "JOR-OUTCOME-007148",
+      "JOR-OUTCOME-007149"
+    ],
+    "lessonIds": [
+      "JOR-GKG-اللغةوال-U04-L03"
+    ],
+    "belongsTo": "JOR-OUTCOME-007147"
+  },
+  "createdAt": "2026-07-31T17:56:57.589Z",
+  "updatedAt": "2026-07-31T17:56:57.589Z"
+}

@@ -1,0 +1,51 @@
+{
+  "globalId": "JOR-SKILL-000859",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يتعرف المتعلم مفهومًا محوريًا في اللغة العربية ضمن النحو والبلاغة بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 11.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-005677",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-005677",
+      "JOR-OUTCOME-005678",
+      "JOR-OUTCOME-005679",
+      "JOR-OUTCOME-005680",
+      "JOR-OUTCOME-005681",
+      "JOR-OUTCOME-005682",
+      "JOR-OUTCOME-005683",
+      "JOR-OUTCOME-005684",
+      "JOR-OUTCOME-005685",
+      "JOR-OUTCOME-005686",
+      "JOR-OUTCOME-005687",
+      "JOR-OUTCOME-005688",
+      "JOR-OUTCOME-006141",
+      "JOR-OUTCOME-006142",
+      "JOR-OUTCOME-006143",
+      "JOR-OUTCOME-006144",
+      "JOR-OUTCOME-006145",
+      "JOR-OUTCOME-006146",
+      "JOR-OUTCOME-006147",
+      "JOR-OUTCOME-006148",
+      "JOR-OUTCOME-006149",
+      "JOR-OUTCOME-006150",
+      "JOR-OUTCOME-006151",
+      "JOR-OUTCOME-006152"
+    ],
+    "lessonIds": [
+      "JOR-G11-ARAB-U02-L01",
+      "JOR-G11-ARAB-U02-L02",
+      "JOR-G11-ARAB-U02-L03",
+      "JOR-G11-ARAB-U02-L04",
+      "JOR-G12-ARAB-U02-L01",
+      "JOR-G12-ARAB-U02-L02",
+      "JOR-G12-ARAB-U02-L03",
+      "JOR-G12-ARAB-U02-L04"
+    ],
+    "belongsTo": "JOR-OUTCOME-005677"
+  },
+  "createdAt": "2026-07-31T17:56:57.284Z",
+  "updatedAt": "2026-07-31T17:56:57.365Z"
+}

@@ -1,0 +1,17 @@
+{
+  "globalId": "JOR-IMAGE-002431",
+  "kind": "educationalImage",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "مخطط تعليمي لوحدة وحدة تطبيقية 2",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-GKG-المهارات-U04-L03",
+  "relationships": {
+    "lessonId": "JOR-GKG-المهارات-U04-L03",
+    "belongsTo": "JOR-GKG-المهارات-U04-L03"
+  },
+  "createdAt": "2026-07-31T17:56:57.598Z",
+  "updatedAt": "2026-07-31T17:56:57.598Z",
+  "src": null
+}

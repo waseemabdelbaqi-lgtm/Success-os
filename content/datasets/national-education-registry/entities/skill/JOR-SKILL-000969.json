@@ -1,0 +1,51 @@
+{
+  "globalId": "JOR-SKILL-000969",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يتعرف المتعلم مفهومًا محوريًا في السفر والسياحة ضمن مهارات عملية بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 11.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-006461",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-006461",
+      "JOR-OUTCOME-006462",
+      "JOR-OUTCOME-006463",
+      "JOR-OUTCOME-006464",
+      "JOR-OUTCOME-006465",
+      "JOR-OUTCOME-006466",
+      "JOR-OUTCOME-006467",
+      "JOR-OUTCOME-006468",
+      "JOR-OUTCOME-006469",
+      "JOR-OUTCOME-006470",
+      "JOR-OUTCOME-006471",
+      "JOR-OUTCOME-006472",
+      "JOR-OUTCOME-006813",
+      "JOR-OUTCOME-006814",
+      "JOR-OUTCOME-006815",
+      "JOR-OUTCOME-006816",
+      "JOR-OUTCOME-006817",
+      "JOR-OUTCOME-006818",
+      "JOR-OUTCOME-006819",
+      "JOR-OUTCOME-006820",
+      "JOR-OUTCOME-006821",
+      "JOR-OUTCOME-006822",
+      "JOR-OUTCOME-006823",
+      "JOR-OUTCOME-006824"
+    ],
+    "lessonIds": [
+      "JOR-G11-السفروال-U02-L01",
+      "JOR-G11-السفروال-U02-L02",
+      "JOR-G11-السفروال-U02-L03",
+      "JOR-G11-السفروال-U02-L04",
+      "JOR-G12-السفروال-U02-L01",
+      "JOR-G12-السفروال-U02-L02",
+      "JOR-G12-السفروال-U02-L03",
+      "JOR-G12-السفروال-U02-L04"
+    ],
+    "belongsTo": "JOR-OUTCOME-006461"
+  },
+  "createdAt": "2026-07-31T17:56:57.420Z",
+  "updatedAt": "2026-07-31T17:56:57.504Z"
+}

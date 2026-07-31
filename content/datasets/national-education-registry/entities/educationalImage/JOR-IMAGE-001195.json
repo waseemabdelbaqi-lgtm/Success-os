@@ -1,0 +1,17 @@
+{
+  "globalId": "JOR-IMAGE-001195",
+  "kind": "educationalImage",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "مخطط تعليمي لوحدة السيرة النبوية",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G07-ISL-U03-L03",
+  "relationships": {
+    "lessonId": "JOR-G07-ISL-U03-L03",
+    "belongsTo": "JOR-G07-ISL-U03-L03"
+  },
+  "createdAt": "2026-07-31T17:56:56.971Z",
+  "updatedAt": "2026-07-31T17:56:56.971Z",
+  "src": null
+}

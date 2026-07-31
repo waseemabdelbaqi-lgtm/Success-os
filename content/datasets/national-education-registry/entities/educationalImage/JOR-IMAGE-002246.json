@@ -1,0 +1,17 @@
+{
+  "globalId": "JOR-IMAGE-002246",
+  "kind": "educationalImage",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "مخطط تعليمي لوحدة مهارات عملية",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G11-الهندسة-U02-L02",
+  "relationships": {
+    "lessonId": "JOR-G11-الهندسة-U02-L02",
+    "belongsTo": "JOR-G11-الهندسة-U02-L02"
+  },
+  "createdAt": "2026-07-31T17:56:57.451Z",
+  "updatedAt": "2026-07-31T17:56:57.451Z",
+  "src": null
+}

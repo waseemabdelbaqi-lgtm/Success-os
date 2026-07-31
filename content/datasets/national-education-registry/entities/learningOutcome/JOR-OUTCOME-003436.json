@@ -1,0 +1,18 @@
+{
+  "globalId": "JOR-OUTCOME-003436",
+  "kind": "learningOutcome",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يتعرف المتعلم مفهومًا محوريًا في اللغة العربية ضمن البلاغة المبسطة بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 6.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G06-ARAB-U03-L02",
+  "relationships": {
+    "lessonId": "JOR-G06-ARAB-U03-L02",
+    "belongsTo": "JOR-G06-ARAB-U03-L02"
+  },
+  "createdAt": "2026-07-31T17:56:56.958Z",
+  "updatedAt": "2026-07-31T17:56:56.958Z",
+  "text": "أن يتعرف المتعلم مفهومًا محوريًا في اللغة العربية ضمن البلاغة المبسطة بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 6.",
+  "sequence": 1
+}

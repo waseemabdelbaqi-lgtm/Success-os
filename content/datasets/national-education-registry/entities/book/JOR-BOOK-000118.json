@@ -1,0 +1,19 @@
+{
+  "globalId": "JOR-BOOK-000118",
+  "kind": "book",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "Success OS — التربية الإسلامية",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G12-ISL",
+  "relationships": {
+    "subjectId": "JOR-G12-ISL",
+    "gradeId": "JOR-G12",
+    "belongsTo": "JOR-G12-ISL"
+  },
+  "createdAt": "2026-07-31T17:56:57.312Z",
+  "updatedAt": "2026-07-31T17:56:57.312Z",
+  "legacyBookId": "jordan__التعليم-الثانوي-المسار-الأكاديمي__jordan-national-curriculum__الصف-12__التربية-الإسلامية__ar",
+  "officialSource": "https://www.nccd.gov.jo/ar/pages/TextBooksGrade/83"
+}

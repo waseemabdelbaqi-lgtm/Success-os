@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-SKILL-000753",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«الدوال والجبر المتقدم — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-005434",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-005434",
+      "JOR-OUTCOME-005435",
+      "JOR-OUTCOME-005436",
+      "JOR-OUTCOME-005898",
+      "JOR-OUTCOME-005899",
+      "JOR-OUTCOME-005900"
+    ],
+    "lessonIds": [
+      "JOR-G11-MATH-U01-L04",
+      "JOR-G12-MATH-U01-L04"
+    ],
+    "belongsTo": "JOR-OUTCOME-005434"
+  },
+  "createdAt": "2026-07-31T17:56:57.245Z",
+  "updatedAt": "2026-07-31T17:56:57.323Z"
+}

@@ -1,0 +1,16 @@
+{
+  "globalId": "JOR-DIAGRAM-000635",
+  "kind": "diagram",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "مخطط تعليمي لوحدة القواعد الأساسية",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G03-ARAB-U03-L03",
+  "relationships": {
+    "lessonId": "JOR-G03-ARAB-U03-L03",
+    "belongsTo": "JOR-G03-ARAB-U03-L03"
+  },
+  "createdAt": "2026-07-31T17:56:56.793Z",
+  "updatedAt": "2026-07-31T17:56:56.793Z"
+}

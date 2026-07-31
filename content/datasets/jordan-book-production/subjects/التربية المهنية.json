@@ -1,0 +1,16 @@
+{
+  "subject": "التربية المهنية",
+  "totalGrades": 6,
+  "published": 6,
+  "pending": 1,
+  "complete": false,
+  "bookIds": [
+    "jordan__التعليم-الأساسي__jordan-national-curriculum__الصف-5__التربية-المهنية__ar",
+    "jordan__التعليم-الأساسي__jordan-national-curriculum__الصف-6__التربية-المهنية__ar",
+    "jordan__التعليم-الأساسي__jordan-national-curriculum__الصف-7__التربية-المهنية__ar",
+    "jordan__التعليم-الأساسي__jordan-national-curriculum__الصف-8__التربية-المهنية__ar",
+    "jordan__التعليم-الأساسي__jordan-national-curriculum__الصف-9__التربية-المهنية__ar",
+    "jordan__التعليم-الأساسي__jordan-national-curriculum__الصف-10__التربية-المهنية__ar"
+  ],
+  "updatedAt": "2026-07-31T17:56:25.520Z"
+}

@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-GKG-المهارات-U02-L02",
+  "kind": "lesson",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "وحدة استكشافية 2 — بناء المهارة",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-GKG-المهارات-U02",
+  "relationships": {
+    "unitId": "JOR-GKG-المهارات-U02",
+    "bookId": "JOR-BOOK-000146",
+    "subjectId": "JOR-GKG-المهارات",
+    "gradeId": "JOR-GKG",
+    "belongsTo": "JOR-GKG-المهارات-U02"
+  },
+  "createdAt": "2026-07-31T17:56:57.593Z",
+  "updatedAt": "2026-07-31T17:56:57.593Z",
+  "lessonCode": "L02",
+  "sequence": 2,
+  "legacyLessonId": "L2.2",
+  "keywords": [
+    "مفهوم",
+    "مهارة",
+    "تطبيق"
+  ]
+}

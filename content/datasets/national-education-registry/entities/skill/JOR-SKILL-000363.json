@@ -1,0 +1,35 @@
+{
+  "globalId": "JOR-SKILL-000363",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«الموسيقى المدرسية — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-000771",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-000771",
+      "JOR-OUTCOME-000772",
+      "JOR-OUTCOME-000773",
+      "JOR-OUTCOME-001203",
+      "JOR-OUTCOME-001204",
+      "JOR-OUTCOME-001205",
+      "JOR-OUTCOME-001635",
+      "JOR-OUTCOME-001636",
+      "JOR-OUTCOME-001637",
+      "JOR-OUTCOME-002067",
+      "JOR-OUTCOME-002068",
+      "JOR-OUTCOME-002069"
+    ],
+    "lessonIds": [
+      "JOR-G01-ARTS-U02-L03",
+      "JOR-G02-ARTS-U02-L03",
+      "JOR-G03-ARTS-U02-L03",
+      "JOR-G04-ARTS-U02-L03"
+    ],
+    "belongsTo": "JOR-OUTCOME-000771"
+  },
+  "createdAt": "2026-07-31T17:56:56.719Z",
+  "updatedAt": "2026-07-31T17:56:56.806Z"
+}

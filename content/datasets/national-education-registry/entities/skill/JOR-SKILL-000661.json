@@ -1,0 +1,31 @@
+{
+  "globalId": "JOR-SKILL-000661",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«الأداء المسرحي — بناء المهارة» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-002780",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-002780",
+      "JOR-OUTCOME-002781",
+      "JOR-OUTCOME-002782",
+      "JOR-OUTCOME-003340",
+      "JOR-OUTCOME-003341",
+      "JOR-OUTCOME-003342",
+      "JOR-OUTCOME-003900",
+      "JOR-OUTCOME-003901",
+      "JOR-OUTCOME-003902"
+    ],
+    "lessonIds": [
+      "JOR-G05-الفنون-U03-L02",
+      "JOR-G06-الفنون-U03-L02",
+      "JOR-G07-الفنون-U03-L02"
+    ],
+    "belongsTo": "JOR-OUTCOME-002780"
+  },
+  "createdAt": "2026-07-31T17:56:56.872Z",
+  "updatedAt": "2026-07-31T17:56:57.017Z"
+}

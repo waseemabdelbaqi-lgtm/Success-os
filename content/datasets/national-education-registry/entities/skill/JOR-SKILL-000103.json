@@ -1,0 +1,31 @@
+{
+  "globalId": "JOR-SKILL-000103",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«المشاركة المدنية — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-000205",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-000205",
+      "JOR-OUTCOME-000206",
+      "JOR-OUTCOME-000165",
+      "JOR-OUTCOME-004269",
+      "JOR-OUTCOME-004270",
+      "JOR-OUTCOME-004229",
+      "JOR-OUTCOME-004925",
+      "JOR-OUTCOME-004926",
+      "JOR-OUTCOME-004885"
+    ],
+    "lessonIds": [
+      "JOR-G10-التربيةا-U02-L03",
+      "JOR-G08-التربيةا-U02-L03",
+      "JOR-G09-التربيةا-U02-L03"
+    ],
+    "belongsTo": "JOR-OUTCOME-000205"
+  },
+  "createdAt": "2026-07-31T17:56:56.691Z",
+  "updatedAt": "2026-07-31T17:56:57.163Z"
+}

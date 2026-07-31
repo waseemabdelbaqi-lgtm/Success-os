@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-G09-ARAB-U02-L03",
+  "kind": "lesson",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "النحو المتقدم — تطبيق ومثال",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G09-ARAB-U02",
+  "relationships": {
+    "unitId": "JOR-G09-ARAB-U02",
+    "bookId": "JOR-BOOK-000107",
+    "subjectId": "JOR-G09-ARAB",
+    "gradeId": "JOR-G09",
+    "belongsTo": "JOR-G09-ARAB-U02"
+  },
+  "createdAt": "2026-07-31T17:56:57.223Z",
+  "updatedAt": "2026-07-31T17:56:57.223Z",
+  "lessonCode": "L03",
+  "sequence": 3,
+  "legacyLessonId": "L2.3",
+  "keywords": [
+    "نص",
+    "معنى",
+    "أسلوب"
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "globalId": "JOR-OUTCOME-002463",
+  "kind": "learningOutcome",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يتعرف المتعلم مفهومًا محوريًا في التربية الرياضية ضمن القواعد الرياضية بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 5.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G05-PE-U03-L03",
+  "relationships": {
+    "lessonId": "JOR-G05-PE-U03-L03",
+    "belongsTo": "JOR-G05-PE-U03-L03"
+  },
+  "createdAt": "2026-07-31T17:56:56.841Z",
+  "updatedAt": "2026-07-31T17:56:56.841Z",
+  "text": "أن يتعرف المتعلم مفهومًا محوريًا في التربية الرياضية ضمن القواعد الرياضية بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 5.",
+  "sequence": 1
+}

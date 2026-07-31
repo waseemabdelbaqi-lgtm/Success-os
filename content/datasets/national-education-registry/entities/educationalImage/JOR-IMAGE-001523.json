@@ -1,0 +1,17 @@
+{
+  "globalId": "JOR-IMAGE-001523",
+  "kind": "educationalImage",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "مخطط تعليمي لوحدة الخلية والتنوع",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G08-SCI-U01-L03",
+  "relationships": {
+    "lessonId": "JOR-G08-SCI-U01-L03",
+    "belongsTo": "JOR-G08-SCI-U01-L03"
+  },
+  "createdAt": "2026-07-31T17:56:57.096Z",
+  "updatedAt": "2026-07-31T17:56:57.096Z",
+  "src": null
+}

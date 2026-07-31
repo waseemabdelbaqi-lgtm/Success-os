@@ -1,0 +1,31 @@
+{
+  "globalId": "JOR-SKILL-000188",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«النسب والتناسب — مقدمة ومفاهيم» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-000381",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-000381",
+      "JOR-OUTCOME-000382",
+      "JOR-OUTCOME-000383",
+      "JOR-OUTCOME-004445",
+      "JOR-OUTCOME-004446",
+      "JOR-OUTCOME-004447",
+      "JOR-OUTCOME-005101",
+      "JOR-OUTCOME-005102",
+      "JOR-OUTCOME-005103"
+    ],
+    "lessonIds": [
+      "JOR-G10-MATH-U02-L01",
+      "JOR-G08-MATH-U02-L01",
+      "JOR-G09-MATH-U02-L01"
+    ],
+    "belongsTo": "JOR-OUTCOME-000381"
+  },
+  "createdAt": "2026-07-31T17:56:56.700Z",
+  "updatedAt": "2026-07-31T17:56:57.191Z"
+}

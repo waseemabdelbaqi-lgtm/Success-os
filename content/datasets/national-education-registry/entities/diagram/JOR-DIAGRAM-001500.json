@@ -1,0 +1,16 @@
+{
+  "globalId": "JOR-DIAGRAM-001500",
+  "kind": "diagram",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "مخطط تعليمي لوحدة التنمية",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G08-SOC-U03-L04",
+  "relationships": {
+    "lessonId": "JOR-G08-SOC-U03-L04",
+    "belongsTo": "JOR-G08-SOC-U03-L04"
+  },
+  "createdAt": "2026-07-31T17:56:57.086Z",
+  "updatedAt": "2026-07-31T17:56:57.086Z"
+}

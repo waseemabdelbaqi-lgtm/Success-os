@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-SKILL-000887",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«أمن معلومات — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-005743",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-005743",
+      "JOR-OUTCOME-005744",
+      "JOR-OUTCOME-005745",
+      "JOR-OUTCOME-006207",
+      "JOR-OUTCOME-006208",
+      "JOR-OUTCOME-006209"
+    ],
+    "lessonIds": [
+      "JOR-G11-ICT-U03-L03",
+      "JOR-G12-ICT-U03-L03"
+    ],
+    "belongsTo": "JOR-OUTCOME-005743"
+  },
+  "createdAt": "2026-07-31T17:56:57.295Z",
+  "updatedAt": "2026-07-31T17:56:57.376Z"
+}

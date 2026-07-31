@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-SKILL-000862",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«النحو والبلاغة — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-005683",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-005683",
+      "JOR-OUTCOME-005684",
+      "JOR-OUTCOME-005685",
+      "JOR-OUTCOME-006147",
+      "JOR-OUTCOME-006148",
+      "JOR-OUTCOME-006149"
+    ],
+    "lessonIds": [
+      "JOR-G11-ARAB-U02-L03",
+      "JOR-G12-ARAB-U02-L03"
+    ],
+    "belongsTo": "JOR-OUTCOME-005683"
+  },
+  "createdAt": "2026-07-31T17:56:57.285Z",
+  "updatedAt": "2026-07-31T17:56:57.364Z"
+}

@@ -1,0 +1,35 @@
+{
+  "globalId": "JOR-SKILL-000320",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«العقيدة الميسرة — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-000663",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-000663",
+      "JOR-OUTCOME-000664",
+      "JOR-OUTCOME-000665",
+      "JOR-OUTCOME-001095",
+      "JOR-OUTCOME-001096",
+      "JOR-OUTCOME-001097",
+      "JOR-OUTCOME-001527",
+      "JOR-OUTCOME-001528",
+      "JOR-OUTCOME-001529",
+      "JOR-OUTCOME-001959",
+      "JOR-OUTCOME-001960",
+      "JOR-OUTCOME-001961"
+    ],
+    "lessonIds": [
+      "JOR-G01-ISL-U01-L03",
+      "JOR-G02-ISL-U01-L03",
+      "JOR-G03-ISL-U01-L03",
+      "JOR-G04-ISL-U01-L03"
+    ],
+    "belongsTo": "JOR-OUTCOME-000663"
+  },
+  "createdAt": "2026-07-31T17:56:56.715Z",
+  "updatedAt": "2026-07-31T17:56:56.798Z"
+}

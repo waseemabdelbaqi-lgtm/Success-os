@@ -1,0 +1,18 @@
+{
+  "globalId": "JOR-OUTCOME-004383",
+  "kind": "learningOutcome",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«قضايا جغرافية — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G08-الجغرافي-U04-L04",
+  "relationships": {
+    "lessonId": "JOR-G08-الجغرافي-U04-L04",
+    "belongsTo": "JOR-G08-الجغرافي-U04-L04"
+  },
+  "createdAt": "2026-07-31T17:56:57.081Z",
+  "updatedAt": "2026-07-31T17:56:57.081Z",
+  "text": "أن يطبّق مهارة مرتبطة بـ«قضايا جغرافية — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+  "sequence": 2
+}

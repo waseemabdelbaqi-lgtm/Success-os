@@ -1,0 +1,51 @@
+{
+  "globalId": "JOR-SKILL-000739",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يتعرف المتعلم مفهومًا محوريًا في التربية الإسلامية ضمن الفكر الإسلامي بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 11.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-005401",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-005401",
+      "JOR-OUTCOME-005402",
+      "JOR-OUTCOME-005403",
+      "JOR-OUTCOME-005404",
+      "JOR-OUTCOME-005405",
+      "JOR-OUTCOME-005406",
+      "JOR-OUTCOME-005407",
+      "JOR-OUTCOME-005408",
+      "JOR-OUTCOME-005409",
+      "JOR-OUTCOME-005410",
+      "JOR-OUTCOME-005411",
+      "JOR-OUTCOME-005412",
+      "JOR-OUTCOME-005865",
+      "JOR-OUTCOME-005866",
+      "JOR-OUTCOME-005867",
+      "JOR-OUTCOME-005868",
+      "JOR-OUTCOME-005869",
+      "JOR-OUTCOME-005870",
+      "JOR-OUTCOME-005871",
+      "JOR-OUTCOME-005872",
+      "JOR-OUTCOME-005873",
+      "JOR-OUTCOME-005874",
+      "JOR-OUTCOME-005875",
+      "JOR-OUTCOME-005876"
+    ],
+    "lessonIds": [
+      "JOR-G11-ISL-U03-L01",
+      "JOR-G11-ISL-U03-L02",
+      "JOR-G11-ISL-U03-L03",
+      "JOR-G11-ISL-U03-L04",
+      "JOR-G12-ISL-U03-L01",
+      "JOR-G12-ISL-U03-L02",
+      "JOR-G12-ISL-U03-L03",
+      "JOR-G12-ISL-U03-L04"
+    ],
+    "belongsTo": "JOR-OUTCOME-005401"
+  },
+  "createdAt": "2026-07-31T17:56:57.240Z",
+  "updatedAt": "2026-07-31T17:56:57.318Z"
+}

@@ -1,0 +1,16 @@
+{
+  "globalId": "JOR-DIAGRAM-001510",
+  "kind": "diagram",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "مخطط تعليمي لوحدة النسب والتناسب",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G08-MATH-U02-L02",
+  "relationships": {
+    "lessonId": "JOR-G08-MATH-U02-L02",
+    "belongsTo": "JOR-G08-MATH-U02-L02"
+  },
+  "createdAt": "2026-07-31T17:56:57.090Z",
+  "updatedAt": "2026-07-31T17:56:57.090Z"
+}

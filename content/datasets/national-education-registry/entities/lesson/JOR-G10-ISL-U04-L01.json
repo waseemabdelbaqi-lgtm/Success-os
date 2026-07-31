@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-G10-ISL-U04-L01",
+  "kind": "lesson",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "الأخلاق والتعامل — مقدمة ومفاهيم",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G10-ISL-U04",
+  "relationships": {
+    "unitId": "JOR-G10-ISL-U04",
+    "bookId": "JOR-BOOK-000002",
+    "subjectId": "JOR-G10-ISL",
+    "gradeId": "JOR-G10",
+    "belongsTo": "JOR-G10-ISL-U04"
+  },
+  "createdAt": "2026-07-31T17:56:56.685Z",
+  "updatedAt": "2026-07-31T17:56:56.685Z",
+  "lessonCode": "L01",
+  "sequence": 1,
+  "legacyLessonId": "L4.1",
+  "keywords": [
+    "عقيدة",
+    "عبادة",
+    "خلق"
+  ]
+}

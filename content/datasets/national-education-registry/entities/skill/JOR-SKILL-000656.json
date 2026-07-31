@@ -1,0 +1,31 @@
+{
+  "globalId": "JOR-SKILL-000656",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«الإيقاع واللحن — بناء المهارة» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-002768",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-002768",
+      "JOR-OUTCOME-002769",
+      "JOR-OUTCOME-002770",
+      "JOR-OUTCOME-003328",
+      "JOR-OUTCOME-003329",
+      "JOR-OUTCOME-003330",
+      "JOR-OUTCOME-003888",
+      "JOR-OUTCOME-003889",
+      "JOR-OUTCOME-003890"
+    ],
+    "lessonIds": [
+      "JOR-G05-الفنون-U02-L02",
+      "JOR-G06-الفنون-U02-L02",
+      "JOR-G07-الفنون-U02-L02"
+    ],
+    "belongsTo": "JOR-OUTCOME-002768"
+  },
+  "createdAt": "2026-07-31T17:56:56.871Z",
+  "updatedAt": "2026-07-31T17:56:57.015Z"
+}

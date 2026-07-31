@@ -1,0 +1,17 @@
+{
+  "globalId": "JOR-IMAGE-002410",
+  "kind": "educationalImage",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "مخطط تعليمي لوحدة قصص قصيرة",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-GKG-اللغةوال-U03-L02",
+  "relationships": {
+    "lessonId": "JOR-GKG-اللغةوال-U03-L02",
+    "belongsTo": "JOR-GKG-اللغةوال-U03-L02"
+  },
+  "createdAt": "2026-07-31T17:56:57.585Z",
+  "updatedAt": "2026-07-31T17:56:57.585Z",
+  "src": null
+}

@@ -1,0 +1,31 @@
+{
+  "globalId": "JOR-SKILL-000567",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«الخدمة المجتمعية — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-002557",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-002557",
+      "JOR-OUTCOME-002558",
+      "JOR-OUTCOME-002525",
+      "JOR-OUTCOME-003117",
+      "JOR-OUTCOME-003118",
+      "JOR-OUTCOME-003085",
+      "JOR-OUTCOME-003677",
+      "JOR-OUTCOME-003678",
+      "JOR-OUTCOME-003645"
+    ],
+    "lessonIds": [
+      "JOR-G05-التربيةا-U04-L03",
+      "JOR-G06-التربيةا-U04-L03",
+      "JOR-G07-التربيةا-U04-L03"
+    ],
+    "belongsTo": "JOR-OUTCOME-002557"
+  },
+  "createdAt": "2026-07-31T17:56:56.849Z",
+  "updatedAt": "2026-07-31T17:56:56.988Z"
+}

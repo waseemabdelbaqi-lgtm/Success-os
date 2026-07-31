@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-G12-تاريخالأ-U02-L01",
+  "kind": "lesson",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "القضايا التاريخية — مقدمة ومفاهيم",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G12-تاريخالأ-U02",
+  "relationships": {
+    "unitId": "JOR-G12-تاريخالأ-U02",
+    "bookId": "JOR-BOOK-000126",
+    "subjectId": "JOR-G12-تاريخالأ",
+    "gradeId": "JOR-G12",
+    "belongsTo": "JOR-G12-تاريخالأ-U02"
+  },
+  "createdAt": "2026-07-31T17:56:57.381Z",
+  "updatedAt": "2026-07-31T17:56:57.381Z",
+  "lessonCode": "L01",
+  "sequence": 1,
+  "legacyLessonId": "L2.1",
+  "keywords": [
+    "حدث",
+    "مصدر",
+    "سبب"
+  ]
+}

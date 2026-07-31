@@ -1,0 +1,17 @@
+{
+  "globalId": "JOR-IMAGE-002331",
+  "kind": "educationalImage",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "مخطط تعليمي لوحدة معايير السلامة والجودة",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G12-الضيافة-U03-L03",
+  "relationships": {
+    "lessonId": "JOR-G12-الضيافة-U03-L03",
+    "belongsTo": "JOR-G12-الضيافة-U03-L03"
+  },
+  "createdAt": "2026-07-31T17:56:57.517Z",
+  "updatedAt": "2026-07-31T17:56:57.517Z",
+  "src": null
+}

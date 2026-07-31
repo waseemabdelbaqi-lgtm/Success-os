@@ -1,0 +1,16 @@
+{
+  "globalId": "JOR-DIAGRAM-001036",
+  "kind": "diagram",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "مخطط تعليمي لوحدة السلامة المنزلية",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G06-التربيةا-U03-L04",
+  "relationships": {
+    "lessonId": "JOR-G06-التربيةا-U03-L04",
+    "belongsTo": "JOR-G06-التربيةا-U03-L04"
+  },
+  "createdAt": "2026-07-31T17:56:56.905Z",
+  "updatedAt": "2026-07-31T17:56:56.905Z"
+}

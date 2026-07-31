@@ -1,0 +1,21 @@
+{
+  "globalId": "JOR-G07-ENG-U04",
+  "kind": "unit",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "Guided Writing",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-BOOK-000080",
+  "relationships": {
+    "bookId": "JOR-BOOK-000080",
+    "subjectId": "JOR-G07-ENG",
+    "gradeId": "JOR-G07",
+    "belongsTo": "JOR-BOOK-000080"
+  },
+  "createdAt": "2026-07-31T17:56:57.024Z",
+  "updatedAt": "2026-07-31T17:56:57.024Z",
+  "unitCode": "U04",
+  "sequence": 4,
+  "legacyUnitId": "U4"
+}

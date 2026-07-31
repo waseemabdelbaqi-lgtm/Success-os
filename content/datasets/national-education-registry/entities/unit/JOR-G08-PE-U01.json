@@ -1,0 +1,21 @@
+{
+  "globalId": "JOR-G08-PE-U01",
+  "kind": "unit",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "مهارات متقدمة",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-BOOK-000085",
+  "relationships": {
+    "bookId": "JOR-BOOK-000085",
+    "subjectId": "JOR-G08-PE",
+    "gradeId": "JOR-G08",
+    "belongsTo": "JOR-BOOK-000085"
+  },
+  "createdAt": "2026-07-31T17:56:57.051Z",
+  "updatedAt": "2026-07-31T17:56:57.051Z",
+  "unitCode": "U01",
+  "sequence": 1,
+  "legacyUnitId": "U1"
+}

@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-G11-تاريخالأ-U01-L03",
+  "kind": "lesson",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "تاريخ الأردن المعاصر — تطبيق ومثال",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G11-تاريخالأ-U01",
+  "relationships": {
+    "unitId": "JOR-G11-تاريخالأ-U01",
+    "bookId": "JOR-BOOK-000117",
+    "subjectId": "JOR-G11-تاريخالأ",
+    "gradeId": "JOR-G11",
+    "belongsTo": "JOR-G11-تاريخالأ-U01"
+  },
+  "createdAt": "2026-07-31T17:56:57.300Z",
+  "updatedAt": "2026-07-31T17:56:57.300Z",
+  "lessonCode": "L03",
+  "sequence": 3,
+  "legacyLessonId": "L1.3",
+  "keywords": [
+    "حدث",
+    "مصدر",
+    "سبب"
+  ]
+}

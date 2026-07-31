@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-G03-ICT-U02-L03",
+  "kind": "lesson",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "السلامة الرقمية — تطبيق ومثال",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G03-ICT-U02",
+  "relationships": {
+    "unitId": "JOR-G03-ICT-U02",
+    "bookId": "JOR-BOOK-000040",
+    "subjectId": "JOR-G03-ICT",
+    "gradeId": "JOR-G03",
+    "belongsTo": "JOR-G03-ICT-U02"
+  },
+  "createdAt": "2026-07-31T17:56:56.795Z",
+  "updatedAt": "2026-07-31T17:56:56.795Z",
+  "lessonCode": "L03",
+  "sequence": 3,
+  "legacyLessonId": "L2.3",
+  "keywords": [
+    "بيانات",
+    "خوارزمية",
+    "شبكة"
+  ]
+}

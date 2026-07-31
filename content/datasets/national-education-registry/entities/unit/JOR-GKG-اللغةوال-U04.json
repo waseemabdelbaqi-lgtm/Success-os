@@ -1,0 +1,21 @@
+{
+  "globalId": "JOR-GKG-اللغةوال-U04",
+  "kind": "unit",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "التعبير الشفوي",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-BOOK-000145",
+  "relationships": {
+    "bookId": "JOR-BOOK-000145",
+    "subjectId": "JOR-GKG-اللغةوال",
+    "gradeId": "JOR-GKG",
+    "belongsTo": "JOR-BOOK-000145"
+  },
+  "createdAt": "2026-07-31T17:56:57.587Z",
+  "updatedAt": "2026-07-31T17:56:57.587Z",
+  "unitCode": "U04",
+  "sequence": 4,
+  "legacyUnitId": "U4"
+}

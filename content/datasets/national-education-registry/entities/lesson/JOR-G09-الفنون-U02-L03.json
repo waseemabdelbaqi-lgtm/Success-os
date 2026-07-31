@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-G09-الفنون-U02-L03",
+  "kind": "lesson",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "الأداء — تطبيق ومثال",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G09-الفنون-U02",
+  "relationships": {
+    "unitId": "JOR-G09-الفنون-U02",
+    "bookId": "JOR-BOOK-000105",
+    "subjectId": "JOR-G09-الفنون",
+    "gradeId": "JOR-G09",
+    "belongsTo": "JOR-G09-الفنون-U02"
+  },
+  "createdAt": "2026-07-31T17:56:57.207Z",
+  "updatedAt": "2026-07-31T17:56:57.207Z",
+  "lessonCode": "L03",
+  "sequence": 3,
+  "legacyLessonId": "L2.3",
+  "keywords": [
+    "خط",
+    "لون",
+    "إيقاع"
+  ]
+}

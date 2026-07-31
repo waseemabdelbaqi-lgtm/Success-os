@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-G09-الجغرافي-U04-L03",
+  "kind": "lesson",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "قضايا جغرافية — تطبيق ومثال",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G09-الجغرافي-U04",
+  "relationships": {
+    "unitId": "JOR-G09-الجغرافي-U04",
+    "bookId": "JOR-BOOK-000101",
+    "subjectId": "JOR-G09-الجغرافي",
+    "gradeId": "JOR-G09",
+    "belongsTo": "JOR-G09-الجغرافي-U04"
+  },
+  "createdAt": "2026-07-31T17:56:57.180Z",
+  "updatedAt": "2026-07-31T17:56:57.180Z",
+  "lessonCode": "L03",
+  "sequence": 3,
+  "legacyLessonId": "L4.3",
+  "keywords": [
+    "مكان",
+    "إقليم",
+    "توزيع"
+  ]
+}

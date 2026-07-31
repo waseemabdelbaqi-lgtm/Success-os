@@ -1,0 +1,17 @@
+{
+  "globalId": "JOR-IMAGE-002095",
+  "kind": "educationalImage",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "مخطط تعليمي لوحدة التواصل الرسمي",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G12-ARAB-U04-L03",
+  "relationships": {
+    "lessonId": "JOR-G12-ARAB-U04-L03",
+    "belongsTo": "JOR-G12-ARAB-U04-L03"
+  },
+  "createdAt": "2026-07-31T17:56:57.369Z",
+  "updatedAt": "2026-07-31T17:56:57.369Z",
+  "src": null
+}

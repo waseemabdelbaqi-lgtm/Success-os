@@ -1,0 +1,35 @@
+{
+  "globalId": "JOR-SKILL-000392",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«التاريخ المحلي المبسط — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-000846",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-000846",
+      "JOR-OUTCOME-000847",
+      "JOR-OUTCOME-000848",
+      "JOR-OUTCOME-001278",
+      "JOR-OUTCOME-001279",
+      "JOR-OUTCOME-001280",
+      "JOR-OUTCOME-001710",
+      "JOR-OUTCOME-001711",
+      "JOR-OUTCOME-001712",
+      "JOR-OUTCOME-002142",
+      "JOR-OUTCOME-002143",
+      "JOR-OUTCOME-002144"
+    ],
+    "lessonIds": [
+      "JOR-G01-SOC-U04-L04",
+      "JOR-G02-SOC-U04-L04",
+      "JOR-G03-SOC-U04-L04",
+      "JOR-G04-SOC-U04-L04"
+    ],
+    "belongsTo": "JOR-OUTCOME-000846"
+  },
+  "createdAt": "2026-07-31T17:56:56.724Z",
+  "updatedAt": "2026-07-31T17:56:56.812Z"
+}

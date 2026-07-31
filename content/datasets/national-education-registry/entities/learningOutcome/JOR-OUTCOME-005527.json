@@ -1,0 +1,18 @@
+{
+  "globalId": "JOR-OUTCOME-005527",
+  "kind": "learningOutcome",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يتعرف المتعلم مفهومًا محوريًا في الفيزياء ضمن الميكانيكا بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 11.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G11-الفيزياء-U01-L03",
+  "relationships": {
+    "lessonId": "JOR-G11-الفيزياء-U01-L03",
+    "belongsTo": "JOR-G11-الفيزياء-U01-L03"
+  },
+  "createdAt": "2026-07-31T17:56:57.262Z",
+  "updatedAt": "2026-07-31T17:56:57.262Z",
+  "text": "أن يتعرف المتعلم مفهومًا محوريًا في الفيزياء ضمن الميكانيكا بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 11.",
+  "sequence": 1
+}

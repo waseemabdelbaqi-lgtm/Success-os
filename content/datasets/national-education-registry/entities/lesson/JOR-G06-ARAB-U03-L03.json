@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-G06-ARAB-U03-L03",
+  "kind": "lesson",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "البلاغة المبسطة — تطبيق ومثال",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G06-ARAB-U03",
+  "relationships": {
+    "unitId": "JOR-G06-ARAB-U03",
+    "bookId": "JOR-BOOK-000070",
+    "subjectId": "JOR-G06-ARAB",
+    "gradeId": "JOR-G06",
+    "belongsTo": "JOR-G06-ARAB-U03"
+  },
+  "createdAt": "2026-07-31T17:56:56.959Z",
+  "updatedAt": "2026-07-31T17:56:56.959Z",
+  "lessonCode": "L03",
+  "sequence": 3,
+  "legacyLessonId": "L3.3",
+  "keywords": [
+    "نص",
+    "معنى",
+    "أسلوب"
+  ]
+}

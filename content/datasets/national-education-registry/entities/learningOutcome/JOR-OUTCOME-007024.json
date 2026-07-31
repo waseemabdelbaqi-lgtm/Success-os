@@ -1,0 +1,18 @@
+{
+  "globalId": "JOR-OUTCOME-007024",
+  "kind": "learningOutcome",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يتعرف المتعلم مفهومًا محوريًا في الرياضيات المبكرة ضمن الأشكال في محيطي بما يتوافق مع إطار المنهاج الوطني الأردني لـرياض الأطفال.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-GKG-EMATH-U02-L02",
+  "relationships": {
+    "lessonId": "JOR-GKG-EMATH-U02-L02",
+    "belongsTo": "JOR-GKG-EMATH-U02-L02"
+  },
+  "createdAt": "2026-07-31T17:56:57.559Z",
+  "updatedAt": "2026-07-31T17:56:57.559Z",
+  "text": "أن يتعرف المتعلم مفهومًا محوريًا في الرياضيات المبكرة ضمن الأشكال في محيطي بما يتوافق مع إطار المنهاج الوطني الأردني لـرياض الأطفال.",
+  "sequence": 1
+}

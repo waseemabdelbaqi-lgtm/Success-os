@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-SKILL-000837",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«Academic English — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-005623",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-005623",
+      "JOR-OUTCOME-005624",
+      "JOR-OUTCOME-005625",
+      "JOR-OUTCOME-006087",
+      "JOR-OUTCOME-006088",
+      "JOR-OUTCOME-006089"
+    ],
+    "lessonIds": [
+      "JOR-G11-ENG-U01-L03",
+      "JOR-G12-ENG-U01-L03"
+    ],
+    "belongsTo": "JOR-OUTCOME-005623"
+  },
+  "createdAt": "2026-07-31T17:56:57.275Z",
+  "updatedAt": "2026-07-31T17:56:57.354Z"
+}

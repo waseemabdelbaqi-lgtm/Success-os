@@ -1,0 +1,17 @@
+{
+  "globalId": "JOR-IMAGE-001534",
+  "kind": "educationalImage",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "مخطط تعليمي لوحدة الأرض والموارد",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G08-SCI-U04-L02",
+  "relationships": {
+    "lessonId": "JOR-G08-SCI-U04-L02",
+    "belongsTo": "JOR-G08-SCI-U04-L02"
+  },
+  "createdAt": "2026-07-31T17:56:57.101Z",
+  "updatedAt": "2026-07-31T17:56:57.101Z",
+  "src": null
+}

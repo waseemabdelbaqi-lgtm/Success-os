@@ -1,0 +1,18 @@
+{
+  "globalId": "JOR-OUTCOME-007100",
+  "kind": "learningOutcome",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«العناية بالبيئة — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-GKG-SCI-U04-L03",
+  "relationships": {
+    "lessonId": "JOR-GKG-SCI-U04-L03",
+    "belongsTo": "JOR-GKG-SCI-U04-L03"
+  },
+  "createdAt": "2026-07-31T17:56:57.577Z",
+  "updatedAt": "2026-07-31T17:56:57.577Z",
+  "text": "أن يطبّق مهارة مرتبطة بـ«العناية بالبيئة — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+  "sequence": 2
+}

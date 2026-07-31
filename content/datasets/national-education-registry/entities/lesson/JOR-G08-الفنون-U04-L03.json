@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-G08-الفنون-U04-L03",
+  "kind": "lesson",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "معارض ومشاريع — تطبيق ومثال",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G08-الفنون-U04",
+  "relationships": {
+    "unitId": "JOR-G08-الفنون-U04",
+    "bookId": "JOR-BOOK-000092",
+    "subjectId": "JOR-G08-الفنون",
+    "gradeId": "JOR-G08",
+    "belongsTo": "JOR-G08-الفنون-U04"
+  },
+  "createdAt": "2026-07-31T17:56:57.109Z",
+  "updatedAt": "2026-07-31T17:56:57.109Z",
+  "lessonCode": "L03",
+  "sequence": 3,
+  "legacyLessonId": "L4.3",
+  "keywords": [
+    "خط",
+    "لون",
+    "إيقاع"
+  ]
+}

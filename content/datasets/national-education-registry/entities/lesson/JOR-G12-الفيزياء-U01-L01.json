@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-G12-الفيزياء-U01-L01",
+  "kind": "lesson",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "الميكانيكا — مقدمة ومفاهيم",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G12-الفيزياء-U01",
+  "relationships": {
+    "unitId": "JOR-G12-الفيزياء-U01",
+    "bookId": "JOR-BOOK-000121",
+    "subjectId": "JOR-G12-الفيزياء",
+    "gradeId": "JOR-G12",
+    "belongsTo": "JOR-G12-الفيزياء-U01"
+  },
+  "createdAt": "2026-07-31T17:56:57.339Z",
+  "updatedAt": "2026-07-31T17:56:57.339Z",
+  "lessonCode": "L01",
+  "sequence": 1,
+  "legacyLessonId": "L1.1",
+  "keywords": [
+    "قوة",
+    "شغل",
+    "طاقة"
+  ]
+}

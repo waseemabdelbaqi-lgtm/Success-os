@@ -1,0 +1,21 @@
+{
+  "globalId": "JOR-G04-SCI-U04",
+  "kind": "unit",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "الصحة والسلامة",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-BOOK-000046",
+  "relationships": {
+    "bookId": "JOR-BOOK-000046",
+    "subjectId": "JOR-G04-SCI",
+    "gradeId": "JOR-G04",
+    "belongsTo": "JOR-BOOK-000046"
+  },
+  "createdAt": "2026-07-31T17:56:56.819Z",
+  "updatedAt": "2026-07-31T17:56:56.819Z",
+  "unitCode": "U04",
+  "sequence": 4,
+  "legacyUnitId": "U4"
+}

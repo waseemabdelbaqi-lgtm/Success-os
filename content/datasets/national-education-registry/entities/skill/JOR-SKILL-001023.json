@@ -1,0 +1,23 @@
+{
+  "globalId": "JOR-SKILL-001023",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«الأنماط — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-007054",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-007054",
+      "JOR-OUTCOME-007055",
+      "JOR-OUTCOME-007056"
+    ],
+    "lessonIds": [
+      "JOR-GKG-EMATH-U04-L04"
+    ],
+    "belongsTo": "JOR-OUTCOME-007054"
+  },
+  "createdAt": "2026-07-31T17:56:57.567Z",
+  "updatedAt": "2026-07-31T17:56:57.567Z"
+}

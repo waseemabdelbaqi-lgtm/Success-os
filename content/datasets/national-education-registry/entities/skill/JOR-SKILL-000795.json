@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-SKILL-000795",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«الميكانيكا — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-005530",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-005530",
+      "JOR-OUTCOME-005531",
+      "JOR-OUTCOME-005532",
+      "JOR-OUTCOME-005994",
+      "JOR-OUTCOME-005995",
+      "JOR-OUTCOME-005996"
+    ],
+    "lessonIds": [
+      "JOR-G11-الفيزياء-U01-L04",
+      "JOR-G12-الفيزياء-U01-L04"
+    ],
+    "belongsTo": "JOR-OUTCOME-005530"
+  },
+  "createdAt": "2026-07-31T17:56:57.262Z",
+  "updatedAt": "2026-07-31T17:56:57.340Z"
+}

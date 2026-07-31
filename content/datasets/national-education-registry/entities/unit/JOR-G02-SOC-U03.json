@@ -1,0 +1,21 @@
+{
+  "globalId": "JOR-G02-SOC-U03",
+  "kind": "unit",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "المهن والخدمات",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-BOOK-000026",
+  "relationships": {
+    "bookId": "JOR-BOOK-000026",
+    "subjectId": "JOR-G02-SOC",
+    "gradeId": "JOR-G02",
+    "belongsTo": "JOR-BOOK-000026"
+  },
+  "createdAt": "2026-07-31T17:56:56.750Z",
+  "updatedAt": "2026-07-31T17:56:56.750Z",
+  "unitCode": "U03",
+  "sequence": 3,
+  "legacyUnitId": "U3"
+}

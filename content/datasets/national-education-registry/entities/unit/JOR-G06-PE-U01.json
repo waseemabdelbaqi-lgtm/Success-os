@@ -1,0 +1,21 @@
+{
+  "globalId": "JOR-G06-PE-U01",
+  "kind": "unit",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "الألعاب الجماعية",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-BOOK-000062",
+  "relationships": {
+    "bookId": "JOR-BOOK-000062",
+    "subjectId": "JOR-G06-PE",
+    "gradeId": "JOR-G06",
+    "belongsTo": "JOR-BOOK-000062"
+  },
+  "createdAt": "2026-07-31T17:56:56.895Z",
+  "updatedAt": "2026-07-31T17:56:56.895Z",
+  "unitCode": "U01",
+  "sequence": 1,
+  "legacyUnitId": "U1"
+}

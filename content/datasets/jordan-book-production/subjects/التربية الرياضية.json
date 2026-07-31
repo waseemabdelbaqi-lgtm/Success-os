@@ -1,0 +1,20 @@
+{
+  "subject": "التربية الرياضية",
+  "totalGrades": 10,
+  "published": 10,
+  "pending": 1,
+  "complete": false,
+  "bookIds": [
+    "jordan__التعليم-الأساسي__jordan-national-curriculum__الصف-1__التربية-الرياضية__ar",
+    "jordan__التعليم-الأساسي__jordan-national-curriculum__الصف-2__التربية-الرياضية__ar",
+    "jordan__التعليم-الأساسي__jordan-national-curriculum__الصف-3__التربية-الرياضية__ar",
+    "jordan__التعليم-الأساسي__jordan-national-curriculum__الصف-4__التربية-الرياضية__ar",
+    "jordan__التعليم-الأساسي__jordan-national-curriculum__الصف-5__التربية-الرياضية__ar",
+    "jordan__التعليم-الأساسي__jordan-national-curriculum__الصف-6__التربية-الرياضية__ar",
+    "jordan__التعليم-الأساسي__jordan-national-curriculum__الصف-7__التربية-الرياضية__ar",
+    "jordan__التعليم-الأساسي__jordan-national-curriculum__الصف-8__التربية-الرياضية__ar",
+    "jordan__التعليم-الأساسي__jordan-national-curriculum__الصف-9__التربية-الرياضية__ar",
+    "jordan__التعليم-الأساسي__jordan-national-curriculum__الصف-10__التربية-الرياضية__ar"
+  ],
+  "updatedAt": "2026-07-31T17:56:31.408Z"
+}

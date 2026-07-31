@@ -1,0 +1,17 @@
+{
+  "globalId": "JOR-IMAGE-001469",
+  "kind": "educationalImage",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "مخطط تعليمي لوحدة مخاطر الاحتيال",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G08-الثقافةا-U04-L01",
+  "relationships": {
+    "lessonId": "JOR-G08-الثقافةا-U04-L01",
+    "belongsTo": "JOR-G08-الثقافةا-U04-L01"
+  },
+  "createdAt": "2026-07-31T17:56:57.074Z",
+  "updatedAt": "2026-07-31T17:56:57.074Z",
+  "src": null
+}

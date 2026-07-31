@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-G11-الفنونوا-U04-L03",
+  "kind": "lesson",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "محفظة أعمال — تطبيق ومثال",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G11-الفنونوا-U04",
+  "relationships": {
+    "unitId": "JOR-G11-الفنونوا-U04",
+    "bookId": "JOR-BOOK-000132",
+    "subjectId": "JOR-G11-الفنونوا",
+    "gradeId": "JOR-G11",
+    "belongsTo": "JOR-G11-الفنونوا-U04"
+  },
+  "createdAt": "2026-07-31T17:56:57.446Z",
+  "updatedAt": "2026-07-31T17:56:57.446Z",
+  "lessonCode": "L03",
+  "sequence": 3,
+  "legacyLessonId": "L4.3",
+  "keywords": [
+    "خط",
+    "لون",
+    "إيقاع"
+  ]
+}

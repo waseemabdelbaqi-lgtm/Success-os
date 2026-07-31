@@ -1,0 +1,18 @@
+{
+  "globalId": "JOR-OUTCOME-005126",
+  "kind": "learningOutcome",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«الإحصاء التطبيقي — مقدمة ومفاهيم» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G09-MATH-U04-L01",
+  "relationships": {
+    "lessonId": "JOR-G09-MATH-U04-L01",
+    "belongsTo": "JOR-G09-MATH-U04-L01"
+  },
+  "createdAt": "2026-07-31T17:56:57.194Z",
+  "updatedAt": "2026-07-31T17:56:57.194Z",
+  "text": "أن يطبّق مهارة مرتبطة بـ«الإحصاء التطبيقي — مقدمة ومفاهيم» بخطوات واضحة قابلة للتحقق.",
+  "sequence": 2
+}

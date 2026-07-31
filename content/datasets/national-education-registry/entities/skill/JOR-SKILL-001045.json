@@ -1,0 +1,23 @@
+{
+  "globalId": "JOR-SKILL-001045",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«الاستماع والتحدث — مقدمة ومفاهيم» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-007105",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-007105",
+      "JOR-OUTCOME-007106",
+      "JOR-OUTCOME-007107"
+    ],
+    "lessonIds": [
+      "JOR-GKG-اللغةوال-U01-L01"
+    ],
+    "belongsTo": "JOR-OUTCOME-007105"
+  },
+  "createdAt": "2026-07-31T17:56:57.579Z",
+  "updatedAt": "2026-07-31T17:56:57.579Z"
+}

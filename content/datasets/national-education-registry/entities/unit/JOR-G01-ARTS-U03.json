@@ -1,0 +1,21 @@
+{
+  "globalId": "JOR-G01-ARTS-U03",
+  "kind": "unit",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "المسرح المدرسي",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-BOOK-000016",
+  "relationships": {
+    "bookId": "JOR-BOOK-000016",
+    "subjectId": "JOR-G01-ARTS",
+    "gradeId": "JOR-G01",
+    "belongsTo": "JOR-BOOK-000016"
+  },
+  "createdAt": "2026-07-31T17:56:56.719Z",
+  "updatedAt": "2026-07-31T17:56:56.719Z",
+  "unitCode": "U03",
+  "sequence": 3,
+  "legacyUnitId": "U3"
+}

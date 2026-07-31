@@ -1,0 +1,17 @@
+{
+  "globalId": "JOR-IMAGE-001981",
+  "kind": "educationalImage",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "مخطط تعليمي لوحدة المخاطر البيئية",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G11-SCI-U04-L01",
+  "relationships": {
+    "lessonId": "JOR-G11-SCI-U04-L01",
+    "belongsTo": "JOR-G11-SCI-U04-L01"
+  },
+  "createdAt": "2026-07-31T17:56:57.311Z",
+  "updatedAt": "2026-07-31T17:56:57.311Z",
+  "src": null
+}

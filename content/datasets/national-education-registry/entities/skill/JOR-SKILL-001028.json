@@ -1,0 +1,23 @@
+{
+  "globalId": "JOR-SKILL-001028",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«استكشاف الطبيعة — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-007066",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-007066",
+      "JOR-OUTCOME-007067",
+      "JOR-OUTCOME-007068"
+    ],
+    "lessonIds": [
+      "JOR-GKG-SCI-U01-L04"
+    ],
+    "belongsTo": "JOR-OUTCOME-007066"
+  },
+  "createdAt": "2026-07-31T17:56:57.569Z",
+  "updatedAt": "2026-07-31T17:56:57.569Z"
+}

@@ -1,0 +1,16 @@
+{
+  "globalId": "JOR-DIAGRAM-000650",
+  "kind": "diagram",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "مخطط تعليمي لوحدة الرسم والوسائط",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G03-ICT-U03-L02",
+  "relationships": {
+    "lessonId": "JOR-G03-ICT-U03-L02",
+    "belongsTo": "JOR-G03-ICT-U03-L02"
+  },
+  "createdAt": "2026-07-31T17:56:56.796Z",
+  "updatedAt": "2026-07-31T17:56:56.796Z"
+}

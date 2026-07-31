@@ -1,0 +1,31 @@
+{
+  "globalId": "JOR-SKILL-000705",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«الإنتاج الكتابي — مقدمة ومفاهيم» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-002885",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-002885",
+      "JOR-OUTCOME-002886",
+      "JOR-OUTCOME-002887",
+      "JOR-OUTCOME-003445",
+      "JOR-OUTCOME-003446",
+      "JOR-OUTCOME-003447",
+      "JOR-OUTCOME-004005",
+      "JOR-OUTCOME-004006",
+      "JOR-OUTCOME-004007"
+    ],
+    "lessonIds": [
+      "JOR-G05-ARAB-U04-L01",
+      "JOR-G06-ARAB-U04-L01",
+      "JOR-G07-ARAB-U04-L01"
+    ],
+    "belongsTo": "JOR-OUTCOME-002885"
+  },
+  "createdAt": "2026-07-31T17:56:56.883Z",
+  "updatedAt": "2026-07-31T17:56:57.030Z"
+}

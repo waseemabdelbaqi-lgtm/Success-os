@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-SKILL-000878",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«برمجة وتطبيقات — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-005722",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-005722",
+      "JOR-OUTCOME-005723",
+      "JOR-OUTCOME-005724",
+      "JOR-OUTCOME-006186",
+      "JOR-OUTCOME-006187",
+      "JOR-OUTCOME-006188"
+    ],
+    "lessonIds": [
+      "JOR-G11-ICT-U01-L04",
+      "JOR-G12-ICT-U01-L04"
+    ],
+    "belongsTo": "JOR-OUTCOME-005722"
+  },
+  "createdAt": "2026-07-31T17:56:57.292Z",
+  "updatedAt": "2026-07-31T17:56:57.372Z"
+}

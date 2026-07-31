@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-GKG-اللغةوال-U01-L04",
+  "kind": "lesson",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "الاستماع والتحدث — تقويم وتعزيز",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-GKG-اللغةوال-U01",
+  "relationships": {
+    "unitId": "JOR-GKG-اللغةوال-U01",
+    "bookId": "JOR-BOOK-000145",
+    "subjectId": "JOR-GKG-اللغةوال",
+    "gradeId": "JOR-GKG",
+    "belongsTo": "JOR-GKG-اللغةوال-U01"
+  },
+  "createdAt": "2026-07-31T17:56:57.581Z",
+  "updatedAt": "2026-07-31T17:56:57.581Z",
+  "lessonCode": "L04",
+  "sequence": 4,
+  "legacyLessonId": "L1.4",
+  "keywords": [
+    "نص",
+    "معنى",
+    "أسلوب"
+  ]
+}

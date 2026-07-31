@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-G03-ENG-U03-L02",
+  "kind": "lesson",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "Reading Basics — بناء المهارة",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G03-ENG-U03",
+  "relationships": {
+    "unitId": "JOR-G03-ENG-U03",
+    "bookId": "JOR-BOOK-000038",
+    "subjectId": "JOR-G03-ENG",
+    "gradeId": "JOR-G03",
+    "belongsTo": "JOR-G03-ENG-U03"
+  },
+  "createdAt": "2026-07-31T17:56:56.789Z",
+  "updatedAt": "2026-07-31T17:56:56.789Z",
+  "lessonCode": "L02",
+  "sequence": 2,
+  "legacyLessonId": "L3.2",
+  "keywords": [
+    "vocabulary",
+    "structure",
+    "fluency"
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-G10-التاريخ-U03-L03",
+  "kind": "lesson",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "العلاقات الإقليمية — تطبيق ومثال",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G10-التاريخ-U03",
+  "relationships": {
+    "unitId": "JOR-G10-التاريخ-U03",
+    "bookId": "JOR-BOOK-000001",
+    "subjectId": "JOR-G10-التاريخ",
+    "gradeId": "JOR-G10",
+    "belongsTo": "JOR-G10-التاريخ-U03"
+  },
+  "createdAt": "2026-07-31T17:56:56.683Z",
+  "updatedAt": "2026-07-31T17:56:56.683Z",
+  "lessonCode": "L03",
+  "sequence": 3,
+  "legacyLessonId": "L3.3",
+  "keywords": [
+    "حدث",
+    "مصدر",
+    "سبب"
+  ]
+}

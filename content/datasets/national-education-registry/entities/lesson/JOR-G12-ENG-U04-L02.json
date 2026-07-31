@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-G12-ENG-U04-L02",
+  "kind": "lesson",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "Essay Writing — بناء المهارة",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G12-ENG-U04",
+  "relationships": {
+    "unitId": "JOR-G12-ENG-U04",
+    "bookId": "JOR-BOOK-000123",
+    "subjectId": "JOR-G12-ENG",
+    "gradeId": "JOR-G12",
+    "belongsTo": "JOR-G12-ENG-U04"
+  },
+  "createdAt": "2026-07-31T17:56:57.359Z",
+  "updatedAt": "2026-07-31T17:56:57.359Z",
+  "lessonCode": "L02",
+  "sequence": 2,
+  "legacyLessonId": "L4.2",
+  "keywords": [
+    "vocabulary",
+    "structure",
+    "fluency"
+  ]
+}

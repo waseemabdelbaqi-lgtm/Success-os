@@ -1,0 +1,31 @@
+{
+  "globalId": "JOR-SKILL-000512",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«القيم الإسلامية — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-002430",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-002430",
+      "JOR-OUTCOME-002431",
+      "JOR-OUTCOME-002432",
+      "JOR-OUTCOME-002990",
+      "JOR-OUTCOME-002991",
+      "JOR-OUTCOME-002992",
+      "JOR-OUTCOME-003550",
+      "JOR-OUTCOME-003551",
+      "JOR-OUTCOME-003552"
+    ],
+    "lessonIds": [
+      "JOR-G05-ISL-U04-L04",
+      "JOR-G06-ISL-U04-L04",
+      "JOR-G07-ISL-U04-L04"
+    ],
+    "belongsTo": "JOR-OUTCOME-002430"
+  },
+  "createdAt": "2026-07-31T17:56:56.838Z",
+  "updatedAt": "2026-07-31T17:56:56.972Z"
+}

@@ -1,0 +1,17 @@
+{
+  "globalId": "JOR-IMAGE-001894",
+  "kind": "educationalImage",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "مخطط تعليمي لوحدة الروابط والتفاعلات",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G11-الكيمياء-U02-L02",
+  "relationships": {
+    "lessonId": "JOR-G11-الكيمياء-U02-L02",
+    "belongsTo": "JOR-G11-الكيمياء-U02-L02"
+  },
+  "createdAt": "2026-07-31T17:56:57.270Z",
+  "updatedAt": "2026-07-31T17:56:57.270Z",
+  "src": null
+}

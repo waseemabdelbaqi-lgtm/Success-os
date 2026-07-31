@@ -1,0 +1,31 @@
+{
+  "globalId": "JOR-SKILL-000222",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«الأرض والموارد — بناء المهارة» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-000456",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-000456",
+      "JOR-OUTCOME-000457",
+      "JOR-OUTCOME-000458",
+      "JOR-OUTCOME-004520",
+      "JOR-OUTCOME-004521",
+      "JOR-OUTCOME-004522",
+      "JOR-OUTCOME-005176",
+      "JOR-OUTCOME-005177",
+      "JOR-OUTCOME-005178"
+    ],
+    "lessonIds": [
+      "JOR-G10-SCI-U04-L02",
+      "JOR-G08-SCI-U04-L02",
+      "JOR-G09-SCI-U04-L02"
+    ],
+    "belongsTo": "JOR-OUTCOME-000456"
+  },
+  "createdAt": "2026-07-31T17:56:56.703Z",
+  "updatedAt": "2026-07-31T17:56:57.202Z"
+}

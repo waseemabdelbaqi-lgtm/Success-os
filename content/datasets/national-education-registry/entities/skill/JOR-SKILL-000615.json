@@ -1,0 +1,31 @@
+{
+  "globalId": "JOR-SKILL-000615",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«الأعداد العشرية والنسب — مقدمة ومفاهيم» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-002669",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-002669",
+      "JOR-OUTCOME-002670",
+      "JOR-OUTCOME-002671",
+      "JOR-OUTCOME-003229",
+      "JOR-OUTCOME-003230",
+      "JOR-OUTCOME-003231",
+      "JOR-OUTCOME-003789",
+      "JOR-OUTCOME-003790",
+      "JOR-OUTCOME-003791"
+    ],
+    "lessonIds": [
+      "JOR-G05-MATH-U02-L01",
+      "JOR-G06-MATH-U02-L01",
+      "JOR-G07-MATH-U02-L01"
+    ],
+    "belongsTo": "JOR-OUTCOME-002669"
+  },
+  "createdAt": "2026-07-31T17:56:56.860Z",
+  "updatedAt": "2026-07-31T17:56:57.002Z"
+}
