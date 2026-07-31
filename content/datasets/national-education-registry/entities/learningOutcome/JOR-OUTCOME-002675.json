@@ -1,0 +1,18 @@
+{
+  "globalId": "JOR-OUTCOME-002675",
+  "kind": "learningOutcome",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يتعرف المتعلم مفهومًا محوريًا في الرياضيات ضمن الأعداد العشرية والنسب بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 5.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G05-MATH-U02-L03",
+  "relationships": {
+    "lessonId": "JOR-G05-MATH-U02-L03",
+    "belongsTo": "JOR-G05-MATH-U02-L03"
+  },
+  "createdAt": "2026-07-31T17:56:56.861Z",
+  "updatedAt": "2026-07-31T17:56:56.861Z",
+  "text": "أن يتعرف المتعلم مفهومًا محوريًا في الرياضيات ضمن الأعداد العشرية والنسب بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 5.",
+  "sequence": 1
+}

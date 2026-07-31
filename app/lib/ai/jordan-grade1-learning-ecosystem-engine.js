@@ -25,6 +25,7 @@ import { authorGrade1LessonEcosystem } from './jordan-grade1-ecosystem-author.js
 import { listLibraryBooks, loadLibraryBook } from './library-store.js';
 import { isJordanNationalBookId } from '../../data/jordan-national-knowledge-sources.js';
 import { subjectCodeFromLabel } from '../../data/national-education-registry.js';
+import { knowledgeRoot } from './jordan-national-knowledge-engine.js';
 
 export const PHASE = 'JO-01.2_GRADE1_COMPLETE_LEARNING_ECOSYSTEM';
 export const ENGINE_VERSION = '1.2.0';
@@ -73,9 +74,7 @@ function fileKey(s) {
 
 function knowledgePath(grade, subject) {
   return path.join(
-    process.cwd(),
-    'library',
-    'jordan-national-curriculum-knowledge',
+    knowledgeRoot(),
     'subjects',
     `${fileKey(grade)}__${fileKey(subject)}.json`,
   );

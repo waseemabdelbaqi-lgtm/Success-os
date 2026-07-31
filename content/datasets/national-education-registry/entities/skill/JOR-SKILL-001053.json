@@ -1,0 +1,23 @@
+{
+  "globalId": "JOR-SKILL-001053",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«الحروف والأصوات — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-007126",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-007126",
+      "JOR-OUTCOME-007127",
+      "JOR-OUTCOME-007128"
+    ],
+    "lessonIds": [
+      "JOR-GKG-اللغةوال-U02-L04"
+    ],
+    "belongsTo": "JOR-OUTCOME-007126"
+  },
+  "createdAt": "2026-07-31T17:56:57.584Z",
+  "updatedAt": "2026-07-31T17:56:57.584Z"
+}

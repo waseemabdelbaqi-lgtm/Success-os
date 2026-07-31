@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-SKILL-000908",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«التحليل التاريخي — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-005794",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-005794",
+      "JOR-OUTCOME-005795",
+      "JOR-OUTCOME-005796",
+      "JOR-OUTCOME-006258",
+      "JOR-OUTCOME-006259",
+      "JOR-OUTCOME-006260"
+    ],
+    "lessonIds": [
+      "JOR-G11-تاريخالأ-U03-L04",
+      "JOR-G12-تاريخالأ-U03-L04"
+    ],
+    "belongsTo": "JOR-OUTCOME-005794"
+  },
+  "createdAt": "2026-07-31T17:56:57.303Z",
+  "updatedAt": "2026-07-31T17:56:57.384Z"
+}

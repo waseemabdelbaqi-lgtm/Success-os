@@ -1,0 +1,31 @@
+{
+  "globalId": "JOR-SKILL-000023",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«وثائق ومصادر — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-000046",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-000046",
+      "JOR-OUTCOME-000047",
+      "JOR-OUTCOME-000048",
+      "JOR-OUTCOME-004110",
+      "JOR-OUTCOME-004111",
+      "JOR-OUTCOME-004112",
+      "JOR-OUTCOME-004766",
+      "JOR-OUTCOME-004767",
+      "JOR-OUTCOME-004768"
+    ],
+    "lessonIds": [
+      "JOR-G10-التاريخ-U04-L04",
+      "JOR-G08-التاريخ-U04-L04",
+      "JOR-G09-التاريخ-U04-L04"
+    ],
+    "belongsTo": "JOR-OUTCOME-000046"
+  },
+  "createdAt": "2026-07-31T17:56:56.684Z",
+  "updatedAt": "2026-07-31T17:56:57.139Z"
+}

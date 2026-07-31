@@ -1,0 +1,31 @@
+{
+  "globalId": "JOR-SKILL-000630",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«الجهاز والجسم — مقدمة ومفاهيم» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-002705",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-002705",
+      "JOR-OUTCOME-002706",
+      "JOR-OUTCOME-002707",
+      "JOR-OUTCOME-003265",
+      "JOR-OUTCOME-003266",
+      "JOR-OUTCOME-003267",
+      "JOR-OUTCOME-003825",
+      "JOR-OUTCOME-003826",
+      "JOR-OUTCOME-003827"
+    ],
+    "lessonIds": [
+      "JOR-G05-SCI-U01-L01",
+      "JOR-G06-SCI-U01-L01",
+      "JOR-G07-SCI-U01-L01"
+    ],
+    "belongsTo": "JOR-OUTCOME-002705"
+  },
+  "createdAt": "2026-07-31T17:56:56.863Z",
+  "updatedAt": "2026-07-31T17:56:57.007Z"
+}

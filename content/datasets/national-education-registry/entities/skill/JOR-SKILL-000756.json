@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-SKILL-000756",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«التفاضل أو المتتاليات — بناء المهارة» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-005440",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-005440",
+      "JOR-OUTCOME-005441",
+      "JOR-OUTCOME-005442",
+      "JOR-OUTCOME-005904",
+      "JOR-OUTCOME-005905",
+      "JOR-OUTCOME-005906"
+    ],
+    "lessonIds": [
+      "JOR-G11-MATH-U02-L02",
+      "JOR-G12-MATH-U02-L02"
+    ],
+    "belongsTo": "JOR-OUTCOME-005440"
+  },
+  "createdAt": "2026-07-31T17:56:57.246Z",
+  "updatedAt": "2026-07-31T17:56:57.324Z"
+}

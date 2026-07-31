@@ -1,0 +1,35 @@
+{
+  "globalId": "JOR-SKILL-000410",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«البيانات البسيطة — بناء المهارة» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-000888",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-000888",
+      "JOR-OUTCOME-000889",
+      "JOR-OUTCOME-000890",
+      "JOR-OUTCOME-001320",
+      "JOR-OUTCOME-001321",
+      "JOR-OUTCOME-001322",
+      "JOR-OUTCOME-001752",
+      "JOR-OUTCOME-001753",
+      "JOR-OUTCOME-001754",
+      "JOR-OUTCOME-002184",
+      "JOR-OUTCOME-002185",
+      "JOR-OUTCOME-002186"
+    ],
+    "lessonIds": [
+      "JOR-G01-MATH-U04-L02",
+      "JOR-G02-MATH-U04-L02",
+      "JOR-G03-MATH-U04-L02",
+      "JOR-G04-MATH-U04-L02"
+    ],
+    "belongsTo": "JOR-OUTCOME-000888"
+  },
+  "createdAt": "2026-07-31T17:56:56.726Z",
+  "updatedAt": "2026-07-31T17:56:56.815Z"
+}

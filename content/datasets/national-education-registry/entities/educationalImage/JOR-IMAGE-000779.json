@@ -1,0 +1,17 @@
+{
+  "globalId": "JOR-IMAGE-000779",
+  "kind": "educationalImage",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "مخطط تعليمي لوحدة القواعد الأساسية",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G04-ARAB-U03-L03",
+  "relationships": {
+    "lessonId": "JOR-G04-ARAB-U03-L03",
+    "belongsTo": "JOR-G04-ARAB-U03-L03"
+  },
+  "createdAt": "2026-07-31T17:56:56.827Z",
+  "updatedAt": "2026-07-31T17:56:56.827Z",
+  "src": null
+}

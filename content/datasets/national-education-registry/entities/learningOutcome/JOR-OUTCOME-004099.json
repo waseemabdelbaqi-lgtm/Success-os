@@ -1,0 +1,18 @@
+{
+  "globalId": "JOR-OUTCOME-004099",
+  "kind": "learningOutcome",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«العلاقات الإقليمية — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G08-التاريخ-U03-L04",
+  "relationships": {
+    "lessonId": "JOR-G08-التاريخ-U03-L04",
+    "belongsTo": "JOR-G08-التاريخ-U03-L04"
+  },
+  "createdAt": "2026-07-31T17:56:57.042Z",
+  "updatedAt": "2026-07-31T17:56:57.042Z",
+  "text": "أن يطبّق مهارة مرتبطة بـ«العلاقات الإقليمية — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+  "sequence": 2
+}

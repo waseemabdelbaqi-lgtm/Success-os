@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-G11-MATH-U03-L03",
+  "kind": "lesson",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "الهندسة التحليلية — تطبيق ومثال",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G11-MATH-U03",
+  "relationships": {
+    "unitId": "JOR-G11-MATH-U03",
+    "bookId": "JOR-BOOK-000110",
+    "subjectId": "JOR-G11-MATH",
+    "gradeId": "JOR-G11",
+    "belongsTo": "JOR-G11-MATH-U03"
+  },
+  "createdAt": "2026-07-31T17:56:57.249Z",
+  "updatedAt": "2026-07-31T17:56:57.249Z",
+  "lessonCode": "L03",
+  "sequence": 3,
+  "legacyLessonId": "L3.3",
+  "keywords": [
+    "عدد",
+    "عملية",
+    "نمط"
+  ]
+}

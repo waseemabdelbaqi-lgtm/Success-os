@@ -1,0 +1,31 @@
+{
+  "globalId": "JOR-SKILL-000184",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«الجبر والمعادلات — بناء المهارة» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-000372",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-000372",
+      "JOR-OUTCOME-000373",
+      "JOR-OUTCOME-000374",
+      "JOR-OUTCOME-004436",
+      "JOR-OUTCOME-004437",
+      "JOR-OUTCOME-004438",
+      "JOR-OUTCOME-005092",
+      "JOR-OUTCOME-005093",
+      "JOR-OUTCOME-005094"
+    ],
+    "lessonIds": [
+      "JOR-G10-MATH-U01-L02",
+      "JOR-G08-MATH-U01-L02",
+      "JOR-G09-MATH-U01-L02"
+    ],
+    "belongsTo": "JOR-OUTCOME-000372"
+  },
+  "createdAt": "2026-07-31T17:56:56.700Z",
+  "updatedAt": "2026-07-31T17:56:57.189Z"
+}

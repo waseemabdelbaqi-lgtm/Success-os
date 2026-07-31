@@ -1,0 +1,31 @@
+{
+  "globalId": "JOR-SKILL-000525",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«القواعد الرياضية — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-002463",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-002463",
+      "JOR-OUTCOME-002464",
+      "JOR-OUTCOME-002465",
+      "JOR-OUTCOME-003023",
+      "JOR-OUTCOME-003024",
+      "JOR-OUTCOME-003025",
+      "JOR-OUTCOME-003583",
+      "JOR-OUTCOME-003584",
+      "JOR-OUTCOME-003585"
+    ],
+    "lessonIds": [
+      "JOR-G05-PE-U03-L03",
+      "JOR-G06-PE-U03-L03",
+      "JOR-G07-PE-U03-L03"
+    ],
+    "belongsTo": "JOR-OUTCOME-002463"
+  },
+  "createdAt": "2026-07-31T17:56:56.841Z",
+  "updatedAt": "2026-07-31T17:56:56.976Z"
+}

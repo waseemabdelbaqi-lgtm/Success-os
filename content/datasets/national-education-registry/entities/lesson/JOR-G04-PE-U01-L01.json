@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-G04-PE-U01-L01",
+  "kind": "lesson",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "المهارات الحركية — مقدمة ومفاهيم",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G04-PE-U01",
+  "relationships": {
+    "unitId": "JOR-G04-PE-U01",
+    "bookId": "JOR-BOOK-000042",
+    "subjectId": "JOR-G04-PE",
+    "gradeId": "JOR-G04",
+    "belongsTo": "JOR-G04-PE-U01"
+  },
+  "createdAt": "2026-07-31T17:56:56.801Z",
+  "updatedAt": "2026-07-31T17:56:56.801Z",
+  "lessonCode": "L01",
+  "sequence": 1,
+  "legacyLessonId": "L1.1",
+  "keywords": [
+    "مهارة حركية",
+    "لياقة",
+    "تعاون"
+  ]
+}

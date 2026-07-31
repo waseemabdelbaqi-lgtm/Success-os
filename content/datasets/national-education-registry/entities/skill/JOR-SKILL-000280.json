@@ -1,0 +1,31 @@
+{
+  "globalId": "JOR-SKILL-000280",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«النحو المتقدم — مقدمة ومفاهيم» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-000573",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-000573",
+      "JOR-OUTCOME-000574",
+      "JOR-OUTCOME-000575",
+      "JOR-OUTCOME-004637",
+      "JOR-OUTCOME-004638",
+      "JOR-OUTCOME-004639",
+      "JOR-OUTCOME-005293",
+      "JOR-OUTCOME-005294",
+      "JOR-OUTCOME-005295"
+    ],
+    "lessonIds": [
+      "JOR-G10-ARAB-U02-L01",
+      "JOR-G08-ARAB-U02-L01",
+      "JOR-G09-ARAB-U02-L01"
+    ],
+    "belongsTo": "JOR-OUTCOME-000573"
+  },
+  "createdAt": "2026-07-31T17:56:56.711Z",
+  "updatedAt": "2026-07-31T17:56:57.222Z"
+}

@@ -1,0 +1,31 @@
+{
+  "globalId": "JOR-SKILL-000687",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«Guided Writing — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-002843",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-002843",
+      "JOR-OUTCOME-002844",
+      "JOR-OUTCOME-002845",
+      "JOR-OUTCOME-003403",
+      "JOR-OUTCOME-003404",
+      "JOR-OUTCOME-003405",
+      "JOR-OUTCOME-003963",
+      "JOR-OUTCOME-003964",
+      "JOR-OUTCOME-003965"
+    ],
+    "lessonIds": [
+      "JOR-G05-ENG-U04-L03",
+      "JOR-G06-ENG-U04-L03",
+      "JOR-G07-ENG-U04-L03"
+    ],
+    "belongsTo": "JOR-OUTCOME-002843"
+  },
+  "createdAt": "2026-07-31T17:56:56.878Z",
+  "updatedAt": "2026-07-31T17:56:57.025Z"
+}

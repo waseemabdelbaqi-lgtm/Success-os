@@ -1,0 +1,23 @@
+{
+  "globalId": "JOR-SKILL-001026",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«استكشاف الطبيعة — بناء المهارة» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-007060",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-007060",
+      "JOR-OUTCOME-007061",
+      "JOR-OUTCOME-007062"
+    ],
+    "lessonIds": [
+      "JOR-GKG-SCI-U01-L02"
+    ],
+    "belongsTo": "JOR-OUTCOME-007060"
+  },
+  "createdAt": "2026-07-31T17:56:57.568Z",
+  "updatedAt": "2026-07-31T17:56:57.568Z"
+}

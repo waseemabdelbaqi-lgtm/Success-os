@@ -1,0 +1,31 @@
+{
+  "globalId": "JOR-SKILL-000546",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«السلامة المنزلية — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-002514",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-002514",
+      "JOR-OUTCOME-002515",
+      "JOR-OUTCOME-002516",
+      "JOR-OUTCOME-003074",
+      "JOR-OUTCOME-003075",
+      "JOR-OUTCOME-003076",
+      "JOR-OUTCOME-003634",
+      "JOR-OUTCOME-003635",
+      "JOR-OUTCOME-003636"
+    ],
+    "lessonIds": [
+      "JOR-G05-التربيةا-U03-L04",
+      "JOR-G06-التربيةا-U03-L04",
+      "JOR-G07-التربيةا-U03-L04"
+    ],
+    "belongsTo": "JOR-OUTCOME-002514"
+  },
+  "createdAt": "2026-07-31T17:56:56.845Z",
+  "updatedAt": "2026-07-31T17:56:56.982Z"
+}

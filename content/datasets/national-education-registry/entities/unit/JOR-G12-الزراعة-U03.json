@@ -1,0 +1,21 @@
+{
+  "globalId": "JOR-G12-الزراعة-U03",
+  "kind": "unit",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "معايير السلامة والجودة",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-BOOK-000137",
+  "relationships": {
+    "bookId": "JOR-BOOK-000137",
+    "subjectId": "JOR-G12-الزراعة",
+    "gradeId": "JOR-G12",
+    "belongsTo": "JOR-BOOK-000137"
+  },
+  "createdAt": "2026-07-31T17:56:57.494Z",
+  "updatedAt": "2026-07-31T17:56:57.494Z",
+  "unitCode": "U03",
+  "sequence": 3,
+  "legacyUnitId": "U3"
+}

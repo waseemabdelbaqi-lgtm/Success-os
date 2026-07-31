@@ -1,0 +1,35 @@
+{
+  "globalId": "JOR-SKILL-000354",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«السلامة الرياضية — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-000747",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-000747",
+      "JOR-OUTCOME-000748",
+      "JOR-OUTCOME-000749",
+      "JOR-OUTCOME-001179",
+      "JOR-OUTCOME-001180",
+      "JOR-OUTCOME-001181",
+      "JOR-OUTCOME-001611",
+      "JOR-OUTCOME-001612",
+      "JOR-OUTCOME-001613",
+      "JOR-OUTCOME-002043",
+      "JOR-OUTCOME-002044",
+      "JOR-OUTCOME-002045"
+    ],
+    "lessonIds": [
+      "JOR-G01-PE-U04-L03",
+      "JOR-G02-PE-U04-L03",
+      "JOR-G03-PE-U04-L03",
+      "JOR-G04-PE-U04-L03"
+    ],
+    "belongsTo": "JOR-OUTCOME-000747"
+  },
+  "createdAt": "2026-07-31T17:56:56.718Z",
+  "updatedAt": "2026-07-31T17:56:56.804Z"
+}

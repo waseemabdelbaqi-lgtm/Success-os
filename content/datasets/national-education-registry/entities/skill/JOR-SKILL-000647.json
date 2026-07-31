@@ -1,0 +1,31 @@
+{
+  "globalId": "JOR-SKILL-000647",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«النظم البيئية — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-002747",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-002747",
+      "JOR-OUTCOME-002748",
+      "JOR-OUTCOME-002749",
+      "JOR-OUTCOME-003307",
+      "JOR-OUTCOME-003308",
+      "JOR-OUTCOME-003309",
+      "JOR-OUTCOME-003867",
+      "JOR-OUTCOME-003868",
+      "JOR-OUTCOME-003869"
+    ],
+    "lessonIds": [
+      "JOR-G05-SCI-U04-L03",
+      "JOR-G06-SCI-U04-L03",
+      "JOR-G07-SCI-U04-L03"
+    ],
+    "belongsTo": "JOR-OUTCOME-002747"
+  },
+  "createdAt": "2026-07-31T17:56:56.869Z",
+  "updatedAt": "2026-07-31T17:56:57.012Z"
+}

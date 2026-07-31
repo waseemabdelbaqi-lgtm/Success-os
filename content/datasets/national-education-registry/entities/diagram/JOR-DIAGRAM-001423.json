@@ -1,0 +1,16 @@
+{
+  "globalId": "JOR-DIAGRAM-001423",
+  "kind": "diagram",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "مخطط تعليمي لوحدة الصحة المجتمعية",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G08-PE-U04-L03",
+  "relationships": {
+    "lessonId": "JOR-G08-PE-U04-L03",
+    "belongsTo": "JOR-G08-PE-U04-L03"
+  },
+  "createdAt": "2026-07-31T17:56:57.057Z",
+  "updatedAt": "2026-07-31T17:56:57.057Z"
+}

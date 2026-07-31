@@ -1,0 +1,17 @@
+{
+  "globalId": "JOR-IMAGE-000598",
+  "kind": "educationalImage",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "مخطط تعليمي لوحدة المادة والطاقة",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G03-SCI-U02-L02",
+  "relationships": {
+    "lessonId": "JOR-G03-SCI-U02-L02",
+    "belongsTo": "JOR-G03-SCI-U02-L02"
+  },
+  "createdAt": "2026-07-31T17:56:56.785Z",
+  "updatedAt": "2026-07-31T17:56:56.785Z",
+  "src": null
+}

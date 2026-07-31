@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-GKG-EMATH-U04-L02",
+  "kind": "lesson",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "الأنماط — بناء المهارة",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-GKG-EMATH-U04",
+  "relationships": {
+    "unitId": "JOR-GKG-EMATH-U04",
+    "bookId": "JOR-BOOK-000143",
+    "subjectId": "JOR-GKG-EMATH",
+    "gradeId": "JOR-GKG",
+    "belongsTo": "JOR-GKG-EMATH-U04"
+  },
+  "createdAt": "2026-07-31T17:56:57.565Z",
+  "updatedAt": "2026-07-31T17:56:57.565Z",
+  "lessonCode": "L02",
+  "sequence": 2,
+  "legacyLessonId": "L4.2",
+  "keywords": [
+    "عدد",
+    "عملية",
+    "نمط"
+  ]
+}

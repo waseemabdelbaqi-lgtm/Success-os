@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-G07-الفنون-U01-L04",
+  "kind": "lesson",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "تقنيات فنية — تقويم وتعزيز",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G07-الفنون-U01",
+  "relationships": {
+    "unitId": "JOR-G07-الفنون-U01",
+    "bookId": "JOR-BOOK-000079",
+    "subjectId": "JOR-G07-الفنون",
+    "gradeId": "JOR-G07",
+    "belongsTo": "JOR-G07-الفنون-U01"
+  },
+  "createdAt": "2026-07-31T17:56:57.015Z",
+  "updatedAt": "2026-07-31T17:56:57.015Z",
+  "lessonCode": "L04",
+  "sequence": 4,
+  "legacyLessonId": "L1.4",
+  "keywords": [
+    "خط",
+    "لون",
+    "إيقاع"
+  ]
+}

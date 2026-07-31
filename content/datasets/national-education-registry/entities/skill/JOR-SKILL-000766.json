@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-SKILL-000766",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«الإحصاء والاحتمالات — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-005467",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-005467",
+      "JOR-OUTCOME-005468",
+      "JOR-OUTCOME-005469",
+      "JOR-OUTCOME-005931",
+      "JOR-OUTCOME-005932",
+      "JOR-OUTCOME-005933"
+    ],
+    "lessonIds": [
+      "JOR-G11-MATH-U04-L03",
+      "JOR-G12-MATH-U04-L03"
+    ],
+    "belongsTo": "JOR-OUTCOME-005467"
+  },
+  "createdAt": "2026-07-31T17:56:57.252Z",
+  "updatedAt": "2026-07-31T17:56:57.329Z"
+}

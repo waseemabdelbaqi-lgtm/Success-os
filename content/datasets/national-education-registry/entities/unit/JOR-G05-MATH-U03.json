@@ -1,0 +1,21 @@
+{
+  "globalId": "JOR-G05-MATH-U03",
+  "kind": "unit",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "الهندسة والمساحة",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-BOOK-000055",
+  "relationships": {
+    "bookId": "JOR-BOOK-000055",
+    "subjectId": "JOR-G05-MATH",
+    "gradeId": "JOR-G05",
+    "belongsTo": "JOR-BOOK-000055"
+  },
+  "createdAt": "2026-07-31T17:56:56.861Z",
+  "updatedAt": "2026-07-31T17:56:56.861Z",
+  "unitCode": "U03",
+  "sequence": 3,
+  "legacyUnitId": "U3"
+}

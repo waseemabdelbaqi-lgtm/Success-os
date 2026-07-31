@@ -1,0 +1,19 @@
+{
+  "globalId": "JOR-BOOK-000062",
+  "kind": "book",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "Success OS — التربية الرياضية",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G06-PE",
+  "relationships": {
+    "subjectId": "JOR-G06-PE",
+    "gradeId": "JOR-G06",
+    "belongsTo": "JOR-G06-PE"
+  },
+  "createdAt": "2026-07-31T17:56:56.895Z",
+  "updatedAt": "2026-07-31T17:56:56.895Z",
+  "legacyBookId": "jordan__التعليم-الأساسي__jordan-national-curriculum__الصف-6__التربية-الرياضية__ar",
+  "officialSource": "https://www.nccd.gov.jo/ar/pages/TextBooksGrade/73"
+}

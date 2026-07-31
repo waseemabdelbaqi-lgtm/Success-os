@@ -1,0 +1,19 @@
+{
+  "globalId": "JOR-BOOK-000137",
+  "kind": "book",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "Success OS — الزراعة",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G12-الزراعة",
+  "relationships": {
+    "subjectId": "JOR-G12-الزراعة",
+    "gradeId": "JOR-G12",
+    "belongsTo": "JOR-G12-الزراعة"
+  },
+  "createdAt": "2026-07-31T17:56:57.489Z",
+  "updatedAt": "2026-07-31T17:56:57.489Z",
+  "legacyBookId": "jordan__التعليم-الثانوي-المسار-المهني-btec__jordan-national-curriculum__الصف-12__الزراعة__ar",
+  "officialSource": "https://www.nccd.gov.jo/ar/pages/TextBooksGrade/83"
+}

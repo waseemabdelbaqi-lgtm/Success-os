@@ -1,0 +1,17 @@
+{
+  "globalId": "JOR-IMAGE-000532",
+  "kind": "educationalImage",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "مخطط تعليمي لوحدة المهارات الحركية",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G03-PE-U01-L04",
+  "relationships": {
+    "lessonId": "JOR-G03-PE-U01-L04",
+    "belongsTo": "JOR-G03-PE-U01-L04"
+  },
+  "createdAt": "2026-07-31T17:56:56.771Z",
+  "updatedAt": "2026-07-31T17:56:56.771Z",
+  "src": null
+}

@@ -1,0 +1,18 @@
+{
+  "globalId": "JOR-IMAGE-001870",
+  "kind": "educationalImage",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "مخطط تعليمي لوحدة قضايا علمية معاصرة",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G11-SCI-U04-L02",
+  "relationships": {
+    "lessonId": "JOR-G11-SCI-U04-L02",
+    "belongsTo": "JOR-G11-SCI-U04-L02"
+  },
+  "createdAt": "2026-07-31T17:56:57.260Z",
+  "updatedAt": "2026-07-31T17:56:57.466Z",
+  "src": null,
+  "_deduped": true
+}

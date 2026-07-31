@@ -1,0 +1,17 @@
+{
+  "globalId": "JOR-IMAGE-002379",
+  "kind": "educationalImage",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "مخطط تعليمي لوحدة المقارنة والقياس المبكر",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-GKG-EMATH-U03-L03",
+  "relationships": {
+    "lessonId": "JOR-GKG-EMATH-U03-L03",
+    "belongsTo": "JOR-GKG-EMATH-U03-L03"
+  },
+  "createdAt": "2026-07-31T17:56:57.563Z",
+  "updatedAt": "2026-07-31T17:56:57.563Z",
+  "src": null
+}

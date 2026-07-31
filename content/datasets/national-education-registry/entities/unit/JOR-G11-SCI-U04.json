@@ -1,0 +1,22 @@
+{
+  "globalId": "JOR-G11-SCI-U04",
+  "kind": "unit",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "قضايا علمية معاصرة",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-BOOK-000134",
+  "relationships": {
+    "bookId": "JOR-BOOK-000134",
+    "subjectId": "JOR-G11-SCI",
+    "gradeId": "JOR-G11",
+    "belongsTo": "JOR-BOOK-000134"
+  },
+  "createdAt": "2026-07-31T17:56:57.259Z",
+  "updatedAt": "2026-07-31T17:56:57.465Z",
+  "unitCode": "U04",
+  "sequence": 4,
+  "legacyUnitId": "U4",
+  "_deduped": true
+}

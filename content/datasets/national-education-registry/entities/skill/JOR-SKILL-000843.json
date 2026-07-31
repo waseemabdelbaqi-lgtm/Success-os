@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-SKILL-000843",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«Advanced Grammar — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-005638",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-005638",
+      "JOR-OUTCOME-005639",
+      "JOR-OUTCOME-005640",
+      "JOR-OUTCOME-006102",
+      "JOR-OUTCOME-006103",
+      "JOR-OUTCOME-006104"
+    ],
+    "lessonIds": [
+      "JOR-G11-ENG-U02-L04",
+      "JOR-G12-ENG-U02-L04"
+    ],
+    "belongsTo": "JOR-OUTCOME-005638"
+  },
+  "createdAt": "2026-07-31T17:56:57.277Z",
+  "updatedAt": "2026-07-31T17:56:57.356Z"
+}

@@ -1,0 +1,31 @@
+{
+  "globalId": "JOR-SKILL-000288",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«الإعلام واللغة — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-000594",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-000594",
+      "JOR-OUTCOME-000595",
+      "JOR-OUTCOME-000596",
+      "JOR-OUTCOME-004658",
+      "JOR-OUTCOME-004659",
+      "JOR-OUTCOME-004660",
+      "JOR-OUTCOME-005314",
+      "JOR-OUTCOME-005315",
+      "JOR-OUTCOME-005316"
+    ],
+    "lessonIds": [
+      "JOR-G10-ARAB-U03-L04",
+      "JOR-G08-ARAB-U03-L04",
+      "JOR-G09-ARAB-U03-L04"
+    ],
+    "belongsTo": "JOR-OUTCOME-000594"
+  },
+  "createdAt": "2026-07-31T17:56:56.711Z",
+  "updatedAt": "2026-07-31T17:56:57.225Z"
+}

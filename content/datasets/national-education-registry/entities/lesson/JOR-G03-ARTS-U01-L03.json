@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-G03-ARTS-U01-L03",
+  "kind": "lesson",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "عناصر الفن — تطبيق ومثال",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G03-ARTS-U01",
+  "relationships": {
+    "unitId": "JOR-G03-ARTS-U01",
+    "bookId": "JOR-BOOK-000034",
+    "subjectId": "JOR-G03-ARTS",
+    "gradeId": "JOR-G03",
+    "belongsTo": "JOR-G03-ARTS-U01"
+  },
+  "createdAt": "2026-07-31T17:56:56.774Z",
+  "updatedAt": "2026-07-31T17:56:56.774Z",
+  "lessonCode": "L03",
+  "sequence": 3,
+  "legacyLessonId": "L1.3",
+  "keywords": [
+    "خط",
+    "لون",
+    "إيقاع"
+  ]
+}

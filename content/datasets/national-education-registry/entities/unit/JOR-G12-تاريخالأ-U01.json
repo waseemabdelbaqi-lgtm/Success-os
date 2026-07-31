@@ -1,0 +1,21 @@
+{
+  "globalId": "JOR-G12-تاريخالأ-U01",
+  "kind": "unit",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "تاريخ الأردن المعاصر",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-BOOK-000126",
+  "relationships": {
+    "bookId": "JOR-BOOK-000126",
+    "subjectId": "JOR-G12-تاريخالأ",
+    "gradeId": "JOR-G12",
+    "belongsTo": "JOR-BOOK-000126"
+  },
+  "createdAt": "2026-07-31T17:56:57.379Z",
+  "updatedAt": "2026-07-31T17:56:57.379Z",
+  "unitCode": "U01",
+  "sequence": 1,
+  "legacyUnitId": "U1"
+}

@@ -1,0 +1,35 @@
+{
+  "globalId": "JOR-SKILL-000486",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«الرسم والوسائط — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-001071",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-001071",
+      "JOR-OUTCOME-001072",
+      "JOR-OUTCOME-001073",
+      "JOR-OUTCOME-001503",
+      "JOR-OUTCOME-001504",
+      "JOR-OUTCOME-001505",
+      "JOR-OUTCOME-001935",
+      "JOR-OUTCOME-001936",
+      "JOR-OUTCOME-001937",
+      "JOR-OUTCOME-002367",
+      "JOR-OUTCOME-002368",
+      "JOR-OUTCOME-002369"
+    ],
+    "lessonIds": [
+      "JOR-G01-ICT-U03-L03",
+      "JOR-G02-ICT-U03-L03",
+      "JOR-G03-ICT-U03-L03",
+      "JOR-G04-ICT-U03-L03"
+    ],
+    "belongsTo": "JOR-OUTCOME-001071"
+  },
+  "createdAt": "2026-07-31T17:56:56.739Z",
+  "updatedAt": "2026-07-31T17:56:56.830Z"
+}

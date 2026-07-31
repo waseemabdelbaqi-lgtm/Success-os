@@ -1,0 +1,16 @@
+{
+  "globalId": "JOR-DIAGRAM-000335",
+  "kind": "diagram",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "مخطط تعليمي لوحدة Simple Writing",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G01-ENG-U04-L03",
+  "relationships": {
+    "lessonId": "JOR-G01-ENG-U04-L03",
+    "belongsTo": "JOR-G01-ENG-U04-L03"
+  },
+  "createdAt": "2026-07-31T17:56:56.731Z",
+  "updatedAt": "2026-07-31T17:56:56.731Z"
+}

@@ -29,7 +29,15 @@ function text(v) {
 }
 
 function registryRoot() {
-  return path.join(process.cwd(), 'library', 'national-education-registry');
+  if (process.env.JO_REGISTRY_ROOT) {
+    return path.resolve(process.env.JO_REGISTRY_ROOT);
+  }
+  return path.join(
+    process.cwd(),
+    'content',
+    'datasets',
+    'national-education-registry',
+  );
 }
 
 function extractLessonSkills(lesson) {

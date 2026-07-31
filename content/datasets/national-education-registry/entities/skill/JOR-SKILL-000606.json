@@ -1,0 +1,31 @@
+{
+  "globalId": "JOR-SKILL-000606",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«التراث — بناء المهارة» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-002648",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-002648",
+      "JOR-OUTCOME-002649",
+      "JOR-OUTCOME-002650",
+      "JOR-OUTCOME-003208",
+      "JOR-OUTCOME-003209",
+      "JOR-OUTCOME-003210",
+      "JOR-OUTCOME-003768",
+      "JOR-OUTCOME-003769",
+      "JOR-OUTCOME-003770"
+    ],
+    "lessonIds": [
+      "JOR-G05-SOC-U04-L02",
+      "JOR-G06-SOC-U04-L02",
+      "JOR-G07-SOC-U04-L02"
+    ],
+    "belongsTo": "JOR-OUTCOME-002648"
+  },
+  "createdAt": "2026-07-31T17:56:56.857Z",
+  "updatedAt": "2026-07-31T17:56:57.000Z"
+}

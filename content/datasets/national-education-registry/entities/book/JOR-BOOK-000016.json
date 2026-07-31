@@ -1,0 +1,19 @@
+{
+  "globalId": "JOR-BOOK-000016",
+  "kind": "book",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "Success OS — التربية الفنية والموسيقية والمسرحية",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G01-ARTS",
+  "relationships": {
+    "subjectId": "JOR-G01-ARTS",
+    "gradeId": "JOR-G01",
+    "belongsTo": "JOR-G01-ARTS"
+  },
+  "createdAt": "2026-07-31T17:56:56.718Z",
+  "updatedAt": "2026-07-31T17:56:56.718Z",
+  "legacyBookId": "jordan__التعليم-الأساسي__jordan-national-curriculum__الصف-1__التربية-الفنية-والموسيقية-والمسرحية__ar",
+  "officialSource": "https://www.nccd.gov.jo/ar/pages/TextBooksGrade/68"
+}

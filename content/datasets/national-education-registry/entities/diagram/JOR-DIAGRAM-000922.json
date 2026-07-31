@@ -1,0 +1,16 @@
+{
+  "globalId": "JOR-DIAGRAM-000922",
+  "kind": "diagram",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "مخطط تعليمي لوحدة المواد والتغيرات",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G05-SCI-U03-L02",
+  "relationships": {
+    "lessonId": "JOR-G05-SCI-U03-L02",
+    "belongsTo": "JOR-G05-SCI-U03-L02"
+  },
+  "createdAt": "2026-07-31T17:56:56.866Z",
+  "updatedAt": "2026-07-31T17:56:56.866Z"
+}

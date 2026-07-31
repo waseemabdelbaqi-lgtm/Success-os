@@ -1,0 +1,31 @@
+{
+  "globalId": "JOR-SKILL-000208",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«الخلية والتنوع — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-000423",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-000423",
+      "JOR-OUTCOME-000424",
+      "JOR-OUTCOME-000425",
+      "JOR-OUTCOME-004487",
+      "JOR-OUTCOME-004488",
+      "JOR-OUTCOME-004489",
+      "JOR-OUTCOME-005143",
+      "JOR-OUTCOME-005144",
+      "JOR-OUTCOME-005145"
+    ],
+    "lessonIds": [
+      "JOR-G10-SCI-U01-L03",
+      "JOR-G08-SCI-U01-L03",
+      "JOR-G09-SCI-U01-L03"
+    ],
+    "belongsTo": "JOR-OUTCOME-000423"
+  },
+  "createdAt": "2026-07-31T17:56:56.702Z",
+  "updatedAt": "2026-07-31T17:56:57.197Z"
+}

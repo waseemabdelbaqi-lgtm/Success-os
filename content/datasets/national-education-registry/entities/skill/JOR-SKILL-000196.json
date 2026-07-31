@@ -1,0 +1,31 @@
+{
+  "globalId": "JOR-SKILL-000196",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«الهندسة الإقليدية — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-000402",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-000402",
+      "JOR-OUTCOME-000403",
+      "JOR-OUTCOME-000404",
+      "JOR-OUTCOME-004466",
+      "JOR-OUTCOME-004467",
+      "JOR-OUTCOME-004468",
+      "JOR-OUTCOME-005122",
+      "JOR-OUTCOME-005123",
+      "JOR-OUTCOME-005124"
+    ],
+    "lessonIds": [
+      "JOR-G10-MATH-U03-L04",
+      "JOR-G08-MATH-U03-L04",
+      "JOR-G09-MATH-U03-L04"
+    ],
+    "belongsTo": "JOR-OUTCOME-000402"
+  },
+  "createdAt": "2026-07-31T17:56:56.701Z",
+  "updatedAt": "2026-07-31T17:56:57.194Z"
+}

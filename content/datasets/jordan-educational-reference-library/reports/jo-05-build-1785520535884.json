@@ -1,0 +1,16 @@
+{
+  "totals": {
+    "totalReferences": 31,
+    "verifiedReferences": 31,
+    "pendingVerification": 0,
+    "brokenReferences": 0,
+    "updatedReferences": 31,
+    "deprecatedReferences": 0,
+    "rejectedOnValidation": 0
+  },
+  "rejected": [],
+  "linking": {
+    "books": 1,
+    "complete": 1
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "globalId": "JOR-BOOK-000019",
+  "kind": "book",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "Success OS — العلوم",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G01-SCI",
+  "relationships": {
+    "subjectId": "JOR-G01-SCI",
+    "gradeId": "JOR-G01",
+    "belongsTo": "JOR-G01-SCI"
+  },
+  "createdAt": "2026-07-31T17:56:56.727Z",
+  "updatedAt": "2026-07-31T17:56:56.727Z",
+  "legacyBookId": "jordan__التعليم-الأساسي__jordan-national-curriculum__الصف-1__العلوم__ar",
+  "officialSource": "https://www.nccd.gov.jo/ar/pages/TextBooksGrade/68"
+}

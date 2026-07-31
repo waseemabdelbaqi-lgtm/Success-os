@@ -1,0 +1,257 @@
+{
+  "schema": "success-os.jordan-reference-library-dashboard.v1",
+  "phase": "JO-05_JORDAN_EDUCATIONAL_REFERENCE_LIBRARY",
+  "engineVersion": "5.0.0",
+  "totals": {
+    "totalReferences": 31,
+    "verifiedReferences": 31,
+    "pendingVerification": 0,
+    "brokenReferences": 0,
+    "updatedReferences": 31,
+    "deprecatedReferences": 0
+  },
+  "byCategory": [
+    {
+      "category": "Curriculum Documents",
+      "count": 5
+    },
+    {
+      "category": "Official Textbooks",
+      "count": 13
+    },
+    {
+      "category": "Teacher Guides",
+      "count": 1
+    },
+    {
+      "category": "Assessment Frameworks",
+      "count": 1
+    },
+    {
+      "category": "Educational Standards",
+      "count": 1
+    },
+    {
+      "category": "Scientific References",
+      "count": 2
+    },
+    {
+      "category": "Mathematical References",
+      "count": 2
+    },
+    {
+      "category": "Laboratory Resources",
+      "count": 1
+    },
+    {
+      "category": "Educational Images",
+      "count": 1
+    },
+    {
+      "category": "Educational Diagrams",
+      "count": 1
+    },
+    {
+      "category": "Simulations",
+      "count": 1
+    },
+    {
+      "category": "Open Educational Resources",
+      "count": 2
+    }
+  ],
+  "bySubject": [
+    {
+      "subject": "all",
+      "count": 26
+    },
+    {
+      "subject": "العلوم",
+      "count": 3
+    },
+    {
+      "subject": "الرياضيات",
+      "count": 2
+    }
+  ],
+  "byGrade": [
+    {
+      "grade": "all",
+      "count": 18
+    },
+    {
+      "grade": "الصف 12",
+      "count": 2
+    },
+    {
+      "grade": "الصف 11",
+      "count": 1
+    },
+    {
+      "grade": "الصف 1",
+      "count": 1
+    },
+    {
+      "grade": "الصف 2",
+      "count": 1
+    },
+    {
+      "grade": "الصف 3",
+      "count": 1
+    },
+    {
+      "grade": "الصف 4",
+      "count": 1
+    },
+    {
+      "grade": "الصف 5",
+      "count": 1
+    },
+    {
+      "grade": "الصف 6",
+      "count": 1
+    },
+    {
+      "grade": "الصف 7",
+      "count": 1
+    },
+    {
+      "grade": "الصف 8",
+      "count": 1
+    },
+    {
+      "grade": "الصف 9",
+      "count": 1
+    },
+    {
+      "grade": "الصف 10",
+      "count": 1
+    }
+  ],
+  "byPublisher": [
+    {
+      "publisher": "NCCD",
+      "count": 15
+    },
+    {
+      "publisher": "Ministry of Education",
+      "count": 5
+    },
+    {
+      "publisher": "OpenStax / Rice University",
+      "count": 2
+    },
+    {
+      "publisher": "University of Colorado Boulder",
+      "count": 2
+    },
+    {
+      "publisher": "Success OS",
+      "count": 2
+    },
+    {
+      "publisher": "UNESCO",
+      "count": 2
+    },
+    {
+      "publisher": "CK-12 Foundation",
+      "count": 1
+    },
+    {
+      "publisher": "LibreTexts",
+      "count": 1
+    },
+    {
+      "publisher": "NCCD / MoE",
+      "count": 1
+    }
+  ],
+  "sampleSources": [
+    {
+      "sourceId": "jo-ref-ck12-math",
+      "title": "CK-12 Foundation — Mathematics Concept Verification",
+      "category": "Mathematical References",
+      "status": "verified",
+      "reliabilityScore": 87
+    },
+    {
+      "sourceId": "jo-ref-darsak",
+      "title": "Darsak Platform — Official Digital Learning",
+      "category": "Curriculum Documents",
+      "status": "verified",
+      "reliabilityScore": 98
+    },
+    {
+      "sourceId": "jo-ref-libretexts-science",
+      "title": "LibreTexts — Science Concept Verification",
+      "category": "Scientific References",
+      "status": "verified",
+      "reliabilityScore": 86
+    },
+    {
+      "sourceId": "jo-ref-moe-curricula-admin",
+      "title": "MoE Curricula and School Textbooks Administration",
+      "category": "Curriculum Documents",
+      "status": "verified",
+      "reliabilityScore": 100
+    },
+    {
+      "sourceId": "jo-ref-moe-editions-2025-2026",
+      "title": "MoE Approved Textbook Editions 2025–2026",
+      "category": "Official Textbooks",
+      "status": "verified",
+      "reliabilityScore": 100
+    },
+    {
+      "sourceId": "jo-ref-moe-home",
+      "title": "Jordan Ministry of Education — Official Portal",
+      "category": "Curriculum Documents",
+      "status": "verified",
+      "reliabilityScore": 100
+    },
+    {
+      "sourceId": "jo-ref-moe-tawjihi",
+      "title": "MoE General Secondary (Tawjihi) Examination Framework",
+      "category": "Assessment Frameworks",
+      "status": "verified",
+      "reliabilityScore": 96
+    },
+    {
+      "sourceId": "jo-ref-national-curriculum-standard",
+      "title": "Jordan National Curriculum — Structural Standard",
+      "category": "Educational Standards",
+      "status": "verified",
+      "reliabilityScore": 100
+    },
+    {
+      "sourceId": "jo-ref-nccd-grade-117",
+      "title": "NCCD Grade Textbook Catalogue — الصف 11",
+      "category": "Official Textbooks",
+      "status": "verified",
+      "reliabilityScore": 99
+    },
+    {
+      "sourceId": "jo-ref-nccd-grade-68",
+      "title": "NCCD Grade Textbook Catalogue — الصف 1",
+      "category": "Official Textbooks",
+      "status": "verified",
+      "reliabilityScore": 99
+    },
+    {
+      "sourceId": "jo-ref-nccd-grade-69",
+      "title": "NCCD Grade Textbook Catalogue — الصف 2",
+      "category": "Official Textbooks",
+      "status": "verified",
+      "reliabilityScore": 99
+    },
+    {
+      "sourceId": "jo-ref-nccd-grade-70",
+      "title": "NCCD Grade Textbook Catalogue — الصف 3",
+      "category": "Official Textbooks",
+      "status": "verified",
+      "reliabilityScore": 99
+    }
+  ],
+  "libraryVersion": "1.0.2",
+  "updatedAt": "2026-07-31T17:55:35.884Z"
+}

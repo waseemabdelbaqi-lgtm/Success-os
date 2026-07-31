@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-G11-الكيمياء-U04-L02",
+  "kind": "lesson",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "الكيمياء الحياتية والبيئية — بناء المهارة",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G11-الكيمياء-U04",
+  "relationships": {
+    "unitId": "JOR-G11-الكيمياء-U04",
+    "bookId": "JOR-BOOK-000113",
+    "subjectId": "JOR-G11-الكيمياء",
+    "gradeId": "JOR-G11",
+    "belongsTo": "JOR-G11-الكيمياء-U04"
+  },
+  "createdAt": "2026-07-31T17:56:57.272Z",
+  "updatedAt": "2026-07-31T17:56:57.272Z",
+  "lessonCode": "L02",
+  "sequence": 2,
+  "legacyLessonId": "L4.2",
+  "keywords": [
+    "ذرة",
+    "مركب",
+    "تفاعل"
+  ]
+}

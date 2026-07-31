@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-SKILL-000767",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«الإحصاء والاحتمالات — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-005470",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-005470",
+      "JOR-OUTCOME-005471",
+      "JOR-OUTCOME-005472",
+      "JOR-OUTCOME-005934",
+      "JOR-OUTCOME-005935",
+      "JOR-OUTCOME-005936"
+    ],
+    "lessonIds": [
+      "JOR-G11-MATH-U04-L04",
+      "JOR-G12-MATH-U04-L04"
+    ],
+    "belongsTo": "JOR-OUTCOME-005470"
+  },
+  "createdAt": "2026-07-31T17:56:57.252Z",
+  "updatedAt": "2026-07-31T17:56:57.329Z"
+}

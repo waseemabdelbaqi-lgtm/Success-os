@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-GKG-EMATH-U02-L04",
+  "kind": "lesson",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "الأشكال في محيطي — تقويم وتعزيز",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-GKG-EMATH-U02",
+  "relationships": {
+    "unitId": "JOR-GKG-EMATH-U02",
+    "bookId": "JOR-BOOK-000143",
+    "subjectId": "JOR-GKG-EMATH",
+    "gradeId": "JOR-GKG",
+    "belongsTo": "JOR-GKG-EMATH-U02"
+  },
+  "createdAt": "2026-07-31T17:56:57.560Z",
+  "updatedAt": "2026-07-31T17:56:57.560Z",
+  "lessonCode": "L04",
+  "sequence": 4,
+  "legacyLessonId": "L2.4",
+  "keywords": [
+    "عدد",
+    "عملية",
+    "نمط"
+  ]
+}

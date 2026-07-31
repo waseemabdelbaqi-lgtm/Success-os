@@ -1,0 +1,35 @@
+{
+  "globalId": "JOR-SKILL-000422",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«المادة والطاقة — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-000918",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-000918",
+      "JOR-OUTCOME-000919",
+      "JOR-OUTCOME-000920",
+      "JOR-OUTCOME-001350",
+      "JOR-OUTCOME-001351",
+      "JOR-OUTCOME-001352",
+      "JOR-OUTCOME-001782",
+      "JOR-OUTCOME-001783",
+      "JOR-OUTCOME-001784",
+      "JOR-OUTCOME-002214",
+      "JOR-OUTCOME-002215",
+      "JOR-OUTCOME-002216"
+    ],
+    "lessonIds": [
+      "JOR-G01-SCI-U02-L04",
+      "JOR-G02-SCI-U02-L04",
+      "JOR-G03-SCI-U02-L04",
+      "JOR-G04-SCI-U02-L04"
+    ],
+    "belongsTo": "JOR-OUTCOME-000918"
+  },
+  "createdAt": "2026-07-31T17:56:56.728Z",
+  "updatedAt": "2026-07-31T17:56:56.818Z"
+}

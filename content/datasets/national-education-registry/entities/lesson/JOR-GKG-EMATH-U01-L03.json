@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-GKG-EMATH-U01-L03",
+  "kind": "lesson",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "العد والتصنيف — تطبيق ومثال",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-GKG-EMATH-U01",
+  "relationships": {
+    "unitId": "JOR-GKG-EMATH-U01",
+    "bookId": "JOR-BOOK-000143",
+    "subjectId": "JOR-GKG-EMATH",
+    "gradeId": "JOR-GKG",
+    "belongsTo": "JOR-GKG-EMATH-U01"
+  },
+  "createdAt": "2026-07-31T17:56:57.557Z",
+  "updatedAt": "2026-07-31T17:56:57.557Z",
+  "lessonCode": "L03",
+  "sequence": 3,
+  "legacyLessonId": "L1.3",
+  "keywords": [
+    "عدد",
+    "عملية",
+    "نمط"
+  ]
+}

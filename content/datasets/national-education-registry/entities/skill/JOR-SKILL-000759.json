@@ -1,0 +1,51 @@
+{
+  "globalId": "JOR-SKILL-000759",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يتعرف المتعلم مفهومًا محوريًا في الرياضيات ضمن الهندسة التحليلية بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 11.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-005449",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-005449",
+      "JOR-OUTCOME-005450",
+      "JOR-OUTCOME-005451",
+      "JOR-OUTCOME-005452",
+      "JOR-OUTCOME-005453",
+      "JOR-OUTCOME-005454",
+      "JOR-OUTCOME-005455",
+      "JOR-OUTCOME-005456",
+      "JOR-OUTCOME-005457",
+      "JOR-OUTCOME-005458",
+      "JOR-OUTCOME-005459",
+      "JOR-OUTCOME-005460",
+      "JOR-OUTCOME-005913",
+      "JOR-OUTCOME-005914",
+      "JOR-OUTCOME-005915",
+      "JOR-OUTCOME-005916",
+      "JOR-OUTCOME-005917",
+      "JOR-OUTCOME-005918",
+      "JOR-OUTCOME-005919",
+      "JOR-OUTCOME-005920",
+      "JOR-OUTCOME-005921",
+      "JOR-OUTCOME-005922",
+      "JOR-OUTCOME-005923",
+      "JOR-OUTCOME-005924"
+    ],
+    "lessonIds": [
+      "JOR-G11-MATH-U03-L01",
+      "JOR-G11-MATH-U03-L02",
+      "JOR-G11-MATH-U03-L03",
+      "JOR-G11-MATH-U03-L04",
+      "JOR-G12-MATH-U03-L01",
+      "JOR-G12-MATH-U03-L02",
+      "JOR-G12-MATH-U03-L03",
+      "JOR-G12-MATH-U03-L04"
+    ],
+    "belongsTo": "JOR-OUTCOME-005449"
+  },
+  "createdAt": "2026-07-31T17:56:57.248Z",
+  "updatedAt": "2026-07-31T17:56:57.327Z"
+}

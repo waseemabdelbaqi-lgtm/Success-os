@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-G10-التاريخ-U01-L02",
+  "kind": "lesson",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "تاريخ الأردن الحديث — بناء المهارة",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G10-التاريخ-U01",
+  "relationships": {
+    "unitId": "JOR-G10-التاريخ-U01",
+    "bookId": "JOR-BOOK-000001",
+    "subjectId": "JOR-G10-التاريخ",
+    "gradeId": "JOR-G10",
+    "belongsTo": "JOR-G10-التاريخ-U01"
+  },
+  "createdAt": "2026-07-31T17:56:56.682Z",
+  "updatedAt": "2026-07-31T17:56:56.682Z",
+  "lessonCode": "L02",
+  "sequence": 2,
+  "legacyLessonId": "L1.2",
+  "keywords": [
+    "حدث",
+    "مصدر",
+    "سبب"
+  ]
+}

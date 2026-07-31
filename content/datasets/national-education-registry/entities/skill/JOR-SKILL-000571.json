@@ -1,0 +1,31 @@
+{
+  "globalId": "JOR-SKILL-000571",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«النقود والقيمة — بناء المهارة» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-002564",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-002564",
+      "JOR-OUTCOME-002565",
+      "JOR-OUTCOME-002566",
+      "JOR-OUTCOME-003124",
+      "JOR-OUTCOME-003125",
+      "JOR-OUTCOME-003126",
+      "JOR-OUTCOME-003684",
+      "JOR-OUTCOME-003685",
+      "JOR-OUTCOME-003686"
+    ],
+    "lessonIds": [
+      "JOR-G05-الثقافةا-U01-L02",
+      "JOR-G06-الثقافةا-U01-L02",
+      "JOR-G07-الثقافةا-U01-L02"
+    ],
+    "belongsTo": "JOR-OUTCOME-002564"
+  },
+  "createdAt": "2026-07-31T17:56:56.851Z",
+  "updatedAt": "2026-07-31T17:56:56.989Z"
+}

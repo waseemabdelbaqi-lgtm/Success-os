@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-SKILL-000855",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«الأدب والنقد — مقدمة ومفاهيم» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-005665",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-005665",
+      "JOR-OUTCOME-005666",
+      "JOR-OUTCOME-005667",
+      "JOR-OUTCOME-006129",
+      "JOR-OUTCOME-006130",
+      "JOR-OUTCOME-006131"
+    ],
+    "lessonIds": [
+      "JOR-G11-ARAB-U01-L01",
+      "JOR-G12-ARAB-U01-L01"
+    ],
+    "belongsTo": "JOR-OUTCOME-005665"
+  },
+  "createdAt": "2026-07-31T17:56:57.282Z",
+  "updatedAt": "2026-07-31T17:56:57.361Z"
+}

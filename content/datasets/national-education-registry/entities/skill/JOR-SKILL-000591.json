@@ -1,0 +1,31 @@
+{
+  "globalId": "JOR-SKILL-000591",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«المجتمع الأردني — بناء المهارة» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-002612",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-002612",
+      "JOR-OUTCOME-002613",
+      "JOR-OUTCOME-002614",
+      "JOR-OUTCOME-003172",
+      "JOR-OUTCOME-003173",
+      "JOR-OUTCOME-003174",
+      "JOR-OUTCOME-003732",
+      "JOR-OUTCOME-003733",
+      "JOR-OUTCOME-003734"
+    ],
+    "lessonIds": [
+      "JOR-G05-SOC-U01-L02",
+      "JOR-G06-SOC-U01-L02",
+      "JOR-G07-SOC-U01-L02"
+    ],
+    "belongsTo": "JOR-OUTCOME-002612"
+  },
+  "createdAt": "2026-07-31T17:56:56.854Z",
+  "updatedAt": "2026-07-31T17:56:56.995Z"
+}

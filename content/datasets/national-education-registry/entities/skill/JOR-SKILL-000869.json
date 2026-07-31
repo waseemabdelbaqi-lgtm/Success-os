@@ -1,0 +1,51 @@
+{
+  "globalId": "JOR-SKILL-000869",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يتعرف المتعلم مفهومًا محوريًا في اللغة العربية ضمن التواصل الرسمي بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 11.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-005701",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-005701",
+      "JOR-OUTCOME-005702",
+      "JOR-OUTCOME-005703",
+      "JOR-OUTCOME-005704",
+      "JOR-OUTCOME-005705",
+      "JOR-OUTCOME-005706",
+      "JOR-OUTCOME-005707",
+      "JOR-OUTCOME-005708",
+      "JOR-OUTCOME-005709",
+      "JOR-OUTCOME-005710",
+      "JOR-OUTCOME-005711",
+      "JOR-OUTCOME-005712",
+      "JOR-OUTCOME-006165",
+      "JOR-OUTCOME-006166",
+      "JOR-OUTCOME-006167",
+      "JOR-OUTCOME-006168",
+      "JOR-OUTCOME-006169",
+      "JOR-OUTCOME-006170",
+      "JOR-OUTCOME-006171",
+      "JOR-OUTCOME-006172",
+      "JOR-OUTCOME-006173",
+      "JOR-OUTCOME-006174",
+      "JOR-OUTCOME-006175",
+      "JOR-OUTCOME-006176"
+    ],
+    "lessonIds": [
+      "JOR-G11-ARAB-U04-L01",
+      "JOR-G11-ARAB-U04-L02",
+      "JOR-G11-ARAB-U04-L03",
+      "JOR-G11-ARAB-U04-L04",
+      "JOR-G12-ARAB-U04-L01",
+      "JOR-G12-ARAB-U04-L02",
+      "JOR-G12-ARAB-U04-L03",
+      "JOR-G12-ARAB-U04-L04"
+    ],
+    "belongsTo": "JOR-OUTCOME-005701"
+  },
+  "createdAt": "2026-07-31T17:56:57.288Z",
+  "updatedAt": "2026-07-31T17:56:57.369Z"
+}

@@ -1,0 +1,16 @@
+{
+  "globalId": "JOR-DIAGRAM-002411",
+  "kind": "diagram",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "مخطط تعليمي لوحدة قصص قصيرة",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-GKG-اللغةوال-U03-L03",
+  "relationships": {
+    "lessonId": "JOR-GKG-اللغةوال-U03-L03",
+    "belongsTo": "JOR-GKG-اللغةوال-U03-L03"
+  },
+  "createdAt": "2026-07-31T17:56:57.586Z",
+  "updatedAt": "2026-07-31T17:56:57.586Z"
+}

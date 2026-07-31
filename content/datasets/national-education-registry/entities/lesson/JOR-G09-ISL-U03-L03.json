@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-G09-ISL-U03-L03",
+  "kind": "lesson",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "السيرة والمجتمع — تطبيق ومثال",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G09-ISL-U03",
+  "relationships": {
+    "unitId": "JOR-G09-ISL-U03",
+    "bookId": "JOR-BOOK-000097",
+    "subjectId": "JOR-G09-ISL",
+    "gradeId": "JOR-G09",
+    "belongsTo": "JOR-G09-ISL-U03"
+  },
+  "createdAt": "2026-07-31T17:56:57.144Z",
+  "updatedAt": "2026-07-31T17:56:57.144Z",
+  "lessonCode": "L03",
+  "sequence": 3,
+  "legacyLessonId": "L3.3",
+  "keywords": [
+    "عقيدة",
+    "عبادة",
+    "خلق"
+  ]
+}

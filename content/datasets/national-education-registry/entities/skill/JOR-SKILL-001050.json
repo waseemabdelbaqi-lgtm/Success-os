@@ -1,0 +1,23 @@
+{
+  "globalId": "JOR-SKILL-001050",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«الحروف والأصوات — مقدمة ومفاهيم» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-007117",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-007117",
+      "JOR-OUTCOME-007118",
+      "JOR-OUTCOME-007119"
+    ],
+    "lessonIds": [
+      "JOR-GKG-اللغةوال-U02-L01"
+    ],
+    "belongsTo": "JOR-OUTCOME-007117"
+  },
+  "createdAt": "2026-07-31T17:56:57.582Z",
+  "updatedAt": "2026-07-31T17:56:57.582Z"
+}

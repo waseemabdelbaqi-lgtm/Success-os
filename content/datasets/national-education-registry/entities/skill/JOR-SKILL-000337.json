@@ -1,0 +1,35 @@
+{
+  "globalId": "JOR-SKILL-000337",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«المهارات الحركية — مقدمة ومفاهيم» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-000705",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-000705",
+      "JOR-OUTCOME-000706",
+      "JOR-OUTCOME-000707",
+      "JOR-OUTCOME-001137",
+      "JOR-OUTCOME-001138",
+      "JOR-OUTCOME-001139",
+      "JOR-OUTCOME-001569",
+      "JOR-OUTCOME-001570",
+      "JOR-OUTCOME-001571",
+      "JOR-OUTCOME-002001",
+      "JOR-OUTCOME-002002",
+      "JOR-OUTCOME-002003"
+    ],
+    "lessonIds": [
+      "JOR-G01-PE-U01-L01",
+      "JOR-G02-PE-U01-L01",
+      "JOR-G03-PE-U01-L01",
+      "JOR-G04-PE-U01-L01"
+    ],
+    "belongsTo": "JOR-OUTCOME-000705"
+  },
+  "createdAt": "2026-07-31T17:56:56.716Z",
+  "updatedAt": "2026-07-31T17:56:56.801Z"
+}

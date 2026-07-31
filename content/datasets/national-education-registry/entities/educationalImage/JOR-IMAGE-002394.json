@@ -1,0 +1,17 @@
+{
+  "globalId": "JOR-IMAGE-002394",
+  "kind": "educationalImage",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "مخطط تعليمي لوحدة المواد من حولنا",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-GKG-SCI-U03-L02",
+  "relationships": {
+    "lessonId": "JOR-GKG-SCI-U03-L02",
+    "belongsTo": "JOR-GKG-SCI-U03-L02"
+  },
+  "createdAt": "2026-07-31T17:56:57.574Z",
+  "updatedAt": "2026-07-31T17:56:57.574Z",
+  "src": null
+}

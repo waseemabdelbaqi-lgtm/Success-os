@@ -1,0 +1,35 @@
+{
+  "globalId": "JOR-SKILL-000394",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«الأعداد والعمليات — مقدمة ومفاهيم» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-000849",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-000849",
+      "JOR-OUTCOME-000850",
+      "JOR-OUTCOME-000851",
+      "JOR-OUTCOME-001281",
+      "JOR-OUTCOME-001282",
+      "JOR-OUTCOME-001283",
+      "JOR-OUTCOME-001713",
+      "JOR-OUTCOME-001714",
+      "JOR-OUTCOME-001715",
+      "JOR-OUTCOME-002145",
+      "JOR-OUTCOME-002146",
+      "JOR-OUTCOME-002147"
+    ],
+    "lessonIds": [
+      "JOR-G01-MATH-U01-L01",
+      "JOR-G02-MATH-U01-L01",
+      "JOR-G03-MATH-U01-L01",
+      "JOR-G04-MATH-U01-L01"
+    ],
+    "belongsTo": "JOR-OUTCOME-000849"
+  },
+  "createdAt": "2026-07-31T17:56:56.725Z",
+  "updatedAt": "2026-07-31T17:56:56.812Z"
+}

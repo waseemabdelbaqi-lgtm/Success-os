@@ -1,0 +1,20 @@
+{
+  "globalId": "JOR-G05",
+  "kind": "grade",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "الصف 5",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-SYS-000001",
+  "relationships": {
+    "educationalSystemId": "JOR-SYS-000001",
+    "countryId": "JOR",
+    "belongsTo": "JOR-SYS-000001",
+    "academicYearId": "JOR-YEAR-000001"
+  },
+  "createdAt": "2026-07-31T17:56:56.832Z",
+  "updatedAt": "2026-07-31T17:56:56.884Z",
+  "gradeCode": "G05",
+  "_deduped": true
+}

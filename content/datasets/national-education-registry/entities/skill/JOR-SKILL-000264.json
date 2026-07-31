@@ -1,0 +1,31 @@
+{
+  "globalId": "JOR-SKILL-000264",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«Extended Reading — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-000543",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-000543",
+      "JOR-OUTCOME-000544",
+      "JOR-OUTCOME-000545",
+      "JOR-OUTCOME-004607",
+      "JOR-OUTCOME-004608",
+      "JOR-OUTCOME-004609",
+      "JOR-OUTCOME-005263",
+      "JOR-OUTCOME-005264",
+      "JOR-OUTCOME-005265"
+    ],
+    "lessonIds": [
+      "JOR-G10-ENG-U03-L03",
+      "JOR-G08-ENG-U03-L03",
+      "JOR-G09-ENG-U03-L03"
+    ],
+    "belongsTo": "JOR-OUTCOME-000543"
+  },
+  "createdAt": "2026-07-31T17:56:56.709Z",
+  "updatedAt": "2026-07-31T17:56:57.217Z"
+}

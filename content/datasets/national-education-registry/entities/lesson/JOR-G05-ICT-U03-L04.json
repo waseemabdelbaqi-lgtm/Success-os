@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-G05-ICT-U03-L04",
+  "kind": "lesson",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "البحث الآمن — تقويم وتعزيز",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G05-ICT-U03",
+  "relationships": {
+    "unitId": "JOR-G05-ICT-U03",
+    "bookId": "JOR-BOOK-000060",
+    "subjectId": "JOR-G05-ICT",
+    "gradeId": "JOR-G05",
+    "belongsTo": "JOR-G05-ICT-U03"
+  },
+  "createdAt": "2026-07-31T17:56:56.888Z",
+  "updatedAt": "2026-07-31T17:56:56.888Z",
+  "lessonCode": "L04",
+  "sequence": 4,
+  "legacyLessonId": "L3.4",
+  "keywords": [
+    "بيانات",
+    "خوارزمية",
+    "شبكة"
+  ]
+}

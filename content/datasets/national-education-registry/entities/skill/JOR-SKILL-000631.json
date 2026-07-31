@@ -1,0 +1,31 @@
+{
+  "globalId": "JOR-SKILL-000631",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«الجهاز والجسم — بناء المهارة» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-002708",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-002708",
+      "JOR-OUTCOME-002709",
+      "JOR-OUTCOME-002710",
+      "JOR-OUTCOME-003268",
+      "JOR-OUTCOME-003269",
+      "JOR-OUTCOME-003270",
+      "JOR-OUTCOME-003828",
+      "JOR-OUTCOME-003829",
+      "JOR-OUTCOME-003830"
+    ],
+    "lessonIds": [
+      "JOR-G05-SCI-U01-L02",
+      "JOR-G06-SCI-U01-L02",
+      "JOR-G07-SCI-U01-L02"
+    ],
+    "belongsTo": "JOR-OUTCOME-002708"
+  },
+  "createdAt": "2026-07-31T17:56:56.864Z",
+  "updatedAt": "2026-07-31T17:56:57.008Z"
+}

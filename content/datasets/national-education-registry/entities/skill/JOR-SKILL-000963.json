@@ -1,0 +1,51 @@
+{
+  "globalId": "JOR-SKILL-000963",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يتعرف المتعلم مفهومًا محوريًا في البناء والإنشاءات ضمن مشروع تطبيقي بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 11.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-006389",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-006389",
+      "JOR-OUTCOME-006390",
+      "JOR-OUTCOME-006391",
+      "JOR-OUTCOME-006392",
+      "JOR-OUTCOME-006393",
+      "JOR-OUTCOME-006394",
+      "JOR-OUTCOME-006395",
+      "JOR-OUTCOME-006396",
+      "JOR-OUTCOME-006397",
+      "JOR-OUTCOME-006398",
+      "JOR-OUTCOME-006399",
+      "JOR-OUTCOME-006400",
+      "JOR-OUTCOME-006741",
+      "JOR-OUTCOME-006742",
+      "JOR-OUTCOME-006743",
+      "JOR-OUTCOME-006744",
+      "JOR-OUTCOME-006745",
+      "JOR-OUTCOME-006746",
+      "JOR-OUTCOME-006747",
+      "JOR-OUTCOME-006748",
+      "JOR-OUTCOME-006749",
+      "JOR-OUTCOME-006750",
+      "JOR-OUTCOME-006751",
+      "JOR-OUTCOME-006752"
+    ],
+    "lessonIds": [
+      "JOR-G11-البناءوا-U04-L01",
+      "JOR-G11-البناءوا-U04-L02",
+      "JOR-G11-البناءوا-U04-L03",
+      "JOR-G11-البناءوا-U04-L04",
+      "JOR-G12-البناءوا-U04-L01",
+      "JOR-G12-البناءوا-U04-L02",
+      "JOR-G12-البناءوا-U04-L03",
+      "JOR-G12-البناءوا-U04-L04"
+    ],
+    "belongsTo": "JOR-OUTCOME-006389"
+  },
+  "createdAt": "2026-07-31T17:56:57.407Z",
+  "updatedAt": "2026-07-31T17:56:57.488Z"
+}

@@ -1,0 +1,31 @@
+{
+  "globalId": "JOR-SKILL-000568",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«الخدمة المجتمعية — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-002559",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-002559",
+      "JOR-OUTCOME-002560",
+      "JOR-OUTCOME-002528",
+      "JOR-OUTCOME-003119",
+      "JOR-OUTCOME-003120",
+      "JOR-OUTCOME-003088",
+      "JOR-OUTCOME-003679",
+      "JOR-OUTCOME-003680",
+      "JOR-OUTCOME-003648"
+    ],
+    "lessonIds": [
+      "JOR-G05-التربيةا-U04-L04",
+      "JOR-G06-التربيةا-U04-L04",
+      "JOR-G07-التربيةا-U04-L04"
+    ],
+    "belongsTo": "JOR-OUTCOME-002559"
+  },
+  "createdAt": "2026-07-31T17:56:56.850Z",
+  "updatedAt": "2026-07-31T17:56:56.988Z"
+}

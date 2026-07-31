@@ -1,0 +1,17 @@
+{
+  "globalId": "JOR-IMAGE-000699",
+  "kind": "educationalImage",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "مخطط تعليمي لوحدة المسرح المدرسي",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G04-ARTS-U03-L03",
+  "relationships": {
+    "lessonId": "JOR-G04-ARTS-U03-L03",
+    "belongsTo": "JOR-G04-ARTS-U03-L03"
+  },
+  "createdAt": "2026-07-31T17:56:56.807Z",
+  "updatedAt": "2026-07-31T17:56:56.807Z",
+  "src": null
+}

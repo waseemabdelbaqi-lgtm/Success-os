@@ -1,0 +1,31 @@
+{
+  "globalId": "JOR-SKILL-000693",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«النصوص الأدبية — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-002858",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-002858",
+      "JOR-OUTCOME-002859",
+      "JOR-OUTCOME-002860",
+      "JOR-OUTCOME-003418",
+      "JOR-OUTCOME-003419",
+      "JOR-OUTCOME-003420",
+      "JOR-OUTCOME-003978",
+      "JOR-OUTCOME-003979",
+      "JOR-OUTCOME-003980"
+    ],
+    "lessonIds": [
+      "JOR-G05-ARAB-U01-L04",
+      "JOR-G06-ARAB-U01-L04",
+      "JOR-G07-ARAB-U01-L04"
+    ],
+    "belongsTo": "JOR-OUTCOME-002858"
+  },
+  "createdAt": "2026-07-31T17:56:56.880Z",
+  "updatedAt": "2026-07-31T17:56:57.027Z"
+}

@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-SKILL-000810",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«الطاقة والحرارة — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-005566",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-005566",
+      "JOR-OUTCOME-005567",
+      "JOR-OUTCOME-005568",
+      "JOR-OUTCOME-006030",
+      "JOR-OUTCOME-006031",
+      "JOR-OUTCOME-006032"
+    ],
+    "lessonIds": [
+      "JOR-G11-الفيزياء-U04-L04",
+      "JOR-G12-الفيزياء-U04-L04"
+    ],
+    "belongsTo": "JOR-OUTCOME-005566"
+  },
+  "createdAt": "2026-07-31T17:56:57.267Z",
+  "updatedAt": "2026-07-31T17:56:57.345Z"
+}

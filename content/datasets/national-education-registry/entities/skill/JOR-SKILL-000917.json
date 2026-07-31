@@ -1,0 +1,51 @@
+{
+  "globalId": "JOR-SKILL-000917",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يتعرف المتعلم مفهومًا محوريًا في علوم الأرض والبيئة ضمن بنية الأرض بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 11.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-005809",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-005809",
+      "JOR-OUTCOME-005810",
+      "JOR-OUTCOME-005475",
+      "JOR-OUTCOME-005811",
+      "JOR-OUTCOME-005812",
+      "JOR-OUTCOME-005478",
+      "JOR-OUTCOME-005813",
+      "JOR-OUTCOME-005814",
+      "JOR-OUTCOME-005481",
+      "JOR-OUTCOME-005815",
+      "JOR-OUTCOME-005816",
+      "JOR-OUTCOME-005484",
+      "JOR-OUTCOME-006273",
+      "JOR-OUTCOME-006274",
+      "JOR-OUTCOME-005939",
+      "JOR-OUTCOME-006275",
+      "JOR-OUTCOME-006276",
+      "JOR-OUTCOME-005942",
+      "JOR-OUTCOME-006277",
+      "JOR-OUTCOME-006278",
+      "JOR-OUTCOME-005945",
+      "JOR-OUTCOME-006279",
+      "JOR-OUTCOME-006280",
+      "JOR-OUTCOME-005948"
+    ],
+    "lessonIds": [
+      "JOR-G11-SCI-U01-L01",
+      "JOR-G11-SCI-U01-L02",
+      "JOR-G11-SCI-U01-L03",
+      "JOR-G11-SCI-U01-L04",
+      "JOR-G12-SCI-U01-L01",
+      "JOR-G12-SCI-U01-L02",
+      "JOR-G12-SCI-U01-L03",
+      "JOR-G12-SCI-U01-L04"
+    ],
+    "belongsTo": "JOR-OUTCOME-005809"
+  },
+  "createdAt": "2026-07-31T17:56:57.306Z",
+  "updatedAt": "2026-07-31T17:56:57.388Z"
+}

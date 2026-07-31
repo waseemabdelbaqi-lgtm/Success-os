@@ -1,0 +1,18 @@
+{
+  "globalId": "JOR-OUTCOME-002928",
+  "kind": "learningOutcome",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«البحث الآمن — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G05-ICT-U03-L03",
+  "relationships": {
+    "lessonId": "JOR-G05-ICT-U03-L03",
+    "belongsTo": "JOR-G05-ICT-U03-L03"
+  },
+  "createdAt": "2026-07-31T17:56:56.888Z",
+  "updatedAt": "2026-07-31T17:56:56.888Z",
+  "text": "أن يطبّق مهارة مرتبطة بـ«البحث الآمن — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+  "sequence": 2
+}

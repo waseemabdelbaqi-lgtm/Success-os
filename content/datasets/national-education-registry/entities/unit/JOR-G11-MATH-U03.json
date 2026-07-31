@@ -1,0 +1,21 @@
+{
+  "globalId": "JOR-G11-MATH-U03",
+  "kind": "unit",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "الهندسة التحليلية",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-BOOK-000110",
+  "relationships": {
+    "bookId": "JOR-BOOK-000110",
+    "subjectId": "JOR-G11-MATH",
+    "gradeId": "JOR-G11",
+    "belongsTo": "JOR-BOOK-000110"
+  },
+  "createdAt": "2026-07-31T17:56:57.248Z",
+  "updatedAt": "2026-07-31T17:56:57.248Z",
+  "unitCode": "U03",
+  "sequence": 3,
+  "legacyUnitId": "U3"
+}

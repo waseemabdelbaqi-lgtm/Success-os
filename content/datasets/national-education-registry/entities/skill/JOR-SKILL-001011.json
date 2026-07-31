@@ -1,0 +1,23 @@
+{
+  "globalId": "JOR-SKILL-001011",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«الأشكال في محيطي — بناء المهارة» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-007024",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-007024",
+      "JOR-OUTCOME-007025",
+      "JOR-OUTCOME-007026"
+    ],
+    "lessonIds": [
+      "JOR-GKG-EMATH-U02-L02"
+    ],
+    "belongsTo": "JOR-OUTCOME-007024"
+  },
+  "createdAt": "2026-07-31T17:56:57.559Z",
+  "updatedAt": "2026-07-31T17:56:57.559Z"
+}

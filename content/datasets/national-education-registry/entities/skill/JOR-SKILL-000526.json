@@ -1,0 +1,31 @@
+{
+  "globalId": "JOR-SKILL-000526",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«القواعد الرياضية — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-002466",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-002466",
+      "JOR-OUTCOME-002467",
+      "JOR-OUTCOME-002468",
+      "JOR-OUTCOME-003026",
+      "JOR-OUTCOME-003027",
+      "JOR-OUTCOME-003028",
+      "JOR-OUTCOME-003586",
+      "JOR-OUTCOME-003587",
+      "JOR-OUTCOME-003588"
+    ],
+    "lessonIds": [
+      "JOR-G05-PE-U03-L04",
+      "JOR-G06-PE-U03-L04",
+      "JOR-G07-PE-U03-L04"
+    ],
+    "belongsTo": "JOR-OUTCOME-002466"
+  },
+  "createdAt": "2026-07-31T17:56:56.842Z",
+  "updatedAt": "2026-07-31T17:56:56.976Z"
+}

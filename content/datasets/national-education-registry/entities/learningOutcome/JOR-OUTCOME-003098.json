@@ -1,0 +1,18 @@
+{
+  "globalId": "JOR-OUTCOME-003098",
+  "kind": "learningOutcome",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«المؤسسات — مقدمة ومفاهيم» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G06-التربيةا-U02-L01",
+  "relationships": {
+    "lessonId": "JOR-G06-التربيةا-U02-L01",
+    "belongsTo": "JOR-G06-التربيةا-U02-L01"
+  },
+  "createdAt": "2026-07-31T17:56:56.907Z",
+  "updatedAt": "2026-07-31T17:56:56.907Z",
+  "text": "أن يطبّق مهارة مرتبطة بـ«المؤسسات — مقدمة ومفاهيم» بخطوات واضحة قابلة للتحقق.",
+  "sequence": 2
+}

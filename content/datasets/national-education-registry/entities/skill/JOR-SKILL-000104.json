@@ -1,0 +1,31 @@
+{
+  "globalId": "JOR-SKILL-000104",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«المشاركة المدنية — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-000207",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-000207",
+      "JOR-OUTCOME-000208",
+      "JOR-OUTCOME-000168",
+      "JOR-OUTCOME-004271",
+      "JOR-OUTCOME-004272",
+      "JOR-OUTCOME-004232",
+      "JOR-OUTCOME-004927",
+      "JOR-OUTCOME-004928",
+      "JOR-OUTCOME-004888"
+    ],
+    "lessonIds": [
+      "JOR-G10-التربيةا-U02-L04",
+      "JOR-G08-التربيةا-U02-L04",
+      "JOR-G09-التربيةا-U02-L04"
+    ],
+    "belongsTo": "JOR-OUTCOME-000207"
+  },
+  "createdAt": "2026-07-31T17:56:56.691Z",
+  "updatedAt": "2026-07-31T17:56:57.164Z"
+}

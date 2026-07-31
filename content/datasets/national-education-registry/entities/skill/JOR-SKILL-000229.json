@@ -1,0 +1,31 @@
+{
+  "globalId": "JOR-SKILL-000229",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«التصميم — مقدمة ومفاهيم» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-000465",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-000465",
+      "JOR-OUTCOME-000466",
+      "JOR-OUTCOME-000467",
+      "JOR-OUTCOME-004529",
+      "JOR-OUTCOME-004530",
+      "JOR-OUTCOME-004531",
+      "JOR-OUTCOME-005185",
+      "JOR-OUTCOME-005186",
+      "JOR-OUTCOME-005187"
+    ],
+    "lessonIds": [
+      "JOR-G10-الفنون-U01-L01",
+      "JOR-G08-الفنون-U01-L01",
+      "JOR-G09-الفنون-U01-L01"
+    ],
+    "belongsTo": "JOR-OUTCOME-000465"
+  },
+  "createdAt": "2026-07-31T17:56:56.704Z",
+  "updatedAt": "2026-07-31T17:56:57.204Z"
+}

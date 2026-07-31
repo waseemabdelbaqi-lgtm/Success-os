@@ -1,0 +1,31 @@
+{
+  "globalId": "JOR-SKILL-000688",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«Guided Writing — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-002846",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-002846",
+      "JOR-OUTCOME-002847",
+      "JOR-OUTCOME-002848",
+      "JOR-OUTCOME-003406",
+      "JOR-OUTCOME-003407",
+      "JOR-OUTCOME-003408",
+      "JOR-OUTCOME-003966",
+      "JOR-OUTCOME-003967",
+      "JOR-OUTCOME-003968"
+    ],
+    "lessonIds": [
+      "JOR-G05-ENG-U04-L04",
+      "JOR-G06-ENG-U04-L04",
+      "JOR-G07-ENG-U04-L04"
+    ],
+    "belongsTo": "JOR-OUTCOME-002846"
+  },
+  "createdAt": "2026-07-31T17:56:56.879Z",
+  "updatedAt": "2026-07-31T17:56:57.025Z"
+}

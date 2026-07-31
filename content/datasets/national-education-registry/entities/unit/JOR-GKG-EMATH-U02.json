@@ -1,0 +1,21 @@
+{
+  "globalId": "JOR-GKG-EMATH-U02",
+  "kind": "unit",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "الأشكال في محيطي",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-BOOK-000143",
+  "relationships": {
+    "bookId": "JOR-BOOK-000143",
+    "subjectId": "JOR-GKG-EMATH",
+    "gradeId": "JOR-GKG",
+    "belongsTo": "JOR-BOOK-000143"
+  },
+  "createdAt": "2026-07-31T17:56:57.558Z",
+  "updatedAt": "2026-07-31T17:56:57.558Z",
+  "unitCode": "U02",
+  "sequence": 2,
+  "legacyUnitId": "U2"
+}

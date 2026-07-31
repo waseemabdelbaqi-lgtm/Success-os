@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-G05-PE-U02-L03",
+  "kind": "lesson",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "اللياقة البدنية — تطبيق ومثال",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G05-PE-U02",
+  "relationships": {
+    "unitId": "JOR-G05-PE-U02",
+    "bookId": "JOR-BOOK-000051",
+    "subjectId": "JOR-G05-PE",
+    "gradeId": "JOR-G05",
+    "belongsTo": "JOR-G05-PE-U02"
+  },
+  "createdAt": "2026-07-31T17:56:56.840Z",
+  "updatedAt": "2026-07-31T17:56:56.840Z",
+  "lessonCode": "L03",
+  "sequence": 3,
+  "legacyLessonId": "L2.3",
+  "keywords": [
+    "مهارة حركية",
+    "لياقة",
+    "تعاون"
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "globalId": "JOR-SKILL-000502",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«أحكام العبادات — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-002406",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-002406",
+      "JOR-OUTCOME-002407",
+      "JOR-OUTCOME-002408",
+      "JOR-OUTCOME-002966",
+      "JOR-OUTCOME-002967",
+      "JOR-OUTCOME-002968",
+      "JOR-OUTCOME-003526",
+      "JOR-OUTCOME-003527",
+      "JOR-OUTCOME-003528"
+    ],
+    "lessonIds": [
+      "JOR-G05-ISL-U02-L04",
+      "JOR-G06-ISL-U02-L04",
+      "JOR-G07-ISL-U02-L04"
+    ],
+    "belongsTo": "JOR-OUTCOME-002406"
+  },
+  "createdAt": "2026-07-31T17:56:56.836Z",
+  "updatedAt": "2026-07-31T17:56:56.969Z"
+}

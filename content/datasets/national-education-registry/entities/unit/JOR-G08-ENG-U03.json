@@ -1,0 +1,21 @@
+{
+  "globalId": "JOR-G08-ENG-U03",
+  "kind": "unit",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "Extended Reading",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-BOOK-000093",
+  "relationships": {
+    "bookId": "JOR-BOOK-000093",
+    "subjectId": "JOR-G08-ENG",
+    "gradeId": "JOR-G08",
+    "belongsTo": "JOR-BOOK-000093"
+  },
+  "createdAt": "2026-07-31T17:56:57.113Z",
+  "updatedAt": "2026-07-31T17:56:57.113Z",
+  "unitCode": "U03",
+  "sequence": 3,
+  "legacyUnitId": "U3"
+}

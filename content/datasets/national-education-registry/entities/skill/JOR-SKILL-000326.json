@@ -1,0 +1,35 @@
+{
+  "globalId": "JOR-SKILL-000326",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«العبادات الأساسية — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-000678",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-000678",
+      "JOR-OUTCOME-000679",
+      "JOR-OUTCOME-000680",
+      "JOR-OUTCOME-001110",
+      "JOR-OUTCOME-001111",
+      "JOR-OUTCOME-001112",
+      "JOR-OUTCOME-001542",
+      "JOR-OUTCOME-001543",
+      "JOR-OUTCOME-001544",
+      "JOR-OUTCOME-001974",
+      "JOR-OUTCOME-001975",
+      "JOR-OUTCOME-001976"
+    ],
+    "lessonIds": [
+      "JOR-G01-ISL-U02-L04",
+      "JOR-G02-ISL-U02-L04",
+      "JOR-G03-ISL-U02-L04",
+      "JOR-G04-ISL-U02-L04"
+    ],
+    "belongsTo": "JOR-OUTCOME-000678"
+  },
+  "createdAt": "2026-07-31T17:56:56.715Z",
+  "updatedAt": "2026-07-31T17:56:56.799Z"
+}

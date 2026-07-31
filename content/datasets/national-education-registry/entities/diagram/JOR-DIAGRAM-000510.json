@@ -1,0 +1,16 @@
+{
+  "globalId": "JOR-DIAGRAM-000510",
+  "kind": "diagram",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "مخطط تعليمي لوحدة حل المشكلات البسيط",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G02-ICT-U04-L02",
+  "relationships": {
+    "lessonId": "JOR-G02-ICT-U04-L02",
+    "belongsTo": "JOR-G02-ICT-U04-L02"
+  },
+  "createdAt": "2026-07-31T17:56:56.767Z",
+  "updatedAt": "2026-07-31T17:56:56.767Z"
+}

@@ -1,0 +1,21 @@
+{
+  "globalId": "JOR-G08-ARAB-U01",
+  "kind": "unit",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "تحليل النصوص",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-BOOK-000094",
+  "relationships": {
+    "bookId": "JOR-BOOK-000094",
+    "subjectId": "JOR-G08-ARAB",
+    "gradeId": "JOR-G08",
+    "belongsTo": "JOR-BOOK-000094"
+  },
+  "createdAt": "2026-07-31T17:56:57.117Z",
+  "updatedAt": "2026-07-31T17:56:57.117Z",
+  "unitCode": "U01",
+  "sequence": 1,
+  "legacyUnitId": "U1"
+}

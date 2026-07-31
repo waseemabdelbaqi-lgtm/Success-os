@@ -1,0 +1,21 @@
+{
+  "globalId": "JOR-G05-الفنون-U02",
+  "kind": "unit",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "الإيقاع واللحن",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-BOOK-000057",
+  "relationships": {
+    "bookId": "JOR-BOOK-000057",
+    "subjectId": "JOR-G05-الفنون",
+    "gradeId": "JOR-G05",
+    "belongsTo": "JOR-BOOK-000057"
+  },
+  "createdAt": "2026-07-31T17:56:56.870Z",
+  "updatedAt": "2026-07-31T17:56:56.870Z",
+  "unitCode": "U02",
+  "sequence": 2,
+  "legacyUnitId": "U2"
+}

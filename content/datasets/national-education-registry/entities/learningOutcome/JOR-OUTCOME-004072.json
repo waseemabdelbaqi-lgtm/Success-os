@@ -1,0 +1,18 @@
+{
+  "globalId": "JOR-OUTCOME-004072",
+  "kind": "learningOutcome",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«تاريخ الأردن الحديث — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G08-التاريخ-U01-L03",
+  "relationships": {
+    "lessonId": "JOR-G08-التاريخ-U01-L03",
+    "belongsTo": "JOR-G08-التاريخ-U01-L03"
+  },
+  "createdAt": "2026-07-31T17:56:57.039Z",
+  "updatedAt": "2026-07-31T17:56:57.039Z",
+  "text": "أن يطبّق مهارة مرتبطة بـ«تاريخ الأردن الحديث — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+  "sequence": 2
+}

@@ -1,0 +1,23 @@
+{
+  "globalId": "JOR-SKILL-001032",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«الحواس والملاحظة — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-007075",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-007075",
+      "JOR-OUTCOME-007076",
+      "JOR-OUTCOME-007077"
+    ],
+    "lessonIds": [
+      "JOR-GKG-SCI-U02-L03"
+    ],
+    "belongsTo": "JOR-OUTCOME-007075"
+  },
+  "createdAt": "2026-07-31T17:56:57.572Z",
+  "updatedAt": "2026-07-31T17:56:57.572Z"
+}

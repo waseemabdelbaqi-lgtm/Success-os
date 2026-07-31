@@ -1,0 +1,81 @@
+{
+  "registration": {
+    "status": "registered",
+    "countryCode": "JOR",
+    "country": "Jordan",
+    "stats": {
+      "created": {
+        "country": 1,
+        "educationalSystem": 1,
+        "academicYear": 1,
+        "semester": 26,
+        "grade": 13,
+        "subject": 144,
+        "book": 146,
+        "unit": 576,
+        "lesson": 2304,
+        "learningOutcome": 7200,
+        "skill": 1084,
+        "concept": 54,
+        "vocabulary": 54,
+        "scientificLaw": 36,
+        "mathematicalFormula": 0,
+        "laboratoryActivity": 0,
+        "educationalImage": 2432,
+        "diagram": 2432,
+        "reference": 49
+      },
+      "reused": {
+        "country": 0,
+        "educationalSystem": 0,
+        "academicYear": 0,
+        "semester": 282,
+        "grade": 141,
+        "subject": 10,
+        "book": 8,
+        "unit": 40,
+        "lesson": 160,
+        "learningOutcome": 192,
+        "skill": 11236,
+        "concept": 7338,
+        "vocabulary": 24586,
+        "scientificLaw": 0,
+        "mathematicalFormula": 0,
+        "laboratoryActivity": 0,
+        "educationalImage": 32,
+        "diagram": 32,
+        "reference": 14766
+      }
+    },
+    "sourceBooks": 154,
+    "sourceReferences": 31
+  },
+  "validation": {
+    "ok": true,
+    "checked": 16553,
+    "issueCount": 0,
+    "missingRelationships": 0,
+    "validationErrors": 0
+  },
+  "totals": {
+    "country": 1,
+    "educationalSystem": 1,
+    "academicYear": 1,
+    "semester": 26,
+    "grade": 13,
+    "subject": 144,
+    "book": 146,
+    "unit": 576,
+    "lesson": 2304,
+    "learningOutcome": 7200,
+    "skill": 1084,
+    "concept": 54,
+    "vocabulary": 54,
+    "scientificLaw": 36,
+    "mathematicalFormula": 0,
+    "laboratoryActivity": 0,
+    "educationalImage": 2432,
+    "diagram": 2432,
+    "reference": 49
+  }
+}

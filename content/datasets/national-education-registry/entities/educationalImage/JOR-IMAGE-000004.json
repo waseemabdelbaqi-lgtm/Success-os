@@ -1,0 +1,17 @@
+{
+  "globalId": "JOR-IMAGE-000004",
+  "kind": "educationalImage",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "مخطط تعليمي لوحدة تاريخ الأردن الحديث",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G10-التاريخ-U01-L04",
+  "relationships": {
+    "lessonId": "JOR-G10-التاريخ-U01-L04",
+    "belongsTo": "JOR-G10-التاريخ-U01-L04"
+  },
+  "createdAt": "2026-07-31T17:56:56.683Z",
+  "updatedAt": "2026-07-31T17:56:56.683Z",
+  "src": null
+}

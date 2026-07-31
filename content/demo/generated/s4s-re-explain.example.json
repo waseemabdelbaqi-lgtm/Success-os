@@ -1,0 +1,132 @@
+{
+  "schema": "success-os.s4s-re-explain.v1",
+  "trigger": "I don't understand this.",
+  "studentLine": {
+    "en": "I don't understand this.",
+    "ar": "لا أفهم هذا."
+  },
+  "teacherLine": {
+    "en": "No problem.\nLet's explain it differently.",
+    "ar": "لا بأس.\nدعنا نشرحها بطريقة مختلفة."
+  },
+  "path": [
+    "student_utterance",
+    "teacher_response",
+    "animation",
+    "drawing",
+    "example",
+    "question",
+    "check_understanding"
+  ],
+  "displayPath": [
+    "Student: I don't understand this.",
+    "Teacher: No problem. Let's explain it differently.",
+    "Animation",
+    "Drawing",
+    "Example",
+    "Question",
+    "Checks understanding"
+  ],
+  "steps": [
+    {
+      "id": "student_utterance",
+      "order": 1,
+      "title": {
+        "en": "Student",
+        "ar": "الطالب"
+      },
+      "body": {
+        "en": "I don't understand this.",
+        "ar": "لا أفهم هذا."
+      },
+      "kind": "dialogue"
+    },
+    {
+      "id": "teacher_response",
+      "order": 2,
+      "title": {
+        "en": "Teacher",
+        "ar": "المعلم"
+      },
+      "body": {
+        "en": "No problem.\nLet's explain it differently.",
+        "ar": "لا بأس.\nدعنا نشرحها بطريقة مختلفة."
+      },
+      "kind": "dialogue"
+    },
+    {
+      "id": "animation",
+      "order": 3,
+      "title": {
+        "en": "Animation",
+        "ar": "رسوم متحركة"
+      },
+      "body": {
+        "en": "Watch a short motion explanation of Fractions — same idea, different view.",
+        "ar": "شاهد شرحًا متحركًا قصيرًا لـ الكسور — نفس الفكرة بمنظور مختلف."
+      },
+      "kind": "media",
+      "ileSectionHint": "animations"
+    },
+    {
+      "id": "drawing",
+      "order": 4,
+      "title": {
+        "en": "Drawing",
+        "ar": "رسم"
+      },
+      "body": {
+        "en": "Sketch the idea yourself — draw Fractions in the workspace canvas.",
+        "ar": "ارسم الفكرة بنفسك — ارسم الكسور في مساحة العمل."
+      },
+      "kind": "interactive"
+    },
+    {
+      "id": "example",
+      "order": 5,
+      "title": {
+        "en": "Example",
+        "ar": "مثال"
+      },
+      "body": {
+        "en": "Worked example: take a simple Fractions case and label each part.",
+        "ar": "مثال محلول: خذ حالة بسيطة من الكسور وسمِّ كل جزء."
+      },
+      "kind": "media",
+      "ileSectionHint": "examples"
+    },
+    {
+      "id": "question",
+      "order": 6,
+      "title": {
+        "en": "Question",
+        "ar": "سؤال"
+      },
+      "body": {
+        "en": "Quick check: which statement about Fractions is true?",
+        "ar": "تحقق سريع: أي عبارة عن الكسور صحيحة؟"
+      },
+      "kind": "interactive",
+      "ileSectionHint": "interactive_slides"
+    },
+    {
+      "id": "check_understanding",
+      "order": 7,
+      "title": {
+        "en": "Checks understanding",
+        "ar": "التحقق من الفهم"
+      },
+      "body": {
+        "en": "Do you understand it now, or should we try another path?",
+        "ar": "هل فهمت الآن، أم نجرب مسارًا آخر؟"
+      },
+      "kind": "check"
+    }
+  ],
+  "topic": {
+    "en": "Fractions",
+    "ar": "الكسور"
+  },
+  "generatesContent": false,
+  "checksUnderstanding": true
+}

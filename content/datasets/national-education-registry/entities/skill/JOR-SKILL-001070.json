@@ -1,0 +1,23 @@
+{
+  "globalId": "JOR-SKILL-001070",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«وحدة استكشافية 1 — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-007159",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-007159",
+      "JOR-OUTCOME-007160",
+      "JOR-OUTCOME-007161"
+    ],
+    "lessonIds": [
+      "JOR-GKG-المهارات-U01-L03"
+    ],
+    "belongsTo": "JOR-OUTCOME-007159"
+  },
+  "createdAt": "2026-07-31T17:56:57.591Z",
+  "updatedAt": "2026-07-31T17:56:57.591Z"
+}

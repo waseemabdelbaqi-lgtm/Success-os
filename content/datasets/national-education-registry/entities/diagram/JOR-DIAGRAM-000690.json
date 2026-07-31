@@ -1,0 +1,16 @@
+{
+  "globalId": "JOR-DIAGRAM-000690",
+  "kind": "diagram",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "مخطط تعليمي لوحدة عناصر الفن",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G04-ARTS-U01-L02",
+  "relationships": {
+    "lessonId": "JOR-G04-ARTS-U01-L02",
+    "belongsTo": "JOR-G04-ARTS-U01-L02"
+  },
+  "createdAt": "2026-07-31T17:56:56.805Z",
+  "updatedAt": "2026-07-31T17:56:56.805Z"
+}

@@ -1,0 +1,16 @@
+{
+  "globalId": "JOR-DIAGRAM-002241",
+  "kind": "diagram",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "مخطط تعليمي لوحدة أساسيات المسار",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G11-الهندسة-U01-L01",
+  "relationships": {
+    "lessonId": "JOR-G11-الهندسة-U01-L01",
+    "belongsTo": "JOR-G11-الهندسة-U01-L01"
+  },
+  "createdAt": "2026-07-31T17:56:57.448Z",
+  "updatedAt": "2026-07-31T17:56:57.448Z"
+}

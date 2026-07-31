@@ -1,0 +1,22 @@
+{
+  "globalId": "JOR-G12-SCI-U03",
+  "kind": "unit",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "التطبيقات الحياتية",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-BOOK-000142",
+  "relationships": {
+    "bookId": "JOR-BOOK-000142",
+    "subjectId": "JOR-G12-SCI",
+    "gradeId": "JOR-G12",
+    "belongsTo": "JOR-BOOK-000142"
+  },
+  "createdAt": "2026-07-31T17:56:57.334Z",
+  "updatedAt": "2026-07-31T17:56:57.549Z",
+  "unitCode": "U03",
+  "sequence": 3,
+  "legacyUnitId": "U3",
+  "_deduped": true
+}

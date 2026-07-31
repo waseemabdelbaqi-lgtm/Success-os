@@ -1,0 +1,22 @@
+{
+  "globalId": "JOR-G07-التربيةا-U03",
+  "kind": "unit",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "حقوق الطفل",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-BOOK-000074",
+  "relationships": {
+    "bookId": "JOR-BOOK-000074",
+    "subjectId": "JOR-G07-التربيةا",
+    "gradeId": "JOR-G07",
+    "belongsTo": "JOR-BOOK-000074"
+  },
+  "createdAt": "2026-07-31T17:56:56.981Z",
+  "updatedAt": "2026-07-31T17:56:56.986Z",
+  "unitCode": "U03",
+  "sequence": 3,
+  "legacyUnitId": "U3",
+  "_deduped": true
+}

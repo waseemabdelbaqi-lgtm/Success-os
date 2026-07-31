@@ -1,0 +1,16 @@
+{
+  "globalId": "JOR-DIAGRAM-000730",
+  "kind": "diagram",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "مخطط تعليمي لوحدة الهندسة والقياس",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G04-MATH-U03-L02",
+  "relationships": {
+    "lessonId": "JOR-G04-MATH-U03-L02",
+    "belongsTo": "JOR-G04-MATH-U03-L02"
+  },
+  "createdAt": "2026-07-31T17:56:56.814Z",
+  "updatedAt": "2026-07-31T17:56:56.814Z"
+}

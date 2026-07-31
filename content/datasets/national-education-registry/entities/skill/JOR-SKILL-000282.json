@@ -1,0 +1,31 @@
+{
+  "globalId": "JOR-SKILL-000282",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«النحو المتقدم — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-000579",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-000579",
+      "JOR-OUTCOME-000580",
+      "JOR-OUTCOME-000581",
+      "JOR-OUTCOME-004643",
+      "JOR-OUTCOME-004644",
+      "JOR-OUTCOME-004645",
+      "JOR-OUTCOME-005299",
+      "JOR-OUTCOME-005300",
+      "JOR-OUTCOME-005301"
+    ],
+    "lessonIds": [
+      "JOR-G10-ARAB-U02-L03",
+      "JOR-G08-ARAB-U02-L03",
+      "JOR-G09-ARAB-U02-L03"
+    ],
+    "belongsTo": "JOR-OUTCOME-000579"
+  },
+  "createdAt": "2026-07-31T17:56:56.711Z",
+  "updatedAt": "2026-07-31T17:56:57.223Z"
+}

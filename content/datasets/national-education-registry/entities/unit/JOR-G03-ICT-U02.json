@@ -1,0 +1,21 @@
+{
+  "globalId": "JOR-G03-ICT-U02",
+  "kind": "unit",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "السلامة الرقمية",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-BOOK-000040",
+  "relationships": {
+    "bookId": "JOR-BOOK-000040",
+    "subjectId": "JOR-G03-ICT",
+    "gradeId": "JOR-G03",
+    "belongsTo": "JOR-BOOK-000040"
+  },
+  "createdAt": "2026-07-31T17:56:56.794Z",
+  "updatedAt": "2026-07-31T17:56:56.794Z",
+  "unitCode": "U02",
+  "sequence": 2,
+  "legacyUnitId": "U2"
+}

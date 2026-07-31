@@ -1,0 +1,140 @@
+{
+  "schema": "success-os.student-skill-progress.v1",
+  "studentId": "student_jo_demo_001",
+  "countryId": "JO",
+  "curriculumId": "JO-NATIONAL",
+  "path": [
+    "Student",
+    "Completed Lessons",
+    "Completed Skills",
+    "Missing Skills",
+    "Weak Skills",
+    "Recommended Lessons"
+  ],
+  "completedLessons": [
+    {
+      "lessonId": "JO-NATIONAL-G01-MATH-B01-U01-L01",
+      "title": {
+        "en": "Lesson 1 — Count to three",
+        "ar": "الدرس 1 — العدّ حتى ثلاثة"
+      },
+      "globalSubjectId": "SUB-00001",
+      "skills": [
+        "SKL-00001",
+        "SKL-00008"
+      ],
+      "ilePackageId": "ile_JO-NATIONAL-G01-MATH-B01-U01-L01",
+      "published": true
+    }
+  ],
+  "completedSkills": [
+    {
+      "skillId": "SKL-00001",
+      "code": "ARITHMETIC",
+      "name": {
+        "en": "Arithmetic",
+        "ar": "الحساب"
+      }
+    },
+    {
+      "skillId": "SKL-00008",
+      "code": "CRITICAL_THINKING",
+      "name": {
+        "en": "Critical Thinking",
+        "ar": "التفكير النقدي"
+      }
+    }
+  ],
+  "missingSkills": [
+    {
+      "skillId": "SKL-00002",
+      "code": "FRACTIONS",
+      "name": {
+        "en": "Fractions",
+        "ar": "الكسور"
+      }
+    }
+  ],
+  "weakSkills": [
+    {
+      "skillId": "SKL-00001",
+      "code": "ARITHMETIC",
+      "name": {
+        "en": "Arithmetic",
+        "ar": "الحساب"
+      }
+    },
+    {
+      "skillId": "SKL-00008",
+      "code": "CRITICAL_THINKING",
+      "name": {
+        "en": "Critical Thinking",
+        "ar": "التفكير النقدي"
+      }
+    }
+  ],
+  "recommendedLessons": [
+    {
+      "lessonId": "JO-NATIONAL-G01-MATH-B01-U01-L02",
+      "title": {
+        "en": "Lesson 2 — Count to five",
+        "ar": "الدرس 2 — العدّ حتى خمسة"
+      },
+      "globalSubjectId": "SUB-00001",
+      "skills": [
+        "SKL-00001",
+        "SKL-00002"
+      ],
+      "ilePackageId": null,
+      "published": false,
+      "reason": "missing_skill",
+      "targetSkillIds": [
+        "SKL-00002",
+        "SKL-00001"
+      ]
+    },
+    {
+      "lessonId": "JO-NATIONAL-G01-MATH-B01-U01-L03",
+      "title": {
+        "en": "Lesson 3 — Compare small sets",
+        "ar": "الدرس 3 — مقارنة مجموعات صغيرة"
+      },
+      "globalSubjectId": "SUB-00001",
+      "skills": [
+        "SKL-00002",
+        "SKL-00008"
+      ],
+      "ilePackageId": null,
+      "published": false,
+      "reason": "missing_skill",
+      "targetSkillIds": [
+        "SKL-00002",
+        "SKL-00008"
+      ]
+    },
+    {
+      "lessonId": "JO-NATIONAL-G01-MATH-B01-U02-L01",
+      "title": {
+        "en": "Lesson 1 — Circles and squares",
+        "ar": "الدرس 1 — الدائرة والمربع"
+      },
+      "globalSubjectId": "SUB-00001",
+      "skills": [
+        "SKL-00001"
+      ],
+      "ilePackageId": null,
+      "published": false,
+      "reason": "weak_skill",
+      "targetSkillIds": [
+        "SKL-00001"
+      ]
+    }
+  ],
+  "counts": {
+    "completedLessons": 1,
+    "completedSkills": 2,
+    "missingSkills": 1,
+    "weakSkills": 2,
+    "recommendedLessons": 3
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "globalId": "JOR-IMAGE-001720",
+  "kind": "educationalImage",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "مخطط تعليمي لوحدة القضايا الاجتماعية",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G09-SOC-U02-L04",
+  "relationships": {
+    "lessonId": "JOR-G09-SOC-U02-L04",
+    "belongsTo": "JOR-G09-SOC-U02-L04"
+  },
+  "createdAt": "2026-07-31T17:56:57.184Z",
+  "updatedAt": "2026-07-31T17:56:57.184Z",
+  "src": null
+}

@@ -1,0 +1,19 @@
+{
+  "globalId": "JOR-BOOK-000119",
+  "kind": "book",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "Success OS — الرياضيات",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G12-MATH",
+  "relationships": {
+    "subjectId": "JOR-G12-MATH",
+    "gradeId": "JOR-G12",
+    "belongsTo": "JOR-G12-MATH"
+  },
+  "createdAt": "2026-07-31T17:56:57.321Z",
+  "updatedAt": "2026-07-31T17:56:57.321Z",
+  "legacyBookId": "jordan__التعليم-الثانوي-المسار-الأكاديمي__jordan-national-curriculum__الصف-12__الرياضيات__ar",
+  "officialSource": "https://www.nccd.gov.jo/ar/pages/TextBooksGrade/83"
+}

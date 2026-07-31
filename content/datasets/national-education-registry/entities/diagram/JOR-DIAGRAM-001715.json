@@ -1,0 +1,16 @@
+{
+  "globalId": "JOR-DIAGRAM-001715",
+  "kind": "diagram",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "مخطط تعليمي لوحدة المؤسسات الوطنية",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G09-SOC-U01-L03",
+  "relationships": {
+    "lessonId": "JOR-G09-SOC-U01-L03",
+    "belongsTo": "JOR-G09-SOC-U01-L03"
+  },
+  "createdAt": "2026-07-31T17:56:57.182Z",
+  "updatedAt": "2026-07-31T17:56:57.182Z"
+}

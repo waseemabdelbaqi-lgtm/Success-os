@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-G08-ARAB-U04-L01",
+  "kind": "lesson",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "المشاريع اللغوية — مقدمة ومفاهيم",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G08-ARAB-U04",
+  "relationships": {
+    "unitId": "JOR-G08-ARAB-U04",
+    "bookId": "JOR-BOOK-000094",
+    "subjectId": "JOR-G08-ARAB",
+    "gradeId": "JOR-G08",
+    "belongsTo": "JOR-G08-ARAB-U04"
+  },
+  "createdAt": "2026-07-31T17:56:57.122Z",
+  "updatedAt": "2026-07-31T17:56:57.122Z",
+  "lessonCode": "L01",
+  "sequence": 1,
+  "legacyLessonId": "L4.1",
+  "keywords": [
+    "نص",
+    "معنى",
+    "أسلوب"
+  ]
+}

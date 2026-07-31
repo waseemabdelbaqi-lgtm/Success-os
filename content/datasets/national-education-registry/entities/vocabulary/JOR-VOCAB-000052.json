@@ -1,0 +1,35 @@
+{
+  "globalId": "JOR-VOCAB-000052",
+  "kind": "vocabulary",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "مفهوم",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-GKG-المهارات-U01-L01",
+  "relationships": {
+    "lessonIds": [
+      "JOR-GKG-المهارات-U01-L01",
+      "JOR-GKG-المهارات-U01-L02",
+      "JOR-GKG-المهارات-U01-L03",
+      "JOR-GKG-المهارات-U01-L04",
+      "JOR-GKG-المهارات-U02-L01",
+      "JOR-GKG-المهارات-U02-L02",
+      "JOR-GKG-المهارات-U02-L03",
+      "JOR-GKG-المهارات-U02-L04",
+      "JOR-GKG-المهارات-U03-L01",
+      "JOR-GKG-المهارات-U03-L02",
+      "JOR-GKG-المهارات-U03-L03",
+      "JOR-GKG-المهارات-U03-L04",
+      "JOR-GKG-المهارات-U04-L01",
+      "JOR-GKG-المهارات-U04-L02",
+      "JOR-GKG-المهارات-U04-L03",
+      "JOR-GKG-المهارات-U04-L04"
+    ],
+    "belongsTo": "JOR-GKG-المهارات-U01-L01"
+  },
+  "createdAt": "2026-07-31T17:56:57.590Z",
+  "updatedAt": "2026-07-31T17:56:57.598Z",
+  "term": "مفهوم",
+  "definition": "تعريف تعليمي أصلي لمفهوم «مفهوم» ضمن إطار المنهاج الوطني الأردني، يُبنى لأغراض التدريس في Success OS دون اقتباس نص الكتاب المدرسي."
+}

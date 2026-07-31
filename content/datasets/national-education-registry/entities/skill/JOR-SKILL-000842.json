@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-SKILL-000842",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«Advanced Grammar — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-005635",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-005635",
+      "JOR-OUTCOME-005636",
+      "JOR-OUTCOME-005637",
+      "JOR-OUTCOME-006099",
+      "JOR-OUTCOME-006100",
+      "JOR-OUTCOME-006101"
+    ],
+    "lessonIds": [
+      "JOR-G11-ENG-U02-L03",
+      "JOR-G12-ENG-U02-L03"
+    ],
+    "belongsTo": "JOR-OUTCOME-005635"
+  },
+  "createdAt": "2026-07-31T17:56:57.277Z",
+  "updatedAt": "2026-07-31T17:56:57.356Z"
+}

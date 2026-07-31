@@ -1,0 +1,18 @@
+{
+  "globalId": "JOR-OUTCOME-004799",
+  "kind": "learningOutcome",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يتعرف المتعلم مفهومًا محوريًا في التربية الإسلامية ضمن السيرة والمجتمع بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 9.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G09-ISL-U03-L03",
+  "relationships": {
+    "lessonId": "JOR-G09-ISL-U03-L03",
+    "belongsTo": "JOR-G09-ISL-U03-L03"
+  },
+  "createdAt": "2026-07-31T17:56:57.144Z",
+  "updatedAt": "2026-07-31T17:56:57.144Z",
+  "text": "أن يتعرف المتعلم مفهومًا محوريًا في التربية الإسلامية ضمن السيرة والمجتمع بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 9.",
+  "sequence": 1
+}

@@ -4,7 +4,8 @@ import path from 'node:path';
 const root = () =>
   path.resolve(
     process.env.SUCCESS_OS_LIBRARY_ROOT ||
-      path.join(process.cwd(), 'library', 'global-knowledge'),
+      // Committed in-repo store (preferred) — falls back only via env override.
+      path.join(process.cwd(), 'content', 'datasets', 'global-knowledge'),
   );
 
 function ensureDir(dir) {

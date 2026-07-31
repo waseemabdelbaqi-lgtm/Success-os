@@ -1,0 +1,31 @@
+{
+  "globalId": "JOR-SKILL-000305",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«شبكات وإنترنت — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-000627",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-000627",
+      "JOR-OUTCOME-000628",
+      "JOR-OUTCOME-000629",
+      "JOR-OUTCOME-004691",
+      "JOR-OUTCOME-004692",
+      "JOR-OUTCOME-004693",
+      "JOR-OUTCOME-005347",
+      "JOR-OUTCOME-005348",
+      "JOR-OUTCOME-005349"
+    ],
+    "lessonIds": [
+      "JOR-G10-ICT-U02-L03",
+      "JOR-G08-ICT-U02-L03",
+      "JOR-G09-ICT-U02-L03"
+    ],
+    "belongsTo": "JOR-OUTCOME-000627"
+  },
+  "createdAt": "2026-07-31T17:56:56.713Z",
+  "updatedAt": "2026-07-31T17:56:57.231Z"
+}

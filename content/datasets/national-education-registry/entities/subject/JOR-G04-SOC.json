@@ -1,0 +1,20 @@
+{
+  "globalId": "JOR-G04-SOC",
+  "kind": "subject",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "الدراسات الاجتماعية",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G04",
+  "relationships": {
+    "gradeId": "JOR-G04",
+    "educationalSystemId": "JOR-SYS-000001",
+    "countryId": "JOR",
+    "belongsTo": "JOR-G04"
+  },
+  "createdAt": "2026-07-31T17:56:56.808Z",
+  "updatedAt": "2026-07-31T17:56:56.808Z",
+  "subjectCode": "SOC",
+  "gradeCode": "G04"
+}

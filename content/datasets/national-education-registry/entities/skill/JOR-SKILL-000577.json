@@ -1,0 +1,31 @@
+{
+  "globalId": "JOR-SKILL-000577",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«الادخار — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-002579",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-002579",
+      "JOR-OUTCOME-002580",
+      "JOR-OUTCOME-002581",
+      "JOR-OUTCOME-003139",
+      "JOR-OUTCOME-003140",
+      "JOR-OUTCOME-003141",
+      "JOR-OUTCOME-003699",
+      "JOR-OUTCOME-003700",
+      "JOR-OUTCOME-003701"
+    ],
+    "lessonIds": [
+      "JOR-G05-الثقافةا-U02-L03",
+      "JOR-G06-الثقافةا-U02-L03",
+      "JOR-G07-الثقافةا-U02-L03"
+    ],
+    "belongsTo": "JOR-OUTCOME-002579"
+  },
+  "createdAt": "2026-07-31T17:56:56.852Z",
+  "updatedAt": "2026-07-31T17:56:56.991Z"
+}

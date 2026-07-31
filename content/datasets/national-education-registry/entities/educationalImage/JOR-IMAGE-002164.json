@@ -1,0 +1,17 @@
+{
+  "globalId": "JOR-IMAGE-002164",
+  "kind": "educationalImage",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "مخطط تعليمي لوحدة أساسيات المسار",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G11-البناءوا-U01-L04",
+  "relationships": {
+    "lessonId": "JOR-G11-البناءوا-U01-L04",
+    "belongsTo": "JOR-G11-البناءوا-U01-L04"
+  },
+  "createdAt": "2026-07-31T17:56:57.403Z",
+  "updatedAt": "2026-07-31T17:56:57.403Z",
+  "src": null
+}

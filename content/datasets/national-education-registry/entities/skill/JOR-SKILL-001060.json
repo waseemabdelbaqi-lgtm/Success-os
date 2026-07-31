@@ -1,0 +1,23 @@
+{
+  "globalId": "JOR-SKILL-001060",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«التعبير الشفوي — مقدمة ومفاهيم» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-007141",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-007141",
+      "JOR-OUTCOME-007142",
+      "JOR-OUTCOME-007143"
+    ],
+    "lessonIds": [
+      "JOR-GKG-اللغةوال-U04-L01"
+    ],
+    "belongsTo": "JOR-OUTCOME-007141"
+  },
+  "createdAt": "2026-07-31T17:56:57.587Z",
+  "updatedAt": "2026-07-31T17:56:57.587Z"
+}

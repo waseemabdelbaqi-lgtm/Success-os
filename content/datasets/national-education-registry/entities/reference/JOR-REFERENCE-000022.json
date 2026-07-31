@@ -1,0 +1,21 @@
+{
+  "globalId": "JOR-REFERENCE-000022",
+  "kind": "reference",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "MoE Curricula and School Textbooks Administration",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-SYS-000001",
+  "relationships": {
+    "educationalSystemId": "JOR-SYS-000001",
+    "lessonIds": [],
+    "belongsTo": "JOR-SYS-000001"
+  },
+  "createdAt": "2026-07-31T17:56:57.599Z",
+  "updatedAt": "2026-07-31T17:56:57.599Z",
+  "url": "https://moe.gov.jo/ar/%D8%A5%D8%AF%D8%A7%D8%B1%D8%A9-%D8%A7%D9%84%D9%85%D9%86%D8%A7%D9%87%D8%AC-%D9%88%D8%A7%D9%84%D9%83%D8%AA%D8%A8-%D8%A7%D9%84%D9%85%D8%AF%D8%B1%D8%B3%D9%8A%D8%A9",
+  "publisher": "Ministry of Education",
+  "category": "Curriculum Documents",
+  "legacySourceId": "jo-ref-moe-curricula-admin"
+}

@@ -1,0 +1,17 @@
+{
+  "globalId": "JOR-IMAGE-000216",
+  "kind": "educationalImage",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "مخطط تعليمي لوحدة شبكات وإنترنت",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G10-ICT-U02-L04",
+  "relationships": {
+    "lessonId": "JOR-G10-ICT-U02-L04",
+    "belongsTo": "JOR-G10-ICT-U02-L04"
+  },
+  "createdAt": "2026-07-31T17:56:56.713Z",
+  "updatedAt": "2026-07-31T17:56:56.713Z",
+  "src": null
+}

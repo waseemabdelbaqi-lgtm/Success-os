@@ -1,0 +1,19 @@
+{
+  "globalId": "JOR-BOOK-000122",
+  "kind": "book",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "Success OS — الكيمياء",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G12-الكيمياء",
+  "relationships": {
+    "subjectId": "JOR-G12-الكيمياء",
+    "gradeId": "JOR-G12",
+    "belongsTo": "JOR-G12-الكيمياء"
+  },
+  "createdAt": "2026-07-31T17:56:57.346Z",
+  "updatedAt": "2026-07-31T17:56:57.346Z",
+  "legacyBookId": "jordan__التعليم-الثانوي-المسار-الأكاديمي__jordan-national-curriculum__الصف-12__الكيمياء__ar",
+  "officialSource": "https://www.nccd.gov.jo/ar/pages/TextBooksGrade/83"
+}

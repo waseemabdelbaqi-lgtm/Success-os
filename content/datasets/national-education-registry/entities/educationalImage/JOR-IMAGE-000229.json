@@ -1,0 +1,17 @@
+{
+  "globalId": "JOR-IMAGE-000229",
+  "kind": "educationalImage",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "مخطط تعليمي لوحدة العبادات الأساسية",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G01-ISL-U02-L01",
+  "relationships": {
+    "lessonId": "JOR-G01-ISL-U02-L01",
+    "belongsTo": "JOR-G01-ISL-U02-L01"
+  },
+  "createdAt": "2026-07-31T17:56:56.715Z",
+  "updatedAt": "2026-07-31T17:56:56.715Z",
+  "src": null
+}

@@ -1,0 +1,21 @@
+{
+  "globalId": "JOR-G02-ISL-U04",
+  "kind": "unit",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "قصص قرآنية ونبوية",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-BOOK-000023",
+  "relationships": {
+    "bookId": "JOR-BOOK-000023",
+    "subjectId": "JOR-G02-ISL",
+    "gradeId": "JOR-G02",
+    "belongsTo": "JOR-BOOK-000023"
+  },
+  "createdAt": "2026-07-31T17:56:56.742Z",
+  "updatedAt": "2026-07-31T17:56:56.742Z",
+  "unitCode": "U04",
+  "sequence": 4,
+  "legacyUnitId": "U4"
+}

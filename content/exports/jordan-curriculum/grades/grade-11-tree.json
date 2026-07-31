@@ -1,0 +1,2745 @@
+{
+  "schema": "success-os.jordan-grade-curriculum-tree.v1",
+  "countryCode": "JO",
+  "curriculumId": "JO-NATIONAL",
+  "gradeId": "JO-NATIONAL-G11",
+  "grade": "الصف 11",
+  "gradeNumber": 11,
+  "stageAr": "التعليم الثانوي — المسار الأكاديمي",
+  "semesters": [
+    "الفصل الدراسي الأول",
+    "الفصل الدراسي الثاني"
+  ],
+  "officialCatalogUrl": "https://www.nccd.gov.jo/ar/pages/TextBooksGrade/117",
+  "catalogueStatus": "subject-list-verified",
+  "verificationStatus": "subject-list-verified",
+  "baselineStatus": "framework-scaffold",
+  "subjects": [
+    {
+      "subjectId": "JO-NATIONAL-G11-AR",
+      "subjectAr": "اللغة العربية",
+      "subjectFamily": "arabic",
+      "gradeBand": "secondary",
+      "catalogueStatus": "verified-against-NCCD-catalogue",
+      "officialCatalogUrl": "https://www.nccd.gov.jo/ar/pages/TextBooksGrade/117",
+      "book": {
+        "bookId": "JO-NATIONAL-G11-AR-B01",
+        "titleAr": "كتاب SUCCESS OS — اللغة العربية — الصف 11",
+        "contentOrigin": "success-os-original-curriculum-aligned",
+        "rights": {
+          "copyBookText": false,
+          "generateOriginalOnly": true
+        }
+      },
+      "units": [
+        {
+          "unitId": "JO-NATIONAL-G11-AR-B01-U01",
+          "titleAr": "الأدب والنقد",
+          "lessons": [
+            {
+              "lessonId": "JO-NATIONAL-G11-AR-B01-U01-L01",
+              "titleAr": "الأدب والنقد — مقدمة ومفاهيم",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في اللغة العربية ضمن الأدب والنقد بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 11.",
+                "أن يطبّق مهارة مرتبطة بـ«الأدب والنقد — مقدمة ومفاهيم» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G11-AR-B01-U01-L02",
+              "titleAr": "الأدب والنقد — بناء المهارة",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في اللغة العربية ضمن الأدب والنقد بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 11.",
+                "أن يطبّق مهارة مرتبطة بـ«الأدب والنقد — بناء المهارة» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G11-AR-B01-U01-L03",
+              "titleAr": "الأدب والنقد — تطبيق ومثال",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في اللغة العربية ضمن الأدب والنقد بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 11.",
+                "أن يطبّق مهارة مرتبطة بـ«الأدب والنقد — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G11-AR-B01-U01-L04",
+              "titleAr": "الأدب والنقد — تقويم وتعزيز",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في اللغة العربية ضمن الأدب والنقد بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 11.",
+                "أن يطبّق مهارة مرتبطة بـ«الأدب والنقد — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            }
+          ]
+        },
+        {
+          "unitId": "JO-NATIONAL-G11-AR-B01-U02",
+          "titleAr": "النحو والبلاغة",
+          "lessons": [
+            {
+              "lessonId": "JO-NATIONAL-G11-AR-B01-U02-L01",
+              "titleAr": "النحو والبلاغة — مقدمة ومفاهيم",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في اللغة العربية ضمن النحو والبلاغة بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 11.",
+                "أن يطبّق مهارة مرتبطة بـ«النحو والبلاغة — مقدمة ومفاهيم» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G11-AR-B01-U02-L02",
+              "titleAr": "النحو والبلاغة — بناء المهارة",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في اللغة العربية ضمن النحو والبلاغة بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 11.",
+                "أن يطبّق مهارة مرتبطة بـ«النحو والبلاغة — بناء المهارة» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G11-AR-B01-U02-L03",
+              "titleAr": "النحو والبلاغة — تطبيق ومثال",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في اللغة العربية ضمن النحو والبلاغة بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 11.",
+                "أن يطبّق مهارة مرتبطة بـ«النحو والبلاغة — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G11-AR-B01-U02-L04",
+              "titleAr": "النحو والبلاغة — تقويم وتعزيز",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في اللغة العربية ضمن النحو والبلاغة بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 11.",
+                "أن يطبّق مهارة مرتبطة بـ«النحو والبلاغة — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            }
+          ]
+        },
+        {
+          "unitId": "JO-NATIONAL-G11-AR-B01-U03",
+          "titleAr": "الكتابة الأكاديمية",
+          "lessons": [
+            {
+              "lessonId": "JO-NATIONAL-G11-AR-B01-U03-L01",
+              "titleAr": "الكتابة الأكاديمية — مقدمة ومفاهيم",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في اللغة العربية ضمن الكتابة الأكاديمية بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 11.",
+                "أن يطبّق مهارة مرتبطة بـ«الكتابة الأكاديمية — مقدمة ومفاهيم» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G11-AR-B01-U03-L02",
+              "titleAr": "الكتابة الأكاديمية — بناء المهارة",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في اللغة العربية ضمن الكتابة الأكاديمية بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 11.",
+                "أن يطبّق مهارة مرتبطة بـ«الكتابة الأكاديمية — بناء المهارة» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G11-AR-B01-U03-L03",
+              "titleAr": "الكتابة الأكاديمية — تطبيق ومثال",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في اللغة العربية ضمن الكتابة الأكاديمية بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 11.",
+                "أن يطبّق مهارة مرتبطة بـ«الكتابة الأكاديمية — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G11-AR-B01-U03-L04",
+              "titleAr": "الكتابة الأكاديمية — تقويم وتعزيز",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في اللغة العربية ضمن الكتابة الأكاديمية بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 11.",
+                "أن يطبّق مهارة مرتبطة بـ«الكتابة الأكاديمية — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            }
+          ]
+        },
+        {
+          "unitId": "JO-NATIONAL-G11-AR-B01-U04",
+          "titleAr": "التواصل الرسمي",
+          "lessons": [
+            {
+              "lessonId": "JO-NATIONAL-G11-AR-B01-U04-L01",
+              "titleAr": "التواصل الرسمي — مقدمة ومفاهيم",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في اللغة العربية ضمن التواصل الرسمي بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 11.",
+                "أن يطبّق مهارة مرتبطة بـ«التواصل الرسمي — مقدمة ومفاهيم» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G11-AR-B01-U04-L02",
+              "titleAr": "التواصل الرسمي — بناء المهارة",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في اللغة العربية ضمن التواصل الرسمي بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 11.",
+                "أن يطبّق مهارة مرتبطة بـ«التواصل الرسمي — بناء المهارة» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G11-AR-B01-U04-L03",
+              "titleAr": "التواصل الرسمي — تطبيق ومثال",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في اللغة العربية ضمن التواصل الرسمي بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 11.",
+                "أن يطبّق مهارة مرتبطة بـ«التواصل الرسمي — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G11-AR-B01-U04-L04",
+              "titleAr": "التواصل الرسمي — تقويم وتعزيز",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في اللغة العربية ضمن التواصل الرسمي بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 11.",
+                "أن يطبّق مهارة مرتبطة بـ«التواصل الرسمي — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            }
+          ]
+        }
+      ],
+      "counts": {
+        "units": 4,
+        "lessons": 16,
+        "outcomes": 48
+      }
+    },
+    {
+      "subjectId": "JO-NATIONAL-G11-EN",
+      "subjectAr": "اللغة الإنجليزية",
+      "subjectFamily": "english",
+      "gradeBand": "secondary",
+      "catalogueStatus": "verified-against-NCCD-catalogue",
+      "officialCatalogUrl": "https://www.nccd.gov.jo/ar/pages/TextBooksGrade/117",
+      "book": {
+        "bookId": "JO-NATIONAL-G11-EN-B01",
+        "titleAr": "كتاب SUCCESS OS — اللغة الإنجليزية — الصف 11",
+        "contentOrigin": "success-os-original-curriculum-aligned",
+        "rights": {
+          "copyBookText": false,
+          "generateOriginalOnly": true
+        }
+      },
+      "units": [
+        {
+          "unitId": "JO-NATIONAL-G11-EN-B01-U01",
+          "titleAr": "Academic English",
+          "lessons": [
+            {
+              "lessonId": "JO-NATIONAL-G11-EN-B01-U01-L01",
+              "titleAr": "Academic English — مقدمة ومفاهيم",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في اللغة الإنجليزية ضمن Academic English بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 11.",
+                "أن يطبّق مهارة مرتبطة بـ«Academic English — مقدمة ومفاهيم» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G11-EN-B01-U01-L02",
+              "titleAr": "Academic English — بناء المهارة",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في اللغة الإنجليزية ضمن Academic English بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 11.",
+                "أن يطبّق مهارة مرتبطة بـ«Academic English — بناء المهارة» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G11-EN-B01-U01-L03",
+              "titleAr": "Academic English — تطبيق ومثال",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في اللغة الإنجليزية ضمن Academic English بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 11.",
+                "أن يطبّق مهارة مرتبطة بـ«Academic English — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G11-EN-B01-U01-L04",
+              "titleAr": "Academic English — تقويم وتعزيز",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في اللغة الإنجليزية ضمن Academic English بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 11.",
+                "أن يطبّق مهارة مرتبطة بـ«Academic English — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            }
+          ]
+        },
+        {
+          "unitId": "JO-NATIONAL-G11-EN-B01-U02",
+          "titleAr": "Advanced Grammar",
+          "lessons": [
+            {
+              "lessonId": "JO-NATIONAL-G11-EN-B01-U02-L01",
+              "titleAr": "Advanced Grammar — مقدمة ومفاهيم",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في اللغة الإنجليزية ضمن Advanced Grammar بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 11.",
+                "أن يطبّق مهارة مرتبطة بـ«Advanced Grammar — مقدمة ومفاهيم» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G11-EN-B01-U02-L02",
+              "titleAr": "Advanced Grammar — بناء المهارة",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في اللغة الإنجليزية ضمن Advanced Grammar بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 11.",
+                "أن يطبّق مهارة مرتبطة بـ«Advanced Grammar — بناء المهارة» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G11-EN-B01-U02-L03",
+              "titleAr": "Advanced Grammar — تطبيق ومثال",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في اللغة الإنجليزية ضمن Advanced Grammar بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 11.",
+                "أن يطبّق مهارة مرتبطة بـ«Advanced Grammar — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G11-EN-B01-U02-L04",
+              "titleAr": "Advanced Grammar — تقويم وتعزيز",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في اللغة الإنجليزية ضمن Advanced Grammar بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 11.",
+                "أن يطبّق مهارة مرتبطة بـ«Advanced Grammar — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            }
+          ]
+        },
+        {
+          "unitId": "JO-NATIONAL-G11-EN-B01-U03",
+          "titleAr": "Literature & Media",
+          "lessons": [
+            {
+              "lessonId": "JO-NATIONAL-G11-EN-B01-U03-L01",
+              "titleAr": "Literature & Media — مقدمة ومفاهيم",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في اللغة الإنجليزية ضمن Literature & Media بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 11.",
+                "أن يطبّق مهارة مرتبطة بـ«Literature & Media — مقدمة ومفاهيم» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G11-EN-B01-U03-L02",
+              "titleAr": "Literature & Media — بناء المهارة",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في اللغة الإنجليزية ضمن Literature & Media بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 11.",
+                "أن يطبّق مهارة مرتبطة بـ«Literature & Media — بناء المهارة» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G11-EN-B01-U03-L03",
+              "titleAr": "Literature & Media — تطبيق ومثال",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في اللغة الإنجليزية ضمن Literature & Media بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 11.",
+                "أن يطبّق مهارة مرتبطة بـ«Literature & Media — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G11-EN-B01-U03-L04",
+              "titleAr": "Literature & Media — تقويم وتعزيز",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في اللغة الإنجليزية ضمن Literature & Media بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 11.",
+                "أن يطبّق مهارة مرتبطة بـ«Literature & Media — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            }
+          ]
+        },
+        {
+          "unitId": "JO-NATIONAL-G11-EN-B01-U04",
+          "titleAr": "Essay Writing",
+          "lessons": [
+            {
+              "lessonId": "JO-NATIONAL-G11-EN-B01-U04-L01",
+              "titleAr": "Essay Writing — مقدمة ومفاهيم",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في اللغة الإنجليزية ضمن Essay Writing بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 11.",
+                "أن يطبّق مهارة مرتبطة بـ«Essay Writing — مقدمة ومفاهيم» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G11-EN-B01-U04-L02",
+              "titleAr": "Essay Writing — بناء المهارة",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في اللغة الإنجليزية ضمن Essay Writing بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 11.",
+                "أن يطبّق مهارة مرتبطة بـ«Essay Writing — بناء المهارة» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G11-EN-B01-U04-L03",
+              "titleAr": "Essay Writing — تطبيق ومثال",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في اللغة الإنجليزية ضمن Essay Writing بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 11.",
+                "أن يطبّق مهارة مرتبطة بـ«Essay Writing — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G11-EN-B01-U04-L04",
+              "titleAr": "Essay Writing — تقويم وتعزيز",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في اللغة الإنجليزية ضمن Essay Writing بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 11.",
+                "أن يطبّق مهارة مرتبطة بـ«Essay Writing — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            }
+          ]
+        }
+      ],
+      "counts": {
+        "units": 4,
+        "lessons": 16,
+        "outcomes": 48
+      }
+    },
+    {
+      "subjectId": "JO-NATIONAL-G11-MATH",
+      "subjectAr": "الرياضيات",
+      "subjectFamily": "math",
+      "gradeBand": "secondary",
+      "catalogueStatus": "verified-against-NCCD-catalogue",
+      "officialCatalogUrl": "https://www.nccd.gov.jo/ar/pages/TextBooksGrade/117",
+      "book": {
+        "bookId": "JO-NATIONAL-G11-MATH-B01",
+        "titleAr": "كتاب SUCCESS OS — الرياضيات — الصف 11",
+        "contentOrigin": "success-os-original-curriculum-aligned",
+        "rights": {
+          "copyBookText": false,
+          "generateOriginalOnly": true
+        }
+      },
+      "units": [
+        {
+          "unitId": "JO-NATIONAL-G11-MATH-B01-U01",
+          "titleAr": "الدوال والجبر المتقدم",
+          "lessons": [
+            {
+              "lessonId": "JO-NATIONAL-G11-MATH-B01-U01-L01",
+              "titleAr": "الدوال والجبر المتقدم — مقدمة ومفاهيم",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في الرياضيات ضمن الدوال والجبر المتقدم بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 11.",
+                "أن يطبّق مهارة مرتبطة بـ«الدوال والجبر المتقدم — مقدمة ومفاهيم» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G11-MATH-B01-U01-L02",
+              "titleAr": "الدوال والجبر المتقدم — بناء المهارة",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في الرياضيات ضمن الدوال والجبر المتقدم بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 11.",
+                "أن يطبّق مهارة مرتبطة بـ«الدوال والجبر المتقدم — بناء المهارة» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G11-MATH-B01-U01-L03",
+              "titleAr": "الدوال والجبر المتقدم — تطبيق ومثال",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في الرياضيات ضمن الدوال والجبر المتقدم بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 11.",
+                "أن يطبّق مهارة مرتبطة بـ«الدوال والجبر المتقدم — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G11-MATH-B01-U01-L04",
+              "titleAr": "الدوال والجبر المتقدم — تقويم وتعزيز",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في الرياضيات ضمن الدوال والجبر المتقدم بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 11.",
+                "أن يطبّق مهارة مرتبطة بـ«الدوال والجبر المتقدم — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            }
+          ]
+        },
+        {
+          "unitId": "JO-NATIONAL-G11-MATH-B01-U02",
+          "titleAr": "التفاضل أو المتتاليات",
+          "lessons": [
+            {
+              "lessonId": "JO-NATIONAL-G11-MATH-B01-U02-L01",
+              "titleAr": "التفاضل أو المتتاليات — مقدمة ومفاهيم",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في الرياضيات ضمن التفاضل أو المتتاليات بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 11.",
+                "أن يطبّق مهارة مرتبطة بـ«التفاضل أو المتتاليات — مقدمة ومفاهيم» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G11-MATH-B01-U02-L02",
+              "titleAr": "التفاضل أو المتتاليات — بناء المهارة",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في الرياضيات ضمن التفاضل أو المتتاليات بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 11.",
+                "أن يطبّق مهارة مرتبطة بـ«التفاضل أو المتتاليات — بناء المهارة» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G11-MATH-B01-U02-L03",
+              "titleAr": "التفاضل أو المتتاليات — تطبيق ومثال",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في الرياضيات ضمن التفاضل أو المتتاليات بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 11.",
+                "أن يطبّق مهارة مرتبطة بـ«التفاضل أو المتتاليات — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G11-MATH-B01-U02-L04",
+              "titleAr": "التفاضل أو المتتاليات — تقويم وتعزيز",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في الرياضيات ضمن التفاضل أو المتتاليات بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 11.",
+                "أن يطبّق مهارة مرتبطة بـ«التفاضل أو المتتاليات — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            }
+          ]
+        },
+        {
+          "unitId": "JO-NATIONAL-G11-MATH-B01-U03",
+          "titleAr": "الهندسة التحليلية",
+          "lessons": [
+            {
+              "lessonId": "JO-NATIONAL-G11-MATH-B01-U03-L01",
+              "titleAr": "الهندسة التحليلية — مقدمة ومفاهيم",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في الرياضيات ضمن الهندسة التحليلية بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 11.",
+                "أن يطبّق مهارة مرتبطة بـ«الهندسة التحليلية — مقدمة ومفاهيم» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G11-MATH-B01-U03-L02",
+              "titleAr": "الهندسة التحليلية — بناء المهارة",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في الرياضيات ضمن الهندسة التحليلية بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 11.",
+                "أن يطبّق مهارة مرتبطة بـ«الهندسة التحليلية — بناء المهارة» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G11-MATH-B01-U03-L03",
+              "titleAr": "الهندسة التحليلية — تطبيق ومثال",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في الرياضيات ضمن الهندسة التحليلية بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 11.",
+                "أن يطبّق مهارة مرتبطة بـ«الهندسة التحليلية — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G11-MATH-B01-U03-L04",
+              "titleAr": "الهندسة التحليلية — تقويم وتعزيز",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في الرياضيات ضمن الهندسة التحليلية بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 11.",
+                "أن يطبّق مهارة مرتبطة بـ«الهندسة التحليلية — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            }
+          ]
+        },
+        {
+          "unitId": "JO-NATIONAL-G11-MATH-B01-U04",
+          "titleAr": "الإحصاء والاحتمالات",
+          "lessons": [
+            {
+              "lessonId": "JO-NATIONAL-G11-MATH-B01-U04-L01",
+              "titleAr": "الإحصاء والاحتمالات — مقدمة ومفاهيم",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في الرياضيات ضمن الإحصاء والاحتمالات بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 11.",
+                "أن يطبّق مهارة مرتبطة بـ«الإحصاء والاحتمالات — مقدمة ومفاهيم» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G11-MATH-B01-U04-L02",
+              "titleAr": "الإحصاء والاحتمالات — بناء المهارة",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في الرياضيات ضمن الإحصاء والاحتمالات بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 11.",
+                "أن يطبّق مهارة مرتبطة بـ«الإحصاء والاحتمالات — بناء المهارة» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G11-MATH-B01-U04-L03",
+              "titleAr": "الإحصاء والاحتمالات — تطبيق ومثال",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في الرياضيات ضمن الإحصاء والاحتمالات بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 11.",
+                "أن يطبّق مهارة مرتبطة بـ«الإحصاء والاحتمالات — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G11-MATH-B01-U04-L04",
+              "titleAr": "الإحصاء والاحتمالات — تقويم وتعزيز",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في الرياضيات ضمن الإحصاء والاحتمالات بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 11.",
+                "أن يطبّق مهارة مرتبطة بـ«الإحصاء والاحتمالات — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            }
+          ]
+        }
+      ],
+      "counts": {
+        "units": 4,
+        "lessons": 16,
+        "outcomes": 48
+      }
+    },
+    {
+      "subjectId": "JO-NATIONAL-G11-PHYS",
+      "subjectAr": "الفيزياء",
+      "subjectFamily": "physics",
+      "gradeBand": "secondary",
+      "catalogueStatus": "verified-against-NCCD-catalogue",
+      "officialCatalogUrl": "https://www.nccd.gov.jo/ar/pages/TextBooksGrade/117",
+      "book": {
+        "bookId": "JO-NATIONAL-G11-PHYS-B01",
+        "titleAr": "كتاب SUCCESS OS — الفيزياء — الصف 11",
+        "contentOrigin": "success-os-original-curriculum-aligned",
+        "rights": {
+          "copyBookText": false,
+          "generateOriginalOnly": true
+        }
+      },
+      "units": [
+        {
+          "unitId": "JO-NATIONAL-G11-PHYS-B01-U01",
+          "titleAr": "الميكانيكا",
+          "lessons": [
+            {
+              "lessonId": "JO-NATIONAL-G11-PHYS-B01-U01-L01",
+              "titleAr": "الميكانيكا — مقدمة ومفاهيم",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في الفيزياء ضمن الميكانيكا بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 11.",
+                "أن يطبّق مهارة مرتبطة بـ«الميكانيكا — مقدمة ومفاهيم» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G11-PHYS-B01-U01-L02",
+              "titleAr": "الميكانيكا — بناء المهارة",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في الفيزياء ضمن الميكانيكا بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 11.",
+                "أن يطبّق مهارة مرتبطة بـ«الميكانيكا — بناء المهارة» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G11-PHYS-B01-U01-L03",
+              "titleAr": "الميكانيكا — تطبيق ومثال",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في الفيزياء ضمن الميكانيكا بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 11.",
+                "أن يطبّق مهارة مرتبطة بـ«الميكانيكا — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G11-PHYS-B01-U01-L04",
+              "titleAr": "الميكانيكا — تقويم وتعزيز",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في الفيزياء ضمن الميكانيكا بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 11.",
+                "أن يطبّق مهارة مرتبطة بـ«الميكانيكا — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            }
+          ]
+        },
+        {
+          "unitId": "JO-NATIONAL-G11-PHYS-B01-U02",
+          "titleAr": "الكهرباء والمغناطيسية",
+          "lessons": [
+            {
+              "lessonId": "JO-NATIONAL-G11-PHYS-B01-U02-L01",
+              "titleAr": "الكهرباء والمغناطيسية — مقدمة ومفاهيم",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في الفيزياء ضمن الكهرباء والمغناطيسية بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 11.",
+                "أن يطبّق مهارة مرتبطة بـ«الكهرباء والمغناطيسية — مقدمة ومفاهيم» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G11-PHYS-B01-U02-L02",
+              "titleAr": "الكهرباء والمغناطيسية — بناء المهارة",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في الفيزياء ضمن الكهرباء والمغناطيسية بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 11.",
+                "أن يطبّق مهارة مرتبطة بـ«الكهرباء والمغناطيسية — بناء المهارة» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G11-PHYS-B01-U02-L03",
+              "titleAr": "الكهرباء والمغناطيسية — تطبيق ومثال",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في الفيزياء ضمن الكهرباء والمغناطيسية بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 11.",
+                "أن يطبّق مهارة مرتبطة بـ«الكهرباء والمغناطيسية — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G11-PHYS-B01-U02-L04",
+              "titleAr": "الكهرباء والمغناطيسية — تقويم وتعزيز",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في الفيزياء ضمن الكهرباء والمغناطيسية بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 11.",
+                "أن يطبّق مهارة مرتبطة بـ«الكهرباء والمغناطيسية — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            }
+          ]
+        },
+        {
+          "unitId": "JO-NATIONAL-G11-PHYS-B01-U03",
+          "titleAr": "الموجات والضوء",
+          "lessons": [
+            {
+              "lessonId": "JO-NATIONAL-G11-PHYS-B01-U03-L01",
+              "titleAr": "الموجات والضوء — مقدمة ومفاهيم",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في الفيزياء ضمن الموجات والضوء بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 11.",
+                "أن يطبّق مهارة مرتبطة بـ«الموجات والضوء — مقدمة ومفاهيم» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G11-PHYS-B01-U03-L02",
+              "titleAr": "الموجات والضوء — بناء المهارة",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في الفيزياء ضمن الموجات والضوء بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 11.",
+                "أن يطبّق مهارة مرتبطة بـ«الموجات والضوء — بناء المهارة» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G11-PHYS-B01-U03-L03",
+              "titleAr": "الموجات والضوء — تطبيق ومثال",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في الفيزياء ضمن الموجات والضوء بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 11.",
+                "أن يطبّق مهارة مرتبطة بـ«الموجات والضوء — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G11-PHYS-B01-U03-L04",
+              "titleAr": "الموجات والضوء — تقويم وتعزيز",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في الفيزياء ضمن الموجات والضوء بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 11.",
+                "أن يطبّق مهارة مرتبطة بـ«الموجات والضوء — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            }
+          ]
+        },
+        {
+          "unitId": "JO-NATIONAL-G11-PHYS-B01-U04",
+          "titleAr": "الطاقة والحرارة",
+          "lessons": [
+            {
+              "lessonId": "JO-NATIONAL-G11-PHYS-B01-U04-L01",
+              "titleAr": "الطاقة والحرارة — مقدمة ومفاهيم",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في الفيزياء ضمن الطاقة والحرارة بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 11.",
+                "أن يطبّق مهارة مرتبطة بـ«الطاقة والحرارة — مقدمة ومفاهيم» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G11-PHYS-B01-U04-L02",
+              "titleAr": "الطاقة والحرارة — بناء المهارة",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في الفيزياء ضمن الطاقة والحرارة بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 11.",
+                "أن يطبّق مهارة مرتبطة بـ«الطاقة والحرارة — بناء المهارة» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G11-PHYS-B01-U04-L03",
+              "titleAr": "الطاقة والحرارة — تطبيق ومثال",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في الفيزياء ضمن الطاقة والحرارة بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 11.",
+                "أن يطبّق مهارة مرتبطة بـ«الطاقة والحرارة — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G11-PHYS-B01-U04-L04",
+              "titleAr": "الطاقة والحرارة — تقويم وتعزيز",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في الفيزياء ضمن الطاقة والحرارة بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 11.",
+                "أن يطبّق مهارة مرتبطة بـ«الطاقة والحرارة — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            }
+          ]
+        }
+      ],
+      "counts": {
+        "units": 4,
+        "lessons": 16,
+        "outcomes": 48
+      }
+    },
+    {
+      "subjectId": "JO-NATIONAL-G11-CHEM",
+      "subjectAr": "الكيمياء",
+      "subjectFamily": "chemistry",
+      "gradeBand": "secondary",
+      "catalogueStatus": "verified-against-NCCD-catalogue",
+      "officialCatalogUrl": "https://www.nccd.gov.jo/ar/pages/TextBooksGrade/117",
+      "book": {
+        "bookId": "JO-NATIONAL-G11-CHEM-B01",
+        "titleAr": "كتاب SUCCESS OS — الكيمياء — الصف 11",
+        "contentOrigin": "success-os-original-curriculum-aligned",
+        "rights": {
+          "copyBookText": false,
+          "generateOriginalOnly": true
+        }
+      },
+      "units": [
+        {
+          "unitId": "JO-NATIONAL-G11-CHEM-B01-U01",
+          "titleAr": "بنية الذرة والجدول الدوري",
+          "lessons": [
+            {
+              "lessonId": "JO-NATIONAL-G11-CHEM-B01-U01-L01",
+              "titleAr": "بنية الذرة والجدول الدوري — مقدمة ومفاهيم",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في الكيمياء ضمن بنية الذرة والجدول الدوري بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 11.",
+                "أن يطبّق مهارة مرتبطة بـ«بنية الذرة والجدول الدوري — مقدمة ومفاهيم» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G11-CHEM-B01-U01-L02",
+              "titleAr": "بنية الذرة والجدول الدوري — بناء المهارة",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في الكيمياء ضمن بنية الذرة والجدول الدوري بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 11.",
+                "أن يطبّق مهارة مرتبطة بـ«بنية الذرة والجدول الدوري — بناء المهارة» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G11-CHEM-B01-U01-L03",
+              "titleAr": "بنية الذرة والجدول الدوري — تطبيق ومثال",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في الكيمياء ضمن بنية الذرة والجدول الدوري بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 11.",
+                "أن يطبّق مهارة مرتبطة بـ«بنية الذرة والجدول الدوري — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G11-CHEM-B01-U01-L04",
+              "titleAr": "بنية الذرة والجدول الدوري — تقويم وتعزيز",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في الكيمياء ضمن بنية الذرة والجدول الدوري بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 11.",
+                "أن يطبّق مهارة مرتبطة بـ«بنية الذرة والجدول الدوري — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            }
+          ]
+        },
+        {
+          "unitId": "JO-NATIONAL-G11-CHEM-B01-U02",
+          "titleAr": "الروابط والتفاعلات",
+          "lessons": [
+            {
+              "lessonId": "JO-NATIONAL-G11-CHEM-B01-U02-L01",
+              "titleAr": "الروابط والتفاعلات — مقدمة ومفاهيم",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في الكيمياء ضمن الروابط والتفاعلات بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 11.",
+                "أن يطبّق مهارة مرتبطة بـ«الروابط والتفاعلات — مقدمة ومفاهيم» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G11-CHEM-B01-U02-L02",
+              "titleAr": "الروابط والتفاعلات — بناء المهارة",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في الكيمياء ضمن الروابط والتفاعلات بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 11.",
+                "أن يطبّق مهارة مرتبطة بـ«الروابط والتفاعلات — بناء المهارة» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G11-CHEM-B01-U02-L03",
+              "titleAr": "الروابط والتفاعلات — تطبيق ومثال",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في الكيمياء ضمن الروابط والتفاعلات بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 11.",
+                "أن يطبّق مهارة مرتبطة بـ«الروابط والتفاعلات — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G11-CHEM-B01-U02-L04",
+              "titleAr": "الروابط والتفاعلات — تقويم وتعزيز",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في الكيمياء ضمن الروابط والتفاعلات بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 11.",
+                "أن يطبّق مهارة مرتبطة بـ«الروابط والتفاعلات — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            }
+          ]
+        },
+        {
+          "unitId": "JO-NATIONAL-G11-CHEM-B01-U03",
+          "titleAr": "الحسابات الكيميائية",
+          "lessons": [
+            {
+              "lessonId": "JO-NATIONAL-G11-CHEM-B01-U03-L01",
+              "titleAr": "الحسابات الكيميائية — مقدمة ومفاهيم",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في الكيمياء ضمن الحسابات الكيميائية بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 11.",
+                "أن يطبّق مهارة مرتبطة بـ«الحسابات الكيميائية — مقدمة ومفاهيم» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G11-CHEM-B01-U03-L02",
+              "titleAr": "الحسابات الكيميائية — بناء المهارة",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في الكيمياء ضمن الحسابات الكيميائية بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 11.",
+                "أن يطبّق مهارة مرتبطة بـ«الحسابات الكيميائية — بناء المهارة» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G11-CHEM-B01-U03-L03",
+              "titleAr": "الحسابات الكيميائية — تطبيق ومثال",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في الكيمياء ضمن الحسابات الكيميائية بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 11.",
+                "أن يطبّق مهارة مرتبطة بـ«الحسابات الكيميائية — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G11-CHEM-B01-U03-L04",
+              "titleAr": "الحسابات الكيميائية — تقويم وتعزيز",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في الكيمياء ضمن الحسابات الكيميائية بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 11.",
+                "أن يطبّق مهارة مرتبطة بـ«الحسابات الكيميائية — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            }
+          ]
+        },
+        {
+          "unitId": "JO-NATIONAL-G11-CHEM-B01-U04",
+          "titleAr": "الكيمياء الحياتية والبيئية",
+          "lessons": [
+            {
+              "lessonId": "JO-NATIONAL-G11-CHEM-B01-U04-L01",
+              "titleAr": "الكيمياء الحياتية والبيئية — مقدمة ومفاهيم",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في الكيمياء ضمن الكيمياء الحياتية والبيئية بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 11.",
+                "أن يطبّق مهارة مرتبطة بـ«الكيمياء الحياتية والبيئية — مقدمة ومفاهيم» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G11-CHEM-B01-U04-L02",
+              "titleAr": "الكيمياء الحياتية والبيئية — بناء المهارة",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في الكيمياء ضمن الكيمياء الحياتية والبيئية بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 11.",
+                "أن يطبّق مهارة مرتبطة بـ«الكيمياء الحياتية والبيئية — بناء المهارة» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G11-CHEM-B01-U04-L03",
+              "titleAr": "الكيمياء الحياتية والبيئية — تطبيق ومثال",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في الكيمياء ضمن الكيمياء الحياتية والبيئية بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 11.",
+                "أن يطبّق مهارة مرتبطة بـ«الكيمياء الحياتية والبيئية — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G11-CHEM-B01-U04-L04",
+              "titleAr": "الكيمياء الحياتية والبيئية — تقويم وتعزيز",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في الكيمياء ضمن الكيمياء الحياتية والبيئية بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 11.",
+                "أن يطبّق مهارة مرتبطة بـ«الكيمياء الحياتية والبيئية — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            }
+          ]
+        }
+      ],
+      "counts": {
+        "units": 4,
+        "lessons": 16,
+        "outcomes": 48
+      }
+    },
+    {
+      "subjectId": "JO-NATIONAL-G11-GEN",
+      "subjectAr": "العلوم الحياتية",
+      "subjectFamily": "science",
+      "gradeBand": "secondary",
+      "catalogueStatus": "verified-against-NCCD-catalogue",
+      "officialCatalogUrl": "https://www.nccd.gov.jo/ar/pages/TextBooksGrade/117",
+      "book": {
+        "bookId": "JO-NATIONAL-G11-GEN-B01",
+        "titleAr": "كتاب SUCCESS OS — العلوم الحياتية — الصف 11",
+        "contentOrigin": "success-os-original-curriculum-aligned",
+        "rights": {
+          "copyBookText": false,
+          "generateOriginalOnly": true
+        }
+      },
+      "units": [
+        {
+          "unitId": "JO-NATIONAL-G11-GEN-B01-U01",
+          "titleAr": "أسس علمية متكاملة",
+          "lessons": [
+            {
+              "lessonId": "JO-NATIONAL-G11-GEN-B01-U01-L01",
+              "titleAr": "أسس علمية متكاملة — مقدمة ومفاهيم",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في العلوم الحياتية ضمن أسس علمية متكاملة بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 11.",
+                "أن يطبّق مهارة مرتبطة بـ«أسس علمية متكاملة — مقدمة ومفاهيم» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G11-GEN-B01-U01-L02",
+              "titleAr": "أسس علمية متكاملة — بناء المهارة",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في العلوم الحياتية ضمن أسس علمية متكاملة بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 11.",
+                "أن يطبّق مهارة مرتبطة بـ«أسس علمية متكاملة — بناء المهارة» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G11-GEN-B01-U01-L03",
+              "titleAr": "أسس علمية متكاملة — تطبيق ومثال",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في العلوم الحياتية ضمن أسس علمية متكاملة بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 11.",
+                "أن يطبّق مهارة مرتبطة بـ«أسس علمية متكاملة — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G11-GEN-B01-U01-L04",
+              "titleAr": "أسس علمية متكاملة — تقويم وتعزيز",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في العلوم الحياتية ضمن أسس علمية متكاملة بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 11.",
+                "أن يطبّق مهارة مرتبطة بـ«أسس علمية متكاملة — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            }
+          ]
+        },
+        {
+          "unitId": "JO-NATIONAL-G11-GEN-B01-U02",
+          "titleAr": "البحث العلمي",
+          "lessons": [
+            {
+              "lessonId": "JO-NATIONAL-G11-GEN-B01-U02-L01",
+              "titleAr": "البحث العلمي — مقدمة ومفاهيم",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في العلوم الحياتية ضمن البحث العلمي بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 11.",
+                "أن يطبّق مهارة مرتبطة بـ«البحث العلمي — مقدمة ومفاهيم» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G11-GEN-B01-U02-L02",
+              "titleAr": "البحث العلمي — بناء المهارة",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في العلوم الحياتية ضمن البحث العلمي بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 11.",
+                "أن يطبّق مهارة مرتبطة بـ«البحث العلمي — بناء المهارة» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G11-GEN-B01-U02-L03",
+              "titleAr": "البحث العلمي — تطبيق ومثال",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في العلوم الحياتية ضمن البحث العلمي بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 11.",
+                "أن يطبّق مهارة مرتبطة بـ«البحث العلمي — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G11-GEN-B01-U02-L04",
+              "titleAr": "البحث العلمي — تقويم وتعزيز",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في العلوم الحياتية ضمن البحث العلمي بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 11.",
+                "أن يطبّق مهارة مرتبطة بـ«البحث العلمي — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            }
+          ]
+        },
+        {
+          "unitId": "JO-NATIONAL-G11-GEN-B01-U03",
+          "titleAr": "التطبيقات الحياتية",
+          "lessons": [
+            {
+              "lessonId": "JO-NATIONAL-G11-GEN-B01-U03-L01",
+              "titleAr": "التطبيقات الحياتية — مقدمة ومفاهيم",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في العلوم الحياتية ضمن التطبيقات الحياتية بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 11.",
+                "أن يطبّق مهارة مرتبطة بـ«التطبيقات الحياتية — مقدمة ومفاهيم» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G11-GEN-B01-U03-L02",
+              "titleAr": "التطبيقات الحياتية — بناء المهارة",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في العلوم الحياتية ضمن التطبيقات الحياتية بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 11.",
+                "أن يطبّق مهارة مرتبطة بـ«التطبيقات الحياتية — بناء المهارة» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G11-GEN-B01-U03-L03",
+              "titleAr": "التطبيقات الحياتية — تطبيق ومثال",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في العلوم الحياتية ضمن التطبيقات الحياتية بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 11.",
+                "أن يطبّق مهارة مرتبطة بـ«التطبيقات الحياتية — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G11-GEN-B01-U03-L04",
+              "titleAr": "التطبيقات الحياتية — تقويم وتعزيز",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في العلوم الحياتية ضمن التطبيقات الحياتية بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 11.",
+                "أن يطبّق مهارة مرتبطة بـ«التطبيقات الحياتية — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            }
+          ]
+        },
+        {
+          "unitId": "JO-NATIONAL-G11-GEN-B01-U04",
+          "titleAr": "قضايا علمية معاصرة",
+          "lessons": [
+            {
+              "lessonId": "JO-NATIONAL-G11-GEN-B01-U04-L01",
+              "titleAr": "قضايا علمية معاصرة — مقدمة ومفاهيم",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في العلوم الحياتية ضمن قضايا علمية معاصرة بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 11.",
+                "أن يطبّق مهارة مرتبطة بـ«قضايا علمية معاصرة — مقدمة ومفاهيم» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G11-GEN-B01-U04-L02",
+              "titleAr": "قضايا علمية معاصرة — بناء المهارة",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في العلوم الحياتية ضمن قضايا علمية معاصرة بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 11.",
+                "أن يطبّق مهارة مرتبطة بـ«قضايا علمية معاصرة — بناء المهارة» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G11-GEN-B01-U04-L03",
+              "titleAr": "قضايا علمية معاصرة — تطبيق ومثال",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في العلوم الحياتية ضمن قضايا علمية معاصرة بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 11.",
+                "أن يطبّق مهارة مرتبطة بـ«قضايا علمية معاصرة — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G11-GEN-B01-U04-L04",
+              "titleAr": "قضايا علمية معاصرة — تقويم وتعزيز",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في العلوم الحياتية ضمن قضايا علمية معاصرة بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 11.",
+                "أن يطبّق مهارة مرتبطة بـ«قضايا علمية معاصرة — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            }
+          ]
+        }
+      ],
+      "counts": {
+        "units": 4,
+        "lessons": 16,
+        "outcomes": 48
+      }
+    },
+    {
+      "subjectId": "JO-NATIONAL-G11-EARTH",
+      "subjectAr": "علوم الأرض والبيئة",
+      "subjectFamily": "earth",
+      "gradeBand": "secondary",
+      "catalogueStatus": "verified-against-NCCD-catalogue",
+      "officialCatalogUrl": "https://www.nccd.gov.jo/ar/pages/TextBooksGrade/117",
+      "book": {
+        "bookId": "JO-NATIONAL-G11-EARTH-B01",
+        "titleAr": "كتاب SUCCESS OS — علوم الأرض والبيئة — الصف 11",
+        "contentOrigin": "success-os-original-curriculum-aligned",
+        "rights": {
+          "copyBookText": false,
+          "generateOriginalOnly": true
+        }
+      },
+      "units": [
+        {
+          "unitId": "JO-NATIONAL-G11-EARTH-B01-U01",
+          "titleAr": "بنية الأرض",
+          "lessons": [
+            {
+              "lessonId": "JO-NATIONAL-G11-EARTH-B01-U01-L01",
+              "titleAr": "بنية الأرض — مقدمة ومفاهيم",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في علوم الأرض والبيئة ضمن بنية الأرض بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 11.",
+                "أن يطبّق مهارة مرتبطة بـ«بنية الأرض — مقدمة ومفاهيم» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G11-EARTH-B01-U01-L02",
+              "titleAr": "بنية الأرض — بناء المهارة",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في علوم الأرض والبيئة ضمن بنية الأرض بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 11.",
+                "أن يطبّق مهارة مرتبطة بـ«بنية الأرض — بناء المهارة» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G11-EARTH-B01-U01-L03",
+              "titleAr": "بنية الأرض — تطبيق ومثال",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في علوم الأرض والبيئة ضمن بنية الأرض بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 11.",
+                "أن يطبّق مهارة مرتبطة بـ«بنية الأرض — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G11-EARTH-B01-U01-L04",
+              "titleAr": "بنية الأرض — تقويم وتعزيز",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في علوم الأرض والبيئة ضمن بنية الأرض بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 11.",
+                "أن يطبّق مهارة مرتبطة بـ«بنية الأرض — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            }
+          ]
+        },
+        {
+          "unitId": "JO-NATIONAL-G11-EARTH-B01-U02",
+          "titleAr": "الغلاف الجوي والمناخ",
+          "lessons": [
+            {
+              "lessonId": "JO-NATIONAL-G11-EARTH-B01-U02-L01",
+              "titleAr": "الغلاف الجوي والمناخ — مقدمة ومفاهيم",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في علوم الأرض والبيئة ضمن الغلاف الجوي والمناخ بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 11.",
+                "أن يطبّق مهارة مرتبطة بـ«الغلاف الجوي والمناخ — مقدمة ومفاهيم» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G11-EARTH-B01-U02-L02",
+              "titleAr": "الغلاف الجوي والمناخ — بناء المهارة",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في علوم الأرض والبيئة ضمن الغلاف الجوي والمناخ بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 11.",
+                "أن يطبّق مهارة مرتبطة بـ«الغلاف الجوي والمناخ — بناء المهارة» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G11-EARTH-B01-U02-L03",
+              "titleAr": "الغلاف الجوي والمناخ — تطبيق ومثال",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في علوم الأرض والبيئة ضمن الغلاف الجوي والمناخ بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 11.",
+                "أن يطبّق مهارة مرتبطة بـ«الغلاف الجوي والمناخ — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G11-EARTH-B01-U02-L04",
+              "titleAr": "الغلاف الجوي والمناخ — تقويم وتعزيز",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في علوم الأرض والبيئة ضمن الغلاف الجوي والمناخ بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 11.",
+                "أن يطبّق مهارة مرتبطة بـ«الغلاف الجوي والمناخ — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            }
+          ]
+        },
+        {
+          "unitId": "JO-NATIONAL-G11-EARTH-B01-U03",
+          "titleAr": "الموارد الطبيعية",
+          "lessons": [
+            {
+              "lessonId": "JO-NATIONAL-G11-EARTH-B01-U03-L01",
+              "titleAr": "الموارد الطبيعية — مقدمة ومفاهيم",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في علوم الأرض والبيئة ضمن الموارد الطبيعية بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 11.",
+                "أن يطبّق مهارة مرتبطة بـ«الموارد الطبيعية — مقدمة ومفاهيم» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G11-EARTH-B01-U03-L02",
+              "titleAr": "الموارد الطبيعية — بناء المهارة",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في علوم الأرض والبيئة ضمن الموارد الطبيعية بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 11.",
+                "أن يطبّق مهارة مرتبطة بـ«الموارد الطبيعية — بناء المهارة» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G11-EARTH-B01-U03-L03",
+              "titleAr": "الموارد الطبيعية — تطبيق ومثال",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في علوم الأرض والبيئة ضمن الموارد الطبيعية بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 11.",
+                "أن يطبّق مهارة مرتبطة بـ«الموارد الطبيعية — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G11-EARTH-B01-U03-L04",
+              "titleAr": "الموارد الطبيعية — تقويم وتعزيز",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في علوم الأرض والبيئة ضمن الموارد الطبيعية بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 11.",
+                "أن يطبّق مهارة مرتبطة بـ«الموارد الطبيعية — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            }
+          ]
+        },
+        {
+          "unitId": "JO-NATIONAL-G11-EARTH-B01-U04",
+          "titleAr": "المخاطر البيئية",
+          "lessons": [
+            {
+              "lessonId": "JO-NATIONAL-G11-EARTH-B01-U04-L01",
+              "titleAr": "المخاطر البيئية — مقدمة ومفاهيم",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في علوم الأرض والبيئة ضمن المخاطر البيئية بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 11.",
+                "أن يطبّق مهارة مرتبطة بـ«المخاطر البيئية — مقدمة ومفاهيم» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G11-EARTH-B01-U04-L02",
+              "titleAr": "المخاطر البيئية — بناء المهارة",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في علوم الأرض والبيئة ضمن المخاطر البيئية بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 11.",
+                "أن يطبّق مهارة مرتبطة بـ«المخاطر البيئية — بناء المهارة» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G11-EARTH-B01-U04-L03",
+              "titleAr": "المخاطر البيئية — تطبيق ومثال",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في علوم الأرض والبيئة ضمن المخاطر البيئية بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 11.",
+                "أن يطبّق مهارة مرتبطة بـ«المخاطر البيئية — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G11-EARTH-B01-U04-L04",
+              "titleAr": "المخاطر البيئية — تقويم وتعزيز",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في علوم الأرض والبيئة ضمن المخاطر البيئية بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 11.",
+                "أن يطبّق مهارة مرتبطة بـ«المخاطر البيئية — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            }
+          ]
+        }
+      ],
+      "counts": {
+        "units": 4,
+        "lessons": 16,
+        "outcomes": 48
+      }
+    },
+    {
+      "subjectId": "JO-NATIONAL-G11-DIGITAL",
+      "subjectAr": "المهارات الرقمية",
+      "subjectFamily": "digital",
+      "gradeBand": "secondary",
+      "catalogueStatus": "verified-against-NCCD-catalogue",
+      "officialCatalogUrl": "https://www.nccd.gov.jo/ar/pages/TextBooksGrade/117",
+      "book": {
+        "bookId": "JO-NATIONAL-G11-DIGITAL-B01",
+        "titleAr": "كتاب SUCCESS OS — المهارات الرقمية — الصف 11",
+        "contentOrigin": "success-os-original-curriculum-aligned",
+        "rights": {
+          "copyBookText": false,
+          "generateOriginalOnly": true
+        }
+      },
+      "units": [
+        {
+          "unitId": "JO-NATIONAL-G11-DIGITAL-B01-U01",
+          "titleAr": "برمجة وتطبيقات",
+          "lessons": [
+            {
+              "lessonId": "JO-NATIONAL-G11-DIGITAL-B01-U01-L01",
+              "titleAr": "برمجة وتطبيقات — مقدمة ومفاهيم",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في المهارات الرقمية ضمن برمجة وتطبيقات بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 11.",
+                "أن يطبّق مهارة مرتبطة بـ«برمجة وتطبيقات — مقدمة ومفاهيم» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G11-DIGITAL-B01-U01-L02",
+              "titleAr": "برمجة وتطبيقات — بناء المهارة",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في المهارات الرقمية ضمن برمجة وتطبيقات بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 11.",
+                "أن يطبّق مهارة مرتبطة بـ«برمجة وتطبيقات — بناء المهارة» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G11-DIGITAL-B01-U01-L03",
+              "titleAr": "برمجة وتطبيقات — تطبيق ومثال",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في المهارات الرقمية ضمن برمجة وتطبيقات بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 11.",
+                "أن يطبّق مهارة مرتبطة بـ«برمجة وتطبيقات — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G11-DIGITAL-B01-U01-L04",
+              "titleAr": "برمجة وتطبيقات — تقويم وتعزيز",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في المهارات الرقمية ضمن برمجة وتطبيقات بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 11.",
+                "أن يطبّق مهارة مرتبطة بـ«برمجة وتطبيقات — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            }
+          ]
+        },
+        {
+          "unitId": "JO-NATIONAL-G11-DIGITAL-B01-U02",
+          "titleAr": "قواعد البيانات",
+          "lessons": [
+            {
+              "lessonId": "JO-NATIONAL-G11-DIGITAL-B01-U02-L01",
+              "titleAr": "قواعد البيانات — مقدمة ومفاهيم",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في المهارات الرقمية ضمن قواعد البيانات بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 11.",
+                "أن يطبّق مهارة مرتبطة بـ«قواعد البيانات — مقدمة ومفاهيم» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G11-DIGITAL-B01-U02-L02",
+              "titleAr": "قواعد البيانات — بناء المهارة",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في المهارات الرقمية ضمن قواعد البيانات بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 11.",
+                "أن يطبّق مهارة مرتبطة بـ«قواعد البيانات — بناء المهارة» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G11-DIGITAL-B01-U02-L03",
+              "titleAr": "قواعد البيانات — تطبيق ومثال",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في المهارات الرقمية ضمن قواعد البيانات بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 11.",
+                "أن يطبّق مهارة مرتبطة بـ«قواعد البيانات — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G11-DIGITAL-B01-U02-L04",
+              "titleAr": "قواعد البيانات — تقويم وتعزيز",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في المهارات الرقمية ضمن قواعد البيانات بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 11.",
+                "أن يطبّق مهارة مرتبطة بـ«قواعد البيانات — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            }
+          ]
+        },
+        {
+          "unitId": "JO-NATIONAL-G11-DIGITAL-B01-U03",
+          "titleAr": "أمن معلومات",
+          "lessons": [
+            {
+              "lessonId": "JO-NATIONAL-G11-DIGITAL-B01-U03-L01",
+              "titleAr": "أمن معلومات — مقدمة ومفاهيم",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في المهارات الرقمية ضمن أمن معلومات بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 11.",
+                "أن يطبّق مهارة مرتبطة بـ«أمن معلومات — مقدمة ومفاهيم» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G11-DIGITAL-B01-U03-L02",
+              "titleAr": "أمن معلومات — بناء المهارة",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في المهارات الرقمية ضمن أمن معلومات بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 11.",
+                "أن يطبّق مهارة مرتبطة بـ«أمن معلومات — بناء المهارة» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G11-DIGITAL-B01-U03-L03",
+              "titleAr": "أمن معلومات — تطبيق ومثال",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في المهارات الرقمية ضمن أمن معلومات بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 11.",
+                "أن يطبّق مهارة مرتبطة بـ«أمن معلومات — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G11-DIGITAL-B01-U03-L04",
+              "titleAr": "أمن معلومات — تقويم وتعزيز",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في المهارات الرقمية ضمن أمن معلومات بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 11.",
+                "أن يطبّق مهارة مرتبطة بـ«أمن معلومات — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            }
+          ]
+        },
+        {
+          "unitId": "JO-NATIONAL-G11-DIGITAL-B01-U04",
+          "titleAr": "مشاريع تقنية",
+          "lessons": [
+            {
+              "lessonId": "JO-NATIONAL-G11-DIGITAL-B01-U04-L01",
+              "titleAr": "مشاريع تقنية — مقدمة ومفاهيم",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في المهارات الرقمية ضمن مشاريع تقنية بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 11.",
+                "أن يطبّق مهارة مرتبطة بـ«مشاريع تقنية — مقدمة ومفاهيم» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G11-DIGITAL-B01-U04-L02",
+              "titleAr": "مشاريع تقنية — بناء المهارة",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في المهارات الرقمية ضمن مشاريع تقنية بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 11.",
+                "أن يطبّق مهارة مرتبطة بـ«مشاريع تقنية — بناء المهارة» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G11-DIGITAL-B01-U04-L03",
+              "titleAr": "مشاريع تقنية — تطبيق ومثال",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في المهارات الرقمية ضمن مشاريع تقنية بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 11.",
+                "أن يطبّق مهارة مرتبطة بـ«مشاريع تقنية — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G11-DIGITAL-B01-U04-L04",
+              "titleAr": "مشاريع تقنية — تقويم وتعزيز",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في المهارات الرقمية ضمن مشاريع تقنية بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 11.",
+                "أن يطبّق مهارة مرتبطة بـ«مشاريع تقنية — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            }
+          ]
+        }
+      ],
+      "counts": {
+        "units": 4,
+        "lessons": 16,
+        "outcomes": 48
+      }
+    },
+    {
+      "subjectId": "JO-NATIONAL-G11-ISLAM",
+      "subjectAr": "التربية الإسلامية",
+      "subjectFamily": "islamic",
+      "gradeBand": "secondary",
+      "catalogueStatus": "verified-against-NCCD-catalogue",
+      "officialCatalogUrl": "https://www.nccd.gov.jo/ar/pages/TextBooksGrade/117",
+      "book": {
+        "bookId": "JO-NATIONAL-G11-ISLAM-B01",
+        "titleAr": "كتاب SUCCESS OS — التربية الإسلامية — الصف 11",
+        "contentOrigin": "success-os-original-curriculum-aligned",
+        "rights": {
+          "copyBookText": false,
+          "generateOriginalOnly": true
+        }
+      },
+      "units": [
+        {
+          "unitId": "JO-NATIONAL-G11-ISLAM-B01-U01",
+          "titleAr": "أصول الدين",
+          "lessons": [
+            {
+              "lessonId": "JO-NATIONAL-G11-ISLAM-B01-U01-L01",
+              "titleAr": "أصول الدين — مقدمة ومفاهيم",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في التربية الإسلامية ضمن أصول الدين بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 11.",
+                "أن يطبّق مهارة مرتبطة بـ«أصول الدين — مقدمة ومفاهيم» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G11-ISLAM-B01-U01-L02",
+              "titleAr": "أصول الدين — بناء المهارة",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في التربية الإسلامية ضمن أصول الدين بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 11.",
+                "أن يطبّق مهارة مرتبطة بـ«أصول الدين — بناء المهارة» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G11-ISLAM-B01-U01-L03",
+              "titleAr": "أصول الدين — تطبيق ومثال",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في التربية الإسلامية ضمن أصول الدين بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 11.",
+                "أن يطبّق مهارة مرتبطة بـ«أصول الدين — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G11-ISLAM-B01-U01-L04",
+              "titleAr": "أصول الدين — تقويم وتعزيز",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في التربية الإسلامية ضمن أصول الدين بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 11.",
+                "أن يطبّق مهارة مرتبطة بـ«أصول الدين — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            }
+          ]
+        },
+        {
+          "unitId": "JO-NATIONAL-G11-ISLAM-B01-U02",
+          "titleAr": "الفقه والمعاملات",
+          "lessons": [
+            {
+              "lessonId": "JO-NATIONAL-G11-ISLAM-B01-U02-L01",
+              "titleAr": "الفقه والمعاملات — مقدمة ومفاهيم",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في التربية الإسلامية ضمن الفقه والمعاملات بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 11.",
+                "أن يطبّق مهارة مرتبطة بـ«الفقه والمعاملات — مقدمة ومفاهيم» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G11-ISLAM-B01-U02-L02",
+              "titleAr": "الفقه والمعاملات — بناء المهارة",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في التربية الإسلامية ضمن الفقه والمعاملات بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 11.",
+                "أن يطبّق مهارة مرتبطة بـ«الفقه والمعاملات — بناء المهارة» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G11-ISLAM-B01-U02-L03",
+              "titleAr": "الفقه والمعاملات — تطبيق ومثال",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في التربية الإسلامية ضمن الفقه والمعاملات بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 11.",
+                "أن يطبّق مهارة مرتبطة بـ«الفقه والمعاملات — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G11-ISLAM-B01-U02-L04",
+              "titleAr": "الفقه والمعاملات — تقويم وتعزيز",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في التربية الإسلامية ضمن الفقه والمعاملات بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 11.",
+                "أن يطبّق مهارة مرتبطة بـ«الفقه والمعاملات — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            }
+          ]
+        },
+        {
+          "unitId": "JO-NATIONAL-G11-ISLAM-B01-U03",
+          "titleAr": "الفكر الإسلامي",
+          "lessons": [
+            {
+              "lessonId": "JO-NATIONAL-G11-ISLAM-B01-U03-L01",
+              "titleAr": "الفكر الإسلامي — مقدمة ومفاهيم",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في التربية الإسلامية ضمن الفكر الإسلامي بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 11.",
+                "أن يطبّق مهارة مرتبطة بـ«الفكر الإسلامي — مقدمة ومفاهيم» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G11-ISLAM-B01-U03-L02",
+              "titleAr": "الفكر الإسلامي — بناء المهارة",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في التربية الإسلامية ضمن الفكر الإسلامي بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 11.",
+                "أن يطبّق مهارة مرتبطة بـ«الفكر الإسلامي — بناء المهارة» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G11-ISLAM-B01-U03-L03",
+              "titleAr": "الفكر الإسلامي — تطبيق ومثال",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في التربية الإسلامية ضمن الفكر الإسلامي بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 11.",
+                "أن يطبّق مهارة مرتبطة بـ«الفكر الإسلامي — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G11-ISLAM-B01-U03-L04",
+              "titleAr": "الفكر الإسلامي — تقويم وتعزيز",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في التربية الإسلامية ضمن الفكر الإسلامي بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 11.",
+                "أن يطبّق مهارة مرتبطة بـ«الفكر الإسلامي — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            }
+          ]
+        },
+        {
+          "unitId": "JO-NATIONAL-G11-ISLAM-B01-U04",
+          "titleAr": "الهوية والقيم",
+          "lessons": [
+            {
+              "lessonId": "JO-NATIONAL-G11-ISLAM-B01-U04-L01",
+              "titleAr": "الهوية والقيم — مقدمة ومفاهيم",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في التربية الإسلامية ضمن الهوية والقيم بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 11.",
+                "أن يطبّق مهارة مرتبطة بـ«الهوية والقيم — مقدمة ومفاهيم» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G11-ISLAM-B01-U04-L02",
+              "titleAr": "الهوية والقيم — بناء المهارة",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في التربية الإسلامية ضمن الهوية والقيم بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 11.",
+                "أن يطبّق مهارة مرتبطة بـ«الهوية والقيم — بناء المهارة» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G11-ISLAM-B01-U04-L03",
+              "titleAr": "الهوية والقيم — تطبيق ومثال",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في التربية الإسلامية ضمن الهوية والقيم بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 11.",
+                "أن يطبّق مهارة مرتبطة بـ«الهوية والقيم — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G11-ISLAM-B01-U04-L04",
+              "titleAr": "الهوية والقيم — تقويم وتعزيز",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في التربية الإسلامية ضمن الهوية والقيم بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 11.",
+                "أن يطبّق مهارة مرتبطة بـ«الهوية والقيم — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            }
+          ]
+        }
+      ],
+      "counts": {
+        "units": 4,
+        "lessons": 16,
+        "outcomes": 48
+      }
+    },
+    {
+      "subjectId": "JO-NATIONAL-G11-HIST",
+      "subjectAr": "تاريخ الأردن",
+      "subjectFamily": "history",
+      "gradeBand": "secondary",
+      "catalogueStatus": "verified-against-NCCD-catalogue",
+      "officialCatalogUrl": "https://www.nccd.gov.jo/ar/pages/TextBooksGrade/117",
+      "book": {
+        "bookId": "JO-NATIONAL-G11-HIST-B01",
+        "titleAr": "كتاب SUCCESS OS — تاريخ الأردن — الصف 11",
+        "contentOrigin": "success-os-original-curriculum-aligned",
+        "rights": {
+          "copyBookText": false,
+          "generateOriginalOnly": true
+        }
+      },
+      "units": [
+        {
+          "unitId": "JO-NATIONAL-G11-HIST-B01-U01",
+          "titleAr": "تاريخ الأردن المعاصر",
+          "lessons": [
+            {
+              "lessonId": "JO-NATIONAL-G11-HIST-B01-U01-L01",
+              "titleAr": "تاريخ الأردن المعاصر — مقدمة ومفاهيم",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في تاريخ الأردن ضمن تاريخ الأردن المعاصر بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 11.",
+                "أن يطبّق مهارة مرتبطة بـ«تاريخ الأردن المعاصر — مقدمة ومفاهيم» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G11-HIST-B01-U01-L02",
+              "titleAr": "تاريخ الأردن المعاصر — بناء المهارة",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في تاريخ الأردن ضمن تاريخ الأردن المعاصر بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 11.",
+                "أن يطبّق مهارة مرتبطة بـ«تاريخ الأردن المعاصر — بناء المهارة» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G11-HIST-B01-U01-L03",
+              "titleAr": "تاريخ الأردن المعاصر — تطبيق ومثال",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في تاريخ الأردن ضمن تاريخ الأردن المعاصر بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 11.",
+                "أن يطبّق مهارة مرتبطة بـ«تاريخ الأردن المعاصر — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G11-HIST-B01-U01-L04",
+              "titleAr": "تاريخ الأردن المعاصر — تقويم وتعزيز",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في تاريخ الأردن ضمن تاريخ الأردن المعاصر بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 11.",
+                "أن يطبّق مهارة مرتبطة بـ«تاريخ الأردن المعاصر — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            }
+          ]
+        },
+        {
+          "unitId": "JO-NATIONAL-G11-HIST-B01-U02",
+          "titleAr": "القضايا التاريخية",
+          "lessons": [
+            {
+              "lessonId": "JO-NATIONAL-G11-HIST-B01-U02-L01",
+              "titleAr": "القضايا التاريخية — مقدمة ومفاهيم",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في تاريخ الأردن ضمن القضايا التاريخية بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 11.",
+                "أن يطبّق مهارة مرتبطة بـ«القضايا التاريخية — مقدمة ومفاهيم» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G11-HIST-B01-U02-L02",
+              "titleAr": "القضايا التاريخية — بناء المهارة",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في تاريخ الأردن ضمن القضايا التاريخية بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 11.",
+                "أن يطبّق مهارة مرتبطة بـ«القضايا التاريخية — بناء المهارة» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G11-HIST-B01-U02-L03",
+              "titleAr": "القضايا التاريخية — تطبيق ومثال",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في تاريخ الأردن ضمن القضايا التاريخية بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 11.",
+                "أن يطبّق مهارة مرتبطة بـ«القضايا التاريخية — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G11-HIST-B01-U02-L04",
+              "titleAr": "القضايا التاريخية — تقويم وتعزيز",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في تاريخ الأردن ضمن القضايا التاريخية بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 11.",
+                "أن يطبّق مهارة مرتبطة بـ«القضايا التاريخية — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            }
+          ]
+        },
+        {
+          "unitId": "JO-NATIONAL-G11-HIST-B01-U03",
+          "titleAr": "التحليل التاريخي",
+          "lessons": [
+            {
+              "lessonId": "JO-NATIONAL-G11-HIST-B01-U03-L01",
+              "titleAr": "التحليل التاريخي — مقدمة ومفاهيم",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في تاريخ الأردن ضمن التحليل التاريخي بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 11.",
+                "أن يطبّق مهارة مرتبطة بـ«التحليل التاريخي — مقدمة ومفاهيم» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G11-HIST-B01-U03-L02",
+              "titleAr": "التحليل التاريخي — بناء المهارة",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في تاريخ الأردن ضمن التحليل التاريخي بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 11.",
+                "أن يطبّق مهارة مرتبطة بـ«التحليل التاريخي — بناء المهارة» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G11-HIST-B01-U03-L03",
+              "titleAr": "التحليل التاريخي — تطبيق ومثال",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في تاريخ الأردن ضمن التحليل التاريخي بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 11.",
+                "أن يطبّق مهارة مرتبطة بـ«التحليل التاريخي — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G11-HIST-B01-U03-L04",
+              "titleAr": "التحليل التاريخي — تقويم وتعزيز",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في تاريخ الأردن ضمن التحليل التاريخي بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 11.",
+                "أن يطبّق مهارة مرتبطة بـ«التحليل التاريخي — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            }
+          ]
+        },
+        {
+          "unitId": "JO-NATIONAL-G11-HIST-B01-U04",
+          "titleAr": "الذاكرة الوطنية",
+          "lessons": [
+            {
+              "lessonId": "JO-NATIONAL-G11-HIST-B01-U04-L01",
+              "titleAr": "الذاكرة الوطنية — مقدمة ومفاهيم",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في تاريخ الأردن ضمن الذاكرة الوطنية بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 11.",
+                "أن يطبّق مهارة مرتبطة بـ«الذاكرة الوطنية — مقدمة ومفاهيم» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G11-HIST-B01-U04-L02",
+              "titleAr": "الذاكرة الوطنية — بناء المهارة",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في تاريخ الأردن ضمن الذاكرة الوطنية بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 11.",
+                "أن يطبّق مهارة مرتبطة بـ«الذاكرة الوطنية — بناء المهارة» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G11-HIST-B01-U04-L03",
+              "titleAr": "الذاكرة الوطنية — تطبيق ومثال",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في تاريخ الأردن ضمن الذاكرة الوطنية بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 11.",
+                "أن يطبّق مهارة مرتبطة بـ«الذاكرة الوطنية — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            },
+            {
+              "lessonId": "JO-NATIONAL-G11-HIST-B01-U04-L04",
+              "titleAr": "الذاكرة الوطنية — تقويم وتعزيز",
+              "learningOutcomes": [
+                "أن يتعرف المتعلم مفهومًا محوريًا في تاريخ الأردن ضمن الذاكرة الوطنية بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 11.",
+                "أن يطبّق مهارة مرتبطة بـ«الذاكرة الوطنية — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+                "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+              ],
+              "contentOrigin": "success-os-original-curriculum-aligned",
+              "rights": {
+                "copyBookText": false,
+                "generateOriginalOnly": true
+              }
+            }
+          ]
+        }
+      ],
+      "counts": {
+        "units": 4,
+        "lessons": 16,
+        "outcomes": 48
+      }
+    }
+  ],
+  "counts": {
+    "subjects": 10,
+    "units": 40,
+    "lessons": 160,
+    "outcomes": 480
+  }
+}

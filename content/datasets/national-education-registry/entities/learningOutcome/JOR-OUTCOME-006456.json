@@ -1,0 +1,18 @@
+{
+  "globalId": "JOR-OUTCOME-006456",
+  "kind": "learningOutcome",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«أساسيات المسار — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G11-السفروال-U01-L03",
+  "relationships": {
+    "lessonId": "JOR-G11-السفروال-U01-L03",
+    "belongsTo": "JOR-G11-السفروال-U01-L03"
+  },
+  "createdAt": "2026-07-31T17:56:57.419Z",
+  "updatedAt": "2026-07-31T17:56:57.419Z",
+  "text": "أن يطبّق مهارة مرتبطة بـ«أساسيات المسار — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+  "sequence": 2
+}

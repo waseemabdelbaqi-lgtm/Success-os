@@ -1,0 +1,51 @@
+{
+  "globalId": "JOR-SKILL-000829",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يتعرف المتعلم مفهومًا محوريًا في الكيمياء ضمن الكيمياء الحياتية والبيئية بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 11.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-005605",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-005605",
+      "JOR-OUTCOME-005606",
+      "JOR-OUTCOME-005607",
+      "JOR-OUTCOME-005608",
+      "JOR-OUTCOME-005609",
+      "JOR-OUTCOME-005610",
+      "JOR-OUTCOME-005611",
+      "JOR-OUTCOME-005612",
+      "JOR-OUTCOME-005613",
+      "JOR-OUTCOME-005614",
+      "JOR-OUTCOME-005615",
+      "JOR-OUTCOME-005616",
+      "JOR-OUTCOME-006069",
+      "JOR-OUTCOME-006070",
+      "JOR-OUTCOME-006071",
+      "JOR-OUTCOME-006072",
+      "JOR-OUTCOME-006073",
+      "JOR-OUTCOME-006074",
+      "JOR-OUTCOME-006075",
+      "JOR-OUTCOME-006076",
+      "JOR-OUTCOME-006077",
+      "JOR-OUTCOME-006078",
+      "JOR-OUTCOME-006079",
+      "JOR-OUTCOME-006080"
+    ],
+    "lessonIds": [
+      "JOR-G11-الكيمياء-U04-L01",
+      "JOR-G11-الكيمياء-U04-L02",
+      "JOR-G11-الكيمياء-U04-L03",
+      "JOR-G11-الكيمياء-U04-L04",
+      "JOR-G12-الكيمياء-U04-L01",
+      "JOR-G12-الكيمياء-U04-L02",
+      "JOR-G12-الكيمياء-U04-L03",
+      "JOR-G12-الكيمياء-U04-L04"
+    ],
+    "belongsTo": "JOR-OUTCOME-005605"
+  },
+  "createdAt": "2026-07-31T17:56:57.272Z",
+  "updatedAt": "2026-07-31T17:56:57.352Z"
+}

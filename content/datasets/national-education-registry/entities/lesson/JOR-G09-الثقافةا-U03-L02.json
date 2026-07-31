@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-G09-الثقافةا-U03-L02",
+  "kind": "lesson",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "ريادة مصغرة — بناء المهارة",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G09-الثقافةا-U03",
+  "relationships": {
+    "unitId": "JOR-G09-الثقافةا-U03",
+    "bookId": "JOR-BOOK-000100",
+    "subjectId": "JOR-G09-الثقافةا",
+    "gradeId": "JOR-G09",
+    "belongsTo": "JOR-G09-الثقافةا-U03"
+  },
+  "createdAt": "2026-07-31T17:56:57.171Z",
+  "updatedAt": "2026-07-31T17:56:57.171Z",
+  "lessonCode": "L02",
+  "sequence": 2,
+  "legacyLessonId": "L3.2",
+  "keywords": [
+    "دخل",
+    "مصروف",
+    "ادخار"
+  ]
+}

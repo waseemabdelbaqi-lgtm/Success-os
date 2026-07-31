@@ -1,0 +1,31 @@
+{
+  "globalId": "JOR-SKILL-000285",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«الإعلام واللغة — مقدمة ومفاهيم» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-000585",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-000585",
+      "JOR-OUTCOME-000586",
+      "JOR-OUTCOME-000587",
+      "JOR-OUTCOME-004649",
+      "JOR-OUTCOME-004650",
+      "JOR-OUTCOME-004651",
+      "JOR-OUTCOME-005305",
+      "JOR-OUTCOME-005306",
+      "JOR-OUTCOME-005307"
+    ],
+    "lessonIds": [
+      "JOR-G10-ARAB-U03-L01",
+      "JOR-G08-ARAB-U03-L01",
+      "JOR-G09-ARAB-U03-L01"
+    ],
+    "belongsTo": "JOR-OUTCOME-000585"
+  },
+  "createdAt": "2026-07-31T17:56:56.711Z",
+  "updatedAt": "2026-07-31T17:56:57.224Z"
+}

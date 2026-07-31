@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-G05-ARAB-U01-L03",
+  "kind": "lesson",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "النصوص الأدبية — تطبيق ومثال",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G05-ARAB-U01",
+  "relationships": {
+    "unitId": "JOR-G05-ARAB-U01",
+    "bookId": "JOR-BOOK-000059",
+    "subjectId": "JOR-G05-ARAB",
+    "gradeId": "JOR-G05",
+    "belongsTo": "JOR-G05-ARAB-U01"
+  },
+  "createdAt": "2026-07-31T17:56:56.880Z",
+  "updatedAt": "2026-07-31T17:56:56.880Z",
+  "lessonCode": "L03",
+  "sequence": 3,
+  "legacyLessonId": "L1.3",
+  "keywords": [
+    "نص",
+    "معنى",
+    "أسلوب"
+  ]
+}

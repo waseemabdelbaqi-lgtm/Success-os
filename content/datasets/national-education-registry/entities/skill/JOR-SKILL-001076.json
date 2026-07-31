@@ -1,0 +1,51 @@
+{
+  "globalId": "JOR-SKILL-001076",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يتعرف المتعلم مفهومًا محوريًا في المهارات الحياتية ضمن وحدة تطبيقية 1 بما يتوافق مع إطار المنهاج الوطني الأردني لـرياض الأطفال.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-007177",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-007177",
+      "JOR-OUTCOME-007178",
+      "JOR-OUTCOME-007179",
+      "JOR-OUTCOME-007180",
+      "JOR-OUTCOME-007181",
+      "JOR-OUTCOME-007182",
+      "JOR-OUTCOME-007183",
+      "JOR-OUTCOME-007184",
+      "JOR-OUTCOME-007185",
+      "JOR-OUTCOME-007186",
+      "JOR-OUTCOME-007187",
+      "JOR-OUTCOME-007188",
+      "JOR-OUTCOME-007189",
+      "JOR-OUTCOME-007190",
+      "JOR-OUTCOME-007191",
+      "JOR-OUTCOME-007192",
+      "JOR-OUTCOME-007193",
+      "JOR-OUTCOME-007194",
+      "JOR-OUTCOME-007195",
+      "JOR-OUTCOME-007196",
+      "JOR-OUTCOME-007197",
+      "JOR-OUTCOME-007198",
+      "JOR-OUTCOME-007199",
+      "JOR-OUTCOME-007200"
+    ],
+    "lessonIds": [
+      "JOR-GKG-المهارات-U03-L01",
+      "JOR-GKG-المهارات-U03-L02",
+      "JOR-GKG-المهارات-U03-L03",
+      "JOR-GKG-المهارات-U03-L04",
+      "JOR-GKG-المهارات-U04-L01",
+      "JOR-GKG-المهارات-U04-L02",
+      "JOR-GKG-المهارات-U04-L03",
+      "JOR-GKG-المهارات-U04-L04"
+    ],
+    "belongsTo": "JOR-OUTCOME-007177"
+  },
+  "createdAt": "2026-07-31T17:56:57.594Z",
+  "updatedAt": "2026-07-31T17:56:57.598Z"
+}

@@ -1,0 +1,31 @@
+{
+  "globalId": "JOR-SKILL-000672",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«Communication — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-002807",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-002807",
+      "JOR-OUTCOME-002808",
+      "JOR-OUTCOME-002809",
+      "JOR-OUTCOME-003367",
+      "JOR-OUTCOME-003368",
+      "JOR-OUTCOME-003369",
+      "JOR-OUTCOME-003927",
+      "JOR-OUTCOME-003928",
+      "JOR-OUTCOME-003929"
+    ],
+    "lessonIds": [
+      "JOR-G05-ENG-U01-L03",
+      "JOR-G06-ENG-U01-L03",
+      "JOR-G07-ENG-U01-L03"
+    ],
+    "belongsTo": "JOR-OUTCOME-002807"
+  },
+  "createdAt": "2026-07-31T17:56:56.874Z",
+  "updatedAt": "2026-07-31T17:56:57.020Z"
+}

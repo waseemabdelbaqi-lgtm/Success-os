@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-SKILL-000912",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«الذاكرة الوطنية — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-005803",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-005803",
+      "JOR-OUTCOME-005804",
+      "JOR-OUTCOME-005805",
+      "JOR-OUTCOME-006267",
+      "JOR-OUTCOME-006268",
+      "JOR-OUTCOME-006269"
+    ],
+    "lessonIds": [
+      "JOR-G11-تاريخالأ-U04-L03",
+      "JOR-G12-تاريخالأ-U04-L03"
+    ],
+    "belongsTo": "JOR-OUTCOME-005803"
+  },
+  "createdAt": "2026-07-31T17:56:57.305Z",
+  "updatedAt": "2026-07-31T17:56:57.386Z"
+}

@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-G06-MATH-U04-L02",
+  "kind": "lesson",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "الإحصاء والاحتمال — بناء المهارة",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G06-MATH-U04",
+  "relationships": {
+    "unitId": "JOR-G06-MATH-U04",
+    "bookId": "JOR-BOOK-000066",
+    "subjectId": "JOR-G06-MATH",
+    "gradeId": "JOR-G06",
+    "belongsTo": "JOR-G06-MATH-U04"
+  },
+  "createdAt": "2026-07-31T17:56:56.927Z",
+  "updatedAt": "2026-07-31T17:56:56.927Z",
+  "lessonCode": "L02",
+  "sequence": 2,
+  "legacyLessonId": "L4.2",
+  "keywords": [
+    "عدد",
+    "عملية",
+    "نمط"
+  ]
+}

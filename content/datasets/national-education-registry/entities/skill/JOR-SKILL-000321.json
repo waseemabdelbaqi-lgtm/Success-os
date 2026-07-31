@@ -1,0 +1,35 @@
+{
+  "globalId": "JOR-SKILL-000321",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«العقيدة الميسرة — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-000666",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-000666",
+      "JOR-OUTCOME-000667",
+      "JOR-OUTCOME-000668",
+      "JOR-OUTCOME-001098",
+      "JOR-OUTCOME-001099",
+      "JOR-OUTCOME-001100",
+      "JOR-OUTCOME-001530",
+      "JOR-OUTCOME-001531",
+      "JOR-OUTCOME-001532",
+      "JOR-OUTCOME-001962",
+      "JOR-OUTCOME-001963",
+      "JOR-OUTCOME-001964"
+    ],
+    "lessonIds": [
+      "JOR-G01-ISL-U01-L04",
+      "JOR-G02-ISL-U01-L04",
+      "JOR-G03-ISL-U01-L04",
+      "JOR-G04-ISL-U01-L04"
+    ],
+    "belongsTo": "JOR-OUTCOME-000666"
+  },
+  "createdAt": "2026-07-31T17:56:56.715Z",
+  "updatedAt": "2026-07-31T17:56:56.798Z"
+}

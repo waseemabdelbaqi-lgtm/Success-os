@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-SKILL-000883",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«قواعد البيانات — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-005734",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-005734",
+      "JOR-OUTCOME-005735",
+      "JOR-OUTCOME-005736",
+      "JOR-OUTCOME-006198",
+      "JOR-OUTCOME-006199",
+      "JOR-OUTCOME-006200"
+    ],
+    "lessonIds": [
+      "JOR-G11-ICT-U02-L04",
+      "JOR-G12-ICT-U02-L04"
+    ],
+    "belongsTo": "JOR-OUTCOME-005734"
+  },
+  "createdAt": "2026-07-31T17:56:57.294Z",
+  "updatedAt": "2026-07-31T17:56:57.374Z"
+}

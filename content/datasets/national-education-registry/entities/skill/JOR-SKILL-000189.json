@@ -1,0 +1,31 @@
+{
+  "globalId": "JOR-SKILL-000189",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«النسب والتناسب — بناء المهارة» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-000384",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-000384",
+      "JOR-OUTCOME-000385",
+      "JOR-OUTCOME-000386",
+      "JOR-OUTCOME-004448",
+      "JOR-OUTCOME-004449",
+      "JOR-OUTCOME-004450",
+      "JOR-OUTCOME-005104",
+      "JOR-OUTCOME-005105",
+      "JOR-OUTCOME-005106"
+    ],
+    "lessonIds": [
+      "JOR-G10-MATH-U02-L02",
+      "JOR-G08-MATH-U02-L02",
+      "JOR-G09-MATH-U02-L02"
+    ],
+    "belongsTo": "JOR-OUTCOME-000384"
+  },
+  "createdAt": "2026-07-31T17:56:56.700Z",
+  "updatedAt": "2026-07-31T17:56:57.191Z"
+}

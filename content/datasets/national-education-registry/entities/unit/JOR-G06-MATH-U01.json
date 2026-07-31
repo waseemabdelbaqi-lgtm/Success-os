@@ -1,0 +1,21 @@
+{
+  "globalId": "JOR-G06-MATH-U01",
+  "kind": "unit",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "الكسور والعمليات",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-BOOK-000066",
+  "relationships": {
+    "bookId": "JOR-BOOK-000066",
+    "subjectId": "JOR-G06-MATH",
+    "gradeId": "JOR-G06",
+    "belongsTo": "JOR-BOOK-000066"
+  },
+  "createdAt": "2026-07-31T17:56:56.921Z",
+  "updatedAt": "2026-07-31T17:56:56.921Z",
+  "unitCode": "U01",
+  "sequence": 1,
+  "legacyUnitId": "U1"
+}

@@ -1,0 +1,864 @@
+{
+  "schema": "success-os.universal-curriculum-mapping.v1",
+  "mission": "Understand relationships between curricula — never copy curricula. Mappings reference Global IDs only.",
+  "entityKinds": [
+    "country",
+    "curriculum",
+    "academic_year",
+    "grade",
+    "subject",
+    "book",
+    "unit",
+    "lesson",
+    "skill",
+    "learning_objective",
+    "competency",
+    "standard",
+    "assessment_objective"
+  ],
+  "relationTypes": [
+    "equivalent",
+    "partially_equivalent",
+    "prerequisite",
+    "advanced",
+    "related",
+    "continuation",
+    "replacement",
+    "historical_version"
+  ],
+  "examplePathway": {
+    "title": "Jordan G8 Science → cross-curriculum equivalents → future AI recommendations",
+    "steps": [
+      {
+        "label": "Jordan Grade 8 Science",
+        "globalId": "LSN-01001",
+        "kind": "lesson"
+      },
+      {
+        "label": "IGCSE Combined Science",
+        "globalId": "LSN-01002",
+        "kind": "lesson"
+      },
+      {
+        "label": "AP Biology",
+        "globalId": "LSN-01003",
+        "kind": "lesson"
+      },
+      {
+        "label": "US NGSS",
+        "globalId": "LSN-01004",
+        "kind": "lesson"
+      },
+      {
+        "label": "IB MYP Science",
+        "globalId": "LSN-01005",
+        "kind": "lesson"
+      },
+      {
+        "label": "Cambridge Lower Secondary",
+        "globalId": "LSN-01006",
+        "kind": "lesson"
+      },
+      {
+        "label": "Future AI Recommendations",
+        "globalId": "LSN-01999",
+        "kind": "placeholder"
+      }
+    ]
+  },
+  "counts": {
+    "mappings": 10,
+    "objectives": 2,
+    "competencies": 1,
+    "standards": 2,
+    "assessmentObjectives": 1,
+    "searchDocuments": 22,
+    "byRelation": {
+      "equivalent": 2,
+      "partially_equivalent": 1,
+      "prerequisite": 1,
+      "advanced": 1,
+      "related": 2,
+      "continuation": 1,
+      "replacement": 1,
+      "historical_version": 1
+    }
+  },
+  "mappings": [
+    {
+      "globalId": "MAP-00001",
+      "relation": "equivalent",
+      "source": {
+        "globalId": "LSN-01001",
+        "kind": "lesson",
+        "label": {
+          "en": "Jordan G8 Science — Cell structure",
+          "ar": "الأردن صف 8 علوم — تركيب الخلية"
+        },
+        "hierarchicalId": "JO-NATIONAL-G08-SCI-B01-U01-L01",
+        "countryGlobalId": "CTR-00001",
+        "curriculumGlobalId": "CUR-00001",
+        "subjectGlobalId": "SUB-00002",
+        "language": "ar"
+      },
+      "target": {
+        "globalId": "LSN-01002",
+        "kind": "lesson",
+        "label": {
+          "en": "IGCSE Combined Science — Cells",
+          "ar": "IGCSE العلوم المشتركة — الخلايا"
+        },
+        "countryGlobalId": "CTR-00003",
+        "curriculumGlobalId": "CUR-00002",
+        "subjectGlobalId": "SUB-00002",
+        "language": "en"
+      },
+      "confidence": 0.86,
+      "evidence": [
+        {
+          "id": "ev_cells_framework",
+          "kind": "standards_framework",
+          "label": {
+            "en": "Cell biology topic alignment across secondary science frameworks",
+            "ar": "مواءمة موضوع بيولوجيا الخلية عبر أطر العلوم الثانوية"
+          },
+          "retrievedAt": "2026-07-30"
+        },
+        {
+          "id": "ev_igcse",
+          "kind": "exam_board_spec",
+          "label": {
+            "en": "Cambridge IGCSE Combined Science topic list",
+            "ar": "قائمة موضوعات IGCSE"
+          },
+          "retrievedAt": "2026-07-30"
+        }
+      ],
+      "notes": {
+        "en": "Jordan G8 Science cell topic ≈ IGCSE Combined Science cells",
+        "ar": "موضوع الخلية في علوم الصف 8 ≈ خلايا IGCSE"
+      },
+      "active": true,
+      "createdAt": "2026-07-30T00:00:00.000Z"
+    },
+    {
+      "globalId": "MAP-00002",
+      "relation": "partially_equivalent",
+      "source": {
+        "globalId": "LSN-01002",
+        "kind": "lesson",
+        "label": {
+          "en": "IGCSE Combined Science — Cells",
+          "ar": "IGCSE العلوم المشتركة — الخلايا"
+        },
+        "countryGlobalId": "CTR-00003",
+        "curriculumGlobalId": "CUR-00002",
+        "subjectGlobalId": "SUB-00002",
+        "language": "en"
+      },
+      "target": {
+        "globalId": "LSN-01003",
+        "kind": "lesson",
+        "label": {
+          "en": "AP Biology — Cell structure",
+          "ar": "AP Biology — تركيب الخلية"
+        },
+        "countryGlobalId": "CTR-00002",
+        "curriculumGlobalId": "CUR-00003",
+        "subjectGlobalId": "SUB-00005",
+        "language": "en"
+      },
+      "confidence": 0.72,
+      "evidence": [
+        {
+          "id": "ev_cells_framework",
+          "kind": "standards_framework",
+          "label": {
+            "en": "Cell biology topic alignment across secondary science frameworks",
+            "ar": "مواءمة موضوع بيولوجيا الخلية عبر أطر العلوم الثانوية"
+          },
+          "retrievedAt": "2026-07-30"
+        },
+        {
+          "id": "ev_ap",
+          "kind": "exam_board_spec",
+          "label": {
+            "en": "AP Biology Unit 2 Cell Structure",
+            "ar": "AP Biology الوحدة 2"
+          },
+          "retrievedAt": "2026-07-30"
+        }
+      ],
+      "notes": {
+        "en": "IGCSE cells partially cover AP Biology cell structure depth",
+        "ar": "خلايا IGCSE تغطي جزئيًا عمق تركيب الخلية في AP"
+      },
+      "active": true,
+      "createdAt": "2026-07-30T00:00:00.000Z"
+    },
+    {
+      "globalId": "MAP-00003",
+      "relation": "related",
+      "source": {
+        "globalId": "LSN-01003",
+        "kind": "lesson",
+        "label": {
+          "en": "AP Biology — Cell structure",
+          "ar": "AP Biology — تركيب الخلية"
+        },
+        "countryGlobalId": "CTR-00002",
+        "curriculumGlobalId": "CUR-00003",
+        "subjectGlobalId": "SUB-00005",
+        "language": "en"
+      },
+      "target": {
+        "globalId": "LSN-01004",
+        "kind": "lesson",
+        "label": {
+          "en": "US NGSS — From molecules to organisms",
+          "ar": "NGSS — من الجزيئات إلى الكائنات"
+        },
+        "countryGlobalId": "CTR-00002",
+        "curriculumGlobalId": "CUR-00004",
+        "subjectGlobalId": "SUB-00002",
+        "language": "en"
+      },
+      "confidence": 0.8,
+      "evidence": [
+        {
+          "id": "ev_cells_framework",
+          "kind": "standards_framework",
+          "label": {
+            "en": "Cell biology topic alignment across secondary science frameworks",
+            "ar": "مواءمة موضوع بيولوجيا الخلية عبر أطر العلوم الثانوية"
+          },
+          "retrievedAt": "2026-07-30"
+        },
+        {
+          "id": "ev_ngss",
+          "kind": "standards_framework",
+          "label": {
+            "en": "NGSS MS-LS1 From Molecules to Organisms",
+            "ar": "NGSS MS-LS1"
+          },
+          "retrievedAt": "2026-07-30"
+        }
+      ],
+      "notes": {
+        "en": "AP Biology cells related to NGSS MS-LS1 performance expectations",
+        "ar": "خلايا AP مرتبطة بتوقعات أداء NGSS MS-LS1"
+      },
+      "active": true,
+      "createdAt": "2026-07-30T00:00:00.000Z"
+    },
+    {
+      "globalId": "MAP-00004",
+      "relation": "equivalent",
+      "source": {
+        "globalId": "LSN-01004",
+        "kind": "lesson",
+        "label": {
+          "en": "US NGSS — From molecules to organisms",
+          "ar": "NGSS — من الجزيئات إلى الكائنات"
+        },
+        "countryGlobalId": "CTR-00002",
+        "curriculumGlobalId": "CUR-00004",
+        "subjectGlobalId": "SUB-00002",
+        "language": "en"
+      },
+      "target": {
+        "globalId": "LSN-01005",
+        "kind": "lesson",
+        "label": {
+          "en": "IB MYP Science — Cells",
+          "ar": "IB MYP العلوم — الخلايا"
+        },
+        "countryGlobalId": "CTR-00004",
+        "curriculumGlobalId": "CUR-00005",
+        "subjectGlobalId": "SUB-00002",
+        "language": "en"
+      },
+      "confidence": 0.78,
+      "evidence": [
+        {
+          "id": "ev_cells_framework",
+          "kind": "standards_framework",
+          "label": {
+            "en": "Cell biology topic alignment across secondary science frameworks",
+            "ar": "مواءمة موضوع بيولوجيا الخلية عبر أطر العلوم الثانوية"
+          },
+          "retrievedAt": "2026-07-30"
+        },
+        {
+          "id": "ev_ib",
+          "kind": "exam_board_spec",
+          "label": {
+            "en": "IB MYP Sciences guide — cells",
+            "ar": "دليل IB MYP للعلوم — الخلايا"
+          },
+          "retrievedAt": "2026-07-30"
+        }
+      ],
+      "notes": {
+        "en": "NGSS cell concepts ≈ IB MYP Science cells",
+        "ar": "مفاهيم الخلية في NGSS ≈ خلايا IB MYP"
+      },
+      "active": true,
+      "createdAt": "2026-07-30T00:00:00.000Z"
+    },
+    {
+      "globalId": "MAP-00005",
+      "relation": "continuation",
+      "source": {
+        "globalId": "LSN-01005",
+        "kind": "lesson",
+        "label": {
+          "en": "IB MYP Science — Cells",
+          "ar": "IB MYP العلوم — الخلايا"
+        },
+        "countryGlobalId": "CTR-00004",
+        "curriculumGlobalId": "CUR-00005",
+        "subjectGlobalId": "SUB-00002",
+        "language": "en"
+      },
+      "target": {
+        "globalId": "LSN-01006",
+        "kind": "lesson",
+        "label": {
+          "en": "Cambridge Lower Secondary — Cells",
+          "ar": "Cambridge المرحلة الإعدادية — الخلايا"
+        },
+        "countryGlobalId": "CTR-00003",
+        "curriculumGlobalId": "CUR-00006",
+        "subjectGlobalId": "SUB-00002",
+        "language": "en"
+      },
+      "confidence": 0.74,
+      "evidence": [
+        {
+          "id": "ev_cells_framework",
+          "kind": "standards_framework",
+          "label": {
+            "en": "Cell biology topic alignment across secondary science frameworks",
+            "ar": "مواءمة موضوع بيولوجيا الخلية عبر أطر العلوم الثانوية"
+          },
+          "retrievedAt": "2026-07-30"
+        },
+        {
+          "id": "ev_cam",
+          "kind": "publisher",
+          "label": {
+            "en": "Cambridge Lower Secondary Science stage 8",
+            "ar": "Cambridge المرحلة 8"
+          },
+          "retrievedAt": "2026-07-30"
+        }
+      ],
+      "notes": {
+        "en": "IB MYP cells continue themes introduced in Cambridge Lower Secondary",
+        "ar": "خلايا IB MYP تتابع موضوعات Cambridge Lower Secondary"
+      },
+      "active": true,
+      "createdAt": "2026-07-30T00:00:00.000Z"
+    },
+    {
+      "globalId": "MAP-00006",
+      "relation": "related",
+      "source": {
+        "globalId": "LSN-01006",
+        "kind": "lesson",
+        "label": {
+          "en": "Cambridge Lower Secondary — Cells",
+          "ar": "Cambridge المرحلة الإعدادية — الخلايا"
+        },
+        "countryGlobalId": "CTR-00003",
+        "curriculumGlobalId": "CUR-00006",
+        "subjectGlobalId": "SUB-00002",
+        "language": "en"
+      },
+      "target": {
+        "globalId": "LSN-01999",
+        "kind": "lesson",
+        "label": {
+          "en": "Future AI Recommendations (placeholder)",
+          "ar": "توصيات الذكاء الاصطناعي المستقبلية (عنصر نائب)"
+        },
+        "language": "en"
+      },
+      "confidence": 0.4,
+      "evidence": [
+        {
+          "id": "ev_ai_placeholder",
+          "kind": "internal_analysis",
+          "label": {
+            "en": "Reserved for future AI recommendation engine",
+            "ar": "محجوز لمحرك توصيات الذكاء الاصطناعي"
+          },
+          "retrievedAt": "2026-07-30"
+        }
+      ],
+      "notes": {
+        "en": "Placeholder link for future AI recommendations — no AI content generated",
+        "ar": "رابط نائب لتوصيات الذكاء الاصطناعي — لا توليد محتوى"
+      },
+      "active": true,
+      "createdAt": "2026-07-30T00:00:00.000Z"
+    },
+    {
+      "globalId": "MAP-00007",
+      "relation": "prerequisite",
+      "source": {
+        "globalId": "LSN-01006",
+        "kind": "lesson",
+        "label": {
+          "en": "Cambridge Lower Secondary — Cells",
+          "ar": "Cambridge المرحلة الإعدادية — الخلايا"
+        },
+        "countryGlobalId": "CTR-00003",
+        "curriculumGlobalId": "CUR-00006",
+        "subjectGlobalId": "SUB-00002",
+        "language": "en"
+      },
+      "target": {
+        "globalId": "LSN-01001",
+        "kind": "lesson",
+        "label": {
+          "en": "Jordan G8 Science — Cell structure",
+          "ar": "الأردن صف 8 علوم — تركيب الخلية"
+        },
+        "hierarchicalId": "JO-NATIONAL-G08-SCI-B01-U01-L01",
+        "countryGlobalId": "CTR-00001",
+        "curriculumGlobalId": "CUR-00001",
+        "subjectGlobalId": "SUB-00002",
+        "language": "ar"
+      },
+      "confidence": 0.65,
+      "evidence": [
+        {
+          "id": "ev_cells_framework",
+          "kind": "standards_framework",
+          "label": {
+            "en": "Cell biology topic alignment across secondary science frameworks",
+            "ar": "مواءمة موضوع بيولوجيا الخلية عبر أطر العلوم الثانوية"
+          },
+          "retrievedAt": "2026-07-30"
+        }
+      ],
+      "notes": {
+        "en": "Cambridge LS cell foundations can precede denser national G8 treatments",
+        "ar": "أساسيات خلايا Cambridge قد تسبق معالجة الصف 8 الوطنية"
+      },
+      "active": true,
+      "createdAt": "2026-07-30T00:00:00.000Z"
+    },
+    {
+      "globalId": "MAP-00008",
+      "relation": "advanced",
+      "source": {
+        "globalId": "LSN-01001",
+        "kind": "lesson",
+        "label": {
+          "en": "Jordan G8 Science — Cell structure",
+          "ar": "الأردن صف 8 علوم — تركيب الخلية"
+        },
+        "hierarchicalId": "JO-NATIONAL-G08-SCI-B01-U01-L01",
+        "countryGlobalId": "CTR-00001",
+        "curriculumGlobalId": "CUR-00001",
+        "subjectGlobalId": "SUB-00002",
+        "language": "ar"
+      },
+      "target": {
+        "globalId": "LSN-01003",
+        "kind": "lesson",
+        "label": {
+          "en": "AP Biology — Cell structure",
+          "ar": "AP Biology — تركيب الخلية"
+        },
+        "countryGlobalId": "CTR-00002",
+        "curriculumGlobalId": "CUR-00003",
+        "subjectGlobalId": "SUB-00005",
+        "language": "en"
+      },
+      "confidence": 0.7,
+      "evidence": [
+        {
+          "id": "ev_cells_framework",
+          "kind": "standards_framework",
+          "label": {
+            "en": "Cell biology topic alignment across secondary science frameworks",
+            "ar": "مواءمة موضوع بيولوجيا الخلية عبر أطر العلوم الثانوية"
+          },
+          "retrievedAt": "2026-07-30"
+        }
+      ],
+      "notes": {
+        "en": "AP Biology is an advanced continuation of G8 cell concepts",
+        "ar": "AP Biology امتداد متقدم لمفاهيم الخلية في الصف 8"
+      },
+      "active": true,
+      "createdAt": "2026-07-30T00:00:00.000Z"
+    },
+    {
+      "globalId": "MAP-00009",
+      "relation": "replacement",
+      "source": {
+        "globalId": "LSN-01006",
+        "kind": "lesson",
+        "label": {
+          "en": "Cambridge Lower Secondary — Cells",
+          "ar": "Cambridge المرحلة الإعدادية — الخلايا"
+        },
+        "countryGlobalId": "CTR-00003",
+        "curriculumGlobalId": "CUR-00006",
+        "subjectGlobalId": "SUB-00002",
+        "language": "en"
+      },
+      "target": {
+        "globalId": "LSN-01005",
+        "kind": "lesson",
+        "label": {
+          "en": "IB MYP Science — Cells",
+          "ar": "IB MYP العلوم — الخلايا"
+        },
+        "countryGlobalId": "CTR-00004",
+        "curriculumGlobalId": "CUR-00005",
+        "subjectGlobalId": "SUB-00002",
+        "language": "en"
+      },
+      "confidence": 0.55,
+      "evidence": [
+        {
+          "id": "ev_replace",
+          "kind": "internal_analysis",
+          "label": {
+            "en": "Programme pathway replacement example",
+            "ar": "مثال استبدال مسار برنامج"
+          },
+          "retrievedAt": "2026-07-30"
+        }
+      ],
+      "notes": {
+        "en": "Example: IB MYP cells may replace Cambridge LS cells in a programme switch",
+        "ar": "مثال: خلايا IB MYP قد تستبدل خلايا Cambridge عند تبديل البرنامج"
+      },
+      "active": true,
+      "createdAt": "2026-07-30T00:00:00.000Z"
+    },
+    {
+      "globalId": "MAP-00010",
+      "relation": "historical_version",
+      "source": {
+        "globalId": "LSN-01001",
+        "kind": "lesson",
+        "label": {
+          "en": "Jordan G8 Science — Cell structure",
+          "ar": "الأردن صف 8 علوم — تركيب الخلية"
+        },
+        "hierarchicalId": "JO-NATIONAL-G08-SCI-B01-U01-L01",
+        "countryGlobalId": "CTR-00001",
+        "curriculumGlobalId": "CUR-00001",
+        "subjectGlobalId": "SUB-00002",
+        "language": "ar"
+      },
+      "target": {
+        "globalId": "LSN-01001",
+        "kind": "lesson",
+        "label": {
+          "en": "Jordan G8 Science — Cell structure",
+          "ar": "الأردن صف 8 علوم — تركيب الخلية"
+        },
+        "hierarchicalId": "JO-NATIONAL-G08-SCI-B01-U01-L01",
+        "countryGlobalId": "CTR-00001",
+        "curriculumGlobalId": "CUR-00001",
+        "subjectGlobalId": "SUB-00002",
+        "language": "ar"
+      },
+      "confidence": 0.9,
+      "evidence": [
+        {
+          "id": "ev_hist",
+          "kind": "official_curriculum",
+          "label": {
+            "en": "Prior academic-year edition placeholder",
+            "ar": "عنصر نائب لنسخة سنة دراسية سابقة"
+          },
+          "retrievedAt": "2026-07-30"
+        }
+      ],
+      "notes": {
+        "en": "Historical version hook — same lesson identity across curriculum editions",
+        "ar": "ربط النسخة التاريخية — نفس هوية الدرس عبر طبعات المنهاج"
+      },
+      "active": true,
+      "createdAt": "2026-07-30T00:00:00.000Z"
+    }
+  ],
+  "objectives": [
+    {
+      "globalId": "OBJ-00001",
+      "code": "OBJ_CELL_STRUCTURE",
+      "statement": {
+        "en": "Describe the basic structure of a plant and animal cell",
+        "ar": "وصف التركيب الأساسي لخلية نباتية وخلية حيوانية"
+      },
+      "skillIds": [
+        "SKL-00015",
+        "SKL-00016"
+      ],
+      "lessonIds": [
+        "LSN-01001",
+        "LSN-01002",
+        "LSN-01005",
+        "LSN-01006"
+      ],
+      "assessmentObjectiveIds": [
+        "ASO-00001"
+      ],
+      "digitalBookIds": [],
+      "videoIds": [],
+      "aiTutorReady": false,
+      "subjectGlobalIds": [
+        "SUB-00002",
+        "SUB-00005"
+      ],
+      "keywords": [
+        "cell",
+        "organelle",
+        "membrane",
+        "خلية"
+      ],
+      "bloomLevel": "understand",
+      "active": true
+    },
+    {
+      "globalId": "OBJ-00002",
+      "code": "OBJ_LIVING_SYSTEMS",
+      "statement": {
+        "en": "Explain how cells contribute to living systems",
+        "ar": "شرح كيف تساهم الخلايا في الأنظمة الحية"
+      },
+      "skillIds": [
+        "SKL-00016",
+        "SKL-00008"
+      ],
+      "lessonIds": [
+        "LSN-01004",
+        "LSN-01003",
+        "LSN-01001"
+      ],
+      "assessmentObjectiveIds": [],
+      "digitalBookIds": [],
+      "videoIds": [],
+      "aiTutorReady": false,
+      "subjectGlobalIds": [
+        "SUB-00002",
+        "SUB-00005"
+      ],
+      "keywords": [
+        "systems",
+        "organism",
+        "cell",
+        "أنظمة"
+      ],
+      "bloomLevel": "analyze",
+      "active": true
+    }
+  ],
+  "competencies": [
+    {
+      "globalId": "CMP-00001",
+      "code": "CMP_SCIENTIFIC_INQUIRY",
+      "name": {
+        "en": "Scientific Inquiry",
+        "ar": "الاستقصاء العلمي"
+      },
+      "objectiveIds": [
+        "OBJ-00001",
+        "OBJ-00002"
+      ],
+      "skillIds": [
+        "SKL-00015",
+        "SKL-00016"
+      ],
+      "active": true
+    }
+  ],
+  "standards": [
+    {
+      "globalId": "STD-00001",
+      "code": "MS-LS1",
+      "framework": "NGSS",
+      "name": {
+        "en": "From Molecules to Organisms: Structures and Processes",
+        "ar": "من الجزيئات إلى الكائنات"
+      },
+      "objectiveIds": [
+        "OBJ-00001",
+        "OBJ-00002"
+      ],
+      "active": true
+    },
+    {
+      "globalId": "STD-00002",
+      "code": "IGCSE-CS-CELLS",
+      "framework": "IGCSE",
+      "name": {
+        "en": "Combined Science — Cells",
+        "ar": "العلوم المشتركة — الخلايا"
+      },
+      "objectiveIds": [
+        "OBJ-00001"
+      ],
+      "active": true
+    }
+  ],
+  "assessmentObjectives": [
+    {
+      "globalId": "ASO-00001",
+      "code": "ASO_DESCRIBE_CELL",
+      "statement": {
+        "en": "Identify and label major cell structures",
+        "ar": "تحديد وتسمية التراكيب الرئيسية للخلية"
+      },
+      "objectiveIds": [
+        "OBJ-00001"
+      ],
+      "skillIds": [
+        "SKL-00015"
+      ],
+      "active": true
+    }
+  ],
+  "skillGraph": {
+    "schema": "success-os.global-skill-graph.v1",
+    "pathPattern": [
+      "Skill",
+      "connects",
+      "Lesson",
+      "across",
+      "Curriculum"
+    ],
+    "skillIds": [
+      "SKL-00001",
+      "SKL-00002",
+      "SKL-00003",
+      "SKL-00004",
+      "SKL-00005",
+      "SKL-00006",
+      "SKL-00007",
+      "SKL-00008",
+      "SKL-00009",
+      "SKL-00010",
+      "SKL-00011",
+      "SKL-00012",
+      "SKL-00013",
+      "SKL-00014",
+      "SKL-00015",
+      "SKL-00016"
+    ],
+    "edges": [
+      {
+        "skillId": "SKL-00015",
+        "lessonGlobalId": "LSN-01001",
+        "lessonHierarchicalId": "JO-NATIONAL-G08-SCI-B01-U01-L01",
+        "countryGlobalId": "CTR-00001",
+        "curriculumGlobalId": "CUR-00001",
+        "subjectGlobalId": "SUB-00002",
+        "weight": 1
+      },
+      {
+        "skillId": "SKL-00015",
+        "lessonGlobalId": "LSN-01002",
+        "countryGlobalId": "CTR-00003",
+        "curriculumGlobalId": "CUR-00002",
+        "subjectGlobalId": "SUB-00002",
+        "weight": 1
+      },
+      {
+        "skillId": "SKL-00016",
+        "lessonGlobalId": "LSN-01003",
+        "countryGlobalId": "CTR-00002",
+        "curriculumGlobalId": "CUR-00003",
+        "subjectGlobalId": "SUB-00005",
+        "weight": 1
+      },
+      {
+        "skillId": "SKL-00016",
+        "lessonGlobalId": "LSN-01004",
+        "countryGlobalId": "CTR-00002",
+        "curriculumGlobalId": "CUR-00004",
+        "subjectGlobalId": "SUB-00002",
+        "weight": 1
+      },
+      {
+        "skillId": "SKL-00008",
+        "lessonGlobalId": "LSN-01005",
+        "countryGlobalId": "CTR-00004",
+        "curriculumGlobalId": "CUR-00005",
+        "subjectGlobalId": "SUB-00002",
+        "weight": 0.8
+      },
+      {
+        "skillId": "SKL-00015",
+        "lessonGlobalId": "LSN-01006",
+        "countryGlobalId": "CTR-00003",
+        "curriculumGlobalId": "CUR-00006",
+        "subjectGlobalId": "SUB-00002",
+        "weight": 1
+      }
+    ],
+    "skillDependencies": [
+      {
+        "skillId": "SKL-00002",
+        "dependsOn": "SKL-00001"
+      },
+      {
+        "skillId": "SKL-00004",
+        "dependsOn": "SKL-00003"
+      },
+      {
+        "skillId": "SKL-00007",
+        "dependsOn": "SKL-00006"
+      },
+      {
+        "skillId": "SKL-00009",
+        "dependsOn": "SKL-00002"
+      },
+      {
+        "skillId": "SKL-00010",
+        "dependsOn": "SKL-00009"
+      },
+      {
+        "skillId": "SKL-00011",
+        "dependsOn": "SKL-00010"
+      },
+      {
+        "skillId": "SKL-00012",
+        "dependsOn": "SKL-00011"
+      },
+      {
+        "skillId": "SKL-00014",
+        "dependsOn": "SKL-00013"
+      },
+      {
+        "skillId": "SKL-00016",
+        "dependsOn": "SKL-00015"
+      }
+    ],
+    "counts": {
+      "skills": 16,
+      "lessonLinks": 6,
+      "skillDependencies": 9,
+      "countries": 4,
+      "curricula": 6
+    }
+  },
+  "notes": [
+    "No AI lesson/video/book/quiz generation in this engine.",
+    "Compatible with ILE packages via lesson Global IDs / hierarchical ids.",
+    "Jordan appears only as one mapped curriculum among many.",
+    "Global Skill Registry skills available: 16"
+  ],
+  "aiGeneration": false,
+  "copiesCurricula": false
+}

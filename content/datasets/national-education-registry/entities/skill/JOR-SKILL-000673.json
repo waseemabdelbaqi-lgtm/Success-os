@@ -1,0 +1,31 @@
+{
+  "globalId": "JOR-SKILL-000673",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«Communication — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-002810",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-002810",
+      "JOR-OUTCOME-002811",
+      "JOR-OUTCOME-002812",
+      "JOR-OUTCOME-003370",
+      "JOR-OUTCOME-003371",
+      "JOR-OUTCOME-003372",
+      "JOR-OUTCOME-003930",
+      "JOR-OUTCOME-003931",
+      "JOR-OUTCOME-003932"
+    ],
+    "lessonIds": [
+      "JOR-G05-ENG-U01-L04",
+      "JOR-G06-ENG-U01-L04",
+      "JOR-G07-ENG-U01-L04"
+    ],
+    "belongsTo": "JOR-OUTCOME-002810"
+  },
+  "createdAt": "2026-07-31T17:56:56.875Z",
+  "updatedAt": "2026-07-31T17:56:57.021Z"
+}

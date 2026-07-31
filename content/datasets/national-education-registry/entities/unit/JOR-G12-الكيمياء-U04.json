@@ -1,0 +1,21 @@
+{
+  "globalId": "JOR-G12-الكيمياء-U04",
+  "kind": "unit",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "الكيمياء الحياتية والبيئية",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-BOOK-000122",
+  "relationships": {
+    "bookId": "JOR-BOOK-000122",
+    "subjectId": "JOR-G12-الكيمياء",
+    "gradeId": "JOR-G12",
+    "belongsTo": "JOR-BOOK-000122"
+  },
+  "createdAt": "2026-07-31T17:56:57.350Z",
+  "updatedAt": "2026-07-31T17:56:57.350Z",
+  "unitCode": "U04",
+  "sequence": 4,
+  "legacyUnitId": "U4"
+}

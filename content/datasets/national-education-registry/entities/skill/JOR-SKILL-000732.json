@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-SKILL-000732",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«أصول الدين — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-005383",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-005383",
+      "JOR-OUTCOME-005384",
+      "JOR-OUTCOME-005385",
+      "JOR-OUTCOME-005847",
+      "JOR-OUTCOME-005848",
+      "JOR-OUTCOME-005849"
+    ],
+    "lessonIds": [
+      "JOR-G11-ISL-U01-L03",
+      "JOR-G12-ISL-U01-L03"
+    ],
+    "belongsTo": "JOR-OUTCOME-005383"
+  },
+  "createdAt": "2026-07-31T17:56:57.237Z",
+  "updatedAt": "2026-07-31T17:56:57.314Z"
+}

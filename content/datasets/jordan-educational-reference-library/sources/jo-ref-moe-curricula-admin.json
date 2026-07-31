@@ -1,0 +1,45 @@
+{
+  "sourceId": "jo-ref-moe-curricula-admin",
+  "title": "MoE Curricula and School Textbooks Administration",
+  "publisher": "Ministry of Education",
+  "organization": "MoE Jordan",
+  "country": "Jordan",
+  "educationalSystem": "Jordan National Curriculum",
+  "subject": "all",
+  "grade": "all",
+  "language": "ar",
+  "publicationYear": 2025,
+  "version": "2025-2026",
+  "officialUrl": "https://moe.gov.jo/ar/%D8%A5%D8%AF%D8%A7%D8%B1%D8%A9-%D8%A7%D9%84%D9%85%D9%86%D8%A7%D9%87%D8%AC-%D9%88%D8%A7%D9%84%D9%83%D8%AA%D8%A8-%D8%A7%D9%84%D9%85%D8%AF%D8%B1%D8%B3%D9%8A%D8%A9",
+  "licenseType": "official-framework-reference",
+  "copyrightStatus": "all-rights-reserved-by-publisher-reference-only",
+  "verificationDate": "2026-07-31T17:54:29.642Z",
+  "reliabilityScore": 100,
+  "status": "verified",
+  "category": "Curriculum Documents",
+  "copyBookText": false,
+  "note": null,
+  "history": [
+    {
+      "event": "registered",
+      "at": "2026-07-31T17:54:29.642Z",
+      "version": "2025-2026",
+      "note": "JO-05 seed registration"
+    },
+    {
+      "event": "rebuilt",
+      "at": "2026-07-31T17:55:32.918Z",
+      "version": "2025-2026"
+    },
+    {
+      "event": "rebuilt",
+      "at": "2026-07-31T17:55:35.796Z",
+      "version": "2025-2026"
+    }
+  ],
+  "validation": {
+    "ok": true,
+    "warnings": [],
+    "validatedAt": "2026-07-31T17:55:35.796Z"
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "globalId": "JOR-SKILL-000441",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«Phonics & Vocabulary — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-000963",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-000963",
+      "JOR-OUTCOME-000964",
+      "JOR-OUTCOME-000965",
+      "JOR-OUTCOME-001395",
+      "JOR-OUTCOME-001396",
+      "JOR-OUTCOME-001397",
+      "JOR-OUTCOME-001827",
+      "JOR-OUTCOME-001828",
+      "JOR-OUTCOME-001829",
+      "JOR-OUTCOME-002259",
+      "JOR-OUTCOME-002260",
+      "JOR-OUTCOME-002261"
+    ],
+    "lessonIds": [
+      "JOR-G01-ENG-U02-L03",
+      "JOR-G02-ENG-U02-L03",
+      "JOR-G03-ENG-U02-L03",
+      "JOR-G04-ENG-U02-L03"
+    ],
+    "belongsTo": "JOR-OUTCOME-000963"
+  },
+  "createdAt": "2026-07-31T17:56:56.730Z",
+  "updatedAt": "2026-07-31T17:56:56.821Z"
+}

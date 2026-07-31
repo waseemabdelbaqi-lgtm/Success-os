@@ -1,0 +1,16 @@
+{
+  "globalId": "JOR-DIAGRAM-002200",
+  "kind": "diagram",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "مخطط تعليمي لوحدة مهارات عملية",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G11-السفروال-U02-L04",
+  "relationships": {
+    "lessonId": "JOR-G11-السفروال-U02-L04",
+    "belongsTo": "JOR-G11-السفروال-U02-L04"
+  },
+  "createdAt": "2026-07-31T17:56:57.422Z",
+  "updatedAt": "2026-07-31T17:56:57.422Z"
+}

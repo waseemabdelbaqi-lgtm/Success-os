@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-G10-SCI-U03-L03",
+  "kind": "lesson",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "التفاعلات الكيميائية — تطبيق ومثال",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G10-SCI-U03",
+  "relationships": {
+    "unitId": "JOR-G10-SCI-U03",
+    "bookId": "JOR-BOOK-000009",
+    "subjectId": "JOR-G10-SCI",
+    "gradeId": "JOR-G10",
+    "belongsTo": "JOR-G10-SCI-U03"
+  },
+  "createdAt": "2026-07-31T17:56:56.703Z",
+  "updatedAt": "2026-07-31T17:56:56.703Z",
+  "lessonCode": "L03",
+  "sequence": 3,
+  "legacyLessonId": "L3.3",
+  "keywords": [
+    "مادة",
+    "طاقة",
+    "نظام"
+  ]
+}

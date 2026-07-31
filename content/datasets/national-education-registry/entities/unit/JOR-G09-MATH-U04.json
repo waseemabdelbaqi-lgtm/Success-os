@@ -1,0 +1,21 @@
+{
+  "globalId": "JOR-G09-MATH-U04",
+  "kind": "unit",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "الإحصاء التطبيقي",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-BOOK-000103",
+  "relationships": {
+    "bookId": "JOR-BOOK-000103",
+    "subjectId": "JOR-G09-MATH",
+    "gradeId": "JOR-G09",
+    "belongsTo": "JOR-BOOK-000103"
+  },
+  "createdAt": "2026-07-31T17:56:57.194Z",
+  "updatedAt": "2026-07-31T17:56:57.194Z",
+  "unitCode": "U04",
+  "sequence": 4,
+  "legacyUnitId": "U4"
+}

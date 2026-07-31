@@ -1,0 +1,21 @@
+{
+  "globalId": "JOR-G05-SCI-U02",
+  "kind": "unit",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "القوى والحركة",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-BOOK-000056",
+  "relationships": {
+    "bookId": "JOR-BOOK-000056",
+    "subjectId": "JOR-G05-SCI",
+    "gradeId": "JOR-G05",
+    "belongsTo": "JOR-BOOK-000056"
+  },
+  "createdAt": "2026-07-31T17:56:56.864Z",
+  "updatedAt": "2026-07-31T17:56:56.864Z",
+  "unitCode": "U02",
+  "sequence": 2,
+  "legacyUnitId": "U2"
+}

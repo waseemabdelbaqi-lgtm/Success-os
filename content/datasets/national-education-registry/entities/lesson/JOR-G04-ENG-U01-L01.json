@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-G04-ENG-U01-L01",
+  "kind": "lesson",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "Listening & Speaking — مقدمة ومفاهيم",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G04-ENG-U01",
+  "relationships": {
+    "unitId": "JOR-G04-ENG-U01",
+    "bookId": "JOR-BOOK-000047",
+    "subjectId": "JOR-G04-ENG",
+    "gradeId": "JOR-G04",
+    "belongsTo": "JOR-G04-ENG-U01"
+  },
+  "createdAt": "2026-07-31T17:56:56.820Z",
+  "updatedAt": "2026-07-31T17:56:56.820Z",
+  "lessonCode": "L01",
+  "sequence": 1,
+  "legacyLessonId": "L1.1",
+  "keywords": [
+    "vocabulary",
+    "structure",
+    "fluency"
+  ]
+}

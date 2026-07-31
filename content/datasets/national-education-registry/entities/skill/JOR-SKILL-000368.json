@@ -1,0 +1,35 @@
+{
+  "globalId": "JOR-SKILL-000368",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«المسرح المدرسي — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-000786",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-000786",
+      "JOR-OUTCOME-000787",
+      "JOR-OUTCOME-000788",
+      "JOR-OUTCOME-001218",
+      "JOR-OUTCOME-001219",
+      "JOR-OUTCOME-001220",
+      "JOR-OUTCOME-001650",
+      "JOR-OUTCOME-001651",
+      "JOR-OUTCOME-001652",
+      "JOR-OUTCOME-002082",
+      "JOR-OUTCOME-002083",
+      "JOR-OUTCOME-002084"
+    ],
+    "lessonIds": [
+      "JOR-G01-ARTS-U03-L04",
+      "JOR-G02-ARTS-U03-L04",
+      "JOR-G03-ARTS-U03-L04",
+      "JOR-G04-ARTS-U03-L04"
+    ],
+    "belongsTo": "JOR-OUTCOME-000786"
+  },
+  "createdAt": "2026-07-31T17:56:56.720Z",
+  "updatedAt": "2026-07-31T17:56:56.807Z"
+}

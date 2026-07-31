@@ -1,0 +1,18 @@
+{
+  "globalId": "JOR-OUTCOME-004377",
+  "kind": "learningOutcome",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«قضايا جغرافية — بناء المهارة» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G08-الجغرافي-U04-L02",
+  "relationships": {
+    "lessonId": "JOR-G08-الجغرافي-U04-L02",
+    "belongsTo": "JOR-G08-الجغرافي-U04-L02"
+  },
+  "createdAt": "2026-07-31T17:56:57.080Z",
+  "updatedAt": "2026-07-31T17:56:57.080Z",
+  "text": "أن يطبّق مهارة مرتبطة بـ«قضايا جغرافية — بناء المهارة» بخطوات واضحة قابلة للتحقق.",
+  "sequence": 2
+}

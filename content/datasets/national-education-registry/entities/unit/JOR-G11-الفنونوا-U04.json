@@ -1,0 +1,21 @@
+{
+  "globalId": "JOR-G11-الفنونوا-U04",
+  "kind": "unit",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "محفظة أعمال",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-BOOK-000132",
+  "relationships": {
+    "bookId": "JOR-BOOK-000132",
+    "subjectId": "JOR-G11-الفنونوا",
+    "gradeId": "JOR-G11",
+    "belongsTo": "JOR-BOOK-000132"
+  },
+  "createdAt": "2026-07-31T17:56:57.444Z",
+  "updatedAt": "2026-07-31T17:56:57.444Z",
+  "unitCode": "U04",
+  "sequence": 4,
+  "legacyUnitId": "U4"
+}

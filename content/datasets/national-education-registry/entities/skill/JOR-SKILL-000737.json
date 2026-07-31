@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-SKILL-000737",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«الفقه والمعاملات — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-005395",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-005395",
+      "JOR-OUTCOME-005396",
+      "JOR-OUTCOME-005397",
+      "JOR-OUTCOME-005859",
+      "JOR-OUTCOME-005860",
+      "JOR-OUTCOME-005861"
+    ],
+    "lessonIds": [
+      "JOR-G11-ISL-U02-L03",
+      "JOR-G12-ISL-U02-L03"
+    ],
+    "belongsTo": "JOR-OUTCOME-005395"
+  },
+  "createdAt": "2026-07-31T17:56:57.239Z",
+  "updatedAt": "2026-07-31T17:56:57.316Z"
+}

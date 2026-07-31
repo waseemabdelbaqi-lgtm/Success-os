@@ -1,0 +1,31 @@
+{
+  "globalId": "JOR-SKILL-000124",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«المصارف المبسطة — بناء المهارة» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-000240",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-000240",
+      "JOR-OUTCOME-000241",
+      "JOR-OUTCOME-000242",
+      "JOR-OUTCOME-004304",
+      "JOR-OUTCOME-004305",
+      "JOR-OUTCOME-004306",
+      "JOR-OUTCOME-004960",
+      "JOR-OUTCOME-004961",
+      "JOR-OUTCOME-004962"
+    ],
+    "lessonIds": [
+      "JOR-G10-الثقافةا-U02-L02",
+      "JOR-G08-الثقافةا-U02-L02",
+      "JOR-G09-الثقافةا-U02-L02"
+    ],
+    "belongsTo": "JOR-OUTCOME-000240"
+  },
+  "createdAt": "2026-07-31T17:56:56.695Z",
+  "updatedAt": "2026-07-31T17:56:57.170Z"
+}

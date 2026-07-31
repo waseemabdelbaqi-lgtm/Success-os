@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-G02-SCI-U02-L01",
+  "kind": "lesson",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "المادة والطاقة — مقدمة ومفاهيم",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G02-SCI-U02",
+  "relationships": {
+    "unitId": "JOR-G02-SCI-U02",
+    "bookId": "JOR-BOOK-000028",
+    "subjectId": "JOR-G02-SCI",
+    "gradeId": "JOR-G02",
+    "belongsTo": "JOR-G02-SCI-U02"
+  },
+  "createdAt": "2026-07-31T17:56:56.757Z",
+  "updatedAt": "2026-07-31T17:56:56.757Z",
+  "lessonCode": "L01",
+  "sequence": 1,
+  "legacyLessonId": "L2.1",
+  "keywords": [
+    "مادة",
+    "طاقة",
+    "نظام"
+  ]
+}

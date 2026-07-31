@@ -1,0 +1,21 @@
+{
+  "globalId": "JOR-G03-ARTS-U04",
+  "kind": "unit",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "المشاريع الإبداعية",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-BOOK-000034",
+  "relationships": {
+    "bookId": "JOR-BOOK-000034",
+    "subjectId": "JOR-G03-ARTS",
+    "gradeId": "JOR-G03",
+    "belongsTo": "JOR-BOOK-000034"
+  },
+  "createdAt": "2026-07-31T17:56:56.776Z",
+  "updatedAt": "2026-07-31T17:56:56.776Z",
+  "unitCode": "U04",
+  "sequence": 4,
+  "legacyUnitId": "U4"
+}

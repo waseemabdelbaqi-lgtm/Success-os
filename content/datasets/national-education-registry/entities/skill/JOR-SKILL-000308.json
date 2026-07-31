@@ -1,0 +1,31 @@
+{
+  "globalId": "JOR-SKILL-000308",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«بيانات ومعلومات — مقدمة ومفاهيم» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-000633",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-000633",
+      "JOR-OUTCOME-000634",
+      "JOR-OUTCOME-000635",
+      "JOR-OUTCOME-004697",
+      "JOR-OUTCOME-004698",
+      "JOR-OUTCOME-004699",
+      "JOR-OUTCOME-005353",
+      "JOR-OUTCOME-005354",
+      "JOR-OUTCOME-005355"
+    ],
+    "lessonIds": [
+      "JOR-G10-ICT-U03-L01",
+      "JOR-G08-ICT-U03-L01",
+      "JOR-G09-ICT-U03-L01"
+    ],
+    "belongsTo": "JOR-OUTCOME-000633"
+  },
+  "createdAt": "2026-07-31T17:56:56.713Z",
+  "updatedAt": "2026-07-31T17:56:57.232Z"
+}

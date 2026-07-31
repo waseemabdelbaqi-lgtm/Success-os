@@ -1,0 +1,31 @@
+{
+  "globalId": "JOR-SKILL-000306",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«شبكات وإنترنت — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-000630",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-000630",
+      "JOR-OUTCOME-000631",
+      "JOR-OUTCOME-000632",
+      "JOR-OUTCOME-004694",
+      "JOR-OUTCOME-004695",
+      "JOR-OUTCOME-004696",
+      "JOR-OUTCOME-005350",
+      "JOR-OUTCOME-005351",
+      "JOR-OUTCOME-005352"
+    ],
+    "lessonIds": [
+      "JOR-G10-ICT-U02-L04",
+      "JOR-G08-ICT-U02-L04",
+      "JOR-G09-ICT-U02-L04"
+    ],
+    "belongsTo": "JOR-OUTCOME-000630"
+  },
+  "createdAt": "2026-07-31T17:56:56.713Z",
+  "updatedAt": "2026-07-31T17:56:57.231Z"
+}

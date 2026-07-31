@@ -1,0 +1,22 @@
+{
+  "globalId": "JOR-G10-التربيةا-U02",
+  "kind": "unit",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "المشاركة المدنية",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-BOOK-000004",
+  "relationships": {
+    "bookId": "JOR-BOOK-000004",
+    "subjectId": "JOR-G10-التربيةا",
+    "gradeId": "JOR-G10",
+    "belongsTo": "JOR-BOOK-000004"
+  },
+  "createdAt": "2026-07-31T17:56:56.689Z",
+  "updatedAt": "2026-07-31T17:56:56.690Z",
+  "unitCode": "U02",
+  "sequence": 2,
+  "legacyUnitId": "U2",
+  "_deduped": true
+}

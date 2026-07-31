@@ -1,0 +1,16 @@
+{
+  "globalId": "JOR-DIAGRAM-000059",
+  "kind": "diagram",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "مخطط تعليمي لوحدة اتخاذ القرار",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G10-التربيةا-U03-L03",
+  "relationships": {
+    "lessonId": "JOR-G10-التربيةا-U03-L03",
+    "belongsTo": "JOR-G10-التربيةا-U03-L03"
+  },
+  "createdAt": "2026-07-31T17:56:56.689Z",
+  "updatedAt": "2026-07-31T17:56:56.689Z"
+}

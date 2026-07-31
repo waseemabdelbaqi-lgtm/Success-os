@@ -1,0 +1,18 @@
+{
+  "globalId": "JOR-OUTCOME-004047",
+  "kind": "learningOutcome",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يتعرف المتعلم مفهومًا محوريًا في المهارات الرقمية ضمن البحث الآمن بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 7.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G07-ICT-U03-L03",
+  "relationships": {
+    "lessonId": "JOR-G07-ICT-U03-L03",
+    "belongsTo": "JOR-G07-ICT-U03-L03"
+  },
+  "createdAt": "2026-07-31T17:56:57.036Z",
+  "updatedAt": "2026-07-31T17:56:57.036Z",
+  "text": "أن يتعرف المتعلم مفهومًا محوريًا في المهارات الرقمية ضمن البحث الآمن بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 7.",
+  "sequence": 1
+}

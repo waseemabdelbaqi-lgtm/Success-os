@@ -1,0 +1,31 @@
+{
+  "globalId": "JOR-SKILL-000643",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«المواد والتغيرات — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-002738",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-002738",
+      "JOR-OUTCOME-002739",
+      "JOR-OUTCOME-002740",
+      "JOR-OUTCOME-003298",
+      "JOR-OUTCOME-003299",
+      "JOR-OUTCOME-003300",
+      "JOR-OUTCOME-003858",
+      "JOR-OUTCOME-003859",
+      "JOR-OUTCOME-003860"
+    ],
+    "lessonIds": [
+      "JOR-G05-SCI-U03-L04",
+      "JOR-G06-SCI-U03-L04",
+      "JOR-G07-SCI-U03-L04"
+    ],
+    "belongsTo": "JOR-OUTCOME-002738"
+  },
+  "createdAt": "2026-07-31T17:56:56.868Z",
+  "updatedAt": "2026-07-31T17:56:57.011Z"
+}

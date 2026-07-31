@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-G01-SOC-U02-L04",
+  "kind": "lesson",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "الوطن والرمز — تقويم وتعزيز",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G01-SOC-U02",
+  "relationships": {
+    "unitId": "JOR-G01-SOC-U02",
+    "bookId": "JOR-BOOK-000017",
+    "subjectId": "JOR-G01-SOC",
+    "gradeId": "JOR-G01",
+    "belongsTo": "JOR-G01-SOC-U02"
+  },
+  "createdAt": "2026-07-31T17:56:56.723Z",
+  "updatedAt": "2026-07-31T17:56:56.723Z",
+  "lessonCode": "L04",
+  "sequence": 4,
+  "legacyLessonId": "L2.4",
+  "keywords": [
+    "مجتمع",
+    "مؤسسة",
+    "موارد"
+  ]
+}

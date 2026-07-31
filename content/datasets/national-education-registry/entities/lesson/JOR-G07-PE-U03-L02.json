@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-G07-PE-U03-L02",
+  "kind": "lesson",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "القواعد الرياضية — بناء المهارة",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G07-PE-U03",
+  "relationships": {
+    "unitId": "JOR-G07-PE-U03",
+    "bookId": "JOR-BOOK-000073",
+    "subjectId": "JOR-G07-PE",
+    "gradeId": "JOR-G07",
+    "belongsTo": "JOR-G07-PE-U03"
+  },
+  "createdAt": "2026-07-31T17:56:56.976Z",
+  "updatedAt": "2026-07-31T17:56:56.976Z",
+  "lessonCode": "L02",
+  "sequence": 2,
+  "legacyLessonId": "L3.2",
+  "keywords": [
+    "مهارة حركية",
+    "لياقة",
+    "تعاون"
+  ]
+}

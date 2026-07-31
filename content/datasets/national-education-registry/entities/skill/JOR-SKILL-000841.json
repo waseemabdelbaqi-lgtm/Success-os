@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-SKILL-000841",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«Advanced Grammar — بناء المهارة» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-005632",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-005632",
+      "JOR-OUTCOME-005633",
+      "JOR-OUTCOME-005634",
+      "JOR-OUTCOME-006096",
+      "JOR-OUTCOME-006097",
+      "JOR-OUTCOME-006098"
+    ],
+    "lessonIds": [
+      "JOR-G11-ENG-U02-L02",
+      "JOR-G12-ENG-U02-L02"
+    ],
+    "belongsTo": "JOR-OUTCOME-005632"
+  },
+  "createdAt": "2026-07-31T17:56:57.276Z",
+  "updatedAt": "2026-07-31T17:56:57.355Z"
+}

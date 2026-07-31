@@ -1,0 +1,16 @@
+{
+  "globalId": "JOR-LAW-000030",
+  "kind": "scientificLaw",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "مفهوم/علاقة: واجب — يُشرح ويُطبَّق ضمن سيادة القانون — بناء المهارة",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G09-التربيةا-U03-L02",
+  "relationships": {
+    "lessonId": "JOR-G09-التربيةا-U03-L02",
+    "belongsTo": "JOR-G09-التربيةا-U03-L02"
+  },
+  "createdAt": "2026-07-31T17:56:57.165Z",
+  "updatedAt": "2026-07-31T17:56:57.165Z"
+}

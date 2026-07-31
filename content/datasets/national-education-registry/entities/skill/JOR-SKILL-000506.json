@@ -1,0 +1,31 @@
+{
+  "globalId": "JOR-SKILL-000506",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«السيرة النبوية — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-002415",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-002415",
+      "JOR-OUTCOME-002416",
+      "JOR-OUTCOME-002417",
+      "JOR-OUTCOME-002975",
+      "JOR-OUTCOME-002976",
+      "JOR-OUTCOME-002977",
+      "JOR-OUTCOME-003535",
+      "JOR-OUTCOME-003536",
+      "JOR-OUTCOME-003537"
+    ],
+    "lessonIds": [
+      "JOR-G05-ISL-U03-L03",
+      "JOR-G06-ISL-U03-L03",
+      "JOR-G07-ISL-U03-L03"
+    ],
+    "belongsTo": "JOR-OUTCOME-002415"
+  },
+  "createdAt": "2026-07-31T17:56:56.836Z",
+  "updatedAt": "2026-07-31T17:56:56.970Z"
+}

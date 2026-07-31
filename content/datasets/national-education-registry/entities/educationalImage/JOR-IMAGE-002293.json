@@ -1,0 +1,17 @@
+{
+  "globalId": "JOR-IMAGE-002293",
+  "kind": "educationalImage",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "مخطط تعليمي لوحدة مهارات عملية",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G12-الزراعة-U02-L01",
+  "relationships": {
+    "lessonId": "JOR-G12-الزراعة-U02-L01",
+    "belongsTo": "JOR-G12-الزراعة-U02-L01"
+  },
+  "createdAt": "2026-07-31T17:56:57.491Z",
+  "updatedAt": "2026-07-31T17:56:57.491Z",
+  "src": null
+}

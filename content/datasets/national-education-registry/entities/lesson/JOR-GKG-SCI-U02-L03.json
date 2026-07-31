@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-GKG-SCI-U02-L03",
+  "kind": "lesson",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "الحواس والملاحظة — تطبيق ومثال",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-GKG-SCI-U02",
+  "relationships": {
+    "unitId": "JOR-GKG-SCI-U02",
+    "bookId": "JOR-BOOK-000144",
+    "subjectId": "JOR-GKG-SCI",
+    "gradeId": "JOR-GKG",
+    "belongsTo": "JOR-GKG-SCI-U02"
+  },
+  "createdAt": "2026-07-31T17:56:57.572Z",
+  "updatedAt": "2026-07-31T17:56:57.572Z",
+  "lessonCode": "L03",
+  "sequence": 3,
+  "legacyLessonId": "L2.3",
+  "keywords": [
+    "مادة",
+    "طاقة",
+    "نظام"
+  ]
+}

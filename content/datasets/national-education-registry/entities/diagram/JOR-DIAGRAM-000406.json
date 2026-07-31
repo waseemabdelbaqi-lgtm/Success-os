@@ -1,0 +1,16 @@
+{
+  "globalId": "JOR-DIAGRAM-000406",
+  "kind": "diagram",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "مخطط تعليمي لوحدة الموسيقى المدرسية",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G02-ARTS-U02-L02",
+  "relationships": {
+    "lessonId": "JOR-G02-ARTS-U02-L02",
+    "belongsTo": "JOR-G02-ARTS-U02-L02"
+  },
+  "createdAt": "2026-07-31T17:56:56.747Z",
+  "updatedAt": "2026-07-31T17:56:56.747Z"
+}

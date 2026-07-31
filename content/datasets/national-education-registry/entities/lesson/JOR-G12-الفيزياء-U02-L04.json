@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-G12-الفيزياء-U02-L04",
+  "kind": "lesson",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "الكهرباء والمغناطيسية — تقويم وتعزيز",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G12-الفيزياء-U02",
+  "relationships": {
+    "unitId": "JOR-G12-الفيزياء-U02",
+    "bookId": "JOR-BOOK-000121",
+    "subjectId": "JOR-G12-الفيزياء",
+    "gradeId": "JOR-G12",
+    "belongsTo": "JOR-G12-الفيزياء-U02"
+  },
+  "createdAt": "2026-07-31T17:56:57.341Z",
+  "updatedAt": "2026-07-31T17:56:57.341Z",
+  "lessonCode": "L04",
+  "sequence": 4,
+  "legacyLessonId": "L2.4",
+  "keywords": [
+    "قوة",
+    "شغل",
+    "طاقة"
+  ]
+}

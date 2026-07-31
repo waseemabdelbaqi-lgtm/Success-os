@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-G01-SOC-U04-L03",
+  "kind": "lesson",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "التاريخ المحلي المبسط — تطبيق ومثال",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G01-SOC-U04",
+  "relationships": {
+    "unitId": "JOR-G01-SOC-U04",
+    "bookId": "JOR-BOOK-000017",
+    "subjectId": "JOR-G01-SOC",
+    "gradeId": "JOR-G01",
+    "belongsTo": "JOR-G01-SOC-U04"
+  },
+  "createdAt": "2026-07-31T17:56:56.724Z",
+  "updatedAt": "2026-07-31T17:56:56.724Z",
+  "lessonCode": "L03",
+  "sequence": 3,
+  "legacyLessonId": "L4.3",
+  "keywords": [
+    "مجتمع",
+    "مؤسسة",
+    "موارد"
+  ]
+}

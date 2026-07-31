@@ -1,0 +1,18 @@
+{
+  "globalId": "JOR-OUTCOME-002146",
+  "kind": "learningOutcome",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«الأعداد والعمليات — مقدمة ومفاهيم» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G04-MATH-U01-L01",
+  "relationships": {
+    "lessonId": "JOR-G04-MATH-U01-L01",
+    "belongsTo": "JOR-G04-MATH-U01-L01"
+  },
+  "createdAt": "2026-07-31T17:56:56.812Z",
+  "updatedAt": "2026-07-31T17:56:56.812Z",
+  "text": "أن يطبّق مهارة مرتبطة بـ«الأعداد والعمليات — مقدمة ومفاهيم» بخطوات واضحة قابلة للتحقق.",
+  "sequence": 2
+}

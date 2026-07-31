@@ -1,0 +1,17 @@
+{
+  "globalId": "JOR-IMAGE-002348",
+  "kind": "educationalImage",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "مخطط تعليمي لوحدة تاريخ الفن",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G12-الفنونوا-U03-L04",
+  "relationships": {
+    "lessonId": "JOR-G12-الفنونوا-U03-L04",
+    "belongsTo": "JOR-G12-الفنونوا-U03-L04"
+  },
+  "createdAt": "2026-07-31T17:56:57.529Z",
+  "updatedAt": "2026-07-31T17:56:57.529Z",
+  "src": null
+}

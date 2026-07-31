@@ -1,0 +1,35 @@
+{
+  "globalId": "JOR-SKILL-000361",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«الموسيقى المدرسية — مقدمة ومفاهيم» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-000765",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-000765",
+      "JOR-OUTCOME-000766",
+      "JOR-OUTCOME-000767",
+      "JOR-OUTCOME-001197",
+      "JOR-OUTCOME-001198",
+      "JOR-OUTCOME-001199",
+      "JOR-OUTCOME-001629",
+      "JOR-OUTCOME-001630",
+      "JOR-OUTCOME-001631",
+      "JOR-OUTCOME-002061",
+      "JOR-OUTCOME-002062",
+      "JOR-OUTCOME-002063"
+    ],
+    "lessonIds": [
+      "JOR-G01-ARTS-U02-L01",
+      "JOR-G02-ARTS-U02-L01",
+      "JOR-G03-ARTS-U02-L01",
+      "JOR-G04-ARTS-U02-L01"
+    ],
+    "belongsTo": "JOR-OUTCOME-000765"
+  },
+  "createdAt": "2026-07-31T17:56:56.719Z",
+  "updatedAt": "2026-07-31T17:56:56.806Z"
+}

@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-GKG-SCI-U04-L02",
+  "kind": "lesson",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "العناية بالبيئة — بناء المهارة",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-GKG-SCI-U04",
+  "relationships": {
+    "unitId": "JOR-GKG-SCI-U04",
+    "bookId": "JOR-BOOK-000144",
+    "subjectId": "JOR-GKG-SCI",
+    "gradeId": "JOR-GKG",
+    "belongsTo": "JOR-GKG-SCI-U04"
+  },
+  "createdAt": "2026-07-31T17:56:57.576Z",
+  "updatedAt": "2026-07-31T17:56:57.576Z",
+  "lessonCode": "L02",
+  "sequence": 2,
+  "legacyLessonId": "L4.2",
+  "keywords": [
+    "مادة",
+    "طاقة",
+    "نظام"
+  ]
+}

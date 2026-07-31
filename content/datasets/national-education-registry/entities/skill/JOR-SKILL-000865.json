@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-SKILL-000865",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«الكتابة الأكاديمية — مقدمة ومفاهيم» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-005689",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-005689",
+      "JOR-OUTCOME-005690",
+      "JOR-OUTCOME-005691",
+      "JOR-OUTCOME-006153",
+      "JOR-OUTCOME-006154",
+      "JOR-OUTCOME-006155"
+    ],
+    "lessonIds": [
+      "JOR-G11-ARAB-U03-L01",
+      "JOR-G12-ARAB-U03-L01"
+    ],
+    "belongsTo": "JOR-OUTCOME-005689"
+  },
+  "createdAt": "2026-07-31T17:56:57.286Z",
+  "updatedAt": "2026-07-31T17:56:57.365Z"
+}

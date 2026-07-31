@@ -1,0 +1,16 @@
+{
+  "globalId": "JOR-DIAGRAM-002069",
+  "kind": "diagram",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "مخطط تعليمي لوحدة Advanced Grammar",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G12-ENG-U02-L01",
+  "relationships": {
+    "lessonId": "JOR-G12-ENG-U02-L01",
+    "belongsTo": "JOR-G12-ENG-U02-L01"
+  },
+  "createdAt": "2026-07-31T17:56:57.355Z",
+  "updatedAt": "2026-07-31T17:56:57.355Z"
+}

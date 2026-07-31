@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-SKILL-000850",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«Essay Writing — مقدمة ومفاهيم» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-005653",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-005653",
+      "JOR-OUTCOME-005654",
+      "JOR-OUTCOME-005655",
+      "JOR-OUTCOME-006117",
+      "JOR-OUTCOME-006118",
+      "JOR-OUTCOME-006119"
+    ],
+    "lessonIds": [
+      "JOR-G11-ENG-U04-L01",
+      "JOR-G12-ENG-U04-L01"
+    ],
+    "belongsTo": "JOR-OUTCOME-005653"
+  },
+  "createdAt": "2026-07-31T17:56:57.280Z",
+  "updatedAt": "2026-07-31T17:56:57.359Z"
+}

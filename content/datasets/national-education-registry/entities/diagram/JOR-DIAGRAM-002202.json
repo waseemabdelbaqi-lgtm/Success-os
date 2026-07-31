@@ -1,0 +1,16 @@
+{
+  "globalId": "JOR-DIAGRAM-002202",
+  "kind": "diagram",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "مخطط تعليمي لوحدة معايير السلامة والجودة",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G11-السفروال-U03-L02",
+  "relationships": {
+    "lessonId": "JOR-G11-السفروال-U03-L02",
+    "belongsTo": "JOR-G11-السفروال-U03-L02"
+  },
+  "createdAt": "2026-07-31T17:56:57.423Z",
+  "updatedAt": "2026-07-31T17:56:57.423Z"
+}

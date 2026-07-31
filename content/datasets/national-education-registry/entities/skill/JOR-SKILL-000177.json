@@ -1,0 +1,31 @@
+{
+  "globalId": "JOR-SKILL-000177",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«المواطنة الفاعلة — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-000363",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-000363",
+      "JOR-OUTCOME-000364",
+      "JOR-OUTCOME-000365",
+      "JOR-OUTCOME-004427",
+      "JOR-OUTCOME-004428",
+      "JOR-OUTCOME-004429",
+      "JOR-OUTCOME-005083",
+      "JOR-OUTCOME-005084",
+      "JOR-OUTCOME-005085"
+    ],
+    "lessonIds": [
+      "JOR-G10-SOC-U04-L03",
+      "JOR-G08-SOC-U04-L03",
+      "JOR-G09-SOC-U04-L03"
+    ],
+    "belongsTo": "JOR-OUTCOME-000363"
+  },
+  "createdAt": "2026-07-31T17:56:56.700Z",
+  "updatedAt": "2026-07-31T17:56:57.187Z"
+}

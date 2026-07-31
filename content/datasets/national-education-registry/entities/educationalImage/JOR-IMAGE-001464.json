@@ -1,0 +1,17 @@
+{
+  "globalId": "JOR-IMAGE-001464",
+  "kind": "educationalImage",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "مخطط تعليمي لوحدة المصارف المبسطة",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G08-الثقافةا-U02-L04",
+  "relationships": {
+    "lessonId": "JOR-G08-الثقافةا-U02-L04",
+    "belongsTo": "JOR-G08-الثقافةا-U02-L04"
+  },
+  "createdAt": "2026-07-31T17:56:57.073Z",
+  "updatedAt": "2026-07-31T17:56:57.073Z",
+  "src": null
+}

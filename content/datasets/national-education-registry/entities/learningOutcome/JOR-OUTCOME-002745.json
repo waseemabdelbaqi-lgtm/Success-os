@@ -1,0 +1,18 @@
+{
+  "globalId": "JOR-OUTCOME-002745",
+  "kind": "learningOutcome",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«النظم البيئية — بناء المهارة» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G05-SCI-U04-L02",
+  "relationships": {
+    "lessonId": "JOR-G05-SCI-U04-L02",
+    "belongsTo": "JOR-G05-SCI-U04-L02"
+  },
+  "createdAt": "2026-07-31T17:56:56.868Z",
+  "updatedAt": "2026-07-31T17:56:56.868Z",
+  "text": "أن يطبّق مهارة مرتبطة بـ«النظم البيئية — بناء المهارة» بخطوات واضحة قابلة للتحقق.",
+  "sequence": 2
+}

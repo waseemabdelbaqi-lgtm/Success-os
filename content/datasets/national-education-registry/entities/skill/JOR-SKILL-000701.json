@@ -1,0 +1,31 @@
+{
+  "globalId": "JOR-SKILL-000701",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«البلاغة المبسطة — بناء المهارة» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-002876",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-002876",
+      "JOR-OUTCOME-002877",
+      "JOR-OUTCOME-002878",
+      "JOR-OUTCOME-003436",
+      "JOR-OUTCOME-003437",
+      "JOR-OUTCOME-003438",
+      "JOR-OUTCOME-003996",
+      "JOR-OUTCOME-003997",
+      "JOR-OUTCOME-003998"
+    ],
+    "lessonIds": [
+      "JOR-G05-ARAB-U03-L02",
+      "JOR-G06-ARAB-U03-L02",
+      "JOR-G07-ARAB-U03-L02"
+    ],
+    "belongsTo": "JOR-OUTCOME-002876"
+  },
+  "createdAt": "2026-07-31T17:56:56.882Z",
+  "updatedAt": "2026-07-31T17:56:57.029Z"
+}

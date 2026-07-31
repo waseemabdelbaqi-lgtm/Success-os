@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-G08-ISL-U04-L04",
+  "kind": "lesson",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "الأخلاق والتعامل — تقويم وتعزيز",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G08-ISL-U04",
+  "relationships": {
+    "unitId": "JOR-G08-ISL-U04",
+    "bookId": "JOR-BOOK-000084",
+    "subjectId": "JOR-G08-ISL",
+    "gradeId": "JOR-G08",
+    "belongsTo": "JOR-G08-ISL-U04"
+  },
+  "createdAt": "2026-07-31T17:56:57.050Z",
+  "updatedAt": "2026-07-31T17:56:57.050Z",
+  "lessonCode": "L04",
+  "sequence": 4,
+  "legacyLessonId": "L4.4",
+  "keywords": [
+    "عقيدة",
+    "عبادة",
+    "خلق"
+  ]
+}

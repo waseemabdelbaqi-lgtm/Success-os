@@ -1,0 +1,51 @@
+{
+  "globalId": "JOR-SKILL-000814",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يتعرف المتعلم مفهومًا محوريًا في الكيمياء ضمن بنية الذرة والجدول الدوري بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 11.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-005569",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-005569",
+      "JOR-OUTCOME-005570",
+      "JOR-OUTCOME-005571",
+      "JOR-OUTCOME-005572",
+      "JOR-OUTCOME-005573",
+      "JOR-OUTCOME-005574",
+      "JOR-OUTCOME-005575",
+      "JOR-OUTCOME-005576",
+      "JOR-OUTCOME-005577",
+      "JOR-OUTCOME-005578",
+      "JOR-OUTCOME-005579",
+      "JOR-OUTCOME-005580",
+      "JOR-OUTCOME-006033",
+      "JOR-OUTCOME-006034",
+      "JOR-OUTCOME-006035",
+      "JOR-OUTCOME-006036",
+      "JOR-OUTCOME-006037",
+      "JOR-OUTCOME-006038",
+      "JOR-OUTCOME-006039",
+      "JOR-OUTCOME-006040",
+      "JOR-OUTCOME-006041",
+      "JOR-OUTCOME-006042",
+      "JOR-OUTCOME-006043",
+      "JOR-OUTCOME-006044"
+    ],
+    "lessonIds": [
+      "JOR-G11-الكيمياء-U01-L01",
+      "JOR-G11-الكيمياء-U01-L02",
+      "JOR-G11-الكيمياء-U01-L03",
+      "JOR-G11-الكيمياء-U01-L04",
+      "JOR-G12-الكيمياء-U01-L01",
+      "JOR-G12-الكيمياء-U01-L02",
+      "JOR-G12-الكيمياء-U01-L03",
+      "JOR-G12-الكيمياء-U01-L04"
+    ],
+    "belongsTo": "JOR-OUTCOME-005569"
+  },
+  "createdAt": "2026-07-31T17:56:57.268Z",
+  "updatedAt": "2026-07-31T17:56:57.347Z"
+}

@@ -47,6 +47,15 @@ function rootDir() {
 }
 
 function booksDir() {
+  // Prefer committed in-repo books; fall back to legacy gitignored library path.
+  const committed = path.join(
+    rootDir(),
+    'content',
+    'datasets',
+    'global-knowledge',
+    'books',
+  );
+  if (fs.existsSync(committed)) return committed;
   return path.join(rootDir(), 'library', 'global-knowledge', 'books');
 }
 
@@ -55,7 +64,14 @@ function draftsDir() {
 }
 
 function previewDir() {
-  return path.join(rootDir(), 'library', 'middle-east-live-preview');
+  const committed = path.join(
+    rootDir(),
+    'content',
+    'datasets',
+    'middle-east-live-preview',
+  );
+  // Always prefer committed store so Jordan books ship with the repo.
+  return committed;
 }
 
 function indexPath() {

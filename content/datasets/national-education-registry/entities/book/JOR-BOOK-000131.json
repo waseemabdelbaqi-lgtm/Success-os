@@ -1,0 +1,19 @@
+{
+  "globalId": "JOR-BOOK-000131",
+  "kind": "book",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "Success OS — الضيافة",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G11-الضيافة",
+  "relationships": {
+    "subjectId": "JOR-G11-الضيافة",
+    "gradeId": "JOR-G11",
+    "belongsTo": "JOR-G11-الضيافة"
+  },
+  "createdAt": "2026-07-31T17:56:57.427Z",
+  "updatedAt": "2026-07-31T17:56:57.427Z",
+  "legacyBookId": "jordan__التعليم-الثانوي-المسار-المهني-btec__jordan-national-curriculum__الصف-11__الضيافة__ar",
+  "officialSource": "https://www.nccd.gov.jo/ar/pages/TextBooksGrade/117"
+}

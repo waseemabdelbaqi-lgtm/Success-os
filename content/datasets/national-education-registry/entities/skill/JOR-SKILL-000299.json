@@ -1,0 +1,31 @@
+{
+  "globalId": "JOR-SKILL-000299",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«خوارزميات مبسطة — بناء المهارة» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-000612",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-000612",
+      "JOR-OUTCOME-000613",
+      "JOR-OUTCOME-000614",
+      "JOR-OUTCOME-004676",
+      "JOR-OUTCOME-004677",
+      "JOR-OUTCOME-004678",
+      "JOR-OUTCOME-005332",
+      "JOR-OUTCOME-005333",
+      "JOR-OUTCOME-005334"
+    ],
+    "lessonIds": [
+      "JOR-G10-ICT-U01-L02",
+      "JOR-G08-ICT-U01-L02",
+      "JOR-G09-ICT-U01-L02"
+    ],
+    "belongsTo": "JOR-OUTCOME-000612"
+  },
+  "createdAt": "2026-07-31T17:56:56.712Z",
+  "updatedAt": "2026-07-31T17:56:57.228Z"
+}

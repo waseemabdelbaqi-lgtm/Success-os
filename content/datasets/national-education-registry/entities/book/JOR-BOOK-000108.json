@@ -1,0 +1,19 @@
+{
+  "globalId": "JOR-BOOK-000108",
+  "kind": "book",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "Success OS — المهارات الرقمية",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G09-ICT",
+  "relationships": {
+    "subjectId": "JOR-G09-ICT",
+    "gradeId": "JOR-G09",
+    "belongsTo": "JOR-G09-ICT"
+  },
+  "createdAt": "2026-07-31T17:56:57.228Z",
+  "updatedAt": "2026-07-31T17:56:57.228Z",
+  "legacyBookId": "jordan__التعليم-الأساسي__jordan-national-curriculum__الصف-9__المهارات-الرقمية__ar",
+  "officialSource": "https://www.nccd.gov.jo/ar/pages/TextBooksGrade/76"
+}

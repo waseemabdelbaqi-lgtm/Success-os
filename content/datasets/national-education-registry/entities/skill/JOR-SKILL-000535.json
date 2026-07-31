@@ -1,0 +1,31 @@
+{
+  "globalId": "JOR-SKILL-000535",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«إدارة الوقت — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-002487",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-002487",
+      "JOR-OUTCOME-002488",
+      "JOR-OUTCOME-002489",
+      "JOR-OUTCOME-003047",
+      "JOR-OUTCOME-003048",
+      "JOR-OUTCOME-003049",
+      "JOR-OUTCOME-003607",
+      "JOR-OUTCOME-003608",
+      "JOR-OUTCOME-003609"
+    ],
+    "lessonIds": [
+      "JOR-G05-التربيةا-U01-L03",
+      "JOR-G06-التربيةا-U01-L03",
+      "JOR-G07-التربيةا-U01-L03"
+    ],
+    "belongsTo": "JOR-OUTCOME-002487"
+  },
+  "createdAt": "2026-07-31T17:56:56.843Z",
+  "updatedAt": "2026-07-31T17:56:56.979Z"
+}

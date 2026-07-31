@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-G05-ENG-U03-L03",
+  "kind": "lesson",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "Reading Comprehension — تطبيق ومثال",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G05-ENG-U03",
+  "relationships": {
+    "unitId": "JOR-G05-ENG-U03",
+    "bookId": "JOR-BOOK-000058",
+    "subjectId": "JOR-G05-ENG",
+    "gradeId": "JOR-G05",
+    "belongsTo": "JOR-G05-ENG-U03"
+  },
+  "createdAt": "2026-07-31T17:56:56.877Z",
+  "updatedAt": "2026-07-31T17:56:56.877Z",
+  "lessonCode": "L03",
+  "sequence": 3,
+  "legacyLessonId": "L3.3",
+  "keywords": [
+    "vocabulary",
+    "structure",
+    "fluency"
+  ]
+}
