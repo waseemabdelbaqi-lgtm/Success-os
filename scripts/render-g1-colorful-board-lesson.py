@@ -209,7 +209,7 @@ def classroom_base() -> Image.Image:
     d.text((WIDTH - 36, 36), "الصف 1", font=font(FONT_AR, 16), fill=(120, 90, 70), anchor="rm")
 
     # floor
-    d.rectangle((0, HEIGHT - 48), fill=(210, 175, 130))
+    d.rectangle((0, HEIGHT - 48, WIDTH, HEIGHT), fill=(210, 175, 130))
     d.rectangle((0, HEIGHT - 54, WIDTH, HEIGHT - 46), fill=(180, 145, 105))
     return img
 
