@@ -262,6 +262,25 @@ export function CurriculumImportDashboard(): ReactNode {
             Open Mapping Engine
           </a>
         </p>
+        <p style={{ fontSize: 12, color: "#475569", margin: "0.25rem 0 0" }}>
+          Student → AI Teacher → Conversation → Reasoning → Student Memory → Knowledge Graph →
+          Curriculum Registry → ILE → Digital Books → Videos → Assessments ·{" "}
+          <a href="/admin/ai-teacher-engine" style={{ color: "#0f766e" }}>
+            AI Teacher Engine
+          </a>
+          {" · "}
+          <a href="/admin/ai-digital-human-teacher" style={{ color: "#0f766e" }}>
+            Digital Human Teacher
+          </a>
+          {" · "}
+          <a href="/admin/education-intelligence-core" style={{ color: "#0f766e" }}>
+            Education Intelligence
+          </a>
+          {" · "}
+          <a href="/admin/student-ai-learning-stack" style={{ color: "#0f766e" }}>
+            Open Learning Stack
+          </a>
+        </p>
         {notice ? (
           <p style={{ color: "#0f766e", fontSize: 13, margin: "0.5rem 0 0" }}>{notice}</p>
         ) : null}

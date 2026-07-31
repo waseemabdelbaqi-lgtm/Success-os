@@ -1,0 +1,1871 @@
+{
+  "schema": "success-os.jordan-curriculum-export.v1",
+  "exportedAt": "2026-07-31T13:46:10.115Z",
+  "country": {
+    "code": "JO",
+    "name": {
+      "en": "Jordan",
+      "ar": "الأردن"
+    },
+    "curriculum": {
+      "en": "Jordan National Curriculum",
+      "ar": "المنهاج الوطني الأردني"
+    },
+    "authorities": [
+      {
+        "name": "National Center for Curriculum Development (NCCD)",
+        "nameAr": "المركز الوطني لتطوير المناهج",
+        "url": "https://www.nccd.gov.jo/"
+      },
+      {
+        "name": "Jordan Ministry of Education",
+        "nameAr": "وزارة التربية والتعليم الأردنية",
+        "url": "https://moe.gov.jo/"
+      },
+      {
+        "name": "Darsak Platform",
+        "nameAr": "منصة درسك",
+        "url": "https://darsak.gov.jo/"
+      }
+    ]
+  },
+  "notes": [
+    "Metadata / structure export for Success OS — does not copy textbook prose.",
+    "Grade 1 reference tree is the densest verified sample in this bundle.",
+    "Grade catalogue URLs point to official NCCD textbook pages for further pull.",
+    "Manus / importers should treat rightsStatus and verificationStatus as gates."
+  ],
+  "idConvention": {
+    "country": "JO",
+    "curriculum": "JO-NATIONAL",
+    "grade": "JO-NATIONAL-G01",
+    "subject": "JO-NATIONAL-G01-MATH",
+    "book": "JO-NATIONAL-G01-MATH-B01",
+    "unit": "JO-NATIONAL-G01-MATH-B01-U01",
+    "lesson": "JO-NATIONAL-G01-MATH-B01-U01-L01"
+  },
+  "gradesCatalogue": [
+    {
+      "grade": 1,
+      "stageAr": "التعليم الأساسي",
+      "nccdUrl": "https://www.nccd.gov.jo/ar/pages/TextBooksGrade/68"
+    },
+    {
+      "grade": 2,
+      "stageAr": "التعليم الأساسي",
+      "nccdUrl": "https://www.nccd.gov.jo/ar/pages/TextBooksGrade/69"
+    },
+    {
+      "grade": 3,
+      "stageAr": "التعليم الأساسي",
+      "nccdUrl": "https://www.nccd.gov.jo/ar/pages/TextBooksGrade/70"
+    },
+    {
+      "grade": 4,
+      "stageAr": "التعليم الأساسي",
+      "nccdUrl": "https://www.nccd.gov.jo/ar/pages/TextBooksGrade/71"
+    },
+    {
+      "grade": 5,
+      "stageAr": "التعليم الأساسي",
+      "nccdUrl": "https://www.nccd.gov.jo/ar/pages/TextBooksGrade/72"
+    },
+    {
+      "grade": 6,
+      "stageAr": "التعليم الأساسي",
+      "nccdUrl": "https://www.nccd.gov.jo/ar/pages/TextBooksGrade/73"
+    },
+    {
+      "grade": 7,
+      "stageAr": "التعليم الأساسي",
+      "nccdUrl": "https://www.nccd.gov.jo/ar/pages/TextBooksGrade/74"
+    },
+    {
+      "grade": 8,
+      "stageAr": "التعليم الأساسي",
+      "nccdUrl": "https://www.nccd.gov.jo/ar/pages/TextBooksGrade/75"
+    },
+    {
+      "grade": 9,
+      "stageAr": "التعليم الأساسي",
+      "nccdUrl": "https://www.nccd.gov.jo/ar/pages/TextBooksGrade/76"
+    },
+    {
+      "grade": 10,
+      "stageAr": "التعليم الأساسي",
+      "nccdUrl": "https://www.nccd.gov.jo/ar/pages/TextBooksGrade/77"
+    },
+    {
+      "grade": 11,
+      "stageAr": "التعليم الثانوي — المسار الأكاديمي",
+      "nccdUrl": "https://www.nccd.gov.jo/ar/pages/TextBooksGrade/117"
+    },
+    {
+      "grade": 12,
+      "stageAr": "التعليم الثانوي — المسار الأكاديمي",
+      "nccdUrl": "https://www.nccd.gov.jo/ar/pages/TextBooksGrade/83"
+    }
+  ],
+  "grade1SubjectsVerified": [
+    "اللغة العربية",
+    "اللغة الإنجليزية",
+    "الرياضيات",
+    "العلوم",
+    "التربية الإسلامية",
+    "الدراسات الاجتماعية",
+    "المهارات الرقمية",
+    "التربية الرياضية",
+    "التربية الفنية والموسيقية والمسرحية"
+  ],
+  "referenceDataset": {
+    "schema": "success-os.jordan-reference-dataset.v1",
+    "idConvention": {
+      "pattern": "{COUNTRY} / {COUNTRY}-{CURRICULUM} / …-G{nn} / …-{SUBJECT} / …-B{nn} / …-U{nn} / …-L{nn}",
+      "example": {
+        "country": "JO",
+        "curriculum": "JO-NATIONAL",
+        "grade": "JO-NATIONAL-G01",
+        "subject": "JO-NATIONAL-G01-MATH",
+        "book": "JO-NATIONAL-G01-MATH-B01",
+        "unit": "JO-NATIONAL-G01-MATH-B01-U01",
+        "lesson": "JO-NATIONAL-G01-MATH-B01-U01-L01"
+      }
+    },
+    "country": {
+      "id": "JO",
+      "code": "JO",
+      "name": {
+        "en": "Jordan",
+        "ar": "الأردن"
+      }
+    },
+    "curriculum": {
+      "id": "JO-NATIONAL",
+      "name": {
+        "en": "Jordan National Curriculum",
+        "ar": "المنهاج الوطني الأردني"
+      },
+      "academicYear": "2025/2026",
+      "kind": "national"
+    },
+    "source": {
+      "id": "JO-NCCD-REFERENCE",
+      "authority": "National Center for Curriculum Development (NCCD)",
+      "license": "structure-reference-only",
+      "connectorId": "jordan-reference-dataset"
+    },
+    "grades": [
+      {
+        "id": "JO-NATIONAL-G01",
+        "code": "G01",
+        "name": {
+          "en": "Grade 1",
+          "ar": "الصف الأول"
+        },
+        "order": 1,
+        "semesterId": "JO-NATIONAL-G01-S01",
+        "semesterName": {
+          "en": "Semester 1",
+          "ar": "الفصل الدراسي الأول"
+        },
+        "subjects": [
+          {
+            "id": "JO-NATIONAL-G01-MATH",
+            "code": "MATH",
+            "name": {
+              "en": "Mathematics",
+              "ar": "الرياضيات"
+            },
+            "books": [
+              {
+                "id": "JO-NATIONAL-G01-MATH-B01",
+                "part": "Book 1",
+                "title": {
+                  "en": "Mathematics — Grade 1 — Book 1",
+                  "ar": "الرياضيات - الصف الأول - الكتاب 1"
+                },
+                "units": [
+                  {
+                    "id": "JO-NATIONAL-G01-MATH-B01-U01",
+                    "order": 1,
+                    "title": {
+                      "en": "Unit 1 — Numbers around us",
+                      "ar": "الوحدة 1 — الأعداد من حولنا"
+                    },
+                    "lessons": [
+                      {
+                        "id": "JO-NATIONAL-G01-MATH-B01-U01-L01",
+                        "order": 1,
+                        "title": {
+                          "en": "Lesson 1 — Count to three",
+                          "ar": "الدرس 1 — العدّ حتى ثلاثة"
+                        },
+                        "objectives": [
+                          {
+                            "en": "Identify core idea of Lesson 1 — Count to three",
+                            "ar": "تحديد الفكرة الأساسية لـ الدرس 1 — العدّ حتى ثلاثة"
+                          },
+                          {
+                            "en": "Apply Lesson 1 — Count to three in a simple classroom task",
+                            "ar": "تطبيق الدرس 1 — العدّ حتى ثلاثة في مهمة صفية بسيطة"
+                          }
+                        ],
+                        "keywords": [
+                          "lesson",
+                          "1",
+                          "count",
+                          "to",
+                          "three"
+                        ],
+                        "references": [
+                          {
+                            "label": {
+                              "en": "NCCD structure baseline",
+                              "ar": "خط أساس بنية المركز الوطني"
+                            },
+                            "href": "https://nccd.gov.jo"
+                          }
+                        ],
+                        "rightsStatus": "verified",
+                        "verificationStatus": "verified",
+                        "packageEligible": true
+                      },
+                      {
+                        "id": "JO-NATIONAL-G01-MATH-B01-U01-L02",
+                        "order": 2,
+                        "title": {
+                          "en": "Lesson 2 — Count to five",
+                          "ar": "الدرس 2 — العدّ حتى خمسة"
+                        },
+                        "objectives": [
+                          {
+                            "en": "Identify core idea of Lesson 2 — Count to five",
+                            "ar": "تحديد الفكرة الأساسية لـ الدرس 2 — العدّ حتى خمسة"
+                          },
+                          {
+                            "en": "Apply Lesson 2 — Count to five in a simple classroom task",
+                            "ar": "تطبيق الدرس 2 — العدّ حتى خمسة في مهمة صفية بسيطة"
+                          }
+                        ],
+                        "keywords": [
+                          "lesson",
+                          "2",
+                          "count",
+                          "to",
+                          "five"
+                        ],
+                        "references": [
+                          {
+                            "label": {
+                              "en": "NCCD structure baseline",
+                              "ar": "خط أساس بنية المركز الوطني"
+                            },
+                            "href": "https://nccd.gov.jo"
+                          }
+                        ],
+                        "rightsStatus": "verified",
+                        "verificationStatus": "verified",
+                        "packageEligible": true
+                      },
+                      {
+                        "id": "JO-NATIONAL-G01-MATH-B01-U01-L03",
+                        "order": 3,
+                        "title": {
+                          "en": "Lesson 3 — Compare small sets",
+                          "ar": "الدرس 3 — مقارنة مجموعات صغيرة"
+                        },
+                        "objectives": [
+                          {
+                            "en": "Identify core idea of Lesson 3 — Compare small sets",
+                            "ar": "تحديد الفكرة الأساسية لـ الدرس 3 — مقارنة مجموعات صغيرة"
+                          },
+                          {
+                            "en": "Apply Lesson 3 — Compare small sets in a simple classroom task",
+                            "ar": "تطبيق الدرس 3 — مقارنة مجموعات صغيرة في مهمة صفية بسيطة"
+                          }
+                        ],
+                        "keywords": [
+                          "lesson",
+                          "3",
+                          "compare",
+                          "small",
+                          "sets"
+                        ],
+                        "references": [
+                          {
+                            "label": {
+                              "en": "NCCD structure baseline",
+                              "ar": "خط أساس بنية المركز الوطني"
+                            },
+                            "href": "https://nccd.gov.jo"
+                          }
+                        ],
+                        "rightsStatus": "verified",
+                        "verificationStatus": "verified",
+                        "packageEligible": true
+                      }
+                    ]
+                  },
+                  {
+                    "id": "JO-NATIONAL-G01-MATH-B01-U02",
+                    "order": 2,
+                    "title": {
+                      "en": "Unit 2 — Shapes",
+                      "ar": "الوحدة 2 — الأشكال"
+                    },
+                    "lessons": [
+                      {
+                        "id": "JO-NATIONAL-G01-MATH-B01-U02-L01",
+                        "order": 1,
+                        "title": {
+                          "en": "Lesson 1 — Circles and squares",
+                          "ar": "الدرس 1 — الدائرة والمربع"
+                        },
+                        "objectives": [
+                          {
+                            "en": "Identify core idea of Lesson 1 — Circles and squares",
+                            "ar": "تحديد الفكرة الأساسية لـ الدرس 1 — الدائرة والمربع"
+                          },
+                          {
+                            "en": "Apply Lesson 1 — Circles and squares in a simple classroom task",
+                            "ar": "تطبيق الدرس 1 — الدائرة والمربع في مهمة صفية بسيطة"
+                          }
+                        ],
+                        "keywords": [
+                          "lesson",
+                          "1",
+                          "circles",
+                          "and",
+                          "squares"
+                        ],
+                        "references": [
+                          {
+                            "label": {
+                              "en": "NCCD structure baseline",
+                              "ar": "خط أساس بنية المركز الوطني"
+                            },
+                            "href": "https://nccd.gov.jo"
+                          }
+                        ],
+                        "rightsStatus": "verified",
+                        "verificationStatus": "verified",
+                        "packageEligible": true
+                      },
+                      {
+                        "id": "JO-NATIONAL-G01-MATH-B01-U02-L02",
+                        "order": 2,
+                        "title": {
+                          "en": "Lesson 2 — Triangles",
+                          "ar": "الدرس 2 — المثلث"
+                        },
+                        "objectives": [
+                          {
+                            "en": "Identify core idea of Lesson 2 — Triangles",
+                            "ar": "تحديد الفكرة الأساسية لـ الدرس 2 — المثلث"
+                          },
+                          {
+                            "en": "Apply Lesson 2 — Triangles in a simple classroom task",
+                            "ar": "تطبيق الدرس 2 — المثلث في مهمة صفية بسيطة"
+                          }
+                        ],
+                        "keywords": [
+                          "lesson",
+                          "2",
+                          "triangles"
+                        ],
+                        "references": [
+                          {
+                            "label": {
+                              "en": "NCCD structure baseline",
+                              "ar": "خط أساس بنية المركز الوطني"
+                            },
+                            "href": "https://nccd.gov.jo"
+                          }
+                        ],
+                        "rightsStatus": "verified",
+                        "verificationStatus": "pending",
+                        "packageEligible": false
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "JO-NATIONAL-G01-MATH-B02",
+                "part": "Book 2",
+                "title": {
+                  "en": "Mathematics — Grade 1 — Book 2",
+                  "ar": "الرياضيات - الصف الأول - الكتاب 2"
+                },
+                "units": [
+                  {
+                    "id": "JO-NATIONAL-G01-MATH-B02-U01",
+                    "order": 1,
+                    "title": {
+                      "en": "Unit 1 — Addition readiness",
+                      "ar": "الوحدة 1 — الاستعداد للجمع"
+                    },
+                    "lessons": [
+                      {
+                        "id": "JO-NATIONAL-G01-MATH-B02-U01-L01",
+                        "order": 1,
+                        "title": {
+                          "en": "Lesson 1 — Putting together",
+                          "ar": "الدرس 1 — الجمع معًا"
+                        },
+                        "objectives": [
+                          {
+                            "en": "Identify core idea of Lesson 1 — Putting together",
+                            "ar": "تحديد الفكرة الأساسية لـ الدرس 1 — الجمع معًا"
+                          },
+                          {
+                            "en": "Apply Lesson 1 — Putting together in a simple classroom task",
+                            "ar": "تطبيق الدرس 1 — الجمع معًا في مهمة صفية بسيطة"
+                          }
+                        ],
+                        "keywords": [
+                          "lesson",
+                          "1",
+                          "putting",
+                          "together"
+                        ],
+                        "references": [
+                          {
+                            "label": {
+                              "en": "NCCD structure baseline",
+                              "ar": "خط أساس بنية المركز الوطني"
+                            },
+                            "href": "https://nccd.gov.jo"
+                          }
+                        ],
+                        "rightsStatus": "restricted",
+                        "verificationStatus": "pending",
+                        "packageEligible": false
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "JO-NATIONAL-G01-AR",
+            "code": "AR",
+            "name": {
+              "en": "Arabic",
+              "ar": "اللغة العربية"
+            },
+            "books": [
+              {
+                "id": "JO-NATIONAL-G01-AR-B01",
+                "part": "Book 1",
+                "title": {
+                  "en": "Arabic — Grade 1 — Book 1",
+                  "ar": "اللغة العربية - الصف الأول - الكتاب 1"
+                },
+                "units": [
+                  {
+                    "id": "JO-NATIONAL-G01-AR-B01-U01",
+                    "order": 1,
+                    "title": {
+                      "en": "Unit 1 — Letters",
+                      "ar": "الوحدة 1 — الحروف"
+                    },
+                    "lessons": [
+                      {
+                        "id": "JO-NATIONAL-G01-AR-B01-U01-L01",
+                        "order": 1,
+                        "title": {
+                          "en": "Lesson 1 — Letter Alif",
+                          "ar": "الدرس 1 — حرف الألف"
+                        },
+                        "objectives": [
+                          {
+                            "en": "Identify core idea of Lesson 1 — Letter Alif",
+                            "ar": "تحديد الفكرة الأساسية لـ الدرس 1 — حرف الألف"
+                          },
+                          {
+                            "en": "Apply Lesson 1 — Letter Alif in a simple classroom task",
+                            "ar": "تطبيق الدرس 1 — حرف الألف في مهمة صفية بسيطة"
+                          }
+                        ],
+                        "keywords": [
+                          "lesson",
+                          "1",
+                          "letter",
+                          "alif"
+                        ],
+                        "references": [
+                          {
+                            "label": {
+                              "en": "NCCD structure baseline",
+                              "ar": "خط أساس بنية المركز الوطني"
+                            },
+                            "href": "https://nccd.gov.jo"
+                          }
+                        ],
+                        "rightsStatus": "verified",
+                        "verificationStatus": "verified",
+                        "packageEligible": true
+                      },
+                      {
+                        "id": "JO-NATIONAL-G01-AR-B01-U01-L02",
+                        "order": 2,
+                        "title": {
+                          "en": "Lesson 2 — Letter Ba",
+                          "ar": "الدرس 2 — حرف الباء"
+                        },
+                        "objectives": [
+                          {
+                            "en": "Identify core idea of Lesson 2 — Letter Ba",
+                            "ar": "تحديد الفكرة الأساسية لـ الدرس 2 — حرف الباء"
+                          },
+                          {
+                            "en": "Apply Lesson 2 — Letter Ba in a simple classroom task",
+                            "ar": "تطبيق الدرس 2 — حرف الباء في مهمة صفية بسيطة"
+                          }
+                        ],
+                        "keywords": [
+                          "lesson",
+                          "2",
+                          "letter",
+                          "ba"
+                        ],
+                        "references": [
+                          {
+                            "label": {
+                              "en": "NCCD structure baseline",
+                              "ar": "خط أساس بنية المركز الوطني"
+                            },
+                            "href": "https://nccd.gov.jo"
+                          }
+                        ],
+                        "rightsStatus": "verified",
+                        "verificationStatus": "verified",
+                        "packageEligible": true
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "JO-NATIONAL-G01-EN",
+            "code": "EN",
+            "name": {
+              "en": "English",
+              "ar": "اللغة الإنجليزية"
+            },
+            "books": [
+              {
+                "id": "JO-NATIONAL-G01-EN-B01",
+                "part": "Book 1",
+                "title": {
+                  "en": "English — Grade 1 — Book 1",
+                  "ar": "الإنجليزية - الصف الأول - الكتاب 1"
+                },
+                "units": [
+                  {
+                    "id": "JO-NATIONAL-G01-EN-B01-U01",
+                    "order": 1,
+                    "title": {
+                      "en": "Unit 1 — Hello",
+                      "ar": "الوحدة 1 — مرحبًا"
+                    },
+                    "lessons": [
+                      {
+                        "id": "JO-NATIONAL-G01-EN-B01-U01-L01",
+                        "order": 1,
+                        "title": {
+                          "en": "Lesson 1 — Greetings",
+                          "ar": "الدرس 1 — التحيات"
+                        },
+                        "objectives": [
+                          {
+                            "en": "Identify core idea of Lesson 1 — Greetings",
+                            "ar": "تحديد الفكرة الأساسية لـ الدرس 1 — التحيات"
+                          },
+                          {
+                            "en": "Apply Lesson 1 — Greetings in a simple classroom task",
+                            "ar": "تطبيق الدرس 1 — التحيات في مهمة صفية بسيطة"
+                          }
+                        ],
+                        "keywords": [
+                          "lesson",
+                          "1",
+                          "greetings"
+                        ],
+                        "references": [
+                          {
+                            "label": {
+                              "en": "NCCD structure baseline",
+                              "ar": "خط أساس بنية المركز الوطني"
+                            },
+                            "href": "https://nccd.gov.jo"
+                          }
+                        ],
+                        "rightsStatus": "verified",
+                        "verificationStatus": "verified",
+                        "packageEligible": true
+                      },
+                      {
+                        "id": "JO-NATIONAL-G01-EN-B01-U01-L02",
+                        "order": 2,
+                        "title": {
+                          "en": "Lesson 2 — My name",
+                          "ar": "الدرس 2 — اسمي"
+                        },
+                        "objectives": [
+                          {
+                            "en": "Identify core idea of Lesson 2 — My name",
+                            "ar": "تحديد الفكرة الأساسية لـ الدرس 2 — اسمي"
+                          },
+                          {
+                            "en": "Apply Lesson 2 — My name in a simple classroom task",
+                            "ar": "تطبيق الدرس 2 — اسمي في مهمة صفية بسيطة"
+                          }
+                        ],
+                        "keywords": [
+                          "lesson",
+                          "2",
+                          "my",
+                          "name"
+                        ],
+                        "references": [
+                          {
+                            "label": {
+                              "en": "NCCD structure baseline",
+                              "ar": "خط أساس بنية المركز الوطني"
+                            },
+                            "href": "https://nccd.gov.jo"
+                          }
+                        ],
+                        "rightsStatus": "rejected",
+                        "verificationStatus": "rejected",
+                        "packageEligible": false
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "JO-NATIONAL-G01-SCI",
+            "code": "SCI",
+            "name": {
+              "en": "Science",
+              "ar": "العلوم"
+            },
+            "books": [
+              {
+                "id": "JO-NATIONAL-G01-SCI-B01",
+                "part": "Book 1",
+                "title": {
+                  "en": "Science — Grade 1 — Book 1",
+                  "ar": "العلوم - الصف الأول - الكتاب 1"
+                },
+                "units": [
+                  {
+                    "id": "JO-NATIONAL-G01-SCI-B01-U01",
+                    "order": 1,
+                    "title": {
+                      "en": "Unit 1 — Living things",
+                      "ar": "الوحدة 1 — الكائنات الحية"
+                    },
+                    "lessons": [
+                      {
+                        "id": "JO-NATIONAL-G01-SCI-B01-U01-L01",
+                        "order": 1,
+                        "title": {
+                          "en": "Lesson 1 — Plants and animals",
+                          "ar": "الدرس 1 — النباتات والحيوانات"
+                        },
+                        "objectives": [
+                          {
+                            "en": "Identify core idea of Lesson 1 — Plants and animals",
+                            "ar": "تحديد الفكرة الأساسية لـ الدرس 1 — النباتات والحيوانات"
+                          },
+                          {
+                            "en": "Apply Lesson 1 — Plants and animals in a simple classroom task",
+                            "ar": "تطبيق الدرس 1 — النباتات والحيوانات في مهمة صفية بسيطة"
+                          }
+                        ],
+                        "keywords": [
+                          "lesson",
+                          "1",
+                          "plants",
+                          "and",
+                          "animals"
+                        ],
+                        "references": [
+                          {
+                            "label": {
+                              "en": "NCCD structure baseline",
+                              "ar": "خط أساس بنية المركز الوطني"
+                            },
+                            "href": "https://nccd.gov.jo"
+                          }
+                        ],
+                        "rightsStatus": "verified",
+                        "verificationStatus": "verified",
+                        "packageEligible": true
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "JO-NATIONAL-G01-ISL",
+            "code": "ISL",
+            "name": {
+              "en": "Islamic Education",
+              "ar": "التربية الإسلامية"
+            },
+            "books": [
+              {
+                "id": "JO-NATIONAL-G01-ISL-B01",
+                "part": "Book 1",
+                "title": {
+                  "en": "Islamic Education — Grade 1 — Book 1",
+                  "ar": "التربية الإسلامية - الصف الأول - الكتاب 1"
+                },
+                "units": [
+                  {
+                    "id": "JO-NATIONAL-G01-ISL-B01-U01",
+                    "order": 1,
+                    "title": {
+                      "en": "Unit 1 — Good manners",
+                      "ar": "الوحدة 1 — الآداب"
+                    },
+                    "lessons": [
+                      {
+                        "id": "JO-NATIONAL-G01-ISL-B01-U01-L01",
+                        "order": 1,
+                        "title": {
+                          "en": "Lesson 1 — Saying salaam",
+                          "ar": "الدرس 1 — إلقاء السلام"
+                        },
+                        "objectives": [
+                          {
+                            "en": "Identify core idea of Lesson 1 — Saying salaam",
+                            "ar": "تحديد الفكرة الأساسية لـ الدرس 1 — إلقاء السلام"
+                          },
+                          {
+                            "en": "Apply Lesson 1 — Saying salaam in a simple classroom task",
+                            "ar": "تطبيق الدرس 1 — إلقاء السلام في مهمة صفية بسيطة"
+                          }
+                        ],
+                        "keywords": [
+                          "lesson",
+                          "1",
+                          "saying",
+                          "salaam"
+                        ],
+                        "references": [
+                          {
+                            "label": {
+                              "en": "NCCD structure baseline",
+                              "ar": "خط أساس بنية المركز الوطني"
+                            },
+                            "href": "https://nccd.gov.jo"
+                          }
+                        ],
+                        "rightsStatus": "verified",
+                        "verificationStatus": "verified",
+                        "packageEligible": true
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "JO-NATIONAL-G01-SOC",
+            "code": "SOC",
+            "name": {
+              "en": "Social Studies",
+              "ar": "التربية الاجتماعية"
+            },
+            "books": [
+              {
+                "id": "JO-NATIONAL-G01-SOC-B01",
+                "part": "Book 1",
+                "title": {
+                  "en": "Social Studies — Grade 1 — Book 1",
+                  "ar": "التربية الاجتماعية - الصف الأول - الكتاب 1"
+                },
+                "units": [
+                  {
+                    "id": "JO-NATIONAL-G01-SOC-B01-U01",
+                    "order": 1,
+                    "title": {
+                      "en": "Unit 1 — My family",
+                      "ar": "الوحدة 1 — أسرتي"
+                    },
+                    "lessons": [
+                      {
+                        "id": "JO-NATIONAL-G01-SOC-B01-U01-L01",
+                        "order": 1,
+                        "title": {
+                          "en": "Lesson 1 — Family members",
+                          "ar": "الدرس 1 — أفراد الأسرة"
+                        },
+                        "objectives": [
+                          {
+                            "en": "Identify core idea of Lesson 1 — Family members",
+                            "ar": "تحديد الفكرة الأساسية لـ الدرس 1 — أفراد الأسرة"
+                          },
+                          {
+                            "en": "Apply Lesson 1 — Family members in a simple classroom task",
+                            "ar": "تطبيق الدرس 1 — أفراد الأسرة في مهمة صفية بسيطة"
+                          }
+                        ],
+                        "keywords": [
+                          "lesson",
+                          "1",
+                          "family",
+                          "members"
+                        ],
+                        "references": [
+                          {
+                            "label": {
+                              "en": "NCCD structure baseline",
+                              "ar": "خط أساس بنية المركز الوطني"
+                            },
+                            "href": "https://nccd.gov.jo"
+                          }
+                        ],
+                        "rightsStatus": "verified",
+                        "verificationStatus": "verified",
+                        "packageEligible": true
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "JO-NATIONAL-G01-ART",
+            "code": "ART",
+            "name": {
+              "en": "Art",
+              "ar": "التربية الفنية"
+            },
+            "books": [
+              {
+                "id": "JO-NATIONAL-G01-ART-B01",
+                "part": "Book 1",
+                "title": {
+                  "en": "Art — Grade 1 — Book 1",
+                  "ar": "التربية الفنية - الصف الأول - الكتاب 1"
+                },
+                "units": [
+                  {
+                    "id": "JO-NATIONAL-G01-ART-B01-U01",
+                    "order": 1,
+                    "title": {
+                      "en": "Unit 1 — Colors",
+                      "ar": "الوحدة 1 — الألوان"
+                    },
+                    "lessons": [
+                      {
+                        "id": "JO-NATIONAL-G01-ART-B01-U01-L01",
+                        "order": 1,
+                        "title": {
+                          "en": "Lesson 1 — Primary colors",
+                          "ar": "الدرس 1 — الألوان الأساسية"
+                        },
+                        "objectives": [
+                          {
+                            "en": "Identify core idea of Lesson 1 — Primary colors",
+                            "ar": "تحديد الفكرة الأساسية لـ الدرس 1 — الألوان الأساسية"
+                          },
+                          {
+                            "en": "Apply Lesson 1 — Primary colors in a simple classroom task",
+                            "ar": "تطبيق الدرس 1 — الألوان الأساسية في مهمة صفية بسيطة"
+                          }
+                        ],
+                        "keywords": [
+                          "lesson",
+                          "1",
+                          "primary",
+                          "colors"
+                        ],
+                        "references": [
+                          {
+                            "label": {
+                              "en": "NCCD structure baseline",
+                              "ar": "خط أساس بنية المركز الوطني"
+                            },
+                            "href": "https://nccd.gov.jo"
+                          }
+                        ],
+                        "rightsStatus": "verified",
+                        "verificationStatus": "verified",
+                        "packageEligible": true
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "JO-NATIONAL-G01-PE",
+            "code": "PE",
+            "name": {
+              "en": "Physical Education",
+              "ar": "التربية الرياضية"
+            },
+            "books": [
+              {
+                "id": "JO-NATIONAL-G01-PE-B01",
+                "part": "Book 1",
+                "title": {
+                  "en": "Physical Education — Grade 1 — Book 1",
+                  "ar": "التربية الرياضية - الصف الأول - الكتاب 1"
+                },
+                "units": [
+                  {
+                    "id": "JO-NATIONAL-G01-PE-B01-U01",
+                    "order": 1,
+                    "title": {
+                      "en": "Unit 1 — Movement",
+                      "ar": "الوحدة 1 — الحركة"
+                    },
+                    "lessons": [
+                      {
+                        "id": "JO-NATIONAL-G01-PE-B01-U01-L01",
+                        "order": 1,
+                        "title": {
+                          "en": "Lesson 1 — Warm-up games",
+                          "ar": "الدرس 1 — ألعاب الإحماء"
+                        },
+                        "objectives": [
+                          {
+                            "en": "Identify core idea of Lesson 1 — Warm-up games",
+                            "ar": "تحديد الفكرة الأساسية لـ الدرس 1 — ألعاب الإحماء"
+                          },
+                          {
+                            "en": "Apply Lesson 1 — Warm-up games in a simple classroom task",
+                            "ar": "تطبيق الدرس 1 — ألعاب الإحماء في مهمة صفية بسيطة"
+                          }
+                        ],
+                        "keywords": [
+                          "lesson",
+                          "1",
+                          "warm",
+                          "up",
+                          "games"
+                        ],
+                        "references": [
+                          {
+                            "label": {
+                              "en": "NCCD structure baseline",
+                              "ar": "خط أساس بنية المركز الوطني"
+                            },
+                            "href": "https://nccd.gov.jo"
+                          }
+                        ],
+                        "rightsStatus": "verified",
+                        "verificationStatus": "verified",
+                        "packageEligible": true
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "officialSourceG1": {
+    "schema": "success-os.official-curriculum-source.v1",
+    "sourceId": "JO-NCCD-G01-2025-2026",
+    "authority": "National Center for Curriculum Development (NCCD)",
+    "connectorId": "jordan-nccd",
+    "countryCode": "JO",
+    "countryName": {
+      "en": "Jordan",
+      "ar": "الأردن"
+    },
+    "curriculumCode": "NATIONAL",
+    "curriculumName": {
+      "en": "Jordan National Curriculum",
+      "ar": "المنهاج الوطني الأردني"
+    },
+    "curriculumKind": "national",
+    "academicYear": "2025/2026",
+    "license": "structure-reference-only",
+    "grades": [
+      {
+        "code": "G01",
+        "name": {
+          "en": "Grade 1",
+          "ar": "الصف الأول"
+        },
+        "order": 1,
+        "semesters": [
+          {
+            "code": "S01",
+            "name": {
+              "en": "Semester 1",
+              "ar": "الفصل الدراسي الأول"
+            },
+            "order": 1
+          }
+        ],
+        "subjects": [
+          {
+            "localCode": "AR",
+            "localLabel": {
+              "en": "Arabic",
+              "ar": "اللغة العربية"
+            },
+            "aliasLabel": "لغة عربية",
+            "semesterCode": "S01",
+            "books": [
+              {
+                "part": "Book 1",
+                "title": {
+                  "en": "Arabic — Grade 1 — Book 1",
+                  "ar": "اللغة العربية - الصف الأول - الكتاب 1"
+                },
+                "language": "ar",
+                "version": "2025.1",
+                "units": [
+                  {
+                    "order": 1,
+                    "title": {
+                      "en": "Unit 1 — Letters",
+                      "ar": "الوحدة 1 — الحروف"
+                    },
+                    "lessons": [
+                      {
+                        "order": 1,
+                        "title": {
+                          "en": "Lesson 1 — Letter Alif",
+                          "ar": "الدرس 1 — حرف الألف"
+                        },
+                        "learningObjectives": [
+                          {
+                            "en": "Identify core idea of Lesson 1 — Letter Alif",
+                            "ar": "تحديد الفكرة الأساسية لـ الدرس 1 — حرف الألف"
+                          },
+                          {
+                            "en": "Apply Lesson 1 — Letter Alif in a simple classroom task",
+                            "ar": "تطبيق الدرس 1 — حرف الألف في مهمة صفية بسيطة"
+                          }
+                        ],
+                        "keywords": [
+                          "lesson",
+                          "1",
+                          "letter",
+                          "alif"
+                        ],
+                        "references": [
+                          {
+                            "label": {
+                              "en": "Jordan National Curriculum — Grade 1",
+                              "ar": "المنهاج الوطني الأردني — الصف الأول"
+                            }
+                          }
+                        ],
+                        "assets": [],
+                        "rightsStatus": "cleared",
+                        "verificationStatus": "verified",
+                        "packageEligible": true
+                      },
+                      {
+                        "order": 2,
+                        "title": {
+                          "en": "Lesson 2 — Letter Ba",
+                          "ar": "الدرس 2 — حرف الباء"
+                        },
+                        "learningObjectives": [
+                          {
+                            "en": "Identify core idea of Lesson 2 — Letter Ba",
+                            "ar": "تحديد الفكرة الأساسية لـ الدرس 2 — حرف الباء"
+                          },
+                          {
+                            "en": "Apply Lesson 2 — Letter Ba in a simple classroom task",
+                            "ar": "تطبيق الدرس 2 — حرف الباء في مهمة صفية بسيطة"
+                          }
+                        ],
+                        "keywords": [
+                          "lesson",
+                          "2",
+                          "letter",
+                          "ba"
+                        ],
+                        "references": [
+                          {
+                            "label": {
+                              "en": "Jordan National Curriculum — Grade 1",
+                              "ar": "المنهاج الوطني الأردني — الصف الأول"
+                            }
+                          }
+                        ],
+                        "assets": [],
+                        "rightsStatus": "cleared",
+                        "verificationStatus": "verified",
+                        "packageEligible": true
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "localCode": "EN",
+            "localLabel": {
+              "en": "English",
+              "ar": "اللغة الإنجليزية"
+            },
+            "aliasLabel": "English",
+            "semesterCode": "S01",
+            "books": [
+              {
+                "part": "Book 1",
+                "title": {
+                  "en": "English — Grade 1 — Book 1",
+                  "ar": "الإنجليزية - الصف الأول - الكتاب 1"
+                },
+                "language": "en",
+                "version": "2025.1",
+                "units": [
+                  {
+                    "order": 1,
+                    "title": {
+                      "en": "Unit 1 — Hello",
+                      "ar": "الوحدة 1 — مرحبًا"
+                    },
+                    "lessons": [
+                      {
+                        "order": 1,
+                        "title": {
+                          "en": "Lesson 1 — Greetings",
+                          "ar": "الدرس 1 — التحيات"
+                        },
+                        "learningObjectives": [
+                          {
+                            "en": "Identify core idea of Lesson 1 — Greetings",
+                            "ar": "تحديد الفكرة الأساسية لـ الدرس 1 — التحيات"
+                          },
+                          {
+                            "en": "Apply Lesson 1 — Greetings in a simple classroom task",
+                            "ar": "تطبيق الدرس 1 — التحيات في مهمة صفية بسيطة"
+                          }
+                        ],
+                        "keywords": [
+                          "lesson",
+                          "1",
+                          "greetings"
+                        ],
+                        "references": [
+                          {
+                            "label": {
+                              "en": "Jordan National Curriculum — Grade 1",
+                              "ar": "المنهاج الوطني الأردني — الصف الأول"
+                            }
+                          }
+                        ],
+                        "assets": [],
+                        "rightsStatus": "cleared",
+                        "verificationStatus": "verified",
+                        "packageEligible": true
+                      },
+                      {
+                        "order": 2,
+                        "title": {
+                          "en": "Lesson 2 — My name",
+                          "ar": "الدرس 2 — اسمي"
+                        },
+                        "learningObjectives": [
+                          {
+                            "en": "Identify core idea of Lesson 2 — My name",
+                            "ar": "تحديد الفكرة الأساسية لـ الدرس 2 — اسمي"
+                          },
+                          {
+                            "en": "Apply Lesson 2 — My name in a simple classroom task",
+                            "ar": "تطبيق الدرس 2 — اسمي في مهمة صفية بسيطة"
+                          }
+                        ],
+                        "keywords": [
+                          "lesson",
+                          "2",
+                          "my",
+                          "name"
+                        ],
+                        "references": [
+                          {
+                            "label": {
+                              "en": "Jordan National Curriculum — Grade 1",
+                              "ar": "المنهاج الوطني الأردني — الصف الأول"
+                            }
+                          }
+                        ],
+                        "assets": [],
+                        "rightsStatus": "rejected",
+                        "verificationStatus": "rejected",
+                        "packageEligible": false
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "localCode": "MATH",
+            "localLabel": {
+              "en": "Mathematics",
+              "ar": "الرياضيات"
+            },
+            "aliasLabel": "رياضيات",
+            "semesterCode": "S01",
+            "books": [
+              {
+                "part": "Book 1",
+                "title": {
+                  "en": "Mathematics — Grade 1 — Book 1",
+                  "ar": "الرياضيات - الصف الأول - الكتاب 1"
+                },
+                "language": "bilingual",
+                "version": "2025.1",
+                "units": [
+                  {
+                    "order": 1,
+                    "title": {
+                      "en": "Unit 1 — Numbers around us",
+                      "ar": "الوحدة 1 — الأعداد من حولنا"
+                    },
+                    "lessons": [
+                      {
+                        "order": 1,
+                        "title": {
+                          "en": "Lesson 1 — Count to three",
+                          "ar": "الدرس 1 — العدّ حتى ثلاثة"
+                        },
+                        "learningObjectives": [
+                          {
+                            "en": "Identify core idea of Lesson 1 — Count to three",
+                            "ar": "تحديد الفكرة الأساسية لـ الدرس 1 — العدّ حتى ثلاثة"
+                          },
+                          {
+                            "en": "Apply Lesson 1 — Count to three in a simple classroom task",
+                            "ar": "تطبيق الدرس 1 — العدّ حتى ثلاثة في مهمة صفية بسيطة"
+                          }
+                        ],
+                        "keywords": [
+                          "lesson",
+                          "1",
+                          "count",
+                          "to",
+                          "three"
+                        ],
+                        "references": [
+                          {
+                            "label": {
+                              "en": "Jordan National Curriculum — Grade 1",
+                              "ar": "المنهاج الوطني الأردني — الصف الأول"
+                            }
+                          }
+                        ],
+                        "assets": [],
+                        "rightsStatus": "cleared",
+                        "verificationStatus": "verified",
+                        "packageEligible": true
+                      },
+                      {
+                        "order": 2,
+                        "title": {
+                          "en": "Lesson 2 — Count to five",
+                          "ar": "الدرس 2 — العدّ حتى خمسة"
+                        },
+                        "learningObjectives": [
+                          {
+                            "en": "Identify core idea of Lesson 2 — Count to five",
+                            "ar": "تحديد الفكرة الأساسية لـ الدرس 2 — العدّ حتى خمسة"
+                          },
+                          {
+                            "en": "Apply Lesson 2 — Count to five in a simple classroom task",
+                            "ar": "تطبيق الدرس 2 — العدّ حتى خمسة في مهمة صفية بسيطة"
+                          }
+                        ],
+                        "keywords": [
+                          "lesson",
+                          "2",
+                          "count",
+                          "to",
+                          "five"
+                        ],
+                        "references": [
+                          {
+                            "label": {
+                              "en": "Jordan National Curriculum — Grade 1",
+                              "ar": "المنهاج الوطني الأردني — الصف الأول"
+                            }
+                          }
+                        ],
+                        "assets": [],
+                        "rightsStatus": "cleared",
+                        "verificationStatus": "verified",
+                        "packageEligible": true
+                      },
+                      {
+                        "order": 3,
+                        "title": {
+                          "en": "Lesson 3 — Compare small sets",
+                          "ar": "الدرس 3 — مقارنة مجموعات صغيرة"
+                        },
+                        "learningObjectives": [
+                          {
+                            "en": "Identify core idea of Lesson 3 — Compare small sets",
+                            "ar": "تحديد الفكرة الأساسية لـ الدرس 3 — مقارنة مجموعات صغيرة"
+                          },
+                          {
+                            "en": "Apply Lesson 3 — Compare small sets in a simple classroom task",
+                            "ar": "تطبيق الدرس 3 — مقارنة مجموعات صغيرة في مهمة صفية بسيطة"
+                          }
+                        ],
+                        "keywords": [
+                          "lesson",
+                          "3",
+                          "compare",
+                          "small",
+                          "sets"
+                        ],
+                        "references": [
+                          {
+                            "label": {
+                              "en": "Jordan National Curriculum — Grade 1",
+                              "ar": "المنهاج الوطني الأردني — الصف الأول"
+                            }
+                          }
+                        ],
+                        "assets": [],
+                        "rightsStatus": "cleared",
+                        "verificationStatus": "verified",
+                        "packageEligible": true
+                      }
+                    ]
+                  },
+                  {
+                    "order": 2,
+                    "title": {
+                      "en": "Unit 2 — Shapes",
+                      "ar": "الوحدة 2 — الأشكال"
+                    },
+                    "lessons": [
+                      {
+                        "order": 1,
+                        "title": {
+                          "en": "Lesson 1 — Circles and squares",
+                          "ar": "الدرس 1 — الدائرة والمربع"
+                        },
+                        "learningObjectives": [
+                          {
+                            "en": "Identify core idea of Lesson 1 — Circles and squares",
+                            "ar": "تحديد الفكرة الأساسية لـ الدرس 1 — الدائرة والمربع"
+                          },
+                          {
+                            "en": "Apply Lesson 1 — Circles and squares in a simple classroom task",
+                            "ar": "تطبيق الدرس 1 — الدائرة والمربع في مهمة صفية بسيطة"
+                          }
+                        ],
+                        "keywords": [
+                          "lesson",
+                          "1",
+                          "circles",
+                          "and",
+                          "squares"
+                        ],
+                        "references": [
+                          {
+                            "label": {
+                              "en": "Jordan National Curriculum — Grade 1",
+                              "ar": "المنهاج الوطني الأردني — الصف الأول"
+                            }
+                          }
+                        ],
+                        "assets": [],
+                        "rightsStatus": "cleared",
+                        "verificationStatus": "verified",
+                        "packageEligible": true
+                      },
+                      {
+                        "order": 2,
+                        "title": {
+                          "en": "Lesson 2 — Triangles",
+                          "ar": "الدرس 2 — المثلث"
+                        },
+                        "learningObjectives": [
+                          {
+                            "en": "Identify core idea of Lesson 2 — Triangles",
+                            "ar": "تحديد الفكرة الأساسية لـ الدرس 2 — المثلث"
+                          },
+                          {
+                            "en": "Apply Lesson 2 — Triangles in a simple classroom task",
+                            "ar": "تطبيق الدرس 2 — المثلث في مهمة صفية بسيطة"
+                          }
+                        ],
+                        "keywords": [
+                          "lesson",
+                          "2",
+                          "triangles"
+                        ],
+                        "references": [
+                          {
+                            "label": {
+                              "en": "Jordan National Curriculum — Grade 1",
+                              "ar": "المنهاج الوطني الأردني — الصف الأول"
+                            }
+                          }
+                        ],
+                        "assets": [],
+                        "rightsStatus": "cleared",
+                        "verificationStatus": "pending",
+                        "packageEligible": false
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "part": "Book 2",
+                "title": {
+                  "en": "Mathematics — Grade 1 — Book 2",
+                  "ar": "الرياضيات - الصف الأول - الكتاب 2"
+                },
+                "language": "bilingual",
+                "version": "2025.1",
+                "units": [
+                  {
+                    "order": 1,
+                    "title": {
+                      "en": "Unit 1 — Addition readiness",
+                      "ar": "الوحدة 1 — الاستعداد للجمع"
+                    },
+                    "lessons": [
+                      {
+                        "order": 1,
+                        "title": {
+                          "en": "Lesson 1 — Putting together",
+                          "ar": "الدرس 1 — الجمع معًا"
+                        },
+                        "learningObjectives": [
+                          {
+                            "en": "Identify core idea of Lesson 1 — Putting together",
+                            "ar": "تحديد الفكرة الأساسية لـ الدرس 1 — الجمع معًا"
+                          },
+                          {
+                            "en": "Apply Lesson 1 — Putting together in a simple classroom task",
+                            "ar": "تطبيق الدرس 1 — الجمع معًا في مهمة صفية بسيطة"
+                          }
+                        ],
+                        "keywords": [
+                          "lesson",
+                          "1",
+                          "putting",
+                          "together"
+                        ],
+                        "references": [
+                          {
+                            "label": {
+                              "en": "Jordan National Curriculum — Grade 1",
+                              "ar": "المنهاج الوطني الأردني — الصف الأول"
+                            }
+                          }
+                        ],
+                        "assets": [],
+                        "rightsStatus": "restricted",
+                        "verificationStatus": "pending",
+                        "packageEligible": false
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "localCode": "SCI",
+            "localLabel": {
+              "en": "Science",
+              "ar": "العلوم"
+            },
+            "aliasLabel": "علوم",
+            "semesterCode": "S01",
+            "books": [
+              {
+                "part": "Book 1",
+                "title": {
+                  "en": "Science — Grade 1 — Book 1",
+                  "ar": "العلوم - الصف الأول - الكتاب 1"
+                },
+                "language": "ar",
+                "version": "2025.1",
+                "units": [
+                  {
+                    "order": 1,
+                    "title": {
+                      "en": "Unit 1 — Living things",
+                      "ar": "الوحدة 1 — الكائنات الحية"
+                    },
+                    "lessons": [
+                      {
+                        "order": 1,
+                        "title": {
+                          "en": "Lesson 1 — Plants and animals",
+                          "ar": "الدرس 1 — النباتات والحيوانات"
+                        },
+                        "learningObjectives": [
+                          {
+                            "en": "Identify core idea of Lesson 1 — Plants and animals",
+                            "ar": "تحديد الفكرة الأساسية لـ الدرس 1 — النباتات والحيوانات"
+                          },
+                          {
+                            "en": "Apply Lesson 1 — Plants and animals in a simple classroom task",
+                            "ar": "تطبيق الدرس 1 — النباتات والحيوانات في مهمة صفية بسيطة"
+                          }
+                        ],
+                        "keywords": [
+                          "lesson",
+                          "1",
+                          "plants",
+                          "and",
+                          "animals"
+                        ],
+                        "references": [
+                          {
+                            "label": {
+                              "en": "Jordan National Curriculum — Grade 1",
+                              "ar": "المنهاج الوطني الأردني — الصف الأول"
+                            }
+                          }
+                        ],
+                        "assets": [],
+                        "rightsStatus": "cleared",
+                        "verificationStatus": "verified",
+                        "packageEligible": true
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "localCode": "ISL",
+            "localLabel": {
+              "en": "Islamic Education",
+              "ar": "التربية الإسلامية"
+            },
+            "aliasLabel": "تربية إسلامية",
+            "semesterCode": "S01",
+            "books": [
+              {
+                "part": "Book 1",
+                "title": {
+                  "en": "Islamic Education — Grade 1 — Book 1",
+                  "ar": "التربية الإسلامية - الصف الأول - الكتاب 1"
+                },
+                "language": "ar",
+                "version": "2025.1",
+                "units": [
+                  {
+                    "order": 1,
+                    "title": {
+                      "en": "Unit 1 — Good manners",
+                      "ar": "الوحدة 1 — الآداب"
+                    },
+                    "lessons": [
+                      {
+                        "order": 1,
+                        "title": {
+                          "en": "Lesson 1 — Saying salaam",
+                          "ar": "الدرس 1 — إلقاء السلام"
+                        },
+                        "learningObjectives": [
+                          {
+                            "en": "Identify core idea of Lesson 1 — Saying salaam",
+                            "ar": "تحديد الفكرة الأساسية لـ الدرس 1 — إلقاء السلام"
+                          },
+                          {
+                            "en": "Apply Lesson 1 — Saying salaam in a simple classroom task",
+                            "ar": "تطبيق الدرس 1 — إلقاء السلام في مهمة صفية بسيطة"
+                          }
+                        ],
+                        "keywords": [
+                          "lesson",
+                          "1",
+                          "saying",
+                          "salaam"
+                        ],
+                        "references": [
+                          {
+                            "label": {
+                              "en": "Jordan National Curriculum — Grade 1",
+                              "ar": "المنهاج الوطني الأردني — الصف الأول"
+                            }
+                          }
+                        ],
+                        "assets": [],
+                        "rightsStatus": "cleared",
+                        "verificationStatus": "verified",
+                        "packageEligible": true
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "localCode": "SOC",
+            "localLabel": {
+              "en": "Social Studies",
+              "ar": "التربية الاجتماعية"
+            },
+            "aliasLabel": "تربية اجتماعية",
+            "semesterCode": "S01",
+            "books": [
+              {
+                "part": "Book 1",
+                "title": {
+                  "en": "Social Studies — Grade 1 — Book 1",
+                  "ar": "التربية الاجتماعية - الصف الأول - الكتاب 1"
+                },
+                "language": "ar",
+                "version": "2025.1",
+                "units": [
+                  {
+                    "order": 1,
+                    "title": {
+                      "en": "Unit 1 — My family",
+                      "ar": "الوحدة 1 — أسرتي"
+                    },
+                    "lessons": [
+                      {
+                        "order": 1,
+                        "title": {
+                          "en": "Lesson 1 — Family members",
+                          "ar": "الدرس 1 — أفراد الأسرة"
+                        },
+                        "learningObjectives": [
+                          {
+                            "en": "Identify core idea of Lesson 1 — Family members",
+                            "ar": "تحديد الفكرة الأساسية لـ الدرس 1 — أفراد الأسرة"
+                          },
+                          {
+                            "en": "Apply Lesson 1 — Family members in a simple classroom task",
+                            "ar": "تطبيق الدرس 1 — أفراد الأسرة في مهمة صفية بسيطة"
+                          }
+                        ],
+                        "keywords": [
+                          "lesson",
+                          "1",
+                          "family",
+                          "members"
+                        ],
+                        "references": [
+                          {
+                            "label": {
+                              "en": "Jordan National Curriculum — Grade 1",
+                              "ar": "المنهاج الوطني الأردني — الصف الأول"
+                            }
+                          }
+                        ],
+                        "assets": [],
+                        "rightsStatus": "cleared",
+                        "verificationStatus": "verified",
+                        "packageEligible": true
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "localCode": "ART",
+            "localLabel": {
+              "en": "Art",
+              "ar": "التربية الفنية"
+            },
+            "aliasLabel": "تربية فنية",
+            "semesterCode": "S01",
+            "books": [
+              {
+                "part": "Book 1",
+                "title": {
+                  "en": "Art — Grade 1 — Book 1",
+                  "ar": "التربية الفنية - الصف الأول - الكتاب 1"
+                },
+                "language": "ar",
+                "version": "2025.1",
+                "units": [
+                  {
+                    "order": 1,
+                    "title": {
+                      "en": "Unit 1 — Colors",
+                      "ar": "الوحدة 1 — الألوان"
+                    },
+                    "lessons": [
+                      {
+                        "order": 1,
+                        "title": {
+                          "en": "Lesson 1 — Primary colors",
+                          "ar": "الدرس 1 — الألوان الأساسية"
+                        },
+                        "learningObjectives": [
+                          {
+                            "en": "Identify core idea of Lesson 1 — Primary colors",
+                            "ar": "تحديد الفكرة الأساسية لـ الدرس 1 — الألوان الأساسية"
+                          },
+                          {
+                            "en": "Apply Lesson 1 — Primary colors in a simple classroom task",
+                            "ar": "تطبيق الدرس 1 — الألوان الأساسية في مهمة صفية بسيطة"
+                          }
+                        ],
+                        "keywords": [
+                          "lesson",
+                          "1",
+                          "primary",
+                          "colors"
+                        ],
+                        "references": [
+                          {
+                            "label": {
+                              "en": "Jordan National Curriculum — Grade 1",
+                              "ar": "المنهاج الوطني الأردني — الصف الأول"
+                            }
+                          }
+                        ],
+                        "assets": [],
+                        "rightsStatus": "cleared",
+                        "verificationStatus": "verified",
+                        "packageEligible": true
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "localCode": "PE",
+            "localLabel": {
+              "en": "Physical Education",
+              "ar": "التربية الرياضية"
+            },
+            "aliasLabel": "تربية رياضية",
+            "semesterCode": "S01",
+            "books": [
+              {
+                "part": "Book 1",
+                "title": {
+                  "en": "Physical Education — Grade 1 — Book 1",
+                  "ar": "التربية الرياضية - الصف الأول - الكتاب 1"
+                },
+                "language": "ar",
+                "version": "2025.1",
+                "units": [
+                  {
+                    "order": 1,
+                    "title": {
+                      "en": "Unit 1 — Movement",
+                      "ar": "الوحدة 1 — الحركة"
+                    },
+                    "lessons": [
+                      {
+                        "order": 1,
+                        "title": {
+                          "en": "Lesson 1 — Warm-up games",
+                          "ar": "الدرس 1 — ألعاب الإحماء"
+                        },
+                        "learningObjectives": [
+                          {
+                            "en": "Identify core idea of Lesson 1 — Warm-up games",
+                            "ar": "تحديد الفكرة الأساسية لـ الدرس 1 — ألعاب الإحماء"
+                          },
+                          {
+                            "en": "Apply Lesson 1 — Warm-up games in a simple classroom task",
+                            "ar": "تطبيق الدرس 1 — ألعاب الإحماء في مهمة صفية بسيطة"
+                          }
+                        ],
+                        "keywords": [
+                          "lesson",
+                          "1",
+                          "warmup",
+                          "games"
+                        ],
+                        "references": [
+                          {
+                            "label": {
+                              "en": "Jordan National Curriculum — Grade 1",
+                              "ar": "المنهاج الوطني الأردني — الصف الأول"
+                            }
+                          }
+                        ],
+                        "assets": [],
+                        "rightsStatus": "cleared",
+                        "verificationStatus": "verified",
+                        "packageEligible": true
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "runSummary": {
+    "ok": true,
+    "counts": {
+      "countries": 1,
+      "curricula": 1,
+      "grades": 1,
+      "subjects": 8,
+      "books": 9,
+      "units": 10,
+      "lessons": 15,
+      "packages": 1,
+      "verifiedPackages": 1,
+      "pendingPackages": 0,
+      "rejectedPackages": 0,
+      "imported": 15,
+      "verified": 12,
+      "rejected": 1,
+      "pending": 2,
+      "published": 1,
+      "errors": 1,
+      "warnings": 1,
+      "rightsWarnings": 1
+    },
+    "validation": null
+  },
+  "hierarchySnapshot": null,
+  "filesIncluded": [
+    "jordan-national-curriculum.bundle.json",
+    "jordan-reference-tree.json",
+    "jordan-reference-lesson-metadata.json",
+    "jordan-reference-ile-package.json",
+    "jordan-reference-validation-report.json",
+    "MANIFEST.json",
+    "README.md"
+  ]
+}

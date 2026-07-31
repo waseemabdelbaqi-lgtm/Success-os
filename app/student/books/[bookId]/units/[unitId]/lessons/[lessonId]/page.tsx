@@ -4,6 +4,8 @@ import { notFound } from "next/navigation";
 import type { ReactNode } from "react";
 import { LessonReader } from "@/components/student-portal/reader/lesson-reader";
 import { InteractiveLessonViewer } from "@/components/interactive-lesson-engine/interactive-lesson-viewer";
+import { S4sIntelligenceTeacher } from "@/components/student-ai-learning-stack/s4s-intelligence-teacher";
+import { S4sTeacherDock } from "@/components/student-ai-learning-stack/s4s-teacher-dock";
 import { bookCatalogService } from "@/services/student/book-catalog.service";
 import { getLocalizedText } from "@/content/demo/catalog";
 import { buildPackageFromBookPath } from "@/lib/interactive-lesson-engine";
@@ -69,8 +71,16 @@ export default async function StudentLessonPage({
     );
   }
 
+  const locale = path.book.language === "en" ? "en" : "ar";
+
   return (
     <div>
+      <S4sIntelligenceTeacher
+        locale={locale}
+        studentName="Ahmad"
+        lessonKey={`${bookId}/${unitId}/${lessonId}`}
+      />
+      <S4sTeacherDock locale={locale} topicEn="Fractions" topicAr="الكسور" />
       <div
         style={{
           maxWidth: 1200,
@@ -89,7 +99,7 @@ export default async function StudentLessonPage({
           Classic reader
         </Link>
       </div>
-      <InteractiveLessonViewer pkg={pkg} locale={path.book.language === "en" ? "en" : "ar"} />
+      <InteractiveLessonViewer pkg={pkg} locale={locale} />
     </div>
   );
 }

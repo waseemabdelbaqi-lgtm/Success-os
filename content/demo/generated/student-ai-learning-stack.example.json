@@ -1,0 +1,277 @@
+{
+  "schema": "success-os.student-ai-learning-stack.v1",
+  "displayPath": [
+    "Student",
+    "AI Teacher",
+    "Conversation Engine",
+    "Reasoning Engine",
+    "Knowledge Graph",
+    "Digital Books",
+    "Videos",
+    "Interactive Lesson Engine",
+    "Quizzes",
+    "Assessments"
+  ],
+  "path": [
+    "student",
+    "ai_teacher",
+    "conversation_engine",
+    "reasoning_engine",
+    "knowledge_graph",
+    "digital_books",
+    "videos",
+    "interactive_lesson_engine",
+    "quizzes",
+    "assessments"
+  ],
+  "layers": [
+    {
+      "id": "student",
+      "order": 1,
+      "name": {
+        "en": "Student",
+        "ar": "\u0627\u0644\u0637\u0627\u0644\u0628"
+      },
+      "role": {
+        "en": "Learner identity and intent enter the stack",
+        "ar": "\u0647\u0648\u064a\u0629 \u0627\u0644\u0645\u062a\u0639\u0644\u0645 \u0648\u0646\u064a\u0651\u062a\u0647 \u062a\u062f\u062e\u0644 \u0627\u0644\u0645\u0643\u062f\u0633"
+      },
+      "status": "operational",
+      "bindsTo": [
+        "success-os.student-foundation.v1"
+      ],
+      "activatesInPr": "#50.3 / #59",
+      "generatesContent": false,
+      "rendersLessons": false,
+      "notes": [
+        "Student foundation data model already exists; no AI required."
+      ]
+    },
+    {
+      "id": "ai_teacher",
+      "order": 2,
+      "name": {
+        "en": "AI Teacher",
+        "ar": "\u0627\u0644\u0645\u0639\u0644\u0645 \u0627\u0644\u0630\u0643\u064a"
+      },
+      "role": {
+        "en": "S4S Intelligence Teacher \u2014 open-lesson greeting and re-explain tutoring persona",
+        "ar": "\u0645\u0639\u0644\u0645 Success 4 Sure \u0627\u0644\u0630\u0643\u064a \u2014 \u062a\u062d\u064a\u0629 \u0641\u062a\u062d \u0627\u0644\u062f\u0631\u0633 \u0648\u0634\u062e\u0635\u064a\u0629 \u0625\u0639\u0627\u062f\u0629 \u0627\u0644\u0634\u0631\u062d"
+      },
+      "status": "foundation",
+      "bindsTo": [
+        "success-os.student-ai-learning-stack.v1",
+        "success-os.student-skill-progress.v1",
+        "success-os.s4s-re-explain.v1"
+      ],
+      "activatesInPr": "#59",
+      "generatesContent": false,
+      "rendersLessons": false,
+      "notes": [
+        "Product persona: S4S Intelligence Teacher.",
+        "Open Lesson greeting: Hello Ahmad \u2014 struggled with Fractions \u2014 review first?",
+        "Re-explain: Animation \u2192 Drawing \u2192 Example \u2192 Question \u2192 Checks understanding.",
+        "No AI lesson generation \u2014 scripted prompts only."
+      ]
+    },
+    {
+      "id": "conversation_engine",
+      "order": 3,
+      "name": {
+        "en": "Conversation Engine",
+        "ar": "\u0645\u062d\u0631\u0643 \u0627\u0644\u0645\u062d\u0627\u062f\u062b\u0629"
+      },
+      "role": {
+        "en": "Turns student utterances into structured tutoring intents",
+        "ar": "\u064a\u062d\u0648\u0651\u0644 \u0643\u0644\u0627\u0645 \u0627\u0644\u0637\u0627\u0644\u0628 \u0625\u0644\u0649 \u0646\u0648\u0627\u064a\u0627 \u062a\u0639\u0644\u064a\u0645\u064a\u0629 \u0645\u0646\u0638\u0645\u0629"
+      },
+      "status": "foundation",
+      "bindsTo": [
+        "success-os.student-ai-learning-stack.v1"
+      ],
+      "activatesInPr": "#59",
+      "generatesContent": false,
+      "rendersLessons": false,
+      "notes": [
+        "Recognizes \u201cI don't understand this.\u201d \u2192 dont_understand intent.",
+        "LLM free-form chat reserved for later AI PRs."
+      ]
+    },
+    {
+      "id": "reasoning_engine",
+      "order": 4,
+      "name": {
+        "en": "Reasoning Engine",
+        "ar": "\u0645\u062d\u0631\u0643 \u0627\u0644\u0627\u0633\u062a\u062f\u0644\u0627\u0644"
+      },
+      "role": {
+        "en": "Selects next pedagogical move from skills, gaps, and mappings",
+        "ar": "\u064a\u062e\u062a\u0627\u0631 \u0627\u0644\u062e\u0637\u0648\u0629 \u0627\u0644\u062a\u0631\u0628\u0648\u064a\u0629 \u0627\u0644\u062a\u0627\u0644\u064a\u0629 \u0645\u0646 \u0627\u0644\u0645\u0647\u0627\u0631\u0627\u062a \u0648\u0627\u0644\u0641\u062c\u0648\u0627\u062a \u0648\u0627\u0644\u0645\u0648\u0627\u0621\u0645\u0627\u062a"
+      },
+      "status": "foundation",
+      "bindsTo": [
+        "success-os.universal-curriculum-mapping.v1",
+        "success-os.student-skill-progress.v1",
+        "success-os.s4s-re-explain.v1"
+      ],
+      "activatesInPr": "#59",
+      "generatesContent": false,
+      "rendersLessons": false,
+      "notes": [
+        "Re-explain path: Animation \u2192 Drawing \u2192 Example \u2192 Question \u2192 Checks understanding.",
+        "No AI lesson generation \u2014 scripted pedagogy only."
+      ]
+    },
+    {
+      "id": "knowledge_graph",
+      "order": 5,
+      "name": {
+        "en": "Knowledge Graph",
+        "ar": "\u0634\u0628\u0643\u0629 \u0627\u0644\u0645\u0639\u0631\u0641\u0629"
+      },
+      "role": {
+        "en": "Resolves lesson/skill relationships for the session",
+        "ar": "\u064a\u062d\u0644 \u0639\u0644\u0627\u0642\u0627\u062a \u0627\u0644\u062f\u0631\u0648\u0633 \u0648\u0627\u0644\u0645\u0647\u0627\u0631\u0627\u062a \u0644\u0644\u062c\u0644\u0633\u0629"
+      },
+      "status": "foundation",
+      "bindsTo": [
+        "success-os.knowledge-graph.v1"
+      ],
+      "activatesInPr": "#50.3",
+      "generatesContent": false,
+      "rendersLessons": false,
+      "notes": [
+        "Wired to existing CIE knowledge graph foundation."
+      ]
+    },
+    {
+      "id": "digital_books",
+      "order": 6,
+      "name": {
+        "en": "Digital Books",
+        "ar": "\u0627\u0644\u0643\u062a\u0628 \u0627\u0644\u0631\u0642\u0645\u064a\u0629"
+      },
+      "role": {
+        "en": "Provides book context for the lesson \u2014 ILE package output only later",
+        "ar": "\u064a\u0648\u0641\u0631 \u0633\u064a\u0627\u0642 \u0627\u0644\u0643\u062a\u0627\u0628 \u0644\u0644\u062f\u0631\u0633 \u2014 \u0645\u062e\u0631\u062c\u0627\u062a \u062d\u0632\u0645 ILE \u0644\u0627\u062d\u0642\u064b\u0627 \u0641\u0642\u0637"
+      },
+      "status": "reserved",
+      "bindsTo": [
+        "success-os.digital-book-engine.v1"
+      ],
+      "activatesInPr": "#56",
+      "generatesContent": false,
+      "rendersLessons": false,
+      "notes": [
+        "Reserved for Digital Book Engine. No book generation here."
+      ]
+    },
+    {
+      "id": "videos",
+      "order": 7,
+      "name": {
+        "en": "Videos",
+        "ar": "\u0627\u0644\u0641\u064a\u062f\u064a\u0648\u0647\u0627\u062a"
+      },
+      "role": {
+        "en": "Attaches verified video assets to the session plan",
+        "ar": "\u064a\u0631\u0628\u0637 \u0623\u0635\u0648\u0644 \u0627\u0644\u0641\u064a\u062f\u064a\u0648 \u0627\u0644\u0645\u0648\u062b\u0651\u0642\u0629 \u0628\u062e\u0637\u0629 \u0627\u0644\u062c\u0644\u0633\u0629"
+      },
+      "status": "reserved",
+      "bindsTo": [
+        "success-os.ai-media-engine.v1"
+      ],
+      "activatesInPr": "#57",
+      "generatesContent": false,
+      "rendersLessons": false,
+      "notes": [
+        "No AI video generation in this PR."
+      ]
+    },
+    {
+      "id": "interactive_lesson_engine",
+      "order": 8,
+      "name": {
+        "en": "Interactive Lesson Engine",
+        "ar": "\u0645\u062d\u0631\u0643 \u0627\u0644\u062f\u0631\u0648\u0633 \u0627\u0644\u062a\u0641\u0627\u0639\u0644\u064a\u0629"
+      },
+      "role": {
+        "en": "Sole lesson runtime \u2014 consumes ILE packages only",
+        "ar": "\u0648\u0642\u062a \u062a\u0634\u063a\u064a\u0644 \u0627\u0644\u062f\u0631\u0633 \u0627\u0644\u0648\u062d\u064a\u062f \u2014 \u064a\u0633\u062a\u0647\u0644\u0643 \u062d\u0632\u0645 ILE \u0641\u0642\u0637"
+      },
+      "status": "operational",
+      "bindsTo": [
+        "success-os.interactive-lesson-engine.v1"
+      ],
+      "activatesInPr": "#49",
+      "generatesContent": false,
+      "rendersLessons": true,
+      "notes": [
+        "ADR-0049 \u2014 never fork a second lesson runtime."
+      ]
+    },
+    {
+      "id": "quizzes",
+      "order": 9,
+      "name": {
+        "en": "Quizzes",
+        "ar": "\u0627\u0644\u0627\u062e\u062a\u0628\u0627\u0631\u0627\u062a \u0627\u0644\u0642\u0635\u064a\u0631\u0629"
+      },
+      "role": {
+        "en": "Formative checks after the lesson runtime",
+        "ar": "\u0641\u062d\u0648\u0635\u0627\u062a \u062a\u0643\u0648\u064a\u0646\u064a\u0629 \u0628\u0639\u062f \u062a\u0634\u063a\u064a\u0644 \u0627\u0644\u062f\u0631\u0633"
+      },
+      "status": "reserved",
+      "bindsTo": [
+        "success-os.assessment-engine.v1"
+      ],
+      "activatesInPr": "#58",
+      "generatesContent": false,
+      "rendersLessons": false,
+      "notes": [
+        "No quiz generation in this PR."
+      ]
+    },
+    {
+      "id": "assessments",
+      "order": 10,
+      "name": {
+        "en": "Assessments",
+        "ar": "\u0627\u0644\u062a\u0642\u064a\u064a\u0645\u0627\u062a"
+      },
+      "role": {
+        "en": "Summative / unit / exam assessments on the same stack",
+        "ar": "\u062a\u0642\u064a\u064a\u0645\u0627\u062a \u062e\u062a\u0627\u0645\u064a\u0629 / \u0648\u062d\u062f\u0629 / \u0627\u0645\u062a\u062d\u0627\u0646 \u0639\u0644\u0649 \u0646\u0641\u0633 \u0627\u0644\u0645\u0643\u062f\u0633"
+      },
+      "status": "reserved",
+      "bindsTo": [
+        "success-os.assessment-engine.v1"
+      ],
+      "activatesInPr": "#58",
+      "generatesContent": false,
+      "rendersLessons": false,
+      "notes": [
+        "No assessment generation in this PR."
+      ]
+    }
+  ],
+  "counts": {
+    "layers": 10,
+    "operational": 2,
+    "foundation": 4,
+    "stub": 0,
+    "reserved": 4
+  },
+  "rules": [
+    "Path order is fixed for the student journey.",
+    "No layer may generate lessons/videos/quizzes/assessments in this PR.",
+    "Interactive Lesson Engine is the only lesson renderer.",
+    "Knowledge Graph + UCE inform reasoning; they do not replace ILE."
+  ],
+  "notes": [
+    "Foundation helpers for Learning Intelligence (roadmap #59).",
+    "Official AI Teacher path is PR #55 ATE (ADR-0055).",
+    "Digital Books #56 \u00b7 Videos #57 \u00b7 Quizzes/Assessments #58."
+  ],
+  "aiGeneration": false
+}

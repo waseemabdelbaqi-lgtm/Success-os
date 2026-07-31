@@ -1,0 +1,68 @@
+{
+  "schema": "success-os.jordan-reference-dataset.v1/validation",
+  "counts": {
+    "countries": 1,
+    "curricula": 1,
+    "grades": 1,
+    "subjects": 8,
+    "books": 9,
+    "units": 10,
+    "lessons": 15,
+    "packages": 1,
+    "verifiedPackages": 1,
+    "pendingPackages": 0,
+    "rejectedPackages": 0,
+    "imported": 15,
+    "verified": 12,
+    "rejected": 1,
+    "pending": 2,
+    "published": 1,
+    "errors": 1,
+    "warnings": 1,
+    "rightsWarnings": 1,
+    "globalSubjects": 11
+  },
+  "g01Subjects": [
+    "JO-NATIONAL-G01-MATH",
+    "JO-NATIONAL-G01-AR",
+    "JO-NATIONAL-G01-EN",
+    "JO-NATIONAL-G01-SCI",
+    "JO-NATIONAL-G01-ISL",
+    "JO-NATIONAL-G01-SOC",
+    "JO-NATIONAL-G01-ART",
+    "JO-NATIONAL-G01-PE"
+  ],
+  "excludedUntilOfficial": [
+    "PHYSICS",
+    "CHEMISTRY",
+    "BIOLOGY"
+  ],
+  "globalSubjectRegistry": [
+    "SUB-00001 Mathematics",
+    "SUB-00002 Science",
+    "SUB-00003 Physics",
+    "SUB-00004 Chemistry",
+    "SUB-00005 Biology",
+    "SUB-00006 Arabic",
+    "SUB-00007 English",
+    "SUB-00008 Islamic Education",
+    "SUB-00009 Social Studies",
+    "SUB-00010 Art",
+    "SUB-00011 Physical Education"
+  ],
+  "pipeline": {
+    "rejectedNeverPublish": true,
+    "ileOnlyRuntime": true,
+    "aiGeneration": false,
+    "dynamicDiscovery": true
+  },
+  "gateSummary": {
+    "source_pass": 15,
+    "rights_pass": 13,
+    "structure_pass": 15,
+    "metadata_pass": 15,
+    "package_pass": 1,
+    "published": 1,
+    "rejected": 1
+  }
+}
