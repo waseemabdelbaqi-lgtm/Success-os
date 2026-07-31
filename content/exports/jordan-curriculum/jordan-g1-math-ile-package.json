@@ -1,0 +1,102 @@
+{
+  "schema": "success-os.interactive-lesson-engine.v1",
+  "id": "ile_jo_g1_math_u1_l1",
+  "version": 1,
+  "status": "published",
+  "title": {
+    "en": "Lesson 1 — Count to three",
+    "ar": "الدرس 1 — العدّ حتى ثلاثة"
+  },
+  "summary": {
+    "en": "We count objects one by one: one, two, three. The numeral 1 means one object, 2 means two objects, and 3 means three objects.",
+    "ar": "نعدّ الأشياء واحدًا واحدًا: واحد، اثنان، ثلاثة. الرمز 1 يعني شيئًا واحدًا، و2 شيئين، و3 ثلاثة أشياء."
+  },
+  "filters": {
+    "country": "Jordan",
+    "curriculum": "Jordan National Curriculum",
+    "grade": "Grade 1",
+    "subject": "Mathematics",
+    "unit": "Unit 1 — Numbers around us",
+    "lesson": "Lesson 1 — Count to three",
+    "language": "ar",
+    "difficulty": "core"
+  },
+  "difficulty": "core",
+  "estimatedMinutes": 25,
+  "language": "bilingual",
+  "source": {
+    "kind": "book",
+    "bookId": "JO-G1-MATH-P1",
+    "unitId": "jo_g1_math_u1",
+    "lessonId": "jo_g1_math_u1_l1"
+  },
+  "objectives": [
+    {
+      "en": "Say the number names one, two, and three in order",
+      "ar": "نطق أسماء الأعداد واحد واثنان وثلاثة بالترتيب"
+    },
+    {
+      "en": "Match a set of up to three objects with the correct numeral",
+      "ar": "مطابقة مجموعة حتى ثلاثة أشياء مع الرمز العددي الصحيح"
+    }
+  ],
+  "concepts": [
+    { "en": "one", "ar": "one" },
+    { "en": "two", "ar": "two" },
+    { "en": "three", "ar": "three" },
+    { "en": "count", "ar": "count" },
+    { "en": "numeral", "ar": "numeral" }
+  ],
+  "slides": [
+    {
+      "id": "jo_g1_math_u1_l1_slide_1",
+      "order": 1,
+      "title": {
+        "en": "Lesson 1 — Count to three",
+        "ar": "الدرس 1 — العدّ حتى ثلاثة"
+      },
+      "kind": "concept",
+      "blocks": [
+        { "type": "rich_text", "id": "jo_g1_math_u1_l1_overview" },
+        { "type": "definition", "id": "jo_g1_math_u1_l1_def" }
+      ]
+    },
+    {
+      "id": "jo_g1_math_u1_l1_slide_2",
+      "order": 2,
+      "title": { "en": "Objectives", "ar": "الأهداف" },
+      "kind": "intro",
+      "blocks": [
+        { "type": "rich_text", "id": "jo_g1_math_u1_l1_obj_0" },
+        { "type": "rich_text", "id": "jo_g1_math_u1_l1_obj_1" }
+      ]
+    }
+  ],
+  "importMeta": {
+    "jobId": "ref_jo_g1_math",
+    "sourceId": "src_jo_nccd_g1_math_p1",
+    "connectorId": "jordan-g1-math",
+    "country": "Jordan",
+    "curriculum": "Jordan National Curriculum",
+    "verificationStatus": "verified",
+    "rightsStatus": "verified"
+  },
+  "engineMeta": {
+    "compiledBy": "success-os.curriculum-import-engine.v1",
+    "referenceImplementation": "jordan-g1-math",
+    "hierarchyPath": [
+      "Jordan",
+      "National Curriculum",
+      "Grade 1",
+      "Mathematics",
+      "Part 1",
+      "Unit 1",
+      "Lesson 1",
+      "ILE Package"
+    ],
+    "noAiGeneration": true,
+    "noQuizGeneration": true,
+    "noVideoGeneration": true
+  },
+  "notes": "Example artifact for docs/tests. Runtime packages are produced by runJordanGrade1MathReference()."
+}

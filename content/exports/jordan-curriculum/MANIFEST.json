@@ -1,0 +1,43 @@
+{
+  "schema": "success-os.jordan-curriculum-export-manifest.v1",
+  "country": "JO",
+  "exportedAt": "2026-07-31T13:46:10.135Z",
+  "branchHint": "cursor/student-ai-learning-stack-bca1",
+  "files": [
+    {
+      "name": "README.md",
+      "bytes": 1280,
+      "sha256": "ade46984445c71e17bae753843f64695cf0f5102293e15f75caeefbc3021600c"
+    },
+    {
+      "name": "jordan-g1-math-ile-package.json",
+      "bytes": 3204,
+      "sha256": "6f06bcae31f8cc0b89636b90f3fbac66b6db413344e05d06c58fa9854c9252ca"
+    },
+    {
+      "name": "jordan-national-curriculum.bundle.json",
+      "bytes": 76009,
+      "sha256": "3b7b8aafefe0973513984cd039995e43cadc7719c520c12d432a0dd400786bc3"
+    },
+    {
+      "name": "jordan-reference-ile-package.json",
+      "bytes": 15187,
+      "sha256": "8189d77d4034a49e61f29b2c298cabb680c3165a29ab63f5bb16ebfefda7bca4"
+    },
+    {
+      "name": "jordan-reference-lesson-metadata.json",
+      "bytes": 2553,
+      "sha256": "b69868c564e55ef149221f078cda839840de4172c12d8f329fc956960b4688bb"
+    },
+    {
+      "name": "jordan-reference-tree.json",
+      "bytes": 8874,
+      "sha256": "ceb9fee4ca7457175b1e3b8a756faa041c833cf0958ae08e6be36f006737033c"
+    },
+    {
+      "name": "jordan-reference-validation-report.json",
+      "bytes": 1472,
+      "sha256": "8080d46e67ca1e9ee6c1c624730249b08b93a3bfb0bff83d774fb2e6deded300"
+    }
+  ]
+}
