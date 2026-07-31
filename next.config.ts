@@ -55,7 +55,14 @@ const nextConfig: NextConfig = {
   },
   experimental: {
     optimizePackageImports: ["firebase", "firebase-admin"],
+    // Chunk uploads are 5MB; keep headroom for multipart overhead.
+    serverActions: {
+      bodySizeLimit: "8mb",
+    },
+    middlewareClientMaxBodySize: "8mb",
   },
+  // Local/dev proxy body size for App Router uploads (chunk streaming).
+  // Cloudflare/Wrangler: configure max request body separately in wrangler if deployed.
 };
 
 export default nextConfig;

@@ -6,8 +6,10 @@ export const AI_TASKS={
 };
 
 export const providerRegistry=[
+ {id:'ollama-local',label:'Local Ollama (curriculum AI)',tasks:[AI_TASKS.REASONING,AI_TASKS.LESSON_WRITING,AI_TASKS.QUESTION_GENERATION,AI_TASKS.TRANSLATION,AI_TASKS.QUALITY],implemented:[AI_TASKS.REASONING,AI_TASKS.LESSON_WRITING,AI_TASKS.QUESTION_GENERATION,AI_TASKS.TRANSLATION,AI_TASKS.QUALITY],env:[],loopback:'http://127.0.0.1:11434',state:'adapter-ready'},
  {id:'openai',label:'OpenAI',tasks:[AI_TASKS.REASONING,AI_TASKS.LESSON_WRITING,AI_TASKS.QUESTION_GENERATION,AI_TASKS.TRANSLATION,AI_TASKS.IMAGE,AI_TASKS.QUALITY],implemented:[AI_TASKS.REASONING,AI_TASKS.LESSON_WRITING,AI_TASKS.QUESTION_GENERATION,AI_TASKS.TRANSLATION,AI_TASKS.QUALITY],env:['OPENAI_CONTENT_API_KEY|OPENAI_API_KEY'],state:'adapter-ready'},
- {id:'gemini',label:'Google Gemini',tasks:[AI_TASKS.REASONING,AI_TASKS.LESSON_WRITING,AI_TASKS.QUESTION_GENERATION,AI_TASKS.TRANSLATION,AI_TASKS.IMAGE,AI_TASKS.ANIMATION,AI_TASKS.QUALITY],implemented:[AI_TASKS.REASONING,AI_TASKS.LESSON_WRITING,AI_TASKS.QUESTION_GENERATION,AI_TASKS.TRANSLATION,AI_TASKS.QUALITY],env:['GEMINI_API_KEY'],state:'adapter-ready'},
+ // Gemini API-key and OAuth setup are cancelled. Curriculum AI uses local Ollama only.
+ {id:'gemini',label:'Google Gemini (disabled)',tasks:[AI_TASKS.REASONING,AI_TASKS.LESSON_WRITING,AI_TASKS.QUESTION_GENERATION,AI_TASKS.TRANSLATION,AI_TASKS.IMAGE,AI_TASKS.ANIMATION,AI_TASKS.QUALITY],implemented:[],env:['GEMINI_API_KEY'],state:'disabled'},
  {id:'mistral-ocr',label:'Mistral Document AI',tasks:[AI_TASKS.OCR],implemented:[AI_TASKS.OCR],env:['MISTRAL_API_KEY'],state:'adapter-ready'},
  {id:'mathpix',label:'Mathpix',tasks:[AI_TASKS.OCR,AI_TASKS.MATH],env:['MATHPIX_APP_ID','MATHPIX_APP_KEY'],state:'registry-ready'},
  {id:'google-document-ai',label:'Google Document AI',tasks:[AI_TASKS.OCR],env:['GOOGLE_DOCUMENT_AI_PROCESSOR'],state:'registry-ready'},
@@ -28,6 +30,11 @@ export const providerRegistry=[
 ];
 
 function envGroupReady(group){return group.split('|').some(key=>Boolean(process.env[key]))}
-export function isProviderConfigured(provider){return provider.env.length>0&&provider.env.every(envGroupReady)}
-export function providerStatus(){return providerRegistry.map(p=>({id:p.id,label:p.label,tasks:p.tasks,implemented:p.implemented||[],state:p.state,configured:isProviderConfigured(p),operational:isProviderConfigured(p)&&p.implemented?.length>0}))}
+export function isProviderConfigured(provider){
+  if(provider.state==='disabled')return false;
+  // Local Ollama needs no API keys — readiness is checked at invoke time on loopback.
+  if(provider.id==='ollama-local')return true;
+  return provider.env.length>0&&provider.env.every(envGroupReady);
+}
+export function providerStatus(){return providerRegistry.map(p=>({id:p.id,label:p.label,tasks:p.tasks,implemented:p.implemented||[],state:p.state,configured:isProviderConfigured(p),operational:p.state==='adapter-ready'&&isProviderConfigured(p)&&p.implemented?.length>0}))}
 export function providersFor(task){return providerRegistry.filter(p=>p.implemented?.includes(task)&&p.state==='adapter-ready'&&isProviderConfigured(p))}
