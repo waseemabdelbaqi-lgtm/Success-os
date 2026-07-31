@@ -1,0 +1,17 @@
+{
+  "globalId": "JOR-IMAGE-001708",
+  "kind": "educationalImage",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "مخطط تعليمي لوحدة التخطيط المكاني",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G09-الجغرافي-U03-L04",
+  "relationships": {
+    "lessonId": "JOR-G09-الجغرافي-U03-L04",
+    "belongsTo": "JOR-G09-الجغرافي-U03-L04"
+  },
+  "createdAt": "2026-07-31T17:56:57.179Z",
+  "updatedAt": "2026-07-31T17:56:57.179Z",
+  "src": null
+}

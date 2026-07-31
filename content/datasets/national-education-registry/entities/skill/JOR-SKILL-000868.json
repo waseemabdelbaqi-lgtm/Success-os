@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-SKILL-000868",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«الكتابة الأكاديمية — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-005698",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-005698",
+      "JOR-OUTCOME-005699",
+      "JOR-OUTCOME-005700",
+      "JOR-OUTCOME-006162",
+      "JOR-OUTCOME-006163",
+      "JOR-OUTCOME-006164"
+    ],
+    "lessonIds": [
+      "JOR-G11-ARAB-U03-L04",
+      "JOR-G12-ARAB-U03-L04"
+    ],
+    "belongsTo": "JOR-OUTCOME-005698"
+  },
+  "createdAt": "2026-07-31T17:56:57.288Z",
+  "updatedAt": "2026-07-31T17:56:57.367Z"
+}

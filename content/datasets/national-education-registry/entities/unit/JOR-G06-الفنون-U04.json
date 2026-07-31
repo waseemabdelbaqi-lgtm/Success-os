@@ -1,0 +1,21 @@
+{
+  "globalId": "JOR-G06-الفنون-U04",
+  "kind": "unit",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "التراث الفني",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-BOOK-000068",
+  "relationships": {
+    "bookId": "JOR-BOOK-000068",
+    "subjectId": "JOR-G06-الفنون",
+    "gradeId": "JOR-G06",
+    "belongsTo": "JOR-BOOK-000068"
+  },
+  "createdAt": "2026-07-31T17:56:56.941Z",
+  "updatedAt": "2026-07-31T17:56:56.941Z",
+  "unitCode": "U04",
+  "sequence": 4,
+  "legacyUnitId": "U4"
+}

@@ -1,0 +1,20 @@
+{
+  "globalId": "JOR-G01-ISL",
+  "kind": "subject",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "التربية الإسلامية",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G01",
+  "relationships": {
+    "gradeId": "JOR-G01",
+    "educationalSystemId": "JOR-SYS-000001",
+    "countryId": "JOR",
+    "belongsTo": "JOR-G01"
+  },
+  "createdAt": "2026-07-31T17:56:56.714Z",
+  "updatedAt": "2026-07-31T17:56:56.714Z",
+  "subjectCode": "ISL",
+  "gradeCode": "G01"
+}

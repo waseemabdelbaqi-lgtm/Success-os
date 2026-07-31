@@ -1,0 +1,21 @@
+{
+  "globalId": "JOR-G08-SOC-U02",
+  "kind": "unit",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "القضايا الاجتماعية",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-BOOK-000089",
+  "relationships": {
+    "bookId": "JOR-BOOK-000089",
+    "subjectId": "JOR-G08-SOC",
+    "gradeId": "JOR-G08",
+    "belongsTo": "JOR-BOOK-000089"
+  },
+  "createdAt": "2026-07-31T17:56:57.083Z",
+  "updatedAt": "2026-07-31T17:56:57.083Z",
+  "unitCode": "U02",
+  "sequence": 2,
+  "legacyUnitId": "U2"
+}

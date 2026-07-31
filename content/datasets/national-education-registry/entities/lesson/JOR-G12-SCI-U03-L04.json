@@ -1,0 +1,28 @@
+{
+  "globalId": "JOR-G12-SCI-U03-L04",
+  "kind": "lesson",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "التطبيقات الحياتية — تقويم وتعزيز",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G12-SCI-U03",
+  "relationships": {
+    "unitId": "JOR-G12-SCI-U03",
+    "bookId": "JOR-BOOK-000142",
+    "subjectId": "JOR-G12-SCI",
+    "gradeId": "JOR-G12",
+    "belongsTo": "JOR-G12-SCI-U03"
+  },
+  "createdAt": "2026-07-31T17:56:57.336Z",
+  "updatedAt": "2026-07-31T17:56:57.552Z",
+  "lessonCode": "L04",
+  "sequence": 4,
+  "legacyLessonId": "L3.4",
+  "keywords": [
+    "مادة",
+    "طاقة",
+    "نظام"
+  ],
+  "_deduped": true
+}

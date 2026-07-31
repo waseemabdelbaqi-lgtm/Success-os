@@ -1,0 +1,31 @@
+{
+  "globalId": "JOR-SKILL-000691",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«النصوص الأدبية — بناء المهارة» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-002852",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-002852",
+      "JOR-OUTCOME-002853",
+      "JOR-OUTCOME-002854",
+      "JOR-OUTCOME-003412",
+      "JOR-OUTCOME-003413",
+      "JOR-OUTCOME-003414",
+      "JOR-OUTCOME-003972",
+      "JOR-OUTCOME-003973",
+      "JOR-OUTCOME-003974"
+    ],
+    "lessonIds": [
+      "JOR-G05-ARAB-U01-L02",
+      "JOR-G06-ARAB-U01-L02",
+      "JOR-G07-ARAB-U01-L02"
+    ],
+    "belongsTo": "JOR-OUTCOME-002852"
+  },
+  "createdAt": "2026-07-31T17:56:56.880Z",
+  "updatedAt": "2026-07-31T17:56:57.026Z"
+}

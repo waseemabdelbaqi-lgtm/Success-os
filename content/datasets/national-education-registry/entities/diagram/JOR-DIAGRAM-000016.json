@@ -1,0 +1,16 @@
+{
+  "globalId": "JOR-DIAGRAM-000016",
+  "kind": "diagram",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "مخطط تعليمي لوحدة وثائق ومصادر",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G10-التاريخ-U04-L04",
+  "relationships": {
+    "lessonId": "JOR-G10-التاريخ-U04-L04",
+    "belongsTo": "JOR-G10-التاريخ-U04-L04"
+  },
+  "createdAt": "2026-07-31T17:56:56.684Z",
+  "updatedAt": "2026-07-31T17:56:56.684Z"
+}

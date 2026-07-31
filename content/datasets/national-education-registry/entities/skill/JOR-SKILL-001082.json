@@ -1,0 +1,23 @@
+{
+  "globalId": "JOR-SKILL-001082",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«وحدة تطبيقية 2 — بناء المهارة» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-007192",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-007192",
+      "JOR-OUTCOME-007193",
+      "JOR-OUTCOME-007194"
+    ],
+    "lessonIds": [
+      "JOR-GKG-المهارات-U04-L02"
+    ],
+    "belongsTo": "JOR-OUTCOME-007192"
+  },
+  "createdAt": "2026-07-31T17:56:57.597Z",
+  "updatedAt": "2026-07-31T17:56:57.597Z"
+}

@@ -1,0 +1,16 @@
+{
+  "globalId": "JOR-DIAGRAM-000618",
+  "kind": "diagram",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "مخطط تعليمي لوحدة Reading Basics",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G03-ENG-U03-L02",
+  "relationships": {
+    "lessonId": "JOR-G03-ENG-U03-L02",
+    "belongsTo": "JOR-G03-ENG-U03-L02"
+  },
+  "createdAt": "2026-07-31T17:56:56.789Z",
+  "updatedAt": "2026-07-31T17:56:56.789Z"
+}

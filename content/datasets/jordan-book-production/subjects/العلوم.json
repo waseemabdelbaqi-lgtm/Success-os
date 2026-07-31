@@ -1,0 +1,20 @@
+{
+  "subject": "العلوم",
+  "totalGrades": 10,
+  "published": 10,
+  "pending": 1,
+  "complete": false,
+  "bookIds": [
+    "jordan__التعليم-الأساسي__jordan-national-curriculum__الصف-1__العلوم__ar",
+    "jordan__التعليم-الأساسي__jordan-national-curriculum__الصف-2__العلوم__ar",
+    "jordan__التعليم-الأساسي__jordan-national-curriculum__الصف-3__العلوم__ar",
+    "jordan__التعليم-الأساسي__jordan-national-curriculum__الصف-4__العلوم__ar",
+    "jordan__التعليم-الأساسي__jordan-national-curriculum__الصف-5__العلوم__ar",
+    "jordan__التعليم-الأساسي__jordan-national-curriculum__الصف-6__العلوم__ar",
+    "jordan__التعليم-الأساسي__jordan-national-curriculum__الصف-7__العلوم__ar",
+    "jordan__التعليم-الأساسي__jordan-national-curriculum__الصف-8__العلوم__ar",
+    "jordan__التعليم-الأساسي__jordan-national-curriculum__الصف-9__العلوم__ar",
+    "jordan__التعليم-الأساسي__jordan-national-curriculum__الصف-10__العلوم__ar"
+  ],
+  "updatedAt": "2026-07-31T17:55:50.379Z"
+}

@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-G04-MATH-U01-L03",
+  "kind": "lesson",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "الأعداد والعمليات — تطبيق ومثال",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G04-MATH-U01",
+  "relationships": {
+    "unitId": "JOR-G04-MATH-U01",
+    "bookId": "JOR-BOOK-000045",
+    "subjectId": "JOR-G04-MATH",
+    "gradeId": "JOR-G04",
+    "belongsTo": "JOR-G04-MATH-U01"
+  },
+  "createdAt": "2026-07-31T17:56:56.812Z",
+  "updatedAt": "2026-07-31T17:56:56.812Z",
+  "lessonCode": "L03",
+  "sequence": 3,
+  "legacyLessonId": "L1.3",
+  "keywords": [
+    "عدد",
+    "عملية",
+    "نمط"
+  ]
+}

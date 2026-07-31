@@ -1,0 +1,31 @@
+{
+  "globalId": "JOR-SKILL-000523",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«القواعد الرياضية — مقدمة ومفاهيم» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-002457",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-002457",
+      "JOR-OUTCOME-002458",
+      "JOR-OUTCOME-002459",
+      "JOR-OUTCOME-003017",
+      "JOR-OUTCOME-003018",
+      "JOR-OUTCOME-003019",
+      "JOR-OUTCOME-003577",
+      "JOR-OUTCOME-003578",
+      "JOR-OUTCOME-003579"
+    ],
+    "lessonIds": [
+      "JOR-G05-PE-U03-L01",
+      "JOR-G06-PE-U03-L01",
+      "JOR-G07-PE-U03-L01"
+    ],
+    "belongsTo": "JOR-OUTCOME-002457"
+  },
+  "createdAt": "2026-07-31T17:56:56.840Z",
+  "updatedAt": "2026-07-31T17:56:56.975Z"
+}

@@ -1,0 +1,35 @@
+{
+  "globalId": "JOR-SKILL-000481",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«السلامة الرقمية — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-001059",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-001059",
+      "JOR-OUTCOME-001060",
+      "JOR-OUTCOME-001061",
+      "JOR-OUTCOME-001491",
+      "JOR-OUTCOME-001492",
+      "JOR-OUTCOME-001493",
+      "JOR-OUTCOME-001923",
+      "JOR-OUTCOME-001924",
+      "JOR-OUTCOME-001925",
+      "JOR-OUTCOME-002355",
+      "JOR-OUTCOME-002356",
+      "JOR-OUTCOME-002357"
+    ],
+    "lessonIds": [
+      "JOR-G01-ICT-U02-L03",
+      "JOR-G02-ICT-U02-L03",
+      "JOR-G03-ICT-U02-L03",
+      "JOR-G04-ICT-U02-L03"
+    ],
+    "belongsTo": "JOR-OUTCOME-001059"
+  },
+  "createdAt": "2026-07-31T17:56:56.739Z",
+  "updatedAt": "2026-07-31T17:56:56.829Z"
+}

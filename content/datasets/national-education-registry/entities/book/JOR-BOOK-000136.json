@@ -1,0 +1,19 @@
+{
+  "globalId": "JOR-BOOK-000136",
+  "kind": "book",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "Success OS — البناء والإنشاءات",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G12-البناءوا",
+  "relationships": {
+    "subjectId": "JOR-G12-البناءوا",
+    "gradeId": "JOR-G12",
+    "belongsTo": "JOR-G12-البناءوا"
+  },
+  "createdAt": "2026-07-31T17:56:57.478Z",
+  "updatedAt": "2026-07-31T17:56:57.478Z",
+  "legacyBookId": "jordan__التعليم-الثانوي-المسار-المهني-btec__jordan-national-curriculum__الصف-12__البناء-والإنشاءات__ar",
+  "officialSource": "https://www.nccd.gov.jo/ar/pages/TextBooksGrade/83"
+}

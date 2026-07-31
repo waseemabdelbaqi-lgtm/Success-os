@@ -1,0 +1,18 @@
+{
+  "globalId": "JOR-OUTCOME-001783",
+  "kind": "learningOutcome",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«المادة والطاقة — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G03-SCI-U02-L04",
+  "relationships": {
+    "lessonId": "JOR-G03-SCI-U02-L04",
+    "belongsTo": "JOR-G03-SCI-U02-L04"
+  },
+  "createdAt": "2026-07-31T17:56:56.785Z",
+  "updatedAt": "2026-07-31T17:56:56.785Z",
+  "text": "أن يطبّق مهارة مرتبطة بـ«المادة والطاقة — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+  "sequence": 2
+}

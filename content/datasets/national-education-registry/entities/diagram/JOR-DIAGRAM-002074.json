@@ -1,0 +1,16 @@
+{
+  "globalId": "JOR-DIAGRAM-002074",
+  "kind": "diagram",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "مخطط تعليمي لوحدة Literature & Media",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G12-ENG-U03-L02",
+  "relationships": {
+    "lessonId": "JOR-G12-ENG-U03-L02",
+    "belongsTo": "JOR-G12-ENG-U03-L02"
+  },
+  "createdAt": "2026-07-31T17:56:57.357Z",
+  "updatedAt": "2026-07-31T17:56:57.357Z"
+}

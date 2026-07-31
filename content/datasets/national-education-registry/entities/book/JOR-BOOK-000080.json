@@ -1,0 +1,19 @@
+{
+  "globalId": "JOR-BOOK-000080",
+  "kind": "book",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "Success OS — اللغة الإنجليزية",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G07-ENG",
+  "relationships": {
+    "subjectId": "JOR-G07-ENG",
+    "gradeId": "JOR-G07",
+    "belongsTo": "JOR-G07-ENG"
+  },
+  "createdAt": "2026-07-31T17:56:57.019Z",
+  "updatedAt": "2026-07-31T17:56:57.019Z",
+  "legacyBookId": "jordan__التعليم-الأساسي__jordan-national-curriculum__الصف-7__اللغة-الإنجليزية__ar",
+  "officialSource": "https://www.nccd.gov.jo/ar/pages/TextBooksGrade/74"
+}

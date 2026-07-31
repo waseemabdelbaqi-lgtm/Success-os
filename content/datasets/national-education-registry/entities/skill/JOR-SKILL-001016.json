@@ -1,0 +1,23 @@
+{
+  "globalId": "JOR-SKILL-001016",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«المقارنة والقياس المبكر — بناء المهارة» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-007036",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-007036",
+      "JOR-OUTCOME-007037",
+      "JOR-OUTCOME-007038"
+    ],
+    "lessonIds": [
+      "JOR-GKG-EMATH-U03-L02"
+    ],
+    "belongsTo": "JOR-OUTCOME-007036"
+  },
+  "createdAt": "2026-07-31T17:56:57.562Z",
+  "updatedAt": "2026-07-31T17:56:57.562Z"
+}

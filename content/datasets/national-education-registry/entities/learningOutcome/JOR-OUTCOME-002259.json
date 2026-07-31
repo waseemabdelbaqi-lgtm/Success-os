@@ -1,0 +1,18 @@
+{
+  "globalId": "JOR-OUTCOME-002259",
+  "kind": "learningOutcome",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يتعرف المتعلم مفهومًا محوريًا في اللغة الإنجليزية ضمن Phonics & Vocabulary بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 4.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G04-ENG-U02-L03",
+  "relationships": {
+    "lessonId": "JOR-G04-ENG-U02-L03",
+    "belongsTo": "JOR-G04-ENG-U02-L03"
+  },
+  "createdAt": "2026-07-31T17:56:56.821Z",
+  "updatedAt": "2026-07-31T17:56:56.821Z",
+  "text": "أن يتعرف المتعلم مفهومًا محوريًا في اللغة الإنجليزية ضمن Phonics & Vocabulary بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 4.",
+  "sequence": 1
+}

@@ -1,0 +1,31 @@
+{
+  "globalId": "JOR-SKILL-000510",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«القيم الإسلامية — بناء المهارة» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-002424",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-002424",
+      "JOR-OUTCOME-002425",
+      "JOR-OUTCOME-002426",
+      "JOR-OUTCOME-002984",
+      "JOR-OUTCOME-002985",
+      "JOR-OUTCOME-002986",
+      "JOR-OUTCOME-003544",
+      "JOR-OUTCOME-003545",
+      "JOR-OUTCOME-003546"
+    ],
+    "lessonIds": [
+      "JOR-G05-ISL-U04-L02",
+      "JOR-G06-ISL-U04-L02",
+      "JOR-G07-ISL-U04-L02"
+    ],
+    "belongsTo": "JOR-OUTCOME-002424"
+  },
+  "createdAt": "2026-07-31T17:56:56.837Z",
+  "updatedAt": "2026-07-31T17:56:56.972Z"
+}

@@ -1,0 +1,35 @@
+{
+  "globalId": "JOR-SKILL-000327",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«الأخلاق والآداب — مقدمة ومفاهيم» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-000681",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-000681",
+      "JOR-OUTCOME-000682",
+      "JOR-OUTCOME-000683",
+      "JOR-OUTCOME-001113",
+      "JOR-OUTCOME-001114",
+      "JOR-OUTCOME-001115",
+      "JOR-OUTCOME-001545",
+      "JOR-OUTCOME-001546",
+      "JOR-OUTCOME-001547",
+      "JOR-OUTCOME-001977",
+      "JOR-OUTCOME-001978",
+      "JOR-OUTCOME-001979"
+    ],
+    "lessonIds": [
+      "JOR-G01-ISL-U03-L01",
+      "JOR-G02-ISL-U03-L01",
+      "JOR-G03-ISL-U03-L01",
+      "JOR-G04-ISL-U03-L01"
+    ],
+    "belongsTo": "JOR-OUTCOME-000681"
+  },
+  "createdAt": "2026-07-31T17:56:56.715Z",
+  "updatedAt": "2026-07-31T17:56:56.799Z"
+}

@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-G03-ARAB-U02-L02",
+  "kind": "lesson",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "الكتابة والإملاء — بناء المهارة",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G03-ARAB-U02",
+  "relationships": {
+    "unitId": "JOR-G03-ARAB-U02",
+    "bookId": "JOR-BOOK-000039",
+    "subjectId": "JOR-G03-ARAB",
+    "gradeId": "JOR-G03",
+    "belongsTo": "JOR-G03-ARAB-U02"
+  },
+  "createdAt": "2026-07-31T17:56:56.792Z",
+  "updatedAt": "2026-07-31T17:56:56.792Z",
+  "lessonCode": "L02",
+  "sequence": 2,
+  "legacyLessonId": "L2.2",
+  "keywords": [
+    "نص",
+    "معنى",
+    "أسلوب"
+  ]
+}

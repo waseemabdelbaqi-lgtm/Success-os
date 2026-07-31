@@ -1,0 +1,21 @@
+{
+  "globalId": "JOR-G12-البناءوا-U04",
+  "kind": "unit",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "مشروع تطبيقي",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-BOOK-000136",
+  "relationships": {
+    "bookId": "JOR-BOOK-000136",
+    "subjectId": "JOR-G12-البناءوا",
+    "gradeId": "JOR-G12",
+    "belongsTo": "JOR-BOOK-000136"
+  },
+  "createdAt": "2026-07-31T17:56:57.486Z",
+  "updatedAt": "2026-07-31T17:56:57.486Z",
+  "unitCode": "U04",
+  "sequence": 4,
+  "legacyUnitId": "U4"
+}

@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-G04-SCI-U02-L04",
+  "kind": "lesson",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "المادة والطاقة — تقويم وتعزيز",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G04-SCI-U02",
+  "relationships": {
+    "unitId": "JOR-G04-SCI-U02",
+    "bookId": "JOR-BOOK-000046",
+    "subjectId": "JOR-G04-SCI",
+    "gradeId": "JOR-G04",
+    "belongsTo": "JOR-G04-SCI-U02"
+  },
+  "createdAt": "2026-07-31T17:56:56.818Z",
+  "updatedAt": "2026-07-31T17:56:56.818Z",
+  "lessonCode": "L04",
+  "sequence": 4,
+  "legacyLessonId": "L2.4",
+  "keywords": [
+    "مادة",
+    "طاقة",
+    "نظام"
+  ]
+}

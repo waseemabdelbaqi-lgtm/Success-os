@@ -1,0 +1,21 @@
+{
+  "globalId": "JOR-G08-ISL-U01",
+  "kind": "unit",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "الفقه المبسط",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-BOOK-000084",
+  "relationships": {
+    "bookId": "JOR-BOOK-000084",
+    "subjectId": "JOR-G08-ISL",
+    "gradeId": "JOR-G08",
+    "belongsTo": "JOR-BOOK-000084"
+  },
+  "createdAt": "2026-07-31T17:56:57.044Z",
+  "updatedAt": "2026-07-31T17:56:57.044Z",
+  "unitCode": "U01",
+  "sequence": 1,
+  "legacyUnitId": "U1"
+}

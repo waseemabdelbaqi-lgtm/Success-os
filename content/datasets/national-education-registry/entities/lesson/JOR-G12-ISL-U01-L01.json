@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-G12-ISL-U01-L01",
+  "kind": "lesson",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أصول الدين — مقدمة ومفاهيم",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G12-ISL-U01",
+  "relationships": {
+    "unitId": "JOR-G12-ISL-U01",
+    "bookId": "JOR-BOOK-000118",
+    "subjectId": "JOR-G12-ISL",
+    "gradeId": "JOR-G12",
+    "belongsTo": "JOR-G12-ISL-U01"
+  },
+  "createdAt": "2026-07-31T17:56:57.312Z",
+  "updatedAt": "2026-07-31T17:56:57.312Z",
+  "lessonCode": "L01",
+  "sequence": 1,
+  "legacyLessonId": "L1.1",
+  "keywords": [
+    "عقيدة",
+    "عبادة",
+    "خلق"
+  ]
+}

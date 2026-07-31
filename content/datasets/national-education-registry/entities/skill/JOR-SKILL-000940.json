@@ -1,0 +1,51 @@
+{
+  "globalId": "JOR-SKILL-000940",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يتعرف المتعلم مفهومًا محوريًا في الأعمال ضمن أساسيات المسار بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 11.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-006305",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-006305",
+      "JOR-OUTCOME-006306",
+      "JOR-OUTCOME-006307",
+      "JOR-OUTCOME-006308",
+      "JOR-OUTCOME-006309",
+      "JOR-OUTCOME-006310",
+      "JOR-OUTCOME-006311",
+      "JOR-OUTCOME-006312",
+      "JOR-OUTCOME-006313",
+      "JOR-OUTCOME-006314",
+      "JOR-OUTCOME-006315",
+      "JOR-OUTCOME-006316",
+      "JOR-OUTCOME-006657",
+      "JOR-OUTCOME-006658",
+      "JOR-OUTCOME-006659",
+      "JOR-OUTCOME-006660",
+      "JOR-OUTCOME-006661",
+      "JOR-OUTCOME-006662",
+      "JOR-OUTCOME-006663",
+      "JOR-OUTCOME-006664",
+      "JOR-OUTCOME-006665",
+      "JOR-OUTCOME-006666",
+      "JOR-OUTCOME-006667",
+      "JOR-OUTCOME-006668"
+    ],
+    "lessonIds": [
+      "JOR-G11-الأعمال-U01-L01",
+      "JOR-G11-الأعمال-U01-L02",
+      "JOR-G11-الأعمال-U01-L03",
+      "JOR-G11-الأعمال-U01-L04",
+      "JOR-G12-الأعمال-U01-L01",
+      "JOR-G12-الأعمال-U01-L02",
+      "JOR-G12-الأعمال-U01-L03",
+      "JOR-G12-الأعمال-U01-L04"
+    ],
+    "belongsTo": "JOR-OUTCOME-006305"
+  },
+  "createdAt": "2026-07-31T17:56:57.394Z",
+  "updatedAt": "2026-07-31T17:56:57.470Z"
+}

@@ -1,0 +1,21 @@
+{
+  "globalId": "JOR-GKG-SCI-U02",
+  "kind": "unit",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "الحواس والملاحظة",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-BOOK-000144",
+  "relationships": {
+    "bookId": "JOR-BOOK-000144",
+    "subjectId": "JOR-GKG-SCI",
+    "gradeId": "JOR-GKG",
+    "belongsTo": "JOR-BOOK-000144"
+  },
+  "createdAt": "2026-07-31T17:56:57.570Z",
+  "updatedAt": "2026-07-31T17:56:57.570Z",
+  "unitCode": "U02",
+  "sequence": 2,
+  "legacyUnitId": "U2"
+}

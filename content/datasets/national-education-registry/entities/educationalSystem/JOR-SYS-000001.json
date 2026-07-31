@@ -1,0 +1,18 @@
+{
+  "globalId": "JOR-SYS-000001",
+  "kind": "educationalSystem",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "Jordan National Curriculum",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR",
+  "relationships": {
+    "countryId": "JOR",
+    "belongsTo": "JOR"
+  },
+  "createdAt": "2026-07-31T17:56:56.680Z",
+  "updatedAt": "2026-07-31T17:56:56.680Z",
+  "systemKey": "national",
+  "systemType": "national"
+}

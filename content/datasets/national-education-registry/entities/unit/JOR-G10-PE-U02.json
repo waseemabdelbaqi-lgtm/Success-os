@@ -1,0 +1,21 @@
+{
+  "globalId": "JOR-G10-PE-U02",
+  "kind": "unit",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "التدريب",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-BOOK-000003",
+  "relationships": {
+    "bookId": "JOR-BOOK-000003",
+    "subjectId": "JOR-G10-PE",
+    "gradeId": "JOR-G10",
+    "belongsTo": "JOR-BOOK-000003"
+  },
+  "createdAt": "2026-07-31T17:56:56.687Z",
+  "updatedAt": "2026-07-31T17:56:56.687Z",
+  "unitCode": "U02",
+  "sequence": 2,
+  "legacyUnitId": "U2"
+}

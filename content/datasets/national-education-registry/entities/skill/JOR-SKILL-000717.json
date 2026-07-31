@@ -1,0 +1,31 @@
+{
+  "globalId": "JOR-SKILL-000717",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«الجداول والعروض — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-002915",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-002915",
+      "JOR-OUTCOME-002916",
+      "JOR-OUTCOME-002917",
+      "JOR-OUTCOME-003475",
+      "JOR-OUTCOME-003476",
+      "JOR-OUTCOME-003477",
+      "JOR-OUTCOME-004035",
+      "JOR-OUTCOME-004036",
+      "JOR-OUTCOME-004037"
+    ],
+    "lessonIds": [
+      "JOR-G05-ICT-U02-L03",
+      "JOR-G06-ICT-U02-L03",
+      "JOR-G07-ICT-U02-L03"
+    ],
+    "belongsTo": "JOR-OUTCOME-002915"
+  },
+  "createdAt": "2026-07-31T17:56:56.887Z",
+  "updatedAt": "2026-07-31T17:56:57.035Z"
+}

@@ -1,0 +1,35 @@
+{
+  "globalId": "JOR-SKILL-000430",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«الصحة والسلامة — بناء المهارة» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-000936",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-000936",
+      "JOR-OUTCOME-000937",
+      "JOR-OUTCOME-000938",
+      "JOR-OUTCOME-001368",
+      "JOR-OUTCOME-001369",
+      "JOR-OUTCOME-001370",
+      "JOR-OUTCOME-001800",
+      "JOR-OUTCOME-001801",
+      "JOR-OUTCOME-001802",
+      "JOR-OUTCOME-002232",
+      "JOR-OUTCOME-002233",
+      "JOR-OUTCOME-002234"
+    ],
+    "lessonIds": [
+      "JOR-G01-SCI-U04-L02",
+      "JOR-G02-SCI-U04-L02",
+      "JOR-G03-SCI-U04-L02",
+      "JOR-G04-SCI-U04-L02"
+    ],
+    "belongsTo": "JOR-OUTCOME-000936"
+  },
+  "createdAt": "2026-07-31T17:56:56.729Z",
+  "updatedAt": "2026-07-31T17:56:56.819Z"
+}

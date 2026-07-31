@@ -1,0 +1,31 @@
+{
+  "globalId": "JOR-SKILL-000707",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«الإنتاج الكتابي — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-002891",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-002891",
+      "JOR-OUTCOME-002892",
+      "JOR-OUTCOME-002893",
+      "JOR-OUTCOME-003451",
+      "JOR-OUTCOME-003452",
+      "JOR-OUTCOME-003453",
+      "JOR-OUTCOME-004011",
+      "JOR-OUTCOME-004012",
+      "JOR-OUTCOME-004013"
+    ],
+    "lessonIds": [
+      "JOR-G05-ARAB-U04-L03",
+      "JOR-G06-ARAB-U04-L03",
+      "JOR-G07-ARAB-U04-L03"
+    ],
+    "belongsTo": "JOR-OUTCOME-002891"
+  },
+  "createdAt": "2026-07-31T17:56:56.884Z",
+  "updatedAt": "2026-07-31T17:56:57.031Z"
+}

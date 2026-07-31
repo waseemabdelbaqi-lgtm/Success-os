@@ -1,0 +1,18 @@
+{
+  "globalId": "JOR-OUTCOME-005420",
+  "kind": "learningOutcome",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«الهوية والقيم — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G11-ISL-U04-L03",
+  "relationships": {
+    "lessonId": "JOR-G11-ISL-U04-L03",
+    "belongsTo": "JOR-G11-ISL-U04-L03"
+  },
+  "createdAt": "2026-07-31T17:56:57.243Z",
+  "updatedAt": "2026-07-31T17:56:57.243Z",
+  "text": "أن يطبّق مهارة مرتبطة بـ«الهوية والقيم — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+  "sequence": 2
+}

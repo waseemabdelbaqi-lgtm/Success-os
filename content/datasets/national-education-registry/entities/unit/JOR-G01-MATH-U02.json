@@ -1,0 +1,21 @@
+{
+  "globalId": "JOR-G01-MATH-U02",
+  "kind": "unit",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "القيمة المكانية",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-BOOK-000018",
+  "relationships": {
+    "bookId": "JOR-BOOK-000018",
+    "subjectId": "JOR-G01-MATH",
+    "gradeId": "JOR-G01",
+    "belongsTo": "JOR-BOOK-000018"
+  },
+  "createdAt": "2026-07-31T17:56:56.725Z",
+  "updatedAt": "2026-07-31T17:56:56.725Z",
+  "unitCode": "U02",
+  "sequence": 2,
+  "legacyUnitId": "U2"
+}

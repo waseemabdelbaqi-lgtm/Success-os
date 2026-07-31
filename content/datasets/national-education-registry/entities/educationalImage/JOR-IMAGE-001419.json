@@ -1,0 +1,17 @@
+{
+  "globalId": "JOR-IMAGE-001419",
+  "kind": "educationalImage",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "مخطط تعليمي لوحدة الروح الرياضية",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G08-PE-U03-L03",
+  "relationships": {
+    "lessonId": "JOR-G08-PE-U03-L03",
+    "belongsTo": "JOR-G08-PE-U03-L03"
+  },
+  "createdAt": "2026-07-31T17:56:57.055Z",
+  "updatedAt": "2026-07-31T17:56:57.055Z",
+  "src": null
+}

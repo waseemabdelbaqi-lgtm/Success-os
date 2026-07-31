@@ -1,0 +1,35 @@
+{
+  "globalId": "JOR-SKILL-000367",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«المسرح المدرسي — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-000783",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-000783",
+      "JOR-OUTCOME-000784",
+      "JOR-OUTCOME-000785",
+      "JOR-OUTCOME-001215",
+      "JOR-OUTCOME-001216",
+      "JOR-OUTCOME-001217",
+      "JOR-OUTCOME-001647",
+      "JOR-OUTCOME-001648",
+      "JOR-OUTCOME-001649",
+      "JOR-OUTCOME-002079",
+      "JOR-OUTCOME-002080",
+      "JOR-OUTCOME-002081"
+    ],
+    "lessonIds": [
+      "JOR-G01-ARTS-U03-L03",
+      "JOR-G02-ARTS-U03-L03",
+      "JOR-G03-ARTS-U03-L03",
+      "JOR-G04-ARTS-U03-L03"
+    ],
+    "belongsTo": "JOR-OUTCOME-000783"
+  },
+  "createdAt": "2026-07-31T17:56:56.720Z",
+  "updatedAt": "2026-07-31T17:56:56.807Z"
+}

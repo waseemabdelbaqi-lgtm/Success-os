@@ -1,0 +1,16 @@
+{
+  "globalId": "JOR-LAW-000019",
+  "kind": "scientificLaw",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "مفهوم/علاقة: مواطنة — يُشرح ويُطبَّق ضمن سيادة القانون — تطبيق ومثال",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G08-التربيةا-U03-L03",
+  "relationships": {
+    "lessonId": "JOR-G08-التربيةا-U03-L03",
+    "belongsTo": "JOR-G08-التربيةا-U03-L03"
+  },
+  "createdAt": "2026-07-31T17:56:57.067Z",
+  "updatedAt": "2026-07-31T17:56:57.067Z"
+}

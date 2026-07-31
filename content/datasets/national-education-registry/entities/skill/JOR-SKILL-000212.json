@@ -1,0 +1,31 @@
+{
+  "globalId": "JOR-SKILL-000212",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«الموجات والطاقة — بناء المهارة» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-000432",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-000432",
+      "JOR-OUTCOME-000433",
+      "JOR-OUTCOME-000434",
+      "JOR-OUTCOME-004496",
+      "JOR-OUTCOME-004497",
+      "JOR-OUTCOME-004498",
+      "JOR-OUTCOME-005152",
+      "JOR-OUTCOME-005153",
+      "JOR-OUTCOME-005154"
+    ],
+    "lessonIds": [
+      "JOR-G10-SCI-U02-L02",
+      "JOR-G08-SCI-U02-L02",
+      "JOR-G09-SCI-U02-L02"
+    ],
+    "belongsTo": "JOR-OUTCOME-000432"
+  },
+  "createdAt": "2026-07-31T17:56:56.702Z",
+  "updatedAt": "2026-07-31T17:56:57.199Z"
+}

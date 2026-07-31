@@ -1,0 +1,18 @@
+{
+  "globalId": "JOR-OUTCOME-003190",
+  "kind": "learningOutcome",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يتعرف المتعلم مفهومًا محوريًا في الدراسات الاجتماعية ضمن الموارد والاقتصاد بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 6.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G06-SOC-U02-L04",
+  "relationships": {
+    "lessonId": "JOR-G06-SOC-U02-L04",
+    "belongsTo": "JOR-G06-SOC-U02-L04"
+  },
+  "createdAt": "2026-07-31T17:56:56.917Z",
+  "updatedAt": "2026-07-31T17:56:56.917Z",
+  "text": "أن يتعرف المتعلم مفهومًا محوريًا في الدراسات الاجتماعية ضمن الموارد والاقتصاد بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 6.",
+  "sequence": 1
+}

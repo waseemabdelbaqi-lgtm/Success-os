@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-G02-ENG-U02-L02",
+  "kind": "lesson",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "Phonics & Vocabulary — بناء المهارة",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G02-ENG-U02",
+  "relationships": {
+    "unitId": "JOR-G02-ENG-U02",
+    "bookId": "JOR-BOOK-000029",
+    "subjectId": "JOR-G02-ENG",
+    "gradeId": "JOR-G02",
+    "belongsTo": "JOR-G02-ENG-U02"
+  },
+  "createdAt": "2026-07-31T17:56:56.760Z",
+  "updatedAt": "2026-07-31T17:56:56.760Z",
+  "lessonCode": "L02",
+  "sequence": 2,
+  "legacyLessonId": "L2.2",
+  "keywords": [
+    "vocabulary",
+    "structure",
+    "fluency"
+  ]
+}

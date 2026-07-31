@@ -1,0 +1,18 @@
+{
+  "globalId": "JOR-OUTCOME-007118",
+  "kind": "learningOutcome",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«الحروف والأصوات — مقدمة ومفاهيم» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-GKG-اللغةوال-U02-L01",
+  "relationships": {
+    "lessonId": "JOR-GKG-اللغةوال-U02-L01",
+    "belongsTo": "JOR-GKG-اللغةوال-U02-L01"
+  },
+  "createdAt": "2026-07-31T17:56:57.582Z",
+  "updatedAt": "2026-07-31T17:56:57.582Z",
+  "text": "أن يطبّق مهارة مرتبطة بـ«الحروف والأصوات — مقدمة ومفاهيم» بخطوات واضحة قابلة للتحقق.",
+  "sequence": 2
+}

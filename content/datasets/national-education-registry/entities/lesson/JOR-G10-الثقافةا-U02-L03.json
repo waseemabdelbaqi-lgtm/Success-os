@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-G10-الثقافةا-U02-L03",
+  "kind": "lesson",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "المصارف المبسطة — تطبيق ومثال",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G10-الثقافةا-U02",
+  "relationships": {
+    "unitId": "JOR-G10-الثقافةا-U02",
+    "bookId": "JOR-BOOK-000005",
+    "subjectId": "JOR-G10-الثقافةا",
+    "gradeId": "JOR-G10",
+    "belongsTo": "JOR-G10-الثقافةا-U02"
+  },
+  "createdAt": "2026-07-31T17:56:56.695Z",
+  "updatedAt": "2026-07-31T17:56:56.695Z",
+  "lessonCode": "L03",
+  "sequence": 3,
+  "legacyLessonId": "L2.3",
+  "keywords": [
+    "دخل",
+    "مصروف",
+    "ادخار"
+  ]
+}

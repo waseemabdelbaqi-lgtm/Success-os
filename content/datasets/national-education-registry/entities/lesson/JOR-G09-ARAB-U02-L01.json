@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-G09-ARAB-U02-L01",
+  "kind": "lesson",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "النحو المتقدم — مقدمة ومفاهيم",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G09-ARAB-U02",
+  "relationships": {
+    "unitId": "JOR-G09-ARAB-U02",
+    "bookId": "JOR-BOOK-000107",
+    "subjectId": "JOR-G09-ARAB",
+    "gradeId": "JOR-G09",
+    "belongsTo": "JOR-G09-ARAB-U02"
+  },
+  "createdAt": "2026-07-31T17:56:57.222Z",
+  "updatedAt": "2026-07-31T17:56:57.222Z",
+  "lessonCode": "L01",
+  "sequence": 1,
+  "legacyLessonId": "L2.1",
+  "keywords": [
+    "نص",
+    "معنى",
+    "أسلوب"
+  ]
+}

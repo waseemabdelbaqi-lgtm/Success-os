@@ -1,0 +1,16 @@
+{
+  "globalId": "JOR-DIAGRAM-001063",
+  "kind": "diagram",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "مخطط تعليمي لوحدة الادخار",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G06-الثقافةا-U02-L03",
+  "relationships": {
+    "lessonId": "JOR-G06-الثقافةا-U02-L03",
+    "belongsTo": "JOR-G06-الثقافةا-U02-L03"
+  },
+  "createdAt": "2026-07-31T17:56:56.911Z",
+  "updatedAt": "2026-07-31T17:56:56.911Z"
+}

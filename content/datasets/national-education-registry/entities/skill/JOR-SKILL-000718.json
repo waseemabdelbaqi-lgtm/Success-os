@@ -1,0 +1,31 @@
+{
+  "globalId": "JOR-SKILL-000718",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«الجداول والعروض — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-002918",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-002918",
+      "JOR-OUTCOME-002919",
+      "JOR-OUTCOME-002920",
+      "JOR-OUTCOME-003478",
+      "JOR-OUTCOME-003479",
+      "JOR-OUTCOME-003480",
+      "JOR-OUTCOME-004038",
+      "JOR-OUTCOME-004039",
+      "JOR-OUTCOME-004040"
+    ],
+    "lessonIds": [
+      "JOR-G05-ICT-U02-L04",
+      "JOR-G06-ICT-U02-L04",
+      "JOR-G07-ICT-U02-L04"
+    ],
+    "belongsTo": "JOR-OUTCOME-002918"
+  },
+  "createdAt": "2026-07-31T17:56:56.887Z",
+  "updatedAt": "2026-07-31T17:56:57.035Z"
+}

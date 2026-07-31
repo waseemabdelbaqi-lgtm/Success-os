@@ -1,0 +1,45 @@
+{
+  "sourceId": "jo-ref-phet-lab",
+  "title": "PhET Interactive Simulations — Lab Concept Support",
+  "publisher": "University of Colorado Boulder",
+  "organization": "PhET",
+  "country": "International (concept verification only)",
+  "educationalSystem": "OER — not a Jordan curriculum authority",
+  "subject": "العلوم",
+  "grade": "all",
+  "language": "en",
+  "publicationYear": 2025,
+  "version": "2025-2026",
+  "officialUrl": "https://phet.colorado.edu",
+  "licenseType": "open-license-oer",
+  "copyrightStatus": "open-educational-resource",
+  "verificationDate": "2026-07-31T17:54:29.642Z",
+  "reliabilityScore": 90,
+  "status": "verified",
+  "category": "Laboratory Resources",
+  "copyBookText": false,
+  "note": null,
+  "history": [
+    {
+      "event": "registered",
+      "at": "2026-07-31T17:54:29.642Z",
+      "version": "2025-2026",
+      "note": "JO-05 seed registration"
+    },
+    {
+      "event": "rebuilt",
+      "at": "2026-07-31T17:55:32.918Z",
+      "version": "2025-2026"
+    },
+    {
+      "event": "rebuilt",
+      "at": "2026-07-31T17:55:35.796Z",
+      "version": "2025-2026"
+    }
+  ],
+  "validation": {
+    "ok": true,
+    "warnings": [],
+    "validatedAt": "2026-07-31T17:55:35.796Z"
+  }
+}

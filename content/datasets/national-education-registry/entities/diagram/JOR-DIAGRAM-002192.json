@@ -1,0 +1,16 @@
+{
+  "globalId": "JOR-DIAGRAM-002192",
+  "kind": "diagram",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "مخطط تعليمي لوحدة مشروع تطبيقي",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G11-الزراعة-U04-L04",
+  "relationships": {
+    "lessonId": "JOR-G11-الزراعة-U04-L04",
+    "belongsTo": "JOR-G11-الزراعة-U04-L04"
+  },
+  "createdAt": "2026-07-31T17:56:57.417Z",
+  "updatedAt": "2026-07-31T17:56:57.417Z"
+}

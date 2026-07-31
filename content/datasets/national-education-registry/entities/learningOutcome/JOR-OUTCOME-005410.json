@@ -1,0 +1,18 @@
+{
+  "globalId": "JOR-OUTCOME-005410",
+  "kind": "learningOutcome",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يتعرف المتعلم مفهومًا محوريًا في التربية الإسلامية ضمن الفكر الإسلامي بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 11.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G11-ISL-U03-L04",
+  "relationships": {
+    "lessonId": "JOR-G11-ISL-U03-L04",
+    "belongsTo": "JOR-G11-ISL-U03-L04"
+  },
+  "createdAt": "2026-07-31T17:56:57.241Z",
+  "updatedAt": "2026-07-31T17:56:57.241Z",
+  "text": "أن يتعرف المتعلم مفهومًا محوريًا في التربية الإسلامية ضمن الفكر الإسلامي بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 11.",
+  "sequence": 1
+}

@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-G01-SCI-U04-L01",
+  "kind": "lesson",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "الصحة والسلامة — مقدمة ومفاهيم",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G01-SCI-U04",
+  "relationships": {
+    "unitId": "JOR-G01-SCI-U04",
+    "bookId": "JOR-BOOK-000019",
+    "subjectId": "JOR-G01-SCI",
+    "gradeId": "JOR-G01",
+    "belongsTo": "JOR-G01-SCI-U04"
+  },
+  "createdAt": "2026-07-31T17:56:56.729Z",
+  "updatedAt": "2026-07-31T17:56:56.729Z",
+  "lessonCode": "L01",
+  "sequence": 1,
+  "legacyLessonId": "L4.1",
+  "keywords": [
+    "مادة",
+    "طاقة",
+    "نظام"
+  ]
+}

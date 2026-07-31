@@ -23,7 +23,7 @@
   "bookGenerationAllowed": true,
   "excludeInternational": true,
   "databaseFile": "content/datasets/jordan-national-curriculum-knowledge/jordan-national-knowledge-database.json",
-  "updatedAt": "2026-07-31T17:36:32.879Z",
+  "updatedAt": "2026-07-31T17:55:35.495Z",
   "sampleSubjects": [
     {
       "key": "رياض الأطفال::رياض الأطفال::اللغة والتواصل",

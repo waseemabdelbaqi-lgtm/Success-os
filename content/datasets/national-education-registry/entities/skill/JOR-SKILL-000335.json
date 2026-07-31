@@ -1,0 +1,35 @@
+{
+  "globalId": "JOR-SKILL-000335",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«قصص قرآنية ونبوية — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-000702",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-000702",
+      "JOR-OUTCOME-000703",
+      "JOR-OUTCOME-000704",
+      "JOR-OUTCOME-001134",
+      "JOR-OUTCOME-001135",
+      "JOR-OUTCOME-001136",
+      "JOR-OUTCOME-001566",
+      "JOR-OUTCOME-001567",
+      "JOR-OUTCOME-001568",
+      "JOR-OUTCOME-001998",
+      "JOR-OUTCOME-001999",
+      "JOR-OUTCOME-002000"
+    ],
+    "lessonIds": [
+      "JOR-G01-ISL-U04-L04",
+      "JOR-G02-ISL-U04-L04",
+      "JOR-G03-ISL-U04-L04",
+      "JOR-G04-ISL-U04-L04"
+    ],
+    "belongsTo": "JOR-OUTCOME-000702"
+  },
+  "createdAt": "2026-07-31T17:56:56.716Z",
+  "updatedAt": "2026-07-31T17:56:56.800Z"
+}

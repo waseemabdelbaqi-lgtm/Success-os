@@ -1,0 +1,21 @@
+{
+  "globalId": "JOR-G12-الفيزياء-U03",
+  "kind": "unit",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "الموجات والضوء",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-BOOK-000121",
+  "relationships": {
+    "bookId": "JOR-BOOK-000121",
+    "subjectId": "JOR-G12-الفيزياء",
+    "gradeId": "JOR-G12",
+    "belongsTo": "JOR-BOOK-000121"
+  },
+  "createdAt": "2026-07-31T17:56:57.342Z",
+  "updatedAt": "2026-07-31T17:56:57.342Z",
+  "unitCode": "U03",
+  "sequence": 3,
+  "legacyUnitId": "U3"
+}

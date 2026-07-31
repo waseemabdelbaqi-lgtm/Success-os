@@ -1,41 +1,37 @@
-# Jordan National Curriculum — in-project dataset
+# Jordan National Curriculum — in-project datasets
 
-Country: **Jordan (JO)**  
-Curriculum: **المنهاج الوطني الأردني**
+Country: **Jordan (JO)** · Curriculum: **المنهاج الوطني الأردني**
 
-This folder is the **canonical committed** JO-01 knowledge store used by Success OS
-(`knowledgeRoot()`). Rebuild with:
+Rebuild everything with:
 
 ```bash
 npm run jo:install-curriculum
 ```
 
-## Contents
+## Dataset layout
 
-| Path | Purpose |
-|------|---------|
-| `jordan-national-knowledge-database.json` | Aggregate DB + verification gate |
-| `status.json` | Gate / totals snapshot |
-| `subjects/*.json` | Every grade×subject knowledge node |
-| `grades/*.json` | Per-grade rollups |
-| `dashboards/latest.json` | Admin dashboard payload |
-| `reports/` | Build reports |
+| Path | Phase | Purpose |
+|------|-------|---------|
+| `jordan-national-curriculum-knowledge/` | JO-01 | Grade×subject knowledge nodes |
+| `jordan-educational-reference-library/` | JO-05 | Verified official references |
+| `jordan-book-production/` | JO-02 | Production queue / reviews |
+| `global-knowledge/books/` | JO-02 | Produced Success OS books |
+| `national-education-registry/` | JO-10 | Searchable entity registry |
 
-Browseable grade trees (subject→unit→lesson) also live at:
-
-`content/exports/jordan-curriculum/grades/grade-NN-tree.json`
+Browse trees: `content/exports/jordan-curriculum/grades/`
 
 ## Last install snapshot
 
 - Knowledge cells: 154
-- Units: 616
-- Lessons: 2464
-- Outcomes: 7392
+- Knowledge lessons: 2464
 - Verified completion: 98.09%
 - Book generation: ALLOWED
+- Verified references: 31
+- Produced books on disk: 154
+- Registry lessons: 2304
 - Export grades 1–12 subjects: 134
 - Export lessons: 2144
 
 ## Rights
 
-Structure / original Success OS scaffolds only — **never** copies textbook prose.
+Original Success OS scaffolds aligned to MoE / NCCD structure — **never** copies textbook prose.

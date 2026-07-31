@@ -1,0 +1,31 @@
+{
+  "globalId": "JOR-SKILL-000253",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«Functional English — بناء المهارة» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-000516",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-000516",
+      "JOR-OUTCOME-000517",
+      "JOR-OUTCOME-000518",
+      "JOR-OUTCOME-004580",
+      "JOR-OUTCOME-004581",
+      "JOR-OUTCOME-004582",
+      "JOR-OUTCOME-005236",
+      "JOR-OUTCOME-005237",
+      "JOR-OUTCOME-005238"
+    ],
+    "lessonIds": [
+      "JOR-G10-ENG-U01-L02",
+      "JOR-G08-ENG-U01-L02",
+      "JOR-G09-ENG-U01-L02"
+    ],
+    "belongsTo": "JOR-OUTCOME-000516"
+  },
+  "createdAt": "2026-07-31T17:56:56.706Z",
+  "updatedAt": "2026-07-31T17:56:57.212Z"
+}

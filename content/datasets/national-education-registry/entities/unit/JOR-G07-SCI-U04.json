@@ -1,0 +1,21 @@
+{
+  "globalId": "JOR-G07-SCI-U04",
+  "kind": "unit",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "النظم البيئية",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-BOOK-000078",
+  "relationships": {
+    "bookId": "JOR-BOOK-000078",
+    "subjectId": "JOR-G07-SCI",
+    "gradeId": "JOR-G07",
+    "belongsTo": "JOR-BOOK-000078"
+  },
+  "createdAt": "2026-07-31T17:56:57.012Z",
+  "updatedAt": "2026-07-31T17:56:57.012Z",
+  "unitCode": "U04",
+  "sequence": 4,
+  "legacyUnitId": "U4"
+}

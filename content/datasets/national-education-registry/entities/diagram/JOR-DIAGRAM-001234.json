@@ -1,0 +1,16 @@
+{
+  "globalId": "JOR-DIAGRAM-001234",
+  "kind": "diagram",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "مخطط تعليمي لوحدة الدستور مبسطاً",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G07-التربيةا-U01-L02",
+  "relationships": {
+    "lessonId": "JOR-G07-التربيةا-U01-L02",
+    "belongsTo": "JOR-G07-التربيةا-U01-L02"
+  },
+  "createdAt": "2026-07-31T17:56:56.984Z",
+  "updatedAt": "2026-07-31T17:56:56.984Z"
+}

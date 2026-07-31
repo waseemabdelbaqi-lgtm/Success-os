@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-SKILL-000890",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«مشاريع تقنية — مقدمة ومفاهيم» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-005749",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-005749",
+      "JOR-OUTCOME-005750",
+      "JOR-OUTCOME-005751",
+      "JOR-OUTCOME-006213",
+      "JOR-OUTCOME-006214",
+      "JOR-OUTCOME-006215"
+    ],
+    "lessonIds": [
+      "JOR-G11-ICT-U04-L01",
+      "JOR-G12-ICT-U04-L01"
+    ],
+    "belongsTo": "JOR-OUTCOME-005749"
+  },
+  "createdAt": "2026-07-31T17:56:57.297Z",
+  "updatedAt": "2026-07-31T17:56:57.377Z"
+}

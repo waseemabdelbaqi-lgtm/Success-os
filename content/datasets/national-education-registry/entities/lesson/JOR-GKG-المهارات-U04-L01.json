@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-GKG-المهارات-U04-L01",
+  "kind": "lesson",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "وحدة تطبيقية 2 — مقدمة ومفاهيم",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-GKG-المهارات-U04",
+  "relationships": {
+    "unitId": "JOR-GKG-المهارات-U04",
+    "bookId": "JOR-BOOK-000146",
+    "subjectId": "JOR-GKG-المهارات",
+    "gradeId": "JOR-GKG",
+    "belongsTo": "JOR-GKG-المهارات-U04"
+  },
+  "createdAt": "2026-07-31T17:56:57.596Z",
+  "updatedAt": "2026-07-31T17:56:57.596Z",
+  "lessonCode": "L01",
+  "sequence": 1,
+  "legacyLessonId": "L4.1",
+  "keywords": [
+    "مفهوم",
+    "مهارة",
+    "تطبيق"
+  ]
+}

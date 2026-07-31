@@ -1,0 +1,21 @@
+{
+  "globalId": "JOR-G08-SCI-U04",
+  "kind": "unit",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "الأرض والموارد",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-BOOK-000091",
+  "relationships": {
+    "bookId": "JOR-BOOK-000091",
+    "subjectId": "JOR-G08-SCI",
+    "gradeId": "JOR-G08",
+    "belongsTo": "JOR-BOOK-000091"
+  },
+  "createdAt": "2026-07-31T17:56:57.101Z",
+  "updatedAt": "2026-07-31T17:56:57.101Z",
+  "unitCode": "U04",
+  "sequence": 4,
+  "legacyUnitId": "U4"
+}

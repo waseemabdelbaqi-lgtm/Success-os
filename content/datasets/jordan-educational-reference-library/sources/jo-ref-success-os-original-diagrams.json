@@ -1,0 +1,47 @@
+{
+  "sourceId": "jo-ref-success-os-original-diagrams",
+  "title": "Success OS Original Educational Diagrams Policy",
+  "publisher": "Success OS",
+  "organization": "Success OS",
+  "country": "Jordan",
+  "educationalSystem": "Jordan National Curriculum",
+  "subject": "all",
+  "grade": "all",
+  "language": "ar",
+  "publicationYear": 2025,
+  "version": "2025-2026",
+  "officialUrl": "https://www.nccd.gov.jo/Ar/Pages/textbooks",
+  "licenseType": "success-os-original",
+  "copyrightStatus": "original-generation-required-never-copy-textbook-figures",
+  "verificationDate": "2026-07-31T17:54:29.642Z",
+  "reliabilityScore": 92,
+  "status": "verified",
+  "category": "Educational Diagrams",
+  "copyBookText": false,
+  "note": null,
+  "history": [
+    {
+      "event": "registered",
+      "at": "2026-07-31T17:54:29.642Z",
+      "version": "2025-2026",
+      "note": "JO-05 seed registration"
+    },
+    {
+      "event": "rebuilt",
+      "at": "2026-07-31T17:55:32.918Z",
+      "version": "2025-2026"
+    },
+    {
+      "event": "rebuilt",
+      "at": "2026-07-31T17:55:35.796Z",
+      "version": "2025-2026"
+    }
+  ],
+  "validation": {
+    "ok": true,
+    "warnings": [
+      "SHARED_URL_WITH:jo-ref-national-curriculum-standard"
+    ],
+    "validatedAt": "2026-07-31T17:55:35.796Z"
+  }
+}

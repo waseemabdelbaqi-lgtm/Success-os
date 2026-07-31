@@ -1,0 +1,51 @@
+{
+  "globalId": "JOR-SKILL-000879",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يتعرف المتعلم مفهومًا محوريًا في المهارات الرقمية ضمن قواعد البيانات بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 11.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-005725",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-005725",
+      "JOR-OUTCOME-005726",
+      "JOR-OUTCOME-005727",
+      "JOR-OUTCOME-005728",
+      "JOR-OUTCOME-005729",
+      "JOR-OUTCOME-005730",
+      "JOR-OUTCOME-005731",
+      "JOR-OUTCOME-005732",
+      "JOR-OUTCOME-005733",
+      "JOR-OUTCOME-005734",
+      "JOR-OUTCOME-005735",
+      "JOR-OUTCOME-005736",
+      "JOR-OUTCOME-006189",
+      "JOR-OUTCOME-006190",
+      "JOR-OUTCOME-006191",
+      "JOR-OUTCOME-006192",
+      "JOR-OUTCOME-006193",
+      "JOR-OUTCOME-006194",
+      "JOR-OUTCOME-006195",
+      "JOR-OUTCOME-006196",
+      "JOR-OUTCOME-006197",
+      "JOR-OUTCOME-006198",
+      "JOR-OUTCOME-006199",
+      "JOR-OUTCOME-006200"
+    ],
+    "lessonIds": [
+      "JOR-G11-ICT-U02-L01",
+      "JOR-G11-ICT-U02-L02",
+      "JOR-G11-ICT-U02-L03",
+      "JOR-G11-ICT-U02-L04",
+      "JOR-G12-ICT-U02-L01",
+      "JOR-G12-ICT-U02-L02",
+      "JOR-G12-ICT-U02-L03",
+      "JOR-G12-ICT-U02-L04"
+    ],
+    "belongsTo": "JOR-OUTCOME-005725"
+  },
+  "createdAt": "2026-07-31T17:56:57.293Z",
+  "updatedAt": "2026-07-31T17:56:57.374Z"
+}

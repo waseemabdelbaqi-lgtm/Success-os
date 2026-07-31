@@ -1,0 +1,51 @@
+{
+  "globalId": "JOR-SKILL-000973",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يتعرف المتعلم مفهومًا محوريًا في الضيافة ضمن مهارات عملية بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 11.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-006509",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-006509",
+      "JOR-OUTCOME-006510",
+      "JOR-OUTCOME-006511",
+      "JOR-OUTCOME-006512",
+      "JOR-OUTCOME-006513",
+      "JOR-OUTCOME-006514",
+      "JOR-OUTCOME-006515",
+      "JOR-OUTCOME-006516",
+      "JOR-OUTCOME-006517",
+      "JOR-OUTCOME-006518",
+      "JOR-OUTCOME-006519",
+      "JOR-OUTCOME-006520",
+      "JOR-OUTCOME-006861",
+      "JOR-OUTCOME-006862",
+      "JOR-OUTCOME-006863",
+      "JOR-OUTCOME-006864",
+      "JOR-OUTCOME-006865",
+      "JOR-OUTCOME-006866",
+      "JOR-OUTCOME-006867",
+      "JOR-OUTCOME-006868",
+      "JOR-OUTCOME-006869",
+      "JOR-OUTCOME-006870",
+      "JOR-OUTCOME-006871",
+      "JOR-OUTCOME-006872"
+    ],
+    "lessonIds": [
+      "JOR-G11-الضيافة-U02-L01",
+      "JOR-G11-الضيافة-U02-L02",
+      "JOR-G11-الضيافة-U02-L03",
+      "JOR-G11-الضيافة-U02-L04",
+      "JOR-G12-الضيافة-U02-L01",
+      "JOR-G12-الضيافة-U02-L02",
+      "JOR-G12-الضيافة-U02-L03",
+      "JOR-G12-الضيافة-U02-L04"
+    ],
+    "belongsTo": "JOR-OUTCOME-006509"
+  },
+  "createdAt": "2026-07-31T17:56:57.430Z",
+  "updatedAt": "2026-07-31T17:56:57.515Z"
+}

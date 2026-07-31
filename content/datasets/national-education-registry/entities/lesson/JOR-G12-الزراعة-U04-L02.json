@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-G12-الزراعة-U04-L02",
+  "kind": "lesson",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "مشروع تطبيقي — بناء المهارة",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G12-الزراعة-U04",
+  "relationships": {
+    "unitId": "JOR-G12-الزراعة-U04",
+    "bookId": "JOR-BOOK-000137",
+    "subjectId": "JOR-G12-الزراعة",
+    "gradeId": "JOR-G12",
+    "belongsTo": "JOR-G12-الزراعة-U04"
+  },
+  "createdAt": "2026-07-31T17:56:57.497Z",
+  "updatedAt": "2026-07-31T17:56:57.497Z",
+  "lessonCode": "L02",
+  "sequence": 2,
+  "legacyLessonId": "L4.2",
+  "keywords": [
+    "معيار",
+    "أداة",
+    "عملية"
+  ]
+}

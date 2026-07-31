@@ -1,0 +1,21 @@
+{
+  "globalId": "JOR-G12-MATH-U04",
+  "kind": "unit",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "الإحصاء والاحتمالات",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-BOOK-000119",
+  "relationships": {
+    "bookId": "JOR-BOOK-000119",
+    "subjectId": "JOR-G12-MATH",
+    "gradeId": "JOR-G12",
+    "belongsTo": "JOR-BOOK-000119"
+  },
+  "createdAt": "2026-07-31T17:56:57.327Z",
+  "updatedAt": "2026-07-31T17:56:57.327Z",
+  "unitCode": "U04",
+  "sequence": 4,
+  "legacyUnitId": "U4"
+}

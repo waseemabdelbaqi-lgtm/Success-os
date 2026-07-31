@@ -1,0 +1,31 @@
+{
+  "globalId": "JOR-SKILL-000097",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«المواطنة الرقمية — مقدمة ومفاهيم» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-000193",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-000193",
+      "JOR-OUTCOME-000194",
+      "JOR-OUTCOME-000147",
+      "JOR-OUTCOME-004257",
+      "JOR-OUTCOME-004258",
+      "JOR-OUTCOME-004211",
+      "JOR-OUTCOME-004913",
+      "JOR-OUTCOME-004914",
+      "JOR-OUTCOME-004867"
+    ],
+    "lessonIds": [
+      "JOR-G10-التربيةا-U01-L01",
+      "JOR-G08-التربيةا-U01-L01",
+      "JOR-G09-التربيةا-U01-L01"
+    ],
+    "belongsTo": "JOR-OUTCOME-000193"
+  },
+  "createdAt": "2026-07-31T17:56:56.690Z",
+  "updatedAt": "2026-07-31T17:56:57.161Z"
+}

@@ -1,0 +1,16 @@
+{
+  "globalId": "JOR-DIAGRAM-001329",
+  "kind": "diagram",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "مخطط تعليمي لوحدة Communication",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G07-ENG-U01-L01",
+  "relationships": {
+    "lessonId": "JOR-G07-ENG-U01-L01",
+    "belongsTo": "JOR-G07-ENG-U01-L01"
+  },
+  "createdAt": "2026-07-31T17:56:57.019Z",
+  "updatedAt": "2026-07-31T17:56:57.019Z"
+}

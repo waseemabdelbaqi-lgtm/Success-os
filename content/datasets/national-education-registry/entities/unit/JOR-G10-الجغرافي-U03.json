@@ -1,0 +1,21 @@
+{
+  "globalId": "JOR-G10-الجغرافي-U03",
+  "kind": "unit",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "التخطيط المكاني",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-BOOK-000006",
+  "relationships": {
+    "bookId": "JOR-BOOK-000006",
+    "subjectId": "JOR-G10-الجغرافي",
+    "gradeId": "JOR-G10",
+    "belongsTo": "JOR-BOOK-000006"
+  },
+  "createdAt": "2026-07-31T17:56:56.697Z",
+  "updatedAt": "2026-07-31T17:56:56.697Z",
+  "unitCode": "U03",
+  "sequence": 3,
+  "legacyUnitId": "U3"
+}

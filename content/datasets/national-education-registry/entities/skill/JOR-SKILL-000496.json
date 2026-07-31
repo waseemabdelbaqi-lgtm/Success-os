@@ -1,0 +1,31 @@
+{
+  "globalId": "JOR-SKILL-000496",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«أركان الإيمان — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-002391",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-002391",
+      "JOR-OUTCOME-002392",
+      "JOR-OUTCOME-002393",
+      "JOR-OUTCOME-002951",
+      "JOR-OUTCOME-002952",
+      "JOR-OUTCOME-002953",
+      "JOR-OUTCOME-003511",
+      "JOR-OUTCOME-003512",
+      "JOR-OUTCOME-003513"
+    ],
+    "lessonIds": [
+      "JOR-G05-ISL-U01-L03",
+      "JOR-G06-ISL-U01-L03",
+      "JOR-G07-ISL-U01-L03"
+    ],
+    "belongsTo": "JOR-OUTCOME-002391"
+  },
+  "createdAt": "2026-07-31T17:56:56.833Z",
+  "updatedAt": "2026-07-31T17:56:56.967Z"
+}

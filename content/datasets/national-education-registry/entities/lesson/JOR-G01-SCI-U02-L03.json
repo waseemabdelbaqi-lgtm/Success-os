@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-G01-SCI-U02-L03",
+  "kind": "lesson",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "المادة والطاقة — تطبيق ومثال",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G01-SCI-U02",
+  "relationships": {
+    "unitId": "JOR-G01-SCI-U02",
+    "bookId": "JOR-BOOK-000019",
+    "subjectId": "JOR-G01-SCI",
+    "gradeId": "JOR-G01",
+    "belongsTo": "JOR-G01-SCI-U02"
+  },
+  "createdAt": "2026-07-31T17:56:56.728Z",
+  "updatedAt": "2026-07-31T17:56:56.728Z",
+  "lessonCode": "L03",
+  "sequence": 3,
+  "legacyLessonId": "L2.3",
+  "keywords": [
+    "مادة",
+    "طاقة",
+    "نظام"
+  ]
+}

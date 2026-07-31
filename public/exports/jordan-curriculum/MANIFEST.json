@@ -2,7 +2,7 @@
   "schema": "success-os.jordan-curriculum-export-manifest.v2",
   "country": "JO",
   "grades": "1-12",
-  "exportedAt": "2026-07-31T17:36:33.965Z",
+  "exportedAt": "2026-07-31T17:56:59.468Z",
   "branchHint": "cursor/jordan-all-grades-export-bca1",
   "files": [
     {
@@ -83,7 +83,7 @@
     {
       "name": "jordan-national-curriculum.bundle.json",
       "bytes": 98152,
-      "sha256": "a13fbbd7105a4364dad35d2a4ed19392960cc8b2e734a060fc8eab58f1f4fa2b"
+      "sha256": "803becf8bb761044dab42e55fbe92627afef5b3cfdc43d2b31234923579f2320"
     },
     {
       "name": "jordan-reference-ile-package.json",

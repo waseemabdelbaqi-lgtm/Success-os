@@ -1,0 +1,31 @@
+{
+  "globalId": "JOR-SKILL-000152",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«قضايا جغرافية — مقدمة ومفاهيم» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-000309",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-000309",
+      "JOR-OUTCOME-000310",
+      "JOR-OUTCOME-000311",
+      "JOR-OUTCOME-004373",
+      "JOR-OUTCOME-004374",
+      "JOR-OUTCOME-004375",
+      "JOR-OUTCOME-005029",
+      "JOR-OUTCOME-005030",
+      "JOR-OUTCOME-005031"
+    ],
+    "lessonIds": [
+      "JOR-G10-الجغرافي-U04-L01",
+      "JOR-G08-الجغرافي-U04-L01",
+      "JOR-G09-الجغرافي-U04-L01"
+    ],
+    "belongsTo": "JOR-OUTCOME-000309"
+  },
+  "createdAt": "2026-07-31T17:56:56.698Z",
+  "updatedAt": "2026-07-31T17:56:57.179Z"
+}

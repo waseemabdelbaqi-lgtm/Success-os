@@ -1,0 +1,23 @@
+{
+  "globalId": "JOR-SKILL-001063",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«التعبير الشفوي — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-007150",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-007150",
+      "JOR-OUTCOME-007151",
+      "JOR-OUTCOME-007152"
+    ],
+    "lessonIds": [
+      "JOR-GKG-اللغةوال-U04-L04"
+    ],
+    "belongsTo": "JOR-OUTCOME-007150"
+  },
+  "createdAt": "2026-07-31T17:56:57.589Z",
+  "updatedAt": "2026-07-31T17:56:57.589Z"
+}

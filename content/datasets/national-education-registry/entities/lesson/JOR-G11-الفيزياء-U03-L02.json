@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-G11-الفيزياء-U03-L02",
+  "kind": "lesson",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "الموجات والضوء — بناء المهارة",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G11-الفيزياء-U03",
+  "relationships": {
+    "unitId": "JOR-G11-الفيزياء-U03",
+    "bookId": "JOR-BOOK-000112",
+    "subjectId": "JOR-G11-الفيزياء",
+    "gradeId": "JOR-G11",
+    "belongsTo": "JOR-G11-الفيزياء-U03"
+  },
+  "createdAt": "2026-07-31T17:56:57.264Z",
+  "updatedAt": "2026-07-31T17:56:57.264Z",
+  "lessonCode": "L02",
+  "sequence": 2,
+  "legacyLessonId": "L3.2",
+  "keywords": [
+    "قوة",
+    "شغل",
+    "طاقة"
+  ]
+}

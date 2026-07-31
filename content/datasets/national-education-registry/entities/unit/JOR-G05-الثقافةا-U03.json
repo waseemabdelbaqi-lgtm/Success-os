@@ -1,0 +1,21 @@
+{
+  "globalId": "JOR-G05-الثقافةا-U03",
+  "kind": "unit",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "الاحتياجات والرغبات",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-BOOK-000053",
+  "relationships": {
+    "bookId": "JOR-BOOK-000053",
+    "subjectId": "JOR-G05-الثقافةا",
+    "gradeId": "JOR-G05",
+    "belongsTo": "JOR-BOOK-000053"
+  },
+  "createdAt": "2026-07-31T17:56:56.852Z",
+  "updatedAt": "2026-07-31T17:56:56.852Z",
+  "unitCode": "U03",
+  "sequence": 3,
+  "legacyUnitId": "U3"
+}

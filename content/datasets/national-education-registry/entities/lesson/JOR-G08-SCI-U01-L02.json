@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-G08-SCI-U01-L02",
+  "kind": "lesson",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "الخلية والتنوع — بناء المهارة",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G08-SCI-U01",
+  "relationships": {
+    "unitId": "JOR-G08-SCI-U01",
+    "bookId": "JOR-BOOK-000091",
+    "subjectId": "JOR-G08-SCI",
+    "gradeId": "JOR-G08",
+    "belongsTo": "JOR-G08-SCI-U01"
+  },
+  "createdAt": "2026-07-31T17:56:57.096Z",
+  "updatedAt": "2026-07-31T17:56:57.096Z",
+  "lessonCode": "L02",
+  "sequence": 2,
+  "legacyLessonId": "L1.2",
+  "keywords": [
+    "مادة",
+    "طاقة",
+    "نظام"
+  ]
+}

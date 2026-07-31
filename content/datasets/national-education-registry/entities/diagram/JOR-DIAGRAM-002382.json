@@ -1,0 +1,16 @@
+{
+  "globalId": "JOR-DIAGRAM-002382",
+  "kind": "diagram",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "مخطط تعليمي لوحدة الأنماط",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-GKG-EMATH-U04-L02",
+  "relationships": {
+    "lessonId": "JOR-GKG-EMATH-U04-L02",
+    "belongsTo": "JOR-GKG-EMATH-U04-L02"
+  },
+  "createdAt": "2026-07-31T17:56:57.565Z",
+  "updatedAt": "2026-07-31T17:56:57.565Z"
+}

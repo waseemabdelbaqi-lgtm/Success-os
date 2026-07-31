@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-SKILL-000742",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«الفكر الإسلامي — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-005407",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-005407",
+      "JOR-OUTCOME-005408",
+      "JOR-OUTCOME-005409",
+      "JOR-OUTCOME-005871",
+      "JOR-OUTCOME-005872",
+      "JOR-OUTCOME-005873"
+    ],
+    "lessonIds": [
+      "JOR-G11-ISL-U03-L03",
+      "JOR-G12-ISL-U03-L03"
+    ],
+    "belongsTo": "JOR-OUTCOME-005407"
+  },
+  "createdAt": "2026-07-31T17:56:57.241Z",
+  "updatedAt": "2026-07-31T17:56:57.318Z"
+}

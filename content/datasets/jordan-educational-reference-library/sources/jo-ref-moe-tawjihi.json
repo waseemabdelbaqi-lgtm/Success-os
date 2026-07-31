@@ -1,0 +1,47 @@
+{
+  "sourceId": "jo-ref-moe-tawjihi",
+  "title": "MoE General Secondary (Tawjihi) Examination Framework",
+  "publisher": "Ministry of Education",
+  "organization": "MoE Jordan",
+  "country": "Jordan",
+  "educationalSystem": "Jordan National Curriculum",
+  "subject": "all",
+  "grade": "الصف 12",
+  "language": "ar",
+  "publicationYear": 2025,
+  "version": "2025-2026",
+  "officialUrl": "https://moe.gov.jo",
+  "licenseType": "official-framework-reference",
+  "copyrightStatus": "all-rights-reserved-by-publisher-reference-only",
+  "verificationDate": "2026-07-31T17:54:29.642Z",
+  "reliabilityScore": 96,
+  "status": "verified",
+  "category": "Assessment Frameworks",
+  "copyBookText": false,
+  "note": null,
+  "history": [
+    {
+      "event": "registered",
+      "at": "2026-07-31T17:54:29.642Z",
+      "version": "2025-2026",
+      "note": "JO-05 seed registration"
+    },
+    {
+      "event": "rebuilt",
+      "at": "2026-07-31T17:55:32.918Z",
+      "version": "2025-2026"
+    },
+    {
+      "event": "rebuilt",
+      "at": "2026-07-31T17:55:35.796Z",
+      "version": "2025-2026"
+    }
+  ],
+  "validation": {
+    "ok": true,
+    "warnings": [
+      "SHARED_URL_WITH:jo-ref-moe-home"
+    ],
+    "validatedAt": "2026-07-31T17:55:35.796Z"
+  }
+}

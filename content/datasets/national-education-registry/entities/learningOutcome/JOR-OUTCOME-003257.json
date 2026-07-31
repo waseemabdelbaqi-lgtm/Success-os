@@ -1,0 +1,18 @@
+{
+  "globalId": "JOR-OUTCOME-003257",
+  "kind": "learningOutcome",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«الإحصاء والاحتمال — بناء المهارة» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G06-MATH-U04-L02",
+  "relationships": {
+    "lessonId": "JOR-G06-MATH-U04-L02",
+    "belongsTo": "JOR-G06-MATH-U04-L02"
+  },
+  "createdAt": "2026-07-31T17:56:56.927Z",
+  "updatedAt": "2026-07-31T17:56:56.927Z",
+  "text": "أن يطبّق مهارة مرتبطة بـ«الإحصاء والاحتمال — بناء المهارة» بخطوات واضحة قابلة للتحقق.",
+  "sequence": 2
+}

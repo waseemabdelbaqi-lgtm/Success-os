@@ -1,0 +1,21 @@
+{
+  "globalId": "JOR-G12-ENG-U02",
+  "kind": "unit",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "Advanced Grammar",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-BOOK-000123",
+  "relationships": {
+    "bookId": "JOR-BOOK-000123",
+    "subjectId": "JOR-G12-ENG",
+    "gradeId": "JOR-G12",
+    "belongsTo": "JOR-BOOK-000123"
+  },
+  "createdAt": "2026-07-31T17:56:57.354Z",
+  "updatedAt": "2026-07-31T17:56:57.354Z",
+  "unitCode": "U02",
+  "sequence": 2,
+  "legacyUnitId": "U2"
+}

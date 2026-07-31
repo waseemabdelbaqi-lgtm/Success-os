@@ -1,0 +1,21 @@
+{
+  "globalId": "JOR-G01-ISL-U03",
+  "kind": "unit",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "الأخلاق والآداب",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-BOOK-000014",
+  "relationships": {
+    "bookId": "JOR-BOOK-000014",
+    "subjectId": "JOR-G01-ISL",
+    "gradeId": "JOR-G01",
+    "belongsTo": "JOR-BOOK-000014"
+  },
+  "createdAt": "2026-07-31T17:56:56.715Z",
+  "updatedAt": "2026-07-31T17:56:56.715Z",
+  "unitCode": "U03",
+  "sequence": 3,
+  "legacyUnitId": "U3"
+}

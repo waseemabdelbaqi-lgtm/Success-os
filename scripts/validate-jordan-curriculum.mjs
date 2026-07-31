@@ -16,6 +16,18 @@ for(let n=1;n<=12;n++){
   const tree=path.join('content','exports','jordan-curriculum','grades',`grade-${String(n).padStart(2,'0')}-tree.json`);
   if(!fs.existsSync(tree))failures.push(`Missing grade tree ${tree} — run npm run jo:install-curriculum`);
 }
+const refsStatus=path.join('content','datasets','jordan-educational-reference-library','status.json');
+if(!fs.existsSync(refsStatus))failures.push('Missing Jordan reference library — run npm run jo:install-curriculum');
+else{
+  const rs=JSON.parse(fs.readFileSync(refsStatus,'utf8'));
+  const verified=rs.totals?.verifiedReferences??rs.verifiedReferences??0;
+  if(verified<1)failures.push('Jordan reference library has no verified sources');
+}
+const booksDir=path.join('content','datasets','global-knowledge','books');
+const jordanBooks=fs.existsSync(booksDir)?fs.readdirSync(booksDir).filter(f=>f.startsWith('jordan__')&&f.endsWith('.json')):[];
+if(jordanBooks.length<100)failures.push(`Expected ≥100 produced Jordan books in ${booksDir}, found ${jordanBooks.length}`);
+const registryFile=path.join('content','datasets','national-education-registry','national-education-registry.json');
+if(!fs.existsSync(registryFile))failures.push('Missing Jordan national education registry — run npm run jo:install-curriculum');
 for(const token of ['Jordan only','Jordan National Curriculum required','publicationBlocked','jordanAdminSnapshot','jordanWorkQueue','verify-official-subject-catalogue','capture-and-review-official-baseline'])if(!engine.includes(token))failures.push(`Missing Jordan gate: ${token}`);
 for(const token of ['dashboard','queue','verify-cycle'])if(!route.includes(token))failures.push(`Missing Jordan API action: ${token}`);
 if(!route.includes('scan-grade'))failures.push('Missing official NCCD grade scan action');

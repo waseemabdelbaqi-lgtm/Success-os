@@ -1,0 +1,31 @@
+{
+  "globalId": "JOR-SKILL-000676",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«Grammar Foundations — بناء المهارة» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-002816",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-002816",
+      "JOR-OUTCOME-002817",
+      "JOR-OUTCOME-002818",
+      "JOR-OUTCOME-003376",
+      "JOR-OUTCOME-003377",
+      "JOR-OUTCOME-003378",
+      "JOR-OUTCOME-003936",
+      "JOR-OUTCOME-003937",
+      "JOR-OUTCOME-003938"
+    ],
+    "lessonIds": [
+      "JOR-G05-ENG-U02-L02",
+      "JOR-G06-ENG-U02-L02",
+      "JOR-G07-ENG-U02-L02"
+    ],
+    "belongsTo": "JOR-OUTCOME-002816"
+  },
+  "createdAt": "2026-07-31T17:56:56.875Z",
+  "updatedAt": "2026-07-31T17:56:57.022Z"
+}

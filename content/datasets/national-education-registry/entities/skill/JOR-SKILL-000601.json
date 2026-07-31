@@ -1,0 +1,31 @@
+{
+  "globalId": "JOR-SKILL-000601",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«حقوق وواجبات — بناء المهارة» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-002636",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-002636",
+      "JOR-OUTCOME-002637",
+      "JOR-OUTCOME-002638",
+      "JOR-OUTCOME-003196",
+      "JOR-OUTCOME-003197",
+      "JOR-OUTCOME-003198",
+      "JOR-OUTCOME-003756",
+      "JOR-OUTCOME-003757",
+      "JOR-OUTCOME-003758"
+    ],
+    "lessonIds": [
+      "JOR-G05-SOC-U03-L02",
+      "JOR-G06-SOC-U03-L02",
+      "JOR-G07-SOC-U03-L02"
+    ],
+    "belongsTo": "JOR-OUTCOME-002636"
+  },
+  "createdAt": "2026-07-31T17:56:56.856Z",
+  "updatedAt": "2026-07-31T17:56:56.998Z"
+}

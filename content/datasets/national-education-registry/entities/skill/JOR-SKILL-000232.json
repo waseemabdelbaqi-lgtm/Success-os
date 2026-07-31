@@ -1,0 +1,31 @@
+{
+  "globalId": "JOR-SKILL-000232",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«التصميم — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-000474",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-000474",
+      "JOR-OUTCOME-000475",
+      "JOR-OUTCOME-000476",
+      "JOR-OUTCOME-004538",
+      "JOR-OUTCOME-004539",
+      "JOR-OUTCOME-004540",
+      "JOR-OUTCOME-005194",
+      "JOR-OUTCOME-005195",
+      "JOR-OUTCOME-005196"
+    ],
+    "lessonIds": [
+      "JOR-G10-الفنون-U01-L04",
+      "JOR-G08-الفنون-U01-L04",
+      "JOR-G09-الفنون-U01-L04"
+    ],
+    "belongsTo": "JOR-OUTCOME-000474"
+  },
+  "createdAt": "2026-07-31T17:56:56.704Z",
+  "updatedAt": "2026-07-31T17:56:57.205Z"
+}

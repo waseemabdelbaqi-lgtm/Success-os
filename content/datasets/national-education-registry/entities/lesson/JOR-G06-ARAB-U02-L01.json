@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-G06-ARAB-U02-L01",
+  "kind": "lesson",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "النحو والصرف — مقدمة ومفاهيم",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G06-ARAB-U02",
+  "relationships": {
+    "unitId": "JOR-G06-ARAB-U02",
+    "bookId": "JOR-BOOK-000070",
+    "subjectId": "JOR-G06-ARAB",
+    "gradeId": "JOR-G06",
+    "belongsTo": "JOR-G06-ARAB-U02"
+  },
+  "createdAt": "2026-07-31T17:56:56.955Z",
+  "updatedAt": "2026-07-31T17:56:56.955Z",
+  "lessonCode": "L01",
+  "sequence": 1,
+  "legacyLessonId": "L2.1",
+  "keywords": [
+    "نص",
+    "معنى",
+    "أسلوب"
+  ]
+}

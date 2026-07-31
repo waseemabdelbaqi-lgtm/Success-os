@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-G02-ICT-U01-L04",
+  "kind": "lesson",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أساسيات الحاسوب — تقويم وتعزيز",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G02-ICT-U01",
+  "relationships": {
+    "unitId": "JOR-G02-ICT-U01",
+    "bookId": "JOR-BOOK-000031",
+    "subjectId": "JOR-G02-ICT",
+    "gradeId": "JOR-G02",
+    "belongsTo": "JOR-G02-ICT-U01"
+  },
+  "createdAt": "2026-07-31T17:56:56.765Z",
+  "updatedAt": "2026-07-31T17:56:56.765Z",
+  "lessonCode": "L04",
+  "sequence": 4,
+  "legacyLessonId": "L1.4",
+  "keywords": [
+    "بيانات",
+    "خوارزمية",
+    "شبكة"
+  ]
+}

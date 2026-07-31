@@ -1,0 +1,35 @@
+{
+  "globalId": "JOR-SKILL-000436",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«Listening & Speaking — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-000951",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-000951",
+      "JOR-OUTCOME-000952",
+      "JOR-OUTCOME-000953",
+      "JOR-OUTCOME-001383",
+      "JOR-OUTCOME-001384",
+      "JOR-OUTCOME-001385",
+      "JOR-OUTCOME-001815",
+      "JOR-OUTCOME-001816",
+      "JOR-OUTCOME-001817",
+      "JOR-OUTCOME-002247",
+      "JOR-OUTCOME-002248",
+      "JOR-OUTCOME-002249"
+    ],
+    "lessonIds": [
+      "JOR-G01-ENG-U01-L03",
+      "JOR-G02-ENG-U01-L03",
+      "JOR-G03-ENG-U01-L03",
+      "JOR-G04-ENG-U01-L03"
+    ],
+    "belongsTo": "JOR-OUTCOME-000951"
+  },
+  "createdAt": "2026-07-31T17:56:56.729Z",
+  "updatedAt": "2026-07-31T17:56:56.820Z"
+}

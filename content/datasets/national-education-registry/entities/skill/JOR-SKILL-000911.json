@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-SKILL-000911",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«الذاكرة الوطنية — بناء المهارة» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-005800",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-005800",
+      "JOR-OUTCOME-005801",
+      "JOR-OUTCOME-005802",
+      "JOR-OUTCOME-006264",
+      "JOR-OUTCOME-006265",
+      "JOR-OUTCOME-006266"
+    ],
+    "lessonIds": [
+      "JOR-G11-تاريخالأ-U04-L02",
+      "JOR-G12-تاريخالأ-U04-L02"
+    ],
+    "belongsTo": "JOR-OUTCOME-005800"
+  },
+  "createdAt": "2026-07-31T17:56:57.304Z",
+  "updatedAt": "2026-07-31T17:56:57.385Z"
+}

@@ -1,0 +1,31 @@
+{
+  "globalId": "JOR-SKILL-000494",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«أركان الإيمان — مقدمة ومفاهيم» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-002385",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-002385",
+      "JOR-OUTCOME-002386",
+      "JOR-OUTCOME-002387",
+      "JOR-OUTCOME-002945",
+      "JOR-OUTCOME-002946",
+      "JOR-OUTCOME-002947",
+      "JOR-OUTCOME-003505",
+      "JOR-OUTCOME-003506",
+      "JOR-OUTCOME-003507"
+    ],
+    "lessonIds": [
+      "JOR-G05-ISL-U01-L01",
+      "JOR-G06-ISL-U01-L01",
+      "JOR-G07-ISL-U01-L01"
+    ],
+    "belongsTo": "JOR-OUTCOME-002385"
+  },
+  "createdAt": "2026-07-31T17:56:56.833Z",
+  "updatedAt": "2026-07-31T17:56:56.967Z"
+}

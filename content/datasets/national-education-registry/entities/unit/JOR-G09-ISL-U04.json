@@ -1,0 +1,21 @@
+{
+  "globalId": "JOR-G09-ISL-U04",
+  "kind": "unit",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "الأخلاق والتعامل",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-BOOK-000097",
+  "relationships": {
+    "bookId": "JOR-BOOK-000097",
+    "subjectId": "JOR-G09-ISL",
+    "gradeId": "JOR-G09",
+    "belongsTo": "JOR-BOOK-000097"
+  },
+  "createdAt": "2026-07-31T17:56:57.145Z",
+  "updatedAt": "2026-07-31T17:56:57.145Z",
+  "unitCode": "U04",
+  "sequence": 4,
+  "legacyUnitId": "U4"
+}

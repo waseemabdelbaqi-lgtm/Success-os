@@ -1,0 +1,31 @@
+{
+  "globalId": "JOR-SKILL-000125",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«المصارف المبسطة — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-000243",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-000243",
+      "JOR-OUTCOME-000244",
+      "JOR-OUTCOME-000245",
+      "JOR-OUTCOME-004307",
+      "JOR-OUTCOME-004308",
+      "JOR-OUTCOME-004309",
+      "JOR-OUTCOME-004963",
+      "JOR-OUTCOME-004964",
+      "JOR-OUTCOME-004965"
+    ],
+    "lessonIds": [
+      "JOR-G10-الثقافةا-U02-L03",
+      "JOR-G08-الثقافةا-U02-L03",
+      "JOR-G09-الثقافةا-U02-L03"
+    ],
+    "belongsTo": "JOR-OUTCOME-000243"
+  },
+  "createdAt": "2026-07-31T17:56:56.695Z",
+  "updatedAt": "2026-07-31T17:56:57.170Z"
+}

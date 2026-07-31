@@ -1,0 +1,31 @@
+{
+  "globalId": "JOR-SKILL-000236",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«الأداء — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-000483",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-000483",
+      "JOR-OUTCOME-000484",
+      "JOR-OUTCOME-000485",
+      "JOR-OUTCOME-004547",
+      "JOR-OUTCOME-004548",
+      "JOR-OUTCOME-004549",
+      "JOR-OUTCOME-005203",
+      "JOR-OUTCOME-005204",
+      "JOR-OUTCOME-005205"
+    ],
+    "lessonIds": [
+      "JOR-G10-الفنون-U02-L03",
+      "JOR-G08-الفنون-U02-L03",
+      "JOR-G09-الفنون-U02-L03"
+    ],
+    "belongsTo": "JOR-OUTCOME-000483"
+  },
+  "createdAt": "2026-07-31T17:56:56.704Z",
+  "updatedAt": "2026-07-31T17:56:57.207Z"
+}

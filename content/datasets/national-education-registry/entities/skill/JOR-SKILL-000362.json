@@ -1,0 +1,35 @@
+{
+  "globalId": "JOR-SKILL-000362",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«الموسيقى المدرسية — بناء المهارة» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-000768",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-000768",
+      "JOR-OUTCOME-000769",
+      "JOR-OUTCOME-000770",
+      "JOR-OUTCOME-001200",
+      "JOR-OUTCOME-001201",
+      "JOR-OUTCOME-001202",
+      "JOR-OUTCOME-001632",
+      "JOR-OUTCOME-001633",
+      "JOR-OUTCOME-001634",
+      "JOR-OUTCOME-002064",
+      "JOR-OUTCOME-002065",
+      "JOR-OUTCOME-002066"
+    ],
+    "lessonIds": [
+      "JOR-G01-ARTS-U02-L02",
+      "JOR-G02-ARTS-U02-L02",
+      "JOR-G03-ARTS-U02-L02",
+      "JOR-G04-ARTS-U02-L02"
+    ],
+    "belongsTo": "JOR-OUTCOME-000768"
+  },
+  "createdAt": "2026-07-31T17:56:56.719Z",
+  "updatedAt": "2026-07-31T17:56:56.806Z"
+}

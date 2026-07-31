@@ -1,0 +1,17 @@
+{
+  "globalId": "JOR-IMAGE-001433",
+  "kind": "educationalImage",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "مخطط تعليمي لوحدة اتخاذ القرار",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G08-التربيةا-U03-L01",
+  "relationships": {
+    "lessonId": "JOR-G08-التربيةا-U03-L01",
+    "belongsTo": "JOR-G08-التربيةا-U03-L01"
+  },
+  "createdAt": "2026-07-31T17:56:57.061Z",
+  "updatedAt": "2026-07-31T17:56:57.061Z",
+  "src": null
+}

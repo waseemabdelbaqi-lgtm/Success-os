@@ -1,0 +1,16 @@
+{
+  "globalId": "JOR-DIAGRAM-001654",
+  "kind": "diagram",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "مخطط تعليمي لوحدة مهارات مهنية مبكرة",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G09-التربيةا-U02-L02",
+  "relationships": {
+    "lessonId": "JOR-G09-التربيةا-U02-L02",
+    "belongsTo": "JOR-G09-التربيةا-U02-L02"
+  },
+  "createdAt": "2026-07-31T17:56:57.156Z",
+  "updatedAt": "2026-07-31T17:56:57.156Z"
+}

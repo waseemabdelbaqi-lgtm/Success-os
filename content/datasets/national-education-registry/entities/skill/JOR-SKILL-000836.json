@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-SKILL-000836",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«Academic English — بناء المهارة» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-005620",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-005620",
+      "JOR-OUTCOME-005621",
+      "JOR-OUTCOME-005622",
+      "JOR-OUTCOME-006084",
+      "JOR-OUTCOME-006085",
+      "JOR-OUTCOME-006086"
+    ],
+    "lessonIds": [
+      "JOR-G11-ENG-U01-L02",
+      "JOR-G12-ENG-U01-L02"
+    ],
+    "belongsTo": "JOR-OUTCOME-005620"
+  },
+  "createdAt": "2026-07-31T17:56:57.275Z",
+  "updatedAt": "2026-07-31T17:56:57.353Z"
+}

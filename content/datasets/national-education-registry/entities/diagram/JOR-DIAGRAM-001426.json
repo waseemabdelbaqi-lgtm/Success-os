@@ -1,0 +1,16 @@
+{
+  "globalId": "JOR-DIAGRAM-001426",
+  "kind": "diagram",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "مخطط تعليمي لوحدة التخطيط الشخصي",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G08-التربيةا-U01-L02",
+  "relationships": {
+    "lessonId": "JOR-G08-التربيةا-U01-L02",
+    "belongsTo": "JOR-G08-التربيةا-U01-L02"
+  },
+  "createdAt": "2026-07-31T17:56:57.058Z",
+  "updatedAt": "2026-07-31T17:56:57.058Z"
+}

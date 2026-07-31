@@ -1,0 +1,18 @@
+{
+  "globalId": "JOR-OUTCOME-000607",
+  "kind": "learningOutcome",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«المشاريع اللغوية — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G10-ARAB-U04-L04",
+  "relationships": {
+    "lessonId": "JOR-G10-ARAB-U04-L04",
+    "belongsTo": "JOR-G10-ARAB-U04-L04"
+  },
+  "createdAt": "2026-07-31T17:56:56.712Z",
+  "updatedAt": "2026-07-31T17:56:56.712Z",
+  "text": "أن يطبّق مهارة مرتبطة بـ«المشاريع اللغوية — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+  "sequence": 2
+}

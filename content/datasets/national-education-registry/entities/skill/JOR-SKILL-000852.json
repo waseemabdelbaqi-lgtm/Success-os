@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-SKILL-000852",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«Essay Writing — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-005659",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-005659",
+      "JOR-OUTCOME-005660",
+      "JOR-OUTCOME-005661",
+      "JOR-OUTCOME-006123",
+      "JOR-OUTCOME-006124",
+      "JOR-OUTCOME-006125"
+    ],
+    "lessonIds": [
+      "JOR-G11-ENG-U04-L03",
+      "JOR-G12-ENG-U04-L03"
+    ],
+    "belongsTo": "JOR-OUTCOME-005659"
+  },
+  "createdAt": "2026-07-31T17:56:57.281Z",
+  "updatedAt": "2026-07-31T17:56:57.360Z"
+}

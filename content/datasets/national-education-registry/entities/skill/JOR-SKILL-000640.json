@@ -1,0 +1,31 @@
+{
+  "globalId": "JOR-SKILL-000640",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«المواد والتغيرات — مقدمة ومفاهيم» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-002729",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-002729",
+      "JOR-OUTCOME-002730",
+      "JOR-OUTCOME-002731",
+      "JOR-OUTCOME-003289",
+      "JOR-OUTCOME-003290",
+      "JOR-OUTCOME-003291",
+      "JOR-OUTCOME-003849",
+      "JOR-OUTCOME-003850",
+      "JOR-OUTCOME-003851"
+    ],
+    "lessonIds": [
+      "JOR-G05-SCI-U03-L01",
+      "JOR-G06-SCI-U03-L01",
+      "JOR-G07-SCI-U03-L01"
+    ],
+    "belongsTo": "JOR-OUTCOME-002729"
+  },
+  "createdAt": "2026-07-31T17:56:56.866Z",
+  "updatedAt": "2026-07-31T17:56:57.010Z"
+}

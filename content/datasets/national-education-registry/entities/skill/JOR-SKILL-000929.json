@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-SKILL-000929",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«الموارد الطبيعية — بناء المهارة» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-005827",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-005827",
+      "JOR-OUTCOME-005828",
+      "JOR-OUTCOME-005502",
+      "JOR-OUTCOME-006291",
+      "JOR-OUTCOME-006292",
+      "JOR-OUTCOME-005966"
+    ],
+    "lessonIds": [
+      "JOR-G11-SCI-U03-L02",
+      "JOR-G12-SCI-U03-L02"
+    ],
+    "belongsTo": "JOR-OUTCOME-005827"
+  },
+  "createdAt": "2026-07-31T17:56:57.310Z",
+  "updatedAt": "2026-07-31T17:56:57.391Z"
+}

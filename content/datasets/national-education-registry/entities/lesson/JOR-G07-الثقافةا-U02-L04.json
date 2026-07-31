@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-G07-الثقافةا-U02-L04",
+  "kind": "lesson",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "الادخار — تقويم وتعزيز",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G07-الثقافةا-U02",
+  "relationships": {
+    "unitId": "JOR-G07-الثقافةا-U02",
+    "bookId": "JOR-BOOK-000075",
+    "subjectId": "JOR-G07-الثقافةا",
+    "gradeId": "JOR-G07",
+    "belongsTo": "JOR-G07-الثقافةا-U02"
+  },
+  "createdAt": "2026-07-31T17:56:56.992Z",
+  "updatedAt": "2026-07-31T17:56:56.992Z",
+  "lessonCode": "L04",
+  "sequence": 4,
+  "legacyLessonId": "L2.4",
+  "keywords": [
+    "دخل",
+    "مصروف",
+    "ادخار"
+  ]
+}

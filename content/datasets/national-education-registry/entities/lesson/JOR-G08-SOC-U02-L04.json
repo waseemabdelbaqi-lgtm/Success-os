@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-G08-SOC-U02-L04",
+  "kind": "lesson",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "القضايا الاجتماعية — تقويم وتعزيز",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G08-SOC-U02",
+  "relationships": {
+    "unitId": "JOR-G08-SOC-U02",
+    "bookId": "JOR-BOOK-000089",
+    "subjectId": "JOR-G08-SOC",
+    "gradeId": "JOR-G08",
+    "belongsTo": "JOR-G08-SOC-U02"
+  },
+  "createdAt": "2026-07-31T17:56:57.085Z",
+  "updatedAt": "2026-07-31T17:56:57.085Z",
+  "lessonCode": "L04",
+  "sequence": 4,
+  "legacyLessonId": "L2.4",
+  "keywords": [
+    "مجتمع",
+    "مؤسسة",
+    "موارد"
+  ]
+}

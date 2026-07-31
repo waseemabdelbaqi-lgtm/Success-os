@@ -1,0 +1,18 @@
+{
+  "globalId": "JOR-IMAGE-002022",
+  "kind": "educationalImage",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "مخطط تعليمي لوحدة البحث العلمي",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G12-SCI-U02-L02",
+  "relationships": {
+    "lessonId": "JOR-G12-SCI-U02-L02",
+    "belongsTo": "JOR-G12-SCI-U02-L02"
+  },
+  "createdAt": "2026-07-31T17:56:57.333Z",
+  "updatedAt": "2026-07-31T17:56:57.548Z",
+  "src": null,
+  "_deduped": true
+}

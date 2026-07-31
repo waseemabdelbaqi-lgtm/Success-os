@@ -1,0 +1,17 @@
+{
+  "globalId": "JOR-IMAGE-000308",
+  "kind": "educationalImage",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "مخطط تعليمي لوحدة الكائنات الحية",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G01-SCI-U01-L04",
+  "relationships": {
+    "lessonId": "JOR-G01-SCI-U01-L04",
+    "belongsTo": "JOR-G01-SCI-U01-L04"
+  },
+  "createdAt": "2026-07-31T17:56:56.727Z",
+  "updatedAt": "2026-07-31T17:56:56.727Z",
+  "src": null
+}

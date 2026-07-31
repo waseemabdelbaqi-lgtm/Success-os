@@ -1,0 +1,17 @@
+{
+  "globalId": "JOR-IMAGE-000197",
+  "kind": "educationalImage",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "مخطط تعليمي لوحدة النحو المتقدم",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G10-ARAB-U02-L01",
+  "relationships": {
+    "lessonId": "JOR-G10-ARAB-U02-L01",
+    "belongsTo": "JOR-G10-ARAB-U02-L01"
+  },
+  "createdAt": "2026-07-31T17:56:56.711Z",
+  "updatedAt": "2026-07-31T17:56:56.711Z",
+  "src": null
+}

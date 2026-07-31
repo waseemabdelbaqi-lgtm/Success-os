@@ -1,0 +1,51 @@
+{
+  "globalId": "JOR-SKILL-000966",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يتعرف المتعلم مفهومًا محوريًا في الزراعة ضمن معايير السلامة والجودة بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 11.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-006425",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-006425",
+      "JOR-OUTCOME-006426",
+      "JOR-OUTCOME-006427",
+      "JOR-OUTCOME-006428",
+      "JOR-OUTCOME-006429",
+      "JOR-OUTCOME-006430",
+      "JOR-OUTCOME-006431",
+      "JOR-OUTCOME-006432",
+      "JOR-OUTCOME-006433",
+      "JOR-OUTCOME-006434",
+      "JOR-OUTCOME-006435",
+      "JOR-OUTCOME-006436",
+      "JOR-OUTCOME-006777",
+      "JOR-OUTCOME-006778",
+      "JOR-OUTCOME-006779",
+      "JOR-OUTCOME-006780",
+      "JOR-OUTCOME-006781",
+      "JOR-OUTCOME-006782",
+      "JOR-OUTCOME-006783",
+      "JOR-OUTCOME-006784",
+      "JOR-OUTCOME-006785",
+      "JOR-OUTCOME-006786",
+      "JOR-OUTCOME-006787",
+      "JOR-OUTCOME-006788"
+    ],
+    "lessonIds": [
+      "JOR-G11-الزراعة-U03-L01",
+      "JOR-G11-الزراعة-U03-L02",
+      "JOR-G11-الزراعة-U03-L03",
+      "JOR-G11-الزراعة-U03-L04",
+      "JOR-G12-الزراعة-U03-L01",
+      "JOR-G12-الزراعة-U03-L02",
+      "JOR-G12-الزراعة-U03-L03",
+      "JOR-G12-الزراعة-U03-L04"
+    ],
+    "belongsTo": "JOR-OUTCOME-006425"
+  },
+  "createdAt": "2026-07-31T17:56:57.413Z",
+  "updatedAt": "2026-07-31T17:56:57.496Z"
+}

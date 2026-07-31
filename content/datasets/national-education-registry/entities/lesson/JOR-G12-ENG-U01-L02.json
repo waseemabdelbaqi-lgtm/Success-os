@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-G12-ENG-U01-L02",
+  "kind": "lesson",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "Academic English — بناء المهارة",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G12-ENG-U01",
+  "relationships": {
+    "unitId": "JOR-G12-ENG-U01",
+    "bookId": "JOR-BOOK-000123",
+    "subjectId": "JOR-G12-ENG",
+    "gradeId": "JOR-G12",
+    "belongsTo": "JOR-G12-ENG-U01"
+  },
+  "createdAt": "2026-07-31T17:56:57.353Z",
+  "updatedAt": "2026-07-31T17:56:57.353Z",
+  "lessonCode": "L02",
+  "sequence": 2,
+  "legacyLessonId": "L1.2",
+  "keywords": [
+    "vocabulary",
+    "structure",
+    "fluency"
+  ]
+}

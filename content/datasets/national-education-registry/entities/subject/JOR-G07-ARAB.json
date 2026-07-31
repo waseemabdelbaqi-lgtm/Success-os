@@ -1,0 +1,20 @@
+{
+  "globalId": "JOR-G07-ARAB",
+  "kind": "subject",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "اللغة العربية",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G07",
+  "relationships": {
+    "gradeId": "JOR-G07",
+    "educationalSystemId": "JOR-SYS-000001",
+    "countryId": "JOR",
+    "belongsTo": "JOR-G07"
+  },
+  "createdAt": "2026-07-31T17:56:57.025Z",
+  "updatedAt": "2026-07-31T17:56:57.025Z",
+  "subjectCode": "ARAB",
+  "gradeCode": "G07"
+}

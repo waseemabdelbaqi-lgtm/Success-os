@@ -1,0 +1,51 @@
+{
+  "globalId": "JOR-SKILL-000791",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يتعرف المتعلم مفهومًا محوريًا في الفيزياء ضمن الميكانيكا بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 11.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-005521",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-005521",
+      "JOR-OUTCOME-005522",
+      "JOR-OUTCOME-005523",
+      "JOR-OUTCOME-005524",
+      "JOR-OUTCOME-005525",
+      "JOR-OUTCOME-005526",
+      "JOR-OUTCOME-005527",
+      "JOR-OUTCOME-005528",
+      "JOR-OUTCOME-005529",
+      "JOR-OUTCOME-005530",
+      "JOR-OUTCOME-005531",
+      "JOR-OUTCOME-005532",
+      "JOR-OUTCOME-005985",
+      "JOR-OUTCOME-005986",
+      "JOR-OUTCOME-005987",
+      "JOR-OUTCOME-005988",
+      "JOR-OUTCOME-005989",
+      "JOR-OUTCOME-005990",
+      "JOR-OUTCOME-005991",
+      "JOR-OUTCOME-005992",
+      "JOR-OUTCOME-005993",
+      "JOR-OUTCOME-005994",
+      "JOR-OUTCOME-005995",
+      "JOR-OUTCOME-005996"
+    ],
+    "lessonIds": [
+      "JOR-G11-الفيزياء-U01-L01",
+      "JOR-G11-الفيزياء-U01-L02",
+      "JOR-G11-الفيزياء-U01-L03",
+      "JOR-G11-الفيزياء-U01-L04",
+      "JOR-G12-الفيزياء-U01-L01",
+      "JOR-G12-الفيزياء-U01-L02",
+      "JOR-G12-الفيزياء-U01-L03",
+      "JOR-G12-الفيزياء-U01-L04"
+    ],
+    "belongsTo": "JOR-OUTCOME-005521"
+  },
+  "createdAt": "2026-07-31T17:56:57.261Z",
+  "updatedAt": "2026-07-31T17:56:57.340Z"
+}

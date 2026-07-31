@@ -1,0 +1,28 @@
+{
+  "globalId": "JOR-G12-SCI-U01-L02",
+  "kind": "lesson",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أسس علمية متكاملة — بناء المهارة",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G12-SCI-U01",
+  "relationships": {
+    "unitId": "JOR-G12-SCI-U01",
+    "bookId": "JOR-BOOK-000142",
+    "subjectId": "JOR-G12-SCI",
+    "gradeId": "JOR-G12",
+    "belongsTo": "JOR-G12-SCI-U01"
+  },
+  "createdAt": "2026-07-31T17:56:57.330Z",
+  "updatedAt": "2026-07-31T17:56:57.545Z",
+  "lessonCode": "L02",
+  "sequence": 2,
+  "legacyLessonId": "L1.2",
+  "keywords": [
+    "مادة",
+    "طاقة",
+    "نظام"
+  ],
+  "_deduped": true
+}

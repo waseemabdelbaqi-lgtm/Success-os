@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-G12-البناءوا-U04-L03",
+  "kind": "lesson",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "مشروع تطبيقي — تطبيق ومثال",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G12-البناءوا-U04",
+  "relationships": {
+    "unitId": "JOR-G12-البناءوا-U04",
+    "bookId": "JOR-BOOK-000136",
+    "subjectId": "JOR-G12-البناءوا",
+    "gradeId": "JOR-G12",
+    "belongsTo": "JOR-G12-البناءوا-U04"
+  },
+  "createdAt": "2026-07-31T17:56:57.487Z",
+  "updatedAt": "2026-07-31T17:56:57.487Z",
+  "lessonCode": "L03",
+  "sequence": 3,
+  "legacyLessonId": "L4.3",
+  "keywords": [
+    "معيار",
+    "أداة",
+    "عملية"
+  ]
+}

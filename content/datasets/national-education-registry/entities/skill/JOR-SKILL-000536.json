@@ -1,0 +1,31 @@
+{
+  "globalId": "JOR-SKILL-000536",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«إدارة الوقت — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-002490",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-002490",
+      "JOR-OUTCOME-002491",
+      "JOR-OUTCOME-002492",
+      "JOR-OUTCOME-003050",
+      "JOR-OUTCOME-003051",
+      "JOR-OUTCOME-003052",
+      "JOR-OUTCOME-003610",
+      "JOR-OUTCOME-003611",
+      "JOR-OUTCOME-003612"
+    ],
+    "lessonIds": [
+      "JOR-G05-التربيةا-U01-L04",
+      "JOR-G06-التربيةا-U01-L04",
+      "JOR-G07-التربيةا-U01-L04"
+    ],
+    "belongsTo": "JOR-OUTCOME-002490"
+  },
+  "createdAt": "2026-07-31T17:56:56.844Z",
+  "updatedAt": "2026-07-31T17:56:56.979Z"
+}

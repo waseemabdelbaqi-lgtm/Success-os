@@ -1,0 +1,35 @@
+{
+  "globalId": "JOR-SKILL-000461",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«الكتابة والإملاء — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-001011",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-001011",
+      "JOR-OUTCOME-001012",
+      "JOR-OUTCOME-001013",
+      "JOR-OUTCOME-001443",
+      "JOR-OUTCOME-001444",
+      "JOR-OUTCOME-001445",
+      "JOR-OUTCOME-001875",
+      "JOR-OUTCOME-001876",
+      "JOR-OUTCOME-001877",
+      "JOR-OUTCOME-002307",
+      "JOR-OUTCOME-002308",
+      "JOR-OUTCOME-002309"
+    ],
+    "lessonIds": [
+      "JOR-G01-ARAB-U02-L03",
+      "JOR-G02-ARAB-U02-L03",
+      "JOR-G03-ARAB-U02-L03",
+      "JOR-G04-ARAB-U02-L03"
+    ],
+    "belongsTo": "JOR-OUTCOME-001011"
+  },
+  "createdAt": "2026-07-31T17:56:56.735Z",
+  "updatedAt": "2026-07-31T17:56:56.826Z"
+}

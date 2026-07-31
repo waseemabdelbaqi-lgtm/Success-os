@@ -1,0 +1,28 @@
+{
+  "globalId": "JOR-G05-التربيةا-U01-L04",
+  "kind": "lesson",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "الدستور مبسطاً — تقويم وتعزيز",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G05-التربيةا-U01",
+  "relationships": {
+    "unitId": "JOR-G05-التربيةا-U01",
+    "bookId": "JOR-BOOK-000052",
+    "subjectId": "JOR-G05-التربيةا",
+    "gradeId": "JOR-G05",
+    "belongsTo": "JOR-G05-التربيةا-U01"
+  },
+  "createdAt": "2026-07-31T17:56:56.844Z",
+  "updatedAt": "2026-07-31T17:56:56.847Z",
+  "lessonCode": "L04",
+  "sequence": 4,
+  "legacyLessonId": "L1.4",
+  "keywords": [
+    "مواطنة",
+    "حق",
+    "واجب"
+  ],
+  "_deduped": true
+}

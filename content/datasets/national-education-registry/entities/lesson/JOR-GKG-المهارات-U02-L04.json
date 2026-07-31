@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-GKG-المهارات-U02-L04",
+  "kind": "lesson",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "وحدة استكشافية 2 — تقويم وتعزيز",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-GKG-المهارات-U02",
+  "relationships": {
+    "unitId": "JOR-GKG-المهارات-U02",
+    "bookId": "JOR-BOOK-000146",
+    "subjectId": "JOR-GKG-المهارات",
+    "gradeId": "JOR-GKG",
+    "belongsTo": "JOR-GKG-المهارات-U02"
+  },
+  "createdAt": "2026-07-31T17:56:57.594Z",
+  "updatedAt": "2026-07-31T17:56:57.594Z",
+  "lessonCode": "L04",
+  "sequence": 4,
+  "legacyLessonId": "L2.4",
+  "keywords": [
+    "مفهوم",
+    "مهارة",
+    "تطبيق"
+  ]
+}

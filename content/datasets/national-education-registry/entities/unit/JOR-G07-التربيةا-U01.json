@@ -1,0 +1,22 @@
+{
+  "globalId": "JOR-G07-التربيةا-U01",
+  "kind": "unit",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "الدستور مبسطاً",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-BOOK-000074",
+  "relationships": {
+    "bookId": "JOR-BOOK-000074",
+    "subjectId": "JOR-G07-التربيةا",
+    "gradeId": "JOR-G07",
+    "belongsTo": "JOR-BOOK-000074"
+  },
+  "createdAt": "2026-07-31T17:56:56.978Z",
+  "updatedAt": "2026-07-31T17:56:56.983Z",
+  "unitCode": "U01",
+  "sequence": 1,
+  "legacyUnitId": "U1",
+  "_deduped": true
+}

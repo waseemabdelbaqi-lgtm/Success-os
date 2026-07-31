@@ -1,0 +1,22 @@
+{
+  "globalId": "JOR-G08-التربيةا-U03",
+  "kind": "unit",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "سيادة القانون",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-BOOK-000086",
+  "relationships": {
+    "bookId": "JOR-BOOK-000086",
+    "subjectId": "JOR-G08-التربيةا",
+    "gradeId": "JOR-G08",
+    "belongsTo": "JOR-BOOK-000086"
+  },
+  "createdAt": "2026-07-31T17:56:57.060Z",
+  "updatedAt": "2026-07-31T17:56:57.067Z",
+  "unitCode": "U03",
+  "sequence": 3,
+  "legacyUnitId": "U3",
+  "_deduped": true
+}

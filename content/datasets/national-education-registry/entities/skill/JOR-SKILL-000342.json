@@ -1,0 +1,35 @@
+{
+  "globalId": "JOR-SKILL-000342",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«الألعاب المنظمة — مقدمة ومفاهيم» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-000717",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-000717",
+      "JOR-OUTCOME-000718",
+      "JOR-OUTCOME-000719",
+      "JOR-OUTCOME-001149",
+      "JOR-OUTCOME-001150",
+      "JOR-OUTCOME-001151",
+      "JOR-OUTCOME-001581",
+      "JOR-OUTCOME-001582",
+      "JOR-OUTCOME-001583",
+      "JOR-OUTCOME-002013",
+      "JOR-OUTCOME-002014",
+      "JOR-OUTCOME-002015"
+    ],
+    "lessonIds": [
+      "JOR-G01-PE-U02-L01",
+      "JOR-G02-PE-U02-L01",
+      "JOR-G03-PE-U02-L01",
+      "JOR-G04-PE-U02-L01"
+    ],
+    "belongsTo": "JOR-OUTCOME-000717"
+  },
+  "createdAt": "2026-07-31T17:56:56.717Z",
+  "updatedAt": "2026-07-31T17:56:56.802Z"
+}

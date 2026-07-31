@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-SKILL-000989",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«تاريخ الفن — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-006575",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-006575",
+      "JOR-OUTCOME-006576",
+      "JOR-OUTCOME-006577",
+      "JOR-OUTCOME-006927",
+      "JOR-OUTCOME-006928",
+      "JOR-OUTCOME-006929"
+    ],
+    "lessonIds": [
+      "JOR-G11-الفنونوا-U03-L03",
+      "JOR-G12-الفنونوا-U03-L03"
+    ],
+    "belongsTo": "JOR-OUTCOME-006575"
+  },
+  "createdAt": "2026-07-31T17:56:57.443Z",
+  "updatedAt": "2026-07-31T17:56:57.528Z"
+}

@@ -1,0 +1,18 @@
+{
+  "globalId": "JOR-OUTCOME-000621",
+  "kind": "learningOutcome",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يتعرف المتعلم مفهومًا محوريًا في المهارات الرقمية ضمن شبكات وإنترنت بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 10.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G10-ICT-U02-L01",
+  "relationships": {
+    "lessonId": "JOR-G10-ICT-U02-L01",
+    "belongsTo": "JOR-G10-ICT-U02-L01"
+  },
+  "createdAt": "2026-07-31T17:56:56.713Z",
+  "updatedAt": "2026-07-31T17:56:56.713Z",
+  "text": "أن يتعرف المتعلم مفهومًا محوريًا في المهارات الرقمية ضمن شبكات وإنترنت بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 10.",
+  "sequence": 1
+}

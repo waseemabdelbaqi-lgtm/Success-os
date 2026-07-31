@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-G10-SCI-U04-L02",
+  "kind": "lesson",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "الأرض والموارد — بناء المهارة",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G10-SCI-U04",
+  "relationships": {
+    "unitId": "JOR-G10-SCI-U04",
+    "bookId": "JOR-BOOK-000009",
+    "subjectId": "JOR-G10-SCI",
+    "gradeId": "JOR-G10",
+    "belongsTo": "JOR-G10-SCI-U04"
+  },
+  "createdAt": "2026-07-31T17:56:56.703Z",
+  "updatedAt": "2026-07-31T17:56:56.703Z",
+  "lessonCode": "L02",
+  "sequence": 2,
+  "legacyLessonId": "L4.2",
+  "keywords": [
+    "مادة",
+    "طاقة",
+    "نظام"
+  ]
+}

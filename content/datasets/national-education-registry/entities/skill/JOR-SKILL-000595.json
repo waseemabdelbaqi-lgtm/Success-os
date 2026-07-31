@@ -1,0 +1,31 @@
+{
+  "globalId": "JOR-SKILL-000595",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«الموارد والاقتصاد — مقدمة ومفاهيم» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-002621",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-002621",
+      "JOR-OUTCOME-002622",
+      "JOR-OUTCOME-002623",
+      "JOR-OUTCOME-003181",
+      "JOR-OUTCOME-003182",
+      "JOR-OUTCOME-003183",
+      "JOR-OUTCOME-003741",
+      "JOR-OUTCOME-003742",
+      "JOR-OUTCOME-003743"
+    ],
+    "lessonIds": [
+      "JOR-G05-SOC-U02-L01",
+      "JOR-G06-SOC-U02-L01",
+      "JOR-G07-SOC-U02-L01"
+    ],
+    "belongsTo": "JOR-OUTCOME-002621"
+  },
+  "createdAt": "2026-07-31T17:56:56.855Z",
+  "updatedAt": "2026-07-31T17:56:56.996Z"
+}

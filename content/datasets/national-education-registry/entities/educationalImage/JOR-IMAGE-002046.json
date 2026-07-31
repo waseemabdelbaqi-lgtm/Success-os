@@ -1,0 +1,17 @@
+{
+  "globalId": "JOR-IMAGE-002046",
+  "kind": "educationalImage",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "مخطط تعليمي لوحدة الطاقة والحرارة",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G12-الفيزياء-U04-L02",
+  "relationships": {
+    "lessonId": "JOR-G12-الفيزياء-U04-L02",
+    "belongsTo": "JOR-G12-الفيزياء-U04-L02"
+  },
+  "createdAt": "2026-07-31T17:56:57.345Z",
+  "updatedAt": "2026-07-31T17:56:57.345Z",
+  "src": null
+}

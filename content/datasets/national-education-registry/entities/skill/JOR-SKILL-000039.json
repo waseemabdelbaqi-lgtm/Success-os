@@ -1,0 +1,31 @@
+{
+  "globalId": "JOR-SKILL-000039",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«السيرة والمجتمع — بناء المهارة» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-000076",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-000076",
+      "JOR-OUTCOME-000077",
+      "JOR-OUTCOME-000078",
+      "JOR-OUTCOME-004140",
+      "JOR-OUTCOME-004141",
+      "JOR-OUTCOME-004142",
+      "JOR-OUTCOME-004796",
+      "JOR-OUTCOME-004797",
+      "JOR-OUTCOME-004798"
+    ],
+    "lessonIds": [
+      "JOR-G10-ISL-U03-L02",
+      "JOR-G08-ISL-U03-L02",
+      "JOR-G09-ISL-U03-L02"
+    ],
+    "belongsTo": "JOR-OUTCOME-000076"
+  },
+  "createdAt": "2026-07-31T17:56:56.685Z",
+  "updatedAt": "2026-07-31T17:56:57.143Z"
+}

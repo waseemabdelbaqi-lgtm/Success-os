@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-G12-ICT-U02-L01",
+  "kind": "lesson",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "قواعد البيانات — مقدمة ومفاهيم",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G12-ICT-U02",
+  "relationships": {
+    "unitId": "JOR-G12-ICT-U02",
+    "bookId": "JOR-BOOK-000125",
+    "subjectId": "JOR-G12-ICT",
+    "gradeId": "JOR-G12",
+    "belongsTo": "JOR-G12-ICT-U02"
+  },
+  "createdAt": "2026-07-31T17:56:57.372Z",
+  "updatedAt": "2026-07-31T17:56:57.372Z",
+  "lessonCode": "L01",
+  "sequence": 1,
+  "legacyLessonId": "L2.1",
+  "keywords": [
+    "بيانات",
+    "خوارزمية",
+    "شبكة"
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "globalId": "JOR-SKILL-000010",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«الدولة الهاشمية — مقدمة ومفاهيم» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-000013",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-000013",
+      "JOR-OUTCOME-000014",
+      "JOR-OUTCOME-000015",
+      "JOR-OUTCOME-004077",
+      "JOR-OUTCOME-004078",
+      "JOR-OUTCOME-004079",
+      "JOR-OUTCOME-004733",
+      "JOR-OUTCOME-004734",
+      "JOR-OUTCOME-004735"
+    ],
+    "lessonIds": [
+      "JOR-G10-التاريخ-U02-L01",
+      "JOR-G08-التاريخ-U02-L01",
+      "JOR-G09-التاريخ-U02-L01"
+    ],
+    "belongsTo": "JOR-OUTCOME-000013"
+  },
+  "createdAt": "2026-07-31T17:56:56.683Z",
+  "updatedAt": "2026-07-31T17:56:57.135Z"
+}

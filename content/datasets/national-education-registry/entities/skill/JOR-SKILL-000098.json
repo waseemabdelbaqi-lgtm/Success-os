@@ -1,0 +1,31 @@
+{
+  "globalId": "JOR-SKILL-000098",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«المواطنة الرقمية — بناء المهارة» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-000195",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-000195",
+      "JOR-OUTCOME-000196",
+      "JOR-OUTCOME-000150",
+      "JOR-OUTCOME-004259",
+      "JOR-OUTCOME-004260",
+      "JOR-OUTCOME-004214",
+      "JOR-OUTCOME-004915",
+      "JOR-OUTCOME-004916",
+      "JOR-OUTCOME-004870"
+    ],
+    "lessonIds": [
+      "JOR-G10-التربيةا-U01-L02",
+      "JOR-G08-التربيةا-U01-L02",
+      "JOR-G09-التربيةا-U01-L02"
+    ],
+    "belongsTo": "JOR-OUTCOME-000195"
+  },
+  "createdAt": "2026-07-31T17:56:56.690Z",
+  "updatedAt": "2026-07-31T17:56:57.161Z"
+}

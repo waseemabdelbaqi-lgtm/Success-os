@@ -1,0 +1,35 @@
+{
+  "globalId": "JOR-SKILL-000385",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«المهن والخدمات — بناء المهارة» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-000828",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-000828",
+      "JOR-OUTCOME-000829",
+      "JOR-OUTCOME-000830",
+      "JOR-OUTCOME-001260",
+      "JOR-OUTCOME-001261",
+      "JOR-OUTCOME-001262",
+      "JOR-OUTCOME-001692",
+      "JOR-OUTCOME-001693",
+      "JOR-OUTCOME-001694",
+      "JOR-OUTCOME-002124",
+      "JOR-OUTCOME-002125",
+      "JOR-OUTCOME-002126"
+    ],
+    "lessonIds": [
+      "JOR-G01-SOC-U03-L02",
+      "JOR-G02-SOC-U03-L02",
+      "JOR-G03-SOC-U03-L02",
+      "JOR-G04-SOC-U03-L02"
+    ],
+    "belongsTo": "JOR-OUTCOME-000828"
+  },
+  "createdAt": "2026-07-31T17:56:56.723Z",
+  "updatedAt": "2026-07-31T17:56:56.811Z"
+}

@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-G12-الفنونوا-U02-L01",
+  "kind": "lesson",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "تصميم وإنتاج — مقدمة ومفاهيم",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G12-الفنونوا-U02",
+  "relationships": {
+    "unitId": "JOR-G12-الفنونوا-U02",
+    "bookId": "JOR-BOOK-000140",
+    "subjectId": "JOR-G12-الفنونوا",
+    "gradeId": "JOR-G12",
+    "belongsTo": "JOR-G12-الفنونوا-U02"
+  },
+  "createdAt": "2026-07-31T17:56:57.524Z",
+  "updatedAt": "2026-07-31T17:56:57.524Z",
+  "lessonCode": "L01",
+  "sequence": 1,
+  "legacyLessonId": "L2.1",
+  "keywords": [
+    "خط",
+    "لون",
+    "إيقاع"
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "globalId": "JOR-IMAGE-002404",
+  "kind": "educationalImage",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "مخطط تعليمي لوحدة الاستماع والتحدث",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-GKG-اللغةوال-U01-L04",
+  "relationships": {
+    "lessonId": "JOR-GKG-اللغةوال-U01-L04",
+    "belongsTo": "JOR-GKG-اللغةوال-U01-L04"
+  },
+  "createdAt": "2026-07-31T17:56:57.581Z",
+  "updatedAt": "2026-07-31T17:56:57.581Z",
+  "src": null
+}

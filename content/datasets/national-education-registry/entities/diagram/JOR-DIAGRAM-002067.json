@@ -1,0 +1,16 @@
+{
+  "globalId": "JOR-DIAGRAM-002067",
+  "kind": "diagram",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "مخطط تعليمي لوحدة Academic English",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G12-ENG-U01-L03",
+  "relationships": {
+    "lessonId": "JOR-G12-ENG-U01-L03",
+    "belongsTo": "JOR-G12-ENG-U01-L03"
+  },
+  "createdAt": "2026-07-31T17:56:57.354Z",
+  "updatedAt": "2026-07-31T17:56:57.354Z"
+}

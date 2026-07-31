@@ -1,0 +1,35 @@
+{
+  "globalId": "JOR-SKILL-000409",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«البيانات البسيطة — مقدمة ومفاهيم» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-000885",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-000885",
+      "JOR-OUTCOME-000886",
+      "JOR-OUTCOME-000887",
+      "JOR-OUTCOME-001317",
+      "JOR-OUTCOME-001318",
+      "JOR-OUTCOME-001319",
+      "JOR-OUTCOME-001749",
+      "JOR-OUTCOME-001750",
+      "JOR-OUTCOME-001751",
+      "JOR-OUTCOME-002181",
+      "JOR-OUTCOME-002182",
+      "JOR-OUTCOME-002183"
+    ],
+    "lessonIds": [
+      "JOR-G01-MATH-U04-L01",
+      "JOR-G02-MATH-U04-L01",
+      "JOR-G03-MATH-U04-L01",
+      "JOR-G04-MATH-U04-L01"
+    ],
+    "belongsTo": "JOR-OUTCOME-000885"
+  },
+  "createdAt": "2026-07-31T17:56:56.726Z",
+  "updatedAt": "2026-07-31T17:56:56.815Z"
+}

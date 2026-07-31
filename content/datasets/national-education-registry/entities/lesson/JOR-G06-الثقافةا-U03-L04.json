@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-G06-الثقافةا-U03-L04",
+  "kind": "lesson",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "الاحتياجات والرغبات — تقويم وتعزيز",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G06-الثقافةا-U03",
+  "relationships": {
+    "unitId": "JOR-G06-الثقافةا-U03",
+    "bookId": "JOR-BOOK-000064",
+    "subjectId": "JOR-G06-الثقافةا",
+    "gradeId": "JOR-G06",
+    "belongsTo": "JOR-G06-الثقافةا-U03"
+  },
+  "createdAt": "2026-07-31T17:56:56.913Z",
+  "updatedAt": "2026-07-31T17:56:56.913Z",
+  "lessonCode": "L04",
+  "sequence": 4,
+  "legacyLessonId": "L3.4",
+  "keywords": [
+    "دخل",
+    "مصروف",
+    "ادخار"
+  ]
+}

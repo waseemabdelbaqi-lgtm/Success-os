@@ -1,0 +1,21 @@
+{
+  "globalId": "JOR-G03-SCI-U02",
+  "kind": "unit",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "المادة والطاقة",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-BOOK-000037",
+  "relationships": {
+    "bookId": "JOR-BOOK-000037",
+    "subjectId": "JOR-G03-SCI",
+    "gradeId": "JOR-G03",
+    "belongsTo": "JOR-BOOK-000037"
+  },
+  "createdAt": "2026-07-31T17:56:56.785Z",
+  "updatedAt": "2026-07-31T17:56:56.785Z",
+  "unitCode": "U02",
+  "sequence": 2,
+  "legacyUnitId": "U2"
+}

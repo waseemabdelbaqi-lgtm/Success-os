@@ -1,0 +1,31 @@
+{
+  "globalId": "JOR-SKILL-000260",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«Grammar in Use — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-000534",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-000534",
+      "JOR-OUTCOME-000535",
+      "JOR-OUTCOME-000536",
+      "JOR-OUTCOME-004598",
+      "JOR-OUTCOME-004599",
+      "JOR-OUTCOME-004600",
+      "JOR-OUTCOME-005254",
+      "JOR-OUTCOME-005255",
+      "JOR-OUTCOME-005256"
+    ],
+    "lessonIds": [
+      "JOR-G10-ENG-U02-L04",
+      "JOR-G08-ENG-U02-L04",
+      "JOR-G09-ENG-U02-L04"
+    ],
+    "belongsTo": "JOR-OUTCOME-000534"
+  },
+  "createdAt": "2026-07-31T17:56:56.709Z",
+  "updatedAt": "2026-07-31T17:56:57.215Z"
+}

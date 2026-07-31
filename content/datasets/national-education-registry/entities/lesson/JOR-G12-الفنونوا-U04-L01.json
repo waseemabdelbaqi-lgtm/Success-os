@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-G12-الفنونوا-U04-L01",
+  "kind": "lesson",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "محفظة أعمال — مقدمة ومفاهيم",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G12-الفنونوا-U04",
+  "relationships": {
+    "unitId": "JOR-G12-الفنونوا-U04",
+    "bookId": "JOR-BOOK-000140",
+    "subjectId": "JOR-G12-الفنونوا",
+    "gradeId": "JOR-G12",
+    "belongsTo": "JOR-G12-الفنونوا-U04"
+  },
+  "createdAt": "2026-07-31T17:56:57.530Z",
+  "updatedAt": "2026-07-31T17:56:57.530Z",
+  "lessonCode": "L01",
+  "sequence": 1,
+  "legacyLessonId": "L4.1",
+  "keywords": [
+    "خط",
+    "لون",
+    "إيقاع"
+  ]
+}

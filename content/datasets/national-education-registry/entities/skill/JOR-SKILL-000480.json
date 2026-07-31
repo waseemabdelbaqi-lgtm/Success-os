@@ -1,0 +1,35 @@
+{
+  "globalId": "JOR-SKILL-000480",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«السلامة الرقمية — بناء المهارة» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-001056",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-001056",
+      "JOR-OUTCOME-001057",
+      "JOR-OUTCOME-001058",
+      "JOR-OUTCOME-001488",
+      "JOR-OUTCOME-001489",
+      "JOR-OUTCOME-001490",
+      "JOR-OUTCOME-001920",
+      "JOR-OUTCOME-001921",
+      "JOR-OUTCOME-001922",
+      "JOR-OUTCOME-002352",
+      "JOR-OUTCOME-002353",
+      "JOR-OUTCOME-002354"
+    ],
+    "lessonIds": [
+      "JOR-G01-ICT-U02-L02",
+      "JOR-G02-ICT-U02-L02",
+      "JOR-G03-ICT-U02-L02",
+      "JOR-G04-ICT-U02-L02"
+    ],
+    "belongsTo": "JOR-OUTCOME-001056"
+  },
+  "createdAt": "2026-07-31T17:56:56.738Z",
+  "updatedAt": "2026-07-31T17:56:56.829Z"
+}

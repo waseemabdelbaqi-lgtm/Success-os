@@ -1,0 +1,31 @@
+{
+  "globalId": "JOR-SKILL-000046",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«الأخلاق والتعامل — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-000094",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-000094",
+      "JOR-OUTCOME-000095",
+      "JOR-OUTCOME-000096",
+      "JOR-OUTCOME-004158",
+      "JOR-OUTCOME-004159",
+      "JOR-OUTCOME-004160",
+      "JOR-OUTCOME-004814",
+      "JOR-OUTCOME-004815",
+      "JOR-OUTCOME-004816"
+    ],
+    "lessonIds": [
+      "JOR-G10-ISL-U04-L04",
+      "JOR-G08-ISL-U04-L04",
+      "JOR-G09-ISL-U04-L04"
+    ],
+    "belongsTo": "JOR-OUTCOME-000094"
+  },
+  "createdAt": "2026-07-31T17:56:56.686Z",
+  "updatedAt": "2026-07-31T17:56:57.146Z"
+}

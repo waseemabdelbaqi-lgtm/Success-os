@@ -1,0 +1,18 @@
+{
+  "globalId": "JOR-OUTCOME-007187",
+  "kind": "learningOutcome",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«وحدة تطبيقية 1 — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-GKG-المهارات-U03-L04",
+  "relationships": {
+    "lessonId": "JOR-GKG-المهارات-U03-L04",
+    "belongsTo": "JOR-GKG-المهارات-U03-L04"
+  },
+  "createdAt": "2026-07-31T17:56:57.596Z",
+  "updatedAt": "2026-07-31T17:56:57.596Z",
+  "text": "أن يطبّق مهارة مرتبطة بـ«وحدة تطبيقية 1 — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+  "sequence": 2
+}

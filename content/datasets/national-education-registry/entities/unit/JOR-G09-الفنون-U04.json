@@ -1,0 +1,21 @@
+{
+  "globalId": "JOR-G09-الفنون-U04",
+  "kind": "unit",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "معارض ومشاريع",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-BOOK-000105",
+  "relationships": {
+    "bookId": "JOR-BOOK-000105",
+    "subjectId": "JOR-G09-الفنون",
+    "gradeId": "JOR-G09",
+    "belongsTo": "JOR-BOOK-000105"
+  },
+  "createdAt": "2026-07-31T17:56:57.210Z",
+  "updatedAt": "2026-07-31T17:56:57.210Z",
+  "unitCode": "U04",
+  "sequence": 4,
+  "legacyUnitId": "U4"
+}

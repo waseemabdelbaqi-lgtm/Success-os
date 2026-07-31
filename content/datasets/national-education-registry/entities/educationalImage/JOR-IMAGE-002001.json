@@ -1,0 +1,17 @@
+{
+  "globalId": "JOR-IMAGE-002001",
+  "kind": "educationalImage",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "مخطط تعليمي لوحدة الدوال والجبر المتقدم",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G12-MATH-U01-L01",
+  "relationships": {
+    "lessonId": "JOR-G12-MATH-U01-L01",
+    "belongsTo": "JOR-G12-MATH-U01-L01"
+  },
+  "createdAt": "2026-07-31T17:56:57.322Z",
+  "updatedAt": "2026-07-31T17:56:57.322Z",
+  "src": null
+}

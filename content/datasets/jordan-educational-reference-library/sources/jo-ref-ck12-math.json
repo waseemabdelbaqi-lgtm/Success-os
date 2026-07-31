@@ -1,0 +1,45 @@
+{
+  "sourceId": "jo-ref-ck12-math",
+  "title": "CK-12 Foundation — Mathematics Concept Verification",
+  "publisher": "CK-12 Foundation",
+  "organization": "CK-12",
+  "country": "International (concept verification only)",
+  "educationalSystem": "OER — not a Jordan curriculum authority",
+  "subject": "الرياضيات",
+  "grade": "all",
+  "language": "en",
+  "publicationYear": 2025,
+  "version": "2025-2026",
+  "officialUrl": "https://www.ck12.org",
+  "licenseType": "open-license-oer",
+  "copyrightStatus": "open-educational-resource",
+  "verificationDate": "2026-07-31T17:54:29.642Z",
+  "reliabilityScore": 87,
+  "status": "verified",
+  "category": "Mathematical References",
+  "copyBookText": false,
+  "note": null,
+  "history": [
+    {
+      "event": "registered",
+      "at": "2026-07-31T17:54:29.642Z",
+      "version": "2025-2026",
+      "note": "JO-05 seed registration"
+    },
+    {
+      "event": "rebuilt",
+      "at": "2026-07-31T17:55:32.918Z",
+      "version": "2025-2026"
+    },
+    {
+      "event": "rebuilt",
+      "at": "2026-07-31T17:55:35.796Z",
+      "version": "2025-2026"
+    }
+  ],
+  "validation": {
+    "ok": true,
+    "warnings": [],
+    "validatedAt": "2026-07-31T17:55:35.796Z"
+  }
+}

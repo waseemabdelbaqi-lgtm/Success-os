@@ -1,0 +1,31 @@
+{
+  "globalId": "JOR-SKILL-000277",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«تحليل النصوص — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-000567",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-000567",
+      "JOR-OUTCOME-000568",
+      "JOR-OUTCOME-000569",
+      "JOR-OUTCOME-004631",
+      "JOR-OUTCOME-004632",
+      "JOR-OUTCOME-004633",
+      "JOR-OUTCOME-005287",
+      "JOR-OUTCOME-005288",
+      "JOR-OUTCOME-005289"
+    ],
+    "lessonIds": [
+      "JOR-G10-ARAB-U01-L03",
+      "JOR-G08-ARAB-U01-L03",
+      "JOR-G09-ARAB-U01-L03"
+    ],
+    "belongsTo": "JOR-OUTCOME-000567"
+  },
+  "createdAt": "2026-07-31T17:56:56.710Z",
+  "updatedAt": "2026-07-31T17:56:57.221Z"
+}

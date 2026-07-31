@@ -1,0 +1,18 @@
+{
+  "globalId": "JOR-OUTCOME-004056",
+  "kind": "learningOutcome",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يتعرف المتعلم مفهومًا محوريًا في المهارات الرقمية ضمن مقدمة البرمجة بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 7.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G07-ICT-U04-L02",
+  "relationships": {
+    "lessonId": "JOR-G07-ICT-U04-L02",
+    "belongsTo": "JOR-G07-ICT-U04-L02"
+  },
+  "createdAt": "2026-07-31T17:56:57.037Z",
+  "updatedAt": "2026-07-31T17:56:57.037Z",
+  "text": "أن يتعرف المتعلم مفهومًا محوريًا في المهارات الرقمية ضمن مقدمة البرمجة بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 7.",
+  "sequence": 1
+}

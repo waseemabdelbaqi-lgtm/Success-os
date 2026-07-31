@@ -1,0 +1,35 @@
+{
+  "globalId": "JOR-SKILL-000340",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«المهارات الحركية — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-000714",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-000714",
+      "JOR-OUTCOME-000715",
+      "JOR-OUTCOME-000716",
+      "JOR-OUTCOME-001146",
+      "JOR-OUTCOME-001147",
+      "JOR-OUTCOME-001148",
+      "JOR-OUTCOME-001578",
+      "JOR-OUTCOME-001579",
+      "JOR-OUTCOME-001580",
+      "JOR-OUTCOME-002010",
+      "JOR-OUTCOME-002011",
+      "JOR-OUTCOME-002012"
+    ],
+    "lessonIds": [
+      "JOR-G01-PE-U01-L04",
+      "JOR-G02-PE-U01-L04",
+      "JOR-G03-PE-U01-L04",
+      "JOR-G04-PE-U01-L04"
+    ],
+    "belongsTo": "JOR-OUTCOME-000714"
+  },
+  "createdAt": "2026-07-31T17:56:56.717Z",
+  "updatedAt": "2026-07-31T17:56:56.801Z"
+}

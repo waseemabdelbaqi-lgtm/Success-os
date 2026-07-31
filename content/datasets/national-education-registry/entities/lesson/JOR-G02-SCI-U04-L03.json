@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-G02-SCI-U04-L03",
+  "kind": "lesson",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "الصحة والسلامة — تطبيق ومثال",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G02-SCI-U04",
+  "relationships": {
+    "unitId": "JOR-G02-SCI-U04",
+    "bookId": "JOR-BOOK-000028",
+    "subjectId": "JOR-G02-SCI",
+    "gradeId": "JOR-G02",
+    "belongsTo": "JOR-G02-SCI-U04"
+  },
+  "createdAt": "2026-07-31T17:56:56.759Z",
+  "updatedAt": "2026-07-31T17:56:56.759Z",
+  "lessonCode": "L03",
+  "sequence": 3,
+  "legacyLessonId": "L4.3",
+  "keywords": [
+    "مادة",
+    "طاقة",
+    "نظام"
+  ]
+}

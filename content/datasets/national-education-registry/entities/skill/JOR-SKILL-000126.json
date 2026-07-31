@@ -1,0 +1,31 @@
+{
+  "globalId": "JOR-SKILL-000126",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«المصارف المبسطة — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-000246",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-000246",
+      "JOR-OUTCOME-000247",
+      "JOR-OUTCOME-000248",
+      "JOR-OUTCOME-004310",
+      "JOR-OUTCOME-004311",
+      "JOR-OUTCOME-004312",
+      "JOR-OUTCOME-004966",
+      "JOR-OUTCOME-004967",
+      "JOR-OUTCOME-004968"
+    ],
+    "lessonIds": [
+      "JOR-G10-الثقافةا-U02-L04",
+      "JOR-G08-الثقافةا-U02-L04",
+      "JOR-G09-الثقافةا-U02-L04"
+    ],
+    "belongsTo": "JOR-OUTCOME-000246"
+  },
+  "createdAt": "2026-07-31T17:56:56.695Z",
+  "updatedAt": "2026-07-31T17:56:57.171Z"
+}

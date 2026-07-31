@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-G09-ARAB-U01-L03",
+  "kind": "lesson",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "تحليل النصوص — تطبيق ومثال",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G09-ARAB-U01",
+  "relationships": {
+    "unitId": "JOR-G09-ARAB-U01",
+    "bookId": "JOR-BOOK-000107",
+    "subjectId": "JOR-G09-ARAB",
+    "gradeId": "JOR-G09",
+    "belongsTo": "JOR-G09-ARAB-U01"
+  },
+  "createdAt": "2026-07-31T17:56:57.221Z",
+  "updatedAt": "2026-07-31T17:56:57.221Z",
+  "lessonCode": "L03",
+  "sequence": 3,
+  "legacyLessonId": "L1.3",
+  "keywords": [
+    "نص",
+    "معنى",
+    "أسلوب"
+  ]
+}

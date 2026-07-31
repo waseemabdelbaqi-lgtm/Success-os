@@ -1,0 +1,21 @@
+{
+  "globalId": "JOR-G01-SOC-U01",
+  "kind": "unit",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "الأسرة والمجتمع",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-BOOK-000017",
+  "relationships": {
+    "bookId": "JOR-BOOK-000017",
+    "subjectId": "JOR-G01-SOC",
+    "gradeId": "JOR-G01",
+    "belongsTo": "JOR-BOOK-000017"
+  },
+  "createdAt": "2026-07-31T17:56:56.722Z",
+  "updatedAt": "2026-07-31T17:56:56.722Z",
+  "unitCode": "U01",
+  "sequence": 1,
+  "legacyUnitId": "U1"
+}

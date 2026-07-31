@@ -94,7 +94,10 @@ function rootDir() {
 }
 
 export function productionRoot() {
-  return path.join(rootDir(), 'library', 'jordan-book-production');
+  if (process.env.JO_BOOK_PRODUCTION_ROOT) {
+    return path.resolve(process.env.JO_BOOK_PRODUCTION_ROOT);
+  }
+  return path.join(rootDir(), 'content', 'datasets', 'jordan-book-production');
 }
 
 function ensureDirs() {
@@ -798,8 +801,11 @@ export function produceJordanSubject(subject, options = {}) {
     }
   }
 
-  const published = results.filter((r) => r.published || r.skipped).length;
-  const subjectComplete = published >= jobs.length && results.every((r) => r.ok !== false || r.skipped);
+  const produced = results.filter(
+    (r) => r.producedOk || r.skipped || (r.ok && r.lessonsRejected === 0),
+  ).length;
+  const subjectComplete =
+    produced >= jobs.length && results.every((r) => r.ok !== false || r.skipped);
   if (subjectComplete) {
     const nextSubject = queue.find((j) => j.subject !== subject)?.subject || null;
     writeProductionState({
@@ -830,6 +836,7 @@ export function produceJordanSubject(subject, options = {}) {
     subjectComplete,
     booksAttempted: results.length,
     booksPublished: results.filter((r) => r.published || r.skipped).length,
+    booksProduced: produced,
     results,
     dashboard,
   };

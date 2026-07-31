@@ -1,0 +1,31 @@
+{
+  "globalId": "JOR-SKILL-000218",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«التفاعلات الكيميائية — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-000447",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-000447",
+      "JOR-OUTCOME-000448",
+      "JOR-OUTCOME-000449",
+      "JOR-OUTCOME-004511",
+      "JOR-OUTCOME-004512",
+      "JOR-OUTCOME-004513",
+      "JOR-OUTCOME-005167",
+      "JOR-OUTCOME-005168",
+      "JOR-OUTCOME-005169"
+    ],
+    "lessonIds": [
+      "JOR-G10-SCI-U03-L03",
+      "JOR-G08-SCI-U03-L03",
+      "JOR-G09-SCI-U03-L03"
+    ],
+    "belongsTo": "JOR-OUTCOME-000447"
+  },
+  "createdAt": "2026-07-31T17:56:56.703Z",
+  "updatedAt": "2026-07-31T17:56:57.201Z"
+}

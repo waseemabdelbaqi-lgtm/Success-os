@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-G04-ENG-U04-L02",
+  "kind": "lesson",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "Simple Writing — بناء المهارة",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G04-ENG-U04",
+  "relationships": {
+    "unitId": "JOR-G04-ENG-U04",
+    "bookId": "JOR-BOOK-000047",
+    "subjectId": "JOR-G04-ENG",
+    "gradeId": "JOR-G04",
+    "belongsTo": "JOR-G04-ENG-U04"
+  },
+  "createdAt": "2026-07-31T17:56:56.823Z",
+  "updatedAt": "2026-07-31T17:56:56.823Z",
+  "lessonCode": "L02",
+  "sequence": 2,
+  "legacyLessonId": "L4.2",
+  "keywords": [
+    "vocabulary",
+    "structure",
+    "fluency"
+  ]
+}

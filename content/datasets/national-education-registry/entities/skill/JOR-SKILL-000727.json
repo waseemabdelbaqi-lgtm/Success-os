@@ -1,0 +1,31 @@
+{
+  "globalId": "JOR-SKILL-000727",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«مقدمة البرمجة — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-002939",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-002939",
+      "JOR-OUTCOME-002940",
+      "JOR-OUTCOME-002941",
+      "JOR-OUTCOME-003499",
+      "JOR-OUTCOME-003500",
+      "JOR-OUTCOME-003501",
+      "JOR-OUTCOME-004059",
+      "JOR-OUTCOME-004060",
+      "JOR-OUTCOME-004061"
+    ],
+    "lessonIds": [
+      "JOR-G05-ICT-U04-L03",
+      "JOR-G06-ICT-U04-L03",
+      "JOR-G07-ICT-U04-L03"
+    ],
+    "belongsTo": "JOR-OUTCOME-002939"
+  },
+  "createdAt": "2026-07-31T17:56:56.889Z",
+  "updatedAt": "2026-07-31T17:56:57.038Z"
+}

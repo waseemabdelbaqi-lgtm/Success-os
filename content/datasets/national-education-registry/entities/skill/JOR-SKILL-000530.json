@@ -1,0 +1,31 @@
+{
+  "globalId": "JOR-SKILL-000530",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«الصحة — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-002475",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-002475",
+      "JOR-OUTCOME-002476",
+      "JOR-OUTCOME-002477",
+      "JOR-OUTCOME-003035",
+      "JOR-OUTCOME-003036",
+      "JOR-OUTCOME-003037",
+      "JOR-OUTCOME-003595",
+      "JOR-OUTCOME-003596",
+      "JOR-OUTCOME-003597"
+    ],
+    "lessonIds": [
+      "JOR-G05-PE-U04-L03",
+      "JOR-G06-PE-U04-L03",
+      "JOR-G07-PE-U04-L03"
+    ],
+    "belongsTo": "JOR-OUTCOME-002475"
+  },
+  "createdAt": "2026-07-31T17:56:56.842Z",
+  "updatedAt": "2026-07-31T17:56:56.978Z"
+}

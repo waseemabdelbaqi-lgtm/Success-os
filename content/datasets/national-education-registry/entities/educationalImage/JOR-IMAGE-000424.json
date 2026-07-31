@@ -1,0 +1,17 @@
+{
+  "globalId": "JOR-IMAGE-000424",
+  "kind": "educationalImage",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "مخطط تعليمي لوحدة الوطن والرمز",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G02-SOC-U02-L04",
+  "relationships": {
+    "lessonId": "JOR-G02-SOC-U02-L04",
+    "belongsTo": "JOR-G02-SOC-U02-L04"
+  },
+  "createdAt": "2026-07-31T17:56:56.750Z",
+  "updatedAt": "2026-07-31T17:56:56.750Z",
+  "src": null
+}

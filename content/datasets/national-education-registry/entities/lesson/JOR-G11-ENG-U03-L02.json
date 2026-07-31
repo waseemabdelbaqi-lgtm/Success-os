@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-G11-ENG-U03-L02",
+  "kind": "lesson",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "Literature & Media — بناء المهارة",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G11-ENG-U03",
+  "relationships": {
+    "unitId": "JOR-G11-ENG-U03",
+    "bookId": "JOR-BOOK-000114",
+    "subjectId": "JOR-G11-ENG",
+    "gradeId": "JOR-G11",
+    "belongsTo": "JOR-G11-ENG-U03"
+  },
+  "createdAt": "2026-07-31T17:56:57.278Z",
+  "updatedAt": "2026-07-31T17:56:57.278Z",
+  "lessonCode": "L02",
+  "sequence": 2,
+  "legacyLessonId": "L3.2",
+  "keywords": [
+    "vocabulary",
+    "structure",
+    "fluency"
+  ]
+}

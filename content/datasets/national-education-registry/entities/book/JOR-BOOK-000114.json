@@ -1,0 +1,19 @@
+{
+  "globalId": "JOR-BOOK-000114",
+  "kind": "book",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "Success OS — اللغة الإنجليزية",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G11-ENG",
+  "relationships": {
+    "subjectId": "JOR-G11-ENG",
+    "gradeId": "JOR-G11",
+    "belongsTo": "JOR-G11-ENG"
+  },
+  "createdAt": "2026-07-31T17:56:57.274Z",
+  "updatedAt": "2026-07-31T17:56:57.274Z",
+  "legacyBookId": "jordan__التعليم-الثانوي-المسار-الأكاديمي__jordan-national-curriculum__الصف-11__اللغة-الإنجليزية__ar",
+  "officialSource": "https://www.nccd.gov.jo/ar/pages/TextBooksGrade/117"
+}

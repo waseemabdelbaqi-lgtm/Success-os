@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-G12-MATH-U01-L01",
+  "kind": "lesson",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "الدوال والجبر المتقدم — مقدمة ومفاهيم",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G12-MATH-U01",
+  "relationships": {
+    "unitId": "JOR-G12-MATH-U01",
+    "bookId": "JOR-BOOK-000119",
+    "subjectId": "JOR-G12-MATH",
+    "gradeId": "JOR-G12",
+    "belongsTo": "JOR-G12-MATH-U01"
+  },
+  "createdAt": "2026-07-31T17:56:57.321Z",
+  "updatedAt": "2026-07-31T17:56:57.321Z",
+  "lessonCode": "L01",
+  "sequence": 1,
+  "legacyLessonId": "L1.1",
+  "keywords": [
+    "عدد",
+    "عملية",
+    "نمط"
+  ]
+}

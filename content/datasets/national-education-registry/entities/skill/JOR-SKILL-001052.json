@@ -1,0 +1,23 @@
+{
+  "globalId": "JOR-SKILL-001052",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«الحروف والأصوات — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-007123",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-007123",
+      "JOR-OUTCOME-007124",
+      "JOR-OUTCOME-007125"
+    ],
+    "lessonIds": [
+      "JOR-GKG-اللغةوال-U02-L03"
+    ],
+    "belongsTo": "JOR-OUTCOME-007123"
+  },
+  "createdAt": "2026-07-31T17:56:57.583Z",
+  "updatedAt": "2026-07-31T17:56:57.583Z"
+}

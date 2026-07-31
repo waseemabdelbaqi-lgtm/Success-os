@@ -1,0 +1,18 @@
+{
+  "globalId": "JOR-OUTCOME-001020",
+  "kind": "learningOutcome",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يتعرف المتعلم مفهومًا محوريًا في اللغة العربية ضمن القواعد الأساسية بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 1.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G01-ARAB-U03-L02",
+  "relationships": {
+    "lessonId": "JOR-G01-ARAB-U03-L02",
+    "belongsTo": "JOR-G01-ARAB-U03-L02"
+  },
+  "createdAt": "2026-07-31T17:56:56.736Z",
+  "updatedAt": "2026-07-31T17:56:56.736Z",
+  "text": "أن يتعرف المتعلم مفهومًا محوريًا في اللغة العربية ضمن القواعد الأساسية بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 1.",
+  "sequence": 1
+}

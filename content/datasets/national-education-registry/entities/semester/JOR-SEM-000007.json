@@ -1,0 +1,17 @@
+{
+  "globalId": "JOR-SEM-000007",
+  "kind": "semester",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "الفصل الأول",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G03",
+  "relationships": {
+    "gradeId": "JOR-G03",
+    "belongsTo": "JOR-G03"
+  },
+  "createdAt": "2026-07-31T17:56:56.767Z",
+  "updatedAt": "2026-07-31T17:56:56.794Z",
+  "_deduped": true
+}

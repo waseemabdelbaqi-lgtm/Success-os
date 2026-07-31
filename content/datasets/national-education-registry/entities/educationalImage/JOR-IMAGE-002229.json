@@ -1,0 +1,17 @@
+{
+  "globalId": "JOR-IMAGE-002229",
+  "kind": "educationalImage",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "مخطط تعليمي لوحدة تصميم وإنتاج",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G11-الفنونوا-U02-L01",
+  "relationships": {
+    "lessonId": "JOR-G11-الفنونوا-U02-L01",
+    "belongsTo": "JOR-G11-الفنونوا-U02-L01"
+  },
+  "createdAt": "2026-07-31T17:56:57.439Z",
+  "updatedAt": "2026-07-31T17:56:57.439Z",
+  "src": null
+}

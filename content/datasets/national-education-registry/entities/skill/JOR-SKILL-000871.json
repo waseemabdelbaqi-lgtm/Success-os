@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-SKILL-000871",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«التواصل الرسمي — بناء المهارة» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-005704",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-005704",
+      "JOR-OUTCOME-005705",
+      "JOR-OUTCOME-005706",
+      "JOR-OUTCOME-006168",
+      "JOR-OUTCOME-006169",
+      "JOR-OUTCOME-006170"
+    ],
+    "lessonIds": [
+      "JOR-G11-ARAB-U04-L02",
+      "JOR-G12-ARAB-U04-L02"
+    ],
+    "belongsTo": "JOR-OUTCOME-005704"
+  },
+  "createdAt": "2026-07-31T17:56:57.289Z",
+  "updatedAt": "2026-07-31T17:56:57.368Z"
+}

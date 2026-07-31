@@ -1,0 +1,18 @@
+{
+  "globalId": "JOR-OUTCOME-006344",
+  "kind": "learningOutcome",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يتعرف المتعلم مفهومًا محوريًا في الأعمال ضمن مشروع تطبيقي بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 11.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G11-الأعمال-U04-L02",
+  "relationships": {
+    "lessonId": "JOR-G11-الأعمال-U04-L02",
+    "belongsTo": "JOR-G11-الأعمال-U04-L02"
+  },
+  "createdAt": "2026-07-31T17:56:57.400Z",
+  "updatedAt": "2026-07-31T17:56:57.400Z",
+  "text": "أن يتعرف المتعلم مفهومًا محوريًا في الأعمال ضمن مشروع تطبيقي بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 11.",
+  "sequence": 1
+}

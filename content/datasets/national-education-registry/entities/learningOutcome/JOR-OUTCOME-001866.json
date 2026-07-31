@@ -1,0 +1,18 @@
+{
+  "globalId": "JOR-OUTCOME-001866",
+  "kind": "learningOutcome",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يتعرف المتعلم مفهومًا محوريًا في اللغة العربية ضمن القراءة والفهم بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 3.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G03-ARAB-U01-L04",
+  "relationships": {
+    "lessonId": "JOR-G03-ARAB-U01-L04",
+    "belongsTo": "JOR-G03-ARAB-U01-L04"
+  },
+  "createdAt": "2026-07-31T17:56:56.791Z",
+  "updatedAt": "2026-07-31T17:56:56.791Z",
+  "text": "أن يتعرف المتعلم مفهومًا محوريًا في اللغة العربية ضمن القراءة والفهم بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 3.",
+  "sequence": 1
+}

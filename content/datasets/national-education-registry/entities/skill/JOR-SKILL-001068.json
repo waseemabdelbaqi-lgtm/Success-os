@@ -1,0 +1,23 @@
+{
+  "globalId": "JOR-SKILL-001068",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«وحدة استكشافية 1 — مقدمة ومفاهيم» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-007153",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-007153",
+      "JOR-OUTCOME-007154",
+      "JOR-OUTCOME-007155"
+    ],
+    "lessonIds": [
+      "JOR-GKG-المهارات-U01-L01"
+    ],
+    "belongsTo": "JOR-OUTCOME-007153"
+  },
+  "createdAt": "2026-07-31T17:56:57.590Z",
+  "updatedAt": "2026-07-31T17:56:57.590Z"
+}

@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-G06-ENG-U03-L04",
+  "kind": "lesson",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "Reading Comprehension — تقويم وتعزيز",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G06-ENG-U03",
+  "relationships": {
+    "unitId": "JOR-G06-ENG-U03",
+    "bookId": "JOR-BOOK-000069",
+    "subjectId": "JOR-G06-ENG",
+    "gradeId": "JOR-G06",
+    "belongsTo": "JOR-G06-ENG-U03"
+  },
+  "createdAt": "2026-07-31T17:56:56.950Z",
+  "updatedAt": "2026-07-31T17:56:56.950Z",
+  "lessonCode": "L04",
+  "sequence": 4,
+  "legacyLessonId": "L3.4",
+  "keywords": [
+    "vocabulary",
+    "structure",
+    "fluency"
+  ]
+}

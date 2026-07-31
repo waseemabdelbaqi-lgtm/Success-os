@@ -1,0 +1,17 @@
+{
+  "globalId": "JOR-IMAGE-001618",
+  "kind": "educationalImage",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "مخطط تعليمي لوحدة الفقه المبسط",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G09-ISL-U01-L02",
+  "relationships": {
+    "lessonId": "JOR-G09-ISL-U01-L02",
+    "belongsTo": "JOR-G09-ISL-U01-L02"
+  },
+  "createdAt": "2026-07-31T17:56:57.140Z",
+  "updatedAt": "2026-07-31T17:56:57.140Z",
+  "src": null
+}

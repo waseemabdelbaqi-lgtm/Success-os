@@ -1,0 +1,35 @@
+{
+  "globalId": "JOR-SKILL-000338",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«المهارات الحركية — بناء المهارة» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-000708",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-000708",
+      "JOR-OUTCOME-000709",
+      "JOR-OUTCOME-000710",
+      "JOR-OUTCOME-001140",
+      "JOR-OUTCOME-001141",
+      "JOR-OUTCOME-001142",
+      "JOR-OUTCOME-001572",
+      "JOR-OUTCOME-001573",
+      "JOR-OUTCOME-001574",
+      "JOR-OUTCOME-002004",
+      "JOR-OUTCOME-002005",
+      "JOR-OUTCOME-002006"
+    ],
+    "lessonIds": [
+      "JOR-G01-PE-U01-L02",
+      "JOR-G02-PE-U01-L02",
+      "JOR-G03-PE-U01-L02",
+      "JOR-G04-PE-U01-L02"
+    ],
+    "belongsTo": "JOR-OUTCOME-000708"
+  },
+  "createdAt": "2026-07-31T17:56:56.717Z",
+  "updatedAt": "2026-07-31T17:56:56.801Z"
+}

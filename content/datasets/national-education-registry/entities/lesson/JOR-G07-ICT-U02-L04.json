@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-G07-ICT-U02-L04",
+  "kind": "lesson",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "الجداول والعروض — تقويم وتعزيز",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G07-ICT-U02",
+  "relationships": {
+    "unitId": "JOR-G07-ICT-U02",
+    "bookId": "JOR-BOOK-000082",
+    "subjectId": "JOR-G07-ICT",
+    "gradeId": "JOR-G07",
+    "belongsTo": "JOR-G07-ICT-U02"
+  },
+  "createdAt": "2026-07-31T17:56:57.035Z",
+  "updatedAt": "2026-07-31T17:56:57.035Z",
+  "lessonCode": "L04",
+  "sequence": 4,
+  "legacyLessonId": "L2.4",
+  "keywords": [
+    "بيانات",
+    "خوارزمية",
+    "شبكة"
+  ]
+}

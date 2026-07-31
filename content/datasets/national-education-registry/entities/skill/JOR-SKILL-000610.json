@@ -1,0 +1,31 @@
+{
+  "globalId": "JOR-SKILL-000610",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«الكسور والعمليات — مقدمة ومفاهيم» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-002657",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-002657",
+      "JOR-OUTCOME-002658",
+      "JOR-OUTCOME-002659",
+      "JOR-OUTCOME-003217",
+      "JOR-OUTCOME-003218",
+      "JOR-OUTCOME-003219",
+      "JOR-OUTCOME-003777",
+      "JOR-OUTCOME-003778",
+      "JOR-OUTCOME-003779"
+    ],
+    "lessonIds": [
+      "JOR-G05-MATH-U01-L01",
+      "JOR-G06-MATH-U01-L01",
+      "JOR-G07-MATH-U01-L01"
+    ],
+    "belongsTo": "JOR-OUTCOME-002657"
+  },
+  "createdAt": "2026-07-31T17:56:56.859Z",
+  "updatedAt": "2026-07-31T17:56:57.001Z"
+}

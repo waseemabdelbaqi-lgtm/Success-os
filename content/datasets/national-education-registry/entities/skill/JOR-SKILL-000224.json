@@ -1,0 +1,31 @@
+{
+  "globalId": "JOR-SKILL-000224",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«الأرض والموارد — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-000462",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-000462",
+      "JOR-OUTCOME-000463",
+      "JOR-OUTCOME-000464",
+      "JOR-OUTCOME-004526",
+      "JOR-OUTCOME-004527",
+      "JOR-OUTCOME-004528",
+      "JOR-OUTCOME-005182",
+      "JOR-OUTCOME-005183",
+      "JOR-OUTCOME-005184"
+    ],
+    "lessonIds": [
+      "JOR-G10-SCI-U04-L04",
+      "JOR-G08-SCI-U04-L04",
+      "JOR-G09-SCI-U04-L04"
+    ],
+    "belongsTo": "JOR-OUTCOME-000462"
+  },
+  "createdAt": "2026-07-31T17:56:56.703Z",
+  "updatedAt": "2026-07-31T17:56:57.203Z"
+}

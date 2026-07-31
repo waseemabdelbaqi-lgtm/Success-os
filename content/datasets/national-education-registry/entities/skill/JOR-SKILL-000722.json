@@ -1,0 +1,31 @@
+{
+  "globalId": "JOR-SKILL-000722",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«البحث الآمن — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-002927",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-002927",
+      "JOR-OUTCOME-002928",
+      "JOR-OUTCOME-002929",
+      "JOR-OUTCOME-003487",
+      "JOR-OUTCOME-003488",
+      "JOR-OUTCOME-003489",
+      "JOR-OUTCOME-004047",
+      "JOR-OUTCOME-004048",
+      "JOR-OUTCOME-004049"
+    ],
+    "lessonIds": [
+      "JOR-G05-ICT-U03-L03",
+      "JOR-G06-ICT-U03-L03",
+      "JOR-G07-ICT-U03-L03"
+    ],
+    "belongsTo": "JOR-OUTCOME-002927"
+  },
+  "createdAt": "2026-07-31T17:56:56.888Z",
+  "updatedAt": "2026-07-31T17:56:57.036Z"
+}

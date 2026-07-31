@@ -1,0 +1,16 @@
+{
+  "globalId": "JOR-DIAGRAM-001125",
+  "kind": "diagram",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "مخطط تعليمي لوحدة الإيقاع واللحن",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G06-الفنون-U02-L01",
+  "relationships": {
+    "lessonId": "JOR-G06-الفنون-U02-L01",
+    "belongsTo": "JOR-G06-الفنون-U02-L01"
+  },
+  "createdAt": "2026-07-31T17:56:56.938Z",
+  "updatedAt": "2026-07-31T17:56:56.938Z"
+}

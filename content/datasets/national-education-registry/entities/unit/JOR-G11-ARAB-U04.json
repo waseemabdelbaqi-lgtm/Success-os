@@ -1,0 +1,21 @@
+{
+  "globalId": "JOR-G11-ARAB-U04",
+  "kind": "unit",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "التواصل الرسمي",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-BOOK-000115",
+  "relationships": {
+    "bookId": "JOR-BOOK-000115",
+    "subjectId": "JOR-G11-ARAB",
+    "gradeId": "JOR-G11",
+    "belongsTo": "JOR-BOOK-000115"
+  },
+  "createdAt": "2026-07-31T17:56:57.288Z",
+  "updatedAt": "2026-07-31T17:56:57.288Z",
+  "unitCode": "U04",
+  "sequence": 4,
+  "legacyUnitId": "U4"
+}

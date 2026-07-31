@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-SKILL-000895",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«تاريخ الأردن المعاصر — مقدمة ومفاهيم» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-005761",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-005761",
+      "JOR-OUTCOME-005762",
+      "JOR-OUTCOME-005763",
+      "JOR-OUTCOME-006225",
+      "JOR-OUTCOME-006226",
+      "JOR-OUTCOME-006227"
+    ],
+    "lessonIds": [
+      "JOR-G11-تاريخالأ-U01-L01",
+      "JOR-G12-تاريخالأ-U01-L01"
+    ],
+    "belongsTo": "JOR-OUTCOME-005761"
+  },
+  "createdAt": "2026-07-31T17:56:57.299Z",
+  "updatedAt": "2026-07-31T17:56:57.379Z"
+}

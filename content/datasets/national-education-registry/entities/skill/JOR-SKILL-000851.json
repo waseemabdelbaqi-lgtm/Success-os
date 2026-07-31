@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-SKILL-000851",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«Essay Writing — بناء المهارة» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-005656",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-005656",
+      "JOR-OUTCOME-005657",
+      "JOR-OUTCOME-005658",
+      "JOR-OUTCOME-006120",
+      "JOR-OUTCOME-006121",
+      "JOR-OUTCOME-006122"
+    ],
+    "lessonIds": [
+      "JOR-G11-ENG-U04-L02",
+      "JOR-G12-ENG-U04-L02"
+    ],
+    "belongsTo": "JOR-OUTCOME-005656"
+  },
+  "createdAt": "2026-07-31T17:56:57.280Z",
+  "updatedAt": "2026-07-31T17:56:57.360Z"
+}

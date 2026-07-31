@@ -1,0 +1,17 @@
+{
+  "globalId": "JOR-IMAGE-000728",
+  "kind": "educationalImage",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "مخطط تعليمي لوحدة القيمة المكانية",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G04-MATH-U02-L04",
+  "relationships": {
+    "lessonId": "JOR-G04-MATH-U02-L04",
+    "belongsTo": "JOR-G04-MATH-U02-L04"
+  },
+  "createdAt": "2026-07-31T17:56:56.814Z",
+  "updatedAt": "2026-07-31T17:56:56.814Z",
+  "src": null
+}

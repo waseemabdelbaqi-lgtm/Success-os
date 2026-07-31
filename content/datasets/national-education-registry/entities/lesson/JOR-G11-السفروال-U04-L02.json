@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-G11-السفروال-U04-L02",
+  "kind": "lesson",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "مشروع تطبيقي — بناء المهارة",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G11-السفروال-U04",
+  "relationships": {
+    "unitId": "JOR-G11-السفروال-U04",
+    "bookId": "JOR-BOOK-000130",
+    "subjectId": "JOR-G11-السفروال",
+    "gradeId": "JOR-G11",
+    "belongsTo": "JOR-G11-السفروال-U04"
+  },
+  "createdAt": "2026-07-31T17:56:57.425Z",
+  "updatedAt": "2026-07-31T17:56:57.425Z",
+  "lessonCode": "L02",
+  "sequence": 2,
+  "legacyLessonId": "L4.2",
+  "keywords": [
+    "معيار",
+    "أداة",
+    "عملية"
+  ]
+}

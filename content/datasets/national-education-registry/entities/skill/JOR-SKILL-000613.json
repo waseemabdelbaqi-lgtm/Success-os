@@ -1,0 +1,31 @@
+{
+  "globalId": "JOR-SKILL-000613",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«الكسور والعمليات — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-002666",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-002666",
+      "JOR-OUTCOME-002667",
+      "JOR-OUTCOME-002668",
+      "JOR-OUTCOME-003226",
+      "JOR-OUTCOME-003227",
+      "JOR-OUTCOME-003228",
+      "JOR-OUTCOME-003786",
+      "JOR-OUTCOME-003787",
+      "JOR-OUTCOME-003788"
+    ],
+    "lessonIds": [
+      "JOR-G05-MATH-U01-L04",
+      "JOR-G06-MATH-U01-L04",
+      "JOR-G07-MATH-U01-L04"
+    ],
+    "belongsTo": "JOR-OUTCOME-002666"
+  },
+  "createdAt": "2026-07-31T17:56:56.860Z",
+  "updatedAt": "2026-07-31T17:56:57.002Z"
+}

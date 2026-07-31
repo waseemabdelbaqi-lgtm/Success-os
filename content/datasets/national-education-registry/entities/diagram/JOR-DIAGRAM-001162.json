@@ -1,0 +1,16 @@
+{
+  "globalId": "JOR-DIAGRAM-001162",
+  "kind": "diagram",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "مخطط تعليمي لوحدة البلاغة المبسطة",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G06-ARAB-U03-L02",
+  "relationships": {
+    "lessonId": "JOR-G06-ARAB-U03-L02",
+    "belongsTo": "JOR-G06-ARAB-U03-L02"
+  },
+  "createdAt": "2026-07-31T17:56:56.959Z",
+  "updatedAt": "2026-07-31T17:56:56.959Z"
+}

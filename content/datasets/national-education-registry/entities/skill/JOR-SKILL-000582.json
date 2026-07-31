@@ -1,0 +1,31 @@
+{
+  "globalId": "JOR-SKILL-000582",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«الاحتياجات والرغبات — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-002591",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-002591",
+      "JOR-OUTCOME-002592",
+      "JOR-OUTCOME-002593",
+      "JOR-OUTCOME-003151",
+      "JOR-OUTCOME-003152",
+      "JOR-OUTCOME-003153",
+      "JOR-OUTCOME-003711",
+      "JOR-OUTCOME-003712",
+      "JOR-OUTCOME-003713"
+    ],
+    "lessonIds": [
+      "JOR-G05-الثقافةا-U03-L03",
+      "JOR-G06-الثقافةا-U03-L03",
+      "JOR-G07-الثقافةا-U03-L03"
+    ],
+    "belongsTo": "JOR-OUTCOME-002591"
+  },
+  "createdAt": "2026-07-31T17:56:56.853Z",
+  "updatedAt": "2026-07-31T17:56:56.993Z"
+}

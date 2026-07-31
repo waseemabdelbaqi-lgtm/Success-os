@@ -1,0 +1,35 @@
+{
+  "globalId": "JOR-SKILL-000451",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«Simple Writing — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-000987",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-000987",
+      "JOR-OUTCOME-000988",
+      "JOR-OUTCOME-000989",
+      "JOR-OUTCOME-001419",
+      "JOR-OUTCOME-001420",
+      "JOR-OUTCOME-001421",
+      "JOR-OUTCOME-001851",
+      "JOR-OUTCOME-001852",
+      "JOR-OUTCOME-001853",
+      "JOR-OUTCOME-002283",
+      "JOR-OUTCOME-002284",
+      "JOR-OUTCOME-002285"
+    ],
+    "lessonIds": [
+      "JOR-G01-ENG-U04-L03",
+      "JOR-G02-ENG-U04-L03",
+      "JOR-G03-ENG-U04-L03",
+      "JOR-G04-ENG-U04-L03"
+    ],
+    "belongsTo": "JOR-OUTCOME-000987"
+  },
+  "createdAt": "2026-07-31T17:56:56.731Z",
+  "updatedAt": "2026-07-31T17:56:56.824Z"
+}

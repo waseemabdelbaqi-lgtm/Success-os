@@ -1,0 +1,51 @@
+{
+  "globalId": "JOR-SKILL-000734",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يتعرف المتعلم مفهومًا محوريًا في التربية الإسلامية ضمن الفقه والمعاملات بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 11.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-005389",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-005389",
+      "JOR-OUTCOME-005390",
+      "JOR-OUTCOME-005391",
+      "JOR-OUTCOME-005392",
+      "JOR-OUTCOME-005393",
+      "JOR-OUTCOME-005394",
+      "JOR-OUTCOME-005395",
+      "JOR-OUTCOME-005396",
+      "JOR-OUTCOME-005397",
+      "JOR-OUTCOME-005398",
+      "JOR-OUTCOME-005399",
+      "JOR-OUTCOME-005400",
+      "JOR-OUTCOME-005853",
+      "JOR-OUTCOME-005854",
+      "JOR-OUTCOME-005855",
+      "JOR-OUTCOME-005856",
+      "JOR-OUTCOME-005857",
+      "JOR-OUTCOME-005858",
+      "JOR-OUTCOME-005859",
+      "JOR-OUTCOME-005860",
+      "JOR-OUTCOME-005861",
+      "JOR-OUTCOME-005862",
+      "JOR-OUTCOME-005863",
+      "JOR-OUTCOME-005864"
+    ],
+    "lessonIds": [
+      "JOR-G11-ISL-U02-L01",
+      "JOR-G11-ISL-U02-L02",
+      "JOR-G11-ISL-U02-L03",
+      "JOR-G11-ISL-U02-L04",
+      "JOR-G12-ISL-U02-L01",
+      "JOR-G12-ISL-U02-L02",
+      "JOR-G12-ISL-U02-L03",
+      "JOR-G12-ISL-U02-L04"
+    ],
+    "belongsTo": "JOR-OUTCOME-005389"
+  },
+  "createdAt": "2026-07-31T17:56:57.238Z",
+  "updatedAt": "2026-07-31T17:56:57.316Z"
+}

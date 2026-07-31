@@ -1,0 +1,35 @@
+{
+  "globalId": "JOR-SKILL-000452",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«Simple Writing — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-000990",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-000990",
+      "JOR-OUTCOME-000991",
+      "JOR-OUTCOME-000992",
+      "JOR-OUTCOME-001422",
+      "JOR-OUTCOME-001423",
+      "JOR-OUTCOME-001424",
+      "JOR-OUTCOME-001854",
+      "JOR-OUTCOME-001855",
+      "JOR-OUTCOME-001856",
+      "JOR-OUTCOME-002286",
+      "JOR-OUTCOME-002287",
+      "JOR-OUTCOME-002288"
+    ],
+    "lessonIds": [
+      "JOR-G01-ENG-U04-L04",
+      "JOR-G02-ENG-U04-L04",
+      "JOR-G03-ENG-U04-L04",
+      "JOR-G04-ENG-U04-L04"
+    ],
+    "belongsTo": "JOR-OUTCOME-000990"
+  },
+  "createdAt": "2026-07-31T17:56:56.734Z",
+  "updatedAt": "2026-07-31T17:56:56.824Z"
+}

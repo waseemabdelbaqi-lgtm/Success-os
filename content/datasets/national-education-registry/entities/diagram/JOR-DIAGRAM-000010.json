@@ -1,0 +1,16 @@
+{
+  "globalId": "JOR-DIAGRAM-000010",
+  "kind": "diagram",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "مخطط تعليمي لوحدة العلاقات الإقليمية",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G10-التاريخ-U03-L02",
+  "relationships": {
+    "lessonId": "JOR-G10-التاريخ-U03-L02",
+    "belongsTo": "JOR-G10-التاريخ-U03-L02"
+  },
+  "createdAt": "2026-07-31T17:56:56.683Z",
+  "updatedAt": "2026-07-31T17:56:56.683Z"
+}

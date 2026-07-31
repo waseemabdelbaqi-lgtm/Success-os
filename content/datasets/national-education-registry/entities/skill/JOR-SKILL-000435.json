@@ -1,0 +1,35 @@
+{
+  "globalId": "JOR-SKILL-000435",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«Listening & Speaking — بناء المهارة» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-000948",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-000948",
+      "JOR-OUTCOME-000949",
+      "JOR-OUTCOME-000950",
+      "JOR-OUTCOME-001380",
+      "JOR-OUTCOME-001381",
+      "JOR-OUTCOME-001382",
+      "JOR-OUTCOME-001812",
+      "JOR-OUTCOME-001813",
+      "JOR-OUTCOME-001814",
+      "JOR-OUTCOME-002244",
+      "JOR-OUTCOME-002245",
+      "JOR-OUTCOME-002246"
+    ],
+    "lessonIds": [
+      "JOR-G01-ENG-U01-L02",
+      "JOR-G02-ENG-U01-L02",
+      "JOR-G03-ENG-U01-L02",
+      "JOR-G04-ENG-U01-L02"
+    ],
+    "belongsTo": "JOR-OUTCOME-000948"
+  },
+  "createdAt": "2026-07-31T17:56:56.729Z",
+  "updatedAt": "2026-07-31T17:56:56.820Z"
+}

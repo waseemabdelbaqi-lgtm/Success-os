@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-SKILL-000858",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«الأدب والنقد — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-005674",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-005674",
+      "JOR-OUTCOME-005675",
+      "JOR-OUTCOME-005676",
+      "JOR-OUTCOME-006138",
+      "JOR-OUTCOME-006139",
+      "JOR-OUTCOME-006140"
+    ],
+    "lessonIds": [
+      "JOR-G11-ARAB-U01-L04",
+      "JOR-G12-ARAB-U01-L04"
+    ],
+    "belongsTo": "JOR-OUTCOME-005674"
+  },
+  "createdAt": "2026-07-31T17:56:57.284Z",
+  "updatedAt": "2026-07-31T17:56:57.363Z"
+}
