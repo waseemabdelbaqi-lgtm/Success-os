@@ -182,6 +182,12 @@ export default function HomePage() {
   ];
   const partnerGateways=['teacher','center','school','university','employer'];
   const searchRoutes={teacher:'/teachers',center:'/partner-search?portal=center',school:'/school-finder',university:'/admissions',employer:'/jobs'};
+  const portalDirectRoutes={
+    student:'/student-portal',
+    jobseeker:'/jobseeker-portal',
+    join:'/join-us',
+  };
+  const gatewayHref=(id)=>portalDirectRoutes[id]||`/start-journey?portal=${id}`;
 
   return <div id="top" className="app phase11-landing">
     <header className="nav-shell">
@@ -196,7 +202,7 @@ export default function HomePage() {
           <button className="lang" onClick={flipLang}>{lang === 'en' ? 'العربية' : 'English'}</button>
           <button className="world-lang-button" onClick={()=>setLanguageSheet(true)}>◎ {lang==='en'?'All languages':'كل اللغات'}</button>
           <a className="signin" href="/login">{t.signIn}</a>
-          <a className="button small" href="/start-journey">{lang==='en'?'Start journey':'ابدأ الرحلة'}</a>
+          <a className="button small" href="/student-portal">{lang==='en'?'Start learning':'ابدأ التعلم'}</a>
         </div>
       </nav>
     </header>
@@ -204,7 +210,7 @@ export default function HomePage() {
     <main>
       <section className="portal-first-stage">
         <div className="portal-first-backdrop"><img src="/media/success-future-gateways.webp" alt="بوابات SUCCESS OS المستقبلية"/></div>
-        <div className="container portal-first-content"><header><small>YOUR JOURNEY STARTS HERE</small><h1>{lang==='en'?'Choose your gateway. Reach your goal.':'اختر بوابتك. واصل إلى هدفك.'}</h1><p>{lang==='en'?'A clear beginning for every learner, educator, institution and opportunity.':'بداية واضحة لكل طالب ومعلم ومؤسسة وفرصة، ثم فلاتر تقودك مباشرة إلى طلبك.'}</p></header><div className="portal-first-grid">{gateways.map(([number,icon,label,,,description,id],i)=><a href={`/start-journey?portal=${id}`} style={{'--portal-pos':`${(i%4)*30}% ${i<4?'20%':'78%'}`}} key={id}><span className="portal-image"></span><small>{number}</small><b>{icon} {label}</b><p>{description}</p></a>)}</div><a className="portal-start-button" href="/start-journey"><span>{lang==='en'?'Start the journey':'ابدأ الرحلة'}</span><b>←</b></a></div>
+        <div className="container portal-first-content"><header><small>YOUR JOURNEY STARTS HERE</small><h1>{lang==='en'?'Choose your gateway. Reach your goal.':'اختر بوابتك. واصل إلى هدفك.'}</h1><p>{lang==='en'?'A clear beginning for every learner, educator, institution and opportunity.':'بداية واضحة لكل طالب ومعلم ومؤسسة وفرصة، ثم فلاتر تقودك مباشرة إلى طلبك.'}</p></header><div className="portal-first-grid">{gateways.map(([number,icon,label,,,description,id],i)=><a href={gatewayHref(id)} style={{'--portal-pos':`${(i%4)*30}% ${i<4?'20%':'78%'}`}} key={id}><span className="portal-image"></span><small>{number}</small><b>{icon} {label}</b><p>{description}</p></a>)}</div><a className="portal-start-button" href="/student-portal"><span>{lang==='en'?'Enter student portal':'ادخل بوابة الطالب'}</span><b>←</b></a></div>
       </section>
       <section className="hero">
         <div className="hero-grid container">
@@ -265,7 +271,7 @@ export default function HomePage() {
             <article><span>03</span><i>⌁</i><b>{lang==='en'?'Experience & skills':'الخبرة والمهارات'}</b><p>{lang==='en'?'Projects, courses, certificates and verified evidence.':'مشاريع، دورات، شهادات وأدلة مهارية موثقة.'}</p><a href="/programs">{lang==='en'?'Build skills':'ابنِ مهاراتك'} ←</a></article>
             <article><span>04</span><i>↗</i><b>{lang==='en'?'Employment & growth':'التوظيف والنمو'}</b><p>{lang==='en'?'Matched roles, applications and continuous development.':'وظائف مطابقة، تقديم وتطوير مستمر.'}</p><a href="/jobs">{lang==='en'?'View opportunities':'شاهد الفرص'} ←</a></article>
           </div>
-          <footer><a className="button dark" href="/start-journey">{lang==='en'?'Start now':'ابدأ الآن'} ←</a><a href="/trust">{lang==='en'?'Safety and verification':'الأمان والتحقق'}</a></footer>
+          <footer><a className="button dark" href="/student-portal">{lang==='en'?'Enter student portal':'ادخل بوابة الطالب'} ←</a><a href="/trust">{lang==='en'?'Safety and verification':'الأمان والتحقق'}</a></footer>
         </div>
       </section>
 
