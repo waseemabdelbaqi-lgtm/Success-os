@@ -86,11 +86,30 @@ def load_script() -> str:
     )
 
 
+def require_secrets():
+    missing = [
+        name
+        for name in ("HEYGEN_API_KEY", "HEYGEN_AVATAR_ID", "HEYGEN_VOICE_ID")
+        if not os.environ.get(name, "").strip()
+    ]
+    if missing:
+        die(
+            "Missing HeyGen secrets: "
+            + ", ".join(missing)
+            + "\n\nأضفها في Cursor Cloud Secrets أو .env.local ثم أعد تشغيل الأمر:\n"
+            "  HEYGEN_API_KEY=...\n"
+            "  HEYGEN_AVATAR_ID=...   # من HeyGen → Avatars / Digital Twin look id\n"
+            "  HEYGEN_VOICE_ID=...    # صوت عربي نسائي إن أمكن\n\n"
+            "بعدها:\n"
+            "  npm run media:heygen-g1-teacher\n"
+            "  npm run media:compose-heygen-g1"
+        )
+
+
 def create_video(script: str) -> str:
+    require_secrets()
     avatar = os.environ.get("HEYGEN_AVATAR_ID", "").strip()
     voice = os.environ.get("HEYGEN_VOICE_ID", "").strip()
-    if not avatar or not voice:
-        die("HEYGEN_AVATAR_ID and HEYGEN_VOICE_ID are required.")
 
     engine = os.environ.get("HEYGEN_ENGINE", "avatar_iv").strip()
     remove_bg = os.environ.get("HEYGEN_REMOVE_BG", "1") not in ("0", "false", "False")
