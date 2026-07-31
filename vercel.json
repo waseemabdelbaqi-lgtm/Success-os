@@ -15,5 +15,10 @@
       ]
     }
   ],
-  "crons": []
+  "crons": [
+    {
+      "path": "/api/bi?view=tick",
+      "schedule": "0 * * * *"
+    }
+  ]
 }

@@ -1,8 +1,28 @@
 'use client';
 
 import { useCallback, useEffect, useMemo, useState } from 'react';
+import { EnterpriseBiCenter } from './enterprise-bi-center';
 
 const emptyForm = {};
+
+const BI_CENTER_MODULES = new Set([
+  'business-intelligence',
+  'bi-executive',
+  'bi-students',
+  'bi-teachers',
+  'bi-partners',
+  'bi-finance',
+  'bi-hr',
+  'bi-marketing',
+  'bi-ai',
+  'bi-geo',
+  'bi-reports',
+  'bi-exports',
+  'bi-forecasts',
+  'bi-kpis',
+  'bi-alerts',
+  'reports',
+]);
 
 export function EnterpriseAdminModulePage({ moduleId }) {
   const [data, setData] = useState(null);
@@ -21,9 +41,11 @@ export function EnterpriseAdminModulePage({ moduleId }) {
   const isFinance = moduleId === 'finance';
   const isCommission = moduleId === 'commission-rules';
   const isPaymentSplits = moduleId === 'payment-splits';
+  const isBiCenter = BI_CENTER_MODULES.has(moduleId);
 
   const load = useCallback(async () => {
     setError('');
+    if (isBiCenter) return;
     if (isPermissions) {
       const res = await fetch('/api/enterprise-admin?view=permissions', { cache: 'no-store' });
       setPermMatrix(await res.json());
@@ -46,7 +68,7 @@ export function EnterpriseAdminModulePage({ moduleId }) {
     const res = await fetch(`/api/enterprise-admin?${params}`, { cache: 'no-store' });
     if (!res.ok) throw new Error('Failed to load module');
     setData(await res.json());
-  }, [moduleId, q, status, isPermissions, isFinance, isCommission]);
+  }, [moduleId, q, status, isPermissions, isFinance, isCommission, isBiCenter]);
 
   useEffect(() => {
     load().catch((e) => setError(e.message || 'load failed'));
@@ -104,6 +126,10 @@ export function EnterpriseAdminModulePage({ moduleId }) {
         onToggle={(key, permission) => runAction('togglePermission', { key, permission })}
       />
     );
+  }
+
+  if (isBiCenter) {
+    return <EnterpriseBiCenter />;
   }
 
   return (

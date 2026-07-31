@@ -288,4 +288,11 @@ export const ERP_COLLECTION_NAMES = Object.freeze([
   'temporary-permissions',
   'department-permissions',
   'country-permissions',
+  // Business Intelligence
+  'bi-kpis',
+  'bi-alerts',
+  'bi-alert-events',
+  'bi-reports',
+  'bi-snapshots',
+  'bi-exports',
 ]);
