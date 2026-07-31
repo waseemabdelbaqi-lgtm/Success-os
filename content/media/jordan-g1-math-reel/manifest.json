@@ -1,0 +1,69 @@
+{
+  "schema": "success-os.jordan-g1-math-avatar-reel.v1",
+  "lesson": {
+    "country": "Jordan",
+    "curriculum": "Jordan National Curriculum",
+    "grade": "الصف 1",
+    "subject": "الرياضيات",
+    "unit": "الوحدة 1 — الأعداد من حولنا",
+    "titleAr": "الدرس 1 — العدّ حتى ثلاثة",
+    "titleEn": "Lesson 1 — Count to three",
+    "source": "content/demo/jordan-grade1-math-reference.ts",
+    "rights": "original-success-os-scaffold-not-textbook-copy"
+  },
+  "teacherAvatar": {
+    "nameAr": "المعلمة سارة",
+    "style": "neat-illustrated-avatar",
+    "asset": "g1-math-teacher-avatar.png"
+  },
+  "format": {
+    "aspect": "9:16",
+    "width": 1080,
+    "height": 1920,
+    "fps": 30,
+    "style": "instagram-reel"
+  },
+  "scenes": [
+    {
+      "id": "01-hook",
+      "title": "العدّ حتى ثلاثة",
+      "say": "مرحبا أصدقائي! أنا المعلمة سارة. اليوم نتعلم العد حتى ثلاثة، بطريقة سهلة ومرتبة.",
+      "seconds": 4.2
+    },
+    {
+      "id": "02-one",
+      "title": "هذا واحد",
+      "say": "انظر معي: واحد. الرمز واحد يعني شيئا واحدا.",
+      "seconds": 3.6
+    },
+    {
+      "id": "03-two",
+      "title": "هذا اثنان",
+      "say": "والآن اثنان. نعد: واحد، اثنان.",
+      "seconds": 3.8
+    },
+    {
+      "id": "04-three",
+      "title": "هذا ثلاثة",
+      "say": "وثلاثة. نعد معا: واحد، اثنان، ثلاثة.",
+      "seconds": 4.0
+    },
+    {
+      "id": "05-practice",
+      "title": "عدّ معي",
+      "say": "هيا نتمرن: أشر بإصبعك وقل معي واحد، اثنان، ثلاثة.",
+      "seconds": 4.2
+    },
+    {
+      "id": "06-outro",
+      "title": "أكملت الدرس",
+      "say": "أحسنت! تعلمت العد حتى ثلاثة. أنا فخورة بك. إلى اللقاء.",
+      "seconds": 4.0
+    }
+  ],
+  "files": {
+    "video": "content/media/jordan-g1-math-reel/jordan-g1-math-count-to-three-reel.mp4",
+    "poster": "content/media/jordan-g1-math-reel/poster.jpg",
+    "publicVideo": "public/media/jordan-g1-math-reel/jordan-g1-math-count-to-three-reel.mp4"
+  }
+}
