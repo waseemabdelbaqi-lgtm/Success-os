@@ -1,230 +1,348 @@
 #!/usr/bin/env python3
 """
-Render a neat Instagram-reel-style Grade 1 Math video:
-Jordan National Curriculum — Lesson «العد حتى ثلاثة»
-Teacher = tidy avatar, vertical 9:16, original Success OS content.
+Animated Grade 1 Math teaching reel:
+Teacher avatar MOVES, TALKS (pose swap + audio), WRITES on the board, and EXPLAINS.
+Vertical 9:16 Instagram-style. Jordan National Curriculum — العدّ حتى ثلاثة.
 """
 from __future__ import annotations
 
+import json
 import math
-import os
 import shutil
 import subprocess
 import tempfile
+import wave
 from pathlib import Path
 
-from PIL import Image, ImageDraw, ImageFont
+import numpy as np
+from PIL import Image, ImageDraw, ImageFont, ImageFilter, ImageEnhance
 from gtts import gTTS
 
 ROOT = Path(__file__).resolve().parents[1]
 OUT_DIR = ROOT / "content" / "media" / "jordan-g1-math-reel"
 PUBLIC_DIR = ROOT / "public" / "media" / "jordan-g1-math-reel"
-ARTIFACT_DIR = Path("/opt/cursor/artifacts/g1-math-reel")
+ARTIFACT_DIR = Path("/opt/cursor/artifacts")
+POSES = OUT_DIR / "poses"
 
-W, H = 1080, 1920
-FPS = 30
-
-BG_PATH = OUT_DIR / "g1-math-reel-bg.png"
-AVATAR_PATH = OUT_DIR / "g1-math-teacher-avatar.png"
-
+W, H, FPS = 1080, 1920, 24
 FONT_AR = "/usr/share/fonts/truetype/noto/NotoSansArabic-Bold.ttf"
-FONT_AR_REG = "/usr/share/fonts/truetype/noto/NotoSansArabic-Regular.ttf"
-FONT_LATIN = "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf"
+FONT_AR_R = "/usr/share/fonts/truetype/noto/NotoSansArabic-Regular.ttf"
+FONT_NUM = "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf"
 
-# Soft educational palette (avoid purple/glow clichés)
-CREAM = (248, 244, 236, 255)
-INK = (34, 42, 48, 255)
-SAGE = (74, 112, 98, 255)
-TERRACOTTA = (196, 104, 72, 255)  # accent only — not cream+serif combo page
-GOLD = (214, 168, 78, 255)
-WHITE = (255, 255, 255, 255)
-SOFT_CARD = (255, 255, 255, 220)
-
-
-def ar(text: str) -> str:
-    # Pillow/HarfBuzz shapes Arabic correctly for Noto fonts — do not reverse via bidi.
-    return str(text)
+SAGE = (74, 112, 98)
+INK = (34, 42, 48)
+CHALK = (245, 242, 230)
+BOARD = (46, 78, 62)
+BOARD_DARK = (32, 56, 45)
+ACCENT = (214, 168, 78)
+WHITE = (255, 255, 255)
 
 
-def font(path: str, size: int) -> ImageFont.FreeTypeFont:
+def font(path, size):
     return ImageFont.truetype(path, size=size)
 
 
-def load_bg() -> Image.Image:
-    img = Image.open(BG_PATH).convert("RGBA").resize((W, H), Image.Resampling.LANCZOS)
-    # Soft dim overlay for text readability
-    overlay = Image.new("RGBA", (W, H), (20, 28, 26, 70))
-    return Image.alpha_composite(img, overlay)
+def load_pose(name: str, height: int = 820) -> Image.Image:
+    img = Image.open(POSES / f"teacher-{name}.png").convert("RGBA")
+    # Soft cut of background: keep character via slight contrast boost
+    ratio = height / img.height
+    img = img.resize((int(img.width * ratio), height), Image.Resampling.LANCZOS)
+    return img
 
 
-def circular_avatar(size: int = 420) -> Image.Image:
-    src = Image.open(AVATAR_PATH).convert("RGBA")
-    src = src.resize((size, size), Image.Resampling.LANCZOS)
-    mask = Image.new("L", (size, size), 0)
-    d = ImageDraw.Draw(mask)
-    d.ellipse((0, 0, size - 1, size - 1), fill=255)
-    # Soft ring
-    out = Image.new("RGBA", (size + 24, size + 24), (0, 0, 0, 0))
-    ring = ImageDraw.Draw(out)
-    ring.ellipse((0, 0, size + 23, size + 23), fill=(255, 255, 255, 230))
-    ring.ellipse((6, 6, size + 17, size + 17), fill=(74, 112, 98, 255))
-    out.paste(src, (12, 12), mask)
-    return out
+def classroom_bg() -> Image.Image:
+    """Soft classroom with big chalkboard."""
+    img = Image.new("RGB", (W, H), (232, 226, 214))
+    d = ImageDraw.Draw(img)
+    # wall gradient
+    for y in range(H):
+        t = y / H
+        col = (
+            int(232 - 18 * t),
+            int(226 - 10 * t),
+            int(214 - 8 * t),
+        )
+        d.line([(0, y), (W, y)], fill=col)
 
+    # chalkboard frame
+    d.rounded_rectangle((60, 160, W - 60, 980), radius=28, fill=(90, 68, 48))
+    d.rounded_rectangle((84, 184, W - 84, 956), radius=18, fill=BOARD_DARK)
+    d.rounded_rectangle((96, 196, W - 96, 944), radius=14, fill=BOARD)
 
-def rounded_rect(draw, box, radius, fill):
-    draw.rounded_rectangle(box, radius=radius, fill=fill)
+    # chalk tray
+    d.rounded_rectangle((120, 960, W - 120, 990), radius=8, fill=(120, 92, 64))
+    d.ellipse((160, 968, 210, 985), fill=CHALK)
+    d.ellipse((230, 970, 265, 986), fill=(255, 220, 180))
 
+    # floor band
+    d.rectangle((0, 1500, W, H), fill=(198, 186, 168))
+    d.rectangle((0, 1485, W, 1505), fill=(170, 155, 135))
 
-def draw_dots(draw, cx, cy, count, color, r=34, gap=110):
-    total_w = (count - 1) * gap
-    x0 = cx - total_w / 2
-    for i in range(count):
-        x = x0 + i * gap
-        draw.ellipse((x - r, cy - r, x + r, cy + r), fill=color)
-        # inner highlight
-        draw.ellipse((x - r + 10, cy - r + 8, x - 4, cy - 4), fill=(255, 255, 255, 90))
-
-
-def make_scene(cfg: dict) -> Image.Image:
-    base = load_bg()
-    draw = ImageDraw.Draw(base, "RGBA")
-
-    # Top brand bar — neat, not overpowering
-    rounded_rect(draw, (70, 70, W - 70, 210), 36, (255, 255, 255, 210))
-    draw.text((W // 2, 118), ar("SUCCESS OS"), font=font(FONT_LATIN, 34), fill=SAGE, anchor="mm")
-    draw.text((W // 2, 168), ar(cfg["eyebrow"]), font=font(FONT_AR_REG, 36), fill=INK, anchor="mm")
-
-    # Main card
-    rounded_rect(draw, (70, 250, W - 70, 1180), 48, SOFT_CARD)
-
-    # Headline
-    draw.text(
-        (W // 2, 340),
-        ar(cfg["title"]),
-        font=font(FONT_AR, 64),
+    # brand
+    d.rounded_rectangle((70, 48, W - 70, 130), radius=24, fill=(255, 255, 255))
+    d.text((W // 2, 74), "SUCCESS OS", font=font(FONT_NUM, 28), fill=SAGE, anchor="mm")
+    d.text(
+        (W // 2, 108),
+        "الصف 1 · الرياضيات · العدّ حتى ثلاثة",
+        font=font(FONT_AR_R, 30),
         fill=INK,
         anchor="mm",
     )
+    return img
 
-    # Big numeral / visual
-    if cfg.get("numeral"):
-        draw.text(
-            (W // 2, 560),
-            str(cfg["numeral"]),
-            font=font(FONT_LATIN, 280),
-            fill=TERRACOTTA if cfg["numeral"] == 3 else SAGE,
-            anchor="mm",
-        )
-        draw_dots(draw, W // 2, 820, cfg["numeral"], GOLD if cfg["numeral"] > 1 else SAGE)
-        draw.text(
-            (W // 2, 960),
-            ar(cfg["word"]),
-            font=font(FONT_AR, 72),
-            fill=INK,
-            anchor="mm",
-        )
-    else:
-        # Hook / outro body
-        for i, line in enumerate(cfg.get("lines", [])):
-            draw.text(
-                (W // 2, 520 + i * 90),
-                ar(line),
-                font=font(FONT_AR, 52),
-                fill=INK,
-                anchor="mm",
-            )
 
-    # Caption pill
-    if cfg.get("caption"):
-        rounded_rect(draw, (120, 1040, W - 120, 1140), 28, (74, 112, 98, 230))
-        draw.text(
-            (W // 2, 1090),
-            ar(cfg["caption"]),
-            font=font(FONT_AR, 40),
-            fill=WHITE,
-            anchor="mm",
-        )
+def draw_board_text(base: Image.Image, title: str, subtitle: str = ""):
+    d = ImageDraw.Draw(base)
+    d.text((W // 2, 250), title, font=font(FONT_AR, 54), fill=CHALK, anchor="mm")
+    if subtitle:
+        d.text((W // 2, 320), subtitle, font=font(FONT_AR_R, 34), fill=(210, 220, 200), anchor="mm")
 
-    # Teacher avatar — tidy lower composition
-    avatar = circular_avatar(380)
-    ax = (W - avatar.width) // 2
-    ay = 1240
-    base.alpha_composite(avatar, (ax, ay))
 
-    # Name plate
-    rounded_rect(draw, (220, 1680, W - 220, 1780), 30, (255, 255, 255, 235))
-    draw.text((W // 2, 1710), ar("المعلمة سارة"), font=font(FONT_AR, 40), fill=INK, anchor="mm")
-    draw.text((W // 2, 1755), ar("رياضيات · الصف 1"), font=font(FONT_AR_REG, 30), fill=SAGE, anchor="mm")
+def chalk_number_mask(numeral: str, size: int = 420) -> Image.Image:
+    """White numeral on black used as reveal mask for writing animation."""
+    img = Image.new("L", (size, size), 0)
+    d = ImageDraw.Draw(img)
+    d.text((size // 2, size // 2 + 10), numeral, font=font(FONT_NUM, 340), fill=255, anchor="mm")
+    return img.filter(ImageFilter.GaussianBlur(1.2))
 
-    return base.convert("RGB")
+
+def draw_partial_number(base: Image.Image, numeral: str, progress: float, cx=540, cy=560):
+    """Reveal number top-to-bottom like chalk writing."""
+    progress = max(0.0, min(1.0, progress))
+    if progress <= 0.01:
+        return
+    mask = chalk_number_mask(numeral)
+    size = mask.size[0]
+    chalk_layer = Image.new("RGBA", (size, size), (0, 0, 0, 0))
+    # chalky fill
+    fill = Image.new("RGBA", (size, size), (*CHALK, 0))
+    # paint only glyph
+    alpha = mask.point(lambda p: int(p * 0.95))
+    fill.putalpha(alpha)
+    # progressive wipe from top
+    wipe = Image.new("L", (size, size), 0)
+    wd = ImageDraw.Draw(wipe)
+    h = int(size * (0.08 + 0.92 * progress))
+    wd.rectangle((0, 0, size, h), fill=255)
+    # slight diagonal for hand-writing feel
+    for i in range(8):
+        y = int(h * (i / 8))
+        wd.rectangle((0, y, size, min(size, y + 6)), fill=max(0, 255 - i * 12))
+    fill_a = fill.split()[-1]
+    fill.putalpha(Image.fromarray(
+        (np.asarray(fill_a).astype(np.float32) * (np.asarray(wipe).astype(np.float32) / 255.0)).astype(np.uint8)
+    ))
+    # dots under number for counting
+    chalk_layer = Image.alpha_composite(chalk_layer, fill)
+    base.paste(chalk_layer, (cx - size // 2, cy - size // 2), chalk_layer)
+
+    if progress > 0.55:
+        d = ImageDraw.Draw(base, "RGBA")
+        count = int(numeral) if numeral.isdigit() else 1
+        gap = 95
+        total = (count - 1) * gap
+        x0 = cx - total / 2
+        fade = min(1.0, (progress - 0.55) / 0.45)
+        for i in range(count):
+            x = x0 + i * gap
+            r = 28
+            col = (*ACCENT, int(230 * fade))
+            d.ellipse((x - r, 780 - r, x + r, 780 + r), fill=col)
+
+
+def paste_teacher(base: Image.Image, pose: Image.Image, x: float, y: float, bob=0.0, scale=1.0):
+    if abs(scale - 1.0) > 0.01:
+        nw = max(1, int(pose.width * scale))
+        nh = max(1, int(pose.height * scale))
+        pose = pose.resize((nw, nh), Image.Resampling.LANCZOS)
+    px = int(x - pose.width / 2)
+    py = int(y - pose.height + bob)
+    # soft shadow
+    shadow = Image.new("RGBA", (pose.width, 40), (0, 0, 0, 0))
+    sd = ImageDraw.Draw(shadow)
+    sd.ellipse((10, 0, pose.width - 10, 36), fill=(0, 0, 0, 55))
+    base.paste(shadow, (px, py + pose.height - 28), shadow)
+    base.paste(pose, (px, py), pose)
+
+
+def nameplate(base: Image.Image, text_main="المعلمة سارة", text_sub="تشرح · تكتب · تفهّم"):
+    d = ImageDraw.Draw(base, "RGBA")
+    d.rounded_rectangle((250, 1785, W - 250, 1885), radius=28, fill=(255, 255, 255, 235))
+    d.text((W // 2, 1815), text_main, font=font(FONT_AR, 36), fill=INK, anchor="mm")
+    d.text((W // 2, 1858), text_sub, font=font(FONT_AR_R, 26), fill=SAGE, anchor="mm")
+
+
+def synthesize(text: str, path: Path):
+    gTTS(text=text, lang="ar", slow=False).save(str(path))
+
+
+def mp3_to_wav(mp3: Path, wav: Path):
+    subprocess.run(
+        ["ffmpeg", "-y", "-i", str(mp3), "-ac", "1", "-ar", "24000", str(wav)],
+        check=True,
+        capture_output=True,
+    )
+
+
+def audio_envelope(wav_path: Path, fps=FPS):
+    with wave.open(str(wav_path), "rb") as wf:
+        sr = wf.getframerate()
+        n = wf.getnframes()
+        raw = wf.readframes(n)
+    data = np.frombuffer(raw, dtype=np.int16).astype(np.float32)
+    if data.size == 0:
+        return np.zeros(1)
+    samples_per = max(1, int(sr / fps))
+    pad = (-len(data)) % samples_per
+    if pad:
+        data = np.concatenate([data, np.zeros(pad, dtype=np.float32)])
+    frames = data.reshape(-1, samples_per)
+    env = np.sqrt((frames ** 2).mean(axis=1))
+    if env.max() > 0:
+        env = env / env.max()
+    return env
 
 
 SCENES = [
     {
-        "id": "01-hook",
-        "eyebrow": "المنهاج الوطني الأردني · صف 1",
-        "title": "العدّ حتى ثلاثة",
-        "lines": ["هيا نتعلّم معًا", "واحد… اثنان… ثلاثة"],
-        "caption": "درس قصير وواضح",
-        "say": "مرحبا أصدقائي! أنا المعلمة سارة. اليوم نتعلم العد حتى ثلاثة، بطريقة سهلة ومرتبة.",
-        "seconds": 4.2,
+        "id": "hook",
+        "mode": "talk",
+        "board_title": "هيا نتعلّم معًا",
+        "board_sub": "العدّ حتى ثلاثة",
+        "say": "مرحبا أصدقائي! أنا المعلمة سارة. اليوم راح أشرح لكم العد حتى ثلاثة، وأكتب على اللوح قدامكم.",
+        "numeral": None,
     },
     {
-        "id": "02-one",
-        "eyebrow": "الخطوة الأولى",
-        "title": "هذا واحد",
-        "numeral": 1,
-        "word": "واحد",
-        "caption": "شيء واحد فقط",
-        "say": "انظر معي: واحد. الرمز واحد يعني شيئا واحدا.",
-        "seconds": 3.6,
+        "id": "one-write",
+        "mode": "write",
+        "board_title": "هذا واحد",
+        "board_sub": "أكتب الرقم واحد",
+        "say": "شوفوا معي على اللوح. بكتب الرقم واحد. واحد يعني شيء واحد فقط.",
+        "numeral": "1",
     },
     {
-        "id": "03-two",
-        "eyebrow": "الخطوة الثانية",
-        "title": "هذا اثنان",
-        "numeral": 2,
-        "word": "اثنان",
-        "caption": "شيئان معاً",
-        "say": "والآن اثنان. نعد: واحد، اثنان.",
-        "seconds": 3.8,
+        "id": "one-explain",
+        "mode": "point",
+        "board_title": "واحد",
+        "board_sub": "نعدّ: واحد",
+        "say": "الآن عدوا معي: واحد. ممتاز!",
+        "numeral": "1",
+        "full_number": True,
     },
     {
-        "id": "04-three",
-        "eyebrow": "الخطوة الثالثة",
-        "title": "هذا ثلاثة",
-        "numeral": 3,
-        "word": "ثلاثة",
-        "caption": "ثلاثة أشياء",
-        "say": "وثلاثة. نعد معا: واحد، اثنان، ثلاثة.",
-        "seconds": 4.0,
+        "id": "two-write",
+        "mode": "write",
+        "board_title": "هذا اثنان",
+        "board_sub": "أكتب الرقم اثنان",
+        "say": "والآن بكتب الرقم اثنين. اثنان يعني شيئين.",
+        "numeral": "2",
     },
     {
-        "id": "05-practice",
-        "eyebrow": "تمرين سريع",
-        "title": "عدّ معي",
-        "lines": ["أشر بإصبعك", "وقل: واحد، اثنان، ثلاثة"],
-        "caption": "أنت تستطيع!",
-        "say": "هيا نتمرن: أشر بإصبعك وقل معي واحد، اثنان، ثلاثة.",
-        "seconds": 4.2,
+        "id": "two-explain",
+        "mode": "point",
+        "board_title": "اثنان",
+        "board_sub": "نعدّ: واحد، اثنان",
+        "say": "عدوا معي: واحد، اثنان. أحسنتم!",
+        "numeral": "2",
+        "full_number": True,
     },
     {
-        "id": "06-outro",
-        "eyebrow": "أحسنت",
-        "title": "أكملت الدرس",
-        "lines": ["تعلّمنا العد حتى ثلاثة", "إلى اللقاء في الدرس القادم"],
-        "caption": "SUCCESS OS",
-        "say": "أحسنت! تعلمت العد حتى ثلاثة. أنا فخورة بك. إلى اللقاء.",
-        "seconds": 4.0,
+        "id": "three-write",
+        "mode": "write",
+        "board_title": "هذا ثلاثة",
+        "board_sub": "أكتب الرقم ثلاثة",
+        "say": "وأخيرا بكتب الرقم ثلاثة. ثلاثة أشياء معا.",
+        "numeral": "3",
+    },
+    {
+        "id": "three-explain",
+        "mode": "point",
+        "board_title": "ثلاثة",
+        "board_sub": "واحد، اثنان، ثلاثة",
+        "say": "عدوا معي بصوت عالي: واحد، اثنان، ثلاثة!",
+        "numeral": "3",
+        "full_number": True,
+    },
+    {
+        "id": "practice",
+        "mode": "talk",
+        "board_title": "تمرين",
+        "board_sub": "أشر وعدّ حتى ثلاثة",
+        "say": "هيا نتمرن. أشر بإصبعك وقل معي: واحد، اثنان، ثلاثة.",
+        "numeral": "3",
+        "full_number": True,
+    },
+    {
+        "id": "outro",
+        "mode": "talk",
+        "board_title": "أحسنت!",
+        "board_sub": "تعلّمت العدّ حتى ثلاثة",
+        "say": "أحسنت يا بطل! تعلمت العد حتى ثلاثة. أنا فخورة فيك. إلى اللقاء.",
+        "numeral": "3",
+        "full_number": True,
     },
 ]
 
 
-def synthesize(text: str, path: Path):
-    # gTTS Arabic — neat classroom pace
-    tts = gTTS(text=text, lang="ar", slow=False)
-    tts.save(str(path))
+def render_scene_frames(scene, poses, env, out_dir: Path):
+    n_frames = max(len(env), int(2.5 * FPS))
+    # pad envelope
+    if len(env) < n_frames:
+        env = np.pad(env, (0, n_frames - len(env)))
+    else:
+        env = env[:n_frames]
+
+    mode = scene["mode"]
+    frames = []
+    for i in range(n_frames):
+        t = i / FPS
+        progress = i / max(1, n_frames - 1)
+        base = classroom_bg().convert("RGBA")
+        draw_board_text(base, scene["board_title"], scene.get("board_sub", ""))
+
+        # Writing animation
+        if scene.get("numeral"):
+            if mode == "write":
+                draw_partial_number(base, scene["numeral"], progress)
+            else:
+                draw_partial_number(base, scene["numeral"], 1.0 if scene.get("full_number") else progress)
+
+        # Teacher placement + pose
+        talk_level = float(env[i])
+        bob = math.sin(t * 6.0) * 6 + talk_level * 4
+
+        if mode == "write":
+            pose = poses["write"]
+            # move from center-right toward board while writing
+            x = 780 - 40 * math.sin(progress * math.pi)
+            y = 1680
+            scale = 0.92
+        elif mode == "point":
+            pose = poses["point"] if talk_level < 0.35 else poses["talk"]
+            x = 720
+            y = 1680
+            scale = 0.95
+            # slight lean toward board
+            x += math.sin(t * 2) * 8
+        else:
+            # talking: swap idle/talk by audio energy
+            pose = poses["talk"] if talk_level > 0.18 else poses["idle"]
+            x = 540 + math.sin(t * 1.4) * 18
+            y = 1700
+            scale = 1.0 + talk_level * 0.02
+
+        paste_teacher(base, pose, x=x, y=y, bob=bob, scale=scale)
+        nameplate(base)
+        # speech bubble when talking loud
+        if talk_level > 0.45 and mode in ("talk", "point"):
+            d = ImageDraw.Draw(base, "RGBA")
+            d.ellipse((x + 120, y - 780, x + 190, y - 720), fill=(255, 255, 255, 200))
+            d.ellipse((x + 150, y - 710, x + 175, y - 688), fill=(255, 255, 255, 180))
+
+        frame_path = out_dir / f"f{i:04d}.png"
+        base.convert("RGB").save(frame_path, optimize=True)
+        frames.append(frame_path)
+    return frames, n_frames / FPS
 
 
 def render():
@@ -232,169 +350,115 @@ def render():
     PUBLIC_DIR.mkdir(parents=True, exist_ok=True)
     ARTIFACT_DIR.mkdir(parents=True, exist_ok=True)
 
-    work = Path(tempfile.mkdtemp(prefix="g1reel_"))
-    frames_dir = work / "frames"
-    audio_dir = work / "audio"
-    clips_dir = work / "clips"
-    frames_dir.mkdir()
-    audio_dir.mkdir()
-    clips_dir.mkdir()
+    poses = {
+        "idle": load_pose("idle"),
+        "talk": load_pose("talk"),
+        "write": load_pose("write"),
+        "point": load_pose("point"),
+    }
 
-    clip_paths = []
+    work = Path(tempfile.mkdtemp(prefix="g1anim_"))
+    clips = []
+
     for scene in SCENES:
-        print(f"scene {scene['id']}…")
-        img = make_scene(scene)
-        frame_path = frames_dir / f"{scene['id']}.png"
-        img.save(frame_path)
+        print(f"▶ animating {scene['id']} ({scene['mode']})…")
+        scene_dir = work / scene["id"]
+        scene_dir.mkdir()
+        mp3 = scene_dir / "vo.mp3"
+        wav = scene_dir / "vo.wav"
+        synthesize(scene["say"], mp3)
+        mp3_to_wav(mp3, wav)
+        env = audio_envelope(wav)
+        frames_dir = scene_dir / "frames"
+        frames_dir.mkdir()
+        _, dur = render_scene_frames(scene, poses, env, frames_dir)
 
-        audio_path = audio_dir / f"{scene['id']}.mp3"
-        synthesize(scene["say"], audio_path)
-
-        # Probe audio duration; pad/trim scene length
-        probe = subprocess.run(
-            [
-                "ffprobe",
-                "-v",
-                "error",
-                "-show_entries",
-                "format=duration",
-                "-of",
-                "default=noprint_wrappers=1:nokey=1",
-                str(audio_path),
-            ],
-            capture_output=True,
-            text=True,
-            check=True,
-        )
-        audio_dur = float(probe.stdout.strip() or scene["seconds"])
-        dur = max(scene["seconds"], audio_dur + 0.35)
-
-        clip_path = clips_dir / f"{scene['id']}.mp4"
-        # Gentle zoom for reel presence
-        vf = (
-            f"scale={W}:{H},zoompan=z='min(1.06,1+0.0015*on)':"
-            f"x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)':d={int(dur * FPS)}:"
-            f"s={W}x{H}:fps={FPS},format=yuv420p"
-        )
+        clip = scene_dir / "clip.mp4"
+        # encode image sequence + audio
         subprocess.run(
             [
-                "ffmpeg",
-                "-y",
-                "-loop",
-                "1",
-                "-i",
-                str(frame_path),
-                "-i",
-                str(audio_path),
-                "-vf",
-                vf,
-                "-c:v",
-                "libx264",
-                "-tune",
-                "stillimage",
-                "-c:a",
-                "aac",
-                "-b:a",
-                "192k",
+                "ffmpeg", "-y",
+                "-framerate", str(FPS),
+                "-i", str(frames_dir / "f%04d.png"),
+                "-i", str(mp3),
+                "-c:v", "libx264", "-pix_fmt", "yuv420p",
+                "-c:a", "aac", "-b:a", "192k",
                 "-shortest",
-                "-t",
-                f"{dur:.2f}",
-                "-movflags",
-                "+faststart",
-                str(clip_path),
+                "-movflags", "+faststart",
+                str(clip),
             ],
             check=True,
             capture_output=True,
         )
-        clip_paths.append(clip_path)
+        clips.append(clip)
+        print(f"  done {dur:.1f}s")
 
-    concat_list = work / "concat.txt"
-    concat_list.write_text("".join(f"file '{p}'\n" for p in clip_paths), encoding="utf-8")
-
+    concat = work / "list.txt"
+    concat.write_text("".join(f"file '{c}'\n" for c in clips), encoding="utf-8")
     out_mp4 = OUT_DIR / "jordan-g1-math-count-to-three-reel.mp4"
     subprocess.run(
         [
-            "ffmpeg",
-            "-y",
-            "-f",
-            "concat",
-            "-safe",
-            "0",
-            "-i",
-            str(concat_list),
-            "-c:v",
-            "libx264",
-            "-c:a",
-            "aac",
-            "-movflags",
-            "+faststart",
+            "ffmpeg", "-y", "-f", "concat", "-safe", "0", "-i", str(concat),
+            "-c:v", "libx264", "-c:a", "aac", "-movflags", "+faststart",
             str(out_mp4),
         ],
         check=True,
         capture_output=True,
     )
 
-    # Poster = first scene
-    poster = OUT_DIR / "poster.jpg"
-    make_scene(SCENES[0]).save(poster, quality=92)
+    # poster from first frame of first scene
+    first = sorted((work / SCENES[0]["id"] / "frames").glob("f*.png"))[0]
+    shutil.copy2(first, OUT_DIR / "poster.jpg")
+    Image.open(first).convert("RGB").save(OUT_DIR / "poster.jpg", quality=92)
 
-    # Manifest / script
     manifest = {
-        "schema": "success-os.jordan-g1-math-avatar-reel.v1",
+        "schema": "success-os.jordan-g1-math-avatar-reel.v2",
+        "animated": True,
+        "features": ["moving-avatar", "talking-poses", "board-writing", "arabic-voiceover"],
         "lesson": {
-            "country": "Jordan",
-            "curriculum": "Jordan National Curriculum",
             "grade": "الصف 1",
             "subject": "الرياضيات",
-            "unit": "الوحدة 1 — الأعداد من حولنا",
-            "titleAr": "الدرس 1 — العدّ حتى ثلاثة",
-            "titleEn": "Lesson 1 — Count to three",
-            "source": "content/demo/jordan-grade1-math-reference.ts",
-            "rights": "original-success-os-scaffold-not-textbook-copy",
+            "titleAr": "العدّ حتى ثلاثة",
         },
-        "teacherAvatar": {
-            "nameAr": "المعلمة سارة",
-            "style": "neat-illustrated-avatar",
-            "asset": "g1-math-teacher-avatar.png",
-        },
-        "format": {"aspect": "9:16", "width": W, "height": H, "fps": FPS, "style": "instagram-reel"},
-        "scenes": [
-            {"id": s["id"], "title": s["title"], "say": s["say"], "seconds": s["seconds"]}
-            for s in SCENES
-        ],
-        "files": {
-            "video": str(out_mp4.relative_to(ROOT)),
-            "poster": str(poster.relative_to(ROOT)),
-            "publicVideo": "public/media/jordan-g1-math-reel/jordan-g1-math-count-to-three-reel.mp4",
-        },
+        "teacher": "المعلمة سارة",
+        "scenes": [{"id": s["id"], "mode": s["mode"], "say": s["say"]} for s in SCENES],
+        "file": str(out_mp4.relative_to(ROOT)),
     }
-    import json
-
     (OUT_DIR / "manifest.json").write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     (OUT_DIR / "script.ar.md").write_text(
-        "# سكربت ريل — العدّ حتى ثلاثة\n\n"
-        + "\n\n".join(f"## {s['title']}\n{s['say']}" for s in SCENES)
+        "# سكربت متحرّك — المعلمة سارة تشرح وتكتب\n\n"
+        + "\n\n".join(f"## {s['id']} ({s['mode']})\n{s['say']}" for s in SCENES)
         + "\n",
         encoding="utf-8",
     )
 
-    # Mirror public + artifacts
     for name in [
         "jordan-g1-math-count-to-three-reel.mp4",
         "poster.jpg",
         "manifest.json",
         "script.ar.md",
-        "g1-math-teacher-avatar.png",
-        "g1-math-reel-bg.png",
     ]:
-        src = OUT_DIR / name
-        if src.exists():
-            shutil.copy2(src, PUBLIC_DIR / name)
-            shutil.copy2(src, ARTIFACT_DIR / name)
+        shutil.copy2(OUT_DIR / name, PUBLIC_DIR / name)
+        shutil.copy2(OUT_DIR / name, ARTIFACT_DIR / name)
+
+    # convenience aliases at artifacts root
+    shutil.copy2(out_mp4, ARTIFACT_DIR / "jordan-g1-math-count-to-three-reel.mp4")
+    shutil.copy2(OUT_DIR / "poster.jpg", ARTIFACT_DIR / "jordan-g1-math-poster.jpg")
+
+    # short gif preview
+    gif = ARTIFACT_DIR / "jordan-g1-math-reel-preview.gif"
+    subprocess.run(
+        [
+            "ffmpeg", "-y", "-i", str(out_mp4),
+            "-vf", "fps=10,scale=360:-1:flags=lanczos",
+            "-t", "10", "-an", str(gif),
+        ],
+        check=True,
+        capture_output=True,
+    )
 
     shutil.rmtree(work, ignore_errors=True)
-    size = out_mp4.stat().st_size
-    print(f"OK {out_mp4} ({size} bytes)")
+    print(f"OK animated reel → {out_mp4} ({out_mp4.stat().st_size} bytes)")
     return out_mp4
 
 
