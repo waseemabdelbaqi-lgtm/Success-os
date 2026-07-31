@@ -39,6 +39,7 @@ const TRANSLATIONS: Record<PortalLocale, Record<string, string>> = {
   en: {
     dashboard: "Dashboard",
     books: "Books",
+    courses: "Courses",
     bookmarks: "Bookmarks",
     notes: "Notes",
     readingHistory: "Reading History",
@@ -103,6 +104,7 @@ const TRANSLATIONS: Record<PortalLocale, Record<string, string>> = {
   ar: {
     dashboard: "لوحة التحكم",
     books: "الكتب",
+    courses: "الدورات",
     bookmarks: "الإشارات المرجعية",
     notes: "الملاحظات",
     readingHistory: "سجل القراءة",
