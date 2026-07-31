@@ -15,6 +15,17 @@ export default function AdminPage() {
         </div>
 
         <section className="os-card admin-card" style={{ marginBottom: '1rem' }}>
+          <span>AI-01</span>
+          <h2>ربط Google Gemini</h2>
+          <p>
+            معالج محلي آمن لإضافة مفتاح Gemini واختبار الاتصال — بدون تعديل ملفات البيئة يدوياً.
+          </p>
+          <a className="button" href="/admin/settings/ai/gemini">
+            فتح معالج Gemini →
+          </a>
+        </section>
+
+        <section className="os-card admin-card" style={{ marginBottom: '1rem' }}>
           <span>ADMIN-01</span>
           <h2>Enterprise Admin Dashboard</h2>
           <p>
