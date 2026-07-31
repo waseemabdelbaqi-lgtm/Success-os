@@ -3,6 +3,8 @@ export const STUDENT_ROUTE_PREFIX = "/student";
 export const STUDENT_ROUTES = {
   dashboard: `${STUDENT_ROUTE_PREFIX}/dashboard`,
   books: `${STUDENT_ROUTE_PREFIX}/books`,
+  courses: `${STUDENT_ROUTE_PREFIX}/courses`,
+  interactiveLessons: `${STUDENT_ROUTE_PREFIX}/interactive-lessons`,
   bookmarks: `${STUDENT_ROUTE_PREFIX}/bookmarks`,
   notes: `${STUDENT_ROUTE_PREFIX}/notes`,
   highlights: `${STUDENT_ROUTE_PREFIX}/highlights`,
@@ -16,6 +18,10 @@ export const STUDENT_ROUTES = {
     `${STUDENT_ROUTE_PREFIX}/books/${encodeURIComponent(bookId)}`,
   read: (bookId: string) =>
     `${STUDENT_ROUTE_PREFIX}/books/${encodeURIComponent(bookId)}/read`,
+  course: (courseId: string) =>
+    `${STUDENT_ROUTE_PREFIX}/courses/${encodeURIComponent(courseId)}`,
+  courseLesson: (courseId: string, unitId: string, lessonId: string) =>
+    `${STUDENT_ROUTE_PREFIX}/courses/${encodeURIComponent(courseId)}/units/${encodeURIComponent(unitId)}/lessons/${encodeURIComponent(lessonId)}`,
   subject: (subjectId: string, bookId?: string) => {
     const base = `${STUDENT_ROUTE_PREFIX}/subjects/${encodeURIComponent(subjectId)}`;
     return bookId
