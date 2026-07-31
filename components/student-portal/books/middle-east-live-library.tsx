@@ -112,6 +112,18 @@ export function MiddleEastLiveLibrary() {
         <p className="mt-1 text-xs font-bold text-[#9a711a]">
           Direct Preview Mode · {index.books.length} live books
         </p>
+        <div className="mt-4 rounded-xl border border-[#9e1722]/25 bg-[#fff8f1] p-3 text-sm">
+          <p className="font-black text-[#671016]">Jordan BOOKS FIRST pilot</p>
+          <p className="mt-1 text-[#7a655c]">
+            Interactive national curriculum books (not PDF-only). AI video path is paused.
+          </p>
+          <Link
+            href="/jordan-books/jordan/national/grade-1/semester-1/math/student-book"
+            className="mt-2 inline-block font-black text-[#9e1722] underline"
+          >
+            Open Grade 1 Math Sem1 companion book (units 0–3)
+          </Link>
+        </div>
       </div>
 
       <div className="luxury-card grid gap-4 rounded-[1.75rem] p-5 md:grid-cols-2 xl:grid-cols-3">

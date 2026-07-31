@@ -11,26 +11,55 @@ export const jordanAuthority={
   {name:'Darsak Platform',url:'https://darsak.gov.jo/',authorityType:'official-digital-platform',usage:'digital-lesson-structure-reference-never-copy',license:'official-framework-reference'},
   {name:'MOE curricula and textbooks administration',url:'https://moe.gov.jo/ar/%D8%A5%D8%AF%D8%A7%D8%B1%D8%A9-%D8%A7%D9%84%D9%85%D9%86%D8%A7%D9%87%D8%AC-%D9%88%D8%A7%D9%84%D9%83%D8%AA%D8%A8-%D8%A7%D9%84%D9%85%D8%AF%D8%B1%D8%B3%D9%8A%D8%A9',authorityType:'ministry',usage:'structure-and-outcomes-only',license:'official-framework-reference'},
   {name:'MOE approved textbook editions 2025–2026',url:'https://moe.gov.jo/ar/node/79818',authorityType:'ministry',usage:'edition-verification-only',license:'official-framework-reference'}
- ],lastReviewed:'2026-07-18'
+ ],lastReviewed:'2026-07-28'
 };
 
 const grades=[
+ ['الطفولة المبكرة','رياض الأطفال 1','https://nccd.gov.jo/ar/pages/PublicationsKG'],
+ ['الطفولة المبكرة','رياض الأطفال 2','https://nccd.gov.jo/ar/pages/PublicationsKG'],
  ['التعليم الأساسي','الصف 1','https://www.nccd.gov.jo/ar/pages/TextBooksGrade/68'],['التعليم الأساسي','الصف 2','https://www.nccd.gov.jo/ar/pages/TextBooksGrade/69'],
  ['التعليم الأساسي','الصف 3','https://www.nccd.gov.jo/ar/pages/TextBooksGrade/70'],['التعليم الأساسي','الصف 4','https://www.nccd.gov.jo/ar/pages/TextBooksGrade/71'],
  ['التعليم الأساسي','الصف 5','https://www.nccd.gov.jo/ar/pages/TextBooksGrade/72'],['التعليم الأساسي','الصف 6','https://www.nccd.gov.jo/ar/pages/TextBooksGrade/73'],['التعليم الأساسي','الصف 7','https://www.nccd.gov.jo/ar/pages/TextBooksGrade/74'],
  ['التعليم الأساسي','الصف 8','https://www.nccd.gov.jo/ar/pages/TextBooksGrade/75'],['التعليم الأساسي','الصف 9','https://www.nccd.gov.jo/ar/pages/TextBooksGrade/76'],['التعليم الأساسي','الصف 10','https://www.nccd.gov.jo/ar/pages/TextBooksGrade/77'],
  ['التعليم الثانوي — المسار الأكاديمي','الصف 11','https://www.nccd.gov.jo/ar/pages/TextBooksGrade/117'],
- ['التعليم الثانوي — المسار الأكاديمي','الصف 12','https://www.nccd.gov.jo/ar/pages/TextBooksGrade/83']
+ ['التعليم الثانوي — المسار الأكاديمي','الصف 12','https://www.nccd.gov.jo/ar/pages/TextBooksGrade/143']
 ];
 
 const gradeOne=['اللغة العربية','اللغة الإنجليزية','الرياضيات','العلوم','التربية الإسلامية','الدراسات الاجتماعية','المهارات الرقمية','التربية الرياضية','التربية الفنية والموسيقية والمسرحية'];
 const gradeEleven=['اللغة العربية','اللغة الإنجليزية','الرياضيات','الفيزياء','الكيمياء','العلوم الحياتية','علوم الأرض والبيئة','المهارات الرقمية','التربية الإسلامية','تاريخ الأردن'];
+/** Indexed from NCCD catalogue listings — pending live page re-verify (NCCD often HTTP 500). */
+const gradeTwelve=[
+ 'الرياضيات','الرياضيات/الأعمال','الفيزياء','الكيمياء','العلوم الحياتية','علوم الأرض والبيئة',
+ 'اللغة العربية /الأدب','اللغة العربية /النّحو والصّرف وموسيقا الشّعر','اللغة الإنجليزية','التربية الإسلامية',
+ 'تاريخ الأردن','الفلسفة','علوم النفس والاجتماع','الثقافة المالية','المهارات الرقمية'
+];
+const kgSubjects=['المنهاج التطوري','الرياضيات','اللغة العربية','العلوم'];
+
+function subjectsFor(grade){
+ if(grade==='الصف 1')return gradeOne;
+ if(grade==='الصف 11')return gradeEleven;
+ if(grade==='الصف 12')return gradeTwelve;
+ if(grade==='رياض الأطفال 1'||grade==='رياض الأطفال 2')return kgSubjects;
+ return[];
+}
+
+function catalogueStatusFor(grade){
+ if(grade==='الصف 1'||grade==='الصف 11')return'subject-list-verified';
+ if(grade==='الصف 12'||grade==='رياض الأطفال 1'||grade==='رياض الأطفال 2')return'subject-list-indexed-pending-nccd';
+ return'official-page-identified-pending-subject-review';
+}
 
 export const jordanGradeRegistry=grades.map(([stage,grade,source])=>({
- stage,grade,semesters:['الفصل الدراسي الأول','الفصل الدراسي الثاني'],officialCatalogUrl:source,
- subjects:grade==='الصف 1'?gradeOne:grade==='الصف 11'?gradeEleven:[],
- catalogueStatus:grade==='الصف 1'||grade==='الصف 11'?'subject-list-verified':'official-page-identified-pending-subject-review',
- baselineStatus:'missing',booksCreated:0,coveragePercentage:0,verificationStatus:'missing-content'
+ stage,grade,semesters:grade.startsWith('رياض')?['عام دراسي']:['الفصل الدراسي الأول','الفصل الدراسي الثاني'],officialCatalogUrl:source,
+ subjects:subjectsFor(grade),
+ catalogueStatus:catalogueStatusFor(grade),
+ baselineStatus:'missing',booksCreated:0,coveragePercentage:0,verificationStatus:'missing-content',
+ libraryPath:grade.startsWith('رياض الأطفال 1')?'/jordan-books/jordan/national/kg1'
+  :grade.startsWith('رياض الأطفال 2')?'/jordan-books/jordan/national/kg2'
+  :grade==='الصف 1'?'/jordan-books/jordan/national/grade-1'
+  :grade==='الصف 2'?'/jordan-books/jordan/national/grade-2'
+  :grade==='الصف 12'?'/jordan-books/jordan/national/grade-12'
+  :`/jordan-books/jordan/national/grade-${grade.replace('الصف ','')}`
 }));
 
 export function jordanGrade(grade){return jordanGradeRegistry.find(item=>item.grade===grade)||null}
