@@ -19,11 +19,7 @@ import {
   isExcludedInternationalLabel,
   isJordanNationalBookId,
 } from '../../data/jordan-national-knowledge-sources.js';
-import {
-  listLibraryBooks,
-  loadLibraryBook,
-  saveLibraryBook,
-} from './library-store.js';
+import { listLibraryBooks, saveLibraryBook } from './library-store.js';
 
 export const PHASE = 'JO-05_JORDAN_EDUCATIONAL_REFERENCE_LIBRARY';
 export const ENGINE_VERSION = '5.0.0';

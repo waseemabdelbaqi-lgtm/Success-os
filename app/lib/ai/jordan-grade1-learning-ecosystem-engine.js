@@ -22,7 +22,7 @@ import {
   g1IsLessonComplete,
 } from '../../data/jordan-grade1-learning-ecosystem.js';
 import { authorGrade1LessonEcosystem } from './jordan-grade1-ecosystem-author.js';
-import { listLibraryBooks, loadLibraryBook } from './library-store.js';
+import { listLibraryBooks } from './library-store.js';
 import { isJordanNationalBookId } from '../../data/jordan-national-knowledge-sources.js';
 import { subjectCodeFromLabel } from '../../data/national-education-registry.js';
 
@@ -33,7 +33,7 @@ function list(v) {
   return Array.isArray(v) ? v : [];
 }
 
-function text(v) {
+function _text(v) {
   return String(v || '').trim();
 }
 

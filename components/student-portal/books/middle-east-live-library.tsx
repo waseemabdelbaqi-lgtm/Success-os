@@ -1,10 +1,64 @@
-'use client';
+"use client";
 
-import Link from 'next/link';
-import { useEffect, useMemo, useState } from 'react';
-import { STUDENT_ROUTES } from '@/lib/student-portal/constants';
+import Link from "next/link";
+import { useEffect, useMemo, useState } from "react";
+import { STUDENT_ROUTES } from "@/lib/student-portal/constants";
 
-function DependentSelect({ label, value, onChange, options }) {
+type SelectOption = {
+  value: string;
+  label: string;
+};
+
+type HierarchyNode = {
+  id: string;
+  name: string;
+  nameAr?: string;
+  countryId?: string;
+  systemId?: string;
+  curriculumId?: string;
+  gradeId?: string;
+};
+
+type CatalogBook = {
+  bookId: string;
+  countryId?: string;
+  systemId?: string;
+  curriculumId?: string;
+  gradeId?: string;
+  subjectId: string;
+  country?: string;
+  grade?: string;
+  subject?: string;
+  curriculum?: string;
+  version?: string;
+  bookStatus?: string;
+  searchText: string;
+};
+
+type CatalogIndex = {
+  books: CatalogBook[];
+  hierarchy: {
+    countries?: HierarchyNode[];
+    systems?: HierarchyNode[];
+    curricula?: HierarchyNode[];
+    grades?: HierarchyNode[];
+    subjects?: HierarchyNode[];
+  };
+};
+
+type DependentSelectProps = {
+  label: string;
+  value: string;
+  onChange: (value: string) => void;
+  options: SelectOption[];
+};
+
+function DependentSelect({
+  label,
+  value,
+  onChange,
+  options,
+}: DependentSelectProps) {
   return (
     <label className="flex flex-col gap-1 text-sm">
       <span className="font-bold text-[#671016]">{label}</span>
@@ -14,7 +68,7 @@ function DependentSelect({ label, value, onChange, options }) {
         onChange={(event) => onChange(event.target.value)}
       >
         <option value="">All</option>
-        {options.map((option) => (
+        {options.map((option: SelectOption) => (
           <option key={option.value} value={option.value}>
             {option.label}
           </option>
@@ -25,64 +79,68 @@ function DependentSelect({ label, value, onChange, options }) {
 }
 
 export function MiddleEastLiveLibrary() {
-  const [index, setIndex] = useState(null);
-  const [error, setError] = useState('');
-  const [query, setQuery] = useState('');
-  const [countryId, setCountryId] = useState('');
-  const [systemId, setSystemId] = useState('');
-  const [curriculumId, setCurriculumId] = useState('');
-  const [gradeId, setGradeId] = useState('');
-  const [subjectId, setSubjectId] = useState('');
+  const [index, setIndex] = useState<CatalogIndex | null>(null);
+  const [error, setError] = useState("");
+  const [query, setQuery] = useState("");
+  const [countryId, setCountryId] = useState("");
+  const [systemId, setSystemId] = useState("");
+  const [curriculumId, setCurriculumId] = useState("");
+  const [gradeId, setGradeId] = useState("");
+  const [subjectId, setSubjectId] = useState("");
 
   useEffect(() => {
-    fetch('/api/student-books?view=catalog', { cache: 'no-store' })
+    fetch("/api/student-books?view=catalog", { cache: "no-store" })
       .then((response) => {
         if (!response.ok) throw new Error(`INDEX_${response.status}`);
         return response.json();
       })
-      .then(setIndex)
-      .catch((reason) => setError(reason.message));
+      .then((payload: CatalogIndex) => setIndex(payload))
+      .catch((reason: unknown) =>
+        setError(reason instanceof Error ? reason.message : "LOAD_FAILED"),
+      );
   }, []);
 
   const hierarchy = index?.hierarchy;
   const systems = useMemo(
     () =>
       (hierarchy?.systems || []).filter(
-        (item) => !countryId || item.countryId === countryId,
+        (item: HierarchyNode) => !countryId || item.countryId === countryId,
       ),
     [hierarchy, countryId],
   );
   const curricula = useMemo(
     () =>
       (hierarchy?.curricula || []).filter(
-        (item) =>
+        (item: HierarchyNode) =>
           (!systemId || item.systemId === systemId) &&
-          systems.some((system) => system.id === item.systemId),
+          systems.some((system: HierarchyNode) => system.id === item.systemId),
       ),
     [hierarchy, systemId, systems],
   );
   const grades = useMemo(
     () =>
       (hierarchy?.grades || []).filter(
-        (item) =>
+        (item: HierarchyNode) =>
           (!curriculumId || item.curriculumId === curriculumId) &&
-          curricula.some((curriculum) => curriculum.id === item.curriculumId),
+          curricula.some(
+            (curriculum: HierarchyNode) => curriculum.id === item.curriculumId,
+          ),
       ),
     [hierarchy, curriculumId, curricula],
   );
   const subjects = useMemo(
     () =>
       (hierarchy?.subjects || []).filter(
-        (item) =>
+        (item: HierarchyNode) =>
           (!gradeId || item.gradeId === gradeId) &&
-          grades.some((grade) => grade.id === item.gradeId),
+          grades.some((grade: HierarchyNode) => grade.id === item.gradeId),
       ),
     [hierarchy, gradeId, grades],
   );
 
   const books = useMemo(() => {
     const list = index?.books || [];
-    return list.filter((book) => {
+    return list.filter((book: CatalogBook) => {
       if (countryId && book.countryId !== countryId) return false;
       if (systemId && book.systemId !== systemId) return false;
       if (curriculumId && book.curriculumId !== curriculumId) return false;
@@ -94,7 +152,7 @@ export function MiddleEastLiveLibrary() {
   }, [index, countryId, systemId, curriculumId, gradeId, subjectId, query]);
 
   if (error) {
-    return <p style={{ color: '#9e1722', padding: 24 }}>{error}</p>;
+    return <p style={{ color: "#9e1722", padding: 24 }}>{error}</p>;
   }
   if (!index) {
     return <p style={{ padding: 24 }}>Loading Middle East live library…</p>;
@@ -127,28 +185,28 @@ export function MiddleEastLiveLibrary() {
         <DependentSelect
           label="Country"
           value={countryId}
-          onChange={(value) => {
+          onChange={(value: string) => {
             setCountryId(value);
-            setSystemId('');
-            setCurriculumId('');
-            setGradeId('');
-            setSubjectId('');
+            setSystemId("");
+            setCurriculumId("");
+            setGradeId("");
+            setSubjectId("");
           }}
-          options={(hierarchy.countries || []).map((item) => ({
+          options={(hierarchy?.countries || []).map((item: HierarchyNode) => ({
             value: item.id,
-            label: `${item.name} / ${item.nameAr}`,
+            label: `${item.name} / ${item.nameAr || item.name}`,
           }))}
         />
         <DependentSelect
           label="Educational System"
           value={systemId}
-          onChange={(value) => {
+          onChange={(value: string) => {
             setSystemId(value);
-            setCurriculumId('');
-            setGradeId('');
-            setSubjectId('');
+            setCurriculumId("");
+            setGradeId("");
+            setSubjectId("");
           }}
-          options={systems.map((item) => ({
+          options={systems.map((item: HierarchyNode) => ({
             value: item.id,
             label: item.name,
           }))}
@@ -156,12 +214,12 @@ export function MiddleEastLiveLibrary() {
         <DependentSelect
           label="Curriculum"
           value={curriculumId}
-          onChange={(value) => {
+          onChange={(value: string) => {
             setCurriculumId(value);
-            setGradeId('');
-            setSubjectId('');
+            setGradeId("");
+            setSubjectId("");
           }}
-          options={curricula.map((item) => ({
+          options={curricula.map((item: HierarchyNode) => ({
             value: item.id,
             label: item.name,
           }))}
@@ -169,11 +227,11 @@ export function MiddleEastLiveLibrary() {
         <DependentSelect
           label="Grade / Academic Level"
           value={gradeId}
-          onChange={(value) => {
+          onChange={(value: string) => {
             setGradeId(value);
-            setSubjectId('');
+            setSubjectId("");
           }}
-          options={grades.map((item) => ({
+          options={grades.map((item: HierarchyNode) => ({
             value: item.id,
             label: item.name,
           }))}
@@ -182,7 +240,7 @@ export function MiddleEastLiveLibrary() {
           label="Subject"
           value={subjectId}
           onChange={setSubjectId}
-          options={subjects.map((item) => ({
+          options={subjects.map((item: HierarchyNode) => ({
             value: item.id,
             label: item.name,
           }))}
@@ -190,12 +248,12 @@ export function MiddleEastLiveLibrary() {
       </div>
 
       <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
-        {books.map((book) => (
+        {books.map((book: CatalogBook) => (
           <article
             key={book.bookId}
             className="luxury-card rounded-[1.5rem] p-5"
           >
-            <p className="text-[10px] font-black uppercase tracking-[0.18em] text-[#9a711a]">
+            <p className="text-[10px] font-black tracking-[0.18em] text-[#9a711a] uppercase">
               {book.country} · {book.grade}
             </p>
             <h2 className="mt-2 text-lg font-black text-[#671016]">
@@ -230,7 +288,7 @@ export function MiddleEastLiveLibrary() {
       ) : null}
 
       <p className="text-xs text-[#8b7770]">
-        Legacy demo shelf remains at{' '}
+        Legacy demo shelf remains at{" "}
         <Link className="underline" href={`${STUDENT_ROUTES.books}?demo=1`}>
           ?demo=1
         </Link>

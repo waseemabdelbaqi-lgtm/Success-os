@@ -166,7 +166,7 @@ function normalize(value) {
     .replace(/\s+/g, ' ');
 }
 
-function lessonBody(lesson) {
+function _lessonBody(lesson) {
   return text(
     lesson?.stepByStepExplanation ||
       lesson?.fullLesson ||

@@ -66,14 +66,6 @@ function ensureDirs(root) {
   }
 }
 
-function hasContent(value) {
-  if (value == null) return false;
-  if (typeof value === 'string') return text(value).length > 0;
-  if (Array.isArray(value)) return value.length > 0;
-  if (typeof value === 'object') return Object.keys(value).length > 0;
-  return Boolean(value);
-}
-
 /**
  * @param {object} config
  * @param {string} config.countryCode

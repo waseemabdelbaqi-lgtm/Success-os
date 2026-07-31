@@ -24,7 +24,7 @@ function list(v) {
   return Array.isArray(v) ? v : [];
 }
 
-function text(v) {
+function _text(v) {
   return String(v || '').trim();
 }
 

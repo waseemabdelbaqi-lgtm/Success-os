@@ -413,7 +413,7 @@ export function produceJordanBook(job, options = {}) {
   }));
 
   // JO-03: never auto-publish. Production writes PENDING verification only.
-  const publishReady = false;
+  const _publishReady = false;
   const productionReady =
     lessonsRejected === 0 &&
     qualityScore >= MIN_QUALITY_SCORE &&

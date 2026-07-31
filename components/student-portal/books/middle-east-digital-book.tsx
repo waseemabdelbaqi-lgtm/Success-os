@@ -1,9 +1,26 @@
-'use client';
+"use client";
 
-import Link from 'next/link';
-import { useEffect, useMemo, useState } from 'react';
-import { BookLessonMediaPlayer } from './book-lesson-media-player';
-import { STUDENT_ROUTES } from '@/lib/student-portal/constants';
+import Link from "next/link";
+import { useEffect, useMemo, useState } from "react";
+import { BookLessonMediaPlayer } from "./book-lesson-media-player";
+import { STUDENT_ROUTES } from "@/lib/student-portal/constants";
+
+type LiveLesson = {
+  id: string;
+  title: string;
+  summary?: string;
+  fullLesson?: string;
+  mainConcepts?: string[];
+  learningObjectives?: string[];
+  slides?: Array<{ title: string; body: string; kind?: string }>;
+  videoUrl?: string | null;
+};
+
+type LiveUnit = {
+  id: string;
+  title: string;
+  lessons: LiveLesson[];
+};
 
 type LiveBook = {
   bookId: string;
@@ -16,18 +33,27 @@ type LiveBook = {
   updatedAt: string;
   bookStatus: string;
   cover?: { title?: string; subtitle?: string };
-  units?: Array<{
-    id: string;
-    title: string;
-    lessons: Array<{ id: string; title: string }>;
-  }>;
+  units?: LiveUnit[];
+  phase152?: {
+    publishStatus?: string;
+    lessonsCompleted?: number;
+    lessonsRejected?: number;
+  };
+  publication?: { status?: string };
+};
+
+type FlatLesson = {
+  unitId: string;
+  lessonId: string;
+  unitTitle: string;
+  lesson: LiveLesson;
 };
 
 export function AdminPreviewBanner({ book }: { book: LiveBook | null }) {
   if (!book) return null;
-  const phase152 = (book as any).phase152;
+  const phase152 = book.phase152;
   const publishStatus =
-    phase152?.publishStatus || (book as any).publication?.status || book.bookStatus;
+    phase152?.publishStatus || book.publication?.status || book.bookStatus;
   return (
     <div className="border-b border-[#d4af37]/35 bg-gradient-to-r from-[#1f2937] via-[#111827] to-[#1f2937] px-4 py-3 text-xs text-[#f8ead8] sm:px-6">
       <div className="flex flex-wrap gap-x-4 gap-y-1 font-semibold">
@@ -47,7 +73,10 @@ export function AdminPreviewBanner({ book }: { book: LiveBook | null }) {
         {phase152?.lessonsRejected ? (
           <span>Rejected: {phase152.lessonsRejected}</span>
         ) : null}
-        <a className="underline text-[#f2d77c]" href="/admin/middle-east-book-review">
+        <a
+          className="text-[#f2d77c] underline"
+          href="/admin/middle-east-book-review"
+        >
           Open Admin Review
         </a>
       </div>
@@ -63,23 +92,23 @@ export function SubjectBookPage({
   bookId?: string;
 }) {
   const [book, setBook] = useState<LiveBook | null>(null);
-  const [error, setError] = useState('');
+  const [error, setError] = useState("");
 
   useEffect(() => {
     const target = bookId
       ? `/api/student-books?view=book&id=${encodeURIComponent(bookId)}`
       : null;
     if (!target) {
-      fetch('/api/student-books?view=index', { cache: 'no-store' })
+      fetch("/api/student-books?view=index", { cache: "no-store" })
         .then((response) => response.json())
         .then((index) => {
           const match = (index.books || []).find(
             (item: { subjectId: string }) => item.subjectId === subjectId,
           );
-          if (!match) throw new Error('SUBJECT_BOOK_NOT_FOUND');
+          if (!match) throw new Error("SUBJECT_BOOK_NOT_FOUND");
           return fetch(
             `/api/student-books?view=book&id=${encodeURIComponent(match.bookId)}`,
-            { cache: 'no-store' },
+            { cache: "no-store" },
           );
         })
         .then((response) => {
@@ -91,7 +120,7 @@ export function SubjectBookPage({
       return;
     }
 
-    fetch(target, { cache: 'no-store' })
+    fetch(target, { cache: "no-store" })
       .then((response) => {
         if (!response.ok) throw new Error(`BOOK_${response.status}`);
         return response.json();
@@ -108,14 +137,14 @@ export function SubjectBookPage({
       <AdminPreviewBanner book={book} />
       <div className="space-y-6 p-4 sm:p-7">
         <section className="luxury-card rounded-[2rem] p-6 sm:p-8">
-          <p className="text-[10px] font-black uppercase tracking-[0.2em] text-[#9a711a]">
+          <p className="text-[10px] font-black tracking-[0.2em] text-[#9a711a] uppercase">
             Subject page
           </p>
           <h1 className="mt-2 text-3xl font-black text-[#671016]">
             {book.subject}
           </h1>
           <p className="mt-2 text-sm text-[#7a655c]">
-            {book.country} → {book.educationalSystem} → {book.curriculum} →{' '}
+            {book.country} → {book.educationalSystem} → {book.curriculum} →{" "}
             {book.grade}
           </p>
           <div className="mt-6">
@@ -134,7 +163,10 @@ export function SubjectBookPage({
           </h2>
           <ul className="mt-4 space-y-3">
             {(book.units || []).map((unit) => (
-              <li key={unit.id} className="rounded-xl border border-[#d4af37]/25 p-3">
+              <li
+                key={unit.id}
+                className="rounded-xl border border-[#d4af37]/25 p-3"
+              >
                 <p className="font-bold text-[#671016]">{unit.title}</p>
                 <p className="text-xs text-[#8b7770]">
                   {(unit.lessons || []).length} lessons
@@ -149,28 +181,28 @@ export function SubjectBookPage({
 }
 
 export function DigitalBookReader({ bookId }: { bookId: string }) {
-  const [book, setBook] = useState<any>(null);
-  const [error, setError] = useState('');
-  const [versionToken, setVersionToken] = useState('');
+  const [book, setBook] = useState<LiveBook | null>(null);
+  const [error, setError] = useState("");
+  const [versionToken, setVersionToken] = useState("");
   const [expanded, setExpanded] = useState<Record<string, boolean>>({});
   const [activeLesson, setActiveLesson] = useState<{
     unitId: string;
     lessonId: string;
   } | null>(null);
-  const [query, setQuery] = useState('');
+  const [query, setQuery] = useState("");
   const [fontSize, setFontSize] = useState(18);
   const [lineHeight, setLineHeight] = useState(1.8);
-  const [theme, setTheme] = useState<'light' | 'dark'>('light');
+  const [theme, setTheme] = useState<"light" | "dark">("light");
   const [bookmarks, setBookmarks] = useState<string[]>([]);
   const [notes, setNotes] = useState<Record<string, string>>({});
 
   async function loadBook() {
     const response = await fetch(
       `/api/student-books?view=book&id=${encodeURIComponent(bookId)}`,
-      { cache: 'no-store' },
+      { cache: "no-store" },
     );
     if (!response.ok) throw new Error(`BOOK_${response.status}`);
-    const payload = await response.json();
+    const payload = (await response.json()) as LiveBook;
     setBook(payload);
     const firstUnit = payload.units?.[0];
     const firstLesson = firstUnit?.lessons?.[0];
@@ -180,7 +212,7 @@ export function DigitalBookReader({ bookId }: { bookId: string }) {
     }
     const version = await fetch(
       `/api/student-books?view=version&id=${encodeURIComponent(bookId)}`,
-      { cache: 'no-store' },
+      { cache: "no-store" },
     ).then((item) => item.json());
     setVersionToken(version.versionToken);
     const storageKey = `success-os:me-reader:${bookId}`;
@@ -206,7 +238,7 @@ export function DigitalBookReader({ bookId }: { bookId: string }) {
       try {
         const version = await fetch(
           `/api/student-books?view=version&id=${encodeURIComponent(bookId)}`,
-          { cache: 'no-store' },
+          { cache: "no-store" },
         ).then((item) => item.json());
         if (version.versionToken && version.versionToken !== versionToken) {
           setVersionToken(version.versionToken);
@@ -244,10 +276,10 @@ export function DigitalBookReader({ bookId }: { bookId: string }) {
     theme,
   ]);
 
-  const flatLessons = useMemo(() => {
+  const flatLessons = useMemo((): FlatLesson[] => {
     if (!book) return [];
-    return (book.units || []).flatMap((unit: any) =>
-      (unit.lessons || []).map((lesson: any) => ({
+    return (book.units || []).flatMap((unit: LiveUnit) =>
+      (unit.lessons || []).map((lesson: LiveLesson) => ({
         unitId: unit.id,
         lessonId: lesson.id,
         unitTitle: unit.title,
@@ -257,23 +289,24 @@ export function DigitalBookReader({ bookId }: { bookId: string }) {
   }, [book]);
 
   const currentIndex = flatLessons.findIndex(
-    (item) =>
+    (item: FlatLesson) =>
       item.unitId === activeLesson?.unitId &&
       item.lessonId === activeLesson?.lessonId,
   );
-  const current = currentIndex >= 0 ? flatLessons[currentIndex] : null;
+  const current =
+    currentIndex >= 0 ? (flatLessons[currentIndex] ?? null) : null;
 
-  const searchHits = useMemo(() => {
+  const searchHits = useMemo((): FlatLesson[] => {
     if (!query.trim() || !book) return [];
     const q = query.toLowerCase();
-    return flatLessons.filter((item) => {
+    return flatLessons.filter((item: FlatLesson) => {
       const haystack = [
         item.lesson.title,
         item.lesson.summary,
         item.lesson.fullLesson,
         ...(item.lesson.mainConcepts || []),
       ]
-        .join(' ')
+        .join(" ")
         .toLowerCase();
       return haystack.includes(q);
     });
@@ -290,42 +323,51 @@ export function DigitalBookReader({ bookId }: { bookId: string }) {
   const isBookmarked = bookmarks.includes(bookmarkKey);
   const lessonSlides = [
     {
-      title: 'مقدمة',
+      title: "مقدمة",
       body: current.lesson.summary || current.lesson.title,
-      kind: 'intro',
+      kind: "intro",
     },
     {
-      title: 'المفاهيم الأساسية',
-      body: (current.lesson.mainConcepts || []).join(' · ') || current.lesson.title,
-      kind: 'concepts',
+      title: "المفاهيم الأساسية",
+      body:
+        (current.lesson.mainConcepts || []).join(" · ") || current.lesson.title,
+      kind: "concepts",
     },
     {
-      title: 'الشرح',
-      body: (current.lesson.fullLesson || '').slice(0, 420) || current.lesson.summary,
-      kind: 'explain',
+      title: "الشرح",
+      body:
+        (current.lesson.fullLesson || "").slice(0, 420) ||
+        current.lesson.summary ||
+        current.lesson.title,
+      kind: "explain",
     },
     {
-      title: 'تدريب',
-      body: 'يحل الطالب سؤالاً متدرجاً ويحصل على تغذية راجعة حسب اختياره.',
-      kind: 'practice',
+      title: "تدريب",
+      body: "يحل الطالب سؤالاً متدرجاً ويحصل على تغذية راجعة حسب اختياره.",
+      kind: "practice",
     },
   ];
 
   return (
     <div
       className={
-        theme === 'dark'
-          ? 'p11-reader-shell min-h-screen bg-[#120c0d] text-[#f8ead8]'
-          : 'p11-reader-shell min-h-screen bg-[#fffdf8] text-[#2f211c]'
+        theme === "dark"
+          ? "p11-reader-shell min-h-screen bg-[#120c0d] text-[#f8ead8]"
+          : "p11-reader-shell min-h-screen bg-[#fffdf8] text-[#2f211c]"
       }
     >
       <AdminPreviewBanner book={book} />
       <div className="sticky top-0 z-20 border-b border-[#d4af37]/25 bg-black/5 px-4 py-3 backdrop-blur">
         <div className="flex flex-wrap items-center gap-2">
-          <Link href="/student/books" className="text-sm font-bold text-[#9a711a]">
+          <Link
+            href="/student/books"
+            className="text-sm font-bold text-[#9a711a]"
+          >
             ← Library
           </Link>
-          <strong className="text-sm">{book.cover?.title || book.subject}</strong>
+          <strong className="text-sm">
+            {book.cover?.title || book.subject}
+          </strong>
           <span className="text-xs text-[#9a711a]">{progress}%</span>
           <div className="ms-auto flex flex-wrap gap-2">
             <button
@@ -346,7 +388,9 @@ export function DigitalBookReader({ bookId }: { bookId: string }) {
               type="button"
               className="rounded-lg border px-2 py-1 text-xs"
               onClick={() =>
-                setLineHeight((value) => Math.max(1.4, Number((value - 0.1).toFixed(1))))
+                setLineHeight((value) =>
+                  Math.max(1.4, Number((value - 0.1).toFixed(1))),
+                )
               }
             >
               Spacing -
@@ -355,7 +399,9 @@ export function DigitalBookReader({ bookId }: { bookId: string }) {
               type="button"
               className="rounded-lg border px-2 py-1 text-xs"
               onClick={() =>
-                setLineHeight((value) => Math.min(2.4, Number((value + 0.1).toFixed(1))))
+                setLineHeight((value) =>
+                  Math.min(2.4, Number((value + 0.1).toFixed(1))),
+                )
               }
             >
               Spacing +
@@ -363,9 +409,11 @@ export function DigitalBookReader({ bookId }: { bookId: string }) {
             <button
               type="button"
               className="rounded-lg border px-2 py-1 text-xs"
-              onClick={() => setTheme((value) => (value === 'light' ? 'dark' : 'light'))}
+              onClick={() =>
+                setTheme((value) => (value === "light" ? "dark" : "light"))
+              }
             >
-              {theme === 'light' ? 'Dark' : 'Light'}
+              {theme === "light" ? "Dark" : "Light"}
             </button>
             <button
               type="button"
@@ -378,7 +426,7 @@ export function DigitalBookReader({ bookId }: { bookId: string }) {
                 )
               }
             >
-              {isBookmarked ? 'Bookmarked' : 'Bookmark'}
+              {isBookmarked ? "Bookmarked" : "Bookmark"}
             </button>
           </div>
         </div>
@@ -395,7 +443,7 @@ export function DigitalBookReader({ bookId }: { bookId: string }) {
             />
             {query ? (
               <ul className="mt-2 max-h-40 space-y-1 overflow-auto text-xs">
-                {searchHits.map((hit) => (
+                {searchHits.map((hit: FlatLesson) => (
                   <li key={`${hit.unitId}-${hit.lessonId}`}>
                     <button
                       type="button"
@@ -418,7 +466,7 @@ export function DigitalBookReader({ bookId }: { bookId: string }) {
           <div className="rounded-2xl border border-[#d4af37]/25 p-3">
             <h2 className="text-sm font-black">Table of Contents</h2>
             <ul className="mt-3 space-y-2 text-sm">
-              {(book.units || []).map((unit: any) => (
+              {(book.units || []).map((unit: LiveUnit) => (
                 <li key={unit.id}>
                   <button
                     type="button"
@@ -431,19 +479,19 @@ export function DigitalBookReader({ bookId }: { bookId: string }) {
                     }
                   >
                     <span>{unit.title}</span>
-                    <span>{expanded[unit.id] ? '−' : '+'}</span>
+                    <span>{expanded[unit.id] ? "−" : "+"}</span>
                   </button>
                   {expanded[unit.id] ? (
                     <ul className="mt-1 space-y-1 ps-3">
-                      {(unit.lessons || []).map((lesson: any) => (
+                      {(unit.lessons || []).map((lesson: LiveLesson) => (
                         <li key={lesson.id}>
                           <button
                             type="button"
                             className={
                               current.lessonId === lesson.id &&
                               current.unitId === unit.id
-                                ? 'font-bold text-[#c45c26]'
-                                : ''
+                                ? "font-bold text-[#c45c26]"
+                                : ""
                             }
                             onClick={() =>
                               setActiveLesson({
@@ -468,7 +516,7 @@ export function DigitalBookReader({ bookId }: { bookId: string }) {
           className="rounded-[2rem] border border-[#d4af37]/25 p-6 sm:p-10"
           style={{ fontSize: `${fontSize}px`, lineHeight }}
         >
-          <p className="text-xs font-black uppercase tracking-[0.18em] text-[#9a711a]">
+          <p className="text-xs font-black tracking-[0.18em] text-[#9a711a] uppercase">
             {current.unitTitle}
           </p>
           <h1 className="mt-3 text-3xl font-black">{current.lesson.title}</h1>
@@ -489,7 +537,9 @@ export function DigitalBookReader({ bookId }: { bookId: string }) {
 
           <section className="mt-8">
             <h2 className="text-xl font-black">Full Lesson</h2>
-            <p className="mt-2 whitespace-pre-line">{current.lesson.fullLesson}</p>
+            <p className="mt-2 whitespace-pre-line">
+              {current.lesson.fullLesson}
+            </p>
           </section>
 
           <section className="mt-8">
@@ -508,7 +558,7 @@ export function DigitalBookReader({ bookId }: { bookId: string }) {
             <textarea
               className="mt-2 min-h-28 w-full rounded-xl border border-[#d4af37]/35 bg-white/90 p-3 text-sm text-[#2f211c]"
               placeholder="اكتب ملاحظاتك على هذا الدرس…"
-              value={notes[bookmarkKey] || ''}
+              value={notes[bookmarkKey] || ""}
               onChange={(event) =>
                 setNotes((prev) => ({
                   ...prev,

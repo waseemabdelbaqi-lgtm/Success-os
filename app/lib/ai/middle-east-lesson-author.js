@@ -90,7 +90,7 @@ function objectiveFor(lessonTitle, subject, grade, curriculum) {
 }
 
 function familyBlocks(family, ctx) {
-  const { lessonTitle, unitTitle, subject, grade } = ctx;
+  const { lessonTitle, unitTitle, subject: _subject, grade } = ctx;
   if (family === 'mathematics') {
     return {
       rulesLawsFormulas: [

@@ -130,7 +130,7 @@ export function createLearningPathEngine(config) {
     const identity = book.identity || {};
     const flat = flattenBookLessons(book);
     const total = flat.length;
-    const byLessonId = new Map(flat.map((n) => [n.lessonId, n]));
+    const _byLessonId = new Map(flat.map((n) => [n.lessonId, n]));
 
     const lessons = flat.map((node, index) => {
       const lesson = node.lesson;
