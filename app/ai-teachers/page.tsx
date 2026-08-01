@@ -30,9 +30,9 @@ export default function AiTeachersPage() {
           }}
         >
           <p style={{ margin: 0, fontWeight: 700, color: "#0f766e" }}>SUCCESS OS</p>
-          <h1 style={{ margin: "0.35rem 0" }}>معلمان فقط: سارة وعلي</h1>
+          <h1 style={{ margin: "0.35rem 0" }}>سارة وعلي — أوضح من المعلم الحقيقي</h1>
           <p style={{ margin: 0, opacity: 0.8 }}>
-            {catalog.counts.total} معلمين · {catalog.counts.female} أنثى · {catalog.counts.male} ذكر
+            {catalog.counts.total} معلمين فقط · {catalog.counts.female} أنثى · {catalog.counts.male} ذكر · تبسيط فوري وفحص فهم لحظي
           </p>
           <p style={{ marginTop: 12 }}>
             <Link href="/ai-teacher/classroom" style={{ fontWeight: 800, color: "#ff5a6a" }}>

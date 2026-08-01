@@ -40,6 +40,11 @@ const ts = fs.readFileSync(path.join(root, "lib/ai-teachers/catalog.ts"), "utf8"
 assert(ts.includes('id: "sara"') && ts.includes('id: "ali"'), "catalog.ts missing sara/ali");
 assert(!ts.includes('id: "omar"') && !ts.includes('id: "layla"'), "catalog.ts still has legacy teachers");
 assert(fs.existsSync(path.join(root, "app/ai-teacher/classroom/page.tsx")), "Missing interactive classroom page");
+assert(fs.existsSync(path.join(root, "lib/ai-teachers/master-coach.ts")), "Missing master-coach layer");
+assert(fs.existsSync(path.join(root, "components/ai-teachers/interactive-classroom.tsx")), "Missing classroom UI");
+const lesson = fs.readFileSync(path.join(root, "lib/ai-teachers/g1-count-lesson.ts"), "utf8");
+assert(lesson.includes("check:"), "Lesson must include micro-checks");
+assert(lesson.includes("challenge"), "Lesson commands must include challenge");
 
 if (failures.length) {
   console.error("validate-ai-teachers FAILED:");

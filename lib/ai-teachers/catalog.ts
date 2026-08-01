@@ -20,7 +20,7 @@ function assets(id: string, poses: AiTeacherProfile["assets"]["poses"]) {
   };
 }
 
-const UPDATED = "2026-08-01T11:30:00.000Z";
+const UPDATED = "2026-08-01T14:30:00.000Z";
 
 const POSE_PACK = {
   talk: "talk.png",
@@ -40,7 +40,10 @@ export function listAiTeachers(): AiTeacherProfile[] {
       localeCodes: ["ar-JO", "en"],
       educationalStages: ["early_childhood", "elementary", "middle_school"],
       subjects: ["math", "science", "general"],
-      personalityTone: L("Warm and encouraging", "دافئة ومشجّعة"),
+      personalityTone: L(
+        "Warm master coach — clearer than a typical classroom teacher",
+        "مدربة دافئة بإتقان — أوضح من المعلم التقليدي",
+      ),
       appearanceNotes: L(
         "Jordanian woman, olive blazer — photoreal AI teacher",
         "أردنية، بليزر زيتوني — معلمة مولَّدة بالذكاء الاصطناعي",
@@ -65,7 +68,10 @@ export function listAiTeachers(): AiTeacherProfile[] {
       localeCodes: ["ar-JO", "en"],
       educationalStages: ["early_childhood", "elementary", "middle_school", "high_school"],
       subjects: ["math", "science", "physics", "general"],
-      personalityTone: L("Clear and confident", "واضح وواثق"),
+      personalityTone: L(
+        "Crisp master coach — precise scaffolding and instant checks",
+        "مدرب واضح بإتقان — تبسيط فوري وفحص فهم لحظي",
+      ),
       appearanceNotes: L(
         "Jordanian man, navy blazer — photoreal AI teacher",
         "أردني، بليزر كحلي — معلم مولَّد بالذكاء الاصطناعي",
