@@ -41,8 +41,13 @@ OUTPUT = BASE / "flagship-ai-teacher-lesson.mp4"
 
 WIDTH, HEIGHT = 1280, 720
 FPS = 24
-VOICE = os.environ.get("G1_TEACHER_VOICE", "ar-JO-SanaNeural")
-NAME_AR = "المعلمة سارة"
+_TEACHER_META = {
+    "sara": {"name_ar": "المعلمة سارة", "voice": "ar-JO-SanaNeural", "gender": "female"},
+    "ali": {"name_ar": "المعلم علي", "voice": "ar-JO-TaimNeural", "gender": "male"},
+}
+_META = _TEACHER_META.get(TEACHER_ID, _TEACHER_META["sara"])
+VOICE = os.environ.get("G1_TEACHER_VOICE", _META["voice"])
+NAME_AR = _META["name_ar"]
 
 # Premium cinematic + kid-bright accents
 INK = (22, 28, 40)
@@ -63,14 +68,15 @@ FONT_NUM = "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf"
 if not os.path.exists(FONT_AR_B):
     FONT_AR_B = "/usr/share/fonts/truetype/noto/NotoSansArabic-Bold.ttf"
 
+_PROUD = "فخور" if _META["gender"] == "male" else "فخورة"
 BEATS = [
     {
         "id": "welcome",
         "mode": "talk",
-        "say": "مرحبا أصدقائي. أنا المعلمة سارة، معلمتكم بالذكاء الاصطناعي. اليوم سنتعلم العد حتى ثلاثة معاً، بصوت واضح وشرح على السبورة.",
+        "say": f"مرحبا أصدقائي. أنا {NAME_AR}، معلمكم بالذكاء الاصطناعي. اليوم سنتعلم العد حتى ثلاثة معاً، بصوت واضح وشرح على السبورة.",
         "board": {
             "title": "العدّ حتى ثلاثة",
-            "subtitle": "معلمة ذكاء اصطناعي · الصف 1",
+            "subtitle": "معلم ذكاء اصطناعي · الصف 1",
             "cues": [
                 {"at": 0.05, "type": "title"},
                 {"at": 0.35, "type": "subtitle"},
@@ -143,7 +149,7 @@ BEATS = [
     {
         "id": "bye",
         "mode": "talk",
-        "say": "أحسنت يا بطل. تعلّمنا واحد، اثنان، ثلاثة. أنا فخورة فيك. إلى اللقاء في درسنا القادم مع معلمة الذكاء الاصطناعي.",
+        "say": f"أحسنت يا بطل. تعلّمنا واحد، اثنان، ثلاثة. أنا {_PROUD} فيك. إلى اللقاء في درسنا القادم مع معلم الذكاء الاصطناعي.",
         "board": {
             "title": "أحسنت!",
             "subtitle": "أنهيت درس العدّ",

@@ -1,10 +1,10 @@
 {
-  "id": "sara",
+  "id": "ali",
   "displayName": {
-    "en": "Teacher Sara",
-    "ar": "المعلمة سارة"
+    "en": "Teacher Ali",
+    "ar": "المعلم علي"
   },
-  "gender": "female",
+  "gender": "male",
   "generatedBy": "cursor-image-gen",
   "files": [
     "portrait.png",

@@ -3,168 +3,53 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>SUCCESS OS — كتالوج المعلمين بالذكاء الاصطناعي</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@500;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet" />
+  <title>SUCCESS OS — سارة وعلي</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@600;800&family=Space+Grotesk:wght@700&display=swap" rel="stylesheet" />
   <style>
-    :root {
-      --sky: #6ec8ff;
-      --mint: #b8f0d0;
-      --ink: #1e2a3a;
-      --coral: #ff5a6a;
-      --sun: #ffd84a;
-      --card: rgba(255,255,255,0.92);
-    }
-    * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      min-height: 100vh;
-      font-family: "Cairo", sans-serif;
-      color: var(--ink);
-      background:
-        radial-gradient(circle at 12% 18%, #fff7b0 0%, transparent 35%),
-        radial-gradient(circle at 88% 12%, #ffb7c5 0%, transparent 32%),
-        linear-gradient(165deg, var(--sky), var(--mint) 55%, #7ed9a0);
-    }
-    .wrap { max-width: 1100px; margin: 0 auto; padding: 28px 20px 60px; }
-    header {
-      background: var(--card);
-      border-radius: 28px;
-      padding: 22px 26px;
-      box-shadow: 0 10px 40px rgba(30,42,58,0.12);
-      margin-bottom: 28px;
-    }
-    .brand {
-      font-family: "Space Grotesk", sans-serif;
-      font-weight: 700;
-      letter-spacing: 0.04em;
-      color: #0f766e;
-      font-size: 0.85rem;
-    }
-    h1 {
-      margin: 6px 0 8px;
-      font-size: clamp(1.6rem, 3vw, 2.2rem);
-      line-height: 1.25;
-    }
-    .sub { margin: 0; opacity: 0.8; font-size: 1.05rem; }
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 18px;
-    }
-    .card {
-      background: var(--card);
-      border-radius: 24px;
-      overflow: hidden;
-      box-shadow: 0 8px 28px rgba(30,42,58,0.1);
-      display: flex;
-      flex-direction: column;
-      transition: transform 0.2s ease;
-    }
-    .card:hover { transform: translateY(-4px); }
-    .card img.portrait {
-      width: 100%;
-      aspect-ratio: 1;
-      object-fit: cover;
-      background: #e8f4ff;
-    }
-    .card .body { padding: 14px 16px 18px; }
-    .badge {
-      display: inline-block;
-      font-size: 0.78rem;
-      font-weight: 700;
-      padding: 4px 10px;
-      border-radius: 999px;
-      background: var(--sun);
-      color: var(--ink);
-      margin-left: 6px;
-    }
-    .badge.male { background: #9ad7ff; }
-    .name { margin: 10px 0 4px; font-size: 1.25rem; }
-    .meta { margin: 0; font-size: 0.92rem; opacity: 0.75; }
-    .pose {
-      margin-top: 12px;
-      width: 100%;
-      border-radius: 14px;
-      aspect-ratio: 3/4;
-      object-fit: cover;
-      background: #f0f7ff;
-    }
-    footer {
-      margin-top: 28px;
-      text-align: center;
-      opacity: 0.75;
-      font-size: 0.9rem;
-    }
+    body{margin:0;font-family:Cairo,sans-serif;color:#1e2a3a;background:linear-gradient(165deg,#6ec8ff,#b8f0d0 55%,#7ed9a0);min-height:100vh}
+    .wrap{max-width:980px;margin:0 auto;padding:28px 18px 50px}
+    header{background:rgba(255,255,255,.93);border-radius:28px;padding:22px 24px;margin-bottom:22px}
+    .brand{font-family:"Space Grotesk",sans-serif;color:#0f766e;font-weight:700;letter-spacing:.04em}
+    h1{margin:8px 0;font-size:clamp(1.5rem,3vw,2.1rem)}
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px}
+    .card{background:rgba(255,255,255,.93);border-radius:24px;overflow:hidden}
+    img{width:100%;display:block;object-fit:cover}
+    .portrait{aspect-ratio:1}
+    .pose{aspect-ratio:3/4}
+    .body{padding:14px 16px 18px}
+    .badge{display:inline-block;background:#ffd84a;border-radius:999px;padding:4px 10px;font-weight:800;font-size:.8rem}
+    .badge.m{background:#9ad7ff}
+    a.cta{display:inline-block;margin-top:10px;background:#ff5a6a;color:#fff;text-decoration:none;font-weight:800;padding:10px 16px;border-radius:14px}
   </style>
 </head>
 <body>
   <div class="wrap">
     <header>
       <div class="brand">SUCCESS OS</div>
-      <h1>كتالوج المعلمين والمعلمات بالذكاء الاصطناعي</h1>
-      <p class="sub">هويات احترافية مولَّدة للشرح داخل المنصة — جاهزة للربط مع الدروس وHeyGen</p>
+      <h1>معلمان فقط: سارة وعلي</h1>
+      <p>هويات احترافية بالذكاء الاصطناعي · صف تفاعلي حي</p>
+      <a class="cta" href="/ai-teacher/classroom">افتح الصف التفاعلي الحي</a>
     </header>
-    <div class="grid" id="grid"></div>
-    <footer>معاينة محلية · /media/ai-teachers · Success OS AI Teachers v1</footer>
-  </div>
-  <script>
-    const teachers = [
-      {
-        id: "sara",
-        name: "المعلمة سارة",
-        gender: "أنثى",
-        genderClass: "",
-        focus: "ابتدائي · رياضيات",
-        portrait: "./sara/portrait.png",
-        pose: "./sara/poses/talk.png",
-        poseLabel: "وضعية الشرح",
-      },
-      {
-        id: "omar",
-        name: "المعلم عمر",
-        gender: "ذكر",
-        genderClass: "male",
-        focus: "ابتدائي · رياضيات",
-        portrait: "./omar/portrait.png",
-        pose: "./omar/poses/talk.png",
-        poseLabel: "وضعية الشرح",
-      },
-      {
-        id: "layla",
-        name: "المعلمة ليلى",
-        gender: "أنثى",
-        genderClass: "",
-        focus: "علوم · إعدادي/ثانوي",
-        portrait: "./layla/portrait.png",
-        pose: "./layla/poses/point.png",
-        poseLabel: "وضعية الإشارة",
-      },
-      {
-        id: "waseem",
-        name: "الأستاذ وسيم",
-        gender: "ذكر",
-        genderClass: "male",
-        focus: "فيزياء · ثانوي",
-        portrait: "./waseem/portrait.png",
-        pose: "./waseem/poses/write.png",
-        poseLabel: "وضعية الكتابة",
-      },
-    ];
-    const grid = document.getElementById("grid");
-    grid.innerHTML = teachers.map((t) => `
+    <div class="grid">
       <article class="card">
-        <img class="portrait" src="${t.portrait}" alt="${t.name}" />
+        <img class="portrait" src="./sara/portrait.png" alt="سارة" />
         <div class="body">
-          <span class="badge ${t.genderClass}">${t.gender}</span>
-          <h2 class="name">${t.name}</h2>
-          <p class="meta">${t.focus}</p>
-          <img class="pose" src="${t.pose}" alt="${t.poseLabel}" />
-          <p class="meta" style="margin-top:8px">${t.poseLabel}</p>
+          <span class="badge">أنثى</span>
+          <h2>المعلمة سارة</h2>
+          <p>ابتدائي · صوت ar-JO-SanaNeural</p>
+          <img class="pose" src="./sara/flagship/mouth-open.png" alt="سارة تتكلم" />
         </div>
       </article>
-    `).join("");
-  </script>
+      <article class="card">
+        <img class="portrait" src="./ali/portrait.png" alt="علي" />
+        <div class="body">
+          <span class="badge m">ذكر</span>
+          <h2>المعلم علي</h2>
+          <p>ابتدائي/علوم · صوت ar-JO-TaimNeural</p>
+          <img class="pose" src="./ali/flagship/mouth-open.png" alt="علي يتكلم" />
+        </div>
+      </article>
+    </div>
+  </div>
 </body>
 </html>

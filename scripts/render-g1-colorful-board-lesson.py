@@ -43,7 +43,7 @@ CATALOG_PATH = AI_TEACHERS_ROOT / "catalog.json"
 WIDTH, HEIGHT = 1280, 720
 FPS = 24
 
-# AI teacher pack: sara | omar (photoreal). Fallback: illustrated poses.
+# AI teacher pack: sara | ali (photoreal). Fallback: illustrated poses.
 TEACHER_ID = os.environ.get("AI_TEACHER_ID", "sara").strip().lower()
 
 
@@ -57,10 +57,10 @@ def load_teacher_profile(teacher_id: str) -> dict:
             "voice": "ar-JO-SanaNeural",
             "title_line": "صف الأبطال الصغار",
         },
-        "omar": {
-            "id": "omar",
-            "name_ar": "المعلم عمر",
-            "name_en": "Teacher Omar",
+        "ali": {
+            "id": "ali",
+            "name_ar": "المعلم علي",
+            "name_en": "Teacher Ali",
             "gender": "male",
             "voice": "ar-JO-TaimNeural",
             "title_line": "صف الأبطال الصغار",

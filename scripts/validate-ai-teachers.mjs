@@ -1,55 +1,49 @@
 #!/usr/bin/env node
 import fs from "node:fs";
 import path from "node:path";
-import { fileURLToPath, pathToFileURL } from "node:url";
+import { fileURLToPath } from "node:url";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const failures = [];
-
-function assert(cond, msg) {
-  if (!cond) failures.push(msg);
-}
+const assert = (c, m) => {
+  if (!c) failures.push(m);
+};
 
 const catalogPath = path.join(root, "content/media/ai-teachers/catalog.json");
 assert(fs.existsSync(catalogPath), "Missing catalog.json");
 const catalog = JSON.parse(fs.readFileSync(catalogPath, "utf8"));
-assert(catalog.schema === "success-os.ai-teachers.v1", "Bad catalog schema");
-assert(Array.isArray(catalog.teachers) && catalog.teachers.length >= 4, "Need ≥4 teachers");
+assert(catalog.schema === "success-os.ai-teachers.v1", "Bad schema");
+assert(catalog.teachers.length === 2, "Must have exactly 2 teachers (Sara + Ali)");
 
-const females = catalog.teachers.filter((t) => t.gender === "female");
-const males = catalog.teachers.filter((t) => t.gender === "male");
-assert(females.length >= 2, "Need ≥2 female teachers");
-assert(males.length >= 2, "Need ≥2 male teachers");
+const ids = catalog.teachers.map((t) => t.id).sort();
+assert(ids.join(",") === "ali,sara", `Expected ali,sara got ${ids}`);
 
-for (const t of catalog.teachers) {
-  const portrait = path.join(root, "content/media/ai-teachers", t.id, "portrait.png");
-  assert(fs.existsSync(portrait), `Missing portrait for ${t.id}`);
-  assert(fs.statSync(portrait).size > 50_000, `Portrait too small: ${t.id}`);
-  const posesDir = path.join(root, "content/media/ai-teachers", t.id, "poses");
-  assert(fs.existsSync(posesDir), `Missing poses dir for ${t.id}`);
-  const poses = fs.readdirSync(posesDir).filter((f) => f.endsWith(".png"));
-  assert(poses.length >= 1, `Need ≥1 pose for ${t.id}`);
-  const pubPortrait = path.join(root, "public/media/ai-teachers", t.id, "portrait.png");
-  assert(fs.existsSync(pubPortrait), `Missing public portrait for ${t.id}`);
+for (const tid of ["sara", "ali"]) {
+  const base = path.join(root, "content/media/ai-teachers", tid);
+  assert(fs.existsSync(path.join(base, "portrait.png")), `Missing portrait ${tid}`);
+  for (const pose of ["talk.png", "point.png", "write.png", "idle.png"]) {
+    assert(fs.existsSync(path.join(base, "poses", pose)), `Missing pose ${tid}/${pose}`);
+  }
+  for (const f of ["mouth-closed.png", "mouth-open.png", "mouth-wide.png", "gesture.png"]) {
+    assert(fs.existsSync(path.join(base, "flagship", f)), `Missing flagship ${tid}/${f}`);
+  }
+  assert(fs.existsSync(path.join(base, "alive", "blink.png")), `Missing alive blink ${tid}`);
+  assert(fs.existsSync(path.join(base, "alive", "listen.png")), `Missing alive listen ${tid}`);
+  assert(fs.existsSync(path.join(root, "public/media/ai-teachers", tid, "portrait.png")), `Missing public ${tid}`);
 }
 
-assert(fs.existsSync(path.join(root, "public/media/ai-teachers/index.html")), "Missing preview HTML");
-assert(fs.existsSync(path.join(root, "lib/ai-teachers/catalog.ts")), "Missing catalog.ts");
-assert(fs.existsSync(path.join(root, "types/ai-teachers.ts")), "Missing types");
-assert(fs.existsSync(path.join(root, "app/ai-teachers/page.tsx")), "Missing app page");
-assert(fs.existsSync(path.join(root, "app/api/ai-teachers/route.ts")), "Missing API route");
+for (const legacy of ["omar", "layla", "waseem"]) {
+  assert(!fs.existsSync(path.join(root, "content/media/ai-teachers", legacy)), `Legacy teacher still present: ${legacy}`);
+}
 
-// Ensure TS catalog exports expected ids (static parse)
 const ts = fs.readFileSync(path.join(root, "lib/ai-teachers/catalog.ts"), "utf8");
-for (const id of ["sara", "omar", "layla", "waseem"]) {
-  assert(ts.includes(`id: "${id}"`), `catalog.ts missing ${id}`);
-}
+assert(ts.includes('id: "sara"') && ts.includes('id: "ali"'), "catalog.ts missing sara/ali");
+assert(!ts.includes('id: "omar"') && !ts.includes('id: "layla"'), "catalog.ts still has legacy teachers");
+assert(fs.existsSync(path.join(root, "app/ai-teacher/classroom/page.tsx")), "Missing interactive classroom page");
 
 if (failures.length) {
   console.error("validate-ai-teachers FAILED:");
-  for (const f of failures) console.error(" -", f);
+  failures.forEach((f) => console.error(" -", f));
   process.exit(1);
 }
-console.log("validate-ai-teachers OK");
-console.log(`teachers=${catalog.teachers.length} female=${females.length} male=${males.length}`);
-void pathToFileURL;
+console.log("validate-ai-teachers OK — Sara + Ali only");

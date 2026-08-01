@@ -1,16 +1,5 @@
 #!/usr/bin/env python3
-"""
-AI Teacher Factory — validate & sync professional teacher packs.
-
-Expects packs under content/media/ai-teachers/<id>/:
-  portrait.png
-  poses/{talk,point,write,idle}.png  (at least one pose)
-  meta.json
-
-Syncs to public/media/ai-teachers/ and refreshes catalog.json pose lists.
-Does NOT call paid APIs. New portraits/poses are added via Cursor image gen
-(or HeyGen later) then dropped into the pack folders.
-"""
+"""AI Teacher Factory — Sara & Ali only. Sync packs + refresh catalog."""
 from __future__ import annotations
 
 import json
@@ -22,8 +11,7 @@ ROOT = Path(__file__).resolve().parents[1]
 SRC = ROOT / "content" / "media" / "ai-teachers"
 PUB = ROOT / "public" / "media" / "ai-teachers"
 CATALOG = SRC / "catalog.json"
-
-REQUIRED_IDS = ("sara", "omar", "layla", "waseem")
+REQUIRED_IDS = ("sara", "ali")
 
 
 def die(msg: str):
@@ -50,48 +38,46 @@ def sync_teacher(teacher_id: str):
         die(f"No poses for {teacher_id}")
 
     dest = PUB / teacher_id
-    dest.mkdir(parents=True, exist_ok=True)
-    (dest / "poses").mkdir(parents=True, exist_ok=True)
-    shutil.copy2(portrait, dest / "portrait.png")
-    for name in poses:
-        shutil.copy2(src / "poses" / name, dest / "poses" / name)
-    meta_src = src / "meta.json"
-    if meta_src.exists():
-        shutil.copy2(meta_src, dest / "meta.json")
-    print(f"  synced {teacher_id}: portrait + {len(poses)} poses ({', '.join(poses)})")
+    if dest.exists():
+        shutil.rmtree(dest)
+    shutil.copytree(src, dest)
+    print(f"  synced {teacher_id}: portrait + {len(poses)} poses + extras")
     return poses
 
 
 def refresh_catalog():
-    if not CATALOG.exists():
-        die(f"Missing {CATALOG}")
     data = json.loads(CATALOG.read_text(encoding="utf-8"))
     by_id = {t["id"]: t for t in data.get("teachers", [])}
+    # drop anyone who is not sara/ali
+    data["teachers"] = []
     for tid in REQUIRED_IDS:
-        poses = pose_files(SRC / tid)
         if tid not in by_id:
-            die(f"catalog missing teacher {tid}")
-        by_id[tid]["poses"] = {Path(p).stem: f"/media/ai-teachers/{tid}/poses/{p}" for p in poses}
-        by_id[tid]["portrait"] = f"/media/ai-teachers/{tid}/portrait.png"
-    data["teachers"] = list(by_id.values())
+            die(f"catalog missing {tid}")
+        t = by_id[tid]
+        poses = pose_files(SRC / tid)
+        t["poses"] = {Path(p).stem: f"/media/ai-teachers/{tid}/poses/{p}" for p in poses}
+        t["portrait"] = f"/media/ai-teachers/{tid}/portrait.png"
+        data["teachers"].append(t)
+    data["version"] = "2.0.0"
     text = json.dumps(data, ensure_ascii=False, indent=2) + "\n"
     CATALOG.write_text(text, encoding="utf-8")
     shutil.copy2(CATALOG, PUB / "catalog.json")
-    print("  catalog.json refreshed")
+    print("  catalog.json → Sara + Ali only")
 
 
 def main():
-    print("=== AI Teacher Factory ===")
+    print("=== AI Teacher Factory (Sara + Ali) ===")
     PUB.mkdir(parents=True, exist_ok=True)
-    # keep preview HTML if present
+    # remove legacy teacher public folders
+    for legacy in ("omar", "layla", "waseem"):
+        p = PUB / legacy
+        if p.exists():
+            shutil.rmtree(p)
+            print(f"  removed public/{legacy}")
     for tid in REQUIRED_IDS:
         sync_teacher(tid)
     refresh_catalog()
-    # copy preview index if in public already
-    idx = PUB / "index.html"
-    if idx.exists():
-        print(f"  preview: /media/ai-teachers/index.html")
-    print("DONE — run: npm run validate:ai-teachers")
+    print("DONE")
 
 
 if __name__ == "__main__":

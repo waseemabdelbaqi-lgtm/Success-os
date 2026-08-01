@@ -1,6 +1,6 @@
 {
   "schema": "success-os.ai-teachers.v1",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "teachers": [
     {
       "id": "sara",
@@ -12,10 +12,12 @@
       "countryCode": "JO",
       "stages": [
         "early_childhood",
-        "elementary"
+        "elementary",
+        "middle_school"
       ],
       "subjects": [
         "math",
+        "science",
         "general"
       ],
       "voice": {
@@ -27,82 +29,42 @@
         "point": "/media/ai-teachers/sara/poses/point.png",
         "talk": "/media/ai-teachers/sara/poses/talk.png",
         "write": "/media/ai-teachers/sara/poses/write.png"
-      }
+      },
+      "flagship": "/media/ai-teachers/sara/flagship/",
+      "alive": "/media/ai-teachers/sara/alive/"
     },
     {
-      "id": "omar",
+      "id": "ali",
       "displayName": {
-        "en": "Teacher Omar",
-        "ar": "المعلم عمر"
+        "en": "Teacher Ali",
+        "ar": "المعلم علي"
       },
       "gender": "male",
       "countryCode": "JO",
       "stages": [
         "early_childhood",
-        "elementary"
-      ],
-      "subjects": [
-        "math",
-        "general"
-      ],
-      "voice": {
-        "edgeTts": "ar-JO-TaimNeural"
-      },
-      "portrait": "/media/ai-teachers/omar/portrait.png",
-      "poses": {
-        "idle": "/media/ai-teachers/omar/poses/idle.png",
-        "point": "/media/ai-teachers/omar/poses/point.png",
-        "talk": "/media/ai-teachers/omar/poses/talk.png",
-        "write": "/media/ai-teachers/omar/poses/write.png"
-      }
-    },
-    {
-      "id": "layla",
-      "displayName": {
-        "en": "Teacher Layla",
-        "ar": "المعلمة ليلى"
-      },
-      "gender": "female",
-      "countryCode": "JO",
-      "stages": [
+        "elementary",
         "middle_school",
         "high_school"
       ],
       "subjects": [
+        "math",
         "science",
-        "general"
-      ],
-      "voice": {
-        "edgeTts": "ar-JO-SanaNeural"
-      },
-      "portrait": "/media/ai-teachers/layla/portrait.png",
-      "poses": {
-        "point": "/media/ai-teachers/layla/poses/point.png"
-      }
-    },
-    {
-      "id": "waseem",
-      "displayName": {
-        "en": "Teacher Waseem",
-        "ar": "الأستاذ وسيم"
-      },
-      "gender": "male",
-      "countryCode": "JO",
-      "stages": [
-        "high_school",
-        "university"
-      ],
-      "subjects": [
         "physics",
-        "science"
+        "general"
       ],
       "voice": {
         "edgeTts": "ar-JO-TaimNeural"
       },
-      "portrait": "/media/ai-teachers/waseem/portrait.png",
+      "portrait": "/media/ai-teachers/ali/portrait.png",
       "poses": {
-        "write": "/media/ai-teachers/waseem/poses/write.png"
-      }
+        "idle": "/media/ai-teachers/ali/poses/idle.png",
+        "point": "/media/ai-teachers/ali/poses/point.png",
+        "talk": "/media/ai-teachers/ali/poses/talk.png",
+        "write": "/media/ai-teachers/ali/poses/write.png"
+      },
+      "flagship": "/media/ai-teachers/ali/flagship/",
+      "alive": "/media/ai-teachers/ali/alive/"
     }
   ]
 }

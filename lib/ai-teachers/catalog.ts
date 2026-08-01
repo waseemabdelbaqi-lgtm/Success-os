@@ -1,5 +1,5 @@
 /**
- * Professional AI Teachers catalog — generated identities for lessons & HeyGen.
+ * AI Teachers catalog — Sara & Ali only.
  */
 import type { AiTeacherProfile, AiTeachersCatalog } from "@/types/ai-teachers";
 
@@ -20,7 +20,14 @@ function assets(id: string, poses: AiTeacherProfile["assets"]["poses"]) {
   };
 }
 
-const UPDATED = "2026-08-01T09:00:00.000Z";
+const UPDATED = "2026-08-01T11:30:00.000Z";
+
+const POSE_PACK = {
+  talk: "talk.png",
+  point: "point.png",
+  write: "write.png",
+  idle: "idle.png",
+} as const;
 
 export function listAiTeachers(): AiTeacherProfile[] {
   return [
@@ -31,105 +38,45 @@ export function listAiTeachers(): AiTeacherProfile[] {
       gender: "female",
       countryCode: "JO",
       localeCodes: ["ar-JO", "en"],
-      educationalStages: ["early_childhood", "elementary"],
-      subjects: ["math", "general"],
+      educationalStages: ["early_childhood", "elementary", "middle_school"],
+      subjects: ["math", "science", "general"],
       personalityTone: L("Warm and encouraging", "دافئة ومشجّعة"),
       appearanceNotes: L(
-        "Jordanian woman, olive blazer, neat bun — photoreal AI portrait",
-        "أردنية، بليزر زيتوني، شعر مربوط — صورة مولّدة بالذكاء الاصطناعي",
+        "Jordanian woman, olive blazer — photoreal AI teacher",
+        "أردنية، بليزر زيتوني — معلمة مولَّدة بالذكاء الاصطناعي",
       ),
       voice: {
         edgeTts: "ar-JO-SanaNeural",
         heygenVoiceIdEnv: "HEYGEN_VOICE_ID_SARA",
         heygenAvatarIdEnv: "HEYGEN_AVATAR_ID_SARA",
       },
-      assets: assets("sara", {
-        talk: "talk.png",
-        point: "point.png",
-        write: "write.png",
-        idle: "idle.png",
-      }),
-      digitalHumanPresetKey: "dh.jo.elementary.sara",
+      assets: assets("sara", { ...POSE_PACK }),
+      digitalHumanPresetKey: "dh.jo.sara",
       enabled: true,
       generatedBy: "cursor-image-gen",
       updatedAt: UPDATED,
     },
     {
-      id: "omar",
+      id: "ali",
       schema: "success-os.ai-teacher.v1",
-      displayName: L("Teacher Omar", "المعلم عمر"),
+      displayName: L("Teacher Ali", "المعلم علي"),
       gender: "male",
       countryCode: "JO",
       localeCodes: ["ar-JO", "en"],
-      educationalStages: ["early_childhood", "elementary"],
-      subjects: ["math", "general"],
-      personalityTone: L("Friendly and clear", "ودود وواضح"),
+      educationalStages: ["early_childhood", "elementary", "middle_school", "high_school"],
+      subjects: ["math", "science", "physics", "general"],
+      personalityTone: L("Clear and confident", "واضح وواثق"),
       appearanceNotes: L(
-        "Jordanian man, navy blazer, neat beard — photoreal AI portrait",
-        "أردني، بليزر كحلي، لحية مرتبة — صورة مولّدة بالذكاء الاصطناعي",
+        "Jordanian man, navy blazer — photoreal AI teacher",
+        "أردني، بليزر كحلي — معلم مولَّد بالذكاء الاصطناعي",
       ),
       voice: {
         edgeTts: "ar-JO-TaimNeural",
-        heygenVoiceIdEnv: "HEYGEN_VOICE_ID_OMAR",
-        heygenAvatarIdEnv: "HEYGEN_AVATAR_ID_OMAR",
+        heygenVoiceIdEnv: "HEYGEN_VOICE_ID_ALI",
+        heygenAvatarIdEnv: "HEYGEN_AVATAR_ID_ALI",
       },
-      assets: assets("omar", {
-        talk: "talk.png",
-        point: "point.png",
-        write: "write.png",
-        idle: "idle.png",
-      }),
-      digitalHumanPresetKey: "dh.jo.elementary.omar",
-      enabled: true,
-      generatedBy: "cursor-image-gen",
-      updatedAt: UPDATED,
-    },
-    {
-      id: "layla",
-      schema: "success-os.ai-teacher.v1",
-      displayName: L("Teacher Layla", "المعلمة ليلى"),
-      gender: "female",
-      countryCode: "JO",
-      localeCodes: ["ar-JO", "en"],
-      educationalStages: ["middle_school", "high_school"],
-      subjects: ["science", "general"],
-      personalityTone: L("Curious and confident", "فضولية وواثقة"),
-      appearanceNotes: L(
-        "Science educator, teal cardigan — photoreal AI portrait",
-        "معلمة علوم، كارديغان فيروزي — صورة مولّدة بالذكاء الاصطناعي",
-      ),
-      voice: {
-        edgeTts: "ar-JO-SanaNeural",
-        heygenVoiceIdEnv: "HEYGEN_VOICE_ID_LAYLA",
-        heygenAvatarIdEnv: "HEYGEN_AVATAR_ID_LAYLA",
-      },
-      assets: assets("layla", { point: "point.png" }),
-      digitalHumanPresetKey: "dh.jo.science.layla",
-      enabled: true,
-      generatedBy: "cursor-image-gen",
-      updatedAt: UPDATED,
-    },
-    {
-      id: "waseem",
-      schema: "success-os.ai-teacher.v1",
-      displayName: L("Teacher Waseem", "الأستاذ وسيم"),
-      gender: "male",
-      countryCode: "JO",
-      localeCodes: ["ar-JO", "en"],
-      educationalStages: ["high_school", "university"],
-      subjects: ["physics", "science"],
-      personalityTone: L("Calm and precise", "هادئ ودقيق"),
-      appearanceNotes: L(
-        "Physics academy presenter, charcoal blazer — photoreal AI portrait",
-        "مقدّم فيزياء أكاديمي، بليزر فحمي — صورة مولّدة بالذكاء الاصطناعي",
-      ),
-      voice: {
-        edgeTts: "ar-JO-TaimNeural",
-        heygenVoiceIdEnv: "HEYGEN_VOICE_ID",
-        heygenAvatarIdEnv: "HEYGEN_AVATAR_ID",
-      },
-      assets: assets("waseem", { write: "write.png" }),
-      digitalHumanPresetKey: "dh.jo.physics.waseem",
+      assets: assets("ali", { ...POSE_PACK }),
+      digitalHumanPresetKey: "dh.jo.ali",
       enabled: true,
       generatedBy: "cursor-image-gen",
       updatedAt: UPDATED,
@@ -149,7 +96,7 @@ export function buildAiTeachersCatalog(): AiTeachersCatalog {
   const teachers = listAiTeachers();
   return {
     schema: "success-os.ai-teachers.v1",
-    version: "1.0.0",
+    version: "2.0.0",
     teachers,
     counts: {
       total: teachers.length,

@@ -2,8 +2,8 @@ import Link from "next/link";
 import { buildAiTeachersCatalog } from "@/lib/ai-teachers/catalog";
 
 export const metadata = {
-  title: "AI Teachers | Success OS",
-  description: "Professional AI-generated teachers catalog",
+  title: "AI Teachers Sara & Ali | Success OS",
+  description: "Only two AI teachers — Sara and Ali",
 };
 
 export default function AiTeachersPage() {
@@ -11,16 +11,16 @@ export default function AiTeachersPage() {
 
   return (
     <main
+      dir="rtl"
       style={{
         minHeight: "100vh",
         padding: "2rem 1.25rem 4rem",
         background:
           "radial-gradient(circle at 15% 20%, #fff3a8 0%, transparent 35%), linear-gradient(165deg, #6ec8ff, #b8f0d0 55%, #7ed9a0)",
-        fontFamily: "var(--font-cairo, Cairo, sans-serif)",
         color: "#1e2a3a",
       }}
     >
-      <div style={{ maxWidth: 1100, margin: "0 auto" }}>
+      <div style={{ maxWidth: 980, margin: "0 auto" }}>
         <header
           style={{
             background: "rgba(255,255,255,0.92)",
@@ -29,81 +29,48 @@ export default function AiTeachersPage() {
             marginBottom: "1.5rem",
           }}
         >
-          <p style={{ margin: 0, fontWeight: 700, color: "#0f766e", letterSpacing: "0.04em" }}>
-            SUCCESS OS
-          </p>
-          <h1 style={{ margin: "0.35rem 0", fontSize: "clamp(1.6rem, 3vw, 2.2rem)" }}>
-            كتالوج المعلمين والمعلمات بالذكاء الاصطناعي
-          </h1>
+          <p style={{ margin: 0, fontWeight: 700, color: "#0f766e" }}>SUCCESS OS</p>
+          <h1 style={{ margin: "0.35rem 0" }}>معلمان فقط: سارة وعلي</h1>
           <p style={{ margin: 0, opacity: 0.8 }}>
-            {catalog.counts.total} معلمين · {catalog.counts.female} إناث · {catalog.counts.male} ذكور
+            {catalog.counts.total} معلمين · {catalog.counts.female} أنثى · {catalog.counts.male} ذكر
           </p>
-          <p style={{ marginTop: 10 }}>
-            <Link href="/media/ai-teachers/index.html" style={{ color: "#0f766e", fontWeight: 700 }}>
-              معاينة HTML مباشرة
+          <p style={{ marginTop: 12 }}>
+            <Link href="/ai-teacher/classroom" style={{ fontWeight: 800, color: "#ff5a6a" }}>
+              افتح الصف التفاعلي الحي
+            </Link>
+            {" · "}
+            <Link href="/media/ai-teachers/index.html" style={{ fontWeight: 700, color: "#0f766e" }}>
+              معاينة الأصول
             </Link>
           </p>
         </header>
 
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))",
-            gap: 18,
-          }}
-        >
-          {catalog.teachers.map((t) => {
-            const pose = Object.values(t.assets.poses)[0];
-            return (
-              <article
-                key={t.id}
-                style={{
-                  background: "rgba(255,255,255,0.92)",
-                  borderRadius: 24,
-                  overflow: "hidden",
-                }}
-              >
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src={t.assets.portrait}
-                  alt={t.displayName.ar}
-                  style={{ width: "100%", aspectRatio: "1", objectFit: "cover" }}
-                />
-                <div style={{ padding: "14px 16px 18px" }}>
-                  <span
-                    style={{
-                      display: "inline-block",
-                      fontSize: 12,
-                      fontWeight: 700,
-                      padding: "4px 10px",
-                      borderRadius: 999,
-                      background: t.gender === "male" ? "#9ad7ff" : "#ffd84a",
-                    }}
-                  >
-                    {t.gender === "female" ? "أنثى" : "ذكر"}
-                  </span>
-                  <h2 style={{ margin: "10px 0 4px", fontSize: "1.25rem" }}>{t.displayName.ar}</h2>
-                  <p style={{ margin: 0, opacity: 0.75, fontSize: 14 }}>
-                    {t.subjects.join(" · ")} · {t.countryCode}
-                  </p>
-                  {pose ? (
-                    // eslint-disable-next-line @next/next/no-img-element
-                    <img
-                      src={pose}
-                      alt={`${t.displayName.ar} pose`}
-                      style={{
-                        marginTop: 12,
-                        width: "100%",
-                        borderRadius: 14,
-                        aspectRatio: "3/4",
-                        objectFit: "cover",
-                      }}
-                    />
-                  ) : null}
-                </div>
-              </article>
-            );
-          })}
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(260px,1fr))", gap: 18 }}>
+          {catalog.teachers.map((t) => (
+            <article
+              key={t.id}
+              style={{ background: "rgba(255,255,255,0.92)", borderRadius: 24, overflow: "hidden" }}
+            >
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src={t.assets.portrait} alt={t.displayName.ar} style={{ width: "100%", aspectRatio: "1", objectFit: "cover" }} />
+              <div style={{ padding: 16 }}>
+                <span
+                  style={{
+                    display: "inline-block",
+                    fontWeight: 800,
+                    fontSize: 12,
+                    padding: "4px 10px",
+                    borderRadius: 999,
+                    background: t.gender === "male" ? "#9ad7ff" : "#ffd84a",
+                  }}
+                >
+                  {t.gender === "female" ? "أنثى" : "ذكر"}
+                </span>
+                <h2 style={{ margin: "10px 0 4px" }}>{t.displayName.ar}</h2>
+                <p style={{ margin: 0, opacity: 0.75 }}>{t.voice.edgeTts}</p>
+              </div>
+            </article>
+          ))}
         </div>
       </div>
     </main>

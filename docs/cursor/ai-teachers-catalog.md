@@ -1,74 +1,47 @@
-# AI Teachers Catalog — معلمون ومعلمات بالذكاء الاصطناعي
+# AI Teachers — سارة وعلي فقط
 
-Professional teacher identities for Success OS lessons (offline media + future HeyGen).
+Success OS ships **exactly two** AI teachers:
 
-## Teachers (v1)
+| ID | الاسم | الجنس | صوت |
+|----|------|------|-----|
+| `sara` | المعلمة سارة | أنثى | `ar-JO-SanaNeural` |
+| `ali` | المعلم علي | ذكر | `ar-JO-TaimNeural` |
 
-| ID | Name | Gender | Focus |
-|----|------|--------|--------|
-| `sara` | المعلمة سارة | female | Elementary math |
-| `omar` | المعلم عمر | male | Elementary math |
-| `layla` | المعلمة ليلى | female | Science |
-| `waseem` | الأستاذ وسيم | male | Physics |
+## Interactive live classroom
 
-## Paths
+```bash
+npm run dev
+# open http://127.0.0.1:3000/ai-teacher/classroom
+```
 
-- Assets: `content/media/ai-teachers/<id>/`
-- Public: `public/media/ai-teachers/`
-- Preview HTML: `/media/ai-teachers/index.html`
-- App page: `/ai-teachers`
-- API: `GET /api/ai-teachers` · `GET /api/ai-teachers?id=sara`
-- Types: `types/ai-teachers.ts`
-- Catalog module: `lib/ai-teachers/catalog.ts`
+Features:
+- Photoreal face animation (mouth morph + blink + listen/gesture)
+- Arabic speech (Web Speech API)
+- Synced colorful board
+- Buttons + microphone commands: ابدأ، التالي، أعد، أبسط، مثال، توقف
+
+## Assets
+
+```
+content/media/ai-teachers/{sara|ali}/
+  portrait.png
+  poses/{talk,point,write,idle}.png
+  flagship/{mouth-closed,mouth-open,mouth-wide,gesture}.png
+  alive/{blink,listen,half}.png
+```
 
 ## Commands
 
 ```bash
 npm run validate:ai-teachers
-npm run ai-teachers:factory          # sync content → public + refresh catalog poses
-npm run media:g1-sara                # G1 colorful board with Teacher Sara (AI pack)
-npm run media:g1-omar                # G1 colorful board with Teacher Omar (AI pack)
-npm run media:g1-colorful-board      # default AI_TEACHER_ID=sara
-npm run dev
-# then open http://127.0.0.1:3000/ai-teachers
-# or http://127.0.0.1:3000/media/ai-teachers/index.html
-```
-
-### Pose packs
-
-| Teacher | talk | point | write | idle |
-|---------|------|-------|-------|------|
-| sara | ✓ | ✓ | ✓ | ✓ |
-| omar | ✓ | ✓ | ✓ | ✓ |
-| layla | — | ✓ | — | — |
-| waseem | — | — | ✓ | — |
-
-## HeyGen (talking video)
-
-Per-teacher env keys (optional):
-
-```
-HEYGEN_AVATAR_ID_SARA=
-HEYGEN_VOICE_ID_SARA=
-HEYGEN_AVATAR_ID_OMAR=
-...
-```
-
-Fallback: shared `HEYGEN_AVATAR_ID` / `HEYGEN_VOICE_ID` (used by الأستاذ وسيم).
-
-## Flagship talking teacher (best offline quality)
-
-Photoreal **mouth-morph** talking head: closed / open / wide frames blended by audio RMS.
-
-```bash
+npm run ai-teachers:factory
 npm run media:flagship-sara
+npm run media:flagship-ali
+npm run media:g1-sara
+npm run media:g1-ali
 ```
 
-Assets: `content/media/ai-teachers/sara/flagship/`  
-Output: `content/media/flagship-ai-teacher/flagship-ai-teacher-lesson.mp4`
+## API
 
-This is the best voice+image sync available **without HeyGen keys**. With `HEYGEN_*` secrets, layer a live digital twin via `npm run media:heygen-g1-teacher`.
-
-## Generation notes
-
-Portraits and poses in v1 were produced with Cursor image generation (photoreal educational avatars). Re-generate by prompting for the same identity + pose, then drop files into the teacher folder and re-run `validate:ai-teachers`.
+`GET /api/ai-teachers` → Sara + Ali only  
+`GET /api/ai-teachers?id=sara|ali`
