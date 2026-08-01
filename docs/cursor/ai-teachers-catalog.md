@@ -56,6 +56,19 @@ HEYGEN_AVATAR_ID_OMAR=
 
 Fallback: shared `HEYGEN_AVATAR_ID` / `HEYGEN_VOICE_ID` (used by الأستاذ وسيم).
 
+## Flagship talking teacher (best offline quality)
+
+Photoreal **mouth-morph** talking head: closed / open / wide frames blended by audio RMS.
+
+```bash
+npm run media:flagship-sara
+```
+
+Assets: `content/media/ai-teachers/sara/flagship/`  
+Output: `content/media/flagship-ai-teacher/flagship-ai-teacher-lesson.mp4`
+
+This is the best voice+image sync available **without HeyGen keys**. With `HEYGEN_*` secrets, layer a live digital twin via `npm run media:heygen-g1-teacher`.
+
 ## Generation notes
 
 Portraits and poses in v1 were produced with Cursor image generation (photoreal educational avatars). Re-generate by prompting for the same identity + pose, then drop files into the teacher folder and re-run `validate:ai-teachers`.
