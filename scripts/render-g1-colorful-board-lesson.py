@@ -36,11 +36,60 @@ FRAMES_DIR = BASE / "frames"
 PUBLIC_DIR = ROOT / "public" / "media" / "jordan-g1-colorful-board"
 ARTIFACT = Path("/opt/cursor/artifacts")
 OUTPUT_VIDEO = BASE / "jordan-g1-colorful-board-lesson.mp4"
-POSES = ROOT / "content" / "media" / "jordan-g1-math-reel" / "poses"
+ILLUSTRATED_POSES = ROOT / "content" / "media" / "jordan-g1-math-reel" / "poses"
+AI_TEACHERS_ROOT = ROOT / "content" / "media" / "ai-teachers"
+CATALOG_PATH = AI_TEACHERS_ROOT / "catalog.json"
 
 WIDTH, HEIGHT = 1280, 720
 FPS = 24
-VOICE = os.environ.get("G1_TEACHER_VOICE", "ar-JO-SanaNeural")
+
+# AI teacher pack: sara | omar (photoreal). Fallback: illustrated poses.
+TEACHER_ID = os.environ.get("AI_TEACHER_ID", "sara").strip().lower()
+
+
+def load_teacher_profile(teacher_id: str) -> dict:
+    defaults = {
+        "sara": {
+            "id": "sara",
+            "name_ar": "المعلمة سارة",
+            "name_en": "Teacher Sara",
+            "gender": "female",
+            "voice": "ar-JO-SanaNeural",
+            "title_line": "صف الأبطال الصغار",
+        },
+        "omar": {
+            "id": "omar",
+            "name_ar": "المعلم عمر",
+            "name_en": "Teacher Omar",
+            "gender": "male",
+            "voice": "ar-JO-TaimNeural",
+            "title_line": "صف الأبطال الصغار",
+        },
+    }
+    profile = dict(defaults.get(teacher_id, defaults["sara"]))
+    if CATALOG_PATH.exists():
+        try:
+            data = json.loads(CATALOG_PATH.read_text(encoding="utf-8"))
+            for t in data.get("teachers", []):
+                if t.get("id") == teacher_id:
+                    dn = t.get("displayName") or {}
+                    profile["name_ar"] = dn.get("ar") or profile["name_ar"]
+                    profile["name_en"] = dn.get("en") or profile["name_en"]
+                    profile["gender"] = t.get("gender") or profile["gender"]
+                    voice = (t.get("voice") or {}).get("edgeTts")
+                    if voice:
+                        profile["voice"] = voice
+                    break
+        except Exception:
+            pass
+    profile["poses_dir"] = AI_TEACHERS_ROOT / teacher_id / "poses"
+    profile["use_ai_pack"] = (profile["poses_dir"] / "talk.png").exists()
+    return profile
+
+
+TEACHER = load_teacher_profile(TEACHER_ID)
+VOICE = os.environ.get("G1_TEACHER_VOICE", TEACHER["voice"])
+POSES = TEACHER["poses_dir"] if TEACHER["use_ai_pack"] else ILLUSTRATED_POSES
 
 # Sunny Story Classroom — playful kid palette (no purple / no beige-corporate)
 SKY_TOP = (120, 210, 255)
@@ -72,11 +121,12 @@ if not os.path.exists(FONT_AR_B):
 
 # Each beat: spoken Arabic + board actions that reveal while that beat plays.
 # Board actions are fractions [0..1] within the beat's audio window.
-BEATS = [
+def build_beats(teacher_name_ar: str) -> list[dict]:
+    return [
     {
         "id": "welcome",
         "pose": "talk",
-        "say": "مرحبا أصدقائي! أنا المعلمة سارة. اليوم نحكي قصة العد حتى ثلاثة، على السبورة الملونة.",
+        "say": f"مرحبا أصدقائي! أنا {teacher_name_ar}. اليوم نحكي قصة العد حتى ثلاثة، على السبورة الملونة.",
         "board": {
             "title": "العدّ حتى ثلاثة",
             "subtitle": "الصف 1 · الرياضيات",
@@ -155,7 +205,11 @@ BEATS = [
     {
         "id": "bye",
         "pose": "talk",
-        "say": "أحسنت يا بطل! تعلّمنا واحد، اثنان، ثلاثة. أنا فخورة فيك. إلى اللقاء في الدرس القادم.",
+        "say": (
+            "أحسنت يا بطل! تعلّمنا واحد، اثنان، ثلاثة. أنا فخور فيك. إلى اللقاء في الدرس القادم."
+            if TEACHER.get("gender") == "male"
+            else "أحسنت يا بطل! تعلّمنا واحد، اثنان، ثلاثة. أنا فخورة فيك. إلى اللقاء في الدرس القادم."
+        ),
         "board": {
             "title": "أحسنت!",
             "subtitle": "تعلّمنا العدّ حتى ثلاثة",
@@ -167,7 +221,10 @@ BEATS = [
             ],
         },
     },
-]
+    ]
+
+
+BEATS = build_beats(TEACHER["name_ar"])
 
 
 def font(path: str, size: int) -> ImageFont.FreeTypeFont:
@@ -188,21 +245,37 @@ def cutout_sage_bg(img: Image.Image) -> Image.Image:
 
 
 def load_pose(name: str, height: int = 440) -> Image.Image:
-    path = POSES / f"teacher-{name}.png"
+    """Load pose from AI teacher pack (talk.png) or illustrated fallback (teacher-talk.png)."""
+    if TEACHER.get("use_ai_pack"):
+        path = POSES / f"{name}.png"
+        if not path.exists():
+            path = POSES / "talk.png"
+        img = Image.open(path).convert("RGBA")
+        # Fit waist-up into stage height without sage cutout (photoreal classroom bg)
+        img = ImageOps.fit(img, (int(height * 0.78), height), method=Image.Resampling.LANCZOS)
+        return img
+
+    path = ILLUSTRATED_POSES / f"teacher-{name}.png"
     if not path.exists():
-        path = POSES / "teacher-talk.png"
+        path = ILLUSTRATED_POSES / "teacher-talk.png"
     img = cutout_sage_bg(Image.open(path).convert("RGBA"))
     ratio = height / img.height
     img = img.resize((max(1, int(img.width * ratio)), height), Image.Resampling.LANCZOS)
     return img
 
 
-# Mouth center on source 1024×1536 talk pose (calibrated on lip pixels)
+# Mouth center on illustrated 1024×1536 talk pose (calibrated on lip pixels)
 MOUTH_SRC = (540, 506)
 
 
 def apply_lip_sync(pose_img: Image.Image, mouth: float, t: float) -> Image.Image:
-    """Open/close the illustrated mouth by stretching the mouth band with audio RMS."""
+    """Lip motion for illustrated avatar; photoreal AI packs use pose-swap only."""
+    if TEACHER.get("use_ai_pack"):
+        # Subtle speaking energy without warping photoreal face
+        if mouth > 0.15:
+            return ImageEnhance.Brightness(pose_img).enhance(1.0 + 0.03 * min(1.0, mouth))
+        return pose_img
+
     img = pose_img.copy().convert("RGBA")
     w, h = img.size
     scale = h / 1536.0
@@ -224,7 +297,6 @@ def apply_lip_sync(pose_img: Image.Image, mouth: float, t: float) -> Image.Image
     if band.height < 4:
         return img
 
-    # jaw drop: stretch band taller; visible open/close with speech energy
     extra = int(band.height * (0.25 + 0.90 * open_amt))
     stretched = band.resize((band.width, band.height + extra), Image.Resampling.LANCZOS)
     mask = Image.new("L", stretched.size, 0)
@@ -314,7 +386,7 @@ def classroom_base(t: float = 0.0) -> Image.Image:
     d.text((WIDTH // 2, 24), "SUCCESS OS", font=font(FONT_NUM, 14), fill=BOARD_INNER, anchor="mm")
     d.text(
         (WIDTH // 2, 42),
-        "مع المعلمة سارة · هيا نعدّ حتى ثلاثة!",
+        f"مع {TEACHER['name_ar']} · هيا نعدّ حتى ثلاثة!",
         font=font(FONT_AR_B, 20),
         fill=INK,
         anchor="mm",
@@ -552,8 +624,8 @@ def draw_teacher_stage(
     # arched header
     d.ellipse((40, 70, 378, 170), fill=(255, 140, 150))
     d.rounded_rectangle((40, 110, 378, 168), radius=8, fill=(255, 140, 150))
-    d.text((209, 125), "المعلمة سارة", font=font(FONT_AR_B, 24), fill=CREAM, anchor="mm")
-    d.text((209, 150), "صف الأبطال الصغار", font=font(FONT_AR, 14), fill=(255, 230, 230), anchor="mm")
+    d.text((209, 125), TEACHER["name_ar"], font=font(FONT_AR_B, 24), fill=CREAM, anchor="mm")
+    d.text((209, 150), TEACHER.get("title_line", "صف الأبطال الصغار"), font=font(FONT_AR, 14), fill=(255, 230, 230), anchor="mm")
 
     sway = int(2 * math.sin(t * 1.4))
     px = 209 - pose_img.width // 2 + sway
@@ -675,12 +747,15 @@ def render_frames(timeline, total_duration, rms):
         shutil.rmtree(FRAMES_DIR)
     FRAMES_DIR.mkdir(parents=True)
 
-    # Prefer talk pose for natural lip-sync; point only briefly for emphasis
-    talk = load_pose("talk")
-    point = load_pose("point")
+    poses = {
+        "talk": load_pose("talk"),
+        "point": load_pose("point"),
+        "write": load_pose("write"),
+        "idle": load_pose("idle"),
+    }
 
     total_frames = int(math.ceil(total_duration * FPS))
-    print(f"Rendering {total_frames} frames…")
+    print(f"Rendering {total_frames} frames… teacher={TEACHER_ID} ai_pack={TEACHER.get('use_ai_pack')}")
     for fi in range(total_frames):
         t = fi / FPS
         beat = timeline[-1]
@@ -696,17 +771,19 @@ def render_frames(timeline, total_duration, rms):
         mouth = float(rms[fi]) if fi < len(rms) else 0.0
         speaking = beat["start"] <= t <= beat["end"]
         if speaking:
-            # keep lips lively while TTS is active even in soft syllables
             mouth = max(mouth, 0.22)
         else:
             mouth *= 0.15
 
-        # mostly talk; short point gesture mid-beat on "point" beats
+        wanted = beat.get("pose", "talk")
         pose_name = "talk"
-        pose_img = talk
-        if beat.get("pose") == "point" and 0.35 < progress < 0.65:
+        if wanted == "write" and 0.15 < progress < 0.85:
+            pose_name = "write"
+        elif wanted == "point" and 0.30 < progress < 0.75:
             pose_name = "point"
-            pose_img = point
+        elif not speaking:
+            pose_name = "idle"
+        pose_img = poses.get(pose_name) or poses["talk"]
 
         frame = classroom_base(t)
         draw_board(frame, beat["board"], progress, mouth, t)
@@ -743,6 +820,7 @@ def compose_video(audio_path: Path):
 
 def main():
     print("=== G1 Colorful Board Lesson (speech-synced) ===")
+    print(f"Teacher: {TEACHER_ID} · {TEACHER['name_ar']} · voice={VOICE} · ai_pack={TEACHER.get('use_ai_pack')}")
     if not POSES.exists():
         raise SystemExit(f"Missing teacher poses at {POSES}")
 

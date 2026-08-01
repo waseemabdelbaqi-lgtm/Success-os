@@ -25,10 +25,23 @@ Professional teacher identities for Success OS lessons (offline media + future H
 
 ```bash
 npm run validate:ai-teachers
+npm run ai-teachers:factory          # sync content → public + refresh catalog poses
+npm run media:g1-sara                # G1 colorful board with Teacher Sara (AI pack)
+npm run media:g1-omar                # G1 colorful board with Teacher Omar (AI pack)
+npm run media:g1-colorful-board      # default AI_TEACHER_ID=sara
 npm run dev
 # then open http://127.0.0.1:3000/ai-teachers
 # or http://127.0.0.1:3000/media/ai-teachers/index.html
 ```
+
+### Pose packs
+
+| Teacher | talk | point | write | idle |
+|---------|------|-------|-------|------|
+| sara | ✓ | ✓ | ✓ | ✓ |
+| omar | ✓ | ✓ | ✓ | ✓ |
+| layla | — | ✓ | — | — |
+| waseem | — | — | ✓ | — |
 
 ## HeyGen (talking video)
 

@@ -4,47 +4,105 @@
   "teachers": [
     {
       "id": "sara",
-      "displayName": { "en": "Teacher Sara", "ar": "المعلمة سارة" },
+      "displayName": {
+        "en": "Teacher Sara",
+        "ar": "المعلمة سارة"
+      },
       "gender": "female",
       "countryCode": "JO",
-      "stages": ["early_childhood", "elementary"],
-      "subjects": ["math", "general"],
-      "voice": { "edgeTts": "ar-JO-SanaNeural" },
+      "stages": [
+        "early_childhood",
+        "elementary"
+      ],
+      "subjects": [
+        "math",
+        "general"
+      ],
+      "voice": {
+        "edgeTts": "ar-JO-SanaNeural"
+      },
       "portrait": "/media/ai-teachers/sara/portrait.png",
-      "poses": { "talk": "/media/ai-teachers/sara/poses/talk.png" }
+      "poses": {
+        "idle": "/media/ai-teachers/sara/poses/idle.png",
+        "point": "/media/ai-teachers/sara/poses/point.png",
+        "talk": "/media/ai-teachers/sara/poses/talk.png",
+        "write": "/media/ai-teachers/sara/poses/write.png"
+      }
     },
     {
       "id": "omar",
-      "displayName": { "en": "Teacher Omar", "ar": "المعلم عمر" },
+      "displayName": {
+        "en": "Teacher Omar",
+        "ar": "المعلم عمر"
+      },
       "gender": "male",
       "countryCode": "JO",
-      "stages": ["early_childhood", "elementary"],
-      "subjects": ["math", "general"],
-      "voice": { "edgeTts": "ar-JO-TaimNeural" },
+      "stages": [
+        "early_childhood",
+        "elementary"
+      ],
+      "subjects": [
+        "math",
+        "general"
+      ],
+      "voice": {
+        "edgeTts": "ar-JO-TaimNeural"
+      },
       "portrait": "/media/ai-teachers/omar/portrait.png",
-      "poses": { "talk": "/media/ai-teachers/omar/poses/talk.png" }
+      "poses": {
+        "idle": "/media/ai-teachers/omar/poses/idle.png",
+        "point": "/media/ai-teachers/omar/poses/point.png",
+        "talk": "/media/ai-teachers/omar/poses/talk.png",
+        "write": "/media/ai-teachers/omar/poses/write.png"
+      }
     },
     {
       "id": "layla",
-      "displayName": { "en": "Teacher Layla", "ar": "المعلمة ليلى" },
+      "displayName": {
+        "en": "Teacher Layla",
+        "ar": "المعلمة ليلى"
+      },
       "gender": "female",
       "countryCode": "JO",
-      "stages": ["middle_school", "high_school"],
-      "subjects": ["science", "general"],
-      "voice": { "edgeTts": "ar-JO-SanaNeural" },
+      "stages": [
+        "middle_school",
+        "high_school"
+      ],
+      "subjects": [
+        "science",
+        "general"
+      ],
+      "voice": {
+        "edgeTts": "ar-JO-SanaNeural"
+      },
       "portrait": "/media/ai-teachers/layla/portrait.png",
-      "poses": { "point": "/media/ai-teachers/layla/poses/point.png" }
+      "poses": {
+        "point": "/media/ai-teachers/layla/poses/point.png"
+      }
     },
     {
       "id": "waseem",
-      "displayName": { "en": "Teacher Waseem", "ar": "الأستاذ وسيم" },
+      "displayName": {
+        "en": "Teacher Waseem",
+        "ar": "الأستاذ وسيم"
+      },
       "gender": "male",
       "countryCode": "JO",
-      "stages": ["high_school", "university"],
-      "subjects": ["physics", "science"],
-      "voice": { "edgeTts": "ar-JO-TaimNeural" },
+      "stages": [
+        "high_school",
+        "university"
+      ],
+      "subjects": [
+        "physics",
+        "science"
+      ],
+      "voice": {
+        "edgeTts": "ar-JO-TaimNeural"
+      },
       "portrait": "/media/ai-teachers/waseem/portrait.png",
-      "poses": { "write": "/media/ai-teachers/waseem/poses/write.png" }
+      "poses": {
+        "write": "/media/ai-teachers/waseem/poses/write.png"
+      }
     }
   ]
 }

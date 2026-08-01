@@ -1,7 +1,16 @@
 {
   "id": "sara",
-  "displayName": { "en": "Teacher Sara", "ar": "المعلمة سارة" },
+  "displayName": {
+    "en": "Teacher Sara",
+    "ar": "المعلمة سارة"
+  },
   "gender": "female",
   "generatedBy": "cursor-image-gen",
-  "files": ["portrait.png", "poses/talk.png"]
+  "files": [
+    "portrait.png",
+    "poses/idle.png",
+    "poses/point.png",
+    "poses/talk.png",
+    "poses/write.png"
+  ]
 }
