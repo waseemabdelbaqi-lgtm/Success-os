@@ -1,0 +1,7 @@
+{
+  "id": "sara",
+  "displayName": { "en": "Teacher Sara", "ar": "المعلمة سارة" },
+  "gender": "female",
+  "generatedBy": "cursor-image-gen",
+  "files": ["portrait.png", "poses/talk.png"]
+}

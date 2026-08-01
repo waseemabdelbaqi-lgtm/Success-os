@@ -35,6 +35,7 @@
     "validate:student-ai-learning-stack": "node scripts/student-ai-learning-stack.test.mjs",
     "validate:ai-teacher-engine": "node scripts/ai-teacher-engine.test.mjs && node scripts/ai-teacher-engine.integration.test.mjs && node scripts/ai-teacher-engine.e2e.test.mjs",
     "validate:ai-digital-human-teacher": "node scripts/ai-digital-human-teacher.test.mjs",
+    "validate:ai-teachers": "node scripts/validate-ai-teachers.mjs",
     "validate:education-intelligence-core": "node scripts/education-intelligence-core.test.mjs",
     "export:jordan-curriculum": "node scripts/export-jordan-curriculum-bundle.mjs",
     "media:g1-math-reel": "python3 scripts/render-g1-math-avatar-reel.py",
