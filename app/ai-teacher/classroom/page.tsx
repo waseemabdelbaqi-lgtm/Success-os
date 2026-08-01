@@ -1,9 +1,9 @@
 import { InteractiveClassroom } from "@/components/ai-teachers/interactive-classroom";
 
 export const metadata = {
-  title: "سارة وعلي · الصف السينمائي | Success OS",
+  title: "سارة وعلي · حصة شبه الحقيقية | Success OS",
   description:
-    "صوت عصبي أردني، وجه يتحرك، وسبورة حيّة — صف تفاعلي أوضح من المعلم الحقيقي",
+    "معلم يقف ويكتب ويشير جنب السبورة بصوت صفّي أردني — أوضح وأسرع تغذية راجعة من الحصة التقليدية",
 };
 
 export default function AiTeacherClassroomPage() {

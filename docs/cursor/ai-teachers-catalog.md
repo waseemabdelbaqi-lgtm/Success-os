@@ -1,51 +1,44 @@
-# AI Teachers — سارة وعلي فقط
+# AI Teachers — سارة وعلي (شبه الحصة الحقيقية)
 
-Success OS ships **exactly two** AI teachers — cinematic live classroom with neural Arabic voice:
+معلمان فقط، بتجربة صفّية أقرب لمعلم حقيقي وأوضح منه في التغذية الراجعة:
 
-| ID | الاسم | الجنس | صوت عصبي |
-|----|------|------|----------|
-| `sara` | المعلمة سارة | أنثى | `ar-JO-SanaNeural` |
-| `ali` | المعلم علي | ذكر | `ar-JO-TaimNeural` |
+| ID | الاسم | صوت عصبي | حضور |
+|----|------|----------|------|
+| `sara` | المعلمة سارة | `ar-JO-SanaNeural` | تقف / تشير / تكتب |
+| `ali` | المعلم علي | `ar-JO-TaimNeural` | يقف / يشير / يكتب |
 
-## Interactive live classroom
+## Preview
 
 ```bash
-npm run ai-teachers:bake-audio   # regenerates MP3s (needs edge-tts)
+npm run ai-teachers:bake-audio
+npm run ai-teachers:factory
 npm run dev
-# open http://127.0.0.1:3000/ai-teacher/classroom
+# http://127.0.0.1:3000/ai-teacher/classroom
 ```
 
-What makes it feel beyond a typical lesson:
-- **Neural pre-baked Arabic audio** (not robotic browser TTS as primary)
-- Mouth energy driven by real audio amplitude when possible
-- Pose switching: talk / point / write / gesture
-- Full-bleed cinematic stage + living chalkboard (not a dashboard of cards)
-- Laser/glow board cues synced to speech progress
-- Micro-checks + mastery stars + auto-play
-- Adaptive coach lines: أبسط / مثال / تحدٍّ
+## What “real class” means here
+
+- Teacher **stands beside the chalkboard** (one classroom scene)
+- Classroom poses: `classroom/{stand,point,write}.png`
+- Natural Jordanian class phrasing (“شوفوا السبورة”، “عدّوا وراي”)
+- Neural audio (not browser TTS as primary)
+- Pose shifts while speaking: stand → write/point like a live teacher
+- Micro-checks after each number + mastery stars
 
 ## Assets
 
 ```
 content/media/ai-teachers/{sara|ali}/
   portrait.png
+  classroom/{stand,point,write}.png
   poses/{talk,point,write,idle}.png
-  flagship/{mouth-closed,mouth-open,mouth-wide,gesture}.png
-  alive/{blink,listen,half}.png
-  audio/{welcome,one,two,three,practice,bye,simpler,example,...}.mp3
+  flagship/...
+  alive/...
+  audio/*.mp3
 ```
 
-## Commands
+## Validate
 
 ```bash
 npm run validate:ai-teachers
-npm run ai-teachers:factory
-npm run ai-teachers:bake-audio
-npm run media:flagship-sara
-npm run media:flagship-ali
 ```
-
-## API
-
-`GET /api/ai-teachers` → Sara + Ali only  
-`GET /api/ai-teachers?id=sara|ali`
