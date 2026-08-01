@@ -1,0 +1,35 @@
+{
+  "globalId": "JOR-SKILL-001024",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يتعرف المتعلم مفهومًا محوريًا في العلوم والاستكشاف ضمن استكشاف الطبيعة بما يتوافق مع إطار المنهاج الوطني الأردني لـرياض الأطفال.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-007057",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-007057",
+      "JOR-OUTCOME-007058",
+      "JOR-OUTCOME-007059",
+      "JOR-OUTCOME-007060",
+      "JOR-OUTCOME-007061",
+      "JOR-OUTCOME-007062",
+      "JOR-OUTCOME-007063",
+      "JOR-OUTCOME-007064",
+      "JOR-OUTCOME-007065",
+      "JOR-OUTCOME-007066",
+      "JOR-OUTCOME-007067",
+      "JOR-OUTCOME-007068"
+    ],
+    "lessonIds": [
+      "JOR-GKG-SCI-U01-L01",
+      "JOR-GKG-SCI-U01-L02",
+      "JOR-GKG-SCI-U01-L03",
+      "JOR-GKG-SCI-U01-L04"
+    ],
+    "belongsTo": "JOR-OUTCOME-007057"
+  },
+  "createdAt": "2026-07-31T17:56:57.567Z",
+  "updatedAt": "2026-07-31T17:56:57.569Z"
+}

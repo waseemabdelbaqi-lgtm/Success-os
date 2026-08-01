@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-SKILL-000794",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«الميكانيكا — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-005527",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-005527",
+      "JOR-OUTCOME-005528",
+      "JOR-OUTCOME-005529",
+      "JOR-OUTCOME-005991",
+      "JOR-OUTCOME-005992",
+      "JOR-OUTCOME-005993"
+    ],
+    "lessonIds": [
+      "JOR-G11-الفيزياء-U01-L03",
+      "JOR-G12-الفيزياء-U01-L03"
+    ],
+    "belongsTo": "JOR-OUTCOME-005527"
+  },
+  "createdAt": "2026-07-31T17:56:57.262Z",
+  "updatedAt": "2026-07-31T17:56:57.339Z"
+}

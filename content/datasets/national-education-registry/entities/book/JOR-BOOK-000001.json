@@ -1,0 +1,19 @@
+{
+  "globalId": "JOR-BOOK-000001",
+  "kind": "book",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "Success OS — التاريخ",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G10-التاريخ",
+  "relationships": {
+    "subjectId": "JOR-G10-التاريخ",
+    "gradeId": "JOR-G10",
+    "belongsTo": "JOR-G10-التاريخ"
+  },
+  "createdAt": "2026-07-31T17:56:56.681Z",
+  "updatedAt": "2026-07-31T17:56:56.681Z",
+  "legacyBookId": "jordan__التعليم-الأساسي__jordan-national-curriculum__الصف-10__التاريخ__ar",
+  "officialSource": "https://www.nccd.gov.jo/ar/pages/TextBooksGrade/77"
+}

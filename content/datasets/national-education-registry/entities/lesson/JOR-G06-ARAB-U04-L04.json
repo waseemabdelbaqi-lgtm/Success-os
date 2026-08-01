@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-G06-ARAB-U04-L04",
+  "kind": "lesson",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "الإنتاج الكتابي — تقويم وتعزيز",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G06-ARAB-U04",
+  "relationships": {
+    "unitId": "JOR-G06-ARAB-U04",
+    "bookId": "JOR-BOOK-000070",
+    "subjectId": "JOR-G06-ARAB",
+    "gradeId": "JOR-G06",
+    "belongsTo": "JOR-G06-ARAB-U04"
+  },
+  "createdAt": "2026-07-31T17:56:56.960Z",
+  "updatedAt": "2026-07-31T17:56:56.960Z",
+  "lessonCode": "L04",
+  "sequence": 4,
+  "legacyLessonId": "L4.4",
+  "keywords": [
+    "نص",
+    "معنى",
+    "أسلوب"
+  ]
+}

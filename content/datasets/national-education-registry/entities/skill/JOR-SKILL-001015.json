@@ -1,0 +1,23 @@
+{
+  "globalId": "JOR-SKILL-001015",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«المقارنة والقياس المبكر — مقدمة ومفاهيم» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-007033",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-007033",
+      "JOR-OUTCOME-007034",
+      "JOR-OUTCOME-007035"
+    ],
+    "lessonIds": [
+      "JOR-GKG-EMATH-U03-L01"
+    ],
+    "belongsTo": "JOR-OUTCOME-007033"
+  },
+  "createdAt": "2026-07-31T17:56:57.561Z",
+  "updatedAt": "2026-07-31T17:56:57.561Z"
+}

@@ -1,0 +1,31 @@
+{
+  "globalId": "JOR-SKILL-000011",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«الدولة الهاشمية — بناء المهارة» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-000016",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-000016",
+      "JOR-OUTCOME-000017",
+      "JOR-OUTCOME-000018",
+      "JOR-OUTCOME-004080",
+      "JOR-OUTCOME-004081",
+      "JOR-OUTCOME-004082",
+      "JOR-OUTCOME-004736",
+      "JOR-OUTCOME-004737",
+      "JOR-OUTCOME-004738"
+    ],
+    "lessonIds": [
+      "JOR-G10-التاريخ-U02-L02",
+      "JOR-G08-التاريخ-U02-L02",
+      "JOR-G09-التاريخ-U02-L02"
+    ],
+    "belongsTo": "JOR-OUTCOME-000016"
+  },
+  "createdAt": "2026-07-31T17:56:56.683Z",
+  "updatedAt": "2026-07-31T17:56:57.135Z"
+}

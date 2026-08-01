@@ -1,0 +1,31 @@
+{
+  "globalId": "JOR-SKILL-000258",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«Grammar in Use — بناء المهارة» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-000528",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-000528",
+      "JOR-OUTCOME-000529",
+      "JOR-OUTCOME-000530",
+      "JOR-OUTCOME-004592",
+      "JOR-OUTCOME-004593",
+      "JOR-OUTCOME-004594",
+      "JOR-OUTCOME-005248",
+      "JOR-OUTCOME-005249",
+      "JOR-OUTCOME-005250"
+    ],
+    "lessonIds": [
+      "JOR-G10-ENG-U02-L02",
+      "JOR-G08-ENG-U02-L02",
+      "JOR-G09-ENG-U02-L02"
+    ],
+    "belongsTo": "JOR-OUTCOME-000528"
+  },
+  "createdAt": "2026-07-31T17:56:56.706Z",
+  "updatedAt": "2026-07-31T17:56:57.214Z"
+}

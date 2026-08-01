@@ -1,0 +1,31 @@
+{
+  "globalId": "JOR-SKILL-000561",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«حقوق الطفل — مقدمة ومفاهيم» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-002545",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-002545",
+      "JOR-OUTCOME-002546",
+      "JOR-OUTCOME-002507",
+      "JOR-OUTCOME-003105",
+      "JOR-OUTCOME-003106",
+      "JOR-OUTCOME-003067",
+      "JOR-OUTCOME-003665",
+      "JOR-OUTCOME-003666",
+      "JOR-OUTCOME-003627"
+    ],
+    "lessonIds": [
+      "JOR-G05-التربيةا-U03-L01",
+      "JOR-G06-التربيةا-U03-L01",
+      "JOR-G07-التربيةا-U03-L01"
+    ],
+    "belongsTo": "JOR-OUTCOME-002545"
+  },
+  "createdAt": "2026-07-31T17:56:56.848Z",
+  "updatedAt": "2026-07-31T17:56:56.986Z"
+}

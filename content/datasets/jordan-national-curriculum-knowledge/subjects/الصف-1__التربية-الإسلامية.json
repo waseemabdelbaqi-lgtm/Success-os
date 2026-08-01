@@ -1,0 +1,1993 @@
+{
+  "schema": "success-os.jordan-national-subject-knowledge.v1",
+  "phase": "JO-01",
+  "key": "التعليم الأساسي::الصف 1::التربية الإسلامية",
+  "stage": "التعليم الأساسي",
+  "grade": "الصف 1",
+  "subject": "التربية الإسلامية",
+  "subjectFamily": "islamic",
+  "gradeBand": "lower-basic",
+  "officialCatalogUrl": "https://www.nccd.gov.jo/ar/pages/TextBooksGrade/68",
+  "catalogueStatus": "verified-against-NCCD-catalogue",
+  "curriculumFramework": {
+    "name": "Jordan National Curriculum",
+    "nameAr": "المنهاج الوطني الأردني",
+    "stage": "التعليم الأساسي",
+    "grade": "الصف 1",
+    "subject": "التربية الإسلامية",
+    "semesters": [
+      "الفصل الأول",
+      "الفصل الثاني"
+    ]
+  },
+  "gradeStructure": {
+    "grade": "الصف 1",
+    "band": "lower-basic",
+    "stage": "التعليم الأساسي"
+  },
+  "subjectStructure": {
+    "subject": "التربية الإسلامية",
+    "family": "islamic",
+    "unitCount": 4
+  },
+  "units": [
+    {
+      "unitId": "U1",
+      "titleAr": "العقيدة الميسرة",
+      "lessons": [
+        {
+          "lessonId": "L1.1",
+          "titleAr": "العقيدة الميسرة — مقدمة ومفاهيم",
+          "learningOutcomes": [
+            "أن يتعرف المتعلم مفهومًا محوريًا في التربية الإسلامية ضمن العقيدة الميسرة بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 1.",
+            "أن يطبّق مهارة مرتبطة بـ«العقيدة الميسرة — مقدمة ومفاهيم» بخطوات واضحة قابلة للتحقق.",
+            "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+          ],
+          "requiredSkills": [
+            "التلاوة",
+            "الفهم القيمي",
+            "التطبيق الأخلاقي"
+          ],
+          "scientificConcepts": [
+            "عقيدة",
+            "عبادة",
+            "خلق"
+          ],
+          "definitions": [
+            {
+              "term": "عقيدة",
+              "definitionAr": "تعريف تعليمي أصلي لمفهوم «عقيدة» ضمن إطار المنهاج الوطني الأردني، يُبنى لأغراض التدريس في Success OS دون اقتباس نص الكتاب المدرسي."
+            },
+            {
+              "term": "عبادة",
+              "definitionAr": "تعريف تعليمي أصلي لمفهوم «عبادة» ضمن إطار المنهاج الوطني الأردني، يُبنى لأغراض التدريس في Success OS دون اقتباس نص الكتاب المدرسي."
+            }
+          ],
+          "examples": [
+            {
+              "title": "مثال صفّي",
+              "text": "موقف تعليمي أصلي لـالصف 1 في التربية الإسلامية يوضح تطبيق فكرة درس «العقيدة الميسرة — مقدمة ومفاهيم» بخطوات قابلة للمتابعة."
+            },
+            {
+              "title": "مثال حياتي أردني",
+              "text": "ربط الدرس بسياق يومي مناسب للمتعلم في الأردن (مدرسة، منزل، مجتمع محلي) دون الاعتماد على نص كتابي محمي."
+            }
+          ],
+          "educationalDiagrams": [
+            {
+              "id": "values-map",
+              "title": "مخطط تعليمي لوحدة العقيدة الميسرة",
+              "purpose": "توضيح العلاقات المفاهيمية للمتعلم",
+              "generateOriginal": true,
+              "neverCopyTextbookFigure": true
+            }
+          ],
+          "officialCurriculumReference": {
+            "curriculum": "Jordan National Curriculum",
+            "curriculumAr": "المنهاج الوطني الأردني",
+            "stage": "التعليم الأساسي",
+            "grade": "الصف 1",
+            "subject": "التربية الإسلامية",
+            "catalogUrl": "https://www.nccd.gov.jo/ar/pages/TextBooksGrade/68",
+            "authorities": [
+              {
+                "name": "Jordan Ministry of Education",
+                "url": "https://moe.gov.jo/",
+                "type": "ministry-education",
+                "priority": 1
+              },
+              {
+                "name": "National Center for Curriculum Development (NCCD)",
+                "url": "https://www.nccd.gov.jo/Ar/Pages/textbooks",
+                "type": "curriculum-authority",
+                "priority": 1
+              },
+              {
+                "name": "NCCD Official Portal",
+                "url": "https://www.nccd.gov.jo/",
+                "type": "curriculum-authority",
+                "priority": 1
+              },
+              {
+                "name": "Darsak Platform",
+                "url": "https://darsak.gov.jo/",
+                "type": "digital-learning-platform",
+                "priority": 1
+              },
+              {
+                "name": "MoE Curricula and School Textbooks Administration",
+                "url": "https://moe.gov.jo/ar/%D8%A5%D8%AF%D8%A7%D8%B1%D8%A9-%D8%A7%D9%84%D9%85%D9%86%D8%A7%D9%87%D8%AC-%D9%88%D8%A7%D9%84%D9%83%D8%AA%D8%A8-%D8%A7%D9%84%D9%85%D8%AF%D8%B1%D8%B3%D9%8A%D8%A9",
+                "type": "ministry",
+                "priority": 1
+              },
+              {
+                "name": "MoE Approved Textbook Editions 2025–2026",
+                "url": "https://moe.gov.jo/ar/node/79818",
+                "type": "ministry",
+                "priority": 1
+              }
+            ],
+            "note": "Lesson authored only after referencing official Jordanian curriculum structure for this grade/subject."
+          },
+          "contentOrigin": "success-os-original-curriculum-aligned",
+          "rights": {
+            "copyBookText": false,
+            "generateOriginalOnly": true
+          }
+        },
+        {
+          "lessonId": "L1.2",
+          "titleAr": "العقيدة الميسرة — بناء المهارة",
+          "learningOutcomes": [
+            "أن يتعرف المتعلم مفهومًا محوريًا في التربية الإسلامية ضمن العقيدة الميسرة بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 1.",
+            "أن يطبّق مهارة مرتبطة بـ«العقيدة الميسرة — بناء المهارة» بخطوات واضحة قابلة للتحقق.",
+            "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+          ],
+          "requiredSkills": [
+            "التلاوة",
+            "الفهم القيمي",
+            "التطبيق الأخلاقي"
+          ],
+          "scientificConcepts": [
+            "عقيدة",
+            "عبادة",
+            "خلق"
+          ],
+          "definitions": [
+            {
+              "term": "عقيدة",
+              "definitionAr": "تعريف تعليمي أصلي لمفهوم «عقيدة» ضمن إطار المنهاج الوطني الأردني، يُبنى لأغراض التدريس في Success OS دون اقتباس نص الكتاب المدرسي."
+            },
+            {
+              "term": "عبادة",
+              "definitionAr": "تعريف تعليمي أصلي لمفهوم «عبادة» ضمن إطار المنهاج الوطني الأردني، يُبنى لأغراض التدريس في Success OS دون اقتباس نص الكتاب المدرسي."
+            }
+          ],
+          "examples": [
+            {
+              "title": "مثال صفّي",
+              "text": "موقف تعليمي أصلي لـالصف 1 في التربية الإسلامية يوضح تطبيق فكرة درس «العقيدة الميسرة — بناء المهارة» بخطوات قابلة للمتابعة."
+            },
+            {
+              "title": "مثال حياتي أردني",
+              "text": "ربط الدرس بسياق يومي مناسب للمتعلم في الأردن (مدرسة، منزل، مجتمع محلي) دون الاعتماد على نص كتابي محمي."
+            }
+          ],
+          "educationalDiagrams": [
+            {
+              "id": "values-map",
+              "title": "مخطط تعليمي لوحدة العقيدة الميسرة",
+              "purpose": "توضيح العلاقات المفاهيمية للمتعلم",
+              "generateOriginal": true,
+              "neverCopyTextbookFigure": true
+            }
+          ],
+          "officialCurriculumReference": {
+            "curriculum": "Jordan National Curriculum",
+            "curriculumAr": "المنهاج الوطني الأردني",
+            "stage": "التعليم الأساسي",
+            "grade": "الصف 1",
+            "subject": "التربية الإسلامية",
+            "catalogUrl": "https://www.nccd.gov.jo/ar/pages/TextBooksGrade/68",
+            "authorities": [
+              {
+                "name": "Jordan Ministry of Education",
+                "url": "https://moe.gov.jo/",
+                "type": "ministry-education",
+                "priority": 1
+              },
+              {
+                "name": "National Center for Curriculum Development (NCCD)",
+                "url": "https://www.nccd.gov.jo/Ar/Pages/textbooks",
+                "type": "curriculum-authority",
+                "priority": 1
+              },
+              {
+                "name": "NCCD Official Portal",
+                "url": "https://www.nccd.gov.jo/",
+                "type": "curriculum-authority",
+                "priority": 1
+              },
+              {
+                "name": "Darsak Platform",
+                "url": "https://darsak.gov.jo/",
+                "type": "digital-learning-platform",
+                "priority": 1
+              },
+              {
+                "name": "MoE Curricula and School Textbooks Administration",
+                "url": "https://moe.gov.jo/ar/%D8%A5%D8%AF%D8%A7%D8%B1%D8%A9-%D8%A7%D9%84%D9%85%D9%86%D8%A7%D9%87%D8%AC-%D9%88%D8%A7%D9%84%D9%83%D8%AA%D8%A8-%D8%A7%D9%84%D9%85%D8%AF%D8%B1%D8%B3%D9%8A%D8%A9",
+                "type": "ministry",
+                "priority": 1
+              },
+              {
+                "name": "MoE Approved Textbook Editions 2025–2026",
+                "url": "https://moe.gov.jo/ar/node/79818",
+                "type": "ministry",
+                "priority": 1
+              }
+            ],
+            "note": "Lesson authored only after referencing official Jordanian curriculum structure for this grade/subject."
+          },
+          "contentOrigin": "success-os-original-curriculum-aligned",
+          "rights": {
+            "copyBookText": false,
+            "generateOriginalOnly": true
+          }
+        },
+        {
+          "lessonId": "L1.3",
+          "titleAr": "العقيدة الميسرة — تطبيق ومثال",
+          "learningOutcomes": [
+            "أن يتعرف المتعلم مفهومًا محوريًا في التربية الإسلامية ضمن العقيدة الميسرة بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 1.",
+            "أن يطبّق مهارة مرتبطة بـ«العقيدة الميسرة — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+            "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+          ],
+          "requiredSkills": [
+            "التلاوة",
+            "الفهم القيمي",
+            "التطبيق الأخلاقي"
+          ],
+          "scientificConcepts": [
+            "عقيدة",
+            "عبادة",
+            "خلق"
+          ],
+          "definitions": [
+            {
+              "term": "عقيدة",
+              "definitionAr": "تعريف تعليمي أصلي لمفهوم «عقيدة» ضمن إطار المنهاج الوطني الأردني، يُبنى لأغراض التدريس في Success OS دون اقتباس نص الكتاب المدرسي."
+            },
+            {
+              "term": "عبادة",
+              "definitionAr": "تعريف تعليمي أصلي لمفهوم «عبادة» ضمن إطار المنهاج الوطني الأردني، يُبنى لأغراض التدريس في Success OS دون اقتباس نص الكتاب المدرسي."
+            }
+          ],
+          "examples": [
+            {
+              "title": "مثال صفّي",
+              "text": "موقف تعليمي أصلي لـالصف 1 في التربية الإسلامية يوضح تطبيق فكرة درس «العقيدة الميسرة — تطبيق ومثال» بخطوات قابلة للمتابعة."
+            },
+            {
+              "title": "مثال حياتي أردني",
+              "text": "ربط الدرس بسياق يومي مناسب للمتعلم في الأردن (مدرسة، منزل، مجتمع محلي) دون الاعتماد على نص كتابي محمي."
+            }
+          ],
+          "educationalDiagrams": [
+            {
+              "id": "values-map",
+              "title": "مخطط تعليمي لوحدة العقيدة الميسرة",
+              "purpose": "توضيح العلاقات المفاهيمية للمتعلم",
+              "generateOriginal": true,
+              "neverCopyTextbookFigure": true
+            }
+          ],
+          "officialCurriculumReference": {
+            "curriculum": "Jordan National Curriculum",
+            "curriculumAr": "المنهاج الوطني الأردني",
+            "stage": "التعليم الأساسي",
+            "grade": "الصف 1",
+            "subject": "التربية الإسلامية",
+            "catalogUrl": "https://www.nccd.gov.jo/ar/pages/TextBooksGrade/68",
+            "authorities": [
+              {
+                "name": "Jordan Ministry of Education",
+                "url": "https://moe.gov.jo/",
+                "type": "ministry-education",
+                "priority": 1
+              },
+              {
+                "name": "National Center for Curriculum Development (NCCD)",
+                "url": "https://www.nccd.gov.jo/Ar/Pages/textbooks",
+                "type": "curriculum-authority",
+                "priority": 1
+              },
+              {
+                "name": "NCCD Official Portal",
+                "url": "https://www.nccd.gov.jo/",
+                "type": "curriculum-authority",
+                "priority": 1
+              },
+              {
+                "name": "Darsak Platform",
+                "url": "https://darsak.gov.jo/",
+                "type": "digital-learning-platform",
+                "priority": 1
+              },
+              {
+                "name": "MoE Curricula and School Textbooks Administration",
+                "url": "https://moe.gov.jo/ar/%D8%A5%D8%AF%D8%A7%D8%B1%D8%A9-%D8%A7%D9%84%D9%85%D9%86%D8%A7%D9%87%D8%AC-%D9%88%D8%A7%D9%84%D9%83%D8%AA%D8%A8-%D8%A7%D9%84%D9%85%D8%AF%D8%B1%D8%B3%D9%8A%D8%A9",
+                "type": "ministry",
+                "priority": 1
+              },
+              {
+                "name": "MoE Approved Textbook Editions 2025–2026",
+                "url": "https://moe.gov.jo/ar/node/79818",
+                "type": "ministry",
+                "priority": 1
+              }
+            ],
+            "note": "Lesson authored only after referencing official Jordanian curriculum structure for this grade/subject."
+          },
+          "contentOrigin": "success-os-original-curriculum-aligned",
+          "rights": {
+            "copyBookText": false,
+            "generateOriginalOnly": true
+          }
+        },
+        {
+          "lessonId": "L1.4",
+          "titleAr": "العقيدة الميسرة — تقويم وتعزيز",
+          "learningOutcomes": [
+            "أن يتعرف المتعلم مفهومًا محوريًا في التربية الإسلامية ضمن العقيدة الميسرة بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 1.",
+            "أن يطبّق مهارة مرتبطة بـ«العقيدة الميسرة — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+            "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+          ],
+          "requiredSkills": [
+            "التلاوة",
+            "الفهم القيمي",
+            "التطبيق الأخلاقي"
+          ],
+          "scientificConcepts": [
+            "عقيدة",
+            "عبادة",
+            "خلق"
+          ],
+          "definitions": [
+            {
+              "term": "عقيدة",
+              "definitionAr": "تعريف تعليمي أصلي لمفهوم «عقيدة» ضمن إطار المنهاج الوطني الأردني، يُبنى لأغراض التدريس في Success OS دون اقتباس نص الكتاب المدرسي."
+            },
+            {
+              "term": "عبادة",
+              "definitionAr": "تعريف تعليمي أصلي لمفهوم «عبادة» ضمن إطار المنهاج الوطني الأردني، يُبنى لأغراض التدريس في Success OS دون اقتباس نص الكتاب المدرسي."
+            }
+          ],
+          "examples": [
+            {
+              "title": "مثال صفّي",
+              "text": "موقف تعليمي أصلي لـالصف 1 في التربية الإسلامية يوضح تطبيق فكرة درس «العقيدة الميسرة — تقويم وتعزيز» بخطوات قابلة للمتابعة."
+            },
+            {
+              "title": "مثال حياتي أردني",
+              "text": "ربط الدرس بسياق يومي مناسب للمتعلم في الأردن (مدرسة، منزل، مجتمع محلي) دون الاعتماد على نص كتابي محمي."
+            }
+          ],
+          "educationalDiagrams": [
+            {
+              "id": "values-map",
+              "title": "مخطط تعليمي لوحدة العقيدة الميسرة",
+              "purpose": "توضيح العلاقات المفاهيمية للمتعلم",
+              "generateOriginal": true,
+              "neverCopyTextbookFigure": true
+            }
+          ],
+          "officialCurriculumReference": {
+            "curriculum": "Jordan National Curriculum",
+            "curriculumAr": "المنهاج الوطني الأردني",
+            "stage": "التعليم الأساسي",
+            "grade": "الصف 1",
+            "subject": "التربية الإسلامية",
+            "catalogUrl": "https://www.nccd.gov.jo/ar/pages/TextBooksGrade/68",
+            "authorities": [
+              {
+                "name": "Jordan Ministry of Education",
+                "url": "https://moe.gov.jo/",
+                "type": "ministry-education",
+                "priority": 1
+              },
+              {
+                "name": "National Center for Curriculum Development (NCCD)",
+                "url": "https://www.nccd.gov.jo/Ar/Pages/textbooks",
+                "type": "curriculum-authority",
+                "priority": 1
+              },
+              {
+                "name": "NCCD Official Portal",
+                "url": "https://www.nccd.gov.jo/",
+                "type": "curriculum-authority",
+                "priority": 1
+              },
+              {
+                "name": "Darsak Platform",
+                "url": "https://darsak.gov.jo/",
+                "type": "digital-learning-platform",
+                "priority": 1
+              },
+              {
+                "name": "MoE Curricula and School Textbooks Administration",
+                "url": "https://moe.gov.jo/ar/%D8%A5%D8%AF%D8%A7%D8%B1%D8%A9-%D8%A7%D9%84%D9%85%D9%86%D8%A7%D9%87%D8%AC-%D9%88%D8%A7%D9%84%D9%83%D8%AA%D8%A8-%D8%A7%D9%84%D9%85%D8%AF%D8%B1%D8%B3%D9%8A%D8%A9",
+                "type": "ministry",
+                "priority": 1
+              },
+              {
+                "name": "MoE Approved Textbook Editions 2025–2026",
+                "url": "https://moe.gov.jo/ar/node/79818",
+                "type": "ministry",
+                "priority": 1
+              }
+            ],
+            "note": "Lesson authored only after referencing official Jordanian curriculum structure for this grade/subject."
+          },
+          "contentOrigin": "success-os-original-curriculum-aligned",
+          "rights": {
+            "copyBookText": false,
+            "generateOriginalOnly": true
+          }
+        }
+      ]
+    },
+    {
+      "unitId": "U2",
+      "titleAr": "العبادات الأساسية",
+      "lessons": [
+        {
+          "lessonId": "L2.1",
+          "titleAr": "العبادات الأساسية — مقدمة ومفاهيم",
+          "learningOutcomes": [
+            "أن يتعرف المتعلم مفهومًا محوريًا في التربية الإسلامية ضمن العبادات الأساسية بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 1.",
+            "أن يطبّق مهارة مرتبطة بـ«العبادات الأساسية — مقدمة ومفاهيم» بخطوات واضحة قابلة للتحقق.",
+            "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+          ],
+          "requiredSkills": [
+            "التلاوة",
+            "الفهم القيمي",
+            "التطبيق الأخلاقي"
+          ],
+          "scientificConcepts": [
+            "عقيدة",
+            "عبادة",
+            "خلق"
+          ],
+          "definitions": [
+            {
+              "term": "عقيدة",
+              "definitionAr": "تعريف تعليمي أصلي لمفهوم «عقيدة» ضمن إطار المنهاج الوطني الأردني، يُبنى لأغراض التدريس في Success OS دون اقتباس نص الكتاب المدرسي."
+            },
+            {
+              "term": "عبادة",
+              "definitionAr": "تعريف تعليمي أصلي لمفهوم «عبادة» ضمن إطار المنهاج الوطني الأردني، يُبنى لأغراض التدريس في Success OS دون اقتباس نص الكتاب المدرسي."
+            }
+          ],
+          "examples": [
+            {
+              "title": "مثال صفّي",
+              "text": "موقف تعليمي أصلي لـالصف 1 في التربية الإسلامية يوضح تطبيق فكرة درس «العبادات الأساسية — مقدمة ومفاهيم» بخطوات قابلة للمتابعة."
+            },
+            {
+              "title": "مثال حياتي أردني",
+              "text": "ربط الدرس بسياق يومي مناسب للمتعلم في الأردن (مدرسة، منزل، مجتمع محلي) دون الاعتماد على نص كتابي محمي."
+            }
+          ],
+          "educationalDiagrams": [
+            {
+              "id": "values-map",
+              "title": "مخطط تعليمي لوحدة العبادات الأساسية",
+              "purpose": "توضيح العلاقات المفاهيمية للمتعلم",
+              "generateOriginal": true,
+              "neverCopyTextbookFigure": true
+            }
+          ],
+          "officialCurriculumReference": {
+            "curriculum": "Jordan National Curriculum",
+            "curriculumAr": "المنهاج الوطني الأردني",
+            "stage": "التعليم الأساسي",
+            "grade": "الصف 1",
+            "subject": "التربية الإسلامية",
+            "catalogUrl": "https://www.nccd.gov.jo/ar/pages/TextBooksGrade/68",
+            "authorities": [
+              {
+                "name": "Jordan Ministry of Education",
+                "url": "https://moe.gov.jo/",
+                "type": "ministry-education",
+                "priority": 1
+              },
+              {
+                "name": "National Center for Curriculum Development (NCCD)",
+                "url": "https://www.nccd.gov.jo/Ar/Pages/textbooks",
+                "type": "curriculum-authority",
+                "priority": 1
+              },
+              {
+                "name": "NCCD Official Portal",
+                "url": "https://www.nccd.gov.jo/",
+                "type": "curriculum-authority",
+                "priority": 1
+              },
+              {
+                "name": "Darsak Platform",
+                "url": "https://darsak.gov.jo/",
+                "type": "digital-learning-platform",
+                "priority": 1
+              },
+              {
+                "name": "MoE Curricula and School Textbooks Administration",
+                "url": "https://moe.gov.jo/ar/%D8%A5%D8%AF%D8%A7%D8%B1%D8%A9-%D8%A7%D9%84%D9%85%D9%86%D8%A7%D9%87%D8%AC-%D9%88%D8%A7%D9%84%D9%83%D8%AA%D8%A8-%D8%A7%D9%84%D9%85%D8%AF%D8%B1%D8%B3%D9%8A%D8%A9",
+                "type": "ministry",
+                "priority": 1
+              },
+              {
+                "name": "MoE Approved Textbook Editions 2025–2026",
+                "url": "https://moe.gov.jo/ar/node/79818",
+                "type": "ministry",
+                "priority": 1
+              }
+            ],
+            "note": "Lesson authored only after referencing official Jordanian curriculum structure for this grade/subject."
+          },
+          "contentOrigin": "success-os-original-curriculum-aligned",
+          "rights": {
+            "copyBookText": false,
+            "generateOriginalOnly": true
+          }
+        },
+        {
+          "lessonId": "L2.2",
+          "titleAr": "العبادات الأساسية — بناء المهارة",
+          "learningOutcomes": [
+            "أن يتعرف المتعلم مفهومًا محوريًا في التربية الإسلامية ضمن العبادات الأساسية بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 1.",
+            "أن يطبّق مهارة مرتبطة بـ«العبادات الأساسية — بناء المهارة» بخطوات واضحة قابلة للتحقق.",
+            "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+          ],
+          "requiredSkills": [
+            "التلاوة",
+            "الفهم القيمي",
+            "التطبيق الأخلاقي"
+          ],
+          "scientificConcepts": [
+            "عقيدة",
+            "عبادة",
+            "خلق"
+          ],
+          "definitions": [
+            {
+              "term": "عقيدة",
+              "definitionAr": "تعريف تعليمي أصلي لمفهوم «عقيدة» ضمن إطار المنهاج الوطني الأردني، يُبنى لأغراض التدريس في Success OS دون اقتباس نص الكتاب المدرسي."
+            },
+            {
+              "term": "عبادة",
+              "definitionAr": "تعريف تعليمي أصلي لمفهوم «عبادة» ضمن إطار المنهاج الوطني الأردني، يُبنى لأغراض التدريس في Success OS دون اقتباس نص الكتاب المدرسي."
+            }
+          ],
+          "examples": [
+            {
+              "title": "مثال صفّي",
+              "text": "موقف تعليمي أصلي لـالصف 1 في التربية الإسلامية يوضح تطبيق فكرة درس «العبادات الأساسية — بناء المهارة» بخطوات قابلة للمتابعة."
+            },
+            {
+              "title": "مثال حياتي أردني",
+              "text": "ربط الدرس بسياق يومي مناسب للمتعلم في الأردن (مدرسة، منزل، مجتمع محلي) دون الاعتماد على نص كتابي محمي."
+            }
+          ],
+          "educationalDiagrams": [
+            {
+              "id": "values-map",
+              "title": "مخطط تعليمي لوحدة العبادات الأساسية",
+              "purpose": "توضيح العلاقات المفاهيمية للمتعلم",
+              "generateOriginal": true,
+              "neverCopyTextbookFigure": true
+            }
+          ],
+          "officialCurriculumReference": {
+            "curriculum": "Jordan National Curriculum",
+            "curriculumAr": "المنهاج الوطني الأردني",
+            "stage": "التعليم الأساسي",
+            "grade": "الصف 1",
+            "subject": "التربية الإسلامية",
+            "catalogUrl": "https://www.nccd.gov.jo/ar/pages/TextBooksGrade/68",
+            "authorities": [
+              {
+                "name": "Jordan Ministry of Education",
+                "url": "https://moe.gov.jo/",
+                "type": "ministry-education",
+                "priority": 1
+              },
+              {
+                "name": "National Center for Curriculum Development (NCCD)",
+                "url": "https://www.nccd.gov.jo/Ar/Pages/textbooks",
+                "type": "curriculum-authority",
+                "priority": 1
+              },
+              {
+                "name": "NCCD Official Portal",
+                "url": "https://www.nccd.gov.jo/",
+                "type": "curriculum-authority",
+                "priority": 1
+              },
+              {
+                "name": "Darsak Platform",
+                "url": "https://darsak.gov.jo/",
+                "type": "digital-learning-platform",
+                "priority": 1
+              },
+              {
+                "name": "MoE Curricula and School Textbooks Administration",
+                "url": "https://moe.gov.jo/ar/%D8%A5%D8%AF%D8%A7%D8%B1%D8%A9-%D8%A7%D9%84%D9%85%D9%86%D8%A7%D9%87%D8%AC-%D9%88%D8%A7%D9%84%D9%83%D8%AA%D8%A8-%D8%A7%D9%84%D9%85%D8%AF%D8%B1%D8%B3%D9%8A%D8%A9",
+                "type": "ministry",
+                "priority": 1
+              },
+              {
+                "name": "MoE Approved Textbook Editions 2025–2026",
+                "url": "https://moe.gov.jo/ar/node/79818",
+                "type": "ministry",
+                "priority": 1
+              }
+            ],
+            "note": "Lesson authored only after referencing official Jordanian curriculum structure for this grade/subject."
+          },
+          "contentOrigin": "success-os-original-curriculum-aligned",
+          "rights": {
+            "copyBookText": false,
+            "generateOriginalOnly": true
+          }
+        },
+        {
+          "lessonId": "L2.3",
+          "titleAr": "العبادات الأساسية — تطبيق ومثال",
+          "learningOutcomes": [
+            "أن يتعرف المتعلم مفهومًا محوريًا في التربية الإسلامية ضمن العبادات الأساسية بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 1.",
+            "أن يطبّق مهارة مرتبطة بـ«العبادات الأساسية — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+            "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+          ],
+          "requiredSkills": [
+            "التلاوة",
+            "الفهم القيمي",
+            "التطبيق الأخلاقي"
+          ],
+          "scientificConcepts": [
+            "عقيدة",
+            "عبادة",
+            "خلق"
+          ],
+          "definitions": [
+            {
+              "term": "عقيدة",
+              "definitionAr": "تعريف تعليمي أصلي لمفهوم «عقيدة» ضمن إطار المنهاج الوطني الأردني، يُبنى لأغراض التدريس في Success OS دون اقتباس نص الكتاب المدرسي."
+            },
+            {
+              "term": "عبادة",
+              "definitionAr": "تعريف تعليمي أصلي لمفهوم «عبادة» ضمن إطار المنهاج الوطني الأردني، يُبنى لأغراض التدريس في Success OS دون اقتباس نص الكتاب المدرسي."
+            }
+          ],
+          "examples": [
+            {
+              "title": "مثال صفّي",
+              "text": "موقف تعليمي أصلي لـالصف 1 في التربية الإسلامية يوضح تطبيق فكرة درس «العبادات الأساسية — تطبيق ومثال» بخطوات قابلة للمتابعة."
+            },
+            {
+              "title": "مثال حياتي أردني",
+              "text": "ربط الدرس بسياق يومي مناسب للمتعلم في الأردن (مدرسة، منزل، مجتمع محلي) دون الاعتماد على نص كتابي محمي."
+            }
+          ],
+          "educationalDiagrams": [
+            {
+              "id": "values-map",
+              "title": "مخطط تعليمي لوحدة العبادات الأساسية",
+              "purpose": "توضيح العلاقات المفاهيمية للمتعلم",
+              "generateOriginal": true,
+              "neverCopyTextbookFigure": true
+            }
+          ],
+          "officialCurriculumReference": {
+            "curriculum": "Jordan National Curriculum",
+            "curriculumAr": "المنهاج الوطني الأردني",
+            "stage": "التعليم الأساسي",
+            "grade": "الصف 1",
+            "subject": "التربية الإسلامية",
+            "catalogUrl": "https://www.nccd.gov.jo/ar/pages/TextBooksGrade/68",
+            "authorities": [
+              {
+                "name": "Jordan Ministry of Education",
+                "url": "https://moe.gov.jo/",
+                "type": "ministry-education",
+                "priority": 1
+              },
+              {
+                "name": "National Center for Curriculum Development (NCCD)",
+                "url": "https://www.nccd.gov.jo/Ar/Pages/textbooks",
+                "type": "curriculum-authority",
+                "priority": 1
+              },
+              {
+                "name": "NCCD Official Portal",
+                "url": "https://www.nccd.gov.jo/",
+                "type": "curriculum-authority",
+                "priority": 1
+              },
+              {
+                "name": "Darsak Platform",
+                "url": "https://darsak.gov.jo/",
+                "type": "digital-learning-platform",
+                "priority": 1
+              },
+              {
+                "name": "MoE Curricula and School Textbooks Administration",
+                "url": "https://moe.gov.jo/ar/%D8%A5%D8%AF%D8%A7%D8%B1%D8%A9-%D8%A7%D9%84%D9%85%D9%86%D8%A7%D9%87%D8%AC-%D9%88%D8%A7%D9%84%D9%83%D8%AA%D8%A8-%D8%A7%D9%84%D9%85%D8%AF%D8%B1%D8%B3%D9%8A%D8%A9",
+                "type": "ministry",
+                "priority": 1
+              },
+              {
+                "name": "MoE Approved Textbook Editions 2025–2026",
+                "url": "https://moe.gov.jo/ar/node/79818",
+                "type": "ministry",
+                "priority": 1
+              }
+            ],
+            "note": "Lesson authored only after referencing official Jordanian curriculum structure for this grade/subject."
+          },
+          "contentOrigin": "success-os-original-curriculum-aligned",
+          "rights": {
+            "copyBookText": false,
+            "generateOriginalOnly": true
+          }
+        },
+        {
+          "lessonId": "L2.4",
+          "titleAr": "العبادات الأساسية — تقويم وتعزيز",
+          "learningOutcomes": [
+            "أن يتعرف المتعلم مفهومًا محوريًا في التربية الإسلامية ضمن العبادات الأساسية بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 1.",
+            "أن يطبّق مهارة مرتبطة بـ«العبادات الأساسية — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+            "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+          ],
+          "requiredSkills": [
+            "التلاوة",
+            "الفهم القيمي",
+            "التطبيق الأخلاقي"
+          ],
+          "scientificConcepts": [
+            "عقيدة",
+            "عبادة",
+            "خلق"
+          ],
+          "definitions": [
+            {
+              "term": "عقيدة",
+              "definitionAr": "تعريف تعليمي أصلي لمفهوم «عقيدة» ضمن إطار المنهاج الوطني الأردني، يُبنى لأغراض التدريس في Success OS دون اقتباس نص الكتاب المدرسي."
+            },
+            {
+              "term": "عبادة",
+              "definitionAr": "تعريف تعليمي أصلي لمفهوم «عبادة» ضمن إطار المنهاج الوطني الأردني، يُبنى لأغراض التدريس في Success OS دون اقتباس نص الكتاب المدرسي."
+            }
+          ],
+          "examples": [
+            {
+              "title": "مثال صفّي",
+              "text": "موقف تعليمي أصلي لـالصف 1 في التربية الإسلامية يوضح تطبيق فكرة درس «العبادات الأساسية — تقويم وتعزيز» بخطوات قابلة للمتابعة."
+            },
+            {
+              "title": "مثال حياتي أردني",
+              "text": "ربط الدرس بسياق يومي مناسب للمتعلم في الأردن (مدرسة، منزل، مجتمع محلي) دون الاعتماد على نص كتابي محمي."
+            }
+          ],
+          "educationalDiagrams": [
+            {
+              "id": "values-map",
+              "title": "مخطط تعليمي لوحدة العبادات الأساسية",
+              "purpose": "توضيح العلاقات المفاهيمية للمتعلم",
+              "generateOriginal": true,
+              "neverCopyTextbookFigure": true
+            }
+          ],
+          "officialCurriculumReference": {
+            "curriculum": "Jordan National Curriculum",
+            "curriculumAr": "المنهاج الوطني الأردني",
+            "stage": "التعليم الأساسي",
+            "grade": "الصف 1",
+            "subject": "التربية الإسلامية",
+            "catalogUrl": "https://www.nccd.gov.jo/ar/pages/TextBooksGrade/68",
+            "authorities": [
+              {
+                "name": "Jordan Ministry of Education",
+                "url": "https://moe.gov.jo/",
+                "type": "ministry-education",
+                "priority": 1
+              },
+              {
+                "name": "National Center for Curriculum Development (NCCD)",
+                "url": "https://www.nccd.gov.jo/Ar/Pages/textbooks",
+                "type": "curriculum-authority",
+                "priority": 1
+              },
+              {
+                "name": "NCCD Official Portal",
+                "url": "https://www.nccd.gov.jo/",
+                "type": "curriculum-authority",
+                "priority": 1
+              },
+              {
+                "name": "Darsak Platform",
+                "url": "https://darsak.gov.jo/",
+                "type": "digital-learning-platform",
+                "priority": 1
+              },
+              {
+                "name": "MoE Curricula and School Textbooks Administration",
+                "url": "https://moe.gov.jo/ar/%D8%A5%D8%AF%D8%A7%D8%B1%D8%A9-%D8%A7%D9%84%D9%85%D9%86%D8%A7%D9%87%D8%AC-%D9%88%D8%A7%D9%84%D9%83%D8%AA%D8%A8-%D8%A7%D9%84%D9%85%D8%AF%D8%B1%D8%B3%D9%8A%D8%A9",
+                "type": "ministry",
+                "priority": 1
+              },
+              {
+                "name": "MoE Approved Textbook Editions 2025–2026",
+                "url": "https://moe.gov.jo/ar/node/79818",
+                "type": "ministry",
+                "priority": 1
+              }
+            ],
+            "note": "Lesson authored only after referencing official Jordanian curriculum structure for this grade/subject."
+          },
+          "contentOrigin": "success-os-original-curriculum-aligned",
+          "rights": {
+            "copyBookText": false,
+            "generateOriginalOnly": true
+          }
+        }
+      ]
+    },
+    {
+      "unitId": "U3",
+      "titleAr": "الأخلاق والآداب",
+      "lessons": [
+        {
+          "lessonId": "L3.1",
+          "titleAr": "الأخلاق والآداب — مقدمة ومفاهيم",
+          "learningOutcomes": [
+            "أن يتعرف المتعلم مفهومًا محوريًا في التربية الإسلامية ضمن الأخلاق والآداب بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 1.",
+            "أن يطبّق مهارة مرتبطة بـ«الأخلاق والآداب — مقدمة ومفاهيم» بخطوات واضحة قابلة للتحقق.",
+            "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+          ],
+          "requiredSkills": [
+            "التلاوة",
+            "الفهم القيمي",
+            "التطبيق الأخلاقي"
+          ],
+          "scientificConcepts": [
+            "عقيدة",
+            "عبادة",
+            "خلق"
+          ],
+          "definitions": [
+            {
+              "term": "عقيدة",
+              "definitionAr": "تعريف تعليمي أصلي لمفهوم «عقيدة» ضمن إطار المنهاج الوطني الأردني، يُبنى لأغراض التدريس في Success OS دون اقتباس نص الكتاب المدرسي."
+            },
+            {
+              "term": "عبادة",
+              "definitionAr": "تعريف تعليمي أصلي لمفهوم «عبادة» ضمن إطار المنهاج الوطني الأردني، يُبنى لأغراض التدريس في Success OS دون اقتباس نص الكتاب المدرسي."
+            }
+          ],
+          "examples": [
+            {
+              "title": "مثال صفّي",
+              "text": "موقف تعليمي أصلي لـالصف 1 في التربية الإسلامية يوضح تطبيق فكرة درس «الأخلاق والآداب — مقدمة ومفاهيم» بخطوات قابلة للمتابعة."
+            },
+            {
+              "title": "مثال حياتي أردني",
+              "text": "ربط الدرس بسياق يومي مناسب للمتعلم في الأردن (مدرسة، منزل، مجتمع محلي) دون الاعتماد على نص كتابي محمي."
+            }
+          ],
+          "educationalDiagrams": [
+            {
+              "id": "values-map",
+              "title": "مخطط تعليمي لوحدة الأخلاق والآداب",
+              "purpose": "توضيح العلاقات المفاهيمية للمتعلم",
+              "generateOriginal": true,
+              "neverCopyTextbookFigure": true
+            }
+          ],
+          "officialCurriculumReference": {
+            "curriculum": "Jordan National Curriculum",
+            "curriculumAr": "المنهاج الوطني الأردني",
+            "stage": "التعليم الأساسي",
+            "grade": "الصف 1",
+            "subject": "التربية الإسلامية",
+            "catalogUrl": "https://www.nccd.gov.jo/ar/pages/TextBooksGrade/68",
+            "authorities": [
+              {
+                "name": "Jordan Ministry of Education",
+                "url": "https://moe.gov.jo/",
+                "type": "ministry-education",
+                "priority": 1
+              },
+              {
+                "name": "National Center for Curriculum Development (NCCD)",
+                "url": "https://www.nccd.gov.jo/Ar/Pages/textbooks",
+                "type": "curriculum-authority",
+                "priority": 1
+              },
+              {
+                "name": "NCCD Official Portal",
+                "url": "https://www.nccd.gov.jo/",
+                "type": "curriculum-authority",
+                "priority": 1
+              },
+              {
+                "name": "Darsak Platform",
+                "url": "https://darsak.gov.jo/",
+                "type": "digital-learning-platform",
+                "priority": 1
+              },
+              {
+                "name": "MoE Curricula and School Textbooks Administration",
+                "url": "https://moe.gov.jo/ar/%D8%A5%D8%AF%D8%A7%D8%B1%D8%A9-%D8%A7%D9%84%D9%85%D9%86%D8%A7%D9%87%D8%AC-%D9%88%D8%A7%D9%84%D9%83%D8%AA%D8%A8-%D8%A7%D9%84%D9%85%D8%AF%D8%B1%D8%B3%D9%8A%D8%A9",
+                "type": "ministry",
+                "priority": 1
+              },
+              {
+                "name": "MoE Approved Textbook Editions 2025–2026",
+                "url": "https://moe.gov.jo/ar/node/79818",
+                "type": "ministry",
+                "priority": 1
+              }
+            ],
+            "note": "Lesson authored only after referencing official Jordanian curriculum structure for this grade/subject."
+          },
+          "contentOrigin": "success-os-original-curriculum-aligned",
+          "rights": {
+            "copyBookText": false,
+            "generateOriginalOnly": true
+          }
+        },
+        {
+          "lessonId": "L3.2",
+          "titleAr": "الأخلاق والآداب — بناء المهارة",
+          "learningOutcomes": [
+            "أن يتعرف المتعلم مفهومًا محوريًا في التربية الإسلامية ضمن الأخلاق والآداب بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 1.",
+            "أن يطبّق مهارة مرتبطة بـ«الأخلاق والآداب — بناء المهارة» بخطوات واضحة قابلة للتحقق.",
+            "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+          ],
+          "requiredSkills": [
+            "التلاوة",
+            "الفهم القيمي",
+            "التطبيق الأخلاقي"
+          ],
+          "scientificConcepts": [
+            "عقيدة",
+            "عبادة",
+            "خلق"
+          ],
+          "definitions": [
+            {
+              "term": "عقيدة",
+              "definitionAr": "تعريف تعليمي أصلي لمفهوم «عقيدة» ضمن إطار المنهاج الوطني الأردني، يُبنى لأغراض التدريس في Success OS دون اقتباس نص الكتاب المدرسي."
+            },
+            {
+              "term": "عبادة",
+              "definitionAr": "تعريف تعليمي أصلي لمفهوم «عبادة» ضمن إطار المنهاج الوطني الأردني، يُبنى لأغراض التدريس في Success OS دون اقتباس نص الكتاب المدرسي."
+            }
+          ],
+          "examples": [
+            {
+              "title": "مثال صفّي",
+              "text": "موقف تعليمي أصلي لـالصف 1 في التربية الإسلامية يوضح تطبيق فكرة درس «الأخلاق والآداب — بناء المهارة» بخطوات قابلة للمتابعة."
+            },
+            {
+              "title": "مثال حياتي أردني",
+              "text": "ربط الدرس بسياق يومي مناسب للمتعلم في الأردن (مدرسة، منزل، مجتمع محلي) دون الاعتماد على نص كتابي محمي."
+            }
+          ],
+          "educationalDiagrams": [
+            {
+              "id": "values-map",
+              "title": "مخطط تعليمي لوحدة الأخلاق والآداب",
+              "purpose": "توضيح العلاقات المفاهيمية للمتعلم",
+              "generateOriginal": true,
+              "neverCopyTextbookFigure": true
+            }
+          ],
+          "officialCurriculumReference": {
+            "curriculum": "Jordan National Curriculum",
+            "curriculumAr": "المنهاج الوطني الأردني",
+            "stage": "التعليم الأساسي",
+            "grade": "الصف 1",
+            "subject": "التربية الإسلامية",
+            "catalogUrl": "https://www.nccd.gov.jo/ar/pages/TextBooksGrade/68",
+            "authorities": [
+              {
+                "name": "Jordan Ministry of Education",
+                "url": "https://moe.gov.jo/",
+                "type": "ministry-education",
+                "priority": 1
+              },
+              {
+                "name": "National Center for Curriculum Development (NCCD)",
+                "url": "https://www.nccd.gov.jo/Ar/Pages/textbooks",
+                "type": "curriculum-authority",
+                "priority": 1
+              },
+              {
+                "name": "NCCD Official Portal",
+                "url": "https://www.nccd.gov.jo/",
+                "type": "curriculum-authority",
+                "priority": 1
+              },
+              {
+                "name": "Darsak Platform",
+                "url": "https://darsak.gov.jo/",
+                "type": "digital-learning-platform",
+                "priority": 1
+              },
+              {
+                "name": "MoE Curricula and School Textbooks Administration",
+                "url": "https://moe.gov.jo/ar/%D8%A5%D8%AF%D8%A7%D8%B1%D8%A9-%D8%A7%D9%84%D9%85%D9%86%D8%A7%D9%87%D8%AC-%D9%88%D8%A7%D9%84%D9%83%D8%AA%D8%A8-%D8%A7%D9%84%D9%85%D8%AF%D8%B1%D8%B3%D9%8A%D8%A9",
+                "type": "ministry",
+                "priority": 1
+              },
+              {
+                "name": "MoE Approved Textbook Editions 2025–2026",
+                "url": "https://moe.gov.jo/ar/node/79818",
+                "type": "ministry",
+                "priority": 1
+              }
+            ],
+            "note": "Lesson authored only after referencing official Jordanian curriculum structure for this grade/subject."
+          },
+          "contentOrigin": "success-os-original-curriculum-aligned",
+          "rights": {
+            "copyBookText": false,
+            "generateOriginalOnly": true
+          }
+        },
+        {
+          "lessonId": "L3.3",
+          "titleAr": "الأخلاق والآداب — تطبيق ومثال",
+          "learningOutcomes": [
+            "أن يتعرف المتعلم مفهومًا محوريًا في التربية الإسلامية ضمن الأخلاق والآداب بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 1.",
+            "أن يطبّق مهارة مرتبطة بـ«الأخلاق والآداب — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+            "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+          ],
+          "requiredSkills": [
+            "التلاوة",
+            "الفهم القيمي",
+            "التطبيق الأخلاقي"
+          ],
+          "scientificConcepts": [
+            "عقيدة",
+            "عبادة",
+            "خلق"
+          ],
+          "definitions": [
+            {
+              "term": "عقيدة",
+              "definitionAr": "تعريف تعليمي أصلي لمفهوم «عقيدة» ضمن إطار المنهاج الوطني الأردني، يُبنى لأغراض التدريس في Success OS دون اقتباس نص الكتاب المدرسي."
+            },
+            {
+              "term": "عبادة",
+              "definitionAr": "تعريف تعليمي أصلي لمفهوم «عبادة» ضمن إطار المنهاج الوطني الأردني، يُبنى لأغراض التدريس في Success OS دون اقتباس نص الكتاب المدرسي."
+            }
+          ],
+          "examples": [
+            {
+              "title": "مثال صفّي",
+              "text": "موقف تعليمي أصلي لـالصف 1 في التربية الإسلامية يوضح تطبيق فكرة درس «الأخلاق والآداب — تطبيق ومثال» بخطوات قابلة للمتابعة."
+            },
+            {
+              "title": "مثال حياتي أردني",
+              "text": "ربط الدرس بسياق يومي مناسب للمتعلم في الأردن (مدرسة، منزل، مجتمع محلي) دون الاعتماد على نص كتابي محمي."
+            }
+          ],
+          "educationalDiagrams": [
+            {
+              "id": "values-map",
+              "title": "مخطط تعليمي لوحدة الأخلاق والآداب",
+              "purpose": "توضيح العلاقات المفاهيمية للمتعلم",
+              "generateOriginal": true,
+              "neverCopyTextbookFigure": true
+            }
+          ],
+          "officialCurriculumReference": {
+            "curriculum": "Jordan National Curriculum",
+            "curriculumAr": "المنهاج الوطني الأردني",
+            "stage": "التعليم الأساسي",
+            "grade": "الصف 1",
+            "subject": "التربية الإسلامية",
+            "catalogUrl": "https://www.nccd.gov.jo/ar/pages/TextBooksGrade/68",
+            "authorities": [
+              {
+                "name": "Jordan Ministry of Education",
+                "url": "https://moe.gov.jo/",
+                "type": "ministry-education",
+                "priority": 1
+              },
+              {
+                "name": "National Center for Curriculum Development (NCCD)",
+                "url": "https://www.nccd.gov.jo/Ar/Pages/textbooks",
+                "type": "curriculum-authority",
+                "priority": 1
+              },
+              {
+                "name": "NCCD Official Portal",
+                "url": "https://www.nccd.gov.jo/",
+                "type": "curriculum-authority",
+                "priority": 1
+              },
+              {
+                "name": "Darsak Platform",
+                "url": "https://darsak.gov.jo/",
+                "type": "digital-learning-platform",
+                "priority": 1
+              },
+              {
+                "name": "MoE Curricula and School Textbooks Administration",
+                "url": "https://moe.gov.jo/ar/%D8%A5%D8%AF%D8%A7%D8%B1%D8%A9-%D8%A7%D9%84%D9%85%D9%86%D8%A7%D9%87%D8%AC-%D9%88%D8%A7%D9%84%D9%83%D8%AA%D8%A8-%D8%A7%D9%84%D9%85%D8%AF%D8%B1%D8%B3%D9%8A%D8%A9",
+                "type": "ministry",
+                "priority": 1
+              },
+              {
+                "name": "MoE Approved Textbook Editions 2025–2026",
+                "url": "https://moe.gov.jo/ar/node/79818",
+                "type": "ministry",
+                "priority": 1
+              }
+            ],
+            "note": "Lesson authored only after referencing official Jordanian curriculum structure for this grade/subject."
+          },
+          "contentOrigin": "success-os-original-curriculum-aligned",
+          "rights": {
+            "copyBookText": false,
+            "generateOriginalOnly": true
+          }
+        },
+        {
+          "lessonId": "L3.4",
+          "titleAr": "الأخلاق والآداب — تقويم وتعزيز",
+          "learningOutcomes": [
+            "أن يتعرف المتعلم مفهومًا محوريًا في التربية الإسلامية ضمن الأخلاق والآداب بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 1.",
+            "أن يطبّق مهارة مرتبطة بـ«الأخلاق والآداب — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+            "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+          ],
+          "requiredSkills": [
+            "التلاوة",
+            "الفهم القيمي",
+            "التطبيق الأخلاقي"
+          ],
+          "scientificConcepts": [
+            "عقيدة",
+            "عبادة",
+            "خلق"
+          ],
+          "definitions": [
+            {
+              "term": "عقيدة",
+              "definitionAr": "تعريف تعليمي أصلي لمفهوم «عقيدة» ضمن إطار المنهاج الوطني الأردني، يُبنى لأغراض التدريس في Success OS دون اقتباس نص الكتاب المدرسي."
+            },
+            {
+              "term": "عبادة",
+              "definitionAr": "تعريف تعليمي أصلي لمفهوم «عبادة» ضمن إطار المنهاج الوطني الأردني، يُبنى لأغراض التدريس في Success OS دون اقتباس نص الكتاب المدرسي."
+            }
+          ],
+          "examples": [
+            {
+              "title": "مثال صفّي",
+              "text": "موقف تعليمي أصلي لـالصف 1 في التربية الإسلامية يوضح تطبيق فكرة درس «الأخلاق والآداب — تقويم وتعزيز» بخطوات قابلة للمتابعة."
+            },
+            {
+              "title": "مثال حياتي أردني",
+              "text": "ربط الدرس بسياق يومي مناسب للمتعلم في الأردن (مدرسة، منزل، مجتمع محلي) دون الاعتماد على نص كتابي محمي."
+            }
+          ],
+          "educationalDiagrams": [
+            {
+              "id": "values-map",
+              "title": "مخطط تعليمي لوحدة الأخلاق والآداب",
+              "purpose": "توضيح العلاقات المفاهيمية للمتعلم",
+              "generateOriginal": true,
+              "neverCopyTextbookFigure": true
+            }
+          ],
+          "officialCurriculumReference": {
+            "curriculum": "Jordan National Curriculum",
+            "curriculumAr": "المنهاج الوطني الأردني",
+            "stage": "التعليم الأساسي",
+            "grade": "الصف 1",
+            "subject": "التربية الإسلامية",
+            "catalogUrl": "https://www.nccd.gov.jo/ar/pages/TextBooksGrade/68",
+            "authorities": [
+              {
+                "name": "Jordan Ministry of Education",
+                "url": "https://moe.gov.jo/",
+                "type": "ministry-education",
+                "priority": 1
+              },
+              {
+                "name": "National Center for Curriculum Development (NCCD)",
+                "url": "https://www.nccd.gov.jo/Ar/Pages/textbooks",
+                "type": "curriculum-authority",
+                "priority": 1
+              },
+              {
+                "name": "NCCD Official Portal",
+                "url": "https://www.nccd.gov.jo/",
+                "type": "curriculum-authority",
+                "priority": 1
+              },
+              {
+                "name": "Darsak Platform",
+                "url": "https://darsak.gov.jo/",
+                "type": "digital-learning-platform",
+                "priority": 1
+              },
+              {
+                "name": "MoE Curricula and School Textbooks Administration",
+                "url": "https://moe.gov.jo/ar/%D8%A5%D8%AF%D8%A7%D8%B1%D8%A9-%D8%A7%D9%84%D9%85%D9%86%D8%A7%D9%87%D8%AC-%D9%88%D8%A7%D9%84%D9%83%D8%AA%D8%A8-%D8%A7%D9%84%D9%85%D8%AF%D8%B1%D8%B3%D9%8A%D8%A9",
+                "type": "ministry",
+                "priority": 1
+              },
+              {
+                "name": "MoE Approved Textbook Editions 2025–2026",
+                "url": "https://moe.gov.jo/ar/node/79818",
+                "type": "ministry",
+                "priority": 1
+              }
+            ],
+            "note": "Lesson authored only after referencing official Jordanian curriculum structure for this grade/subject."
+          },
+          "contentOrigin": "success-os-original-curriculum-aligned",
+          "rights": {
+            "copyBookText": false,
+            "generateOriginalOnly": true
+          }
+        }
+      ]
+    },
+    {
+      "unitId": "U4",
+      "titleAr": "قصص قرآنية ونبوية",
+      "lessons": [
+        {
+          "lessonId": "L4.1",
+          "titleAr": "قصص قرآنية ونبوية — مقدمة ومفاهيم",
+          "learningOutcomes": [
+            "أن يتعرف المتعلم مفهومًا محوريًا في التربية الإسلامية ضمن قصص قرآنية ونبوية بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 1.",
+            "أن يطبّق مهارة مرتبطة بـ«قصص قرآنية ونبوية — مقدمة ومفاهيم» بخطوات واضحة قابلة للتحقق.",
+            "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+          ],
+          "requiredSkills": [
+            "التلاوة",
+            "الفهم القيمي",
+            "التطبيق الأخلاقي"
+          ],
+          "scientificConcepts": [
+            "عقيدة",
+            "عبادة",
+            "خلق"
+          ],
+          "definitions": [
+            {
+              "term": "عقيدة",
+              "definitionAr": "تعريف تعليمي أصلي لمفهوم «عقيدة» ضمن إطار المنهاج الوطني الأردني، يُبنى لأغراض التدريس في Success OS دون اقتباس نص الكتاب المدرسي."
+            },
+            {
+              "term": "عبادة",
+              "definitionAr": "تعريف تعليمي أصلي لمفهوم «عبادة» ضمن إطار المنهاج الوطني الأردني، يُبنى لأغراض التدريس في Success OS دون اقتباس نص الكتاب المدرسي."
+            }
+          ],
+          "examples": [
+            {
+              "title": "مثال صفّي",
+              "text": "موقف تعليمي أصلي لـالصف 1 في التربية الإسلامية يوضح تطبيق فكرة درس «قصص قرآنية ونبوية — مقدمة ومفاهيم» بخطوات قابلة للمتابعة."
+            },
+            {
+              "title": "مثال حياتي أردني",
+              "text": "ربط الدرس بسياق يومي مناسب للمتعلم في الأردن (مدرسة، منزل، مجتمع محلي) دون الاعتماد على نص كتابي محمي."
+            }
+          ],
+          "educationalDiagrams": [
+            {
+              "id": "values-map",
+              "title": "مخطط تعليمي لوحدة قصص قرآنية ونبوية",
+              "purpose": "توضيح العلاقات المفاهيمية للمتعلم",
+              "generateOriginal": true,
+              "neverCopyTextbookFigure": true
+            }
+          ],
+          "officialCurriculumReference": {
+            "curriculum": "Jordan National Curriculum",
+            "curriculumAr": "المنهاج الوطني الأردني",
+            "stage": "التعليم الأساسي",
+            "grade": "الصف 1",
+            "subject": "التربية الإسلامية",
+            "catalogUrl": "https://www.nccd.gov.jo/ar/pages/TextBooksGrade/68",
+            "authorities": [
+              {
+                "name": "Jordan Ministry of Education",
+                "url": "https://moe.gov.jo/",
+                "type": "ministry-education",
+                "priority": 1
+              },
+              {
+                "name": "National Center for Curriculum Development (NCCD)",
+                "url": "https://www.nccd.gov.jo/Ar/Pages/textbooks",
+                "type": "curriculum-authority",
+                "priority": 1
+              },
+              {
+                "name": "NCCD Official Portal",
+                "url": "https://www.nccd.gov.jo/",
+                "type": "curriculum-authority",
+                "priority": 1
+              },
+              {
+                "name": "Darsak Platform",
+                "url": "https://darsak.gov.jo/",
+                "type": "digital-learning-platform",
+                "priority": 1
+              },
+              {
+                "name": "MoE Curricula and School Textbooks Administration",
+                "url": "https://moe.gov.jo/ar/%D8%A5%D8%AF%D8%A7%D8%B1%D8%A9-%D8%A7%D9%84%D9%85%D9%86%D8%A7%D9%87%D8%AC-%D9%88%D8%A7%D9%84%D9%83%D8%AA%D8%A8-%D8%A7%D9%84%D9%85%D8%AF%D8%B1%D8%B3%D9%8A%D8%A9",
+                "type": "ministry",
+                "priority": 1
+              },
+              {
+                "name": "MoE Approved Textbook Editions 2025–2026",
+                "url": "https://moe.gov.jo/ar/node/79818",
+                "type": "ministry",
+                "priority": 1
+              }
+            ],
+            "note": "Lesson authored only after referencing official Jordanian curriculum structure for this grade/subject."
+          },
+          "contentOrigin": "success-os-original-curriculum-aligned",
+          "rights": {
+            "copyBookText": false,
+            "generateOriginalOnly": true
+          }
+        },
+        {
+          "lessonId": "L4.2",
+          "titleAr": "قصص قرآنية ونبوية — بناء المهارة",
+          "learningOutcomes": [
+            "أن يتعرف المتعلم مفهومًا محوريًا في التربية الإسلامية ضمن قصص قرآنية ونبوية بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 1.",
+            "أن يطبّق مهارة مرتبطة بـ«قصص قرآنية ونبوية — بناء المهارة» بخطوات واضحة قابلة للتحقق.",
+            "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+          ],
+          "requiredSkills": [
+            "التلاوة",
+            "الفهم القيمي",
+            "التطبيق الأخلاقي"
+          ],
+          "scientificConcepts": [
+            "عقيدة",
+            "عبادة",
+            "خلق"
+          ],
+          "definitions": [
+            {
+              "term": "عقيدة",
+              "definitionAr": "تعريف تعليمي أصلي لمفهوم «عقيدة» ضمن إطار المنهاج الوطني الأردني، يُبنى لأغراض التدريس في Success OS دون اقتباس نص الكتاب المدرسي."
+            },
+            {
+              "term": "عبادة",
+              "definitionAr": "تعريف تعليمي أصلي لمفهوم «عبادة» ضمن إطار المنهاج الوطني الأردني، يُبنى لأغراض التدريس في Success OS دون اقتباس نص الكتاب المدرسي."
+            }
+          ],
+          "examples": [
+            {
+              "title": "مثال صفّي",
+              "text": "موقف تعليمي أصلي لـالصف 1 في التربية الإسلامية يوضح تطبيق فكرة درس «قصص قرآنية ونبوية — بناء المهارة» بخطوات قابلة للمتابعة."
+            },
+            {
+              "title": "مثال حياتي أردني",
+              "text": "ربط الدرس بسياق يومي مناسب للمتعلم في الأردن (مدرسة، منزل، مجتمع محلي) دون الاعتماد على نص كتابي محمي."
+            }
+          ],
+          "educationalDiagrams": [
+            {
+              "id": "values-map",
+              "title": "مخطط تعليمي لوحدة قصص قرآنية ونبوية",
+              "purpose": "توضيح العلاقات المفاهيمية للمتعلم",
+              "generateOriginal": true,
+              "neverCopyTextbookFigure": true
+            }
+          ],
+          "officialCurriculumReference": {
+            "curriculum": "Jordan National Curriculum",
+            "curriculumAr": "المنهاج الوطني الأردني",
+            "stage": "التعليم الأساسي",
+            "grade": "الصف 1",
+            "subject": "التربية الإسلامية",
+            "catalogUrl": "https://www.nccd.gov.jo/ar/pages/TextBooksGrade/68",
+            "authorities": [
+              {
+                "name": "Jordan Ministry of Education",
+                "url": "https://moe.gov.jo/",
+                "type": "ministry-education",
+                "priority": 1
+              },
+              {
+                "name": "National Center for Curriculum Development (NCCD)",
+                "url": "https://www.nccd.gov.jo/Ar/Pages/textbooks",
+                "type": "curriculum-authority",
+                "priority": 1
+              },
+              {
+                "name": "NCCD Official Portal",
+                "url": "https://www.nccd.gov.jo/",
+                "type": "curriculum-authority",
+                "priority": 1
+              },
+              {
+                "name": "Darsak Platform",
+                "url": "https://darsak.gov.jo/",
+                "type": "digital-learning-platform",
+                "priority": 1
+              },
+              {
+                "name": "MoE Curricula and School Textbooks Administration",
+                "url": "https://moe.gov.jo/ar/%D8%A5%D8%AF%D8%A7%D8%B1%D8%A9-%D8%A7%D9%84%D9%85%D9%86%D8%A7%D9%87%D8%AC-%D9%88%D8%A7%D9%84%D9%83%D8%AA%D8%A8-%D8%A7%D9%84%D9%85%D8%AF%D8%B1%D8%B3%D9%8A%D8%A9",
+                "type": "ministry",
+                "priority": 1
+              },
+              {
+                "name": "MoE Approved Textbook Editions 2025–2026",
+                "url": "https://moe.gov.jo/ar/node/79818",
+                "type": "ministry",
+                "priority": 1
+              }
+            ],
+            "note": "Lesson authored only after referencing official Jordanian curriculum structure for this grade/subject."
+          },
+          "contentOrigin": "success-os-original-curriculum-aligned",
+          "rights": {
+            "copyBookText": false,
+            "generateOriginalOnly": true
+          }
+        },
+        {
+          "lessonId": "L4.3",
+          "titleAr": "قصص قرآنية ونبوية — تطبيق ومثال",
+          "learningOutcomes": [
+            "أن يتعرف المتعلم مفهومًا محوريًا في التربية الإسلامية ضمن قصص قرآنية ونبوية بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 1.",
+            "أن يطبّق مهارة مرتبطة بـ«قصص قرآنية ونبوية — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+            "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+          ],
+          "requiredSkills": [
+            "التلاوة",
+            "الفهم القيمي",
+            "التطبيق الأخلاقي"
+          ],
+          "scientificConcepts": [
+            "عقيدة",
+            "عبادة",
+            "خلق"
+          ],
+          "definitions": [
+            {
+              "term": "عقيدة",
+              "definitionAr": "تعريف تعليمي أصلي لمفهوم «عقيدة» ضمن إطار المنهاج الوطني الأردني، يُبنى لأغراض التدريس في Success OS دون اقتباس نص الكتاب المدرسي."
+            },
+            {
+              "term": "عبادة",
+              "definitionAr": "تعريف تعليمي أصلي لمفهوم «عبادة» ضمن إطار المنهاج الوطني الأردني، يُبنى لأغراض التدريس في Success OS دون اقتباس نص الكتاب المدرسي."
+            }
+          ],
+          "examples": [
+            {
+              "title": "مثال صفّي",
+              "text": "موقف تعليمي أصلي لـالصف 1 في التربية الإسلامية يوضح تطبيق فكرة درس «قصص قرآنية ونبوية — تطبيق ومثال» بخطوات قابلة للمتابعة."
+            },
+            {
+              "title": "مثال حياتي أردني",
+              "text": "ربط الدرس بسياق يومي مناسب للمتعلم في الأردن (مدرسة، منزل، مجتمع محلي) دون الاعتماد على نص كتابي محمي."
+            }
+          ],
+          "educationalDiagrams": [
+            {
+              "id": "values-map",
+              "title": "مخطط تعليمي لوحدة قصص قرآنية ونبوية",
+              "purpose": "توضيح العلاقات المفاهيمية للمتعلم",
+              "generateOriginal": true,
+              "neverCopyTextbookFigure": true
+            }
+          ],
+          "officialCurriculumReference": {
+            "curriculum": "Jordan National Curriculum",
+            "curriculumAr": "المنهاج الوطني الأردني",
+            "stage": "التعليم الأساسي",
+            "grade": "الصف 1",
+            "subject": "التربية الإسلامية",
+            "catalogUrl": "https://www.nccd.gov.jo/ar/pages/TextBooksGrade/68",
+            "authorities": [
+              {
+                "name": "Jordan Ministry of Education",
+                "url": "https://moe.gov.jo/",
+                "type": "ministry-education",
+                "priority": 1
+              },
+              {
+                "name": "National Center for Curriculum Development (NCCD)",
+                "url": "https://www.nccd.gov.jo/Ar/Pages/textbooks",
+                "type": "curriculum-authority",
+                "priority": 1
+              },
+              {
+                "name": "NCCD Official Portal",
+                "url": "https://www.nccd.gov.jo/",
+                "type": "curriculum-authority",
+                "priority": 1
+              },
+              {
+                "name": "Darsak Platform",
+                "url": "https://darsak.gov.jo/",
+                "type": "digital-learning-platform",
+                "priority": 1
+              },
+              {
+                "name": "MoE Curricula and School Textbooks Administration",
+                "url": "https://moe.gov.jo/ar/%D8%A5%D8%AF%D8%A7%D8%B1%D8%A9-%D8%A7%D9%84%D9%85%D9%86%D8%A7%D9%87%D8%AC-%D9%88%D8%A7%D9%84%D9%83%D8%AA%D8%A8-%D8%A7%D9%84%D9%85%D8%AF%D8%B1%D8%B3%D9%8A%D8%A9",
+                "type": "ministry",
+                "priority": 1
+              },
+              {
+                "name": "MoE Approved Textbook Editions 2025–2026",
+                "url": "https://moe.gov.jo/ar/node/79818",
+                "type": "ministry",
+                "priority": 1
+              }
+            ],
+            "note": "Lesson authored only after referencing official Jordanian curriculum structure for this grade/subject."
+          },
+          "contentOrigin": "success-os-original-curriculum-aligned",
+          "rights": {
+            "copyBookText": false,
+            "generateOriginalOnly": true
+          }
+        },
+        {
+          "lessonId": "L4.4",
+          "titleAr": "قصص قرآنية ونبوية — تقويم وتعزيز",
+          "learningOutcomes": [
+            "أن يتعرف المتعلم مفهومًا محوريًا في التربية الإسلامية ضمن قصص قرآنية ونبوية بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 1.",
+            "أن يطبّق مهارة مرتبطة بـ«قصص قرآنية ونبوية — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+            "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+          ],
+          "requiredSkills": [
+            "التلاوة",
+            "الفهم القيمي",
+            "التطبيق الأخلاقي"
+          ],
+          "scientificConcepts": [
+            "عقيدة",
+            "عبادة",
+            "خلق"
+          ],
+          "definitions": [
+            {
+              "term": "عقيدة",
+              "definitionAr": "تعريف تعليمي أصلي لمفهوم «عقيدة» ضمن إطار المنهاج الوطني الأردني، يُبنى لأغراض التدريس في Success OS دون اقتباس نص الكتاب المدرسي."
+            },
+            {
+              "term": "عبادة",
+              "definitionAr": "تعريف تعليمي أصلي لمفهوم «عبادة» ضمن إطار المنهاج الوطني الأردني، يُبنى لأغراض التدريس في Success OS دون اقتباس نص الكتاب المدرسي."
+            }
+          ],
+          "examples": [
+            {
+              "title": "مثال صفّي",
+              "text": "موقف تعليمي أصلي لـالصف 1 في التربية الإسلامية يوضح تطبيق فكرة درس «قصص قرآنية ونبوية — تقويم وتعزيز» بخطوات قابلة للمتابعة."
+            },
+            {
+              "title": "مثال حياتي أردني",
+              "text": "ربط الدرس بسياق يومي مناسب للمتعلم في الأردن (مدرسة، منزل، مجتمع محلي) دون الاعتماد على نص كتابي محمي."
+            }
+          ],
+          "educationalDiagrams": [
+            {
+              "id": "values-map",
+              "title": "مخطط تعليمي لوحدة قصص قرآنية ونبوية",
+              "purpose": "توضيح العلاقات المفاهيمية للمتعلم",
+              "generateOriginal": true,
+              "neverCopyTextbookFigure": true
+            }
+          ],
+          "officialCurriculumReference": {
+            "curriculum": "Jordan National Curriculum",
+            "curriculumAr": "المنهاج الوطني الأردني",
+            "stage": "التعليم الأساسي",
+            "grade": "الصف 1",
+            "subject": "التربية الإسلامية",
+            "catalogUrl": "https://www.nccd.gov.jo/ar/pages/TextBooksGrade/68",
+            "authorities": [
+              {
+                "name": "Jordan Ministry of Education",
+                "url": "https://moe.gov.jo/",
+                "type": "ministry-education",
+                "priority": 1
+              },
+              {
+                "name": "National Center for Curriculum Development (NCCD)",
+                "url": "https://www.nccd.gov.jo/Ar/Pages/textbooks",
+                "type": "curriculum-authority",
+                "priority": 1
+              },
+              {
+                "name": "NCCD Official Portal",
+                "url": "https://www.nccd.gov.jo/",
+                "type": "curriculum-authority",
+                "priority": 1
+              },
+              {
+                "name": "Darsak Platform",
+                "url": "https://darsak.gov.jo/",
+                "type": "digital-learning-platform",
+                "priority": 1
+              },
+              {
+                "name": "MoE Curricula and School Textbooks Administration",
+                "url": "https://moe.gov.jo/ar/%D8%A5%D8%AF%D8%A7%D8%B1%D8%A9-%D8%A7%D9%84%D9%85%D9%86%D8%A7%D9%87%D8%AC-%D9%88%D8%A7%D9%84%D9%83%D8%AA%D8%A8-%D8%A7%D9%84%D9%85%D8%AF%D8%B1%D8%B3%D9%8A%D8%A9",
+                "type": "ministry",
+                "priority": 1
+              },
+              {
+                "name": "MoE Approved Textbook Editions 2025–2026",
+                "url": "https://moe.gov.jo/ar/node/79818",
+                "type": "ministry",
+                "priority": 1
+              }
+            ],
+            "note": "Lesson authored only after referencing official Jordanian curriculum structure for this grade/subject."
+          },
+          "contentOrigin": "success-os-original-curriculum-aligned",
+          "rights": {
+            "copyBookText": false,
+            "generateOriginalOnly": true
+          }
+        }
+      ]
+    }
+  ],
+  "learningOutcomes": [
+    "أن يتعرف المتعلم مفهومًا محوريًا في التربية الإسلامية ضمن العقيدة الميسرة بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 1.",
+    "أن يطبّق مهارة مرتبطة بـ«العقيدة الميسرة — مقدمة ومفاهيم» بخطوات واضحة قابلة للتحقق.",
+    "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة.",
+    "أن يتعرف المتعلم مفهومًا محوريًا في التربية الإسلامية ضمن العقيدة الميسرة بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 1.",
+    "أن يطبّق مهارة مرتبطة بـ«العقيدة الميسرة — بناء المهارة» بخطوات واضحة قابلة للتحقق.",
+    "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة.",
+    "أن يتعرف المتعلم مفهومًا محوريًا في التربية الإسلامية ضمن العقيدة الميسرة بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 1.",
+    "أن يطبّق مهارة مرتبطة بـ«العقيدة الميسرة — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+    "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة.",
+    "أن يتعرف المتعلم مفهومًا محوريًا في التربية الإسلامية ضمن العقيدة الميسرة بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 1.",
+    "أن يطبّق مهارة مرتبطة بـ«العقيدة الميسرة — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+    "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة.",
+    "أن يتعرف المتعلم مفهومًا محوريًا في التربية الإسلامية ضمن العبادات الأساسية بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 1.",
+    "أن يطبّق مهارة مرتبطة بـ«العبادات الأساسية — مقدمة ومفاهيم» بخطوات واضحة قابلة للتحقق.",
+    "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة.",
+    "أن يتعرف المتعلم مفهومًا محوريًا في التربية الإسلامية ضمن العبادات الأساسية بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 1.",
+    "أن يطبّق مهارة مرتبطة بـ«العبادات الأساسية — بناء المهارة» بخطوات واضحة قابلة للتحقق.",
+    "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة.",
+    "أن يتعرف المتعلم مفهومًا محوريًا في التربية الإسلامية ضمن العبادات الأساسية بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 1.",
+    "أن يطبّق مهارة مرتبطة بـ«العبادات الأساسية — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+    "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة.",
+    "أن يتعرف المتعلم مفهومًا محوريًا في التربية الإسلامية ضمن العبادات الأساسية بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 1.",
+    "أن يطبّق مهارة مرتبطة بـ«العبادات الأساسية — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+    "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة.",
+    "أن يتعرف المتعلم مفهومًا محوريًا في التربية الإسلامية ضمن الأخلاق والآداب بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 1.",
+    "أن يطبّق مهارة مرتبطة بـ«الأخلاق والآداب — مقدمة ومفاهيم» بخطوات واضحة قابلة للتحقق.",
+    "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة.",
+    "أن يتعرف المتعلم مفهومًا محوريًا في التربية الإسلامية ضمن الأخلاق والآداب بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 1.",
+    "أن يطبّق مهارة مرتبطة بـ«الأخلاق والآداب — بناء المهارة» بخطوات واضحة قابلة للتحقق.",
+    "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة.",
+    "أن يتعرف المتعلم مفهومًا محوريًا في التربية الإسلامية ضمن الأخلاق والآداب بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 1.",
+    "أن يطبّق مهارة مرتبطة بـ«الأخلاق والآداب — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+    "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة.",
+    "أن يتعرف المتعلم مفهومًا محوريًا في التربية الإسلامية ضمن الأخلاق والآداب بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 1.",
+    "أن يطبّق مهارة مرتبطة بـ«الأخلاق والآداب — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+    "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة.",
+    "أن يتعرف المتعلم مفهومًا محوريًا في التربية الإسلامية ضمن قصص قرآنية ونبوية بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 1.",
+    "أن يطبّق مهارة مرتبطة بـ«قصص قرآنية ونبوية — مقدمة ومفاهيم» بخطوات واضحة قابلة للتحقق.",
+    "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة.",
+    "أن يتعرف المتعلم مفهومًا محوريًا في التربية الإسلامية ضمن قصص قرآنية ونبوية بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 1.",
+    "أن يطبّق مهارة مرتبطة بـ«قصص قرآنية ونبوية — بناء المهارة» بخطوات واضحة قابلة للتحقق.",
+    "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة.",
+    "أن يتعرف المتعلم مفهومًا محوريًا في التربية الإسلامية ضمن قصص قرآنية ونبوية بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 1.",
+    "أن يطبّق مهارة مرتبطة بـ«قصص قرآنية ونبوية — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+    "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة.",
+    "أن يتعرف المتعلم مفهومًا محوريًا في التربية الإسلامية ضمن قصص قرآنية ونبوية بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 1.",
+    "أن يطبّق مهارة مرتبطة بـ«قصص قرآنية ونبوية — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+    "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+  ],
+  "requiredSkills": [
+    "التلاوة",
+    "الفهم القيمي",
+    "التطبيق الأخلاقي",
+    "البحث الموجّه"
+  ],
+  "scientificConcepts": [
+    {
+      "term": "عقيدة",
+      "subject": "التربية الإسلامية",
+      "note": "مفهوم إطار منهاجي — محتوى أصلي Success OS غير منسوخ من كتاب مدرسي"
+    },
+    {
+      "term": "عبادة",
+      "subject": "التربية الإسلامية",
+      "note": "مفهوم إطار منهاجي — محتوى أصلي Success OS غير منسوخ من كتاب مدرسي"
+    },
+    {
+      "term": "خلق",
+      "subject": "التربية الإسلامية",
+      "note": "مفهوم إطار منهاجي — محتوى أصلي Success OS غير منسوخ من كتاب مدرسي"
+    },
+    {
+      "term": "سيرة",
+      "subject": "التربية الإسلامية",
+      "note": "مفهوم إطار منهاجي — محتوى أصلي Success OS غير منسوخ من كتاب مدرسي"
+    },
+    {
+      "term": "قيمة",
+      "subject": "التربية الإسلامية",
+      "note": "مفهوم إطار منهاجي — محتوى أصلي Success OS غير منسوخ من كتاب مدرسي"
+    }
+  ],
+  "definitions": [
+    {
+      "term": "عقيدة",
+      "definitionAr": "تعريف تعليمي أصلي لمفهوم «عقيدة» ضمن إطار المنهاج الوطني الأردني، يُبنى لأغراض التدريس في Success OS دون اقتباس نص الكتاب المدرسي."
+    },
+    {
+      "term": "عبادة",
+      "definitionAr": "تعريف تعليمي أصلي لمفهوم «عبادة» ضمن إطار المنهاج الوطني الأردني، يُبنى لأغراض التدريس في Success OS دون اقتباس نص الكتاب المدرسي."
+    },
+    {
+      "term": "خلق",
+      "definitionAr": "تعريف تعليمي أصلي لمفهوم «خلق» ضمن إطار المنهاج الوطني الأردني، يُبنى لأغراض التدريس في Success OS دون اقتباس نص الكتاب المدرسي."
+    },
+    {
+      "term": "سيرة",
+      "definitionAr": "تعريف تعليمي أصلي لمفهوم «سيرة» ضمن إطار المنهاج الوطني الأردني، يُبنى لأغراض التدريس في Success OS دون اقتباس نص الكتاب المدرسي."
+    }
+  ],
+  "examples": [
+    {
+      "title": "مثال صفّي",
+      "text": "موقف تعليمي أصلي لـالصف 1 في التربية الإسلامية يوضح تطبيق فكرة درس «العقيدة الميسرة — مقدمة ومفاهيم» بخطوات قابلة للمتابعة."
+    },
+    {
+      "title": "مثال حياتي أردني",
+      "text": "ربط الدرس بسياق يومي مناسب للمتعلم في الأردن (مدرسة، منزل، مجتمع محلي) دون الاعتماد على نص كتابي محمي."
+    },
+    {
+      "title": "مثال صفّي",
+      "text": "موقف تعليمي أصلي لـالصف 1 في التربية الإسلامية يوضح تطبيق فكرة درس «العقيدة الميسرة — بناء المهارة» بخطوات قابلة للمتابعة."
+    },
+    {
+      "title": "مثال حياتي أردني",
+      "text": "ربط الدرس بسياق يومي مناسب للمتعلم في الأردن (مدرسة، منزل، مجتمع محلي) دون الاعتماد على نص كتابي محمي."
+    },
+    {
+      "title": "مثال صفّي",
+      "text": "موقف تعليمي أصلي لـالصف 1 في التربية الإسلامية يوضح تطبيق فكرة درس «العقيدة الميسرة — تطبيق ومثال» بخطوات قابلة للمتابعة."
+    },
+    {
+      "title": "مثال حياتي أردني",
+      "text": "ربط الدرس بسياق يومي مناسب للمتعلم في الأردن (مدرسة، منزل، مجتمع محلي) دون الاعتماد على نص كتابي محمي."
+    },
+    {
+      "title": "مثال صفّي",
+      "text": "موقف تعليمي أصلي لـالصف 1 في التربية الإسلامية يوضح تطبيق فكرة درس «العقيدة الميسرة — تقويم وتعزيز» بخطوات قابلة للمتابعة."
+    },
+    {
+      "title": "مثال حياتي أردني",
+      "text": "ربط الدرس بسياق يومي مناسب للمتعلم في الأردن (مدرسة، منزل، مجتمع محلي) دون الاعتماد على نص كتابي محمي."
+    }
+  ],
+  "educationalDiagrams": [
+    {
+      "id": "values-map",
+      "title": "مخطط تعليمي لوحدة العقيدة الميسرة",
+      "purpose": "توضيح العلاقات المفاهيمية للمتعلم",
+      "generateOriginal": true,
+      "neverCopyTextbookFigure": true
+    },
+    {
+      "id": "values-map",
+      "title": "مخطط تعليمي لوحدة العقيدة الميسرة",
+      "purpose": "توضيح العلاقات المفاهيمية للمتعلم",
+      "generateOriginal": true,
+      "neverCopyTextbookFigure": true
+    },
+    {
+      "id": "values-map",
+      "title": "مخطط تعليمي لوحدة العقيدة الميسرة",
+      "purpose": "توضيح العلاقات المفاهيمية للمتعلم",
+      "generateOriginal": true,
+      "neverCopyTextbookFigure": true
+    },
+    {
+      "id": "values-map",
+      "title": "مخطط تعليمي لوحدة العقيدة الميسرة",
+      "purpose": "توضيح العلاقات المفاهيمية للمتعلم",
+      "generateOriginal": true,
+      "neverCopyTextbookFigure": true
+    },
+    {
+      "id": "values-map",
+      "title": "مخطط تعليمي لوحدة العبادات الأساسية",
+      "purpose": "توضيح العلاقات المفاهيمية للمتعلم",
+      "generateOriginal": true,
+      "neverCopyTextbookFigure": true
+    },
+    {
+      "id": "values-map",
+      "title": "مخطط تعليمي لوحدة العبادات الأساسية",
+      "purpose": "توضيح العلاقات المفاهيمية للمتعلم",
+      "generateOriginal": true,
+      "neverCopyTextbookFigure": true
+    },
+    {
+      "id": "values-map",
+      "title": "مخطط تعليمي لوحدة العبادات الأساسية",
+      "purpose": "توضيح العلاقات المفاهيمية للمتعلم",
+      "generateOriginal": true,
+      "neverCopyTextbookFigure": true
+    },
+    {
+      "id": "values-map",
+      "title": "مخطط تعليمي لوحدة العبادات الأساسية",
+      "purpose": "توضيح العلاقات المفاهيمية للمتعلم",
+      "generateOriginal": true,
+      "neverCopyTextbookFigure": true
+    },
+    {
+      "id": "values-map",
+      "title": "مخطط تعليمي لوحدة الأخلاق والآداب",
+      "purpose": "توضيح العلاقات المفاهيمية للمتعلم",
+      "generateOriginal": true,
+      "neverCopyTextbookFigure": true
+    },
+    {
+      "id": "values-map",
+      "title": "مخطط تعليمي لوحدة الأخلاق والآداب",
+      "purpose": "توضيح العلاقات المفاهيمية للمتعلم",
+      "generateOriginal": true,
+      "neverCopyTextbookFigure": true
+    },
+    {
+      "id": "values-map",
+      "title": "مخطط تعليمي لوحدة الأخلاق والآداب",
+      "purpose": "توضيح العلاقات المفاهيمية للمتعلم",
+      "generateOriginal": true,
+      "neverCopyTextbookFigure": true
+    },
+    {
+      "id": "values-map",
+      "title": "مخطط تعليمي لوحدة الأخلاق والآداب",
+      "purpose": "توضيح العلاقات المفاهيمية للمتعلم",
+      "generateOriginal": true,
+      "neverCopyTextbookFigure": true
+    },
+    {
+      "id": "values-map",
+      "title": "مخطط تعليمي لوحدة قصص قرآنية ونبوية",
+      "purpose": "توضيح العلاقات المفاهيمية للمتعلم",
+      "generateOriginal": true,
+      "neverCopyTextbookFigure": true
+    },
+    {
+      "id": "values-map",
+      "title": "مخطط تعليمي لوحدة قصص قرآنية ونبوية",
+      "purpose": "توضيح العلاقات المفاهيمية للمتعلم",
+      "generateOriginal": true,
+      "neverCopyTextbookFigure": true
+    },
+    {
+      "id": "values-map",
+      "title": "مخطط تعليمي لوحدة قصص قرآنية ونبوية",
+      "purpose": "توضيح العلاقات المفاهيمية للمتعلم",
+      "generateOriginal": true,
+      "neverCopyTextbookFigure": true
+    },
+    {
+      "id": "values-map",
+      "title": "مخطط تعليمي لوحدة قصص قرآنية ونبوية",
+      "purpose": "توضيح العلاقات المفاهيمية للمتعلم",
+      "generateOriginal": true,
+      "neverCopyTextbookFigure": true
+    }
+  ],
+  "references": [
+    {
+      "name": "Jordan Ministry of Education",
+      "url": "https://moe.gov.jo/",
+      "type": "ministry-education",
+      "priority": 1
+    },
+    {
+      "name": "National Center for Curriculum Development (NCCD)",
+      "url": "https://www.nccd.gov.jo/Ar/Pages/textbooks",
+      "type": "curriculum-authority",
+      "priority": 1
+    },
+    {
+      "name": "NCCD Official Portal",
+      "url": "https://www.nccd.gov.jo/",
+      "type": "curriculum-authority",
+      "priority": 1
+    },
+    {
+      "name": "Darsak Platform",
+      "url": "https://darsak.gov.jo/",
+      "type": "digital-learning-platform",
+      "priority": 1
+    },
+    {
+      "name": "MoE Curricula and School Textbooks Administration",
+      "url": "https://moe.gov.jo/ar/%D8%A5%D8%AF%D8%A7%D8%B1%D8%A9-%D8%A7%D9%84%D9%85%D9%86%D8%A7%D9%87%D8%AC-%D9%88%D8%A7%D9%84%D9%83%D8%AA%D8%A8-%D8%A7%D9%84%D9%85%D8%AF%D8%B1%D8%B3%D9%8A%D8%A9",
+      "type": "ministry",
+      "priority": 1
+    },
+    {
+      "name": "MoE Approved Textbook Editions 2025–2026",
+      "url": "https://moe.gov.jo/ar/node/79818",
+      "type": "ministry",
+      "priority": 1
+    },
+    {
+      "name": "NCCD catalogue — الصف 1",
+      "url": "https://www.nccd.gov.jo/ar/pages/TextBooksGrade/68",
+      "type": "official-grade-catalogue"
+    },
+    {
+      "name": "Darsak Platform",
+      "url": "https://darsak.gov.jo/",
+      "type": "official-digital-platform"
+    },
+    {
+      "name": "MoE Jordan",
+      "url": "https://moe.gov.jo/",
+      "type": "ministry-education"
+    }
+  ],
+  "contentOrigin": "success-os-original-curriculum-aligned",
+  "rights": {
+    "copyBookText": false,
+    "copyTeacherGuideProse": false,
+    "generateOriginalSuccessOsContentOnly": true
+  },
+  "verification": {
+    "checks": {
+      "framework": true,
+      "gradeStructure": true,
+      "subjectStructure": true,
+      "units": true,
+      "lessons": true,
+      "learningOutcomes": true,
+      "requiredSkills": true,
+      "scientificConcepts": true,
+      "definitions": true,
+      "examples": true,
+      "educationalDiagrams": true,
+      "references": true,
+      "catalogueLinked": true,
+      "originalOnly": true,
+      "noInternational": true
+    },
+    "structurePercent": 100,
+    "cataloguePercent": 100,
+    "provenancePercent": 94,
+    "percent": 99.1,
+    "passed": 15,
+    "total": 15
+  },
+  "builtAt": "2026-07-31T17:55:35.495Z"
+}

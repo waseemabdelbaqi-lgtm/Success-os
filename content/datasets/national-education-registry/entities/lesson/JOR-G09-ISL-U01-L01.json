@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-G09-ISL-U01-L01",
+  "kind": "lesson",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "الفقه المبسط — مقدمة ومفاهيم",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G09-ISL-U01",
+  "relationships": {
+    "unitId": "JOR-G09-ISL-U01",
+    "bookId": "JOR-BOOK-000097",
+    "subjectId": "JOR-G09-ISL",
+    "gradeId": "JOR-G09",
+    "belongsTo": "JOR-G09-ISL-U01"
+  },
+  "createdAt": "2026-07-31T17:56:57.139Z",
+  "updatedAt": "2026-07-31T17:56:57.139Z",
+  "lessonCode": "L01",
+  "sequence": 1,
+  "legacyLessonId": "L1.1",
+  "keywords": [
+    "عقيدة",
+    "عبادة",
+    "خلق"
+  ]
+}

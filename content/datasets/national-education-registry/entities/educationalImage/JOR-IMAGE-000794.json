@@ -1,0 +1,17 @@
+{
+  "globalId": "JOR-IMAGE-000794",
+  "kind": "educationalImage",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "مخطط تعليمي لوحدة الرسم والوسائط",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G04-ICT-U03-L02",
+  "relationships": {
+    "lessonId": "JOR-G04-ICT-U03-L02",
+    "belongsTo": "JOR-G04-ICT-U03-L02"
+  },
+  "createdAt": "2026-07-31T17:56:56.830Z",
+  "updatedAt": "2026-07-31T17:56:56.830Z",
+  "src": null
+}

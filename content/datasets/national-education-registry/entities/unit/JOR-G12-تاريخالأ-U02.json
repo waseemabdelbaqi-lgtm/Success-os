@@ -1,0 +1,21 @@
+{
+  "globalId": "JOR-G12-تاريخالأ-U02",
+  "kind": "unit",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "القضايا التاريخية",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-BOOK-000126",
+  "relationships": {
+    "bookId": "JOR-BOOK-000126",
+    "subjectId": "JOR-G12-تاريخالأ",
+    "gradeId": "JOR-G12",
+    "belongsTo": "JOR-BOOK-000126"
+  },
+  "createdAt": "2026-07-31T17:56:57.381Z",
+  "updatedAt": "2026-07-31T17:56:57.381Z",
+  "unitCode": "U02",
+  "sequence": 2,
+  "legacyUnitId": "U2"
+}

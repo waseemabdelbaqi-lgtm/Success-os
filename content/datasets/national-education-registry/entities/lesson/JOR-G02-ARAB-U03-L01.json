@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-G02-ARAB-U03-L01",
+  "kind": "lesson",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "القواعد الأساسية — مقدمة ومفاهيم",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G02-ARAB-U03",
+  "relationships": {
+    "unitId": "JOR-G02-ARAB-U03",
+    "bookId": "JOR-BOOK-000030",
+    "subjectId": "JOR-G02-ARAB",
+    "gradeId": "JOR-G02",
+    "belongsTo": "JOR-G02-ARAB-U03"
+  },
+  "createdAt": "2026-07-31T17:56:56.763Z",
+  "updatedAt": "2026-07-31T17:56:56.763Z",
+  "lessonCode": "L01",
+  "sequence": 1,
+  "legacyLessonId": "L3.1",
+  "keywords": [
+    "نص",
+    "معنى",
+    "أسلوب"
+  ]
+}

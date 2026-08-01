@@ -1,0 +1,29 @@
+{
+  "globalId": "JOR-SKILL-000772",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«أسس علمية متكاملة — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-005482",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-005482",
+      "JOR-OUTCOME-005483",
+      "JOR-OUTCOME-005484",
+      "JOR-OUTCOME-005946",
+      "JOR-OUTCOME-005947",
+      "JOR-OUTCOME-005948",
+      "JOR-OUTCOME-006644",
+      "JOR-OUTCOME-006996"
+    ],
+    "lessonIds": [
+      "JOR-G11-SCI-U01-L04",
+      "JOR-G12-SCI-U01-L04"
+    ],
+    "belongsTo": "JOR-OUTCOME-005482"
+  },
+  "createdAt": "2026-07-31T17:56:57.254Z",
+  "updatedAt": "2026-07-31T17:56:57.546Z"
+}

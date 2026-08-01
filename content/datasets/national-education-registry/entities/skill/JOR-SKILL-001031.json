@@ -1,0 +1,23 @@
+{
+  "globalId": "JOR-SKILL-001031",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«الحواس والملاحظة — بناء المهارة» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-007072",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-007072",
+      "JOR-OUTCOME-007073",
+      "JOR-OUTCOME-007074"
+    ],
+    "lessonIds": [
+      "JOR-GKG-SCI-U02-L02"
+    ],
+    "belongsTo": "JOR-OUTCOME-007072"
+  },
+  "createdAt": "2026-07-31T17:56:57.571Z",
+  "updatedAt": "2026-07-31T17:56:57.571Z"
+}

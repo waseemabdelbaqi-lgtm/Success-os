@@ -1,0 +1,51 @@
+{
+  "globalId": "JOR-SKILL-000964",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يتعرف المتعلم مفهومًا محوريًا في الزراعة ضمن أساسيات المسار بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 11.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-006401",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-006401",
+      "JOR-OUTCOME-006402",
+      "JOR-OUTCOME-006403",
+      "JOR-OUTCOME-006404",
+      "JOR-OUTCOME-006405",
+      "JOR-OUTCOME-006406",
+      "JOR-OUTCOME-006407",
+      "JOR-OUTCOME-006408",
+      "JOR-OUTCOME-006409",
+      "JOR-OUTCOME-006410",
+      "JOR-OUTCOME-006411",
+      "JOR-OUTCOME-006412",
+      "JOR-OUTCOME-006753",
+      "JOR-OUTCOME-006754",
+      "JOR-OUTCOME-006755",
+      "JOR-OUTCOME-006756",
+      "JOR-OUTCOME-006757",
+      "JOR-OUTCOME-006758",
+      "JOR-OUTCOME-006759",
+      "JOR-OUTCOME-006760",
+      "JOR-OUTCOME-006761",
+      "JOR-OUTCOME-006762",
+      "JOR-OUTCOME-006763",
+      "JOR-OUTCOME-006764"
+    ],
+    "lessonIds": [
+      "JOR-G11-الزراعة-U01-L01",
+      "JOR-G11-الزراعة-U01-L02",
+      "JOR-G11-الزراعة-U01-L03",
+      "JOR-G11-الزراعة-U01-L04",
+      "JOR-G12-الزراعة-U01-L01",
+      "JOR-G12-الزراعة-U01-L02",
+      "JOR-G12-الزراعة-U01-L03",
+      "JOR-G12-الزراعة-U01-L04"
+    ],
+    "belongsTo": "JOR-OUTCOME-006401"
+  },
+  "createdAt": "2026-07-31T17:56:57.409Z",
+  "updatedAt": "2026-07-31T17:56:57.491Z"
+}

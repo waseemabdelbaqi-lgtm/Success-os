@@ -1,0 +1,21 @@
+{
+  "globalId": "JOR-G02-ENG-U02",
+  "kind": "unit",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "Phonics & Vocabulary",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-BOOK-000029",
+  "relationships": {
+    "bookId": "JOR-BOOK-000029",
+    "subjectId": "JOR-G02-ENG",
+    "gradeId": "JOR-G02",
+    "belongsTo": "JOR-BOOK-000029"
+  },
+  "createdAt": "2026-07-31T17:56:56.759Z",
+  "updatedAt": "2026-07-31T17:56:56.759Z",
+  "unitCode": "U02",
+  "sequence": 2,
+  "legacyUnitId": "U2"
+}

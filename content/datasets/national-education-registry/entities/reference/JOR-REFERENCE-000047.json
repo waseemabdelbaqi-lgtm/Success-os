@@ -1,0 +1,21 @@
+{
+  "globalId": "JOR-REFERENCE-000047",
+  "kind": "reference",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "Success OS Original Educational Images Policy",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-SYS-000001",
+  "relationships": {
+    "educationalSystemId": "JOR-SYS-000001",
+    "lessonIds": [],
+    "belongsTo": "JOR-SYS-000001"
+  },
+  "createdAt": "2026-07-31T17:56:57.599Z",
+  "updatedAt": "2026-07-31T17:56:57.599Z",
+  "url": "https://moe.gov.jo",
+  "publisher": "Success OS",
+  "category": "Educational Images",
+  "legacySourceId": "jo-ref-success-os-original-images"
+}

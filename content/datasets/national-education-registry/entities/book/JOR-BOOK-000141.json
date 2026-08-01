@@ -1,0 +1,19 @@
+{
+  "globalId": "JOR-BOOK-000141",
+  "kind": "book",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "Success OS — الهندسة",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G12-الهندسة",
+  "relationships": {
+    "subjectId": "JOR-G12-الهندسة",
+    "gradeId": "JOR-G12",
+    "belongsTo": "JOR-G12-الهندسة"
+  },
+  "createdAt": "2026-07-31T17:56:57.533Z",
+  "updatedAt": "2026-07-31T17:56:57.533Z",
+  "legacyBookId": "jordan__التعليم-الثانوي-المسار-المهني-btec__jordan-national-curriculum__الصف-12__الهندسة__ar",
+  "officialSource": "https://www.nccd.gov.jo/ar/pages/TextBooksGrade/83"
+}

@@ -23,14 +23,47 @@ const grades=[
  ['التعليم الثانوي — المسار الأكاديمي','الصف 12','https://www.nccd.gov.jo/ar/pages/TextBooksGrade/83']
 ];
 
+/** NCCD-reviewed subject list (Grade 1 catalogue). */
 const gradeOne=['اللغة العربية','اللغة الإنجليزية','الرياضيات','العلوم','التربية الإسلامية','الدراسات الاجتماعية','المهارات الرقمية','التربية الرياضية','التربية الفنية والموسيقية والمسرحية'];
+/** Lower basic (2–4): same core set as Grade 1 until per-grade NCCD subject review lands. */
+const lowerBasic=gradeOne;
+/** Mid basic (5–7): national-profile band — adds civics, vocational, finance; arts as الفنون. */
+const midBasic=['اللغة العربية','اللغة الإنجليزية','الرياضيات','العلوم','التربية الإسلامية','الدراسات الاجتماعية','التربية الوطنية والمدنية','المهارات الرقمية','التربية المهنية','الثقافة المالية','الفنون','التربية الرياضية'];
+/** Upper basic (8–10): adds history + geography as distinct subjects. */
+const upperBasic=['اللغة العربية','اللغة الإنجليزية','الرياضيات','العلوم','التربية الإسلامية','الدراسات الاجتماعية','التربية الوطنية والمدنية','التاريخ','الجغرافيا','المهارات الرقمية','التربية المهنية','الثقافة المالية','الفنون','التربية الرياضية'];
+/** NCCD-reviewed subject list (Grade 11 academic track). Grade 12 uses the same academic core. */
 const gradeEleven=['اللغة العربية','اللغة الإنجليزية','الرياضيات','الفيزياء','الكيمياء','العلوم الحياتية','علوم الأرض والبيئة','المهارات الرقمية','التربية الإسلامية','تاريخ الأردن'];
+const secondaryAcademic=gradeEleven;
+
+function gradeNumber(grade){
+ const m=String(grade||'').match(/(\d+)/);
+ return m?Number(m[1]):0;
+}
+
+/** Band-aware subject list for academic Jordan grades 1–12. */
+export function jordanSubjectsForGrade(grade){
+ const n=gradeNumber(grade);
+ if(n>=1&&n<=4)return [...lowerBasic];
+ if(n>=5&&n<=7)return [...midBasic];
+ if(n>=8&&n<=10)return [...upperBasic];
+ if(n>=11&&n<=12)return [...secondaryAcademic];
+ return [];
+}
+
+function catalogueStatusFor(grade){
+ if(grade==='الصف 1'||grade==='الصف 11')return 'subject-list-verified';
+ if(grade==='الصف 12')return 'subject-list-aligned-to-g11-verified';
+ if(gradeNumber(grade)>=2&&gradeNumber(grade)<=10)return 'official-nccd-url-national-profile-aligned';
+ return 'official-page-identified-pending-subject-review';
+}
 
 export const jordanGradeRegistry=grades.map(([stage,grade,source])=>({
  stage,grade,semesters:['الفصل الدراسي الأول','الفصل الدراسي الثاني'],officialCatalogUrl:source,
- subjects:grade==='الصف 1'?gradeOne:grade==='الصف 11'?gradeEleven:[],
- catalogueStatus:grade==='الصف 1'||grade==='الصف 11'?'subject-list-verified':'official-page-identified-pending-subject-review',
- baselineStatus:'missing',booksCreated:0,coveragePercentage:0,verificationStatus:'missing-content'
+ subjects:jordanSubjectsForGrade(grade),
+ catalogueStatus:catalogueStatusFor(grade),
+ baselineStatus:grade==='الصف 1'?'reference-sample':'framework-scaffold',
+ booksCreated:0,coveragePercentage:0,
+ verificationStatus:grade==='الصف 1'?'g1-reference-verified':grade==='الصف 11'?'subject-list-verified':'framework-aligned-pending-baseline'
 }));
 
 export function jordanGrade(grade){return jordanGradeRegistry.find(item=>item.grade===grade)||null}

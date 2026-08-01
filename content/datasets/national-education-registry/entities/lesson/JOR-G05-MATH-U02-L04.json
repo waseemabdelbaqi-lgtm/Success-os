@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-G05-MATH-U02-L04",
+  "kind": "lesson",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "الأعداد العشرية والنسب — تقويم وتعزيز",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G05-MATH-U02",
+  "relationships": {
+    "unitId": "JOR-G05-MATH-U02",
+    "bookId": "JOR-BOOK-000055",
+    "subjectId": "JOR-G05-MATH",
+    "gradeId": "JOR-G05",
+    "belongsTo": "JOR-G05-MATH-U02"
+  },
+  "createdAt": "2026-07-31T17:56:56.861Z",
+  "updatedAt": "2026-07-31T17:56:56.861Z",
+  "lessonCode": "L04",
+  "sequence": 4,
+  "legacyLessonId": "L2.4",
+  "keywords": [
+    "عدد",
+    "عملية",
+    "نمط"
+  ]
+}

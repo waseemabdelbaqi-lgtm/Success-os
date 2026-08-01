@@ -1,0 +1,17 @@
+{
+  "globalId": "JOR-IMAGE-001501",
+  "kind": "educationalImage",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "مخطط تعليمي لوحدة المواطنة الفاعلة",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G08-SOC-U04-L01",
+  "relationships": {
+    "lessonId": "JOR-G08-SOC-U04-L01",
+    "belongsTo": "JOR-G08-SOC-U04-L01"
+  },
+  "createdAt": "2026-07-31T17:56:57.087Z",
+  "updatedAt": "2026-07-31T17:56:57.087Z",
+  "src": null
+}

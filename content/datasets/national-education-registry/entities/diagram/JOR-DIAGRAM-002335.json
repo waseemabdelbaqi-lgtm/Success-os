@@ -1,0 +1,16 @@
+{
+  "globalId": "JOR-DIAGRAM-002335",
+  "kind": "diagram",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "مخطط تعليمي لوحدة مشروع تطبيقي",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G12-الضيافة-U04-L03",
+  "relationships": {
+    "lessonId": "JOR-G12-الضيافة-U04-L03",
+    "belongsTo": "JOR-G12-الضيافة-U04-L03"
+  },
+  "createdAt": "2026-07-31T17:56:57.520Z",
+  "updatedAt": "2026-07-31T17:56:57.520Z"
+}

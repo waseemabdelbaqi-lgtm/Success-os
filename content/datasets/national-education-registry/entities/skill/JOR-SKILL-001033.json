@@ -1,0 +1,23 @@
+{
+  "globalId": "JOR-SKILL-001033",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«الحواس والملاحظة — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-007078",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-007078",
+      "JOR-OUTCOME-007079",
+      "JOR-OUTCOME-007080"
+    ],
+    "lessonIds": [
+      "JOR-GKG-SCI-U02-L04"
+    ],
+    "belongsTo": "JOR-OUTCOME-007078"
+  },
+  "createdAt": "2026-07-31T17:56:57.573Z",
+  "updatedAt": "2026-07-31T17:56:57.573Z"
+}

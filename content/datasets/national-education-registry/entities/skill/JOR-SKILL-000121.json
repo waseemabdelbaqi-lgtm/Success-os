@@ -1,0 +1,31 @@
+{
+  "globalId": "JOR-SKILL-000121",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«الميزانية الشخصية — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-000234",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-000234",
+      "JOR-OUTCOME-000235",
+      "JOR-OUTCOME-000236",
+      "JOR-OUTCOME-004298",
+      "JOR-OUTCOME-004299",
+      "JOR-OUTCOME-004300",
+      "JOR-OUTCOME-004954",
+      "JOR-OUTCOME-004955",
+      "JOR-OUTCOME-004956"
+    ],
+    "lessonIds": [
+      "JOR-G10-الثقافةا-U01-L04",
+      "JOR-G08-الثقافةا-U01-L04",
+      "JOR-G09-الثقافةا-U01-L04"
+    ],
+    "belongsTo": "JOR-OUTCOME-000234"
+  },
+  "createdAt": "2026-07-31T17:56:56.695Z",
+  "updatedAt": "2026-07-31T17:56:57.169Z"
+}

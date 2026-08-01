@@ -1,0 +1,31 @@
+{
+  "globalId": "JOR-SKILL-000131",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«مخاطر الاحتيال — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-000267",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-000267",
+      "JOR-OUTCOME-000268",
+      "JOR-OUTCOME-000269",
+      "JOR-OUTCOME-004331",
+      "JOR-OUTCOME-004332",
+      "JOR-OUTCOME-004333",
+      "JOR-OUTCOME-004987",
+      "JOR-OUTCOME-004988",
+      "JOR-OUTCOME-004989"
+    ],
+    "lessonIds": [
+      "JOR-G10-الثقافةا-U04-L03",
+      "JOR-G08-الثقافةا-U04-L03",
+      "JOR-G09-الثقافةا-U04-L03"
+    ],
+    "belongsTo": "JOR-OUTCOME-000267"
+  },
+  "createdAt": "2026-07-31T17:56:56.696Z",
+  "updatedAt": "2026-07-31T17:56:57.174Z"
+}

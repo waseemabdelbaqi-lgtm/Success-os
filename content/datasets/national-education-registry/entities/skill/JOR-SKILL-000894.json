@@ -1,0 +1,51 @@
+{
+  "globalId": "JOR-SKILL-000894",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يتعرف المتعلم مفهومًا محوريًا في تاريخ الأردن ضمن تاريخ الأردن المعاصر بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 11.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-005761",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-005761",
+      "JOR-OUTCOME-005762",
+      "JOR-OUTCOME-005763",
+      "JOR-OUTCOME-005764",
+      "JOR-OUTCOME-005765",
+      "JOR-OUTCOME-005766",
+      "JOR-OUTCOME-005767",
+      "JOR-OUTCOME-005768",
+      "JOR-OUTCOME-005769",
+      "JOR-OUTCOME-005770",
+      "JOR-OUTCOME-005771",
+      "JOR-OUTCOME-005772",
+      "JOR-OUTCOME-006225",
+      "JOR-OUTCOME-006226",
+      "JOR-OUTCOME-006227",
+      "JOR-OUTCOME-006228",
+      "JOR-OUTCOME-006229",
+      "JOR-OUTCOME-006230",
+      "JOR-OUTCOME-006231",
+      "JOR-OUTCOME-006232",
+      "JOR-OUTCOME-006233",
+      "JOR-OUTCOME-006234",
+      "JOR-OUTCOME-006235",
+      "JOR-OUTCOME-006236"
+    ],
+    "lessonIds": [
+      "JOR-G11-تاريخالأ-U01-L01",
+      "JOR-G11-تاريخالأ-U01-L02",
+      "JOR-G11-تاريخالأ-U01-L03",
+      "JOR-G11-تاريخالأ-U01-L04",
+      "JOR-G12-تاريخالأ-U01-L01",
+      "JOR-G12-تاريخالأ-U01-L02",
+      "JOR-G12-تاريخالأ-U01-L03",
+      "JOR-G12-تاريخالأ-U01-L04"
+    ],
+    "belongsTo": "JOR-OUTCOME-005761"
+  },
+  "createdAt": "2026-07-31T17:56:57.299Z",
+  "updatedAt": "2026-07-31T17:56:57.380Z"
+}

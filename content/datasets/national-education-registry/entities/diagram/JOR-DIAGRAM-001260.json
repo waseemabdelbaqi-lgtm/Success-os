@@ -1,0 +1,16 @@
+{
+  "globalId": "JOR-DIAGRAM-001260",
+  "kind": "diagram",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "مخطط تعليمي لوحدة الاحتياجات والرغبات",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G07-الثقافةا-U03-L04",
+  "relationships": {
+    "lessonId": "JOR-G07-الثقافةا-U03-L04",
+    "belongsTo": "JOR-G07-الثقافةا-U03-L04"
+  },
+  "createdAt": "2026-07-31T17:56:56.993Z",
+  "updatedAt": "2026-07-31T17:56:56.993Z"
+}

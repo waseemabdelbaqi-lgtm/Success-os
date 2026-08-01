@@ -1,0 +1,20 @@
+{
+  "globalId": "JOR-G02-MATH",
+  "kind": "subject",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "الرياضيات",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G02",
+  "relationships": {
+    "gradeId": "JOR-G02",
+    "educationalSystemId": "JOR-SYS-000001",
+    "countryId": "JOR",
+    "belongsTo": "JOR-G02"
+  },
+  "createdAt": "2026-07-31T17:56:56.752Z",
+  "updatedAt": "2026-07-31T17:56:56.752Z",
+  "subjectCode": "MATH",
+  "gradeCode": "G02"
+}

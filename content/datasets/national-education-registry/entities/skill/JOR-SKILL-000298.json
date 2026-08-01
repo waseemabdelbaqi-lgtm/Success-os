@@ -1,0 +1,31 @@
+{
+  "globalId": "JOR-SKILL-000298",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«خوارزميات مبسطة — مقدمة ومفاهيم» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-000609",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-000609",
+      "JOR-OUTCOME-000610",
+      "JOR-OUTCOME-000611",
+      "JOR-OUTCOME-004673",
+      "JOR-OUTCOME-004674",
+      "JOR-OUTCOME-004675",
+      "JOR-OUTCOME-005329",
+      "JOR-OUTCOME-005330",
+      "JOR-OUTCOME-005331"
+    ],
+    "lessonIds": [
+      "JOR-G10-ICT-U01-L01",
+      "JOR-G08-ICT-U01-L01",
+      "JOR-G09-ICT-U01-L01"
+    ],
+    "belongsTo": "JOR-OUTCOME-000609"
+  },
+  "createdAt": "2026-07-31T17:56:56.712Z",
+  "updatedAt": "2026-07-31T17:56:57.228Z"
+}

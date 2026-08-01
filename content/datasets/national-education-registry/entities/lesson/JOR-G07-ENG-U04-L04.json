@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-G07-ENG-U04-L04",
+  "kind": "lesson",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "Guided Writing — تقويم وتعزيز",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G07-ENG-U04",
+  "relationships": {
+    "unitId": "JOR-G07-ENG-U04",
+    "bookId": "JOR-BOOK-000080",
+    "subjectId": "JOR-G07-ENG",
+    "gradeId": "JOR-G07",
+    "belongsTo": "JOR-G07-ENG-U04"
+  },
+  "createdAt": "2026-07-31T17:56:57.025Z",
+  "updatedAt": "2026-07-31T17:56:57.025Z",
+  "lessonCode": "L04",
+  "sequence": 4,
+  "legacyLessonId": "L4.4",
+  "keywords": [
+    "vocabulary",
+    "structure",
+    "fluency"
+  ]
+}

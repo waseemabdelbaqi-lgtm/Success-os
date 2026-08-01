@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-SKILL-000860",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«النحو والبلاغة — مقدمة ومفاهيم» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-005677",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-005677",
+      "JOR-OUTCOME-005678",
+      "JOR-OUTCOME-005679",
+      "JOR-OUTCOME-006141",
+      "JOR-OUTCOME-006142",
+      "JOR-OUTCOME-006143"
+    ],
+    "lessonIds": [
+      "JOR-G11-ARAB-U02-L01",
+      "JOR-G12-ARAB-U02-L01"
+    ],
+    "belongsTo": "JOR-OUTCOME-005677"
+  },
+  "createdAt": "2026-07-31T17:56:57.284Z",
+  "updatedAt": "2026-07-31T17:56:57.363Z"
+}

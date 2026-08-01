@@ -1,0 +1,51 @@
+{
+  "globalId": "JOR-SKILL-000749",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يتعرف المتعلم مفهومًا محوريًا في الرياضيات ضمن الدوال والجبر المتقدم بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 11.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-005425",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-005425",
+      "JOR-OUTCOME-005426",
+      "JOR-OUTCOME-005427",
+      "JOR-OUTCOME-005428",
+      "JOR-OUTCOME-005429",
+      "JOR-OUTCOME-005430",
+      "JOR-OUTCOME-005431",
+      "JOR-OUTCOME-005432",
+      "JOR-OUTCOME-005433",
+      "JOR-OUTCOME-005434",
+      "JOR-OUTCOME-005435",
+      "JOR-OUTCOME-005436",
+      "JOR-OUTCOME-005889",
+      "JOR-OUTCOME-005890",
+      "JOR-OUTCOME-005891",
+      "JOR-OUTCOME-005892",
+      "JOR-OUTCOME-005893",
+      "JOR-OUTCOME-005894",
+      "JOR-OUTCOME-005895",
+      "JOR-OUTCOME-005896",
+      "JOR-OUTCOME-005897",
+      "JOR-OUTCOME-005898",
+      "JOR-OUTCOME-005899",
+      "JOR-OUTCOME-005900"
+    ],
+    "lessonIds": [
+      "JOR-G11-MATH-U01-L01",
+      "JOR-G11-MATH-U01-L02",
+      "JOR-G11-MATH-U01-L03",
+      "JOR-G11-MATH-U01-L04",
+      "JOR-G12-MATH-U01-L01",
+      "JOR-G12-MATH-U01-L02",
+      "JOR-G12-MATH-U01-L03",
+      "JOR-G12-MATH-U01-L04"
+    ],
+    "belongsTo": "JOR-OUTCOME-005425"
+  },
+  "createdAt": "2026-07-31T17:56:57.244Z",
+  "updatedAt": "2026-07-31T17:56:57.323Z"
+}

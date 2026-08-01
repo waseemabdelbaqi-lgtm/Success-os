@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-SKILL-000827",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«الحسابات الكيميائية — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-005599",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-005599",
+      "JOR-OUTCOME-005600",
+      "JOR-OUTCOME-005601",
+      "JOR-OUTCOME-006063",
+      "JOR-OUTCOME-006064",
+      "JOR-OUTCOME-006065"
+    ],
+    "lessonIds": [
+      "JOR-G11-الكيمياء-U03-L03",
+      "JOR-G12-الكيمياء-U03-L03"
+    ],
+    "belongsTo": "JOR-OUTCOME-005599"
+  },
+  "createdAt": "2026-07-31T17:56:57.271Z",
+  "updatedAt": "2026-07-31T17:56:57.350Z"
+}

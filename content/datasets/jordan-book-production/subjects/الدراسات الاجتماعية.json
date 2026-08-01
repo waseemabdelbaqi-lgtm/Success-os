@@ -1,0 +1,20 @@
+{
+  "subject": "الدراسات الاجتماعية",
+  "totalGrades": 10,
+  "published": 10,
+  "pending": 1,
+  "complete": false,
+  "bookIds": [
+    "jordan__التعليم-الأساسي__jordan-national-curriculum__الصف-1__الدراسات-الاجتماعية__ar",
+    "jordan__التعليم-الأساسي__jordan-national-curriculum__الصف-2__الدراسات-الاجتماعية__ar",
+    "jordan__التعليم-الأساسي__jordan-national-curriculum__الصف-3__الدراسات-الاجتماعية__ar",
+    "jordan__التعليم-الأساسي__jordan-national-curriculum__الصف-4__الدراسات-الاجتماعية__ar",
+    "jordan__التعليم-الأساسي__jordan-national-curriculum__الصف-5__الدراسات-الاجتماعية__ar",
+    "jordan__التعليم-الأساسي__jordan-national-curriculum__الصف-6__الدراسات-الاجتماعية__ar",
+    "jordan__التعليم-الأساسي__jordan-national-curriculum__الصف-7__الدراسات-الاجتماعية__ar",
+    "jordan__التعليم-الأساسي__jordan-national-curriculum__الصف-8__الدراسات-الاجتماعية__ar",
+    "jordan__التعليم-الأساسي__jordan-national-curriculum__الصف-9__الدراسات-الاجتماعية__ar",
+    "jordan__التعليم-الأساسي__jordan-national-curriculum__الصف-10__الدراسات-الاجتماعية__ar"
+  ],
+  "updatedAt": "2026-07-31T17:56:03.601Z"
+}

@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-G06-الثقافةا-U04-L01",
+  "kind": "lesson",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "قرارات يومية — مقدمة ومفاهيم",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G06-الثقافةا-U04",
+  "relationships": {
+    "unitId": "JOR-G06-الثقافةا-U04",
+    "bookId": "JOR-BOOK-000064",
+    "subjectId": "JOR-G06-الثقافةا",
+    "gradeId": "JOR-G06",
+    "belongsTo": "JOR-G06-الثقافةا-U04"
+  },
+  "createdAt": "2026-07-31T17:56:56.913Z",
+  "updatedAt": "2026-07-31T17:56:56.913Z",
+  "lessonCode": "L01",
+  "sequence": 1,
+  "legacyLessonId": "L4.1",
+  "keywords": [
+    "دخل",
+    "مصروف",
+    "ادخار"
+  ]
+}

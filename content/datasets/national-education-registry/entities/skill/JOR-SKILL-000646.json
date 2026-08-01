@@ -1,0 +1,31 @@
+{
+  "globalId": "JOR-SKILL-000646",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«النظم البيئية — بناء المهارة» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-002744",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-002744",
+      "JOR-OUTCOME-002745",
+      "JOR-OUTCOME-002746",
+      "JOR-OUTCOME-003304",
+      "JOR-OUTCOME-003305",
+      "JOR-OUTCOME-003306",
+      "JOR-OUTCOME-003864",
+      "JOR-OUTCOME-003865",
+      "JOR-OUTCOME-003866"
+    ],
+    "lessonIds": [
+      "JOR-G05-SCI-U04-L02",
+      "JOR-G06-SCI-U04-L02",
+      "JOR-G07-SCI-U04-L02"
+    ],
+    "belongsTo": "JOR-OUTCOME-002744"
+  },
+  "createdAt": "2026-07-31T17:56:56.868Z",
+  "updatedAt": "2026-07-31T17:56:57.012Z"
+}

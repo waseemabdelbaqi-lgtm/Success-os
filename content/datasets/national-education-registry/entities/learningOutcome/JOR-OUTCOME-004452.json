@@ -1,0 +1,18 @@
+{
+  "globalId": "JOR-OUTCOME-004452",
+  "kind": "learningOutcome",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«النسب والتناسب — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G08-MATH-U02-L03",
+  "relationships": {
+    "lessonId": "JOR-G08-MATH-U02-L03",
+    "belongsTo": "JOR-G08-MATH-U02-L03"
+  },
+  "createdAt": "2026-07-31T17:56:57.091Z",
+  "updatedAt": "2026-07-31T17:56:57.091Z",
+  "text": "أن يطبّق مهارة مرتبطة بـ«النسب والتناسب — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+  "sequence": 2
+}

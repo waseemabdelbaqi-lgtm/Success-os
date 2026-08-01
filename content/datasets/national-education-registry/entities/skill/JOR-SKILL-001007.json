@@ -1,0 +1,23 @@
+{
+  "globalId": "JOR-SKILL-001007",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«العد والتصنيف — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-007015",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-007015",
+      "JOR-OUTCOME-007016",
+      "JOR-OUTCOME-007017"
+    ],
+    "lessonIds": [
+      "JOR-GKG-EMATH-U01-L03"
+    ],
+    "belongsTo": "JOR-OUTCOME-007015"
+  },
+  "createdAt": "2026-07-31T17:56:57.557Z",
+  "updatedAt": "2026-07-31T17:56:57.557Z"
+}

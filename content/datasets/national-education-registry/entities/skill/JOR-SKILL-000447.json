@@ -1,0 +1,35 @@
+{
+  "globalId": "JOR-SKILL-000447",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«Reading Basics — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-000978",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-000978",
+      "JOR-OUTCOME-000979",
+      "JOR-OUTCOME-000980",
+      "JOR-OUTCOME-001410",
+      "JOR-OUTCOME-001411",
+      "JOR-OUTCOME-001412",
+      "JOR-OUTCOME-001842",
+      "JOR-OUTCOME-001843",
+      "JOR-OUTCOME-001844",
+      "JOR-OUTCOME-002274",
+      "JOR-OUTCOME-002275",
+      "JOR-OUTCOME-002276"
+    ],
+    "lessonIds": [
+      "JOR-G01-ENG-U03-L04",
+      "JOR-G02-ENG-U03-L04",
+      "JOR-G03-ENG-U03-L04",
+      "JOR-G04-ENG-U03-L04"
+    ],
+    "belongsTo": "JOR-OUTCOME-000978"
+  },
+  "createdAt": "2026-07-31T17:56:56.731Z",
+  "updatedAt": "2026-07-31T17:56:56.822Z"
+}

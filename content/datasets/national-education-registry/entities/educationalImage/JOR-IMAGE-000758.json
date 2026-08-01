@@ -1,0 +1,17 @@
+{
+  "globalId": "JOR-IMAGE-000758",
+  "kind": "educationalImage",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "مخطط تعليمي لوحدة Phonics & Vocabulary",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G04-ENG-U02-L02",
+  "relationships": {
+    "lessonId": "JOR-G04-ENG-U02-L02",
+    "belongsTo": "JOR-G04-ENG-U02-L02"
+  },
+  "createdAt": "2026-07-31T17:56:56.821Z",
+  "updatedAt": "2026-07-31T17:56:56.821Z",
+  "src": null
+}

@@ -1,0 +1,31 @@
+{
+  "globalId": "JOR-SKILL-000585",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«قرارات يومية — مقدمة ومفاهيم» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-002597",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-002597",
+      "JOR-OUTCOME-002598",
+      "JOR-OUTCOME-002599",
+      "JOR-OUTCOME-003157",
+      "JOR-OUTCOME-003158",
+      "JOR-OUTCOME-003159",
+      "JOR-OUTCOME-003717",
+      "JOR-OUTCOME-003718",
+      "JOR-OUTCOME-003719"
+    ],
+    "lessonIds": [
+      "JOR-G05-الثقافةا-U04-L01",
+      "JOR-G06-الثقافةا-U04-L01",
+      "JOR-G07-الثقافةا-U04-L01"
+    ],
+    "belongsTo": "JOR-OUTCOME-002597"
+  },
+  "createdAt": "2026-07-31T17:56:56.853Z",
+  "updatedAt": "2026-07-31T17:56:56.993Z"
+}

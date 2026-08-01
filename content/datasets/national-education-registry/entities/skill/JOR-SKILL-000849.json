@@ -1,0 +1,51 @@
+{
+  "globalId": "JOR-SKILL-000849",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يتعرف المتعلم مفهومًا محوريًا في اللغة الإنجليزية ضمن Essay Writing بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 11.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-005653",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-005653",
+      "JOR-OUTCOME-005654",
+      "JOR-OUTCOME-005655",
+      "JOR-OUTCOME-005656",
+      "JOR-OUTCOME-005657",
+      "JOR-OUTCOME-005658",
+      "JOR-OUTCOME-005659",
+      "JOR-OUTCOME-005660",
+      "JOR-OUTCOME-005661",
+      "JOR-OUTCOME-005662",
+      "JOR-OUTCOME-005663",
+      "JOR-OUTCOME-005664",
+      "JOR-OUTCOME-006117",
+      "JOR-OUTCOME-006118",
+      "JOR-OUTCOME-006119",
+      "JOR-OUTCOME-006120",
+      "JOR-OUTCOME-006121",
+      "JOR-OUTCOME-006122",
+      "JOR-OUTCOME-006123",
+      "JOR-OUTCOME-006124",
+      "JOR-OUTCOME-006125",
+      "JOR-OUTCOME-006126",
+      "JOR-OUTCOME-006127",
+      "JOR-OUTCOME-006128"
+    ],
+    "lessonIds": [
+      "JOR-G11-ENG-U04-L01",
+      "JOR-G11-ENG-U04-L02",
+      "JOR-G11-ENG-U04-L03",
+      "JOR-G11-ENG-U04-L04",
+      "JOR-G12-ENG-U04-L01",
+      "JOR-G12-ENG-U04-L02",
+      "JOR-G12-ENG-U04-L03",
+      "JOR-G12-ENG-U04-L04"
+    ],
+    "belongsTo": "JOR-OUTCOME-005653"
+  },
+  "createdAt": "2026-07-31T17:56:57.280Z",
+  "updatedAt": "2026-07-31T17:56:57.361Z"
+}

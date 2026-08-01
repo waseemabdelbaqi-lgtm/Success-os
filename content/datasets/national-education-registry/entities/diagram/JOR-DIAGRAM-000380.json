@@ -1,0 +1,16 @@
+{
+  "globalId": "JOR-DIAGRAM-000380",
+  "kind": "diagram",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "مخطط تعليمي لوحدة الأخلاق والآداب",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G02-ISL-U03-L04",
+  "relationships": {
+    "lessonId": "JOR-G02-ISL-U03-L04",
+    "belongsTo": "JOR-G02-ISL-U03-L04"
+  },
+  "createdAt": "2026-07-31T17:56:56.742Z",
+  "updatedAt": "2026-07-31T17:56:56.742Z"
+}

@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-SKILL-000867",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«الكتابة الأكاديمية — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-005695",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-005695",
+      "JOR-OUTCOME-005696",
+      "JOR-OUTCOME-005697",
+      "JOR-OUTCOME-006159",
+      "JOR-OUTCOME-006160",
+      "JOR-OUTCOME-006161"
+    ],
+    "lessonIds": [
+      "JOR-G11-ARAB-U03-L03",
+      "JOR-G12-ARAB-U03-L03"
+    ],
+    "belongsTo": "JOR-OUTCOME-005695"
+  },
+  "createdAt": "2026-07-31T17:56:57.287Z",
+  "updatedAt": "2026-07-31T17:56:57.366Z"
+}

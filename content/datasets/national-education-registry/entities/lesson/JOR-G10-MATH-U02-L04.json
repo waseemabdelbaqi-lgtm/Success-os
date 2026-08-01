@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-G10-MATH-U02-L04",
+  "kind": "lesson",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "النسب والتناسب — تقويم وتعزيز",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G10-MATH-U02",
+  "relationships": {
+    "unitId": "JOR-G10-MATH-U02",
+    "bookId": "JOR-BOOK-000008",
+    "subjectId": "JOR-G10-MATH",
+    "gradeId": "JOR-G10",
+    "belongsTo": "JOR-G10-MATH-U02"
+  },
+  "createdAt": "2026-07-31T17:56:56.701Z",
+  "updatedAt": "2026-07-31T17:56:56.701Z",
+  "lessonCode": "L04",
+  "sequence": 4,
+  "legacyLessonId": "L2.4",
+  "keywords": [
+    "عدد",
+    "عملية",
+    "نمط"
+  ]
+}

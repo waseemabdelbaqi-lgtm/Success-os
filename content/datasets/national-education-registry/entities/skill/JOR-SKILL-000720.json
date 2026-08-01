@@ -1,0 +1,31 @@
+{
+  "globalId": "JOR-SKILL-000720",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«البحث الآمن — مقدمة ومفاهيم» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-002921",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-002921",
+      "JOR-OUTCOME-002922",
+      "JOR-OUTCOME-002923",
+      "JOR-OUTCOME-003481",
+      "JOR-OUTCOME-003482",
+      "JOR-OUTCOME-003483",
+      "JOR-OUTCOME-004041",
+      "JOR-OUTCOME-004042",
+      "JOR-OUTCOME-004043"
+    ],
+    "lessonIds": [
+      "JOR-G05-ICT-U03-L01",
+      "JOR-G06-ICT-U03-L01",
+      "JOR-G07-ICT-U03-L01"
+    ],
+    "belongsTo": "JOR-OUTCOME-002921"
+  },
+  "createdAt": "2026-07-31T17:56:56.888Z",
+  "updatedAt": "2026-07-31T17:56:57.036Z"
+}

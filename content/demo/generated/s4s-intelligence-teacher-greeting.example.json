@@ -1,0 +1,47 @@
+{
+  "flow": [
+    "Student",
+    "Open Lesson",
+    "S4S Intelligence Teacher appears"
+  ],
+  "greeting": {
+    "schema": "success-os.s4s-intelligence-teacher.v1/greeting",
+    "teacherName": {
+      "en": "S4S Intelligence Teacher",
+      "ar": "معلم Success 4 Sure الذكي"
+    },
+    "studentName": "Ahmad",
+    "struggleSkillId": "SKL-00002",
+    "struggleSkillName": {
+      "en": "Fractions",
+      "ar": "الكسور"
+    },
+    "headline": {
+      "en": "Hello Ahmad,",
+      "ar": "مرحبًا Ahmad،"
+    },
+    "body": {
+      "en": "Last time you struggled with Fractions.",
+      "ar": "في المرة السابقة واجهت صعوبة في الكسور."
+    },
+    "ctaReview": {
+      "en": "Would you like me to review them first?",
+      "ar": "هل تريد أن نراجعها أولًا؟"
+    },
+    "ctaContinue": {
+      "en": "Continue to lesson",
+      "ar": "متابعة إلى الدرس"
+    },
+    "displayEn": "Hello Ahmad,\nLast time you struggled with Fractions.\nWould you like me to review them first?",
+    "displayAr": "مرحبًا Ahmad،\nفي المرة السابقة واجهت صعوبة في الكسور.\nهل تريد أن نراجعها أولًا؟",
+    "reviewFirst": true,
+    "source": "skill_progress"
+  },
+  "missingSkills": [
+    "Fractions"
+  ],
+  "weakSkills": [
+    "Arithmetic",
+    "Critical Thinking"
+  ]
+}

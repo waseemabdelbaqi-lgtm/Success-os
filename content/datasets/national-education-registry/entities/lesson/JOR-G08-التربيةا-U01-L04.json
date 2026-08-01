@@ -1,0 +1,28 @@
+{
+  "globalId": "JOR-G08-التربيةا-U01-L04",
+  "kind": "lesson",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "المواطنة الرقمية — تقويم وتعزيز",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G08-التربيةا-U01",
+  "relationships": {
+    "unitId": "JOR-G08-التربيةا-U01",
+    "bookId": "JOR-BOOK-000086",
+    "subjectId": "JOR-G08-التربيةا",
+    "gradeId": "JOR-G08",
+    "belongsTo": "JOR-G08-التربيةا-U01"
+  },
+  "createdAt": "2026-07-31T17:56:57.059Z",
+  "updatedAt": "2026-07-31T17:56:57.065Z",
+  "lessonCode": "L04",
+  "sequence": 4,
+  "legacyLessonId": "L1.4",
+  "keywords": [
+    "مواطنة",
+    "حق",
+    "واجب"
+  ],
+  "_deduped": true
+}

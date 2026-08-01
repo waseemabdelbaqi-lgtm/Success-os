@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-G07-ISL-U02-L01",
+  "kind": "lesson",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أحكام العبادات — مقدمة ومفاهيم",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G07-ISL-U02",
+  "relationships": {
+    "unitId": "JOR-G07-ISL-U02",
+    "bookId": "JOR-BOOK-000072",
+    "subjectId": "JOR-G07-ISL",
+    "gradeId": "JOR-G07",
+    "belongsTo": "JOR-G07-ISL-U02"
+  },
+  "createdAt": "2026-07-31T17:56:56.968Z",
+  "updatedAt": "2026-07-31T17:56:56.968Z",
+  "lessonCode": "L01",
+  "sequence": 1,
+  "legacyLessonId": "L2.1",
+  "keywords": [
+    "عقيدة",
+    "عبادة",
+    "خلق"
+  ]
+}

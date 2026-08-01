@@ -1,0 +1,1712 @@
+{
+  "schema": "success-os.jordan-educational-reference-library.v1",
+  "phase": "JO-05_JORDAN_EDUCATIONAL_REFERENCE_LIBRARY",
+  "engineVersion": "5.0.0",
+  "country": "Jordan",
+  "educationalSystem": "Jordan National Curriculum",
+  "categories": [
+    "Curriculum Documents",
+    "Official Textbooks",
+    "Teacher Guides",
+    "Assessment Frameworks",
+    "Educational Standards",
+    "Scientific References",
+    "Mathematical References",
+    "Laboratory Resources",
+    "Educational Images",
+    "Educational Diagrams",
+    "Simulations",
+    "Open Educational Resources"
+  ],
+  "excludeInternationalCurricula": [
+    "AP",
+    "SAT",
+    "ACT",
+    "IB",
+    "Cambridge",
+    "Pearson Edexcel",
+    "Oxford AQA",
+    "International GCSE",
+    "A Level",
+    "American Curriculum",
+    "British Curriculum",
+    "International Baccalaureate",
+    "College Board"
+  ],
+  "rights": {
+    "copyBookText": false,
+    "generateOriginalSuccessOsContentOnly": true,
+    "note": "Reference library stores metadata and official URLs only — never textbook prose."
+  },
+  "sources": [
+    {
+      "sourceId": "jo-ref-ck12-math",
+      "title": "CK-12 Foundation — Mathematics Concept Verification",
+      "publisher": "CK-12 Foundation",
+      "organization": "CK-12",
+      "country": "International (concept verification only)",
+      "educationalSystem": "OER — not a Jordan curriculum authority",
+      "subject": "الرياضيات",
+      "grade": "all",
+      "language": "en",
+      "publicationYear": 2025,
+      "version": "2025-2026",
+      "officialUrl": "https://www.ck12.org",
+      "licenseType": "open-license-oer",
+      "copyrightStatus": "open-educational-resource",
+      "verificationDate": "2026-07-31T17:54:29.642Z",
+      "reliabilityScore": 87,
+      "status": "verified",
+      "category": "Mathematical References",
+      "copyBookText": false,
+      "note": null,
+      "history": [
+        {
+          "event": "registered",
+          "at": "2026-07-31T17:54:29.642Z",
+          "version": "2025-2026",
+          "note": "JO-05 seed registration"
+        },
+        {
+          "event": "rebuilt",
+          "at": "2026-07-31T17:55:32.918Z",
+          "version": "2025-2026"
+        },
+        {
+          "event": "rebuilt",
+          "at": "2026-07-31T17:55:35.796Z",
+          "version": "2025-2026"
+        }
+      ],
+      "validation": {
+        "ok": true,
+        "warnings": [],
+        "validatedAt": "2026-07-31T17:55:35.796Z"
+      }
+    },
+    {
+      "sourceId": "jo-ref-darsak",
+      "title": "Darsak Platform — Official Digital Learning",
+      "publisher": "Ministry of Education",
+      "organization": "Darsak / MoE",
+      "country": "Jordan",
+      "educationalSystem": "Jordan National Curriculum",
+      "subject": "all",
+      "grade": "all",
+      "language": "ar",
+      "publicationYear": 2025,
+      "version": "2025-2026",
+      "officialUrl": "https://darsak.gov.jo",
+      "licenseType": "official-framework-reference",
+      "copyrightStatus": "all-rights-reserved-by-publisher-reference-only",
+      "verificationDate": "2026-07-31T17:54:29.642Z",
+      "reliabilityScore": 98,
+      "status": "verified",
+      "category": "Curriculum Documents",
+      "copyBookText": false,
+      "note": null,
+      "history": [
+        {
+          "event": "registered",
+          "at": "2026-07-31T17:54:29.642Z",
+          "version": "2025-2026",
+          "note": "JO-05 seed registration"
+        },
+        {
+          "event": "rebuilt",
+          "at": "2026-07-31T17:55:32.918Z",
+          "version": "2025-2026"
+        },
+        {
+          "event": "rebuilt",
+          "at": "2026-07-31T17:55:35.796Z",
+          "version": "2025-2026"
+        }
+      ],
+      "validation": {
+        "ok": true,
+        "warnings": [],
+        "validatedAt": "2026-07-31T17:55:35.796Z"
+      }
+    },
+    {
+      "sourceId": "jo-ref-libretexts-science",
+      "title": "LibreTexts — Science Concept Verification",
+      "publisher": "LibreTexts",
+      "organization": "LibreTexts",
+      "country": "International (concept verification only)",
+      "educationalSystem": "OER — not a Jordan curriculum authority",
+      "subject": "العلوم",
+      "grade": "all",
+      "language": "en",
+      "publicationYear": 2025,
+      "version": "2025-2026",
+      "officialUrl": "https://libretexts.org",
+      "licenseType": "open-license-oer",
+      "copyrightStatus": "open-educational-resource",
+      "verificationDate": "2026-07-31T17:54:29.642Z",
+      "reliabilityScore": 86,
+      "status": "verified",
+      "category": "Scientific References",
+      "copyBookText": false,
+      "note": null,
+      "history": [
+        {
+          "event": "registered",
+          "at": "2026-07-31T17:54:29.642Z",
+          "version": "2025-2026",
+          "note": "JO-05 seed registration"
+        },
+        {
+          "event": "rebuilt",
+          "at": "2026-07-31T17:55:32.918Z",
+          "version": "2025-2026"
+        },
+        {
+          "event": "rebuilt",
+          "at": "2026-07-31T17:55:35.796Z",
+          "version": "2025-2026"
+        }
+      ],
+      "validation": {
+        "ok": true,
+        "warnings": [],
+        "validatedAt": "2026-07-31T17:55:35.796Z"
+      }
+    },
+    {
+      "sourceId": "jo-ref-moe-curricula-admin",
+      "title": "MoE Curricula and School Textbooks Administration",
+      "publisher": "Ministry of Education",
+      "organization": "MoE Jordan",
+      "country": "Jordan",
+      "educationalSystem": "Jordan National Curriculum",
+      "subject": "all",
+      "grade": "all",
+      "language": "ar",
+      "publicationYear": 2025,
+      "version": "2025-2026",
+      "officialUrl": "https://moe.gov.jo/ar/%D8%A5%D8%AF%D8%A7%D8%B1%D8%A9-%D8%A7%D9%84%D9%85%D9%86%D8%A7%D9%87%D8%AC-%D9%88%D8%A7%D9%84%D9%83%D8%AA%D8%A8-%D8%A7%D9%84%D9%85%D8%AF%D8%B1%D8%B3%D9%8A%D8%A9",
+      "licenseType": "official-framework-reference",
+      "copyrightStatus": "all-rights-reserved-by-publisher-reference-only",
+      "verificationDate": "2026-07-31T17:54:29.642Z",
+      "reliabilityScore": 100,
+      "status": "verified",
+      "category": "Curriculum Documents",
+      "copyBookText": false,
+      "note": null,
+      "history": [
+        {
+          "event": "registered",
+          "at": "2026-07-31T17:54:29.642Z",
+          "version": "2025-2026",
+          "note": "JO-05 seed registration"
+        },
+        {
+          "event": "rebuilt",
+          "at": "2026-07-31T17:55:32.918Z",
+          "version": "2025-2026"
+        },
+        {
+          "event": "rebuilt",
+          "at": "2026-07-31T17:55:35.796Z",
+          "version": "2025-2026"
+        }
+      ],
+      "validation": {
+        "ok": true,
+        "warnings": [],
+        "validatedAt": "2026-07-31T17:55:35.796Z"
+      }
+    },
+    {
+      "sourceId": "jo-ref-moe-editions-2025-2026",
+      "title": "MoE Approved Textbook Editions 2025–2026",
+      "publisher": "Ministry of Education",
+      "organization": "MoE Jordan",
+      "country": "Jordan",
+      "educationalSystem": "Jordan National Curriculum",
+      "subject": "all",
+      "grade": "all",
+      "language": "ar",
+      "publicationYear": 2025,
+      "version": "2025-2026",
+      "officialUrl": "https://moe.gov.jo/ar/node/79818",
+      "licenseType": "official-framework-reference",
+      "copyrightStatus": "all-rights-reserved-by-publisher-reference-only",
+      "verificationDate": "2026-07-31T17:54:29.642Z",
+      "reliabilityScore": 100,
+      "status": "verified",
+      "category": "Official Textbooks",
+      "copyBookText": false,
+      "note": null,
+      "history": [
+        {
+          "event": "registered",
+          "at": "2026-07-31T17:54:29.642Z",
+          "version": "2025-2026",
+          "note": "JO-05 seed registration"
+        },
+        {
+          "event": "rebuilt",
+          "at": "2026-07-31T17:55:32.918Z",
+          "version": "2025-2026"
+        },
+        {
+          "event": "rebuilt",
+          "at": "2026-07-31T17:55:35.796Z",
+          "version": "2025-2026"
+        }
+      ],
+      "validation": {
+        "ok": true,
+        "warnings": [],
+        "validatedAt": "2026-07-31T17:55:35.796Z"
+      }
+    },
+    {
+      "sourceId": "jo-ref-moe-home",
+      "title": "Jordan Ministry of Education — Official Portal",
+      "publisher": "Ministry of Education",
+      "organization": "MoE Jordan",
+      "country": "Jordan",
+      "educationalSystem": "Jordan National Curriculum",
+      "subject": "all",
+      "grade": "all",
+      "language": "ar",
+      "publicationYear": 2025,
+      "version": "2025-2026",
+      "officialUrl": "https://moe.gov.jo",
+      "licenseType": "official-framework-reference",
+      "copyrightStatus": "all-rights-reserved-by-publisher-reference-only",
+      "verificationDate": "2026-07-31T17:54:29.641Z",
+      "reliabilityScore": 100,
+      "status": "verified",
+      "category": "Curriculum Documents",
+      "copyBookText": false,
+      "note": null,
+      "history": [
+        {
+          "event": "registered",
+          "at": "2026-07-31T17:54:29.641Z",
+          "version": "2025-2026",
+          "note": "JO-05 seed registration"
+        },
+        {
+          "event": "rebuilt",
+          "at": "2026-07-31T17:55:32.918Z",
+          "version": "2025-2026"
+        },
+        {
+          "event": "rebuilt",
+          "at": "2026-07-31T17:55:35.796Z",
+          "version": "2025-2026"
+        }
+      ],
+      "validation": {
+        "ok": true,
+        "warnings": [],
+        "validatedAt": "2026-07-31T17:55:35.796Z"
+      }
+    },
+    {
+      "sourceId": "jo-ref-moe-tawjihi",
+      "title": "MoE General Secondary (Tawjihi) Examination Framework",
+      "publisher": "Ministry of Education",
+      "organization": "MoE Jordan",
+      "country": "Jordan",
+      "educationalSystem": "Jordan National Curriculum",
+      "subject": "all",
+      "grade": "الصف 12",
+      "language": "ar",
+      "publicationYear": 2025,
+      "version": "2025-2026",
+      "officialUrl": "https://moe.gov.jo",
+      "licenseType": "official-framework-reference",
+      "copyrightStatus": "all-rights-reserved-by-publisher-reference-only",
+      "verificationDate": "2026-07-31T17:54:29.642Z",
+      "reliabilityScore": 96,
+      "status": "verified",
+      "category": "Assessment Frameworks",
+      "copyBookText": false,
+      "note": null,
+      "history": [
+        {
+          "event": "registered",
+          "at": "2026-07-31T17:54:29.642Z",
+          "version": "2025-2026",
+          "note": "JO-05 seed registration"
+        },
+        {
+          "event": "rebuilt",
+          "at": "2026-07-31T17:55:32.918Z",
+          "version": "2025-2026"
+        },
+        {
+          "event": "rebuilt",
+          "at": "2026-07-31T17:55:35.796Z",
+          "version": "2025-2026"
+        }
+      ],
+      "validation": {
+        "ok": true,
+        "warnings": [
+          "SHARED_URL_WITH:jo-ref-moe-home"
+        ],
+        "validatedAt": "2026-07-31T17:55:35.796Z"
+      }
+    },
+    {
+      "sourceId": "jo-ref-national-curriculum-standard",
+      "title": "Jordan National Curriculum — Structural Standard",
+      "publisher": "NCCD / MoE",
+      "organization": "National Center for Curriculum Development",
+      "country": "Jordan",
+      "educationalSystem": "Jordan National Curriculum",
+      "subject": "all",
+      "grade": "all",
+      "language": "ar",
+      "publicationYear": 2025,
+      "version": "2025-2026",
+      "officialUrl": "https://www.nccd.gov.jo/Ar/Pages/textbooks",
+      "licenseType": "official-framework-reference",
+      "copyrightStatus": "all-rights-reserved-by-publisher-reference-only",
+      "verificationDate": "2026-07-31T17:54:29.642Z",
+      "reliabilityScore": 100,
+      "status": "verified",
+      "category": "Educational Standards",
+      "copyBookText": false,
+      "note": null,
+      "history": [
+        {
+          "event": "registered",
+          "at": "2026-07-31T17:54:29.642Z",
+          "version": "2025-2026",
+          "note": "JO-05 seed registration"
+        },
+        {
+          "event": "rebuilt",
+          "at": "2026-07-31T17:55:32.918Z",
+          "version": "2025-2026"
+        },
+        {
+          "event": "rebuilt",
+          "at": "2026-07-31T17:55:35.796Z",
+          "version": "2025-2026"
+        }
+      ],
+      "validation": {
+        "ok": true,
+        "warnings": [
+          "SHARED_URL_WITH:jo-ref-nccd-textbooks-index"
+        ],
+        "validatedAt": "2026-07-31T17:55:35.796Z"
+      }
+    },
+    {
+      "sourceId": "jo-ref-nccd-grade-117",
+      "title": "NCCD Grade Textbook Catalogue — الصف 11",
+      "publisher": "NCCD",
+      "organization": "National Center for Curriculum Development",
+      "country": "Jordan",
+      "educationalSystem": "Jordan National Curriculum",
+      "subject": "all",
+      "grade": "الصف 11",
+      "language": "ar",
+      "publicationYear": 2025,
+      "version": "2025-2026",
+      "officialUrl": "https://www.nccd.gov.jo/ar/pages/TextBooksGrade/117",
+      "licenseType": "official-framework-reference",
+      "copyrightStatus": "all-rights-reserved-by-publisher-reference-only",
+      "verificationDate": "2026-07-31T17:54:29.642Z",
+      "reliabilityScore": 99,
+      "status": "verified",
+      "category": "Official Textbooks",
+      "copyBookText": false,
+      "note": "Catalogue metadata only — never copy textbook prose",
+      "history": [
+        {
+          "event": "registered",
+          "at": "2026-07-31T17:54:29.642Z",
+          "version": "2025-2026",
+          "note": "JO-05 seed registration"
+        },
+        {
+          "event": "rebuilt",
+          "at": "2026-07-31T17:55:32.918Z",
+          "version": "2025-2026"
+        },
+        {
+          "event": "rebuilt",
+          "at": "2026-07-31T17:55:35.796Z",
+          "version": "2025-2026"
+        }
+      ],
+      "validation": {
+        "ok": true,
+        "warnings": [],
+        "validatedAt": "2026-07-31T17:55:35.796Z"
+      }
+    },
+    {
+      "sourceId": "jo-ref-nccd-grade-68",
+      "title": "NCCD Grade Textbook Catalogue — الصف 1",
+      "publisher": "NCCD",
+      "organization": "National Center for Curriculum Development",
+      "country": "Jordan",
+      "educationalSystem": "Jordan National Curriculum",
+      "subject": "all",
+      "grade": "الصف 1",
+      "language": "ar",
+      "publicationYear": 2025,
+      "version": "2025-2026",
+      "officialUrl": "https://www.nccd.gov.jo/ar/pages/TextBooksGrade/68",
+      "licenseType": "official-framework-reference",
+      "copyrightStatus": "all-rights-reserved-by-publisher-reference-only",
+      "verificationDate": "2026-07-31T17:54:29.642Z",
+      "reliabilityScore": 99,
+      "status": "verified",
+      "category": "Official Textbooks",
+      "copyBookText": false,
+      "note": "Catalogue metadata only — never copy textbook prose",
+      "history": [
+        {
+          "event": "registered",
+          "at": "2026-07-31T17:54:29.642Z",
+          "version": "2025-2026",
+          "note": "JO-05 seed registration"
+        },
+        {
+          "event": "rebuilt",
+          "at": "2026-07-31T17:55:32.918Z",
+          "version": "2025-2026"
+        },
+        {
+          "event": "rebuilt",
+          "at": "2026-07-31T17:55:35.796Z",
+          "version": "2025-2026"
+        }
+      ],
+      "validation": {
+        "ok": true,
+        "warnings": [],
+        "validatedAt": "2026-07-31T17:55:35.796Z"
+      }
+    },
+    {
+      "sourceId": "jo-ref-nccd-grade-69",
+      "title": "NCCD Grade Textbook Catalogue — الصف 2",
+      "publisher": "NCCD",
+      "organization": "National Center for Curriculum Development",
+      "country": "Jordan",
+      "educationalSystem": "Jordan National Curriculum",
+      "subject": "all",
+      "grade": "الصف 2",
+      "language": "ar",
+      "publicationYear": 2025,
+      "version": "2025-2026",
+      "officialUrl": "https://www.nccd.gov.jo/ar/pages/TextBooksGrade/69",
+      "licenseType": "official-framework-reference",
+      "copyrightStatus": "all-rights-reserved-by-publisher-reference-only",
+      "verificationDate": "2026-07-31T17:54:29.642Z",
+      "reliabilityScore": 99,
+      "status": "verified",
+      "category": "Official Textbooks",
+      "copyBookText": false,
+      "note": "Catalogue metadata only — never copy textbook prose",
+      "history": [
+        {
+          "event": "registered",
+          "at": "2026-07-31T17:54:29.642Z",
+          "version": "2025-2026",
+          "note": "JO-05 seed registration"
+        },
+        {
+          "event": "rebuilt",
+          "at": "2026-07-31T17:55:32.918Z",
+          "version": "2025-2026"
+        },
+        {
+          "event": "rebuilt",
+          "at": "2026-07-31T17:55:35.796Z",
+          "version": "2025-2026"
+        }
+      ],
+      "validation": {
+        "ok": true,
+        "warnings": [],
+        "validatedAt": "2026-07-31T17:55:35.796Z"
+      }
+    },
+    {
+      "sourceId": "jo-ref-nccd-grade-70",
+      "title": "NCCD Grade Textbook Catalogue — الصف 3",
+      "publisher": "NCCD",
+      "organization": "National Center for Curriculum Development",
+      "country": "Jordan",
+      "educationalSystem": "Jordan National Curriculum",
+      "subject": "all",
+      "grade": "الصف 3",
+      "language": "ar",
+      "publicationYear": 2025,
+      "version": "2025-2026",
+      "officialUrl": "https://www.nccd.gov.jo/ar/pages/TextBooksGrade/70",
+      "licenseType": "official-framework-reference",
+      "copyrightStatus": "all-rights-reserved-by-publisher-reference-only",
+      "verificationDate": "2026-07-31T17:54:29.642Z",
+      "reliabilityScore": 99,
+      "status": "verified",
+      "category": "Official Textbooks",
+      "copyBookText": false,
+      "note": "Catalogue metadata only — never copy textbook prose",
+      "history": [
+        {
+          "event": "registered",
+          "at": "2026-07-31T17:54:29.642Z",
+          "version": "2025-2026",
+          "note": "JO-05 seed registration"
+        },
+        {
+          "event": "rebuilt",
+          "at": "2026-07-31T17:55:32.918Z",
+          "version": "2025-2026"
+        },
+        {
+          "event": "rebuilt",
+          "at": "2026-07-31T17:55:35.796Z",
+          "version": "2025-2026"
+        }
+      ],
+      "validation": {
+        "ok": true,
+        "warnings": [],
+        "validatedAt": "2026-07-31T17:55:35.796Z"
+      }
+    },
+    {
+      "sourceId": "jo-ref-nccd-grade-71",
+      "title": "NCCD Grade Textbook Catalogue — الصف 4",
+      "publisher": "NCCD",
+      "organization": "National Center for Curriculum Development",
+      "country": "Jordan",
+      "educationalSystem": "Jordan National Curriculum",
+      "subject": "all",
+      "grade": "الصف 4",
+      "language": "ar",
+      "publicationYear": 2025,
+      "version": "2025-2026",
+      "officialUrl": "https://www.nccd.gov.jo/ar/pages/TextBooksGrade/71",
+      "licenseType": "official-framework-reference",
+      "copyrightStatus": "all-rights-reserved-by-publisher-reference-only",
+      "verificationDate": "2026-07-31T17:54:29.642Z",
+      "reliabilityScore": 99,
+      "status": "verified",
+      "category": "Official Textbooks",
+      "copyBookText": false,
+      "note": "Catalogue metadata only — never copy textbook prose",
+      "history": [
+        {
+          "event": "registered",
+          "at": "2026-07-31T17:54:29.642Z",
+          "version": "2025-2026",
+          "note": "JO-05 seed registration"
+        },
+        {
+          "event": "rebuilt",
+          "at": "2026-07-31T17:55:32.918Z",
+          "version": "2025-2026"
+        },
+        {
+          "event": "rebuilt",
+          "at": "2026-07-31T17:55:35.796Z",
+          "version": "2025-2026"
+        }
+      ],
+      "validation": {
+        "ok": true,
+        "warnings": [],
+        "validatedAt": "2026-07-31T17:55:35.796Z"
+      }
+    },
+    {
+      "sourceId": "jo-ref-nccd-grade-72",
+      "title": "NCCD Grade Textbook Catalogue — الصف 5",
+      "publisher": "NCCD",
+      "organization": "National Center for Curriculum Development",
+      "country": "Jordan",
+      "educationalSystem": "Jordan National Curriculum",
+      "subject": "all",
+      "grade": "الصف 5",
+      "language": "ar",
+      "publicationYear": 2025,
+      "version": "2025-2026",
+      "officialUrl": "https://www.nccd.gov.jo/ar/pages/TextBooksGrade/72",
+      "licenseType": "official-framework-reference",
+      "copyrightStatus": "all-rights-reserved-by-publisher-reference-only",
+      "verificationDate": "2026-07-31T17:54:29.642Z",
+      "reliabilityScore": 99,
+      "status": "verified",
+      "category": "Official Textbooks",
+      "copyBookText": false,
+      "note": "Catalogue metadata only — never copy textbook prose",
+      "history": [
+        {
+          "event": "registered",
+          "at": "2026-07-31T17:54:29.642Z",
+          "version": "2025-2026",
+          "note": "JO-05 seed registration"
+        },
+        {
+          "event": "rebuilt",
+          "at": "2026-07-31T17:55:32.918Z",
+          "version": "2025-2026"
+        },
+        {
+          "event": "rebuilt",
+          "at": "2026-07-31T17:55:35.796Z",
+          "version": "2025-2026"
+        }
+      ],
+      "validation": {
+        "ok": true,
+        "warnings": [],
+        "validatedAt": "2026-07-31T17:55:35.796Z"
+      }
+    },
+    {
+      "sourceId": "jo-ref-nccd-grade-73",
+      "title": "NCCD Grade Textbook Catalogue — الصف 6",
+      "publisher": "NCCD",
+      "organization": "National Center for Curriculum Development",
+      "country": "Jordan",
+      "educationalSystem": "Jordan National Curriculum",
+      "subject": "all",
+      "grade": "الصف 6",
+      "language": "ar",
+      "publicationYear": 2025,
+      "version": "2025-2026",
+      "officialUrl": "https://www.nccd.gov.jo/ar/pages/TextBooksGrade/73",
+      "licenseType": "official-framework-reference",
+      "copyrightStatus": "all-rights-reserved-by-publisher-reference-only",
+      "verificationDate": "2026-07-31T17:54:29.642Z",
+      "reliabilityScore": 99,
+      "status": "verified",
+      "category": "Official Textbooks",
+      "copyBookText": false,
+      "note": "Catalogue metadata only — never copy textbook prose",
+      "history": [
+        {
+          "event": "registered",
+          "at": "2026-07-31T17:54:29.642Z",
+          "version": "2025-2026",
+          "note": "JO-05 seed registration"
+        },
+        {
+          "event": "rebuilt",
+          "at": "2026-07-31T17:55:32.918Z",
+          "version": "2025-2026"
+        },
+        {
+          "event": "rebuilt",
+          "at": "2026-07-31T17:55:35.796Z",
+          "version": "2025-2026"
+        }
+      ],
+      "validation": {
+        "ok": true,
+        "warnings": [],
+        "validatedAt": "2026-07-31T17:55:35.796Z"
+      }
+    },
+    {
+      "sourceId": "jo-ref-nccd-grade-74",
+      "title": "NCCD Grade Textbook Catalogue — الصف 7",
+      "publisher": "NCCD",
+      "organization": "National Center for Curriculum Development",
+      "country": "Jordan",
+      "educationalSystem": "Jordan National Curriculum",
+      "subject": "all",
+      "grade": "الصف 7",
+      "language": "ar",
+      "publicationYear": 2025,
+      "version": "2025-2026",
+      "officialUrl": "https://www.nccd.gov.jo/ar/pages/TextBooksGrade/74",
+      "licenseType": "official-framework-reference",
+      "copyrightStatus": "all-rights-reserved-by-publisher-reference-only",
+      "verificationDate": "2026-07-31T17:54:29.642Z",
+      "reliabilityScore": 99,
+      "status": "verified",
+      "category": "Official Textbooks",
+      "copyBookText": false,
+      "note": "Catalogue metadata only — never copy textbook prose",
+      "history": [
+        {
+          "event": "registered",
+          "at": "2026-07-31T17:54:29.642Z",
+          "version": "2025-2026",
+          "note": "JO-05 seed registration"
+        },
+        {
+          "event": "rebuilt",
+          "at": "2026-07-31T17:55:32.918Z",
+          "version": "2025-2026"
+        },
+        {
+          "event": "rebuilt",
+          "at": "2026-07-31T17:55:35.796Z",
+          "version": "2025-2026"
+        }
+      ],
+      "validation": {
+        "ok": true,
+        "warnings": [],
+        "validatedAt": "2026-07-31T17:55:35.796Z"
+      }
+    },
+    {
+      "sourceId": "jo-ref-nccd-grade-75",
+      "title": "NCCD Grade Textbook Catalogue — الصف 8",
+      "publisher": "NCCD",
+      "organization": "National Center for Curriculum Development",
+      "country": "Jordan",
+      "educationalSystem": "Jordan National Curriculum",
+      "subject": "all",
+      "grade": "الصف 8",
+      "language": "ar",
+      "publicationYear": 2025,
+      "version": "2025-2026",
+      "officialUrl": "https://www.nccd.gov.jo/ar/pages/TextBooksGrade/75",
+      "licenseType": "official-framework-reference",
+      "copyrightStatus": "all-rights-reserved-by-publisher-reference-only",
+      "verificationDate": "2026-07-31T17:54:29.642Z",
+      "reliabilityScore": 99,
+      "status": "verified",
+      "category": "Official Textbooks",
+      "copyBookText": false,
+      "note": "Catalogue metadata only — never copy textbook prose",
+      "history": [
+        {
+          "event": "registered",
+          "at": "2026-07-31T17:54:29.642Z",
+          "version": "2025-2026",
+          "note": "JO-05 seed registration"
+        },
+        {
+          "event": "rebuilt",
+          "at": "2026-07-31T17:55:32.918Z",
+          "version": "2025-2026"
+        },
+        {
+          "event": "rebuilt",
+          "at": "2026-07-31T17:55:35.796Z",
+          "version": "2025-2026"
+        }
+      ],
+      "validation": {
+        "ok": true,
+        "warnings": [],
+        "validatedAt": "2026-07-31T17:55:35.796Z"
+      }
+    },
+    {
+      "sourceId": "jo-ref-nccd-grade-76",
+      "title": "NCCD Grade Textbook Catalogue — الصف 9",
+      "publisher": "NCCD",
+      "organization": "National Center for Curriculum Development",
+      "country": "Jordan",
+      "educationalSystem": "Jordan National Curriculum",
+      "subject": "all",
+      "grade": "الصف 9",
+      "language": "ar",
+      "publicationYear": 2025,
+      "version": "2025-2026",
+      "officialUrl": "https://www.nccd.gov.jo/ar/pages/TextBooksGrade/76",
+      "licenseType": "official-framework-reference",
+      "copyrightStatus": "all-rights-reserved-by-publisher-reference-only",
+      "verificationDate": "2026-07-31T17:54:29.642Z",
+      "reliabilityScore": 99,
+      "status": "verified",
+      "category": "Official Textbooks",
+      "copyBookText": false,
+      "note": "Catalogue metadata only — never copy textbook prose",
+      "history": [
+        {
+          "event": "registered",
+          "at": "2026-07-31T17:54:29.642Z",
+          "version": "2025-2026",
+          "note": "JO-05 seed registration"
+        },
+        {
+          "event": "rebuilt",
+          "at": "2026-07-31T17:55:32.918Z",
+          "version": "2025-2026"
+        },
+        {
+          "event": "rebuilt",
+          "at": "2026-07-31T17:55:35.796Z",
+          "version": "2025-2026"
+        }
+      ],
+      "validation": {
+        "ok": true,
+        "warnings": [],
+        "validatedAt": "2026-07-31T17:55:35.796Z"
+      }
+    },
+    {
+      "sourceId": "jo-ref-nccd-grade-77",
+      "title": "NCCD Grade Textbook Catalogue — الصف 10",
+      "publisher": "NCCD",
+      "organization": "National Center for Curriculum Development",
+      "country": "Jordan",
+      "educationalSystem": "Jordan National Curriculum",
+      "subject": "all",
+      "grade": "الصف 10",
+      "language": "ar",
+      "publicationYear": 2025,
+      "version": "2025-2026",
+      "officialUrl": "https://www.nccd.gov.jo/ar/pages/TextBooksGrade/77",
+      "licenseType": "official-framework-reference",
+      "copyrightStatus": "all-rights-reserved-by-publisher-reference-only",
+      "verificationDate": "2026-07-31T17:54:29.642Z",
+      "reliabilityScore": 99,
+      "status": "verified",
+      "category": "Official Textbooks",
+      "copyBookText": false,
+      "note": "Catalogue metadata only — never copy textbook prose",
+      "history": [
+        {
+          "event": "registered",
+          "at": "2026-07-31T17:54:29.642Z",
+          "version": "2025-2026",
+          "note": "JO-05 seed registration"
+        },
+        {
+          "event": "rebuilt",
+          "at": "2026-07-31T17:55:32.918Z",
+          "version": "2025-2026"
+        },
+        {
+          "event": "rebuilt",
+          "at": "2026-07-31T17:55:35.796Z",
+          "version": "2025-2026"
+        }
+      ],
+      "validation": {
+        "ok": true,
+        "warnings": [],
+        "validatedAt": "2026-07-31T17:55:35.796Z"
+      }
+    },
+    {
+      "sourceId": "jo-ref-nccd-grade-83",
+      "title": "NCCD Grade Textbook Catalogue — الصف 12",
+      "publisher": "NCCD",
+      "organization": "National Center for Curriculum Development",
+      "country": "Jordan",
+      "educationalSystem": "Jordan National Curriculum",
+      "subject": "all",
+      "grade": "الصف 12",
+      "language": "ar",
+      "publicationYear": 2025,
+      "version": "2025-2026",
+      "officialUrl": "https://www.nccd.gov.jo/ar/pages/TextBooksGrade/83",
+      "licenseType": "official-framework-reference",
+      "copyrightStatus": "all-rights-reserved-by-publisher-reference-only",
+      "verificationDate": "2026-07-31T17:54:29.642Z",
+      "reliabilityScore": 99,
+      "status": "verified",
+      "category": "Official Textbooks",
+      "copyBookText": false,
+      "note": "Catalogue metadata only — never copy textbook prose",
+      "history": [
+        {
+          "event": "registered",
+          "at": "2026-07-31T17:54:29.642Z",
+          "version": "2025-2026",
+          "note": "JO-05 seed registration"
+        },
+        {
+          "event": "rebuilt",
+          "at": "2026-07-31T17:55:32.918Z",
+          "version": "2025-2026"
+        },
+        {
+          "event": "rebuilt",
+          "at": "2026-07-31T17:55:35.796Z",
+          "version": "2025-2026"
+        }
+      ],
+      "validation": {
+        "ok": true,
+        "warnings": [],
+        "validatedAt": "2026-07-31T17:55:35.796Z"
+      }
+    },
+    {
+      "sourceId": "jo-ref-nccd-portal",
+      "title": "National Center for Curriculum Development — Portal",
+      "publisher": "NCCD",
+      "organization": "National Center for Curriculum Development",
+      "country": "Jordan",
+      "educationalSystem": "Jordan National Curriculum",
+      "subject": "all",
+      "grade": "all",
+      "language": "ar",
+      "publicationYear": 2025,
+      "version": "2025-2026",
+      "officialUrl": "https://www.nccd.gov.jo",
+      "licenseType": "official-framework-reference",
+      "copyrightStatus": "all-rights-reserved-by-publisher-reference-only",
+      "verificationDate": "2026-07-31T17:54:29.642Z",
+      "reliabilityScore": 100,
+      "status": "verified",
+      "category": "Curriculum Documents",
+      "copyBookText": false,
+      "note": null,
+      "history": [
+        {
+          "event": "registered",
+          "at": "2026-07-31T17:54:29.642Z",
+          "version": "2025-2026",
+          "note": "JO-05 seed registration"
+        },
+        {
+          "event": "rebuilt",
+          "at": "2026-07-31T17:55:32.918Z",
+          "version": "2025-2026"
+        },
+        {
+          "event": "rebuilt",
+          "at": "2026-07-31T17:55:35.796Z",
+          "version": "2025-2026"
+        }
+      ],
+      "validation": {
+        "ok": true,
+        "warnings": [],
+        "validatedAt": "2026-07-31T17:55:35.796Z"
+      }
+    },
+    {
+      "sourceId": "jo-ref-nccd-teacher-guides",
+      "title": "NCCD Teacher Guides (via official NCCD portal)",
+      "publisher": "NCCD",
+      "organization": "National Center for Curriculum Development",
+      "country": "Jordan",
+      "educationalSystem": "Jordan National Curriculum",
+      "subject": "all",
+      "grade": "all",
+      "language": "ar",
+      "publicationYear": 2025,
+      "version": "2025-2026",
+      "officialUrl": "https://www.nccd.gov.jo",
+      "licenseType": "official-framework-reference",
+      "copyrightStatus": "all-rights-reserved-by-publisher-reference-only",
+      "verificationDate": "2026-07-31T17:54:29.642Z",
+      "reliabilityScore": 97,
+      "status": "verified",
+      "category": "Teacher Guides",
+      "copyBookText": false,
+      "note": "Index teacher-guide resources from NCCD catalogues — do not copy guide prose",
+      "history": [
+        {
+          "event": "registered",
+          "at": "2026-07-31T17:54:29.642Z",
+          "version": "2025-2026",
+          "note": "JO-05 seed registration"
+        },
+        {
+          "event": "rebuilt",
+          "at": "2026-07-31T17:55:32.918Z",
+          "version": "2025-2026"
+        },
+        {
+          "event": "rebuilt",
+          "at": "2026-07-31T17:55:35.796Z",
+          "version": "2025-2026"
+        }
+      ],
+      "validation": {
+        "ok": true,
+        "warnings": [
+          "SHARED_URL_WITH:jo-ref-nccd-portal"
+        ],
+        "validatedAt": "2026-07-31T17:55:35.796Z"
+      }
+    },
+    {
+      "sourceId": "jo-ref-nccd-textbooks-index",
+      "title": "NCCD Official Textbook Catalogue Index",
+      "publisher": "NCCD",
+      "organization": "National Center for Curriculum Development",
+      "country": "Jordan",
+      "educationalSystem": "Jordan National Curriculum",
+      "subject": "all",
+      "grade": "all",
+      "language": "ar",
+      "publicationYear": 2025,
+      "version": "2025-2026",
+      "officialUrl": "https://www.nccd.gov.jo/Ar/Pages/textbooks",
+      "licenseType": "official-framework-reference",
+      "copyrightStatus": "all-rights-reserved-by-publisher-reference-only",
+      "verificationDate": "2026-07-31T17:54:29.642Z",
+      "reliabilityScore": 100,
+      "status": "verified",
+      "category": "Curriculum Documents",
+      "copyBookText": false,
+      "note": null,
+      "history": [
+        {
+          "event": "registered",
+          "at": "2026-07-31T17:54:29.642Z",
+          "version": "2025-2026",
+          "note": "JO-05 seed registration"
+        },
+        {
+          "event": "rebuilt",
+          "at": "2026-07-31T17:55:32.918Z",
+          "version": "2025-2026"
+        },
+        {
+          "event": "rebuilt",
+          "at": "2026-07-31T17:55:35.796Z",
+          "version": "2025-2026"
+        }
+      ],
+      "validation": {
+        "ok": true,
+        "warnings": [],
+        "validatedAt": "2026-07-31T17:55:35.796Z"
+      }
+    },
+    {
+      "sourceId": "jo-ref-openstax-math",
+      "title": "OpenStax — Mathematics Concept Verification",
+      "publisher": "OpenStax / Rice University",
+      "organization": "OpenStax",
+      "country": "International (concept verification only)",
+      "educationalSystem": "OER — not a Jordan curriculum authority",
+      "subject": "الرياضيات",
+      "grade": "all",
+      "language": "en",
+      "publicationYear": 2025,
+      "version": "2025-2026",
+      "officialUrl": "https://openstax.org",
+      "licenseType": "open-license-oer",
+      "copyrightStatus": "open-educational-resource",
+      "verificationDate": "2026-07-31T17:54:29.642Z",
+      "reliabilityScore": 88,
+      "status": "verified",
+      "category": "Mathematical References",
+      "copyBookText": false,
+      "note": null,
+      "history": [
+        {
+          "event": "registered",
+          "at": "2026-07-31T17:54:29.642Z",
+          "version": "2025-2026",
+          "note": "JO-05 seed registration"
+        },
+        {
+          "event": "rebuilt",
+          "at": "2026-07-31T17:55:32.918Z",
+          "version": "2025-2026"
+        },
+        {
+          "event": "rebuilt",
+          "at": "2026-07-31T17:55:35.796Z",
+          "version": "2025-2026"
+        }
+      ],
+      "validation": {
+        "ok": true,
+        "warnings": [
+          "SHARED_URL_WITH:jo-ref-openstax-science"
+        ],
+        "validatedAt": "2026-07-31T17:55:35.796Z"
+      }
+    },
+    {
+      "sourceId": "jo-ref-openstax-science",
+      "title": "OpenStax — Science Concept Verification",
+      "publisher": "OpenStax / Rice University",
+      "organization": "OpenStax",
+      "country": "International (concept verification only)",
+      "educationalSystem": "OER — not a Jordan curriculum authority",
+      "subject": "العلوم",
+      "grade": "all",
+      "language": "en",
+      "publicationYear": 2025,
+      "version": "2025-2026",
+      "officialUrl": "https://openstax.org",
+      "licenseType": "open-license-oer",
+      "copyrightStatus": "open-educational-resource",
+      "verificationDate": "2026-07-31T17:54:29.642Z",
+      "reliabilityScore": 88,
+      "status": "verified",
+      "category": "Scientific References",
+      "copyBookText": false,
+      "note": null,
+      "history": [
+        {
+          "event": "registered",
+          "at": "2026-07-31T17:54:29.642Z",
+          "version": "2025-2026",
+          "note": "JO-05 seed registration"
+        },
+        {
+          "event": "rebuilt",
+          "at": "2026-07-31T17:55:32.918Z",
+          "version": "2025-2026"
+        },
+        {
+          "event": "rebuilt",
+          "at": "2026-07-31T17:55:35.796Z",
+          "version": "2025-2026"
+        }
+      ],
+      "validation": {
+        "ok": true,
+        "warnings": [],
+        "validatedAt": "2026-07-31T17:55:35.796Z"
+      }
+    },
+    {
+      "sourceId": "jo-ref-phet-lab",
+      "title": "PhET Interactive Simulations — Lab Concept Support",
+      "publisher": "University of Colorado Boulder",
+      "organization": "PhET",
+      "country": "International (concept verification only)",
+      "educationalSystem": "OER — not a Jordan curriculum authority",
+      "subject": "العلوم",
+      "grade": "all",
+      "language": "en",
+      "publicationYear": 2025,
+      "version": "2025-2026",
+      "officialUrl": "https://phet.colorado.edu",
+      "licenseType": "open-license-oer",
+      "copyrightStatus": "open-educational-resource",
+      "verificationDate": "2026-07-31T17:54:29.642Z",
+      "reliabilityScore": 90,
+      "status": "verified",
+      "category": "Laboratory Resources",
+      "copyBookText": false,
+      "note": null,
+      "history": [
+        {
+          "event": "registered",
+          "at": "2026-07-31T17:54:29.642Z",
+          "version": "2025-2026",
+          "note": "JO-05 seed registration"
+        },
+        {
+          "event": "rebuilt",
+          "at": "2026-07-31T17:55:32.918Z",
+          "version": "2025-2026"
+        },
+        {
+          "event": "rebuilt",
+          "at": "2026-07-31T17:55:35.796Z",
+          "version": "2025-2026"
+        }
+      ],
+      "validation": {
+        "ok": true,
+        "warnings": [],
+        "validatedAt": "2026-07-31T17:55:35.796Z"
+      }
+    },
+    {
+      "sourceId": "jo-ref-phet-simulations",
+      "title": "PhET Interactive Simulations",
+      "publisher": "University of Colorado Boulder",
+      "organization": "PhET",
+      "country": "International (concept verification only)",
+      "educationalSystem": "OER — not a Jordan curriculum authority",
+      "subject": "all",
+      "grade": "all",
+      "language": "en",
+      "publicationYear": 2025,
+      "version": "2025-2026",
+      "officialUrl": "https://phet.colorado.edu",
+      "licenseType": "open-license-oer",
+      "copyrightStatus": "open-educational-resource",
+      "verificationDate": "2026-07-31T17:54:29.642Z",
+      "reliabilityScore": 90,
+      "status": "verified",
+      "category": "Simulations",
+      "copyBookText": false,
+      "note": null,
+      "history": [
+        {
+          "event": "registered",
+          "at": "2026-07-31T17:54:29.642Z",
+          "version": "2025-2026",
+          "note": "JO-05 seed registration"
+        },
+        {
+          "event": "rebuilt",
+          "at": "2026-07-31T17:55:32.918Z",
+          "version": "2025-2026"
+        },
+        {
+          "event": "rebuilt",
+          "at": "2026-07-31T17:55:35.796Z",
+          "version": "2025-2026"
+        }
+      ],
+      "validation": {
+        "ok": true,
+        "warnings": [
+          "SHARED_URL_WITH:jo-ref-phet-lab"
+        ],
+        "validatedAt": "2026-07-31T17:55:35.796Z"
+      }
+    },
+    {
+      "sourceId": "jo-ref-success-os-original-diagrams",
+      "title": "Success OS Original Educational Diagrams Policy",
+      "publisher": "Success OS",
+      "organization": "Success OS",
+      "country": "Jordan",
+      "educationalSystem": "Jordan National Curriculum",
+      "subject": "all",
+      "grade": "all",
+      "language": "ar",
+      "publicationYear": 2025,
+      "version": "2025-2026",
+      "officialUrl": "https://www.nccd.gov.jo/Ar/Pages/textbooks",
+      "licenseType": "success-os-original",
+      "copyrightStatus": "original-generation-required-never-copy-textbook-figures",
+      "verificationDate": "2026-07-31T17:54:29.642Z",
+      "reliabilityScore": 92,
+      "status": "verified",
+      "category": "Educational Diagrams",
+      "copyBookText": false,
+      "note": null,
+      "history": [
+        {
+          "event": "registered",
+          "at": "2026-07-31T17:54:29.642Z",
+          "version": "2025-2026",
+          "note": "JO-05 seed registration"
+        },
+        {
+          "event": "rebuilt",
+          "at": "2026-07-31T17:55:32.918Z",
+          "version": "2025-2026"
+        },
+        {
+          "event": "rebuilt",
+          "at": "2026-07-31T17:55:35.796Z",
+          "version": "2025-2026"
+        }
+      ],
+      "validation": {
+        "ok": true,
+        "warnings": [
+          "SHARED_URL_WITH:jo-ref-national-curriculum-standard"
+        ],
+        "validatedAt": "2026-07-31T17:55:35.796Z"
+      }
+    },
+    {
+      "sourceId": "jo-ref-success-os-original-images",
+      "title": "Success OS Original Educational Images Policy",
+      "publisher": "Success OS",
+      "organization": "Success OS",
+      "country": "Jordan",
+      "educationalSystem": "Jordan National Curriculum",
+      "subject": "all",
+      "grade": "all",
+      "language": "ar",
+      "publicationYear": 2025,
+      "version": "2025-2026",
+      "officialUrl": "https://moe.gov.jo",
+      "licenseType": "success-os-original",
+      "copyrightStatus": "original-generation-required-never-copy-textbook-figures",
+      "verificationDate": "2026-07-31T17:54:29.642Z",
+      "reliabilityScore": 92,
+      "status": "verified",
+      "category": "Educational Images",
+      "copyBookText": false,
+      "note": "Images must be generated originally; never scrape textbook figures",
+      "history": [
+        {
+          "event": "registered",
+          "at": "2026-07-31T17:54:29.642Z",
+          "version": "2025-2026",
+          "note": "JO-05 seed registration"
+        },
+        {
+          "event": "rebuilt",
+          "at": "2026-07-31T17:55:32.918Z",
+          "version": "2025-2026"
+        },
+        {
+          "event": "rebuilt",
+          "at": "2026-07-31T17:55:35.796Z",
+          "version": "2025-2026"
+        }
+      ],
+      "validation": {
+        "ok": true,
+        "warnings": [
+          "SHARED_URL_WITH:jo-ref-moe-tawjihi"
+        ],
+        "validatedAt": "2026-07-31T17:55:35.796Z"
+      }
+    },
+    {
+      "sourceId": "jo-ref-unesco-ibe",
+      "title": "UNESCO IBE Curriculum Resources",
+      "publisher": "UNESCO",
+      "organization": "UNESCO IBE",
+      "country": "International (concept verification only)",
+      "educationalSystem": "OER — not a Jordan curriculum authority",
+      "subject": "all",
+      "grade": "all",
+      "language": "en",
+      "publicationYear": 2025,
+      "version": "2025-2026",
+      "officialUrl": "https://www.ibe.unesco.org",
+      "licenseType": "unesco-reference",
+      "copyrightStatus": "intergovernmental-reference",
+      "verificationDate": "2026-07-31T17:54:29.642Z",
+      "reliabilityScore": 93,
+      "status": "verified",
+      "category": "Open Educational Resources",
+      "copyBookText": false,
+      "note": null,
+      "history": [
+        {
+          "event": "registered",
+          "at": "2026-07-31T17:54:29.642Z",
+          "version": "2025-2026",
+          "note": "JO-05 seed registration"
+        },
+        {
+          "event": "rebuilt",
+          "at": "2026-07-31T17:55:32.918Z",
+          "version": "2025-2026"
+        },
+        {
+          "event": "rebuilt",
+          "at": "2026-07-31T17:55:35.796Z",
+          "version": "2025-2026"
+        }
+      ],
+      "validation": {
+        "ok": true,
+        "warnings": [],
+        "validatedAt": "2026-07-31T17:55:35.796Z"
+      }
+    },
+    {
+      "sourceId": "jo-ref-unesco-oer",
+      "title": "UNESCO Open Educational Resources",
+      "publisher": "UNESCO",
+      "organization": "UNESCO",
+      "country": "International (concept verification only)",
+      "educationalSystem": "OER — not a Jordan curriculum authority",
+      "subject": "all",
+      "grade": "all",
+      "language": "en",
+      "publicationYear": 2025,
+      "version": "2025-2026",
+      "officialUrl": "https://www.unesco.org/en/open-educational-resources",
+      "licenseType": "unesco-oer",
+      "copyrightStatus": "open-educational-resource",
+      "verificationDate": "2026-07-31T17:54:29.642Z",
+      "reliabilityScore": 92,
+      "status": "verified",
+      "category": "Open Educational Resources",
+      "copyBookText": false,
+      "note": null,
+      "history": [
+        {
+          "event": "registered",
+          "at": "2026-07-31T17:54:29.642Z",
+          "version": "2025-2026",
+          "note": "JO-05 seed registration"
+        },
+        {
+          "event": "rebuilt",
+          "at": "2026-07-31T17:55:32.918Z",
+          "version": "2025-2026"
+        },
+        {
+          "event": "rebuilt",
+          "at": "2026-07-31T17:55:35.796Z",
+          "version": "2025-2026"
+        }
+      ],
+      "validation": {
+        "ok": true,
+        "warnings": [],
+        "validatedAt": "2026-07-31T17:55:35.796Z"
+      }
+    }
+  ],
+  "indexes": {
+    "byCategory": {
+      "Curriculum Documents": [
+        "jo-ref-darsak",
+        "jo-ref-moe-curricula-admin",
+        "jo-ref-moe-home",
+        "jo-ref-nccd-portal",
+        "jo-ref-nccd-textbooks-index"
+      ],
+      "Official Textbooks": [
+        "jo-ref-moe-editions-2025-2026",
+        "jo-ref-nccd-grade-117",
+        "jo-ref-nccd-grade-68",
+        "jo-ref-nccd-grade-69",
+        "jo-ref-nccd-grade-70",
+        "jo-ref-nccd-grade-71",
+        "jo-ref-nccd-grade-72",
+        "jo-ref-nccd-grade-73",
+        "jo-ref-nccd-grade-74",
+        "jo-ref-nccd-grade-75",
+        "jo-ref-nccd-grade-76",
+        "jo-ref-nccd-grade-77",
+        "jo-ref-nccd-grade-83"
+      ],
+      "Teacher Guides": [
+        "jo-ref-nccd-teacher-guides"
+      ],
+      "Assessment Frameworks": [
+        "jo-ref-moe-tawjihi"
+      ],
+      "Educational Standards": [
+        "jo-ref-national-curriculum-standard"
+      ],
+      "Scientific References": [
+        "jo-ref-libretexts-science",
+        "jo-ref-openstax-science"
+      ],
+      "Mathematical References": [
+        "jo-ref-ck12-math",
+        "jo-ref-openstax-math"
+      ],
+      "Laboratory Resources": [
+        "jo-ref-phet-lab"
+      ],
+      "Educational Images": [
+        "jo-ref-success-os-original-images"
+      ],
+      "Educational Diagrams": [
+        "jo-ref-success-os-original-diagrams"
+      ],
+      "Simulations": [
+        "jo-ref-phet-simulations"
+      ],
+      "Open Educational Resources": [
+        "jo-ref-unesco-ibe",
+        "jo-ref-unesco-oer"
+      ]
+    },
+    "bySubject": {
+      "الرياضيات": [
+        "jo-ref-ck12-math",
+        "jo-ref-openstax-math"
+      ],
+      "all": [
+        "jo-ref-darsak",
+        "jo-ref-moe-curricula-admin",
+        "jo-ref-moe-editions-2025-2026",
+        "jo-ref-moe-home",
+        "jo-ref-moe-tawjihi",
+        "jo-ref-national-curriculum-standard",
+        "jo-ref-nccd-grade-117",
+        "jo-ref-nccd-grade-68",
+        "jo-ref-nccd-grade-69",
+        "jo-ref-nccd-grade-70",
+        "jo-ref-nccd-grade-71",
+        "jo-ref-nccd-grade-72",
+        "jo-ref-nccd-grade-73",
+        "jo-ref-nccd-grade-74",
+        "jo-ref-nccd-grade-75",
+        "jo-ref-nccd-grade-76",
+        "jo-ref-nccd-grade-77",
+        "jo-ref-nccd-grade-83",
+        "jo-ref-nccd-portal",
+        "jo-ref-nccd-teacher-guides",
+        "jo-ref-nccd-textbooks-index",
+        "jo-ref-phet-simulations",
+        "jo-ref-success-os-original-diagrams",
+        "jo-ref-success-os-original-images",
+        "jo-ref-unesco-ibe",
+        "jo-ref-unesco-oer"
+      ],
+      "العلوم": [
+        "jo-ref-libretexts-science",
+        "jo-ref-openstax-science",
+        "jo-ref-phet-lab"
+      ]
+    },
+    "byGrade": {
+      "all": [
+        "jo-ref-ck12-math",
+        "jo-ref-darsak",
+        "jo-ref-libretexts-science",
+        "jo-ref-moe-curricula-admin",
+        "jo-ref-moe-editions-2025-2026",
+        "jo-ref-moe-home",
+        "jo-ref-national-curriculum-standard",
+        "jo-ref-nccd-portal",
+        "jo-ref-nccd-teacher-guides",
+        "jo-ref-nccd-textbooks-index",
+        "jo-ref-openstax-math",
+        "jo-ref-openstax-science",
+        "jo-ref-phet-lab",
+        "jo-ref-phet-simulations",
+        "jo-ref-success-os-original-diagrams",
+        "jo-ref-success-os-original-images",
+        "jo-ref-unesco-ibe",
+        "jo-ref-unesco-oer"
+      ],
+      "الصف 12": [
+        "jo-ref-moe-tawjihi",
+        "jo-ref-nccd-grade-83"
+      ],
+      "الصف 11": [
+        "jo-ref-nccd-grade-117"
+      ],
+      "الصف 1": [
+        "jo-ref-nccd-grade-68"
+      ],
+      "الصف 2": [
+        "jo-ref-nccd-grade-69"
+      ],
+      "الصف 3": [
+        "jo-ref-nccd-grade-70"
+      ],
+      "الصف 4": [
+        "jo-ref-nccd-grade-71"
+      ],
+      "الصف 5": [
+        "jo-ref-nccd-grade-72"
+      ],
+      "الصف 6": [
+        "jo-ref-nccd-grade-73"
+      ],
+      "الصف 7": [
+        "jo-ref-nccd-grade-74"
+      ],
+      "الصف 8": [
+        "jo-ref-nccd-grade-75"
+      ],
+      "الصف 9": [
+        "jo-ref-nccd-grade-76"
+      ],
+      "الصف 10": [
+        "jo-ref-nccd-grade-77"
+      ]
+    },
+    "byPublisher": {
+      "CK-12 Foundation": [
+        "jo-ref-ck12-math"
+      ],
+      "Ministry of Education": [
+        "jo-ref-darsak",
+        "jo-ref-moe-curricula-admin",
+        "jo-ref-moe-editions-2025-2026",
+        "jo-ref-moe-home",
+        "jo-ref-moe-tawjihi"
+      ],
+      "LibreTexts": [
+        "jo-ref-libretexts-science"
+      ],
+      "NCCD / MoE": [
+        "jo-ref-national-curriculum-standard"
+      ],
+      "NCCD": [
+        "jo-ref-nccd-grade-117",
+        "jo-ref-nccd-grade-68",
+        "jo-ref-nccd-grade-69",
+        "jo-ref-nccd-grade-70",
+        "jo-ref-nccd-grade-71",
+        "jo-ref-nccd-grade-72",
+        "jo-ref-nccd-grade-73",
+        "jo-ref-nccd-grade-74",
+        "jo-ref-nccd-grade-75",
+        "jo-ref-nccd-grade-76",
+        "jo-ref-nccd-grade-77",
+        "jo-ref-nccd-grade-83",
+        "jo-ref-nccd-portal",
+        "jo-ref-nccd-teacher-guides",
+        "jo-ref-nccd-textbooks-index"
+      ],
+      "OpenStax / Rice University": [
+        "jo-ref-openstax-math",
+        "jo-ref-openstax-science"
+      ],
+      "University of Colorado Boulder": [
+        "jo-ref-phet-lab",
+        "jo-ref-phet-simulations"
+      ],
+      "Success OS": [
+        "jo-ref-success-os-original-diagrams",
+        "jo-ref-success-os-original-images"
+      ],
+      "UNESCO": [
+        "jo-ref-unesco-ibe",
+        "jo-ref-unesco-oer"
+      ]
+    },
+    "byStatus": {
+      "verified": [
+        "jo-ref-ck12-math",
+        "jo-ref-darsak",
+        "jo-ref-libretexts-science",
+        "jo-ref-moe-curricula-admin",
+        "jo-ref-moe-editions-2025-2026",
+        "jo-ref-moe-home",
+        "jo-ref-moe-tawjihi",
+        "jo-ref-national-curriculum-standard",
+        "jo-ref-nccd-grade-117",
+        "jo-ref-nccd-grade-68",
+        "jo-ref-nccd-grade-69",
+        "jo-ref-nccd-grade-70",
+        "jo-ref-nccd-grade-71",
+        "jo-ref-nccd-grade-72",
+        "jo-ref-nccd-grade-73",
+        "jo-ref-nccd-grade-74",
+        "jo-ref-nccd-grade-75",
+        "jo-ref-nccd-grade-76",
+        "jo-ref-nccd-grade-77",
+        "jo-ref-nccd-grade-83",
+        "jo-ref-nccd-portal",
+        "jo-ref-nccd-teacher-guides",
+        "jo-ref-nccd-textbooks-index",
+        "jo-ref-openstax-math",
+        "jo-ref-openstax-science",
+        "jo-ref-phet-lab",
+        "jo-ref-phet-simulations",
+        "jo-ref-success-os-original-diagrams",
+        "jo-ref-success-os-original-images",
+        "jo-ref-unesco-ibe",
+        "jo-ref-unesco-oer"
+      ]
+    }
+  },
+  "rejected": [],
+  "totals": {
+    "totalReferences": 31,
+    "verifiedReferences": 31,
+    "pendingVerification": 0,
+    "brokenReferences": 0,
+    "updatedReferences": 31,
+    "deprecatedReferences": 0,
+    "rejectedOnValidation": 0
+  },
+  "version": {
+    "libraryVersion": "1.0.2",
+    "curriculumEdition": "2025-2026",
+    "builtAt": "2026-07-31T17:55:35.796Z",
+    "previousVersion": "1.0.1"
+  },
+  "builtAt": "2026-07-31T17:55:35.796Z"
+}

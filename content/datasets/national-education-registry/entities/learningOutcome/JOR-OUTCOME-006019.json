@@ -1,0 +1,18 @@
+{
+  "globalId": "JOR-OUTCOME-006019",
+  "kind": "learningOutcome",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«الموجات والضوء — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G12-الفيزياء-U03-L04",
+  "relationships": {
+    "lessonId": "JOR-G12-الفيزياء-U03-L04",
+    "belongsTo": "JOR-G12-الفيزياء-U03-L04"
+  },
+  "createdAt": "2026-07-31T17:56:57.343Z",
+  "updatedAt": "2026-07-31T17:56:57.343Z",
+  "text": "أن يطبّق مهارة مرتبطة بـ«الموجات والضوء — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+  "sequence": 2
+}

@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-G10-ENG-U04-L01",
+  "kind": "lesson",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "Paragraph Writing — مقدمة ومفاهيم",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G10-ENG-U04",
+  "relationships": {
+    "unitId": "JOR-G10-ENG-U04",
+    "bookId": "JOR-BOOK-000011",
+    "subjectId": "JOR-G10-ENG",
+    "gradeId": "JOR-G10",
+    "belongsTo": "JOR-G10-ENG-U04"
+  },
+  "createdAt": "2026-07-31T17:56:56.709Z",
+  "updatedAt": "2026-07-31T17:56:56.709Z",
+  "lessonCode": "L01",
+  "sequence": 1,
+  "legacyLessonId": "L4.1",
+  "keywords": [
+    "vocabulary",
+    "structure",
+    "fluency"
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "globalId": "JOR-G10-PE",
+  "kind": "subject",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "التربية الرياضية",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G10",
+  "relationships": {
+    "gradeId": "JOR-G10",
+    "educationalSystemId": "JOR-SYS-000001",
+    "countryId": "JOR",
+    "belongsTo": "JOR-G10"
+  },
+  "createdAt": "2026-07-31T17:56:56.686Z",
+  "updatedAt": "2026-07-31T17:56:56.686Z",
+  "subjectCode": "PE",
+  "gradeCode": "G10"
+}

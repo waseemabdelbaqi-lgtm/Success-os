@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-SKILL-000828",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«الحسابات الكيميائية — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-005602",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-005602",
+      "JOR-OUTCOME-005603",
+      "JOR-OUTCOME-005604",
+      "JOR-OUTCOME-006066",
+      "JOR-OUTCOME-006067",
+      "JOR-OUTCOME-006068"
+    ],
+    "lessonIds": [
+      "JOR-G11-الكيمياء-U03-L04",
+      "JOR-G12-الكيمياء-U03-L04"
+    ],
+    "belongsTo": "JOR-OUTCOME-005602"
+  },
+  "createdAt": "2026-07-31T17:56:57.272Z",
+  "updatedAt": "2026-07-31T17:56:57.350Z"
+}

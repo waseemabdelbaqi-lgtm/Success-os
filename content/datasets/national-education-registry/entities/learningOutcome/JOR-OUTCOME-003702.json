@@ -1,0 +1,18 @@
+{
+  "globalId": "JOR-OUTCOME-003702",
+  "kind": "learningOutcome",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يتعرف المتعلم مفهومًا محوريًا في الثقافة المالية ضمن الادخار بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 7.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G07-الثقافةا-U02-L04",
+  "relationships": {
+    "lessonId": "JOR-G07-الثقافةا-U02-L04",
+    "belongsTo": "JOR-G07-الثقافةا-U02-L04"
+  },
+  "createdAt": "2026-07-31T17:56:56.992Z",
+  "updatedAt": "2026-07-31T17:56:56.992Z",
+  "text": "أن يتعرف المتعلم مفهومًا محوريًا في الثقافة المالية ضمن الادخار بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 7.",
+  "sequence": 1
+}

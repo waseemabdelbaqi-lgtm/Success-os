@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-G01-ISL-U04-L01",
+  "kind": "lesson",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "قصص قرآنية ونبوية — مقدمة ومفاهيم",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G01-ISL-U04",
+  "relationships": {
+    "unitId": "JOR-G01-ISL-U04",
+    "bookId": "JOR-BOOK-000014",
+    "subjectId": "JOR-G01-ISL",
+    "gradeId": "JOR-G01",
+    "belongsTo": "JOR-G01-ISL-U04"
+  },
+  "createdAt": "2026-07-31T17:56:56.716Z",
+  "updatedAt": "2026-07-31T17:56:56.716Z",
+  "lessonCode": "L01",
+  "sequence": 1,
+  "legacyLessonId": "L4.1",
+  "keywords": [
+    "عقيدة",
+    "عبادة",
+    "خلق"
+  ]
+}

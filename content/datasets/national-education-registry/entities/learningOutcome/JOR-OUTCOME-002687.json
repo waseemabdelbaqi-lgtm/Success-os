@@ -1,0 +1,18 @@
+{
+  "globalId": "JOR-OUTCOME-002687",
+  "kind": "learningOutcome",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يتعرف المتعلم مفهومًا محوريًا في الرياضيات ضمن الهندسة والمساحة بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 5.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G05-MATH-U03-L03",
+  "relationships": {
+    "lessonId": "JOR-G05-MATH-U03-L03",
+    "belongsTo": "JOR-G05-MATH-U03-L03"
+  },
+  "createdAt": "2026-07-31T17:56:56.862Z",
+  "updatedAt": "2026-07-31T17:56:56.862Z",
+  "text": "أن يتعرف المتعلم مفهومًا محوريًا في الرياضيات ضمن الهندسة والمساحة بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 5.",
+  "sequence": 1
+}

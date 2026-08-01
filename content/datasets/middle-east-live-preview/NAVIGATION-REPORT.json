@@ -1,0 +1,49 @@
+{
+  "schema": "success-os.middle-east-navigation-report.v1",
+  "phase": "PHASE_10_MIDDLE_EAST_DIGITAL_LIBRARY_EXPANSION",
+  "generatedAt": "2026-07-31T17:58:12.258Z",
+  "workingPages": [
+    "/student/books",
+    "/student/subjects/[subjectId]?bookId=…",
+    "/student/books/[bookId]/read",
+    "/api/student-books?view=index",
+    "/api/student-books?view=book&id=…",
+    "/api/student-books?view=version&id=…"
+  ],
+  "brokenPages": [],
+  "brokenButtons": [],
+  "brokenFilters": [],
+  "missingRoutes": [],
+  "performanceIssues": [],
+  "inventory": {
+    "books": 154,
+    "countries": 1,
+    "systems": 4,
+    "curricula": 1,
+    "grades": 13,
+    "subjects": 154
+  },
+  "dataGaps": [
+    "SA: no generated book is currently available for live preview",
+    "AE: no generated book is currently available for live preview",
+    "QA: no generated book is currently available for live preview",
+    "BH: no generated book is currently available for live preview",
+    "KW: no generated book is currently available for live preview",
+    "OM: no generated book is currently available for live preview",
+    "IQ: no generated book is currently available for live preview",
+    "SY: no generated book is currently available for live preview",
+    "LB: no generated book is currently available for live preview",
+    "PS: no generated book is currently available for live preview",
+    "EG: no generated book is currently available for live preview",
+    "YE: no generated book is currently available for live preview"
+  ],
+  "directPreviewMode": true,
+  "notes": [
+    "Phase 10: Middle East expansion queue books are permanently versioned and linked to subject pages.",
+    "Only Middle East generated books and Phase 8 drafts are indexed.",
+    "Selectors are dependent and reset downstream values automatically.",
+    "Books are loaded individually; the index contains metadata only.",
+    "The reader polls version metadata and refreshes changed books in-session.",
+    "📖 Book is active for every indexed subject with units and lessons."
+  ]
+}

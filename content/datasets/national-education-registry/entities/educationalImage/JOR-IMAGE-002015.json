@@ -1,0 +1,17 @@
+{
+  "globalId": "JOR-IMAGE-002015",
+  "kind": "educationalImage",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "مخطط تعليمي لوحدة الإحصاء والاحتمالات",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G12-MATH-U04-L03",
+  "relationships": {
+    "lessonId": "JOR-G12-MATH-U04-L03",
+    "belongsTo": "JOR-G12-MATH-U04-L03"
+  },
+  "createdAt": "2026-07-31T17:56:57.329Z",
+  "updatedAt": "2026-07-31T17:56:57.329Z",
+  "src": null
+}

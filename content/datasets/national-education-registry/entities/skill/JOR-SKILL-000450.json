@@ -1,0 +1,35 @@
+{
+  "globalId": "JOR-SKILL-000450",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«Simple Writing — بناء المهارة» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-000984",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-000984",
+      "JOR-OUTCOME-000985",
+      "JOR-OUTCOME-000986",
+      "JOR-OUTCOME-001416",
+      "JOR-OUTCOME-001417",
+      "JOR-OUTCOME-001418",
+      "JOR-OUTCOME-001848",
+      "JOR-OUTCOME-001849",
+      "JOR-OUTCOME-001850",
+      "JOR-OUTCOME-002280",
+      "JOR-OUTCOME-002281",
+      "JOR-OUTCOME-002282"
+    ],
+    "lessonIds": [
+      "JOR-G01-ENG-U04-L02",
+      "JOR-G02-ENG-U04-L02",
+      "JOR-G03-ENG-U04-L02",
+      "JOR-G04-ENG-U04-L02"
+    ],
+    "belongsTo": "JOR-OUTCOME-000984"
+  },
+  "createdAt": "2026-07-31T17:56:56.731Z",
+  "updatedAt": "2026-07-31T17:56:56.823Z"
+}

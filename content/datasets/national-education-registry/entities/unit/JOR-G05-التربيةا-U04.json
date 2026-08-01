@@ -1,0 +1,22 @@
+{
+  "globalId": "JOR-G05-التربيةا-U04",
+  "kind": "unit",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "الخدمة المجتمعية",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-BOOK-000052",
+  "relationships": {
+    "bookId": "JOR-BOOK-000052",
+    "subjectId": "JOR-G05-التربيةا",
+    "gradeId": "JOR-G05",
+    "belongsTo": "JOR-BOOK-000052"
+  },
+  "createdAt": "2026-07-31T17:56:56.845Z",
+  "updatedAt": "2026-07-31T17:56:56.849Z",
+  "unitCode": "U04",
+  "sequence": 4,
+  "legacyUnitId": "U4",
+  "_deduped": true
+}

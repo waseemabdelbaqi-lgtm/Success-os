@@ -1,0 +1,31 @@
+{
+  "globalId": "JOR-SKILL-000075",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«التخطيط الشخصي — بناء المهارة» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-000148",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-000148",
+      "JOR-OUTCOME-000149",
+      "JOR-OUTCOME-000150",
+      "JOR-OUTCOME-004212",
+      "JOR-OUTCOME-004213",
+      "JOR-OUTCOME-004214",
+      "JOR-OUTCOME-004868",
+      "JOR-OUTCOME-004869",
+      "JOR-OUTCOME-004870"
+    ],
+    "lessonIds": [
+      "JOR-G10-التربيةا-U01-L02",
+      "JOR-G08-التربيةا-U01-L02",
+      "JOR-G09-التربيةا-U01-L02"
+    ],
+    "belongsTo": "JOR-OUTCOME-000148"
+  },
+  "createdAt": "2026-07-31T17:56:56.688Z",
+  "updatedAt": "2026-07-31T17:56:57.155Z"
+}

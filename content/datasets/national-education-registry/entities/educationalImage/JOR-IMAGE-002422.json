@@ -1,0 +1,17 @@
+{
+  "globalId": "JOR-IMAGE-002422",
+  "kind": "educationalImage",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "مخطط تعليمي لوحدة وحدة استكشافية 2",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-GKG-المهارات-U02-L02",
+  "relationships": {
+    "lessonId": "JOR-GKG-المهارات-U02-L02",
+    "belongsTo": "JOR-GKG-المهارات-U02-L02"
+  },
+  "createdAt": "2026-07-31T17:56:57.593Z",
+  "updatedAt": "2026-07-31T17:56:57.593Z",
+  "src": null
+}

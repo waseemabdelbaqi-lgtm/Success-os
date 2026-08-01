@@ -1,0 +1,15 @@
+{
+  "schema": "success-os.jordan-reference-linking.v1",
+  "phase": "JO-05_JORDAN_EDUCATIONAL_REFERENCE_LIBRARY",
+  "linkedAt": "2026-07-31T17:55:35.816Z",
+  "books": [
+    {
+      "bookId": "jordan__رياض-الأطفال__jordan-national-curriculum__رياض-الأطفال__الرياضيات-المبكرة__ar",
+      "subject": "الرياضيات المبكرة",
+      "grade": "رياض الأطفال",
+      "referenceCount": 7,
+      "missingUnregistered": 0,
+      "linkComplete": true
+    }
+  ]
+}

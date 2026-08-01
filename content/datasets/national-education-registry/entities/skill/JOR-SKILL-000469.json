@@ -1,0 +1,35 @@
+{
+  "globalId": "JOR-SKILL-000469",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«التعبير الكتابي — مقدمة ومفاهيم» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-001029",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-001029",
+      "JOR-OUTCOME-001030",
+      "JOR-OUTCOME-001031",
+      "JOR-OUTCOME-001461",
+      "JOR-OUTCOME-001462",
+      "JOR-OUTCOME-001463",
+      "JOR-OUTCOME-001893",
+      "JOR-OUTCOME-001894",
+      "JOR-OUTCOME-001895",
+      "JOR-OUTCOME-002325",
+      "JOR-OUTCOME-002326",
+      "JOR-OUTCOME-002327"
+    ],
+    "lessonIds": [
+      "JOR-G01-ARAB-U04-L01",
+      "JOR-G02-ARAB-U04-L01",
+      "JOR-G03-ARAB-U04-L01",
+      "JOR-G04-ARAB-U04-L01"
+    ],
+    "belongsTo": "JOR-OUTCOME-001029"
+  },
+  "createdAt": "2026-07-31T17:56:56.737Z",
+  "updatedAt": "2026-07-31T17:56:56.827Z"
+}

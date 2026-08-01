@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-G02-ICT-U02-L01",
+  "kind": "lesson",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "السلامة الرقمية — مقدمة ومفاهيم",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G02-ICT-U02",
+  "relationships": {
+    "unitId": "JOR-G02-ICT-U02",
+    "bookId": "JOR-BOOK-000031",
+    "subjectId": "JOR-G02-ICT",
+    "gradeId": "JOR-G02",
+    "belongsTo": "JOR-G02-ICT-U02"
+  },
+  "createdAt": "2026-07-31T17:56:56.765Z",
+  "updatedAt": "2026-07-31T17:56:56.765Z",
+  "lessonCode": "L01",
+  "sequence": 1,
+  "legacyLessonId": "L2.1",
+  "keywords": [
+    "بيانات",
+    "خوارزمية",
+    "شبكة"
+  ]
+}

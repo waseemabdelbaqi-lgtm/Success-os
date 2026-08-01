@@ -1,0 +1,20 @@
+{
+  "globalId": "JOR-G08-SCI",
+  "kind": "subject",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "العلوم",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G08",
+  "relationships": {
+    "gradeId": "JOR-G08",
+    "educationalSystemId": "JOR-SYS-000001",
+    "countryId": "JOR",
+    "belongsTo": "JOR-G08"
+  },
+  "createdAt": "2026-07-31T17:56:57.095Z",
+  "updatedAt": "2026-07-31T17:56:57.095Z",
+  "subjectCode": "SCI",
+  "gradeCode": "G08"
+}

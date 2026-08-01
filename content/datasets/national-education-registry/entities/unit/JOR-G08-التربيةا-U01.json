@@ -1,0 +1,22 @@
+{
+  "globalId": "JOR-G08-التربيةا-U01",
+  "kind": "unit",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "المواطنة الرقمية",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-BOOK-000086",
+  "relationships": {
+    "bookId": "JOR-BOOK-000086",
+    "subjectId": "JOR-G08-التربيةا",
+    "gradeId": "JOR-G08",
+    "belongsTo": "JOR-BOOK-000086"
+  },
+  "createdAt": "2026-07-31T17:56:57.057Z",
+  "updatedAt": "2026-07-31T17:56:57.064Z",
+  "unitCode": "U01",
+  "sequence": 1,
+  "legacyUnitId": "U1",
+  "_deduped": true
+}

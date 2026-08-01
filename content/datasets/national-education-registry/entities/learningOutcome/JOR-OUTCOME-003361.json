@@ -1,0 +1,18 @@
+{
+  "globalId": "JOR-OUTCOME-003361",
+  "kind": "learningOutcome",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يتعرف المتعلم مفهومًا محوريًا في اللغة الإنجليزية ضمن Communication بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 6.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G06-ENG-U01-L01",
+  "relationships": {
+    "lessonId": "JOR-G06-ENG-U01-L01",
+    "belongsTo": "JOR-G06-ENG-U01-L01"
+  },
+  "createdAt": "2026-07-31T17:56:56.944Z",
+  "updatedAt": "2026-07-31T17:56:56.944Z",
+  "text": "أن يتعرف المتعلم مفهومًا محوريًا في اللغة الإنجليزية ضمن Communication بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 6.",
+  "sequence": 1
+}

@@ -1,0 +1,51 @@
+{
+  "globalId": "JOR-SKILL-000768",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يتعرف المتعلم مفهومًا محوريًا في العلوم الحياتية ضمن أسس علمية متكاملة بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 11.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-005473",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-005473",
+      "JOR-OUTCOME-005474",
+      "JOR-OUTCOME-005475",
+      "JOR-OUTCOME-005476",
+      "JOR-OUTCOME-005477",
+      "JOR-OUTCOME-005478",
+      "JOR-OUTCOME-005479",
+      "JOR-OUTCOME-005480",
+      "JOR-OUTCOME-005481",
+      "JOR-OUTCOME-005482",
+      "JOR-OUTCOME-005483",
+      "JOR-OUTCOME-005484",
+      "JOR-OUTCOME-005937",
+      "JOR-OUTCOME-005938",
+      "JOR-OUTCOME-005939",
+      "JOR-OUTCOME-005940",
+      "JOR-OUTCOME-005941",
+      "JOR-OUTCOME-005942",
+      "JOR-OUTCOME-005943",
+      "JOR-OUTCOME-005944",
+      "JOR-OUTCOME-005945",
+      "JOR-OUTCOME-005946",
+      "JOR-OUTCOME-005947",
+      "JOR-OUTCOME-005948"
+    ],
+    "lessonIds": [
+      "JOR-G11-SCI-U01-L01",
+      "JOR-G11-SCI-U01-L02",
+      "JOR-G11-SCI-U01-L03",
+      "JOR-G11-SCI-U01-L04",
+      "JOR-G12-SCI-U01-L01",
+      "JOR-G12-SCI-U01-L02",
+      "JOR-G12-SCI-U01-L03",
+      "JOR-G12-SCI-U01-L04"
+    ],
+    "belongsTo": "JOR-OUTCOME-005473"
+  },
+  "createdAt": "2026-07-31T17:56:57.253Z",
+  "updatedAt": "2026-07-31T17:56:57.332Z"
+}

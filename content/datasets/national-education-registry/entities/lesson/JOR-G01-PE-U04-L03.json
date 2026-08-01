@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-G01-PE-U04-L03",
+  "kind": "lesson",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "السلامة الرياضية — تطبيق ومثال",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G01-PE-U04",
+  "relationships": {
+    "unitId": "JOR-G01-PE-U04",
+    "bookId": "JOR-BOOK-000015",
+    "subjectId": "JOR-G01-PE",
+    "gradeId": "JOR-G01",
+    "belongsTo": "JOR-G01-PE-U04"
+  },
+  "createdAt": "2026-07-31T17:56:56.718Z",
+  "updatedAt": "2026-07-31T17:56:56.718Z",
+  "lessonCode": "L03",
+  "sequence": 3,
+  "legacyLessonId": "L4.3",
+  "keywords": [
+    "مهارة حركية",
+    "لياقة",
+    "تعاون"
+  ]
+}

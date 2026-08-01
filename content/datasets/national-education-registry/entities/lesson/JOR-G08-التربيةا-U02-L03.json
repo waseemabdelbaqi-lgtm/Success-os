@@ -1,0 +1,28 @@
+{
+  "globalId": "JOR-G08-التربيةا-U02-L03",
+  "kind": "lesson",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "المشاركة المدنية — تطبيق ومثال",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G08-التربيةا-U02",
+  "relationships": {
+    "unitId": "JOR-G08-التربيةا-U02",
+    "bookId": "JOR-BOOK-000086",
+    "subjectId": "JOR-G08-التربيةا",
+    "gradeId": "JOR-G08",
+    "belongsTo": "JOR-G08-التربيةا-U02"
+  },
+  "createdAt": "2026-07-31T17:56:57.060Z",
+  "updatedAt": "2026-07-31T17:56:57.066Z",
+  "lessonCode": "L03",
+  "sequence": 3,
+  "legacyLessonId": "L2.3",
+  "keywords": [
+    "مواطنة",
+    "حق",
+    "واجب"
+  ],
+  "_deduped": true
+}

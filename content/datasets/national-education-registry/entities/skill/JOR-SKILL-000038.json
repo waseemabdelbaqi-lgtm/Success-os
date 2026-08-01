@@ -1,0 +1,31 @@
+{
+  "globalId": "JOR-SKILL-000038",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«السيرة والمجتمع — مقدمة ومفاهيم» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-000073",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-000073",
+      "JOR-OUTCOME-000074",
+      "JOR-OUTCOME-000075",
+      "JOR-OUTCOME-004137",
+      "JOR-OUTCOME-004138",
+      "JOR-OUTCOME-004139",
+      "JOR-OUTCOME-004793",
+      "JOR-OUTCOME-004794",
+      "JOR-OUTCOME-004795"
+    ],
+    "lessonIds": [
+      "JOR-G10-ISL-U03-L01",
+      "JOR-G08-ISL-U03-L01",
+      "JOR-G09-ISL-U03-L01"
+    ],
+    "belongsTo": "JOR-OUTCOME-000073"
+  },
+  "createdAt": "2026-07-31T17:56:56.685Z",
+  "updatedAt": "2026-07-31T17:56:57.143Z"
+}

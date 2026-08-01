@@ -1,0 +1,17 @@
+{
+  "globalId": "JOR-DIAGRAM-002020",
+  "kind": "diagram",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "مخطط تعليمي لوحدة أسس علمية متكاملة",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G12-SCI-U01-L04",
+  "relationships": {
+    "lessonId": "JOR-G12-SCI-U01-L04",
+    "belongsTo": "JOR-G12-SCI-U01-L04"
+  },
+  "createdAt": "2026-07-31T17:56:57.332Z",
+  "updatedAt": "2026-07-31T17:56:57.546Z",
+  "_deduped": true
+}

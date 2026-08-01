@@ -1,0 +1,16 @@
+{
+  "subject": "الفنون",
+  "totalGrades": 6,
+  "published": 6,
+  "pending": 1,
+  "complete": false,
+  "bookIds": [
+    "jordan__التعليم-الأساسي__jordan-national-curriculum__الصف-5__الفنون__ar",
+    "jordan__التعليم-الأساسي__jordan-national-curriculum__الصف-6__الفنون__ar",
+    "jordan__التعليم-الأساسي__jordan-national-curriculum__الصف-7__الفنون__ar",
+    "jordan__التعليم-الأساسي__jordan-national-curriculum__الصف-8__الفنون__ar",
+    "jordan__التعليم-الأساسي__jordan-national-curriculum__الصف-9__الفنون__ar",
+    "jordan__التعليم-الأساسي__jordan-national-curriculum__الصف-10__الفنون__ar"
+  ],
+  "updatedAt": "2026-07-31T17:56:35.187Z"
+}

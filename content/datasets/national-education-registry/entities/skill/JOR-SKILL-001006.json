@@ -1,0 +1,23 @@
+{
+  "globalId": "JOR-SKILL-001006",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«العد والتصنيف — بناء المهارة» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-007012",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-007012",
+      "JOR-OUTCOME-007013",
+      "JOR-OUTCOME-007014"
+    ],
+    "lessonIds": [
+      "JOR-GKG-EMATH-U01-L02"
+    ],
+    "belongsTo": "JOR-OUTCOME-007012"
+  },
+  "createdAt": "2026-07-31T17:56:57.556Z",
+  "updatedAt": "2026-07-31T17:56:57.556Z"
+}

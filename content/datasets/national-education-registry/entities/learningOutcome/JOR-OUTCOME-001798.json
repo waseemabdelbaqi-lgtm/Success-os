@@ -1,0 +1,18 @@
+{
+  "globalId": "JOR-OUTCOME-001798",
+  "kind": "learningOutcome",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«الصحة والسلامة — مقدمة ومفاهيم» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G03-SCI-U04-L01",
+  "relationships": {
+    "lessonId": "JOR-G03-SCI-U04-L01",
+    "belongsTo": "JOR-G03-SCI-U04-L01"
+  },
+  "createdAt": "2026-07-31T17:56:56.786Z",
+  "updatedAt": "2026-07-31T17:56:56.786Z",
+  "text": "أن يطبّق مهارة مرتبطة بـ«الصحة والسلامة — مقدمة ومفاهيم» بخطوات واضحة قابلة للتحقق.",
+  "sequence": 2
+}

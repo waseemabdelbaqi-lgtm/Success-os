@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-G09-ENG-U02-L02",
+  "kind": "lesson",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "Grammar in Use — بناء المهارة",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G09-ENG-U02",
+  "relationships": {
+    "unitId": "JOR-G09-ENG-U02",
+    "bookId": "JOR-BOOK-000106",
+    "subjectId": "JOR-G09-ENG",
+    "gradeId": "JOR-G09",
+    "belongsTo": "JOR-G09-ENG-U02"
+  },
+  "createdAt": "2026-07-31T17:56:57.214Z",
+  "updatedAt": "2026-07-31T17:56:57.214Z",
+  "lessonCode": "L02",
+  "sequence": 2,
+  "legacyLessonId": "L2.2",
+  "keywords": [
+    "vocabulary",
+    "structure",
+    "fluency"
+  ]
+}

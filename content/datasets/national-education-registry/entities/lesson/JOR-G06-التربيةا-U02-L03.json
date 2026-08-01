@@ -1,0 +1,28 @@
+{
+  "globalId": "JOR-G06-التربيةا-U02-L03",
+  "kind": "lesson",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "المؤسسات — تطبيق ومثال",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G06-التربيةا-U02",
+  "relationships": {
+    "unitId": "JOR-G06-التربيةا-U02",
+    "bookId": "JOR-BOOK-000063",
+    "subjectId": "JOR-G06-التربيةا",
+    "gradeId": "JOR-G06",
+    "belongsTo": "JOR-G06-التربيةا-U02"
+  },
+  "createdAt": "2026-07-31T17:56:56.902Z",
+  "updatedAt": "2026-07-31T17:56:56.907Z",
+  "lessonCode": "L03",
+  "sequence": 3,
+  "legacyLessonId": "L2.3",
+  "keywords": [
+    "مواطنة",
+    "حق",
+    "واجب"
+  ],
+  "_deduped": true
+}

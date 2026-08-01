@@ -1,0 +1,35 @@
+{
+  "globalId": "JOR-SKILL-000344",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«الألعاب المنظمة — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-000723",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-000723",
+      "JOR-OUTCOME-000724",
+      "JOR-OUTCOME-000725",
+      "JOR-OUTCOME-001155",
+      "JOR-OUTCOME-001156",
+      "JOR-OUTCOME-001157",
+      "JOR-OUTCOME-001587",
+      "JOR-OUTCOME-001588",
+      "JOR-OUTCOME-001589",
+      "JOR-OUTCOME-002019",
+      "JOR-OUTCOME-002020",
+      "JOR-OUTCOME-002021"
+    ],
+    "lessonIds": [
+      "JOR-G01-PE-U02-L03",
+      "JOR-G02-PE-U02-L03",
+      "JOR-G03-PE-U02-L03",
+      "JOR-G04-PE-U02-L03"
+    ],
+    "belongsTo": "JOR-OUTCOME-000723"
+  },
+  "createdAt": "2026-07-31T17:56:56.717Z",
+  "updatedAt": "2026-07-31T17:56:56.802Z"
+}

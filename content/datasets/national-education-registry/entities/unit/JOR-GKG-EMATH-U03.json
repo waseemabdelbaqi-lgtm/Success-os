@@ -1,0 +1,21 @@
+{
+  "globalId": "JOR-GKG-EMATH-U03",
+  "kind": "unit",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "المقارنة والقياس المبكر",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-BOOK-000143",
+  "relationships": {
+    "bookId": "JOR-BOOK-000143",
+    "subjectId": "JOR-GKG-EMATH",
+    "gradeId": "JOR-GKG",
+    "belongsTo": "JOR-BOOK-000143"
+  },
+  "createdAt": "2026-07-31T17:56:57.561Z",
+  "updatedAt": "2026-07-31T17:56:57.561Z",
+  "unitCode": "U03",
+  "sequence": 3,
+  "legacyUnitId": "U3"
+}

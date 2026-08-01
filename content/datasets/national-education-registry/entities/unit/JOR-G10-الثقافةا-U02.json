@@ -1,0 +1,21 @@
+{
+  "globalId": "JOR-G10-الثقافةا-U02",
+  "kind": "unit",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "المصارف المبسطة",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-BOOK-000005",
+  "relationships": {
+    "bookId": "JOR-BOOK-000005",
+    "subjectId": "JOR-G10-الثقافةا",
+    "gradeId": "JOR-G10",
+    "belongsTo": "JOR-BOOK-000005"
+  },
+  "createdAt": "2026-07-31T17:56:56.695Z",
+  "updatedAt": "2026-07-31T17:56:56.695Z",
+  "unitCode": "U02",
+  "sequence": 2,
+  "legacyUnitId": "U2"
+}

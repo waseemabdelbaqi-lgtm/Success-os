@@ -1,0 +1,20 @@
+{
+  "globalId": "JOR-BOOK-000074",
+  "kind": "book",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "Success OS — التربية الوطنية والمدنية",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G07-التربيةا",
+  "relationships": {
+    "subjectId": "JOR-G07-التربيةا",
+    "gradeId": "JOR-G07",
+    "belongsTo": "JOR-G07-التربيةا"
+  },
+  "createdAt": "2026-07-31T17:56:56.978Z",
+  "updatedAt": "2026-07-31T17:56:56.983Z",
+  "legacyBookId": "jordan__التعليم-الأساسي__jordan-national-curriculum__الصف-7__التربية-الوطنية-والمدنية__ar",
+  "officialSource": "https://www.nccd.gov.jo/ar/pages/TextBooksGrade/74",
+  "_deduped": true
+}

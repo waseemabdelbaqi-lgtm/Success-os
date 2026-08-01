@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-GKG-اللغةوال-U04-L01",
+  "kind": "lesson",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "التعبير الشفوي — مقدمة ومفاهيم",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-GKG-اللغةوال-U04",
+  "relationships": {
+    "unitId": "JOR-GKG-اللغةوال-U04",
+    "bookId": "JOR-BOOK-000145",
+    "subjectId": "JOR-GKG-اللغةوال",
+    "gradeId": "JOR-GKG",
+    "belongsTo": "JOR-GKG-اللغةوال-U04"
+  },
+  "createdAt": "2026-07-31T17:56:57.587Z",
+  "updatedAt": "2026-07-31T17:56:57.587Z",
+  "lessonCode": "L01",
+  "sequence": 1,
+  "legacyLessonId": "L4.1",
+  "keywords": [
+    "نص",
+    "معنى",
+    "أسلوب"
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-G05-ARAB-U04-L01",
+  "kind": "lesson",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "الإنتاج الكتابي — مقدمة ومفاهيم",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G05-ARAB-U04",
+  "relationships": {
+    "unitId": "JOR-G05-ARAB-U04",
+    "bookId": "JOR-BOOK-000059",
+    "subjectId": "JOR-G05-ARAB",
+    "gradeId": "JOR-G05",
+    "belongsTo": "JOR-G05-ARAB-U04"
+  },
+  "createdAt": "2026-07-31T17:56:56.883Z",
+  "updatedAt": "2026-07-31T17:56:56.883Z",
+  "lessonCode": "L01",
+  "sequence": 1,
+  "legacyLessonId": "L4.1",
+  "keywords": [
+    "نص",
+    "معنى",
+    "أسلوب"
+  ]
+}

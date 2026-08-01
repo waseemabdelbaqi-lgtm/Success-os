@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-G03-ISL-U04-L02",
+  "kind": "lesson",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "قصص قرآنية ونبوية — بناء المهارة",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G03-ISL-U04",
+  "relationships": {
+    "unitId": "JOR-G03-ISL-U04",
+    "bookId": "JOR-BOOK-000032",
+    "subjectId": "JOR-G03-ISL",
+    "gradeId": "JOR-G03",
+    "belongsTo": "JOR-G03-ISL-U04"
+  },
+  "createdAt": "2026-07-31T17:56:56.770Z",
+  "updatedAt": "2026-07-31T17:56:56.770Z",
+  "lessonCode": "L02",
+  "sequence": 2,
+  "legacyLessonId": "L4.2",
+  "keywords": [
+    "عقيدة",
+    "عبادة",
+    "خلق"
+  ]
+}

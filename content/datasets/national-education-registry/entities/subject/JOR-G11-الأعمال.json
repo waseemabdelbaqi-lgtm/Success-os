@@ -1,0 +1,20 @@
+{
+  "globalId": "JOR-G11-الأعمال",
+  "kind": "subject",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "الأعمال",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G11",
+  "relationships": {
+    "gradeId": "JOR-G11",
+    "educationalSystemId": "JOR-SYS-000001",
+    "countryId": "JOR",
+    "belongsTo": "JOR-G11"
+  },
+  "createdAt": "2026-07-31T17:56:57.394Z",
+  "updatedAt": "2026-07-31T17:56:57.394Z",
+  "subjectCode": "الأعمال",
+  "gradeCode": "G11"
+}

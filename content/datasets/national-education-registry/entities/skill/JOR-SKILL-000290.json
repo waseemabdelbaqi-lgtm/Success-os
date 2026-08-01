@@ -1,0 +1,31 @@
+{
+  "globalId": "JOR-SKILL-000290",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«المشاريع اللغوية — مقدمة ومفاهيم» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-000597",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-000597",
+      "JOR-OUTCOME-000598",
+      "JOR-OUTCOME-000599",
+      "JOR-OUTCOME-004661",
+      "JOR-OUTCOME-004662",
+      "JOR-OUTCOME-004663",
+      "JOR-OUTCOME-005317",
+      "JOR-OUTCOME-005318",
+      "JOR-OUTCOME-005319"
+    ],
+    "lessonIds": [
+      "JOR-G10-ARAB-U04-L01",
+      "JOR-G08-ARAB-U04-L01",
+      "JOR-G09-ARAB-U04-L01"
+    ],
+    "belongsTo": "JOR-OUTCOME-000597"
+  },
+  "createdAt": "2026-07-31T17:56:56.712Z",
+  "updatedAt": "2026-07-31T17:56:57.225Z"
+}

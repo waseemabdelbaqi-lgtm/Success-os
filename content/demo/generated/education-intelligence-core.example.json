@@ -1,0 +1,69 @@
+{
+  "schema": "success-os.education-intelligence-core.v1",
+  "role": "educational_intelligence",
+  "thinksLikeExperiencedTeacher": true,
+  "notAChatbot": true,
+  "learningDnaFields": [
+    "Knowledge Level",
+    "Understanding Level",
+    "Confidence Level",
+    "Attention Level",
+    "Memory Strength",
+    "Critical Thinking",
+    "Problem Solving",
+    "Reading Speed",
+    "Listening Ability",
+    "Speaking Ability",
+    "Writing Ability",
+    "Preferred Learning Style",
+    "Preferred Teacher Style",
+    "Preferred Examples",
+    "Preferred Language",
+    "Weak Skills",
+    "Strong Skills",
+    "Current Goals"
+  ],
+  "continuousUnderstanding": [
+    "What the student already knows",
+    "What the student does not know",
+    "Why the student is confused",
+    "Which concept caused the confusion",
+    "Which prerequisite is missing",
+    "How much the student remembers",
+    "How fast the student learns",
+    "Which explanation works best",
+    "Which mistakes are repeated",
+    "Whether the student is guessing",
+    "Whether the student truly understands"
+  ],
+  "predictions": [
+    "Next lesson",
+    "Lessons to review",
+    "Concepts likely to confuse",
+    "Exam questions likely missed",
+    "Skills not yet mastered"
+  ],
+  "adaptiveRules": [
+    "Struggling → simpler language, more examples, drawings, interaction",
+    "Advanced → higher difficulty, less explanation, deeper questions",
+    "Never reuse the same explanation fingerprint"
+  ],
+  "explanationNovelty": true,
+  "lifelongProfile": true,
+  "engineKind": "heuristic_teacher_intelligence",
+  "deeperMlReservedForPr": "#59 Learning Intelligence",
+  "safety": {
+    "neverInventCurriculumFacts": true,
+    "groundInAteAndKnowledgeGraph": true
+  },
+  "rules": [
+    "Every interaction updates Learning DNA.",
+    "Nothing is forgotten — durable lifelong educational profile.",
+    "ATE remains the conversation/grounding engine; EIC is the intelligence layer.",
+    "Success OS builds Educational Intelligence, not unconstrained AI chat."
+  ],
+  "notes": [
+    "PR #55 foundation for Educational Intelligence; #59 deepens ML predictors.",
+    "Works with AI Teacher Engine + Digital Human Teacher architecture."
+  ]
+}

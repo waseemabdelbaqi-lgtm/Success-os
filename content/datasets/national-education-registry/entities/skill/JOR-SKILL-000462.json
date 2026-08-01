@@ -1,0 +1,35 @@
+{
+  "globalId": "JOR-SKILL-000462",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«الكتابة والإملاء — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-001014",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-001014",
+      "JOR-OUTCOME-001015",
+      "JOR-OUTCOME-001016",
+      "JOR-OUTCOME-001446",
+      "JOR-OUTCOME-001447",
+      "JOR-OUTCOME-001448",
+      "JOR-OUTCOME-001878",
+      "JOR-OUTCOME-001879",
+      "JOR-OUTCOME-001880",
+      "JOR-OUTCOME-002310",
+      "JOR-OUTCOME-002311",
+      "JOR-OUTCOME-002312"
+    ],
+    "lessonIds": [
+      "JOR-G01-ARAB-U02-L04",
+      "JOR-G02-ARAB-U02-L04",
+      "JOR-G03-ARAB-U02-L04",
+      "JOR-G04-ARAB-U02-L04"
+    ],
+    "belongsTo": "JOR-OUTCOME-001014"
+  },
+  "createdAt": "2026-07-31T17:56:56.735Z",
+  "updatedAt": "2026-07-31T17:56:56.826Z"
+}

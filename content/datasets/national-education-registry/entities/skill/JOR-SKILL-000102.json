@@ -1,0 +1,31 @@
+{
+  "globalId": "JOR-SKILL-000102",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«المشاركة المدنية — بناء المهارة» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-000203",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-000203",
+      "JOR-OUTCOME-000204",
+      "JOR-OUTCOME-000162",
+      "JOR-OUTCOME-004267",
+      "JOR-OUTCOME-004268",
+      "JOR-OUTCOME-004226",
+      "JOR-OUTCOME-004923",
+      "JOR-OUTCOME-004924",
+      "JOR-OUTCOME-004882"
+    ],
+    "lessonIds": [
+      "JOR-G10-التربيةا-U02-L02",
+      "JOR-G08-التربيةا-U02-L02",
+      "JOR-G09-التربيةا-U02-L02"
+    ],
+    "belongsTo": "JOR-OUTCOME-000203"
+  },
+  "createdAt": "2026-07-31T17:56:56.691Z",
+  "updatedAt": "2026-07-31T17:56:57.163Z"
+}

@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-G07-ICT-U04-L02",
+  "kind": "lesson",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "مقدمة البرمجة — بناء المهارة",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G07-ICT-U04",
+  "relationships": {
+    "unitId": "JOR-G07-ICT-U04",
+    "bookId": "JOR-BOOK-000082",
+    "subjectId": "JOR-G07-ICT",
+    "gradeId": "JOR-G07",
+    "belongsTo": "JOR-G07-ICT-U04"
+  },
+  "createdAt": "2026-07-31T17:56:57.037Z",
+  "updatedAt": "2026-07-31T17:56:57.037Z",
+  "lessonCode": "L02",
+  "sequence": 2,
+  "legacyLessonId": "L4.2",
+  "keywords": [
+    "بيانات",
+    "خوارزمية",
+    "شبكة"
+  ]
+}

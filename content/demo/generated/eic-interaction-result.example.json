@@ -1,0 +1,217 @@
+{
+  "schema": "success-os.eic-interaction-result.v1",
+  "studentId": "student_demo_eic_001",
+  "understanding": {
+    "schema": "success-os.eic-teacher-understanding.v1",
+    "alreadyKnows": [],
+    "doesNotKnow": [
+      "SKL-MOTION-BASICS"
+    ],
+    "whyConfused": {
+      "en": "A missing prerequisite skill is blocking this concept.",
+      "ar": "مهارة متطلب سابقة مفقودة تعيق هذا المفهوم."
+    },
+    "conceptCausingConfusion": {
+      "en": "velocity and acceleration",
+      "ar": "السرعة والتسارع"
+    },
+    "missingPrerequisiteSkillId": "SKL-MOTION-BASICS",
+    "howMuchRemembers": {
+      "score": 45,
+      "band": "moderate"
+    },
+    "howFastLearns": "normal",
+    "bestExplanationStyle": "simplified",
+    "repeatedMistakes": [],
+    "isGuessing": false,
+    "trulyUnderstands": false
+  },
+  "dna": {
+    "schema": "success-os.learning-dna.v1",
+    "studentId": "student_demo_eic_001",
+    "studentName": "Ahmad",
+    "knowledgeLevel": {
+      "score": 40,
+      "band": "moderate"
+    },
+    "understandingLevel": {
+      "score": 34,
+      "band": "low"
+    },
+    "confidenceLevel": {
+      "score": 41,
+      "band": "moderate"
+    },
+    "attentionLevel": {
+      "score": 52,
+      "band": "moderate"
+    },
+    "memoryStrength": {
+      "score": 45,
+      "band": "moderate"
+    },
+    "criticalThinking": {
+      "score": 40,
+      "band": "moderate"
+    },
+    "problemSolving": {
+      "score": 40,
+      "band": "moderate"
+    },
+    "readingSpeed": {
+      "score": 50,
+      "band": "moderate"
+    },
+    "listeningAbility": {
+      "score": 50,
+      "band": "moderate"
+    },
+    "speakingAbility": {
+      "score": 45,
+      "band": "moderate"
+    },
+    "writingAbility": {
+      "score": 45,
+      "band": "moderate"
+    },
+    "preferredLearningStyle": "mixed",
+    "preferredTeacherStyle": "example_first",
+    "preferredExamples": [
+      "example:simplified:61f469",
+      "example:example_first:6e032b"
+    ],
+    "preferredLanguage": "en",
+    "weakSkillIds": [
+      "SKL-MOTION-BASICS"
+    ],
+    "strongSkillIds": [],
+    "currentGoals": [],
+    "usedExplanationFingerprints": [
+      "61f4693870cbcf63",
+      "6e032b4fe50a0df3"
+    ],
+    "confusionLog": [
+      {
+        "id": "0dcfa28c-107c-4558-af13-2cd41d625b45",
+        "at": "2026-07-30T23:53:14.728Z",
+        "conceptId": "LSN-VELOCITY-001",
+        "conceptLabel": {
+          "en": "velocity and acceleration",
+          "ar": "السرعة والتسارع"
+        },
+        "prerequisiteSkillId": "SKL-MOTION-BASICS",
+        "utterance": "I don't understand this.",
+        "intent": "dont_understand",
+        "affect": "confused",
+        "whyConfused": {
+          "en": "A missing prerequisite skill is blocking this concept.",
+          "ar": "مهارة متطلب سابقة مفقودة تعيق هذا المفهوم."
+        }
+      },
+      {
+        "id": "17c9fe4a-4a85-4c7a-a382-c6a0c1c3932a",
+        "at": "2026-07-30T23:53:14.729Z",
+        "conceptId": "LSN-VELOCITY-001",
+        "conceptLabel": {
+          "en": "velocity and acceleration",
+          "ar": "السرعة والتسارع"
+        },
+        "prerequisiteSkillId": "SKL-MOTION-BASICS",
+        "utterance": "I still don't understand velocity and acceleration.",
+        "intent": "dont_understand",
+        "affect": "confused",
+        "whyConfused": {
+          "en": "A missing prerequisite skill is blocking this concept.",
+          "ar": "مهارة متطلب سابقة مفقودة تعيق هذا المفهوم."
+        }
+      }
+    ],
+    "repeatedMistakeCodes": [
+      "LSN-VELOCITY-001::SKL-MOTION-BASICS"
+    ],
+    "guessingSignals": 0,
+    "trueUnderstandingSignals": 0,
+    "learningVelocity": "normal",
+    "interactionCount": 2,
+    "lastInsight": {
+      "en": "I noticed that you still struggle with velocity and acceleration because of something we studied 1 day(s) ago (SKL-MOTION-BASICS). Let's review that concept for two minutes before continuing.",
+      "ar": "لاحظت أنك ما زلت تواجه صعوبة في السرعة والتسارع بسبب شيء درسناه منذ 1 يوم/أيام (SKL-MOTION-BASICS). دعنا نراجع ذلك المفهوم لدقيقتين قبل المتابعة."
+    },
+    "updatedAt": "2026-07-30T23:53:14.729Z",
+    "createdAt": "2026-07-30T23:53:14.727Z"
+  },
+  "strategy": {
+    "schema": "success-os.eic-adaptive-strategy.v1",
+    "mode": "struggling",
+    "languageComplexity": "simpler",
+    "moreExamples": true,
+    "moreDrawings": true,
+    "moreInteraction": true,
+    "increaseDifficulty": false,
+    "reduceExplanation": false,
+    "askDeeperQuestions": false,
+    "teachingStyle": "example_first",
+    "explanationFingerprint": "6e032b4fe50a0df3",
+    "isNovelExplanation": true,
+    "teacherMoves": [
+      "use_simpler_language",
+      "add_examples",
+      "add_drawings",
+      "increase_interaction",
+      "check_prerequisite"
+    ]
+  },
+  "predictions": {
+    "schema": "success-os.eic-predictions.v1",
+    "nextLessonId": "review:SKL-MOTION-BASICS",
+    "reviewLessonIds": [
+      "review:SKL-MOTION-BASICS",
+      "LSN-VELOCITY-001"
+    ],
+    "conceptsLikelyToConfuse": [
+      {
+        "en": "velocity and acceleration remains a confusion risk until the prerequisite is solid",
+        "ar": "السرعة والتسارع يبقى خطر ارتباك حتى تثبيت المتطلب السابق"
+      },
+      {
+        "en": "Concept linked to weak skill SKL-MOTION-BASICS may cause confusion next",
+        "ar": "مفهوم مرتبط بالمهارة الضعيفة SKL-MOTION-BASICS قد يسبب ارتباكًا لاحقًا"
+      }
+    ],
+    "examQuestionsLikelyMissed": [
+      {
+        "en": "Exam items targeting skill SKL-MOTION-BASICS are likely to be missed",
+        "ar": "بنود الاختبار التي تستهدف المهارة SKL-MOTION-BASICS مرجّحة للخطأ"
+      }
+    ],
+    "skillsNotYetMastered": [
+      "SKL-MOTION-BASICS"
+    ],
+    "confidence": 0.72,
+    "notes": [
+      "Heuristic teacher predictions grounded in Learning DNA + interaction signals.",
+      "Deeper ML predictors may replace scoring later without changing this contract (#59).",
+      "Does not invent curriculum entities — uses provided lesson/skill ids only."
+    ]
+  },
+  "insight": {
+    "schema": "success-os.eic-insight.v1",
+    "kind": "repeated_confusion",
+    "text": {
+      "en": "I noticed that you still struggle with velocity and acceleration because of something we studied 1 day(s) ago (SKL-MOTION-BASICS). Let's review that concept for two minutes before continuing.",
+      "ar": "لاحظت أنك ما زلت تواجه صعوبة في السرعة والتسارع بسبب شيء درسناه منذ 1 يوم/أيام (SKL-MOTION-BASICS). دعنا نراجع ذلك المفهوم لدقيقتين قبل المتابعة."
+    },
+    "grounded": true,
+    "inventsCurriculumFacts": false
+  },
+  "dnaUpdated": true,
+  "nothingForgotten": true,
+  "engineKind": "heuristic_teacher_intelligence",
+  "inventsCurriculumFacts": false,
+  "notes": [
+    "Education Intelligence Core — thinks like an experienced teacher.",
+    "Learning DNA updated; explanation fingerprint recorded for novelty.",
+    "Heuristic engine; deeper ML reserved for Learning Intelligence (#59).",
+    "Never invents curriculum facts."
+  ]
+}

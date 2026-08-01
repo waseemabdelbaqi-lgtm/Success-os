@@ -1,0 +1,45 @@
+{
+  "sourceId": "jo-ref-moe-home",
+  "title": "Jordan Ministry of Education — Official Portal",
+  "publisher": "Ministry of Education",
+  "organization": "MoE Jordan",
+  "country": "Jordan",
+  "educationalSystem": "Jordan National Curriculum",
+  "subject": "all",
+  "grade": "all",
+  "language": "ar",
+  "publicationYear": 2025,
+  "version": "2025-2026",
+  "officialUrl": "https://moe.gov.jo",
+  "licenseType": "official-framework-reference",
+  "copyrightStatus": "all-rights-reserved-by-publisher-reference-only",
+  "verificationDate": "2026-07-31T17:54:29.641Z",
+  "reliabilityScore": 100,
+  "status": "verified",
+  "category": "Curriculum Documents",
+  "copyBookText": false,
+  "note": null,
+  "history": [
+    {
+      "event": "registered",
+      "at": "2026-07-31T17:54:29.641Z",
+      "version": "2025-2026",
+      "note": "JO-05 seed registration"
+    },
+    {
+      "event": "rebuilt",
+      "at": "2026-07-31T17:55:32.918Z",
+      "version": "2025-2026"
+    },
+    {
+      "event": "rebuilt",
+      "at": "2026-07-31T17:55:35.796Z",
+      "version": "2025-2026"
+    }
+  ],
+  "validation": {
+    "ok": true,
+    "warnings": [],
+    "validatedAt": "2026-07-31T17:55:35.796Z"
+  }
+}

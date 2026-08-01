@@ -1,0 +1,16 @@
+{
+  "globalId": "JOR-DIAGRAM-001930",
+  "kind": "diagram",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "مخطط تعليمي لوحدة الكتابة الأكاديمية",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G11-ARAB-U03-L02",
+  "relationships": {
+    "lessonId": "JOR-G11-ARAB-U03-L02",
+    "belongsTo": "JOR-G11-ARAB-U03-L02"
+  },
+  "createdAt": "2026-07-31T17:56:57.287Z",
+  "updatedAt": "2026-07-31T17:56:57.287Z"
+}

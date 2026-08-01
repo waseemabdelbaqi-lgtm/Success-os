@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-G07-الفنون-U03-L02",
+  "kind": "lesson",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "الأداء المسرحي — بناء المهارة",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G07-الفنون-U03",
+  "relationships": {
+    "unitId": "JOR-G07-الفنون-U03",
+    "bookId": "JOR-BOOK-000079",
+    "subjectId": "JOR-G07-الفنون",
+    "gradeId": "JOR-G07",
+    "belongsTo": "JOR-G07-الفنون-U03"
+  },
+  "createdAt": "2026-07-31T17:56:57.017Z",
+  "updatedAt": "2026-07-31T17:56:57.017Z",
+  "lessonCode": "L02",
+  "sequence": 2,
+  "legacyLessonId": "L3.2",
+  "keywords": [
+    "خط",
+    "لون",
+    "إيقاع"
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "globalId": "JOR-SKILL-001012",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«الأشكال في محيطي — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-007027",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-007027",
+      "JOR-OUTCOME-007028",
+      "JOR-OUTCOME-007029"
+    ],
+    "lessonIds": [
+      "JOR-GKG-EMATH-U02-L03"
+    ],
+    "belongsTo": "JOR-OUTCOME-007027"
+  },
+  "createdAt": "2026-07-31T17:56:57.560Z",
+  "updatedAt": "2026-07-31T17:56:57.560Z"
+}

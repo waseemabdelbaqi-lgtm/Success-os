@@ -1,0 +1,31 @@
+{
+  "globalId": "JOR-SKILL-000207",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«الخلية والتنوع — بناء المهارة» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-000420",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-000420",
+      "JOR-OUTCOME-000421",
+      "JOR-OUTCOME-000422",
+      "JOR-OUTCOME-004484",
+      "JOR-OUTCOME-004485",
+      "JOR-OUTCOME-004486",
+      "JOR-OUTCOME-005140",
+      "JOR-OUTCOME-005141",
+      "JOR-OUTCOME-005142"
+    ],
+    "lessonIds": [
+      "JOR-G10-SCI-U01-L02",
+      "JOR-G08-SCI-U01-L02",
+      "JOR-G09-SCI-U01-L02"
+    ],
+    "belongsTo": "JOR-OUTCOME-000420"
+  },
+  "createdAt": "2026-07-31T17:56:56.702Z",
+  "updatedAt": "2026-07-31T17:56:57.197Z"
+}

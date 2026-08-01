@@ -1,0 +1,124 @@
+{
+  "schema": "success-os.global-skill-graph.v1",
+  "pathPattern": [
+    "Skill",
+    "connects",
+    "Lesson",
+    "across",
+    "Curriculum"
+  ],
+  "skillIds": [
+    "SKL-00001",
+    "SKL-00002",
+    "SKL-00003",
+    "SKL-00004",
+    "SKL-00005",
+    "SKL-00006",
+    "SKL-00007",
+    "SKL-00008",
+    "SKL-00009",
+    "SKL-00010",
+    "SKL-00011",
+    "SKL-00012",
+    "SKL-00013",
+    "SKL-00014",
+    "SKL-00015",
+    "SKL-00016"
+  ],
+  "edges": [
+    {
+      "skillId": "SKL-00015",
+      "lessonGlobalId": "LSN-01001",
+      "lessonHierarchicalId": "JO-NATIONAL-G08-SCI-B01-U01-L01",
+      "countryGlobalId": "CTR-00001",
+      "curriculumGlobalId": "CUR-00001",
+      "subjectGlobalId": "SUB-00002",
+      "weight": 1
+    },
+    {
+      "skillId": "SKL-00015",
+      "lessonGlobalId": "LSN-01002",
+      "countryGlobalId": "CTR-00003",
+      "curriculumGlobalId": "CUR-00002",
+      "subjectGlobalId": "SUB-00002",
+      "weight": 1
+    },
+    {
+      "skillId": "SKL-00016",
+      "lessonGlobalId": "LSN-01003",
+      "countryGlobalId": "CTR-00002",
+      "curriculumGlobalId": "CUR-00003",
+      "subjectGlobalId": "SUB-00005",
+      "weight": 1
+    },
+    {
+      "skillId": "SKL-00016",
+      "lessonGlobalId": "LSN-01004",
+      "countryGlobalId": "CTR-00002",
+      "curriculumGlobalId": "CUR-00004",
+      "subjectGlobalId": "SUB-00002",
+      "weight": 1
+    },
+    {
+      "skillId": "SKL-00008",
+      "lessonGlobalId": "LSN-01005",
+      "countryGlobalId": "CTR-00004",
+      "curriculumGlobalId": "CUR-00005",
+      "subjectGlobalId": "SUB-00002",
+      "weight": 0.8
+    },
+    {
+      "skillId": "SKL-00015",
+      "lessonGlobalId": "LSN-01006",
+      "countryGlobalId": "CTR-00003",
+      "curriculumGlobalId": "CUR-00006",
+      "subjectGlobalId": "SUB-00002",
+      "weight": 1
+    }
+  ],
+  "skillDependencies": [
+    {
+      "skillId": "SKL-00002",
+      "dependsOn": "SKL-00001"
+    },
+    {
+      "skillId": "SKL-00004",
+      "dependsOn": "SKL-00003"
+    },
+    {
+      "skillId": "SKL-00007",
+      "dependsOn": "SKL-00006"
+    },
+    {
+      "skillId": "SKL-00009",
+      "dependsOn": "SKL-00002"
+    },
+    {
+      "skillId": "SKL-00010",
+      "dependsOn": "SKL-00009"
+    },
+    {
+      "skillId": "SKL-00011",
+      "dependsOn": "SKL-00010"
+    },
+    {
+      "skillId": "SKL-00012",
+      "dependsOn": "SKL-00011"
+    },
+    {
+      "skillId": "SKL-00014",
+      "dependsOn": "SKL-00013"
+    },
+    {
+      "skillId": "SKL-00016",
+      "dependsOn": "SKL-00015"
+    }
+  ],
+  "counts": {
+    "skills": 16,
+    "lessonLinks": 6,
+    "skillDependencies": 9,
+    "countries": 4,
+    "curricula": 6
+  }
+}

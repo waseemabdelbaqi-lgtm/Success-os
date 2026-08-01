@@ -1,0 +1,51 @@
+{
+  "globalId": "JOR-SKILL-000974",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يتعرف المتعلم مفهومًا محوريًا في الضيافة ضمن معايير السلامة والجودة بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 11.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-006521",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-006521",
+      "JOR-OUTCOME-006522",
+      "JOR-OUTCOME-006523",
+      "JOR-OUTCOME-006524",
+      "JOR-OUTCOME-006525",
+      "JOR-OUTCOME-006526",
+      "JOR-OUTCOME-006527",
+      "JOR-OUTCOME-006528",
+      "JOR-OUTCOME-006529",
+      "JOR-OUTCOME-006530",
+      "JOR-OUTCOME-006531",
+      "JOR-OUTCOME-006532",
+      "JOR-OUTCOME-006873",
+      "JOR-OUTCOME-006874",
+      "JOR-OUTCOME-006875",
+      "JOR-OUTCOME-006876",
+      "JOR-OUTCOME-006877",
+      "JOR-OUTCOME-006878",
+      "JOR-OUTCOME-006879",
+      "JOR-OUTCOME-006880",
+      "JOR-OUTCOME-006881",
+      "JOR-OUTCOME-006882",
+      "JOR-OUTCOME-006883",
+      "JOR-OUTCOME-006884"
+    ],
+    "lessonIds": [
+      "JOR-G11-الضيافة-U03-L01",
+      "JOR-G11-الضيافة-U03-L02",
+      "JOR-G11-الضيافة-U03-L03",
+      "JOR-G11-الضيافة-U03-L04",
+      "JOR-G12-الضيافة-U03-L01",
+      "JOR-G12-الضيافة-U03-L02",
+      "JOR-G12-الضيافة-U03-L03",
+      "JOR-G12-الضيافة-U03-L04"
+    ],
+    "belongsTo": "JOR-OUTCOME-006521"
+  },
+  "createdAt": "2026-07-31T17:56:57.432Z",
+  "updatedAt": "2026-07-31T17:56:57.518Z"
+}

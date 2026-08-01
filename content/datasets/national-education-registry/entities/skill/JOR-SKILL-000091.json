@@ -1,0 +1,43 @@
+{
+  "globalId": "JOR-SKILL-000091",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«ريادة مصغرة — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-000187",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-000187",
+      "JOR-OUTCOME-000188",
+      "JOR-OUTCOME-000189",
+      "JOR-OUTCOME-000255",
+      "JOR-OUTCOME-000256",
+      "JOR-OUTCOME-000257",
+      "JOR-OUTCOME-004251",
+      "JOR-OUTCOME-004252",
+      "JOR-OUTCOME-004253",
+      "JOR-OUTCOME-004319",
+      "JOR-OUTCOME-004320",
+      "JOR-OUTCOME-004321",
+      "JOR-OUTCOME-004907",
+      "JOR-OUTCOME-004908",
+      "JOR-OUTCOME-004909",
+      "JOR-OUTCOME-004975",
+      "JOR-OUTCOME-004976",
+      "JOR-OUTCOME-004977"
+    ],
+    "lessonIds": [
+      "JOR-G10-التربيةا-U04-L03",
+      "JOR-G10-الثقافةا-U03-L03",
+      "JOR-G08-التربيةا-U04-L03",
+      "JOR-G08-الثقافةا-U03-L03",
+      "JOR-G09-التربيةا-U04-L03",
+      "JOR-G09-الثقافةا-U03-L03"
+    ],
+    "belongsTo": "JOR-OUTCOME-000187"
+  },
+  "createdAt": "2026-07-31T17:56:56.690Z",
+  "updatedAt": "2026-07-31T17:56:57.172Z"
+}

@@ -1,0 +1,19 @@
+{
+  "globalId": "JOR-BOOK-000068",
+  "kind": "book",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "Success OS — الفنون",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G06-الفنون",
+  "relationships": {
+    "subjectId": "JOR-G06-الفنون",
+    "gradeId": "JOR-G06",
+    "belongsTo": "JOR-G06-الفنون"
+  },
+  "createdAt": "2026-07-31T17:56:56.936Z",
+  "updatedAt": "2026-07-31T17:56:56.936Z",
+  "legacyBookId": "jordan__التعليم-الأساسي__jordan-national-curriculum__الصف-6__الفنون__ar",
+  "officialSource": "https://www.nccd.gov.jo/ar/pages/TextBooksGrade/73"
+}

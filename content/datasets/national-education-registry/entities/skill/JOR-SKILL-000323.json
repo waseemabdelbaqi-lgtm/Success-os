@@ -1,0 +1,35 @@
+{
+  "globalId": "JOR-SKILL-000323",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«العبادات الأساسية — مقدمة ومفاهيم» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-000669",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-000669",
+      "JOR-OUTCOME-000670",
+      "JOR-OUTCOME-000671",
+      "JOR-OUTCOME-001101",
+      "JOR-OUTCOME-001102",
+      "JOR-OUTCOME-001103",
+      "JOR-OUTCOME-001533",
+      "JOR-OUTCOME-001534",
+      "JOR-OUTCOME-001535",
+      "JOR-OUTCOME-001965",
+      "JOR-OUTCOME-001966",
+      "JOR-OUTCOME-001967"
+    ],
+    "lessonIds": [
+      "JOR-G01-ISL-U02-L01",
+      "JOR-G02-ISL-U02-L01",
+      "JOR-G03-ISL-U02-L01",
+      "JOR-G04-ISL-U02-L01"
+    ],
+    "belongsTo": "JOR-OUTCOME-000669"
+  },
+  "createdAt": "2026-07-31T17:56:56.715Z",
+  "updatedAt": "2026-07-31T17:56:56.798Z"
+}

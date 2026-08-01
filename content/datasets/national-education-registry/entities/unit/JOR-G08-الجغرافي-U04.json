@@ -1,0 +1,21 @@
+{
+  "globalId": "JOR-G08-الجغرافي-U04",
+  "kind": "unit",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "قضايا جغرافية",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-BOOK-000088",
+  "relationships": {
+    "bookId": "JOR-BOOK-000088",
+    "subjectId": "JOR-G08-الجغرافي",
+    "gradeId": "JOR-G08",
+    "belongsTo": "JOR-BOOK-000088"
+  },
+  "createdAt": "2026-07-31T17:56:57.080Z",
+  "updatedAt": "2026-07-31T17:56:57.080Z",
+  "unitCode": "U04",
+  "sequence": 4,
+  "legacyUnitId": "U4"
+}

@@ -1,0 +1,17 @@
+{
+  "globalId": "JOR-IMAGE-001179",
+  "kind": "educationalImage",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "مخطط تعليمي لوحدة البحث الآمن",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G06-ICT-U03-L03",
+  "relationships": {
+    "lessonId": "JOR-G06-ICT-U03-L03",
+    "belongsTo": "JOR-G06-ICT-U03-L03"
+  },
+  "createdAt": "2026-07-31T17:56:56.965Z",
+  "updatedAt": "2026-07-31T17:56:56.965Z",
+  "src": null
+}

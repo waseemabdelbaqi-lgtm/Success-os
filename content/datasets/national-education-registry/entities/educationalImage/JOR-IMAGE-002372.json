@@ -1,0 +1,17 @@
+{
+  "globalId": "JOR-IMAGE-002372",
+  "kind": "educationalImage",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "مخطط تعليمي لوحدة العد والتصنيف",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-GKG-EMATH-U01-L04",
+  "relationships": {
+    "lessonId": "JOR-GKG-EMATH-U01-L04",
+    "belongsTo": "JOR-GKG-EMATH-U01-L04"
+  },
+  "createdAt": "2026-07-31T17:56:57.558Z",
+  "updatedAt": "2026-07-31T17:56:57.558Z",
+  "src": null
+}

@@ -1,0 +1,21 @@
+{
+  "globalId": "JOR-G07-PE-U04",
+  "kind": "unit",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "الصحة",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-BOOK-000073",
+  "relationships": {
+    "bookId": "JOR-BOOK-000073",
+    "subjectId": "JOR-G07-PE",
+    "gradeId": "JOR-G07",
+    "belongsTo": "JOR-BOOK-000073"
+  },
+  "createdAt": "2026-07-31T17:56:56.977Z",
+  "updatedAt": "2026-07-31T17:56:56.977Z",
+  "unitCode": "U04",
+  "sequence": 4,
+  "legacyUnitId": "U4"
+}

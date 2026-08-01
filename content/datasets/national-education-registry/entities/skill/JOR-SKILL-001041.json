@@ -1,0 +1,23 @@
+{
+  "globalId": "JOR-SKILL-001041",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«العناية بالبيئة — بناء المهارة» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-007096",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-007096",
+      "JOR-OUTCOME-007097",
+      "JOR-OUTCOME-007098"
+    ],
+    "lessonIds": [
+      "JOR-GKG-SCI-U04-L02"
+    ],
+    "belongsTo": "JOR-OUTCOME-007096"
+  },
+  "createdAt": "2026-07-31T17:56:57.576Z",
+  "updatedAt": "2026-07-31T17:56:57.576Z"
+}

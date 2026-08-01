@@ -1,0 +1,22 @@
+{
+  "globalId": "JOR-G08-التربيةا-U04",
+  "kind": "unit",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "التنوع والاحترام",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-BOOK-000086",
+  "relationships": {
+    "bookId": "JOR-BOOK-000086",
+    "subjectId": "JOR-G08-التربيةا",
+    "gradeId": "JOR-G08",
+    "belongsTo": "JOR-BOOK-000086"
+  },
+  "createdAt": "2026-07-31T17:56:57.062Z",
+  "updatedAt": "2026-07-31T17:56:57.068Z",
+  "unitCode": "U04",
+  "sequence": 4,
+  "legacyUnitId": "U4",
+  "_deduped": true
+}

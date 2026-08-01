@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-SKILL-000866",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«الكتابة الأكاديمية — بناء المهارة» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-005692",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-005692",
+      "JOR-OUTCOME-005693",
+      "JOR-OUTCOME-005694",
+      "JOR-OUTCOME-006156",
+      "JOR-OUTCOME-006157",
+      "JOR-OUTCOME-006158"
+    ],
+    "lessonIds": [
+      "JOR-G11-ARAB-U03-L02",
+      "JOR-G12-ARAB-U03-L02"
+    ],
+    "belongsTo": "JOR-OUTCOME-005692"
+  },
+  "createdAt": "2026-07-31T17:56:57.287Z",
+  "updatedAt": "2026-07-31T17:56:57.366Z"
+}

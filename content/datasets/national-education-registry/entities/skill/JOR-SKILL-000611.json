@@ -1,0 +1,31 @@
+{
+  "globalId": "JOR-SKILL-000611",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«الكسور والعمليات — بناء المهارة» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-002660",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-002660",
+      "JOR-OUTCOME-002661",
+      "JOR-OUTCOME-002662",
+      "JOR-OUTCOME-003220",
+      "JOR-OUTCOME-003221",
+      "JOR-OUTCOME-003222",
+      "JOR-OUTCOME-003780",
+      "JOR-OUTCOME-003781",
+      "JOR-OUTCOME-003782"
+    ],
+    "lessonIds": [
+      "JOR-G05-MATH-U01-L02",
+      "JOR-G06-MATH-U01-L02",
+      "JOR-G07-MATH-U01-L02"
+    ],
+    "belongsTo": "JOR-OUTCOME-002660"
+  },
+  "createdAt": "2026-07-31T17:56:56.859Z",
+  "updatedAt": "2026-07-31T17:56:57.001Z"
+}

@@ -1,0 +1,21 @@
+{
+  "globalId": "JOR-G01-PE-U01",
+  "kind": "unit",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "المهارات الحركية",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-BOOK-000015",
+  "relationships": {
+    "bookId": "JOR-BOOK-000015",
+    "subjectId": "JOR-G01-PE",
+    "gradeId": "JOR-G01",
+    "belongsTo": "JOR-BOOK-000015"
+  },
+  "createdAt": "2026-07-31T17:56:56.716Z",
+  "updatedAt": "2026-07-31T17:56:56.716Z",
+  "unitCode": "U01",
+  "sequence": 1,
+  "legacyUnitId": "U1"
+}

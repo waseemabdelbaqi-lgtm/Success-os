@@ -1,0 +1,12 @@
+{
+  "subject": "الفيزياء",
+  "totalGrades": 2,
+  "published": 2,
+  "pending": 1,
+  "complete": false,
+  "bookIds": [
+    "jordan__التعليم-الثانوي-المسار-الأكاديمي__jordan-national-curriculum__الصف-11__الفيزياء__ar",
+    "jordan__التعليم-الثانوي-المسار-الأكاديمي__jordan-national-curriculum__الصف-12__الفيزياء__ar"
+  ],
+  "updatedAt": "2026-07-31T17:55:51.346Z"
+}

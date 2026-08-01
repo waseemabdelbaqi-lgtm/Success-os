@@ -1,0 +1,19 @@
+{
+  "globalId": "JOR-BOOK-000145",
+  "kind": "book",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "Success OS — اللغة والتواصل",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-GKG-اللغةوال",
+  "relationships": {
+    "subjectId": "JOR-GKG-اللغةوال",
+    "gradeId": "JOR-GKG",
+    "belongsTo": "JOR-GKG-اللغةوال"
+  },
+  "createdAt": "2026-07-31T17:56:57.579Z",
+  "updatedAt": "2026-07-31T17:56:57.579Z",
+  "legacyBookId": "jordan__رياض-الأطفال__jordan-national-curriculum__رياض-الأطفال__اللغة-والتواصل__ar",
+  "officialSource": "https://moe.gov.jo/"
+}

@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-SKILL-000800",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«الكهرباء والمغناطيسية — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-005542",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-005542",
+      "JOR-OUTCOME-005543",
+      "JOR-OUTCOME-005544",
+      "JOR-OUTCOME-006006",
+      "JOR-OUTCOME-006007",
+      "JOR-OUTCOME-006008"
+    ],
+    "lessonIds": [
+      "JOR-G11-الفيزياء-U02-L04",
+      "JOR-G12-الفيزياء-U02-L04"
+    ],
+    "belongsTo": "JOR-OUTCOME-005542"
+  },
+  "createdAt": "2026-07-31T17:56:57.264Z",
+  "updatedAt": "2026-07-31T17:56:57.342Z"
+}

@@ -1,0 +1,31 @@
+{
+  "globalId": "JOR-SKILL-000077",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«التخطيط الشخصي — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-000154",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-000154",
+      "JOR-OUTCOME-000155",
+      "JOR-OUTCOME-000156",
+      "JOR-OUTCOME-004218",
+      "JOR-OUTCOME-004219",
+      "JOR-OUTCOME-004220",
+      "JOR-OUTCOME-004874",
+      "JOR-OUTCOME-004875",
+      "JOR-OUTCOME-004876"
+    ],
+    "lessonIds": [
+      "JOR-G10-التربيةا-U01-L04",
+      "JOR-G08-التربيةا-U01-L04",
+      "JOR-G09-التربيةا-U01-L04"
+    ],
+    "belongsTo": "JOR-OUTCOME-000154"
+  },
+  "createdAt": "2026-07-31T17:56:56.689Z",
+  "updatedAt": "2026-07-31T17:56:57.155Z"
+}

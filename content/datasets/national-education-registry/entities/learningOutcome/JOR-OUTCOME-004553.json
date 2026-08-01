@@ -1,0 +1,18 @@
+{
+  "globalId": "JOR-OUTCOME-004553",
+  "kind": "learningOutcome",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يتعرف المتعلم مفهومًا محوريًا في الفنون ضمن النقد الفني المبسط بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 8.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G08-الفنون-U03-L01",
+  "relationships": {
+    "lessonId": "JOR-G08-الفنون-U03-L01",
+    "belongsTo": "JOR-G08-الفنون-U03-L01"
+  },
+  "createdAt": "2026-07-31T17:56:57.106Z",
+  "updatedAt": "2026-07-31T17:56:57.106Z",
+  "text": "أن يتعرف المتعلم مفهومًا محوريًا في الفنون ضمن النقد الفني المبسط بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 8.",
+  "sequence": 1
+}

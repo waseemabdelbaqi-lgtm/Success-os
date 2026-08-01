@@ -1,0 +1,16 @@
+{
+  "globalId": "JOR-DIAGRAM-000733",
+  "kind": "diagram",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "مخطط تعليمي لوحدة البيانات البسيطة",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G04-MATH-U04-L01",
+  "relationships": {
+    "lessonId": "JOR-G04-MATH-U04-L01",
+    "belongsTo": "JOR-G04-MATH-U04-L01"
+  },
+  "createdAt": "2026-07-31T17:56:56.815Z",
+  "updatedAt": "2026-07-31T17:56:56.815Z"
+}

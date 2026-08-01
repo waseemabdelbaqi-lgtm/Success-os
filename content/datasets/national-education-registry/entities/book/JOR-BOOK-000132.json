@@ -1,0 +1,19 @@
+{
+  "globalId": "JOR-BOOK-000132",
+  "kind": "book",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "Success OS — الفنون والتصميم",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G11-الفنونوا",
+  "relationships": {
+    "subjectId": "JOR-G11-الفنونوا",
+    "gradeId": "JOR-G11",
+    "belongsTo": "JOR-G11-الفنونوا"
+  },
+  "createdAt": "2026-07-31T17:56:57.437Z",
+  "updatedAt": "2026-07-31T17:56:57.437Z",
+  "legacyBookId": "jordan__التعليم-الثانوي-المسار-المهني-btec__jordan-national-curriculum__الصف-11__الفنون-والتصميم__ar",
+  "officialSource": "https://www.nccd.gov.jo/ar/pages/TextBooksGrade/117"
+}

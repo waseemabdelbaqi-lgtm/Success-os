@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-G05-MATH-U02-L01",
+  "kind": "lesson",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "الأعداد العشرية والنسب — مقدمة ومفاهيم",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G05-MATH-U02",
+  "relationships": {
+    "unitId": "JOR-G05-MATH-U02",
+    "bookId": "JOR-BOOK-000055",
+    "subjectId": "JOR-G05-MATH",
+    "gradeId": "JOR-G05",
+    "belongsTo": "JOR-G05-MATH-U02"
+  },
+  "createdAt": "2026-07-31T17:56:56.860Z",
+  "updatedAt": "2026-07-31T17:56:56.860Z",
+  "lessonCode": "L01",
+  "sequence": 1,
+  "legacyLessonId": "L2.1",
+  "keywords": [
+    "عدد",
+    "عملية",
+    "نمط"
+  ]
+}

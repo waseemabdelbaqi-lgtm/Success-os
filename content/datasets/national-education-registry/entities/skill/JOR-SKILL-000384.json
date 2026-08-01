@@ -1,0 +1,35 @@
+{
+  "globalId": "JOR-SKILL-000384",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«المهن والخدمات — مقدمة ومفاهيم» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-000825",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-000825",
+      "JOR-OUTCOME-000826",
+      "JOR-OUTCOME-000827",
+      "JOR-OUTCOME-001257",
+      "JOR-OUTCOME-001258",
+      "JOR-OUTCOME-001259",
+      "JOR-OUTCOME-001689",
+      "JOR-OUTCOME-001690",
+      "JOR-OUTCOME-001691",
+      "JOR-OUTCOME-002121",
+      "JOR-OUTCOME-002122",
+      "JOR-OUTCOME-002123"
+    ],
+    "lessonIds": [
+      "JOR-G01-SOC-U03-L01",
+      "JOR-G02-SOC-U03-L01",
+      "JOR-G03-SOC-U03-L01",
+      "JOR-G04-SOC-U03-L01"
+    ],
+    "belongsTo": "JOR-OUTCOME-000825"
+  },
+  "createdAt": "2026-07-31T17:56:56.723Z",
+  "updatedAt": "2026-07-31T17:56:56.810Z"
+}

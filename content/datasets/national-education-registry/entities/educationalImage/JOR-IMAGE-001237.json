@@ -1,0 +1,17 @@
+{
+  "globalId": "JOR-IMAGE-001237",
+  "kind": "educationalImage",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "مخطط تعليمي لوحدة المؤسسات",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G07-التربيةا-U02-L01",
+  "relationships": {
+    "lessonId": "JOR-G07-التربيةا-U02-L01",
+    "belongsTo": "JOR-G07-التربيةا-U02-L01"
+  },
+  "createdAt": "2026-07-31T17:56:56.985Z",
+  "updatedAt": "2026-07-31T17:56:56.985Z",
+  "src": null
+}

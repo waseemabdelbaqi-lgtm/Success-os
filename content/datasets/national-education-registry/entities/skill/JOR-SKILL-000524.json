@@ -1,0 +1,31 @@
+{
+  "globalId": "JOR-SKILL-000524",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«القواعد الرياضية — بناء المهارة» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-002460",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-002460",
+      "JOR-OUTCOME-002461",
+      "JOR-OUTCOME-002462",
+      "JOR-OUTCOME-003020",
+      "JOR-OUTCOME-003021",
+      "JOR-OUTCOME-003022",
+      "JOR-OUTCOME-003580",
+      "JOR-OUTCOME-003581",
+      "JOR-OUTCOME-003582"
+    ],
+    "lessonIds": [
+      "JOR-G05-PE-U03-L02",
+      "JOR-G06-PE-U03-L02",
+      "JOR-G07-PE-U03-L02"
+    ],
+    "belongsTo": "JOR-OUTCOME-002460"
+  },
+  "createdAt": "2026-07-31T17:56:56.840Z",
+  "updatedAt": "2026-07-31T17:56:56.976Z"
+}

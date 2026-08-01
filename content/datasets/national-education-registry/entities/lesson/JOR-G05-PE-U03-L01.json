@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-G05-PE-U03-L01",
+  "kind": "lesson",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "القواعد الرياضية — مقدمة ومفاهيم",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G05-PE-U03",
+  "relationships": {
+    "unitId": "JOR-G05-PE-U03",
+    "bookId": "JOR-BOOK-000051",
+    "subjectId": "JOR-G05-PE",
+    "gradeId": "JOR-G05",
+    "belongsTo": "JOR-G05-PE-U03"
+  },
+  "createdAt": "2026-07-31T17:56:56.840Z",
+  "updatedAt": "2026-07-31T17:56:56.840Z",
+  "lessonCode": "L01",
+  "sequence": 1,
+  "legacyLessonId": "L3.1",
+  "keywords": [
+    "مهارة حركية",
+    "لياقة",
+    "تعاون"
+  ]
+}

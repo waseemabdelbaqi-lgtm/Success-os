@@ -1,0 +1,31 @@
+{
+  "globalId": "JOR-SKILL-000230",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«التصميم — بناء المهارة» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-000468",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-000468",
+      "JOR-OUTCOME-000469",
+      "JOR-OUTCOME-000470",
+      "JOR-OUTCOME-004532",
+      "JOR-OUTCOME-004533",
+      "JOR-OUTCOME-004534",
+      "JOR-OUTCOME-005188",
+      "JOR-OUTCOME-005189",
+      "JOR-OUTCOME-005190"
+    ],
+    "lessonIds": [
+      "JOR-G10-الفنون-U01-L02",
+      "JOR-G08-الفنون-U01-L02",
+      "JOR-G09-الفنون-U01-L02"
+    ],
+    "belongsTo": "JOR-OUTCOME-000468"
+  },
+  "createdAt": "2026-07-31T17:56:56.704Z",
+  "updatedAt": "2026-07-31T17:56:57.205Z"
+}

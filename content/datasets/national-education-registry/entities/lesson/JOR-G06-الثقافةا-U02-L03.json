@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-G06-الثقافةا-U02-L03",
+  "kind": "lesson",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "الادخار — تطبيق ومثال",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G06-الثقافةا-U02",
+  "relationships": {
+    "unitId": "JOR-G06-الثقافةا-U02",
+    "bookId": "JOR-BOOK-000064",
+    "subjectId": "JOR-G06-الثقافةا",
+    "gradeId": "JOR-G06",
+    "belongsTo": "JOR-G06-الثقافةا-U02"
+  },
+  "createdAt": "2026-07-31T17:56:56.911Z",
+  "updatedAt": "2026-07-31T17:56:56.911Z",
+  "lessonCode": "L03",
+  "sequence": 3,
+  "legacyLessonId": "L2.3",
+  "keywords": [
+    "دخل",
+    "مصروف",
+    "ادخار"
+  ]
+}

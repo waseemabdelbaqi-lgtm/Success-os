@@ -1,0 +1,17 @@
+{
+  "globalId": "JOR-IMAGE-001402",
+  "kind": "educationalImage",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "مخطط تعليمي لوحدة السيرة والمجتمع",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G08-ISL-U03-L02",
+  "relationships": {
+    "lessonId": "JOR-G08-ISL-U03-L02",
+    "belongsTo": "JOR-G08-ISL-U03-L02"
+  },
+  "createdAt": "2026-07-31T17:56:57.048Z",
+  "updatedAt": "2026-07-31T17:56:57.048Z",
+  "src": null
+}

@@ -1,0 +1,16 @@
+{
+  "globalId": "JOR-DIAGRAM-001887",
+  "kind": "diagram",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "مخطط تعليمي لوحدة الطاقة والحرارة",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G11-الفيزياء-U04-L03",
+  "relationships": {
+    "lessonId": "JOR-G11-الفيزياء-U04-L03",
+    "belongsTo": "JOR-G11-الفيزياء-U04-L03"
+  },
+  "createdAt": "2026-07-31T17:56:57.267Z",
+  "updatedAt": "2026-07-31T17:56:57.267Z"
+}

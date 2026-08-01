@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-G08-ARAB-U02-L04",
+  "kind": "lesson",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "النحو المتقدم — تقويم وتعزيز",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G08-ARAB-U02",
+  "relationships": {
+    "unitId": "JOR-G08-ARAB-U02",
+    "bookId": "JOR-BOOK-000094",
+    "subjectId": "JOR-G08-ARAB",
+    "gradeId": "JOR-G08",
+    "belongsTo": "JOR-G08-ARAB-U02"
+  },
+  "createdAt": "2026-07-31T17:56:57.120Z",
+  "updatedAt": "2026-07-31T17:56:57.120Z",
+  "lessonCode": "L04",
+  "sequence": 4,
+  "legacyLessonId": "L2.4",
+  "keywords": [
+    "نص",
+    "معنى",
+    "أسلوب"
+  ]
+}

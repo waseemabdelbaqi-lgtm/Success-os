@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-GKG-المهارات-U01-L01",
+  "kind": "lesson",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "وحدة استكشافية 1 — مقدمة ومفاهيم",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-GKG-المهارات-U01",
+  "relationships": {
+    "unitId": "JOR-GKG-المهارات-U01",
+    "bookId": "JOR-BOOK-000146",
+    "subjectId": "JOR-GKG-المهارات",
+    "gradeId": "JOR-GKG",
+    "belongsTo": "JOR-GKG-المهارات-U01"
+  },
+  "createdAt": "2026-07-31T17:56:57.590Z",
+  "updatedAt": "2026-07-31T17:56:57.590Z",
+  "lessonCode": "L01",
+  "sequence": 1,
+  "legacyLessonId": "L1.1",
+  "keywords": [
+    "مفهوم",
+    "مهارة",
+    "تطبيق"
+  ]
+}

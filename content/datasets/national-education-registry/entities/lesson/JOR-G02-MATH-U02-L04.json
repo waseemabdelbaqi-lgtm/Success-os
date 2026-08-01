@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-G02-MATH-U02-L04",
+  "kind": "lesson",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "القيمة المكانية — تقويم وتعزيز",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G02-MATH-U02",
+  "relationships": {
+    "unitId": "JOR-G02-MATH-U02",
+    "bookId": "JOR-BOOK-000027",
+    "subjectId": "JOR-G02-MATH",
+    "gradeId": "JOR-G02",
+    "belongsTo": "JOR-G02-MATH-U02"
+  },
+  "createdAt": "2026-07-31T17:56:56.753Z",
+  "updatedAt": "2026-07-31T17:56:56.753Z",
+  "lessonCode": "L04",
+  "sequence": 4,
+  "legacyLessonId": "L2.4",
+  "keywords": [
+    "عدد",
+    "عملية",
+    "نمط"
+  ]
+}

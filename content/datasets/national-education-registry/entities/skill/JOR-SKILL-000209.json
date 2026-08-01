@@ -1,0 +1,31 @@
+{
+  "globalId": "JOR-SKILL-000209",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«الخلية والتنوع — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-000426",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-000426",
+      "JOR-OUTCOME-000427",
+      "JOR-OUTCOME-000428",
+      "JOR-OUTCOME-004490",
+      "JOR-OUTCOME-004491",
+      "JOR-OUTCOME-004492",
+      "JOR-OUTCOME-005146",
+      "JOR-OUTCOME-005147",
+      "JOR-OUTCOME-005148"
+    ],
+    "lessonIds": [
+      "JOR-G10-SCI-U01-L04",
+      "JOR-G08-SCI-U01-L04",
+      "JOR-G09-SCI-U01-L04"
+    ],
+    "belongsTo": "JOR-OUTCOME-000426"
+  },
+  "createdAt": "2026-07-31T17:56:56.702Z",
+  "updatedAt": "2026-07-31T17:56:57.198Z"
+}

@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-SKILL-000731",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«أصول الدين — بناء المهارة» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-005380",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-005380",
+      "JOR-OUTCOME-005381",
+      "JOR-OUTCOME-005382",
+      "JOR-OUTCOME-005844",
+      "JOR-OUTCOME-005845",
+      "JOR-OUTCOME-005846"
+    ],
+    "lessonIds": [
+      "JOR-G11-ISL-U01-L02",
+      "JOR-G12-ISL-U01-L02"
+    ],
+    "belongsTo": "JOR-OUTCOME-005380"
+  },
+  "createdAt": "2026-07-31T17:56:57.236Z",
+  "updatedAt": "2026-07-31T17:56:57.313Z"
+}

@@ -1,0 +1,31 @@
+{
+  "globalId": "JOR-SKILL-000017",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«العلاقات الإقليمية — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-000031",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-000031",
+      "JOR-OUTCOME-000032",
+      "JOR-OUTCOME-000033",
+      "JOR-OUTCOME-004095",
+      "JOR-OUTCOME-004096",
+      "JOR-OUTCOME-004097",
+      "JOR-OUTCOME-004751",
+      "JOR-OUTCOME-004752",
+      "JOR-OUTCOME-004753"
+    ],
+    "lessonIds": [
+      "JOR-G10-التاريخ-U03-L03",
+      "JOR-G08-التاريخ-U03-L03",
+      "JOR-G09-التاريخ-U03-L03"
+    ],
+    "belongsTo": "JOR-OUTCOME-000031"
+  },
+  "createdAt": "2026-07-31T17:56:56.683Z",
+  "updatedAt": "2026-07-31T17:56:57.137Z"
+}

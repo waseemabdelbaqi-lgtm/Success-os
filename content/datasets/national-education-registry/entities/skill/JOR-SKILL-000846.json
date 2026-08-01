@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-SKILL-000846",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«Literature & Media — بناء المهارة» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-005644",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-005644",
+      "JOR-OUTCOME-005645",
+      "JOR-OUTCOME-005646",
+      "JOR-OUTCOME-006108",
+      "JOR-OUTCOME-006109",
+      "JOR-OUTCOME-006110"
+    ],
+    "lessonIds": [
+      "JOR-G11-ENG-U03-L02",
+      "JOR-G12-ENG-U03-L02"
+    ],
+    "belongsTo": "JOR-OUTCOME-005644"
+  },
+  "createdAt": "2026-07-31T17:56:57.278Z",
+  "updatedAt": "2026-07-31T17:56:57.357Z"
+}

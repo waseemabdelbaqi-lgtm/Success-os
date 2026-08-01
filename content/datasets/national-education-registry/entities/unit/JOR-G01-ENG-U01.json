@@ -1,0 +1,21 @@
+{
+  "globalId": "JOR-G01-ENG-U01",
+  "kind": "unit",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "Listening & Speaking",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-BOOK-000020",
+  "relationships": {
+    "bookId": "JOR-BOOK-000020",
+    "subjectId": "JOR-G01-ENG",
+    "gradeId": "JOR-G01",
+    "belongsTo": "JOR-BOOK-000020"
+  },
+  "createdAt": "2026-07-31T17:56:56.729Z",
+  "updatedAt": "2026-07-31T17:56:56.729Z",
+  "unitCode": "U01",
+  "sequence": 1,
+  "legacyUnitId": "U1"
+}

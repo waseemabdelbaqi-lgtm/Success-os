@@ -1,0 +1,16 @@
+{
+  "globalId": "JOR-DIAGRAM-000611",
+  "kind": "diagram",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "مخطط تعليمي لوحدة Listening & Speaking",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G03-ENG-U01-L03",
+  "relationships": {
+    "lessonId": "JOR-G03-ENG-U01-L03",
+    "belongsTo": "JOR-G03-ENG-U01-L03"
+  },
+  "createdAt": "2026-07-31T17:56:56.788Z",
+  "updatedAt": "2026-07-31T17:56:56.788Z"
+}

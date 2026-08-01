@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-G02-ENG-U01-L04",
+  "kind": "lesson",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "Listening & Speaking — تقويم وتعزيز",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G02-ENG-U01",
+  "relationships": {
+    "unitId": "JOR-G02-ENG-U01",
+    "bookId": "JOR-BOOK-000029",
+    "subjectId": "JOR-G02-ENG",
+    "gradeId": "JOR-G02",
+    "belongsTo": "JOR-G02-ENG-U01"
+  },
+  "createdAt": "2026-07-31T17:56:56.759Z",
+  "updatedAt": "2026-07-31T17:56:56.759Z",
+  "lessonCode": "L04",
+  "sequence": 4,
+  "legacyLessonId": "L1.4",
+  "keywords": [
+    "vocabulary",
+    "structure",
+    "fluency"
+  ]
+}

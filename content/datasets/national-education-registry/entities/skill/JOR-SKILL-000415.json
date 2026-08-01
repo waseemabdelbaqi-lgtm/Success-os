@@ -1,0 +1,35 @@
+{
+  "globalId": "JOR-SKILL-000415",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«الكائنات الحية — بناء المهارة» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-000900",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-000900",
+      "JOR-OUTCOME-000901",
+      "JOR-OUTCOME-000902",
+      "JOR-OUTCOME-001332",
+      "JOR-OUTCOME-001333",
+      "JOR-OUTCOME-001334",
+      "JOR-OUTCOME-001764",
+      "JOR-OUTCOME-001765",
+      "JOR-OUTCOME-001766",
+      "JOR-OUTCOME-002196",
+      "JOR-OUTCOME-002197",
+      "JOR-OUTCOME-002198"
+    ],
+    "lessonIds": [
+      "JOR-G01-SCI-U01-L02",
+      "JOR-G02-SCI-U01-L02",
+      "JOR-G03-SCI-U01-L02",
+      "JOR-G04-SCI-U01-L02"
+    ],
+    "belongsTo": "JOR-OUTCOME-000900"
+  },
+  "createdAt": "2026-07-31T17:56:56.727Z",
+  "updatedAt": "2026-07-31T17:56:56.816Z"
+}

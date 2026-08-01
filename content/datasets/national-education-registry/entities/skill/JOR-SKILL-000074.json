@@ -1,0 +1,31 @@
+{
+  "globalId": "JOR-SKILL-000074",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«التخطيط الشخصي — مقدمة ومفاهيم» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-000145",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-000145",
+      "JOR-OUTCOME-000146",
+      "JOR-OUTCOME-000147",
+      "JOR-OUTCOME-004209",
+      "JOR-OUTCOME-004210",
+      "JOR-OUTCOME-004211",
+      "JOR-OUTCOME-004865",
+      "JOR-OUTCOME-004866",
+      "JOR-OUTCOME-004867"
+    ],
+    "lessonIds": [
+      "JOR-G10-التربيةا-U01-L01",
+      "JOR-G08-التربيةا-U01-L01",
+      "JOR-G09-التربيةا-U01-L01"
+    ],
+    "belongsTo": "JOR-OUTCOME-000145"
+  },
+  "createdAt": "2026-07-31T17:56:56.688Z",
+  "updatedAt": "2026-07-31T17:56:57.154Z"
+}

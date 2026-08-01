@@ -1,0 +1,17 @@
+{
+  "globalId": "JOR-IMAGE-000393",
+  "kind": "educationalImage",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "مخطط تعليمي لوحدة اللياقة",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G02-PE-U03-L01",
+  "relationships": {
+    "lessonId": "JOR-G02-PE-U03-L01",
+    "belongsTo": "JOR-G02-PE-U03-L01"
+  },
+  "createdAt": "2026-07-31T17:56:56.744Z",
+  "updatedAt": "2026-07-31T17:56:56.744Z",
+  "src": null
+}

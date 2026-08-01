@@ -1,0 +1,18 @@
+{
+  "globalId": "JOR-OUTCOME-005582",
+  "kind": "learningOutcome",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«الروابط والتفاعلات — مقدمة ومفاهيم» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G11-الكيمياء-U02-L01",
+  "relationships": {
+    "lessonId": "JOR-G11-الكيمياء-U02-L01",
+    "belongsTo": "JOR-G11-الكيمياء-U02-L01"
+  },
+  "createdAt": "2026-07-31T17:56:57.269Z",
+  "updatedAt": "2026-07-31T17:56:57.269Z",
+  "text": "أن يطبّق مهارة مرتبطة بـ«الروابط والتفاعلات — مقدمة ومفاهيم» بخطوات واضحة قابلة للتحقق.",
+  "sequence": 2
+}

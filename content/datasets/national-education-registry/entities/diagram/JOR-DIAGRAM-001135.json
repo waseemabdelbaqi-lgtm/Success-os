@@ -1,0 +1,16 @@
+{
+  "globalId": "JOR-DIAGRAM-001135",
+  "kind": "diagram",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "مخطط تعليمي لوحدة التراث الفني",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G06-الفنون-U04-L03",
+  "relationships": {
+    "lessonId": "JOR-G06-الفنون-U04-L03",
+    "belongsTo": "JOR-G06-الفنون-U04-L03"
+  },
+  "createdAt": "2026-07-31T17:56:56.943Z",
+  "updatedAt": "2026-07-31T17:56:56.943Z"
+}

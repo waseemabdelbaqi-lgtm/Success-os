@@ -1,0 +1,31 @@
+{
+  "globalId": "JOR-SKILL-000520",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«اللياقة البدنية — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-002451",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-002451",
+      "JOR-OUTCOME-002452",
+      "JOR-OUTCOME-002453",
+      "JOR-OUTCOME-003011",
+      "JOR-OUTCOME-003012",
+      "JOR-OUTCOME-003013",
+      "JOR-OUTCOME-003571",
+      "JOR-OUTCOME-003572",
+      "JOR-OUTCOME-003573"
+    ],
+    "lessonIds": [
+      "JOR-G05-PE-U02-L03",
+      "JOR-G06-PE-U02-L03",
+      "JOR-G07-PE-U02-L03"
+    ],
+    "belongsTo": "JOR-OUTCOME-002451"
+  },
+  "createdAt": "2026-07-31T17:56:56.840Z",
+  "updatedAt": "2026-07-31T17:56:56.975Z"
+}

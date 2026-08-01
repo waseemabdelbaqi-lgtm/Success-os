@@ -1,0 +1,35 @@
+{
+  "globalId": "JOR-SKILL-000476",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«أساسيات الحاسوب — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-001047",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-001047",
+      "JOR-OUTCOME-001048",
+      "JOR-OUTCOME-001049",
+      "JOR-OUTCOME-001479",
+      "JOR-OUTCOME-001480",
+      "JOR-OUTCOME-001481",
+      "JOR-OUTCOME-001911",
+      "JOR-OUTCOME-001912",
+      "JOR-OUTCOME-001913",
+      "JOR-OUTCOME-002343",
+      "JOR-OUTCOME-002344",
+      "JOR-OUTCOME-002345"
+    ],
+    "lessonIds": [
+      "JOR-G01-ICT-U01-L03",
+      "JOR-G02-ICT-U01-L03",
+      "JOR-G03-ICT-U01-L03",
+      "JOR-G04-ICT-U01-L03"
+    ],
+    "belongsTo": "JOR-OUTCOME-001047"
+  },
+  "createdAt": "2026-07-31T17:56:56.738Z",
+  "updatedAt": "2026-07-31T17:56:56.829Z"
+}

@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-G06-MATH-U03-L03",
+  "kind": "lesson",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "الهندسة والمساحة — تطبيق ومثال",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G06-MATH-U03",
+  "relationships": {
+    "unitId": "JOR-G06-MATH-U03",
+    "bookId": "JOR-BOOK-000066",
+    "subjectId": "JOR-G06-MATH",
+    "gradeId": "JOR-G06",
+    "belongsTo": "JOR-G06-MATH-U03"
+  },
+  "createdAt": "2026-07-31T17:56:56.926Z",
+  "updatedAt": "2026-07-31T17:56:56.926Z",
+  "lessonCode": "L03",
+  "sequence": 3,
+  "legacyLessonId": "L3.3",
+  "keywords": [
+    "عدد",
+    "عملية",
+    "نمط"
+  ]
+}

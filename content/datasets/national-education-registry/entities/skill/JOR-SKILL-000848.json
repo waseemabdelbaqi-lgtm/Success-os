@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-SKILL-000848",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«Literature & Media — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-005650",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-005650",
+      "JOR-OUTCOME-005651",
+      "JOR-OUTCOME-005652",
+      "JOR-OUTCOME-006114",
+      "JOR-OUTCOME-006115",
+      "JOR-OUTCOME-006116"
+    ],
+    "lessonIds": [
+      "JOR-G11-ENG-U03-L04",
+      "JOR-G12-ENG-U03-L04"
+    ],
+    "belongsTo": "JOR-OUTCOME-005650"
+  },
+  "createdAt": "2026-07-31T17:56:57.279Z",
+  "updatedAt": "2026-07-31T17:56:57.358Z"
+}

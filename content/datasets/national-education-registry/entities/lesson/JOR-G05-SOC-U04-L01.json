@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-G05-SOC-U04-L01",
+  "kind": "lesson",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "التراث — مقدمة ومفاهيم",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G05-SOC-U04",
+  "relationships": {
+    "unitId": "JOR-G05-SOC-U04",
+    "bookId": "JOR-BOOK-000054",
+    "subjectId": "JOR-G05-SOC",
+    "gradeId": "JOR-G05",
+    "belongsTo": "JOR-G05-SOC-U04"
+  },
+  "createdAt": "2026-07-31T17:56:56.857Z",
+  "updatedAt": "2026-07-31T17:56:56.857Z",
+  "lessonCode": "L01",
+  "sequence": 1,
+  "legacyLessonId": "L4.1",
+  "keywords": [
+    "مجتمع",
+    "مؤسسة",
+    "موارد"
+  ]
+}

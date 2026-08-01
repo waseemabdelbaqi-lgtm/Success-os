@@ -1,0 +1,16 @@
+{
+  "globalId": "JOR-DIAGRAM-002099",
+  "kind": "diagram",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "مخطط تعليمي لوحدة برمجة وتطبيقات",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G12-ICT-U01-L03",
+  "relationships": {
+    "lessonId": "JOR-G12-ICT-U01-L03",
+    "belongsTo": "JOR-G12-ICT-U01-L03"
+  },
+  "createdAt": "2026-07-31T17:56:57.371Z",
+  "updatedAt": "2026-07-31T17:56:57.371Z"
+}

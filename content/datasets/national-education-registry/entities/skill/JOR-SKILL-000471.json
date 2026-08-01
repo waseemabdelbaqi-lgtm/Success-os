@@ -1,0 +1,35 @@
+{
+  "globalId": "JOR-SKILL-000471",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«التعبير الكتابي — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-001035",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-001035",
+      "JOR-OUTCOME-001036",
+      "JOR-OUTCOME-001037",
+      "JOR-OUTCOME-001467",
+      "JOR-OUTCOME-001468",
+      "JOR-OUTCOME-001469",
+      "JOR-OUTCOME-001899",
+      "JOR-OUTCOME-001900",
+      "JOR-OUTCOME-001901",
+      "JOR-OUTCOME-002331",
+      "JOR-OUTCOME-002332",
+      "JOR-OUTCOME-002333"
+    ],
+    "lessonIds": [
+      "JOR-G01-ARAB-U04-L03",
+      "JOR-G02-ARAB-U04-L03",
+      "JOR-G03-ARAB-U04-L03",
+      "JOR-G04-ARAB-U04-L03"
+    ],
+    "belongsTo": "JOR-OUTCOME-001035"
+  },
+  "createdAt": "2026-07-31T17:56:56.737Z",
+  "updatedAt": "2026-07-31T17:56:56.828Z"
+}

@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-GKG-SCI-U03-L03",
+  "kind": "lesson",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "المواد من حولنا — تطبيق ومثال",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-GKG-SCI-U03",
+  "relationships": {
+    "unitId": "JOR-GKG-SCI-U03",
+    "bookId": "JOR-BOOK-000144",
+    "subjectId": "JOR-GKG-SCI",
+    "gradeId": "JOR-GKG",
+    "belongsTo": "JOR-GKG-SCI-U03"
+  },
+  "createdAt": "2026-07-31T17:56:57.574Z",
+  "updatedAt": "2026-07-31T17:56:57.574Z",
+  "lessonCode": "L03",
+  "sequence": 3,
+  "legacyLessonId": "L3.3",
+  "keywords": [
+    "مادة",
+    "طاقة",
+    "نظام"
+  ]
+}

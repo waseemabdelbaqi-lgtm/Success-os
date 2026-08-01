@@ -1,0 +1,35 @@
+{
+  "globalId": "JOR-SKILL-000352",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«السلامة الرياضية — مقدمة ومفاهيم» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-000741",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-000741",
+      "JOR-OUTCOME-000742",
+      "JOR-OUTCOME-000743",
+      "JOR-OUTCOME-001173",
+      "JOR-OUTCOME-001174",
+      "JOR-OUTCOME-001175",
+      "JOR-OUTCOME-001605",
+      "JOR-OUTCOME-001606",
+      "JOR-OUTCOME-001607",
+      "JOR-OUTCOME-002037",
+      "JOR-OUTCOME-002038",
+      "JOR-OUTCOME-002039"
+    ],
+    "lessonIds": [
+      "JOR-G01-PE-U04-L01",
+      "JOR-G02-PE-U04-L01",
+      "JOR-G03-PE-U04-L01",
+      "JOR-G04-PE-U04-L01"
+    ],
+    "belongsTo": "JOR-OUTCOME-000741"
+  },
+  "createdAt": "2026-07-31T17:56:56.718Z",
+  "updatedAt": "2026-07-31T17:56:56.804Z"
+}

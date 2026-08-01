@@ -1,0 +1,17 @@
+{
+  "globalId": "JOR-IMAGE-002407",
+  "kind": "educationalImage",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "مخطط تعليمي لوحدة الحروف والأصوات",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-GKG-اللغةوال-U02-L03",
+  "relationships": {
+    "lessonId": "JOR-GKG-اللغةوال-U02-L03",
+    "belongsTo": "JOR-GKG-اللغةوال-U02-L03"
+  },
+  "createdAt": "2026-07-31T17:56:57.583Z",
+  "updatedAt": "2026-07-31T17:56:57.583Z",
+  "src": null
+}

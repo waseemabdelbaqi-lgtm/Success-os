@@ -1,0 +1,16 @@
+{
+  "globalId": "JOR-DIAGRAM-001945",
+  "kind": "diagram",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "مخطط تعليمي لوحدة أمن معلومات",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G11-ICT-U03-L01",
+  "relationships": {
+    "lessonId": "JOR-G11-ICT-U03-L01",
+    "belongsTo": "JOR-G11-ICT-U03-L01"
+  },
+  "createdAt": "2026-07-31T17:56:57.295Z",
+  "updatedAt": "2026-07-31T17:56:57.295Z"
+}

@@ -1,0 +1,16 @@
+{
+  "globalId": "JOR-DIAGRAM-001505",
+  "kind": "diagram",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "مخطط تعليمي لوحدة الجبر والمعادلات",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G08-MATH-U01-L01",
+  "relationships": {
+    "lessonId": "JOR-G08-MATH-U01-L01",
+    "belongsTo": "JOR-G08-MATH-U01-L01"
+  },
+  "createdAt": "2026-07-31T17:56:57.088Z",
+  "updatedAt": "2026-07-31T17:56:57.088Z"
+}

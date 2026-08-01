@@ -1,0 +1,29 @@
+{
+  "globalId": "JOR-SKILL-000776",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«البحث العلمي — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-005491",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-005491",
+      "JOR-OUTCOME-005492",
+      "JOR-OUTCOME-005493",
+      "JOR-OUTCOME-005955",
+      "JOR-OUTCOME-005956",
+      "JOR-OUTCOME-005957",
+      "JOR-OUTCOME-006647",
+      "JOR-OUTCOME-006999"
+    ],
+    "lessonIds": [
+      "JOR-G11-SCI-U02-L03",
+      "JOR-G12-SCI-U02-L03"
+    ],
+    "belongsTo": "JOR-OUTCOME-005491"
+  },
+  "createdAt": "2026-07-31T17:56:57.256Z",
+  "updatedAt": "2026-07-31T17:56:57.548Z"
+}

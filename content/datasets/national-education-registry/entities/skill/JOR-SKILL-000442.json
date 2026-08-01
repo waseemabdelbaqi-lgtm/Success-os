@@ -1,0 +1,35 @@
+{
+  "globalId": "JOR-SKILL-000442",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«Phonics & Vocabulary — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-000966",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-000966",
+      "JOR-OUTCOME-000967",
+      "JOR-OUTCOME-000968",
+      "JOR-OUTCOME-001398",
+      "JOR-OUTCOME-001399",
+      "JOR-OUTCOME-001400",
+      "JOR-OUTCOME-001830",
+      "JOR-OUTCOME-001831",
+      "JOR-OUTCOME-001832",
+      "JOR-OUTCOME-002262",
+      "JOR-OUTCOME-002263",
+      "JOR-OUTCOME-002264"
+    ],
+    "lessonIds": [
+      "JOR-G01-ENG-U02-L04",
+      "JOR-G02-ENG-U02-L04",
+      "JOR-G03-ENG-U02-L04",
+      "JOR-G04-ENG-U02-L04"
+    ],
+    "belongsTo": "JOR-OUTCOME-000966"
+  },
+  "createdAt": "2026-07-31T17:56:56.730Z",
+  "updatedAt": "2026-07-31T17:56:56.821Z"
+}

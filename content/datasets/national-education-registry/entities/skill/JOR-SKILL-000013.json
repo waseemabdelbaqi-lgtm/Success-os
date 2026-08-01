@@ -1,0 +1,31 @@
+{
+  "globalId": "JOR-SKILL-000013",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«الدولة الهاشمية — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-000022",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-000022",
+      "JOR-OUTCOME-000023",
+      "JOR-OUTCOME-000024",
+      "JOR-OUTCOME-004086",
+      "JOR-OUTCOME-004087",
+      "JOR-OUTCOME-004088",
+      "JOR-OUTCOME-004742",
+      "JOR-OUTCOME-004743",
+      "JOR-OUTCOME-004744"
+    ],
+    "lessonIds": [
+      "JOR-G10-التاريخ-U02-L04",
+      "JOR-G08-التاريخ-U02-L04",
+      "JOR-G09-التاريخ-U02-L04"
+    ],
+    "belongsTo": "JOR-OUTCOME-000022"
+  },
+  "createdAt": "2026-07-31T17:56:56.683Z",
+  "updatedAt": "2026-07-31T17:56:57.136Z"
+}

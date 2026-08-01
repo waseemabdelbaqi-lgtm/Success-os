@@ -1,0 +1,51 @@
+{
+  "globalId": "JOR-SKILL-000889",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يتعرف المتعلم مفهومًا محوريًا في المهارات الرقمية ضمن مشاريع تقنية بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 11.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-005749",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-005749",
+      "JOR-OUTCOME-005750",
+      "JOR-OUTCOME-005751",
+      "JOR-OUTCOME-005752",
+      "JOR-OUTCOME-005753",
+      "JOR-OUTCOME-005754",
+      "JOR-OUTCOME-005755",
+      "JOR-OUTCOME-005756",
+      "JOR-OUTCOME-005757",
+      "JOR-OUTCOME-005758",
+      "JOR-OUTCOME-005759",
+      "JOR-OUTCOME-005760",
+      "JOR-OUTCOME-006213",
+      "JOR-OUTCOME-006214",
+      "JOR-OUTCOME-006215",
+      "JOR-OUTCOME-006216",
+      "JOR-OUTCOME-006217",
+      "JOR-OUTCOME-006218",
+      "JOR-OUTCOME-006219",
+      "JOR-OUTCOME-006220",
+      "JOR-OUTCOME-006221",
+      "JOR-OUTCOME-006222",
+      "JOR-OUTCOME-006223",
+      "JOR-OUTCOME-006224"
+    ],
+    "lessonIds": [
+      "JOR-G11-ICT-U04-L01",
+      "JOR-G11-ICT-U04-L02",
+      "JOR-G11-ICT-U04-L03",
+      "JOR-G11-ICT-U04-L04",
+      "JOR-G12-ICT-U04-L01",
+      "JOR-G12-ICT-U04-L02",
+      "JOR-G12-ICT-U04-L03",
+      "JOR-G12-ICT-U04-L04"
+    ],
+    "belongsTo": "JOR-OUTCOME-005749"
+  },
+  "createdAt": "2026-07-31T17:56:57.297Z",
+  "updatedAt": "2026-07-31T17:56:57.378Z"
+}

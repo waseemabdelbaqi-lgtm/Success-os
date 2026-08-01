@@ -1,0 +1,18 @@
+{
+  "globalId": "JOR-OUTCOME-002434",
+  "kind": "learningOutcome",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«الألعاب الجماعية — مقدمة ومفاهيم» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G05-PE-U01-L01",
+  "relationships": {
+    "lessonId": "JOR-G05-PE-U01-L01",
+    "belongsTo": "JOR-G05-PE-U01-L01"
+  },
+  "createdAt": "2026-07-31T17:56:56.838Z",
+  "updatedAt": "2026-07-31T17:56:56.838Z",
+  "text": "أن يطبّق مهارة مرتبطة بـ«الألعاب الجماعية — مقدمة ومفاهيم» بخطوات واضحة قابلة للتحقق.",
+  "sequence": 2
+}

@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-G09-التاريخ-U02-L03",
+  "kind": "lesson",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "الدولة الهاشمية — تطبيق ومثال",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G09-التاريخ-U02",
+  "relationships": {
+    "unitId": "JOR-G09-التاريخ-U02",
+    "bookId": "JOR-BOOK-000096",
+    "subjectId": "JOR-G09-التاريخ",
+    "gradeId": "JOR-G09",
+    "belongsTo": "JOR-G09-التاريخ-U02"
+  },
+  "createdAt": "2026-07-31T17:56:57.135Z",
+  "updatedAt": "2026-07-31T17:56:57.135Z",
+  "lessonCode": "L03",
+  "sequence": 3,
+  "legacyLessonId": "L2.3",
+  "keywords": [
+    "حدث",
+    "مصدر",
+    "سبب"
+  ]
+}

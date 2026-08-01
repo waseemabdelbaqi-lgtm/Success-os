@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-SKILL-000747",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«الهوية والقيم — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-005419",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-005419",
+      "JOR-OUTCOME-005420",
+      "JOR-OUTCOME-005421",
+      "JOR-OUTCOME-005883",
+      "JOR-OUTCOME-005884",
+      "JOR-OUTCOME-005885"
+    ],
+    "lessonIds": [
+      "JOR-G11-ISL-U04-L03",
+      "JOR-G12-ISL-U04-L03"
+    ],
+    "belongsTo": "JOR-OUTCOME-005419"
+  },
+  "createdAt": "2026-07-31T17:56:57.243Z",
+  "updatedAt": "2026-07-31T17:56:57.320Z"
+}

@@ -1,0 +1,17 @@
+{
+  "globalId": "JOR-IMAGE-002387",
+  "kind": "educationalImage",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "مخطط تعليمي لوحدة استكشاف الطبيعة",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-GKG-SCI-U01-L03",
+  "relationships": {
+    "lessonId": "JOR-GKG-SCI-U01-L03",
+    "belongsTo": "JOR-GKG-SCI-U01-L03"
+  },
+  "createdAt": "2026-07-31T17:56:57.569Z",
+  "updatedAt": "2026-07-31T17:56:57.569Z",
+  "src": null
+}

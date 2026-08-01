@@ -1,0 +1,35 @@
+{
+  "globalId": "JOR-SKILL-000424",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«الأرض والفضاء — مقدمة ومفاهيم» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-000921",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-000921",
+      "JOR-OUTCOME-000922",
+      "JOR-OUTCOME-000923",
+      "JOR-OUTCOME-001353",
+      "JOR-OUTCOME-001354",
+      "JOR-OUTCOME-001355",
+      "JOR-OUTCOME-001785",
+      "JOR-OUTCOME-001786",
+      "JOR-OUTCOME-001787",
+      "JOR-OUTCOME-002217",
+      "JOR-OUTCOME-002218",
+      "JOR-OUTCOME-002219"
+    ],
+    "lessonIds": [
+      "JOR-G01-SCI-U03-L01",
+      "JOR-G02-SCI-U03-L01",
+      "JOR-G03-SCI-U03-L01",
+      "JOR-G04-SCI-U03-L01"
+    ],
+    "belongsTo": "JOR-OUTCOME-000921"
+  },
+  "createdAt": "2026-07-31T17:56:56.728Z",
+  "updatedAt": "2026-07-31T17:56:56.818Z"
+}

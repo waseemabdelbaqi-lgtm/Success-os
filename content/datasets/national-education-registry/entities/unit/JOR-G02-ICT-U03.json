@@ -1,0 +1,21 @@
+{
+  "globalId": "JOR-G02-ICT-U03",
+  "kind": "unit",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "الرسم والوسائط",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-BOOK-000031",
+  "relationships": {
+    "bookId": "JOR-BOOK-000031",
+    "subjectId": "JOR-G02-ICT",
+    "gradeId": "JOR-G02",
+    "belongsTo": "JOR-BOOK-000031"
+  },
+  "createdAt": "2026-07-31T17:56:56.766Z",
+  "updatedAt": "2026-07-31T17:56:56.766Z",
+  "unitCode": "U03",
+  "sequence": 3,
+  "legacyUnitId": "U3"
+}

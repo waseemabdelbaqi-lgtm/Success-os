@@ -1,0 +1,31 @@
+{
+  "globalId": "JOR-SKILL-000061",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«الروح الرياضية — مقدمة ومفاهيم» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-000121",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-000121",
+      "JOR-OUTCOME-000122",
+      "JOR-OUTCOME-000123",
+      "JOR-OUTCOME-004185",
+      "JOR-OUTCOME-004186",
+      "JOR-OUTCOME-004187",
+      "JOR-OUTCOME-004841",
+      "JOR-OUTCOME-004842",
+      "JOR-OUTCOME-004843"
+    ],
+    "lessonIds": [
+      "JOR-G10-PE-U03-L01",
+      "JOR-G08-PE-U03-L01",
+      "JOR-G09-PE-U03-L01"
+    ],
+    "belongsTo": "JOR-OUTCOME-000121"
+  },
+  "createdAt": "2026-07-31T17:56:56.687Z",
+  "updatedAt": "2026-07-31T17:56:57.150Z"
+}

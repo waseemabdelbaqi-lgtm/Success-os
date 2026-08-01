@@ -1,0 +1,31 @@
+{
+  "globalId": "JOR-SKILL-000581",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«الاحتياجات والرغبات — بناء المهارة» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-002588",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-002588",
+      "JOR-OUTCOME-002589",
+      "JOR-OUTCOME-002590",
+      "JOR-OUTCOME-003148",
+      "JOR-OUTCOME-003149",
+      "JOR-OUTCOME-003150",
+      "JOR-OUTCOME-003708",
+      "JOR-OUTCOME-003709",
+      "JOR-OUTCOME-003710"
+    ],
+    "lessonIds": [
+      "JOR-G05-الثقافةا-U03-L02",
+      "JOR-G06-الثقافةا-U03-L02",
+      "JOR-G07-الثقافةا-U03-L02"
+    ],
+    "belongsTo": "JOR-OUTCOME-002588"
+  },
+  "createdAt": "2026-07-31T17:56:56.852Z",
+  "updatedAt": "2026-07-31T17:56:56.992Z"
+}

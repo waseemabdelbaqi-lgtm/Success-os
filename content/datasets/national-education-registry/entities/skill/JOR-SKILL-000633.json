@@ -1,0 +1,31 @@
+{
+  "globalId": "JOR-SKILL-000633",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«الجهاز والجسم — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-002714",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-002714",
+      "JOR-OUTCOME-002715",
+      "JOR-OUTCOME-002716",
+      "JOR-OUTCOME-003274",
+      "JOR-OUTCOME-003275",
+      "JOR-OUTCOME-003276",
+      "JOR-OUTCOME-003834",
+      "JOR-OUTCOME-003835",
+      "JOR-OUTCOME-003836"
+    ],
+    "lessonIds": [
+      "JOR-G05-SCI-U01-L04",
+      "JOR-G06-SCI-U01-L04",
+      "JOR-G07-SCI-U01-L04"
+    ],
+    "belongsTo": "JOR-OUTCOME-002714"
+  },
+  "createdAt": "2026-07-31T17:56:56.864Z",
+  "updatedAt": "2026-07-31T17:56:57.008Z"
+}

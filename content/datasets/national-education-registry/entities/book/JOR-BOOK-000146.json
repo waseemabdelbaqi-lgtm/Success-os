@@ -1,0 +1,19 @@
+{
+  "globalId": "JOR-BOOK-000146",
+  "kind": "book",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "Success OS — المهارات الحياتية",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-GKG-المهارات",
+  "relationships": {
+    "subjectId": "JOR-GKG-المهارات",
+    "gradeId": "JOR-GKG",
+    "belongsTo": "JOR-GKG-المهارات"
+  },
+  "createdAt": "2026-07-31T17:56:57.590Z",
+  "updatedAt": "2026-07-31T17:56:57.590Z",
+  "legacyBookId": "jordan__رياض-الأطفال__jordan-national-curriculum__رياض-الأطفال__المهارات-الحياتية__ar",
+  "officialSource": "https://moe.gov.jo/"
+}

@@ -1,0 +1,18 @@
+{
+  "globalId": "JOR-OUTCOME-006440",
+  "kind": "learningOutcome",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يتعرف المتعلم مفهومًا محوريًا في الزراعة ضمن مشروع تطبيقي بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 11.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G11-الزراعة-U04-L02",
+  "relationships": {
+    "lessonId": "JOR-G11-الزراعة-U04-L02",
+    "belongsTo": "JOR-G11-الزراعة-U04-L02"
+  },
+  "createdAt": "2026-07-31T17:56:57.416Z",
+  "updatedAt": "2026-07-31T17:56:57.416Z",
+  "text": "أن يتعرف المتعلم مفهومًا محوريًا في الزراعة ضمن مشروع تطبيقي بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 11.",
+  "sequence": 1
+}

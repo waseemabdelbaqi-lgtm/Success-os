@@ -1,0 +1,18 @@
+{
+  "globalId": "JOR-OUTCOME-006093",
+  "kind": "learningOutcome",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يتعرف المتعلم مفهومًا محوريًا في اللغة الإنجليزية ضمن Advanced Grammar بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 12.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G12-ENG-U02-L01",
+  "relationships": {
+    "lessonId": "JOR-G12-ENG-U02-L01",
+    "belongsTo": "JOR-G12-ENG-U02-L01"
+  },
+  "createdAt": "2026-07-31T17:56:57.354Z",
+  "updatedAt": "2026-07-31T17:56:57.354Z",
+  "text": "أن يتعرف المتعلم مفهومًا محوريًا في اللغة الإنجليزية ضمن Advanced Grammar بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 12.",
+  "sequence": 1
+}

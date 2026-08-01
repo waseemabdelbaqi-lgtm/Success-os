@@ -1,0 +1,35 @@
+{
+  "globalId": "JOR-SKILL-000397",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«الأعداد والعمليات — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-000858",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-000858",
+      "JOR-OUTCOME-000859",
+      "JOR-OUTCOME-000860",
+      "JOR-OUTCOME-001290",
+      "JOR-OUTCOME-001291",
+      "JOR-OUTCOME-001292",
+      "JOR-OUTCOME-001722",
+      "JOR-OUTCOME-001723",
+      "JOR-OUTCOME-001724",
+      "JOR-OUTCOME-002154",
+      "JOR-OUTCOME-002155",
+      "JOR-OUTCOME-002156"
+    ],
+    "lessonIds": [
+      "JOR-G01-MATH-U01-L04",
+      "JOR-G02-MATH-U01-L04",
+      "JOR-G03-MATH-U01-L04",
+      "JOR-G04-MATH-U01-L04"
+    ],
+    "belongsTo": "JOR-OUTCOME-000858"
+  },
+  "createdAt": "2026-07-31T17:56:56.725Z",
+  "updatedAt": "2026-07-31T17:56:56.813Z"
+}

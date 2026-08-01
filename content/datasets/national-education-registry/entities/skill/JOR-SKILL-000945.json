@@ -1,0 +1,51 @@
+{
+  "globalId": "JOR-SKILL-000945",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يتعرف المتعلم مفهومًا محوريًا في الأعمال ضمن مهارات عملية بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 11.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-006317",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-006317",
+      "JOR-OUTCOME-006318",
+      "JOR-OUTCOME-006319",
+      "JOR-OUTCOME-006320",
+      "JOR-OUTCOME-006321",
+      "JOR-OUTCOME-006322",
+      "JOR-OUTCOME-006323",
+      "JOR-OUTCOME-006324",
+      "JOR-OUTCOME-006325",
+      "JOR-OUTCOME-006326",
+      "JOR-OUTCOME-006327",
+      "JOR-OUTCOME-006328",
+      "JOR-OUTCOME-006669",
+      "JOR-OUTCOME-006670",
+      "JOR-OUTCOME-006671",
+      "JOR-OUTCOME-006672",
+      "JOR-OUTCOME-006673",
+      "JOR-OUTCOME-006674",
+      "JOR-OUTCOME-006675",
+      "JOR-OUTCOME-006676",
+      "JOR-OUTCOME-006677",
+      "JOR-OUTCOME-006678",
+      "JOR-OUTCOME-006679",
+      "JOR-OUTCOME-006680"
+    ],
+    "lessonIds": [
+      "JOR-G11-الأعمال-U02-L01",
+      "JOR-G11-الأعمال-U02-L02",
+      "JOR-G11-الأعمال-U02-L03",
+      "JOR-G11-الأعمال-U02-L04",
+      "JOR-G12-الأعمال-U02-L01",
+      "JOR-G12-الأعمال-U02-L02",
+      "JOR-G12-الأعمال-U02-L03",
+      "JOR-G12-الأعمال-U02-L04"
+    ],
+    "belongsTo": "JOR-OUTCOME-006317"
+  },
+  "createdAt": "2026-07-31T17:56:57.396Z",
+  "updatedAt": "2026-07-31T17:56:57.473Z"
+}

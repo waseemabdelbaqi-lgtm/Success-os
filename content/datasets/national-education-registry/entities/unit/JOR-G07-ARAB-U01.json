@@ -1,0 +1,21 @@
+{
+  "globalId": "JOR-G07-ARAB-U01",
+  "kind": "unit",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "النصوص الأدبية",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-BOOK-000081",
+  "relationships": {
+    "bookId": "JOR-BOOK-000081",
+    "subjectId": "JOR-G07-ARAB",
+    "gradeId": "JOR-G07",
+    "belongsTo": "JOR-BOOK-000081"
+  },
+  "createdAt": "2026-07-31T17:56:57.025Z",
+  "updatedAt": "2026-07-31T17:56:57.025Z",
+  "unitCode": "U01",
+  "sequence": 1,
+  "legacyUnitId": "U1"
+}

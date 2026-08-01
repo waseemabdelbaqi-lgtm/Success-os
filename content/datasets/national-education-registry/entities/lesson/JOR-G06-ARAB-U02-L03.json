@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-G06-ARAB-U02-L03",
+  "kind": "lesson",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "النحو والصرف — تطبيق ومثال",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G06-ARAB-U02",
+  "relationships": {
+    "unitId": "JOR-G06-ARAB-U02",
+    "bookId": "JOR-BOOK-000070",
+    "subjectId": "JOR-G06-ARAB",
+    "gradeId": "JOR-G06",
+    "belongsTo": "JOR-G06-ARAB-U02"
+  },
+  "createdAt": "2026-07-31T17:56:56.957Z",
+  "updatedAt": "2026-07-31T17:56:56.957Z",
+  "lessonCode": "L03",
+  "sequence": 3,
+  "legacyLessonId": "L2.3",
+  "keywords": [
+    "نص",
+    "معنى",
+    "أسلوب"
+  ]
+}

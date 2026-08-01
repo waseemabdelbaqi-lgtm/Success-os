@@ -1,0 +1,21 @@
+{
+  "globalId": "JOR-G10-PE-U03",
+  "kind": "unit",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "الروح الرياضية",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-BOOK-000003",
+  "relationships": {
+    "bookId": "JOR-BOOK-000003",
+    "subjectId": "JOR-G10-PE",
+    "gradeId": "JOR-G10",
+    "belongsTo": "JOR-BOOK-000003"
+  },
+  "createdAt": "2026-07-31T17:56:56.687Z",
+  "updatedAt": "2026-07-31T17:56:56.687Z",
+  "unitCode": "U03",
+  "sequence": 3,
+  "legacyUnitId": "U3"
+}

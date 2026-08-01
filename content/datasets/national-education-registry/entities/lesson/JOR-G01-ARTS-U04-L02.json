@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-G01-ARTS-U04-L02",
+  "kind": "lesson",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "المشاريع الإبداعية — بناء المهارة",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G01-ARTS-U04",
+  "relationships": {
+    "unitId": "JOR-G01-ARTS-U04",
+    "bookId": "JOR-BOOK-000016",
+    "subjectId": "JOR-G01-ARTS",
+    "gradeId": "JOR-G01",
+    "belongsTo": "JOR-G01-ARTS-U04"
+  },
+  "createdAt": "2026-07-31T17:56:56.720Z",
+  "updatedAt": "2026-07-31T17:56:56.720Z",
+  "lessonCode": "L02",
+  "sequence": 2,
+  "legacyLessonId": "L4.2",
+  "keywords": [
+    "خط",
+    "لون",
+    "إيقاع"
+  ]
+}

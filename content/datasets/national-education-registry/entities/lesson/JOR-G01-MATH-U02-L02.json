@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-G01-MATH-U02-L02",
+  "kind": "lesson",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "القيمة المكانية — بناء المهارة",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G01-MATH-U02",
+  "relationships": {
+    "unitId": "JOR-G01-MATH-U02",
+    "bookId": "JOR-BOOK-000018",
+    "subjectId": "JOR-G01-MATH",
+    "gradeId": "JOR-G01",
+    "belongsTo": "JOR-G01-MATH-U02"
+  },
+  "createdAt": "2026-07-31T17:56:56.725Z",
+  "updatedAt": "2026-07-31T17:56:56.725Z",
+  "lessonCode": "L02",
+  "sequence": 2,
+  "legacyLessonId": "L2.2",
+  "keywords": [
+    "عدد",
+    "عملية",
+    "نمط"
+  ]
+}

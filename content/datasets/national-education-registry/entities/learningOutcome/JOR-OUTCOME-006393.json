@@ -1,0 +1,18 @@
+{
+  "globalId": "JOR-OUTCOME-006393",
+  "kind": "learningOutcome",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«مشروع تطبيقي — بناء المهارة» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G11-البناءوا-U04-L02",
+  "relationships": {
+    "lessonId": "JOR-G11-البناءوا-U04-L02",
+    "belongsTo": "JOR-G11-البناءوا-U04-L02"
+  },
+  "createdAt": "2026-07-31T17:56:57.407Z",
+  "updatedAt": "2026-07-31T17:56:57.407Z",
+  "text": "أن يطبّق مهارة مرتبطة بـ«مشروع تطبيقي — بناء المهارة» بخطوات واضحة قابلة للتحقق.",
+  "sequence": 2
+}

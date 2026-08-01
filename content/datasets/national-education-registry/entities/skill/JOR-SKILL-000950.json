@@ -1,0 +1,51 @@
+{
+  "globalId": "JOR-SKILL-000950",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يتعرف المتعلم مفهومًا محوريًا في الأعمال ضمن معايير السلامة والجودة بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 11.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-006329",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-006329",
+      "JOR-OUTCOME-006330",
+      "JOR-OUTCOME-006331",
+      "JOR-OUTCOME-006332",
+      "JOR-OUTCOME-006333",
+      "JOR-OUTCOME-006334",
+      "JOR-OUTCOME-006335",
+      "JOR-OUTCOME-006336",
+      "JOR-OUTCOME-006337",
+      "JOR-OUTCOME-006338",
+      "JOR-OUTCOME-006339",
+      "JOR-OUTCOME-006340",
+      "JOR-OUTCOME-006681",
+      "JOR-OUTCOME-006682",
+      "JOR-OUTCOME-006683",
+      "JOR-OUTCOME-006684",
+      "JOR-OUTCOME-006685",
+      "JOR-OUTCOME-006686",
+      "JOR-OUTCOME-006687",
+      "JOR-OUTCOME-006688",
+      "JOR-OUTCOME-006689",
+      "JOR-OUTCOME-006690",
+      "JOR-OUTCOME-006691",
+      "JOR-OUTCOME-006692"
+    ],
+    "lessonIds": [
+      "JOR-G11-الأعمال-U03-L01",
+      "JOR-G11-الأعمال-U03-L02",
+      "JOR-G11-الأعمال-U03-L03",
+      "JOR-G11-الأعمال-U03-L04",
+      "JOR-G12-الأعمال-U03-L01",
+      "JOR-G12-الأعمال-U03-L02",
+      "JOR-G12-الأعمال-U03-L03",
+      "JOR-G12-الأعمال-U03-L04"
+    ],
+    "belongsTo": "JOR-OUTCOME-006329"
+  },
+  "createdAt": "2026-07-31T17:56:57.397Z",
+  "updatedAt": "2026-07-31T17:56:57.475Z"
+}

@@ -1,0 +1,16 @@
+{
+  "globalId": "JOR-DIAGRAM-001201",
+  "kind": "diagram",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "مخطط تعليمي لوحدة الألعاب الجماعية",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G07-PE-U01-L01",
+  "relationships": {
+    "lessonId": "JOR-G07-PE-U01-L01",
+    "belongsTo": "JOR-G07-PE-U01-L01"
+  },
+  "createdAt": "2026-07-31T17:56:56.973Z",
+  "updatedAt": "2026-07-31T17:56:56.973Z"
+}

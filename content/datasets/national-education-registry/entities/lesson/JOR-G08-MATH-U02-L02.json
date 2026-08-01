@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-G08-MATH-U02-L02",
+  "kind": "lesson",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "النسب والتناسب — بناء المهارة",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G08-MATH-U02",
+  "relationships": {
+    "unitId": "JOR-G08-MATH-U02",
+    "bookId": "JOR-BOOK-000090",
+    "subjectId": "JOR-G08-MATH",
+    "gradeId": "JOR-G08",
+    "belongsTo": "JOR-G08-MATH-U02"
+  },
+  "createdAt": "2026-07-31T17:56:57.090Z",
+  "updatedAt": "2026-07-31T17:56:57.090Z",
+  "lessonCode": "L02",
+  "sequence": 2,
+  "legacyLessonId": "L2.2",
+  "keywords": [
+    "عدد",
+    "عملية",
+    "نمط"
+  ]
+}

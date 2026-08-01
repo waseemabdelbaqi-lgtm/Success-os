@@ -1,0 +1,31 @@
+{
+  "globalId": "JOR-SKILL-000043",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«الأخلاق والتعامل — مقدمة ومفاهيم» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-000085",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-000085",
+      "JOR-OUTCOME-000086",
+      "JOR-OUTCOME-000087",
+      "JOR-OUTCOME-004149",
+      "JOR-OUTCOME-004150",
+      "JOR-OUTCOME-004151",
+      "JOR-OUTCOME-004805",
+      "JOR-OUTCOME-004806",
+      "JOR-OUTCOME-004807"
+    ],
+    "lessonIds": [
+      "JOR-G10-ISL-U04-L01",
+      "JOR-G08-ISL-U04-L01",
+      "JOR-G09-ISL-U04-L01"
+    ],
+    "belongsTo": "JOR-OUTCOME-000085"
+  },
+  "createdAt": "2026-07-31T17:56:56.685Z",
+  "updatedAt": "2026-07-31T17:56:57.145Z"
+}

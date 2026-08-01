@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-G06-SCI-U01-L04",
+  "kind": "lesson",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "الجهاز والجسم — تقويم وتعزيز",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G06-SCI-U01",
+  "relationships": {
+    "unitId": "JOR-G06-SCI-U01",
+    "bookId": "JOR-BOOK-000067",
+    "subjectId": "JOR-G06-SCI",
+    "gradeId": "JOR-G06",
+    "belongsTo": "JOR-G06-SCI-U01"
+  },
+  "createdAt": "2026-07-31T17:56:56.930Z",
+  "updatedAt": "2026-07-31T17:56:56.930Z",
+  "lessonCode": "L04",
+  "sequence": 4,
+  "legacyLessonId": "L1.4",
+  "keywords": [
+    "مادة",
+    "طاقة",
+    "نظام"
+  ]
+}

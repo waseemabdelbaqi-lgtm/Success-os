@@ -1,0 +1,31 @@
+{
+  "globalId": "JOR-SKILL-000696",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«النحو والصرف — بناء المهارة» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-002864",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-002864",
+      "JOR-OUTCOME-002865",
+      "JOR-OUTCOME-002866",
+      "JOR-OUTCOME-003424",
+      "JOR-OUTCOME-003425",
+      "JOR-OUTCOME-003426",
+      "JOR-OUTCOME-003984",
+      "JOR-OUTCOME-003985",
+      "JOR-OUTCOME-003986"
+    ],
+    "lessonIds": [
+      "JOR-G05-ARAB-U02-L02",
+      "JOR-G06-ARAB-U02-L02",
+      "JOR-G07-ARAB-U02-L02"
+    ],
+    "belongsTo": "JOR-OUTCOME-002864"
+  },
+  "createdAt": "2026-07-31T17:56:56.881Z",
+  "updatedAt": "2026-07-31T17:56:57.028Z"
+}

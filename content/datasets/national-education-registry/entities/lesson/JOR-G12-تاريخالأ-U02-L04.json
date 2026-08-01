@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-G12-تاريخالأ-U02-L04",
+  "kind": "lesson",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "القضايا التاريخية — تقويم وتعزيز",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G12-تاريخالأ-U02",
+  "relationships": {
+    "unitId": "JOR-G12-تاريخالأ-U02",
+    "bookId": "JOR-BOOK-000126",
+    "subjectId": "JOR-G12-تاريخالأ",
+    "gradeId": "JOR-G12",
+    "belongsTo": "JOR-G12-تاريخالأ-U02"
+  },
+  "createdAt": "2026-07-31T17:56:57.382Z",
+  "updatedAt": "2026-07-31T17:56:57.382Z",
+  "lessonCode": "L04",
+  "sequence": 4,
+  "legacyLessonId": "L2.4",
+  "keywords": [
+    "حدث",
+    "مصدر",
+    "سبب"
+  ]
+}

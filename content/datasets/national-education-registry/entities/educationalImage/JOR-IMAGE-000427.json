@@ -1,0 +1,17 @@
+{
+  "globalId": "JOR-IMAGE-000427",
+  "kind": "educationalImage",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "مخطط تعليمي لوحدة المهن والخدمات",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G02-SOC-U03-L03",
+  "relationships": {
+    "lessonId": "JOR-G02-SOC-U03-L03",
+    "belongsTo": "JOR-G02-SOC-U03-L03"
+  },
+  "createdAt": "2026-07-31T17:56:56.751Z",
+  "updatedAt": "2026-07-31T17:56:56.751Z",
+  "src": null
+}

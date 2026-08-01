@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-G02-ENG-U04-L04",
+  "kind": "lesson",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "Simple Writing — تقويم وتعزيز",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G02-ENG-U04",
+  "relationships": {
+    "unitId": "JOR-G02-ENG-U04",
+    "bookId": "JOR-BOOK-000029",
+    "subjectId": "JOR-G02-ENG",
+    "gradeId": "JOR-G02",
+    "belongsTo": "JOR-G02-ENG-U04"
+  },
+  "createdAt": "2026-07-31T17:56:56.761Z",
+  "updatedAt": "2026-07-31T17:56:56.761Z",
+  "lessonCode": "L04",
+  "sequence": 4,
+  "legacyLessonId": "L4.4",
+  "keywords": [
+    "vocabulary",
+    "structure",
+    "fluency"
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "globalId": "JOR-SKILL-000511",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«القيم الإسلامية — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-002427",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-002427",
+      "JOR-OUTCOME-002428",
+      "JOR-OUTCOME-002429",
+      "JOR-OUTCOME-002987",
+      "JOR-OUTCOME-002988",
+      "JOR-OUTCOME-002989",
+      "JOR-OUTCOME-003547",
+      "JOR-OUTCOME-003548",
+      "JOR-OUTCOME-003549"
+    ],
+    "lessonIds": [
+      "JOR-G05-ISL-U04-L03",
+      "JOR-G06-ISL-U04-L03",
+      "JOR-G07-ISL-U04-L03"
+    ],
+    "belongsTo": "JOR-OUTCOME-002427"
+  },
+  "createdAt": "2026-07-31T17:56:56.838Z",
+  "updatedAt": "2026-07-31T17:56:56.972Z"
+}

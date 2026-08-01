@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-G07-ISL-U01-L01",
+  "kind": "lesson",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أركان الإيمان — مقدمة ومفاهيم",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G07-ISL-U01",
+  "relationships": {
+    "unitId": "JOR-G07-ISL-U01",
+    "bookId": "JOR-BOOK-000072",
+    "subjectId": "JOR-G07-ISL",
+    "gradeId": "JOR-G07",
+    "belongsTo": "JOR-G07-ISL-U01"
+  },
+  "createdAt": "2026-07-31T17:56:56.967Z",
+  "updatedAt": "2026-07-31T17:56:56.967Z",
+  "lessonCode": "L01",
+  "sequence": 1,
+  "legacyLessonId": "L1.1",
+  "keywords": [
+    "عقيدة",
+    "عبادة",
+    "خلق"
+  ]
+}

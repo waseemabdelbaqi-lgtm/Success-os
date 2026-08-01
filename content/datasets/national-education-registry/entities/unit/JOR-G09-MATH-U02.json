@@ -1,0 +1,21 @@
+{
+  "globalId": "JOR-G09-MATH-U02",
+  "kind": "unit",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "النسب والتناسب",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-BOOK-000103",
+  "relationships": {
+    "bookId": "JOR-BOOK-000103",
+    "subjectId": "JOR-G09-MATH",
+    "gradeId": "JOR-G09",
+    "belongsTo": "JOR-BOOK-000103"
+  },
+  "createdAt": "2026-07-31T17:56:57.190Z",
+  "updatedAt": "2026-07-31T17:56:57.190Z",
+  "unitCode": "U02",
+  "sequence": 2,
+  "legacyUnitId": "U2"
+}

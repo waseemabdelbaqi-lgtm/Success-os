@@ -1,0 +1,31 @@
+{
+  "globalId": "JOR-SKILL-000660",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«الأداء المسرحي — مقدمة ومفاهيم» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-002777",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-002777",
+      "JOR-OUTCOME-002778",
+      "JOR-OUTCOME-002779",
+      "JOR-OUTCOME-003337",
+      "JOR-OUTCOME-003338",
+      "JOR-OUTCOME-003339",
+      "JOR-OUTCOME-003897",
+      "JOR-OUTCOME-003898",
+      "JOR-OUTCOME-003899"
+    ],
+    "lessonIds": [
+      "JOR-G05-الفنون-U03-L01",
+      "JOR-G06-الفنون-U03-L01",
+      "JOR-G07-الفنون-U03-L01"
+    ],
+    "belongsTo": "JOR-OUTCOME-002777"
+  },
+  "createdAt": "2026-07-31T17:56:56.871Z",
+  "updatedAt": "2026-07-31T17:56:57.016Z"
+}

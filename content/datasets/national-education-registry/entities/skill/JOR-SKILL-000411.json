@@ -1,0 +1,35 @@
+{
+  "globalId": "JOR-SKILL-000411",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«البيانات البسيطة — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-000891",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-000891",
+      "JOR-OUTCOME-000892",
+      "JOR-OUTCOME-000893",
+      "JOR-OUTCOME-001323",
+      "JOR-OUTCOME-001324",
+      "JOR-OUTCOME-001325",
+      "JOR-OUTCOME-001755",
+      "JOR-OUTCOME-001756",
+      "JOR-OUTCOME-001757",
+      "JOR-OUTCOME-002187",
+      "JOR-OUTCOME-002188",
+      "JOR-OUTCOME-002189"
+    ],
+    "lessonIds": [
+      "JOR-G01-MATH-U04-L03",
+      "JOR-G02-MATH-U04-L03",
+      "JOR-G03-MATH-U04-L03",
+      "JOR-G04-MATH-U04-L03"
+    ],
+    "belongsTo": "JOR-OUTCOME-000891"
+  },
+  "createdAt": "2026-07-31T17:56:56.726Z",
+  "updatedAt": "2026-07-31T17:56:56.815Z"
+}

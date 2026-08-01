@@ -1,0 +1,31 @@
+{
+  "schema": "success-os.jordan-book-admin-review.v1",
+  "phase": "JO-02_JORDAN_BOOK_PRODUCTION",
+  "bookId": "jordan__التعليم-الأساسي__jordan-national-curriculum__الصف-9__التربية-الإسلامية__ar",
+  "identity": {
+    "country": "Jordan",
+    "educationalSystem": "التعليم الأساسي",
+    "curriculumType": "national",
+    "curriculum": "Jordan National Curriculum",
+    "authority": "Jordan Ministry of Education / NCCD",
+    "stage": "التعليم الأساسي",
+    "grade": "الصف 9",
+    "subject": "التربية الإسلامية",
+    "language": "ar"
+  },
+  "researchProgress": 100,
+  "contentProgress": 100,
+  "unitsCompleted": 4,
+  "unitsExpected": 4,
+  "lessonsCompleted": 16,
+  "lessonsExpected": 16,
+  "lessonsMissing": 0,
+  "qualityScore": 100,
+  "missingLessons": [],
+  "verificationStatus": "produced-pending-jo03",
+  "publishStatus": "PENDING_JO03_VERIFICATION",
+  "contentWarnings": [],
+  "internalLinksOk": true,
+  "bookOpensCorrectly": true,
+  "lastUpdate": "2026-07-31T17:55:57.954Z"
+}

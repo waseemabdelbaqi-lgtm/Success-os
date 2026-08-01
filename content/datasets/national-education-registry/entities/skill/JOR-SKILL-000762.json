@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-SKILL-000762",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«الهندسة التحليلية — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-005455",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-005455",
+      "JOR-OUTCOME-005456",
+      "JOR-OUTCOME-005457",
+      "JOR-OUTCOME-005919",
+      "JOR-OUTCOME-005920",
+      "JOR-OUTCOME-005921"
+    ],
+    "lessonIds": [
+      "JOR-G11-MATH-U03-L03",
+      "JOR-G12-MATH-U03-L03"
+    ],
+    "belongsTo": "JOR-OUTCOME-005455"
+  },
+  "createdAt": "2026-07-31T17:56:57.249Z",
+  "updatedAt": "2026-07-31T17:56:57.326Z"
+}

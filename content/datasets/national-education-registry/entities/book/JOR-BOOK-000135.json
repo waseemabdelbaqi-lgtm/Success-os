@@ -1,0 +1,19 @@
+{
+  "globalId": "JOR-BOOK-000135",
+  "kind": "book",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "Success OS — الأعمال",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G12-الأعمال",
+  "relationships": {
+    "subjectId": "JOR-G12-الأعمال",
+    "gradeId": "JOR-G12",
+    "belongsTo": "JOR-G12-الأعمال"
+  },
+  "createdAt": "2026-07-31T17:56:57.468Z",
+  "updatedAt": "2026-07-31T17:56:57.468Z",
+  "legacyBookId": "jordan__التعليم-الثانوي-المسار-المهني-btec__jordan-national-curriculum__الصف-12__الأعمال__ar",
+  "officialSource": "https://www.nccd.gov.jo/ar/pages/TextBooksGrade/83"
+}

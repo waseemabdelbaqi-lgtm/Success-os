@@ -1,0 +1,21 @@
+{
+  "globalId": "JOR-G12-الزراعة-U01",
+  "kind": "unit",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أساسيات المسار",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-BOOK-000137",
+  "relationships": {
+    "bookId": "JOR-BOOK-000137",
+    "subjectId": "JOR-G12-الزراعة",
+    "gradeId": "JOR-G12",
+    "belongsTo": "JOR-BOOK-000137"
+  },
+  "createdAt": "2026-07-31T17:56:57.489Z",
+  "updatedAt": "2026-07-31T17:56:57.489Z",
+  "unitCode": "U01",
+  "sequence": 1,
+  "legacyUnitId": "U1"
+}
