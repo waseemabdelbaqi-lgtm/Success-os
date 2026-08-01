@@ -35,8 +35,12 @@ export default function AiTeachersPage() {
             {catalog.counts.total} معلمين فقط · {catalog.counts.female} أنثى · {catalog.counts.male} ذكر · تبسيط فوري وفحص فهم لحظي
           </p>
           <p style={{ marginTop: 12 }}>
-            <Link href="/ai-teacher/classroom" style={{ fontWeight: 800, color: "#ff5a6a" }}>
-              افتح الصف السينمائي — صوت عصبي حي
+            <Link href="/ai-teacher/studio" style={{ fontWeight: 800, color: "#ff5a6a" }}>
+              استوديو المعلم الرقمي ثلاثي الأبعاد
+            </Link>
+            {" · "}
+            <Link href="/ai-teacher/classroom" style={{ fontWeight: 800, color: "#0f766e" }}>
+              الصف التفاعلي
             </Link>
             {" · "}
             <Link href="/media/ai-teachers/index.html" style={{ fontWeight: 700, color: "#0f766e" }}>

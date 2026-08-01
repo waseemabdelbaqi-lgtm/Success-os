@@ -6,6 +6,7 @@ import { LessonReader } from "@/components/student-portal/reader/lesson-reader";
 import { InteractiveLessonViewer } from "@/components/interactive-lesson-engine/interactive-lesson-viewer";
 import { S4sIntelligenceTeacher } from "@/components/student-ai-learning-stack/s4s-intelligence-teacher";
 import { S4sTeacherDock } from "@/components/student-ai-learning-stack/s4s-teacher-dock";
+import { StudioLessonLauncher } from "@/components/ai-teachers/studio-lesson-launcher";
 import { bookCatalogService } from "@/services/student/book-catalog.service";
 import { getLocalizedText } from "@/content/demo/catalog";
 import { buildPackageFromBookPath } from "@/lib/interactive-lesson-engine";
@@ -73,8 +74,20 @@ export default async function StudentLessonPage({
 
   const locale = path.book.language === "en" ? "en" : "ar";
 
+  const lessonTitle = getLocalizedText(path.lesson.title, "en");
+  const lessonTitleAr = getLocalizedText(path.lesson.title, "ar");
+  const lessonTexts = [lessonTitleAr || lessonTitle].filter(Boolean);
+
   return (
     <div>
+      <StudioLessonLauncher
+        lessonId={`${bookId}/${unitId}/${lessonId}`}
+        title={lessonTitle}
+        titleAr={lessonTitleAr}
+        subject={path.book.subjectId}
+        grade={path.book.gradeId}
+        texts={lessonTexts}
+      />
       <S4sIntelligenceTeacher
         locale={locale}
         studentName="Ahmad"
@@ -90,13 +103,17 @@ export default async function StudentLessonPage({
           color: "#64748b",
         }}
       >
-        Interactive Lesson Engine · books-first
+        Interactive Lesson Engine · Digital Human Studio
         {" · "}
         <Link
           href={`/student/books/${bookId}/units/${unitId}/lessons/${lessonId}?classic=1`}
           style={{ color: "#0f766e" }}
         >
           Classic reader
+        </Link>
+        {" · "}
+        <Link href="/ai-teacher/studio" style={{ color: "#0f766e" }}>
+          Studio
         </Link>
       </div>
       <InteractiveLessonViewer pkg={pkg} locale={locale} />

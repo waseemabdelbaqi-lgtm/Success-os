@@ -61,6 +61,8 @@ assert(fs.existsSync(path.join(root, "app/ai-teacher/classroom/page.tsx")), "Mis
 assert(fs.existsSync(path.join(root, "lib/ai-teachers/master-coach.ts")), "Missing master-coach layer");
 assert(fs.existsSync(path.join(root, "components/ai-teachers/interactive-classroom.tsx")), "Missing classroom UI");
 assert(fs.existsSync(path.join(root, "components/ai-teachers/living-board.tsx")), "Missing living board");
+assert(fs.existsSync(path.join(root, "lib/digital-human-studio/index.ts")), "Missing digital-human-studio engine");
+assert(fs.existsSync(path.join(root, "app/ai-teacher/studio/page.tsx")), "Missing digital human studio page");
 const lesson = fs.readFileSync(path.join(root, "lib/ai-teachers/g1-count-lesson.ts"), "utf8");
 assert(lesson.includes("check:"), "Lesson must include micro-checks");
 assert(lesson.includes("challenge"), "Lesson commands must include challenge");
