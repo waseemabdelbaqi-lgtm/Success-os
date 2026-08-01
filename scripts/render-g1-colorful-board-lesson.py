@@ -42,24 +42,33 @@ WIDTH, HEIGHT = 1280, 720
 FPS = 24
 VOICE = os.environ.get("G1_TEACHER_VOICE", "ar-JO-SanaNeural")
 
-# Soft classroom palette — bright for young grades, not purple-default AI look
-WALL_TOP = (255, 244, 220)
-WALL_BOT = (255, 228, 186)
-WOOD = (120, 78, 48)
-BOARD = (34, 110, 78)
-BOARD_EDGE = (92, 58, 34)
-CHALK = (250, 248, 235)
-CHALK_YELLOW = (255, 230, 120)
-CHALK_PINK = (255, 170, 190)
-CHALK_BLUE = (150, 220, 255)
-CHALK_ORANGE = (255, 180, 110)
-INK = (40, 36, 48)
-CREAM = (255, 250, 240)
-ACCENT = (230, 90, 70)
+# Sunny Story Classroom — playful kid palette (no purple / no beige-corporate)
+SKY_TOP = (120, 210, 255)
+SKY_BOT = (190, 245, 220)
+SUN = (255, 210, 70)
+SUN_RAY = (255, 230, 140)
+GRASS = (90, 200, 120)
+GRASS_DARK = (55, 160, 95)
+WOOD = (255, 170, 90)
+BOARD = (20, 150, 150)          # bright teal board
+BOARD_EDGE = (255, 140, 70)     # orange frame
+BOARD_INNER = (12, 125, 128)
+CHALK = (255, 255, 245)
+CHALK_YELLOW = (255, 236, 80)
+CHALK_PINK = (255, 130, 180)
+CHALK_BLUE = (120, 220, 255)
+CHALK_ORANGE = (255, 170, 70)
+INK = (35, 45, 70)
+CREAM = (255, 252, 240)
+ACCENT = (255, 90, 100)
+BUBBLE = (255, 255, 255)
 
-FONT_AR_B = "/usr/share/fonts/truetype/noto/NotoSansArabic-Bold.ttf"
+FONT_AR_B = "/usr/share/fonts/truetype/noto/NotoKufiArabic-Bold.ttf"
 FONT_AR = "/usr/share/fonts/truetype/noto/NotoSansArabic-Regular.ttf"
 FONT_NUM = "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf"
+# fallback if Kufi missing
+if not os.path.exists(FONT_AR_B):
+    FONT_AR_B = "/usr/share/fonts/truetype/noto/NotoSansArabic-Bold.ttf"
 
 # Each beat: spoken Arabic + board actions that reveal while that beat plays.
 # Board actions are fractions [0..1] within the beat's audio window.
@@ -175,7 +184,7 @@ def cutout_sage_bg(img: Image.Image) -> Image.Image:
     dist = np.sqrt((r - 173) ** 2 + (g - 176) ** 2 + (b - 147) ** 2)
     alpha = np.where(dist < 38, 0, np.where(dist < 58, ((dist - 38) / 20) * 255, 255))
     arr[:, :, 3] = np.minimum(arr[:, :, 3], alpha)
-    return Image.fromarray(arr.astype(np.uint8), "RGBA")
+    return Image.fromarray(arr.astype(np.uint8))
 
 
 def load_pose(name: str, height: int = 440) -> Image.Image:
@@ -230,237 +239,300 @@ def apply_lip_sync(pose_img: Image.Image, mouth: float, t: float) -> Image.Image
     return img
 
 
-def classroom_base() -> Image.Image:
-    img = Image.new("RGB", (WIDTH, HEIGHT), WALL_TOP)
+def _cloud(d: ImageDraw.ImageDraw, x: int, y: int, s: float = 1.0):
+    cols = [(255, 255, 255), (245, 252, 255)]
+    for i, (dx, dy, r) in enumerate([(-18, 4, 22), (0, 0, 28), (20, 6, 20), (8, 10, 18)]):
+        d.ellipse(
+            (x + dx * s - r * s, y + dy * s - r * s, x + dx * s + r * s, y + dy * s + r * s),
+            fill=cols[i % 2],
+        )
+
+
+def _balloon(d: ImageDraw.ImageDraw, x: int, y: int, color, t: float, phase: float = 0.0):
+    bob = int(6 * math.sin(t * 2.2 + phase))
+    yy = y + bob
+    d.ellipse((x - 16, yy - 22, x + 16, yy + 18), fill=color, outline=(255, 255, 255), width=2)
+    d.polygon([(x - 4, yy + 16), (x + 4, yy + 16), (x, yy + 26)], fill=color)
+    d.line([(x, yy + 26), (x, yy + 55)], fill=(90, 90, 110), width=2)
+
+
+def classroom_base(t: float = 0.0) -> Image.Image:
+    """Playful sunny storybook classroom — one lively composition for kids."""
+    img = Image.new("RGB", (WIDTH, HEIGHT), SKY_TOP)
     d = ImageDraw.Draw(img)
     for y in range(HEIGHT):
-        t = y / HEIGHT
+        u = y / HEIGHT
         col = (
-            int(WALL_TOP[0] + (WALL_BOT[0] - WALL_TOP[0]) * t),
-            int(WALL_TOP[1] + (WALL_BOT[1] - WALL_TOP[1]) * t),
-            int(WALL_TOP[2] + (WALL_BOT[2] - WALL_TOP[2]) * t),
+            int(SKY_TOP[0] + (SKY_BOT[0] - SKY_TOP[0]) * u),
+            int(SKY_TOP[1] + (SKY_BOT[1] - SKY_TOP[1]) * u),
+            int(SKY_TOP[2] + (SKY_BOT[2] - SKY_TOP[2]) * u),
         )
         d.line([(0, y), (WIDTH, y)], fill=col)
 
-    # soft wall dots (playful, not clutter)
-    rng = np.random.default_rng(7)
-    for _ in range(40):
-        x, y = int(rng.integers(20, WIDTH - 20)), int(rng.integers(20, HEIGHT - 80))
-        r = int(rng.integers(2, 5))
-        d.ellipse((x - r, y - r, x + r, y + r), fill=(255, 210, 160))
+    # sun with rotating soft rays
+    sx, sy = 1180, 78
+    for i in range(10):
+        ang = t * 0.6 + i * (math.pi / 5)
+        x2 = sx + int(48 * math.cos(ang))
+        y2 = sy + int(48 * math.sin(ang))
+        d.line([(sx, sy), (x2, y2)], fill=SUN_RAY, width=5)
+    d.ellipse((sx - 28, sy - 28, sx + 28, sy + 28), fill=SUN, outline=(255, 245, 200), width=3)
 
-    # top brand strip
-    d.rounded_rectangle((18, 14, WIDTH - 18, 58), radius=16, fill=(255, 255, 255))
-    d.text((36, 36), "SUCCESS OS", font=font(FONT_NUM, 18), fill=(60, 120, 95), anchor="lm")
+    # drifting clouds
+    _cloud(d, 180 + int(10 * math.sin(t * 0.4)), 70, 1.0)
+    _cloud(d, 520 + int(8 * math.cos(t * 0.35)), 50, 0.85)
+    _cloud(d, 900 + int(12 * math.sin(t * 0.5 + 1)), 95, 1.1)
+
+    # grass hill floor
+    d.ellipse((-80, HEIGHT - 120, WIDTH + 80, HEIGHT + 160), fill=GRASS)
+    d.ellipse((-40, HEIGHT - 90, WIDTH + 40, HEIGHT + 140), fill=GRASS_DARK)
+    # flower dots on grass
+    rng = np.random.default_rng(11)
+    for i in range(18):
+        fx = int(rng.integers(30, WIDTH - 30))
+        fy = int(rng.integers(HEIGHT - 55, HEIGHT - 18))
+        fc = [(255, 120, 140), (255, 220, 80), (120, 200, 255), (255, 160, 80)][i % 4]
+        d.ellipse((fx - 5, fy - 5, fx + 5, fy + 5), fill=fc)
+
+    # floating balloons (motion)
+    _balloon(d, 60, 160, ACCENT, t, 0.2)
+    _balloon(d, 120, 210, CHALK_BLUE, t, 1.1)
+    _balloon(d, 1240, 200, CHALK_PINK, t, 2.0)
+
+    # colorful bunting / pennants under brand
+    flags = [ACCENT, CHALK_YELLOW, CHALK_BLUE, CHALK_PINK, CHALK_ORANGE, GRASS]
+    for i, fc in enumerate(flags * 4):
+        x0 = 40 + i * 52
+        if x0 > WIDTH - 60:
+            break
+        peak = 78 + int(3 * math.sin(t * 3 + i))
+        d.polygon([(x0, 62), (x0 + 40, 62), (x0 + 20, peak + 28)], fill=fc)
+
+    # brand ribbon — kid story title, brand as hero signal
+    d.rounded_rectangle((90, 8, WIDTH - 90, 58), radius=22, fill=BUBBLE)
+    d.rounded_rectangle((96, 12, WIDTH - 96, 54), radius=18, fill=(255, 248, 220))
+    d.text((WIDTH // 2, 24), "SUCCESS OS", font=font(FONT_NUM, 14), fill=BOARD_INNER, anchor="mm")
     d.text(
-        (WIDTH // 2, 36),
-        "المعلمة سارة · العدّ حتى ثلاثة",
-        font=font(FONT_AR_B, 22),
+        (WIDTH // 2, 42),
+        "مع المعلمة سارة · هيا نعدّ حتى ثلاثة!",
+        font=font(FONT_AR_B, 20),
         fill=INK,
         anchor="mm",
     )
-    d.text((WIDTH - 36, 36), "الصف 1", font=font(FONT_AR, 16), fill=(120, 90, 70), anchor="rm")
-
-    # floor
-    d.rectangle((0, HEIGHT - 48, WIDTH, HEIGHT), fill=(210, 175, 130))
-    d.rectangle((0, HEIGHT - 54, WIDTH, HEIGHT - 46), fill=(180, 145, 105))
     return img
 
 
-def draw_apple(d: ImageDraw.ImageDraw, cx: int, cy: int, scale: float = 1.0, color=(230, 70, 70)):
+def draw_apple(d: ImageDraw.ImageDraw, cx: int, cy: int, scale: float = 1.0, color=(230, 70, 70), bounce: float = 0.0):
     s = scale
+    cy = int(cy + bounce)
     d.ellipse(
-        (cx - 28 * s, cy - 22 * s, cx + 28 * s, cy + 30 * s),
+        (cx - 32 * s, cy - 24 * s, cx + 32 * s, cy + 34 * s),
         fill=color,
-        outline=(160, 40, 40),
-        width=2,
+        outline=(255, 255, 255),
+        width=3,
     )
-    d.ellipse(
-        (cx - 10 * s, cy - 14 * s, cx + 2 * s, cy - 2 * s),
-        fill=(255, 140, 140),
-    )
-    d.line([(cx, cy - 22 * s), (cx + 4 * s, cy - 38 * s)], fill=(90, 60, 40), width=3)
-    d.ellipse(
-        (cx + 2 * s, cy - 42 * s, cx + 18 * s, cy - 30 * s),
-        fill=(80, 170, 80),
-    )
+    d.ellipse((cx - 12 * s, cy - 14 * s, cx + 2 * s, cy), fill=(255, 170, 170))
+    d.line([(cx, cy - 24 * s), (cx + 5 * s, cy - 42 * s)], fill=(100, 70, 40), width=3)
+    d.ellipse((cx + 2 * s, cy - 46 * s, cx + 22 * s, cy - 32 * s), fill=(90, 200, 90))
 
 
-def draw_circle_token(d: ImageDraw.ImageDraw, cx: int, cy: int, color, label: str | None = None):
-    d.ellipse((cx - 26, cy - 26, cx + 26, cy + 26), fill=color, outline=CHALK, width=3)
-    if label:
-        d.text((cx, cy), label, font=font(FONT_NUM, 22), fill=INK, anchor="mm")
+def draw_circle_token(d: ImageDraw.ImageDraw, cx: int, cy: int, color, bounce: float = 0.0):
+    cy = int(cy + bounce)
+    d.ellipse((cx - 30, cy - 30, cx + 30, cy + 30), fill=color, outline=(255, 255, 255), width=4)
+    d.ellipse((cx - 12, cy - 16, cx - 2, cy - 6), fill=(255, 255, 255))
+
+
+def draw_star(d: ImageDraw.ImageDraw, cx: int, cy: int, r: int, fill, rot: float = 0.0):
+    pts = []
+    for i in range(10):
+        ang = rot + i * math.pi / 5 - math.pi / 2
+        rad = r if i % 2 == 0 else r * 0.45
+        pts.append((cx + rad * math.cos(ang), cy + rad * math.sin(ang)))
+    d.polygon(pts, fill=fill)
 
 
 def active_cues(board: dict, progress: float) -> list[dict]:
     return [c for c in board.get("cues", []) if progress >= float(c.get("at", 0))]
 
 
-def draw_board(img: Image.Image, board: dict, progress: float, mouth: float):
+def draw_board(img: Image.Image, board: dict, progress: float, mouth: float, t: float = 0.0):
     d = ImageDraw.Draw(img)
-    # board frame (right side)
-    bx0, by0, bx1, by1 = 430, 78, WIDTH - 28, HEIGHT - 70
-    d.rounded_rectangle((bx0, by0, bx1, by1), radius=22, fill=BOARD_EDGE)
-    d.rounded_rectangle((bx0 + 14, by0 + 14, bx1 - 14, by1 - 28), radius=16, fill=BOARD)
-    # chalk tray
-    d.rounded_rectangle((bx0 + 40, by1 - 24, bx1 - 40, by1 - 8), radius=6, fill=(150, 110, 70))
-    d.ellipse((bx0 + 55, by1 - 22, bx0 + 85, by1 - 10), fill=CHALK)
-    d.ellipse((bx0 + 95, by1 - 22, bx0 + 120, by1 - 10), fill=CHALK_YELLOW)
-    d.ellipse((bx0 + 130, by1 - 22, bx0 + 155, by1 - 10), fill=CHALK_PINK)
+    # playful teal story-board with chunky orange frame
+    bx0, by0, bx1, by1 = 420, 88, WIDTH - 24, HEIGHT - 78
+    d.rounded_rectangle((bx0 - 6, by0 - 6, bx1 + 6, by1 + 6), radius=30, fill=(255, 220, 120))
+    d.rounded_rectangle((bx0, by0, bx1, by1), radius=26, fill=BOARD_EDGE)
+    d.rounded_rectangle((bx0 + 12, by0 + 12, bx1 - 12, by1 - 22), radius=20, fill=BOARD)
+    # doodle dots on board edge
+    for i, col in enumerate([CHALK_YELLOW, CHALK_PINK, CHALK_BLUE, ACCENT]):
+        d.ellipse((bx0 + 30 + i * 28, by1 - 16, bx0 + 44 + i * 28, by1 - 2), fill=col)
 
     cues = active_cues(board, progress)
     kinds = {c["type"] for c in cues}
 
     if "title" in kinds:
+        # title bubble
+        d.rounded_rectangle(
+            (bx0 + 50, by0 + 24, bx1 - 50, by0 + 78),
+            radius=20,
+            fill=(255, 255, 255),
+        )
         d.text(
-            ((bx0 + bx1) // 2, by0 + 48),
+            ((bx0 + bx1) // 2, by0 + 51),
             board.get("title", ""),
-            font=font(FONT_AR_B, 36),
-            fill=CHALK,
+            font=font(FONT_AR_B, 32),
+            fill=INK,
             anchor="mm",
         )
     if "subtitle" in kinds:
         d.text(
-            ((bx0 + bx1) // 2, by0 + 90),
+            ((bx0 + bx1) // 2, by0 + 98),
             board.get("subtitle", ""),
-            font=font(FONT_AR, 22),
+            font=font(FONT_AR_B, 20),
             fill=CHALK_YELLOW,
             anchor="mm",
         )
 
-    # chalk writing glow while speaking
-    if mouth > 0.15:
-        d.ellipse(
-            (bx1 - 70, by0 + 30, bx1 - 40, by0 + 55),
-            fill=(255, 255, 200),
-            outline=CHALK_YELLOW,
-        )
+    # chalk stick wiggle while speaking
+    if mouth > 0.12:
+        wx = bx1 - 55 + int(3 * math.sin(t * 16))
+        d.rounded_rectangle((wx, by0 + 28, wx + 14, by0 + 70), radius=4, fill=CHALK_YELLOW)
 
     for c in cues:
-        t = c["type"]
-        if t == "big_number":
+        kind = c["type"]
+        if kind == "big_number":
             n = int(c["n"])
             word = c.get("word", "")
-            cx = (bx0 + bx1) // 2 - 160
-            cy = by0 + 220
-            # colorful number badge
+            bounce = int(-10 * abs(math.sin(t * 5)))
+            cx = (bx0 + bx1) // 2 - 170
+            cy = by0 + 250 + bounce
             colors = {1: CHALK_YELLOW, 2: CHALK_PINK, 3: CHALK_BLUE}
+            # giant candy number
+            d.ellipse((cx - 88, cy - 88, cx + 88, cy + 88), fill=(255, 255, 255))
+            d.ellipse((cx - 78, cy - 78, cx + 78, cy + 78), fill=colors.get(n, CHALK_YELLOW))
+            d.text((cx, cy - 6), str(n), font=font(FONT_NUM, 86), fill=INK, anchor="mm")
             d.rounded_rectangle(
-                (cx - 70, cy - 70, cx + 70, cy + 70),
-                radius=24,
-                fill=(20, 80, 55),
-                outline=colors.get(n, CHALK),
-                width=4,
+                (cx - 70, cy + 95, cx + 70, cy + 140),
+                radius=16,
+                fill=(255, 255, 255),
             )
-            d.text((cx, cy - 8), str(n), font=font(FONT_NUM, 72), fill=colors.get(n, CHALK), anchor="mm")
-            d.text((cx, cy + 95), word, font=font(FONT_AR_B, 28), fill=CHALK, anchor="mm")
+            d.text((cx, cy + 118), word, font=font(FONT_AR_B, 26), fill=INK, anchor="mm")
 
-        elif t == "apples":
+        elif kind == "apples":
             n = int(c["n"])
-            colors = [(230, 70, 70), (255, 140, 60), (80, 170, 230)]
-            base_x = (bx0 + bx1) // 2 + 90
-            cy = by0 + 220
-            gap = 70
+            colors = [(255, 90, 90), (255, 160, 60), (80, 190, 255)]
+            base_x = (bx0 + bx1) // 2 + 110
+            cy = by0 + 250
+            gap = 78
             total = (n - 1) * gap
             x0 = base_x - total / 2
             for i in range(n):
-                draw_apple(d, int(x0 + i * gap), cy, scale=1.05, color=colors[i % len(colors)])
-            d.text((base_x, cy + 70), f"× {n}", font=font(FONT_NUM, 26), fill=CHALK_YELLOW, anchor="mm")
-
-        elif t == "example":
+                bounce = int(-8 * abs(math.sin(t * 6 + i)))
+                draw_apple(d, int(x0 + i * gap), cy, scale=1.15, color=colors[i % len(colors)], bounce=bounce)
             d.rounded_rectangle(
-                (bx0 + 40, by1 - 150, bx1 - 40, by1 - 95),
+                (base_x - 40, cy + 78, base_x + 40, cy + 118),
                 radius=14,
-                fill=(22, 78, 55),
-                outline=CHALK_ORANGE,
-                width=2,
+                fill=CHALK_YELLOW,
+            )
+            d.text((base_x, cy + 98), f"× {n}", font=font(FONT_NUM, 28), fill=INK, anchor="mm")
+
+        elif kind == "example":
+            d.rounded_rectangle(
+                (bx0 + 36, by1 - 155, bx1 - 36, by1 - 100),
+                radius=18,
+                fill=(255, 255, 255),
             )
             d.text(
-                ((bx0 + bx1) // 2, by1 - 122),
+                ((bx0 + bx1) // 2, by1 - 128),
                 c.get("text", ""),
                 font=font(FONT_AR_B, 24),
-                fill=CHALK_ORANGE,
+                fill=ACCENT,
                 anchor="mm",
             )
 
-        elif t == "equation":
+        elif kind == "equation":
             d.rounded_rectangle(
-                (bx0 + 80, by1 - 88, bx1 - 80, by1 - 40),
-                radius=12,
-                fill=(18, 70, 50),
-                outline=CHALK_YELLOW,
-                width=2,
+                (bx0 + 70, by1 - 92, bx1 - 70, by1 - 42),
+                radius=16,
+                fill=CHALK_YELLOW,
             )
             d.text(
-                ((bx0 + bx1) // 2, by1 - 64),
+                ((bx0 + bx1) // 2, by1 - 67),
                 c.get("text", ""),
-                font=font(FONT_NUM, 28),
-                fill=CHALK_YELLOW,
+                font=font(FONT_NUM, 30),
+                fill=INK,
                 anchor="mm",
             )
 
-        elif t == "practice_row":
+        elif kind == "practice_row":
             n = int(c["n"])
-            # stack rows for 1,2,3 as they appear
             row_index = n - 1
-            y = by0 + 150 + row_index * 110
+            y = by0 + 155 + row_index * 105
             colors = [CHALK_YELLOW, CHALK_PINK, CHALK_BLUE]
-            d.text((bx0 + 50, y), f"{n}", font=font(FONT_NUM, 40), fill=colors[row_index], anchor="lm")
-            d.text((bx0 + 100, y), "=", font=font(FONT_NUM, 32), fill=CHALK, anchor="lm")
+            # candy row card
+            d.rounded_rectangle(
+                (bx0 + 30, y - 42, bx1 - 30, y + 42),
+                radius=18,
+                fill=(255, 255, 255),
+            )
+            d.ellipse((bx0 + 48, y - 32, bx0 + 112, y + 32), fill=colors[row_index])
+            d.text((bx0 + 80, y), f"{n}", font=font(FONT_NUM, 36), fill=INK, anchor="mm")
+            d.text((bx0 + 130, y), "=", font=font(FONT_NUM, 30), fill=INK, anchor="lm")
             for i in range(n):
-                draw_circle_token(d, bx0 + 180 + i * 70, y, colors[row_index])
+                bounce = int(-5 * abs(math.sin(t * 7 + i + n)))
+                draw_circle_token(d, bx0 + 200 + i * 72, y, colors[row_index], bounce=bounce)
             words = {1: "واحد", 2: "اثنان", 3: "ثلاثة"}
-            d.text((bx1 - 50, y), words[n], font=font(FONT_AR_B, 26), fill=CHALK, anchor="rm")
+            d.text((bx1 - 50, y), words[n], font=font(FONT_AR_B, 24), fill=INK, anchor="rm")
 
-        elif t == "stars":
+        elif kind == "stars":
             n = int(c.get("n", 3))
             cx = (bx0 + bx1) // 2
-            cy = by0 + 200
+            cy = by0 + 210
             for i in range(n):
-                x = cx + (i - (n - 1) / 2) * 70
-                d.text((x, cy), "★", font=font(FONT_NUM, 48), fill=CHALK_YELLOW, anchor="mm")
+                x = cx + (i - (n - 1) / 2) * 90
+                bounce = int(-12 * abs(math.sin(t * 4 + i)))
+                draw_star(d, int(x), cy + bounce, 34, CHALK_YELLOW, rot=t * 1.5 + i)
 
-        elif t == "summary":
+        elif kind == "summary":
             lines = ["1 = واحد", "2 = اثنان", "3 = ثلاثة"]
             colors = [CHALK_YELLOW, CHALK_PINK, CHALK_BLUE]
             for i, line in enumerate(lines):
-                y = by0 + 160 + i * 70
+                y = by0 + 165 + i * 75
                 d.rounded_rectangle(
-                    (bx0 + 70, y - 28, bx1 - 70, y + 28),
-                    radius=14,
-                    fill=(22, 78, 55),
-                    outline=colors[i],
-                    width=3,
+                    (bx0 + 55, y - 30, bx1 - 55, y + 30),
+                    radius=18,
+                    fill=colors[i],
                 )
-                d.text(((bx0 + bx1) // 2, y), line, font=font(FONT_NUM, 30), fill=colors[i], anchor="mm")
+                d.text(((bx0 + bx1) // 2, y), line, font=font(FONT_NUM, 30), fill=INK, anchor="mm")
 
-        elif t == "banner":
+        elif kind == "banner":
+            pulse = 1.0 + 0.04 * math.sin(t * 8)
+            bw = int(280 * pulse)
+            cx = (bx0 + bx1) // 2
             d.rounded_rectangle(
-                (bx0 + 90, by1 - 120, bx1 - 90, by1 - 55),
-                radius=18,
+                (cx - bw // 2, by1 - 125, cx + bw // 2, by1 - 58),
+                radius=22,
                 fill=ACCENT,
             )
             d.text(
-                ((bx0 + bx1) // 2, by1 - 88),
+                (cx, by1 - 92),
                 c.get("text", ""),
-                font=font(FONT_AR_B, 28),
+                font=font(FONT_AR_B, 30),
                 fill=CREAM,
                 anchor="mm",
             )
 
 
 def draw_caption(img: Image.Image, text: str):
-    """Large readable caption of what the teacher is saying right now."""
     d = ImageDraw.Draw(img)
-    # keep caption short on screen
-    short = text if len(text) <= 54 else text[:52] + "…"
-    box = (430, HEIGHT - 118, WIDTH - 28, HEIGHT - 70)
-    d.rounded_rectangle(box, radius=12, fill=(20, 40, 34))
+    short = text if len(text) <= 48 else text[:46] + "…"
+    box = (430, HEIGHT - 72, WIDTH - 24, HEIGHT - 28)
+    d.rounded_rectangle(box, radius=18, fill=(255, 255, 255))
+    d.rounded_rectangle((box[0] + 4, box[1] + 4, box[2] - 4, box[3] - 4), radius=14, fill=(255, 245, 210))
     d.text(
         ((box[0] + box[2]) // 2, (box[1] + box[3]) // 2),
         short,
-        font=font(FONT_AR_B, 18),
-        fill=CHALK,
+        font=font(FONT_AR_B, 17),
+        fill=INK,
         anchor="mm",
     )
 
@@ -474,38 +546,41 @@ def draw_teacher_stage(
     caption: str,
 ):
     d = ImageDraw.Draw(img)
-    # stage panel
-    d.rounded_rectangle((22, 78, 410, HEIGHT - 70), radius=22, fill=(255, 255, 255))
-    d.rounded_rectangle((34, 92, 398, 150), radius=14, fill=(255, 236, 210))
-    d.text((216, 121), "المعلمة سارة", font=font(FONT_AR_B, 24), fill=INK, anchor="mm")
+    # storybook stage — sunny window, not a white office card
+    d.rounded_rectangle((18, 78, 400, HEIGHT - 78), radius=28, fill=(255, 200, 90))
+    d.rounded_rectangle((28, 88, 390, HEIGHT - 88), radius=24, fill=(255, 250, 235))
+    # arched header
+    d.ellipse((40, 70, 378, 170), fill=(255, 140, 150))
+    d.rounded_rectangle((40, 110, 378, 168), radius=8, fill=(255, 140, 150))
+    d.text((209, 125), "المعلمة سارة", font=font(FONT_AR_B, 24), fill=CREAM, anchor="mm")
+    d.text((209, 150), "صف الأبطال الصغار", font=font(FONT_AR, 14), fill=(255, 230, 230), anchor="mm")
 
-    # gentle sway only (no jumpy bob)
     sway = int(2 * math.sin(t * 1.4))
-    px = 216 - pose_img.width // 2 + sway
-    py = 160
+    px = 209 - pose_img.width // 2 + sway
+    py = 175
 
-    shadow = Image.new("RGBA", (pose_img.width, 24), (0, 0, 0, 0))
+    shadow = Image.new("RGBA", (pose_img.width, 22), (0, 0, 0, 0))
     sd = ImageDraw.Draw(shadow)
-    sd.ellipse((8, 0, pose_img.width - 8, 22), fill=(0, 0, 0, 35))
-    img.paste(shadow, (px, py + pose_img.height - 18), shadow)
+    sd.ellipse((8, 0, pose_img.width - 8, 20), fill=(0, 0, 0, 30))
+    img.paste(shadow, (px, py + pose_img.height - 16), shadow)
 
     teacher = apply_lip_sync(pose_img, mouth, t)
     img.paste(teacher, (px, py), teacher)
 
-    # voice meter under teacher (not on her body)
-    bar_y = HEIGHT - 100
+    # playful voice bubbles instead of clinical bars
+    bar_y = HEIGHT - 108
     d.text(
-        (216, bar_y - 16),
-        "تتكلم الآن" if mouth > 0.12 else "…",
-        font=font(FONT_AR, 14),
-        fill=(120, 90, 70),
+        (209, bar_y - 14),
+        "تتكلم الآن!" if mouth > 0.12 else "…",
+        font=font(FONT_AR_B, 15),
+        fill=ACCENT if mouth > 0.12 else (150, 140, 130),
         anchor="mm",
     )
-    for i in range(7):
-        bh = int(5 + mouth * 22 * (0.55 + 0.45 * abs(math.sin(t * 22 + i))))
-        color = (70, 170, 120) if i % 2 == 0 else ACCENT
-        x = 150 + i * 20
-        d.rounded_rectangle((x, bar_y + 22 - bh, x + 12, bar_y + 22), radius=4, fill=color)
+    for i in range(5):
+        bh = int(8 + mouth * 24 * (0.5 + 0.5 * abs(math.sin(t * 20 + i))))
+        color = [ACCENT, CHALK_YELLOW, CHALK_BLUE, CHALK_PINK, GRASS][i]
+        x = 145 + i * 28
+        d.rounded_rectangle((x, bar_y + 26 - bh, x + 16, bar_y + 26), radius=6, fill=color)
 
     if caption:
         draw_caption(img, caption)
@@ -514,15 +589,16 @@ def draw_teacher_stage(
 def draw_progress(img: Image.Image, t: float, total: float, beat_idx: int, beat_count: int):
     d = ImageDraw.Draw(img)
     p = min(1.0, t / max(0.1, total))
-    d.rounded_rectangle((22, HEIGHT - 36, WIDTH - 22, HEIGHT - 18), radius=8, fill=(255, 255, 255))
-    d.rounded_rectangle((22, HEIGHT - 36, 22 + int((WIDTH - 44) * p), HEIGHT - 18), radius=8, fill=ACCENT)
-    d.text(
-        (WIDTH - 30, 70),
-        f"{beat_idx}/{beat_count}",
-        font=font(FONT_NUM, 14),
-        fill=(120, 90, 70),
-        anchor="rm",
-    )
+    # candy progress track
+    d.rounded_rectangle((24, HEIGHT - 22, WIDTH - 24, HEIGHT - 8), radius=8, fill=(255, 255, 255))
+    d.rounded_rectangle((24, HEIGHT - 22, 24 + int((WIDTH - 48) * p), HEIGHT - 8), radius=8, fill=ACCENT)
+    # stepping stones
+    for i in range(beat_count):
+        x = 40 + i * ((WIDTH - 80) / max(1, beat_count - 1))
+        fill = CHALK_YELLOW if i < beat_idx else (230, 230, 230)
+        if i + 1 == beat_idx:
+            fill = ACCENT
+        d.ellipse((x - 7, HEIGHT - 28, x + 7, HEIGHT - 14), fill=fill, outline=(255, 255, 255), width=2)
 
 
 async def synth_beat(text: str, out_mp3: Path):
@@ -632,8 +708,8 @@ def render_frames(timeline, total_duration, rms):
             pose_name = "point"
             pose_img = point
 
-        frame = classroom_base()
-        draw_board(frame, beat["board"], progress, mouth)
+        frame = classroom_base(t)
+        draw_board(frame, beat["board"], progress, mouth, t)
         draw_teacher_stage(frame, pose_img, mouth, pose_name, t, beat["say"] if speaking else "")
         draw_progress(frame, t, total_duration, beat["index"], len(timeline))
         frame.save(FRAMES_DIR / f"frame_{fi:06d}.jpg", quality=88)
