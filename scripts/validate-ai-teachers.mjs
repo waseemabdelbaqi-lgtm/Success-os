@@ -30,6 +30,14 @@ for (const tid of ["sara", "ali"]) {
   assert(fs.existsSync(path.join(base, "alive", "blink.png")), `Missing alive blink ${tid}`);
   assert(fs.existsSync(path.join(base, "alive", "listen.png")), `Missing alive listen ${tid}`);
   assert(fs.existsSync(path.join(root, "public/media/ai-teachers", tid, "portrait.png")), `Missing public ${tid}`);
+  for (const clip of ["welcome", "one", "two", "three", "practice", "bye", "intro"]) {
+    const mp3 = path.join(base, "audio", `${clip}.mp3`);
+    assert(fs.existsSync(mp3) && fs.statSync(mp3).size > 5000, `Missing/small audio ${tid}/${clip}.mp3`);
+    assert(
+      fs.existsSync(path.join(root, "public/media/ai-teachers", tid, "audio", `${clip}.mp3`)),
+      `Missing public audio ${tid}/${clip}`,
+    );
+  }
 }
 
 for (const legacy of ["omar", "layla", "waseem"]) {
@@ -42,9 +50,15 @@ assert(!ts.includes('id: "omar"') && !ts.includes('id: "layla"'), "catalog.ts st
 assert(fs.existsSync(path.join(root, "app/ai-teacher/classroom/page.tsx")), "Missing interactive classroom page");
 assert(fs.existsSync(path.join(root, "lib/ai-teachers/master-coach.ts")), "Missing master-coach layer");
 assert(fs.existsSync(path.join(root, "components/ai-teachers/interactive-classroom.tsx")), "Missing classroom UI");
+assert(fs.existsSync(path.join(root, "components/ai-teachers/living-board.tsx")), "Missing living board");
 const lesson = fs.readFileSync(path.join(root, "lib/ai-teachers/g1-count-lesson.ts"), "utf8");
 assert(lesson.includes("check:"), "Lesson must include micro-checks");
 assert(lesson.includes("challenge"), "Lesson commands must include challenge");
+const classroom = fs.readFileSync(
+  path.join(root, "components/ai-teachers/interactive-classroom.tsx"),
+  "utf8",
+);
+assert(classroom.includes("/audio/"), "Classroom must play baked neural audio");
 
 if (failures.length) {
   console.error("validate-ai-teachers FAILED:");

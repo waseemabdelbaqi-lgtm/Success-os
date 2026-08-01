@@ -36,7 +36,7 @@ export default function AiTeachersPage() {
           </p>
           <p style={{ marginTop: 12 }}>
             <Link href="/ai-teacher/classroom" style={{ fontWeight: 800, color: "#ff5a6a" }}>
-              افتح الصف التفاعلي الحي
+              افتح الصف السينمائي — صوت عصبي حي
             </Link>
             {" · "}
             <Link href="/media/ai-teachers/index.html" style={{ fontWeight: 700, color: "#0f766e" }}>

@@ -1,11 +1,14 @@
 "use client";
 
-import { useCallback, useEffect, useMemo, useRef, useState, type CSSProperties } from "react";
-import { AliveTeacherStage } from "@/components/ai-teachers/alive-teacher-stage";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import {
+  AliveTeacherStage,
+  type TeacherPose,
+} from "@/components/ai-teachers/alive-teacher-stage";
+import { LivingBoard } from "@/components/ai-teachers/living-board";
 import {
   INTERACTIVE_COMMANDS,
   buildG1CountLesson,
-  type BoardCue,
   type LessonBeat,
 } from "@/lib/ai-teachers/g1-count-lesson";
 import {
@@ -22,343 +25,48 @@ const TEACHERS: Record<TeacherId, TeacherPersona & { voiceHint: string }> = {
     nameAr: "المعلمة سارة",
     gender: "female",
     style: "warm",
-    voiceHint: "ar-JO · دافئة ومشجّعة",
+    voiceHint: "صوت عصبي Sana · أردني",
   },
   ali: {
     id: "ali",
     nameAr: "المعلم علي",
     gender: "male",
     style: "crisp",
-    voiceHint: "ar-JO · واضح وواثق",
+    voiceHint: "صوت عصبي Taim · أردني",
   },
 };
+
+const BEAT_AUDIO: Record<string, string> = {
+  welcome: "welcome",
+  one: "one",
+  two: "two",
+  three: "three",
+  practice: "practice",
+  bye: "bye",
+};
+
+function poseForBeat(beat: LessonBeat, speaking: boolean, progress: number): TeacherPose {
+  if (beat.mode === "celebrate") return "gesture";
+  if (beat.mode === "gesture") {
+    if (progress > 0.55 && progress < 0.85) return "write";
+    return speaking ? "point" : "gesture";
+  }
+  if (speaking) return "talk";
+  return "idle";
+}
 
 function pickArabicVoice(preferFemale: boolean): SpeechSynthesisVoice | null {
   if (typeof window === "undefined" || !window.speechSynthesis) return null;
   const voices = window.speechSynthesis.getVoices();
   const ar = voices.filter((v) => /ar(-|_|$)|Arabic/i.test(`${v.lang} ${v.name}`));
   if (preferFemale) {
-    return (
-      ar.find((v) => /female|sana|noura|salma|hoda|laila/i.test(v.name)) ||
-      ar[0] ||
-      null
-    );
+    return ar.find((v) => /female|sana|noura|salma|hoda/i.test(v.name)) || ar[0] || null;
   }
   return (
-    ar.find((v) => /male|taim|farid|hamid|naayf|omar/i.test(v.name)) ||
+    ar.find((v) => /male|taim|farid|hamid|naayf/i.test(v.name)) ||
     ar.find((v) => !/female|sana|noura|salma/i.test(v.name)) ||
     ar[0] ||
     null
-  );
-}
-
-function activePointer(cues: BoardCue[], progress: number): BoardCue | null {
-  const ptr = cues.filter((c) => c.type === "pointer" && progress >= c.at);
-  return ptr.length ? ptr[ptr.length - 1]! : null;
-}
-
-function BoardPanel({
-  beat,
-  progress,
-  celebrating,
-}: {
-  beat: LessonBeat;
-  progress: number;
-  celebrating: boolean;
-}) {
-  const cues = beat.board.cues.filter((c) => progress >= c.at && c.type !== "pointer");
-  const kinds = new Set(cues.map((c) => c.type));
-  const pointer = activePointer(beat.board.cues, progress);
-  const pulse = celebrating ? "0 0 0 4px rgba(255,216,74,0.35)" : undefined;
-
-  const ring = (target: "number" | "apples" | "equation" | "practice"): CSSProperties =>
-    pointer && pointer.type === "pointer" && pointer.target === target
-      ? {
-          outline: "3px solid #ffe056",
-          outlineOffset: 6,
-          boxShadow: "0 0 24px rgba(255,224,86,0.55)",
-          transition: "outline 0.2s, box-shadow 0.2s",
-        }
-      : { transition: "outline 0.2s, box-shadow 0.2s" };
-
-  return (
-    <div
-      style={{
-        height: "100%",
-        borderRadius: 28,
-        background: "linear-gradient(160deg,#ffb45a,#ff8a3d)",
-        padding: 10,
-        boxShadow: pulse,
-      }}
-    >
-      <div
-        style={{
-          height: "100%",
-          borderRadius: 22,
-          background: "linear-gradient(165deg,#0f9a96,#128c90 55%,#0d7377)",
-          padding: "18px 20px",
-          color: "#fff",
-          position: "relative",
-          overflow: "hidden",
-        }}
-      >
-        <div
-          aria-hidden
-          style={{
-            position: "absolute",
-            inset: 0,
-            background:
-              "radial-gradient(circle at 80% 20%, rgba(255,255,255,0.12), transparent 40%)",
-            pointerEvents: "none",
-          }}
-        />
-
-        {kinds.has("title") && (
-          <div
-            style={{
-              background: "#fff",
-              color: "#1e2a3a",
-              borderRadius: 16,
-              padding: "10px 14px",
-              textAlign: "center",
-              fontWeight: 800,
-              fontSize: 26,
-              marginBottom: 8,
-              position: "relative",
-            }}
-          >
-            {beat.board.title}
-          </div>
-        )}
-        {kinds.has("subtitle") && (
-          <div
-            style={{
-              textAlign: "center",
-              color: "#ffe56a",
-              fontWeight: 700,
-              marginBottom: 16,
-              position: "relative",
-            }}
-          >
-            {beat.board.subtitle}
-          </div>
-        )}
-
-        {cues.map((c, i) => {
-          if (c.type === "big_number") {
-            const colors = ["#ffe056", "#ff8ab8", "#7ed0ff"];
-            return (
-              <div
-                key={i}
-                style={{
-                  display: "flex",
-                  gap: 24,
-                  alignItems: "center",
-                  justifyContent: "center",
-                  marginTop: 20,
-                  ...ring("number"),
-                  borderRadius: 24,
-                }}
-              >
-                <div style={{ textAlign: "center" }}>
-                  <div
-                    style={{
-                      width: 120,
-                      height: 120,
-                      borderRadius: "50%",
-                      background: colors[c.n - 1],
-                      color: "#1e2a3a",
-                      display: "grid",
-                      placeItems: "center",
-                      fontSize: 64,
-                      fontWeight: 900,
-                      border: "6px solid #fff",
-                      animation: "soPop 0.45s ease",
-                    }}
-                  >
-                    {c.n}
-                  </div>
-                  <div
-                    style={{
-                      marginTop: 10,
-                      background: "#fff",
-                      color: "#1e2a3a",
-                      borderRadius: 12,
-                      padding: "6px 14px",
-                      fontWeight: 800,
-                    }}
-                  >
-                    {c.word}
-                  </div>
-                </div>
-              </div>
-            );
-          }
-          if (c.type === "apples") {
-            const fruit = ["#ff5a5a", "#ff9a3d", "#5ab0ff"];
-            return (
-              <div
-                key={i}
-                style={{
-                  display: "flex",
-                  gap: 14,
-                  justifyContent: "center",
-                  marginTop: 18,
-                  alignItems: "center",
-                  ...ring("apples"),
-                  borderRadius: 20,
-                  padding: 8,
-                }}
-              >
-                {Array.from({ length: c.n }).map((_, j) => (
-                  <span
-                    key={j}
-                    style={{
-                      width: 48,
-                      height: 54,
-                      borderRadius: "45% 45% 50% 50%",
-                      background: fruit[j % 3],
-                      border: "3px solid #fff",
-                      display: "inline-block",
-                      transform: `translateY(${Math.sin(j + progress * 8) * 2}px)`,
-                    }}
-                  />
-                ))}
-                <span
-                  style={{
-                    background: "#ffe056",
-                    color: "#1e2a3a",
-                    borderRadius: 12,
-                    padding: "4px 10px",
-                    fontWeight: 900,
-                    fontSize: 22,
-                  }}
-                >
-                  × {c.n}
-                </span>
-              </div>
-            );
-          }
-          if (c.type === "equation") {
-            return (
-              <div key={i} style={{ marginTop: 24, textAlign: "center", ...ring("equation"), borderRadius: 16, display: "inline-block", width: "100%" }}>
-                <span
-                  style={{
-                    background: "#ffe056",
-                    color: "#1e2a3a",
-                    borderRadius: 14,
-                    padding: "10px 22px",
-                    fontWeight: 900,
-                    fontSize: 28,
-                    display: "inline-block",
-                  }}
-                >
-                  {c.text}
-                </span>
-              </div>
-            );
-          }
-          if (c.type === "practice_row") {
-            const colors = ["#ffe056", "#ff8ab8", "#7ed0ff"];
-            const words = { 1: "واحد", 2: "اثنان", 3: "ثلاثة" } as const;
-            return (
-              <div
-                key={i}
-                style={{
-                  marginTop: 12,
-                  background: "#fff",
-                  color: "#1e2a3a",
-                  borderRadius: 16,
-                  padding: "10px 14px",
-                  display: "flex",
-                  alignItems: "center",
-                  gap: 12,
-                  fontWeight: 800,
-                  ...ring("practice"),
-                }}
-              >
-                <span
-                  style={{
-                    width: 42,
-                    height: 42,
-                    borderRadius: "50%",
-                    background: colors[c.n - 1],
-                    display: "grid",
-                    placeItems: "center",
-                  }}
-                >
-                  {c.n}
-                </span>
-                <span>=</span>
-                <span style={{ display: "flex", gap: 6 }}>
-                  {Array.from({ length: c.n }).map((_, j) => (
-                    <span
-                      key={j}
-                      style={{
-                        width: 28,
-                        height: 28,
-                        borderRadius: "50%",
-                        background: colors[c.n - 1],
-                        border: "2px solid #1e2a3a",
-                      }}
-                    />
-                  ))}
-                </span>
-                <span style={{ marginInlineStart: "auto" }}>{words[c.n as 1 | 2 | 3]}</span>
-              </div>
-            );
-          }
-          if (c.type === "stars") {
-            return (
-              <div key={i} style={{ textAlign: "center", fontSize: 48, marginTop: 28, letterSpacing: 8 }}>
-                {"★".repeat(c.n)}
-              </div>
-            );
-          }
-          if (c.type === "summary") {
-            return (
-              <div key={i} style={{ marginTop: 18, display: "grid", gap: 10 }}>
-                {["1 = واحد", "2 = اثنان", "3 = ثلاثة"].map((line, j) => (
-                  <div
-                    key={line}
-                    style={{
-                      background: ["#ffe056", "#ff8ab8", "#7ed0ff"][j],
-                      color: "#1e2a3a",
-                      borderRadius: 14,
-                      padding: "10px 14px",
-                      textAlign: "center",
-                      fontWeight: 900,
-                      fontSize: 22,
-                    }}
-                  >
-                    {line}
-                  </div>
-                ))}
-              </div>
-            );
-          }
-          if (c.type === "banner") {
-            return (
-              <div key={i} style={{ marginTop: 28, textAlign: "center" }}>
-                <span
-                  style={{
-                    background: "#ff5a6a",
-                    borderRadius: 18,
-                    padding: "12px 28px",
-                    fontWeight: 900,
-                    fontSize: 24,
-                    display: "inline-block",
-                  }}
-                >
-                  {c.text}
-                </span>
-              </div>
-            );
-          }
-          return null;
-        })}
-      </div>
-    </div>
   );
 }
 
@@ -368,54 +76,112 @@ export function InteractiveClassroom({ initialTeacher = "sara" as TeacherId }) {
   const beats = useMemo(() => buildG1CountLesson(teacher), [teacher]);
 
   const [beatIndex, setBeatIndex] = useState(0);
-  const [progress, setProgress] = useState(0.15);
+  const [progress, setProgress] = useState(0.08);
   const [speaking, setSpeaking] = useState(false);
   const [listening, setListening] = useState(false);
   const [celebrating, setCelebrating] = useState(false);
   const [mouthEnergy, setMouthEnergy] = useState(0);
-  const [caption, setCaption] = useState("اختر معلماً ثم اضغط ابدأ الدرس");
-  const [status, setStatus] = useState("جاهز للإتقان");
+  const [caption, setCaption] = useState("");
+  const [status, setStatus] = useState("اضغط ابدأ — صوت عصبي حقيقي");
   const [mastery, setMastery] = useState(0);
-  const [autoPlay, setAutoPlay] = useState(false);
+  const [autoPlay, setAutoPlay] = useState(true);
   const [awaitingCheck, setAwaitingCheck] = useState(false);
-  const [checkResult, setCheckResult] = useState<"idle" | "correct" | "wrong">("idle");
-  const [highlightWord, setHighlightWord] = useState("");
+  const [started, setStarted] = useState(false);
+  const [dockOpen, setDockOpen] = useState(false);
 
+  const audioRef = useRef<HTMLAudioElement | null>(null);
+  const audioCtxRef = useRef<AudioContext | null>(null);
+  const analyserRef = useRef<AnalyserNode | null>(null);
+  const sourceRef = useRef<MediaElementAudioSourceNode | null>(null);
+  const rafMouthRef = useRef<number | null>(null);
   const mouthTimer = useRef<number | null>(null);
-  const recogRef = useRef<{ start: () => void; abort: () => void } | null>(null);
   const autoTimer = useRef<number | null>(null);
   const celebrateTimer = useRef<number | null>(null);
+  const recogRef = useRef<{ start: () => void; abort: () => void } | null>(null);
+  const runBeatRef = useRef<(index: number) => void>(() => {});
 
-  const beat: LessonBeat = beats[beatIndex] ?? beats[0]!;
+  const beat = beats[beatIndex] ?? beats[0]!;
+  const pose = poseForBeat(beat, speaking, progress);
+  const writing = pose === "write" || (speaking && progress > 0.4 && progress < 0.9);
 
   const clearTimers = useCallback(() => {
     if (mouthTimer.current) window.clearInterval(mouthTimer.current);
     if (autoTimer.current) window.clearTimeout(autoTimer.current);
     if (celebrateTimer.current) window.clearTimeout(celebrateTimer.current);
+    if (rafMouthRef.current) cancelAnimationFrame(rafMouthRef.current);
   }, []);
 
   const stopSpeech = useCallback(() => {
     if (typeof window !== "undefined" && window.speechSynthesis) {
       window.speechSynthesis.cancel();
     }
+    if (audioRef.current) {
+      audioRef.current.pause();
+      audioRef.current.currentTime = 0;
+    }
     setSpeaking(false);
     setMouthEnergy(0);
-    setHighlightWord("");
     clearTimers();
   }, [clearTimers]);
 
   const flashCelebrate = useCallback(() => {
     setCelebrating(true);
     if (celebrateTimer.current) window.clearTimeout(celebrateTimer.current);
-    celebrateTimer.current = window.setTimeout(() => setCelebrating(false), 2200);
+    celebrateTimer.current = window.setTimeout(() => setCelebrating(false), 2400);
   }, []);
 
-  const speak = useCallback(
+  const ensureAnalyser = useCallback((audio: HTMLAudioElement) => {
+    try {
+      if (!audioCtxRef.current) {
+        audioCtxRef.current = new AudioContext();
+      }
+      const ctx = audioCtxRef.current;
+      if (ctx.state === "suspended") void ctx.resume();
+      if (!sourceRef.current) {
+        sourceRef.current = ctx.createMediaElementSource(audio);
+        analyserRef.current = ctx.createAnalyser();
+        analyserRef.current.fftSize = 256;
+        sourceRef.current.connect(analyserRef.current);
+        analyserRef.current.connect(ctx.destination);
+      }
+    } catch {
+      // analyser optional
+    }
+  }, []);
+
+  const trackMouthFromAnalyser = useCallback((audio: HTMLAudioElement, approxMs: number) => {
+    const startedAt = performance.now();
+    const data = new Uint8Array(analyserRef.current?.frequencyBinCount || 0);
+
+    const tick = () => {
+      const elapsed = performance.now() - startedAt;
+      const p = Math.min(1, elapsed / Math.max(1, approxMs));
+      setProgress(0.08 + p * 0.9);
+
+      if (analyserRef.current && data.length) {
+        analyserRef.current.getByteTimeDomainData(data);
+        let sum = 0;
+        for (let i = 0; i < data.length; i++) {
+          const v = (data[i]! - 128) / 128;
+          sum += v * v;
+        }
+        const rms = Math.sqrt(sum / data.length);
+        setMouthEnergy(Math.min(1, 0.15 + rms * 4.2));
+      } else {
+        setMouthEnergy(0.22 + 0.78 * Math.abs(Math.sin(elapsed / 80)));
+      }
+
+      if (!audio.paused && !audio.ended) {
+        rafMouthRef.current = requestAnimationFrame(tick);
+      }
+    };
+    rafMouthRef.current = requestAnimationFrame(tick);
+  }, []);
+
+  const speakFallback = useCallback(
     (text: string, onDone?: () => void) => {
-      stopSpeech();
       if (typeof window === "undefined" || !window.speechSynthesis) {
         setCaption(text);
-        setStatus("المتصفح لا يدعم النطق — اعرض النص فقط");
         setProgress(1);
         onDone?.();
         return;
@@ -425,47 +191,90 @@ export function InteractiveClassroom({ initialTeacher = "sara" as TeacherId }) {
       const voice = pickArabicVoice(teacher.gender === "female");
       if (voice) u.voice = voice;
       u.rate = teacher.gender === "female" ? 0.96 : 0.93;
-      u.pitch = teacher.gender === "female" ? 1.06 : 0.94;
-
+      u.pitch = teacher.gender === "female" ? 1.05 : 0.94;
       setCaption(text);
       setSpeaking(true);
-      setListening(false);
-      setAwaitingCheck(false);
-      setCheckResult("idle");
-      setStatus("يشرح الآن…");
-      setProgress(0.1);
-
-      const words = text.split(/\s+/).filter(Boolean);
-      const started = performance.now();
+      setStatus("يشرح…");
+      const startedAt = performance.now();
       const approxMs = Math.max(2800, text.length * 68);
       mouthTimer.current = window.setInterval(() => {
-        const elapsed = performance.now() - started;
+        const elapsed = performance.now() - startedAt;
         const p = Math.min(1, elapsed / approxMs);
-        setProgress(0.1 + p * 0.88);
-        // syllable-like energy with slight randomness
-        const wave = Math.abs(Math.sin(elapsed / 85)) * 0.85 + Math.abs(Math.sin(elapsed / 37)) * 0.15;
-        setMouthEnergy(0.2 + 0.8 * wave);
-        const wi = Math.min(words.length - 1, Math.floor(p * words.length));
-        if (words[wi]) setHighlightWord(words[wi]!);
-      }, 36);
-
+        setProgress(0.08 + p * 0.9);
+        setMouthEnergy(0.2 + 0.8 * Math.abs(Math.sin(elapsed / 85)));
+      }, 40);
       u.onend = () => {
-        if (mouthTimer.current) window.clearInterval(mouthTimer.current);
+        clearTimers();
         setSpeaking(false);
         setMouthEnergy(0);
-        setHighlightWord("");
         setProgress(1);
-        setStatus("بانتظار تفاعلك");
         onDone?.();
       };
       u.onerror = () => {
         stopSpeech();
-        setStatus("تعذّر النطق");
         onDone?.();
       };
       window.speechSynthesis.speak(u);
     },
-    [stopSpeech, teacher.gender],
+    [clearTimers, stopSpeech, teacher.gender],
+  );
+
+  const speakAudioOrFallback = useCallback(
+    (audioKey: string | null, text: string, onDone?: () => void) => {
+      stopSpeech();
+      setCaption(text);
+      setListening(false);
+      setAwaitingCheck(false);
+
+      if (!audioKey) {
+        speakFallback(text, onDone);
+        return;
+      }
+
+      const src = `/media/ai-teachers/${teacherId}/audio/${audioKey}.mp3`;
+      const audio = audioRef.current ?? new Audio();
+      audioRef.current = audio;
+      audio.src = src;
+      audio.preload = "auto";
+
+      const startPlayback = () => {
+        ensureAnalyser(audio);
+        setSpeaking(true);
+        setStatus("صوت عصبي حي…");
+        setProgress(0.08);
+        const approxMs = Math.max(2500, (audio.duration || text.length * 0.07) * 1000);
+        trackMouthFromAnalyser(audio, approxMs);
+        void audio.play().catch(() => {
+          speakFallback(text, onDone);
+        });
+      };
+
+      audio.onended = () => {
+        clearTimers();
+        setSpeaking(false);
+        setMouthEnergy(0);
+        setProgress(1);
+        setStatus("بانتظارك");
+        onDone?.();
+      };
+      audio.onerror = () => {
+        speakFallback(text, onDone);
+      };
+
+      if (audio.readyState >= 2) startPlayback();
+      else {
+        audio.onloadeddata = startPlayback;
+        audio.load();
+      }
+    },
+    [
+      clearTimers,
+      ensureAnalyser,
+      speakFallback,
+      stopSpeech,
+      teacherId,
+      trackMouthFromAnalyser,
+    ],
   );
 
   const afterBeatSpeech = useCallback(
@@ -474,8 +283,9 @@ export function InteractiveClassroom({ initialTeacher = "sara" as TeacherId }) {
       if (!b) return;
       if (b.check) {
         setAwaitingCheck(true);
-        setStatus("اختبر فهمك — اختر الجواب");
+        setStatus("اختبر فهمك");
         setCaption(b.check.prompt);
+        setDockOpen(true);
         return;
       }
       if (b.mode === "celebrate") {
@@ -483,40 +293,37 @@ export function InteractiveClassroom({ initialTeacher = "sara" as TeacherId }) {
         setMastery((m) => Math.min(5, m + 1));
       }
       if (autoPlay && index < beats.length - 1) {
-        autoTimer.current = window.setTimeout(() => {
-          runBeatRef.current(index + 1);
-        }, 900);
+        autoTimer.current = window.setTimeout(() => runBeatRef.current(index + 1), 850);
       }
     },
     [autoPlay, beats, flashCelebrate],
   );
 
-  const runBeatRef = useRef<(index: number) => void>(() => {});
-
   const runBeat = useCallback(
     (index: number) => {
       const b = beats[index];
       if (!b) return;
+      setStarted(true);
       setBeatIndex(index);
       setAwaitingCheck(false);
-      setCheckResult("idle");
-      speak(b.say, () => afterBeatSpeech(index));
+      const key = BEAT_AUDIO[b.id] ?? null;
+      speakAudioOrFallback(key, b.say, () => afterBeatSpeech(index));
     },
-    [afterBeatSpeech, beats, speak],
+    [afterBeatSpeech, beats, speakAudioOrFallback],
   );
-
   runBeatRef.current = runBeat;
 
   const handleCommand = useCallback(
     (id: string) => {
       if (id === "start") {
         setMastery(0);
+        setStarted(true);
         runBeat(0);
         return;
       }
       if (id === "next") {
         if (awaitingCheck) {
-          speak("جاوب على السؤال أولاً ثم ننتقل.");
+          speakAudioOrFallback(null, "جاوب على السؤال أولاً ثم ننتقل.");
           return;
         }
         runBeat(Math.min(beats.length - 1, beatIndex + 1));
@@ -530,11 +337,12 @@ export function InteractiveClassroom({ initialTeacher = "sara" as TeacherId }) {
         stopSpeech();
         setListening(true);
         setAutoPlay(false);
-        setStatus("متوقف — اضغط التالي أو كلّمني");
+        setStatus("متوقف");
         return;
       }
       if (id === "simpler") {
-        speak(
+        speakAudioOrFallback(
+          "simpler",
           coachLine(teacher, "simpler", {
             beatTitle: beat.board.title,
             beatSubtitle: beat.board.subtitle,
@@ -544,7 +352,8 @@ export function InteractiveClassroom({ initialTeacher = "sara" as TeacherId }) {
         return;
       }
       if (id === "example") {
-        speak(
+        speakAudioOrFallback(
+          "example",
           coachLine(teacher, "example", {
             beatTitle: beat.board.title,
             beatSubtitle: beat.board.subtitle,
@@ -554,7 +363,8 @@ export function InteractiveClassroom({ initialTeacher = "sara" as TeacherId }) {
         return;
       }
       if (id === "challenge") {
-        speak(
+        speakAudioOrFallback(
+          "challenge",
           coachLine(teacher, "challenge", {
             beatTitle: beat.board.title,
             beatSubtitle: beat.board.subtitle,
@@ -572,7 +382,7 @@ export function InteractiveClassroom({ initialTeacher = "sara" as TeacherId }) {
       beats.length,
       mastery,
       runBeat,
-      speak,
+      speakAudioOrFallback,
       stopSpeech,
       teacher,
     ],
@@ -585,23 +395,20 @@ export function InteractiveClassroom({ initialTeacher = "sara" as TeacherId }) {
       const choice = check.choices.find((c) => c.id === choiceId);
       if (!choice) return;
       const correctChoice = check.choices.find((c) => c.correct) ?? choice;
-      setCheckResult(choice.correct ? "correct" : "wrong");
       setAwaitingCheck(false);
       if (choice.correct) {
         setMastery((m) => Math.min(5, m + 1));
         flashCelebrate();
-        speak(checkFeedback(teacher, true, correctChoice.label), () => {
+        speakAudioOrFallback("correct", checkFeedback(teacher, true, correctChoice.label), () => {
           if (autoPlay && beatIndex < beats.length - 1) {
-            autoTimer.current = window.setTimeout(() => runBeat(beatIndex + 1), 700);
-          } else {
-            setStatus("ممتاز — اضغط التالي");
-          }
+            autoTimer.current = window.setTimeout(() => runBeat(beatIndex + 1), 650);
+          } else setStatus("ممتاز — التالي");
         });
       } else {
-        speak(checkFeedback(teacher, false, correctChoice.label), () => {
+        speakAudioOrFallback("wrong", checkFeedback(teacher, false, correctChoice.label), () => {
           setAwaitingCheck(true);
           setCaption(check.prompt);
-          setStatus("حاول مرة أخرى");
+          setStatus("حاول مجدداً");
         });
       }
     },
@@ -613,7 +420,7 @@ export function InteractiveClassroom({ initialTeacher = "sara" as TeacherId }) {
       beats.length,
       flashCelebrate,
       runBeat,
-      speak,
+      speakAudioOrFallback,
       teacher,
     ],
   );
@@ -626,15 +433,15 @@ export function InteractiveClassroom({ initialTeacher = "sara" as TeacherId }) {
     const SR = w.SpeechRecognition || w.webkitSpeechRecognition;
     if (!SR) {
       setStatus("الميكروفون غير مدعوم — استخدم الأزرار");
+      setDockOpen(true);
       return;
     }
     stopSpeech();
     setListening(true);
-    setStatus("يستمع… قل: ابدأ، التالي، أعد، أبسط، مثال، تحدٍّ، توقف");
+    setStatus("يستمع…");
     const recog = new SR();
     recog.lang = "ar-JO";
     recog.interimResults = false;
-    recog.maxAlternatives = 3;
     recog.onresult = (ev: any) => {
       const said = Array.from(ev.results as ArrayLike<{ 0?: { transcript?: string } }>)
         .map((r) => r[0]?.transcript || "")
@@ -643,244 +450,350 @@ export function InteractiveClassroom({ initialTeacher = "sara" as TeacherId }) {
       setCaption(`سمعت: ${said}`);
       const hit = INTERACTIVE_COMMANDS.find((c) => c.match.some((m) => said.includes(m)));
       if (hit) handleCommand(hit.id);
-      else speak("ما سمعت أمراً واضحاً. قل: ابدأ، أو التالي، أو أعد، أو أبسط، أو مثال.");
+      else speakAudioOrFallback(null, "ما سمعت أمراً واضحاً. قل: ابدأ أو التالي أو أبسط.");
       setListening(false);
     };
     recog.onerror = () => {
       setListening(false);
-      setStatus("ما قدر أسمع — جرّب الأزرار");
+      setStatus("ما قدر أسمع");
     };
     recog.onend = () => setListening(false);
     recogRef.current = recog;
     recog.start();
-  }, [handleCommand, speak, stopSpeech]);
+  }, [handleCommand, speakAudioOrFallback, stopSpeech]);
 
   useEffect(() => {
-    const warm = () => pickArabicVoice(teacher.gender === "female");
-    warm();
-    window.speechSynthesis?.addEventListener("voiceschanged", warm);
     return () => {
       stopSpeech();
-      window.speechSynthesis?.removeEventListener("voiceschanged", warm);
       recogRef.current?.abort();
+      void audioCtxRef.current?.close();
     };
-  }, [stopSpeech, teacher.gender]);
+  }, [stopSpeech]);
 
   useEffect(() => {
     stopSpeech();
     setBeatIndex(0);
-    setProgress(0.15);
+    setProgress(0.08);
     setMastery(0);
     setAwaitingCheck(false);
-    setCheckResult("idle");
     setCelebrating(false);
-    setCaption(`مرحبا! أنا ${teacher.nameAr}. أشرح أوضح من أي كتاب — اضغط ابدأ الدرس أو كلّمني.`);
-    setStatus("جاهز للإتقان");
-  }, [teacherId, teacher.nameAr, stopSpeech]);
-
-  const btnStyle: CSSProperties = {
-    border: "none",
-    borderRadius: 16,
-    padding: "12px 14px",
-    fontWeight: 800,
-    cursor: "pointer",
-    background: "#fff",
-    color: "#1e2a3a",
-    fontSize: 15,
-  };
-
-  const masteryPct = Math.round((mastery / 5) * 100);
+    setStarted(false);
+    setCaption("");
+    setStatus("اضغط ابدأ — صوت عصبي حقيقي");
+    // warm intro audio metadata
+    const a = new Audio(`/media/ai-teachers/${teacherId}/audio/intro.mp3`);
+    a.preload = "auto";
+  }, [teacherId, stopSpeech]);
 
   return (
     <div
       dir="rtl"
+      className="cinema-class"
       style={{
         minHeight: "100vh",
-        background:
-          "radial-gradient(circle at 12% 10%, #fff1a0 0%, transparent 28%), radial-gradient(circle at 90% 0%, #7ad7ff 0%, transparent 30%), linear-gradient(165deg,#5ebfff,#8fe0b8 52%,#5fce8a)",
-        padding: "18px 16px 40px",
-        fontFamily: "Cairo, Segoe UI, Tahoma, sans-serif",
-        color: "#1e2a3a",
+        background: "#070b12",
+        color: "#f4f1e6",
+        fontFamily: "var(--font-teacher-ar), 'Noto Kufi Arabic', 'Segoe UI', sans-serif",
+        overflow: "hidden",
       }}
     >
       <style>{`
-        @keyframes soPop { from { transform: scale(0.7); opacity: 0.2; } to { transform: scale(1); opacity: 1; } }
+        .cinema-class {
+          --font-teacher-ar: 'Noto Kufi Arabic', sans-serif;
+        }
+        .cinema-grid {
+          min-height: 100vh;
+          display: grid;
+          grid-template-columns: minmax(320px, 42vw) 1fr;
+        }
         @media (max-width: 900px) {
-          .so-grid { grid-template-columns: 1fr !important; }
+          .cinema-grid { grid-template-columns: 1fr; min-height: auto; }
+          .cinema-teacher { min-height: 62vh !important; }
+          .cinema-board { min-height: 52vh !important; }
+        }
+        @keyframes riseIn {
+          from { opacity: 0; transform: translateY(16px); }
+          to { opacity: 1; transform: none; }
+        }
+        .cinema-cta {
+          animation: riseIn 0.7s ease both;
         }
       `}</style>
 
-      <header
+      {/* top brand bar — thin, not a card stack */}
+      <div
         style={{
-          maxWidth: 1200,
-          margin: "0 auto 14px",
-          background: "rgba(255,255,255,0.94)",
-          borderRadius: 24,
-          padding: "14px 18px",
+          position: "fixed",
+          top: 0,
+          insetInline: 0,
+          zIndex: 30,
           display: "flex",
-          gap: 12,
-          flexWrap: "wrap",
-          alignItems: "center",
           justifyContent: "space-between",
+          alignItems: "center",
+          padding: "14px 18px",
+          pointerEvents: "none",
         }}
       >
-        <div>
-          <div style={{ fontWeight: 800, color: "#0f766e", letterSpacing: "0.04em" }}>
-            SUCCESS OS · MASTER AI TEACHER
+        <div style={{ pointerEvents: "auto" }}>
+          <div style={{ fontWeight: 800, letterSpacing: "0.08em", fontSize: 12, color: "#ffd84a" }}>
+            SUCCESS OS
           </div>
-          <h1 style={{ margin: "4px 0 0", fontSize: "clamp(1.25rem, 2.5vw, 1.75rem)" }}>
-            سارة وعلي — أوضح من المعلم الحقيقي
-          </h1>
+          <div style={{ fontWeight: 800, fontSize: "clamp(1.1rem, 2.4vw, 1.45rem)", marginTop: 2 }}>
+            {teacher.nameAr}
+          </div>
         </div>
-        <div style={{ display: "flex", gap: 8, flexWrap: "wrap", alignItems: "center" }}>
+        <div style={{ display: "flex", gap: 8, pointerEvents: "auto" }}>
           {(["sara", "ali"] as TeacherId[]).map((id) => (
             <button
               key={id}
               type="button"
               onClick={() => setTeacherId(id)}
               style={{
-                ...btnStyle,
-                background: teacherId === id ? "#ff5a6a" : "#fff",
-                color: teacherId === id ? "#fff" : "#1e2a3a",
-                minWidth: 120,
+                border: "none",
+                borderRadius: 999,
+                padding: "10px 16px",
+                fontWeight: 800,
+                cursor: "pointer",
+                background: teacherId === id ? "#ff5a6a" : "rgba(255,255,255,0.12)",
+                color: "#fff",
+                backdropFilter: "blur(8px)",
               }}
             >
-              {TEACHERS[id].nameAr}
+              {TEACHERS[id].nameAr.replace("المعلمة ", "").replace("المعلم ", "")}
             </button>
           ))}
-          <button
-            type="button"
-            onClick={() => setAutoPlay((v) => !v)}
-            style={{
-              ...btnStyle,
-              background: autoPlay ? "#0f766e" : "#e8f5f1",
-              color: autoPlay ? "#fff" : "#0f766e",
-            }}
-          >
-            {autoPlay ? "تشغيل تلقائي: تشغيل" : "تشغيل تلقائي: إيقاف"}
-          </button>
         </div>
-      </header>
+      </div>
 
-      <div
-        className="so-grid"
-        style={{
-          maxWidth: 1200,
-          margin: "0 auto",
-          display: "grid",
-          gridTemplateColumns: "minmax(280px, 380px) 1fr",
-          gap: 14,
-        }}
-      >
-        <section style={{ minHeight: 560, display: "grid", gap: 10 }}>
+      <div className="cinema-grid">
+        <section
+          className="cinema-teacher"
+          style={{
+            position: "relative",
+            minHeight: "100vh",
+            background: "#0b1220",
+          }}
+        >
           <AliveTeacherStage
             teacherId={teacherId}
             speaking={speaking}
             listening={listening}
             celebrating={celebrating}
             mouthEnergy={mouthEnergy}
-            mode={beat.mode}
+            pose={pose}
             nameAr={teacher.nameAr}
             gender={teacher.gender}
-            highlightWord={highlightWord}
           />
-          <div
-            style={{
-              background: "rgba(255,255,255,0.94)",
-              borderRadius: 18,
-              padding: "12px 14px",
-              display: "flex",
-              alignItems: "center",
-              gap: 12,
-            }}
-          >
-            <div style={{ flex: 1 }}>
-              <div style={{ fontWeight: 800, fontSize: 14 }}>نجوم الإتقان</div>
-              <div style={{ opacity: 0.7, fontSize: 13 }}>
-                {mastery}/5 · {masteryPct}% — أسرع تغذية راجعة من أي حصة عادية
-              </div>
-              <div
-                style={{
-                  marginTop: 8,
-                  height: 10,
-                  borderRadius: 999,
-                  background: "#dceee8",
-                  overflow: "hidden",
-                }}
-              >
-                <div
-                  style={{
-                    width: `${masteryPct}%`,
-                    height: "100%",
-                    background: "linear-gradient(90deg,#ffd84a,#ff8a3d)",
-                    transition: "width 0.35s ease",
-                  }}
-                />
-              </div>
-            </div>
-            <div style={{ fontSize: 28, letterSpacing: 2, color: "#e6a800" }}>
-              {"★".repeat(mastery)}
-              <span style={{ opacity: 0.25 }}>{"★".repeat(Math.max(0, 5 - mastery))}</span>
-            </div>
-          </div>
         </section>
 
-        <section style={{ minHeight: 560, display: "grid", gridTemplateRows: "1fr auto", gap: 12 }}>
-          <BoardPanel beat={beat} progress={progress} celebrating={celebrating} />
+        <section
+          className="cinema-board"
+          style={{
+            position: "relative",
+            minHeight: "100vh",
+            display: "grid",
+            gridTemplateRows: "1fr auto",
+          }}
+        >
+          <LivingBoard
+            beat={beat}
+            progress={started ? progress : 0.2}
+            writing={writing}
+            celebrating={celebrating}
+          />
 
-          <div style={{ background: "rgba(255,255,255,0.95)", borderRadius: 20, padding: 14 }}>
-            <div style={{ fontWeight: 800, marginBottom: 6, lineHeight: 1.55 }}>{caption}</div>
-            <div style={{ opacity: 0.7, fontSize: 14, marginBottom: 12 }}>
-              {status} · خطوة {beatIndex + 1}/{beats.length} · {teacher.voiceHint}
-              {checkResult === "correct" ? " · إجابة صحيحة" : checkResult === "wrong" ? " · حاول مجدداً" : ""}
-            </div>
-
-            {awaitingCheck && beat.check && (
-              <div
-                style={{
-                  display: "grid",
-                  gridTemplateColumns: "repeat(auto-fit,minmax(140px,1fr))",
-                  gap: 8,
-                  marginBottom: 12,
-                }}
-              >
-                {beat.check.choices.map((c) => (
+          {/* film-style caption + primary CTA */}
+          <div
+            style={{
+              position: "absolute",
+              insetInline: 0,
+              bottom: 0,
+              padding: "20px 18px 22px",
+              background: "linear-gradient(transparent, rgba(5,8,14,0.92) 35%)",
+              zIndex: 5,
+            }}
+          >
+            {!started ? (
+              <div className="cinema-cta" style={{ maxWidth: 640 }}>
+                <h1
+                  style={{
+                    margin: "0 0 8px",
+                    fontSize: "clamp(1.8rem, 4.5vw, 2.8rem)",
+                    fontWeight: 900,
+                    lineHeight: 1.2,
+                  }}
+                >
+                  أوضح من المعلم الحقيقي
+                </h1>
+                <p style={{ margin: "0 0 18px", opacity: 0.85, fontSize: "1.05rem", maxWidth: 520 }}>
+                  صوت عصبي أردني، وجه يتحرك، وسبورة تُكتب مع الشرح — مع فحص فهم فوري.
+                </p>
+                <div style={{ display: "flex", gap: 10, flexWrap: "wrap" }}>
                   <button
-                    key={c.id}
                     type="button"
-                    onClick={() => answerCheck(c.id)}
+                    onClick={() => handleCommand("start")}
                     style={{
-                      ...btnStyle,
-                      background: "#fff8e1",
-                      border: "2px solid #ffd84a",
+                      border: "none",
+                      borderRadius: 16,
+                      padding: "16px 28px",
+                      fontWeight: 900,
+                      fontSize: 18,
+                      cursor: "pointer",
+                      background: "linear-gradient(120deg,#ffd84a,#ff8a3d)",
+                      color: "#1a1408",
                     }}
                   >
-                    {c.label}
+                    ابدأ الدرس الآن
                   </button>
-                ))}
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setDockOpen(true);
+                      startListening();
+                    }}
+                    style={{
+                      border: "1px solid rgba(255,255,255,0.35)",
+                      borderRadius: 16,
+                      padding: "16px 22px",
+                      fontWeight: 800,
+                      fontSize: 16,
+                      cursor: "pointer",
+                      background: "rgba(255,255,255,0.08)",
+                      color: "#fff",
+                    }}
+                  >
+                    كلّم {teacher.gender === "female" ? "سارة" : "علي"}
+                  </button>
+                </div>
+              </div>
+            ) : (
+              <div>
+                <div
+                  style={{
+                    fontSize: "clamp(1.05rem, 2.2vw, 1.35rem)",
+                    fontWeight: 700,
+                    lineHeight: 1.55,
+                    marginBottom: 8,
+                    maxWidth: 720,
+                    textShadow: "0 2px 12px rgba(0,0,0,0.55)",
+                  }}
+                >
+                  {caption}
+                </div>
+                <div style={{ display: "flex", gap: 12, flexWrap: "wrap", alignItems: "center" }}>
+                  <span style={{ color: "#ffd84a", fontWeight: 700, fontSize: 13 }}>
+                    {status} · {beatIndex + 1}/{beats.length} · إتقان {mastery}/5 · {teacher.voiceHint}
+                  </span>
+                  <button
+                    type="button"
+                    onClick={() => setDockOpen((v) => !v)}
+                    style={{
+                      border: "none",
+                      borderRadius: 999,
+                      padding: "8px 14px",
+                      fontWeight: 800,
+                      cursor: "pointer",
+                      background: "rgba(255,255,255,0.14)",
+                      color: "#fff",
+                    }}
+                  >
+                    {dockOpen ? "إخفاء الأوامر" : "الأوامر"}
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setAutoPlay((v) => !v)}
+                    style={{
+                      border: "none",
+                      borderRadius: 999,
+                      padding: "8px 14px",
+                      fontWeight: 800,
+                      cursor: "pointer",
+                      background: autoPlay ? "#0f766e" : "rgba(255,255,255,0.14)",
+                      color: "#fff",
+                    }}
+                  >
+                    {autoPlay ? "تلقائي" : "يدوي"}
+                  </button>
+                </div>
+
+                {awaitingCheck && beat.check && (
+                  <div
+                    style={{
+                      marginTop: 14,
+                      display: "grid",
+                      gridTemplateColumns: "repeat(auto-fit,minmax(140px,1fr))",
+                      gap: 8,
+                      maxWidth: 720,
+                    }}
+                  >
+                    {beat.check.choices.map((c) => (
+                      <button
+                        key={c.id}
+                        type="button"
+                        onClick={() => answerCheck(c.id)}
+                        style={{
+                          border: "2px solid #ffd84a",
+                          borderRadius: 14,
+                          padding: "14px 12px",
+                          fontWeight: 800,
+                          cursor: "pointer",
+                          background: "rgba(255,248,220,0.95)",
+                          color: "#1a1408",
+                        }}
+                      >
+                        {c.label}
+                      </button>
+                    ))}
+                  </div>
+                )}
+
+                {dockOpen && (
+                  <div
+                    style={{
+                      marginTop: 12,
+                      display: "grid",
+                      gridTemplateColumns: "repeat(auto-fit,minmax(100px,1fr))",
+                      gap: 8,
+                      maxWidth: 820,
+                    }}
+                  >
+                    {INTERACTIVE_COMMANDS.map((c) => (
+                      <button
+                        key={c.id}
+                        type="button"
+                        onClick={() => handleCommand(c.id)}
+                        style={{
+                          border: "none",
+                          borderRadius: 12,
+                          padding: "12px 10px",
+                          fontWeight: 800,
+                          cursor: "pointer",
+                          background: "rgba(255,255,255,0.12)",
+                          color: "#fff",
+                        }}
+                      >
+                        {c.ar}
+                      </button>
+                    ))}
+                    <button
+                      type="button"
+                      onClick={startListening}
+                      style={{
+                        border: "none",
+                        borderRadius: 12,
+                        padding: "12px 10px",
+                        fontWeight: 800,
+                        cursor: "pointer",
+                        background: "#ff5a6a",
+                        color: "#fff",
+                      }}
+                    >
+                      ميكروفون
+                    </button>
+                  </div>
+                )}
               </div>
             )}
-
-            <div
-              style={{
-                display: "grid",
-                gridTemplateColumns: "repeat(auto-fit,minmax(110px,1fr))",
-                gap: 8,
-              }}
-            >
-              {INTERACTIVE_COMMANDS.map((c) => (
-                <button key={c.id} type="button" style={btnStyle} onClick={() => handleCommand(c.id)}>
-                  {c.ar}
-                </button>
-              ))}
-              <button
-                type="button"
-                style={{ ...btnStyle, background: "#1e2a3a", color: "#fff" }}
-                onClick={startListening}
-              >
-                كلّم المعلم
-              </button>
-            </div>
           </div>
         </section>
       </div>

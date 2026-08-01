@@ -1,0 +1,37 @@
+{
+  "schema": "success-os.ai-teacher-audio.v1",
+  "voices": {
+    "sara": "ar-JO-SanaNeural",
+    "ali": "ar-JO-TaimNeural"
+  },
+  "lines": {
+    "sara": [
+      "welcome",
+      "one",
+      "two",
+      "three",
+      "practice",
+      "bye",
+      "simpler",
+      "example",
+      "challenge",
+      "correct",
+      "wrong",
+      "intro"
+    ],
+    "ali": [
+      "welcome",
+      "one",
+      "two",
+      "three",
+      "practice",
+      "bye",
+      "simpler",
+      "example",
+      "challenge",
+      "correct",
+      "wrong",
+      "intro"
+    ]
+  }
+}

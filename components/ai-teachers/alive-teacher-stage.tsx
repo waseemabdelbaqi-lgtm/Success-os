@@ -2,21 +2,21 @@
 
 import { useEffect, useRef } from "react";
 
+export type TeacherPose = "idle" | "talk" | "point" | "write" | "gesture";
+
 type Props = {
   teacherId: "sara" | "ali";
   speaking: boolean;
   listening: boolean;
   celebrating?: boolean;
-  mouthEnergy: number; // 0..1
-  mode: "talk" | "gesture" | "celebrate";
+  mouthEnergy: number;
+  pose: TeacherPose;
   nameAr: string;
   gender: "female" | "male";
-  highlightWord?: string;
 };
 
 /**
- * Live photoreal teacher: mouth morph, blink, listen, gesture, celebrate pulse.
- * Presence motion (breath + sway) even when idle — never a static photo.
+ * Cinematic photoreal stage: pose pack + mouth morph + breath presence.
  */
 export function AliveTeacherStage({
   teacherId,
@@ -24,24 +24,22 @@ export function AliveTeacherStage({
   listening,
   celebrating = false,
   mouthEnergy,
-  mode,
+  pose,
   nameAr,
   gender,
-  highlightWord,
 }: Props) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const imgsRef = useRef<Record<string, HTMLImageElement>>({});
   const blinkUntilRef = useRef(0);
-  const tRef = useRef(0);
-  const stateRef = useRef({ speaking, listening, celebrating, mouthEnergy, mode });
+  const stateRef = useRef({ speaking, listening, celebrating, mouthEnergy, pose });
 
   useEffect(() => {
-    stateRef.current = { speaking, listening, celebrating, mouthEnergy, mode };
-  }, [speaking, listening, celebrating, mouthEnergy, mode]);
+    stateRef.current = { speaking, listening, celebrating, mouthEnergy, pose };
+  }, [speaking, listening, celebrating, mouthEnergy, pose]);
 
   useEffect(() => {
     const base = `/media/ai-teachers/${teacherId}`;
-    const keys = {
+    const keys: Record<string, string> = {
       closed: `${base}/flagship/mouth-closed.png`,
       open: `${base}/flagship/mouth-open.png`,
       wide: `${base}/flagship/mouth-wide.png`,
@@ -49,6 +47,10 @@ export function AliveTeacherStage({
       blink: `${base}/alive/blink.png`,
       listen: `${base}/alive/listen.png`,
       half: `${base}/alive/half.png`,
+      idle: `${base}/poses/idle.png`,
+      talkPose: `${base}/poses/talk.png`,
+      point: `${base}/poses/point.png`,
+      write: `${base}/poses/write.png`,
     };
     const loaded: Record<string, HTMLImageElement> = {};
     let pending = Object.keys(keys).length;
@@ -79,8 +81,9 @@ export function AliveTeacherStage({
     if (!ctx) return;
     let raf = 0;
     let lastBlink = performance.now();
+    let t = 0;
 
-    const drawFit = (
+    const fit = (
       target: CanvasRenderingContext2D,
       img: HTMLImageElement,
       W: number,
@@ -88,120 +91,105 @@ export function AliveTeacherStage({
       alpha: number,
       breath: number,
       sway: number,
+      zoom = 1,
     ) => {
       target.globalAlpha = alpha;
-      const scale = Math.max(W / img.width, H / img.height) * (1 + breath * 0.012);
+      const scale = Math.max(W / img.width, H / img.height) * zoom * (1 + breath * 0.01);
       const dw = img.width * scale;
       const dh = img.height * scale;
-      target.drawImage(img, (W - dw) / 2 + sway, (H - dh) / 2 + breath * 3, dw, dh);
+      target.drawImage(img, (W - dw) / 2 + sway, (H - dh) / 2 + breath * 4 + H * 0.02, dw, dh);
       target.globalAlpha = 1;
     };
 
     const draw = (now: number) => {
-      tRef.current = now / 1000;
+      t = now / 1000;
       const W = canvas.width;
       const H = canvas.height;
       const st = stateRef.current;
       ctx.clearRect(0, 0, W, H);
 
-      // atmospheric stage
-      const g = ctx.createRadialGradient(W * 0.5, H * 0.35, 20, W * 0.5, H * 0.55, H * 0.75);
-      g.addColorStop(0, st.celebrating || st.mode === "celebrate" ? "#3a2a14" : "#243552");
-      g.addColorStop(1, "#0c1220");
-      ctx.fillStyle = g;
+      // classroom depth backdrop
+      const bg = ctx.createLinearGradient(0, 0, 0, H);
+      bg.addColorStop(0, "#1c2a3d");
+      bg.addColorStop(0.55, "#121c2c");
+      bg.addColorStop(1, "#0a1018");
+      ctx.fillStyle = bg;
       ctx.fillRect(0, 0, W, H);
 
-      // soft spotlight
-      const spot = ctx.createRadialGradient(W * 0.5, H * 0.42, 40, W * 0.5, H * 0.5, 220);
-      spot.addColorStop(0, "rgba(255,220,140,0.14)");
+      const spot = ctx.createRadialGradient(W * 0.48, H * 0.38, 30, W * 0.5, H * 0.5, W * 0.62);
+      spot.addColorStop(0, st.celebrating ? "rgba(255,210,120,0.22)" : "rgba(255,220,160,0.12)");
       spot.addColorStop(1, "rgba(0,0,0,0)");
       ctx.fillStyle = spot;
       ctx.fillRect(0, 0, W, H);
 
-      const breath = Math.sin(tRef.current * (st.speaking ? 2.2 : 1.15));
-      const sway = Math.sin(tRef.current * 1.35) * (st.speaking ? 4.5 : 2.5);
+      const breath = Math.sin(t * (st.speaking ? 2.4 : 1.1));
+      const sway = Math.sin(t * 1.2) * (st.speaking ? 5 : 2.2);
       const imgs = imgsRef.current;
-      let frame: HTMLImageElement | undefined;
-      let drewBlend = false;
+      const m = Math.max(0, Math.min(1, st.mouthEnergy));
 
-      if (now < blinkUntilRef.current && imgs.blink) {
-        frame = imgs.blink;
-      } else if (st.listening && !st.speaking && imgs.listen) {
-        frame = imgs.listen;
-      } else if ((st.mode === "gesture" || st.mode === "celebrate") && st.mouthEnergy < 0.28 && imgs.gesture) {
-        frame = imgs.gesture;
-      } else if (imgs.closed && imgs.open && imgs.wide) {
-        const m = Math.max(0, Math.min(1, st.mouthEnergy));
+      // choose base body pose
+      let body: HTMLImageElement | undefined;
+      if (now < blinkUntilRef.current && imgs.blink) body = imgs.blink;
+      else if (st.listening && !st.speaking && imgs.listen) body = imgs.listen;
+      else if (st.pose === "point" && imgs.point) body = imgs.point;
+      else if (st.pose === "write" && imgs.write) body = imgs.write;
+      else if (st.pose === "gesture" && imgs.gesture) body = imgs.gesture;
+      else if (st.speaking && m > 0.12 && imgs.closed && imgs.open && imgs.wide) {
+        // mouth morph while speaking
         const off = document.createElement("canvas");
         off.width = W;
         off.height = H;
         const octx = off.getContext("2d");
         if (octx) {
-          octx.clearRect(0, 0, W, H);
-          if (m < 0.12) {
-            drawFit(octx, imgs.closed, W, H, 1, breath, sway);
-          } else if (m < 0.5) {
-            const t = (m - 0.12) / 0.38;
-            drawFit(octx, imgs.closed, W, H, 1, breath, sway);
-            drawFit(octx, imgs.open, W, H, t, breath, sway);
+          if (m < 0.45) {
+            const k = m / 0.45;
+            fit(octx, imgs.closed, W, H, 1, breath, sway, 1.05);
+            fit(octx, imgs.open, W, H, k, breath, sway, 1.05);
           } else {
-            const t = (m - 0.5) / 0.5;
-            drawFit(octx, imgs.open, W, H, 1, breath, sway);
-            drawFit(octx, imgs.wide, W, H, Math.min(1, t), breath, sway);
+            const k = (m - 0.45) / 0.55;
+            fit(octx, imgs.open, W, H, 1, breath, sway, 1.05);
+            fit(octx, imgs.wide, W, H, Math.min(1, k), breath, sway, 1.05);
           }
           ctx.drawImage(off, 0, 0);
-          drewBlend = true;
         }
-      } else {
-        frame = imgs.closed || imgs.listen || imgs.gesture;
-      }
+        body = undefined;
+      } else if (imgs.closed) body = imgs.closed;
+      else body = imgs.idle || imgs.talkPose;
 
-      if (!drewBlend && frame) {
-        drawFit(ctx, frame, W, H, 1, breath, sway);
-      }
+      if (body) fit(ctx, body, W, H, 1, breath, sway, st.speaking ? 1.05 : 1.02);
 
-      // celebrate shimmer
-      if (st.celebrating || st.mode === "celebrate") {
+      if (st.celebrating) {
         ctx.save();
-        ctx.globalAlpha = 0.18 + 0.1 * Math.abs(Math.sin(tRef.current * 6));
+        ctx.globalAlpha = 0.22 + 0.12 * Math.abs(Math.sin(t * 7));
         ctx.fillStyle = "#ffd56a";
-        for (let i = 0; i < 8; i++) {
-          const x = 30 + ((i * 47 + tRef.current * 40) % (W - 60));
-          const y = 40 + ((i * 73 + Math.sin(tRef.current + i) * 20) % (H - 80));
+        for (let i = 0; i < 10; i++) {
+          const x = 24 + ((i * 53 + t * 55) % (W - 48));
+          const y = 30 + ((i * 79 + Math.sin(t * 2 + i) * 28) % (H - 60));
           ctx.beginPath();
-          ctx.arc(x, y, 3 + (i % 3), 0, Math.PI * 2);
+          ctx.arc(x, y, 2.5 + (i % 3), 0, Math.PI * 2);
           ctx.fill();
         }
         ctx.restore();
       }
 
-      // gold frame
-      ctx.strokeStyle = st.celebrating ? "#ffe08a" : "#ffc85a";
-      ctx.lineWidth = st.celebrating ? 5 : 4;
-      ctx.strokeRect(8, 8, W - 16, H - 16);
+      // vignette
+      const vig = ctx.createRadialGradient(W / 2, H / 2, H * 0.25, W / 2, H / 2, H * 0.75);
+      vig.addColorStop(0, "rgba(0,0,0,0)");
+      vig.addColorStop(1, "rgba(0,0,0,0.35)");
+      ctx.fillStyle = vig;
+      ctx.fillRect(0, 0, W, H);
 
-      // blink schedule
-      const blinkGap = st.speaking ? 4200 : 3200;
-      if (now - lastBlink > blinkGap + Math.random() * 1400) {
+      if (now - lastBlink > (st.speaking ? 4500 : 3000) + Math.random() * 1200) {
         lastBlink = now;
-        blinkUntilRef.current = now + 110;
+        blinkUntilRef.current = now + 100;
       }
 
-      // voice energy bars
-      const colors = ["#ff5a6a", "#ffd84a", "#6ec8ff", "#ff8ab8", "#2ec4b6", "#ffe08a"];
-      for (let i = 0; i < 6; i++) {
-        const bh =
-          6 +
-          st.mouthEnergy * 30 * (0.4 + 0.6 * Math.abs(Math.sin(tRef.current * 18 + i * 0.9)));
-        ctx.fillStyle = colors[i] as string;
-        const x = 36 + i * 28;
-        ctx.beginPath();
-        if (typeof ctx.roundRect === "function") {
-          ctx.roundRect(x, H - 36 - bh, 16, bh, 4);
-        } else {
-          ctx.rect(x, H - 36 - bh, 16, bh);
-        }
-        ctx.fill();
+      // voice bars
+      for (let i = 0; i < 7; i++) {
+        const bh = 5 + m * 34 * (0.35 + 0.65 * Math.abs(Math.sin(t * 17 + i)));
+        ctx.fillStyle = ["#ff5a6a", "#ffd84a", "#6ec8ff", "#ff8ab8", "#2ec4b6", "#ffe08a", "#9ad7ff"][i]!;
+        const x = 28 + i * 22;
+        ctx.fillRect(x, H - 28 - bh, 12, bh);
       }
 
       raf = requestAnimationFrame(draw);
@@ -211,79 +199,53 @@ export function AliveTeacherStage({
     return () => cancelAnimationFrame(raf);
   }, [teacherId]);
 
-  const readyLabel = gender === "female" ? "جاهزة للتفاعل" : "جاهز للتفاعل";
-  const speakLabel = gender === "female" ? "تتكلم الآن…" : "يتحدث الآن…";
-  const listenLabel = gender === "female" ? "تستمع إليك…" : "يستمع إليك…";
-  const celebLabel = "يحتفل بنجاحك!";
+  const ready = gender === "female" ? "جاهزة" : "جاهز";
+  const speak = gender === "female" ? "تشرح الآن" : "يشرح الآن";
+  const listen = gender === "female" ? "تستمع" : "يستمع";
 
   return (
-    <div style={{ position: "relative", width: "100%", height: "100%" }}>
+    <div style={{ position: "relative", width: "100%", height: "100%", minHeight: 480 }}>
       <canvas
         ref={canvasRef}
-        width={420}
-        height={520}
+        width={540}
+        height={720}
         style={{
           width: "100%",
           height: "100%",
-          borderRadius: 24,
           display: "block",
-          background: "#122033",
-          boxShadow: celebrating
-            ? "0 0 0 3px rgba(255,216,74,0.55), 0 18px 40px rgba(15,23,40,0.35)"
-            : "0 18px 40px rgba(15,23,40,0.28)",
+          objectFit: "cover",
         }}
       />
       <div
         style={{
           position: "absolute",
-          top: 14,
-          right: 14,
-          background: celebrating ? "#ffd84a" : "#ff5a6a",
-          color: celebrating ? "#1e2a3a" : "#fff",
-          fontWeight: 800,
-          fontSize: 12,
-          padding: "6px 10px",
-          borderRadius: 999,
-          letterSpacing: "0.04em",
-        }}
-      >
-        {celebrating ? "MASTER MOVE" : "AI LIVE"}
-      </div>
-      <div
-        style={{
-          position: "absolute",
-          bottom: 48,
-          left: 0,
-          right: 0,
-          textAlign: "center",
+          insetInline: 0,
+          bottom: 0,
+          padding: "48px 20px 22px",
+          background: "linear-gradient(transparent, rgba(8,12,20,0.88) 55%)",
           color: "#fff8e8",
-          fontWeight: 800,
-          fontSize: 20,
-          textShadow: "0 2px 8px rgba(0,0,0,0.45)",
-        }}
-      >
-        {nameAr}
-      </div>
-      <div
-        style={{
-          position: "absolute",
-          bottom: 26,
-          left: 0,
-          right: 0,
           textAlign: "center",
-          color: "#ffd84a",
-          fontSize: 13,
-          fontWeight: 700,
         }}
       >
-        {celebrating || mode === "celebrate"
-          ? celebLabel
-          : speaking
-            ? speakLabel
-            : listening
-              ? listenLabel
-              : readyLabel}
-        {highlightWord ? ` · ${highlightWord}` : ""}
+        <div
+          style={{
+            fontFamily: "var(--font-teacher-ar), 'Noto Kufi Arabic', sans-serif",
+            fontWeight: 800,
+            fontSize: "clamp(1.4rem, 3vw, 1.9rem)",
+            letterSpacing: "-0.02em",
+          }}
+        >
+          {nameAr}
+        </div>
+        <div style={{ marginTop: 4, color: "#ffd84a", fontWeight: 700, fontSize: 14 }}>
+          {celebrating
+            ? "لحظة إتقان"
+            : speaking
+              ? speak
+              : listening
+                ? listen
+                : ready}
+        </div>
       </div>
     </div>
   );
