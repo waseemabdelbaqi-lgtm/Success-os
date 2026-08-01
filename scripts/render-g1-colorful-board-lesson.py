@@ -167,13 +167,66 @@ def font(path: str, size: int) -> ImageFont.FreeTypeFont:
     return ImageFont.load_default()
 
 
-def load_pose(name: str, height: int = 520) -> Image.Image:
+def cutout_sage_bg(img: Image.Image) -> Image.Image:
+    """Remove flat sage studio background so teacher sits cleanly on stage."""
+    arr = np.array(img.convert("RGBA")).astype(np.float32)
+    r, g, b = arr[:, :, 0], arr[:, :, 1], arr[:, :, 2]
+    # studio bg ~ RGB(173,176,147)
+    dist = np.sqrt((r - 173) ** 2 + (g - 176) ** 2 + (b - 147) ** 2)
+    alpha = np.where(dist < 38, 0, np.where(dist < 58, ((dist - 38) / 20) * 255, 255))
+    arr[:, :, 3] = np.minimum(arr[:, :, 3], alpha)
+    return Image.fromarray(arr.astype(np.uint8), "RGBA")
+
+
+def load_pose(name: str, height: int = 440) -> Image.Image:
     path = POSES / f"teacher-{name}.png"
     if not path.exists():
         path = POSES / "teacher-talk.png"
-    img = Image.open(path).convert("RGBA")
+    img = cutout_sage_bg(Image.open(path).convert("RGBA"))
     ratio = height / img.height
     img = img.resize((max(1, int(img.width * ratio)), height), Image.Resampling.LANCZOS)
+    return img
+
+
+# Mouth center on source 1024×1536 talk pose (calibrated on lip pixels)
+MOUTH_SRC = (540, 506)
+
+
+def apply_lip_sync(pose_img: Image.Image, mouth: float, t: float) -> Image.Image:
+    """Open/close the illustrated mouth by stretching the mouth band with audio RMS."""
+    img = pose_img.copy().convert("RGBA")
+    w, h = img.size
+    scale = h / 1536.0
+    mx = int(MOUTH_SRC[0] * scale)
+    my = int(MOUTH_SRC[1] * scale)
+
+    open_amt = max(0.0, min(1.0, mouth))
+    if open_amt > 0.08:
+        open_amt = min(1.0, 0.70 * open_amt + 0.30 * abs(math.sin(t * 30)))
+    else:
+        return img
+
+    half_w = int(40 * scale)
+    top = max(0, my - int(14 * scale))
+    bot = min(h, my + int(18 * scale))
+    left = max(0, mx - half_w)
+    right = min(w, mx + half_w)
+    band = img.crop((left, top, right, bot))
+    if band.height < 4:
+        return img
+
+    # jaw drop: stretch band taller; visible open/close with speech energy
+    extra = int(band.height * (0.25 + 0.90 * open_amt))
+    stretched = band.resize((band.width, band.height + extra), Image.Resampling.LANCZOS)
+    mask = Image.new("L", stretched.size, 0)
+    md = ImageDraw.Draw(mask)
+    md.rounded_rectangle(
+        (1, 1, stretched.width - 2, stretched.height - 2),
+        radius=max(4, int(8 * scale)),
+        fill=255,
+    )
+    mask = mask.filter(ImageFilter.GaussianBlur(radius=max(1, int(1.5 * scale))))
+    img.paste(stretched, (left, top), mask)
     return img
 
 
@@ -396,12 +449,29 @@ def draw_board(img: Image.Image, board: dict, progress: float, mouth: float):
             )
 
 
+def draw_caption(img: Image.Image, text: str):
+    """Large readable caption of what the teacher is saying right now."""
+    d = ImageDraw.Draw(img)
+    # keep caption short on screen
+    short = text if len(text) <= 54 else text[:52] + "…"
+    box = (430, HEIGHT - 118, WIDTH - 28, HEIGHT - 70)
+    d.rounded_rectangle(box, radius=12, fill=(20, 40, 34))
+    d.text(
+        ((box[0] + box[2]) // 2, (box[1] + box[3]) // 2),
+        short,
+        font=font(FONT_AR_B, 18),
+        fill=CHALK,
+        anchor="mm",
+    )
+
+
 def draw_teacher_stage(
     img: Image.Image,
     pose_img: Image.Image,
     mouth: float,
     pose_name: str,
-    progress: float,
+    t: float,
+    caption: str,
 ):
     d = ImageDraw.Draw(img)
     # stage panel
@@ -409,35 +479,36 @@ def draw_teacher_stage(
     d.rounded_rectangle((34, 92, 398, 150), radius=14, fill=(255, 236, 210))
     d.text((216, 121), "المعلمة سارة", font=font(FONT_AR_B, 24), fill=INK, anchor="mm")
 
-    # bob while talking
-    bob = int(4 * math.sin(progress * 14) * (0.4 + mouth))
-    px = 216 - pose_img.width // 2
-    py = 175 + bob
-    # soft shadow
-    shadow = Image.new("RGBA", (pose_img.width, 28), (0, 0, 0, 0))
+    # gentle sway only (no jumpy bob)
+    sway = int(2 * math.sin(t * 1.4))
+    px = 216 - pose_img.width // 2 + sway
+    py = 160
+
+    shadow = Image.new("RGBA", (pose_img.width, 24), (0, 0, 0, 0))
     sd = ImageDraw.Draw(shadow)
-    sd.ellipse((10, 0, pose_img.width - 10, 26), fill=(0, 0, 0, 45))
+    sd.ellipse((8, 0, pose_img.width - 8, 22), fill=(0, 0, 0, 35))
     img.paste(shadow, (px, py + pose_img.height - 18), shadow)
 
-    teacher = pose_img.copy()
-    if mouth > 0.12:
-        # slight brightness pulse = “alive” speaking energy
-        teacher = ImageEnhance.Brightness(teacher).enhance(1.0 + 0.04 * mouth)
-
+    teacher = apply_lip_sync(pose_img, mouth, t)
     img.paste(teacher, (px, py), teacher)
 
-    # mouth / voice bars
-    bar_y = HEIGHT - 125
-    d.text((216, bar_y - 18), "تتكلم الآن" if mouth > 0.12 else "…", font=font(FONT_AR, 16), fill=(120, 90, 70), anchor="mm")
+    # voice meter under teacher (not on her body)
+    bar_y = HEIGHT - 100
+    d.text(
+        (216, bar_y - 16),
+        "تتكلم الآن" if mouth > 0.12 else "…",
+        font=font(FONT_AR, 14),
+        fill=(120, 90, 70),
+        anchor="mm",
+    )
     for i in range(7):
-        h = int(8 + mouth * 28 * abs(math.sin(progress * 18 + i)))
+        bh = int(5 + mouth * 22 * (0.55 + 0.45 * abs(math.sin(t * 22 + i))))
         color = (70, 170, 120) if i % 2 == 0 else ACCENT
         x = 150 + i * 20
-        d.rounded_rectangle((x, bar_y + 30 - h, x + 12, bar_y + 30), radius=4, fill=color)
+        d.rounded_rectangle((x, bar_y + 22 - bh, x + 12, bar_y + 22), radius=4, fill=color)
 
-    # pose label
-    labels = {"talk": "تشرح", "write": "تكتب على السبورة", "point": "تشير للمثال", "idle": "تستمع"}
-    d.text((216, HEIGHT - 85), labels.get(pose_name, ""), font=font(FONT_AR, 15), fill=(140, 110, 90), anchor="mm")
+    if caption:
+        draw_caption(img, caption)
 
 
 def draw_progress(img: Image.Image, t: float, total: float, beat_idx: int, beat_count: int):
@@ -461,10 +532,10 @@ async def synth_beat(text: str, out_mp3: Path):
 
 def build_audio():
     AUDIO_DIR.mkdir(parents=True, exist_ok=True)
-    gap = AudioSegment.silent(duration=450)
-    full = AudioSegment.silent(duration=300)
+    gap = AudioSegment.silent(duration=400)
+    full = AudioSegment.silent(duration=250)
     timeline = []
-    cursor_ms = 300
+    cursor_ms = 250
 
     print(f"Voice: {VOICE}")
     for i, beat in enumerate(BEATS, start=1):
@@ -472,18 +543,27 @@ def build_audio():
         print(f"  TTS beat {i}: {beat['id']}")
         asyncio.run(synth_beat(beat["say"], mp3))
         seg = AudioSegment.from_file(mp3)
-        # normalize a bit for clarity
-        seg = seg.apply_gain(-seg.max_dBFS - 1.5) if seg.max_dBFS != float("-inf") else seg
+        # Browser-friendly audio: 48kHz stereo + loud clear level
+        seg = seg.set_frame_rate(48000).set_channels(2)
+        if seg.max_dBFS != float("-inf"):
+            # target ~-14 dBFS average, avoid clipping
+            seg = seg.apply_gain(-seg.dBFS - 14.0)
+            if seg.max_dBFS > -1.0:
+                seg = seg.apply_gain(-1.0 - seg.max_dBFS)
         start = cursor_ms / 1000.0
         end = (cursor_ms + len(seg)) / 1000.0
         timeline.append({**beat, "start": start, "end": end, "index": i})
         full += seg + gap
         cursor_ms += len(seg) + len(gap)
 
+    full = full.set_frame_rate(48000).set_channels(2)
     wav = AUDIO_DIR / "full_narration.wav"
-    full.export(wav, format="wav")
-    print(f"Audio total: {len(full)/1000:.1f}s")
-    return timeline, wav, len(full) / 1000.0
+    full.export(wav, format="wav", parameters=["-ar", "48000"])
+    # also keep mp3 sidecar for players that struggle with wav probing
+    mp3_full = AUDIO_DIR / "full_narration.mp3"
+    full.export(mp3_full, format="mp3", bitrate="192k")
+    print(f"Audio total: {len(full)/1000:.1f}s | dBFS={full.dBFS:.1f} | {full.channels}ch {full.frame_rate}Hz")
+    return timeline, wav, mp3_full, len(full) / 1000.0
 
 
 def load_rms(wav: Path, fps: int = FPS) -> np.ndarray:
@@ -505,17 +585,23 @@ def load_rms(wav: Path, fps: int = FPS) -> np.ndarray:
     return rms
 
 
+def smooth_rms(rms: np.ndarray, win: int = 3) -> np.ndarray:
+    if len(rms) < 3:
+        return rms
+    k = np.ones(win) / win
+    pad = win // 2
+    padded = np.pad(rms, (pad, pad), mode="edge")
+    return np.convolve(padded, k, mode="valid")[: len(rms)]
+
+
 def render_frames(timeline, total_duration, rms):
     if FRAMES_DIR.exists():
         shutil.rmtree(FRAMES_DIR)
     FRAMES_DIR.mkdir(parents=True)
 
-    poses = {
-        "talk": load_pose("talk"),
-        "write": load_pose("write"),
-        "point": load_pose("point"),
-        "idle": load_pose("idle") if (POSES / "teacher-idle.png").exists() else load_pose("talk"),
-    }
+    # Prefer talk pose for natural lip-sync; point only briefly for emphasis
+    talk = load_pose("talk")
+    point = load_pose("point")
 
     total_frames = int(math.ceil(total_duration * FPS))
     print(f"Rendering {total_frames} frames…")
@@ -532,20 +618,23 @@ def render_frames(timeline, total_duration, rms):
         dur = max(0.05, beat["end"] - beat["start"])
         progress = max(0.0, min(1.0, (t - beat["start"]) / dur))
         mouth = float(rms[fi]) if fi < len(rms) else 0.0
-        # boost mouth during beat speech window
-        if beat["start"] <= t <= beat["end"]:
-            mouth = max(mouth, 0.25)
+        speaking = beat["start"] <= t <= beat["end"]
+        if speaking:
+            # keep lips lively while TTS is active even in soft syllables
+            mouth = max(mouth, 0.22)
         else:
-            mouth *= 0.3
+            mouth *= 0.15
 
-        pose_name = beat.get("pose", "talk")
-        if progress > 0.85 and pose_name == "write":
-            pose_name = "talk"
-        pose_img = poses.get(pose_name, poses["talk"])
+        # mostly talk; short point gesture mid-beat on "point" beats
+        pose_name = "talk"
+        pose_img = talk
+        if beat.get("pose") == "point" and 0.35 < progress < 0.65:
+            pose_name = "point"
+            pose_img = point
 
         frame = classroom_base()
         draw_board(frame, beat["board"], progress, mouth)
-        draw_teacher_stage(frame, pose_img, mouth, pose_name, progress)
+        draw_teacher_stage(frame, pose_img, mouth, pose_name, t, beat["say"] if speaking else "")
         draw_progress(frame, t, total_duration, beat["index"], len(timeline))
         frame.save(FRAMES_DIR / f"frame_{fi:06d}.jpg", quality=88)
         if fi % 120 == 0:
@@ -553,24 +642,25 @@ def render_frames(timeline, total_duration, rms):
     print(f"Done {total_frames} frames")
 
 
-def compose_video(wav: Path):
-    print("Composing MP4…")
+def compose_video(audio_path: Path):
+    print("Composing MP4 (stereo AAC 48kHz)…")
     OUTPUT_VIDEO.parent.mkdir(parents=True, exist_ok=True)
     cmd = [
         "ffmpeg", "-y",
         "-framerate", str(FPS),
         "-i", str(FRAMES_DIR / "frame_%06d.jpg"),
-        "-i", str(wav),
+        "-i", str(audio_path),
         "-c:v", "libx264", "-preset", "veryfast", "-crf", "20",
         "-pix_fmt", "yuv420p",
-        "-c:a", "aac", "-b:a", "192k",
+        "-c:a", "aac", "-b:a", "192k", "-ar", "48000", "-ac", "2",
+        "-af", "loudnorm=I=-14:TP=-1.5:LRA=11",
         "-shortest",
         "-movflags", "+faststart",
         str(OUTPUT_VIDEO),
     ]
     r = subprocess.run(cmd, capture_output=True, text=True)
     if r.returncode != 0:
-        print(r.stderr[-1000:])
+        print(r.stderr[-1200:])
         raise SystemExit(1)
     print(f"Video: {OUTPUT_VIDEO} ({OUTPUT_VIDEO.stat().st_size} bytes)")
 
@@ -584,7 +674,7 @@ def main():
     PUBLIC_DIR.mkdir(parents=True, exist_ok=True)
     ARTIFACT.mkdir(parents=True, exist_ok=True)
 
-    timeline, wav, total = build_audio()
+    timeline, wav, mp3_full, total = build_audio()
     (BASE / "timeline.json").write_text(
         json.dumps(
             [
@@ -609,22 +699,26 @@ def main():
         encoding="utf-8",
     )
 
-    rms = load_rms(wav)
+    rms = smooth_rms(load_rms(wav))
     render_frames(timeline, total, rms)
-    compose_video(wav)
+    compose_video(mp3_full)
 
-    first = sorted(FRAMES_DIR.glob("frame_*.jpg"))[0]
+    # mid-lesson frame as poster (shows open mouth + board)
+    mid = FRAMES_DIR / f"frame_{int(total * FPS * 0.35):06d}.jpg"
+    first = mid if mid.exists() else sorted(FRAMES_DIR.glob("frame_*.jpg"))[0]
     shutil.copy2(first, BASE / "poster.jpg")
     for dest in (PUBLIC_DIR, ARTIFACT):
         shutil.copy2(OUTPUT_VIDEO, dest / OUTPUT_VIDEO.name)
         shutil.copy2(BASE / "poster.jpg", dest / "jordan-g1-colorful-board-poster.jpg")
+    # dedicated loudness-checked artifact name for chat playback
+    shutil.copy2(OUTPUT_VIDEO, ARTIFACT / "jordan-g1-colorful-board-lesson.mp4")
 
     gif = ARTIFACT / "jordan-g1-colorful-board-preview.gif"
     subprocess.run(
         [
             "ffmpeg", "-y", "-i", str(OUTPUT_VIDEO),
-            "-vf", "fps=10,scale=480:-1:flags=lanczos",
-            "-t", "8", "-an", str(gif),
+            "-vf", "fps=12,scale=480:-1:flags=lanczos",
+            "-t", "6", "-an", str(gif),
         ],
         check=True,
         capture_output=True,
@@ -633,8 +727,10 @@ def main():
     shutil.rmtree(FRAMES_DIR, ignore_errors=True)
     for p in AUDIO_DIR.glob("beat_*.mp3"):
         p.unlink(missing_ok=True)
-    # keep wav for HeyGen audio upload option; actually drop to keep repo light
     wav.unlink(missing_ok=True)
+    # keep mp3_full for debugging audio; copy to artifacts then remove from repo tree
+    shutil.copy2(mp3_full, ARTIFACT / "jordan-g1-colorful-board-audio.mp3")
+    mp3_full.unlink(missing_ok=True)
 
     probe = subprocess.run(
         [
