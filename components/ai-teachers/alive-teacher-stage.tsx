@@ -2,7 +2,7 @@
 
 import { useEffect, useRef } from "react";
 
-export type TeacherPose = "idle" | "talk" | "point" | "write" | "gesture";
+export type ClassroomPose = "stand" | "point" | "write";
 
 type Props = {
   teacherId: "sara" | "ali";
@@ -10,13 +10,16 @@ type Props = {
   listening: boolean;
   celebrating?: boolean;
   mouthEnergy: number;
-  pose: TeacherPose;
+  pose: ClassroomPose;
   nameAr: string;
   gender: "female" | "male";
+  /** When true, fills the classroom column edge-to-edge */
+  cinematic?: boolean;
 };
 
 /**
- * Cinematic photoreal stage: pose pack + mouth morph + breath presence.
+ * Real-teacher stage: classroom standing poses (stand/point/write)
+ * with breath + speech energy — feels like a teacher beside the board.
  */
 export function AliveTeacherStage({
   teacherId,
@@ -27,10 +30,10 @@ export function AliveTeacherStage({
   pose,
   nameAr,
   gender,
+  cinematic = true,
 }: Props) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const imgsRef = useRef<Record<string, HTMLImageElement>>({});
-  const blinkUntilRef = useRef(0);
   const stateRef = useRef({ speaking, listening, celebrating, mouthEnergy, pose });
 
   useEffect(() => {
@@ -40,17 +43,12 @@ export function AliveTeacherStage({
   useEffect(() => {
     const base = `/media/ai-teachers/${teacherId}`;
     const keys: Record<string, string> = {
-      closed: `${base}/flagship/mouth-closed.png`,
-      open: `${base}/flagship/mouth-open.png`,
-      wide: `${base}/flagship/mouth-wide.png`,
-      gesture: `${base}/flagship/gesture.png`,
-      blink: `${base}/alive/blink.png`,
-      listen: `${base}/alive/listen.png`,
-      half: `${base}/alive/half.png`,
+      stand: `${base}/classroom/stand.png`,
+      point: `${base}/classroom/point.png`,
+      write: `${base}/classroom/write.png`,
+      // fallbacks
       idle: `${base}/poses/idle.png`,
-      talkPose: `${base}/poses/talk.png`,
-      point: `${base}/poses/point.png`,
-      write: `${base}/poses/write.png`,
+      talk: `${base}/poses/talk.png`,
     };
     const loaded: Record<string, HTMLImageElement> = {};
     let pending = Object.keys(keys).length;
@@ -80,26 +78,7 @@ export function AliveTeacherStage({
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
     let raf = 0;
-    let lastBlink = performance.now();
     let t = 0;
-
-    const fit = (
-      target: CanvasRenderingContext2D,
-      img: HTMLImageElement,
-      W: number,
-      H: number,
-      alpha: number,
-      breath: number,
-      sway: number,
-      zoom = 1,
-    ) => {
-      target.globalAlpha = alpha;
-      const scale = Math.max(W / img.width, H / img.height) * zoom * (1 + breath * 0.01);
-      const dw = img.width * scale;
-      const dh = img.height * scale;
-      target.drawImage(img, (W - dw) / 2 + sway, (H - dh) / 2 + breath * 4 + H * 0.02, dw, dh);
-      target.globalAlpha = 1;
-    };
 
     const draw = (now: number) => {
       t = now / 1000;
@@ -108,63 +87,65 @@ export function AliveTeacherStage({
       const st = stateRef.current;
       ctx.clearRect(0, 0, W, H);
 
-      // classroom depth backdrop
-      const bg = ctx.createLinearGradient(0, 0, 0, H);
-      bg.addColorStop(0, "#1c2a3d");
-      bg.addColorStop(0.55, "#121c2c");
-      bg.addColorStop(1, "#0a1018");
-      ctx.fillStyle = bg;
+      // soft classroom wall behind teacher
+      const wall = ctx.createLinearGradient(0, 0, 0, H);
+      wall.addColorStop(0, "#d8c3a4");
+      wall.addColorStop(0.55, "#c4ad8c");
+      wall.addColorStop(1, "#8a7358");
+      ctx.fillStyle = wall;
       ctx.fillRect(0, 0, W, H);
 
-      const spot = ctx.createRadialGradient(W * 0.48, H * 0.38, 30, W * 0.5, H * 0.5, W * 0.62);
-      spot.addColorStop(0, st.celebrating ? "rgba(255,210,120,0.22)" : "rgba(255,220,160,0.12)");
-      spot.addColorStop(1, "rgba(0,0,0,0)");
-      ctx.fillStyle = spot;
+      // window light
+      const light = ctx.createRadialGradient(W * 0.2, H * 0.15, 20, W * 0.35, H * 0.35, W * 0.7);
+      light.addColorStop(0, "rgba(255,248,220,0.35)");
+      light.addColorStop(1, "rgba(255,248,220,0)");
+      ctx.fillStyle = light;
       ctx.fillRect(0, 0, W, H);
 
-      const breath = Math.sin(t * (st.speaking ? 2.4 : 1.1));
-      const sway = Math.sin(t * 1.2) * (st.speaking ? 5 : 2.2);
       const imgs = imgsRef.current;
-      const m = Math.max(0, Math.min(1, st.mouthEnergy));
+      const frame =
+        (st.pose === "point" && imgs.point) ||
+        (st.pose === "write" && imgs.write) ||
+        imgs.stand ||
+        imgs.talk ||
+        imgs.idle;
 
-      // choose base body pose
-      let body: HTMLImageElement | undefined;
-      if (now < blinkUntilRef.current && imgs.blink) body = imgs.blink;
-      else if (st.listening && !st.speaking && imgs.listen) body = imgs.listen;
-      else if (st.pose === "point" && imgs.point) body = imgs.point;
-      else if (st.pose === "write" && imgs.write) body = imgs.write;
-      else if (st.pose === "gesture" && imgs.gesture) body = imgs.gesture;
-      else if (st.speaking && m > 0.12 && imgs.closed && imgs.open && imgs.wide) {
-        // mouth morph while speaking
-        const off = document.createElement("canvas");
-        off.width = W;
-        off.height = H;
-        const octx = off.getContext("2d");
-        if (octx) {
-          if (m < 0.45) {
-            const k = m / 0.45;
-            fit(octx, imgs.closed, W, H, 1, breath, sway, 1.05);
-            fit(octx, imgs.open, W, H, k, breath, sway, 1.05);
-          } else {
-            const k = (m - 0.45) / 0.55;
-            fit(octx, imgs.open, W, H, 1, breath, sway, 1.05);
-            fit(octx, imgs.wide, W, H, Math.min(1, k), breath, sway, 1.05);
-          }
-          ctx.drawImage(off, 0, 0);
+      if (frame) {
+        const m = Math.max(0, Math.min(1, st.mouthEnergy));
+        const breath = Math.sin(t * (st.speaking ? 2.3 : 1.05)) * (st.speaking ? 1 : 0.7);
+        const sway = Math.sin(t * 1.15) * (st.speaking ? 3.5 : 1.6);
+        const zoom = 1.02 + (st.speaking ? m * 0.015 : 0) + (st.listening ? 0.01 : 0);
+        const scale = Math.max(W / frame.width, H / frame.height) * zoom;
+        const dw = frame.width * scale;
+        const dh = frame.height * scale;
+        const dx = (W - dw) / 2 + sway;
+        const dy = (H - dh) / 2 + breath * 3 + H * 0.04;
+
+        // soft ground shadow
+        ctx.fillStyle = "rgba(40,28,16,0.22)";
+        ctx.beginPath();
+        ctx.ellipse(W * 0.5, H * 0.92, W * 0.28, 18, 0, 0, Math.PI * 2);
+        ctx.fill();
+
+        ctx.drawImage(frame, dx, dy, dw, dh);
+
+        // speech warmth overlay
+        if (st.speaking && m > 0.08) {
+          ctx.save();
+          ctx.globalAlpha = 0.05 + m * 0.08;
+          ctx.fillStyle = "#ffe08a";
+          ctx.fillRect(0, 0, W, H);
+          ctx.restore();
         }
-        body = undefined;
-      } else if (imgs.closed) body = imgs.closed;
-      else body = imgs.idle || imgs.talkPose;
-
-      if (body) fit(ctx, body, W, H, 1, breath, sway, st.speaking ? 1.05 : 1.02);
+      }
 
       if (st.celebrating) {
         ctx.save();
-        ctx.globalAlpha = 0.22 + 0.12 * Math.abs(Math.sin(t * 7));
+        ctx.globalAlpha = 0.2 + 0.1 * Math.abs(Math.sin(t * 6));
         ctx.fillStyle = "#ffd56a";
-        for (let i = 0; i < 10; i++) {
-          const x = 24 + ((i * 53 + t * 55) % (W - 48));
-          const y = 30 + ((i * 79 + Math.sin(t * 2 + i) * 28) % (H - 60));
+        for (let i = 0; i < 8; i++) {
+          const x = 20 + ((i * 61 + t * 40) % (W - 40));
+          const y = 40 + ((i * 83 + Math.sin(t + i) * 24) % (H - 80));
           ctx.beginPath();
           ctx.arc(x, y, 2.5 + (i % 3), 0, Math.PI * 2);
           ctx.fill();
@@ -172,24 +153,21 @@ export function AliveTeacherStage({
         ctx.restore();
       }
 
-      // vignette
-      const vig = ctx.createRadialGradient(W / 2, H / 2, H * 0.25, W / 2, H / 2, H * 0.75);
-      vig.addColorStop(0, "rgba(0,0,0,0)");
-      vig.addColorStop(1, "rgba(0,0,0,0.35)");
-      ctx.fillStyle = vig;
-      ctx.fillRect(0, 0, W, H);
-
-      if (now - lastBlink > (st.speaking ? 4500 : 3000) + Math.random() * 1200) {
-        lastBlink = now;
-        blinkUntilRef.current = now + 100;
+      // listening cue ring
+      if (st.listening && !st.speaking) {
+        ctx.strokeStyle = "rgba(46, 196, 182, 0.7)";
+        ctx.lineWidth = 3;
+        ctx.beginPath();
+        ctx.arc(W * 0.5, H * 0.42, 40 + Math.sin(t * 4) * 6, 0, Math.PI * 2);
+        ctx.stroke();
       }
 
-      // voice bars
-      for (let i = 0; i < 7; i++) {
-        const bh = 5 + m * 34 * (0.35 + 0.65 * Math.abs(Math.sin(t * 17 + i)));
-        ctx.fillStyle = ["#ff5a6a", "#ffd84a", "#6ec8ff", "#ff8ab8", "#2ec4b6", "#ffe08a", "#9ad7ff"][i]!;
-        const x = 28 + i * 22;
-        ctx.fillRect(x, H - 28 - bh, 12, bh);
+      // voice bars near feet
+      const m = st.mouthEnergy;
+      for (let i = 0; i < 6; i++) {
+        const bh = 4 + m * 26 * (0.4 + 0.6 * Math.abs(Math.sin(t * 16 + i)));
+        ctx.fillStyle = ["#c45c26", "#e6b35a", "#2a9d8f", "#e76f51", "#f4a261", "#264653"][i]!;
+        ctx.fillRect(24 + i * 18, H - 22 - bh, 10, bh);
       }
 
       raf = requestAnimationFrame(draw);
@@ -199,16 +177,37 @@ export function AliveTeacherStage({
     return () => cancelAnimationFrame(raf);
   }, [teacherId]);
 
-  const ready = gender === "female" ? "جاهزة" : "جاهز";
-  const speak = gender === "female" ? "تشرح الآن" : "يشرح الآن";
-  const listen = gender === "female" ? "تستمع" : "يستمع";
+  const ready = gender === "female" ? "جاهزة للحصة" : "جاهز للحصة";
+  const speak = gender === "female" ? "تشرح للصف" : "يشرح للصف";
+  const listen = gender === "female" ? "تستمع للطالب" : "يستمع للطالب";
+  const write = gender === "female" ? "تكتب على السبورة" : "يكتب على السبورة";
+  const point = gender === "female" ? "تشير للسبورة" : "يشير للسبورة";
+
+  const status = celebrating
+    ? "لحظة نجاح الصف"
+    : speaking
+      ? pose === "write"
+        ? write
+        : pose === "point"
+          ? point
+          : speak
+      : listening
+        ? listen
+        : ready;
 
   return (
-    <div style={{ position: "relative", width: "100%", height: "100%", minHeight: 480 }}>
+    <div
+      style={{
+        position: "relative",
+        width: "100%",
+        height: "100%",
+        minHeight: cinematic ? 520 : 420,
+      }}
+    >
       <canvas
         ref={canvasRef}
-        width={540}
-        height={720}
+        width={560}
+        height={780}
         style={{
           width: "100%",
           height: "100%",
@@ -221,8 +220,8 @@ export function AliveTeacherStage({
           position: "absolute",
           insetInline: 0,
           bottom: 0,
-          padding: "48px 20px 22px",
-          background: "linear-gradient(transparent, rgba(8,12,20,0.88) 55%)",
+          padding: "40px 16px 18px",
+          background: "linear-gradient(transparent, rgba(20,14,8,0.82) 55%)",
           color: "#fff8e8",
           textAlign: "center",
         }}
@@ -231,21 +230,12 @@ export function AliveTeacherStage({
           style={{
             fontFamily: "var(--font-teacher-ar), 'Noto Kufi Arabic', sans-serif",
             fontWeight: 800,
-            fontSize: "clamp(1.4rem, 3vw, 1.9rem)",
-            letterSpacing: "-0.02em",
+            fontSize: "clamp(1.35rem, 2.8vw, 1.85rem)",
           }}
         >
           {nameAr}
         </div>
-        <div style={{ marginTop: 4, color: "#ffd84a", fontWeight: 700, fontSize: 14 }}>
-          {celebrating
-            ? "لحظة إتقان"
-            : speaking
-              ? speak
-              : listening
-                ? listen
-                : ready}
-        </div>
+        <div style={{ marginTop: 4, color: "#ffd84a", fontWeight: 700, fontSize: 13 }}>{status}</div>
       </div>
     </div>
   );

@@ -1,4 +1,4 @@
-/** G1 count-to-three — master-teacher lesson beats for Sara & Ali. */
+/** G1 count-to-three — natural classroom lesson for Sara & Ali. */
 
 import type { TeacherPersona } from "@/lib/ai-teachers/master-coach";
 
@@ -23,13 +23,14 @@ export type CheckChoice = {
 export type LessonBeat = {
   id: string;
   mode: "talk" | "gesture" | "celebrate";
+  /** Preferred classroom body pose */
+  pose: "stand" | "point" | "write";
   say: string;
   board: {
     title: string;
     subtitle: string;
     cues: BoardCue[];
   };
-  /** Optional micro-check after the beat speech ends */
   check?: {
     prompt: string;
     choices: CheckChoice[];
@@ -39,50 +40,52 @@ export type LessonBeat = {
 export function buildG1CountLesson(persona: TeacherPersona): LessonBeat[] {
   const { nameAr, gender, style } = persona;
   const proud = gender === "male" ? "فخور" : "فخورة";
+  const kids = style === "warm" ? "يا أحلى صف" : "يا جماعة";
+
   const welcome =
     style === "warm"
-      ? `مرحبا يا أبطال! أنا ${nameAr}. اليوم نتعلّم العدّ حتى ثلاثة بطريقة ممتعة وواضحة. راقب السبورة، واضغط الأزرار أو كلّمني متى ما احتجت.`
-      : `أهلاً. أنا ${nameAr}. هدفنا اليوم: إتقان العدّ حتى ثلاثة بدقة وسرعة. تابع السبورة، واستخدم الأوامر أو الميكروفون.`;
+      ? `مرحبا ${kids}. أنا ${nameAr}. اليوم مثل أي حصة حقيقية: نركز، نشوف السبورة، ونعدّ مع بعض لحد ثلاثة. جاهزين؟`
+      : `أهلاً ${kids}. أنا ${nameAr}. خلينا نتعامل كأننا بصف حقيقي: تركيز، سبورة، وعدّ مضبوط لحد ثلاثة. يلا نبدأ.`;
 
   return [
     {
       id: "welcome",
       mode: "talk",
+      pose: "stand",
       say: welcome,
       board: {
         title: "العدّ حتى ثلاثة",
-        subtitle: "معلم ذكاء اصطناعي حي · الصف ١",
+        subtitle: "حصة صفّية حيّة · الصف ١",
         cues: [
-          { at: 0.05, type: "title" },
-          { at: 0.3, type: "subtitle" },
-          { at: 0.5, type: "stars", n: 3 },
-          { at: 0.72, type: "pointer", target: "number" },
-          { at: 0.85, type: "banner", text: "هيا نبدأ!" },
+          { at: 0.08, type: "title" },
+          { at: 0.35, type: "subtitle" },
+          { at: 0.58, type: "stars", n: 3 },
+          { at: 0.82, type: "banner", text: "افتحوا عيونكم على السبورة" },
         ],
       },
     },
     {
       id: "one",
       mode: "gesture",
+      pose: "write",
       say:
         style === "warm"
-          ? "انظر معي. هذا واحد. الرقم واحد يعني شيئاً واحداً فقط. أرسم تفاحة واحدة… واحد!"
-          : "ركز: واحد يساوي شيئاً واحداً. الرقم واحد. الكمية واحدة. طابق بينهما الآن.",
+          ? "شوفوا السبورة معي. برسم الرقم واحد. واحد يعني شيء واحد فقط. وهون تفاحة واحدة. عدّوا وراي: واحد."
+          : "ركزوا على السبورة. بكتب واحد. واحد يساوي كمية واحدة. تفاحة واحدة. عدّوا: واحد.",
       board: {
         title: "العدد واحد",
         subtitle: "1 = واحد",
         cues: [
-          { at: 0.05, type: "title" },
-          { at: 0.2, type: "big_number", n: 1, word: "واحد" },
-          { at: 0.35, type: "pointer", target: "number" },
-          { at: 0.5, type: "apples", n: 1 },
-          { at: 0.65, type: "pointer", target: "apples" },
-          { at: 0.8, type: "equation", text: "1 = واحد" },
-          { at: 0.9, type: "pointer", target: "equation" },
+          { at: 0.06, type: "title" },
+          { at: 0.22, type: "big_number", n: 1, word: "واحد" },
+          { at: 0.4, type: "pointer", target: "number" },
+          { at: 0.55, type: "apples", n: 1 },
+          { at: 0.72, type: "pointer", target: "apples" },
+          { at: 0.88, type: "equation", text: "1 = واحد" },
         ],
       },
       check: {
-        prompt: "كم تفاحة رسمنا؟",
+        prompt: "كم تفاحة على السبورة؟",
         choices: [
           { id: "a", label: "١ · واحد", correct: true },
           { id: "b", label: "٢ · اثنان", correct: false },
@@ -93,24 +96,25 @@ export function buildG1CountLesson(persona: TeacherPersona): LessonBeat[] {
     {
       id: "two",
       mode: "talk",
+      pose: "point",
       say:
         style === "warm"
-          ? "والآن اثنان. اثنان يعني شيئين معاً. نعدّ ببطء: واحد… اثنان. وأرسم تفاحتين جميلتين."
-          : "اثنان يساوي شيئين. نعدّ: واحد، اثنان. الكمية تطابق الرقم اثنين.",
+          ? "حلو. هلأ اثنان. يعني شيئين مع بعض. بصوّر تفاحتين، وبرجع أشير على الرقم. عدّوا وراي: واحد… اثنان."
+          : "تمام. الآن اثنان. شيئان معاً. تفاحتان، والرقم اثنان. عدّوا بدقة: واحد، اثنان.",
       board: {
         title: "العدد اثنان",
         subtitle: "2 = اثنان",
         cues: [
-          { at: 0.05, type: "title" },
-          { at: 0.2, type: "big_number", n: 2, word: "اثنان" },
+          { at: 0.06, type: "title" },
+          { at: 0.22, type: "big_number", n: 2, word: "اثنان" },
           { at: 0.4, type: "pointer", target: "number" },
-          { at: 0.52, type: "apples", n: 2 },
-          { at: 0.7, type: "pointer", target: "apples" },
-          { at: 0.85, type: "equation", text: "2 = اثنان" },
+          { at: 0.55, type: "apples", n: 2 },
+          { at: 0.74, type: "pointer", target: "apples" },
+          { at: 0.9, type: "equation", text: "2 = اثنان" },
         ],
       },
       check: {
-        prompt: "إذا رأيت شيئين، أي رقم؟",
+        prompt: "إذا شفت شيئين… الرقم كم؟",
         choices: [
           { id: "a", label: "١", correct: false },
           { id: "b", label: "٢", correct: true },
@@ -121,24 +125,25 @@ export function buildG1CountLesson(persona: TeacherPersona): LessonBeat[] {
     {
       id: "three",
       mode: "gesture",
+      pose: "write",
       say:
         style === "warm"
-          ? "وأخيراً ثلاثة! ثلاثة أشياء معاً. عدّوا بصوت عالٍ معي: واحد، اثنان، ثلاثة!"
-          : "ثلاثة يساوي ثلاث كميات. عدّ بدقة: واحد، اثنان، ثلاثة. ثبّت الإجابة في ذهنك.",
+          ? "وآخر عدد لليوم: ثلاثة. بكتب ثلاثة، وبرسم ثلاث تفاحات. بصوت عالي معي: واحد، اثنان، ثلاثة!"
+          : "آخر عدد: ثلاثة. بكتب الرقم، وبثبت ثلاث كميات. عدّوا بوضوح: واحد، اثنان، ثلاثة.",
       board: {
         title: "العدد ثلاثة",
         subtitle: "3 = ثلاثة",
         cues: [
-          { at: 0.05, type: "title" },
-          { at: 0.18, type: "big_number", n: 3, word: "ثلاثة" },
-          { at: 0.35, type: "pointer", target: "number" },
-          { at: 0.48, type: "apples", n: 3 },
-          { at: 0.68, type: "pointer", target: "apples" },
-          { at: 0.85, type: "equation", text: "3 = ثلاثة" },
+          { at: 0.06, type: "title" },
+          { at: 0.2, type: "big_number", n: 3, word: "ثلاثة" },
+          { at: 0.38, type: "pointer", target: "number" },
+          { at: 0.52, type: "apples", n: 3 },
+          { at: 0.72, type: "pointer", target: "apples" },
+          { at: 0.9, type: "equation", text: "3 = ثلاثة" },
         ],
       },
       check: {
-        prompt: "ثلاث نجوم تساوي…",
+        prompt: "ثلاث نجوم تعني…",
         choices: [
           { id: "a", label: "واحد", correct: false },
           { id: "b", label: "اثنان", correct: false },
@@ -149,46 +154,47 @@ export function buildG1CountLesson(persona: TeacherPersona): LessonBeat[] {
     {
       id: "practice",
       mode: "talk",
+      pose: "point",
       say:
         style === "warm"
-          ? "هيا نتمرّن كالأبطال! طابق الكمية مع الرقم: واحد، اثنان، ثلاثة. أنا معك خطوة بخطوة."
-          : "تمرين سريع: طابق كل كمية مع رقمها. الدقة أولاً، ثم السرعة.",
+          ? "هيا نراجع زي صف حقيقي. طابقوا الكمية مع الرقم: واحد، اثنان، ثلاثة. أنا ماشية معكم سطر سطر."
+          : "مراجعة صفّية سريعة. طابقوا كل كمية مع رقمها: واحد، اثنان، ثلاثة. الدقة قبل السرعة.",
       board: {
-        title: "تمرين الأبطال",
+        title: "مراجعة الصف",
         subtitle: "طابق الكمية مع الرقم",
         cues: [
-          { at: 0.06, type: "title" },
-          { at: 0.25, type: "practice_row", n: 1 },
-          { at: 0.45, type: "practice_row", n: 2 },
-          { at: 0.65, type: "practice_row", n: 3 },
-          { at: 0.78, type: "pointer", target: "practice" },
-          { at: 0.9, type: "banner", text: "ممتاز!" },
+          { at: 0.08, type: "title" },
+          { at: 0.28, type: "practice_row", n: 1 },
+          { at: 0.5, type: "practice_row", n: 2 },
+          { at: 0.72, type: "practice_row", n: 3 },
+          { at: 0.9, type: "banner", text: "ممتاز يا صف" },
         ],
       },
       check: {
-        prompt: "أي صف يساوي ثلاثة؟",
+        prompt: "أي صف يمثّل ثلاثة؟",
         choices: [
-          { id: "a", label: "صف الدائرة الواحدة", correct: false },
-          { id: "b", label: "صف الدائرتين", correct: false },
-          { id: "c", label: "صف الثلاث دوائر", correct: true },
+          { id: "a", label: "دائرة واحدة", correct: false },
+          { id: "b", label: "دائرتان", correct: false },
+          { id: "c", label: "ثلاث دوائر", correct: true },
         ],
       },
     },
     {
       id: "bye",
       mode: "celebrate",
+      pose: "stand",
       say:
         style === "warm"
-          ? `أحسنت يا بطل! تعلّمنا واحد، اثنان، ثلاثة. أنا ${proud} فيك جداً. إلى اللقاء — وعدني أن تعدّ كل يوم!`
-          : `أحسنت. أتقنت واحداً واثنين وثلاثة. أنا ${proud} بأدائك. كرّر التمرين غداً لتثبيت الإتقان.`,
+          ? `أحسنتم. تعلّمنا واحد، اثنان، ثلاثة مثل حصة كاملة. أنا ${proud} فيكم. خلصنا لليوم، وإلى اللقاء.`
+          : `أحسنتم. ثبتنا واحداً واثنين وثلاثة. أنا ${proud} بأدائكم. انتهت الحصة، وإلى اللقاء.`,
       board: {
-        title: "أحسنت!",
-        subtitle: "أنهيت درس العدّ بإتقان",
+        title: "انتهت الحصة",
+        subtitle: "أتقنت العدّ حتى ثلاثة",
         cues: [
-          { at: 0.05, type: "title" },
-          { at: 0.28, type: "summary" },
-          { at: 0.55, type: "stars", n: 5 },
-          { at: 0.82, type: "banner", text: "إلى اللقاء" },
+          { at: 0.08, type: "title" },
+          { at: 0.32, type: "summary" },
+          { at: 0.62, type: "stars", n: 5 },
+          { at: 0.86, type: "banner", text: "إلى اللقاء" },
         ],
       },
     },
@@ -196,7 +202,7 @@ export function buildG1CountLesson(persona: TeacherPersona): LessonBeat[] {
 }
 
 export const INTERACTIVE_COMMANDS = [
-  { id: "start", ar: "ابدأ الدرس", match: ["ابدأ", "ابدئي", "يلا", "start"] },
+  { id: "start", ar: "ابدأ الحصة", match: ["ابدأ", "ابدئي", "يلا", "الحصة", "start"] },
   { id: "next", ar: "التالي", match: ["التالي", "كمّل", "كمل", "بعدين", "next"] },
   { id: "repeat", ar: "أعد", match: ["أعد", "اعيد", "عيدها", "كرر", "repeat"] },
   { id: "simpler", ar: "أبسط", match: ["أبسط", "ابسط", "بسيط", "ما فهمت", "مش فاهم"] },

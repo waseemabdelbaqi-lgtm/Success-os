@@ -1,6 +1,5 @@
 /**
- * Master-coach layer — adaptive scaffolding that outpaces a typical human tutor:
- * instant rephrase levels, concrete examples, challenge stretch, praise with evidence.
+ * Classroom coach lines — sound like a real Jordanian teacher, respond faster.
  */
 
 export type CoachLevel = "simpler" | "example" | "challenge" | "celebrate" | "hint";
@@ -9,7 +8,6 @@ export type TeacherPersona = {
   id: "sara" | "ali";
   nameAr: string;
   gender: "female" | "male";
-  /** Warm Sara vs crisp Ali */
   style: "warm" | "crisp";
 };
 
@@ -27,30 +25,27 @@ export function coachLine(
   const ready = genderVerb(gender, "جاهز", "جاهزة");
 
   if (level === "simpler") {
-    if (style === "warm") {
-      return `لا بأس يا بطل. أنا ${nameAr} و${ready} أبسّطها لك. ${ctx.beatTitle}: ${ctx.beatSubtitle}. نعد ببطء معاً: واحد… اثنان… ثلاثة. كرّر ورائي.`;
-    }
-    return `ركز معي. ${ctx.beatTitle}. المعنى ببساطة: الرقم يساوي الكمية. واحد شيء، اثنان شيئان، ثلاثة أشياء. أعد الخطوة الآن.`;
+    return style === "warm"
+      ? `ولا يهمك. أنا ${nameAr} و${ready} أشرح أبطأ. ${ctx.beatTitle}. المعنى: نعد الأشياء. واحد… اثنان… ثلاثة. كرّر وراي بهدوء.`
+      : `تمام، نبسّط. ${ctx.beatTitle}. الرقم = الكمية. شيء واحد، شيئان، ثلاثة أشياء. أعد معي الآن.`;
   }
 
   if (level === "example") {
-    if (style === "warm") {
-      return `مثال من حياتنا: قلم واحد على الطاولة هو واحد. قلمان هما اثنان. ثلاثة أقلام هي ثلاثة. شوف السبورة وتابع معي.`;
-    }
-    return `مثال عملي: كرة واحدة = واحد. كرتان = اثنان. ثلاث كرات = ثلاثة. طابق الرقم مع الكمية فوراً.`;
+    return style === "warm"
+      ? `مثال من الصف: قلم واحد على الطاولة هو واحد. قلمان اثنان. ثلاثة أقلام ثلاثة. شوف السبورة وطابق.`
+      : `مثال عملي: كرة واحدة = واحد. كرتان = اثنان. ثلاث كرات = ثلاثة. طابق فوراً.`;
   }
 
   if (level === "challenge") {
-    return `تحدٍّ سريع: إذا رأيت تفاحتين، أي رقم؟ وإذا رأيت ثلاثة نجوم؟ قل الجواب بصوت عالٍ ثم اضغط التالي.`;
+    return `سؤال صفّي: إذا شفت تفاحتين، الرقم كم؟ وإذا شفت ثلاث نجوم؟ جاوب بصوت عالي ثم التالي.`;
   }
 
   if (level === "hint") {
-    return `تلميح: انظر إلى عدد الأشياء، لا إلى شكلها. الكمية هي السر.`;
+    return `تلميح المعلم: لا تركز على الشكل… ركز على العدد.`;
   }
 
-  // celebrate
   const stars = Math.min(5, Math.max(1, Math.round(ctx.mastery)));
-  return `أحسنت! أنا ${proud} فيك. حصلت على ${stars} من ٥ نجوم إتقان. ${ctx.beatTitle} صار أوضح الآن. هيا نكمل!`;
+  return `أحسنت. أنا ${proud} فيك. عندك ${stars} من ٥. ${ctx.beatTitle} صار أوضح. نكمل.`;
 }
 
 export function checkFeedback(
@@ -60,10 +55,10 @@ export function checkFeedback(
 ): string {
   if (correct) {
     return persona.style === "warm"
-      ? `ممتاز! جوابك «${answerLabel}» صحيح. أنت تتقدم بسرعة.`
-      : `صحيح. «${answerLabel}» هو الجواب الدقيق. ممتاز.`;
+      ? `صح عليك! «${answerLabel}» جواب صفّي ممتاز.`
+      : `صحيح. «${answerLabel}» هو الجواب. ممتاز.`;
   }
   return persona.style === "warm"
-    ? `قرّبنا! الجواب الصحيح هو «${answerLabel}». لا بأس — نتعلم بالمحاولة. هيا نعيدها معاً.`
-    : `ليس بعد. الجواب الصحيح «${answerLabel}». ركّز على الكمية ثم أعد.`;
+    ? `قرّبنا. الجواب الصحيح «${answerLabel}». عادي، هيك بنتعلم. نعيدها.`
+    : `ليس بعد. الصحيح «${answerLabel}». ركّز على الكمية وأعد.`;
 }

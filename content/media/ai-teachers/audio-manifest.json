@@ -4,6 +4,8 @@
     "sara": "ar-JO-SanaNeural",
     "ali": "ar-JO-TaimNeural"
   },
+  "rate": "-8%",
+  "style": "real-classroom",
   "lines": {
     "sara": [
       "welcome",

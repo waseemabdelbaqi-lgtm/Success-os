@@ -1,9 +1,16 @@
 "use client";
 
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import {
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+  type CSSProperties,
+} from "react";
 import {
   AliveTeacherStage,
-  type TeacherPose,
+  type ClassroomPose,
 } from "@/components/ai-teachers/alive-teacher-stage";
 import { LivingBoard } from "@/components/ai-teachers/living-board";
 import {
@@ -25,14 +32,14 @@ const TEACHERS: Record<TeacherId, TeacherPersona & { voiceHint: string }> = {
     nameAr: "المعلمة سارة",
     gender: "female",
     style: "warm",
-    voiceHint: "صوت عصبي Sana · أردني",
+    voiceHint: "صوت صفّي · Sana",
   },
   ali: {
     id: "ali",
     nameAr: "المعلم علي",
     gender: "male",
     style: "crisp",
-    voiceHint: "صوت عصبي Taim · أردني",
+    voiceHint: "صوت صفّي · Taim",
   },
 };
 
@@ -45,29 +52,16 @@ const BEAT_AUDIO: Record<string, string> = {
   bye: "bye",
 };
 
-function poseForBeat(beat: LessonBeat, speaking: boolean, progress: number): TeacherPose {
-  if (beat.mode === "celebrate") return "gesture";
-  if (beat.mode === "gesture") {
-    if (progress > 0.55 && progress < 0.85) return "write";
-    return speaking ? "point" : "gesture";
+function resolvePose(beat: LessonBeat, speaking: boolean, progress: number): ClassroomPose {
+  if (!speaking) {
+    if (beat.pose === "write" && progress > 0.85) return "stand";
+    return beat.pose;
   }
-  if (speaking) return "talk";
-  return "idle";
-}
-
-function pickArabicVoice(preferFemale: boolean): SpeechSynthesisVoice | null {
-  if (typeof window === "undefined" || !window.speechSynthesis) return null;
-  const voices = window.speechSynthesis.getVoices();
-  const ar = voices.filter((v) => /ar(-|_|$)|Arabic/i.test(`${v.lang} ${v.name}`));
-  if (preferFemale) {
-    return ar.find((v) => /female|sana|noura|salma|hoda/i.test(v.name)) || ar[0] || null;
-  }
-  return (
-    ar.find((v) => /male|taim|farid|hamid|naayf/i.test(v.name)) ||
-    ar.find((v) => !/female|sana|noura|salma/i.test(v.name)) ||
-    ar[0] ||
-    null
-  );
+  // while speaking: start standing, then shift into beat pose like a real teacher
+  if (progress < 0.22) return "stand";
+  if (beat.pose === "write" && progress > 0.35 && progress < 0.8) return "write";
+  if (beat.pose === "point" && progress > 0.3) return "point";
+  return beat.pose;
 }
 
 export function InteractiveClassroom({ initialTeacher = "sara" as TeacherId }) {
@@ -76,13 +70,13 @@ export function InteractiveClassroom({ initialTeacher = "sara" as TeacherId }) {
   const beats = useMemo(() => buildG1CountLesson(teacher), [teacher]);
 
   const [beatIndex, setBeatIndex] = useState(0);
-  const [progress, setProgress] = useState(0.08);
+  const [progress, setProgress] = useState(0.1);
   const [speaking, setSpeaking] = useState(false);
   const [listening, setListening] = useState(false);
   const [celebrating, setCelebrating] = useState(false);
   const [mouthEnergy, setMouthEnergy] = useState(0);
   const [caption, setCaption] = useState("");
-  const [status, setStatus] = useState("اضغط ابدأ — صوت عصبي حقيقي");
+  const [status, setStatus] = useState("حصة جاهزة — اضغط ابدأ");
   const [mastery, setMastery] = useState(0);
   const [autoPlay, setAutoPlay] = useState(true);
   const [awaitingCheck, setAwaitingCheck] = useState(false);
@@ -101,8 +95,8 @@ export function InteractiveClassroom({ initialTeacher = "sara" as TeacherId }) {
   const runBeatRef = useRef<(index: number) => void>(() => {});
 
   const beat = beats[beatIndex] ?? beats[0]!;
-  const pose = poseForBeat(beat, speaking, progress);
-  const writing = pose === "write" || (speaking && progress > 0.4 && progress < 0.9);
+  const pose = resolvePose(beat, speaking, progress);
+  const writing = pose === "write";
 
   const clearTimers = useCallback(() => {
     if (mouthTimer.current) window.clearInterval(mouthTimer.current);
@@ -112,9 +106,7 @@ export function InteractiveClassroom({ initialTeacher = "sara" as TeacherId }) {
   }, []);
 
   const stopSpeech = useCallback(() => {
-    if (typeof window !== "undefined" && window.speechSynthesis) {
-      window.speechSynthesis.cancel();
-    }
+    if (typeof window !== "undefined" && window.speechSynthesis) window.speechSynthesis.cancel();
     if (audioRef.current) {
       audioRef.current.pause();
       audioRef.current.currentTime = 0;
@@ -132,9 +124,7 @@ export function InteractiveClassroom({ initialTeacher = "sara" as TeacherId }) {
 
   const ensureAnalyser = useCallback((audio: HTMLAudioElement) => {
     try {
-      if (!audioCtxRef.current) {
-        audioCtxRef.current = new AudioContext();
-      }
+      if (!audioCtxRef.current) audioCtxRef.current = new AudioContext();
       const ctx = audioCtxRef.current;
       if (ctx.state === "suspended") void ctx.resume();
       if (!sourceRef.current) {
@@ -145,19 +135,17 @@ export function InteractiveClassroom({ initialTeacher = "sara" as TeacherId }) {
         analyserRef.current.connect(ctx.destination);
       }
     } catch {
-      // analyser optional
+      /* optional */
     }
   }, []);
 
   const trackMouthFromAnalyser = useCallback((audio: HTMLAudioElement, approxMs: number) => {
     const startedAt = performance.now();
     const data = new Uint8Array(analyserRef.current?.frequencyBinCount || 0);
-
     const tick = () => {
       const elapsed = performance.now() - startedAt;
       const p = Math.min(1, elapsed / Math.max(1, approxMs));
       setProgress(0.08 + p * 0.9);
-
       if (analyserRef.current && data.length) {
         analyserRef.current.getByteTimeDomainData(data);
         let sum = 0;
@@ -165,15 +153,11 @@ export function InteractiveClassroom({ initialTeacher = "sara" as TeacherId }) {
           const v = (data[i]! - 128) / 128;
           sum += v * v;
         }
-        const rms = Math.sqrt(sum / data.length);
-        setMouthEnergy(Math.min(1, 0.15 + rms * 4.2));
+        setMouthEnergy(Math.min(1, 0.12 + Math.sqrt(sum / data.length) * 4.5));
       } else {
-        setMouthEnergy(0.22 + 0.78 * Math.abs(Math.sin(elapsed / 80)));
+        setMouthEnergy(0.2 + 0.75 * Math.abs(Math.sin(elapsed / 85)));
       }
-
-      if (!audio.paused && !audio.ended) {
-        rafMouthRef.current = requestAnimationFrame(tick);
-      }
+      if (!audio.paused && !audio.ended) rafMouthRef.current = requestAnimationFrame(tick);
     };
     rafMouthRef.current = requestAnimationFrame(tick);
   }, []);
@@ -188,20 +172,15 @@ export function InteractiveClassroom({ initialTeacher = "sara" as TeacherId }) {
       }
       const u = new SpeechSynthesisUtterance(text);
       u.lang = "ar-JO";
-      const voice = pickArabicVoice(teacher.gender === "female");
-      if (voice) u.voice = voice;
-      u.rate = teacher.gender === "female" ? 0.96 : 0.93;
-      u.pitch = teacher.gender === "female" ? 1.05 : 0.94;
+      u.rate = teacher.gender === "female" ? 0.94 : 0.91;
       setCaption(text);
       setSpeaking(true);
-      setStatus("يشرح…");
       const startedAt = performance.now();
-      const approxMs = Math.max(2800, text.length * 68);
+      const approxMs = Math.max(3000, text.length * 72);
       mouthTimer.current = window.setInterval(() => {
         const elapsed = performance.now() - startedAt;
-        const p = Math.min(1, elapsed / approxMs);
-        setProgress(0.08 + p * 0.9);
-        setMouthEnergy(0.2 + 0.8 * Math.abs(Math.sin(elapsed / 85)));
+        setProgress(0.08 + Math.min(1, elapsed / approxMs) * 0.9);
+        setMouthEnergy(0.2 + 0.75 * Math.abs(Math.sin(elapsed / 90)));
       }, 40);
       u.onend = () => {
         clearTimers();
@@ -225,56 +204,40 @@ export function InteractiveClassroom({ initialTeacher = "sara" as TeacherId }) {
       setCaption(text);
       setListening(false);
       setAwaitingCheck(false);
-
       if (!audioKey) {
         speakFallback(text, onDone);
         return;
       }
-
       const src = `/media/ai-teachers/${teacherId}/audio/${audioKey}.mp3`;
       const audio = audioRef.current ?? new Audio();
       audioRef.current = audio;
       audio.src = src;
       audio.preload = "auto";
-
       const startPlayback = () => {
         ensureAnalyser(audio);
         setSpeaking(true);
-        setStatus("صوت عصبي حي…");
+        setStatus("يشرح كالصف الحقيقي…");
         setProgress(0.08);
-        const approxMs = Math.max(2500, (audio.duration || text.length * 0.07) * 1000);
+        const approxMs = Math.max(2600, (audio.duration || text.length * 0.08) * 1000);
         trackMouthFromAnalyser(audio, approxMs);
-        void audio.play().catch(() => {
-          speakFallback(text, onDone);
-        });
+        void audio.play().catch(() => speakFallback(text, onDone));
       };
-
       audio.onended = () => {
         clearTimers();
         setSpeaking(false);
         setMouthEnergy(0);
         setProgress(1);
-        setStatus("بانتظارك");
+        setStatus("دور الطالب");
         onDone?.();
       };
-      audio.onerror = () => {
-        speakFallback(text, onDone);
-      };
-
+      audio.onerror = () => speakFallback(text, onDone);
       if (audio.readyState >= 2) startPlayback();
       else {
         audio.onloadeddata = startPlayback;
         audio.load();
       }
     },
-    [
-      clearTimers,
-      ensureAnalyser,
-      speakFallback,
-      stopSpeech,
-      teacherId,
-      trackMouthFromAnalyser,
-    ],
+    [clearTimers, ensureAnalyser, speakFallback, stopSpeech, teacherId, trackMouthFromAnalyser],
   );
 
   const afterBeatSpeech = useCallback(
@@ -283,7 +246,7 @@ export function InteractiveClassroom({ initialTeacher = "sara" as TeacherId }) {
       if (!b) return;
       if (b.check) {
         setAwaitingCheck(true);
-        setStatus("اختبر فهمك");
+        setStatus("جاوب مثل الصف");
         setCaption(b.check.prompt);
         setDockOpen(true);
         return;
@@ -293,7 +256,7 @@ export function InteractiveClassroom({ initialTeacher = "sara" as TeacherId }) {
         setMastery((m) => Math.min(5, m + 1));
       }
       if (autoPlay && index < beats.length - 1) {
-        autoTimer.current = window.setTimeout(() => runBeatRef.current(index + 1), 850);
+        autoTimer.current = window.setTimeout(() => runBeatRef.current(index + 1), 900);
       }
     },
     [autoPlay, beats, flashCelebrate],
@@ -306,8 +269,7 @@ export function InteractiveClassroom({ initialTeacher = "sara" as TeacherId }) {
       setStarted(true);
       setBeatIndex(index);
       setAwaitingCheck(false);
-      const key = BEAT_AUDIO[b.id] ?? null;
-      speakAudioOrFallback(key, b.say, () => afterBeatSpeech(index));
+      speakAudioOrFallback(BEAT_AUDIO[b.id] ?? null, b.say, () => afterBeatSpeech(index));
     },
     [afterBeatSpeech, beats, speakAudioOrFallback],
   );
@@ -323,7 +285,7 @@ export function InteractiveClassroom({ initialTeacher = "sara" as TeacherId }) {
       }
       if (id === "next") {
         if (awaitingCheck) {
-          speakAudioOrFallback(null, "جاوب على السؤال أولاً ثم ننتقل.");
+          speakAudioOrFallback(null, "جاوب على السؤال أولاً يا بطل، بعدين نكمّل.");
           return;
         }
         runBeat(Math.min(beats.length - 1, beatIndex + 1));
@@ -337,41 +299,18 @@ export function InteractiveClassroom({ initialTeacher = "sara" as TeacherId }) {
         stopSpeech();
         setListening(true);
         setAutoPlay(false);
-        setStatus("متوقف");
+        setStatus("الحصة متوقفة");
         return;
       }
-      if (id === "simpler") {
+      if (id === "simpler" || id === "example" || id === "challenge") {
         speakAudioOrFallback(
-          "simpler",
-          coachLine(teacher, "simpler", {
+          id,
+          coachLine(teacher, id, {
             beatTitle: beat.board.title,
             beatSubtitle: beat.board.subtitle,
             mastery,
           }),
         );
-        return;
-      }
-      if (id === "example") {
-        speakAudioOrFallback(
-          "example",
-          coachLine(teacher, "example", {
-            beatTitle: beat.board.title,
-            beatSubtitle: beat.board.subtitle,
-            mastery,
-          }),
-        );
-        return;
-      }
-      if (id === "challenge") {
-        speakAudioOrFallback(
-          "challenge",
-          coachLine(teacher, "challenge", {
-            beatTitle: beat.board.title,
-            beatSubtitle: beat.board.subtitle,
-            mastery,
-          }),
-        );
-        return;
       }
     },
     [
@@ -401,14 +340,14 @@ export function InteractiveClassroom({ initialTeacher = "sara" as TeacherId }) {
         flashCelebrate();
         speakAudioOrFallback("correct", checkFeedback(teacher, true, correctChoice.label), () => {
           if (autoPlay && beatIndex < beats.length - 1) {
-            autoTimer.current = window.setTimeout(() => runBeat(beatIndex + 1), 650);
+            autoTimer.current = window.setTimeout(() => runBeat(beatIndex + 1), 700);
           } else setStatus("ممتاز — التالي");
         });
       } else {
         speakAudioOrFallback("wrong", checkFeedback(teacher, false, correctChoice.label), () => {
           setAwaitingCheck(true);
           setCaption(check.prompt);
-          setStatus("حاول مجدداً");
+          setStatus("حاول مرة ثانية");
         });
       }
     },
@@ -438,7 +377,7 @@ export function InteractiveClassroom({ initialTeacher = "sara" as TeacherId }) {
     }
     stopSpeech();
     setListening(true);
-    setStatus("يستمع…");
+    setStatus("المعلم يستمع…");
     const recog = new SR();
     recog.lang = "ar-JO";
     recog.interimResults = false;
@@ -450,7 +389,7 @@ export function InteractiveClassroom({ initialTeacher = "sara" as TeacherId }) {
       setCaption(`سمعت: ${said}`);
       const hit = INTERACTIVE_COMMANDS.find((c) => c.match.some((m) => said.includes(m)));
       if (hit) handleCommand(hit.id);
-      else speakAudioOrFallback(null, "ما سمعت أمراً واضحاً. قل: ابدأ أو التالي أو أبسط.");
+      else speakAudioOrFallback(null, "ما سمعت بوضوح. قل: ابدأ الحصة، أو التالي، أو أبسط.");
       setListening(false);
     };
     recog.onerror = () => {
@@ -473,76 +412,76 @@ export function InteractiveClassroom({ initialTeacher = "sara" as TeacherId }) {
   useEffect(() => {
     stopSpeech();
     setBeatIndex(0);
-    setProgress(0.08);
+    setProgress(0.1);
     setMastery(0);
     setAwaitingCheck(false);
     setCelebrating(false);
     setStarted(false);
     setCaption("");
-    setStatus("اضغط ابدأ — صوت عصبي حقيقي");
-    // warm intro audio metadata
-    const a = new Audio(`/media/ai-teachers/${teacherId}/audio/intro.mp3`);
-    a.preload = "auto";
+    setStatus("حصة جاهزة — اضغط ابدأ");
+    sourceRef.current = null;
+    analyserRef.current = null;
+    audioRef.current = null;
   }, [teacherId, stopSpeech]);
 
   return (
     <div
       dir="rtl"
-      className="cinema-class"
       style={{
         minHeight: "100vh",
-        background: "#070b12",
+        background:
+          "linear-gradient(180deg, #2a2118 0%, #1a140f 40%, #0f0c09 100%)",
         color: "#f4f1e6",
         fontFamily: "var(--font-teacher-ar), 'Noto Kufi Arabic', 'Segoe UI', sans-serif",
-        overflow: "hidden",
+        ["--font-teacher-ar" as string]: "'Noto Kufi Arabic', sans-serif",
       }}
     >
       <style>{`
-        .cinema-class {
-          --font-teacher-ar: 'Noto Kufi Arabic', sans-serif;
-        }
-        .cinema-grid {
+        .real-class {
           min-height: 100vh;
           display: grid;
-          grid-template-columns: minmax(320px, 42vw) 1fr;
+          grid-template-rows: auto 1fr auto;
+        }
+        .real-stage {
+          display: grid;
+          grid-template-columns: minmax(300px, 38vw) 1fr;
+          min-height: calc(100vh - 120px);
+          gap: 0;
+          border-top: 10px solid #6b4423;
+          border-bottom: 14px solid #5a381c;
+          box-shadow: inset 0 0 80px rgba(0,0,0,0.35);
         }
         @media (max-width: 900px) {
-          .cinema-grid { grid-template-columns: 1fr; min-height: auto; }
-          .cinema-teacher { min-height: 62vh !important; }
-          .cinema-board { min-height: 52vh !important; }
+          .real-stage { grid-template-columns: 1fr; min-height: auto; }
+          .real-teacher { min-height: 58vh !important; }
+          .real-board { min-height: 50vh !important; }
         }
         @keyframes riseIn {
-          from { opacity: 0; transform: translateY(16px); }
+          from { opacity: 0; transform: translateY(14px); }
           to { opacity: 1; transform: none; }
-        }
-        .cinema-cta {
-          animation: riseIn 0.7s ease both;
         }
       `}</style>
 
-      {/* top brand bar — thin, not a card stack */}
-      <div
+      <header
         style={{
-          position: "fixed",
-          top: 0,
-          insetInline: 0,
-          zIndex: 30,
           display: "flex",
           justifyContent: "space-between",
           alignItems: "center",
-          padding: "14px 18px",
-          pointerEvents: "none",
+          gap: 12,
+          padding: "12px 16px",
+          background: "linear-gradient(90deg, #3d2918, #2a1d12)",
+          borderBottom: "1px solid rgba(255,220,150,0.15)",
         }}
       >
-        <div style={{ pointerEvents: "auto" }}>
-          <div style={{ fontWeight: 800, letterSpacing: "0.08em", fontSize: 12, color: "#ffd84a" }}>
-            SUCCESS OS
+        <div>
+          <div style={{ fontWeight: 800, letterSpacing: "0.08em", fontSize: 11, color: "#ffd84a" }}>
+            SUCCESS OS · REAL CLASS
           </div>
-          <div style={{ fontWeight: 800, fontSize: "clamp(1.1rem, 2.4vw, 1.45rem)", marginTop: 2 }}>
-            {teacher.nameAr}
-          </div>
+          <h1 style={{ margin: "2px 0 0", fontSize: "clamp(1.15rem, 2.4vw, 1.55rem)", fontWeight: 900 }}>
+            {teacher.nameAr} — حصة شبه الحقيقية وأوضح
+          </h1>
         </div>
-        <div style={{ display: "flex", gap: 8, pointerEvents: "auto" }}>
+        <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
           {(["sara", "ali"] as TeacherId[]).map((id) => (
             <button
               key={id}
@@ -554,249 +493,190 @@ export function InteractiveClassroom({ initialTeacher = "sara" as TeacherId }) {
                 padding: "10px 16px",
                 fontWeight: 800,
                 cursor: "pointer",
-                background: teacherId === id ? "#ff5a6a" : "rgba(255,255,255,0.12)",
+                background: teacherId === id ? "#c45c26" : "rgba(255,255,255,0.1)",
                 color: "#fff",
-                backdropFilter: "blur(8px)",
               }}
             >
               {TEACHERS[id].nameAr.replace("المعلمة ", "").replace("المعلم ", "")}
             </button>
           ))}
         </div>
-      </div>
+      </header>
 
-      <div className="cinema-grid">
-        <section
-          className="cinema-teacher"
+      <div className="real-class">
+        <div className="real-stage">
+          <section className="real-teacher" style={{ minHeight: "100%", background: "#c4ad8c" }}>
+            <AliveTeacherStage
+              teacherId={teacherId}
+              speaking={speaking}
+              listening={listening}
+              celebrating={celebrating}
+              mouthEnergy={mouthEnergy}
+              pose={pose}
+              nameAr={teacher.nameAr}
+              gender={teacher.gender}
+            />
+          </section>
+
+          <section className="real-board" style={{ minHeight: "100%", position: "relative" }}>
+            <LivingBoard
+              beat={beat}
+              progress={started ? progress : 0.25}
+              writing={writing}
+              celebrating={celebrating}
+            />
+          </section>
+        </div>
+
+        <footer
           style={{
-            position: "relative",
-            minHeight: "100vh",
-            background: "#0b1220",
+            padding: "14px 16px 18px",
+            background: "linear-gradient(180deg, #24180f, #140e0a)",
           }}
         >
-          <AliveTeacherStage
-            teacherId={teacherId}
-            speaking={speaking}
-            listening={listening}
-            celebrating={celebrating}
-            mouthEnergy={mouthEnergy}
-            pose={pose}
-            nameAr={teacher.nameAr}
-            gender={teacher.gender}
-          />
-        </section>
-
-        <section
-          className="cinema-board"
-          style={{
-            position: "relative",
-            minHeight: "100vh",
-            display: "grid",
-            gridTemplateRows: "1fr auto",
-          }}
-        >
-          <LivingBoard
-            beat={beat}
-            progress={started ? progress : 0.2}
-            writing={writing}
-            celebrating={celebrating}
-          />
-
-          {/* film-style caption + primary CTA */}
-          <div
-            style={{
-              position: "absolute",
-              insetInline: 0,
-              bottom: 0,
-              padding: "20px 18px 22px",
-              background: "linear-gradient(transparent, rgba(5,8,14,0.92) 35%)",
-              zIndex: 5,
-            }}
-          >
-            {!started ? (
-              <div className="cinema-cta" style={{ maxWidth: 640 }}>
-                <h1
+          {!started ? (
+            <div style={{ maxWidth: 760, animation: "riseIn 0.65s ease both" }}>
+              <p style={{ margin: "0 0 14px", fontSize: "clamp(1.05rem, 2.2vw, 1.3rem)", opacity: 0.92 }}>
+                المعلم واقف جنب السبورة، يشرح بصوت صفّي، ويكتب ويشير مثلبالحصة الحقيقية — مع تصحيح فوري أسرع.
+              </p>
+              <div style={{ display: "flex", gap: 10, flexWrap: "wrap" }}>
+                <button
+                  type="button"
+                  onClick={() => handleCommand("start")}
                   style={{
-                    margin: "0 0 8px",
-                    fontSize: "clamp(1.8rem, 4.5vw, 2.8rem)",
+                    border: "none",
+                    borderRadius: 14,
+                    padding: "15px 26px",
                     fontWeight: 900,
-                    lineHeight: 1.2,
+                    fontSize: 17,
+                    cursor: "pointer",
+                    background: "linear-gradient(120deg,#e6b35a,#c45c26)",
+                    color: "#1a1208",
                   }}
                 >
-                  أوضح من المعلم الحقيقي
-                </h1>
-                <p style={{ margin: "0 0 18px", opacity: 0.85, fontSize: "1.05rem", maxWidth: 520 }}>
-                  صوت عصبي أردني، وجه يتحرك، وسبورة تُكتب مع الشرح — مع فحص فهم فوري.
-                </p>
-                <div style={{ display: "flex", gap: 10, flexWrap: "wrap" }}>
-                  <button
-                    type="button"
-                    onClick={() => handleCommand("start")}
-                    style={{
-                      border: "none",
-                      borderRadius: 16,
-                      padding: "16px 28px",
-                      fontWeight: 900,
-                      fontSize: 18,
-                      cursor: "pointer",
-                      background: "linear-gradient(120deg,#ffd84a,#ff8a3d)",
-                      color: "#1a1408",
-                    }}
-                  >
-                    ابدأ الدرس الآن
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => {
-                      setDockOpen(true);
-                      startListening();
-                    }}
-                    style={{
-                      border: "1px solid rgba(255,255,255,0.35)",
-                      borderRadius: 16,
-                      padding: "16px 22px",
-                      fontWeight: 800,
-                      fontSize: 16,
-                      cursor: "pointer",
-                      background: "rgba(255,255,255,0.08)",
-                      color: "#fff",
-                    }}
-                  >
-                    كلّم {teacher.gender === "female" ? "سارة" : "علي"}
-                  </button>
-                </div>
+                  ابدأ الحصة
+                </button>
+                <button
+                  type="button"
+                  onClick={() => {
+                    setDockOpen(true);
+                    startListening();
+                  }}
+                  style={{
+                    border: "1px solid rgba(255,255,255,0.3)",
+                    borderRadius: 14,
+                    padding: "15px 20px",
+                    fontWeight: 800,
+                    cursor: "pointer",
+                    background: "rgba(255,255,255,0.08)",
+                    color: "#fff",
+                  }}
+                >
+                  ارفع إيدك / كلّم المعلم
+                </button>
               </div>
-            ) : (
-              <div>
+            </div>
+          ) : (
+            <div>
+              <div
+                style={{
+                  fontSize: "clamp(1.05rem, 2.2vw, 1.3rem)",
+                  fontWeight: 700,
+                  lineHeight: 1.55,
+                  marginBottom: 8,
+                  maxWidth: 820,
+                }}
+              >
+                {caption}
+              </div>
+              <div style={{ display: "flex", gap: 10, flexWrap: "wrap", alignItems: "center", marginBottom: 8 }}>
+                <span style={{ color: "#ffd84a", fontWeight: 700, fontSize: 13 }}>
+                  {status} · {beatIndex + 1}/{beats.length} · إتقان {mastery}/5 · {teacher.voiceHint}
+                </span>
+                <button
+                  type="button"
+                  onClick={() => setDockOpen((v) => !v)}
+                  style={chipStyle}
+                >
+                  {dockOpen ? "إخفاء" : "أوامر الصف"}
+                </button>
+                <button type="button" onClick={() => setAutoPlay((v) => !v)} style={{
+                  ...chipStyle,
+                  background: autoPlay ? "#2a9d8f" : "rgba(255,255,255,0.12)",
+                }}>
+                  {autoPlay ? "تلقائي" : "يدوي"}
+                </button>
+              </div>
+
+              {awaitingCheck && beat.check && (
                 <div
                   style={{
-                    fontSize: "clamp(1.05rem, 2.2vw, 1.35rem)",
-                    fontWeight: 700,
-                    lineHeight: 1.55,
-                    marginBottom: 8,
+                    display: "grid",
+                    gridTemplateColumns: "repeat(auto-fit,minmax(140px,1fr))",
+                    gap: 8,
                     maxWidth: 720,
-                    textShadow: "0 2px 12px rgba(0,0,0,0.55)",
+                    marginBottom: 10,
                   }}
                 >
-                  {caption}
-                </div>
-                <div style={{ display: "flex", gap: 12, flexWrap: "wrap", alignItems: "center" }}>
-                  <span style={{ color: "#ffd84a", fontWeight: 700, fontSize: 13 }}>
-                    {status} · {beatIndex + 1}/{beats.length} · إتقان {mastery}/5 · {teacher.voiceHint}
-                  </span>
-                  <button
-                    type="button"
-                    onClick={() => setDockOpen((v) => !v)}
-                    style={{
-                      border: "none",
-                      borderRadius: 999,
-                      padding: "8px 14px",
-                      fontWeight: 800,
-                      cursor: "pointer",
-                      background: "rgba(255,255,255,0.14)",
-                      color: "#fff",
-                    }}
-                  >
-                    {dockOpen ? "إخفاء الأوامر" : "الأوامر"}
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => setAutoPlay((v) => !v)}
-                    style={{
-                      border: "none",
-                      borderRadius: 999,
-                      padding: "8px 14px",
-                      fontWeight: 800,
-                      cursor: "pointer",
-                      background: autoPlay ? "#0f766e" : "rgba(255,255,255,0.14)",
-                      color: "#fff",
-                    }}
-                  >
-                    {autoPlay ? "تلقائي" : "يدوي"}
-                  </button>
-                </div>
-
-                {awaitingCheck && beat.check && (
-                  <div
-                    style={{
-                      marginTop: 14,
-                      display: "grid",
-                      gridTemplateColumns: "repeat(auto-fit,minmax(140px,1fr))",
-                      gap: 8,
-                      maxWidth: 720,
-                    }}
-                  >
-                    {beat.check.choices.map((c) => (
-                      <button
-                        key={c.id}
-                        type="button"
-                        onClick={() => answerCheck(c.id)}
-                        style={{
-                          border: "2px solid #ffd84a",
-                          borderRadius: 14,
-                          padding: "14px 12px",
-                          fontWeight: 800,
-                          cursor: "pointer",
-                          background: "rgba(255,248,220,0.95)",
-                          color: "#1a1408",
-                        }}
-                      >
-                        {c.label}
-                      </button>
-                    ))}
-                  </div>
-                )}
-
-                {dockOpen && (
-                  <div
-                    style={{
-                      marginTop: 12,
-                      display: "grid",
-                      gridTemplateColumns: "repeat(auto-fit,minmax(100px,1fr))",
-                      gap: 8,
-                      maxWidth: 820,
-                    }}
-                  >
-                    {INTERACTIVE_COMMANDS.map((c) => (
-                      <button
-                        key={c.id}
-                        type="button"
-                        onClick={() => handleCommand(c.id)}
-                        style={{
-                          border: "none",
-                          borderRadius: 12,
-                          padding: "12px 10px",
-                          fontWeight: 800,
-                          cursor: "pointer",
-                          background: "rgba(255,255,255,0.12)",
-                          color: "#fff",
-                        }}
-                      >
-                        {c.ar}
-                      </button>
-                    ))}
+                  {beat.check.choices.map((c) => (
                     <button
+                      key={c.id}
                       type="button"
-                      onClick={startListening}
+                      onClick={() => answerCheck(c.id)}
                       style={{
-                        border: "none",
+                        border: "2px solid #e6b35a",
                         borderRadius: 12,
-                        padding: "12px 10px",
+                        padding: "13px 10px",
                         fontWeight: 800,
                         cursor: "pointer",
-                        background: "#ff5a6a",
-                        color: "#fff",
+                        background: "#fff6df",
+                        color: "#1a1208",
                       }}
                     >
-                      ميكروفون
+                      {c.label}
                     </button>
-                  </div>
-                )}
-              </div>
-            )}
-          </div>
-        </section>
+                  ))}
+                </div>
+              )}
+
+              {dockOpen && (
+                <div
+                  style={{
+                    display: "grid",
+                    gridTemplateColumns: "repeat(auto-fit,minmax(100px,1fr))",
+                    gap: 8,
+                    maxWidth: 860,
+                  }}
+                >
+                  {INTERACTIVE_COMMANDS.map((c) => (
+                    <button key={c.id} type="button" onClick={() => handleCommand(c.id)} style={chipStyle}>
+                      {c.ar}
+                    </button>
+                  ))}
+                  <button
+                    type="button"
+                    onClick={startListening}
+                    style={{ ...chipStyle, background: "#c45c26" }}
+                  >
+                    ميكروفون
+                  </button>
+                </div>
+              )}
+            </div>
+          )}
+        </footer>
       </div>
     </div>
   );
 }
+
+const chipStyle: CSSProperties = {
+  border: "none",
+  borderRadius: 999,
+  padding: "9px 14px",
+  fontWeight: 800,
+  cursor: "pointer",
+  background: "rgba(255,255,255,0.12)",
+  color: "#fff",
+  fontSize: 14,
+};

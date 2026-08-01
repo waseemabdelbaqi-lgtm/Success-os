@@ -38,6 +38,16 @@ for (const tid of ["sara", "ali"]) {
       `Missing public audio ${tid}/${clip}`,
     );
   }
+  for (const pose of ["stand.png", "point.png", "write.png"]) {
+    assert(
+      fs.existsSync(path.join(base, "classroom", pose)),
+      `Missing classroom pose ${tid}/${pose}`,
+    );
+    assert(
+      fs.existsSync(path.join(root, "public/media/ai-teachers", tid, "classroom", pose)),
+      `Missing public classroom pose ${tid}/${pose}`,
+    );
+  }
 }
 
 for (const legacy of ["omar", "layla", "waseem"]) {
