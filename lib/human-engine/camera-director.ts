@@ -15,7 +15,20 @@ export function shotForBeat(opts: {
   seed: number;
   index: number;
 }): CameraShot {
-  if (opts.gesture === "write_board" || opts.gesture === "point_board") {
+  if (
+    opts.gesture === "rotate_model" ||
+    opts.gesture === "zoom_in_model" ||
+    opts.gesture === "zoom_out_model" ||
+    opts.gesture === "hold_model" ||
+    opts.gesture === "manipulate_experiment"
+  ) {
+    return pick(["prop_orbit", "medium_teacher", "over_shoulder_board"] as const, opts.seed, opts.index);
+  }
+  if (
+    opts.gesture === "write_board" ||
+    opts.gesture === "draw_curve" ||
+    opts.gesture === "point_board"
+  ) {
     return pick(["over_shoulder_board", "board_insert", "medium_teacher"] as const, opts.seed, opts.index);
   }
   if (opts.goal === "hook" || opts.goal === "close") {
@@ -25,7 +38,7 @@ export function shotForBeat(opts: {
     return "close_face";
   }
   if (opts.goal === "demonstrate") {
-    return pick(["over_shoulder_board", "medium_teacher"] as const, opts.seed, opts.index + 1);
+    return pick(["over_shoulder_board", "prop_orbit", "medium_teacher"] as const, opts.seed, opts.index + 1);
   }
   if (opts.goal === "encourage") {
     return pick(["close_face", "medium_teacher"] as const, opts.seed, opts.index);

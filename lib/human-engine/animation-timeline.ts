@@ -11,7 +11,9 @@ import type {
   GestureKeyframe,
   HeadKeyframe,
   LightKeyframe,
+  LocomotionKeyframe,
   PhonemeKeyframe,
+  ScreenKeyframe,
   SkeletonKeyframe,
 } from "@/types/human-engine";
 
@@ -25,9 +27,11 @@ export function assembleTimeline(opts: {
   head: HeadKeyframe[];
   emotion: EmotionKeyframe[];
   gesture: GestureKeyframe[];
+  locomotion: LocomotionKeyframe[];
   camera: CameraKeyframe[];
   lighting: LightKeyframe[];
   behaviour: BehaviourBeat[];
+  screen: ScreenKeyframe[];
 }): AnimationTimeline {
   return {
     schema: "success-os.human-engine.timeline.v1",
@@ -40,9 +44,11 @@ export function assembleTimeline(opts: {
     head: { name: "head", keys: sortByT(opts.head) },
     emotion: { name: "emotion", keys: sortByT(opts.emotion) },
     gesture: { name: "gesture", keys: sortByT(opts.gesture) },
+    locomotion: { name: "locomotion", keys: sortByT(opts.locomotion) },
     camera: { name: "camera", keys: sortByT(opts.camera) },
     lighting: { name: "lighting", keys: sortByT(opts.lighting) },
     behaviour: { name: "behaviour", keys: sortByT(opts.behaviour) },
+    screen: { name: "screen", keys: sortByT(opts.screen) },
   };
 }
 
@@ -61,9 +67,11 @@ export function assertTimelineIntegrity(tl: AnimationTimeline): string[] {
     tl.head,
     tl.emotion,
     tl.gesture,
+    tl.locomotion,
     tl.camera,
     tl.lighting,
     tl.behaviour,
+    tl.screen,
   ];
   for (const tr of tracks) {
     if (!tr.keys.length) issues.push(`track ${tr.name} is empty`);

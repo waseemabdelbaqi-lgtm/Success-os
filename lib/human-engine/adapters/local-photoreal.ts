@@ -49,12 +49,17 @@ export function createLocalPhotorealAdapter(
 export function gestureToClassroomPose(
   gesture: HumanFrameSample["gesture"],
 ): "stand" | "point" | "write" {
-  if (gesture === "write_board") return "write";
+  if (gesture === "write_board" || gesture === "draw_curve") return "write";
   if (
     gesture === "point_board" ||
     gesture === "emphasize" ||
     gesture === "count_on_fingers" ||
-    gesture === "hold_prop"
+    gesture === "hold_prop" ||
+    gesture === "hold_model" ||
+    gesture === "rotate_model" ||
+    gesture === "zoom_in_model" ||
+    gesture === "zoom_out_model" ||
+    gesture === "manipulate_experiment"
   ) {
     return "point";
   }

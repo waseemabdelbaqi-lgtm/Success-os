@@ -1,49 +1,53 @@
 # Human Engine (independent digital-human layer)
 
-Schema: `success-os.human-engine.v1`
+Schema: `success-os.human-engine.v1` · version `1.1.0`
 
 ## Purpose
 
 Phase-2 **Human Engine** is independent of the Three.js Teaching Studio (phase 1).
-It generates a full performance plan from lesson content and binds it through a
-`DigitalHumanAdapter` so Sara/Ali can later swap to MetaHuman (or HeyGen) without
-rewriting the platform.
+Every teaching sentence is directed from **meaning** into a full performance package:
+face, eyes, head, hands, locomotion, gaze, camera, lighting, and on-screen elements.
+
+Sara/Ali can later swap to MetaHuman via `DigitalHumanAdapter` without rewriting the platform.
+
+## Semantic sentence contract
+
+`lib/human-engine/semantic-sentence.ts` maps line text → `ContentAct`:
+
+| Act | Teacher behaviour | Screen |
+|-----|-------------------|--------|
+| `write_law` | write + explain | law / equation |
+| `draw_diagram` | draw stroke | animated diagram |
+| `run_experiment` | manipulate lab | experiment phases |
+| `hold_model` / `rotate_model` / `zoom_*` | 3D interact | model_3d transform |
+| `ask_check` | invite answer | question |
+| … | … | … |
+
+`LessonDirector` builds `sentences[]` + timeline tracks including `screen` + `locomotion`.
 
 ## Modules
 
-| Module | Path |
-|--------|------|
-| Character Generator | `lib/human-engine/character-generator.ts` |
-| Skeleton Animation | `lib/human-engine/skeleton-animation.ts` |
-| Facial Rig | `lib/human-engine/facial-rig.ts` |
-| Blend Shapes | `lib/human-engine/blend-shapes.ts` |
-| Lip Sync (phoneme) | `lib/human-engine/lip-sync.ts` |
-| Eye Tracking | `lib/human-engine/eye-tracking.ts` |
-| Head Tracking | `lib/human-engine/head-tracking.ts` |
-| Emotion System | `lib/human-engine/emotion-system.ts` |
-| Gesture Engine | `lib/human-engine/gesture-engine.ts` |
-| AI Behaviour Engine | `lib/human-engine/ai-behaviour-engine.ts` |
-| Camera Director | `lib/human-engine/camera-director.ts` |
-| Lighting Director | `lib/human-engine/lighting-director.ts` |
-| Animation Timeline | `lib/human-engine/animation-timeline.ts` |
-| Lesson Director | `lib/human-engine/lesson-director.ts` |
+Character Generator · Skeleton Animation · Facial Rig · Blend Shapes · Lip Sync ·
+Eye Tracking · Head Tracking · Emotion System · Gesture Engine · AI Behaviour ·
+Camera Director · Lighting Director · Animation Timeline · Lesson Director ·
+**Semantic Sentence** · Showcase Lesson
 
-Contracts: `types/human-engine.ts`
+## Surfaces
 
-## Adapters
+| Path | Role |
+|------|------|
+| `/ai-teacher/live` | World-class showcase studio (law/draw/experiment/3D) |
+| `/ai-teacher/human-engine-preview` | 10s preview |
+| `/ai-teacher/studio` | Three.js phase-1 studio (unchanged) |
+| `GET /api/human-engine?action=status\|showcase\|preview` | plans |
 
-- `local_photoreal_preview` — live DOM/canvas photoreal (not Three.js characters)
-- `metahuman` — stub, same plan/frame API
-- `heygen` — stub / needs credentials
+## Validate
 
-## Preview
-
-- UI: `/ai-teacher/human-engine-preview` — 10s Sara & Ali
-- API: `GET /api/human-engine?action=status|demo|preview`
-- Validate: `npm run validate:human-engine`
+```bash
+npm run validate:human-engine
+```
 
 ## Honest limits
 
-- Local preview uses photoreal classroom PNGs + phoneme mouth drive + pose map.
-- True MetaHuman skeletal mesh / production viseme bake is **not** shipped yet;
-  the adapter port is ready for that next phase.
+- Local adapter = photoreal classroom PNGs + phoneme mouth + pose map + screen plane.
+- True MetaHuman skeletal mesh / production visemes are **not** shipped; adapter port is ready.

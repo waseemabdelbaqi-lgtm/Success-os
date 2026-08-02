@@ -105,9 +105,54 @@ function applyIntent(base: BoneRot, intent: GestureIntent, seed: number): BoneRo
       b.head = [0, 18, 0];
       break;
     case "hold_prop":
+    case "hold_model":
       b.upper_arm_l = [-10, 20, -25];
       b.lower_arm_l = [60, 0, 0];
       b.hand_l = [0, 0, 10];
+      b.upper_arm_r = [-5, -18, 30];
+      b.lower_arm_r = [50, 0, 0];
+      break;
+    case "rotate_model":
+      b.upper_arm_l = [-8, 25, -30];
+      b.lower_arm_l = [55, 10, 0];
+      b.upper_arm_r = [-12, -30, 40];
+      b.lower_arm_r = [45, -8, 0];
+      b.chest = [5, wobble, 0];
+      b.head = [4, -10, 0];
+      break;
+    case "zoom_in_model":
+      b.upper_arm_r = [-25, -20, 35];
+      b.lower_arm_r = [40, 0, 0];
+      b.hand_r = [0, -15, 0];
+      b.head = [6, -8, 0];
+      break;
+    case "zoom_out_model":
+      b.upper_arm_r = [5, -25, 45];
+      b.lower_arm_r = [20, 0, 0];
+      b.head = [2, -6, 0];
+      break;
+    case "draw_curve":
+      b.upper_arm_r = [-18, -28, 42];
+      b.lower_arm_r = [50, 8, 0];
+      b.hand_r = [-8, 0, 20];
+      b.head = [10, -20, 0];
+      b.chest = [7, -12, 0];
+      break;
+    case "manipulate_experiment":
+      b.upper_arm_l = [-15, 30, -35];
+      b.lower_arm_l = [70, 0, 0];
+      b.upper_arm_r = [-10, -22, 32];
+      b.lower_arm_r = [65, 0, 0];
+      b.head = [8, -6, 0];
+      break;
+    case "walk_step":
+      b.thigh_l = [18, 0, 0];
+      b.thigh_r = [-8, 0, 0];
+      b.shin_l = [-12, 0, 0];
+      b.hips = [0, 6 + wobble, 0];
+      b.spine = [3, 8, 0];
+      b.upper_arm_l = [15, 20, -25];
+      b.upper_arm_r = [10, -15, 20];
       break;
     case "emphasize":
       b.upper_arm_r = [10, -30, 40];

@@ -21,9 +21,17 @@ export { assembleTimeline, assertTimelineIntegrity } from "./animation-timeline"
 export { directLesson } from "./lesson-director";
 export { sampleFrame } from "./sampler";
 export {
+  detectContentAct,
+  directSentence,
+  buildScreenElement,
+} from "./semantic-sentence";
+export { showcaseLessonInput, preview10sLessonInput } from "./showcase-lesson";
+export {
   previewLessonInput,
   buildPreviewPlan,
+  buildShowcasePlan,
   buildDemoPlans,
+  buildShowcasePlans,
   playPlan,
 } from "./runtime";
 export {

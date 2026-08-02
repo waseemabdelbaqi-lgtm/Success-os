@@ -126,6 +126,7 @@ export type GestureIntent =
   | "open_explain"
   | "point_board"
   | "write_board"
+  | "draw_curve"
   | "count_on_fingers"
   | "invite_answer"
   | "think_pause"
@@ -134,7 +135,63 @@ export type GestureIntent =
   | "turn_to_board"
   | "turn_to_student"
   | "hold_prop"
+  | "hold_model"
+  | "rotate_model"
+  | "zoom_in_model"
+  | "zoom_out_model"
+  | "manipulate_experiment"
+  | "walk_step"
   | "emphasize";
+
+export type LocomotionIntent =
+  | "stand"
+  | "walk_in"
+  | "step_to_board"
+  | "step_to_prop"
+  | "step_to_student";
+
+/** What the teacher is doing with lesson content this sentence. */
+export type ContentAct =
+  | "greet_hook"
+  | "explain_concept"
+  | "point_content"
+  | "write_board"
+  | "write_law"
+  | "draw_diagram"
+  | "run_experiment"
+  | "show_model"
+  | "hold_model"
+  | "rotate_model"
+  | "zoom_in_model"
+  | "zoom_out_model"
+  | "count_sequence"
+  | "ask_check"
+  | "celebrate";
+
+export type ScreenElementKind =
+  | "title"
+  | "note"
+  | "equation"
+  | "law"
+  | "diagram"
+  | "experiment"
+  | "model_3d"
+  | "number"
+  | "question"
+  | "highlight"
+  | "banner";
+
+export type ScreenElement = {
+  id: string;
+  kind: ScreenElementKind;
+  label: string;
+  detail?: string;
+  transform: { x: number; y: number; scale: number; rotateY: number };
+  emphasis: number;
+  /** 0–1 draw progress for diagram strokes */
+  strokeProgress?: number;
+  experimentPhase?: "setup" | "active" | "result";
+};
 
 export type CameraShot =
   | "wide_establishing"
@@ -142,6 +199,7 @@ export type CameraShot =
   | "close_face"
   | "over_shoulder_board"
   | "board_insert"
+  | "prop_orbit"
   | "two_shot";
 
 export type LightPreset =
@@ -150,7 +208,9 @@ export type LightPreset =
   | "warm_encourage"
   | "cool_focus"
   | "board_accent"
-  | "closeup_beauty";
+  | "closeup_beauty"
+  | "model_spotlight"
+  | "experiment_practical";
 
 export type BehaviourGoal =
   | "hook"
@@ -280,6 +340,40 @@ export type BehaviourBeat = {
   blockId: string;
 };
 
+export type LocomotionKeyframe = {
+  tMs: number;
+  durationMs: number;
+  intent: LocomotionIntent;
+  seed: number;
+};
+
+export type ScreenKeyframe = {
+  tMs: number;
+  endMs: number;
+  element: ScreenElement;
+  contentAct: ContentAct;
+};
+
+/** Full per-sentence package — generated from meaning, not a clip library. */
+export type SentencePerformance = {
+  sentenceId: string;
+  text: string;
+  contentAct: ContentAct;
+  emotion: EmotionId;
+  emotionIntensity: number;
+  gesture: GestureIntent;
+  gaze: GazeTarget;
+  locomotion: LocomotionIntent;
+  head: { yaw: number; pitch: number; roll: number };
+  camera: CameraShot;
+  lighting: LightPreset;
+  lightIntensity: number;
+  screen: ScreenElement;
+  behaviourGoal: BehaviourGoal;
+  seed: number;
+  reason: string;
+};
+
 export type TimelineTrack<T> = {
   name: string;
   keys: T[];
@@ -296,9 +390,11 @@ export type AnimationTimeline = {
   head: TimelineTrack<HeadKeyframe>;
   emotion: TimelineTrack<EmotionKeyframe>;
   gesture: TimelineTrack<GestureKeyframe>;
+  locomotion: TimelineTrack<LocomotionKeyframe>;
   camera: TimelineTrack<CameraKeyframe>;
   lighting: TimelineTrack<LightKeyframe>;
   behaviour: TimelineTrack<BehaviourBeat>;
+  screen: TimelineTrack<ScreenKeyframe>;
 };
 
 export type HumanPerformancePlan = {
@@ -313,6 +409,15 @@ export type HumanPerformancePlan = {
     notes: string[];
   };
   timeline: AnimationTimeline;
+  /** Ordered sentence performances — primary content→motion contract. */
+  sentences: Array<
+    SentencePerformance & {
+      blockId: string;
+      startMs: number;
+      endMs: number;
+      audioSrc?: string;
+    }
+  >;
   speech: {
     lines: Array<{
       blockId: string;
@@ -320,6 +425,8 @@ export type HumanPerformancePlan = {
       startMs: number;
       endMs: number;
       audioSrc?: string;
+      sentenceId?: string;
+      contentAct?: ContentAct;
     }>;
   };
   createdAt: string;
@@ -335,6 +442,7 @@ export type HumanFrameSample = {
   emotion: EmotionId;
   emotionIntensity: number;
   gesture: GestureIntent;
+  locomotion: LocomotionIntent;
   gaze: GazeTarget;
   head: { yaw: number; pitch: number; roll: number };
   bones: BonePose[];
@@ -342,8 +450,11 @@ export type HumanFrameSample = {
   lighting: LightPreset;
   lightIntensity: number;
   behaviourGoal: BehaviourGoal;
+  contentAct: ContentAct | null;
+  screen: ScreenElement | null;
   speaking: boolean;
   lineText: string | null;
+  sentenceId: string | null;
 };
 
 export type DigitalHumanAdapter = {

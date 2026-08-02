@@ -2,6 +2,8 @@ import { NextResponse } from "next/server";
 import {
   buildDemoPlans,
   buildPreviewPlan,
+  buildShowcasePlan,
+  buildShowcasePlans,
   directLesson,
   listHumanCharacters,
   resolveAdapterMeta,
@@ -11,7 +13,7 @@ import type { HumanLessonInput } from "@/types/human-engine";
 export const runtime = "nodejs";
 
 /**
- * GET ?action=status|demo|preview&teacher=sara|ali
+ * GET ?action=status|demo|preview|showcase&teacher=sara|ali
  * POST { action: "plan", input: HumanLessonInput, adapterId? }
  */
 export async function GET(req: Request) {
@@ -22,6 +24,7 @@ export async function GET(req: Request) {
   if (action === "status") {
     return NextResponse.json({
       schema: "success-os.human-engine.v1",
+      version: "1.1.0",
       modules: [
         "character-generator",
         "skeleton-animation",
@@ -37,6 +40,8 @@ export async function GET(req: Request) {
         "lighting-director",
         "animation-timeline",
         "lesson-director",
+        "semantic-sentence",
+        "content-screen",
       ],
       characters: listHumanCharacters().map((c) => c.id),
       adapters: [
@@ -44,8 +49,12 @@ export async function GET(req: Request) {
         resolveAdapterMeta({ id: "metahuman" }),
         resolveAdapterMeta({ id: "heygen" }),
       ],
-      previewPath: "/ai-teacher/human-engine-preview",
-      note: "Independent of Three.js Teaching Studio. MetaHuman adapter is stub-ready.",
+      paths: {
+        live: "/ai-teacher/live",
+        preview10s: "/ai-teacher/human-engine-preview",
+        threeStudioPhase1: "/ai-teacher/studio",
+      },
+      note: "Performance generated from lesson meaning per sentence. MetaHuman adapter stub-ready.",
     });
   }
 
@@ -55,6 +64,13 @@ export async function GET(req: Request) {
 
   if (action === "preview") {
     return NextResponse.json(buildPreviewPlan(teacher));
+  }
+
+  if (action === "showcase") {
+    if (url.searchParams.get("both") === "1") {
+      return NextResponse.json(buildShowcasePlans());
+    }
+    return NextResponse.json(buildShowcasePlan(teacher));
   }
 
   return NextResponse.json({ error: "unknown action" }, { status: 400 });

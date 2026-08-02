@@ -138,9 +138,23 @@ const REQUIREMENTS: RequirementRow[] = [
   },
   {
     id: "human-engine",
-    label: "Human Engine مستقل (14 وحدة + Lesson Director + Adapter)",
+    label: "Human Engine مستقل (Lesson Director + Adapter + Semantic Sentence)",
     status: "completed",
-    evidence: "lib/human-engine/* + /ai-teacher/human-engine-preview + validate:human-engine",
+    evidence: "lib/human-engine/* + /ai-teacher/live + validate:human-engine",
+    runnableNow: true,
+  },
+  {
+    id: "semantic-sentence",
+    label: "كل جملة تولّد وجه/عين/رأس/يد/مشي/نظر/كاميرا/إضاءة/شاشة من المعنى",
+    status: "completed",
+    evidence: "semantic-sentence.ts → ContentAct + sentences[] + screen/locomotion tracks",
+    runnableNow: true,
+  },
+  {
+    id: "content-interact",
+    label: "تفاعل محتوى: قانون / رسم / تجربة / نموذج 3D (توليد من الدرس)",
+    status: "in_progress",
+    evidence: "/ai-teacher/live يعرض screen plane حيّة — ليست MetaHuman hands على mesh بعد",
     runnableNow: true,
   },
   {
@@ -483,10 +497,14 @@ export function AiTeacherProgressPreview() {
               <Link href="/ai-teacher/human-engine-preview" style={{ color: "#ffd84a" }}>
                 /ai-teacher/human-engine-preview
               </Link>
+              {" · "}
+              <Link href="/ai-teacher/live" style={{ color: "#ffd84a" }}>
+                /ai-teacher/live
+              </Link>
             </li>
             <li>أصول photoreal لسارة وعلي + صوت عصبي مخبوز</li>
             <li>محرك تخطيط: تحليل درس → اختيار معلم → مشاهد → سلوكيات ديناميكية</li>
-            <li>Human Engine مستقل (14 وحدة) + Adapter جاهز لـ MetaHuman</li>
+            <li>Human Engine: جملة→أداء من المعنى + تفاعل قانون/رسم/تجربة/نموذج 3D</li>
             <li>API: <code>/api/digital-human-studio</code></li>
           </ul>
           <h2>ما لم يُبنَ بعد (لا نقول «تم»)</h2>

@@ -85,7 +85,8 @@ export function StudioLessonLauncher({
     );
   }
 
-  const href = `/ai-teacher/studio?lessonId=${encodeURIComponent(lessonId)}&teacher=${plan.cast.id}`;
+  const href3d = `/ai-teacher/studio?lessonId=${encodeURIComponent(lessonId)}&teacher=${plan.cast.id}`;
+  const hrefLive = `/ai-teacher/live?teacher=${plan.cast.id}`;
 
   return (
     <div style={bar}>
@@ -96,19 +97,34 @@ export function StudioLessonLauncher({
         {" · "}
         {plan.scenes.length} مشاهد سينمائية
       </div>
-      <Link
-        href={href}
-        style={{
-          background: "linear-gradient(120deg,#ffd84a,#e0893a)",
-          color: "#1a1208",
-          fontWeight: 900,
-          textDecoration: "none",
-          padding: "10px 16px",
-          borderRadius: 12,
-        }}
-      >
-        ابدأ الحصة في الاستوديو ثلاثي الأبعاد
-      </Link>
+      <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
+        <Link
+          href={hrefLive}
+          style={{
+            background: "linear-gradient(120deg,#f0e4d0,#d8c4a0)",
+            color: "#1a1208",
+            fontWeight: 900,
+            textDecoration: "none",
+            padding: "10px 16px",
+            borderRadius: 12,
+          }}
+        >
+          ادخل الاستوديو الحي (Human Engine)
+        </Link>
+        <Link
+          href={href3d}
+          style={{
+            background: "rgba(255,255,255,0.12)",
+            color: "#f3f0e7",
+            fontWeight: 800,
+            textDecoration: "none",
+            padding: "10px 16px",
+            borderRadius: 12,
+          }}
+        >
+          استوديو 3D (مرحلة 1)
+        </Link>
+      </div>
     </div>
   );
 }

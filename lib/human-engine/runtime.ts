@@ -1,5 +1,5 @@
 /**
- * Human Engine runtime helpers — preview plans + playback clock.
+ * Human Engine runtime helpers — preview + showcase plans + playback clock.
  */
 import type {
   HumanCharacterId,
@@ -9,81 +9,25 @@ import type {
 import { directLesson } from "./lesson-director";
 import { sampleFrame } from "./sampler";
 import type { DigitalHumanAdapter } from "@/types/human-engine";
+import { preview10sLessonInput, showcaseLessonInput } from "./showcase-lesson";
 
 export function previewLessonInput(characterId: HumanCharacterId): HumanLessonInput {
-  const isAli = characterId === "ali";
-  return {
-    lessonId: `he_preview_10s_${characterId}`,
-    title: "Count to Three",
-    titleAr: "العد حتى ثلاثة",
-    subject: "math",
-    grade: "g1",
-    language: "ar",
-    preferredCharacterId: characterId,
-    durationMs: 10000,
-    blocks: isAli
-      ? [
-          {
-            id: "h1",
-            kind: "hook",
-            text: "أهلاً، أنا المعلم علي. اليوم نعدّ بوضوح حتى ثلاثة.",
-          },
-          {
-            id: "e1",
-            kind: "explain",
-            text: "شوف السبورة: واحد، ثم اثنان، ثم ثلاثة. كل رقم له مكانه.",
-          },
-          {
-            id: "x1",
-            kind: "example",
-            text: "مثال: تفاحة، تفاحتان، ثلاث تفاحات. ركّز على الترتيب.",
-          },
-          {
-            id: "c1",
-            kind: "check",
-            text: "فكر معي: ما الرقم بعد الاثنين؟",
-          },
-          {
-            id: "z1",
-            kind: "close",
-            text: "أحسنت المتابعة. إلى اللقاء.",
-          },
-        ]
-      : [
-          {
-            id: "h1",
-            kind: "hook",
-            text: "مرحبا، أنا المعلمة سارة. هيا نعدّ معاً حتى ثلاثة.",
-          },
-          {
-            id: "e1",
-            kind: "explain",
-            text: "نبدأ من واحد، ثم اثنين، ثم ثلاثة. انظر إلى السبورة معي.",
-          },
-          {
-            id: "x1",
-            kind: "example",
-            text: "مثلاً: نجمة، نجمتان، ثلاث نجمات. اكتبها ببطء.",
-          },
-          {
-            id: "c1",
-            kind: "check",
-            text: "سؤالي: كم يصبح واحد زائد اثنين؟",
-          },
-          {
-            id: "z1",
-            kind: "encourage",
-            text: "أحسنت! أنت تتعلم بسرعة.",
-          },
-        ],
-  };
+  return preview10sLessonInput(characterId);
 }
 
 export function buildPreviewPlan(characterId: HumanCharacterId): HumanPerformancePlan {
   return directLesson({
-    input: previewLessonInput(characterId),
+    input: preview10sLessonInput(characterId),
     adapterId: "local_photoreal_preview",
     maxDurationMs: 10000,
+  });
+}
+
+export function buildShowcasePlan(characterId: HumanCharacterId): HumanPerformancePlan {
+  return directLesson({
+    input: showcaseLessonInput(characterId),
+    adapterId: "local_photoreal_preview",
+    maxDurationMs: 48000,
   });
 }
 
@@ -94,6 +38,16 @@ export function buildDemoPlans(): {
   return {
     sara: buildPreviewPlan("sara"),
     ali: buildPreviewPlan("ali"),
+  };
+}
+
+export function buildShowcasePlans(): {
+  sara: HumanPerformancePlan;
+  ali: HumanPerformancePlan;
+} {
+  return {
+    sara: buildShowcasePlan("sara"),
+    ali: buildShowcasePlan("ali"),
   };
 }
 

@@ -1,5 +1,5 @@
 /**
- * Lighting Director — presets follow emotion / camera intimacy.
+ * Lighting Director — presets follow emotion / camera intimacy / content act.
  */
 import type {
   CameraShot,
@@ -17,6 +17,9 @@ export function lightForState(emotion: EmotionId, shot: CameraShot): {
   }
   if (emotion === "focused" || emotion === "serious") {
     return { preset: "cool_focus", intensity: 0.95 };
+  }
+  if (shot === "prop_orbit") {
+    return { preset: "model_spotlight", intensity: 1.1 };
   }
   if (shot === "board_insert" || shot === "over_shoulder_board") {
     return { preset: "board_accent", intensity: 1 };
