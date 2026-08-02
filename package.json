@@ -37,6 +37,7 @@
     "validate:ai-digital-human-teacher": "node scripts/ai-digital-human-teacher.test.mjs",
     "validate:ai-teachers": "node scripts/validate-ai-teachers.mjs",
     "validate:digital-human-studio": "node scripts/digital-human-studio.test.mjs",
+    "validate:human-engine": "node scripts/human-engine.test.mjs",
     "ai-teachers:factory": "python3 scripts/build-ai-teacher-factory.py",
     "ai-teachers:bake-audio": "python3 scripts/bake-ai-teacher-lesson-audio.py",
     "media:g1-sara": "AI_TEACHER_ID=sara python3 scripts/render-g1-colorful-board-lesson.py",

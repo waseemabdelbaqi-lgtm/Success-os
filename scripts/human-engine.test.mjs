@@ -1,0 +1,65 @@
+#!/usr/bin/env node
+import assert from "node:assert/strict";
+import { spawnSync } from "node:child_process";
+import fs from "node:fs";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
+
+const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
+
+const required = [
+  "types/human-engine.ts",
+  "lib/human-engine/index.ts",
+  "lib/human-engine/character-generator.ts",
+  "lib/human-engine/skeleton-animation.ts",
+  "lib/human-engine/facial-rig.ts",
+  "lib/human-engine/blend-shapes.ts",
+  "lib/human-engine/lip-sync.ts",
+  "lib/human-engine/eye-tracking.ts",
+  "lib/human-engine/head-tracking.ts",
+  "lib/human-engine/emotion-system.ts",
+  "lib/human-engine/gesture-engine.ts",
+  "lib/human-engine/ai-behaviour-engine.ts",
+  "lib/human-engine/camera-director.ts",
+  "lib/human-engine/lighting-director.ts",
+  "lib/human-engine/animation-timeline.ts",
+  "lib/human-engine/lesson-director.ts",
+  "lib/human-engine/sampler.ts",
+  "lib/human-engine/runtime.ts",
+  "lib/human-engine/adapters/index.ts",
+  "lib/human-engine/adapters/local-photoreal.ts",
+  "lib/human-engine/adapters/metahuman.ts",
+  "lib/human-engine/adapters/heygen.ts",
+  "app/api/human-engine/route.ts",
+  "app/ai-teacher/human-engine-preview/page.tsx",
+  "components/ai-teachers/human-engine-preview.tsx",
+  "docs/cursor/human-engine.md",
+  "scripts/_human_engine_runner.ts",
+];
+
+for (const rel of required) {
+  assert.ok(fs.existsSync(path.join(root, rel)), `missing ${rel}`);
+}
+
+const runner = path.join(root, "scripts/_human_engine_runner.ts");
+const result = spawnSync(process.execPath, ["--import", "tsx", runner], {
+  cwd: root,
+  encoding: "utf8",
+});
+
+if (result.status !== 0) {
+  const npx = spawnSync("npx", ["--yes", "tsx", runner], {
+    cwd: root,
+    encoding: "utf8",
+  });
+  if (npx.status !== 0) {
+    console.error(result.stderr || result.stdout);
+    console.error(npx.stderr || npx.stdout);
+    process.exit(1);
+  }
+  console.log(npx.stdout.trim());
+} else {
+  console.log(result.stdout.trim());
+}
+
+console.log("human-engine OK");

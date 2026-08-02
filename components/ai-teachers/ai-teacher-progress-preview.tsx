@@ -131,30 +131,44 @@ const REQUIREMENTS: RequirementRow[] = [
   },
   {
     id: "realtime-3d-studio",
-    label: "استوديو ثلاثي الأبعاد حقيقي (WebGL/Three scene)",
+    label: "استوديو ثلاثي الأبعاد حقيقي (WebGL/Three scene) — المرحلة 1 فقط",
+    status: "completed",
+    evidence: "TeachingStudio3D (R3F) مرحلة 1 مكتملة كاستوديو — الشخصيات ليست MetaHuman",
+    runnableNow: true,
+  },
+  {
+    id: "human-engine",
+    label: "Human Engine مستقل (14 وحدة + Lesson Director + Adapter)",
+    status: "completed",
+    evidence: "lib/human-engine/* + /ai-teacher/human-engine-preview + validate:human-engine",
+    runnableNow: true,
+  },
+  {
+    id: "he-phoneme",
+    label: "Lip Sync مبني على Phonemes (خطة أداء — معاينة محلية)",
     status: "in_progress",
-    evidence: "TeachingStudio3D (R3F) يعمل: غرفة/LED/سبورة/كاميرات/props — بدون MetaHuman",
+    evidence: "مسار phoneme→blendshape جاهز؛ العرض المحلي overlay وليس MetaHuman viseme",
     runnableNow: true,
   },
   {
     id: "full-body-skel",
-    label: "حركة جسم كاملة (مشي/جلوس/هيكل عظمي) مولَّدة لحظياً",
+    label: "حركة جسم كاملة MetaHuman (هيكل عظمي حي)",
     status: "not_started",
-    evidence: "حالياً تبديل صور poses فقط — لا animation rig",
+    evidence: "Human Engine يولّد bone keyframes؛ Adapter MetaHuman ما زال stub",
     runnableNow: false,
   },
   {
     id: "face-blendshapes",
-    label: "تعابير وجه دقيقة (blendshapes / رمش/تنفس فيزيائي)",
+    label: "تعابير وجه دقيقة على شبكة MetaHuman",
     status: "not_started",
-    evidence: "لا يوجد نموذج وجه قابل للتحريك — صور ثابتة + canvas overlays",
+    evidence: "أوزان blendshape في الخطة؛ لا mesh وجه حي بعد",
     runnableNow: false,
   },
   {
     id: "pro-lipsync",
-    label: "Lip Sync احترافي 100% (phoneme / digital twin video)",
+    label: "Lip Sync احترافي على Digital Twin / MetaHuman",
     status: "not_started",
-    evidence: "HEYGEN_* فارغ — لا فيديو twin حي؛ المزامنة الحالية تقريبية",
+    evidence: "HEYGEN_* فارغ + MetaHuman stub — المعاينة الحالية phoneme-driven محلياً",
     runnableNow: false,
   },
   {
@@ -465,9 +479,14 @@ export function AiTeacherProgressPreview() {
               <Link href="/ai-teacher/studio" style={{ color: "#ffd84a" }}>
                 /ai-teacher/studio
               </Link>
+              {" · "}
+              <Link href="/ai-teacher/human-engine-preview" style={{ color: "#ffd84a" }}>
+                /ai-teacher/human-engine-preview
+              </Link>
             </li>
             <li>أصول photoreal لسارة وعلي + صوت عصبي مخبوز</li>
             <li>محرك تخطيط: تحليل درس → اختيار معلم → مشاهد → سلوكيات ديناميكية</li>
+            <li>Human Engine مستقل (14 وحدة) + Adapter جاهز لـ MetaHuman</li>
             <li>API: <code>/api/digital-human-studio</code></li>
           </ul>
           <h2>ما لم يُبنَ بعد (لا نقول «تم»)</h2>
