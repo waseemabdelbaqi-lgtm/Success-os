@@ -19,11 +19,22 @@ Turns any lesson into a **photoreal teacher studio session** with Sara or Ali:
 | `/student/books/.../lessons/...` | Auto launcher plans studio on open |
 | `GET/POST /api/digital-human-studio` | `status` · `demo` · `plan` · `adapt` |
 
+## 3D studio runtime
+
+`/ai-teacher/studio` renders a real **three.js / React Three Fiber** stage:
+- LED wall + smart board + presentation table + cinematic lights
+- Multi-camera rig (wide / medium / close / over-shoulder / orbit)
+- Photoreal teacher billboard with pose swaps (stand/point/write)
+- Sentence-synced performance (`performance-generator.ts`) with unique gestures + focus targets
+- Interactive 3D props that pulse when the teacher focuses them
+
+Still **not** a MetaHuman skeletal avatar — photoreal images inside a real 3D studio.
+
 ## Providers
 
 | Provider | Status |
 |----------|--------|
-| `local_photoreal_studio` | Live (photoreal assets + neural audio + dynamic direction) |
+| `local_photoreal_studio` | Live (3D studio + photoreal assets + neural audio + dynamic direction) |
 | `heygen` | Port ready — needs `HEYGEN_*` credentials for twin video |
 | `tavus` | Port reserved |
 

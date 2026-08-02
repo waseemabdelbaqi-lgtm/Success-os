@@ -153,6 +153,12 @@ export type BehaviorBeat = {
   expression: FaceExpression;
   eyeContact: boolean;
   sayChunk?: string;
+  /** Prop/board element the teacher looks at / points to */
+  focusTarget?: string | null;
+  /** 0..1 breath amplitude hint for runtime */
+  breath?: number;
+  /** Whether a blink should fire near this beat */
+  blink?: boolean;
 };
 
 export type StudioScene = {

@@ -12,6 +12,10 @@ assert.equal(plan.cast.id, "sara");
 assert.ok(plan.scenes.length >= 3);
 assert.ok(plan.scenes.every((s) => s.behaviors.length >= 2));
 assert.ok(plan.scenes.every((s) => s.board.length >= 1));
+assert.ok(
+  plan.scenes.some((s) => s.behaviors.some((b) => b.focusTarget != null)),
+  "expected sentence focus targets",
+);
 
 const sig = plan.scenes.map((s) => s.behaviors.map((b) => b.gesture).join(","));
 assert.ok(new Set(sig).size >= 2, "expected dynamic non-identical gesture timelines");

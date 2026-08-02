@@ -10,9 +10,9 @@ import {
   buildBoardCues,
   buildProps,
   contentSeed,
-  directBehaviors,
   openingLine,
 } from "./behavior-director";
+import { generateSentencePerformance } from "./performance-generator";
 
 const CAMERAS: CameraAngle[] = [
   "wide_establishing",
@@ -149,12 +149,6 @@ export function planScenes(opts: {
   return parts.map((part, index) => {
     const id = `scene-${index + 1}-${part.purpose}`;
     const teacherSay = sayFor(opts.cast, part.purpose, part.title, part.body, opts.analysis);
-    const behaviors = directBehaviors({
-      purpose: part.purpose,
-      say: teacherSay,
-      analysis: opts.analysis,
-      sceneIndex: index,
-    });
     const board = buildBoardCues({
       title: part.title,
       purpose: part.purpose,
@@ -165,6 +159,13 @@ export function planScenes(opts: {
       analysis: opts.analysis,
       purpose: part.purpose,
       sceneId: id,
+    });
+    const behaviors = generateSentencePerformance({
+      purpose: part.purpose,
+      say: teacherSay,
+      analysis: opts.analysis,
+      sceneIndex: index,
+      props,
     });
 
     return {

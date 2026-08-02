@@ -131,10 +131,10 @@ const REQUIREMENTS: RequirementRow[] = [
   },
   {
     id: "realtime-3d-studio",
-    label: "استوديو ثلاثي الأبعاد حقيقي (WebGL/Three scene كاملة)",
-    status: "not_started",
-    evidence: "three موجود بالـ deps لكن لا يوجد مشهد MetaHuman/استوديو 3D مُشغَّل",
-    runnableNow: false,
+    label: "استوديو ثلاثي الأبعاد حقيقي (WebGL/Three scene)",
+    status: "in_progress",
+    evidence: "TeachingStudio3D (R3F) يعمل: غرفة/LED/سبورة/كاميرات/props — بدون MetaHuman",
+    runnableNow: true,
   },
   {
     id: "full-body-skel",
@@ -179,8 +179,8 @@ const QUALITY = [
   { label: "جودة الحركة", value: "تبديل poses + تنفس/تمايل canvas — ليست حركة جسم كاملة", score: "4/10" },
   { label: "جودة الصوت", value: "عصبي أردني مخبوز (Sana/Taim) — واضح وقابل للتشغيل", score: "8/10" },
   { label: "جودة Lip Sync", value: "تقريبي عبر طاقة الصوت/إطارات فم — غير احترافي 100%", score: "3/10" },
-  { label: "الاستوديو الحالي", value: "واجهة سينمائية 2.5D (LED/سبورة) — ليس استوديو 3D حقيقي", score: "5/10" },
-  { label: "العناصر التفاعلية", value: "سبورة حية، أوامر، props، مشاهد مخططة — نماذج 3D غير حقيقية", score: "5/10" },
+  { label: "الاستوديو الحالي", value: "مشهد three.js حقيقي (LED/سبورة/طاولة/كاميرات) + معلم photoreal billboard", score: "7/10" },
+  { label: "العناصر التفاعلية", value: "props ثلاثية تدور/تتوهج مع تركيز المعلم + سبورة Html + سؤال مباشر", score: "6/10" },
 ];
 
 export function AiTeacherProgressPreview() {

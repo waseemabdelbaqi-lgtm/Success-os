@@ -19,7 +19,9 @@ const required = [
   "app/api/digital-human-studio/route.ts",
   "app/ai-teacher/studio/page.tsx",
   "components/ai-teachers/digital-human-studio.tsx",
+  "components/ai-teachers/teaching-studio-3d.tsx",
   "components/ai-teachers/studio-lesson-launcher.tsx",
+  "lib/digital-human-studio/performance-generator.ts",
   "docs/cursor/digital-human-studio.md",
   "scripts/_dhs_runtime_runner.ts",
 ];

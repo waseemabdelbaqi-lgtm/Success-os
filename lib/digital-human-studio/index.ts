@@ -13,3 +13,4 @@ export {
   buildBoardCues,
   buildProps,
 } from "./behavior-director";
+export { generateSentencePerformance } from "./performance-generator";
