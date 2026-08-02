@@ -87,6 +87,7 @@ export function StudioLessonLauncher({
 
   const href3d = `/ai-teacher/studio?lessonId=${encodeURIComponent(lessonId)}&teacher=${plan.cast.id}`;
   const hrefLive = `/ai-teacher/live?teacher=${plan.cast.id}`;
+  const hrefProof = `/ai-teacher/proof`;
 
   return (
     <div style={bar}>
@@ -99,7 +100,7 @@ export function StudioLessonLauncher({
       </div>
       <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
         <Link
-          href={hrefLive}
+          href={hrefProof}
           style={{
             background: "linear-gradient(120deg,#f0e4d0,#d8c4a0)",
             color: "#1a1208",
@@ -109,10 +110,10 @@ export function StudioLessonLauncher({
             borderRadius: 12,
           }}
         >
-          ادخل الاستوديو الحي (Human Engine)
+          صفحة الإثبات (Proof Lab)
         </Link>
         <Link
-          href={href3d}
+          href={hrefLive}
           style={{
             background: "rgba(255,255,255,0.12)",
             color: "#f3f0e7",
@@ -122,7 +123,20 @@ export function StudioLessonLauncher({
             borderRadius: 12,
           }}
         >
-          استوديو 3D (مرحلة 1)
+          استوديو Human Engine
+        </Link>
+        <Link
+          href={href3d}
+          style={{
+            background: "rgba(255,255,255,0.08)",
+            color: "#f3f0e7",
+            fontWeight: 700,
+            textDecoration: "none",
+            padding: "10px 16px",
+            borderRadius: 12,
+          }}
+        >
+          استوديو 3D (DHS)
         </Link>
       </div>
     </div>
