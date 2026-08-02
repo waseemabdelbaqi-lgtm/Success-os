@@ -1,11 +1,16 @@
 /**
- * Editable teacher profile store — JSON catalog scalable to hundreds of teachers.
- * Defaults live in content/ai-teachers/profiles/*.json
- * Runtime overrides (admin edits) in .data/ai-teachers/profiles/ when writable.
+ * Server-only editable teacher profile store.
+ * Defaults: content/ai-teachers/profiles/*.json
+ * Overrides: .data/ai-teachers/profiles/
  */
+import "server-only";
 import fs from "node:fs";
 import path from "node:path";
 import type { TeacherMindProfile, TeacherProfileId } from "@/types/teacher-mind";
+import {
+  getDefaultTeacherProfile,
+  listDefaultTeacherProfiles,
+} from "./teacher-profiles-defaults";
 
 const CONTENT_DIR = path.join(process.cwd(), "content/ai-teachers/profiles");
 const OVERRIDE_DIR = path.join(process.cwd(), ".data/ai-teachers/profiles");
@@ -36,7 +41,8 @@ export function listTeacherProfileIds(): TeacherProfileId[] {
       .filter((f) => f.endsWith(".json"))
       .map((f) => f.replace(/\.json$/, ""));
   }
-  return [...new Set([...fromContent, ...fromOverride])].sort();
+  const fromDefaults = listDefaultTeacherProfiles().map((p) => p.id);
+  return [...new Set([...fromDefaults, ...fromContent, ...fromOverride])].sort();
 }
 
 export function getTeacherProfile(id: TeacherProfileId): TeacherMindProfile {
@@ -44,7 +50,7 @@ export function getTeacherProfile(id: TeacherProfileId): TeacherMindProfile {
   if (override) return override;
   const base = readJson(path.join(CONTENT_DIR, `${id}.json`));
   if (base) return base;
-  throw new Error(`Teacher profile not found: ${id}`);
+  return getDefaultTeacherProfile(id);
 }
 
 export function listTeacherProfiles(): TeacherMindProfile[] {
@@ -69,7 +75,6 @@ export function saveTeacherProfile(profile: TeacherMindProfile): TeacherMindProf
   ensureDir(OVERRIDE_DIR);
   const file = path.join(OVERRIDE_DIR, `${next.id}.json`);
   fs.writeFileSync(file, JSON.stringify(next, null, 2), "utf8");
-  // Mirror into content if it already exists there (keeps repo defaults editable in cloud)
   const contentFile = path.join(CONTENT_DIR, `${next.id}.json`);
   if (fs.existsSync(CONTENT_DIR)) {
     try {

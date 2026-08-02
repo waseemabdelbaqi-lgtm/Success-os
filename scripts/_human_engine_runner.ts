@@ -15,9 +15,9 @@ import {
   detectContentAct,
   directLesson,
   directSentence,
+  getDefaultTeacherProfile,
   getTeacherPersona,
-  getTeacherProfile,
-  listTeacherProfiles,
+  listDefaultTeacherProfiles,
   sampleFrame,
   textToPhonemeTrack,
 } from "../lib/human-engine/index";
@@ -197,9 +197,12 @@ if (askSara.microPlan.timeline.durationMs < 1000) {
 }
 
 // Teacher Mind profiles + Behaviour Tree
-const profiles = listTeacherProfiles();
+const profiles = listDefaultTeacherProfiles();
 if (profiles.length < 2) throw new Error("expected sara+ali teacher mind profiles");
-if (getTeacherProfile("sara").voice.edgeTts === getTeacherProfile("ali").voice.edgeTts) {
+if (
+  getDefaultTeacherProfile("sara").voice.edgeTts ===
+  getDefaultTeacherProfile("ali").voice.edgeTts
+) {
   throw new Error("sara/ali profiles must differ in voice");
 }
 const tree = describeTeacherMindTree();

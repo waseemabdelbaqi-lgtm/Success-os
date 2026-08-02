@@ -8,7 +8,10 @@ import type {
   HumanCharacterId,
 } from "@/types/human-engine";
 import type { TeacherMindProfile } from "@/types/teacher-mind";
-import { getTeacherProfile, listTeacherProfiles } from "./teacher-profile-store";
+import {
+  getDefaultTeacherProfile,
+  listDefaultTeacherProfiles,
+} from "./teacher-profiles-defaults";
 
 export type TeacherPersonaId = string;
 
@@ -97,14 +100,14 @@ function profileToPersona(p: TeacherMindProfile): TeacherPersona {
 export function getTeacherPersona(id: HumanCharacterId): TeacherPersona {
   const pid = id === "ali" ? "ali" : id === "sara" ? "sara" : String(id);
   try {
-    return profileToPersona(getTeacherProfile(pid));
+    return profileToPersona(getDefaultTeacherProfile(pid));
   } catch {
-    return profileToPersona(getTeacherProfile("sara"));
+    return profileToPersona(getDefaultTeacherProfile("sara"));
   }
 }
 
 export function listTeacherPersonas(): TeacherPersona[] {
-  return listTeacherProfiles().map(profileToPersona);
+  return listDefaultTeacherProfiles().map(profileToPersona);
 }
 
 export function personaEmotion(

@@ -10,10 +10,11 @@ import type {
 import type {
   TeacherBlackboard,
   TeacherMindDecision,
+  TeacherMindProfile,
   TeacherSessionMemory,
 } from "@/types/teacher-mind";
 import { directLesson } from "./lesson-director";
-import { getTeacherProfile } from "./teacher-profile-store";
+import { getDefaultTeacherProfile } from "./teacher-profiles-defaults";
 import {
   createSessionMemory,
   markStrategyUsed,
@@ -96,8 +97,12 @@ export function adaptLiveTeacher(opts: {
   /** Pass prior memory to keep contextual continuity */
   memory?: TeacherSessionMemory;
   elapsedMs?: number;
+  /** Server/admin can pass live profile overrides; client uses defaults */
+  profile?: TeacherMindProfile;
 }): LiveAdaptResult {
-  const profile = getTeacherProfile(opts.teacherId === "ali" ? "ali" : "sara");
+  const profile =
+    opts.profile ||
+    getDefaultTeacherProfile(opts.teacherId === "ali" ? "ali" : "sara");
   let memory =
     opts.memory ||
     createSessionMemory({

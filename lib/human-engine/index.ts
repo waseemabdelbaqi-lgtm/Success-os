@@ -58,12 +58,9 @@ export type { ProofLessonId, ProofLessonMeta } from "./proof-lessons";
 export { adaptLiveTeacher } from "./adapt";
 export type { StudentLiveEvent, LiveAdaptResult } from "./adapt";
 export {
-  getTeacherProfile,
-  listTeacherProfiles,
-  listTeacherProfileIds,
-  saveTeacherProfile,
-  resetTeacherProfile,
-} from "./teacher-profile-store";
+  getDefaultTeacherProfile,
+  listDefaultTeacherProfiles,
+} from "./teacher-profiles-defaults";
 export {
   createSessionMemory,
   tickMemory,

@@ -31,6 +31,7 @@ const required = [
   "lib/human-engine/teacher-persona.ts",
   "lib/human-engine/teacher-mind.ts",
   "lib/human-engine/teacher-profile-store.ts",
+  "lib/human-engine/teacher-profiles-defaults.ts",
   "lib/human-engine/session-memory.ts",
   "lib/human-engine/behaviour-tree.ts",
   "lib/human-engine/proof-lessons.ts",

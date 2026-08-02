@@ -1,5 +1,5 @@
 import { TeacherMindAdmin } from "@/components/ai-teachers/teacher-mind-admin";
-import { listTeacherProfiles } from "@/lib/human-engine";
+import { listTeacherProfiles } from "@/lib/human-engine/teacher-profile-store";
 
 export const dynamic = "force-dynamic";
 

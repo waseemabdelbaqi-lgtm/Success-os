@@ -2,12 +2,14 @@ import { NextResponse } from "next/server";
 import {
   createSessionMemory,
   describeTeacherMindTree,
+  adaptLiveTeacher,
+} from "@/lib/human-engine";
+import {
   getTeacherProfile,
   listTeacherProfiles,
   resetTeacherProfile,
   saveTeacherProfile,
-  adaptLiveTeacher,
-} from "@/lib/human-engine";
+} from "@/lib/human-engine/teacher-profile-store";
 import type { TeacherMindProfile } from "@/types/teacher-mind";
 
 export const runtime = "nodejs";
@@ -111,6 +113,7 @@ export async function POST(req: Request) {
       event,
       memory: body.memory as never,
       elapsedMs: body.elapsedMs,
+      profile: getTeacherProfile(teacherId),
     });
     return NextResponse.json({ success: true, data: result });
   }
