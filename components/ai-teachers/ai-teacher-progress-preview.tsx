@@ -501,6 +501,10 @@ export function AiTeacherProgressPreview() {
               <Link href="/ai-teacher/live" style={{ color: "#ffd84a" }}>
                 /ai-teacher/live
               </Link>
+              {" · "}
+              <Link href="/ai-teacher/proof" style={{ color: "#ffd84a" }}>
+                /ai-teacher/proof
+              </Link>
             </li>
             <li>أصول photoreal لسارة وعلي + صوت عصبي مخبوز</li>
             <li>محرك تخطيط: تحليل درس → اختيار معلم → مشاهد → سلوكيات ديناميكية</li>

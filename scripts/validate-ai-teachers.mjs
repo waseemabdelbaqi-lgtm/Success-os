@@ -66,6 +66,9 @@ assert(fs.existsSync(path.join(root, "lib/human-engine/index.ts")), "Missing hum
 assert(fs.existsSync(path.join(root, "lib/human-engine/semantic-sentence.ts")), "Missing semantic-sentence director");
 assert(fs.existsSync(path.join(root, "app/ai-teacher/human-engine-preview/page.tsx")), "Missing human-engine preview page");
 assert(fs.existsSync(path.join(root, "app/ai-teacher/live/page.tsx")), "Missing human-engine live studio page");
+assert(fs.existsSync(path.join(root, "app/ai-teacher/proof/page.tsx")), "Missing human-engine proof page");
+assert(fs.existsSync(path.join(root, "lib/human-engine/teacher-persona.ts")), "Missing teacher personas");
+assert(fs.existsSync(path.join(root, "lib/human-engine/proof-lessons.ts")), "Missing proof lessons");
 assert(fs.existsSync(path.join(root, "app/ai-teacher/studio/page.tsx")), "Missing digital human studio page");
 const lesson = fs.readFileSync(path.join(root, "lib/ai-teachers/g1-count-lesson.ts"), "utf8");
 assert(lesson.includes("check:"), "Lesson must include micro-checks");

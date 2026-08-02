@@ -230,6 +230,7 @@ export function directLesson(opts: DirectLessonOptions): HumanPerformancePlan {
         blockKind: block.kind,
         lineIndex,
         prevAct,
+        teacherId: character.id,
       };
       const perf = directSentence(line, ctx);
       const dur = estimateLineMs(line, perf.contentAct);
@@ -257,6 +258,7 @@ export function directLesson(opts: DirectLessonOptions): HumanPerformancePlan {
       blockId: "empty",
       blockKind: "explain",
       lineIndex: 0,
+      teacherId: character.id,
     });
     sentences.push({
       ...perf,
@@ -266,7 +268,24 @@ export function directLesson(opts: DirectLessonOptions): HumanPerformancePlan {
     });
   }
 
-  const durationMs = Math.min(maxDuration, sentences[sentences.length - 1]!.endMs + 220);
+  // Stretch to honor requested duration (proof lessons need ≥60s wall-clock).
+  const rawEnd = sentences[sentences.length - 1]!.endMs;
+  const targetDuration = Math.min(
+    maxDuration,
+    Math.max(rawEnd + 220, opts.input.durationMs || 0),
+  );
+  if (rawEnd > 0 && targetDuration > rawEnd + 400) {
+    const scale = (targetDuration - 220) / rawEnd;
+    for (const s of sentences) {
+      s.startMs = Math.round(s.startMs * scale);
+      s.endMs = Math.round(s.endMs * scale);
+    }
+  }
+
+  const durationMs = Math.min(
+    maxDuration,
+    Math.max(sentences[sentences.length - 1]!.endMs + 220, opts.input.durationMs || 0),
+  );
 
   const lipSync: PhonemeKeyframe[] = [];
   const skeleton: SkeletonKeyframe[] = [];

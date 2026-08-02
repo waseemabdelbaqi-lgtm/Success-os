@@ -42,3 +42,18 @@ export {
   createHeyGenAdapter,
 } from "./adapters";
 export { gestureToClassroomPose } from "./adapters/local-photoreal";
+export {
+  getTeacherPersona,
+  listTeacherPersonas,
+  personaEmotion,
+} from "./teacher-persona";
+export type { TeacherPersona, TeacherPersonaId } from "./teacher-persona";
+export {
+  listProofLessons,
+  getProofLessonMeta,
+  buildProofLessonInput,
+  PROOF_LESSONS,
+} from "./proof-lessons";
+export type { ProofLessonId, ProofLessonMeta } from "./proof-lessons";
+export { adaptLiveTeacher } from "./adapt";
+export type { StudentLiveEvent, LiveAdaptResult } from "./adapt";

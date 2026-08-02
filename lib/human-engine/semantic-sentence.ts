@@ -17,6 +17,7 @@ import type {
 } from "@/types/human-engine";
 import { contentSeed, pick } from "./seed";
 import { goalForKind } from "./ai-behaviour-engine";
+import { getTeacherPersona, type TeacherPersona } from "./teacher-persona";
 
 export type SemanticContext = {
   lessonId: string;
@@ -25,6 +26,8 @@ export type SemanticContext = {
   blockKind: LessonBlockKind;
   lineIndex: number;
   prevAct?: ContentAct;
+  /** sara | ali — changes gesture/emotion/locomotion bias */
+  teacherId?: string;
 };
 
 const LAW_RE = /قانون|صيغة|معادل|=|يساوي|F\s*=|E\s*=|قانون\s*نيوتن|كثافة|مساحة|محيط/;
@@ -60,7 +63,12 @@ export function detectContentAct(text: string, kind: LessonBlockKind): ContentAc
   return "explain_concept";
 }
 
-function gestureForAct(act: ContentAct, seed: number, index: number): GestureIntent {
+function gestureForAct(
+  act: ContentAct,
+  seed: number,
+  index: number,
+  persona: TeacherPersona,
+): GestureIntent {
   switch (act) {
     case "write_law":
     case "write_board":
@@ -81,41 +89,69 @@ function gestureForAct(act: ContentAct, seed: number, index: number): GestureInt
     case "count_sequence":
       return "count_on_fingers";
     case "ask_check":
-      return pick(["invite_answer", "think_pause", "turn_to_student"] as const, seed, index);
+      return persona.style === "warm"
+        ? pick(["invite_answer", "turn_to_student", "open_explain"] as const, seed, index)
+        : pick(["think_pause", "invite_answer", "point_board"] as const, seed, index);
     case "celebrate":
-      return pick(["encourage", "affirm_nod", "open_explain"] as const, seed, index);
+      return persona.interaction.usesEncouragementOften
+        ? pick(["encourage", "affirm_nod", "open_explain"] as const, seed, index)
+        : pick(["affirm_nod", "emphasize", "open_explain"] as const, seed, index);
     case "greet_hook":
-      return pick(["open_explain", "turn_to_student", "walk_step"] as const, seed, index);
+      return persona.gestureBias.preferOpenHands
+        ? pick(["open_explain", "walk_step", "turn_to_student"] as const, seed, index)
+        : pick(["walk_step", "emphasize", "turn_to_student"] as const, seed, index);
     case "point_content":
       return "point_board";
     case "explain_concept":
     default:
-      return pick(
-        ["open_explain", "emphasize", "turn_to_student", "point_board"] as const,
-        seed,
-        index * 5,
-      );
+      return pick(persona.explainGesturePool, seed, index * 5);
   }
 }
 
-function emotionForAct(act: ContentAct, text: string, seed: number): {
+function emotionForAct(
+  act: ContentAct,
+  text: string,
+  seed: number,
+  persona: TeacherPersona,
+): {
   emotion: EmotionId;
   intensity: number;
 } {
-  if (act === "celebrate") return { emotion: "celebratory", intensity: 0.9 };
-  if (act === "ask_check") return { emotion: "curious", intensity: 0.75 };
+  const boost = persona.emotionBias.intensityBoost;
+  if (act === "celebrate") {
+    return {
+      emotion: persona.emotionBias.onCelebrate,
+      intensity: Math.min(1, 0.88 + boost),
+    };
+  }
+  if (act === "ask_check") {
+    return {
+      emotion: persona.emotionBias.onCheck,
+      intensity: Math.min(1, 0.72 + boost),
+    };
+  }
   if (act === "write_law" || act === "draw_diagram") {
-    return { emotion: "focused", intensity: 0.8 };
+    return {
+      emotion: persona.style === "precise" ? "focused" : "patient",
+      intensity: 0.78 + boost * 0.5,
+    };
   }
   if (act === "run_experiment" || act === "show_model" || act === "rotate_model") {
-    return { emotion: "curious", intensity: 0.72 };
+    return { emotion: "curious", intensity: 0.7 + boost };
   }
-  if (act === "greet_hook") return { emotion: "warm", intensity: 0.82 };
-  if (/دقة|مهم|ركّز|ركز/.test(text)) return { emotion: "serious", intensity: 0.7 };
-  if (act === "count_sequence") return { emotion: "patient", intensity: 0.65 };
+  if (act === "greet_hook") {
+    return {
+      emotion: persona.emotionBias.default,
+      intensity: 0.8 + boost,
+    };
+  }
+  if (/دقة|مهم|ركّز|ركز/.test(text)) {
+    return { emotion: "serious", intensity: 0.68 + boost };
+  }
+  if (act === "count_sequence") return { emotion: "patient", intensity: 0.62 + boost };
   return {
-    emotion: seed % 2 === 0 ? "warm" : "focused",
-    intensity: 0.58 + (seed % 5) * 0.04,
+    emotion: persona.emotionBias.default,
+    intensity: 0.58 + (seed % 5) * 0.03 + boost,
   };
 }
 
@@ -142,7 +178,12 @@ function gazeForAct(act: ContentAct, seed: number, index: number): GazeTarget {
   return pick(["student", "board", "student", "notes"] as const, seed, index);
 }
 
-function locomotionForAct(act: ContentAct, text: string, prev?: ContentAct): LocomotionIntent {
+function locomotionForAct(
+  act: ContentAct,
+  text: string,
+  prev: ContentAct | undefined,
+  persona: TeacherPersona,
+): LocomotionIntent {
   if (WALK_RE.test(text) || act === "greet_hook") return "walk_in";
   if (prev && prev !== act && (act === "write_law" || act === "draw_diagram" || act === "point_content")) {
     return "step_to_board";
@@ -150,6 +191,10 @@ function locomotionForAct(act: ContentAct, text: string, prev?: ContentAct): Loc
   if (act === "show_model" || act === "hold_model") return "step_to_prop";
   if (act === "ask_check" || act === "celebrate") return "step_to_student";
   if (act === "run_experiment") return "step_to_prop";
+  // Precise teachers step to board more often between explains
+  if (persona.style === "precise" && act === "explain_concept" && prev === "greet_hook") {
+    return "step_to_board";
+  }
   return "stand";
 }
 
@@ -390,35 +435,36 @@ export function directSentence(
   text: string,
   ctx: SemanticContext,
 ): SentencePerformance {
+  const persona = getTeacherPersona(ctx.teacherId || "sara");
   const seed = contentSeed(
-    `${ctx.lessonId}|${ctx.blockId}|${ctx.lineIndex}|${text}|v3`,
+    `${ctx.lessonId}|${persona.id}|${ctx.blockId}|${ctx.lineIndex}|${text}|v4`,
   );
   const act = detectContentAct(text, ctx.blockKind);
-  const { emotion, intensity } = emotionForAct(act, text, seed);
-  const gesture = gestureForAct(act, seed, ctx.lineIndex);
+  const { emotion, intensity } = emotionForAct(act, text, seed, persona);
+  const gesture = gestureForAct(act, seed, ctx.lineIndex, persona);
   const gaze = gazeForAct(act, seed, ctx.lineIndex);
-  const locomotion = locomotionForAct(act, text, ctx.prevAct);
+  const locomotion = locomotionForAct(act, text, ctx.prevAct, persona);
   const camera = cameraForAct(act, seed, ctx.lineIndex);
   const light = lightForAct(act, emotion);
   const screen = buildScreenElement(act, text, seed, ctx.lineIndex);
   const goal = behaviourForAct(act, goalForKind(ctx.blockKind));
 
-  // Micro head bias from gaze — still unique per seed
+  const sharp = persona.gestureBias.pointSharpness;
   const head = {
     yaw:
       gaze === "board"
-        ? -18 - (seed % 6)
+        ? (-18 - (seed % 6)) * (0.9 + sharp * 0.1)
         : gaze === "prop"
           ? -8 - (seed % 5)
           : gaze === "student"
-            ? 6 + (seed % 5)
+            ? (6 + (seed % 5)) * (persona.style === "warm" ? 1.15 : 0.9)
             : 2,
     pitch: act === "write_law" || act === "draw_diagram" ? 6 + (seed % 4) : -1 + (seed % 3),
-    roll: ((seed % 5) - 2) * 0.4,
+    roll: ((seed % 5) - 2) * 0.4 * (persona.style === "warm" ? 1.2 : 0.8),
   };
 
   return {
-    sentenceId: `s_${ctx.blockId}_${ctx.lineIndex}_${(seed % 997).toString(36)}`,
+    sentenceId: `s_${persona.id}_${ctx.blockId}_${ctx.lineIndex}_${(seed % 997).toString(36)}`,
     text,
     contentAct: act,
     emotion,
@@ -433,6 +479,6 @@ export function directSentence(
     screen,
     behaviourGoal: goal,
     seed,
-    reason: `act=${act} · meaning→performance · ${text.slice(0, 40)}`,
+    reason: `teacher=${persona.id} · act=${act} · ${text.slice(0, 36)}`,
   };
 }

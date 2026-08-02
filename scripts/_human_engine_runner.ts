@@ -2,13 +2,16 @@
  * Runtime assertions for Human Engine (invoked by validate:human-engine).
  */
 import {
+  adaptLiveTeacher,
   assertTimelineIntegrity,
   buildDemoPlans,
+  buildProofLessonInput,
   buildShowcasePlan,
   createAdapter,
   detectContentAct,
   directLesson,
   directSentence,
+  getTeacherPersona,
   sampleFrame,
   textToPhonemeTrack,
 } from "../lib/human-engine/index";
@@ -131,4 +134,62 @@ if (demos.sara.character.id === demos.ali.character.id) {
   throw new Error("sara/ali character collision");
 }
 
-console.log("human-engine runtime OK · semantic director + showcase");
+// Persona differentiation: same lesson text seed path differs by teacher
+const saraLine = directSentence("اكتب القانون F = m a على السبورة", {
+  lessonId: "persona_diff",
+  blockId: "b",
+  blockKind: "explain",
+  lineIndex: 0,
+  teacherId: "sara",
+});
+const aliLine = directSentence("اكتب القانون F = m a على السبورة", {
+  lessonId: "persona_diff",
+  blockId: "b",
+  blockKind: "explain",
+  lineIndex: 0,
+  teacherId: "ali",
+});
+if (saraLine.reason === aliLine.reason) {
+  throw new Error("sara/ali sentence reasons should include teacher id");
+}
+if (getTeacherPersona("sara").voiceId === getTeacherPersona("ali").voiceId) {
+  throw new Error("sara/ali must have different voices");
+}
+if (getTeacherPersona("sara").style === getTeacherPersona("ali").style) {
+  throw new Error("sara/ali must have different styles");
+}
+
+// Proof lesson ≥ 60s
+const proofInput = buildProofLessonInput("forces_law_lab", "ali");
+const proofPlan = directLesson({
+  input: proofInput,
+  maxDurationMs: Math.max(65000, proofInput.durationMs || 65000),
+});
+if (proofPlan.timeline.durationMs < 60000) {
+  throw new Error(`proof lesson too short: ${proofPlan.timeline.durationMs}ms`);
+}
+if (!proofPlan.sentences.some((s) => s.contentAct === "write_law" || s.contentAct === "write_board")) {
+  throw new Error("proof lesson missing write act");
+}
+
+// Live adapt differs by persona
+const askSara = adaptLiveTeacher({
+  teacherId: "sara",
+  lessonTitle: "القوة",
+  event: { type: "ask_text", text: "ما هو التسارع؟" },
+});
+const askAli = adaptLiveTeacher({
+  teacherId: "ali",
+  lessonTitle: "القوة",
+  event: { type: "ask_text", text: "ما هو التسارع؟" },
+});
+if (askSara.reply === askAli.reply) {
+  throw new Error("sara/ali adapt replies must differ");
+}
+if (askSara.microPlan.timeline.durationMs < 1000) {
+  throw new Error("adapt microPlan empty");
+}
+
+console.log(
+  `human-engine runtime OK · proof=${proofPlan.timeline.durationMs}ms · persona+adapt`,
+);

@@ -36,10 +36,19 @@ Camera Director · Lighting Director · Animation Timeline · Lesson Director ·
 
 | Path | Role |
 |------|------|
-| `/ai-teacher/live` | World-class showcase studio (law/draw/experiment/3D) |
+| **`/ai-teacher/proof`** | **Practical proof lab** — pick Sara/Ali + lesson, play ≥60s in Three.js, ask/re-explain, honesty table |
+| `/ai-teacher/live` | Showcase studio (law/draw/experiment/3D) |
 | `/ai-teacher/human-engine-preview` | 10s preview |
-| `/ai-teacher/studio` | Three.js phase-1 studio (unchanged) |
-| `GET /api/human-engine?action=status\|showcase\|preview` | plans |
+| `/ai-teacher/studio` | Three.js phase-1 studio (legacy DHS player) |
+| `GET /api/human-engine?action=status\|proof\|showcase\|preview` | plans |
+
+## Honest limits (do not over-claim)
+
+| Works now | Partial | Structure only |
+|-----------|---------|----------------|
+| Persona-differentiated Sara/Ali | Billboard photoreal poses | Live MetaHuman mesh |
+| Three.js room + HE-driven camera/light | Walk as position offset | Full skeletal walk |
+| ≥60s proof lessons + Q&A | Phoneme mouth overlay | Twin viseme video |
 
 ## Validate
 
