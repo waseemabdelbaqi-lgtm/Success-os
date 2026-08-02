@@ -3,8 +3,8 @@
  * Server overrides live in teacher-profile-store (.data/ + content/).
  */
 import type { TeacherMindProfile, TeacherProfileId } from "@/types/teacher-mind";
-import sara from "@/content/ai-teachers/profiles/sara.json";
-import ali from "@/content/ai-teachers/profiles/ali.json";
+import sara from "../../content/ai-teachers/profiles/sara.json";
+import ali from "../../content/ai-teachers/profiles/ali.json";
 
 const DEFAULTS: Record<string, TeacherMindProfile> = {
   sara: sara as TeacherMindProfile,

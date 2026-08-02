@@ -18,6 +18,7 @@ import type {
 import { contentSeed, pick } from "./seed";
 import { goalForKind } from "./ai-behaviour-engine";
 import { getTeacherPersona, type TeacherPersona } from "./teacher-persona";
+import { pickUnused } from "./performance-variety";
 
 export type SemanticContext = {
   lessonId: string;
@@ -28,6 +29,11 @@ export type SemanticContext = {
   prevAct?: ContentAct;
   /** sara | ali — changes gesture/emotion/locomotion bias */
   teacherId?: string;
+  /** Anti-repeat within the same lesson plan */
+  usedGestures?: string[];
+  usedCameras?: string[];
+  lastGesture?: string | null;
+  lastCamera?: string | null;
 };
 
 const LAW_RE = /قانون|صيغة|معادل|=|يساوي|F\s*=|E\s*=|قانون\s*نيوتن|كثافة|مساحة|محيط/;
@@ -68,43 +74,49 @@ function gestureForAct(
   seed: number,
   index: number,
   persona: TeacherPersona,
+  ctx: SemanticContext,
 ): GestureIntent {
+  const used = ctx.usedGestures || [];
+  const last = ctx.lastGesture;
+  const choose = <T extends GestureIntent>(opts: readonly T[]) =>
+    pickUnused(opts, used, seed, index, last);
+
   switch (act) {
     case "write_law":
     case "write_board":
-      return "write_board";
+      return choose(["write_board", "point_board", "emphasize"] as const);
     case "draw_diagram":
-      return "draw_curve";
+      return choose(["draw_curve", "point_board", "write_board"] as const);
     case "run_experiment":
-      return pick(["manipulate_experiment", "point_board", "hold_prop"] as const, seed, index);
+      return choose(["manipulate_experiment", "point_board", "hold_prop"] as const);
     case "show_model":
     case "hold_model":
-      return "hold_model";
+      return choose(["hold_model", "point_board", "emphasize"] as const);
     case "rotate_model":
-      return "rotate_model";
+      return choose(["rotate_model", "hold_model", "manipulate_experiment"] as const);
     case "zoom_in_model":
-      return "zoom_in_model";
+      return choose(["zoom_in_model", "hold_model", "point_board"] as const);
     case "zoom_out_model":
-      return "zoom_out_model";
+      return choose(["zoom_out_model", "hold_model", "open_explain"] as const);
     case "count_sequence":
-      return "count_on_fingers";
+      return choose(["count_on_fingers", "emphasize", "point_board"] as const);
     case "ask_check":
       return persona.style === "warm"
-        ? pick(["invite_answer", "turn_to_student", "open_explain"] as const, seed, index)
-        : pick(["think_pause", "invite_answer", "point_board"] as const, seed, index);
+        ? choose(["invite_answer", "turn_to_student", "open_explain"] as const)
+        : choose(["think_pause", "invite_answer", "point_board"] as const);
     case "celebrate":
       return persona.interaction.usesEncouragementOften
-        ? pick(["encourage", "affirm_nod", "open_explain"] as const, seed, index)
-        : pick(["affirm_nod", "emphasize", "open_explain"] as const, seed, index);
+        ? choose(["encourage", "affirm_nod", "open_explain"] as const)
+        : choose(["affirm_nod", "emphasize", "open_explain"] as const);
     case "greet_hook":
       return persona.gestureBias.preferOpenHands
-        ? pick(["open_explain", "walk_step", "turn_to_student"] as const, seed, index)
-        : pick(["walk_step", "emphasize", "turn_to_student"] as const, seed, index);
+        ? choose(["open_explain", "walk_step", "turn_to_student"] as const)
+        : choose(["walk_step", "emphasize", "turn_to_student"] as const);
     case "point_content":
-      return "point_board";
+      return choose(["point_board", "emphasize", "turn_to_board"] as const);
     case "explain_concept":
     default:
-      return pick(persona.explainGesturePool, seed, index * 5);
+      return choose(persona.explainGesturePool);
   }
 }
 
@@ -198,12 +210,22 @@ function locomotionForAct(
   return "stand";
 }
 
-function cameraForAct(act: ContentAct, seed: number, index: number): CameraShot {
+function cameraForAct(
+  act: ContentAct,
+  seed: number,
+  index: number,
+  ctx: SemanticContext,
+): CameraShot {
+  const used = ctx.usedCameras || [];
+  const last = ctx.lastCamera;
+  const choose = <T extends CameraShot>(opts: readonly T[]) =>
+    pickUnused(opts, used, seed, index, last);
+
   if (act === "write_law" || act === "write_board" || act === "draw_diagram") {
-    return pick(["over_shoulder_board", "board_insert", "medium_teacher"] as const, seed, index);
+    return choose(["over_shoulder_board", "board_insert", "medium_teacher"] as const);
   }
   if (act === "run_experiment") {
-    return pick(["prop_orbit", "over_shoulder_board", "medium_teacher"] as const, seed, index);
+    return choose(["prop_orbit", "over_shoulder_board", "medium_teacher"] as const);
   }
   if (
     act === "show_model" ||
@@ -212,14 +234,18 @@ function cameraForAct(act: ContentAct, seed: number, index: number): CameraShot 
     act === "zoom_out_model" ||
     act === "hold_model"
   ) {
-    return pick(["prop_orbit", "medium_teacher", "over_shoulder_board"] as const, seed, index);
+    return choose(["prop_orbit", "medium_teacher", "over_shoulder_board"] as const);
   }
-  if (act === "ask_check") return "close_face";
+  if (act === "ask_check") {
+    return choose(["close_face", "medium_teacher", "wide_establishing"] as const);
+  }
   if (act === "greet_hook") {
-    return pick(["wide_establishing", "medium_teacher"] as const, seed, index);
+    return choose(["wide_establishing", "medium_teacher", "close_face"] as const);
   }
-  if (act === "celebrate") return pick(["close_face", "medium_teacher"] as const, seed, index);
-  return pick(["medium_teacher", "close_face", "wide_establishing"] as const, seed, index * 3);
+  if (act === "celebrate") {
+    return choose(["close_face", "medium_teacher", "wide_establishing"] as const);
+  }
+  return choose(["medium_teacher", "close_face", "wide_establishing"] as const);
 }
 
 function lightForAct(act: ContentAct, emotion: EmotionId): { preset: LightPreset; intensity: number } {
@@ -441,10 +467,10 @@ export function directSentence(
   );
   const act = detectContentAct(text, ctx.blockKind);
   const { emotion, intensity } = emotionForAct(act, text, seed, persona);
-  const gesture = gestureForAct(act, seed, ctx.lineIndex, persona);
+  const gesture = gestureForAct(act, seed, ctx.lineIndex, persona, ctx);
   const gaze = gazeForAct(act, seed, ctx.lineIndex);
   const locomotion = locomotionForAct(act, text, ctx.prevAct, persona);
-  const camera = cameraForAct(act, seed, ctx.lineIndex);
+  const camera = cameraForAct(act, seed, ctx.lineIndex, ctx);
   const light = lightForAct(act, emotion);
   const screen = buildScreenElement(act, text, seed, ctx.lineIndex);
   const goal = behaviourForAct(act, goalForKind(ctx.blockKind));

@@ -18,8 +18,10 @@ import { getDefaultTeacherProfile } from "./teacher-profiles-defaults";
 import {
   createSessionMemory,
   markStrategyUsed,
+  normalizeSessionMemory,
   recordAnswer,
   recordConfusion,
+  recordPerformanceUse,
   tickMemory,
 } from "./session-memory";
 import { createBlackboard, tickTeacherMind } from "./teacher-mind";
@@ -103,15 +105,16 @@ export function adaptLiveTeacher(opts: {
   const profile =
     opts.profile ||
     getDefaultTeacherProfile(opts.teacherId === "ali" ? "ali" : "sara");
-  let memory =
+  let memory = normalizeSessionMemory(
     opts.memory ||
-    createSessionMemory({
-      teacherId: profile.id,
-      lessonId: opts.lessonId || "live",
-      lessonTitle: opts.lessonTitle,
-      subject: opts.subject,
-      grade: opts.grade,
-    });
+      createSessionMemory({
+        teacherId: profile.id,
+        lessonId: opts.lessonId || "live",
+        lessonTitle: opts.lessonTitle,
+        subject: opts.subject,
+        grade: opts.grade,
+      }),
+  );
   if (opts.elapsedMs != null) memory = tickMemory(memory, opts.elapsedMs);
 
   const topic = opts.currentLine?.slice(0, 64) || opts.lessonTitle;
@@ -160,7 +163,8 @@ export function adaptLiveTeacher(opts: {
 
   const decision = tickTeacherMind(bb);
 
-  // Persist strategy into memory so next remediation differs
+  // Persist strategy + anti-repeat into memory so next remediation differs
+  memory = bb.memory;
   if (
     decision.strategy !== "check" &&
     decision.strategy !== "celebrate" &&
@@ -168,13 +172,15 @@ export function adaptLiveTeacher(opts: {
     decision.strategy !== "close"
   ) {
     memory = markStrategyUsed(
-      bb.memory,
+      memory,
       decision.strategy === "direct_explain" ? "direct_explain" : decision.strategy,
       topic,
     );
-  } else {
-    memory = bb.memory;
   }
+  memory = recordPerformanceUse(memory, {
+    say: decision.say,
+    camera: decision.cameraBias,
+  });
 
   const microPlan = directLesson({
     input: microInput(opts.teacherId, opts.lessonTitle, decision.say, decision.contentHint),

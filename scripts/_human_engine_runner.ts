@@ -15,9 +15,12 @@ import {
   detectContentAct,
   directLesson,
   directSentence,
+  bridgeInteractiveLessonToHuman,
   getDefaultTeacherProfile,
   getTeacherPersona,
   listDefaultTeacherProfiles,
+  listTeachableCatalog,
+  resolveTeachablePackage,
   sampleFrame,
   textToPhonemeTrack,
 } from "../lib/human-engine/index";
@@ -280,6 +283,39 @@ if (fs.statSync(saraGlb).size < 100_000 || fs.statSync(aliGlb).size < 100_000) {
   throw new Error("teacher.glb files look empty");
 }
 
+// Universal bridge: any platform lesson → Sara/Ali HE plan with rich acts
+const catalog = listTeachableCatalog(5);
+if (!catalog.length) throw new Error("teachable catalog empty");
+const pkg = resolveTeachablePackage({ packageId: catalog[0]!.packageId });
+const bridged = bridgeInteractiveLessonToHuman({
+  pkg,
+  teacherId: "sara",
+  studentLevel: "on",
+});
+const bridgedPlan = directLesson({
+  input: bridged,
+  maxDurationMs: Math.max(65_000, bridged.durationMs),
+});
+if (bridgedPlan.timeline.durationMs < 60_000) {
+  throw new Error(`bridged lesson too short: ${bridgedPlan.timeline.durationMs}`);
+}
+const bridgedActs = new Set(bridgedPlan.sentences.map((s) => s.contentAct));
+if (bridgedActs.size < 3) {
+  throw new Error(`bridged plan needs varied acts, got ${[...bridgedActs].join(",")}`);
+}
+// Consecutive explain gestures should prefer variety when pool allows
+const gestures = bridgedPlan.timeline.gesture.keys.map((k) => k.intent);
+let sameStreak = 1;
+let maxStreak = 1;
+for (let i = 1; i < gestures.length; i++) {
+  if (gestures[i] === gestures[i - 1]) sameStreak += 1;
+  else sameStreak = 1;
+  maxStreak = Math.max(maxStreak, sameStreak);
+}
+if (maxStreak > 3) {
+  throw new Error(`gesture repetition streak too high: ${maxStreak}`);
+}
+
 console.log(
-  `human-engine runtime OK · proof=${proofPlan.timeline.durationMs}ms · teacher-mind+bt · humanoids`,
+  `human-engine runtime OK · proof=${proofPlan.timeline.durationMs}ms · bridge=${bridgedPlan.timeline.durationMs}ms · teacher-mind+bt · humanoids`,
 );

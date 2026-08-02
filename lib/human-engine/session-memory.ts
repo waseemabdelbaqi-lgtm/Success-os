@@ -9,6 +9,7 @@ import type {
   TeacherSessionMemory,
   RemediationMode,
 } from "@/types/teacher-mind";
+import { fingerprintSay, recordUnique } from "./performance-variety";
 
 export function createSessionMemory(opts: {
   teacherId: TeacherProfileId;
@@ -37,11 +38,32 @@ export function createSessionMemory(opts: {
     confusionCount: 0,
     masteryHint: 0.35,
     notes: [],
+    usedGestures: [],
+    usedCameras: [],
+    usedSayFingerprints: [],
+    lastGesture: null,
+    lastCamera: null,
+    waitingForAnswer: false,
+    pendingQuestion: null,
+  };
+}
+
+/** Fill new STM fields when older clients omit them. */
+export function normalizeSessionMemory(mem: TeacherSessionMemory): TeacherSessionMemory {
+  return {
+    ...mem,
+    usedGestures: mem.usedGestures || [],
+    usedCameras: mem.usedCameras || [],
+    usedSayFingerprints: mem.usedSayFingerprints || [],
+    lastGesture: mem.lastGesture ?? null,
+    lastCamera: mem.lastCamera ?? null,
+    waitingForAnswer: Boolean(mem.waitingForAnswer),
+    pendingQuestion: mem.pendingQuestion ?? null,
   };
 }
 
 export function tickMemory(mem: TeacherSessionMemory, elapsedMs: number): TeacherSessionMemory {
-  return { ...mem, elapsedMs };
+  return { ...normalizeSessionMemory(mem), elapsedMs };
 }
 
 export function recordAnswer(
@@ -119,4 +141,45 @@ export function nextUnusedRemediation(
   }
   // Cycle with offset by confusion count so we don't loop the same mode forever
   return order[mem.confusionCount % order.length] || "simpler_words";
+}
+
+export function setWaitingForAnswer(
+  mem: TeacherSessionMemory,
+  question: string | null,
+): TeacherSessionMemory {
+  return {
+    ...mem,
+    waitingForAnswer: Boolean(question),
+    pendingQuestion: question,
+  };
+}
+
+export function recordPerformanceUse(
+  mem: TeacherSessionMemory,
+  opts: { gesture?: string; camera?: string; say?: string },
+): TeacherSessionMemory {
+  let usedGestures = mem.usedGestures;
+  let usedCameras = mem.usedCameras;
+  let usedSayFingerprints = mem.usedSayFingerprints;
+  let lastGesture = mem.lastGesture;
+  let lastCamera = mem.lastCamera;
+  if (opts.gesture) {
+    usedGestures = recordUnique(usedGestures, opts.gesture);
+    lastGesture = opts.gesture;
+  }
+  if (opts.camera) {
+    usedCameras = recordUnique(usedCameras, opts.camera);
+    lastCamera = opts.camera;
+  }
+  if (opts.say) {
+    usedSayFingerprints = recordUnique(usedSayFingerprints, fingerprintSay(opts.say));
+  }
+  return {
+    ...mem,
+    usedGestures,
+    usedCameras,
+    usedSayFingerprints,
+    lastGesture,
+    lastCamera,
+  };
 }

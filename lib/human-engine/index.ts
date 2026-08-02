@@ -64,11 +64,21 @@ export {
 export {
   createSessionMemory,
   tickMemory,
+  normalizeSessionMemory,
   recordAnswer,
   recordConfusion,
   markStrategyUsed,
   nextUnusedRemediation,
+  setWaitingForAnswer,
+  recordPerformanceUse,
 } from "./session-memory";
+export {
+  bridgeInteractiveLessonToHuman,
+  listTeachableCatalog,
+  resolveTeachablePackage,
+} from "./universal-lesson-bridge";
+export type { PlatformTeacherId } from "./universal-lesson-bridge";
+export { pickUnused, fingerprintSay, recordUnique } from "./performance-variety";
 export {
   createBlackboard,
   tickTeacherMind,

@@ -218,6 +218,10 @@ export function directLesson(opts: DirectLessonOptions): HumanPerformancePlan {
   let cursor = 0;
   let lineIndex = 0;
   let prevAct: ContentAct | undefined;
+  const usedGestures: string[] = [];
+  const usedCameras: string[] = [];
+  let lastGesture: string | null = null;
+  let lastCamera: string | null = null;
 
   for (const block of blocks) {
     const lines = splitTeachingLines(block.textAr || block.text);
@@ -231,6 +235,10 @@ export function directLesson(opts: DirectLessonOptions): HumanPerformancePlan {
         lineIndex,
         prevAct,
         teacherId: character.id,
+        usedGestures,
+        usedCameras,
+        lastGesture,
+        lastCamera,
       };
       const perf = directSentence(line, ctx);
       const dur = estimateLineMs(line, perf.contentAct);
@@ -245,6 +253,10 @@ export function directLesson(opts: DirectLessonOptions): HumanPerformancePlan {
         endMs: end,
         audioSrc: `${root}/audio/${audioKey}.mp3`,
       });
+      usedGestures.push(perf.gesture);
+      usedCameras.push(perf.camera);
+      lastGesture = perf.gesture;
+      lastCamera = perf.camera;
       prevAct = perf.contentAct;
       cursor = end + 140;
       lineIndex += 1;

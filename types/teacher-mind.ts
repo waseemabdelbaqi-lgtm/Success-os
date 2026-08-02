@@ -98,7 +98,7 @@ export type MistakeRecord = {
   remediatedWith?: RemediationMode;
 };
 
-/** Session memory — contextual during one lesson. */
+/** Session memory — contextual during one lesson (STM). */
 export type TeacherSessionMemory = {
   schema: "success-os.teacher-session-memory.v1";
   sessionId: string;
@@ -118,6 +118,15 @@ export type TeacherSessionMemory = {
   confusionCount: number;
   masteryHint: number; // 0..1
   notes: string[];
+  /** Anti-repeat: gestures / cameras / phrase fingerprints used this session */
+  usedGestures: string[];
+  usedCameras: string[];
+  usedSayFingerprints: string[];
+  lastGesture: string | null;
+  lastCamera: string | null;
+  /** Q&A: teacher asked and is waiting for student answer */
+  waitingForAnswer: boolean;
+  pendingQuestion: string | null;
 };
 
 export type TeacherMindState =

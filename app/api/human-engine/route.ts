@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import {
   adaptLiveTeacher,
+  bridgeInteractiveLessonToHuman,
   buildDemoPlans,
   buildPreviewPlan,
   buildProofLessonInput,
@@ -10,8 +11,10 @@ import {
   getTeacherPersona,
   listHumanCharacters,
   listProofLessons,
+  listTeachableCatalog,
   listTeacherPersonas,
   resolveAdapterMeta,
+  resolveTeachablePackage,
 } from "@/lib/human-engine";
 import type { HumanLessonInput } from "@/types/human-engine";
 
@@ -30,10 +33,14 @@ export async function GET(req: Request) {
   if (action === "status") {
     return NextResponse.json({
       schema: "success-os.human-engine.v1",
-      version: "1.2.0",
+      version: "1.3.0",
+      platformTeachers: ["sara", "ali"],
       modules: [
         "character-generator",
         "teacher-persona",
+        "teacher-mind",
+        "universal-lesson-bridge",
+        "performance-variety",
         "skeleton-animation",
         "facial-rig",
         "blend-shapes",
@@ -65,26 +72,61 @@ export async function GET(req: Request) {
         resolveAdapterMeta({ id: "heygen" }),
       ],
       paths: {
+        platform: "/ai-teacher",
         demo: "/ai-teacher/demo",
         proof: "/ai-teacher/proof",
         live: "/ai-teacher/live",
         preview10s: "/ai-teacher/human-engine-preview",
         threeStudioPhase1: "/ai-teacher/studio",
+        adminProfiles: "/admin/ai-teachers",
       },
       honesty: {
         works: [
-          "skinned Sara/Ali GLB (Mixamo skeleton + fingers + eye bones)",
-          "ARKit-named face morphs driven by HE phonemes/emotion",
-          "Three.js studio driven by Human Engine frames",
-          "≥60s proof/demo lessons + ask/re-explain",
-          "persona-differentiated voice/style/gestures",
+          "Sara & Ali only — platform teachers",
+          "any ILE lesson → HE performance (board/draw/3D/lab/Q&A)",
+          "anti-repeat gestures/cameras/phrases in-session",
+          "skinned GLB + face morphs + Teacher Mind BT",
         ],
         structure_only: [
           "Unreal MetaHuman Pixel Streaming (needs UE server)",
           "HeyGen twin video (needs HEYGEN_* credentials)",
         ],
       },
-      note: "Product path is WebGL skinned humanoids. MetaHuman Unreal is adapter-ready, not live here.",
+      note: "No new teachers until Sara & Ali are world-class. Product path: /ai-teacher",
+    });
+  }
+
+  if (action === "catalog") {
+    return NextResponse.json(listTeachableCatalog(80));
+  }
+
+  if (action === "teach") {
+    const packageId = url.searchParams.get("packageId");
+    const bookId = url.searchParams.get("bookId");
+    const unitId = url.searchParams.get("unitId");
+    const lessonId = url.searchParams.get("lessonId");
+    const level = url.searchParams.get("level");
+    const pkg = resolveTeachablePackage({ packageId, bookId, unitId, lessonId });
+    const input = bridgeInteractiveLessonToHuman({
+      pkg,
+      teacherId: teacher,
+      studentLevel:
+        level === "below" || level === "above" ? level : "on",
+    });
+    const plan = directLesson({
+      input,
+      maxDurationMs: Math.max(65_000, input.durationMs || 65_000),
+    });
+    return NextResponse.json({
+      teacher: getTeacherPersona(teacher),
+      package: {
+        id: pkg.id,
+        title: pkg.title,
+        subject: pkg.filters?.subject,
+        grade: pkg.filters?.grade,
+      },
+      input,
+      plan,
     });
   }
 

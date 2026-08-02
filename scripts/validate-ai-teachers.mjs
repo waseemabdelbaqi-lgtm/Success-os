@@ -57,6 +57,9 @@ for (const legacy of ["omar", "layla", "waseem"]) {
 const ts = fs.readFileSync(path.join(root, "lib/ai-teachers/catalog.ts"), "utf8");
 assert(ts.includes('id: "sara"') && ts.includes('id: "ali"'), "catalog.ts missing sara/ali");
 assert(!ts.includes('id: "omar"') && !ts.includes('id: "layla"'), "catalog.ts still has legacy teachers");
+assert(fs.existsSync(path.join(root, "app/ai-teacher/page.tsx")), "Missing platform teacher page /ai-teacher");
+assert(fs.existsSync(path.join(root, "components/ai-teachers/platform-teacher-studio.tsx")), "Missing platform teacher studio");
+assert(fs.existsSync(path.join(root, "lib/human-engine/universal-lesson-bridge.ts")), "Missing universal lesson bridge");
 assert(fs.existsSync(path.join(root, "app/ai-teacher/classroom/page.tsx")), "Missing interactive classroom page");
 assert(fs.existsSync(path.join(root, "lib/ai-teachers/master-coach.ts")), "Missing master-coach layer");
 assert(fs.existsSync(path.join(root, "components/ai-teachers/interactive-classroom.tsx")), "Missing classroom UI");

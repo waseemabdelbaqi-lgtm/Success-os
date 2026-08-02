@@ -1,14 +1,22 @@
 # Human Engine (independent digital-human layer)
 
-Schema: `success-os.human-engine.v1` · version `1.1.0`
+Schema: `success-os.human-engine.v1` · version `1.3.0`
+
+## Platform teachers (lock)
+
+**Sara and Ali only.** No new teachers until these two are world-class.
+They are the official face of Success OS and must teach **any** platform subject
+through the same Human Engine (content swaps; core code stays).
 
 ## Purpose
 
-Phase-2 **Human Engine** is independent of the Three.js Teaching Studio (phase 1).
-Every teaching sentence is directed from **meaning** into a full performance package:
+**Human Engine** directs every teaching sentence from **meaning** into a full performance:
 face, eyes, head, hands, locomotion, gaze, camera, lighting, and on-screen elements.
 
-Sara/Ali can later swap to MetaHuman via `DigitalHumanAdapter` without rewriting the platform.
+`universal-lesson-bridge` maps any Interactive Lesson Engine package → `HumanLessonInput`
+with subject-aware acts (board write, draw, step solve, 3D zoom, lab, checks).
+
+Anti-repeat (`performance-variety` + session STM) avoids cloning gestures, cameras, and phrases.
 
 ## Semantic sentence contract
 
@@ -55,13 +63,13 @@ When the student is confused twice, the BT picks the **next unused** mode from `
 
 | Path | Role |
 |------|------|
-| **`/ai-teacher/proof`** | **Practical proof lab** — pick Sara/Ali + lesson, play ≥60s in Three.js, ask/re-explain, honesty table |
-| **`/ai-teacher/demo`** | Skinned humanoid demo (same proof studio) |
+| **`/ai-teacher`** | **Production** — Sara/Ali teach any ILE lesson in 3D studio |
+| `/ai-teacher/proof` · `/ai-teacher/demo` | Technical labs (honesty table / skinned proof) |
 | **`/admin/ai-teachers`** | Edit Sara/Ali Teacher Mind profiles |
 | `/ai-teacher/live` | Showcase studio (law/draw/experiment/3D) |
 | `/ai-teacher/human-engine-preview` | 10s preview |
 | `/ai-teacher/studio` | Three.js phase-1 studio (legacy DHS player) |
-| `GET /api/human-engine?action=status\|proof\|showcase\|preview` | plans |
+| `GET /api/human-engine?action=status\|catalog\|teach\|proof` | plans |
 | `GET/POST /api/teacher-mind` | profiles · tree · save · adapt · session |
 
 ## Skinned digital humans (product path)
@@ -83,7 +91,9 @@ Each GLB includes Mixamo full skeleton (fingers + eye bones) and 15 ARKit-named 
 | Skeleton + fingers + walk cycle from HE | Offline-rendered twin video (HeyGen creds) |
 | Face morph lip-sync / emotion | Photogrammetry MetaHuman identity mesh |
 | ≥60s proof/demo + ask/re-explain | |
-| Teacher Mind BT + editable JSON profiles + session memory | Hundreds of photoreal MetaHuman identities |
+| Teacher Mind BT + editable JSON profiles + session memory | Additional teachers beyond Sara/Ali |
+| Any ILE lesson → HE acts (board/draw/3D/lab/Q&A) | Photogrammetry MetaHuman identity mesh |
+| Anti-repeat gestures/cameras/phrases in-session | |
 
 ## Validate
 
