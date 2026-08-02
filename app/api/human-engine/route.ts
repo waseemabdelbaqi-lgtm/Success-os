@@ -65,6 +65,7 @@ export async function GET(req: Request) {
         resolveAdapterMeta({ id: "heygen" }),
       ],
       paths: {
+        demo: "/ai-teacher/demo",
         proof: "/ai-teacher/proof",
         live: "/ai-teacher/live",
         preview10s: "/ai-teacher/human-engine-preview",
@@ -72,19 +73,18 @@ export async function GET(req: Request) {
       },
       honesty: {
         works: [
-          "persona-differentiated Sara/Ali",
-          "Three.js studio driven by Human Engine",
-          "≥60s proof lessons",
-          "ask + re-explain microplans",
+          "skinned Sara/Ali GLB (Mixamo skeleton + fingers + eye bones)",
+          "ARKit-named face morphs driven by HE phonemes/emotion",
+          "Three.js studio driven by Human Engine frames",
+          "≥60s proof/demo lessons + ask/re-explain",
+          "persona-differentiated voice/style/gestures",
         ],
-        partial: [
-          "photoreal billboard poses (not MetaHuman mesh)",
-          "walk as locomotion offset (not skeletal walk)",
-          "phoneme mouth overlay (not twin visemes)",
+        structure_only: [
+          "Unreal MetaHuman Pixel Streaming (needs UE server)",
+          "HeyGen twin video (needs HEYGEN_* credentials)",
         ],
-        structure_only: ["MetaHuman adapter live mesh", "full facial blendshape mesh"],
       },
-      note: "Proof page is the practical evidence surface. MetaHuman mesh is not claimed as complete.",
+      note: "Product path is WebGL skinned humanoids. MetaHuman Unreal is adapter-ready, not live here.",
     });
   }
 

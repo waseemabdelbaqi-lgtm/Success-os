@@ -40,6 +40,8 @@
     "validate:human-engine": "node scripts/human-engine.test.mjs",
     "ai-teachers:factory": "python3 scripts/build-ai-teacher-factory.py",
     "ai-teachers:bake-audio": "python3 scripts/bake-ai-teacher-lesson-audio.py",
+    "ai-teachers:humanoids": "node scripts/build-teacher-humanoids.mjs",
+    "ai-teachers:humanoids:fetch-base": "mkdir -p public/media/ai-teachers/_source && curl -fsSL -o public/media/ai-teachers/_source/Xbot.glb https://cdn.jsdelivr.net/gh/mrdoob/three.js@r170/examples/models/gltf/Xbot.glb",
     "media:g1-sara": "AI_TEACHER_ID=sara python3 scripts/render-g1-colorful-board-lesson.py",
     "media:g1-ali": "AI_TEACHER_ID=ali python3 scripts/render-g1-colorful-board-lesson.py",
     "media:flagship-sara": "AI_TEACHER_ID=sara python3 scripts/render-flagship-ai-teacher-lesson.py",
@@ -122,6 +124,9 @@
     "deploy:vinext": "vinext-cloudflare deploy --config dist/server/wrangler.json"
   },
   "dependencies": {
+    "@gltf-transform/core": "^4.4.2",
+    "@gltf-transform/extensions": "^4.4.2",
+    "@gltf-transform/functions": "^4.4.2",
     "@react-three/drei": "^10.7.7",
     "@react-three/fiber": "^9.7.0",
     "@tiptap/pm": "^3.29.2",

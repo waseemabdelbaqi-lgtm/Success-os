@@ -61,34 +61,34 @@ const HONESTY: Array<{
     detail: "adaptLiveTeacher يولّد ردّاً + microPlan شخصية المعلم",
   },
   {
-    id: "photoreal",
-    label: "حضور photoreal لسارة/علي في الاستوديو",
-    status: "partial",
-    detail: "صور classroom poses (stand/point/write) كـ billboard — ليست شبكة MetaHuman",
+    id: "skinned",
+    label: "معلم skinned GLB كامل (هيكل Mixamo + أصابع + عيون)",
+    status: "works",
+    detail: "teacher.glb لسارة/علي — لا billboard PNG في الاستوديو 3D",
+  },
+  {
+    id: "face-morphs",
+    label: "Facial morph targets (jaw/smile/blink/brow) من Human Engine",
+    status: "works",
+    detail: "15 ARKit-named morphs على TeacherFace تُساق من phoneme/emotion",
   },
   {
     id: "walk",
-    label: "مشي طبيعي كامل الهيكل",
-    status: "partial",
-    detail: "إزاحة/تمايل walkOffset من locomotion — ليس skeletal walk cycle",
-  },
-  {
-    id: "face",
-    label: "تعابير وجه blendshape على mesh حي",
-    status: "structure",
-    detail: "أوزان الوجه في الخطة جاهزة لـ MetaHuman؛ العرض الحالي emotion/mouth overlay",
+    label: "مشي هيكلي (أرجل) + انتقالات موقع من locomotion",
+    status: "works",
+    detail: "دورة أرجل من HE locomotion + إزاحة walkOffset",
   },
   {
     id: "lipsync-pro",
-    label: "Lip-sync احترافي phoneme→viseme على twin",
-    status: "partial",
-    detail: "مسار phoneme يعمل ويحرّك فم تقريبي؛ ليس digital twin video",
+    label: "Lip-sync phoneme→morph على الشبكة الحية",
+    status: "works",
+    detail: "jawOpen/mouth* morphs من مسار phoneme — ليس فيديو twin خارجي",
   },
   {
     id: "metahuman",
-    label: "MetaHuman / Unreal mesh حي",
+    label: "Unreal MetaHuman Pixel Streaming",
     status: "structure",
-    detail: "Adapter stub جاهز — غير مربوط بمشغّل Unreal في هذه الصفحة",
+    detail: "Adapter metahuman stub — يحتاج خادم Unreal؛ WebGL humanoid هو المنتج الحي الآن",
   },
 ];
 
@@ -253,11 +253,11 @@ export function HumanEngineProofStudio() {
     <div dir="rtl" style={styles.page}>
       <header style={styles.header}>
         <div>
-          <div style={styles.brand}>SUCCESS OS · PROOF LAB</div>
-          <h1 style={styles.title}>إثبات Human Engine — استوديو 3D حي</h1>
+          <div style={styles.brand}>SUCCESS OS · HUMANOID DEMO</div>
+          <h1 style={styles.title}>سارة وعلي — معلمون رقميون skinned داخل استوديو 3D</h1>
           <p style={styles.sub}>
-            صفحة اختبار واحدة: اختر سارة أو علي، اختر درساً، شغّل ≥ دقيقة، اسأل أثناء
-            الشرح. الجدول أدناه يصرّح بما يعمل فعلاً وما هو جزئي/بنية.
+            شبكة كاملة (هيكل Mixamo + أصابع + morphs وجه) تُساق من Human Engine حسب
+            معنى الدرس — بدون billboard. اختر معلماً ودرساً، شغّل ≥ دقيقة، واسأل أثناء الشرح.
           </p>
         </div>
         <Link href="/ai-teacher-preview" style={styles.link}>
@@ -338,6 +338,7 @@ export function HumanEngineProofStudio() {
           lookPitch={frame?.head.pitch}
           gaze={frame?.gaze}
           screenElement={frame?.screen}
+          frame={frame}
         />
         <div style={styles.caption}>
           <div style={styles.captionAct}>
@@ -434,9 +435,9 @@ export function HumanEngineProofStudio() {
           </tbody>
         </table>
         <p style={styles.footnote}>
-          الخلاصة الصادقة: هذه الصفحة تُثبت Human Engine + استوديو 3D + معلمين متمايزين يعملون
-          كخطة أداء حية على billboards photoreal. ليست MetaHuman كاملة بعد — والجدول أعلاه لا
-          يدّعي غير ذلك.
+          الخلاصة الصادقة: المنتج الحي الآن = معلمان skinned في Three.js (هيكل + morphs +
+          Lesson Director). Unreal MetaHuman Pixel Streaming ما زال Adapter جاهزاً ويحتاج خادم
+          UE — لا ندّعي أنه يعمل هنا.
         </p>
       </section>
     </div>

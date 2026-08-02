@@ -1,6 +1,8 @@
 /**
  * Runtime assertions for Human Engine (invoked by validate:human-engine).
  */
+import fs from "node:fs";
+import path from "node:path";
 import {
   adaptLiveTeacher,
   assertTimelineIntegrity,
@@ -190,6 +192,16 @@ if (askSara.microPlan.timeline.durationMs < 1000) {
   throw new Error("adapt microPlan empty");
 }
 
+// Skinned humanoid assets must exist for product path
+const saraGlb = path.resolve("public/media/ai-teachers/sara/humanoid/teacher.glb");
+const aliGlb = path.resolve("public/media/ai-teachers/ali/humanoid/teacher.glb");
+if (!fs.existsSync(saraGlb) || !fs.existsSync(aliGlb)) {
+  throw new Error("missing skinned teacher.glb humanoids — run npm run ai-teachers:humanoids");
+}
+if (fs.statSync(saraGlb).size < 100_000 || fs.statSync(aliGlb).size < 100_000) {
+  throw new Error("teacher.glb files look empty");
+}
+
 console.log(
-  `human-engine runtime OK · proof=${proofPlan.timeline.durationMs}ms · persona+adapt`,
+  `human-engine runtime OK · proof=${proofPlan.timeline.durationMs}ms · persona+adapt · humanoids`,
 );

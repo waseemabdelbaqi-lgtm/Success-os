@@ -1,10 +1,11 @@
 "use client";
 
-import { Suspense, useEffect, useMemo, useRef } from "react";
+import { Suspense, useMemo, useRef } from "react";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import { ContactShadows, Environment, Html, RoundedBox } from "@react-three/drei";
 import * as THREE from "three";
-import type { ScreenElement } from "@/types/human-engine";
+import type { HumanFrameSample, ScreenElement } from "@/types/human-engine";
+import { SkinnedDigitalHuman } from "@/components/ai-teachers/skinned-digital-human";
 
 export type Studio3DPose = "stand" | "point" | "write";
 
@@ -59,6 +60,8 @@ type Props = {
   lookPitch?: number;
   gaze?: string;
   screenElement?: ScreenElement | null;
+  /** Full HE frame — drives skinned skeleton + face morphs */
+  frame?: HumanFrameSample | null;
 };
 
 const CAM: Record<string, { pos: [number, number, number]; look: [number, number, number] }> = {
@@ -229,92 +232,45 @@ function SmartBoard({
   );
 }
 
-function TeacherBillboard({
-  teacherId,
-  pose,
-  speaking,
-  mouthEnergy,
-  walkOffset = 0,
-  lookYaw = 0,
-  lookPitch = 0,
-  gaze = "student",
-}: {
-  teacherId: "sara" | "ali";
-  pose: Studio3DPose;
-  speaking: boolean;
-  mouthEnergy: number;
-  walkOffset?: number;
-  lookYaw?: number;
-  lookPitch?: number;
-  gaze?: string;
-}) {
-  const group = useRef<THREE.Group>(null);
-  const textures = useMemo(() => {
-    const loader = new THREE.TextureLoader();
-    const load = (p: Studio3DPose) => {
-      const t = loader.load(`/media/ai-teachers/${teacherId}/classroom/${p}.png`);
-      t.colorSpace = THREE.SRGBColorSpace;
-      return t;
-    };
-    return { stand: load("stand"), point: load("point"), write: load("write") };
-  }, [teacherId]);
-
-  useEffect(
-    () => () => {
-      textures.stand.dispose();
-      textures.point.dispose();
-      textures.write.dispose();
+/** Synthesize a minimal HE frame for legacy callers that only pass pose/mouth. */
+function legacyFrame(props: Props): HumanFrameSample {
+  const gesture =
+    props.pose === "write"
+      ? "write_board"
+      : props.pose === "point"
+        ? "point_board"
+        : "open_explain";
+  return {
+    tMs: 0,
+    characterId: props.teacherId,
+    phoneme: props.speaking ? "AA" : "sil",
+    jawOpen: props.mouthEnergy,
+    mouthShapes: {
+      jawOpen: props.mouthEnergy,
+      mouthSmileLeft: props.celebrating ? 0.4 : 0.1,
+      mouthSmileRight: props.celebrating ? 0.4 : 0.1,
     },
-    [textures],
-  );
-
-  const texture = textures[pose] || textures.stand;
-
-  // Base X differs slightly per teacher — independent staging
-  const baseX = teacherId === "ali" ? -1.45 : -1.65;
-
-  useFrame((state) => {
-    if (!group.current) return;
-    const t = state.clock.elapsedTime;
-    const breath = Math.sin(t * (speaking ? 2.4 : 1.15)) * (0.012 + mouthEnergy * 0.01);
-    const walkBob = Math.abs(walkOffset) > 0.02 ? Math.sin(t * 8) * 0.03 : 0;
-    const gazeYaw =
-      gaze === "board" ? -0.35 : gaze === "prop" ? -0.12 : gaze === "student" ? 0.12 : 0;
-    const targetX = baseX + walkOffset;
-    group.current.position.x = THREE.MathUtils.lerp(group.current.position.x, targetX, 0.08);
-    group.current.position.y = 1.35 + breath + walkBob;
-    group.current.position.z = 0.15 + (gaze === "board" ? -0.08 : 0);
-    const targetRotY = -0.18 + gazeYaw + (lookYaw || 0) * 0.012;
-    group.current.rotation.y = THREE.MathUtils.lerp(group.current.rotation.y, targetRotY, 0.1);
-    group.current.rotation.x = THREE.MathUtils.lerp(
-      group.current.rotation.x,
-      (lookPitch || 0) * 0.008,
-      0.1,
-    );
-    group.current.scale.setScalar(1 + mouthEnergy * 0.02);
-  });
-
-  return (
-    <group ref={group} position={[baseX, 1.35, 0.15]}>
-      <mesh castShadow>
-        <planeGeometry args={[1.7, 2.45]} />
-        <meshStandardMaterial map={texture} transparent toneMapped={false} />
-      </mesh>
-      {/* mouth energy indicator — honest approx, not MetaHuman viseme */}
-      <mesh position={[0.02, -0.42, 0.02]} scale={[1, 0.35 + mouthEnergy * 1.4, 1]}>
-        <circleGeometry args={[0.05, 16]} />
-        <meshBasicMaterial color="#2a1010" transparent opacity={0.25 + mouthEnergy * 0.45} />
-      </mesh>
-      <mesh position={[0, -0.2, -0.05]}>
-        <circleGeometry args={[0.85, 32]} />
-        <meshBasicMaterial
-          color={teacherId === "ali" ? "#8eb7ff" : "#ffd59a"}
-          transparent
-          opacity={0.12}
-        />
-      </mesh>
-    </group>
-  );
+    emotion: props.celebrating ? "celebratory" : "warm",
+    emotionIntensity: 0.6,
+    gesture,
+    locomotion: "stand",
+    gaze: (props.gaze as HumanFrameSample["gaze"]) || "student",
+    head: {
+      yaw: props.lookYaw || 0,
+      pitch: props.lookPitch || 0,
+      roll: 0,
+    },
+    bones: [],
+    camera: (props.camera as HumanFrameSample["camera"]) || "medium_teacher",
+    lighting: (props.lighting as HumanFrameSample["lighting"]) || "key_fill_rim",
+    lightIntensity: 1,
+    behaviourGoal: "explain",
+    contentAct: null,
+    screen: props.screenElement || null,
+    speaking: props.speaking,
+    lineText: null,
+    sentenceId: null,
+  };
 }
 
 function LessonProps({
@@ -441,20 +397,16 @@ function PropMesh({
 }
 
 function SceneBody(props: Props) {
+  const frame = props.frame ?? legacyFrame(props);
   return (
     <>
       <CameraRig camera={props.camera} />
       <StudioRoom lighting={props.lighting} />
       <SmartBoard lines={props.boardLines} screenElement={props.screenElement} />
-      <TeacherBillboard
+      <SkinnedDigitalHuman
         teacherId={props.teacherId}
-        pose={props.pose}
-        speaking={props.speaking}
-        mouthEnergy={props.mouthEnergy}
+        frame={frame}
         walkOffset={props.walkOffset}
-        lookYaw={props.lookYaw}
-        lookPitch={props.lookPitch}
-        gaze={props.gaze}
       />
       <LessonProps
         props={props.props}
@@ -462,7 +414,7 @@ function SceneBody(props: Props) {
         screenElement={props.screenElement}
       />
       <ContactShadows position={[0, 0.01, 0]} opacity={0.45} scale={12} blur={2.5} far={4} />
-      <Environment preset="city" environmentIntensity={0.25} />
+      <Environment preset="city" environmentIntensity={0.35} />
       {props.celebrating && (
         <pointLight position={[-1.4, 2.4, 1]} intensity={2} color="#ffd84a" />
       )}

@@ -57,3 +57,10 @@ export {
 export type { ProofLessonId, ProofLessonMeta } from "./proof-lessons";
 export { adaptLiveTeacher } from "./adapt";
 export type { StudentLiveEvent, LiveAdaptResult } from "./adapt";
+export {
+  BONE_TO_MIXAMO,
+  FACE_MORPHS,
+  fingerCurlForGesture,
+  humanoidUrl,
+  degToRad,
+} from "./humanoid-rig";

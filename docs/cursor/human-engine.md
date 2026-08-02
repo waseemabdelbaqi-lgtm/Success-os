@@ -42,13 +42,25 @@ Camera Director · Lighting Director · Animation Timeline · Lesson Director ·
 | `/ai-teacher/studio` | Three.js phase-1 studio (legacy DHS player) |
 | `GET /api/human-engine?action=status\|proof\|showcase\|preview` | plans |
 
+## Skinned digital humans (product path)
+
+| Asset | Path |
+|-------|------|
+| Sara humanoid GLB | `public/media/ai-teachers/sara/humanoid/teacher.glb` |
+| Ali humanoid GLB | `public/media/ai-teachers/ali/humanoid/teacher.glb` |
+| Build | `npm run ai-teachers:humanoids` (base: `npm run ai-teachers:humanoids:fetch-base`) |
+| Runtime | `components/ai-teachers/skinned-digital-human.tsx` |
+
+Each GLB includes Mixamo full skeleton (fingers + eye bones) and 15 ARKit-named face morph targets driven by Human Engine frames. Billboard PNG teachers are **not** used in the 3D studio anymore.
+
 ## Honest limits (do not over-claim)
 
-| Works now | Partial | Structure only |
-|-----------|---------|----------------|
-| Persona-differentiated Sara/Ali | Billboard photoreal poses | Live MetaHuman mesh |
-| Three.js room + HE-driven camera/light | Walk as position offset | Full skeletal walk |
-| ≥60s proof lessons + Q&A | Phoneme mouth overlay | Twin viseme video |
+| Works now | Structure only |
+|-----------|----------------|
+| Skinned Sara/Ali in Three.js studio | Unreal MetaHuman Pixel Streaming (needs UE server) |
+| Skeleton + fingers + walk cycle from HE | Offline-rendered twin video (HeyGen creds) |
+| Face morph lip-sync / emotion | Photogrammetry MetaHuman identity mesh |
+| ≥60s proof/demo + ask/re-explain | |
 
 ## Validate
 

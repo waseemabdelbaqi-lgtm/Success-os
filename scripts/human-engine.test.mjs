@@ -42,9 +42,15 @@ const required = [
   "components/ai-teachers/human-engine-preview.tsx",
   "components/ai-teachers/human-engine-studio.tsx",
   "components/ai-teachers/human-engine-proof-studio.tsx",
+  "components/ai-teachers/skinned-digital-human.tsx",
   "components/ai-teachers/teaching-studio-3d.tsx",
+  "lib/human-engine/humanoid-rig.ts",
+  "public/media/ai-teachers/sara/humanoid/teacher.glb",
+  "public/media/ai-teachers/ali/humanoid/teacher.glb",
+  "app/ai-teacher/demo/page.tsx",
   "docs/cursor/human-engine.md",
   "scripts/_human_engine_runner.ts",
+  "scripts/build-teacher-humanoids.mjs",
 ];
 
 for (const rel of required) {

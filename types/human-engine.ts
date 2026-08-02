@@ -263,6 +263,8 @@ export type CharacterSpec = {
     outfit: string;
     ageBand: "adult_young" | "adult";
     photorealAssetRoot: string;
+    /** Skinned full-body GLB driven by Human Engine */
+    humanoidGlb?: string;
   };
   skeletonPreset: "adult_teaching_a_pose";
   facialRigPreset: "ar_teaching_v1";
