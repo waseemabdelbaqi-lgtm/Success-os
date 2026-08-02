@@ -30,17 +30,39 @@ Sara/Ali can later swap to MetaHuman via `DigitalHumanAdapter` without rewriting
 Character Generator · Skeleton Animation · Facial Rig · Blend Shapes · Lip Sync ·
 Eye Tracking · Head Tracking · Emotion System · Gesture Engine · AI Behaviour ·
 Camera Director · Lighting Director · Animation Timeline · Lesson Director ·
-**Semantic Sentence** · Showcase Lesson
+**Semantic Sentence** · Showcase Lesson · **Teacher Mind** (Behaviour Tree + profiles + session memory)
+
+## Teacher Mind
+
+Human Engine manages the **full teacher**, not only motion:
+
+| Piece | Path |
+|-------|------|
+| Schema | `types/teacher-mind.ts` |
+| Editable profiles | `content/ai-teachers/profiles/{sara,ali}.json` |
+| Overrides (admin save) | `.data/ai-teachers/profiles/` |
+| Behaviour Tree | `lib/human-engine/behaviour-tree.ts` + `teacher-mind.ts` |
+| Session memory | `lib/human-engine/session-memory.ts` |
+| Live adapt | `lib/human-engine/adapt.ts` (unused-first remediation) |
+| Admin UI | `/admin/ai-teachers` |
+| API | `GET/POST /api/teacher-mind` |
+
+Adding a teacher = drop another JSON profile with the same schema. No engine rewrite.
+
+When the student is confused twice, the BT picks the **next unused** mode from `remediationOrder` (analogy → diagram → experiment → model_3d → slower_steps → …) — not the same words.
 
 ## Surfaces
 
 | Path | Role |
 |------|------|
 | **`/ai-teacher/proof`** | **Practical proof lab** — pick Sara/Ali + lesson, play ≥60s in Three.js, ask/re-explain, honesty table |
+| **`/ai-teacher/demo`** | Skinned humanoid demo (same proof studio) |
+| **`/admin/ai-teachers`** | Edit Sara/Ali Teacher Mind profiles |
 | `/ai-teacher/live` | Showcase studio (law/draw/experiment/3D) |
 | `/ai-teacher/human-engine-preview` | 10s preview |
 | `/ai-teacher/studio` | Three.js phase-1 studio (legacy DHS player) |
 | `GET /api/human-engine?action=status\|proof\|showcase\|preview` | plans |
+| `GET/POST /api/teacher-mind` | profiles · tree · save · adapt · session |
 
 ## Skinned digital humans (product path)
 
@@ -61,6 +83,7 @@ Each GLB includes Mixamo full skeleton (fingers + eye bones) and 15 ARKit-named 
 | Skeleton + fingers + walk cycle from HE | Offline-rendered twin video (HeyGen creds) |
 | Face morph lip-sync / emotion | Photogrammetry MetaHuman identity mesh |
 | ≥60s proof/demo + ask/re-explain | |
+| Teacher Mind BT + editable JSON profiles + session memory | Hundreds of photoreal MetaHuman identities |
 
 ## Validate
 

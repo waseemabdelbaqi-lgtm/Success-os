@@ -1,35 +1,72 @@
 /**
- * Live student interaction — ask / re-explain with persona-differentiated replies.
- * Returns a short Human Engine micro-plan the studio can splice in.
+ * Live student interaction via Teacher Mind (Behaviour Tree + session memory).
+ * Never repeats the same remediation strategy when student is still confused.
  */
 import type {
   HumanCharacterId,
   HumanLessonInput,
   HumanPerformancePlan,
 } from "@/types/human-engine";
+import type {
+  TeacherBlackboard,
+  TeacherMindDecision,
+  TeacherSessionMemory,
+} from "@/types/teacher-mind";
 import { directLesson } from "./lesson-director";
-import { getTeacherPersona } from "./teacher-persona";
+import { getTeacherProfile } from "./teacher-profile-store";
+import {
+  createSessionMemory,
+  markStrategyUsed,
+  recordAnswer,
+  recordConfusion,
+  tickMemory,
+} from "./session-memory";
+import { createBlackboard, tickTeacherMind } from "./teacher-mind";
 
 export type StudentLiveEvent =
   | { type: "ask_text"; text: string }
   | { type: "explain_simpler" }
   | { type: "explain_again" }
-  | { type: "example" };
+  | { type: "example" }
+  | { type: "confused" }
+  | { type: "answer"; text: string; correct?: boolean };
 
 export type LiveAdaptResult = {
   reply: string;
   audioKey: string | null;
-  /** Micro performance plan (~8–14s) driven by the reply text */
   microPlan: HumanPerformancePlan;
   strategy: string;
+  decision: TeacherMindDecision;
+  memory: TeacherSessionMemory;
+  contentHint: TeacherMindDecision["contentHint"];
 };
 
 function microInput(
   teacherId: HumanCharacterId,
   lessonTitle: string,
   text: string,
-  kind: "explain" | "check" | "encourage" | "example",
+  hint: TeacherMindDecision["contentHint"],
 ): HumanLessonInput {
+  const kind =
+    hint === "ask_check"
+      ? "check"
+      : hint === "draw_diagram" || hint === "run_experiment" || hint === "show_model"
+        ? "example"
+        : "explain";
+  // Embed content act cues in text so semantic director picks draw/model/experiment
+  let enriched = text;
+  if (hint === "draw_diagram" && !/أرسم|برسم|رسم/.test(text)) {
+    enriched = `${text} أرسم ذلك على السبورة الآن.`;
+  }
+  if (hint === "show_model" && !/نموذج|ثلاثي|أدير/.test(text)) {
+    enriched = `${text} هذا نموذج ثلاثي الأبعاد، أمسكه وأديره ثم أكبّره.`;
+  }
+  if (hint === "run_experiment" && !/نجرب|تجرب/.test(text)) {
+    enriched = `${text} نجرب في المختبر ونلاحظ التغير.`;
+  }
+  if (hint === "write_board" && !/اكتب|بكتب|سبور/.test(text)) {
+    enriched = `${text} اكتبوا معي على السبورة.`;
+  }
   return {
     lessonId: `live_adapt_${Date.now().toString(36)}`,
     title: lessonTitle,
@@ -37,67 +74,118 @@ function microInput(
     preferredCharacterId: teacherId,
     language: "ar",
     durationMs: 14000,
-    blocks: [
-      {
-        id: "adapt",
-        kind: kind === "example" ? "example" : kind === "check" ? "check" : kind === "encourage" ? "encourage" : "explain",
-        text,
-      },
-    ],
+    blocks: [{ id: "adapt", kind, text: enriched }],
   };
+}
+
+function audioFor(decision: TeacherMindDecision): string | null {
+  if (decision.state === "encourage") return "correct";
+  if (decision.state === "remediate") return "simpler";
+  if (decision.contentHint === "ask_check") return "challenge";
+  return "example";
 }
 
 export function adaptLiveTeacher(opts: {
   teacherId: HumanCharacterId;
   lessonTitle: string;
+  lessonId?: string;
+  subject?: string;
+  grade?: string;
   currentLine?: string;
   event: StudentLiveEvent;
+  /** Pass prior memory to keep contextual continuity */
+  memory?: TeacherSessionMemory;
+  elapsedMs?: number;
 }): LiveAdaptResult {
-  const persona = getTeacherPersona(opts.teacherId);
-  const topic = opts.currentLine?.slice(0, 48) || opts.lessonTitle;
-
-  if (opts.event.type === "ask_text") {
-    const q = opts.event.text.trim() || "السؤال";
-    const reply =
-      persona.interaction.reexplainStrategy === "analogy_then_steps"
-        ? `${persona.answerOpener(q)}. مثل قصة قصيرة: ${topic}. ثم نرجع لخطوة واحدة واضحة على السبورة.`
-        : `${persona.answerOpener(q)}. التعريف أولاً حول «${topic}»، ثم مثال تطبيقي مباشر.`;
-    const microPlan = directLesson({
-      input: microInput(opts.teacherId, opts.lessonTitle, reply, "explain"),
-      maxDurationMs: 14000,
+  const profile = getTeacherProfile(opts.teacherId === "ali" ? "ali" : "sara");
+  let memory =
+    opts.memory ||
+    createSessionMemory({
+      teacherId: profile.id,
+      lessonId: opts.lessonId || "live",
+      lessonTitle: opts.lessonTitle,
+      subject: opts.subject,
+      grade: opts.grade,
     });
-    return {
-      reply,
-      audioKey: "example",
-      microPlan,
-      strategy: persona.interaction.reexplainStrategy,
-    };
-  }
+  if (opts.elapsedMs != null) memory = tickMemory(memory, opts.elapsedMs);
 
-  if (opts.event.type === "explain_simpler" || opts.event.type === "explain_again") {
-    const reply =
-      persona.interaction.reexplainStrategy === "analogy_then_steps"
-        ? `${persona.reexplainOpener}. تخيّلوا ${topic} كشيء تعيشونه يومياً، وبعدها نكتب الخطوة على السبورة.`
-        : `${persona.reexplainOpener}. نعرّف «${topic}» بجملة واحدة، ثم مثال، ثم تحقق سريع.`;
-    const microPlan = directLesson({
-      input: microInput(opts.teacherId, opts.lessonTitle, reply, "explain"),
-      maxDurationMs: 14000,
-    });
-    return {
-      reply,
-      audioKey: "simpler",
-      microPlan,
-      strategy: persona.interaction.reexplainStrategy,
-    };
-  }
-
-  // example
-  const reply = persona.style === "warm"
-    ? `مثال قريب: نربط «${topic}» بشيء من حياتكم، ونعدّه أو نرسمه على السبورة.`
-    : `مثال تطبيقي: نطبّق «${topic}» برقم واضح على السبورة ثم نتحقق.`;
-  const microPlan = directLesson({
-    input: microInput(opts.teacherId, opts.lessonTitle, reply, "example"),
-    maxDurationMs: 12000,
+  const topic = opts.currentLine?.slice(0, 64) || opts.lessonTitle;
+  const bb: TeacherBlackboard = createBlackboard({
+    profile,
+    memory,
+    focusTopic: topic,
   });
-  return { reply, audioKey: "example", microPlan, strategy: "example" };
+
+  // Map live events → blackboard pending events + memory updates
+  switch (opts.event.type) {
+    case "ask_text":
+      bb.pendingEvent = { type: "ask", text: opts.event.text.trim() || "السؤال" };
+      break;
+    case "explain_simpler":
+    case "explain_again":
+      memory = recordConfusion(memory, topic, "requested simpler re-explain");
+      bb.memory = memory;
+      bb.pendingEvent = { type: "request_simpler" };
+      break;
+    case "confused":
+      memory = recordConfusion(memory, topic, "student confused");
+      bb.memory = memory;
+      bb.pendingEvent = { type: "confused" };
+      break;
+    case "example":
+      bb.pendingEvent = { type: "request_example" };
+      break;
+    case "answer":
+      memory = recordAnswer(memory, {
+        question: topic,
+        answer: opts.event.text,
+        correct: opts.event.correct ?? null,
+        topic,
+      });
+      bb.memory = memory;
+      bb.pendingEvent = {
+        type: "answer",
+        text: opts.event.text,
+        correct: opts.event.correct,
+      };
+      break;
+    default:
+      bb.pendingEvent = { type: "tick" };
+  }
+
+  const decision = tickTeacherMind(bb);
+
+  // Persist strategy into memory so next remediation differs
+  if (
+    decision.strategy !== "check" &&
+    decision.strategy !== "celebrate" &&
+    decision.strategy !== "hook" &&
+    decision.strategy !== "close"
+  ) {
+    memory = markStrategyUsed(
+      bb.memory,
+      decision.strategy === "direct_explain" ? "direct_explain" : decision.strategy,
+      topic,
+    );
+  } else {
+    memory = bb.memory;
+  }
+
+  const microPlan = directLesson({
+    input: microInput(opts.teacherId, opts.lessonTitle, decision.say, decision.contentHint),
+    maxDurationMs: 14000,
+  });
+
+  return {
+    reply: decision.say,
+    audioKey: audioFor(decision),
+    microPlan,
+    strategy: String(decision.strategy),
+    decision,
+    memory,
+    contentHint: decision.contentHint,
+  };
 }
+
+/** Re-export helpers for studio session wiring */
+export { createSessionMemory, tickMemory };

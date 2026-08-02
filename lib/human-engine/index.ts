@@ -58,6 +58,30 @@ export type { ProofLessonId, ProofLessonMeta } from "./proof-lessons";
 export { adaptLiveTeacher } from "./adapt";
 export type { StudentLiveEvent, LiveAdaptResult } from "./adapt";
 export {
+  getTeacherProfile,
+  listTeacherProfiles,
+  listTeacherProfileIds,
+  saveTeacherProfile,
+  resetTeacherProfile,
+} from "./teacher-profile-store";
+export {
+  createSessionMemory,
+  tickMemory,
+  recordAnswer,
+  recordConfusion,
+  markStrategyUsed,
+  nextUnusedRemediation,
+} from "./session-memory";
+export {
+  createBlackboard,
+  tickTeacherMind,
+  describeTeacherMindTree,
+} from "./teacher-mind";
+export {
+  buildTeacherBehaviourTree,
+  tickBehaviourTree,
+} from "./behaviour-tree";
+export {
   BONE_TO_MIXAMO,
   FACE_MORPHS,
   fingerCurlForGesture,

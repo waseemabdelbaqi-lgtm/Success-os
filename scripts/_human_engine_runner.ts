@@ -10,10 +10,14 @@ import {
   buildProofLessonInput,
   buildShowcasePlan,
   createAdapter,
+  createSessionMemory,
+  describeTeacherMindTree,
   detectContentAct,
   directLesson,
   directSentence,
   getTeacherPersona,
+  getTeacherProfile,
+  listTeacherProfiles,
   sampleFrame,
   textToPhonemeTrack,
 } from "../lib/human-engine/index";
@@ -192,6 +196,77 @@ if (askSara.microPlan.timeline.durationMs < 1000) {
   throw new Error("adapt microPlan empty");
 }
 
+// Teacher Mind profiles + Behaviour Tree
+const profiles = listTeacherProfiles();
+if (profiles.length < 2) throw new Error("expected sara+ali teacher mind profiles");
+if (getTeacherProfile("sara").voice.edgeTts === getTeacherProfile("ali").voice.edgeTts) {
+  throw new Error("sara/ali profiles must differ in voice");
+}
+const tree = describeTeacherMindTree();
+if (tree.id !== "teacher_root" || tree.type !== "selector") {
+  throw new Error("teacher BT root invalid");
+}
+
+// Remediation must advance to a new unused strategy (not same words/mode)
+let mem = createSessionMemory({
+  teacherId: "sara",
+  lessonId: "remediate_test",
+  lessonTitle: "القوة",
+});
+const r1 = adaptLiveTeacher({
+  teacherId: "sara",
+  lessonTitle: "القوة",
+  event: { type: "confused" },
+  memory: mem,
+  elapsedMs: 20_000,
+});
+mem = r1.memory;
+const r2 = adaptLiveTeacher({
+  teacherId: "sara",
+  lessonTitle: "القوة",
+  event: { type: "explain_simpler" },
+  memory: mem,
+  elapsedMs: 25_000,
+});
+if (r1.strategy === r2.strategy) {
+  throw new Error(
+    `remediation must pick unused strategy; got ${r1.strategy} twice`,
+  );
+}
+if (r1.reply === r2.reply) {
+  throw new Error("remediation replies must differ across strategies");
+}
+if (!r2.memory.strategiesUsed.includes(r1.strategy as never)) {
+  throw new Error("session memory must retain first strategy");
+}
+
+// Deterministic BT tick for same blackboard inputs
+const d1 = adaptLiveTeacher({
+  teacherId: "ali",
+  lessonTitle: "الكسور",
+  event: { type: "ask_text", text: "ما المقام؟" },
+  memory: createSessionMemory({
+    teacherId: "ali",
+    lessonId: "det",
+    lessonTitle: "الكسور",
+  }),
+  elapsedMs: 30_000,
+});
+const d2 = adaptLiveTeacher({
+  teacherId: "ali",
+  lessonTitle: "الكسور",
+  event: { type: "ask_text", text: "ما المقام؟" },
+  memory: createSessionMemory({
+    teacherId: "ali",
+    lessonId: "det",
+    lessonTitle: "الكسور",
+  }),
+  elapsedMs: 30_000,
+});
+if (d1.decision.state !== d2.decision.state || d1.reply !== d2.reply) {
+  throw new Error("teacher mind adapt not deterministic for same inputs");
+}
+
 // Skinned humanoid assets must exist for product path
 const saraGlb = path.resolve("public/media/ai-teachers/sara/humanoid/teacher.glb");
 const aliGlb = path.resolve("public/media/ai-teachers/ali/humanoid/teacher.glb");
@@ -203,5 +278,5 @@ if (fs.statSync(saraGlb).size < 100_000 || fs.statSync(aliGlb).size < 100_000) {
 }
 
 console.log(
-  `human-engine runtime OK · proof=${proofPlan.timeline.durationMs}ms · persona+adapt · humanoids`,
+  `human-engine runtime OK · proof=${proofPlan.timeline.durationMs}ms · teacher-mind+bt · humanoids`,
 );

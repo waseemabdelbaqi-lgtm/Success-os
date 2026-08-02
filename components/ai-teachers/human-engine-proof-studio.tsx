@@ -6,10 +6,12 @@ import type {
   HumanFrameSample,
   HumanPerformancePlan,
 } from "@/types/human-engine";
+import type { TeacherSessionMemory } from "@/types/teacher-mind";
 import {
   adaptLiveTeacher,
   buildProofLessonInput,
   createLocalPhotorealAdapter,
+  createSessionMemory,
   directLesson,
   gestureToClassroomPose,
   getTeacherPersona,
@@ -58,7 +60,13 @@ const HONESTY: Array<{
     id: "qa",
     label: "سؤال طالب + إعادة شرح أثناء الدرس",
     status: "works",
-    detail: "adaptLiveTeacher يولّد ردّاً + microPlan شخصية المعلم",
+    detail: "Teacher Mind BT + session memory → رد + microPlan بدون تكرار الاستراتيجية",
+  },
+  {
+    id: "teacher-mind",
+    label: "Teacher Mind: Behaviour Tree + ملفات شخصية قابلة للتحرير",
+    status: "works",
+    detail: "/admin/ai-teachers · content/ai-teachers/profiles · ذاكرة جلسة سياقية",
   },
   {
     id: "skinned",
@@ -125,10 +133,13 @@ export function HumanEngineProofStudio() {
   const [question, setQuestion] = useState("");
   const [reply, setReply] = useState("");
   const [done, setDone] = useState(false);
+  const [memory, setMemory] = useState<TeacherSessionMemory | null>(null);
+  const [mindState, setMindState] = useState("");
   const stopRef = useRef<null | (() => void)>(null);
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const lastAudioRef = useRef("");
   const basePlanRef = useRef<HumanPerformancePlan | null>(null);
+  const memoryRef = useRef<TeacherSessionMemory | null>(null);
 
   const persona = getTeacherPersona(teacherId);
   const meta = lessons.find((l) => l.id === lessonId) || lessons[0]!;
@@ -195,6 +206,16 @@ export function HumanEngineProofStudio() {
   );
 
   const startLesson = () => {
+    const mem = createSessionMemory({
+      teacherId,
+      lessonId,
+      lessonTitle: meta.titleAr,
+      subject: meta.subject || "general",
+      grade: meta.grade || "g1",
+    });
+    memoryRef.current = mem;
+    setMemory(mem);
+    setMindState("hook/explain");
     const p = buildPlan();
     play(
       p,
@@ -204,14 +225,31 @@ export function HumanEngineProofStudio() {
 
   const runAdapt = (event: Parameters<typeof adaptLiveTeacher>[0]["event"]) => {
     const active = basePlanRef.current || plan || buildPlan();
+    const prior =
+      memoryRef.current ||
+      createSessionMemory({
+        teacherId,
+        lessonId,
+        lessonTitle: meta.titleAr,
+      });
     const result = adaptLiveTeacher({
       teacherId,
       lessonTitle: meta.titleAr,
+      lessonId,
       currentLine: frame?.lineText || undefined,
       event,
+      memory: prior,
+      elapsedMs: tMs || prior.elapsedMs,
     });
+    memoryRef.current = result.memory;
+    setMemory(result.memory);
+    setMindState(
+      `${result.decision.state} · ${result.strategy} · hint=${result.contentHint}`,
+    );
     setReply(result.reply);
-    setStatus(`تفاعل حي · ${result.strategy}`);
+    setStatus(
+      `Teacher Mind · ${result.strategy} · strategies=${result.memory.strategiesUsed.join("→") || "—"}`,
+    );
     // Play micro plan, then resume remaining base if any
     play(result.microPlan, `رد ${persona.displayName.ar}`);
     if (result.audioKey) {
@@ -307,6 +345,11 @@ export function HumanEngineProofStudio() {
           <div>الصوت: {persona.voiceId}</div>
           <div>الأسلوب: {persona.style === "warm" ? "دافئ وتشجيعي" : "دقيق وتعريفي"}</div>
           <div>إعادة الشرح: {persona.interaction.reexplainStrategy}</div>
+          <div>
+            <Link href="/admin/ai-teachers" style={styles.link}>
+              تعديل الملف الشخصي
+            </Link>
+          </div>
         </div>
         <div style={styles.personaCard}>
           <strong>حالة التشغيل</strong>
@@ -317,6 +360,11 @@ export function HumanEngineProofStudio() {
           <div>
             act: {frame?.contentAct || "—"} · gesture: {frame?.gesture || "—"} · gaze:{" "}
             {frame?.gaze || "—"}
+          </div>
+          <div>BT: {mindState || "—"}</div>
+          <div>
+            ذاكرة: ارتباك {memory?.confusionCount ?? 0} · استراتيجيات{" "}
+            {memory?.strategiesUsed.join(" → ") || "—"}
           </div>
         </div>
       </div>
