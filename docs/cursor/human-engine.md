@@ -4,9 +4,13 @@ Schema: `success-os.human-engine.v1` · version `1.3.0`
 
 ## Platform teachers (lock)
 
-**Sara and Ali only.** No new teachers until these two are world-class.
-They are the official face of Success OS and must teach **any** platform subject
-through the same Human Engine (content swaps; core code stays).
+**Binding doctrine:** `docs/cursor/platform-teachers-doctrine.md` · `types/platform-teachers.ts`
+
+**Sara and Ali only** — official faces of Success OS. Every future subject, curriculum, book, or course must be teachable by them first (Human Engine content swap; core stays). No new teacher for subject coverage; specialists only for a fundamentally different role later.
+
+They are professional teachers (not text presenters): mastery before explain, graduated depth, multi-strategy remediation, board/drawings/equations/3D/lab/sims, mid-lesson Q&A with evaluation, auto pace/detail, gaze/gesture/face/body, natural multilingual voice, session memory, stable persona (Sara stays Sara, Ali stays Ali).
+
+**Dual acceptance:** complete only when agent verification **and** owner live Demo URL both succeed.
 
 ## Purpose
 

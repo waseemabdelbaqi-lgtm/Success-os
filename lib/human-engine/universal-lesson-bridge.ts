@@ -1,7 +1,8 @@
 /**
  * Universal Lesson Bridge — any platform lesson → HumanLessonInput for Sara/Ali.
  * Subject-aware teaching acts: write, draw, solve steps, diagrams, 3D, lab, checks.
- * No new teachers — only sara | ali.
+ * Doctrine: any future subject/book/course casts sara|ali — no new teacher for a subject.
+ * See docs/cursor/platform-teachers-doctrine.md
  */
 import type { ContentBlock, InteractiveLessonPackage } from "@/types/interactive-lesson-engine";
 import type {
@@ -10,11 +11,13 @@ import type {
   HumanLessonInput,
   LessonBlockKind,
 } from "@/types/human-engine";
+import type { PlatformTeacherId } from "@/types/platform-teachers";
+import { assertPlatformTeacherId } from "@/types/platform-teachers";
 import { DEMO_BOOKS } from "@/content/demo/catalog";
 import { DEMO_INTERACTIVE_LESSON } from "@/content/demo/interactive-lesson-engine";
 import { adaptBookLessonToInteractivePackage } from "@/lib/interactive-lesson-engine/adapt-book-lesson";
 
-export type PlatformTeacherId = "sara" | "ali";
+export type { PlatformTeacherId };
 
 function ar(text?: { en?: string; ar?: string } | string | null): string {
   if (!text) return "";
@@ -161,7 +164,9 @@ export function bridgeInteractiveLessonToHuman(opts: {
   studentLevel?: "below" | "on" | "above";
   maxDurationMs?: number;
 }): HumanLessonInput {
-  const teacherId: PlatformTeacherId = opts.teacherId === "ali" ? "ali" : "sara";
+  const teacherId = assertPlatformTeacherId(
+    opts.teacherId === "ali" || opts.teacherId === "sara" ? opts.teacherId : "sara",
+  );
   const subject = opts.pkg.filters?.subject || "general";
   const grade = opts.pkg.filters?.grade || "g1";
   const family = subjectFamily(subject);

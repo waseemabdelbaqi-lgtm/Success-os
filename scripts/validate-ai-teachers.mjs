@@ -9,14 +9,34 @@ const assert = (c, m) => {
   if (!c) failures.push(m);
 };
 
+const doctrinePath = path.join(root, "docs/cursor/platform-teachers-doctrine.md");
+assert(fs.existsSync(doctrinePath), "Missing platform-teachers-doctrine.md");
+const doctrine = fs.readFileSync(doctrinePath, "utf8");
+assert(doctrine.includes("سارة") && doctrine.includes("علي"), "Doctrine must name Sara/Ali in Arabic");
+assert(doctrine.includes("Dual acceptance"), "Doctrine must include dual acceptance");
+assert(
+  doctrine.includes("دون الحاجة لإنشاء معلم جديد") || doctrine.includes("without creating a new teacher"),
+  "Doctrine must forbid new teachers for subjects",
+);
+
+const doctrineTs = path.join(root, "types/platform-teachers.ts");
+assert(fs.existsSync(doctrineTs), "Missing types/platform-teachers.ts");
+const doctrineSrc = fs.readFileSync(doctrineTs, "utf8");
+assert(doctrineSrc.includes('PLATFORM_TEACHER_IDS'), "Missing PLATFORM_TEACHER_IDS");
+assert(doctrineSrc.includes("ownerLiveDemoRequired"), "Missing dual-acceptance policy in types");
+
 const catalogPath = path.join(root, "content/media/ai-teachers/catalog.json");
 assert(fs.existsSync(catalogPath), "Missing catalog.json");
 const catalog = JSON.parse(fs.readFileSync(catalogPath, "utf8"));
 assert(catalog.schema === "success-os.ai-teachers.v1", "Bad schema");
 assert(catalog.teachers.length === 2, "Must have exactly 2 teachers (Sara + Ali)");
+assert(catalog.role === "platform_official_primary", "Catalog role must be platform_official_primary");
 
 const ids = catalog.teachers.map((t) => t.id).sort();
 assert(ids.join(",") === "ali,sara", `Expected ali,sara got ${ids}`);
+for (const t of catalog.teachers) {
+  assert(t.role === "platform_official_primary", `Teacher ${t.id} missing platform role`);
+}
 
 for (const tid of ["sara", "ali"]) {
   const base = path.join(root, "content/media/ai-teachers", tid);
@@ -90,4 +110,4 @@ if (failures.length) {
   failures.forEach((f) => console.error(" -", f));
   process.exit(1);
 }
-console.log("validate-ai-teachers OK — Sara + Ali only");
+console.log("validate-ai-teachers OK — Sara + Ali official platform teachers (doctrine locked)");

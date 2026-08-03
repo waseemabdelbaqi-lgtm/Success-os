@@ -1,9 +1,13 @@
 {
   "schema": "success-os.ai-teachers.v1",
-  "version": "2.0.0",
+  "version": "3.0.0",
+  "role": "platform_official_primary",
+  "doctrine": "docs/cursor/platform-teachers-doctrine.md",
+  "note": "Sara and Ali are the only official primary teachers. Any subject/curriculum/book/course must be teachable by them without creating a new teacher.",
   "teachers": [
     {
       "id": "sara",
+      "role": "platform_official_primary",
       "displayName": {
         "en": "Teacher Sara",
         "ar": "المعلمة سارة"
@@ -13,11 +17,19 @@
       "stages": [
         "early_childhood",
         "elementary",
-        "middle_school"
+        "middle_school",
+        "high_school"
       ],
       "subjects": [
         "math",
         "science",
+        "physics",
+        "chemistry",
+        "biology",
+        "arabic",
+        "english",
+        "islamic",
+        "social",
         "general"
       ],
       "voice": {
@@ -35,6 +47,7 @@
     },
     {
       "id": "ali",
+      "role": "platform_official_primary",
       "displayName": {
         "en": "Teacher Ali",
         "ar": "المعلم علي"
@@ -51,6 +64,12 @@
         "math",
         "science",
         "physics",
+        "chemistry",
+        "biology",
+        "arabic",
+        "english",
+        "islamic",
+        "social",
         "general"
       ],
       "voice": {

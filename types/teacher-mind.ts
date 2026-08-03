@@ -2,13 +2,14 @@
  * Teacher Mind — Human Engine manages the full teacher, not only motion.
  * Schema: success-os.teacher-mind.v1
  *
- * Behaviour is driven by a Behaviour Tree + Blackboard (lesson/student/time),
- * with editable per-teacher profiles scalable to hundreds of teachers.
+ * Behaviour Tree + Blackboard (lesson/student/time).
+ * Official platform profiles: sara + ali only (docs/cursor/platform-teachers-doctrine.md).
+ * Specialists may reuse this schema later only for a fundamentally different role.
  */
 
 export type TeacherMindSchema = "success-os.teacher-mind.v1";
 
-export type TeacherProfileId = string; // "sara" | "ali" | future ids
+export type TeacherProfileId = "sara" | "ali" | (string & {});
 
 export type TeachingPace = "slow" | "measured" | "brisk";
 export type FormalityLevel = "warm_casual" | "balanced" | "formal";

@@ -120,9 +120,10 @@ export type DigitalHumanPresenceContract = {
 };
 
 /**
- * Admin-configurable Digital Teacher profile.
- * Appearance/accent/cultural style are configuration — never hardcoded as
- * the only platform teacher.
+ * Admin-configurable Digital Teacher profile (ADHT layer).
+ * Official platform faces remain Sara & Ali only —
+ * see docs/cursor/platform-teachers-doctrine.md.
+ * Appearance/accent seeds here are not additional platform teachers.
  */
 export type DigitalTeacherProfile = {
   id: string;
