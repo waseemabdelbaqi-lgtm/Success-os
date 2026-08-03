@@ -28,13 +28,13 @@ export type TtsStyle =
   | "default";
 
 const STYLE_PROSODY: Record<TtsStyle, { rate: string; pitch: string }> = {
-  hook: { rate: "-3%", pitch: "+2Hz" },
-  explain: { rate: "-5%", pitch: "+0Hz" },
-  write: { rate: "-8%", pitch: "-1Hz" },
-  check: { rate: "-2%", pitch: "+1Hz" },
-  celebrate: { rate: "+2%", pitch: "+3Hz" },
+  hook: { rate: "-4%", pitch: "+2Hz" },
+  explain: { rate: "-6%", pitch: "+0Hz" },
+  write: { rate: "-9%", pitch: "-1Hz" },
+  check: { rate: "-3%", pitch: "+1Hz" },
+  celebrate: { rate: "+0%", pitch: "+3Hz" },
   remediate: { rate: "-12%", pitch: "-2Hz" },
-  default: { rate: "-5%", pitch: "+0Hz" },
+  default: { rate: "-6%", pitch: "+0Hz" },
 };
 
 export function styleFromContentAct(act?: string | null): TtsStyle {
@@ -67,7 +67,7 @@ export function ttsCacheKey(
   const p = STYLE_PROSODY[style] || STYLE_PROSODY.default;
   return crypto
     .createHash("sha1")
-    .update(`${teacherId}|${VOICES[teacherId]}|${p.rate}|${p.pitch}|${norm}|v2`)
+    .update(`${teacherId}|${VOICES[teacherId]}|${p.rate}|${p.pitch}|${norm}|v3`)
     .digest("hex");
 }
 
@@ -180,10 +180,10 @@ export function publicTtsUrl(key: string): string {
 
 /** Natural pause after a line (ms) — varies by style for breathing room. */
 export function pauseAfterStyle(style: TtsStyle): number {
-  if (style === "check") return 520;
-  if (style === "write") return 420;
-  if (style === "celebrate") return 380;
-  if (style === "remediate") return 480;
-  if (style === "hook") return 360;
-  return 300;
+  if (style === "check") return 650;
+  if (style === "write") return 520;
+  if (style === "celebrate") return 450;
+  if (style === "remediate") return 580;
+  if (style === "hook") return 420;
+  return 400;
 }
