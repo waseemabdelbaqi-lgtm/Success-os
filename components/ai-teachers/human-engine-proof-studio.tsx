@@ -26,77 +26,77 @@ import {
 
 type TeacherId = "sara" | "ali";
 
+/** User acceptance checklist — do not mark ✅ unless fully true in this demo. */
 const HONESTY: Array<{
   id: string;
   label: string;
-  status: "works" | "partial" | "structure";
+  status: "works" | "partial" | "missing";
   detail: string;
 }> = [
   {
-    id: "two-teachers",
-    label: "سارة وعلي مستقلان (شخصية/صوت/إيماء/أسلوب)",
+    id: "pick",
+    label: "1) اختيار سارة أو علي",
     status: "works",
-    detail: "persona + neural MP3 مختلفة + gesture/emotion bias مختلف",
+    detail: "قائمة المعلم تعمل وتبدّل الشخصية/الصوت/الأسلوب فوراً",
   },
   {
-    id: "studio-3d",
-    label: "استوديو Three.js حقيقي (غرفة/سبورة/كاميرا/إضاءة/ظلال)",
+    id: "studio",
+    label: "2) الدخول إلى الاستوديو ثلاثي الأبعاد",
     status: "works",
-    detail: "TeachingStudio3D (R3F) يعمل داخل هذه الصفحة",
+    detail: "TeachingStudio3D (غرفة + سبورة + كاميرا + إضاءة) على هذه الصفحة",
   },
   {
-    id: "he-drive",
-    label: "Human Engine يقود الحركة/الكاميرا/الشاشة من معنى الجملة",
+    id: "lesson",
+    label: "3) بدء درس حقيقي",
     status: "works",
-    detail: "sampleFrame → pose/walk/look/camera/light/board/props",
+    detail: "دروس إثبات ≥ 60 ثانية مع كتابة/رسم/نموذج/سؤال داخل الجدول الزمني",
   },
   {
-    id: "lesson-60",
-    label: "درس حقيقي ≥ 60 ثانية",
-    status: "works",
-    detail: "proof-lessons durationMs ≥ 65000 مع كتابة/رسم/نموذج/سؤال",
+    id: "voice",
+    label: "4) أسمع صوتهما",
+    status: "partial",
+    detail:
+      "مقاطع MP3 عصبية مختلفة لسارة/علي (Sana/Taim) حسب نوع المشهد — ليست TTS حية لكل جملة منطوقة حرفياً",
   },
   {
-    id: "qa",
-    label: "سؤال طالب + إعادة شرح أثناء الدرس",
-    status: "works",
-    detail: "Teacher Mind BT + session memory → رد + microPlan بدون تكرار الاستراتيجية",
+    id: "body",
+    label: "5) أرى حركة الجسم كاملة",
+    status: "partial",
+    detail:
+      "هيكل Mixamo skinned (ذراع/رأس/أصابع/مشي) من Human Engine — قاعدة Xbot أسلوبية وليست performance mocap كامل",
   },
   {
-    id: "teacher-mind",
-    label: "Teacher Mind: Behaviour Tree + ملفات شخصية قابلة للتحرير",
-    status: "works",
-    detail: "/admin/ai-teachers · content/ai-teachers/profiles · ذاكرة جلسة سياقية",
+    id: "face",
+    label: "6) أرى حركة الوجه والشفاه",
+    status: "partial",
+    detail:
+      "morphs (jaw/smile/blink/brow) من phoneme النص — تتحرك الشفاه، لكن المزامنة ليست من موجة الصوت الفعلي للـ MP3",
   },
   {
-    id: "skinned",
-    label: "معلم skinned GLB كامل (هيكل Mixamo + أصابع + عيون)",
-    status: "works",
-    detail: "teacher.glb لسارة/علي — لا billboard PNG في الاستوديو 3D",
+    id: "board",
+    label: "7) أرى الكتابة على السبورة",
+    status: "partial",
+    detail:
+      "نص/قانون يظهر على السبورة الذكية مع إيماءة كتابة — لا قلم يرسم ضربات حبر واقعية على سطح ثلاثي",
   },
   {
-    id: "face-morphs",
-    label: "Facial morph targets (jaw/smile/blink/brow) من Human Engine",
-    status: "works",
-    detail: "15 ARKit-named morphs على TeacherFace تُساق من phoneme/emotion",
+    id: "model3d",
+    label: "8) أرى التفاعل مع نموذج ثلاثي الأبعاد",
+    status: "partial",
+    detail:
+      "مجسم هندسي يدور/يُكبَّر عند acts النموذج — ليس نموذجاً تعليمياً غنياً خاصاً بالمادة",
   },
   {
-    id: "walk",
-    label: "مشي هيكلي (أرجل) + انتقالات موقع من locomotion",
+    id: "ask",
+    label: "9) أسأل أثناء الشرح وأحصل على إجابة",
     status: "works",
-    detail: "دورة أرجل من HE locomotion + إزاحة walkOffset",
+    detail: "adaptLiveTeacher + Teacher Mind → رد فوري + microPlan حركة",
   },
   {
-    id: "lipsync-pro",
-    label: "Lip-sync phoneme→morph على الشبكة الحية",
+    id: "reexplain",
+    label: "10) إعادة الشرح بطريقة مختلفة",
     status: "works",
-    detail: "jawOpen/mouth* morphs من مسار phoneme — ليس فيديو twin خارجي",
-  },
-  {
-    id: "metahuman",
-    label: "Unreal MetaHuman Pixel Streaming",
-    status: "structure",
-    detail: "Adapter metahuman stub — يحتاج خادم Unreal؛ WebGL humanoid هو المنتج الحي الآن",
+    detail: "زر «أعد الشرح بطريقة مختلفة» يختار استراتيجية غير مستخدمة (تشبيه/رسم/3D/…)",
   },
 ];
 
@@ -467,14 +467,14 @@ export function HumanEngineProofStudio() {
                           ? "#1f6b4a"
                           : r.status === "partial"
                             ? "#7a5b16"
-                            : "#4a4a4a",
+                            : "#6b1f1f",
                     }}
                   >
                     {r.status === "works"
-                      ? "يعمل"
+                      ? "✅ يعمل بالكامل"
                       : r.status === "partial"
-                        ? "جزئي"
-                        : "بنية فقط"}
+                        ? "🟡 يعمل جزئياً"
+                        : "❌ غير موجود"}
                   </span>
                 </td>
                 <td style={styles.td}>{r.detail}</td>
@@ -483,9 +483,9 @@ export function HumanEngineProofStudio() {
           </tbody>
         </table>
         <p style={styles.footnote}>
-          الخلاصة الصادقة: المنتج الحي الآن = معلمان skinned في Three.js (هيكل + morphs +
-          Lesson Director). Unreal MetaHuman Pixel Streaming ما زال Adapter جاهزاً ويحتاج خادم
-          UE — لا ندّعي أنه يعمل هنا.
+          الخلاصة الصادقة لهذه التجربة: 5 بنود ✅ و5 بنود 🟡 — لا يوجد بند ❌ في قائمة القبول
+          أعلاه، لكن الصوت/الجسم/الوجه/السبورة/النموذج ما زالوا جزئيين مقارنة بمعلم واقعي كامل.
+          Unreal MetaHuman غير مشغّل هنا.
         </p>
       </section>
     </div>
