@@ -1,9 +1,12 @@
 import { NextResponse } from "next/server";
 import {
   ensureLiveTtsMp3,
+  pauseAfterStyle,
   publicTtsUrl,
   readLiveTtsMp3,
+  styleFromContentAct,
   type LiveTtsTeacher,
+  type TtsStyle,
 } from "@/lib/ai-teachers/live-tts";
 
 export const runtime = "nodejs";
@@ -11,8 +14,7 @@ export const dynamic = "force-dynamic";
 
 /**
  * GET ?id=<sha1> → cached MP3
- * GET ?teacher=sara|ali&text=... → synthesize + redirect/return MP3
- * POST { teacherId, text } | { lines: [{text}], teacherId } → urls
+ * POST { teacherId, text, style? } | { teacherId, lines: [{text, style?, contentAct?}] }
  */
 export async function GET(req: Request) {
   const url = new URL(req.url);
@@ -32,13 +34,16 @@ export async function GET(req: Request) {
     });
   }
 
-  const teacher = (url.searchParams.get("teacher") === "ali" ? "ali" : "sara") as LiveTtsTeacher;
+  const teacher = (
+    url.searchParams.get("teacher") === "ali" ? "ali" : "sara"
+  ) as LiveTtsTeacher;
   const text = url.searchParams.get("text") || "";
+  const style = (url.searchParams.get("style") || "default") as TtsStyle;
   if (!text.trim()) {
     return NextResponse.json({ error: "text required" }, { status: 400 });
   }
   try {
-    const result = ensureLiveTtsMp3(teacher, text);
+    const result = ensureLiveTtsMp3(teacher, text, style);
     const buf = readLiveTtsMp3(result.key);
     if (!buf) {
       return NextResponse.json({ error: "synthesize failed" }, { status: 500 });
@@ -50,6 +55,8 @@ export async function GET(req: Request) {
         "Cache-Control": "public, max-age=86400, immutable",
         "X-TTS-Cached": result.cached ? "1" : "0",
         "X-TTS-Key": result.key,
+        "X-TTS-Duration-Ms": String(result.durationMs),
+        "X-TTS-Style": result.style,
       },
     });
   } catch (e) {
@@ -64,28 +71,49 @@ export async function POST(req: Request) {
   const body = (await req.json()) as {
     teacherId?: string;
     text?: string;
-    lines?: Array<{ text: string; id?: string }>;
+    style?: TtsStyle;
+    lines?: Array<{
+      text: string;
+      id?: string;
+      style?: TtsStyle;
+      contentAct?: string;
+    }>;
   };
-  const teacherId = (body.teacherId === "ali" ? "ali" : "sara") as LiveTtsTeacher;
+  const teacherId = (
+    body.teacherId === "ali" ? "ali" : "sara"
+  ) as LiveTtsTeacher;
 
   try {
     if (body.lines?.length) {
       const items = body.lines.map((line) => {
-        const result = ensureLiveTtsMp3(teacherId, line.text);
+        const style =
+          line.style ||
+          styleFromContentAct(line.contentAct) ||
+          ("default" as TtsStyle);
+        const result = ensureLiveTtsMp3(teacherId, line.text, style);
+        const pauseAfterMs = pauseAfterStyle(result.style);
         return {
           id: line.id || null,
-          text: line.text.slice(0, 120),
+          text: line.text.slice(0, 160),
           key: result.key,
           url: publicTtsUrl(result.key),
           cached: result.cached,
           bytes: result.bytes,
+          durationMs: result.durationMs,
+          pauseAfterMs,
+          style: result.style,
+          voice: result.voice,
         };
       });
+      const spokenMs = items.reduce((a, x) => a + x.durationMs, 0);
+      const pauseMs = items.reduce((a, x) => a + x.pauseAfterMs, 0);
       return NextResponse.json({
         success: true,
         teacherId,
         voice: teacherId === "ali" ? "ar-JO-TaimNeural" : "ar-JO-SanaNeural",
-        mode: "live-neural-per-line",
+        mode: "live-neural-per-line-v2",
+        totalSpokenMs: spokenMs,
+        totalWithPausesMs: spokenMs + pauseMs,
         items,
       });
     }
@@ -93,7 +121,8 @@ export async function POST(req: Request) {
     if (!body.text?.trim()) {
       return NextResponse.json({ error: "text or lines required" }, { status: 400 });
     }
-    const result = ensureLiveTtsMp3(teacherId, body.text);
+    const style = body.style || "default";
+    const result = ensureLiveTtsMp3(teacherId, body.text, style);
     return NextResponse.json({
       success: true,
       teacherId,
@@ -101,6 +130,10 @@ export async function POST(req: Request) {
       url: publicTtsUrl(result.key),
       cached: result.cached,
       bytes: result.bytes,
+      durationMs: result.durationMs,
+      pauseAfterMs: pauseAfterStyle(result.style),
+      style: result.style,
+      voice: result.voice,
     });
   } catch (e) {
     return NextResponse.json(

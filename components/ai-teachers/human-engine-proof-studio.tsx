@@ -16,9 +16,14 @@ import {
   gestureToClassroomPose,
   getTeacherPersona,
   listProofLessons,
-  playPlan,
+  sampleFrame,
   type ProofLessonId,
 } from "@/lib/human-engine";
+import { alignPlanToTts, slicePlanFrom } from "@/lib/ai-teachers/align-plan-to-tts";
+import {
+  SeamlessVoicePlayer,
+  type VoiceQueueItem,
+} from "@/lib/ai-teachers/seamless-voice-player";
 import {
   TeachingStudio3D,
   type Studio3DPose,
@@ -54,9 +59,9 @@ const HONESTY: Array<{
   {
     id: "voice",
     label: "4) أسمع صوتهما",
-    status: "works",
+    status: "partial",
     detail:
-      "TTS عصبي حي لكل جملة منطوقة: سارة=ar-JO-SanaNeural · علي=ar-JO-TaimNeural عبر /api/ai-teachers/tts",
+      "TTS حي + طابور سلس + مزامنة مدة + مقاطعة/استئناف جاهزة للاختبار — بانتظار نجاح جلسة 10 دقائق متواصلة (سارة ثم علي)",
   },
   {
     id: "body",
@@ -121,17 +126,32 @@ function mapCamera(shot: string): string {
   return shot || "medium_teacher";
 }
 
-/** Attach live neural TTS URLs to every speech line (demo-only; HE plan unchanged structurally). */
+/** Prefetch live TTS + align plan timeline to real durations (demo layer only). */
 async function withLiveLineTts(
   plan: HumanPerformancePlan,
   teacherId: TeacherId,
-): Promise<{ plan: HumanPerformancePlan; voiceMode: string; lineCount: number }> {
+  styleHint?: "remediate",
+): Promise<{
+  plan: HumanPerformancePlan;
+  voiceMode: string;
+  lineCount: number;
+  totalMs: number;
+  queue: VoiceQueueItem[];
+}> {
   const lines = (plan.speech?.lines || []).map((l, i) => ({
     id: `L${i}_${l.startMs}`,
     text: l.text,
+    contentAct: l.contentAct || plan.sentences?.[i]?.contentAct,
+    style: styleHint,
   }));
   if (!lines.length) {
-    return { plan, voiceMode: "no-lines", lineCount: 0 };
+    return {
+      plan,
+      voiceMode: "no-lines",
+      lineCount: 0,
+      totalMs: 0,
+      queue: [],
+    };
   }
   const res = await fetch("/api/ai-teachers/tts", {
     method: "POST",
@@ -141,33 +161,45 @@ async function withLiveLineTts(
   const json = (await res.json()) as {
     success?: boolean;
     voice?: string;
-    items?: Array<{ url: string }>;
+    totalWithPausesMs?: number;
+    items?: Array<{
+      url: string;
+      durationMs: number;
+      pauseAfterMs: number;
+      style?: string;
+    }>;
     error?: string;
   };
   if (!res.ok || !json.success || !json.items?.length) {
     throw new Error(json.error || "TTS prefetch failed");
   }
-  const next: HumanPerformancePlan = {
-    ...plan,
-    speech: {
-      ...plan.speech,
-      lines: plan.speech.lines.map((line, i) => ({
-        ...line,
-        audioSrc: json.items![i]?.url || line.audioSrc,
-      })),
-    },
-  };
+  const timings = json.items.map((it) => ({
+    url: it.url,
+    durationMs: it.durationMs,
+    pauseAfterMs: it.pauseAfterMs,
+    style: it.style,
+  }));
+  const aligned = alignPlanToTts(plan, timings);
+  const queue: VoiceQueueItem[] = aligned.speech.lines.map((l, i) => ({
+    url: l.audioSrc || timings[i]!.url,
+    text: l.text,
+    startMs: l.startMs,
+    endMs: l.endMs,
+    pauseAfterMs: timings[i]?.pauseAfterMs ?? 300,
+  }));
   return {
-    plan: next,
-    voiceMode: `live-tts · ${json.voice || teacherId}`,
+    plan: aligned,
+    voiceMode: `live-tts-v2 · seamless · ${json.voice || teacherId}`,
     lineCount: json.items.length,
+    totalMs: json.totalWithPausesMs || aligned.timeline.durationMs,
+    queue,
   };
 }
 
 export function HumanEngineProofStudio() {
   const lessons = useMemo(() => listProofLessons(), []);
   const [teacherId, setTeacherId] = useState<TeacherId>("sara");
-  const [lessonId, setLessonId] = useState<ProofLessonId>("forces_law_lab");
+  const [lessonId, setLessonId] = useState<ProofLessonId>("voice_endurance_10m");
   const [plan, setPlan] = useState<HumanPerformancePlan | null>(null);
   const [frame, setFrame] = useState<HumanFrameSample | null>(null);
   const [playing, setPlaying] = useState(false);
@@ -180,11 +212,16 @@ export function HumanEngineProofStudio() {
   const [mindState, setMindState] = useState("");
   const [voiceMode, setVoiceMode] = useState("—");
   const [preparing, setPreparing] = useState(false);
-  const stopRef = useRef<null | (() => void)>(null);
-  const audioRef = useRef<HTMLAudioElement | null>(null);
-  const lastAudioRef = useRef("");
+  const [prepPct, setPrepPct] = useState(0);
+  const voiceRef = useRef<SeamlessVoicePlayer | null>(null);
+  const adapterRef = useRef<ReturnType<typeof createLocalPhotorealAdapter> | null>(
+    null,
+  );
   const basePlanRef = useRef<HumanPerformancePlan | null>(null);
+  const resumePlanRef = useRef<HumanPerformancePlan | null>(null);
+  const resumeQueueRef = useRef<VoiceQueueItem[] | null>(null);
   const memoryRef = useRef<TeacherSessionMemory | null>(null);
+  const interruptMsRef = useRef(0);
 
   const persona = getTeacherPersona(teacherId);
   const meta = lessons.find((l) => l.id === lessonId) || lessons[0]!;
@@ -194,60 +231,90 @@ export function HumanEngineProofStudio() {
     return directLesson({
       input,
       adapterId: "local_photoreal_preview",
-      maxDurationMs: Math.max(65000, meta.minDurationMs),
+      maxDurationMs: Math.max(65_000, meta.minDurationMs),
     });
   }, [lessonId, teacherId, meta.minDurationMs]);
 
   const stop = useCallback(() => {
-    stopRef.current?.();
-    stopRef.current = null;
-    if (audioRef.current) {
-      audioRef.current.pause();
-      audioRef.current = null;
-    }
-    lastAudioRef.current = "";
+    voiceRef.current?.stop();
+    adapterRef.current?.dispose?.();
+    adapterRef.current = null;
     setPlaying(false);
   }, []);
 
-  const play = useCallback(
-    (nextPlan: HumanPerformancePlan, label: string) => {
+  const playAligned = useCallback(
+    async (
+      aligned: HumanPerformancePlan,
+      queue: VoiceQueueItem[],
+      label: string,
+      opts?: { isBase?: boolean; resumeAfter?: boolean },
+    ) => {
       stop();
-      setPlan(nextPlan);
-      basePlanRef.current = nextPlan;
+      setPlan(aligned);
+      if (opts?.isBase) {
+        basePlanRef.current = aligned;
+        resumePlanRef.current = aligned;
+        resumeQueueRef.current = queue;
+      }
       setDone(false);
-      setReply("");
       setPlaying(true);
       setTMs(0);
       setStatus(label);
+
       const adapter = createLocalPhotorealAdapter({
-        onFrame: (f) => {
+        onFrame: (f) => setFrame(f),
+      });
+      adapterRef.current = adapter;
+      void adapter.load(aligned);
+
+      const player = voiceRef.current || new SeamlessVoicePlayer();
+      voiceRef.current = player;
+      player.configure(queue, {
+        onLineStart: () => undefined,
+        onTimeUpdate: (globalMs) => {
+          setTMs(globalMs);
+          const f = sampleFrame(aligned, globalMs);
+          adapter.applyFrame(f);
           setFrame(f);
-          const line = nextPlan.speech.lines.find(
-            (l) => f.tMs >= l.startMs && f.tMs < l.endMs,
-          );
-          if (line?.audioSrc && line.audioSrc !== lastAudioRef.current) {
-            lastAudioRef.current = line.audioSrc;
-            const a = audioRef.current ?? new Audio();
-            audioRef.current = a;
-            a.src = line.audioSrc;
-            void a.play().catch(() => undefined);
-          }
         },
-      });
-      const handle = playPlan(nextPlan, adapter, {
-        durationMs: nextPlan.timeline.durationMs,
-        onTick: (t) => {
-          setTMs(t);
-          if (t >= nextPlan.timeline.durationMs) {
-            setDone(true);
-            setPlaying(false);
-            setStatus("انتهى الدرس — يمكنك السؤال أو إعادة التشغيل");
+        onQueueEnded: () => {
+          if (opts?.resumeAfter && resumePlanRef.current && resumeQueueRef.current) {
+            const remaining = slicePlanFrom(
+              resumePlanRef.current,
+              interruptMsRef.current,
+            );
+            // Re-voice remaining if speech lines still have urls
+            const q = remaining.speech.lines
+              .filter((l) => l.audioSrc)
+              .map((l) => ({
+                url: l.audioSrc!,
+                text: l.text,
+                startMs: l.startMs,
+                endMs: l.endMs,
+                pauseAfterMs: 300,
+              }));
+            if (q.length) {
+              void playAligned(
+                remaining,
+                q,
+                `متابعة الدرس · ${persona.displayName.ar}`,
+                { isBase: true },
+              );
+              return;
+            }
           }
+          setDone(true);
+          setPlaying(false);
+          setStatus("انتهى الدرس — يمكنك السؤال أو إعادة التشغيل أو تبديل المعلم");
         },
+        onError: (err) => setStatus(`تحذير صوت: ${err.message}`),
       });
-      stopRef.current = handle.stop;
+      setPrepPct(90);
+      await player.preload();
+      setPrepPct(100);
+      player.start();
     },
-    [stop],
+    [stop, persona.displayName.ar],
   );
 
   const startLesson = async () => {
@@ -262,25 +329,35 @@ export function HumanEngineProofStudio() {
     setMemory(mem);
     setMindState("hook/explain");
     setPreparing(true);
-    setStatus("تحضير الصوت العصبي الحي لكل جملة…");
+    setPrepPct(5);
+    setStatus(
+      lessonId === "voice_endurance_10m"
+        ? "تحضير اختبار 10 دقائق: توليد صوت حي لكل جملة (قد يستغرق دقيقة)…"
+        : "تحضير الصوت العصبي الحي لكل جملة…",
+    );
     try {
       const p = buildPlan();
+      setPrepPct(25);
       const voiced = await withLiveLineTts(p, teacherId);
-      setVoiceMode(voiced.voiceMode);
-      play(
+      setPrepPct(80);
+      setVoiceMode(
+        `${voiced.voiceMode} · ${(voiced.totalMs / 60000).toFixed(1)} دقيقة`,
+      );
+      await playAligned(
         voiced.plan,
-        `تشغيل · ${persona.displayName.ar} · ${meta.titleAr} · ${voiced.lineCount} جملة TTS · ${(voiced.plan.timeline.durationMs / 1000).toFixed(0)}ث`,
+        voiced.queue,
+        `تشغيل · ${persona.displayName.ar} · ${meta.titleAr} · ${voiced.lineCount} جملة · ${(voiced.totalMs / 1000).toFixed(0)}ث`,
+        { isBase: true },
       );
     } catch (e) {
       setStatus(`فشل تحضير الصوت: ${e instanceof Error ? e.message : "error"}`);
-      setVoiceMode("fallback-canned");
+      setVoiceMode("error");
     } finally {
       setPreparing(false);
     }
   };
 
   const runAdapt = async (event: Parameters<typeof adaptLiveTeacher>[0]["event"]) => {
-    const active = basePlanRef.current || plan || buildPlan();
     const prior =
       memoryRef.current ||
       createSessionMemory({
@@ -288,6 +365,13 @@ export function HumanEngineProofStudio() {
         lessonId,
         lessonTitle: meta.titleAr,
       });
+
+    // Capture resume point before interrupting
+    interruptMsRef.current = voiceRef.current?.getGlobalMs() || tMs;
+    if (basePlanRef.current) {
+      resumePlanRef.current = basePlanRef.current;
+    }
+
     const result = adaptLiveTeacher({
       teacherId,
       lessonTitle: meta.titleAr,
@@ -295,7 +379,7 @@ export function HumanEngineProofStudio() {
       currentLine: frame?.lineText || undefined,
       event,
       memory: prior,
-      elapsedMs: tMs || prior.elapsedMs,
+      elapsedMs: interruptMsRef.current,
     });
     memoryRef.current = result.memory;
     setMemory(result.memory);
@@ -304,19 +388,31 @@ export function HumanEngineProofStudio() {
     );
     setReply(result.reply);
     setStatus(
-      `Teacher Mind · ${result.strategy} · strategies=${result.memory.strategiesUsed.join("→") || "—"}`,
+      `مقاطعة → رد · ${result.strategy} · ثم متابعة الدرس · strategies=${result.memory.strategiesUsed.join("→") || "—"}`,
     );
     setPreparing(true);
     try {
-      const voiced = await withLiveLineTts(result.microPlan, teacherId);
+      const styleHint =
+        event.type === "explain_simpler" || event.type === "confused"
+          ? ("remediate" as const)
+          : undefined;
+      const voiced = await withLiveLineTts(
+        result.microPlan,
+        teacherId,
+        styleHint,
+      );
       setVoiceMode(voiced.voiceMode);
-      play(voiced.plan, `رد حي TTS · ${persona.displayName.ar}`);
-    } catch {
-      play(result.microPlan, `رد ${persona.displayName.ar} (بدون TTS حي)`);
+      await playAligned(
+        voiced.plan,
+        voiced.queue,
+        `رد حي ثم متابعة · ${persona.displayName.ar}`,
+        { resumeAfter: true },
+      );
+    } catch (e) {
+      setStatus(`فشل رد الصوت: ${e instanceof Error ? e.message : "error"}`);
     } finally {
       setPreparing(false);
     }
-    void active;
   };
 
   useEffect(() => () => stop(), [stop]);
@@ -404,8 +500,16 @@ export function HumanEngineProofStudio() {
       </section>
 
       <div style={styles.voiceBanner}>
-        <strong>البند 4 · الصوت:</strong> {voiceMode} · الجملة الحالية:{" "}
-        {frame?.lineText ? `«${frame.lineText.slice(0, 80)}»` : "—"}
+        <strong>البند 4 · اختبار 10 دقائق:</strong> {voiceMode}
+        {preparing ? ` · تحضير ${prepPct}%` : ""}
+        <div>
+          الزمن: {(tMs / 1000).toFixed(1)}s / {(duration / 1000).toFixed(0)}s · الجملة:{" "}
+          {frame?.lineText ? `«${frame.lineText.slice(0, 90)}»` : "—"}
+        </div>
+        <div style={{ opacity: 0.85, marginTop: 4 }}>
+          للاختبار: اختر «اختبار صوت 10 دقائق» → سارة ثم علي · أثناء الشرح اضغط اسأل /
+          أعد الشرح · يجب أن يجيب ثم يكمل دون إعادة تحميل الصفحة.
+        </div>
       </div>
 
       <div style={styles.personaRow}>
@@ -555,8 +659,8 @@ export function HumanEngineProofStudio() {
           </tbody>
         </table>
         <p style={styles.footnote}>
-          الخلاصة الصادقة: البند 4 (الصوت) أصبح ✅ — TTS حي لكل جملة. ما زال أصفر: الجسم،
-          الوجه/الشفاه، السبورة، النموذج 3D. Unreal MetaHuman غير مشغّل هنا.
+          البند 4 تحت اختبار قبول 10 دقائق (جلسة متواصلة + مقاطعة + استئناف). البنود
+          5–8 ما زالت صفراء. Unreal MetaHuman غير مشغّل هنا.
         </p>
       </section>
     </div>
