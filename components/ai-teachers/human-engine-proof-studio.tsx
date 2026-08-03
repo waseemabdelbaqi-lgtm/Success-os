@@ -54,9 +54,9 @@ const HONESTY: Array<{
   {
     id: "voice",
     label: "4) أسمع صوتهما",
-    status: "partial",
+    status: "works",
     detail:
-      "مقاطع MP3 عصبية مختلفة لسارة/علي (Sana/Taim) حسب نوع المشهد — ليست TTS حية لكل جملة منطوقة حرفياً",
+      "TTS عصبي حي لكل جملة منطوقة: سارة=ar-JO-SanaNeural · علي=ar-JO-TaimNeural عبر /api/ai-teachers/tts",
   },
   {
     id: "body",
@@ -121,6 +121,49 @@ function mapCamera(shot: string): string {
   return shot || "medium_teacher";
 }
 
+/** Attach live neural TTS URLs to every speech line (demo-only; HE plan unchanged structurally). */
+async function withLiveLineTts(
+  plan: HumanPerformancePlan,
+  teacherId: TeacherId,
+): Promise<{ plan: HumanPerformancePlan; voiceMode: string; lineCount: number }> {
+  const lines = (plan.speech?.lines || []).map((l, i) => ({
+    id: `L${i}_${l.startMs}`,
+    text: l.text,
+  }));
+  if (!lines.length) {
+    return { plan, voiceMode: "no-lines", lineCount: 0 };
+  }
+  const res = await fetch("/api/ai-teachers/tts", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ teacherId, lines }),
+  });
+  const json = (await res.json()) as {
+    success?: boolean;
+    voice?: string;
+    items?: Array<{ url: string }>;
+    error?: string;
+  };
+  if (!res.ok || !json.success || !json.items?.length) {
+    throw new Error(json.error || "TTS prefetch failed");
+  }
+  const next: HumanPerformancePlan = {
+    ...plan,
+    speech: {
+      ...plan.speech,
+      lines: plan.speech.lines.map((line, i) => ({
+        ...line,
+        audioSrc: json.items![i]?.url || line.audioSrc,
+      })),
+    },
+  };
+  return {
+    plan: next,
+    voiceMode: `live-tts · ${json.voice || teacherId}`,
+    lineCount: json.items.length,
+  };
+}
+
 export function HumanEngineProofStudio() {
   const lessons = useMemo(() => listProofLessons(), []);
   const [teacherId, setTeacherId] = useState<TeacherId>("sara");
@@ -135,6 +178,8 @@ export function HumanEngineProofStudio() {
   const [done, setDone] = useState(false);
   const [memory, setMemory] = useState<TeacherSessionMemory | null>(null);
   const [mindState, setMindState] = useState("");
+  const [voiceMode, setVoiceMode] = useState("—");
+  const [preparing, setPreparing] = useState(false);
   const stopRef = useRef<null | (() => void)>(null);
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const lastAudioRef = useRef("");
@@ -205,7 +250,7 @@ export function HumanEngineProofStudio() {
     [stop],
   );
 
-  const startLesson = () => {
+  const startLesson = async () => {
     const mem = createSessionMemory({
       teacherId,
       lessonId,
@@ -216,14 +261,25 @@ export function HumanEngineProofStudio() {
     memoryRef.current = mem;
     setMemory(mem);
     setMindState("hook/explain");
-    const p = buildPlan();
-    play(
-      p,
-      `تشغيل · ${persona.displayName.ar} · ${meta.titleAr} · ${(p.timeline.durationMs / 1000).toFixed(0)}ث`,
-    );
+    setPreparing(true);
+    setStatus("تحضير الصوت العصبي الحي لكل جملة…");
+    try {
+      const p = buildPlan();
+      const voiced = await withLiveLineTts(p, teacherId);
+      setVoiceMode(voiced.voiceMode);
+      play(
+        voiced.plan,
+        `تشغيل · ${persona.displayName.ar} · ${meta.titleAr} · ${voiced.lineCount} جملة TTS · ${(voiced.plan.timeline.durationMs / 1000).toFixed(0)}ث`,
+      );
+    } catch (e) {
+      setStatus(`فشل تحضير الصوت: ${e instanceof Error ? e.message : "error"}`);
+      setVoiceMode("fallback-canned");
+    } finally {
+      setPreparing(false);
+    }
   };
 
-  const runAdapt = (event: Parameters<typeof adaptLiveTeacher>[0]["event"]) => {
+  const runAdapt = async (event: Parameters<typeof adaptLiveTeacher>[0]["event"]) => {
     const active = basePlanRef.current || plan || buildPlan();
     const prior =
       memoryRef.current ||
@@ -250,12 +306,15 @@ export function HumanEngineProofStudio() {
     setStatus(
       `Teacher Mind · ${result.strategy} · strategies=${result.memory.strategiesUsed.join("→") || "—"}`,
     );
-    // Play micro plan, then resume remaining base if any
-    play(result.microPlan, `رد ${persona.displayName.ar}`);
-    if (result.audioKey) {
-      const src = `${persona.id === "ali" ? "/media/ai-teachers/ali" : "/media/ai-teachers/sara"}/audio/${result.audioKey}.mp3`;
-      const a = new Audio(src);
-      void a.play().catch(() => undefined);
+    setPreparing(true);
+    try {
+      const voiced = await withLiveLineTts(result.microPlan, teacherId);
+      setVoiceMode(voiced.voiceMode);
+      play(voiced.plan, `رد حي TTS · ${persona.displayName.ar}`);
+    } catch {
+      play(result.microPlan, `رد ${persona.displayName.ar} (بدون TTS حي)`);
+    } finally {
+      setPreparing(false);
     }
     void active;
   };
@@ -331,13 +390,23 @@ export function HumanEngineProofStudio() {
             ))}
           </select>
         </label>
-        <button type="button" style={styles.primary} onClick={startLesson} disabled={playing}>
-          تشغيل الدرس
+        <button
+          type="button"
+          style={styles.primary}
+          onClick={() => void startLesson()}
+          disabled={playing || preparing}
+        >
+          {preparing ? "تحضير الصوت…" : "تشغيل الدرس"}
         </button>
         <button type="button" style={styles.ghost} onClick={stop} disabled={!playing}>
           إيقاف
         </button>
       </section>
+
+      <div style={styles.voiceBanner}>
+        <strong>البند 4 · الصوت:</strong> {voiceMode} · الجملة الحالية:{" "}
+        {frame?.lineText ? `«${frame.lineText.slice(0, 80)}»` : "—"}
+      </div>
 
       <div style={styles.personaRow}>
         <div style={styles.personaCard}>
@@ -420,23 +489,26 @@ export function HumanEngineProofStudio() {
             style={styles.primary}
             onClick={() => {
               if (!question.trim()) return;
-              runAdapt({ type: "ask_text", text: question.trim() });
+              void runAdapt({ type: "ask_text", text: question.trim() });
               setQuestion("");
             }}
+            disabled={preparing}
           >
             اسأل
           </button>
           <button
             type="button"
             style={styles.ghost}
-            onClick={() => runAdapt({ type: "explain_simpler" })}
+            onClick={() => void runAdapt({ type: "explain_simpler" })}
+            disabled={preparing}
           >
             أعد الشرح بطريقة مختلفة
           </button>
           <button
             type="button"
             style={styles.ghost}
-            onClick={() => runAdapt({ type: "example" })}
+            onClick={() => void runAdapt({ type: "example" })}
+            disabled={preparing}
           >
             مثال إضافي
           </button>
@@ -483,9 +555,8 @@ export function HumanEngineProofStudio() {
           </tbody>
         </table>
         <p style={styles.footnote}>
-          الخلاصة الصادقة لهذه التجربة: 5 بنود ✅ و5 بنود 🟡 — لا يوجد بند ❌ في قائمة القبول
-          أعلاه، لكن الصوت/الجسم/الوجه/السبورة/النموذج ما زالوا جزئيين مقارنة بمعلم واقعي كامل.
-          Unreal MetaHuman غير مشغّل هنا.
+          الخلاصة الصادقة: البند 4 (الصوت) أصبح ✅ — TTS حي لكل جملة. ما زال أصفر: الجسم،
+          الوجه/الشفاه، السبورة، النموذج 3D. Unreal MetaHuman غير مشغّل هنا.
         </p>
       </section>
     </div>
@@ -500,6 +571,14 @@ const styles: Record<string, CSSProperties> = {
     color: "#f3efe6",
     fontFamily: '"IBM Plex Sans Arabic", "Segoe UI", sans-serif',
     paddingBottom: 48,
+  },
+  voiceBanner: {
+    margin: "0 20px 12px",
+    padding: "10px 14px",
+    background: "rgba(31,107,74,0.28)",
+    border: "1px solid rgba(120,200,160,0.35)",
+    fontSize: 13,
+    lineHeight: 1.55,
   },
   header: {
     display: "flex",
