@@ -86,6 +86,11 @@ export {
   analyzeScriptedLesson,
   teachingPlanToBlocks,
 } from "./lesson-content-analyzer";
+export {
+  deriveLiveTeacherState,
+  TeacherState,
+} from "./derive-live-teacher-state";
+export type { LiveTeacherState, DeriveLiveTeacherStateOpts } from "./derive-live-teacher-state";
 export { pickUnused, fingerprintSay, recordUnique } from "./performance-variety";
 export {
   createBlackboard,

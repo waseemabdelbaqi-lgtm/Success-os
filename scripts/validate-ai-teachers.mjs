@@ -54,6 +54,20 @@ assert(
 assert(fs.existsSync(path.join(root, "src/ai-teacher/config.ts")), "Missing src/ai-teacher/config.ts");
 assert(fs.existsSync(path.join(root, "src/ai-teacher/teachers/sara.ts")), "Missing sara.ts config");
 assert(fs.existsSync(path.join(root, "src/ai-teacher/teachers/ali.ts")), "Missing ali.ts config");
+assert(
+  fs.existsSync(path.join(root, "src/ai-teacher/core/LiveTeacherState.ts")),
+  "Missing LiveTeacherState types",
+);
+const liveStateSrc = fs.readFileSync(
+  path.join(root, "src/ai-teacher/core/LiveTeacherState.ts"),
+  "utf8",
+);
+assert(liveStateSrc.includes("export enum TeacherState"), "Missing TeacherState enum");
+assert(liveStateSrc.includes("export interface LiveTeacherState"), "Missing LiveTeacherState");
+assert(
+  fs.existsSync(path.join(root, "lib/human-engine/derive-live-teacher-state.ts")),
+  "Missing derive-live-teacher-state bridge",
+);
 const coreProfilesSrc = fs.readFileSync(path.join(root, "lib/ai-teachers/core-profiles.ts"), "utf8");
 assert(
   coreProfilesSrc.includes("@/src/ai-teacher/config"),

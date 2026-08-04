@@ -17,6 +17,7 @@ import {
   directSentence,
   analyzeScriptedLesson,
   bridgeInteractiveLessonToHuman,
+  deriveLiveTeacherState,
   getDefaultTeacherProfile,
   getTeacherPersona,
   listDefaultTeacherProfiles,
@@ -25,6 +26,7 @@ import {
   resolveTeachablePackage,
   sampleFrame,
   textToPhonemeTrack,
+  TeacherState,
 } from "../lib/human-engine/index";
 import { buildCoreTeacherCatalog, getCoreTeacherProfile } from "../lib/ai-teachers/core-profiles";
 import {
@@ -133,6 +135,29 @@ const mh = createAdapter("metahuman");
 mh.load(demos.sara);
 mh.applyFrame(sampleFrame(demos.sara, 500));
 if (mh.status !== "stub") throw new Error("metahuman should be stub");
+
+// LiveTeacherState derives from HE frames (Configuration Layer types)
+const liveFrame = sampleFrame(show, Math.min(8000, show.timeline.durationMs / 3));
+const live = deriveLiveTeacherState({
+  frame: liveFrame,
+  lessonId: show.lessonId,
+  currentTopic: show.titleAr || show.title,
+  currentSentence: 1,
+});
+if (!Object.values(TeacherState).includes(live.state)) {
+  throw new Error(`invalid live teacher state: ${live.state}`);
+}
+if (live.lessonId !== show.lessonId) {
+  throw new Error("live state lessonId mismatch");
+}
+const askLive = deriveLiveTeacherState({
+  frame: { ...liveFrame, contentAct: "ask_check", behaviourGoal: "check", speaking: false },
+  lessonId: show.lessonId,
+  waitingForStudent: true,
+});
+if (askLive.state !== TeacherState.WAITING && askLive.state !== TeacherState.ASKING) {
+  throw new Error(`expected waiting/asking, got ${askLive.state}`);
+}
 
 const input = {
   lessonId: "det_test",

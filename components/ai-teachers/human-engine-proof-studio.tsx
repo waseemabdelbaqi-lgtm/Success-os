@@ -11,6 +11,7 @@ import {
   buildProofLessonInput,
   createLocalPhotorealAdapter,
   createSessionMemory,
+  deriveLiveTeacherState,
   directLesson,
   gestureToClassroomPose,
   getTeacherPersona,
@@ -312,6 +313,19 @@ export function HumanEngineProofStudio() {
 
   useEffect(() => () => stop(), [stop]);
 
+  const live = useMemo(
+    () =>
+      deriveLiveTeacherState({
+        frame,
+        lessonId,
+        currentTopic: meta.titleAr,
+        waitingForStudent: askOpen && !playing,
+        listening: askOpen,
+        finished: done,
+      }),
+    [askOpen, done, frame, lessonId, meta.titleAr, playing],
+  );
+
   const pose: Studio3DPose = frame ? gestureToClassroomPose(frame.gesture) : "stand";
   const boardLines = useMemo(() => {
     const lines: string[] = [];
@@ -448,9 +462,11 @@ export function HumanEngineProofStudio() {
             {preparing
               ? "المعلم يجهّز الشرح…"
               : frame?.lineText ||
-                (done
+                (live.state === "finished"
                   ? "انتهت الحصة. يمكنك السؤال أو إعادة الشرح."
-                  : "لحظة… تبدأ الحصة الآن")}
+                  : live.waitingForStudent
+                    ? "المعلم يستمع إليك…"
+                    : "لحظة… تبدأ الحصة الآن")}
           </div>
           <div style={styles.barTrack}>
             <div style={{ ...styles.barFill, width: `${progress}%` }} />
