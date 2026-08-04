@@ -1,20 +1,29 @@
 /**
- * Proof lessons — real ≥60s teaching scripts differentiated per teacher.
+ * Proof lessons — multi-subject acceptance suite for Sara & Ali.
+ * Gate subjects: math, physics, chemistry, biology, languages, programming.
+ * Same Human Engine — content swaps only (world-class doctrine).
  */
 import type { HumanCharacterId, HumanLessonInput } from "@/types/human-engine";
+import type { PlatformAcceptanceSubject } from "@/types/platform-teachers";
+import { PLATFORM_ACCEPTANCE_SUBJECTS } from "@/types/platform-teachers";
 import { getTeacherPersona } from "./teacher-persona";
 
 export type ProofLessonId =
   | "g1_count_three"
   | "forces_law_lab"
   | "fractions_half"
-  | "voice_endurance_10m";
+  | "voice_endurance_10m"
+  | "chem_water_molecule"
+  | "bio_cell_model"
+  | "lang_ar_sentence"
+  | "prog_loop_trace";
 
 export type ProofLessonMeta = {
   id: ProofLessonId;
   title: string;
   titleAr: string;
-  subject: string;
+  /** Acceptance-gate subject family */
+  subject: PlatformAcceptanceSubject | string;
   grade: string;
   minDurationMs: number;
   descriptionAr: string;
@@ -25,43 +34,91 @@ export const PROOF_LESSONS: ProofLessonMeta[] = [
     id: "voice_endurance_10m",
     title: "10-Minute Voice Endurance",
     titleAr: "اختبار صوت 10 دقائق — قانون القوة",
-    subject: "science",
+    subject: "physics",
     grade: "g7",
     minDurationMs: 600_000,
     descriptionAr:
       "جلسة متواصلة ~10 دقائق: شرح، سبورة، رسم، 3D، تجربة، أسئلة — لاختبار الصوت الحي",
   },
   {
+    id: "fractions_half",
+    title: "Half of a Whole",
+    titleAr: "رياضيات — النصف من الكل",
+    subject: "math",
+    grade: "g2",
+    minDurationMs: 65000,
+    descriptionAr: "قبول رياضيات: كتابة، رسم، نموذج، تحقق فهم",
+  },
+  {
     id: "g1_count_three",
     title: "Count to Three",
-    titleAr: "العد حتى ثلاثة",
+    titleAr: "رياضيات — العد حتى ثلاثة",
     subject: "math",
     grade: "g1",
     minDurationMs: 65000,
-    descriptionAr: "درس صفّي حي: كتابة، عدّ، رسم، سؤال، وإعادة شرح",
+    descriptionAr: "قبول رياضيات مبكر: كتابة، عدّ، رسم، سؤال",
   },
   {
     id: "forces_law_lab",
     title: "Force Law + Lab",
-    titleAr: "قانون القوة وتجربة",
-    subject: "science",
+    titleAr: "فيزياء — قانون القوة وتجربة",
+    subject: "physics",
     grade: "g7",
     minDurationMs: 70000,
-    descriptionAr: "قانون F=ma، رسم، نموذج 3D، تجربة، وسؤال طالب",
+    descriptionAr: "قبول فيزياء: F=ma، رسم، نموذج 3D، تجربة، سؤال",
   },
   {
-    id: "fractions_half",
-    title: "Half of a Whole",
-    titleAr: "النصف من الكل",
-    subject: "math",
-    grade: "g2",
+    id: "chem_water_molecule",
+    title: "Water Molecule",
+    titleAr: "كيمياء — جزيء الماء",
+    subject: "chemistry",
+    grade: "g8",
+    minDurationMs: 70000,
+    descriptionAr: "قبول كيمياء: معادلة، رسم، نموذج 3D، ملاحظة، سؤال",
+  },
+  {
+    id: "bio_cell_model",
+    title: "Cell Structure",
+    titleAr: "أحياء — تركيب الخلية",
+    subject: "biology",
+    grade: "g8",
+    minDurationMs: 70000,
+    descriptionAr: "قبول أحياء: سبورة، رسم عضيات، نموذج 3D، سؤال",
+  },
+  {
+    id: "lang_ar_sentence",
+    title: "Arabic Sentence Parts",
+    titleAr: "لغات — أجزاء الجملة",
+    subject: "languages",
+    grade: "g4",
     minDurationMs: 65000,
-    descriptionAr: "مفهوم النصف: كتابة، رسم، نموذج، تحقق فهم",
+    descriptionAr: "قبول لغات: كتابة على السبورة، أمثلة، تحقق فهم",
+  },
+  {
+    id: "prog_loop_trace",
+    title: "Programming Loop Trace",
+    titleAr: "برمجة — تتبّع الحلقة",
+    subject: "programming",
+    grade: "g9",
+    minDurationMs: 70000,
+    descriptionAr: "قبول برمجة: كتابة كود، تتبّع خطوة، نموذج تدفق، سؤال",
   },
 ];
 
 export function listProofLessons(): ProofLessonMeta[] {
   return PROOF_LESSONS;
+}
+
+export function listProofSubjects(): string[] {
+  const set = new Set(PROOF_LESSONS.map((l) => l.subject));
+  return PLATFORM_ACCEPTANCE_SUBJECTS.filter((s) => set.has(s)).concat(
+    [...set].filter((s) => !(PLATFORM_ACCEPTANCE_SUBJECTS as readonly string[]).includes(s)),
+  );
+}
+
+export function proofLessonsForSubject(subject: string): ProofLessonMeta[] {
+  if (!subject || subject === "all") return PROOF_LESSONS;
+  return PROOF_LESSONS.filter((l) => l.subject === subject);
 }
 
 export function getProofLessonMeta(id: string): ProofLessonMeta {
@@ -462,6 +519,232 @@ export function buildProofLessonInput(
           id: "close",
           kind: "encourage",
           text: `${p.celebrate}. النصف صار واضحاً. إلى اللقاء.`,
+        },
+      ],
+    };
+  }
+
+  if (meta.id === "chem_water_molecule") {
+    return {
+      lessonId: `proof_${meta.id}_${p.id}`,
+      title: meta.title,
+      titleAr: meta.titleAr,
+      subject: meta.subject,
+      grade: meta.grade,
+      language: "ar",
+      preferredCharacterId: p.id,
+      durationMs: meta.minDurationMs,
+      blocks: [
+        {
+          id: "hook",
+          kind: "hook",
+          text: isAli
+            ? `أهلاً ${p.addressStudent}. أنا ${p.displayName.ar}. موضوعنا تحليلي: جزيء الماء H₂O. نعرّف ثم نكتب المعادلة ثم نطبّق.`
+            : `مرحبا ${p.addressStudent}. أنا ${p.displayName.ar}. اليوم بهدوء نفهم جزيء الماء. نرتّب الفكرة خطوة خطوة قبل أي رمز.`,
+        },
+        {
+          id: "mastery",
+          kind: "explain",
+          text: isAli
+            ? "قبل الرموز: الماء مركّب من عنصرين مرتبطين بنسب ثابتة. المشكلة العملية: كيف نمثّل ذلك بدقة؟"
+            : "قبل ما نكتب الرموز، خلينا نفهم: الماء مش عنصر واحد، هو اتحاد منظّم لذرتين من الهيدروجين وذرة أكسجين.",
+        },
+        {
+          id: "write",
+          kind: "explain",
+          text: isAli
+            ? "اكتبوا على السبورة المعادلة: اثنان هيدروجين + أكسجين يعطي ماء. H₂ + ½O₂ → H₂O أو بصيغة الجزيء H₂O."
+            : "اكتبوا معي على السبورة بهدوء: جزيء الماء H₂O. اثنين هيدروجين مع أكسجين واحد.",
+        },
+        {
+          id: "draw",
+          kind: "example",
+          text: "أرسم مخططاً على السبورة: ذرة أكسجين في الوسط وذرتا هيدروجين على الجانبين بزاوية واضحة.",
+        },
+        {
+          id: "model",
+          kind: "example",
+          text: "هذا نموذج ثلاثي الأبعاد لجزيء الماء. أمسكه وأديره ثم أكبّره لنشوف شكل الرابطة.",
+        },
+        {
+          id: "lab",
+          kind: "practice",
+          text: isAli
+            ? "نجرب في المختبر ذهنياً: إذا نقص هيدروجين واحد لا نحصل على ماء. لاحظوا شرط النسبة."
+            : "تخيّلوا تجربة بسيطة: إذا تغيّرت النسبة بين الهيدروجين والأكسجين، الناتج يتغيّر. لاحظوا الفكرة بهدوء.",
+        },
+        {
+          id: "check",
+          kind: "check",
+          text: `${p.checkPhrase}: كم ذرة هيدروجين في جزيء ماء واحد؟`,
+        },
+        {
+          id: "close",
+          kind: "close",
+          text: `${p.celebrate}. فهمنا وكتبنا ورسمنا وشوفنا النموذج. إلى اللقاء.`,
+        },
+      ],
+    };
+  }
+
+  if (meta.id === "bio_cell_model") {
+    return {
+      lessonId: `proof_${meta.id}_${p.id}`,
+      title: meta.title,
+      titleAr: meta.titleAr,
+      subject: meta.subject,
+      grade: meta.grade,
+      language: "ar",
+      preferredCharacterId: p.id,
+      durationMs: meta.minDurationMs,
+      blocks: [
+        {
+          id: "hook",
+          kind: "hook",
+          text: isAli
+            ? `أهلاً ${p.addressStudent}. أنا ${p.displayName.ar}. الخلية وحدة البناء. نعرّف الأجزاء ثم نحلّل وظيفة كل جزء.`
+            : `مرحبا ${p.addressStudent}. أنا ${p.displayName.ar}. اليوم بهدوء نتعرّف على الخلية كبيت منظّم فيه غرف لكل وظيفة.`,
+        },
+        {
+          id: "write",
+          kind: "explain",
+          text: isAli
+            ? "اكتبوا على السبورة: الخلية = غشاء + سيتوبلازم + نواة (في الخلايا حقيقية النواة). ثلاث طبقات تحليلية."
+            : "اكتبوا معي: الخلية فيها غشاء يحميها، ومحتوى داخلي، ونواة تنظّم العمل. نرتّبها بهدوء.",
+        },
+        {
+          id: "draw",
+          kind: "example",
+          text: "أرسم مخطط الخلية على السبورة: الغشاء الخارجي، النواة في الوسط، وعضيات بسيطة حولها.",
+        },
+        {
+          id: "model",
+          kind: "example",
+          text: "هذا نموذج ثلاثي الأبعاد للخلية. أمسكه وأديره ثم أكبّره لنشوف النواة بوضوح.",
+        },
+        {
+          id: "function",
+          kind: "explain",
+          text: isAli
+            ? "حل المشكلة: إذا تعطّلت النواة تتعطل التعليمات. الغشاء يضبط الدخول والخروج — وظيفة عملية."
+            : "بهديء: النواة مثل مركز التنظيم، والغشاء مثل باب البيت. كل جزء له سبب تعليمي واضح.",
+        },
+        {
+          id: "check",
+          kind: "check",
+          text: `${p.checkPhrase}: أين تُخزَّن المعلومات الأساسية داخل الخلية الحقيقية النواة؟`,
+        },
+        {
+          id: "close",
+          kind: "close",
+          text: `${p.celebrate}. رسمنا وفهمنا النموذج. إلى اللقاء.`,
+        },
+      ],
+    };
+  }
+
+  if (meta.id === "lang_ar_sentence") {
+    return {
+      lessonId: `proof_${meta.id}_${p.id}`,
+      title: meta.title,
+      titleAr: meta.titleAr,
+      subject: meta.subject,
+      grade: meta.grade,
+      language: "ar",
+      preferredCharacterId: p.id,
+      durationMs: meta.minDurationMs,
+      blocks: [
+        {
+          id: "hook",
+          kind: "hook",
+          text: isAli
+            ? `أهلاً ${p.addressStudent}. أنا ${p.displayName.ar}. الجملة مشكلة لغوية قابلة للتحليل: ركنان أساسيان.`
+            : `مرحبا ${p.addressStudent}. أنا ${p.displayName.ar}. اليوم بهدوء نرتّب الجملة العربية قطعة قطعة.`,
+        },
+        {
+          id: "write",
+          kind: "explain",
+          text: isAli
+            ? "اكتبوا على السبورة: الجملة الاسمية = مبتدأ + خبر. مثال: السماءُ صافيةٌ."
+            : "اكتبوا معي بهدوء: المبتدأ ثم الخبر. مثال لطيف: السماءُ صافيةٌ.",
+        },
+        {
+          id: "example",
+          kind: "example",
+          text: isAli
+            ? "نحلل: السماءُ = مبتدأ، صافيةٌ = خبر. حدّدوا الوظيفة قبل الإعراب الكامل."
+            : "خلينا نشوف المثال مرة ثانية بهدوء: مين اللي نحكي عنه؟ السماء. وش وصفها؟ صافية.",
+        },
+        {
+          id: "draw",
+          kind: "example",
+          text: "أرسم على السبورة صندوقين: مبتدأ | خبر، وأضع الكلمات داخلها.",
+        },
+        {
+          id: "check",
+          kind: "check",
+          text: `${p.checkPhrase}: في جملة «الكتابُ مفيدٌ» ما المبتدأ؟`,
+        },
+        {
+          id: "close",
+          kind: "close",
+          text: `${p.celebrate}. رتّبنا الجملة بوضوح. إلى اللقاء.`,
+        },
+      ],
+    };
+  }
+
+  if (meta.id === "prog_loop_trace") {
+    return {
+      lessonId: `proof_${meta.id}_${p.id}`,
+      title: meta.title,
+      titleAr: meta.titleAr,
+      subject: meta.subject,
+      grade: meta.grade,
+      language: "ar",
+      preferredCharacterId: p.id,
+      durationMs: meta.minDurationMs,
+      blocks: [
+        {
+          id: "hook",
+          kind: "hook",
+          text: isAli
+            ? `أهلاً ${p.addressStudent}. أنا ${p.displayName.ar}. الحلقة أداة لحل التكرار. نعرّف ثم نتتبّع التنفيذ سطرًا سطرًا.`
+            : `مرحبا ${p.addressStudent}. أنا ${p.displayName.ar}. اليوم بهدوء نفهم الحلقة: ليش نكرّر أوامر بدون نسخها؟`,
+        },
+        {
+          id: "write",
+          kind: "explain",
+          text: isAli
+            ? "اكتبوا على السبورة كودًا واضحًا: for i from 1 to 3: print(i). ثلاثة أجزاء: بداية، شرط، خطوة."
+            : "اكتبوا معي بهدوء: fore من واحد لثلاثة اطبع الرقم. نرتّب البداية والشرط والخطوة.",
+        },
+        {
+          id: "trace",
+          kind: "practice",
+          text: isAli
+            ? "نتتبّع تحليلياً: i=1 اطبع 1، ثم i=2 اطبع 2، ثم i=3 اطبع 3، ثم يتوقف الشرط."
+            : "نمشي التنفيذ خطوة خطوة بهدوء: واحد… اثنين… ثلاثة… وبعدين توقف.",
+        },
+        {
+          id: "draw",
+          kind: "example",
+          text: "أرسم مخطط تدفق على السبورة: ابدأ → فحص الشرط → جسم الحلقة → رجوع أو خروج.",
+        },
+        {
+          id: "model",
+          kind: "example",
+          text: "هذا نموذج ثلاثي الأبعاد لمسار التنفيذ. أديره ثم أكبّره لنشوف نقطة القرار.",
+        },
+        {
+          id: "check",
+          kind: "check",
+          text: `${p.checkPhrase}: كم مرة تُطبع القيمة إذا كانت الحلقة من 1 إلى 3؟`,
+        },
+        {
+          id: "close",
+          kind: "close",
+          text: `${p.celebrate}. تتبّعنا الحلقة وحللنا التكرار. إلى اللقاء.`,
         },
       ],
     };

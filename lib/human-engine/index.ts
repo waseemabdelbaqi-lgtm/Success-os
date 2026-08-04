@@ -50,6 +50,8 @@ export {
 export type { TeacherPersona, TeacherPersonaId } from "./teacher-persona";
 export {
   listProofLessons,
+  listProofSubjects,
+  proofLessonsForSubject,
   getProofLessonMeta,
   buildProofLessonInput,
   PROOF_LESSONS,

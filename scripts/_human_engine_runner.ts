@@ -169,6 +169,37 @@ if (getTeacherPersona("sara").style === getTeacherPersona("ali").style) {
 }
 
 // Proof lesson ≥ 60s
+// Multi-subject acceptance suite — both teachers, every gate subject
+const acceptanceIds = [
+  "fractions_half",
+  "forces_law_lab",
+  "chem_water_molecule",
+  "bio_cell_model",
+  "lang_ar_sentence",
+  "prog_loop_trace",
+] as const;
+for (const lid of acceptanceIds) {
+  for (const tid of ["sara", "ali"] as const) {
+    const input = buildProofLessonInput(lid, tid);
+    const plan = directLesson({
+      input,
+      maxDurationMs: Math.max(65_000, input.durationMs),
+    });
+    if (plan.timeline.durationMs < 60_000) {
+      throw new Error(`acceptance ${lid}/${tid} too short: ${plan.timeline.durationMs}`);
+    }
+    const acts = new Set(plan.sentences.map((s) => s.contentAct));
+    if (acts.size < 2) {
+      throw new Error(`acceptance ${lid}/${tid} needs varied acts, got ${[...acts]}`);
+    }
+  }
+}
+const saraFrac = buildProofLessonInput("fractions_half", "sara");
+const aliFrac = buildProofLessonInput("fractions_half", "ali");
+if (saraFrac.blocks[0]?.text === aliFrac.blocks[0]?.text) {
+  throw new Error("sara/ali acceptance hooks must differ (persona lock)");
+}
+
 const proofInput = buildProofLessonInput("forces_law_lab", "ali");
 const proofPlan = directLesson({
   input: proofInput,

@@ -167,12 +167,19 @@ function emotionForAct(
   };
 }
 
-function gazeForAct(act: ContentAct, seed: number, index: number): GazeTarget {
+/** Gaze must serve teaching — board while writing, prop while modeling, student while checking. */
+function gazeForAct(
+  act: ContentAct,
+  _seed: number,
+  _index: number,
+  persona: TeacherPersona,
+): GazeTarget {
   if (
     act === "write_law" ||
     act === "write_board" ||
     act === "draw_diagram" ||
-    act === "point_content"
+    act === "point_content" ||
+    act === "count_sequence"
   ) {
     return "board";
   }
@@ -187,7 +194,11 @@ function gazeForAct(act: ContentAct, seed: number, index: number): GazeTarget {
     return "prop";
   }
   if (act === "ask_check" || act === "celebrate" || act === "greet_hook") return "student";
-  return pick(["student", "board", "student", "notes"] as const, seed, index);
+  // Explain: warm teachers keep eye contact; precise teachers anchor on board/notes.
+  if (act === "explain_concept") {
+    return persona.style === "precise" ? "board" : "student";
+  }
+  return persona.style === "precise" ? "notes" : "student";
 }
 
 function locomotionForAct(
@@ -468,7 +479,7 @@ export function directSentence(
   const act = detectContentAct(text, ctx.blockKind);
   const { emotion, intensity } = emotionForAct(act, text, seed, persona);
   const gesture = gestureForAct(act, seed, ctx.lineIndex, persona, ctx);
-  const gaze = gazeForAct(act, seed, ctx.lineIndex);
+  const gaze = gazeForAct(act, seed, ctx.lineIndex, persona);
   const locomotion = locomotionForAct(act, text, ctx.prevAct, persona);
   const camera = cameraForAct(act, seed, ctx.lineIndex, ctx);
   const light = lightForAct(act, emotion);

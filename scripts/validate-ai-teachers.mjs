@@ -18,6 +18,19 @@ assert(
   doctrine.includes("دون الحاجة لإنشاء معلم جديد") || doctrine.includes("without creating a new teacher"),
   "Doctrine must forbid new teachers for subjects",
 );
+assert(doctrine.includes("world-class") || doctrine.includes("عالمي"), "Doctrine must state world-class phase");
+assert(doctrine.includes("Programming") || doctrine.includes("برمجة"), "Doctrine must include multi-subject gate");
+assert(doctrine.includes("Purposeful motion") || doctrine.includes("سبب تعليمي"), "Doctrine must require purposeful motion");
+
+const proofSrc = fs.readFileSync(path.join(root, "lib/human-engine/proof-lessons.ts"), "utf8");
+for (const id of [
+  "chem_water_molecule",
+  "bio_cell_model",
+  "lang_ar_sentence",
+  "prog_loop_trace",
+]) {
+  assert(proofSrc.includes(id), `Missing acceptance lesson ${id}`);
+}
 
 const doctrineTs = path.join(root, "types/platform-teachers.ts");
 assert(fs.existsSync(doctrineTs), "Missing types/platform-teachers.ts");

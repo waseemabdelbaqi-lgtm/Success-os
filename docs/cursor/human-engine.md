@@ -10,7 +10,11 @@ Schema: `success-os.human-engine.v1` · version `1.3.0`
 
 They are professional teachers (not text presenters): mastery before explain, graduated depth, multi-strategy remediation, board/drawings/equations/3D/lab/sims, mid-lesson Q&A with evaluation, auto pace/detail, gaze/gesture/face/body, natural multilingual voice, session memory, stable persona (Sara stays Sara, Ali stays Ali).
 
-**Dual acceptance:** complete only when agent verification **and** owner live Demo URL both succeed.
+**Dual acceptance:** complete only when agent verification **and** owner live Demo URL both succeed. After every improvement, ship a working Demo.
+
+**Multi-subject gate:** math · physics · chemistry · biology · languages · programming — same quality for Sara and Ali (`proof-lessons` suite + subject picker on `/ai-teacher/demo`).
+
+**Purposeful motion:** gaze/gesture/locomotion/prosody follow teaching acts + locked personas — no purposeless random loops.
 
 ## Purpose
 

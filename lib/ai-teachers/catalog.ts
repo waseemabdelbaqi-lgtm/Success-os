@@ -66,8 +66,8 @@ export function listAiTeachers(): AiTeacherProfile[] {
       ],
       subjects: [...ANY_PLATFORM_SUBJECTS],
       personalityTone: L(
-        "Official platform teacher — warm mastery, board, 3D, lab, Q&A; Sara stays Sara across every subject",
-        "المعلمة الرسمية للمنصة — إتقان دافئ وسبورة وثلاثي أبعاد ومختبر وأسئلة؛ سارة تبقى سارة مهما تغيرت المادة",
+        "World-class platform teacher — calm, encouraging, organized, gradual; Sara stays Sara across every subject and language",
+        "معلمة المنصة العالمية — هادئة مشجعة منظمة بالتدرج؛ سارة تبقى سارة في كل مادة وكل لغة",
       ),
       appearanceNotes: L(
         "Jordanian woman, olive blazer — photoreal AI teacher",
@@ -100,8 +100,8 @@ export function listAiTeachers(): AiTeacherProfile[] {
       ],
       subjects: [...ANY_PLATFORM_SUBJECTS],
       personalityTone: L(
-        "Official platform teacher — precise mastery, steps, board, checks; Ali stays Ali across every subject",
-        "المعلم الرسمي للمنصة — إتقان دقيق وخطوات وسبورة وفحص فهم؛ علي يبقى علياً مهما تغيرت المادة",
+        "World-class platform teacher — direct, practical, analytical problem-solving; Ali stays Ali across every subject and language",
+        "معلم المنصة العالمي — مباشر عملي تحليلي لحل المشكلات؛ علي يبقى علياً في كل مادة وكل لغة",
       ),
       appearanceNotes: L(
         "Jordanian man, navy blazer — photoreal AI teacher",

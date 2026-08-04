@@ -25,11 +25,25 @@ function ar(text?: { en?: string; ar?: string } | string | null): string {
   return text.ar || text.en || "";
 }
 
-function subjectFamily(subject: string): "math" | "science" | "language" | "general" {
+type SubjectFamily =
+  | "math"
+  | "physics"
+  | "chemistry"
+  | "biology"
+  | "science"
+  | "language"
+  | "programming"
+  | "general";
+
+function subjectFamily(subject: string): SubjectFamily {
   const s = subject.toLowerCase();
-  if (/math|رياضيات|جبر|هندس|حساب|fraction|عدد/.test(s)) return "math";
-  if (/sci|علوم|فيز|كيم|أحياء|physics|chem|bio|تجرب/.test(s)) return "science";
-  if (/arab|عربي|english|إنجل|لغة|قراءة/.test(s)) return "language";
+  if (/math|رياضيات|جبر|هندس|حساب|fraction|عدد|كسور/.test(s)) return "math";
+  if (/phys|فيز|قوة|تسارع|ميكان/.test(s)) return "physics";
+  if (/chem|كيم|جزيء|تفاعل|معادل/.test(s)) return "chemistry";
+  if (/bio|أحياء|خلية|وراث|كائن/.test(s)) return "biology";
+  if (/prog|code|برمجة|خوارزم|loop|حلق|python|javascript/.test(s)) return "programming";
+  if (/sci|علوم|تجرب|مختبر/.test(s)) return "science";
+  if (/arab|عربي|english|إنجل|لغة|قراءة|languages|grammar|نحو/.test(s)) return "language";
   return "general";
 }
 
@@ -106,7 +120,13 @@ function enrichLine(
     };
   }
 
-  if (family === "science" && (index % 5 === 3 || /تجرب|محاك|مختبر|لاحظ/.test(raw))) {
+  const labFamily =
+    family === "science" ||
+    family === "physics" ||
+    family === "chemistry" ||
+    family === "biology";
+
+  if (labFamily && (index % 5 === 3 || /تجرب|محاك|مختبر|لاحظ/.test(raw))) {
     return {
       kind: "practice",
       text: `نجرب في المختبر ونلاحظ التغير: ${raw.slice(0, 90)}. اربطوا الملاحظة بالقاعدة.`,
@@ -114,8 +134,8 @@ function enrichLine(
   }
 
   if (
-    family === "science" &&
-    (index % 6 === 4 || /نموذج|ثلاثي|مجسم|3d|3D/i.test(raw))
+    (labFamily || family === "programming") &&
+    (index % 6 === 4 || /نموذج|ثلاثي|مجسم|3d|3D|تدفق/i.test(raw))
   ) {
     return {
       kind: "example",
@@ -127,6 +147,22 @@ function enrichLine(
     return {
       kind: "practice",
       text: `نحل المسألة خطوة بخطوة على السبورة: ${raw.slice(0, 90)}. اكتبوا معي كل خطوة.`,
+    };
+  }
+
+  if (family === "programming" && index % 3 === 0) {
+    return {
+      kind: "practice",
+      text: warm
+        ? `نمشي تنفيذ الكود بهدوء سطراً سطراً: ${raw.slice(0, 90)}.`
+        : `نتتبّع التنفيذ تحليلياً سطراً سطراً: ${raw.slice(0, 90)}.`,
+    };
+  }
+
+  if (family === "language" && index % 3 === 1) {
+    return {
+      kind: "explain",
+      text: `اكتبوا المثال على السبورة ثم نحلّل أجزاء الجملة: ${raw.slice(0, 90)}.`,
     };
   }
 
@@ -149,9 +185,13 @@ function enrichLine(
     text:
       family === "math"
         ? `نوضح الفكرة ثم نكتب الناتج: ${raw.slice(0, 110)}.`
-        : family === "science"
+        : labFamily
           ? `نربط الظاهرة بالملاحظة: ${raw.slice(0, 110)}.`
-          : `${raw.slice(0, 120)}.`,
+          : family === "programming"
+            ? `نعرّف المفهوم ثم نطبّقه على مسألة: ${raw.slice(0, 110)}.`
+            : family === "language"
+              ? `نقرأ المثال ثم نرتّب القاعدة: ${raw.slice(0, 110)}.`
+              : `${raw.slice(0, 120)}.`,
   };
 }
 

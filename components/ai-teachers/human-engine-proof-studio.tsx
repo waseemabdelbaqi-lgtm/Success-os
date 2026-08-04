@@ -16,6 +16,8 @@ import {
   gestureToClassroomPose,
   getTeacherPersona,
   listProofLessons,
+  listProofSubjects,
+  proofLessonsForSubject,
   sampleFrame,
   type ProofLessonId,
 } from "@/lib/human-engine";
@@ -52,9 +54,10 @@ const HONESTY: Array<{
   },
   {
     id: "lesson",
-    label: "3) بدء درس حقيقي",
-    status: "works",
-    detail: "دروس إثبات ≥ 60 ثانية مع كتابة/رسم/نموذج/سؤال داخل الجدول الزمني",
+    label: "3) بدء درس حقيقي متعدد المواد",
+    status: "partial",
+    detail:
+      "بوابة قبول: رياضيات/فيزياء/كيمياء/أحياء/لغات/برمجة × سارة وعلي — جاهزة للتجربة؛ لا تُعتبر مكتملة حتى تنجح عند المالك على Demo",
   },
   {
     id: "voice",
@@ -196,15 +199,27 @@ async function withLiveLineTts(
   };
 }
 
+const SUBJECT_LABEL_AR: Record<string, string> = {
+  all: "كل المواد (بوابة القبول)",
+  math: "رياضيات",
+  physics: "فيزياء",
+  chemistry: "كيمياء",
+  biology: "أحياء",
+  languages: "لغات",
+  programming: "برمجة",
+};
+
 export function HumanEngineProofStudio() {
-  const lessons = useMemo(() => listProofLessons(), []);
+  const allLessons = useMemo(() => listProofLessons(), []);
+  const subjects = useMemo(() => ["all", ...listProofSubjects()], []);
   const [teacherId, setTeacherId] = useState<TeacherId>("sara");
-  const [lessonId, setLessonId] = useState<ProofLessonId>("voice_endurance_10m");
+  const [subjectFilter, setSubjectFilter] = useState<string>("all");
+  const [lessonId, setLessonId] = useState<ProofLessonId>("fractions_half");
   const [plan, setPlan] = useState<HumanPerformancePlan | null>(null);
   const [frame, setFrame] = useState<HumanFrameSample | null>(null);
   const [playing, setPlaying] = useState(false);
   const [tMs, setTMs] = useState(0);
-  const [status, setStatus] = useState("اختر معلماً ودرساً ثم شغّل");
+  const [status, setStatus] = useState("اختر معلماً ومادة ودرساً ثم شغّل");
   const [question, setQuestion] = useState("");
   const [reply, setReply] = useState("");
   const [done, setDone] = useState(false);
@@ -223,8 +238,20 @@ export function HumanEngineProofStudio() {
   const memoryRef = useRef<TeacherSessionMemory | null>(null);
   const interruptMsRef = useRef(0);
 
+  const lessons = useMemo(
+    () => proofLessonsForSubject(subjectFilter),
+    [subjectFilter],
+  );
+
+  useEffect(() => {
+    if (!lessons.some((l) => l.id === lessonId)) {
+      const next = lessons[0]?.id;
+      if (next) setLessonId(next);
+    }
+  }, [lessons, lessonId]);
+
   const persona = getTeacherPersona(teacherId);
-  const meta = lessons.find((l) => l.id === lessonId) || lessons[0]!;
+  const meta = allLessons.find((l) => l.id === lessonId) || lessons[0] || allLessons[0]!;
 
   const buildPlan = useCallback(() => {
     const input = buildProofLessonInput(lessonId, teacherId);
@@ -447,10 +474,11 @@ export function HumanEngineProofStudio() {
       <header style={styles.header}>
         <div>
           <div style={styles.brand}>SUCCESS OS · HUMANOID DEMO</div>
-          <h1 style={styles.title}>سارة وعلي — معلمون رقميون skinned داخل استوديو 3D</h1>
+          <h1 style={styles.title}>سارة وعلي — معلمان رسميان عالميان داخل استوديو 3D</h1>
           <p style={styles.sub}>
-            شبكة كاملة (هيكل Mixamo + أصابع + morphs وجه) تُساق من Human Engine حسب
-            معنى الدرس — بدون billboard. اختر معلماً ودرساً، شغّل ≥ دقيقة، واسأل أثناء الشرح.
+            هدف المرحلة: معلمون رقميون محترفون (ليس Avatar) يدرّسون أي مادة عبر نفس
+            Human Engine. سارة هادئة مشجعة منظّمة؛ علي مباشر عملي تحليلي. اختر مادة من
+            بوابة القبول، شغّل، واسأل أثناء الشرح. لا تُعتبر أي ميزة مكتملة حتى تنجح عندك.
           </p>
         </div>
         <Link href="/ai-teacher-preview" style={styles.link}>
@@ -467,8 +495,23 @@ export function HumanEngineProofStudio() {
             style={styles.select}
             disabled={playing}
           >
-            <option value="sara">سارة — دافئة · SanaNeural</option>
-            <option value="ali">علي — دقيق · TaimNeural</option>
+            <option value="sara">سارة — هادئة · مشجعة · بالتدرج</option>
+            <option value="ali">علي — مباشر · عملي · تحليلي</option>
+          </select>
+        </label>
+        <label style={styles.field}>
+          <span>المادة (بوابة القبول)</span>
+          <select
+            value={subjectFilter}
+            onChange={(e) => setSubjectFilter(e.target.value)}
+            style={styles.select}
+            disabled={playing}
+          >
+            {subjects.map((s) => (
+              <option key={s} value={s}>
+                {SUBJECT_LABEL_AR[s] || s}
+              </option>
+            ))}
           </select>
         </label>
         <label style={styles.field}>

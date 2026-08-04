@@ -1,12 +1,10 @@
 /**
- * Platform Teachers Doctrine — Sara & Ali.
+ * Platform Teachers Doctrine — Sara & Ali (world-class phase).
  * Schema: success-os.platform-teachers.v1
  *
- * Binding: these two are the official faces of Success OS.
- * Any subject / curriculum / book / course must be teachable by them
- * without creating a new teacher. Specialists only for a different role later.
- *
- * Acceptance: complete only when agent verification AND owner Demo URL both succeed.
+ * Platform success depends on these two only. Not avatars — professional
+ * digital teachers. Any subject/book/curriculum/course without HE rewrite.
+ * Complete only when agent verification AND owner live Demo both succeed.
  */
 
 export type PlatformTeachersSchema = "success-os.platform-teachers.v1";
@@ -16,33 +14,73 @@ export type PlatformTeacherId = "sara" | "ali";
 
 export const PLATFORM_TEACHER_IDS = ["sara", "ali"] as const satisfies readonly PlatformTeacherId[];
 
+/** Subjects required before Sara/Ali can be called complete. */
+export type PlatformAcceptanceSubject =
+  | "math"
+  | "physics"
+  | "chemistry"
+  | "biology"
+  | "languages"
+  | "programming";
+
+export const PLATFORM_ACCEPTANCE_SUBJECTS = [
+  "math",
+  "physics",
+  "chemistry",
+  "biology",
+  "languages",
+  "programming",
+] as const satisfies readonly PlatformAcceptanceSubject[];
+
+export type PlatformPersonaLock = {
+  id: PlatformTeacherId;
+  ar: string;
+  en: string;
+  traits: readonly string[];
+};
+
+export const PLATFORM_PERSONA_LOCKS = {
+  sara: {
+    id: "sara",
+    ar: "هادئة، مشجعة، منظمة، تشرح بالتدرج",
+    en: "Calm, encouraging, organized, gradual",
+    traits: ["calm", "encouraging", "organized", "gradual"] as const,
+  },
+  ali: {
+    id: "ali",
+    ar: "مباشر، عملي، حل مشكلات، تفكير تحليلي",
+    en: "Direct, practical, problem-solving, analytical",
+    traits: ["direct", "practical", "problem_solving", "analytical"] as const,
+  },
+} as const satisfies Record<PlatformTeacherId, PlatformPersonaLock>;
+
 export type PlatformTeacherCapability =
-  | "subject_mastery_before_explain"
+  | "deep_mastery_before_explain"
+  | "multi_strategy_auto_select"
   | "graduated_by_student_level"
-  | "multi_explanation_styles"
-  | "board_drawings_equations"
-  | "models_3d_experiments_sims"
   | "mid_lesson_qa_evaluate_correct"
   | "reexplain_differently"
-  | "auto_pace_and_detail"
-  | "gaze_gesture_face_body"
-  | "natural_multilingual_voice"
+  | "board_drawings_equations"
+  | "models_3d_sims_experiments_when_valuable"
   | "session_memory_strengths_weaknesses"
-  | "stable_persona_across_subjects";
+  | "stable_persona_across_subjects_and_languages"
+  | "multilingual_voice_engine_max"
+  | "purposeful_motion_every_act"
+  | "world_class_studio_presence";
 
 export const PLATFORM_TEACHER_CAPABILITIES: readonly PlatformTeacherCapability[] = [
-  "subject_mastery_before_explain",
+  "deep_mastery_before_explain",
+  "multi_strategy_auto_select",
   "graduated_by_student_level",
-  "multi_explanation_styles",
-  "board_drawings_equations",
-  "models_3d_experiments_sims",
   "mid_lesson_qa_evaluate_correct",
   "reexplain_differently",
-  "auto_pace_and_detail",
-  "gaze_gesture_face_body",
-  "natural_multilingual_voice",
+  "board_drawings_equations",
+  "models_3d_sims_experiments_when_valuable",
   "session_memory_strengths_weaknesses",
-  "stable_persona_across_subjects",
+  "stable_persona_across_subjects_and_languages",
+  "multilingual_voice_engine_max",
+  "purposeful_motion_every_act",
+  "world_class_studio_presence",
 ] as const;
 
 /**
@@ -54,6 +92,7 @@ export type DualAcceptancePolicy = {
   agentVerificationRequired: true;
   ownerLiveDemoRequired: true;
   incompleteWithoutOwnerDemo: true;
+  demoAfterEveryImprovement: true;
 };
 
 export const DUAL_ACCEPTANCE_POLICY: DualAcceptancePolicy = {
@@ -61,32 +100,45 @@ export const DUAL_ACCEPTANCE_POLICY: DualAcceptancePolicy = {
   agentVerificationRequired: true,
   ownerLiveDemoRequired: true,
   incompleteWithoutOwnerDemo: true,
+  demoAfterEveryImprovement: true,
 };
 
 export type PlatformTeachersDoctrine = {
   schema: PlatformTeachersSchema;
   version: string;
+  phase: "world_class";
   officialTeacherIds: readonly PlatformTeacherId[];
   role: "platform_official_primary";
-  teachAnySubjectWithoutNewTeacher: true;
+  noNewTeachersUntilWorldClass: true;
+  notAvatarGoal: "indistinguishable_professional_digital_teacher";
+  teachAnySubjectWithoutEngineRewrite: true;
   newTeacherOnlyForDifferentRole: true;
   specialistsDeferred: true;
-  targetQuality: "near_best_human_professional_plus_ai_personalization";
+  personaLocks: typeof PLATFORM_PERSONA_LOCKS;
+  acceptanceSubjects: readonly PlatformAcceptanceSubject[];
+  targetQuality: "world_class_human_professional_plus_ai_personalization";
   capabilities: readonly PlatformTeacherCapability[];
+  purposefulMotionOnly: true;
   acceptance: DualAcceptancePolicy;
   doctrineDoc: "docs/cursor/platform-teachers-doctrine.md";
 };
 
 export const PLATFORM_TEACHERS_DOCTRINE: PlatformTeachersDoctrine = {
   schema: "success-os.platform-teachers.v1",
-  version: "1.0.0",
+  version: "2.0.0",
+  phase: "world_class",
   officialTeacherIds: PLATFORM_TEACHER_IDS,
   role: "platform_official_primary",
-  teachAnySubjectWithoutNewTeacher: true,
+  noNewTeachersUntilWorldClass: true,
+  notAvatarGoal: "indistinguishable_professional_digital_teacher",
+  teachAnySubjectWithoutEngineRewrite: true,
   newTeacherOnlyForDifferentRole: true,
   specialistsDeferred: true,
-  targetQuality: "near_best_human_professional_plus_ai_personalization",
+  personaLocks: PLATFORM_PERSONA_LOCKS,
+  acceptanceSubjects: PLATFORM_ACCEPTANCE_SUBJECTS,
+  targetQuality: "world_class_human_professional_plus_ai_personalization",
   capabilities: PLATFORM_TEACHER_CAPABILITIES,
+  purposefulMotionOnly: true,
   acceptance: DUAL_ACCEPTANCE_POLICY,
   doctrineDoc: "docs/cursor/platform-teachers-doctrine.md",
 };

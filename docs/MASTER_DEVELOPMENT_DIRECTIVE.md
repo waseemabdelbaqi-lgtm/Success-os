@@ -26,7 +26,7 @@ No lesson is published until it has curriculum identity, outcomes, complete sect
 ## Scale and performance
 All additions must support semantic search, caching, efficient indexing, mobile/tablet/desktop, low bandwidth, accessibility, high traffic, multilingual delivery, and global scale without structural redesign.
 
-## Official platform teachers (Sara & Ali)
-سارة and علي are the only official primary teachers. Any subject, curriculum, book, or course must be teachable by them through the Human Engine without creating a new teacher. New teacher identities are allowed only for a fundamentally different role — never for subject coverage. They must act as professional teachers (mastery, adaptive depth, multi-strategy explain, board/3D/lab, live Q&A, remediation, pacing, presence, natural multilingual voice, session memory, stable persona), not text presenters. A feature is complete only when agent verification and an owner-tested live Demo URL both succeed. Binding detail: `docs/cursor/platform-teachers-doctrine.md`.
+## Official platform teachers (Sara & Ali) — world-class phase
+Platform success depends on سارة and علي only. Do not build new teachers until they are world-class professional digital teachers (not avatars). Any subject/book/curriculum/university/course must be teachable via the same Human Engine without rewrite. Sara stays calm/encouraging/organized/gradual; Ali stays direct/practical/analytical — across subjects and languages. Every motion needs an educational reason. They are incomplete until multi-subject acceptance (math, physics, chemistry, biology, languages, programming) passes for both teachers under dual acceptance (agent + owner live Demo after every improvement). Binding: `docs/cursor/platform-teachers-doctrine.md`.
 
 This directive supersedes implementation convenience and is enforced by validation and review status.

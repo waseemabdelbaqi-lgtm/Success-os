@@ -37,6 +37,27 @@ const STYLE_PROSODY: Record<TtsStyle, { rate: string; pitch: string }> = {
   default: { rate: "-6%", pitch: "+0Hz" },
 };
 
+/** Persona lock: Sara calmer/slower; Ali sharper/lower — same style, different teacher. */
+const TEACHER_PROSODY_BIAS: Record<
+  LiveTtsTeacher,
+  { rateDelta: number; pitchDelta: number }
+> = {
+  sara: { rateDelta: -3, pitchDelta: 1 },
+  ali: { rateDelta: 2, pitchDelta: -2 },
+};
+
+function applyTeacherProsody(
+  teacherId: LiveTtsTeacher,
+  base: { rate: string; pitch: string },
+): { rate: string; pitch: string } {
+  const bias = TEACHER_PROSODY_BIAS[teacherId];
+  const rateN = Number(String(base.rate).replace("%", "")) + bias.rateDelta;
+  const pitchN = Number(String(base.pitch).replace("Hz", "")) + bias.pitchDelta;
+  const rate = `${rateN >= 0 ? "+" : ""}${rateN}%`;
+  const pitch = `${pitchN >= 0 ? "+" : ""}${pitchN}Hz`;
+  return { rate, pitch };
+}
+
 export function styleFromContentAct(act?: string | null): TtsStyle {
   if (!act) return "default";
   if (act === "greet_hook") return "hook";
@@ -65,9 +86,12 @@ export function ttsCacheKey(
 ): string {
   const norm = text.replace(/\s+/g, " ").trim().slice(0, 500);
   const p = STYLE_PROSODY[style] || STYLE_PROSODY.default;
+  const applied = applyTeacherProsody(teacherId, p);
   return crypto
     .createHash("sha1")
-    .update(`${teacherId}|${VOICES[teacherId]}|${p.rate}|${p.pitch}|${norm}|v3`)
+    .update(
+      `${teacherId}|${VOICES[teacherId]}|${applied.rate}|${applied.pitch}|${norm}|v4`,
+    )
     .digest("hex");
 }
 
@@ -98,7 +122,10 @@ function synthesizeWithPython(
   outFile: string,
 ): void {
   const voice = VOICES[teacherId];
-  const prosody = STYLE_PROSODY[style] || STYLE_PROSODY.default;
+  const prosody = applyTeacherProsody(
+    teacherId,
+    STYLE_PROSODY[style] || STYLE_PROSODY.default,
+  );
   const script = `
 import asyncio, edge_tts, sys
 text, voice, rate, pitch, out = sys.argv[1:6]
