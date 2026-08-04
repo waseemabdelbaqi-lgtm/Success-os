@@ -53,6 +53,20 @@ const nextConfig: NextConfig = {
       },
     ];
   },
+  async redirects() {
+    return [
+      { source: "/ai-teacher/demo", destination: "/ai-teacher", permanent: false },
+      { source: "/ai-teacher/proof", destination: "/ai-teacher", permanent: false },
+      { source: "/ai-teacher/live", destination: "/ai-teacher", permanent: false },
+      { source: "/ai-teacher/studio", destination: "/ai-teacher", permanent: false },
+      { source: "/ai-teacher/classroom", destination: "/ai-teacher", permanent: false },
+      {
+        source: "/ai-teacher/human-engine-preview",
+        destination: "/ai-teacher",
+        permanent: false,
+      },
+    ];
+  },
   experimental: {
     optimizePackageImports: ["firebase", "firebase-admin"],
   },
