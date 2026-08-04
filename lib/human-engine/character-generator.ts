@@ -1,84 +1,59 @@
 /**
  * Character Generator — builds provider-portable character specs.
- * Identity / voice / outfit overlay from Configuration Layer (src/ai-teacher).
- * MetaHuman mesh ids can replace photorealAssetRoot later without API changes.
+ * Sole identity/appearance/voice source: src/ai-teacher/teachers/{sara,ali}.ts
  */
 import type { CharacterSpec, HumanCharacterId, HumanLessonInput } from "@/types/human-engine";
+import type { EmotionId } from "@/types/human-engine";
 import {
-  getTeacherConfig,
-  isWarmTeachingStyle,
+  getTeacherAppearance,
+  getTeacherDisplayName,
+  getTeacherPersonalityLock,
+  requireTeacherConfig,
   resolveTeacherVoice,
 } from "@/src/ai-teacher/config";
 
-const CHARACTERS: Record<"sara" | "ali", CharacterSpec> = {
-  sara: {
-    id: "sara",
-    displayName: { en: "Teacher Sara", ar: "المعلمة سارة" },
-    gender: "female",
-    locale: "ar-JO",
-    voiceId: "ar-JO-SanaNeural",
-    appearance: {
-      skinTone: "olive_warm",
-      hairStyle: "dark_shoulder_length",
-      outfit: "olive_blazer_classroom",
-      ageBand: "adult_young",
-      photorealAssetRoot: "/media/ai-teachers/sara",
-      humanoidGlb: "/media/ai-teachers/sara/humanoid/teacher.glb",
-    },
-    skeletonPreset: "adult_teaching_a_pose",
-    facialRigPreset: "ar_teaching_v1",
-    defaultEmotion: "warm",
-  },
-  ali: {
-    id: "ali",
-    displayName: { en: "Teacher Ali", ar: "المعلم علي" },
-    gender: "male",
-    locale: "ar-JO",
-    voiceId: "ar-JO-TaimNeural",
-    appearance: {
-      skinTone: "olive_medium",
-      hairStyle: "short_dark",
-      outfit: "navy_blazer_classroom",
-      ageBand: "adult",
-      photorealAssetRoot: "/media/ai-teachers/ali",
-      humanoidGlb: "/media/ai-teachers/ali/humanoid/teacher.glb",
-    },
-    skeletonPreset: "adult_teaching_a_pose",
-    facialRigPreset: "ar_teaching_v1",
-    defaultEmotion: "focused",
-  },
-};
+function fromConfig(id: "sara" | "ali"): CharacterSpec {
+  const cfg = requireTeacherConfig(id);
+  const appearance = getTeacherAppearance(id);
+  const voice = resolveTeacherVoice(id, cfg.defaultLocale);
+  const lock = getTeacherPersonalityLock(id);
+  const emotion: EmotionId =
+    lock.defaultEmotion === "focused"
+      ? "focused"
+      : lock.defaultEmotion === "curious"
+        ? "curious"
+        : lock.defaultEmotion === "encouraging"
+          ? "encouraging"
+          : "warm";
 
-function withConfig(id: "sara" | "ali"): CharacterSpec {
-  const base = CHARACTERS[id];
-  const cfg = getTeacherConfig(id);
-  const voice = resolveTeacherVoice(id);
-  if (!cfg) return base;
   return {
-    ...base,
-    displayName: {
-      en: cfg.fullName,
-      ar: base.displayName.ar,
-    },
+    id,
+    displayName: getTeacherDisplayName(id),
     gender: cfg.gender,
+    locale: cfg.defaultLocale,
     voiceId: voice.voiceId,
     appearance: {
-      ...base.appearance,
-      outfit: cfg.outfit || base.appearance.outfit,
+      skinTone: appearance.skinTone,
+      hairStyle: appearance.hairStyle,
+      outfit: appearance.outfitKey,
+      ageBand: appearance.ageBand,
+      photorealAssetRoot: appearance.assetRoot,
+      humanoidGlb: appearance.humanoidGlb,
     },
-    defaultEmotion: isWarmTeachingStyle(cfg) ? "warm" : "focused",
+    skeletonPreset: "adult_teaching_a_pose",
+    facialRigPreset: "ar_teaching_v1",
+    defaultEmotion: emotion,
   };
 }
 
 export function listHumanCharacters(): CharacterSpec[] {
-  return [withConfig("sara"), withConfig("ali")];
+  return [fromConfig("sara"), fromConfig("ali")];
 }
 
 export function getCharacter(id: HumanCharacterId): CharacterSpec {
-  if (id === "ali") return withConfig("ali");
-  if (id === "sara") return withConfig("sara");
-  // Extensible: unknown ids fall back to Sara shell until registered.
-  return { ...withConfig("sara"), id };
+  if (id === "ali") return fromConfig("ali");
+  if (id === "sara") return fromConfig("sara");
+  return { ...fromConfig("sara"), id };
 }
 
 export function generateCharacter(input: HumanLessonInput): CharacterSpec {

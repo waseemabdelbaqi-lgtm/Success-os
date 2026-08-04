@@ -13,13 +13,18 @@ import {
   createLocalPhotorealAdapter,
   createSessionMemory,
   deriveLiveTeacherState,
-  directLesson,
   gestureToClassroomPose,
   getTeacherPersona,
   listProofLessons,
   sampleFrame,
   type ProofLessonId,
 } from "@/lib/human-engine";
+import { teachHumanLesson } from "@/lib/human-teacher-engine";
+import {
+  getTeacherDisplayName,
+  getTeacherPersonalityLock,
+  requireTeacherConfig,
+} from "@/src/ai-teacher/config";
 import { alignPlanToTts, slicePlanFrom } from "@/lib/ai-teachers/align-plan-to-tts";
 import {
   SeamlessVoicePlayer,
@@ -29,6 +34,7 @@ import {
   TeachingStudio3D,
   type Studio3DPose,
 } from "@/components/ai-teachers/teaching-studio-3d";
+import { rebuildLipPerformance } from "@/lib/human-teacher-engine/lip-performance";
 
 type TeacherId = "sara" | "ali";
 
@@ -98,7 +104,15 @@ async function withLiveLineTts(
     style: it.style,
   }));
   const aligned = alignPlanToTts(plan, timings);
-  const queue: VoiceQueueItem[] = aligned.speech.lines.map((l, i) => ({
+  const lipSynced = rebuildLipPerformance(
+    aligned,
+    aligned.speech.lines.map((l) => ({
+      text: l.text,
+      startMs: l.startMs,
+      endMs: l.endMs,
+    })),
+  );
+  const queue: VoiceQueueItem[] = lipSynced.speech.lines.map((l, i) => ({
     url: l.audioSrc || timings[i]!.url,
     text: l.text,
     startMs: l.startMs,
@@ -106,9 +120,9 @@ async function withLiveLineTts(
     pauseAfterMs: timings[i]?.pauseAfterMs ?? 300,
   }));
   return {
-    plan: aligned,
+    plan: lipSynced,
     lineCount: json.items.length,
-    totalMs: json.totalWithPausesMs || aligned.timeline.durationMs,
+    totalMs: json.totalWithPausesMs || lipSynced.timeline.durationMs,
     queue,
   };
 }
@@ -135,6 +149,7 @@ export function HumanEngineProofStudio() {
   const [prepPct, setPrepPct] = useState(0);
   const [toast, setToast] = useState("");
   const [askOpen, setAskOpen] = useState(false);
+  const [studioLighting, setStudioLighting] = useState("key_fill_rim");
   const voiceRef = useRef<SeamlessVoicePlayer | null>(null);
   const adapterRef = useRef<ReturnType<typeof createLocalPhotorealAdapter> | null>(
     null,
@@ -151,11 +166,14 @@ export function HumanEngineProofStudio() {
 
   const buildPlan = useCallback(() => {
     const input = buildProofLessonInput(lessonId, teacherId);
-    return directLesson({
+    const taught = teachHumanLesson({
       input,
+      teacherId,
+      targetDurationMs: Math.max(65_000, meta.minDurationMs),
       adapterId: "local_photoreal_preview",
-      maxDurationMs: Math.max(65_000, meta.minDurationMs),
     });
+    setStudioLighting(taught.brief.studio.lighting);
+    return taught.plan;
   }, [lessonId, teacherId, meta.minDurationMs]);
 
   const stop = useCallback(() => {
@@ -378,44 +396,40 @@ export function HumanEngineProofStudio() {
             معلمان رقميان واقعيان — ادخل الحصة المصوّرة وتفاعل معهما مباشرة
           </p>
           <div style={styles.teacherPick}>
-            {(
-              [
-                {
-                  id: "sara" as const,
-                  name: "سارة",
-                  line: "هادئة · مشجعة · منظمة",
-                  img: "/media/ai-teachers/sara/portrait.png",
-                },
-                {
-                  id: "ali" as const,
-                  name: "علي",
-                  line: "عملي · تحليلي · مباشر",
-                  img: "/media/ai-teachers/ali/portrait.png",
-                },
-              ] as const
-            ).map((t) => (
-              <button
-                key={t.id}
-                type="button"
-                style={{
-                  ...styles.teacherCard,
-                  ...(teacherId === t.id
-                    ? {
-                        outline: "2px solid rgba(201,162,89,0.85)",
-                        boxShadow: "0 18px 48px rgba(201,162,89,0.22)",
-                      }
-                    : null),
-                }}
-                onClick={() => enterStudio(t.id)}
-              >
-                <img src={t.img} alt={t.name} style={styles.teacherImg} />
-                <div style={styles.teacherMeta}>
-                  <strong style={styles.teacherName}>{t.name}</strong>
-                  <span style={styles.teacherLine}>{t.line}</span>
-                  <span style={styles.enterCta}>ابدأ الحصة الآن</span>
-                </div>
-              </button>
-            ))}
+            {(["sara", "ali"] as const).map((id) => {
+              const cfg = requireTeacherConfig(id);
+              const names = getTeacherDisplayName(id);
+              const lock = getTeacherPersonalityLock(id);
+              return (
+                <button
+                  key={id}
+                  type="button"
+                  style={{
+                    ...styles.teacherCard,
+                    ...(teacherId === id
+                      ? {
+                          outline: "2px solid rgba(201,162,89,0.85)",
+                          boxShadow: "0 18px 48px rgba(201,162,89,0.22)",
+                        }
+                      : null),
+                  }}
+                  onClick={() => enterStudio(id)}
+                >
+                  <img
+                    src={`${cfg.appearance.assetRoot}/portrait.png`}
+                    alt={names.ar}
+                    style={styles.teacherImg}
+                  />
+                  <div style={styles.teacherMeta}>
+                    <strong style={styles.teacherName}>{names.ar}</strong>
+                    <span style={styles.teacherLine}>
+                      {lock.traits.slice(0, 3).join(" · ")}
+                    </span>
+                    <span style={styles.enterCta}>ابدأ الحصة الآن</span>
+                  </div>
+                </button>
+              );
+            })}
           </div>
         </div>
       </div>
@@ -431,7 +445,7 @@ export function HumanEngineProofStudio() {
           speaking={!!frame?.speaking}
           mouthEnergy={frame?.jawOpen || 0}
           camera={mapCamera(frame?.camera || "medium_teacher")}
-          lighting={frame?.lighting || "key_fill_rim"}
+          lighting={frame?.lighting || studioLighting}
           props={studioProps}
           focusTarget={frame?.screen?.id || null}
           boardLines={boardLines}

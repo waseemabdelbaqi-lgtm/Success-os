@@ -66,6 +66,10 @@ const required = [
   "docs/cursor/human-engine.md",
   "scripts/_human_engine_runner.ts",
   "scripts/build-teacher-humanoids.mjs",
+  "lib/human-teacher-engine/index.ts",
+  "lib/human-teacher-engine/teach.ts",
+  "src/ai-teacher/teachers/sara.ts",
+  "src/ai-teacher/teachers/ali.ts",
 ];
 
 for (const rel of required) {

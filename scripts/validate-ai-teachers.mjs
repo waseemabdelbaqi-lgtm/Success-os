@@ -92,6 +92,50 @@ assert(
   "catalog must read Configuration Layer",
 );
 
+// Human Teacher Engine — world-class path; Sara.ts/Ali.ts sole identity
+assert(
+  fs.existsSync(path.join(root, "lib/human-teacher-engine/index.ts")),
+  "Missing Human Teacher Engine",
+);
+assert(
+  fs.existsSync(path.join(root, "lib/human-teacher-engine/teach.ts")),
+  "Missing HTE teach entry",
+);
+assert(
+  fs.existsSync(path.join(root, "app/api/human-teacher-engine/route.ts")),
+  "Missing HTE API",
+);
+const saraSrc = fs.readFileSync(path.join(root, "src/ai-teacher/teachers/sara.ts"), "utf8");
+const aliSrc = fs.readFileSync(path.join(root, "src/ai-teacher/teachers/ali.ts"), "utf8");
+assert(saraSrc.includes("personalityLock"), "Sara.ts must define personalityLock");
+assert(aliSrc.includes("personalityLock"), "Ali.ts must define personalityLock");
+assert(saraSrc.includes("localeVoices"), "Sara.ts must define localeVoices");
+assert(aliSrc.includes("localeVoices"), "Ali.ts must define localeVoices");
+assert(saraSrc.includes("performance"), "Sara.ts must define performance contract");
+assert(aliSrc.includes("performance"), "Ali.ts must define performance contract");
+assert(saraSrc.includes("appearance"), "Sara.ts must define appearance");
+assert(aliSrc.includes("appearance"), "Ali.ts must define appearance");
+const charGenSrc = fs.readFileSync(path.join(root, "lib/human-engine/character-generator.ts"), "utf8");
+assert(
+  charGenSrc.includes("getTeacherAppearance") && !charGenSrc.includes("olive_blazer_classroom"),
+  "character-generator must derive appearance from config (no hardcoded outfit)",
+);
+const castSrc = fs.readFileSync(path.join(root, "lib/digital-human-studio/cast-teacher.ts"), "utf8");
+assert(
+  castSrc.includes("@/src/ai-teacher/config") && !castSrc.includes("ar-JO-SanaNeural"),
+  "cast-teacher must derive voice from config",
+);
+const storeSrc = fs.readFileSync(path.join(root, "lib/human-engine/teacher-profile-store.ts"), "utf8");
+assert(
+  storeSrc.includes("applyConfigLayer"),
+  "teacher-profile-store must always apply Configuration Layer",
+);
+const heIndexSrc = fs.readFileSync(path.join(root, "lib/human-engine/index.ts"), "utf8");
+assert(
+  heIndexSrc.includes("teachHumanLesson"),
+  "Human Engine index must export Human Teacher Engine teachHumanLesson",
+);
+
 const doctrineTs = path.join(root, "types/platform-teachers.ts");
 assert(fs.existsSync(doctrineTs), "Missing types/platform-teachers.ts");
 const doctrineSrc = fs.readFileSync(doctrineTs, "utf8");

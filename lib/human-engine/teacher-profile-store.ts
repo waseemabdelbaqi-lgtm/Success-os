@@ -1,13 +1,13 @@
 /**
  * Server-only editable teacher profile store.
- * Defaults: content/ai-teachers/profiles/*.json
- * Overrides: .data/ai-teachers/profiles/
+ * Behaviour overlays only — identity/voice always from Sara.ts / Ali.ts.
  */
 import "server-only";
 import fs from "node:fs";
 import path from "node:path";
 import type { TeacherMindProfile, TeacherProfileId } from "@/types/teacher-mind";
 import {
+  applyConfigLayer,
   getDefaultTeacherProfile,
   listDefaultTeacherProfiles,
 } from "./teacher-profiles-defaults";
@@ -26,6 +26,16 @@ function readJson(file: string): TeacherMindProfile | null {
 
 function ensureDir(dir: string) {
   fs.mkdirSync(dir, { recursive: true });
+}
+
+/** Strip immutable identity fields before persisting behaviour overlays. */
+function behaviourOverlayOnly(profile: TeacherMindProfile): TeacherMindProfile {
+  return {
+    ...profile,
+    // Identity fields are restored on read via applyConfigLayer
+    schema: "success-os.teacher-mind.v1",
+    updatedAt: new Date().toISOString(),
+  };
 }
 
 export function listTeacherProfileIds(): TeacherProfileId[] {
@@ -47,9 +57,9 @@ export function listTeacherProfileIds(): TeacherProfileId[] {
 
 export function getTeacherProfile(id: TeacherProfileId): TeacherMindProfile {
   const override = readJson(path.join(OVERRIDE_DIR, `${id}.json`));
-  if (override) return override;
+  if (override) return applyConfigLayer(override);
   const base = readJson(path.join(CONTENT_DIR, `${id}.json`));
-  if (base) return base;
+  if (base) return applyConfigLayer(base);
   return getDefaultTeacherProfile(id);
 }
 
@@ -67,11 +77,7 @@ export function listTeacherProfiles(): TeacherMindProfile[] {
 
 export function saveTeacherProfile(profile: TeacherMindProfile): TeacherMindProfile {
   if (!profile.id) throw new Error("profile.id required");
-  const next: TeacherMindProfile = {
-    ...profile,
-    schema: "success-os.teacher-mind.v1",
-    updatedAt: new Date().toISOString(),
-  };
+  const next = behaviourOverlayOnly(profile);
   ensureDir(OVERRIDE_DIR);
   const file = path.join(OVERRIDE_DIR, `${next.id}.json`);
   fs.writeFileSync(file, JSON.stringify(next, null, 2), "utf8");
@@ -83,7 +89,8 @@ export function saveTeacherProfile(profile: TeacherMindProfile): TeacherMindProf
       // override dir is enough when content is read-only
     }
   }
-  return next;
+  // Always return identity-locked view
+  return applyConfigLayer(next);
 }
 
 export function resetTeacherProfile(id: TeacherProfileId): TeacherMindProfile {

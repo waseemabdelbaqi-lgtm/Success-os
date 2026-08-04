@@ -187,18 +187,14 @@ function PhotorealTeacher({
   lookYaw?: number;
   lookPitch?: number;
 }) {
-  const stand = useTexture(`/media/ai-teachers/${teacherId}/classroom/stand.png`);
-  const point = useTexture(`/media/ai-teachers/${teacherId}/classroom/point.png`);
-  const write = useTexture(`/media/ai-teachers/${teacherId}/classroom/write.png`);
-  const mouthClosed = useTexture(
-    `/media/ai-teachers/${teacherId}/flagship/mouth-closed.png`,
-  );
-  const mouthOpen = useTexture(
-    `/media/ai-teachers/${teacherId}/flagship/mouth-open.png`,
-  );
-  const mouthWide = useTexture(
-    `/media/ai-teachers/${teacherId}/flagship/mouth-wide.png`,
-  );
+  // Asset paths follow Configuration Layer appearance.assetRoot convention
+  const root = `/media/ai-teachers/${teacherId}`;
+  const stand = useTexture(`${root}/classroom/stand.png`);
+  const point = useTexture(`${root}/classroom/point.png`);
+  const write = useTexture(`${root}/classroom/write.png`);
+  const mouthClosed = useTexture(`${root}/flagship/mouth-closed.png`);
+  const mouthOpen = useTexture(`${root}/flagship/mouth-open.png`);
+  const mouthWide = useTexture(`${root}/flagship/mouth-wide.png`);
   const group = useRef<THREE.Group>(null);
   const mat = useRef<THREE.MeshStandardMaterial>(null);
   const mouthMat = useRef<THREE.MeshBasicMaterial>(null);

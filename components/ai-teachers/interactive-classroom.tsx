@@ -23,24 +23,32 @@ import {
   coachLine,
   type TeacherPersona,
 } from "@/lib/ai-teachers/master-coach";
+import {
+  getTeacherDisplayName,
+  getTeacherPersonalityLock,
+  requireTeacherConfig,
+  resolveTeacherVoice,
+} from "@/src/ai-teacher/config";
 
 type TeacherId = "sara" | "ali";
 
+function teacherFromConfig(id: TeacherId): TeacherPersona & { voiceHint: string } {
+  const cfg = requireTeacherConfig(id);
+  const lock = getTeacherPersonalityLock(id);
+  const names = getTeacherDisplayName(id);
+  const voice = resolveTeacherVoice(id);
+  return {
+    id,
+    nameAr: names.ar,
+    gender: cfg.gender,
+    style: lock.tone === "warm" ? "warm" : "crisp",
+    voiceHint: voice.voiceId,
+  };
+}
+
 const TEACHERS: Record<TeacherId, TeacherPersona & { voiceHint: string }> = {
-  sara: {
-    id: "sara",
-    nameAr: "المعلمة سارة",
-    gender: "female",
-    style: "warm",
-    voiceHint: "صوت صفّي · Sana",
-  },
-  ali: {
-    id: "ali",
-    nameAr: "المعلم علي",
-    gender: "male",
-    style: "crisp",
-    voiceHint: "صوت صفّي · Taim",
-  },
+  sara: teacherFromConfig("sara"),
+  ali: teacherFromConfig("ali"),
 };
 
 const BEAT_AUDIO: Record<string, string> = {

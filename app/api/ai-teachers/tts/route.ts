@@ -71,6 +71,7 @@ export async function GET(req: Request) {
 export async function POST(req: Request) {
   const body = (await req.json()) as {
     teacherId?: string;
+    locale?: string;
     text?: string;
     style?: TtsStyle;
     lines?: Array<{
@@ -83,6 +84,7 @@ export async function POST(req: Request) {
   const teacherId = (
     body.teacherId === "ali" ? "ali" : "sara"
   ) as LiveTtsTeacher;
+  const locale = body.locale || undefined;
 
   try {
     if (body.lines?.length) {
@@ -91,7 +93,7 @@ export async function POST(req: Request) {
           line.style ||
           styleFromContentAct(line.contentAct) ||
           ("default" as TtsStyle);
-        const result = ensureLiveTtsMp3(teacherId, line.text, style);
+        const result = ensureLiveTtsMp3(teacherId, line.text, style, locale);
         const pauseAfterMs = pauseAfterStyle(result.style);
         return {
           id: line.id || null,
@@ -111,8 +113,9 @@ export async function POST(req: Request) {
       return NextResponse.json({
         success: true,
         teacherId,
-        voice: resolveTeacherVoice(teacherId).voiceId,
-        mode: "live-neural-per-line-v2",
+        voice: resolveTeacherVoice(teacherId, locale).voiceId,
+        locale: resolveTeacherVoice(teacherId, locale).locale,
+        mode: "live-neural-per-line-v3",
         totalSpokenMs: spokenMs,
         totalWithPausesMs: spokenMs + pauseMs,
         items,

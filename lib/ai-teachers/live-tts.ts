@@ -13,8 +13,8 @@ const CACHE_DIR = path.join(process.cwd(), ".data/ai-teachers/tts");
 
 export type LiveTtsTeacher = "sara" | "ali";
 
-function voiceIdFor(teacherId: LiveTtsTeacher): string {
-  return resolveTeacherVoice(teacherId).voiceId;
+function voiceIdFor(teacherId: LiveTtsTeacher, locale?: string | null): string {
+  return resolveTeacherVoice(teacherId, locale).voiceId;
 }
 
 /** Prosody style — changes rate/pitch so tone follows teaching act. */
@@ -77,14 +77,16 @@ export function ttsCacheKey(
   teacherId: LiveTtsTeacher,
   text: string,
   style: TtsStyle,
+  locale?: string | null,
 ): string {
+  // Include voice id so dialect changes never reuse the wrong cache.
   const norm = text.replace(/\s+/g, " ").trim().slice(0, 500);
   const p = STYLE_PROSODY[style] || STYLE_PROSODY.default;
   const applied = applyTeacherProsody(teacherId, p);
-  const voice = voiceIdFor(teacherId);
+  const voice = voiceIdFor(teacherId, locale);
   return crypto
     .createHash("sha1")
-    .update(`${teacherId}|${voice}|${applied.rate}|${applied.pitch}|${norm}|v5`)
+    .update(`${teacherId}|${voice}|${applied.rate}|${applied.pitch}|${norm}|v6`)
     .digest("hex");
 }
 
@@ -113,8 +115,9 @@ function synthesizeWithPython(
   text: string,
   style: TtsStyle,
   outFile: string,
+  locale?: string | null,
 ): void {
-  const voice = voiceIdFor(teacherId);
+  const voice = voiceIdFor(teacherId, locale);
   const prosody = applyTeacherProsody(
     teacherId,
     STYLE_PROSODY[style] || STYLE_PROSODY.default,
@@ -154,6 +157,7 @@ export function ensureLiveTtsMp3(
   teacherId: LiveTtsTeacher,
   text: string,
   style: TtsStyle = "default",
+  locale?: string | null,
 ): {
   key: string;
   filePath: string;
@@ -168,13 +172,13 @@ export function ensureLiveTtsMp3(
   const id: LiveTtsTeacher = teacherId === "ali" ? "ali" : "sara";
   const st = STYLE_PROSODY[style] ? style : "default";
   ensureCacheDir();
-  const key = ttsCacheKey(id, clean, st);
+  const key = ttsCacheKey(id, clean, st, locale);
   const filePath = ttsCachePath(key);
   let cached = false;
   if (fs.existsSync(filePath) && fs.statSync(filePath).size > 500) {
     cached = true;
   } else {
-    synthesizeWithPython(id, clean, st, filePath);
+    synthesizeWithPython(id, clean, st, filePath, locale);
   }
   const durationMs = measureMp3DurationMs(filePath);
   return {
@@ -184,7 +188,7 @@ export function ensureLiveTtsMp3(
     bytes: fs.statSync(filePath).size,
     durationMs,
     style: st,
-    voice: voiceIdFor(id),
+    voice: voiceIdFor(id, locale),
   };
 }
 

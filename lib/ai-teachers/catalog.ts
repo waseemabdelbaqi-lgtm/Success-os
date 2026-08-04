@@ -1,7 +1,6 @@
 /**
- * AI Teachers catalog — Sara & Ali only (official platform faces).
- * Identity / voice / personality from Configuration Layer (src/ai-teacher).
- * Doctrine: docs/cursor/platform-teachers-doctrine.md
+ * AI Teachers catalog — Sara & Ali only.
+ * Pure projection of Configuration Layer (src/ai-teacher/teachers/*).
  */
 import type { AiTeacherProfile, AiTeachersCatalog } from "@/types/ai-teachers";
 import {
@@ -9,7 +8,10 @@ import {
   PLATFORM_TEACHERS_DOCTRINE,
 } from "@/types/platform-teachers";
 import {
-  getTeacherConfig,
+  getTeacherAppearance,
+  getTeacherDisplayName,
+  getTeacherPersonalityLock,
+  listTeacherConfigs,
   resolveTeacherVoice,
 } from "@/src/ai-teacher/config";
 
@@ -17,22 +19,8 @@ function L(en: string, ar: string) {
   return { en, ar };
 }
 
-function assets(id: string, poses: AiTeacherProfile["assets"]["poses"]) {
-  const root = `content/media/ai-teachers/${id}`;
-  const publicRoot = `/media/ai-teachers/${id}`;
-  return {
-    root,
-    publicRoot,
-    portrait: `${publicRoot}/portrait.png`,
-    poses: Object.fromEntries(
-      Object.entries(poses).map(([k, v]) => [k, `${publicRoot}/poses/${v}`]),
-    ) as AiTeacherProfile["assets"]["poses"],
-  };
-}
+const UPDATED = "2026-08-04T18:00:00.000Z";
 
-const UPDATED = "2026-08-03T20:00:00.000Z";
-
-/** Illustrative tags only — any future subject still casts Sara/Ali. */
 const ANY_PLATFORM_SUBJECTS: AiTeacherProfile["subjects"] = [
   "math",
   "science",
@@ -53,22 +41,23 @@ const POSE_PACK = {
   idle: "idle.png",
 } as const;
 
-function buildCatalogEntry(
-  id: "sara" | "ali",
-  arName: string,
-  appearanceAr: string,
-  appearanceEn: string,
-): AiTeacherProfile {
-  const cfg = getTeacherConfig(id)!;
-  const voice = resolveTeacherVoice(id);
+function buildCatalogEntry(id: "sara" | "ali"): AiTeacherProfile {
+  const cfg = listTeacherConfigs().find((t) => t.id === id)!;
+  const voice = resolveTeacherVoice(id, cfg.defaultLocale);
+  const names = getTeacherDisplayName(id);
+  const appearance = getTeacherAppearance(id);
+  const lock = getTeacherPersonalityLock(id);
+  const root = `content/media/ai-teachers/${id}`;
+  const publicRoot = appearance.assetRoot;
+
   return {
     id,
     schema: "success-os.ai-teacher.v1",
     role: "platform_official_primary",
-    displayName: L(cfg.fullName, arName),
+    displayName: L(names.en, names.ar),
     gender: cfg.gender,
-    countryCode: "JO",
-    localeCodes: ["ar-JO", "en"],
+    countryCode: appearance.countryCode,
+    localeCodes: [...cfg.localeCodes],
     educationalStages: [
       "early_childhood",
       "elementary",
@@ -76,10 +65,10 @@ function buildCatalogEntry(
       "high_school",
     ],
     subjects: [...ANY_PLATFORM_SUBJECTS],
-    personalityTone: L(cfg.personality, cfg.personality),
+    personalityTone: L(lock.summary, lock.traits.join(" · ")),
     appearanceNotes: L(
-      `${appearanceEn} · ${cfg.outfit}`,
-      `${appearanceAr} · ${cfg.outfit}`,
+      `${appearance.outfitKey} · ${cfg.outfit}`,
+      `${appearance.outfitKey} · ${cfg.outfit}`,
     ),
     voice: {
       edgeTts: voice.voiceId,
@@ -87,8 +76,15 @@ function buildCatalogEntry(
       heygenAvatarIdEnv:
         id === "ali" ? "HEYGEN_AVATAR_ID_ALI" : "HEYGEN_AVATAR_ID_SARA",
     },
-    assets: assets(id, { ...POSE_PACK }),
-    digitalHumanPresetKey: id === "ali" ? "dh.jo.ali" : "dh.jo.sara",
+    assets: {
+      root,
+      publicRoot,
+      portrait: `${publicRoot}/portrait.png`,
+      poses: Object.fromEntries(
+        Object.entries(POSE_PACK).map(([k, v]) => [k, `${publicRoot}/poses/${v}`]),
+      ) as AiTeacherProfile["assets"]["poses"],
+    },
+    digitalHumanPresetKey: appearance.digitalHumanPresetKey,
     enabled: cfg.enabled,
     generatedBy: "cursor-image-gen",
     updatedAt: UPDATED,
@@ -96,20 +92,7 @@ function buildCatalogEntry(
 }
 
 export function listAiTeachers(): AiTeacherProfile[] {
-  return [
-    buildCatalogEntry(
-      "sara",
-      "المعلمة سارة",
-      "أردنية، بليزر زيتوني — معلمة مولَّدة بالذكاء الاصطناعي",
-      "Jordanian woman, olive blazer — photoreal AI teacher",
-    ),
-    buildCatalogEntry(
-      "ali",
-      "المعلم علي",
-      "أردني، بليزر كحلي — معلم مولَّد بالذكاء الاصطناعي",
-      "Jordanian man, navy blazer — photoreal AI teacher",
-    ),
-  ];
+  return listTeacherConfigs().map((t) => buildCatalogEntry(t.id));
 }
 
 export function getAiTeacher(id: string): AiTeacherProfile | undefined {
@@ -138,7 +121,7 @@ export function buildAiTeachersCatalog(): AiTeachersCatalog {
   }
   return {
     schema: "success-os.ai-teachers.v1",
-    version: "3.0.0",
+    version: "4.0.0",
     teachers,
     counts: {
       total: teachers.length,

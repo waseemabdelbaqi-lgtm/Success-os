@@ -38,6 +38,7 @@
     "validate:ai-teachers": "node scripts/validate-ai-teachers.mjs",
     "validate:digital-human-studio": "node scripts/digital-human-studio.test.mjs",
     "validate:human-engine": "node scripts/human-engine.test.mjs",
+    "validate:human-teacher-engine": "node scripts/human-teacher-engine.test.mjs",
     "ai-teachers:factory": "python3 scripts/build-ai-teacher-factory.py",
     "ai-teachers:bake-audio": "python3 scripts/bake-ai-teacher-lesson-audio.py",
     "ai-teachers:humanoids": "node scripts/build-teacher-humanoids.mjs",

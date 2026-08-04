@@ -108,3 +108,11 @@ export {
   humanoidUrl,
   degToRad,
 } from "./humanoid-rig";
+
+/** Human Teacher Engine — elevated teach path (Sara/Ali sole identity). */
+export {
+  teachHumanLesson,
+  buildSessionBrief,
+  resolveStudioTheme,
+  rebuildLipPerformance,
+} from "@/lib/human-teacher-engine";
