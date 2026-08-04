@@ -136,6 +136,37 @@ assert(
   "Human Engine index must export Human Teacher Engine teachHumanLesson",
 );
 
+// Human Teacher Quality Gate — ship blocker
+assert(
+  fs.existsSync(path.join(root, "src/ai-teacher/runtime/quality-gate.ts")),
+  "Missing Human Teacher Quality Gate",
+);
+assert(
+  fs.existsSync(path.join(root, "src/ai-teacher/runtime/bootstrap.ts")),
+  "Missing teacher bootstrap (quality-gated)",
+);
+assert(
+  fs.existsSync(path.join(root, "app/api/ai-teachers/quality-gate/route.ts")),
+  "Missing quality-gate API",
+);
+const bootSrc = fs.readFileSync(
+  path.join(root, "src/ai-teacher/runtime/bootstrap.ts"),
+  "utf8",
+);
+assert(bootSrc.includes("assertTeacherQuality"), "bootstrap must call assertTeacherQuality");
+assert(bootSrc.includes("loadSaraMetrics"), "bootstrap must load Sara metrics");
+assert(bootSrc.includes("loadAliMetrics"), "bootstrap must load Ali metrics");
+const saraMetricsSrc = fs.readFileSync(
+  path.join(root, "src/ai-teacher/teachers/sara.ts"),
+  "utf8",
+);
+const aliMetricsSrc = fs.readFileSync(
+  path.join(root, "src/ai-teacher/teachers/ali.ts"),
+  "utf8",
+);
+assert(saraMetricsSrc.includes("export async function loadSaraMetrics"), "Sara loadSaraMetrics");
+assert(aliMetricsSrc.includes("export async function loadAliMetrics"), "Ali loadAliMetrics");
+
 const doctrineTs = path.join(root, "types/platform-teachers.ts");
 assert(fs.existsSync(doctrineTs), "Missing types/platform-teachers.ts");
 const doctrineSrc = fs.readFileSync(doctrineTs, "utf8");

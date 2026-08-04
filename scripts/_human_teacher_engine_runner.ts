@@ -99,14 +99,16 @@ if (taught.brief.studio.id !== "physics_lab") {
 if (taught.plan.character.displayName.ar !== "علي") {
   throw new Error("taught character name");
 }
-if (taught.plan.timeline.lipSync.length < 20) {
-  throw new Error(`lip sync too sparse: ${taught.plan.timeline.lipSync.length}`);
+const lipKeys = taught.plan.timeline.lipSync.keys?.length || 0;
+if (lipKeys < 20) {
+  throw new Error(`lip sync too sparse: ${lipKeys}`);
 }
 if (!taught.qualityGates.personalityLocked) throw new Error("personality gate");
 if (!taught.qualityGates.lipSyncAligned) throw new Error("lip gate");
 
 const denser = rebuildLipPerformance(taught.plan);
-if (denser.timeline.lipSync.length < taught.plan.timeline.lipSync.length) {
+const denserLip = denser.timeline.lipSync.keys?.length || 0;
+if (denserLip < lipKeys) {
   throw new Error("rebuildLipPerformance must not shrink track");
 }
 
@@ -129,5 +131,5 @@ if (long.plan.sentences.length < 4) {
 }
 
 console.log(
-  `human-teacher-engine runtime OK · sara=${saraLock.traits[0]} ali=${aliLock.traits[0]} · lip=${taught.plan.timeline.lipSync.length} · studio=${taught.brief.studio.id}`,
+  `human-teacher-engine runtime OK · sara=${saraLock.traits[0]} ali=${aliLock.traits[0]} · lip=${lipKeys} · studio=${taught.brief.studio.id}`,
 );

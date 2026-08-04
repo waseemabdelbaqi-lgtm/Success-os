@@ -135,4 +135,54 @@ export const Ali: TeacherProfile = {
   enabled: true,
 };
 
+/**
+ * Load honest live metrics for the Human Teacher Quality Gate.
+ * Scores are measured from a real teach plan — never hard-coded to PASS.
+ */
+export async function loadAliMetrics() {
+  const { teachHumanLesson } = await import("@/lib/human-teacher-engine");
+  const { measureHumanTeacherMetrics } = await import(
+    "../runtime/measure-metrics"
+  );
+  const taught = teachHumanLesson({
+    teacherId: "ali",
+    targetDurationMs: 65_000,
+    input: {
+      lessonId: "quality-gate-ali",
+      title: "Analytical Problem Solving Probe",
+      titleAr: "فحص جودة المعلم علي",
+      subject: "physics",
+      grade: "g7",
+      blocks: [
+        {
+          id: "hook",
+          kind: "hook",
+          text: "نبدأ مباشرة: القوة تساوي الكتلة في التسارع",
+        },
+        {
+          id: "board",
+          kind: "explain",
+          text: "اكتبوا معي على السبورة القانون F = m × a",
+        },
+        {
+          id: "draw",
+          kind: "example",
+          text: "الآن أرسم مخطط القوة: سهم للاتجاه ونقطة للجسم",
+        },
+        {
+          id: "model",
+          kind: "example",
+          text: "هذا نموذج ثلاثي الأبعاد للجسم، أمسكه وأديره وأكبّره",
+        },
+        {
+          id: "check",
+          kind: "check",
+          text: "إذا زادت الكتلة وثبتت القوة، ماذا يحدث للتسارع؟",
+        },
+      ],
+    },
+  });
+  return measureHumanTeacherMetrics("ali", taught);
+}
+
 export default Ali;

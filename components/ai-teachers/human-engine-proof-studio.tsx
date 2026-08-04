@@ -260,9 +260,32 @@ export function HumanEngineProofStudio() {
     });
     memoryRef.current = mem;
     setPreparing(true);
-    setPrepPct(8);
-    setToast("يحضّر المعلم الدرس…");
+    setPrepPct(4);
+    setToast("فحص بوابة جودة المعلم…");
     try {
+      // Human Teacher Quality Gate — blocks Sara/Ali until world-class
+      const gateRes = await fetch(
+        `/api/ai-teachers/quality-gate?teacher=${teacherId}`,
+      );
+      const gate = (await gateRes.json()) as {
+        shipAllowed?: boolean;
+        status?: string;
+        failures?: string[];
+        error?: string;
+      };
+      if (!gateRes.ok || gate.status !== "READY" || !gate.shipAllowed) {
+        const detail = (gate.failures || []).slice(0, 3).join(" · ");
+        setToast(
+          detail
+            ? `بوابة الجودة أوقفت ${teacherId === "ali" ? "علي" : "سارة"}: ${detail}`
+            : `بوابة الجودة أوقفت ${teacherId === "ali" ? "علي" : "سارة"} — لم يصل لمستوى المعلم المحترف بعد`,
+        );
+        setPreparing(false);
+        return;
+      }
+
+      setPrepPct(18);
+      setToast("يحضّر المعلم الدرس…");
       const p = buildPlan();
       setPrepPct(28);
       const voiced = await withLiveLineTts(p, teacherId);

@@ -71,11 +71,12 @@ function evaluateQualityGates(
   const floor = enduranceQualityFloor(targetMs);
   const locomotionVariety =
     gestures.size >= Math.min(floor.minGestureVariety, 3) ||
-    plan.timeline.skeleton.length > 8;
+    (plan.timeline.skeleton.keys?.length || 0) > 8;
   const durationHonored =
     plan.timeline.durationMs >= Math.min(targetMs * 0.85, Math.max(0, targetMs - 500));
   const lipSyncAligned =
-    plan.timeline.lipSync.length >= Math.max(8, plan.speech.lines.length * 4);
+    (plan.timeline.lipSync.keys?.length || 0) >=
+    Math.max(8, plan.speech.lines.length * 4);
 
   return {
     lipSyncAligned,

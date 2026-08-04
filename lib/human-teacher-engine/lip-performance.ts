@@ -1,9 +1,6 @@
 /**
  * Lip Performance — denser, TTS-aligned mouth drive.
  * Requirement #3: precise sync between voice, lips, and face.
- *
- * Builds on Human Engine phoneme tracks; re-samples to audio line windows
- * so jaw/viseme energy follows spoken timing, not estimate-only duration.
  */
 import type {
   EmotionId,
@@ -25,7 +22,7 @@ export type AlignedSpeechWindow = {
 };
 
 /**
- * Rebuild lipSync + blendShapes tracks from speech windows (TTS-aligned).
+ * Rebuild lipSync + facial blend tracks from speech windows (TTS-aligned).
  * Call after alignPlanToTts so start/end match real audio.
  */
 export function rebuildLipPerformance(
@@ -96,8 +93,12 @@ export function rebuildLipPerformance(
     ...plan,
     timeline: {
       ...plan.timeline,
-      lipSync: phonemes.length ? phonemes : plan.timeline.lipSync,
-      blendShapes: blends.length ? blends : plan.timeline.blendShapes,
+      lipSync: phonemes.length
+        ? { name: "lipSync", keys: phonemes }
+        : plan.timeline.lipSync,
+      facial: blends.length
+        ? { name: "facial", keys: blends }
+        : plan.timeline.facial,
     },
   };
 }

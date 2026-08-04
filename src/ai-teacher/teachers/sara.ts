@@ -135,4 +135,54 @@ export const Sara: TeacherProfile = {
   enabled: true,
 };
 
+/**
+ * Load honest live metrics for the Human Teacher Quality Gate.
+ * Scores are measured from a real teach plan — never hard-coded to PASS.
+ */
+export async function loadSaraMetrics() {
+  const { teachHumanLesson } = await import("@/lib/human-teacher-engine");
+  const { measureHumanTeacherMetrics } = await import(
+    "../runtime/measure-metrics"
+  );
+  const taught = teachHumanLesson({
+    teacherId: "sara",
+    targetDurationMs: 65_000,
+    input: {
+      lessonId: "quality-gate-sara",
+      title: "Interactive Visual Learning Probe",
+      titleAr: "فحص جودة المعلمة سارة",
+      subject: "math",
+      grade: "g2",
+      blocks: [
+        {
+          id: "hook",
+          kind: "hook",
+          text: "مرحباً، خلينا نفهم الفكرة بهدوء خطوة خطوة",
+        },
+        {
+          id: "board",
+          kind: "explain",
+          text: "اكتبوا معي على السبورة: النصف جزء من الكل",
+        },
+        {
+          id: "draw",
+          kind: "example",
+          text: "الآن أرسم دائرة وأظلل نصفها على السبورة",
+        },
+        {
+          id: "model",
+          kind: "example",
+          text: "هذا نموذج ثلاثي الأبعاد، أديره ثم أكبّره لنشوف التفاصيل",
+        },
+        {
+          id: "check",
+          kind: "check",
+          text: "سؤال سريع: ماذا يعني النصف؟ فكر بهدوء قبل ما تجاوب",
+        },
+      ],
+    },
+  });
+  return measureHumanTeacherMetrics("sara", taught);
+}
+
 export default Sara;
