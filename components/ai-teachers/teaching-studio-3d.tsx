@@ -2,10 +2,15 @@
 
 import { Suspense, useMemo, useRef } from "react";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
-import { ContactShadows, Environment, Html, RoundedBox } from "@react-three/drei";
+import {
+  ContactShadows,
+  Environment,
+  Html,
+  RoundedBox,
+  useTexture,
+} from "@react-three/drei";
 import * as THREE from "three";
 import type { HumanFrameSample, ScreenElement } from "@/types/human-engine";
-import { SkinnedDigitalHuman } from "@/components/ai-teachers/skinned-digital-human";
 
 export type Studio3DPose = "stand" | "point" | "write";
 
@@ -164,6 +169,76 @@ function StudioRoom({ lighting }: { lighting: string }) {
   );
 }
 
+/** Photoreal classroom teacher — full human presence inside the 3D studio. */
+function PhotorealTeacher({
+  teacherId,
+  pose,
+  speaking,
+  mouthEnergy,
+  walkOffset = 0,
+}: {
+  teacherId: "sara" | "ali";
+  pose: Studio3DPose;
+  speaking: boolean;
+  mouthEnergy: number;
+  walkOffset?: number;
+}) {
+  const stand = useTexture(`/media/ai-teachers/${teacherId}/classroom/stand.png`);
+  const point = useTexture(`/media/ai-teachers/${teacherId}/classroom/point.png`);
+  const write = useTexture(`/media/ai-teachers/${teacherId}/classroom/write.png`);
+  const group = useRef<THREE.Group>(null);
+  const mat = useRef<THREE.MeshStandardMaterial>(null);
+
+  for (const t of [stand, point, write]) {
+    t.colorSpace = THREE.SRGBColorSpace;
+    t.anisotropy = 8;
+  }
+
+  const map = pose === "point" ? point : pose === "write" ? write : stand;
+  const aspect = map.image ? map.image.width / map.image.height : 0.62;
+  const height = 2.55;
+  const width = height * aspect;
+
+  useFrame((state) => {
+    if (!group.current) return;
+    const t = state.clock.elapsedTime;
+    const breath = Math.sin(t * (speaking ? 2.4 : 1.15)) * (speaking ? 0.012 : 0.007);
+    const sway = Math.sin(t * 1.1) * (speaking ? 0.025 : 0.012);
+    const baseX = teacherId === "ali" ? -1.25 : -1.45;
+    group.current.position.x = THREE.MathUtils.lerp(
+      group.current.position.x,
+      baseX + walkOffset * 0.55,
+      0.08,
+    );
+    group.current.position.y = breath;
+    group.current.rotation.y = sway;
+    if (mat.current) {
+      const pulse = speaking ? 1 + mouthEnergy * 0.04 : 1;
+      mat.current.emissiveIntensity = speaking ? 0.08 + mouthEnergy * 0.12 : 0.03;
+      group.current.scale.setScalar(THREE.MathUtils.lerp(group.current.scale.x, pulse, 0.12));
+    }
+  });
+
+  return (
+    <group ref={group} position={[teacherId === "ali" ? -1.25 : -1.45, 1.28, 0.15]}>
+      <mesh castShadow>
+        <planeGeometry args={[width, height]} />
+        <meshStandardMaterial
+          ref={mat}
+          map={map}
+          transparent
+          alphaTest={0.15}
+          roughness={0.72}
+          metalness={0.02}
+          emissive="#22180f"
+          emissiveIntensity={0.04}
+          side={THREE.DoubleSide}
+        />
+      </mesh>
+    </group>
+  );
+}
+
 function SmartBoard({
   lines,
   screenElement,
@@ -172,7 +247,6 @@ function SmartBoard({
   screenElement?: ScreenElement | null;
 }) {
   const label = screenElement?.label;
-  const kind = screenElement?.kind;
   return (
     <group position={[1.55, 1.7, -1.75]}>
       <RoundedBox args={[3.4, 2.1, 0.08]} radius={0.04}>
@@ -191,9 +265,8 @@ function SmartBoard({
           direction: "rtl",
         }}
       >
-        <div style={{ fontSize: 11, color: "#ffe08a", fontWeight: 800, marginBottom: 8 }}>
-          SUCCESS OS · SMART BOARD
-          {kind ? ` · ${kind}` : ""}
+        <div style={{ fontSize: 12, color: "#ffe08a", fontWeight: 800, marginBottom: 8 }}>
+          السبورة
         </div>
         {label ? (
           <div
@@ -403,9 +476,11 @@ function SceneBody(props: Props) {
       <CameraRig camera={props.camera} />
       <StudioRoom lighting={props.lighting} />
       <SmartBoard lines={props.boardLines} screenElement={props.screenElement} />
-      <SkinnedDigitalHuman
+      <PhotorealTeacher
         teacherId={props.teacherId}
-        frame={frame}
+        pose={props.pose}
+        speaking={props.speaking || !!frame.speaking}
+        mouthEnergy={props.mouthEnergy || frame.jawOpen || 0}
         walkOffset={props.walkOffset}
       />
       <LessonProps
@@ -413,8 +488,8 @@ function SceneBody(props: Props) {
         focusTarget={props.focusTarget}
         screenElement={props.screenElement}
       />
-      <ContactShadows position={[0, 0.01, 0]} opacity={0.45} scale={12} blur={2.5} far={4} />
-      <Environment preset="city" environmentIntensity={0.35} />
+      <ContactShadows position={[0, 0.01, 0]} opacity={0.5} scale={12} blur={2.8} far={4} />
+      <Environment preset="apartment" environmentIntensity={0.48} />
       {props.celebrating && (
         <pointLight position={[-1.4, 2.4, 1]} intensity={2} color="#ffd84a" />
       )}
@@ -424,11 +499,18 @@ function SceneBody(props: Props) {
 
 export function TeachingStudio3D(props: Props) {
   return (
-    <div style={{ width: "100%", height: "100%", minHeight: 480, background: "#070b14" }}>
+    <div
+      style={{
+        width: "100%",
+        height: "100%",
+        minHeight: "100%",
+        background: "radial-gradient(circle at 50% 20%, #152033 0%, #070b14 65%)",
+      }}
+    >
       <Canvas
         shadows
-        dpr={[1, 1.5]}
-        camera={{ position: [0, 2.2, 6.2], fov: 42, near: 0.1, far: 40 }}
+        dpr={[1, 1.75]}
+        camera={{ position: [0, 2.05, 5.6], fov: 40, near: 0.1, far: 40 }}
         gl={{ antialias: true, powerPreference: "high-performance" }}
       >
         <Suspense fallback={null}>

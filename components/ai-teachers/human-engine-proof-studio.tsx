@@ -1,7 +1,6 @@
 "use client";
 
 import { useCallback, useEffect, useMemo, useRef, useState, type CSSProperties } from "react";
-import Link from "next/link";
 import type {
   HumanFrameSample,
   HumanPerformancePlan,
@@ -16,8 +15,6 @@ import {
   gestureToClassroomPose,
   getTeacherPersona,
   listProofLessons,
-  listProofSubjects,
-  proofLessonsForSubject,
   sampleFrame,
   type ProofLessonId,
 } from "@/lib/human-engine";
@@ -32,81 +29,6 @@ import {
 } from "@/components/ai-teachers/teaching-studio-3d";
 
 type TeacherId = "sara" | "ali";
-
-/** User acceptance checklist — do not mark ✅ unless fully true in this demo. */
-const HONESTY: Array<{
-  id: string;
-  label: string;
-  status: "works" | "partial" | "missing";
-  detail: string;
-}> = [
-  {
-    id: "pick",
-    label: "1) اختيار سارة أو علي",
-    status: "works",
-    detail: "قائمة المعلم تعمل وتبدّل الشخصية/الصوت/الأسلوب فوراً",
-  },
-  {
-    id: "studio",
-    label: "2) الدخول إلى الاستوديو ثلاثي الأبعاد",
-    status: "works",
-    detail: "TeachingStudio3D (غرفة + سبورة + كاميرا + إضاءة) على هذه الصفحة",
-  },
-  {
-    id: "lesson",
-    label: "3) بدء درس حقيقي متعدد المواد",
-    status: "partial",
-    detail:
-      "بوابة قبول: رياضيات/فيزياء/كيمياء/أحياء/لغات/برمجة × سارة وعلي — جاهزة للتجربة؛ لا تُعتبر مكتملة حتى تنجح عند المالك على Demo",
-  },
-  {
-    id: "voice",
-    label: "4) أسمع صوتهما",
-    status: "partial",
-    detail:
-      "TTS حي + طابور سلس + مزامنة مدة + مقاطعة/استئناف جاهزة للاختبار — بانتظار نجاح جلسة 10 دقائق متواصلة (سارة ثم علي)",
-  },
-  {
-    id: "body",
-    label: "5) أرى حركة الجسم كاملة",
-    status: "partial",
-    detail:
-      "هيكل Mixamo skinned (ذراع/رأس/أصابع/مشي) من Human Engine — قاعدة Xbot أسلوبية وليست performance mocap كامل",
-  },
-  {
-    id: "face",
-    label: "6) أرى حركة الوجه والشفاه",
-    status: "partial",
-    detail:
-      "morphs (jaw/smile/blink/brow) من phoneme النص — تتحرك الشفاه، لكن المزامنة ليست من موجة الصوت الفعلي للـ MP3",
-  },
-  {
-    id: "board",
-    label: "7) أرى الكتابة على السبورة",
-    status: "partial",
-    detail:
-      "نص/قانون يظهر على السبورة الذكية مع إيماءة كتابة — لا قلم يرسم ضربات حبر واقعية على سطح ثلاثي",
-  },
-  {
-    id: "model3d",
-    label: "8) أرى التفاعل مع نموذج ثلاثي الأبعاد",
-    status: "partial",
-    detail:
-      "مجسم هندسي يدور/يُكبَّر عند acts النموذج — ليس نموذجاً تعليمياً غنياً خاصاً بالمادة",
-  },
-  {
-    id: "ask",
-    label: "9) أسأل أثناء الشرح وأحصل على إجابة",
-    status: "works",
-    detail: "adaptLiveTeacher + Teacher Mind → رد فوري + microPlan حركة",
-  },
-  {
-    id: "reexplain",
-    label: "10) إعادة الشرح بطريقة مختلفة",
-    status: "works",
-    detail: "زر «أعد الشرح بطريقة مختلفة» يختار استراتيجية غير مستخدمة (تشبيه/رسم/3D/…)",
-  },
-];
 
 function walkFromFrame(frame: HumanFrameSample | null): number {
   if (!frame) return 0;
@@ -129,14 +51,12 @@ function mapCamera(shot: string): string {
   return shot || "medium_teacher";
 }
 
-/** Prefetch live TTS + align plan timeline to real durations (demo layer only). */
 async function withLiveLineTts(
   plan: HumanPerformancePlan,
   teacherId: TeacherId,
   styleHint?: "remediate",
 ): Promise<{
   plan: HumanPerformancePlan;
-  voiceMode: string;
   lineCount: number;
   totalMs: number;
   queue: VoiceQueueItem[];
@@ -148,13 +68,7 @@ async function withLiveLineTts(
     style: styleHint,
   }));
   if (!lines.length) {
-    return {
-      plan,
-      voiceMode: "no-lines",
-      lineCount: 0,
-      totalMs: 0,
-      queue: [],
-    };
+    return { plan, lineCount: 0, totalMs: 0, queue: [] };
   }
   const res = await fetch("/api/ai-teachers/tts", {
     method: "POST",
@@ -163,7 +77,6 @@ async function withLiveLineTts(
   });
   const json = (await res.json()) as {
     success?: boolean;
-    voice?: string;
     totalWithPausesMs?: number;
     items?: Array<{
       url: string;
@@ -174,7 +87,7 @@ async function withLiveLineTts(
     error?: string;
   };
   if (!res.ok || !json.success || !json.items?.length) {
-    throw new Error(json.error || "TTS prefetch failed");
+    throw new Error(json.error || "تعذر تحضير الصوت");
   }
   const timings = json.items.map((it) => ({
     url: it.url,
@@ -192,54 +105,30 @@ async function withLiveLineTts(
   }));
   return {
     plan: aligned,
-    voiceMode: `live-tts-v2 · seamless · ${json.voice || teacherId}`,
     lineCount: json.items.length,
     totalMs: json.totalWithPausesMs || aligned.timeline.durationMs,
     queue,
   };
 }
 
-const SUBJECT_LABEL_AR: Record<string, string> = {
-  all: "كل المواد (بوابة القبول)",
-  math: "رياضيات",
-  physics: "فيزياء",
-  chemistry: "كيمياء",
-  biology: "أحياء",
-  languages: "لغات",
-  programming: "برمجة",
-};
+const FEATURED_LESSON: ProofLessonId = "forces_law_lab";
 
 export function HumanEngineProofStudio() {
   const allLessons = useMemo(() => listProofLessons(), []);
-  const subjects = useMemo(() => ["all", ...listProofSubjects()], []);
+  const [phase, setPhase] = useState<"welcome" | "studio">("welcome");
   const [teacherId, setTeacherId] = useState<TeacherId>("sara");
-  const [subjectFilter, setSubjectFilter] = useState<string>("all");
-  const [lessonId, setLessonId] = useState<ProofLessonId>("fractions_half");
+  const [lessonId, setLessonId] = useState<ProofLessonId>(FEATURED_LESSON);
   const [plan, setPlan] = useState<HumanPerformancePlan | null>(null);
   const [frame, setFrame] = useState<HumanFrameSample | null>(null);
   const [playing, setPlaying] = useState(false);
   const [tMs, setTMs] = useState(0);
-  const [status, setStatus] = useState("اختر معلماً ومادة ودرساً ثم شغّل");
   const [question, setQuestion] = useState("");
   const [reply, setReply] = useState("");
   const [done, setDone] = useState(false);
-  const [memory, setMemory] = useState<TeacherSessionMemory | null>(null);
-  const [mindState, setMindState] = useState("");
-  const [voiceMode, setVoiceMode] = useState("—");
   const [preparing, setPreparing] = useState(false);
   const [prepPct, setPrepPct] = useState(0);
-  const [teachPlan, setTeachPlan] = useState<{
-    pedagogy?: string;
-    analysis?: {
-      objectives?: string[];
-      keyConcepts?: string[];
-      commonMistakes?: string[];
-      bestQuestions?: string[];
-      assessmentApproach?: string;
-    };
-    close?: { summary?: string; followUpPlan?: string };
-  } | null>(null);
-  const [coreLabel, setCoreLabel] = useState("");
+  const [toast, setToast] = useState("");
+  const [askOpen, setAskOpen] = useState(false);
   const voiceRef = useRef<SeamlessVoicePlayer | null>(null);
   const adapterRef = useRef<ReturnType<typeof createLocalPhotorealAdapter> | null>(
     null,
@@ -249,50 +138,10 @@ export function HumanEngineProofStudio() {
   const resumeQueueRef = useRef<VoiceQueueItem[] | null>(null);
   const memoryRef = useRef<TeacherSessionMemory | null>(null);
   const interruptMsRef = useRef(0);
-
-  const lessons = useMemo(
-    () => proofLessonsForSubject(subjectFilter),
-    [subjectFilter],
-  );
-
-  useEffect(() => {
-    if (!lessons.some((l) => l.id === lessonId)) {
-      const next = lessons[0]?.id;
-      if (next) setLessonId(next);
-    }
-  }, [lessons, lessonId]);
-
-  useEffect(() => {
-    let cancelled = false;
-    (async () => {
-      try {
-        const [coreRes, planRes] = await Promise.all([
-          fetch(`/api/ai-teachers/core?id=${teacherId}`),
-          fetch(
-            `/api/ai-teachers/teach-plan?teacherId=${teacherId}&proofId=${lessonId}&level=on`,
-          ),
-        ]);
-        const coreJson = await coreRes.json();
-        const planJson = await planRes.json();
-        if (cancelled) return;
-        const t = coreJson.teacher;
-        if (t) {
-          setCoreLabel(
-            `${t.fullName} · ${t.personality} · ${t.teachingStyle} · ${t.voiceID}`,
-          );
-        }
-        setTeachPlan(planJson.plan || null);
-      } catch {
-        if (!cancelled) setTeachPlan(null);
-      }
-    })();
-    return () => {
-      cancelled = true;
-    };
-  }, [teacherId, lessonId]);
+  const autoStarted = useRef(false);
 
   const persona = getTeacherPersona(teacherId);
-  const meta = allLessons.find((l) => l.id === lessonId) || lessons[0] || allLessons[0]!;
+  const meta = allLessons.find((l) => l.id === lessonId) || allLessons[0]!;
 
   const buildPlan = useCallback(() => {
     const input = buildProofLessonInput(lessonId, teacherId);
@@ -314,7 +163,6 @@ export function HumanEngineProofStudio() {
     async (
       aligned: HumanPerformancePlan,
       queue: VoiceQueueItem[],
-      label: string,
       opts?: { isBase?: boolean; resumeAfter?: boolean },
     ) => {
       stop();
@@ -327,7 +175,7 @@ export function HumanEngineProofStudio() {
       setDone(false);
       setPlaying(true);
       setTMs(0);
-      setStatus(label);
+      setToast("");
 
       const adapter = createLocalPhotorealAdapter({
         onFrame: (f) => setFrame(f),
@@ -351,7 +199,6 @@ export function HumanEngineProofStudio() {
               resumePlanRef.current,
               interruptMsRef.current,
             );
-            // Re-voice remaining if speech lines still have urls
             const q = remaining.speech.lines
               .filter((l) => l.audioSrc)
               .map((l) => ({
@@ -362,30 +209,24 @@ export function HumanEngineProofStudio() {
                 pauseAfterMs: 300,
               }));
             if (q.length) {
-              void playAligned(
-                remaining,
-                q,
-                `متابعة الدرس · ${persona.displayName.ar}`,
-                { isBase: true },
-              );
+              void playAligned(remaining, q, { isBase: true });
               return;
             }
           }
           setDone(true);
           setPlaying(false);
-          setStatus("انتهى الدرس — يمكنك السؤال أو إعادة التشغيل أو تبديل المعلم");
         },
-        onError: (err) => setStatus(`تحذير صوت: ${err.message}`),
+        onError: () => setToast("تعذر تشغيل الصوت — حاول مرة أخرى"),
       });
       setPrepPct(90);
       await player.preload();
       setPrepPct(100);
       player.start();
     },
-    [stop, persona.displayName.ar],
+    [stop],
   );
 
-  const startLesson = async () => {
+  const startLesson = useCallback(async () => {
     const mem = createSessionMemory({
       teacherId,
       lessonId,
@@ -394,36 +235,39 @@ export function HumanEngineProofStudio() {
       grade: meta.grade || "g1",
     });
     memoryRef.current = mem;
-    setMemory(mem);
-    setMindState("hook/explain");
     setPreparing(true);
-    setPrepPct(5);
-    setStatus(
-      lessonId === "voice_endurance_10m"
-        ? "تحضير اختبار 10 دقائق: توليد صوت حي لكل جملة (قد يستغرق دقيقة)…"
-        : "تحضير الصوت العصبي الحي لكل جملة…",
-    );
+    setPrepPct(8);
+    setToast("يحضّر المعلم الدرس…");
     try {
       const p = buildPlan();
-      setPrepPct(25);
+      setPrepPct(28);
       const voiced = await withLiveLineTts(p, teacherId);
-      setPrepPct(80);
-      setVoiceMode(
-        `${voiced.voiceMode} · ${(voiced.totalMs / 60000).toFixed(1)} دقيقة`,
-      );
-      await playAligned(
-        voiced.plan,
-        voiced.queue,
-        `تشغيل · ${persona.displayName.ar} · ${meta.titleAr} · ${voiced.lineCount} جملة · ${(voiced.totalMs / 1000).toFixed(0)}ث`,
-        { isBase: true },
-      );
-    } catch (e) {
-      setStatus(`فشل تحضير الصوت: ${e instanceof Error ? e.message : "error"}`);
-      setVoiceMode("error");
+      setPrepPct(82);
+      await playAligned(voiced.plan, voiced.queue, { isBase: true });
+    } catch {
+      setToast("تعذر بدء الحصة. أعد المحاولة.");
     } finally {
       setPreparing(false);
     }
+  }, [buildPlan, lessonId, meta.grade, meta.subject, meta.titleAr, playAligned, teacherId]);
+
+  const enterStudio = (id: TeacherId) => {
+    setTeacherId(id);
+    setLessonId(FEATURED_LESSON);
+    setPhase("studio");
+    setReply("");
+    setDone(false);
+    autoStarted.current = false;
   };
+
+  useEffect(() => {
+    if (phase !== "studio" || autoStarted.current || playing || preparing) return;
+    autoStarted.current = true;
+    const t = window.setTimeout(() => {
+      void startLesson();
+    }, 450);
+    return () => window.clearTimeout(t);
+  }, [phase, playing, preparing, startLesson]);
 
   const runAdapt = async (event: Parameters<typeof adaptLiveTeacher>[0]["event"]) => {
     const prior =
@@ -434,7 +278,6 @@ export function HumanEngineProofStudio() {
         lessonTitle: meta.titleAr,
       });
 
-    // Capture resume point before interrupting
     interruptMsRef.current = voiceRef.current?.getGlobalMs() || tMs;
     if (basePlanRef.current) {
       resumePlanRef.current = basePlanRef.current;
@@ -450,34 +293,18 @@ export function HumanEngineProofStudio() {
       elapsedMs: interruptMsRef.current,
     });
     memoryRef.current = result.memory;
-    setMemory(result.memory);
-    setMindState(
-      `${result.decision.state} · ${result.strategy} · hint=${result.contentHint}`,
-    );
     setReply(result.reply);
-    setStatus(
-      `مقاطعة → رد · ${result.strategy} · ثم متابعة الدرس · strategies=${result.memory.strategiesUsed.join("→") || "—"}`,
-    );
+    setAskOpen(true);
     setPreparing(true);
     try {
       const styleHint =
         event.type === "explain_simpler" || event.type === "confused"
           ? ("remediate" as const)
           : undefined;
-      const voiced = await withLiveLineTts(
-        result.microPlan,
-        teacherId,
-        styleHint,
-      );
-      setVoiceMode(voiced.voiceMode);
-      await playAligned(
-        voiced.plan,
-        voiced.queue,
-        `رد حي ثم متابعة · ${persona.displayName.ar}`,
-        { resumeAfter: true },
-      );
-    } catch (e) {
-      setStatus(`فشل رد الصوت: ${e instanceof Error ? e.message : "error"}`);
+      const voiced = await withLiveLineTts(result.microPlan, teacherId, styleHint);
+      await playAligned(voiced.plan, voiced.queue, { resumeAfter: true });
+    } catch {
+      setToast("تعذر الرد الآن");
     } finally {
       setPreparing(false);
     }
@@ -487,11 +314,13 @@ export function HumanEngineProofStudio() {
 
   const pose: Studio3DPose = frame ? gestureToClassroomPose(frame.gesture) : "stand";
   const boardLines = useMemo(() => {
-    const lines: string[] = [meta.titleAr, persona.displayName.ar];
+    const lines: string[] = [];
+    if (frame?.screen?.label) lines.push(frame.screen.label);
     if (frame?.screen?.detail) lines.push(frame.screen.detail);
-    if (frame?.lineText) lines.push(frame.lineText);
+    if (frame?.lineText && lines.length < 2) lines.push(frame.lineText);
+    if (!lines.length) lines.push(meta.titleAr);
     return lines.filter(Boolean);
-  }, [frame, meta.titleAr, persona.displayName.ar]);
+  }, [frame, meta.titleAr]);
 
   const studioProps = useMemo(() => {
     if (!frame?.screen) return [];
@@ -509,179 +338,58 @@ export function HumanEngineProofStudio() {
   }, [frame]);
 
   const duration = plan?.timeline.durationMs || meta.minDurationMs;
+  const progress = Math.min(100, (tMs / Math.max(1, duration)) * 100);
+
+  if (phase === "welcome") {
+    return (
+      <div dir="rtl" style={styles.welcome}>
+        <div style={styles.welcomeGlow} />
+        <div style={styles.welcomeInner}>
+          <p style={styles.welcomeBrand}>Success OS</p>
+          <h1 style={styles.welcomeTitle}>استوديو التعليم العالمي</h1>
+          <p style={styles.welcomeSub}>
+            ادخل الحصة مع معلميك الرسميين — سارة وعلي
+          </p>
+          <div style={styles.teacherPick}>
+            {(
+              [
+                {
+                  id: "sara" as const,
+                  name: "المعلمة سارة",
+                  line: "هادئة · مشجعة · تشرح بالتدرج",
+                  img: "/media/ai-teachers/sara/portrait.png",
+                },
+                {
+                  id: "ali" as const,
+                  name: "المعلم علي",
+                  line: "مباشر · عملي · تفكير تحليلي",
+                  img: "/media/ai-teachers/ali/portrait.png",
+                },
+              ] as const
+            ).map((t) => (
+              <button
+                key={t.id}
+                type="button"
+                style={styles.teacherCard}
+                onClick={() => enterStudio(t.id)}
+              >
+                <img src={t.img} alt={t.name} style={styles.teacherImg} />
+                <div style={styles.teacherMeta}>
+                  <strong style={styles.teacherName}>{t.name}</strong>
+                  <span style={styles.teacherLine}>{t.line}</span>
+                  <span style={styles.enterCta}>ادخل الحصة</span>
+                </div>
+              </button>
+            ))}
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
-    <div dir="rtl" style={styles.page}>
-      <header style={styles.header}>
-        <div>
-          <div style={styles.brand}>SUCCESS OS · HUMANOID DEMO</div>
-          <h1 style={styles.title}>سارة وعلي — معلمان عالميان · يفهمان أولاً ثم يشرحان</h1>
-          <p style={styles.sub}>
-            نجاح المشروع = جودتهما فقط. قبل كل درس يُحلَّل المحتوى وتُبنى خطة شرح ديناميكية
-            (أهداف، مفاهيم، أخطاء شائعة، أمثلة، أسئلة، رسم/تجربة/3D، تقييم). ليس قراءة نص —
-            ولا Avatar فقط. لا اكتمال حتى تنسى أنك أمام ذكاء اصطناعي.
-          </p>
-        </div>
-        <Link href="/ai-teacher-preview" style={styles.link}>
-          تقرير التقدم
-        </Link>
-      </header>
-
-      <section style={styles.controls}>
-        <label style={styles.field}>
-          <span>المعلم</span>
-          <select
-            value={teacherId}
-            onChange={(e) => setTeacherId(e.target.value as TeacherId)}
-            style={styles.select}
-            disabled={playing}
-          >
-            <option value="sara">سارة — هادئة · مشجعة · بالتدرج</option>
-            <option value="ali">علي — مباشر · عملي · تحليلي</option>
-          </select>
-        </label>
-        <label style={styles.field}>
-          <span>المادة (بوابة القبول)</span>
-          <select
-            value={subjectFilter}
-            onChange={(e) => setSubjectFilter(e.target.value)}
-            style={styles.select}
-            disabled={playing}
-          >
-            {subjects.map((s) => (
-              <option key={s} value={s}>
-                {SUBJECT_LABEL_AR[s] || s}
-              </option>
-            ))}
-          </select>
-        </label>
-        <label style={styles.field}>
-          <span>الدرس</span>
-          <select
-            value={lessonId}
-            onChange={(e) => setLessonId(e.target.value as ProofLessonId)}
-            style={styles.select}
-            disabled={playing}
-          >
-            {lessons.map((l) => (
-              <option key={l.id} value={l.id}>
-                {l.titleAr} (≥{Math.round(l.minDurationMs / 1000)}ث)
-              </option>
-            ))}
-          </select>
-        </label>
-        <button
-          type="button"
-          style={styles.primary}
-          onClick={() => void startLesson()}
-          disabled={playing || preparing}
-        >
-          {preparing ? "تحضير الصوت…" : "تشغيل الدرس"}
-        </button>
-        <button type="button" style={styles.ghost} onClick={stop} disabled={!playing}>
-          إيقاف
-        </button>
-      </section>
-
-      <div style={styles.voiceBanner}>
-        <strong>البند 4 · اختبار 10 دقائق:</strong> {voiceMode}
-        {preparing ? ` · تحضير ${prepPct}%` : ""}
-        <div>
-          الزمن: {(tMs / 1000).toFixed(1)}s / {(duration / 1000).toFixed(0)}s · الجملة:{" "}
-          {frame?.lineText ? `«${frame.lineText.slice(0, 90)}»` : "—"}
-        </div>
-        <div style={{ opacity: 0.85, marginTop: 4 }}>
-          للاختبار: اختر «اختبار صوت 10 دقائق» → سارة ثم علي · أثناء الشرح اضغط اسأل /
-          أعد الشرح · يجب أن يجيب ثم يكمل دون إعادة تحميل الصفحة.
-        </div>
-      </div>
-
-      <div style={styles.personaRow}>
-        <div style={styles.personaCard}>
-          <strong>{persona.displayName.ar} · Core Profile</strong>
-          <div>{coreLabel || `الصوت: ${persona.voiceId}`}</div>
-          <div>الأسلوب: {persona.style === "warm" ? "دافئ وتشجيعي" : "دقيق وتحليلي"}</div>
-          <div>إعادة الشرح: {persona.interaction.reexplainStrategy}</div>
-          <div>
-            <Link href="/admin/ai-teachers" style={styles.link}>
-              تعديل Teacher Mind
-            </Link>
-            {" · "}
-            <Link href="/api/ai-teachers/core" style={styles.link}>
-              TeacherProfile JSON
-            </Link>
-          </div>
-        </div>
-        <div style={styles.personaCard}>
-          <strong>حالة التشغيل</strong>
-          <div>{status}</div>
-          <div>
-            الزمن: {(tMs / 1000).toFixed(1)}s / {(duration / 1000).toFixed(0)}s
-          </div>
-          <div>
-            act: {frame?.contentAct || "—"} · gesture: {frame?.gesture || "—"} · gaze:{" "}
-            {frame?.gaze || "—"}
-          </div>
-          <div>BT: {mindState || "—"}</div>
-          <div>
-            ذاكرة: ارتباك {memory?.confusionCount ?? 0} · استراتيجيات{" "}
-            {memory?.strategiesUsed.join(" → ") || "—"}
-          </div>
-        </div>
-      </div>
-
-      {teachPlan?.analysis ? (
-        <section style={styles.planBox}>
-          <h2 style={styles.h2}>خطة الشرح الديناميكية (بعد تحليل المحتوى)</h2>
-          <div style={{ opacity: 0.9, marginBottom: 8 }}>
-            pedagogy: <code>{teachPlan.pedagogy || "—"}</code>
-          </div>
-          <div style={styles.planGrid}>
-            <div>
-              <strong>الأهداف</strong>
-              <ul>
-                {(teachPlan.analysis.objectives || []).slice(0, 3).map((x) => (
-                  <li key={x}>{x}</li>
-                ))}
-              </ul>
-            </div>
-            <div>
-              <strong>المفاهيم</strong>
-              <ul>
-                {(teachPlan.analysis.keyConcepts || []).slice(0, 3).map((x) => (
-                  <li key={x}>{x}</li>
-                ))}
-              </ul>
-            </div>
-            <div>
-              <strong>أخطاء شائعة</strong>
-              <ul>
-                {(teachPlan.analysis.commonMistakes || []).slice(0, 3).map((x) => (
-                  <li key={x}>{x}</li>
-                ))}
-              </ul>
-            </div>
-            <div>
-              <strong>أفضل أسئلة</strong>
-              <ul>
-                {(teachPlan.analysis.bestQuestions || []).slice(0, 3).map((x) => (
-                  <li key={x}>{x}</li>
-                ))}
-              </ul>
-            </div>
-          </div>
-          <div style={{ marginTop: 8, opacity: 0.88 }}>
-            تقييم: {teachPlan.analysis.assessmentApproach}
-          </div>
-          {teachPlan.close?.followUpPlan ? (
-            <div style={{ marginTop: 4, opacity: 0.88 }}>
-              متابعة: {teachPlan.close.followUpPlan}
-            </div>
-          ) : null}
-        </section>
-      ) : null}
-
-      <div style={styles.stage}>
+    <div dir="rtl" style={styles.studioPage}>
+      <div style={styles.stageFull}>
         <TeachingStudio3D
           teacherId={teacherId}
           pose={pose}
@@ -700,276 +408,394 @@ export function HumanEngineProofStudio() {
           screenElement={frame?.screen}
           frame={frame}
         />
-        <div style={styles.caption}>
-          <div style={styles.captionAct}>
-            {frame?.behaviourGoal || "—"} · {frame?.camera || "—"} · {frame?.lighting || "—"}
+
+        <div style={styles.topBar}>
+          <div>
+            <div style={styles.brandMark}>Success OS</div>
+            <div style={styles.sessionTitle}>
+              {persona.displayName.ar} · {meta.titleAr}
+            </div>
           </div>
-          <div style={styles.captionLine}>
-            {frame?.lineText || (done ? "انتهى الدرس." : "اضغط تشغيل لبدء الحصة داخل الاستوديو 3D")}
+          <div style={styles.topActions}>
+            <button
+              type="button"
+              style={styles.chip}
+              disabled={playing || preparing}
+              onClick={() => {
+                stop();
+                setPhase("welcome");
+                autoStarted.current = false;
+              }}
+            >
+              تبديل المعلم
+            </button>
+            <button
+              type="button"
+              style={styles.chipPrimary}
+              disabled={playing || preparing}
+              onClick={() => {
+                autoStarted.current = true;
+                void startLesson();
+              }}
+            >
+              {preparing ? `تحضير ${prepPct}%` : playing ? "الحصة جارية" : "أعد الحصة"}
+            </button>
+          </div>
+        </div>
+
+        <div style={styles.subtitle}>
+          <div style={styles.subtitleText}>
+            {preparing
+              ? "المعلم يجهّز الشرح…"
+              : frame?.lineText ||
+                (done
+                  ? "انتهت الحصة. يمكنك السؤال أو إعادة الشرح."
+                  : "لحظة… تبدأ الحصة الآن")}
           </div>
           <div style={styles.barTrack}>
-            <div
-              style={{
-                ...styles.barFill,
-                width: `${Math.min(100, (tMs / Math.max(1, duration)) * 100)}%`,
-              }}
-            />
+            <div style={{ ...styles.barFill, width: `${progress}%` }} />
           </div>
         </div>
-      </div>
 
-      <section style={styles.talk}>
-        <h2 style={styles.h2}>التحدث مع المعلم أثناء/بعد الشرح</h2>
-        <div style={styles.talkRow}>
-          <input
-            value={question}
-            onChange={(e) => setQuestion(e.target.value)}
-            placeholder="اطرح سؤالاً على المعلم…"
-            style={styles.input}
-          />
+        <div style={styles.dock}>
           <button
             type="button"
-            style={styles.primary}
-            onClick={() => {
-              if (!question.trim()) return;
-              void runAdapt({ type: "ask_text", text: question.trim() });
-              setQuestion("");
-            }}
+            style={styles.dockBtn}
             disabled={preparing}
+            onClick={() => setAskOpen((v) => !v)}
           >
-            اسأل
+            اسأل المعلم
           </button>
           <button
             type="button"
-            style={styles.ghost}
+            style={styles.dockBtn}
+            disabled={preparing}
             onClick={() => void runAdapt({ type: "explain_simpler" })}
-            disabled={preparing}
           >
-            أعد الشرح بطريقة مختلفة
+            اشرح بطريقة أخرى
           </button>
           <button
             type="button"
-            style={styles.ghost}
-            onClick={() => void runAdapt({ type: "example" })}
+            style={styles.dockBtn}
             disabled={preparing}
+            onClick={() => void runAdapt({ type: "example" })}
           >
-            مثال إضافي
+            مثال أوضح
           </button>
+          {playing ? (
+            <button type="button" style={styles.dockGhost} onClick={stop}>
+              إيقاف
+            </button>
+          ) : null}
         </div>
-        {reply ? <div style={styles.reply}>{reply}</div> : null}
-      </section>
 
-      <section style={styles.honesty}>
-        <h2 style={styles.h2}>ما المكتمل فعلاً / الجزئي / البنية فقط</h2>
-        <table style={styles.table}>
-          <thead>
-            <tr>
-              <th style={styles.th}>الميزة</th>
-              <th style={styles.th}>الحالة</th>
-              <th style={styles.th}>الدليل</th>
-            </tr>
-          </thead>
-          <tbody>
-            {HONESTY.map((r) => (
-              <tr key={r.id}>
-                <td style={styles.td}>{r.label}</td>
-                <td style={styles.td}>
-                  <span
-                    style={{
-                      ...styles.badge,
-                      background:
-                        r.status === "works"
-                          ? "#1f6b4a"
-                          : r.status === "partial"
-                            ? "#7a5b16"
-                            : "#6b1f1f",
-                    }}
-                  >
-                    {r.status === "works"
-                      ? "✅ يعمل بالكامل"
-                      : r.status === "partial"
-                        ? "🟡 يعمل جزئياً"
-                        : "❌ غير موجود"}
-                  </span>
-                </td>
-                <td style={styles.td}>{r.detail}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-        <p style={styles.footnote}>
-          البند 4 تحت اختبار قبول 10 دقائق (جلسة متواصلة + مقاطعة + استئناف). البنود
-          5–8 ما زالت صفراء. Unreal MetaHuman غير مشغّل هنا.
-        </p>
-      </section>
+        {askOpen ? (
+          <div style={styles.askPanel}>
+            <input
+              value={question}
+              onChange={(e) => setQuestion(e.target.value)}
+              placeholder={`اسأل ${persona.displayName.ar}…`}
+              style={styles.askInput}
+              onKeyDown={(e) => {
+                if (e.key === "Enter" && question.trim()) {
+                  void runAdapt({ type: "ask_text", text: question.trim() });
+                  setQuestion("");
+                }
+              }}
+            />
+            <button
+              type="button"
+              style={styles.chipPrimary}
+              disabled={preparing || !question.trim()}
+              onClick={() => {
+                if (!question.trim()) return;
+                void runAdapt({ type: "ask_text", text: question.trim() });
+                setQuestion("");
+              }}
+            >
+              أرسل
+            </button>
+          </div>
+        ) : null}
+
+        {reply ? <div style={styles.replyBubble}>{reply}</div> : null}
+        {toast ? <div style={styles.toast}>{toast}</div> : null}
+      </div>
     </div>
   );
 }
 
 const styles: Record<string, CSSProperties> = {
-  page: {
+  welcome: {
     minHeight: "100vh",
     margin: 0,
-    background: "#0b1018",
-    color: "#f3efe6",
-    fontFamily: '"IBM Plex Sans Arabic", "Segoe UI", sans-serif',
-    paddingBottom: 48,
-  },
-  voiceBanner: {
-    margin: "0 20px 12px",
-    padding: "10px 14px",
-    background: "rgba(31,107,74,0.28)",
-    border: "1px solid rgba(120,200,160,0.35)",
-    fontSize: 13,
-    lineHeight: 1.55,
-  },
-  header: {
-    display: "flex",
-    justifyContent: "space-between",
-    gap: 16,
-    padding: "18px 20px 8px",
-    borderBottom: "1px solid rgba(255,255,255,0.08)",
-  },
-  brand: {
-    fontSize: 11,
-    letterSpacing: "0.16em",
-    color: "#d8c4a0",
-    fontWeight: 700,
-  },
-  title: {
-    margin: "6px 0",
-    fontFamily: '"Fraunces", "IBM Plex Sans Arabic", serif',
-    fontSize: "clamp(1.35rem, 2.5vw, 1.9rem)",
-    fontWeight: 650,
-  },
-  sub: { margin: 0, maxWidth: 720, lineHeight: 1.65, opacity: 0.88, fontSize: 14 },
-  link: { color: "#d7e6f5", fontWeight: 650, alignSelf: "flex-start" },
-  controls: {
-    display: "flex",
-    flexWrap: "wrap",
-    gap: 10,
-    padding: "14px 20px",
-    alignItems: "end",
-  },
-  field: { display: "grid", gap: 4, fontSize: 12, minWidth: 200 },
-  select: {
-    background: "#151c28",
-    color: "#f3efe6",
-    border: "1px solid rgba(255,255,255,0.2)",
-    padding: "10px 12px",
-    borderRadius: 4,
-  },
-  primary: {
-    border: "none",
-    background: "#f0e4d0",
-    color: "#1a222c",
-    fontWeight: 800,
-    padding: "11px 16px",
-    borderRadius: 4,
-    cursor: "pointer",
-  },
-  ghost: {
-    border: "1px solid rgba(240,228,208,0.4)",
-    background: "transparent",
-    color: "#f0e4d0",
-    fontWeight: 700,
-    padding: "11px 14px",
-    borderRadius: 4,
-    cursor: "pointer",
-  },
-  personaRow: {
-    display: "grid",
-    gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))",
-    gap: 10,
-    padding: "0 20px 12px",
-  },
-  planBox: {
-    background: "rgba(255,255,255,0.03)",
-    border: "1px solid rgba(255,255,255,0.1)",
-    borderRadius: 12,
-    padding: "14px 16px",
-    marginBottom: 16,
-  },
-  planGrid: {
-    display: "grid",
-    gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))",
-    gap: 12,
-    fontSize: 13,
-    lineHeight: 1.45,
-  },
-  personaCard: {
-    background: "rgba(255,255,255,0.04)",
-    border: "1px solid rgba(255,255,255,0.08)",
-    padding: "12px 14px",
-    borderRadius: 6,
-    fontSize: 13,
-    lineHeight: 1.55,
-  },
-  stage: {
     position: "relative",
-    height: "min(64vh, 640px)",
-    margin: "0 12px",
-    borderRadius: 8,
     overflow: "hidden",
-    border: "1px solid rgba(255,255,255,0.1)",
+    background:
+      "radial-gradient(1200px 700px at 70% 10%, #1a3a5c 0%, transparent 55%), linear-gradient(160deg, #0a121c 0%, #152033 45%, #0d1824 100%)",
+    color: "#f7f1e6",
+    fontFamily: '"IBM Plex Sans Arabic", "Segoe UI", sans-serif',
+    display: "grid",
+    placeItems: "center",
+    padding: 24,
   },
-  caption: {
+  welcomeGlow: {
     position: "absolute",
+    inset: "auto auto -20% -10%",
+    width: 520,
+    height: 520,
+    background: "radial-gradient(circle, rgba(201,162,89,0.22), transparent 70%)",
+    pointerEvents: "none",
+  },
+  welcomeInner: {
+    position: "relative",
+    zIndex: 1,
+    width: "min(980px, 100%)",
+    textAlign: "center",
+  },
+  welcomeBrand: {
+    margin: 0,
+    letterSpacing: "0.28em",
+    textTransform: "uppercase",
+    fontSize: 12,
+    color: "#c9a259",
+    fontWeight: 700,
+  },
+  welcomeTitle: {
+    margin: "14px 0 10px",
+    fontFamily: '"Fraunces", "IBM Plex Sans Arabic", serif',
+    fontSize: "clamp(2rem, 5vw, 3.4rem)",
+    fontWeight: 700,
+    lineHeight: 1.15,
+  },
+  welcomeSub: {
+    margin: "0 auto 36px",
+    maxWidth: 520,
+    opacity: 0.88,
+    fontSize: 18,
+    lineHeight: 1.7,
+  },
+  teacherPick: {
+    display: "grid",
+    gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
+    gap: 22,
+  },
+  teacherCard: {
+    border: "1px solid rgba(255,255,255,0.12)",
+    background: "rgba(10,16,26,0.55)",
+    borderRadius: 22,
+    padding: 0,
+    overflow: "hidden",
+    cursor: "pointer",
+    color: "inherit",
+    textAlign: "right",
+    boxShadow: "0 24px 60px rgba(0,0,0,0.35)",
+    transition: "transform 0.25s ease, border-color 0.25s ease",
+  },
+  teacherImg: {
+    width: "100%",
+    height: 300,
+    objectFit: "cover",
+    display: "block",
+  },
+  teacherMeta: {
+    padding: "16px 18px 20px",
+    display: "grid",
+    gap: 6,
+  },
+  teacherName: {
+    fontSize: 22,
+    fontFamily: '"Fraunces", "IBM Plex Sans Arabic", serif',
+  },
+  teacherLine: {
+    opacity: 0.8,
+    fontSize: 14,
+  },
+  enterCta: {
+    marginTop: 10,
+    display: "inline-block",
+    color: "#0b1018",
+    background: "#e7c77a",
+    fontWeight: 800,
+    borderRadius: 999,
+    padding: "8px 14px",
+    width: "fit-content",
+    fontSize: 13,
+  },
+  studioPage: {
+    margin: 0,
+    minHeight: "100vh",
+    background: "#05080f",
+    color: "#f4efe6",
+    fontFamily: '"IBM Plex Sans Arabic", "Segoe UI", sans-serif',
+  },
+  stageFull: {
+    position: "relative",
+    width: "100%",
+    height: "100vh",
+    minHeight: 640,
+    overflow: "hidden",
+  },
+  topBar: {
+    position: "absolute",
+    top: 0,
     left: 0,
     right: 0,
-    bottom: 0,
-    padding: "12px 14px 14px",
-    background: "linear-gradient(0deg, rgba(8,12,18,0.92), transparent)",
+    zIndex: 5,
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "flex-start",
+    gap: 12,
+    padding: "18px 22px",
+    background: "linear-gradient(180deg, rgba(5,8,15,0.72), transparent)",
+    pointerEvents: "none",
   },
-  captionAct: { fontSize: 12, opacity: 0.8, marginBottom: 4 },
-  captionLine: { fontWeight: 700, fontSize: 16, lineHeight: 1.5, minHeight: 44 },
-  barTrack: { height: 3, background: "rgba(255,255,255,0.15)", marginTop: 8 },
-  barFill: { height: "100%", background: "#f0e4d0" },
-  talk: { padding: "18px 20px" },
-  h2: {
-    margin: "0 0 10px",
-    fontFamily: '"Fraunces", "IBM Plex Sans Arabic", serif',
-    fontSize: 18,
+  brandMark: {
+    fontSize: 11,
+    letterSpacing: "0.24em",
+    textTransform: "uppercase",
+    color: "#d4b36a",
+    fontWeight: 700,
   },
-  talkRow: { display: "flex", flexWrap: "wrap", gap: 8 },
-  input: {
-    flex: 1,
-    minWidth: 220,
-    background: "#151c28",
-    border: "1px solid rgba(255,255,255,0.2)",
-    color: "#fff",
-    padding: "12px 14px",
-    borderRadius: 4,
-    fontWeight: 600,
+  sessionTitle: {
+    marginTop: 4,
+    fontSize: 16,
+    fontWeight: 700,
+    textShadow: "0 2px 12px rgba(0,0,0,0.55)",
   },
-  reply: {
-    marginTop: 12,
-    padding: "12px 14px",
-    background: "rgba(240,228,208,0.1)",
-    borderRight: "3px solid #d8c4a0",
-    lineHeight: 1.6,
-    fontWeight: 650,
+  topActions: {
+    display: "flex",
+    gap: 8,
+    pointerEvents: "auto",
   },
-  honesty: { padding: "8px 20px 24px" },
-  table: { width: "100%", borderCollapse: "collapse", fontSize: 13 },
-  th: {
-    textAlign: "right",
-    padding: "8px 10px",
-    borderBottom: "1px solid rgba(255,255,255,0.15)",
-    color: "#d8c4a0",
+  chip: {
+    border: "1px solid rgba(255,255,255,0.22)",
+    background: "rgba(0,0,0,0.35)",
+    color: "#f4efe6",
+    borderRadius: 999,
+    padding: "8px 14px",
+    cursor: "pointer",
+    fontSize: 13,
   },
-  td: {
-    textAlign: "right",
-    padding: "9px 10px",
-    borderBottom: "1px solid rgba(255,255,255,0.06)",
-    verticalAlign: "top",
-  },
-  badge: {
-    display: "inline-block",
-    padding: "3px 8px",
-    borderRadius: 3,
+  chipPrimary: {
+    border: "none",
+    background: "#e7c77a",
+    color: "#14110c",
+    borderRadius: 999,
+    padding: "8px 14px",
+    cursor: "pointer",
     fontWeight: 800,
-    fontSize: 12,
+    fontSize: 13,
   },
-  footnote: { marginTop: 14, opacity: 0.85, lineHeight: 1.65, maxWidth: 900 },
+  subtitle: {
+    position: "absolute",
+    left: 18,
+    right: 18,
+    bottom: 88,
+    zIndex: 5,
+    background: "rgba(8,12,20,0.72)",
+    border: "1px solid rgba(255,255,255,0.08)",
+    borderRadius: 16,
+    padding: "14px 16px 12px",
+    backdropFilter: "blur(10px)",
+  },
+  subtitleText: {
+    fontSize: 17,
+    lineHeight: 1.65,
+    fontWeight: 600,
+    minHeight: 48,
+  },
+  barTrack: {
+    marginTop: 10,
+    height: 3,
+    borderRadius: 99,
+    background: "rgba(255,255,255,0.12)",
+    overflow: "hidden",
+  },
+  barFill: {
+    height: "100%",
+    background: "linear-gradient(90deg, #c9a259, #f0d59a)",
+  },
+  dock: {
+    position: "absolute",
+    left: 18,
+    right: 18,
+    bottom: 18,
+    zIndex: 6,
+    display: "flex",
+    flexWrap: "wrap",
+    gap: 8,
+    justifyContent: "center",
+  },
+  dockBtn: {
+    border: "1px solid rgba(255,255,255,0.16)",
+    background: "rgba(255,255,255,0.08)",
+    color: "#fff8ea",
+    borderRadius: 999,
+    padding: "10px 16px",
+    cursor: "pointer",
+    fontWeight: 700,
+    fontSize: 13,
+    backdropFilter: "blur(8px)",
+  },
+  dockGhost: {
+    border: "1px solid rgba(255,255,255,0.12)",
+    background: "transparent",
+    color: "#d9d2c4",
+    borderRadius: 999,
+    padding: "10px 16px",
+    cursor: "pointer",
+    fontSize: 13,
+  },
+  askPanel: {
+    position: "absolute",
+    left: 18,
+    right: 18,
+    bottom: 70,
+    zIndex: 7,
+    display: "flex",
+    gap: 8,
+    background: "rgba(8,12,20,0.9)",
+    border: "1px solid rgba(255,255,255,0.12)",
+    borderRadius: 14,
+    padding: 10,
+  },
+  askInput: {
+    flex: 1,
+    border: "1px solid rgba(255,255,255,0.14)",
+    background: "rgba(255,255,255,0.06)",
+    color: "#fff",
+    borderRadius: 10,
+    padding: "10px 12px",
+    fontSize: 14,
+    outline: "none",
+  },
+  replyBubble: {
+    position: "absolute",
+    top: 86,
+    left: 18,
+    right: 18,
+    zIndex: 6,
+    maxWidth: 560,
+    marginInlineStart: "auto",
+    background: "rgba(231,199,122,0.14)",
+    border: "1px solid rgba(231,199,122,0.35)",
+    color: "#fff6df",
+    borderRadius: 14,
+    padding: "12px 14px",
+    fontSize: 14,
+    lineHeight: 1.6,
+    backdropFilter: "blur(8px)",
+  },
+  toast: {
+    position: "absolute",
+    top: "46%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+    zIndex: 8,
+    background: "rgba(0,0,0,0.7)",
+    borderRadius: 12,
+    padding: "12px 18px",
+    fontSize: 15,
+  },
 };

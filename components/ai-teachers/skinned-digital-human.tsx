@@ -69,19 +69,34 @@ export function SkinnedDigitalHuman({ teacherId, frame, walkOffset = 0 }: Props)
     });
     restQuats.current = map;
 
+    // Outfit identity: Sara olive / Ali navy — same mesh, distinct presence
+    const cloth = new THREE.Color(teacherId === "ali" ? "#1e3a5f" : "#3f5a3a");
+    const skin = new THREE.Color(teacherId === "ali" ? "#c99574" : "#d4a07a");
     gltf.scene.traverse((o) => {
       const m = o as THREE.Mesh;
       if (m.isMesh) {
         m.castShadow = true;
         m.receiveShadow = true;
-        if (Array.isArray(m.material)) {
-          m.material.forEach((mat) => {
-            mat.side = THREE.FrontSide;
-          });
-        }
+        const mats = Array.isArray(m.material) ? m.material : [m.material];
+        mats.forEach((mat) => {
+          if (!mat) return;
+          mat.side = THREE.FrontSide;
+          const std = mat as THREE.MeshStandardMaterial;
+          if (std.color) {
+            const n = (m.name || "").toLowerCase();
+            if (n.includes("face") || n.includes("head") || n.includes("skin")) {
+              std.color.copy(skin);
+              std.roughness = 0.55;
+            } else if (!n.includes("eye") && !n.includes("hair")) {
+              std.color.copy(cloth);
+              std.roughness = 0.62;
+              std.metalness = 0.08;
+            }
+          }
+        });
       }
     });
-  }, [bones, gltf.scene]);
+  }, [bones, gltf.scene, teacherId]);
 
   useFrame((state) => {
     if (!group.current) return;
