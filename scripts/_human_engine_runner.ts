@@ -15,15 +15,18 @@ import {
   detectContentAct,
   directLesson,
   directSentence,
+  analyzeScriptedLesson,
   bridgeInteractiveLessonToHuman,
   getDefaultTeacherProfile,
   getTeacherPersona,
   listDefaultTeacherProfiles,
   listTeachableCatalog,
+  planLessonForTeacher,
   resolveTeachablePackage,
   sampleFrame,
   textToPhonemeTrack,
 } from "../lib/human-engine/index";
+import { buildCoreTeacherCatalog, getCoreTeacherProfile } from "../lib/ai-teachers/core-profiles";
 
 const demos = buildDemoPlans();
 
@@ -312,6 +315,46 @@ if (!fs.existsSync(saraGlb) || !fs.existsSync(aliGlb)) {
 }
 if (fs.statSync(saraGlb).size < 100_000 || fs.statSync(aliGlb).size < 100_000) {
   throw new Error("teacher.glb files look empty");
+}
+
+// Core TeacherProfile entity — Sara & Ali only
+const coreCat = buildCoreTeacherCatalog();
+if (coreCat.teachers.length !== 2) throw new Error("core catalog must be sara+ali");
+if (!getCoreTeacherProfile("sara")?.eyeContact || !getCoreTeacherProfile("ali")?.bodyMovement) {
+  throw new Error("core profiles missing human behaviour flags");
+}
+if (getCoreTeacherProfile("sara")!.personality === getCoreTeacherProfile("ali")!.personality) {
+  throw new Error("sara/ali core personalities must differ");
+}
+
+// Pre-lesson analysis → dynamic teaching plan (understand first)
+const analyzed = analyzeScriptedLesson({
+  teacherId: "sara",
+  subject: "chemistry",
+  title: "جزيء الماء",
+  lines: [
+    "الماء مركّب من هيدروجين وأكسجين",
+    "الصيغة H2O",
+    "نموذج جزيئي ثلاثي الأبعاد",
+  ],
+  student: { level: "below", priorMistakes: ["نسيان نسب الذرات"] },
+});
+if (analyzed.pedagogy !== "chemistry_lab_molecular") {
+  throw new Error(`expected chemistry pedagogy, got ${analyzed.pedagogy}`);
+}
+if (!analyzed.analysis.objectives.length || !analyzed.beats.some((b) => b.purpose === "model_3d")) {
+  throw new Error("teaching plan missing objectives or molecular model beat");
+}
+if (!analyzed.beats.some((b) => b.purpose === "remediate")) {
+  throw new Error("below-level plan must auto-remediate without student request");
+}
+const planned = planLessonForTeacher({
+  pkg: resolveTeachablePackage({ packageId: "demo" }),
+  teacherId: "ali",
+  studentLevel: "on",
+});
+if (planned.teacherId !== "ali" || planned.beats.length < 5) {
+  throw new Error("planLessonForTeacher failed for ali");
 }
 
 // Universal bridge: any platform lesson → Sara/Ali HE plan with rich acts

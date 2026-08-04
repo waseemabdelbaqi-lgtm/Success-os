@@ -76,10 +76,16 @@ export {
 } from "./session-memory";
 export {
   bridgeInteractiveLessonToHuman,
+  planLessonForTeacher,
   listTeachableCatalog,
   resolveTeachablePackage,
 } from "./universal-lesson-bridge";
 export type { PlatformTeacherId } from "./universal-lesson-bridge";
+export {
+  analyzeLessonContent,
+  analyzeScriptedLesson,
+  teachingPlanToBlocks,
+} from "./lesson-content-analyzer";
 export { pickUnused, fingerprintSay, recordUnique } from "./performance-variety";
 export {
   createBlackboard,

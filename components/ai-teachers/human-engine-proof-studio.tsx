@@ -228,6 +228,18 @@ export function HumanEngineProofStudio() {
   const [voiceMode, setVoiceMode] = useState("—");
   const [preparing, setPreparing] = useState(false);
   const [prepPct, setPrepPct] = useState(0);
+  const [teachPlan, setTeachPlan] = useState<{
+    pedagogy?: string;
+    analysis?: {
+      objectives?: string[];
+      keyConcepts?: string[];
+      commonMistakes?: string[];
+      bestQuestions?: string[];
+      assessmentApproach?: string;
+    };
+    close?: { summary?: string; followUpPlan?: string };
+  } | null>(null);
+  const [coreLabel, setCoreLabel] = useState("");
   const voiceRef = useRef<SeamlessVoicePlayer | null>(null);
   const adapterRef = useRef<ReturnType<typeof createLocalPhotorealAdapter> | null>(
     null,
@@ -249,6 +261,35 @@ export function HumanEngineProofStudio() {
       if (next) setLessonId(next);
     }
   }, [lessons, lessonId]);
+
+  useEffect(() => {
+    let cancelled = false;
+    (async () => {
+      try {
+        const [coreRes, planRes] = await Promise.all([
+          fetch(`/api/ai-teachers/core?id=${teacherId}`),
+          fetch(
+            `/api/ai-teachers/teach-plan?teacherId=${teacherId}&proofId=${lessonId}&level=on`,
+          ),
+        ]);
+        const coreJson = await coreRes.json();
+        const planJson = await planRes.json();
+        if (cancelled) return;
+        const t = coreJson.teacher;
+        if (t) {
+          setCoreLabel(
+            `${t.fullName} · ${t.personality} · ${t.teachingStyle} · ${t.voiceID}`,
+          );
+        }
+        setTeachPlan(planJson.plan || null);
+      } catch {
+        if (!cancelled) setTeachPlan(null);
+      }
+    })();
+    return () => {
+      cancelled = true;
+    };
+  }, [teacherId, lessonId]);
 
   const persona = getTeacherPersona(teacherId);
   const meta = allLessons.find((l) => l.id === lessonId) || lessons[0] || allLessons[0]!;
@@ -474,11 +515,11 @@ export function HumanEngineProofStudio() {
       <header style={styles.header}>
         <div>
           <div style={styles.brand}>SUCCESS OS · HUMANOID DEMO</div>
-          <h1 style={styles.title}>سارة وعلي — معلمان رسميان عالميان داخل استوديو 3D</h1>
+          <h1 style={styles.title}>سارة وعلي — معلمان عالميان · يفهمان أولاً ثم يشرحان</h1>
           <p style={styles.sub}>
-            هدف المرحلة: معلمون رقميون محترفون (ليس Avatar) يدرّسون أي مادة عبر نفس
-            Human Engine. سارة هادئة مشجعة منظّمة؛ علي مباشر عملي تحليلي. اختر مادة من
-            بوابة القبول، شغّل، واسأل أثناء الشرح. لا تُعتبر أي ميزة مكتملة حتى تنجح عندك.
+            نجاح المشروع = جودتهما فقط. قبل كل درس يُحلَّل المحتوى وتُبنى خطة شرح ديناميكية
+            (أهداف، مفاهيم، أخطاء شائعة، أمثلة، أسئلة، رسم/تجربة/3D، تقييم). ليس قراءة نص —
+            ولا Avatar فقط. لا اكتمال حتى تنسى أنك أمام ذكاء اصطناعي.
           </p>
         </div>
         <Link href="/ai-teacher-preview" style={styles.link}>
@@ -557,13 +598,17 @@ export function HumanEngineProofStudio() {
 
       <div style={styles.personaRow}>
         <div style={styles.personaCard}>
-          <strong>{persona.displayName.ar}</strong>
-          <div>الصوت: {persona.voiceId}</div>
-          <div>الأسلوب: {persona.style === "warm" ? "دافئ وتشجيعي" : "دقيق وتعريفي"}</div>
+          <strong>{persona.displayName.ar} · Core Profile</strong>
+          <div>{coreLabel || `الصوت: ${persona.voiceId}`}</div>
+          <div>الأسلوب: {persona.style === "warm" ? "دافئ وتشجيعي" : "دقيق وتحليلي"}</div>
           <div>إعادة الشرح: {persona.interaction.reexplainStrategy}</div>
           <div>
             <Link href="/admin/ai-teachers" style={styles.link}>
-              تعديل الملف الشخصي
+              تعديل Teacher Mind
+            </Link>
+            {" · "}
+            <Link href="/api/ai-teachers/core" style={styles.link}>
+              TeacherProfile JSON
             </Link>
           </div>
         </div>
@@ -584,6 +629,57 @@ export function HumanEngineProofStudio() {
           </div>
         </div>
       </div>
+
+      {teachPlan?.analysis ? (
+        <section style={styles.planBox}>
+          <h2 style={styles.h2}>خطة الشرح الديناميكية (بعد تحليل المحتوى)</h2>
+          <div style={{ opacity: 0.9, marginBottom: 8 }}>
+            pedagogy: <code>{teachPlan.pedagogy || "—"}</code>
+          </div>
+          <div style={styles.planGrid}>
+            <div>
+              <strong>الأهداف</strong>
+              <ul>
+                {(teachPlan.analysis.objectives || []).slice(0, 3).map((x) => (
+                  <li key={x}>{x}</li>
+                ))}
+              </ul>
+            </div>
+            <div>
+              <strong>المفاهيم</strong>
+              <ul>
+                {(teachPlan.analysis.keyConcepts || []).slice(0, 3).map((x) => (
+                  <li key={x}>{x}</li>
+                ))}
+              </ul>
+            </div>
+            <div>
+              <strong>أخطاء شائعة</strong>
+              <ul>
+                {(teachPlan.analysis.commonMistakes || []).slice(0, 3).map((x) => (
+                  <li key={x}>{x}</li>
+                ))}
+              </ul>
+            </div>
+            <div>
+              <strong>أفضل أسئلة</strong>
+              <ul>
+                {(teachPlan.analysis.bestQuestions || []).slice(0, 3).map((x) => (
+                  <li key={x}>{x}</li>
+                ))}
+              </ul>
+            </div>
+          </div>
+          <div style={{ marginTop: 8, opacity: 0.88 }}>
+            تقييم: {teachPlan.analysis.assessmentApproach}
+          </div>
+          {teachPlan.close?.followUpPlan ? (
+            <div style={{ marginTop: 4, opacity: 0.88 }}>
+              متابعة: {teachPlan.close.followUpPlan}
+            </div>
+          ) : null}
+        </section>
+      ) : null}
 
       <div style={styles.stage}>
         <TeachingStudio3D
@@ -786,6 +882,20 @@ const styles: Record<string, CSSProperties> = {
     gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))",
     gap: 10,
     padding: "0 20px 12px",
+  },
+  planBox: {
+    background: "rgba(255,255,255,0.03)",
+    border: "1px solid rgba(255,255,255,0.1)",
+    borderRadius: 12,
+    padding: "14px 16px",
+    marginBottom: 16,
+  },
+  planGrid: {
+    display: "grid",
+    gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))",
+    gap: 12,
+    fontSize: 13,
+    lineHeight: 1.45,
   },
   personaCard: {
     background: "rgba(255,255,255,0.04)",

@@ -5,12 +5,17 @@ Schema: `success-os.platform-teachers.v1`
 
 ## Mission (highest priority)
 
-Platform success depends on **two characters only**: سارة (Sara) and علي (Ali).
+Platform success is measured **only** by Sara & Ali teaching quality — not feature count or code volume.
 
 - Do **not** build any new teacher or character until Sara and Ali reach world-class professional teacher quality.
-- Goal is **not** an Avatar — digital teachers a student cannot easily tell apart from skilled human teaching (plus AI personalization).
-- They must teach **any** future subject, book, curriculum, university course, or lesson **without** reprogramming or rewriting the Human Engine (content swaps; engine stays).
-- Any book / curriculum / lesson / university / course: Sara or Ali must **understand the content first**, then explain it professionally.
+- Goal is **not** Avatar / Digital Human alone — world-class teachers a student forgets are AI.
+- They must teach **any** future subject, book, curriculum, university, educational system, or course **without** rewriting the Human Engine.
+- **Understand first, then teach:** before every lesson the teacher analyzes the full content and builds a dynamic plan (objectives, concepts, common mistakes, examples, analogies, questions, drawings, experiments/sims, 3D models, assessment). They do not read text aloud.
+- Subject pedagogy: math → step-by-step · physics → diagrams/simulation · chemistry → lab/molecular · biology → anatomy models · language → dialogue/pronunciation · programming → write/run/explain code.
+- Auto-remediate when confusion is detected — student should not have to ask.
+- Close every lesson with summary + quiz + follow-up plan.
+- Core entity: `types/ai-teacher-profile.ts` (`TeacherProfile` / `TeacherID`).
+- Dynamic plan: `types/lesson-teaching-plan.ts` + `lib/human-engine/lesson-content-analyzer.ts`.
 
 ## Official faces
 

@@ -16,8 +16,13 @@ import { assertPlatformTeacherId } from "@/types/platform-teachers";
 import { DEMO_BOOKS } from "@/content/demo/catalog";
 import { DEMO_INTERACTIVE_LESSON } from "@/content/demo/interactive-lesson-engine";
 import { adaptBookLessonToInteractivePackage } from "@/lib/interactive-lesson-engine/adapt-book-lesson";
+import {
+  analyzeLessonContent,
+  teachingPlanToBlocks,
+} from "./lesson-content-analyzer";
 
 export type { PlatformTeacherId };
+export type { LessonTeachingPlan } from "@/types/lesson-teaching-plan";
 
 function ar(text?: { en?: string; ar?: string } | string | null): string {
   if (!text) return "";
@@ -197,21 +202,23 @@ function enrichLine(
 
 /**
  * Build a full Human Engine lesson input from any Interactive Lesson package.
+ * Pipeline: analyze content → dynamic teaching plan → HE blocks (no HE rewrite).
  */
 export function bridgeInteractiveLessonToHuman(opts: {
   pkg: InteractiveLessonPackage;
   teacherId: PlatformTeacherId | HumanCharacterId;
   studentLevel?: "below" | "on" | "above";
   maxDurationMs?: number;
+  priorMistakes?: string[];
+  ageBand?: "child" | "teen" | "adult";
+  engagementHint?: "focused" | "distracted" | "bored" | "unknown";
 }): HumanLessonInput {
   const teacherId = assertPlatformTeacherId(
     opts.teacherId === "ali" || opts.teacherId === "sara" ? opts.teacherId : "sara",
   );
   const subject = opts.pkg.filters?.subject || "general";
   const grade = opts.pkg.filters?.grade || "g1";
-  const family = subjectFamily(subject);
   const titleAr = ar(opts.pkg.title) || opts.pkg.id;
-  const texts = collectTexts(opts.pkg);
 
   const pace =
     opts.studentLevel === "below" ? 0.85 : opts.studentLevel === "above" ? 1.15 : 1;
@@ -222,56 +229,38 @@ export function bridgeInteractiveLessonToHuman(opts: {
     ),
   );
 
-  const blocks: HumanLessonBlock[] = [];
-  const source = texts.length
-    ? texts
-    : [titleAr, ar(opts.pkg.summary) || "نبدأ شرح الدرس."];
-
-  source.forEach((raw, i) => {
-    const enriched = enrichLine(raw, family, i, teacherId);
-    blocks.push({
-      id: `b_${i}_${enriched.kind}`,
-      kind: enriched.kind,
-      text: enriched.text,
-      textAr: enriched.text,
-    });
+  // 1) Understand content fully → dynamic plan (not raw text reading)
+  const plan = analyzeLessonContent({
+    pkg: opts.pkg,
+    teacherId,
+    student: {
+      level: opts.studentLevel || "on",
+      ageBand: opts.ageBand || "teen",
+      priorMistakes: opts.priorMistakes,
+      engagementHint: opts.engagementHint || "unknown",
+    },
   });
 
-  // Always close with assessment + summary acts
-  blocks.push({
-    id: "b_check_final",
-    kind: "check",
-    text: `قبل ما نخلص: لخّصوا بجملة واحدة أهم فكرة في «${titleAr}».`,
-    textAr: `قبل ما نخلص: لخّصوا بجملة واحدة أهم فكرة في «${titleAr}».`,
-  });
-  blocks.push({
-    id: "b_close",
-    kind: "close",
-    text:
-      teacherId === "sara"
-        ? `أحسنتوا. لخّصنا ${titleAr}. إلى اللقاء يا أحلى صف.`
-        : `ممتاز. ضبطنا مفهوم ${titleAr}. إلى اللقاء.`,
-    textAr:
-      teacherId === "sara"
-        ? `أحسنتوا. لخّصنا ${titleAr}. إلى اللقاء يا أحلى صف.`
-        : `ممتاز. ضبطنا مفهوم ${titleAr}. إلى اللقاء.`,
-  });
+  const fromPlan = teachingPlanToBlocks(plan);
+  const blocks: HumanLessonBlock[] = fromPlan.map((b) => ({
+    id: b.id,
+    kind: b.kind,
+    text: b.text,
+    textAr: b.text,
+  }));
 
-  // Ensure science/math get at least one rich act if content was thin
-  if (family === "science" && !blocks.some((b) => /تجرب|نموذج ثلاثي/.test(b.text))) {
-    blocks.splice(Math.min(2, blocks.length), 0, {
-      id: "b_lab_ensure",
-      kind: "practice",
-      text: `نجرب محاكاة بسيطة لـ«${titleAr}» ونلاحظ التغير خطوة بخطوة.`,
-      textAr: `نجرب محاكاة بسيطة لـ«${titleAr}» ونلاحظ التغير خطوة بخطوة.`,
-    });
-  }
-  if (family === "math" && !blocks.some((b) => /اكتب|خطوة/.test(b.text))) {
-    blocks.splice(Math.min(2, blocks.length), 0, {
-      id: "b_board_ensure",
-      kind: "explain",
-      text: `اكتبوا معي على السبورة الخطوات الأساسية لـ«${titleAr}».`,
-      textAr: `اكتبوا معي على السبورة الخطوات الأساسية لـ«${titleAr}».`,
+  // 2) If analysis was thin, enrich leftover corpus with subject pedagogy cues
+  if (blocks.length < 6) {
+    const family = subjectFamily(subject);
+    const texts = collectTexts(opts.pkg);
+    texts.slice(0, 8).forEach((raw, i) => {
+      const enriched = enrichLine(raw, family, i, teacherId);
+      blocks.push({
+        id: `b_${i}_${enriched.kind}`,
+        kind: enriched.kind,
+        text: enriched.text,
+        textAr: enriched.text,
+      });
     });
   }
 
@@ -281,11 +270,31 @@ export function bridgeInteractiveLessonToHuman(opts: {
     titleAr,
     preferredCharacterId: teacherId,
     language: "ar",
-    subject,
+    subject: plan.subject || subject,
     grade,
     durationMs,
     blocks,
   };
+}
+
+/** Public helper: analyze only (for Demo / API / admin inspection). */
+export function planLessonForTeacher(opts: {
+  pkg: InteractiveLessonPackage;
+  teacherId: PlatformTeacherId | HumanCharacterId;
+  studentLevel?: "below" | "on" | "above";
+  priorMistakes?: string[];
+}) {
+  const teacherId = assertPlatformTeacherId(
+    opts.teacherId === "ali" || opts.teacherId === "sara" ? opts.teacherId : "sara",
+  );
+  return analyzeLessonContent({
+    pkg: opts.pkg,
+    teacherId,
+    student: {
+      level: opts.studentLevel || "on",
+      priorMistakes: opts.priorMistakes,
+    },
+  });
 }
 
 function pkgId(pkg: InteractiveLessonPackage): string {

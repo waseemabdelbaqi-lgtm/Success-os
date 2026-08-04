@@ -32,6 +32,23 @@ for (const id of [
   assert(proofSrc.includes(id), `Missing acceptance lesson ${id}`);
 }
 
+const coreProfile = path.join(root, "types/ai-teacher-profile.ts");
+assert(fs.existsSync(coreProfile), "Missing TeacherProfile core entity");
+const coreSrc = fs.readFileSync(coreProfile, "utf8");
+assert(coreSrc.includes('TeacherID = "sara" | "ali"'), "TeacherID must be sara|ali");
+assert(coreSrc.includes("export interface TeacherProfile"), "Missing TeacherProfile interface");
+assert(fs.existsSync(path.join(root, "lib/ai-teachers/core-profiles.ts")), "Missing core-profiles");
+assert(
+  fs.existsSync(path.join(root, "lib/human-engine/lesson-content-analyzer.ts")),
+  "Missing lesson-content-analyzer",
+);
+assert(fs.existsSync(path.join(root, "types/lesson-teaching-plan.ts")), "Missing lesson-teaching-plan");
+assert(fs.existsSync(path.join(root, "app/api/ai-teachers/core/route.ts")), "Missing core API");
+assert(
+  fs.existsSync(path.join(root, "app/api/ai-teachers/teach-plan/route.ts")),
+  "Missing teach-plan API",
+);
+
 const doctrineTs = path.join(root, "types/platform-teachers.ts");
 assert(fs.existsSync(doctrineTs), "Missing types/platform-teachers.ts");
 const doctrineSrc = fs.readFileSync(doctrineTs, "utf8");
