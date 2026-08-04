@@ -10,11 +10,17 @@ const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const required = [
   "src/ai-teacher/runtime/quality-gate.ts",
   "src/ai-teacher/runtime/bootstrap.ts",
+  "src/ai-teacher/runtime/bootstrap-teacher.ts",
   "src/ai-teacher/runtime/measure-metrics.ts",
+  "src/ai-teacher/runtime/final-acceptance-gate.ts",
+  "src/ai-teacher/runtime/acceptance-runtime.ts",
+  "src/ai-teacher/runtime/HumanEngine.ts",
   "src/ai-teacher/runtime/index.ts",
   "src/ai-teacher/teachers/sara.ts",
   "src/ai-teacher/teachers/ali.ts",
   "app/api/ai-teachers/quality-gate/route.ts",
+  "app/api/ai-teachers/final-acceptance/route.ts",
+  "app/api/ai-teachers/human-engine/route.ts",
   "scripts/_human_teacher_quality_runner.ts",
 ];
 

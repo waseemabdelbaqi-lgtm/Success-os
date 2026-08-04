@@ -166,6 +166,34 @@ const aliMetricsSrc = fs.readFileSync(
 );
 assert(saraMetricsSrc.includes("export async function loadSaraMetrics"), "Sara loadSaraMetrics");
 assert(aliMetricsSrc.includes("export async function loadAliMetrics"), "Ali loadAliMetrics");
+assert(
+  fs.existsSync(path.join(root, "src/ai-teacher/runtime/final-acceptance-gate.ts")),
+  "Missing Final Acceptance Gate",
+);
+assert(
+  fs.existsSync(path.join(root, "src/ai-teacher/runtime/HumanEngine.ts")),
+  "Missing quality-gated HumanEngine",
+);
+assert(
+  fs.existsSync(path.join(root, "src/ai-teacher/runtime/bootstrap-teacher.ts")),
+  "Missing bootstrap-teacher",
+);
+assert(
+  fs.existsSync(path.join(root, "app/api/ai-teachers/final-acceptance/route.ts")),
+  "Missing final-acceptance API",
+);
+const finalSrc = fs.readFileSync(
+  path.join(root, "src/ai-teacher/runtime/final-acceptance-gate.ts"),
+  "utf8",
+);
+assert(finalSrc.includes("finalAcceptanceGate"), "finalAcceptanceGate export");
+assert(finalSrc.includes("has15SecondShowcase"), "must require 15s showcase");
+const heClass = fs.readFileSync(
+  path.join(root, "src/ai-teacher/runtime/HumanEngine.ts"),
+  "utf8",
+);
+assert(heClass.includes("startTeacherSession"), "HumanEngine uses quality bootstrap");
+assert(heClass.includes("finalAcceptanceGate"), "HumanEngine uses final acceptance");
 
 const doctrineTs = path.join(root, "types/platform-teachers.ts");
 assert(fs.existsSync(doctrineTs), "Missing types/platform-teachers.ts");

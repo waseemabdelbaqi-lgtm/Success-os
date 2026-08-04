@@ -263,7 +263,7 @@ export function HumanEngineProofStudio() {
     setPrepPct(4);
     setToast("فحص بوابة جودة المعلم…");
     try {
-      // Human Teacher Quality Gate — blocks Sara/Ali until world-class
+      // Quality Gate + Final Acceptance — blocks until world-class + 15s showcase
       const gateRes = await fetch(
         `/api/ai-teachers/quality-gate?teacher=${teacherId}`,
       );
@@ -279,6 +279,26 @@ export function HumanEngineProofStudio() {
           detail
             ? `بوابة الجودة أوقفت ${teacherId === "ali" ? "علي" : "سارة"}: ${detail}`
             : `بوابة الجودة أوقفت ${teacherId === "ali" ? "علي" : "سارة"} — لم يصل لمستوى المعلم المحترف بعد`,
+        );
+        setPreparing(false);
+        return;
+      }
+
+      setPrepPct(10);
+      setToast("فحص القبول النهائي…");
+      const accRes = await fetch(
+        `/api/ai-teachers/final-acceptance?teacher=${teacherId}`,
+      );
+      const acc = (await accRes.json()) as {
+        passed?: boolean;
+        reason?: string;
+        productionAllowed?: boolean;
+      };
+      if (!accRes.ok || !acc.passed || !acc.productionAllowed) {
+        setToast(
+          acc.reason
+            ? `القبول النهائي رفض ${teacherId === "ali" ? "علي" : "سارة"}: ${acc.reason}`
+            : `القبول النهائي رفض ${teacherId === "ali" ? "علي" : "سارة"} — مطلوب عرض 15 ثانية بجودة الإنتاج`,
         );
         setPreparing(false);
         return;

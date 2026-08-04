@@ -1,6 +1,6 @@
 /**
- * Human Teacher Quality Gate — ship blocker for Sara & Ali.
- * This runner is EXPECTED to FAIL until teachers meet filmed-professional bar.
+ * Human Teacher Quality + Final Acceptance — ship blockers for Sara & Ali.
+ * EXPECTED to FAIL until filmed-professional bar + 15s showcase exist.
  */
 import {
   assertTeacherQuality,
@@ -11,17 +11,33 @@ import {
 import { loadSaraMetrics } from "../src/ai-teacher/teachers/sara";
 import { loadAliMetrics } from "../src/ai-teacher/teachers/ali";
 import { bootstrapTeacher } from "../src/ai-teacher/runtime/bootstrap";
+import { HumanEngine } from "../src/ai-teacher/runtime/HumanEngine";
+import { buildAcceptanceRuntime } from "../src/ai-teacher/runtime/acceptance-runtime";
+import {
+  assertFinalAcceptance,
+  finalAcceptanceGate,
+} from "../src/ai-teacher/runtime/final-acceptance-gate";
 
 async function report(id: "sara" | "ali") {
   const metrics = id === "sara" ? await loadSaraMetrics() : await loadAliMetrics();
   const diagnosis = diagnoseTeacherQuality(metrics);
+  const runtime = buildAcceptanceRuntime(metrics);
+  const acceptance = await finalAcceptanceGate(id, runtime);
   console.log(`\n── ${id.toUpperCase()} ──`);
   console.log(JSON.stringify(metrics, null, 2));
-  console.log(`result=${diagnosis.result}`);
+  console.log(`quality=${diagnosis.result}`);
   if (diagnosis.failures.length) {
     for (const f of diagnosis.failures) console.log(`  FAIL: ${f}`);
   }
-  return { metrics, diagnosis };
+  console.log(
+    `acceptance=${acceptance.passed ? "PASSED" : "REJECTED"}` +
+      (acceptance.reason ? ` (${acceptance.reason})` : ""),
+  );
+  console.log(
+    `showcase15s=${runtime.has15SecondShowcase ? "YES" : "MISSING"}` +
+      (runtime.showcasePath ? ` @ ${runtime.showcasePath}` : ""),
+  );
+  return { metrics, diagnosis, runtime, acceptance };
 }
 
 async function main() {
@@ -31,15 +47,17 @@ async function main() {
   console.log("\nMIN thresholds:", HUMAN_TEACHER_QUALITY_MIN);
 
   if (sara.diagnosis.result !== QualityResult.FAIL) {
-    console.log("Sara unexpectedly PASS — verifying bootstrap…");
+    console.log("Sara unexpectedly PASS quality — verifying bootstrap…");
     await bootstrapTeacher("sara");
   }
   if (ali.diagnosis.result !== QualityResult.FAIL) {
-    console.log("Ali unexpectedly PASS — verifying bootstrap…");
+    console.log("Ali unexpectedly PASS quality — verifying bootstrap…");
     await bootstrapTeacher("ali");
   }
 
-  let blocked = 0;
+  let qualityBlocked = 0;
+  let acceptanceBlocked = 0;
+
   for (const [id, pack] of [
     ["sara", sara],
     ["ali", ali],
@@ -48,18 +66,49 @@ async function main() {
       assertTeacherQuality(pack.metrics);
       console.log(`✅ ${id.toUpperCase()} PASSED QUALITY GATE`);
     } catch {
-      blocked += 1;
+      qualityBlocked += 1;
       console.error(`❌ ${id.toUpperCase()} BLOCKED by quality gate`);
+    }
+
+    try {
+      assertFinalAcceptance(pack.acceptance, id);
+      console.log(`✅ ${id.toUpperCase()} PASSED FINAL ACCEPTANCE`);
+    } catch {
+      acceptanceBlocked += 1;
+      console.error(`❌ ${id.toUpperCase()} BLOCKED by final acceptance`);
     }
   }
 
-  if (blocked > 0) {
+  // HumanEngine.initialize must refuse until both gates pass
+  for (const id of ["sara", "ali"] as const) {
+    const engine = new HumanEngine(id);
+    let refused = false;
+    try {
+      await engine.initialize();
+    } catch (e) {
+      refused = /QUALITY GATE FAILED|FINAL ACCEPTANCE GATE FAILED/i.test(
+        e instanceof Error ? e.message : String(e),
+      );
+    }
+    const shouldRefuse = qualityBlocked > 0 || acceptanceBlocked > 0;
+    if (shouldRefuse && !refused) {
+      throw new Error(`HumanEngine.initialize must refuse blocked teacher ${id}`);
+    }
+    console.log(
+      refused
+        ? `HumanEngine(${id}).initialize correctly REFUSED`
+        : `HumanEngine(${id}).initialize READY`,
+    );
+  }
+
+  if (qualityBlocked > 0 || acceptanceBlocked > 0) {
     console.error(`
 ====================================================
- HUMAN TEACHER QUALITY GATE — BUILD FAILED
- ${blocked}/2 teachers blocked (Sara & Ali).
- Continue improving until they behave like
- professional human teachers.
+ HUMAN TEACHER SHIP GATES — BUILD FAILED
+ quality blocked: ${qualityBlocked}/2
+ acceptance blocked: ${acceptanceBlocked}/2
+ Continue improving until Sara & Ali behave like
+ professional human teachers — with a 15s showcase.
 ====================================================
 `);
     process.exit(1);
