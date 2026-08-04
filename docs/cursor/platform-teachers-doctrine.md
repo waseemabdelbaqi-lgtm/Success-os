@@ -89,10 +89,20 @@ Voice (checklist item 4) stays incomplete until the owner confirms success on De
 | `/ai-teacher/demo` · `/ai-teacher/proof` | Multi-subject acceptance labs (owner Demo) |
 | `/admin/ai-teachers` | Edit Teacher Mind profiles |
 
+## Pluggable stack (keep HE stable for years)
+
+| Concern | Now (standard port) | Upgrade path without HE rewrite |
+|---------|---------------------|----------------------------------|
+| Reasoning / plan | `success-os.teacher-reasoner.v1` (deterministic analyzer) | Swap `TeacherProfile.llmModel` → cloud LLM adapter |
+| Voice | `edge-tts` via `voiceProvider` / `voiceID` | ElevenLabs / Azure / HeyGen voice IDs |
+| Body / face | R3F + Mixamo skinned GLB + HE tracks | MetaHuman / Unreal adapter (existing port) |
+| Content → teach | `lesson-content-analyzer` → HE blocks | Richer misconception DB / curriculum graph |
+
 ## Related
 
+- `types/ai-teacher-profile.ts` · `lib/ai-teachers/core-profiles.ts`
+- `types/lesson-teaching-plan.ts` · `lib/human-engine/lesson-content-analyzer.ts`
 - `types/platform-teachers.ts`
 - `docs/cursor/human-engine.md`
-- `lib/ai-teachers/catalog.ts`
 - `lib/human-engine/universal-lesson-bridge.ts`
 - `lib/human-engine/proof-lessons.ts`
