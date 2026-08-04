@@ -1,14 +1,5 @@
-import { HumanEngineProofStudio } from "@/components/ai-teachers/human-engine-proof-studio";
+import { redirect } from "next/navigation";
 
-export const metadata = {
-  title: "استوديو سارة وعلي | Success OS",
-  description:
-    "ادخل الاستوديو التعليمي العالمي مع المعلمة سارة والمعلم علي — شرح حي داخل حصة كاملة",
-};
-
-/**
- * Product classroom surface — Sara & Ali teaching studio.
- */
-export default function HumanoidDemoPage() {
-  return <HumanEngineProofStudio />;
+export default function AiTeacherDemoRedirect() {
+  redirect("/ai-teacher");
 }

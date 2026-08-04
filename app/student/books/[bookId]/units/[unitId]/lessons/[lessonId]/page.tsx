@@ -112,8 +112,8 @@ export default async function StudentLessonPage({
           Classic reader
         </Link>
         {" · "}
-        <Link href="/ai-teacher/studio" style={{ color: "#0f766e" }}>
-          Studio
+        <Link href="/ai-teacher" style={{ color: "#0f766e" }}>
+          سارة وعلي
         </Link>
       </div>
       <InteractiveLessonViewer pkg={pkg} locale={locale} />

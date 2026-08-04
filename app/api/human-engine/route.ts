@@ -73,11 +73,6 @@ export async function GET(req: Request) {
       ],
       paths: {
         platform: "/ai-teacher",
-        demo: "/ai-teacher/demo",
-        proof: "/ai-teacher/proof",
-        live: "/ai-teacher/live",
-        preview10s: "/ai-teacher/human-engine-preview",
-        threeStudioPhase1: "/ai-teacher/studio",
         adminProfiles: "/admin/ai-teachers",
       },
       honesty: {

@@ -78,29 +78,26 @@ export function StudioLessonLauncher({
     return (
       <div style={bar}>
         تعذّر تخطيط الاستوديو —{" "}
-        <Link href="/ai-teacher/studio" style={{ color: "#ffd84a" }}>
-          افتح الاستوديو التجريبي
+        <Link href="/ai-teacher" style={{ color: "#ffd84a" }}>
+          ادخل مع سارة وعلي
         </Link>
       </div>
     );
   }
 
-  const href3d = `/ai-teacher/studio?lessonId=${encodeURIComponent(lessonId)}&teacher=${plan.cast.id}`;
-  const hrefLive = `/ai-teacher/live?teacher=${plan.cast.id}`;
-  const hrefProof = `/ai-teacher/proof`;
+  const teacher = plan.cast.id === "ali" ? "ali" : "sara";
+  const hrefStudio = `/ai-teacher?teacher=${teacher}`;
 
   return (
     <div style={bar}>
       <div>
         <strong style={{ color: "#ffd84a" }}>{plan.cast.displayNameAr}</strong>
         {" · "}
-        تم اختيار الأسلوب <b>{plan.analysis.teachingStyle}</b>
-        {" · "}
-        {plan.scenes.length} مشاهد سينمائية
+        جاهز لشرح الدرس داخل الاستوديو
       </div>
       <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
         <Link
-          href={hrefProof}
+          href={hrefStudio}
           style={{
             background: "linear-gradient(120deg,#f0e4d0,#d8c4a0)",
             color: "#1a1208",
@@ -110,33 +107,7 @@ export function StudioLessonLauncher({
             borderRadius: 12,
           }}
         >
-          صفحة الإثبات (Proof Lab)
-        </Link>
-        <Link
-          href={hrefLive}
-          style={{
-            background: "rgba(255,255,255,0.12)",
-            color: "#f3f0e7",
-            fontWeight: 800,
-            textDecoration: "none",
-            padding: "10px 16px",
-            borderRadius: 12,
-          }}
-        >
-          استوديو Human Engine
-        </Link>
-        <Link
-          href={href3d}
-          style={{
-            background: "rgba(255,255,255,0.08)",
-            color: "#f3f0e7",
-            fontWeight: 700,
-            textDecoration: "none",
-            padding: "10px 16px",
-            borderRadius: 12,
-          }}
-        >
-          استوديو 3D (DHS)
+          ابدأ الحصة مع {plan.cast.displayNameAr}
         </Link>
       </div>
     </div>

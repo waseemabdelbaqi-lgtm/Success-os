@@ -35,20 +35,8 @@ export default function AiTeachersPage() {
             {catalog.counts.total} معلمين فقط · {catalog.counts.female} أنثى · {catalog.counts.male} ذكر · تبسيط فوري وفحص فهم لحظي
           </p>
           <p style={{ marginTop: 12 }}>
-            <Link href="/ai-teacher-preview" style={{ fontWeight: 800, color: "#ff5a6a" }}>
-              AI Teacher Preview (مراجعة التقدم)
-            </Link>
-            {" · "}
-            <Link href="/ai-teacher/studio" style={{ fontWeight: 800, color: "#0f766e" }}>
-              الاستوديو
-            </Link>
-            {" · "}
-            <Link href="/ai-teacher/classroom" style={{ fontWeight: 800, color: "#0f766e" }}>
-              الصف التفاعلي
-            </Link>
-            {" · "}
-            <Link href="/media/ai-teachers/index.html" style={{ fontWeight: 700, color: "#0f766e" }}>
-              معاينة الأصول
+            <Link href="/ai-teacher" style={{ fontWeight: 800, color: "#0f766e" }}>
+              ادخل الحصة مع سارة وعلي
             </Link>
           </p>
         </header>

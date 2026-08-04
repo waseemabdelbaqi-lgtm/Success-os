@@ -228,8 +228,8 @@ export function PlatformTeacherStudio() {
           <Link href="/admin/ai-teachers" style={styles.link}>
             إدارة الشخصية
           </Link>
-          <Link href="/ai-teacher/demo" style={styles.linkMuted}>
-            مختبر تقني
+          <Link href="/ai-teacher" style={styles.linkMuted}>
+            الاستوديو
           </Link>
         </div>
       </header>

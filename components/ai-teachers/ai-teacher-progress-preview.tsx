@@ -485,26 +485,11 @@ export function AiTeacherProgressPreview() {
           <h2 style={{ marginTop: 0 }}>ما تم بناؤه فعلاً ويمكن تشغيله الآن</h2>
           <ul>
             <li>
-              صفحات:{" "}
-              <Link href="/ai-teacher/classroom" style={{ color: "#ffd84a" }}>
-                /ai-teacher/classroom
+              صفحة المنتج:{" "}
+              <Link href="/ai-teacher" style={{ color: "#ffd84a" }}>
+                /ai-teacher
               </Link>
-              {" · "}
-              <Link href="/ai-teacher/studio" style={{ color: "#ffd84a" }}>
-                /ai-teacher/studio
-              </Link>
-              {" · "}
-              <Link href="/ai-teacher/human-engine-preview" style={{ color: "#ffd84a" }}>
-                /ai-teacher/human-engine-preview
-              </Link>
-              {" · "}
-              <Link href="/ai-teacher/live" style={{ color: "#ffd84a" }}>
-                /ai-teacher/live
-              </Link>
-              {" · "}
-              <Link href="/ai-teacher/proof" style={{ color: "#ffd84a" }}>
-                /ai-teacher/proof
-              </Link>
+              {" — استوديو سارة وعلي"}
             </li>
             <li>أصول photoreal لسارة وعلي + صوت عصبي مخبوز</li>
             <li>محرك تخطيط: تحليل درس → اختيار معلم → مشاهد → سلوكيات ديناميكية</li>

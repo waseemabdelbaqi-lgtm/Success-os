@@ -177,11 +177,8 @@ export function TeacherMindAdmin({ initialProfiles }: Props) {
           </p>
         </div>
         <div style={styles.headerLinks}>
-          <Link href="/ai-teacher/demo" style={styles.link}>
-            تجربة العرض
-          </Link>
-          <Link href="/ai-teacher/proof" style={styles.link}>
-            مختبر الإثبات
+          <Link href="/ai-teacher" style={styles.link}>
+            استوديو سارة وعلي
           </Link>
         </div>
       </header>

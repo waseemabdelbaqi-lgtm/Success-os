@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useMemo, useRef, useState, type CSSProperties } from "react";
+import { useSearchParams } from "next/navigation";
 import type {
   HumanFrameSample,
   HumanPerformancePlan,
@@ -115,7 +116,11 @@ async function withLiveLineTts(
 const FEATURED_LESSON: ProofLessonId = "forces_law_lab";
 
 export function HumanEngineProofStudio() {
-  const allLessons = useMemo(() => listProofLessons(), []);
+  const searchParams = useSearchParams();
+  const allLessons = useMemo(
+    () => listProofLessons().filter((l) => l.id !== "voice_endurance_10m"),
+    [],
+  );
   const [phase, setPhase] = useState<"welcome" | "studio">("welcome");
   const [teacherId, setTeacherId] = useState<TeacherId>("sara");
   const [lessonId, setLessonId] = useState<ProofLessonId>(FEATURED_LESSON);
@@ -261,6 +266,14 @@ export function HumanEngineProofStudio() {
     autoStarted.current = false;
   };
 
+  /** Deep-link preselects teacher on the entrance — click still unlocks browser audio. */
+  useEffect(() => {
+    const t = searchParams.get("teacher");
+    if (t === "sara" || t === "ali") {
+      setTeacherId(t);
+    }
+  }, [searchParams]);
+
   useEffect(() => {
     if (phase !== "studio" || autoStarted.current || playing || preparing) return;
     autoStarted.current = true;
@@ -359,24 +372,24 @@ export function HumanEngineProofStudio() {
       <div dir="rtl" style={styles.welcome}>
         <div style={styles.welcomeGlow} />
         <div style={styles.welcomeInner}>
-          <p style={styles.welcomeBrand}>Success OS</p>
-          <h1 style={styles.welcomeTitle}>استوديو التعليم العالمي</h1>
+          <h1 style={styles.welcomeBrand}>Success OS</h1>
+          <p style={styles.welcomeTitle}>سارة وعلي</p>
           <p style={styles.welcomeSub}>
-            ادخل الحصة مع معلميك الرسميين — سارة وعلي
+            معلمان رقميان واقعيان — ادخل الحصة المصوّرة وتفاعل معهما مباشرة
           </p>
           <div style={styles.teacherPick}>
             {(
               [
                 {
                   id: "sara" as const,
-                  name: "المعلمة سارة",
-                  line: "هادئة · مشجعة · تشرح بالتدرج",
+                  name: "سارة",
+                  line: "هادئة · مشجعة · منظمة",
                   img: "/media/ai-teachers/sara/portrait.png",
                 },
                 {
                   id: "ali" as const,
-                  name: "المعلم علي",
-                  line: "مباشر · عملي · تفكير تحليلي",
+                  name: "علي",
+                  line: "عملي · تحليلي · مباشر",
                   img: "/media/ai-teachers/ali/portrait.png",
                 },
               ] as const
@@ -384,14 +397,22 @@ export function HumanEngineProofStudio() {
               <button
                 key={t.id}
                 type="button"
-                style={styles.teacherCard}
+                style={{
+                  ...styles.teacherCard,
+                  ...(teacherId === t.id
+                    ? {
+                        outline: "2px solid rgba(201,162,89,0.85)",
+                        boxShadow: "0 18px 48px rgba(201,162,89,0.22)",
+                      }
+                    : null),
+                }}
                 onClick={() => enterStudio(t.id)}
               >
                 <img src={t.img} alt={t.name} style={styles.teacherImg} />
                 <div style={styles.teacherMeta}>
                   <strong style={styles.teacherName}>{t.name}</strong>
                   <span style={styles.teacherLine}>{t.line}</span>
-                  <span style={styles.enterCta}>ادخل الحصة</span>
+                  <span style={styles.enterCta}>ابدأ الحصة الآن</span>
                 </div>
               </button>
             ))}
@@ -571,24 +592,26 @@ const styles: Record<string, CSSProperties> = {
   },
   welcomeBrand: {
     margin: 0,
-    letterSpacing: "0.28em",
-    textTransform: "uppercase",
-    fontSize: 12,
-    color: "#c9a259",
+    fontFamily: '"Fraunces", "IBM Plex Sans Arabic", serif',
+    fontSize: "clamp(2.6rem, 7vw, 4.6rem)",
     fontWeight: 700,
+    letterSpacing: "-0.02em",
+    color: "#f4e6c8",
+    lineHeight: 1.05,
   },
   welcomeTitle: {
-    margin: "14px 0 10px",
-    fontFamily: '"Fraunces", "IBM Plex Sans Arabic", serif',
-    fontSize: "clamp(2rem, 5vw, 3.4rem)",
-    fontWeight: 700,
-    lineHeight: 1.15,
+    margin: "10px 0 12px",
+    fontFamily: '"IBM Plex Sans Arabic", "Segoe UI", sans-serif',
+    fontSize: "clamp(1.35rem, 3vw, 1.85rem)",
+    fontWeight: 600,
+    color: "#c9a259",
+    letterSpacing: "0.04em",
   },
   welcomeSub: {
     margin: "0 auto 36px",
     maxWidth: 520,
-    opacity: 0.88,
-    fontSize: 18,
+    opacity: 0.9,
+    fontSize: 17,
     lineHeight: 1.7,
   },
   teacherPick: {

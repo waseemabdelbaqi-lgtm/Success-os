@@ -176,20 +176,34 @@ function PhotorealTeacher({
   speaking,
   mouthEnergy,
   walkOffset = 0,
+  lookYaw = 0,
+  lookPitch = 0,
 }: {
   teacherId: "sara" | "ali";
   pose: Studio3DPose;
   speaking: boolean;
   mouthEnergy: number;
   walkOffset?: number;
+  lookYaw?: number;
+  lookPitch?: number;
 }) {
   const stand = useTexture(`/media/ai-teachers/${teacherId}/classroom/stand.png`);
   const point = useTexture(`/media/ai-teachers/${teacherId}/classroom/point.png`);
   const write = useTexture(`/media/ai-teachers/${teacherId}/classroom/write.png`);
+  const mouthClosed = useTexture(
+    `/media/ai-teachers/${teacherId}/flagship/mouth-closed.png`,
+  );
+  const mouthOpen = useTexture(
+    `/media/ai-teachers/${teacherId}/flagship/mouth-open.png`,
+  );
+  const mouthWide = useTexture(
+    `/media/ai-teachers/${teacherId}/flagship/mouth-wide.png`,
+  );
   const group = useRef<THREE.Group>(null);
   const mat = useRef<THREE.MeshStandardMaterial>(null);
+  const mouthMat = useRef<THREE.MeshBasicMaterial>(null);
 
-  for (const t of [stand, point, write]) {
+  for (const t of [stand, point, write, mouthClosed, mouthOpen, mouthWide]) {
     t.colorSpace = THREE.SRGBColorSpace;
     t.anisotropy = 8;
   }
@@ -198,24 +212,40 @@ function PhotorealTeacher({
   const aspect = map.image ? map.image.width / map.image.height : 0.62;
   const height = 2.55;
   const width = height * aspect;
+  const energy = Math.max(0, Math.min(1, mouthEnergy));
+  const mouthMap =
+    !speaking || energy < 0.12
+      ? mouthClosed
+      : energy > 0.55
+        ? mouthWide
+        : mouthOpen;
+  const mouthOpacity = speaking ? 0.22 + energy * 0.55 : 0.08;
 
   useFrame((state) => {
     if (!group.current) return;
     const t = state.clock.elapsedTime;
     const breath = Math.sin(t * (speaking ? 2.4 : 1.15)) * (speaking ? 0.012 : 0.007);
     const sway = Math.sin(t * 1.1) * (speaking ? 0.025 : 0.012);
+    const headYaw = THREE.MathUtils.degToRad(lookYaw || 0) * 0.35;
+    const headPitch = THREE.MathUtils.degToRad(lookPitch || 0) * 0.2;
     const baseX = teacherId === "ali" ? -1.25 : -1.45;
     group.current.position.x = THREE.MathUtils.lerp(
       group.current.position.x,
       baseX + walkOffset * 0.55,
       0.08,
     );
-    group.current.position.y = breath;
-    group.current.rotation.y = sway;
+    group.current.position.y = 1.28 + breath;
+    group.current.rotation.y = sway + headYaw;
+    group.current.rotation.x = headPitch;
     if (mat.current) {
-      const pulse = speaking ? 1 + mouthEnergy * 0.04 : 1;
-      mat.current.emissiveIntensity = speaking ? 0.08 + mouthEnergy * 0.12 : 0.03;
-      group.current.scale.setScalar(THREE.MathUtils.lerp(group.current.scale.x, pulse, 0.12));
+      mat.current.emissiveIntensity = speaking ? 0.06 + energy * 0.1 : 0.03;
+    }
+    if (mouthMat.current) {
+      mouthMat.current.opacity = THREE.MathUtils.lerp(
+        mouthMat.current.opacity,
+        mouthOpacity,
+        0.22,
+      );
     }
   });
 
@@ -235,6 +265,19 @@ function PhotorealTeacher({
           side={THREE.DoubleSide}
         />
       </mesh>
+      {/* Soft lip-sync overlay — photoreal mouth stills driven by jaw energy */}
+      <mesh position={[0, height * 0.18, 0.012]} scale={[0.42, 0.22, 1]}>
+        <planeGeometry args={[width, height]} />
+        <meshBasicMaterial
+          ref={mouthMat}
+          map={mouthMap}
+          transparent
+          opacity={mouthOpacity}
+          depthWrite={false}
+          alphaTest={0.08}
+          side={THREE.DoubleSide}
+        />
+      </mesh>
     </group>
   );
 }
@@ -247,6 +290,20 @@ function SmartBoard({
   screenElement?: ScreenElement | null;
 }) {
   const label = screenElement?.label;
+  const progress = Math.max(0.18, Math.min(1, screenElement?.strokeProgress ?? 1));
+  const visibleCount = Math.max(
+    1,
+    Math.ceil(lines.slice(0, 5).length * progress),
+  );
+  const reveal = lines.slice(0, visibleCount);
+  const last = reveal[reveal.length - 1] || "";
+  const lastFrac =
+    reveal.length === lines.slice(0, 5).length
+      ? 1
+      : Math.max(0.35, (progress * lines.slice(0, 5).length) % 1 || progress);
+  const lastShown =
+    lastFrac >= 0.98 ? last : last.slice(0, Math.max(1, Math.ceil(last.length * lastFrac)));
+
   return (
     <group position={[1.55, 1.7, -1.75]}>
       <RoundedBox args={[3.4, 2.1, 0.08]} radius={0.04}>
@@ -278,28 +335,39 @@ function SmartBoard({
               color: "#142018",
               borderRadius: 10,
               padding: "8px 10px",
+              clipPath: `inset(0 ${(1 - progress) * 100}% 0 0)`,
             }}
           >
             {label}
           </div>
         ) : null}
-        {lines.slice(0, 5).map((line, i) => (
-          <div
-            key={`${line}-${i}`}
-            style={{
-              marginBottom: 6,
-              fontWeight: 800,
-              fontSize: i === 0 && !label ? 18 : 13,
-              background:
-                i === 0 && !label ? "rgba(255,255,255,0.92)" : "rgba(255,255,255,0.1)",
-              color: i === 0 && !label ? "#142018" : "#f4fffb",
-              borderRadius: 10,
-              padding: "6px 8px",
-            }}
-          >
-            {line}
-          </div>
-        ))}
+        {reveal.map((line, i) => {
+          const text =
+            i === reveal.length - 1 && reveal.length < Math.min(5, lines.length)
+              ? lastShown
+              : line;
+          return (
+            <div
+              key={`${line}-${i}`}
+              style={{
+                marginBottom: 6,
+                fontWeight: 800,
+                fontSize: i === 0 && !label ? 18 : 13,
+                background:
+                  i === 0 && !label ? "rgba(255,255,255,0.92)" : "rgba(255,255,255,0.1)",
+                color: i === 0 && !label ? "#142018" : "#f4fffb",
+                borderRadius: 10,
+                padding: "6px 8px",
+                transition: "opacity 220ms ease",
+              }}
+            >
+              {text}
+              {i === reveal.length - 1 && progress < 0.98 ? (
+                <span style={{ opacity: 0.55 }}>▍</span>
+              ) : null}
+            </div>
+          );
+        })}
       </Html>
     </group>
   );
@@ -482,6 +550,8 @@ function SceneBody(props: Props) {
         speaking={props.speaking || !!frame.speaking}
         mouthEnergy={props.mouthEnergy || frame.jawOpen || 0}
         walkOffset={props.walkOffset}
+        lookYaw={props.lookYaw ?? frame.head?.yaw ?? 0}
+        lookPitch={props.lookPitch ?? frame.head?.pitch ?? 0}
       />
       <LessonProps
         props={props.props}
