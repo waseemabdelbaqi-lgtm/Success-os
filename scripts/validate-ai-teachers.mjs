@@ -32,11 +32,12 @@ for (const id of [
   assert(proofSrc.includes(id), `Missing acceptance lesson ${id}`);
 }
 
-const coreProfile = path.join(root, "types/ai-teacher-profile.ts");
-assert(fs.existsSync(coreProfile), "Missing TeacherProfile core entity");
-const coreSrc = fs.readFileSync(coreProfile, "utf8");
-assert(coreSrc.includes('TeacherID = "sara" | "ali"'), "TeacherID must be sara|ali");
-assert(coreSrc.includes("export interface TeacherProfile"), "Missing TeacherProfile interface");
+const entityProfile = path.join(root, "src/ai-teacher/core/TeacherProfile.ts");
+assert(fs.existsSync(entityProfile), "Missing Configuration Layer TeacherProfile");
+const entitySrc = fs.readFileSync(entityProfile, "utf8");
+assert(entitySrc.includes('TeacherID = "sara" | "ali"'), "TeacherID must be sara|ali");
+assert(entitySrc.includes("export interface TeacherProfile"), "Missing TeacherProfile interface");
+assert(fs.existsSync(path.join(root, "types/ai-teacher-profile.ts")), "Missing API envelope types");
 assert(fs.existsSync(path.join(root, "lib/ai-teachers/core-profiles.ts")), "Missing core-profiles");
 assert(
   fs.existsSync(path.join(root, "lib/human-engine/lesson-content-analyzer.ts")),
@@ -47,6 +48,34 @@ assert(fs.existsSync(path.join(root, "app/api/ai-teachers/core/route.ts")), "Mis
 assert(
   fs.existsSync(path.join(root, "app/api/ai-teachers/teach-plan/route.ts")),
   "Missing teach-plan API",
+);
+
+// Configuration Layer — engines must read Sara/Ali from src/ai-teacher
+assert(fs.existsSync(path.join(root, "src/ai-teacher/config.ts")), "Missing src/ai-teacher/config.ts");
+assert(fs.existsSync(path.join(root, "src/ai-teacher/teachers/sara.ts")), "Missing sara.ts config");
+assert(fs.existsSync(path.join(root, "src/ai-teacher/teachers/ali.ts")), "Missing ali.ts config");
+const coreProfilesSrc = fs.readFileSync(path.join(root, "lib/ai-teachers/core-profiles.ts"), "utf8");
+assert(
+  coreProfilesSrc.includes("@/src/ai-teacher/config"),
+  "core-profiles must read Configuration Layer",
+);
+const mindDefaultsSrc = fs.readFileSync(
+  path.join(root, "lib/human-engine/teacher-profiles-defaults.ts"),
+  "utf8",
+);
+assert(
+  mindDefaultsSrc.includes("@/src/ai-teacher/config"),
+  "Teacher Mind defaults must overlay Configuration Layer",
+);
+const liveTtsSrc = fs.readFileSync(path.join(root, "lib/ai-teachers/live-tts.ts"), "utf8");
+assert(
+  liveTtsSrc.includes("resolveTeacherVoice"),
+  "Voice engine must resolve voice from Configuration Layer",
+);
+const catalogSrc = fs.readFileSync(path.join(root, "lib/ai-teachers/catalog.ts"), "utf8");
+assert(
+  catalogSrc.includes("@/src/ai-teacher/config"),
+  "catalog must read Configuration Layer",
 );
 
 const doctrineTs = path.join(root, "types/platform-teachers.ts");
@@ -105,7 +134,11 @@ for (const legacy of ["omar", "layla", "waseem"]) {
 }
 
 const ts = fs.readFileSync(path.join(root, "lib/ai-teachers/catalog.ts"), "utf8");
-assert(ts.includes('id: "sara"') && ts.includes('id: "ali"'), "catalog.ts missing sara/ali");
+assert(
+  (ts.includes('"sara"') || ts.includes("'sara'")) &&
+    (ts.includes('"ali"') || ts.includes("'ali'")),
+  "catalog.ts missing sara/ali",
+);
 assert(!ts.includes('id: "omar"') && !ts.includes('id: "layla"'), "catalog.ts still has legacy teachers");
 assert(fs.existsSync(path.join(root, "app/ai-teacher/page.tsx")), "Missing platform teacher page /ai-teacher");
 assert(fs.existsSync(path.join(root, "components/ai-teachers/platform-teacher-studio.tsx")), "Missing platform teacher studio");

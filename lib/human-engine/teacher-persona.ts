@@ -1,6 +1,7 @@
 /**
- * Compatibility bridge: TeacherPersona view over TeacherMindProfile JSON.
- * Prefer getTeacherProfile() for new code; this keeps semantic-sentence working.
+ * Compatibility bridge: TeacherPersona view over Teacher Mind JSON,
+ * after Configuration Layer overlay (src/ai-teacher → teacher-profiles-defaults).
+ * Keeps semantic-sentence / Lesson Director working without duplication.
  */
 import type {
   EmotionId,

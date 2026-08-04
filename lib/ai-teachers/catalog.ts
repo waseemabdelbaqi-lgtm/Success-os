@@ -1,5 +1,6 @@
 /**
  * AI Teachers catalog — Sara & Ali only (official platform faces).
+ * Identity / voice / personality from Configuration Layer (src/ai-teacher).
  * Doctrine: docs/cursor/platform-teachers-doctrine.md
  */
 import type { AiTeacherProfile, AiTeachersCatalog } from "@/types/ai-teachers";
@@ -7,6 +8,10 @@ import {
   PLATFORM_TEACHER_IDS,
   PLATFORM_TEACHERS_DOCTRINE,
 } from "@/types/platform-teachers";
+import {
+  getTeacherConfig,
+  resolveTeacherVoice,
+} from "@/src/ai-teacher/config";
 
 function L(en: string, ar: string) {
   return { en, ar };
@@ -48,76 +53,62 @@ const POSE_PACK = {
   idle: "idle.png",
 } as const;
 
+function buildCatalogEntry(
+  id: "sara" | "ali",
+  arName: string,
+  appearanceAr: string,
+  appearanceEn: string,
+): AiTeacherProfile {
+  const cfg = getTeacherConfig(id)!;
+  const voice = resolveTeacherVoice(id);
+  return {
+    id,
+    schema: "success-os.ai-teacher.v1",
+    role: "platform_official_primary",
+    displayName: L(cfg.fullName, arName),
+    gender: cfg.gender,
+    countryCode: "JO",
+    localeCodes: ["ar-JO", "en"],
+    educationalStages: [
+      "early_childhood",
+      "elementary",
+      "middle_school",
+      "high_school",
+    ],
+    subjects: [...ANY_PLATFORM_SUBJECTS],
+    personalityTone: L(cfg.personality, cfg.personality),
+    appearanceNotes: L(
+      `${appearanceEn} · ${cfg.outfit}`,
+      `${appearanceAr} · ${cfg.outfit}`,
+    ),
+    voice: {
+      edgeTts: voice.voiceId,
+      heygenVoiceIdEnv: id === "ali" ? "HEYGEN_VOICE_ID_ALI" : "HEYGEN_VOICE_ID_SARA",
+      heygenAvatarIdEnv:
+        id === "ali" ? "HEYGEN_AVATAR_ID_ALI" : "HEYGEN_AVATAR_ID_SARA",
+    },
+    assets: assets(id, { ...POSE_PACK }),
+    digitalHumanPresetKey: id === "ali" ? "dh.jo.ali" : "dh.jo.sara",
+    enabled: cfg.enabled,
+    generatedBy: "cursor-image-gen",
+    updatedAt: UPDATED,
+  };
+}
+
 export function listAiTeachers(): AiTeacherProfile[] {
   return [
-    {
-      id: "sara",
-      schema: "success-os.ai-teacher.v1",
-      role: "platform_official_primary",
-      displayName: L("Teacher Sara", "المعلمة سارة"),
-      gender: "female",
-      countryCode: "JO",
-      localeCodes: ["ar-JO", "en"],
-      educationalStages: [
-        "early_childhood",
-        "elementary",
-        "middle_school",
-        "high_school",
-      ],
-      subjects: [...ANY_PLATFORM_SUBJECTS],
-      personalityTone: L(
-        "World-class platform teacher — calm, encouraging, organized, gradual; Sara stays Sara across every subject and language",
-        "معلمة المنصة العالمية — هادئة مشجعة منظمة بالتدرج؛ سارة تبقى سارة في كل مادة وكل لغة",
-      ),
-      appearanceNotes: L(
-        "Jordanian woman, olive blazer — photoreal AI teacher",
-        "أردنية، بليزر زيتوني — معلمة مولَّدة بالذكاء الاصطناعي",
-      ),
-      voice: {
-        edgeTts: "ar-JO-SanaNeural",
-        heygenVoiceIdEnv: "HEYGEN_VOICE_ID_SARA",
-        heygenAvatarIdEnv: "HEYGEN_AVATAR_ID_SARA",
-      },
-      assets: assets("sara", { ...POSE_PACK }),
-      digitalHumanPresetKey: "dh.jo.sara",
-      enabled: true,
-      generatedBy: "cursor-image-gen",
-      updatedAt: UPDATED,
-    },
-    {
-      id: "ali",
-      schema: "success-os.ai-teacher.v1",
-      role: "platform_official_primary",
-      displayName: L("Teacher Ali", "المعلم علي"),
-      gender: "male",
-      countryCode: "JO",
-      localeCodes: ["ar-JO", "en"],
-      educationalStages: [
-        "early_childhood",
-        "elementary",
-        "middle_school",
-        "high_school",
-      ],
-      subjects: [...ANY_PLATFORM_SUBJECTS],
-      personalityTone: L(
-        "World-class platform teacher — direct, practical, analytical problem-solving; Ali stays Ali across every subject and language",
-        "معلم المنصة العالمي — مباشر عملي تحليلي لحل المشكلات؛ علي يبقى علياً في كل مادة وكل لغة",
-      ),
-      appearanceNotes: L(
-        "Jordanian man, navy blazer — photoreal AI teacher",
-        "أردني، بليزر كحلي — معلم مولَّد بالذكاء الاصطناعي",
-      ),
-      voice: {
-        edgeTts: "ar-JO-TaimNeural",
-        heygenVoiceIdEnv: "HEYGEN_VOICE_ID_ALI",
-        heygenAvatarIdEnv: "HEYGEN_AVATAR_ID_ALI",
-      },
-      assets: assets("ali", { ...POSE_PACK }),
-      digitalHumanPresetKey: "dh.jo.ali",
-      enabled: true,
-      generatedBy: "cursor-image-gen",
-      updatedAt: UPDATED,
-    },
+    buildCatalogEntry(
+      "sara",
+      "المعلمة سارة",
+      "أردنية، بليزر زيتوني — معلمة مولَّدة بالذكاء الاصطناعي",
+      "Jordanian woman, olive blazer — photoreal AI teacher",
+    ),
+    buildCatalogEntry(
+      "ali",
+      "المعلم علي",
+      "أردني، بليزر كحلي — معلم مولَّد بالذكاء الاصطناعي",
+      "Jordanian man, navy blazer — photoreal AI teacher",
+    ),
   ];
 }
 

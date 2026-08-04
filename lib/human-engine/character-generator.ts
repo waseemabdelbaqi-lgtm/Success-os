@@ -1,8 +1,14 @@
 /**
  * Character Generator — builds provider-portable character specs.
+ * Identity / voice / outfit overlay from Configuration Layer (src/ai-teacher).
  * MetaHuman mesh ids can replace photorealAssetRoot later without API changes.
  */
 import type { CharacterSpec, HumanCharacterId, HumanLessonInput } from "@/types/human-engine";
+import {
+  getTeacherConfig,
+  isWarmTeachingStyle,
+  resolveTeacherVoice,
+} from "@/src/ai-teacher/config";
 
 const CHARACTERS: Record<"sara" | "ali", CharacterSpec> = {
   sara: {
@@ -43,15 +49,36 @@ const CHARACTERS: Record<"sara" | "ali", CharacterSpec> = {
   },
 };
 
+function withConfig(id: "sara" | "ali"): CharacterSpec {
+  const base = CHARACTERS[id];
+  const cfg = getTeacherConfig(id);
+  const voice = resolveTeacherVoice(id);
+  if (!cfg) return base;
+  return {
+    ...base,
+    displayName: {
+      en: cfg.fullName,
+      ar: base.displayName.ar,
+    },
+    gender: cfg.gender,
+    voiceId: voice.voiceId,
+    appearance: {
+      ...base.appearance,
+      outfit: cfg.outfit || base.appearance.outfit,
+    },
+    defaultEmotion: isWarmTeachingStyle(cfg) ? "warm" : "focused",
+  };
+}
+
 export function listHumanCharacters(): CharacterSpec[] {
-  return [CHARACTERS.sara, CHARACTERS.ali];
+  return [withConfig("sara"), withConfig("ali")];
 }
 
 export function getCharacter(id: HumanCharacterId): CharacterSpec {
-  if (id === "ali") return CHARACTERS.ali;
-  if (id === "sara") return CHARACTERS.sara;
+  if (id === "ali") return withConfig("ali");
+  if (id === "sara") return withConfig("sara");
   // Extensible: unknown ids fall back to Sara shell until registered.
-  return { ...CHARACTERS.sara, id };
+  return { ...withConfig("sara"), id };
 }
 
 export function generateCharacter(input: HumanLessonInput): CharacterSpec {

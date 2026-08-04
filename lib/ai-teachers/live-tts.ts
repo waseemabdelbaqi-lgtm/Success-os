@@ -1,21 +1,21 @@
 /**
  * Live neural TTS for Sara / Ali — per spoken line with prosody + duration.
- * edge-tts: ar-JO-SanaNeural / ar-JO-TaimNeural · cached under .data/
+ * Voice IDs / rate / pitch come from Configuration Layer (src/ai-teacher).
  */
 import "server-only";
 import crypto from "node:crypto";
 import fs from "node:fs";
 import path from "node:path";
 import { spawnSync } from "node:child_process";
-
-const VOICES = {
-  sara: "ar-JO-SanaNeural",
-  ali: "ar-JO-TaimNeural",
-} as const;
+import { resolveTeacherVoice } from "@/src/ai-teacher/config";
 
 const CACHE_DIR = path.join(process.cwd(), ".data/ai-teachers/tts");
 
-export type LiveTtsTeacher = keyof typeof VOICES;
+export type LiveTtsTeacher = "sara" | "ali";
+
+function voiceIdFor(teacherId: LiveTtsTeacher): string {
+  return resolveTeacherVoice(teacherId).voiceId;
+}
 
 /** Prosody style — changes rate/pitch so tone follows teaching act. */
 export type TtsStyle =
@@ -37,22 +37,16 @@ const STYLE_PROSODY: Record<TtsStyle, { rate: string; pitch: string }> = {
   default: { rate: "-6%", pitch: "+0Hz" },
 };
 
-/** Persona lock: Sara calmer/slower; Ali sharper/lower — same style, different teacher. */
-const TEACHER_PROSODY_BIAS: Record<
-  LiveTtsTeacher,
-  { rateDelta: number; pitchDelta: number }
-> = {
-  sara: { rateDelta: -3, pitchDelta: 1 },
-  ali: { rateDelta: 2, pitchDelta: -2 },
-};
-
+/** Prosody bias derived from Configuration Layer speechRate / pitch. */
 function applyTeacherProsody(
   teacherId: LiveTtsTeacher,
   base: { rate: string; pitch: string },
 ): { rate: string; pitch: string } {
-  const bias = TEACHER_PROSODY_BIAS[teacherId];
-  const rateN = Number(String(base.rate).replace("%", "")) + bias.rateDelta;
-  const pitchN = Number(String(base.pitch).replace("Hz", "")) + bias.pitchDelta;
+  const cfg = resolveTeacherVoice(teacherId);
+  const rateDelta = Math.round((cfg.speechRate - 1) * 100);
+  const pitchDelta = Math.round((cfg.pitch - 1) * 20);
+  const rateN = Number(String(base.rate).replace("%", "")) + rateDelta;
+  const pitchN = Number(String(base.pitch).replace("Hz", "")) + pitchDelta;
   const rate = `${rateN >= 0 ? "+" : ""}${rateN}%`;
   const pitch = `${pitchN >= 0 ? "+" : ""}${pitchN}Hz`;
   return { rate, pitch };
@@ -87,11 +81,10 @@ export function ttsCacheKey(
   const norm = text.replace(/\s+/g, " ").trim().slice(0, 500);
   const p = STYLE_PROSODY[style] || STYLE_PROSODY.default;
   const applied = applyTeacherProsody(teacherId, p);
+  const voice = voiceIdFor(teacherId);
   return crypto
     .createHash("sha1")
-    .update(
-      `${teacherId}|${VOICES[teacherId]}|${applied.rate}|${applied.pitch}|${norm}|v4`,
-    )
+    .update(`${teacherId}|${voice}|${applied.rate}|${applied.pitch}|${norm}|v5`)
     .digest("hex");
 }
 
@@ -121,7 +114,7 @@ function synthesizeWithPython(
   style: TtsStyle,
   outFile: string,
 ): void {
-  const voice = VOICES[teacherId];
+  const voice = voiceIdFor(teacherId);
   const prosody = applyTeacherProsody(
     teacherId,
     STYLE_PROSODY[style] || STYLE_PROSODY.default,
@@ -191,7 +184,7 @@ export function ensureLiveTtsMp3(
     bytes: fs.statSync(filePath).size,
     durationMs,
     style: st,
-    voice: VOICES[id],
+    voice: voiceIdFor(id),
   };
 }
 

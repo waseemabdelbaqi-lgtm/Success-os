@@ -8,6 +8,7 @@ import {
   type LiveTtsTeacher,
   type TtsStyle,
 } from "@/lib/ai-teachers/live-tts";
+import { resolveTeacherVoice } from "@/src/ai-teacher/config";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -110,7 +111,7 @@ export async function POST(req: Request) {
       return NextResponse.json({
         success: true,
         teacherId,
-        voice: teacherId === "ali" ? "ar-JO-TaimNeural" : "ar-JO-SanaNeural",
+        voice: resolveTeacherVoice(teacherId).voiceId,
         mode: "live-neural-per-line-v2",
         totalSpokenMs: spokenMs,
         totalWithPausesMs: spokenMs + pauseMs,

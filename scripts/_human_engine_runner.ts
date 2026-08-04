@@ -27,6 +27,11 @@ import {
   textToPhonemeTrack,
 } from "../lib/human-engine/index";
 import { buildCoreTeacherCatalog, getCoreTeacherProfile } from "../lib/ai-teachers/core-profiles";
+import {
+  getTeacherConfig,
+  listTeacherConfigs,
+  resolveTeacherVoice,
+} from "../src/ai-teacher/config";
 
 const demos = buildDemoPlans();
 
@@ -317,7 +322,15 @@ if (fs.statSync(saraGlb).size < 100_000 || fs.statSync(aliGlb).size < 100_000) {
   throw new Error("teacher.glb files look empty");
 }
 
-// Core TeacherProfile entity — Sara & Ali only
+// Configuration Layer → engines (no duplicate identity tables)
+const cfgList = listTeacherConfigs();
+if (cfgList.length !== 2) throw new Error("config layer must expose sara+ali");
+if (!getTeacherConfig("sara") || !getTeacherConfig("ali")) {
+  throw new Error("config layer missing sara or ali");
+}
+if (resolveTeacherVoice("sara").voiceId === resolveTeacherVoice("ali").voiceId) {
+  throw new Error("config-resolved voices must differ");
+}
 const coreCat = buildCoreTeacherCatalog();
 if (coreCat.teachers.length !== 2) throw new Error("core catalog must be sara+ali");
 if (!getCoreTeacherProfile("sara")?.eyeContact || !getCoreTeacherProfile("ali")?.bodyMovement) {
@@ -325,6 +338,10 @@ if (!getCoreTeacherProfile("sara")?.eyeContact || !getCoreTeacherProfile("ali")?
 }
 if (getCoreTeacherProfile("sara")!.personality === getCoreTeacherProfile("ali")!.personality) {
   throw new Error("sara/ali core personalities must differ");
+}
+// Mind + character must inherit resolved voice from config layer
+if (getDefaultTeacherProfile("sara").voice.edgeTts !== resolveTeacherVoice("sara").voiceId) {
+  throw new Error("Teacher Mind voice not wired to Configuration Layer");
 }
 
 // Pre-lesson analysis → dynamic teaching plan (understand first)
