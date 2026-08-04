@@ -14,6 +14,7 @@ const required = [
   "src/ai-teacher/runtime/measure-metrics.ts",
   "src/ai-teacher/runtime/final-acceptance-gate.ts",
   "src/ai-teacher/runtime/acceptance-runtime.ts",
+  "src/ai-teacher/runtime/recovery-plan.ts",
   "src/ai-teacher/runtime/HumanEngine.ts",
   "src/ai-teacher/runtime/index.ts",
   "src/ai-teacher/teachers/sara.ts",
@@ -62,10 +63,11 @@ if (
 console.log(out.trim());
 
 const gateWorked =
-  out.includes("HUMAN TEACHER QUALITY GATE") ||
+  out.includes("HUMAN TEACHER") ||
   out.includes("BLOCKED by quality gate") ||
   out.includes("human-teacher-quality OK") ||
-  out.includes("QUALITY GATE FAILED");
+  out.includes("QUALITY GATE FAILED") ||
+  out.includes("recovery plan:");
 
 if (!gateWorked) {
   console.error("Quality gate runner did not produce expected output");

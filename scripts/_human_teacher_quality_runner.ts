@@ -17,12 +17,14 @@ import {
   assertFinalAcceptance,
   finalAcceptanceGate,
 } from "../src/ai-teacher/runtime/final-acceptance-gate";
+import { buildTeacherRecoveryPlan } from "../src/ai-teacher/runtime/recovery-plan";
 
 async function report(id: "sara" | "ali") {
   const metrics = id === "sara" ? await loadSaraMetrics() : await loadAliMetrics();
   const diagnosis = diagnoseTeacherQuality(metrics);
   const runtime = buildAcceptanceRuntime(metrics);
   const acceptance = await finalAcceptanceGate(id, runtime);
+  const recovery = buildTeacherRecoveryPlan(id, runtime);
   console.log(`\n── ${id.toUpperCase()} ──`);
   console.log(JSON.stringify(metrics, null, 2));
   console.log(`quality=${diagnosis.result}`);
@@ -37,7 +39,13 @@ async function report(id: "sara" | "ali") {
     `showcase15s=${runtime.has15SecondShowcase ? "YES" : "MISSING"}` +
       (runtime.showcasePath ? ` @ ${runtime.showcasePath}` : ""),
   );
-  return { metrics, diagnosis, runtime, acceptance };
+  if (recovery.tasks.length) {
+    console.log("recovery plan:");
+    for (const t of recovery.tasks) {
+      console.log(`  P${t.priority}. ${t.title}`);
+    }
+  }
+  return { metrics, diagnosis, runtime, acceptance, recovery };
 }
 
 async function main() {

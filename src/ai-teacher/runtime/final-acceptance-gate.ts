@@ -59,6 +59,7 @@ export function assertFinalAcceptance(result: AcceptanceResult, teacher: "sara" 
  Reason: ${result.reason || "unknown"}
 
  Sara & Ali are NOT accepted for production.
+ See Automatic Recovery Plan for next tasks.
 
  Build FAILED.
 ====================================================

@@ -194,6 +194,17 @@ const heClass = fs.readFileSync(
 );
 assert(heClass.includes("startTeacherSession"), "HumanEngine uses quality bootstrap");
 assert(heClass.includes("finalAcceptanceGate"), "HumanEngine uses final acceptance");
+assert(
+  fs.existsSync(path.join(root, "src/ai-teacher/runtime/recovery-plan.ts")),
+  "Missing Automatic Recovery Plan",
+);
+const recoverySrc = fs.readFileSync(
+  path.join(root, "src/ai-teacher/runtime/recovery-plan.ts"),
+  "utf8",
+);
+assert(recoverySrc.includes("buildRecoveryPlan"), "buildRecoveryPlan required");
+assert(recoverySrc.includes("Photorealism"), "recovery must cover Photorealism");
+assert(recoverySrc.includes("Showcase"), "recovery must cover Showcase");
 
 const doctrineTs = path.join(root, "types/platform-teachers.ts");
 assert(fs.existsSync(doctrineTs), "Missing types/platform-teachers.ts");

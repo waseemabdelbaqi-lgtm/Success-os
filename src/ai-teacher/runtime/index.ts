@@ -30,3 +30,10 @@ export {
   resolveShowcasePath,
   type FinalAcceptanceRuntime,
 } from "./acceptance-runtime";
+export {
+  buildRecoveryPlan,
+  collectFailedChecks,
+  buildTeacherRecoveryPlan,
+  type AcceptanceFailure,
+  type RecoveryTask,
+} from "./recovery-plan";
