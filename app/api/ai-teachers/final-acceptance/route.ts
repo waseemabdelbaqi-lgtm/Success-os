@@ -7,6 +7,10 @@ import { loadAliMetrics } from "@/src/ai-teacher/teachers/ali";
 import { buildAcceptanceRuntime } from "@/src/ai-teacher/runtime/acceptance-runtime";
 import { finalAcceptanceGate } from "@/src/ai-teacher/runtime/final-acceptance-gate";
 import { buildTeacherRecoveryPlan } from "@/src/ai-teacher/runtime/recovery-plan";
+import {
+  getActiveRecoveryTask,
+  syncTeacherFromAcceptanceRuntime,
+} from "@/src/lib/ai-teachers/recovery-engine";
 
 export const dynamic = "force-dynamic";
 
@@ -21,6 +25,7 @@ export async function GET(req: Request) {
     const runtime = buildAcceptanceRuntime(metrics);
     const result = await finalAcceptanceGate(teacher, runtime);
     const recovery = buildTeacherRecoveryPlan(teacher, runtime);
+    const engineTeacher = syncTeacherFromAcceptanceRuntime(teacher, runtime);
     return {
       teacher,
       runtime,
@@ -28,6 +33,12 @@ export async function GET(req: Request) {
       status: result.passed ? ("ACCEPTED" as const) : ("REJECTED" as const),
       failedChecks: recovery.failure.failedChecks,
       recoveryPlan: recovery.tasks,
+      recoveryEngine: {
+        acceptanceStatus: engineTeacher.acceptanceStatus,
+        version: engineTeacher.version,
+        activeRecoveryTask: getActiveRecoveryTask(teacher),
+        tasks: engineTeacher.recoveryPlan,
+      },
     };
   }
 

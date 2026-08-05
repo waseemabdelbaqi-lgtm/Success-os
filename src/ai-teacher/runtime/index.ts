@@ -37,3 +37,20 @@ export {
   type AcceptanceFailure,
   type RecoveryTask,
 } from "./recovery-plan";
+
+/** Full recovery engine (ordered dependencies, evidence, acceptance). */
+export {
+  PRIMARY_TEACHER_IDS,
+  PRIMARY_TEACHERS,
+  REQUIRED_SCORE,
+  RECOVERY_ORDER,
+  buildRecoveryPlan as buildEngineRecoveryPlan,
+  updateTeacherScore,
+  startRecoveryTask,
+  getActiveRecoveryTask,
+  getRecoveryPlanResponse,
+  syncTeacherFromAcceptanceRuntime,
+  normalizePrimaryTeacherId,
+  assertPrimaryTeacher,
+  calculateAcceptanceStatus,
+} from "@/src/lib/ai-teachers/recovery-engine";

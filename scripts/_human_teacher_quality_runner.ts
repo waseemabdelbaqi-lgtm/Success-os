@@ -18,6 +18,10 @@ import {
   finalAcceptanceGate,
 } from "../src/ai-teacher/runtime/final-acceptance-gate";
 import { buildTeacherRecoveryPlan } from "../src/ai-teacher/runtime/recovery-plan";
+import {
+  getActiveRecoveryTask,
+  syncTeacherFromAcceptanceRuntime,
+} from "../src/lib/ai-teachers/recovery-engine";
 
 async function report(id: "sara" | "ali") {
   const metrics = id === "sara" ? await loadSaraMetrics() : await loadAliMetrics();
@@ -25,6 +29,8 @@ async function report(id: "sara" | "ali") {
   const runtime = buildAcceptanceRuntime(metrics);
   const acceptance = await finalAcceptanceGate(id, runtime);
   const recovery = buildTeacherRecoveryPlan(id, runtime);
+  const engineTeacher = syncTeacherFromAcceptanceRuntime(id, runtime);
+  const active = getActiveRecoveryTask(id);
   console.log(`\n── ${id.toUpperCase()} ──`);
   console.log(JSON.stringify(metrics, null, 2));
   console.log(`quality=${diagnosis.result}`);
@@ -45,7 +51,15 @@ async function report(id: "sara" | "ali") {
       console.log(`  P${t.priority}. ${t.title}`);
     }
   }
-  return { metrics, diagnosis, runtime, acceptance, recovery };
+  console.log(
+    `recovery-engine: status=${engineTeacher.acceptanceStatus} active=${active?.category || "none"} (${active?.status || "-"})`,
+  );
+  for (const t of engineTeacher.recoveryPlan) {
+    console.log(
+      `  [${t.status}] ${t.order}. ${t.category} ${t.currentScore}/${t.requiredScore}`,
+    );
+  }
+  return { metrics, diagnosis, runtime, acceptance, recovery, engineTeacher };
 }
 
 async function main() {

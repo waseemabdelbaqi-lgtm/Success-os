@@ -15,6 +15,7 @@ const required = [
   "src/ai-teacher/runtime/final-acceptance-gate.ts",
   "src/ai-teacher/runtime/acceptance-runtime.ts",
   "src/ai-teacher/runtime/recovery-plan.ts",
+  "src/lib/ai-teachers/recovery-engine.ts",
   "src/ai-teacher/runtime/HumanEngine.ts",
   "src/ai-teacher/runtime/index.ts",
   "src/ai-teacher/teachers/sara.ts",

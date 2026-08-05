@@ -205,6 +205,19 @@ const recoverySrc = fs.readFileSync(
 assert(recoverySrc.includes("buildRecoveryPlan"), "buildRecoveryPlan required");
 assert(recoverySrc.includes("Photorealism"), "recovery must cover Photorealism");
 assert(recoverySrc.includes("Showcase"), "recovery must cover Showcase");
+assert(
+  fs.existsSync(path.join(root, "src/lib/ai-teachers/recovery-engine.ts")),
+  "Missing recovery-engine.ts",
+);
+const engineSrc = fs.readFileSync(
+  path.join(root, "src/lib/ai-teachers/recovery-engine.ts"),
+  "utf8",
+);
+assert(engineSrc.includes("PRIMARY_TEACHER_IDS"), "PRIMARY_TEACHER_IDS required");
+assert(engineSrc.includes('"sara"') && engineSrc.includes('"ali"'), "engine must be Sara+Ali only");
+assert(engineSrc.includes("syncTeacherFromAcceptanceRuntime"), "must sync live metrics");
+assert(engineSrc.includes("getRecoveryPlanResponse"), "getRecoveryPlanResponse required");
+assert(!engineSrc.includes('"omar"') && !engineSrc.includes('"layla"'), "no legacy teachers");
 
 const doctrineTs = path.join(root, "types/platform-teachers.ts");
 assert(fs.existsSync(doctrineTs), "Missing types/platform-teachers.ts");
