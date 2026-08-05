@@ -10,7 +10,7 @@ import type { TeacherSessionMemory } from "@/types/teacher-mind";
 import {
   adaptLiveTeacher,
   buildProofLessonInput,
-  createLocalPhotorealAdapter,
+  createHumanoidWebGLAdapter,
   createSessionMemory,
   deriveLiveTeacherState,
   gestureToClassroomPose,
@@ -151,7 +151,7 @@ export function HumanEngineProofStudio() {
   const [askOpen, setAskOpen] = useState(false);
   const [studioLighting, setStudioLighting] = useState("key_fill_rim");
   const voiceRef = useRef<SeamlessVoicePlayer | null>(null);
-  const adapterRef = useRef<ReturnType<typeof createLocalPhotorealAdapter> | null>(
+  const adapterRef = useRef<ReturnType<typeof createHumanoidWebGLAdapter> | null>(
     null,
   );
   const basePlanRef = useRef<HumanPerformancePlan | null>(null);
@@ -201,7 +201,7 @@ export function HumanEngineProofStudio() {
       setTMs(0);
       setToast("");
 
-      const adapter = createLocalPhotorealAdapter({
+      const adapter = createHumanoidWebGLAdapter({
         onFrame: (f) => setFrame(f),
       });
       adapterRef.current = adapter;

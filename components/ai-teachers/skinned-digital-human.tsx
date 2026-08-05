@@ -71,30 +71,72 @@ export function SkinnedDigitalHuman({ teacherId, frame, walkOffset = 0 }: Props)
 
     // Outfit identity: Sara olive / Ali navy — same mesh, distinct presence
     const cloth = new THREE.Color(teacherId === "ali" ? "#1e3a5f" : "#3f5a3a");
-    const skin = new THREE.Color(teacherId === "ali" ? "#c99574" : "#d4a07a");
+    const skinTint = new THREE.Color(teacherId === "ali" ? "#e8b896" : "#f0c4a0");
     gltf.scene.traverse((o) => {
       const m = o as THREE.Mesh;
-      if (m.isMesh) {
-        m.castShadow = true;
-        m.receiveShadow = true;
-        const mats = Array.isArray(m.material) ? m.material : [m.material];
-        mats.forEach((mat) => {
-          if (!mat) return;
-          mat.side = THREE.FrontSide;
-          const std = mat as THREE.MeshStandardMaterial;
-          if (std.color) {
-            const n = (m.name || "").toLowerCase();
-            if (n.includes("face") || n.includes("head") || n.includes("skin")) {
-              std.color.copy(skin);
-              std.roughness = 0.55;
-            } else if (!n.includes("eye") && !n.includes("hair")) {
-              std.color.copy(cloth);
-              std.roughness = 0.62;
-              std.metalness = 0.08;
-            }
-          }
-        });
-      }
+      if (!m.isMesh) return;
+      m.castShadow = true;
+      m.receiveShadow = true;
+      const mats = Array.isArray(m.material) ? m.material : [m.material];
+      const n = (m.name || "").toLowerCase();
+      const isFace =
+        n.includes("face") ||
+        n.includes("head") ||
+        n.includes("skin") ||
+        !!m.morphTargetDictionary;
+      const isEye = n.includes("eye");
+      const isHair = n.includes("hair");
+
+      mats.forEach((mat, idx) => {
+        if (!mat) return;
+        mat.side = THREE.FrontSide;
+
+        if (isFace) {
+          const src = mat as THREE.MeshStandardMaterial;
+          const physical = new THREE.MeshPhysicalMaterial({
+            map: src.map ?? null,
+            normalMap: src.normalMap ?? null,
+            roughnessMap: src.roughnessMap ?? null,
+            aoMap: src.aoMap ?? null,
+            color: src.map ? new THREE.Color("#ffffff") : skinTint.clone(),
+            roughness: 0.48,
+            metalness: 0.02,
+            sheen: 0.35,
+            sheenRoughness: 0.55,
+            sheenColor: new THREE.Color("#e8b090"),
+            clearcoat: 0.08,
+            clearcoatRoughness: 0.55,
+            envMapIntensity: 0.85,
+            morphTargets: !!m.morphTargetDictionary,
+            morphNormals: !!m.morphTargetDictionary,
+          });
+          if (Array.isArray(m.material)) m.material[idx] = physical;
+          else m.material = physical;
+          return;
+        }
+
+        if (isEye) {
+          const src = mat as THREE.MeshStandardMaterial;
+          src.roughness = 0.12;
+          src.metalness = 0.05;
+          src.envMapIntensity = 1.2;
+          return;
+        }
+
+        if (isHair) {
+          const src = mat as THREE.MeshStandardMaterial;
+          src.roughness = 0.72;
+          src.metalness = 0.02;
+          return;
+        }
+
+        const std = mat as THREE.MeshStandardMaterial;
+        if (std.color) {
+          std.color.copy(cloth);
+          std.roughness = 0.62;
+          std.metalness = 0.08;
+        }
+      });
     });
   }, [bones, gltf.scene, teacherId]);
 

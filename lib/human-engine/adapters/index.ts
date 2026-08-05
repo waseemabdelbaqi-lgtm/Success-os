@@ -5,6 +5,7 @@ import type { AdapterId, AdapterStatus, DigitalHumanAdapter } from "@/types/huma
 import { createLocalPhotorealAdapter } from "./local-photoreal";
 import { createMetaHumanAdapter } from "./metahuman";
 import { createHeyGenAdapter } from "./heygen";
+import { createHumanoidWebGLAdapter } from "./humanoid-webgl";
 
 export function resolveAdapterMeta(opts: {
   id: AdapterId;
@@ -67,4 +68,9 @@ export function createAdapter(
   return createLocalPhotorealAdapter(hooks);
 }
 
-export { createLocalPhotorealAdapter, createMetaHumanAdapter, createHeyGenAdapter };
+export {
+  createLocalPhotorealAdapter,
+  createMetaHumanAdapter,
+  createHeyGenAdapter,
+  createHumanoidWebGLAdapter,
+};

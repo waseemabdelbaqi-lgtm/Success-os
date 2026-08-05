@@ -40,6 +40,7 @@ export {
   createLocalPhotorealAdapter,
   createMetaHumanAdapter,
   createHeyGenAdapter,
+  createHumanoidWebGLAdapter,
 } from "./adapters";
 export { gestureToClassroomPose } from "./adapters/local-photoreal";
 export {

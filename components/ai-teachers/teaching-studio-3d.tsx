@@ -11,6 +11,7 @@ import {
 } from "@react-three/drei";
 import * as THREE from "three";
 import type { HumanFrameSample, ScreenElement } from "@/types/human-engine";
+import { SkinnedDigitalHuman } from "@/components/ai-teachers/skinned-digital-human";
 
 export type Studio3DPose = "stand" | "point" | "write";
 
@@ -146,14 +147,26 @@ function StudioRoom({ lighting }: { lighting: string }) {
         <meshStandardMaterial color="#2a1d14" />
       </RoundedBox>
 
-      <ambientLight intensity={0.35} />
+      <ambientLight intensity={lighting === "closeup_beauty" ? 0.28 : 0.35} />
       <directionalLight
         castShadow
-        position={[-2, 5, 3]}
-        intensity={1.15}
+        position={[-2.2, 5.2, 3.2]}
+        intensity={lighting === "closeup_beauty" ? 1.35 : 1.15}
         color={keyColor}
-        shadow-mapSize-width={1024}
-        shadow-mapSize-height={1024}
+        shadow-mapSize-width={2048}
+        shadow-mapSize-height={2048}
+      />
+      {/* Fill — softens face shadows for skin response */}
+      <directionalLight
+        position={[2.4, 3.6, 2.8]}
+        intensity={lighting === "key_fill_rim" || lighting === "closeup_beauty" ? 0.55 : 0.35}
+        color="#fff4e8"
+      />
+      {/* Rim — separates teacher silhouette from LED wall */}
+      <directionalLight
+        position={[-1.2, 2.8, -2.4]}
+        intensity={lighting === "key_fill_rim" || lighting === "closeup_beauty" ? 0.75 : 0.4}
+        color="#c8d8ff"
       />
       <spotLight
         position={[2.5, 4.2, 2]}
@@ -535,27 +548,38 @@ function PropMesh({
 
 function SceneBody(props: Props) {
   const frame = props.frame ?? legacyFrame(props);
+  // Live Human Engine path: drive the skinned GLB (bones + ARKit morphs).
+  // Legacy callers without a real frame keep the PNG billboard fallback.
+  const useSkinnedHuman = !!props.frame;
   return (
     <>
       <CameraRig camera={props.camera} />
       <StudioRoom lighting={props.lighting} />
       <SmartBoard lines={props.boardLines} screenElement={props.screenElement} />
-      <PhotorealTeacher
-        teacherId={props.teacherId}
-        pose={props.pose}
-        speaking={props.speaking || !!frame.speaking}
-        mouthEnergy={props.mouthEnergy || frame.jawOpen || 0}
-        walkOffset={props.walkOffset}
-        lookYaw={props.lookYaw ?? frame.head?.yaw ?? 0}
-        lookPitch={props.lookPitch ?? frame.head?.pitch ?? 0}
-      />
+      {useSkinnedHuman ? (
+        <SkinnedDigitalHuman
+          teacherId={props.teacherId}
+          frame={props.frame ?? null}
+          walkOffset={props.walkOffset}
+        />
+      ) : (
+        <PhotorealTeacher
+          teacherId={props.teacherId}
+          pose={props.pose}
+          speaking={props.speaking || !!frame.speaking}
+          mouthEnergy={props.mouthEnergy || frame.jawOpen || 0}
+          walkOffset={props.walkOffset}
+          lookYaw={props.lookYaw ?? frame.head?.yaw ?? 0}
+          lookPitch={props.lookPitch ?? frame.head?.pitch ?? 0}
+        />
+      )}
       <LessonProps
         props={props.props}
         focusTarget={props.focusTarget}
         screenElement={props.screenElement}
       />
       <ContactShadows position={[0, 0.01, 0]} opacity={0.5} scale={12} blur={2.8} far={4} />
-      <Environment preset="apartment" environmentIntensity={0.48} />
+      <Environment preset="apartment" environmentIntensity={0.55} />
       {props.celebrating && (
         <pointLight position={[-1.4, 2.4, 1]} intensity={2} color="#ffd84a" />
       )}
@@ -577,7 +601,12 @@ export function TeachingStudio3D(props: Props) {
         shadows
         dpr={[1, 1.75]}
         camera={{ position: [0, 2.05, 5.6], fov: 40, near: 0.1, far: 40 }}
-        gl={{ antialias: true, powerPreference: "high-performance" }}
+        gl={{
+          antialias: true,
+          powerPreference: "high-performance",
+          toneMapping: THREE.ACESFilmicToneMapping,
+          toneMappingExposure: 1.05,
+        }}
       >
         <Suspense fallback={null}>
           <SceneBody {...props} />

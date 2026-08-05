@@ -14,7 +14,7 @@ import type { TeacherSessionMemory } from "@/types/teacher-mind";
 import {
   adaptLiveTeacher,
   bridgeInteractiveLessonToHuman,
-  createLocalPhotorealAdapter,
+  createHumanoidWebGLAdapter,
   createSessionMemory,
   directLesson,
   gestureToClassroomPose,
@@ -110,7 +110,7 @@ export function PlatformTeacherStudio() {
       setPlaying(true);
       setTMs(0);
       setStatus(label);
-      const adapter = createLocalPhotorealAdapter({
+      const adapter = createHumanoidWebGLAdapter({
         onFrame: (f) => {
           setFrame(f);
           const line = nextPlan.speech.lines.find(

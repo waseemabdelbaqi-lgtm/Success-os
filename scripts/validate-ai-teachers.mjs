@@ -330,6 +330,26 @@ assert(fs.existsSync(path.join(root, "lib/human-engine/proof-lessons.ts")), "Mis
 assert(fs.existsSync(path.join(root, "public/media/ai-teachers/sara/humanoid/teacher.glb")), "Missing Sara humanoid GLB");
 assert(fs.existsSync(path.join(root, "public/media/ai-teachers/ali/humanoid/teacher.glb")), "Missing Ali humanoid GLB");
 assert(fs.existsSync(path.join(root, "components/ai-teachers/skinned-digital-human.tsx")), "Missing skinned digital human");
+const studio3dSrc = fs.readFileSync(
+  path.join(root, "components/ai-teachers/teaching-studio-3d.tsx"),
+  "utf8",
+);
+assert(
+  studio3dSrc.includes("SkinnedDigitalHuman"),
+  "TeachingStudio3D must mount SkinnedDigitalHuman on live HE frames",
+);
+assert(
+  studio3dSrc.includes("useSkinnedHuman"),
+  "TeachingStudio3D must prefer skinned GLB over PNG billboard when frame exists",
+);
+const adaptersSrc = fs.readFileSync(
+  path.join(root, "lib/human-engine/adapters/index.ts"),
+  "utf8",
+);
+assert(
+  adaptersSrc.includes("createHumanoidWebGLAdapter"),
+  "adapters index must export createHumanoidWebGLAdapter",
+);
 assert(fs.existsSync(path.join(root, "app/ai-teacher/studio/page.tsx")), "Missing digital human studio page");
 const lesson = fs.readFileSync(path.join(root, "lib/ai-teachers/g1-count-lesson.ts"), "utf8");
 assert(lesson.includes("check:"), "Lesson must include micro-checks");
