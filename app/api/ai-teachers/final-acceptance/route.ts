@@ -9,8 +9,10 @@ import { finalAcceptanceGate } from "@/src/ai-teacher/runtime/final-acceptance-g
 import { buildTeacherRecoveryPlan } from "@/src/ai-teacher/runtime/recovery-plan";
 import {
   getActiveRecoveryTask,
+  PRIMARY_TEACHERS,
   syncTeacherFromAcceptanceRuntime,
 } from "@/src/lib/ai-teachers/recovery-engine";
+import { inspectCurrentTeacherPhotorealism } from "@/src/lib/ai-teachers/photorealism-engine";
 
 export const dynamic = "force-dynamic";
 
@@ -25,7 +27,9 @@ export async function GET(req: Request) {
     const runtime = buildAcceptanceRuntime(metrics);
     const result = await finalAcceptanceGate(teacher, runtime);
     const recovery = buildTeacherRecoveryPlan(teacher, runtime);
-    const engineTeacher = syncTeacherFromAcceptanceRuntime(teacher, runtime);
+    syncTeacherFromAcceptanceRuntime(teacher, runtime);
+    const photorealism = inspectCurrentTeacherPhotorealism(teacher);
+    const engineTeacher = PRIMARY_TEACHERS[teacher];
     return {
       teacher,
       runtime,
@@ -33,6 +37,7 @@ export async function GET(req: Request) {
       status: result.passed ? ("ACCEPTED" as const) : ("REJECTED" as const),
       failedChecks: recovery.failure.failedChecks,
       recoveryPlan: recovery.tasks,
+      photorealism,
       recoveryEngine: {
         acceptanceStatus: engineTeacher.acceptanceStatus,
         version: engineTeacher.version,

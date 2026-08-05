@@ -20,8 +20,10 @@ import {
 import { buildTeacherRecoveryPlan } from "../src/ai-teacher/runtime/recovery-plan";
 import {
   getActiveRecoveryTask,
+  PRIMARY_TEACHERS,
   syncTeacherFromAcceptanceRuntime,
 } from "../src/lib/ai-teachers/recovery-engine";
+import { inspectCurrentTeacherPhotorealism } from "../src/lib/ai-teachers/photorealism-engine";
 
 async function report(id: "sara" | "ali") {
   const metrics = id === "sara" ? await loadSaraMetrics() : await loadAliMetrics();
@@ -29,13 +31,22 @@ async function report(id: "sara" | "ali") {
   const runtime = buildAcceptanceRuntime(metrics);
   const acceptance = await finalAcceptanceGate(id, runtime);
   const recovery = buildTeacherRecoveryPlan(id, runtime);
-  const engineTeacher = syncTeacherFromAcceptanceRuntime(id, runtime);
+  // Coarse acceptance sync, then overwrite photorealism with dedicated engine.
+  syncTeacherFromAcceptanceRuntime(id, runtime);
+  const photo = inspectCurrentTeacherPhotorealism(id);
+  const engineTeacher = PRIMARY_TEACHERS[id];
   const active = getActiveRecoveryTask(id);
   console.log(`\n── ${id.toUpperCase()} ──`);
   console.log(JSON.stringify(metrics, null, 2));
   console.log(`quality=${diagnosis.result}`);
   if (diagnosis.failures.length) {
     for (const f of diagnosis.failures) console.log(`  FAIL: ${f}`);
+  }
+  console.log(
+    `photorealism=${photo.passed ? "PASS" : "FAIL"} score=${photo.finalScore}/95 pipeline=${photo.pipeline}`,
+  );
+  for (const f of photo.failures.slice(0, 6)) {
+    console.log(`  PHOTO: ${f}`);
   }
   console.log(
     `acceptance=${acceptance.passed ? "PASSED" : "REJECTED"}` +
@@ -59,7 +70,15 @@ async function report(id: "sara" | "ali") {
       `  [${t.status}] ${t.order}. ${t.category} ${t.currentScore}/${t.requiredScore}`,
     );
   }
-  return { metrics, diagnosis, runtime, acceptance, recovery, engineTeacher };
+  return {
+    metrics,
+    diagnosis,
+    runtime,
+    acceptance,
+    recovery,
+    engineTeacher,
+    photo,
+  };
 }
 
 async function main() {

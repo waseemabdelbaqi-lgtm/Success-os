@@ -219,6 +219,37 @@ assert(engineSrc.includes("syncTeacherFromAcceptanceRuntime"), "must sync live m
 assert(engineSrc.includes("getRecoveryPlanResponse"), "getRecoveryPlanResponse required");
 assert(!engineSrc.includes('"omar"') && !engineSrc.includes('"layla"'), "no legacy teachers");
 
+// Photorealism engine — recovery dependency #1 (honest FAIL until ≥95)
+assert(
+  fs.existsSync(path.join(root, "src/lib/ai-teachers/photorealism-engine.ts")),
+  "Missing photorealism-engine.ts",
+);
+const photoSrc = fs.readFileSync(
+  path.join(root, "src/lib/ai-teachers/photorealism-engine.ts"),
+  "utf8",
+);
+assert(photoSrc.includes("inspectPhotorealism"), "inspectPhotorealism required");
+assert(
+  photoSrc.includes("inspectCurrentTeacherPhotorealism"),
+  "inspectCurrentTeacherPhotorealism required",
+);
+assert(photoSrc.includes("calculatePhotorealismScore"), "calculatePhotorealismScore required");
+assert(photoSrc.includes("updateTeacherScore"), "photorealism must update recovery scores");
+assert(photoSrc.includes("facialAnatomy"), "must score facial anatomy");
+assert(photoSrc.includes("skinRealism"), "must score skin realism");
+assert(
+  fs.existsSync(path.join(root, "app/api/ai-teachers/photorealism/route.ts")),
+  "Missing photorealism API",
+);
+const recoveryApiSrc = fs.readFileSync(
+  path.join(root, "app/api/ai-teachers/recovery-plan/route.ts"),
+  "utf8",
+);
+assert(
+  recoveryApiSrc.includes("inspectCurrentTeacherPhotorealism"),
+  "recovery-plan API must run photorealism inspection",
+);
+
 const doctrineTs = path.join(root, "types/platform-teachers.ts");
 assert(fs.existsSync(doctrineTs), "Missing types/platform-teachers.ts");
 const doctrineSrc = fs.readFileSync(doctrineTs, "utf8");

@@ -54,3 +54,14 @@ export {
   assertPrimaryTeacher,
   calculateAcceptanceStatus,
 } from "@/src/lib/ai-teachers/recovery-engine";
+
+/** Photorealism engine — first recovery dependency (honest FAIL until ≥95). */
+export {
+  calculatePhotorealismScore,
+  detectPhotorealismFailures,
+  inspectPhotorealism,
+  inspectCurrentTeacherPhotorealism,
+  PHOTOREALISM_REQUIRED_SCORE,
+  type PhotorealismMetrics,
+  type PhotorealismInspection,
+} from "@/src/lib/ai-teachers/photorealism-engine";

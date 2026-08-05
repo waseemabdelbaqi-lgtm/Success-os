@@ -15,6 +15,7 @@ import {
   syncTeacherFromAcceptanceRuntime,
   type QualityCategory,
 } from "@/src/lib/ai-teachers/recovery-engine";
+import { inspectCurrentTeacherPhotorealism } from "@/src/lib/ai-teachers/photorealism-engine";
 
 export const dynamic = "force-dynamic";
 
@@ -22,7 +23,10 @@ async function syncLive(teacherId: "sara" | "ali") {
   const metrics =
     teacherId === "sara" ? await loadSaraMetrics() : await loadAliMetrics();
   const runtime = buildAcceptanceRuntime(metrics);
-  return syncTeacherFromAcceptanceRuntime(teacherId, runtime);
+  // Coarse acceptance sync first, then overwrite photorealism with dedicated inspection.
+  syncTeacherFromAcceptanceRuntime(teacherId, runtime);
+  inspectCurrentTeacherPhotorealism(teacherId);
+  return PRIMARY_TEACHERS[teacherId];
 }
 
 export async function GET(req: Request) {
