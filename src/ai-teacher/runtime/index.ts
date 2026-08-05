@@ -66,3 +66,14 @@ export {
   type PhotorealismMetrics,
   type PhotorealismInspection,
 } from "@/src/lib/ai-teachers/photorealism-engine";
+
+/** Lip sync engine — second recovery dependency (blocked until photorealism passes). */
+export {
+  calculateLipSyncScore,
+  detectLipSyncFailures,
+  inspectLipSync,
+  inspectCurrentTeacherLipSync,
+  LIPSYNC_REQUIRED_SCORE,
+  type LipSyncMetrics,
+  type LipSyncInspection,
+} from "@/src/lib/ai-teachers/lipsync-engine";

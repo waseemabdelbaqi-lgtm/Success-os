@@ -13,6 +13,7 @@ import {
   syncTeacherFromAcceptanceRuntime,
 } from "@/src/lib/ai-teachers/recovery-engine";
 import { inspectCurrentTeacherPhotorealism } from "@/src/lib/ai-teachers/photorealism-engine";
+import { inspectCurrentTeacherLipSync } from "@/src/lib/ai-teachers/lipsync-engine";
 
 export const dynamic = "force-dynamic";
 
@@ -29,6 +30,7 @@ export async function GET(req: Request) {
     const recovery = buildTeacherRecoveryPlan(teacher, runtime);
     syncTeacherFromAcceptanceRuntime(teacher, runtime);
     const photorealism = inspectCurrentTeacherPhotorealism(teacher);
+    const lipsync = inspectCurrentTeacherLipSync(teacher);
     const engineTeacher = PRIMARY_TEACHERS[teacher];
     return {
       teacher,
@@ -38,6 +40,7 @@ export async function GET(req: Request) {
       failedChecks: recovery.failure.failedChecks,
       recoveryPlan: recovery.tasks,
       photorealism,
+      lipsync,
       recoveryEngine: {
         acceptanceStatus: engineTeacher.acceptanceStatus,
         version: engineTeacher.version,

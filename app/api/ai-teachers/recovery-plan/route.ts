@@ -16,6 +16,7 @@ import {
   type QualityCategory,
 } from "@/src/lib/ai-teachers/recovery-engine";
 import { inspectCurrentTeacherPhotorealism } from "@/src/lib/ai-teachers/photorealism-engine";
+import { inspectCurrentTeacherLipSync } from "@/src/lib/ai-teachers/lipsync-engine";
 import { RecoveryEngine } from "@/src/ai-teacher/runtime/RecoveryEngine";
 
 export const dynamic = "force-dynamic";
@@ -24,9 +25,10 @@ async function syncLive(teacherId: "sara" | "ali") {
   const metrics =
     teacherId === "sara" ? await loadSaraMetrics() : await loadAliMetrics();
   const runtime = buildAcceptanceRuntime(metrics);
-  // Coarse acceptance sync first, then overwrite photorealism with dedicated inspection.
+  // Coarse acceptance sync, then dedicated category inspectors (scores stay honest).
   syncTeacherFromAcceptanceRuntime(teacherId, runtime);
   inspectCurrentTeacherPhotorealism(teacherId);
+  inspectCurrentTeacherLipSync(teacherId);
   return PRIMARY_TEACHERS[teacherId];
 }
 

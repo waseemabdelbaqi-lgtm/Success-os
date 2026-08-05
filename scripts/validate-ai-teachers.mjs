@@ -262,6 +262,33 @@ assert(
   "recovery-plan API must run photorealism inspection",
 );
 
+// Lip sync engine — recovery dependency #2 (blocked until photorealism ≥95)
+assert(
+  fs.existsSync(path.join(root, "src/lib/ai-teachers/lipsync-engine.ts")),
+  "Missing lipsync-engine.ts",
+);
+const lipSrc = fs.readFileSync(
+  path.join(root, "src/lib/ai-teachers/lipsync-engine.ts"),
+  "utf8",
+);
+assert(lipSrc.includes("inspectLipSync"), "inspectLipSync required");
+assert(
+  lipSrc.includes("inspectCurrentTeacherLipSync"),
+  "inspectCurrentTeacherLipSync required",
+);
+assert(lipSrc.includes("calculateLipSyncScore"), "calculateLipSyncScore required");
+assert(lipSrc.includes("phonemeAccuracy"), "must score phoneme accuracy");
+assert(lipSrc.includes("visemeAccuracy"), "must score viseme accuracy");
+assert(lipSrc.includes('category: "lipsync"'), "lipsync must update recovery scores");
+assert(
+  fs.existsSync(path.join(root, "app/api/ai-teachers/lipsync/route.ts")),
+  "Missing lipsync API",
+);
+assert(
+  recoveryApiSrc.includes("inspectCurrentTeacherLipSync"),
+  "recovery-plan API must run lipsync inspection",
+);
+
 const doctrineTs = path.join(root, "types/platform-teachers.ts");
 assert(fs.existsSync(doctrineTs), "Missing types/platform-teachers.ts");
 const doctrineSrc = fs.readFileSync(doctrineTs, "utf8");

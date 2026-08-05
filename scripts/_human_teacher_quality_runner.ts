@@ -24,6 +24,7 @@ import {
   syncTeacherFromAcceptanceRuntime,
 } from "../src/lib/ai-teachers/recovery-engine";
 import { inspectCurrentTeacherPhotorealism } from "../src/lib/ai-teachers/photorealism-engine";
+import { inspectCurrentTeacherLipSync } from "../src/lib/ai-teachers/lipsync-engine";
 
 async function report(id: "sara" | "ali") {
   const metrics = id === "sara" ? await loadSaraMetrics() : await loadAliMetrics();
@@ -36,6 +37,7 @@ async function report(id: "sara" | "ali") {
   // Coarse acceptance sync, then overwrite photorealism with dedicated engine.
   syncTeacherFromAcceptanceRuntime(id, runtime);
   const photo = inspectCurrentTeacherPhotorealism(id);
+  const lipsync = inspectCurrentTeacherLipSync(id);
   const engineTeacher = PRIMARY_TEACHERS[id];
   const active = getActiveRecoveryTask(id);
   console.log(`\n── ${id.toUpperCase()} ──`);
@@ -49,6 +51,12 @@ async function report(id: "sara" | "ali") {
   );
   for (const f of photo.failures.slice(0, 6)) {
     console.log(`  PHOTO: ${f}`);
+  }
+  console.log(
+    `lipsync=${lipsync.passed ? "PASS" : "FAIL"} score=${lipsync.score}/95 pipeline=${lipsync.pipeline}`,
+  );
+  for (const f of lipsync.failures.slice(0, 4)) {
+    console.log(`  LIP: ${f}`);
   }
   console.log(
     `acceptance=${acceptance.passed ? "PASSED" : "REJECTED"}` +
@@ -88,6 +96,7 @@ async function report(id: "sara" | "ali") {
     sessionRecovery,
     engineTeacher,
     photo,
+    lipsync,
   };
 }
 
