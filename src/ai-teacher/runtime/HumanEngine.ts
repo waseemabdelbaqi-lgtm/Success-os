@@ -6,6 +6,8 @@ import {
   finalAcceptanceGate,
 } from "./final-acceptance-gate";
 import { buildAcceptanceRuntime } from "./acceptance-runtime";
+import { RecoveryEngine } from "./RecoveryEngine";
+import type { RecoveryTask } from "./recovery-plan";
 
 export class HumanEngine {
   private teacherId: "sara" | "ali";
@@ -25,8 +27,11 @@ export class HumanEngine {
     taught?: HumanTeacherTeachResult;
   } | null = null;
 
+  private recovery: RecoveryEngine;
+
   constructor(id: "sara" | "ali") {
     this.teacherId = id;
+    this.recovery = new RecoveryEngine(id);
   }
 
   async initialize() {
@@ -36,6 +41,12 @@ export class HumanEngine {
     // ثم بوابة القبول النهائي للإنتاج (تشمل فيديو 15 ثانية إلزامي)
     const runtime = buildAcceptanceRuntime(session.metrics);
     const acceptance = await finalAcceptanceGate(this.teacherId, runtime);
+
+    if (!acceptance.passed) {
+      // Start ordered recovery — next active task is photorealism while REJECTED.
+      this.recovery.recoverFromRuntime(runtime);
+    }
+
     assertFinalAcceptance(acceptance, this.teacherId);
 
     this.session = session;
@@ -44,6 +55,19 @@ export class HumanEngine {
     console.log(`🎓 ${session.teacher.toUpperCase()} HUMAN ENGINE READY`);
 
     return session;
+  }
+
+  /** Expose session RecoveryEngine (photorealism → … → showcase). */
+  getRecoveryEngine(): RecoveryEngine {
+    return this.recovery;
+  }
+
+  nextRecoveryTask(): RecoveryTask | null {
+    return this.recovery.nextTask();
+  }
+
+  isRecovered(): boolean {
+    return this.recovery.isRecovered();
   }
 
   async startLesson(lessonId: string) {

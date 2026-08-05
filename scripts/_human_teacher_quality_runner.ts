@@ -17,7 +17,7 @@ import {
   assertFinalAcceptance,
   finalAcceptanceGate,
 } from "../src/ai-teacher/runtime/final-acceptance-gate";
-import { buildTeacherRecoveryPlan } from "../src/ai-teacher/runtime/recovery-plan";
+import { RecoveryEngine } from "../src/ai-teacher/runtime/RecoveryEngine";
 import {
   getActiveRecoveryTask,
   PRIMARY_TEACHERS,
@@ -30,7 +30,9 @@ async function report(id: "sara" | "ali") {
   const diagnosis = diagnoseTeacherQuality(metrics);
   const runtime = buildAcceptanceRuntime(metrics);
   const acceptance = await finalAcceptanceGate(id, runtime);
-  const recovery = buildTeacherRecoveryPlan(id, runtime);
+  const sessionRecovery = new RecoveryEngine(id);
+  const recovery = sessionRecovery.recoverFromRuntime(runtime);
+  const nextTask = sessionRecovery.nextTask();
   // Coarse acceptance sync, then overwrite photorealism with dedicated engine.
   syncTeacherFromAcceptanceRuntime(id, runtime);
   const photo = inspectCurrentTeacherPhotorealism(id);
@@ -59,9 +61,15 @@ async function report(id: "sara" | "ali") {
   if (recovery.tasks.length) {
     console.log("recovery plan:");
     for (const t of recovery.tasks) {
-      console.log(`  P${t.priority}. ${t.title}`);
+      console.log(
+        `  P${t.priority}. ${t.title}${t.completed ? " ✔" : ""}`,
+      );
     }
   }
+  console.log(
+    `RecoveryEngine.nextTask=${nextTask ? `P${nextTask.priority} ${nextTask.title}` : "none"}` +
+      ` recovered=${sessionRecovery.isRecovered()}`,
+  );
   console.log(
     `recovery-engine: status=${engineTeacher.acceptanceStatus} active=${active?.category || "none"} (${active?.status || "-"})`,
   );
@@ -76,6 +84,8 @@ async function report(id: "sara" | "ali") {
     runtime,
     acceptance,
     recovery,
+    nextTask,
+    sessionRecovery,
     engineTeacher,
     photo,
   };

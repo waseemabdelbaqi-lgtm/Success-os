@@ -16,6 +16,7 @@ import {
   type QualityCategory,
 } from "@/src/lib/ai-teachers/recovery-engine";
 import { inspectCurrentTeacherPhotorealism } from "@/src/lib/ai-teachers/photorealism-engine";
+import { RecoveryEngine } from "@/src/ai-teacher/runtime/RecoveryEngine";
 
 export const dynamic = "force-dynamic";
 
@@ -61,6 +62,13 @@ export async function GET(req: Request) {
     await syncLive(teacherId);
     const teacher = PRIMARY_TEACHERS[teacherId];
     const active = getActiveRecoveryTask(teacherId);
+    const metrics =
+      teacherId === "sara"
+        ? await loadSaraMetrics()
+        : await loadAliMetrics();
+    const runtime = buildAcceptanceRuntime(metrics);
+    const sessionEngine = new RecoveryEngine(teacherId);
+    sessionEngine.recoverFromRuntime(runtime);
     return NextResponse.json({
       success: true,
       engine: "recovery-engine",
@@ -78,6 +86,11 @@ export async function GET(req: Request) {
         status: t.status,
       })),
       nextPriority: active,
+      sessionRecovery: {
+        nextTask: sessionEngine.nextTask(),
+        isRecovered: sessionEngine.isRecovered(),
+        tasks: sessionEngine.getTasks(),
+      },
     });
   } catch (e) {
     return NextResponse.json(

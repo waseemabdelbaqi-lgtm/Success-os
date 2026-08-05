@@ -206,6 +206,18 @@ assert(recoverySrc.includes("buildRecoveryPlan"), "buildRecoveryPlan required");
 assert(recoverySrc.includes("Photorealism"), "recovery must cover Photorealism");
 assert(recoverySrc.includes("Showcase"), "recovery must cover Showcase");
 assert(
+  fs.existsSync(path.join(root, "src/ai-teacher/runtime/RecoveryEngine.ts")),
+  "Missing runtime RecoveryEngine class",
+);
+const recoveryClassSrc = fs.readFileSync(
+  path.join(root, "src/ai-teacher/runtime/RecoveryEngine.ts"),
+  "utf8",
+);
+assert(recoveryClassSrc.includes("export class RecoveryEngine"), "RecoveryEngine class required");
+assert(recoveryClassSrc.includes("nextTask"), "RecoveryEngine.nextTask required");
+assert(recoveryClassSrc.includes("isRecovered"), "RecoveryEngine.isRecovered required");
+assert(recoveryClassSrc.includes("recoverFromRuntime"), "recoverFromRuntime required");
+assert(
   fs.existsSync(path.join(root, "src/lib/ai-teachers/recovery-engine.ts")),
   "Missing recovery-engine.ts",
 );

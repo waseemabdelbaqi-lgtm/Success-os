@@ -37,6 +37,7 @@ export {
   type AcceptanceFailure,
   type RecoveryTask,
 } from "./recovery-plan";
+export { RecoveryEngine } from "./RecoveryEngine";
 
 /** Full recovery engine (ordered dependencies, evidence, acceptance). */
 export {
