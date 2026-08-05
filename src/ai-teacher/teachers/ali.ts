@@ -94,6 +94,7 @@ export const Ali: TeacherProfile = {
   bodyMovement: true,
 
   appearance: {
+    // Original digital teacher — unique face/voice/body; never a real-person likeness.
     skinTone: "olive_medium",
     hairStyle: "short_dark",
     outfitKey: "navy_blazer_classroom",
@@ -112,6 +113,8 @@ export const Ali: TeacherProfile = {
       open: "/media/ai-teachers/ali/flagship/mouth-open.png",
       wide: "/media/ai-teachers/ali/flagship/mouth-wide.png",
     },
+    originalIdentity: true,
+    notLikenessOfAnyRealTeacher: true,
   },
 
   defaultStudio: "Success Studio",

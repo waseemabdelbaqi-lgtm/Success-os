@@ -15,6 +15,49 @@ const doctrine = fs.readFileSync(doctrinePath, "utf8");
 assert(doctrine.includes("سارة") && doctrine.includes("علي"), "Doctrine must name Sara/Ali in Arabic");
 assert(doctrine.includes("Dual acceptance"), "Doctrine must include dual acceptance");
 assert(
+  fs.existsSync(path.join(root, "docs/cursor/original-human-teachers-policy.md")),
+  "Missing original-human-teachers-policy.md",
+);
+const originality = fs.readFileSync(
+  path.join(root, "docs/cursor/original-human-teachers-policy.md"),
+  "utf8",
+);
+assert(
+  originality.includes("Success4SureCenter"),
+  "Originality policy must reference Success4SureCenter technique only",
+);
+assert(
+  originality.includes("Do NOT reproduce faces") ||
+    originality.includes("Do **not** reproduce faces"),
+  "Originality policy must forbid face reproduction",
+);
+assert(
+  fs.existsSync(path.join(root, "public/demo/sara-10s/index.html")),
+  "Missing public 10s Sara demo",
+);
+assert(
+  fs.existsSync(
+    path.join(root, "public/media/ai-teachers/sara/demo/welcome-success-os.mp3"),
+  ),
+  "Missing Sara welcome-success-os.mp3",
+);
+const demoHtml = fs.readFileSync(
+  path.join(root, "public/demo/sara-10s/index.html"),
+  "utf8",
+);
+assert(
+  demoHtml.includes("Welcome to Success OS"),
+  "10s demo must include mandatory closing line",
+);
+const doctrineTypes = fs.readFileSync(
+  path.join(root, "types/platform-teachers.ts"),
+  "utf8",
+);
+assert(
+  doctrineTypes.includes("ORIGINAL_HUMAN_TEACHERS_POLICY"),
+  "types must export ORIGINAL_HUMAN_TEACHERS_POLICY",
+);
+assert(
   doctrine.includes("دون الحاجة لإنشاء معلم جديد") || doctrine.includes("without creating a new teacher"),
   "Doctrine must forbid new teachers for subjects",
 );

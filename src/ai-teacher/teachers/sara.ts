@@ -94,6 +94,7 @@ export const Sara: TeacherProfile = {
   bodyMovement: true,
 
   appearance: {
+    // Original digital teacher — unique face/voice/body; never a real-person likeness.
     skinTone: "olive_warm",
     hairStyle: "dark_shoulder_length",
     outfitKey: "olive_blazer_classroom",
@@ -112,6 +113,8 @@ export const Sara: TeacherProfile = {
       open: "/media/ai-teachers/sara/flagship/mouth-open.png",
       wide: "/media/ai-teachers/sara/flagship/mouth-wide.png",
     },
+    originalIdentity: true,
+    notLikenessOfAnyRealTeacher: true,
   },
 
   defaultStudio: "Success Studio",

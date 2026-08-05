@@ -155,3 +155,79 @@ export function assertPlatformTeacherId(id: string): PlatformTeacherId {
   }
   return id;
 }
+
+/**
+ * Original Human Teachers Policy — technique from Success4SureCenter only;
+ * never copy real teacher identities (face/voice/hair/clothing/body).
+ */
+export type OriginalHumanTeachersPolicy = {
+  schema: "success-os.original-human-teachers.v1";
+  styleReferenceChannel: "https://www.youtube.com/@Success4SureCenter";
+  learnTechniqueOnly: true;
+  forbidIdentityCopy: true;
+  forbiddenLikeness: readonly [
+    "faces",
+    "voices",
+    "hairstyles",
+    "clothing",
+    "body_proportions",
+    "identities",
+  ];
+  allowedTechnique: readonly [
+    "teaching_rhythm",
+    "camera_movement",
+    "classroom_organization",
+    "board_usage",
+    "explanation_flow",
+    "gesture_timing",
+    "lesson_pacing",
+    "eye_contact_strategy",
+    "student_engagement",
+    "concept_transitions",
+    "professional_atmosphere",
+  ];
+  saraMustBeOriginal: true;
+  aliMustBeOriginal: true;
+  mandatorySara10sPublicDemo: true;
+  publicDemoPath: "/demo/sara-10s/";
+  appDemoPath: "/ai-teacher/sara-10s";
+  closingLineEn: "Welcome to Success OS. I'm Sara, and I'll be your teacher.";
+  obviousAiFails: true;
+  policyDoc: "docs/cursor/original-human-teachers-policy.md";
+};
+
+export const ORIGINAL_HUMAN_TEACHERS_POLICY: OriginalHumanTeachersPolicy = {
+  schema: "success-os.original-human-teachers.v1",
+  styleReferenceChannel: "https://www.youtube.com/@Success4SureCenter",
+  learnTechniqueOnly: true,
+  forbidIdentityCopy: true,
+  forbiddenLikeness: [
+    "faces",
+    "voices",
+    "hairstyles",
+    "clothing",
+    "body_proportions",
+    "identities",
+  ],
+  allowedTechnique: [
+    "teaching_rhythm",
+    "camera_movement",
+    "classroom_organization",
+    "board_usage",
+    "explanation_flow",
+    "gesture_timing",
+    "lesson_pacing",
+    "eye_contact_strategy",
+    "student_engagement",
+    "concept_transitions",
+    "professional_atmosphere",
+  ],
+  saraMustBeOriginal: true,
+  aliMustBeOriginal: true,
+  mandatorySara10sPublicDemo: true,
+  publicDemoPath: "/demo/sara-10s/",
+  appDemoPath: "/ai-teacher/sara-10s",
+  closingLineEn: "Welcome to Success OS. I'm Sara, and I'll be your teacher.",
+  obviousAiFails: true,
+  policyDoc: "docs/cursor/original-human-teachers-policy.md",
+};

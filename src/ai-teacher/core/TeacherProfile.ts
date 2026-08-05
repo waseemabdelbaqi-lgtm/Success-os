@@ -44,6 +44,12 @@ export type TeacherAppearance = {
     open: string;
     wide: string;
   };
+  /**
+   * Original-identity lock — never a likeness of any real Success4Sure / EST teacher.
+   * Technique may be studied; face/voice/hair/clothing/body must stay original.
+   */
+  originalIdentity: true;
+  notLikenessOfAnyRealTeacher: true;
 };
 
 /** Locale → neural voice. Same performance bar for every dialect. */

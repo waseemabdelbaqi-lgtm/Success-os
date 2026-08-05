@@ -70,6 +70,14 @@ Each subject × each teacher requires dual acceptance (below).
 | Motion | Act-driven + persona-biased; anti-repeat; no purposeless random motion |
 | Specialists | Deferred; different *role* only |
 
+## Original identity (mandatory)
+
+Sara and Ali are **original** digital teachers. Study teaching *technique* from
+https://www.youtube.com/@Success4SureCenter — never copy faces, voices, hair,
+clothing, body proportions, or identities of any real teacher.
+
+Binding policy: `docs/cursor/original-human-teachers-policy.md`
+
 ## Dual acceptance (mandatory)
 
 A capability or checklist item is **complete** only when **both** are true:
@@ -80,6 +88,8 @@ A capability or checklist item is **complete** only when **both** are true:
 After every improvement: ship a working Demo the owner can try. Anything they cannot try remains incomplete.
 
 Voice (checklist item 4) stays incomplete until the owner confirms success on Demo.
+
+Mandatory 10s Sara public test surface: `/demo/sara-10s/` (and `/ai-teacher/sara-10s`).
 
 ## Surfaces
 
@@ -103,6 +113,7 @@ Voice (checklist item 4) stays incomplete until the owner confirms success on De
 - `types/ai-teacher-profile.ts` · `lib/ai-teachers/core-profiles.ts`
 - `types/lesson-teaching-plan.ts` · `lib/human-engine/lesson-content-analyzer.ts`
 - `types/platform-teachers.ts`
+- `docs/cursor/original-human-teachers-policy.md`
 - `docs/cursor/human-engine.md`
 - `lib/human-engine/universal-lesson-bridge.ts`
 - `lib/human-engine/proof-lessons.ts`
