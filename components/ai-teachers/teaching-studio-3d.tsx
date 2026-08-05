@@ -96,7 +96,13 @@ function CameraRig({ camera }: { camera: string }) {
   return null;
 }
 
-function StudioRoom({ lighting }: { lighting: string }) {
+function StudioRoom({
+  lighting,
+  teacherId,
+}: {
+  lighting: string;
+  teacherId: "sara" | "ali";
+}) {
   const keyColor =
     lighting === "warm_encourage"
       ? "#ffb070"
@@ -107,6 +113,10 @@ function StudioRoom({ lighting }: { lighting: string }) {
           : lighting === "experiment_practical"
             ? "#ffc89a"
             : "#ffe2b0";
+
+  const teacherX = teacherId === "ali" ? -1.35 : -1.55;
+  const beauty =
+    lighting === "closeup_beauty" || lighting === "key_fill_rim";
 
   return (
     <group>
@@ -147,27 +157,38 @@ function StudioRoom({ lighting }: { lighting: string }) {
         <meshStandardMaterial color="#2a1d14" />
       </RoundedBox>
 
-      <ambientLight intensity={lighting === "closeup_beauty" ? 0.28 : 0.35} />
+      <ambientLight intensity={lighting === "closeup_beauty" ? 0.24 : 0.32} />
       <directionalLight
         castShadow
-        position={[-2.2, 5.2, 3.2]}
-        intensity={lighting === "closeup_beauty" ? 1.35 : 1.15}
+        position={[teacherX - 0.8, 5.2, 3.2]}
+        intensity={lighting === "closeup_beauty" ? 1.4 : 1.15}
         color={keyColor}
         shadow-mapSize-width={2048}
         shadow-mapSize-height={2048}
       />
       {/* Fill — softens face shadows for skin response */}
       <directionalLight
-        position={[2.4, 3.6, 2.8]}
-        intensity={lighting === "key_fill_rim" || lighting === "closeup_beauty" ? 0.55 : 0.35}
+        position={[teacherX + 2.2, 3.4, 2.6]}
+        intensity={beauty ? 0.62 : 0.35}
         color="#fff4e8"
       />
       {/* Rim — separates teacher silhouette from LED wall */}
       <directionalLight
-        position={[-1.2, 2.8, -2.4]}
-        intensity={lighting === "key_fill_rim" || lighting === "closeup_beauty" ? 0.75 : 0.4}
+        position={[teacherX - 0.2, 2.6, -2.4]}
+        intensity={beauty ? 0.85 : 0.4}
         color="#c8d8ff"
       />
+      {/* Beauty spot aimed at teacher face plane */}
+      <spotLight
+        position={[teacherX + 0.35, 2.55, 2.1]}
+        angle={0.32}
+        penumbra={0.65}
+        intensity={beauty ? 1.35 : 0.7}
+        color="#ffe8cc"
+        castShadow={false}
+      >
+        <object3D attach="target" position={[teacherX, 1.65, 0.1]} />
+      </spotLight>
       <spotLight
         position={[2.5, 4.2, 2]}
         angle={0.45}
@@ -554,7 +575,7 @@ function SceneBody(props: Props) {
   return (
     <>
       <CameraRig camera={props.camera} />
-      <StudioRoom lighting={props.lighting} />
+      <StudioRoom lighting={props.lighting} teacherId={props.teacherId} />
       <SmartBoard lines={props.boardLines} screenElement={props.screenElement} />
       {useSkinnedHuman ? (
         <SkinnedDigitalHuman

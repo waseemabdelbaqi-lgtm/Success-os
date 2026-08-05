@@ -12,6 +12,13 @@ import {
   degToRad,
   humanoidUrl,
 } from "@/lib/human-engine/humanoid-rig";
+import {
+  buildEyeMaterial,
+  buildHairMaterial,
+  buildSkinMaterial,
+  classifyTeacherMesh,
+  clothColorFor,
+} from "@/lib/human-engine/teacher-skin";
 
 type Props = {
   teacherId: "sara" | "ali";
@@ -39,7 +46,6 @@ function findFaceMesh(root: THREE.Object3D): THREE.Mesh | null {
     }
   });
   if (found) return found;
-  // fallback: any mesh with morph targets
   root.traverse((o) => {
     const m = o as THREE.Mesh;
     if (m.isMesh && m.morphTargetDictionary && Object.keys(m.morphTargetDictionary).length) {
@@ -51,90 +57,68 @@ function findFaceMesh(root: THREE.Object3D): THREE.Mesh | null {
 
 /**
  * Real skinned digital human — Mixamo skeleton + ARKit-named face morphs.
- * Driven exclusively by Human Engine frame samples (not canned clips).
+ * Photorealism path: physical skin/eye/hair + corneal catchlights + face key light.
  */
 export function SkinnedDigitalHuman({ teacherId, frame, walkOffset = 0 }: Props) {
   const url = humanoidUrl(teacherId);
   const gltf = useGLTF(url);
   const group = useRef<THREE.Group>(null);
+  const catchlights = useRef<THREE.Group>(null);
+  const faceLight = useRef<THREE.PointLight>(null);
   const bones = useMemo(() => collectBones(gltf.scene), [gltf.scene]);
   const face = useMemo(() => findFaceMesh(gltf.scene), [gltf.scene]);
   const restQuats = useRef<Map<string, THREE.Quaternion>>(new Map());
 
   useEffect(() => {
-    // Cache rest pose
     const map = new Map<string, THREE.Quaternion>();
     bones.forEach((b, name) => {
       map.set(name, b.quaternion.clone());
     });
     restQuats.current = map;
 
-    // Outfit identity: Sara olive / Ali navy — same mesh, distinct presence
-    const cloth = new THREE.Color(teacherId === "ali" ? "#1e3a5f" : "#3f5a3a");
-    const skinTint = new THREE.Color(teacherId === "ali" ? "#e8b896" : "#f0c4a0");
+    const cloth = clothColorFor(teacherId);
     gltf.scene.traverse((o) => {
       const m = o as THREE.Mesh;
       if (!m.isMesh) return;
       m.castShadow = true;
       m.receiveShadow = true;
       const mats = Array.isArray(m.material) ? m.material : [m.material];
-      const n = (m.name || "").toLowerCase();
-      const isFace =
-        n.includes("face") ||
-        n.includes("head") ||
-        n.includes("skin") ||
-        !!m.morphTargetDictionary;
-      const isEye = n.includes("eye");
-      const isHair = n.includes("hair");
+      const kind = classifyTeacherMesh(m);
 
       mats.forEach((mat, idx) => {
         if (!mat) return;
         mat.side = THREE.FrontSide;
+        const src = mat as THREE.MeshStandardMaterial;
 
-        if (isFace) {
-          const src = mat as THREE.MeshStandardMaterial;
-          const physical = new THREE.MeshPhysicalMaterial({
-            map: src.map ?? null,
-            normalMap: src.normalMap ?? null,
-            roughnessMap: src.roughnessMap ?? null,
-            aoMap: src.aoMap ?? null,
-            color: src.map ? new THREE.Color("#ffffff") : skinTint.clone(),
-            roughness: 0.48,
-            metalness: 0.02,
-            sheen: 0.35,
-            sheenRoughness: 0.55,
-            sheenColor: new THREE.Color("#e8b090"),
-            clearcoat: 0.08,
-            clearcoatRoughness: 0.55,
-            envMapIntensity: 0.85,
-            morphTargets: !!m.morphTargetDictionary,
-            morphNormals: !!m.morphTargetDictionary,
-          });
+        if (kind === "face") {
+          const physical = buildSkinMaterial(
+            src,
+            teacherId,
+            !!m.morphTargetDictionary,
+          );
           if (Array.isArray(m.material)) m.material[idx] = physical;
           else m.material = physical;
           return;
         }
 
-        if (isEye) {
-          const src = mat as THREE.MeshStandardMaterial;
-          src.roughness = 0.12;
-          src.metalness = 0.05;
-          src.envMapIntensity = 1.2;
+        if (kind === "eye") {
+          const physical = buildEyeMaterial(src);
+          if (Array.isArray(m.material)) m.material[idx] = physical;
+          else m.material = physical;
           return;
         }
 
-        if (isHair) {
-          const src = mat as THREE.MeshStandardMaterial;
-          src.roughness = 0.72;
-          src.metalness = 0.02;
+        if (kind === "hair") {
+          const physical = buildHairMaterial(src, teacherId);
+          if (Array.isArray(m.material)) m.material[idx] = physical;
+          else m.material = physical;
           return;
         }
 
-        const std = mat as THREE.MeshStandardMaterial;
-        if (std.color) {
-          std.color.copy(cloth);
-          std.roughness = 0.62;
-          std.metalness = 0.08;
+        if (src.color) {
+          src.color.copy(cloth);
+          src.roughness = 0.62;
+          src.metalness = 0.08;
         }
       });
     });
@@ -146,15 +130,16 @@ export function SkinnedDigitalHuman({ teacherId, frame, walkOffset = 0 }: Props)
     const speaking = !!frame?.speaking;
     const jaw = frame?.jawOpen ?? 0;
     const breath = Math.sin(t * (speaking ? 2.6 : 1.2)) * 0.008;
+    // Subtle facial-presence micro sway (human stillness is never perfect)
+    const micro = Math.sin(t * 0.85) * 0.004;
 
-    // Base staging — distinct per teacher
     const baseX = teacherId === "ali" ? -1.35 : -1.55;
     const targetX = baseX + walkOffset;
     group.current.position.x = THREE.MathUtils.lerp(group.current.position.x, targetX, 0.1);
     group.current.position.y = breath;
     group.current.position.z = frame?.gaze === "board" ? -0.05 : 0.1;
+    group.current.rotation.y = micro;
 
-    // Apply skeleton from HE bone euler degrees (additive on rest)
     if (frame?.bones?.length) {
       for (const bp of frame.bones) {
         const joint = BONE_TO_MIXAMO[bp.bone];
@@ -172,12 +157,17 @@ export function SkinnedDigitalHuman({ teacherId, frame, walkOffset = 0 }: Props)
       }
     }
 
-    // Head / eye look from HE head + gaze
     const head = bones.get("mixamorig:Head");
     const neck = bones.get("mixamorig:Neck");
     if (head && frame) {
       const gazeYaw =
-        frame.gaze === "board" ? -0.45 : frame.gaze === "prop" ? -0.2 : frame.gaze === "student" ? 0.25 : 0;
+        frame.gaze === "board"
+          ? -0.45
+          : frame.gaze === "prop"
+            ? -0.2
+            : frame.gaze === "student"
+              ? 0.25
+              : 0;
       const yaw = degToRad(frame.head.yaw) * 0.6 + gazeYaw;
       const pitch = degToRad(frame.head.pitch) * 0.5;
       const roll = degToRad(frame.head.roll) * 0.4;
@@ -185,19 +175,45 @@ export function SkinnedDigitalHuman({ teacherId, frame, walkOffset = 0 }: Props)
       head.rotation.y = THREE.MathUtils.lerp(head.rotation.y, yaw, 0.15);
       head.rotation.x = THREE.MathUtils.lerp(head.rotation.x, pitch, 0.15);
       head.rotation.z = THREE.MathUtils.lerp(head.rotation.z, roll, 0.15);
+
+      // Keep catchlights + face key locked to the head for corneal realism
+      if (catchlights.current) {
+        head.getWorldPosition(catchlights.current.position);
+        catchlights.current.position.y += 0.12;
+        catchlights.current.position.z += 0.08;
+        head.getWorldQuaternion(catchlights.current.quaternion);
+      }
+      if (faceLight.current) {
+        head.getWorldPosition(faceLight.current.position);
+        faceLight.current.position.y += 0.22;
+        faceLight.current.position.z += 0.35;
+        faceLight.current.position.x += teacherId === "ali" ? 0.12 : -0.08;
+        faceLight.current.intensity = frame.camera === "close_face" ? 1.15 : 0.55;
+      }
     }
     if (neck && frame) {
-      neck.rotation.y = THREE.MathUtils.lerp(neck.rotation.y, degToRad(frame.head.yaw) * 0.25, 0.12);
+      neck.rotation.y = THREE.MathUtils.lerp(
+        neck.rotation.y,
+        degToRad(frame.head.yaw) * 0.25,
+        0.12,
+      );
     }
 
-    // Eye bones micro-saccade toward gaze
     const eyeL = bones.get("mixamorig:LeftEye");
     const eyeR = bones.get("mixamorig:RightEye");
-    const eyeYaw = frame?.gaze === "board" ? -0.15 : frame?.gaze === "student" ? 0.1 : 0;
-    if (eyeL) eyeL.rotation.y = eyeYaw;
-    if (eyeR) eyeR.rotation.y = eyeYaw;
+    const eyeYaw =
+      frame?.gaze === "board" ? -0.15 : frame?.gaze === "student" ? 0.1 : 0;
+    const eyePitch = frame?.gaze === "board" ? -0.06 : 0.02;
+    const saccade = Math.sin(t * 3.1) * 0.012;
+    if (eyeL) {
+      eyeL.rotation.y = eyeYaw + saccade;
+      eyeL.rotation.x = eyePitch;
+    }
+    if (eyeR) {
+      eyeR.rotation.y = eyeYaw + saccade * 0.9;
+      eyeR.rotation.x = eyePitch;
+    }
 
-    // Finger curl from gesture
     const curl = fingerCurlForGesture(frame?.gesture || "idle_breathe");
     for (const name of [
       "mixamorig:LeftHandIndex1",
@@ -211,7 +227,6 @@ export function SkinnedDigitalHuman({ teacherId, frame, walkOffset = 0 }: Props)
       if (b) b.rotation.z = THREE.MathUtils.lerp(b.rotation.z, curl, 0.12);
     }
 
-    // Walk cycle when locomotion is walk/step
     const walking =
       frame?.locomotion === "walk_in" ||
       frame?.locomotion === "step_to_board" ||
@@ -225,11 +240,9 @@ export function SkinnedDigitalHuman({ teacherId, frame, walkOffset = 0 }: Props)
       if (thighR) thighR.rotation.x = -phase * 0.35;
     }
 
-    // Face morphs from HE blendshapes + jaw
     if (face?.morphTargetDictionary && face.morphTargetInfluences) {
       const dict = face.morphTargetDictionary;
       const infl = face.morphTargetInfluences;
-      // reset lightly
       for (let i = 0; i < infl.length; i++) infl[i] = THREE.MathUtils.lerp(infl[i]!, 0, 0.2);
 
       const shapes = frame?.mouthShapes || {};
@@ -239,8 +252,9 @@ export function SkinnedDigitalHuman({ teacherId, frame, walkOffset = 0 }: Props)
         let w = shapes[key] ?? 0;
         if (key === "jawOpen") w = Math.max(w, jaw);
         if (key === "eyeBlinkLeft" || key === "eyeBlinkRight") {
-          // natural blink pulse occasionally
-          const blink = Math.max(0, Math.sin(t * 0.7) - 0.96) * 20;
+          // Asymmetric natural blink cadence
+          const phase = key === "eyeBlinkLeft" ? t * 0.71 : t * 0.69 + 0.4;
+          const blink = Math.max(0, Math.sin(phase) - 0.955) * 22;
           w = Math.max(w, blink);
         }
         infl[idx] = THREE.MathUtils.clamp(
@@ -250,13 +264,16 @@ export function SkinnedDigitalHuman({ teacherId, frame, walkOffset = 0 }: Props)
         );
       }
 
-      // Emotion bias on smile / brow
-      if (frame?.emotion === "warm" || frame?.emotion === "celebratory" || frame?.emotion === "encouraging") {
+      if (
+        frame?.emotion === "warm" ||
+        frame?.emotion === "celebratory" ||
+        frame?.emotion === "encouraging"
+      ) {
         const sL = dict.mouthSmileLeft;
         const sR = dict.mouthSmileRight;
         const amp = (frame.emotionIntensity || 0.5) * 0.55;
         if (sL !== undefined) infl[sL] = Math.max(infl[sL]!, amp);
-        if (sR !== undefined) infl[sR] = Math.max(infl[sR]!, amp);
+        if (sR !== undefined) infl[sR] = Math.max(infl[sR]!, amp * 0.92);
       }
       if (frame?.emotion === "curious" || frame?.emotion === "focused") {
         const b = dict.browInnerUp;
@@ -265,13 +282,35 @@ export function SkinnedDigitalHuman({ teacherId, frame, walkOffset = 0 }: Props)
     }
   });
 
-  // Distinct ground scale
   const s = teacherId === "ali" ? 1.05 : 1.0;
 
   return (
-    <group ref={group} position={[teacherId === "ali" ? -1.35 : -1.55, 0, 0.1]} scale={s}>
-      <primitive object={gltf.scene} />
-    </group>
+    <>
+      <group ref={group} position={[teacherId === "ali" ? -1.35 : -1.55, 0, 0.1]} scale={s}>
+        <primitive object={gltf.scene} />
+      </group>
+
+      {/* Corneal catchlights — dominant cue for eye realism in close-ups */}
+      <group ref={catchlights}>
+        <mesh position={[-0.028, 0.01, 0.045]} scale={0.008}>
+          <sphereGeometry args={[1, 12, 12]} />
+          <meshBasicMaterial color="#ffffff" transparent opacity={0.85} />
+        </mesh>
+        <mesh position={[0.028, 0.008, 0.045]} scale={0.007}>
+          <sphereGeometry args={[1, 12, 12]} />
+          <meshBasicMaterial color="#ffffff" transparent opacity={0.75} />
+        </mesh>
+      </group>
+
+      {/* Soft face key — physically plausible skin response under beauty/close shots */}
+      <pointLight
+        ref={faceLight}
+        color="#ffe6c8"
+        intensity={0.55}
+        distance={1.8}
+        decay={2}
+      />
+    </>
   );
 }
 

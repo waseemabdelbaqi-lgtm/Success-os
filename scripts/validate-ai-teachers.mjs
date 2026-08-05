@@ -378,6 +378,23 @@ assert(
   "TeachingStudio3D must mount SkinnedDigitalHuman on live HE frames",
 );
 assert(
+  fs.existsSync(path.join(root, "lib/human-engine/teacher-skin.ts")),
+  "Missing teacher-skin photorealism materials helper",
+);
+const skinSrc = fs.readFileSync(
+  path.join(root, "lib/human-engine/teacher-skin.ts"),
+  "utf8",
+);
+assert(skinSrc.includes("buildSkinMaterial"), "buildSkinMaterial required");
+assert(skinSrc.includes("buildEyeMaterial"), "buildEyeMaterial required");
+assert(skinSrc.includes("buildHairMaterial"), "buildHairMaterial required");
+const skinnedSrc = fs.readFileSync(
+  path.join(root, "components/ai-teachers/skinned-digital-human.tsx"),
+  "utf8",
+);
+assert(skinnedSrc.includes("buildSkinMaterial"), "skinned human must use skin materials");
+assert(skinnedSrc.includes("catchlights"), "skinned human must render corneal catchlights");
+assert(
   studio3dSrc.includes("useSkinnedHuman"),
   "TeachingStudio3D must prefer skinned GLB over PNG billboard when frame exists",
 );

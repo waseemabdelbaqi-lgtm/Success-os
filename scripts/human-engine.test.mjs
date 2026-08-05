@@ -60,6 +60,7 @@ const required = [
   "components/ai-teachers/skinned-digital-human.tsx",
   "components/ai-teachers/teaching-studio-3d.tsx",
   "lib/human-engine/humanoid-rig.ts",
+  "lib/human-engine/teacher-skin.ts",
   "public/media/ai-teachers/sara/humanoid/teacher.glb",
   "public/media/ai-teachers/ali/humanoid/teacher.glb",
   "app/ai-teacher/demo/page.tsx",
