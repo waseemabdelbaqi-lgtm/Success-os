@@ -1,0 +1,18 @@
+{
+  "globalId": "JOR-OUTCOME-005027",
+  "kind": "learningOutcome",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«التخطيط المكاني — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G09-الجغرافي-U03-L04",
+  "relationships": {
+    "lessonId": "JOR-G09-الجغرافي-U03-L04",
+    "belongsTo": "JOR-G09-الجغرافي-U03-L04"
+  },
+  "createdAt": "2026-07-31T17:56:57.179Z",
+  "updatedAt": "2026-07-31T17:56:57.179Z",
+  "text": "أن يطبّق مهارة مرتبطة بـ«التخطيط المكاني — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+  "sequence": 2
+}

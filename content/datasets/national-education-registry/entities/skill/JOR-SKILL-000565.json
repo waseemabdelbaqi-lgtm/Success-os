@@ -1,0 +1,31 @@
+{
+  "globalId": "JOR-SKILL-000565",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«الخدمة المجتمعية — مقدمة ومفاهيم» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-002553",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-002553",
+      "JOR-OUTCOME-002554",
+      "JOR-OUTCOME-002519",
+      "JOR-OUTCOME-003113",
+      "JOR-OUTCOME-003114",
+      "JOR-OUTCOME-003079",
+      "JOR-OUTCOME-003673",
+      "JOR-OUTCOME-003674",
+      "JOR-OUTCOME-003639"
+    ],
+    "lessonIds": [
+      "JOR-G05-التربيةا-U04-L01",
+      "JOR-G06-التربيةا-U04-L01",
+      "JOR-G07-التربيةا-U04-L01"
+    ],
+    "belongsTo": "JOR-OUTCOME-002553"
+  },
+  "createdAt": "2026-07-31T17:56:56.849Z",
+  "updatedAt": "2026-07-31T17:56:56.987Z"
+}

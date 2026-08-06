@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-G06-ISL-U04-L03",
+  "kind": "lesson",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "القيم الإسلامية — تطبيق ومثال",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G06-ISL-U04",
+  "relationships": {
+    "unitId": "JOR-G06-ISL-U04",
+    "bookId": "JOR-BOOK-000061",
+    "subjectId": "JOR-G06-ISL",
+    "gradeId": "JOR-G06",
+    "belongsTo": "JOR-G06-ISL-U04"
+  },
+  "createdAt": "2026-07-31T17:56:56.895Z",
+  "updatedAt": "2026-07-31T17:56:56.895Z",
+  "lessonCode": "L03",
+  "sequence": 3,
+  "legacyLessonId": "L4.3",
+  "keywords": [
+    "عقيدة",
+    "عبادة",
+    "خلق"
+  ]
+}

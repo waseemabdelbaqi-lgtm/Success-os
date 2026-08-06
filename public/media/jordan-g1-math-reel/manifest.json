@@ -1,0 +1,64 @@
+{
+  "schema": "success-os.jordan-g1-math-avatar-reel.v2",
+  "animated": true,
+  "features": [
+    "moving-avatar",
+    "talking-poses",
+    "board-writing",
+    "arabic-voiceover"
+  ],
+  "lesson": {
+    "grade": "الصف 1",
+    "subject": "الرياضيات",
+    "titleAr": "العدّ حتى ثلاثة"
+  },
+  "teacher": "المعلمة سارة",
+  "scenes": [
+    {
+      "id": "hook",
+      "mode": "talk",
+      "say": "مرحبا أصدقائي! أنا المعلمة سارة. اليوم راح أشرح لكم العد حتى ثلاثة، وأكتب على اللوح قدامكم."
+    },
+    {
+      "id": "one-write",
+      "mode": "write",
+      "say": "شوفوا معي على اللوح. بكتب الرقم واحد. واحد يعني شيء واحد فقط."
+    },
+    {
+      "id": "one-explain",
+      "mode": "point",
+      "say": "الآن عدوا معي: واحد. ممتاز!"
+    },
+    {
+      "id": "two-write",
+      "mode": "write",
+      "say": "والآن بكتب الرقم اثنين. اثنان يعني شيئين."
+    },
+    {
+      "id": "two-explain",
+      "mode": "point",
+      "say": "عدوا معي: واحد، اثنان. أحسنتم!"
+    },
+    {
+      "id": "three-write",
+      "mode": "write",
+      "say": "وأخيرا بكتب الرقم ثلاثة. ثلاثة أشياء معا."
+    },
+    {
+      "id": "three-explain",
+      "mode": "point",
+      "say": "عدوا معي بصوت عالي: واحد، اثنان، ثلاثة!"
+    },
+    {
+      "id": "practice",
+      "mode": "talk",
+      "say": "هيا نتمرن. أشر بإصبعك وقل معي: واحد، اثنان، ثلاثة."
+    },
+    {
+      "id": "outro",
+      "mode": "talk",
+      "say": "أحسنت يا بطل! تعلمت العد حتى ثلاثة. أنا فخورة فيك. إلى اللقاء."
+    }
+  ],
+  "file": "content/media/jordan-g1-math-reel/jordan-g1-math-count-to-three-reel.mp4"
+}

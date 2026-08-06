@@ -1,0 +1,16 @@
+{
+  "globalId": "JOR-DIAGRAM-001051",
+  "kind": "diagram",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "مخطط تعليمي لوحدة حقوق الطفل",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G06-التربيةا-U03-L03",
+  "relationships": {
+    "lessonId": "JOR-G06-التربيةا-U03-L03",
+    "belongsTo": "JOR-G06-التربيةا-U03-L03"
+  },
+  "createdAt": "2026-07-31T17:56:56.908Z",
+  "updatedAt": "2026-07-31T17:56:56.908Z"
+}

@@ -1,0 +1,29 @@
+{
+  "globalId": "JOR-SKILL-000771",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«أسس علمية متكاملة — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-005479",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-005479",
+      "JOR-OUTCOME-005480",
+      "JOR-OUTCOME-005481",
+      "JOR-OUTCOME-005943",
+      "JOR-OUTCOME-005944",
+      "JOR-OUTCOME-005945",
+      "JOR-OUTCOME-006643",
+      "JOR-OUTCOME-006995"
+    ],
+    "lessonIds": [
+      "JOR-G11-SCI-U01-L03",
+      "JOR-G12-SCI-U01-L03"
+    ],
+    "belongsTo": "JOR-OUTCOME-005479"
+  },
+  "createdAt": "2026-07-31T17:56:57.254Z",
+  "updatedAt": "2026-07-31T17:56:57.546Z"
+}

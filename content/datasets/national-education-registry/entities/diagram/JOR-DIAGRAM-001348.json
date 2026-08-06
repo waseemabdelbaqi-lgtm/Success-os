@@ -1,0 +1,16 @@
+{
+  "globalId": "JOR-DIAGRAM-001348",
+  "kind": "diagram",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "مخطط تعليمي لوحدة النصوص الأدبية",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G07-ARAB-U01-L04",
+  "relationships": {
+    "lessonId": "JOR-G07-ARAB-U01-L04",
+    "belongsTo": "JOR-G07-ARAB-U01-L04"
+  },
+  "createdAt": "2026-07-31T17:56:57.027Z",
+  "updatedAt": "2026-07-31T17:56:57.027Z"
+}

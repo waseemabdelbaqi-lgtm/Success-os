@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-G11-MATH-U01-L02",
+  "kind": "lesson",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "الدوال والجبر المتقدم — بناء المهارة",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G11-MATH-U01",
+  "relationships": {
+    "unitId": "JOR-G11-MATH-U01",
+    "bookId": "JOR-BOOK-000110",
+    "subjectId": "JOR-G11-MATH",
+    "gradeId": "JOR-G11",
+    "belongsTo": "JOR-G11-MATH-U01"
+  },
+  "createdAt": "2026-07-31T17:56:57.244Z",
+  "updatedAt": "2026-07-31T17:56:57.244Z",
+  "lessonCode": "L02",
+  "sequence": 2,
+  "legacyLessonId": "L1.2",
+  "keywords": [
+    "عدد",
+    "عملية",
+    "نمط"
+  ]
+}

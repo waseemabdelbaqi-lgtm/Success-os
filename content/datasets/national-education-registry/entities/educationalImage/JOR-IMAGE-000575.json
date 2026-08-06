@@ -1,0 +1,17 @@
+{
+  "globalId": "JOR-IMAGE-000575",
+  "kind": "educationalImage",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "مخطط تعليمي لوحدة التاريخ المحلي المبسط",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G03-SOC-U04-L03",
+  "relationships": {
+    "lessonId": "JOR-G03-SOC-U04-L03",
+    "belongsTo": "JOR-G03-SOC-U04-L03"
+  },
+  "createdAt": "2026-07-31T17:56:56.780Z",
+  "updatedAt": "2026-07-31T17:56:56.780Z",
+  "src": null
+}

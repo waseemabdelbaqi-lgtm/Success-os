@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-G02-ISL-U02-L01",
+  "kind": "lesson",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "العبادات الأساسية — مقدمة ومفاهيم",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G02-ISL-U02",
+  "relationships": {
+    "unitId": "JOR-G02-ISL-U02",
+    "bookId": "JOR-BOOK-000023",
+    "subjectId": "JOR-G02-ISL",
+    "gradeId": "JOR-G02",
+    "belongsTo": "JOR-G02-ISL-U02"
+  },
+  "createdAt": "2026-07-31T17:56:56.741Z",
+  "updatedAt": "2026-07-31T17:56:56.741Z",
+  "lessonCode": "L01",
+  "sequence": 1,
+  "legacyLessonId": "L2.1",
+  "keywords": [
+    "عقيدة",
+    "عبادة",
+    "خلق"
+  ]
+}

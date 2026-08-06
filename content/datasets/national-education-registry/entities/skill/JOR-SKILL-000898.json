@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-SKILL-000898",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«تاريخ الأردن المعاصر — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-005770",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-005770",
+      "JOR-OUTCOME-005771",
+      "JOR-OUTCOME-005772",
+      "JOR-OUTCOME-006234",
+      "JOR-OUTCOME-006235",
+      "JOR-OUTCOME-006236"
+    ],
+    "lessonIds": [
+      "JOR-G11-تاريخالأ-U01-L04",
+      "JOR-G12-تاريخالأ-U01-L04"
+    ],
+    "belongsTo": "JOR-OUTCOME-005770"
+  },
+  "createdAt": "2026-07-31T17:56:57.300Z",
+  "updatedAt": "2026-07-31T17:56:57.380Z"
+}

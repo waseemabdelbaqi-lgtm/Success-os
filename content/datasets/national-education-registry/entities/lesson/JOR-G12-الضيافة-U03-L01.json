@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-G12-الضيافة-U03-L01",
+  "kind": "lesson",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "معايير السلامة والجودة — مقدمة ومفاهيم",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G12-الضيافة-U03",
+  "relationships": {
+    "unitId": "JOR-G12-الضيافة-U03",
+    "bookId": "JOR-BOOK-000139",
+    "subjectId": "JOR-G12-الضيافة",
+    "gradeId": "JOR-G12",
+    "belongsTo": "JOR-G12-الضيافة-U03"
+  },
+  "createdAt": "2026-07-31T17:56:57.516Z",
+  "updatedAt": "2026-07-31T17:56:57.516Z",
+  "lessonCode": "L01",
+  "sequence": 1,
+  "legacyLessonId": "L3.1",
+  "keywords": [
+    "معيار",
+    "أداة",
+    "عملية"
+  ]
+}

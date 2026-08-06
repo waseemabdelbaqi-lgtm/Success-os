@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-SKILL-000748",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«الهوية والقيم — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-005422",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-005422",
+      "JOR-OUTCOME-005423",
+      "JOR-OUTCOME-005424",
+      "JOR-OUTCOME-005886",
+      "JOR-OUTCOME-005887",
+      "JOR-OUTCOME-005888"
+    ],
+    "lessonIds": [
+      "JOR-G11-ISL-U04-L04",
+      "JOR-G12-ISL-U04-L04"
+    ],
+    "belongsTo": "JOR-OUTCOME-005422"
+  },
+  "createdAt": "2026-07-31T17:56:57.243Z",
+  "updatedAt": "2026-07-31T17:56:57.321Z"
+}

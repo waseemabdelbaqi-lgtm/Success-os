@@ -1,0 +1,35 @@
+{
+  "globalId": "JOR-SKILL-000460",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«الكتابة والإملاء — بناء المهارة» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-001008",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-001008",
+      "JOR-OUTCOME-001009",
+      "JOR-OUTCOME-001010",
+      "JOR-OUTCOME-001440",
+      "JOR-OUTCOME-001441",
+      "JOR-OUTCOME-001442",
+      "JOR-OUTCOME-001872",
+      "JOR-OUTCOME-001873",
+      "JOR-OUTCOME-001874",
+      "JOR-OUTCOME-002304",
+      "JOR-OUTCOME-002305",
+      "JOR-OUTCOME-002306"
+    ],
+    "lessonIds": [
+      "JOR-G01-ARAB-U02-L02",
+      "JOR-G02-ARAB-U02-L02",
+      "JOR-G03-ARAB-U02-L02",
+      "JOR-G04-ARAB-U02-L02"
+    ],
+    "belongsTo": "JOR-OUTCOME-001008"
+  },
+  "createdAt": "2026-07-31T17:56:56.735Z",
+  "updatedAt": "2026-07-31T17:56:56.826Z"
+}

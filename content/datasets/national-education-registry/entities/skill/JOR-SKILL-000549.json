@@ -1,0 +1,31 @@
+{
+  "globalId": "JOR-SKILL-000549",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«خدمة المجتمع — بناء المهارة» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-002520",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-002520",
+      "JOR-OUTCOME-002521",
+      "JOR-OUTCOME-002522",
+      "JOR-OUTCOME-003080",
+      "JOR-OUTCOME-003081",
+      "JOR-OUTCOME-003082",
+      "JOR-OUTCOME-003640",
+      "JOR-OUTCOME-003641",
+      "JOR-OUTCOME-003642"
+    ],
+    "lessonIds": [
+      "JOR-G05-التربيةا-U04-L02",
+      "JOR-G06-التربيةا-U04-L02",
+      "JOR-G07-التربيةا-U04-L02"
+    ],
+    "belongsTo": "JOR-OUTCOME-002520"
+  },
+  "createdAt": "2026-07-31T17:56:56.846Z",
+  "updatedAt": "2026-07-31T17:56:56.982Z"
+}

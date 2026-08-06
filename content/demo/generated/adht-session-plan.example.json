@@ -1,0 +1,273 @@
+{
+  "schema": "success-os.adht-session-plan.v1",
+  "sessionId": "adht_ce551ebfdcd19e41",
+  "studentId": "student_demo_001",
+  "teacherProfileId": "dtp_jo_elementary",
+  "educationalStage": "elementary",
+  "presence": {
+    "schema": "success-os.adht-presence.v1",
+    "capabilities": [
+      "speak_naturally",
+      "listen_naturally",
+      "understand_interruptions",
+      "maintain_eye_contact",
+      "facial_expressions",
+      "hand_gestures",
+      "point_to_diagrams",
+      "write_on_whiteboard",
+      "educational_emotional_reaction",
+      "step_by_step_explain",
+      "realtime_adaptation"
+    ],
+    "voiceConversation": {
+      "microphoneOnly": true,
+      "autoDetectLanguage": true,
+      "replyInStudentLanguage": true,
+      "instantLanguageSwitch": true,
+      "accentTolerance": true,
+      "interruptible": true,
+      "continueAfterInterrupt": true
+    },
+    "multimodalKinds": [
+      "text",
+      "voice",
+      "image",
+      "screenshot",
+      "homework_photo",
+      "pdf",
+      "handwritten_solution",
+      "video_conversation",
+      "live_whiteboard"
+    ],
+    "futureKinds": [
+      "live_camera",
+      "virtual_laboratory",
+      "ar_vr"
+    ],
+    "liveTeachingActions": [
+      "explain",
+      "draw",
+      "highlight",
+      "animate",
+      "demonstrate",
+      "ask_questions",
+      "generate_exercises",
+      "correct_mistakes",
+      "give_hints",
+      "encourage",
+      "recommend_review_lessons",
+      "recommend_videos",
+      "recommend_digital_books"
+    ],
+    "implementationStatus": "architecture_ready",
+    "shipsLiveAvatarVideo": false,
+    "shipsLiveTtsStt": false
+  },
+  "providers": [
+    {
+      "port": "reasoning_conversation",
+      "providerId": "openai",
+      "label": {
+        "en": "Reasoning & conversation",
+        "ar": "الاستدلال والمحادثة"
+      },
+      "exampleVendors": [
+        "OpenAI"
+      ],
+      "enabled": false,
+      "configured": false,
+      "implementationStatus": "architecture_ready",
+      "notes": [
+        "Provider-agnostic port; live keys not required for architecture."
+      ]
+    },
+    {
+      "port": "multimodal_understanding",
+      "providerId": "google_gemini",
+      "label": {
+        "en": "Multimodal understanding",
+        "ar": "الفهم متعدد الوسائط"
+      },
+      "exampleVendors": [
+        "Google Gemini"
+      ],
+      "enabled": false,
+      "configured": false,
+      "implementationStatus": "architecture_ready",
+      "notes": [
+        "Images, homework photos, PDFs, handwriting contracts."
+      ]
+    },
+    {
+      "port": "text_to_speech",
+      "providerId": "elevenlabs",
+      "label": {
+        "en": "High-quality multilingual voices",
+        "ar": "أصوات متعددة اللغات عالية الجودة"
+      },
+      "exampleVendors": [
+        "ElevenLabs"
+      ],
+      "enabled": false,
+      "configured": false,
+      "implementationStatus": "architecture_ready",
+      "notes": [
+        "Localized accents via admin voice keys on teacher profiles."
+      ]
+    },
+    {
+      "port": "speech_to_text",
+      "providerId": "azure_speech",
+      "label": {
+        "en": "Speech recognition",
+        "ar": "التعرّف على الكلام"
+      },
+      "exampleVendors": [
+        "Azure AI Speech",
+        "Google Cloud Speech"
+      ],
+      "enabled": false,
+      "configured": false,
+      "implementationStatus": "architecture_ready",
+      "notes": [
+        "Interruptions + accent tolerance are contract requirements."
+      ]
+    },
+    {
+      "port": "digital_human_video",
+      "providerId": "tavus",
+      "label": {
+        "en": "Digital human video",
+        "ar": "فيديو المعلم الرقمي"
+      },
+      "exampleVendors": [
+        "Tavus",
+        "similar digital-human video technology"
+      ],
+      "enabled": false,
+      "configured": false,
+      "implementationStatus": "architecture_ready",
+      "notes": [
+        "No live avatar video shipped in this PR (ADR-0055 / ADR-0055.1)."
+      ]
+    },
+    {
+      "port": "avatar_generation",
+      "providerId": "heygen",
+      "label": {
+        "en": "Avatar generation",
+        "ar": "توليد الصور الرمزية"
+      },
+      "exampleVendors": [
+        "HeyGen",
+        "similar avatar generation"
+      ],
+      "enabled": false,
+      "configured": false,
+      "implementationStatus": "architecture_ready",
+      "notes": [
+        "Admin-selected presets only; not auto-invented identities."
+      ]
+    },
+    {
+      "port": "realtime_media",
+      "providerId": "livekit",
+      "label": {
+        "en": "Realtime media infrastructure",
+        "ar": "بنية الوسائط في الوقت الحقيقي"
+      },
+      "exampleVendors": [
+        "LiveKit",
+        "equivalent realtime media"
+      ],
+      "enabled": false,
+      "configured": false,
+      "implementationStatus": "architecture_ready",
+      "notes": [
+        "Supports interruptible voice sessions when activated later."
+      ]
+    },
+    {
+      "port": "orchestration_graph",
+      "providerId": "langgraph",
+      "label": {
+        "en": "Orchestration framework",
+        "ar": "إطار التنسيق"
+      },
+      "exampleVendors": [
+        "LangGraph",
+        "equivalent orchestration"
+      ],
+      "enabled": false,
+      "configured": false,
+      "implementationStatus": "architecture_ready",
+      "notes": [
+        "ATE remains the pedagogical orchestrator; this port deepens graphs later."
+      ]
+    },
+    {
+      "port": "vector_memory",
+      "providerId": "vector_db",
+      "label": {
+        "en": "Long-term vector memory",
+        "ar": "ذاكرة متجهات طويلة الأمد"
+      },
+      "exampleVendors": [
+        "Vector database"
+      ],
+      "enabled": false,
+      "configured": false,
+      "implementationStatus": "architecture_ready",
+      "notes": [
+        "Complements durable ATE student memory files."
+      ]
+    },
+    {
+      "port": "knowledge_graph",
+      "providerId": "success_os_knowledge_graph",
+      "label": {
+        "en": "Curriculum knowledge graph",
+        "ar": "شبكة معرفة المنهج"
+      },
+      "exampleVendors": [
+        "Success OS Knowledge Graph"
+      ],
+      "enabled": true,
+      "configured": true,
+      "implementationStatus": "adapter_stub",
+      "notes": [
+        "Grounding already wired through ATE → CIE knowledge graph."
+      ]
+    }
+  ],
+  "personality": {
+    "schema": "success-os.adht-personality.v1",
+    "studentId": "student_demo_001",
+    "studentName": "Ahmad",
+    "preferredLanguage": "ar",
+    "learningStyle": "mixed",
+    "weakSkillIds": [],
+    "strongSkillIds": [],
+    "learningGoals": [],
+    "preferredTeachingSpeed": "normal",
+    "preferredExamples": [],
+    "favoriteSubjectIds": [
+      "SUB-00001"
+    ],
+    "confidenceLevel": "medium",
+    "previousConversationSessionIds": [
+      "turn_e93ec25607f0"
+    ],
+    "assignedTeacherProfileId": "dtp_jo_elementary",
+    "updatedAt": "2026-07-30T23:44:46.377Z"
+  },
+  "groundedByAte": true,
+  "inventsCurriculumFacts": false,
+  "liveProvidersEnabled": false,
+  "notes": [
+    "Digital Human Teacher session plan — architecture only.",
+    "Pedagogy and grounding remain in AI Teacher Engine (ATE).",
+    "No live avatar video, TTS, or STT SDK calls executed.",
+    "Assigned profile dtp_jo_elementary (JO)."
+  ]
+}

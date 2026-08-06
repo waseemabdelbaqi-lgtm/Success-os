@@ -1,0 +1,31 @@
+{
+  "globalId": "JOR-SKILL-000521",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«اللياقة البدنية — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-002454",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-002454",
+      "JOR-OUTCOME-002455",
+      "JOR-OUTCOME-002456",
+      "JOR-OUTCOME-003014",
+      "JOR-OUTCOME-003015",
+      "JOR-OUTCOME-003016",
+      "JOR-OUTCOME-003574",
+      "JOR-OUTCOME-003575",
+      "JOR-OUTCOME-003576"
+    ],
+    "lessonIds": [
+      "JOR-G05-PE-U02-L04",
+      "JOR-G06-PE-U02-L04",
+      "JOR-G07-PE-U02-L04"
+    ],
+    "belongsTo": "JOR-OUTCOME-002454"
+  },
+  "createdAt": "2026-07-31T17:56:56.840Z",
+  "updatedAt": "2026-07-31T17:56:56.975Z"
+}

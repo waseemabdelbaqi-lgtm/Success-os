@@ -1,0 +1,51 @@
+{
+  "globalId": "JOR-SKILL-000976",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يتعرف المتعلم مفهومًا محوريًا في الفنون والتصميم ضمن ممارسة فنية متقدمة بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 11.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-006545",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-006545",
+      "JOR-OUTCOME-006546",
+      "JOR-OUTCOME-006547",
+      "JOR-OUTCOME-006548",
+      "JOR-OUTCOME-006549",
+      "JOR-OUTCOME-006550",
+      "JOR-OUTCOME-006551",
+      "JOR-OUTCOME-006552",
+      "JOR-OUTCOME-006553",
+      "JOR-OUTCOME-006554",
+      "JOR-OUTCOME-006555",
+      "JOR-OUTCOME-006556",
+      "JOR-OUTCOME-006897",
+      "JOR-OUTCOME-006898",
+      "JOR-OUTCOME-006899",
+      "JOR-OUTCOME-006900",
+      "JOR-OUTCOME-006901",
+      "JOR-OUTCOME-006902",
+      "JOR-OUTCOME-006903",
+      "JOR-OUTCOME-006904",
+      "JOR-OUTCOME-006905",
+      "JOR-OUTCOME-006906",
+      "JOR-OUTCOME-006907",
+      "JOR-OUTCOME-006908"
+    ],
+    "lessonIds": [
+      "JOR-G11-الفنونوا-U01-L01",
+      "JOR-G11-الفنونوا-U01-L02",
+      "JOR-G11-الفنونوا-U01-L03",
+      "JOR-G11-الفنونوا-U01-L04",
+      "JOR-G12-الفنونوا-U01-L01",
+      "JOR-G12-الفنونوا-U01-L02",
+      "JOR-G12-الفنونوا-U01-L03",
+      "JOR-G12-الفنونوا-U01-L04"
+    ],
+    "belongsTo": "JOR-OUTCOME-006545"
+  },
+  "createdAt": "2026-07-31T17:56:57.437Z",
+  "updatedAt": "2026-07-31T17:56:57.523Z"
+}

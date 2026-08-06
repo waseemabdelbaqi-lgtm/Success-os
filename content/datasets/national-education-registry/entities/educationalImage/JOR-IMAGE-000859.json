@@ -1,0 +1,17 @@
+{
+  "globalId": "JOR-IMAGE-000859",
+  "kind": "educationalImage",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "مخطط تعليمي لوحدة حقوق الطفل",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G05-التربيةا-U03-L03",
+  "relationships": {
+    "lessonId": "JOR-G05-التربيةا-U03-L03",
+    "belongsTo": "JOR-G05-التربيةا-U03-L03"
+  },
+  "createdAt": "2026-07-31T17:56:56.848Z",
+  "updatedAt": "2026-07-31T17:56:56.848Z",
+  "src": null
+}

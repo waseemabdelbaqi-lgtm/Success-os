@@ -1,0 +1,35 @@
+{
+  "globalId": "JOR-SKILL-000402",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«القيمة المكانية — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-000870",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-000870",
+      "JOR-OUTCOME-000871",
+      "JOR-OUTCOME-000872",
+      "JOR-OUTCOME-001302",
+      "JOR-OUTCOME-001303",
+      "JOR-OUTCOME-001304",
+      "JOR-OUTCOME-001734",
+      "JOR-OUTCOME-001735",
+      "JOR-OUTCOME-001736",
+      "JOR-OUTCOME-002166",
+      "JOR-OUTCOME-002167",
+      "JOR-OUTCOME-002168"
+    ],
+    "lessonIds": [
+      "JOR-G01-MATH-U02-L04",
+      "JOR-G02-MATH-U02-L04",
+      "JOR-G03-MATH-U02-L04",
+      "JOR-G04-MATH-U02-L04"
+    ],
+    "belongsTo": "JOR-OUTCOME-000870"
+  },
+  "createdAt": "2026-07-31T17:56:56.725Z",
+  "updatedAt": "2026-07-31T17:56:56.814Z"
+}

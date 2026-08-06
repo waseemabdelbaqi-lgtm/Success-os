@@ -1,0 +1,35 @@
+{
+  "globalId": "JOR-SKILL-000454",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«القراءة والفهم — مقدمة ومفاهيم» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-000993",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-000993",
+      "JOR-OUTCOME-000994",
+      "JOR-OUTCOME-000995",
+      "JOR-OUTCOME-001425",
+      "JOR-OUTCOME-001426",
+      "JOR-OUTCOME-001427",
+      "JOR-OUTCOME-001857",
+      "JOR-OUTCOME-001858",
+      "JOR-OUTCOME-001859",
+      "JOR-OUTCOME-002289",
+      "JOR-OUTCOME-002290",
+      "JOR-OUTCOME-002291"
+    ],
+    "lessonIds": [
+      "JOR-G01-ARAB-U01-L01",
+      "JOR-G02-ARAB-U01-L01",
+      "JOR-G03-ARAB-U01-L01",
+      "JOR-G04-ARAB-U01-L01"
+    ],
+    "belongsTo": "JOR-OUTCOME-000993"
+  },
+  "createdAt": "2026-07-31T17:56:56.734Z",
+  "updatedAt": "2026-07-31T17:56:56.824Z"
+}

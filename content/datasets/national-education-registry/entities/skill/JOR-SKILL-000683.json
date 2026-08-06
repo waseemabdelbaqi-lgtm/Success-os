@@ -1,0 +1,31 @@
+{
+  "globalId": "JOR-SKILL-000683",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«Reading Comprehension — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-002834",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-002834",
+      "JOR-OUTCOME-002835",
+      "JOR-OUTCOME-002836",
+      "JOR-OUTCOME-003394",
+      "JOR-OUTCOME-003395",
+      "JOR-OUTCOME-003396",
+      "JOR-OUTCOME-003954",
+      "JOR-OUTCOME-003955",
+      "JOR-OUTCOME-003956"
+    ],
+    "lessonIds": [
+      "JOR-G05-ENG-U03-L04",
+      "JOR-G06-ENG-U03-L04",
+      "JOR-G07-ENG-U03-L04"
+    ],
+    "belongsTo": "JOR-OUTCOME-002834"
+  },
+  "createdAt": "2026-07-31T17:56:56.877Z",
+  "updatedAt": "2026-07-31T17:56:57.024Z"
+}

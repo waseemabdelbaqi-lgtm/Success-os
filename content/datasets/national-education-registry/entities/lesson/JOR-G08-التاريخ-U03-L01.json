@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-G08-التاريخ-U03-L01",
+  "kind": "lesson",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "العلاقات الإقليمية — مقدمة ومفاهيم",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G08-التاريخ-U03",
+  "relationships": {
+    "unitId": "JOR-G08-التاريخ-U03",
+    "bookId": "JOR-BOOK-000083",
+    "subjectId": "JOR-G08-التاريخ",
+    "gradeId": "JOR-G08",
+    "belongsTo": "JOR-G08-التاريخ-U03"
+  },
+  "createdAt": "2026-07-31T17:56:57.041Z",
+  "updatedAt": "2026-07-31T17:56:57.041Z",
+  "lessonCode": "L01",
+  "sequence": 1,
+  "legacyLessonId": "L3.1",
+  "keywords": [
+    "حدث",
+    "مصدر",
+    "سبب"
+  ]
+}

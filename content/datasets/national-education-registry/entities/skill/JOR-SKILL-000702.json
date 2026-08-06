@@ -1,0 +1,31 @@
+{
+  "globalId": "JOR-SKILL-000702",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«البلاغة المبسطة — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-002879",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-002879",
+      "JOR-OUTCOME-002880",
+      "JOR-OUTCOME-002881",
+      "JOR-OUTCOME-003439",
+      "JOR-OUTCOME-003440",
+      "JOR-OUTCOME-003441",
+      "JOR-OUTCOME-003999",
+      "JOR-OUTCOME-004000",
+      "JOR-OUTCOME-004001"
+    ],
+    "lessonIds": [
+      "JOR-G05-ARAB-U03-L03",
+      "JOR-G06-ARAB-U03-L03",
+      "JOR-G07-ARAB-U03-L03"
+    ],
+    "belongsTo": "JOR-OUTCOME-002879"
+  },
+  "createdAt": "2026-07-31T17:56:56.882Z",
+  "updatedAt": "2026-07-31T17:56:57.030Z"
+}

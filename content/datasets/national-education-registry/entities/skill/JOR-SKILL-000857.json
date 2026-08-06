@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-SKILL-000857",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«الأدب والنقد — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-005671",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-005671",
+      "JOR-OUTCOME-005672",
+      "JOR-OUTCOME-005673",
+      "JOR-OUTCOME-006135",
+      "JOR-OUTCOME-006136",
+      "JOR-OUTCOME-006137"
+    ],
+    "lessonIds": [
+      "JOR-G11-ARAB-U01-L03",
+      "JOR-G12-ARAB-U01-L03"
+    ],
+    "belongsTo": "JOR-OUTCOME-005671"
+  },
+  "createdAt": "2026-07-31T17:56:57.283Z",
+  "updatedAt": "2026-07-31T17:56:57.362Z"
+}

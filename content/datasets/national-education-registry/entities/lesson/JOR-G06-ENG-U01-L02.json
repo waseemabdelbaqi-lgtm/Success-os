@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-G06-ENG-U01-L02",
+  "kind": "lesson",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "Communication — بناء المهارة",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G06-ENG-U01",
+  "relationships": {
+    "unitId": "JOR-G06-ENG-U01",
+    "bookId": "JOR-BOOK-000069",
+    "subjectId": "JOR-G06-ENG",
+    "gradeId": "JOR-G06",
+    "belongsTo": "JOR-G06-ENG-U01"
+  },
+  "createdAt": "2026-07-31T17:56:56.944Z",
+  "updatedAt": "2026-07-31T17:56:56.944Z",
+  "lessonCode": "L02",
+  "sequence": 2,
+  "legacyLessonId": "L1.2",
+  "keywords": [
+    "vocabulary",
+    "structure",
+    "fluency"
+  ]
+}

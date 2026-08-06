@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-G08-الثقافةا-U03-L04",
+  "kind": "lesson",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "ريادة مصغرة — تقويم وتعزيز",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G08-الثقافةا-U03",
+  "relationships": {
+    "unitId": "JOR-G08-الثقافةا-U03",
+    "bookId": "JOR-BOOK-000087",
+    "subjectId": "JOR-G08-الثقافةا",
+    "gradeId": "JOR-G08",
+    "belongsTo": "JOR-G08-الثقافةا-U03"
+  },
+  "createdAt": "2026-07-31T17:56:57.074Z",
+  "updatedAt": "2026-07-31T17:56:57.074Z",
+  "lessonCode": "L04",
+  "sequence": 4,
+  "legacyLessonId": "L3.4",
+  "keywords": [
+    "دخل",
+    "مصروف",
+    "ادخار"
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "globalId": "JOR-SKILL-000255",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«Functional English — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-000522",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-000522",
+      "JOR-OUTCOME-000523",
+      "JOR-OUTCOME-000524",
+      "JOR-OUTCOME-004586",
+      "JOR-OUTCOME-004587",
+      "JOR-OUTCOME-004588",
+      "JOR-OUTCOME-005242",
+      "JOR-OUTCOME-005243",
+      "JOR-OUTCOME-005244"
+    ],
+    "lessonIds": [
+      "JOR-G10-ENG-U01-L04",
+      "JOR-G08-ENG-U01-L04",
+      "JOR-G09-ENG-U01-L04"
+    ],
+    "belongsTo": "JOR-OUTCOME-000522"
+  },
+  "createdAt": "2026-07-31T17:56:56.706Z",
+  "updatedAt": "2026-07-31T17:56:57.213Z"
+}

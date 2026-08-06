@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-G10-الثقافةا-U04-L02",
+  "kind": "lesson",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "مخاطر الاحتيال — بناء المهارة",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G10-الثقافةا-U04",
+  "relationships": {
+    "unitId": "JOR-G10-الثقافةا-U04",
+    "bookId": "JOR-BOOK-000005",
+    "subjectId": "JOR-G10-الثقافةا",
+    "gradeId": "JOR-G10",
+    "belongsTo": "JOR-G10-الثقافةا-U04"
+  },
+  "createdAt": "2026-07-31T17:56:56.696Z",
+  "updatedAt": "2026-07-31T17:56:56.696Z",
+  "lessonCode": "L02",
+  "sequence": 2,
+  "legacyLessonId": "L4.2",
+  "keywords": [
+    "دخل",
+    "مصروف",
+    "ادخار"
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "sourceId": "jo-ref-libretexts-science",
+  "title": "LibreTexts — Science Concept Verification",
+  "publisher": "LibreTexts",
+  "organization": "LibreTexts",
+  "country": "International (concept verification only)",
+  "educationalSystem": "OER — not a Jordan curriculum authority",
+  "subject": "العلوم",
+  "grade": "all",
+  "language": "en",
+  "publicationYear": 2025,
+  "version": "2025-2026",
+  "officialUrl": "https://libretexts.org",
+  "licenseType": "open-license-oer",
+  "copyrightStatus": "open-educational-resource",
+  "verificationDate": "2026-07-31T17:54:29.642Z",
+  "reliabilityScore": 86,
+  "status": "verified",
+  "category": "Scientific References",
+  "copyBookText": false,
+  "note": null,
+  "history": [
+    {
+      "event": "registered",
+      "at": "2026-07-31T17:54:29.642Z",
+      "version": "2025-2026",
+      "note": "JO-05 seed registration"
+    },
+    {
+      "event": "rebuilt",
+      "at": "2026-07-31T17:55:32.918Z",
+      "version": "2025-2026"
+    },
+    {
+      "event": "rebuilt",
+      "at": "2026-07-31T17:55:35.796Z",
+      "version": "2025-2026"
+    }
+  ],
+  "validation": {
+    "ok": true,
+    "warnings": [],
+    "validatedAt": "2026-07-31T17:55:35.796Z"
+  }
+}

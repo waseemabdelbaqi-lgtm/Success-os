@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-G01-ENG-U01-L02",
+  "kind": "lesson",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "Listening & Speaking — بناء المهارة",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G01-ENG-U01",
+  "relationships": {
+    "unitId": "JOR-G01-ENG-U01",
+    "bookId": "JOR-BOOK-000020",
+    "subjectId": "JOR-G01-ENG",
+    "gradeId": "JOR-G01",
+    "belongsTo": "JOR-G01-ENG-U01"
+  },
+  "createdAt": "2026-07-31T17:56:56.729Z",
+  "updatedAt": "2026-07-31T17:56:56.729Z",
+  "lessonCode": "L02",
+  "sequence": 2,
+  "legacyLessonId": "L1.2",
+  "keywords": [
+    "vocabulary",
+    "structure",
+    "fluency"
+  ]
+}

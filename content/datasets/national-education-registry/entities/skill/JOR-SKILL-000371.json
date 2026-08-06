@@ -1,0 +1,35 @@
+{
+  "globalId": "JOR-SKILL-000371",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«المشاريع الإبداعية — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-000795",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-000795",
+      "JOR-OUTCOME-000796",
+      "JOR-OUTCOME-000797",
+      "JOR-OUTCOME-001227",
+      "JOR-OUTCOME-001228",
+      "JOR-OUTCOME-001229",
+      "JOR-OUTCOME-001659",
+      "JOR-OUTCOME-001660",
+      "JOR-OUTCOME-001661",
+      "JOR-OUTCOME-002091",
+      "JOR-OUTCOME-002092",
+      "JOR-OUTCOME-002093"
+    ],
+    "lessonIds": [
+      "JOR-G01-ARTS-U04-L03",
+      "JOR-G02-ARTS-U04-L03",
+      "JOR-G03-ARTS-U04-L03",
+      "JOR-G04-ARTS-U04-L03"
+    ],
+    "belongsTo": "JOR-OUTCOME-000795"
+  },
+  "createdAt": "2026-07-31T17:56:56.720Z",
+  "updatedAt": "2026-07-31T17:56:56.808Z"
+}

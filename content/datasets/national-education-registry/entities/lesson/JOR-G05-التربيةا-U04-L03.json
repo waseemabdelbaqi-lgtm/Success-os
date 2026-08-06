@@ -1,0 +1,28 @@
+{
+  "globalId": "JOR-G05-التربيةا-U04-L03",
+  "kind": "lesson",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "الخدمة المجتمعية — تطبيق ومثال",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G05-التربيةا-U04",
+  "relationships": {
+    "unitId": "JOR-G05-التربيةا-U04",
+    "bookId": "JOR-BOOK-000052",
+    "subjectId": "JOR-G05-التربيةا",
+    "gradeId": "JOR-G05",
+    "belongsTo": "JOR-G05-التربيةا-U04"
+  },
+  "createdAt": "2026-07-31T17:56:56.846Z",
+  "updatedAt": "2026-07-31T17:56:56.849Z",
+  "lessonCode": "L03",
+  "sequence": 3,
+  "legacyLessonId": "L4.3",
+  "keywords": [
+    "مواطنة",
+    "حق",
+    "واجب"
+  ],
+  "_deduped": true
+}

@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-G02-SCI-U01-L03",
+  "kind": "lesson",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "الكائنات الحية — تطبيق ومثال",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G02-SCI-U01",
+  "relationships": {
+    "unitId": "JOR-G02-SCI-U01",
+    "bookId": "JOR-BOOK-000028",
+    "subjectId": "JOR-G02-SCI",
+    "gradeId": "JOR-G02",
+    "belongsTo": "JOR-G02-SCI-U01"
+  },
+  "createdAt": "2026-07-31T17:56:56.757Z",
+  "updatedAt": "2026-07-31T17:56:56.757Z",
+  "lessonCode": "L03",
+  "sequence": 3,
+  "legacyLessonId": "L1.3",
+  "keywords": [
+    "مادة",
+    "طاقة",
+    "نظام"
+  ]
+}

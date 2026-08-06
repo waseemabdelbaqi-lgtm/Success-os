@@ -1,0 +1,35 @@
+{
+  "globalId": "JOR-SKILL-000357",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«عناصر الفن — مقدمة ومفاهيم» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-000753",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-000753",
+      "JOR-OUTCOME-000754",
+      "JOR-OUTCOME-000755",
+      "JOR-OUTCOME-001185",
+      "JOR-OUTCOME-001186",
+      "JOR-OUTCOME-001187",
+      "JOR-OUTCOME-001617",
+      "JOR-OUTCOME-001618",
+      "JOR-OUTCOME-001619",
+      "JOR-OUTCOME-002049",
+      "JOR-OUTCOME-002050",
+      "JOR-OUTCOME-002051"
+    ],
+    "lessonIds": [
+      "JOR-G01-ARTS-U01-L01",
+      "JOR-G02-ARTS-U01-L01",
+      "JOR-G03-ARTS-U01-L01",
+      "JOR-G04-ARTS-U01-L01"
+    ],
+    "belongsTo": "JOR-OUTCOME-000753"
+  },
+  "createdAt": "2026-07-31T17:56:56.719Z",
+  "updatedAt": "2026-07-31T17:56:56.805Z"
+}

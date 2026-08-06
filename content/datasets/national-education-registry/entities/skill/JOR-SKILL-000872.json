@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-SKILL-000872",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«التواصل الرسمي — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-005707",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-005707",
+      "JOR-OUTCOME-005708",
+      "JOR-OUTCOME-005709",
+      "JOR-OUTCOME-006171",
+      "JOR-OUTCOME-006172",
+      "JOR-OUTCOME-006173"
+    ],
+    "lessonIds": [
+      "JOR-G11-ARAB-U04-L03",
+      "JOR-G12-ARAB-U04-L03"
+    ],
+    "belongsTo": "JOR-OUTCOME-005707"
+  },
+  "createdAt": "2026-07-31T17:56:57.290Z",
+  "updatedAt": "2026-07-31T17:56:57.369Z"
+}

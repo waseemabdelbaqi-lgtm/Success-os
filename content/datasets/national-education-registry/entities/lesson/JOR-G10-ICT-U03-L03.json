@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-G10-ICT-U03-L03",
+  "kind": "lesson",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "بيانات ومعلومات — تطبيق ومثال",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G10-ICT-U03",
+  "relationships": {
+    "unitId": "JOR-G10-ICT-U03",
+    "bookId": "JOR-BOOK-000013",
+    "subjectId": "JOR-G10-ICT",
+    "gradeId": "JOR-G10",
+    "belongsTo": "JOR-G10-ICT-U03"
+  },
+  "createdAt": "2026-07-31T17:56:56.713Z",
+  "updatedAt": "2026-07-31T17:56:56.713Z",
+  "lessonCode": "L03",
+  "sequence": 3,
+  "legacyLessonId": "L3.3",
+  "keywords": [
+    "بيانات",
+    "خوارزمية",
+    "شبكة"
+  ]
+}

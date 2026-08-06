@@ -1,0 +1,35 @@
+{
+  "globalId": "JOR-SKILL-000365",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«المسرح المدرسي — مقدمة ومفاهيم» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-000777",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-000777",
+      "JOR-OUTCOME-000778",
+      "JOR-OUTCOME-000779",
+      "JOR-OUTCOME-001209",
+      "JOR-OUTCOME-001210",
+      "JOR-OUTCOME-001211",
+      "JOR-OUTCOME-001641",
+      "JOR-OUTCOME-001642",
+      "JOR-OUTCOME-001643",
+      "JOR-OUTCOME-002073",
+      "JOR-OUTCOME-002074",
+      "JOR-OUTCOME-002075"
+    ],
+    "lessonIds": [
+      "JOR-G01-ARTS-U03-L01",
+      "JOR-G02-ARTS-U03-L01",
+      "JOR-G03-ARTS-U03-L01",
+      "JOR-G04-ARTS-U03-L01"
+    ],
+    "belongsTo": "JOR-OUTCOME-000777"
+  },
+  "createdAt": "2026-07-31T17:56:56.720Z",
+  "updatedAt": "2026-07-31T17:56:56.806Z"
+}

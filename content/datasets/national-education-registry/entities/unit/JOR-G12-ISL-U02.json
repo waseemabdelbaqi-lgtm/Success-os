@@ -1,0 +1,21 @@
+{
+  "globalId": "JOR-G12-ISL-U02",
+  "kind": "unit",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "الفقه والمعاملات",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-BOOK-000118",
+  "relationships": {
+    "bookId": "JOR-BOOK-000118",
+    "subjectId": "JOR-G12-ISL",
+    "gradeId": "JOR-G12",
+    "belongsTo": "JOR-BOOK-000118"
+  },
+  "createdAt": "2026-07-31T17:56:57.315Z",
+  "updatedAt": "2026-07-31T17:56:57.315Z",
+  "unitCode": "U02",
+  "sequence": 2,
+  "legacyUnitId": "U2"
+}

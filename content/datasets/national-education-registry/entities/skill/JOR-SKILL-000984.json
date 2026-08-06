@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-SKILL-000984",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«تصميم وإنتاج — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-006563",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-006563",
+      "JOR-OUTCOME-006564",
+      "JOR-OUTCOME-006565",
+      "JOR-OUTCOME-006915",
+      "JOR-OUTCOME-006916",
+      "JOR-OUTCOME-006917"
+    ],
+    "lessonIds": [
+      "JOR-G11-الفنونوا-U02-L03",
+      "JOR-G12-الفنونوا-U02-L03"
+    ],
+    "belongsTo": "JOR-OUTCOME-006563"
+  },
+  "createdAt": "2026-07-31T17:56:57.441Z",
+  "updatedAt": "2026-07-31T17:56:57.525Z"
+}

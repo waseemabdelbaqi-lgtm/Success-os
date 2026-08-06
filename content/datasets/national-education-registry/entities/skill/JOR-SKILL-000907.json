@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-SKILL-000907",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«التحليل التاريخي — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-005791",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-005791",
+      "JOR-OUTCOME-005792",
+      "JOR-OUTCOME-005793",
+      "JOR-OUTCOME-006255",
+      "JOR-OUTCOME-006256",
+      "JOR-OUTCOME-006257"
+    ],
+    "lessonIds": [
+      "JOR-G11-تاريخالأ-U03-L03",
+      "JOR-G12-تاريخالأ-U03-L03"
+    ],
+    "belongsTo": "JOR-OUTCOME-005791"
+  },
+  "createdAt": "2026-07-31T17:56:57.303Z",
+  "updatedAt": "2026-07-31T17:56:57.384Z"
+}

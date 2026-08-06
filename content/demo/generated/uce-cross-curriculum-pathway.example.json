@@ -1,0 +1,57 @@
+{
+  "schema": "success-os.universal-curriculum-mapping.v1/pathway",
+  "title": "Jordan G8 Science → cross-curriculum equivalents → future AI recommendations",
+  "steps": [
+    {
+      "label": "Jordan Grade 8 Science",
+      "globalId": "LSN-01001",
+      "kind": "lesson"
+    },
+    {
+      "label": "IGCSE Combined Science",
+      "globalId": "LSN-01002",
+      "kind": "lesson"
+    },
+    {
+      "label": "AP Biology",
+      "globalId": "LSN-01003",
+      "kind": "lesson"
+    },
+    {
+      "label": "US NGSS",
+      "globalId": "LSN-01004",
+      "kind": "lesson"
+    },
+    {
+      "label": "IB MYP Science",
+      "globalId": "LSN-01005",
+      "kind": "lesson"
+    },
+    {
+      "label": "Cambridge Lower Secondary",
+      "globalId": "LSN-01006",
+      "kind": "lesson"
+    },
+    {
+      "label": "Future AI Recommendations",
+      "globalId": "LSN-01999",
+      "kind": "placeholder"
+    }
+  ],
+  "mappingsFromJordanG8": [
+    {
+      "globalId": "MAP-00001",
+      "relation": "equivalent",
+      "confidence": 0.86,
+      "target": "LSN-01002",
+      "targetLabel": "IGCSE Combined Science — Cells"
+    },
+    {
+      "globalId": "MAP-00008",
+      "relation": "advanced",
+      "confidence": 0.7,
+      "target": "LSN-01003",
+      "targetLabel": "AP Biology — Cell structure"
+    }
+  ]
+}

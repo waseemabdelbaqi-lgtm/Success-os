@@ -1,0 +1,31 @@
+{
+  "globalId": "JOR-SKILL-000545",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«السلامة المنزلية — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-002511",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-002511",
+      "JOR-OUTCOME-002512",
+      "JOR-OUTCOME-002513",
+      "JOR-OUTCOME-003071",
+      "JOR-OUTCOME-003072",
+      "JOR-OUTCOME-003073",
+      "JOR-OUTCOME-003631",
+      "JOR-OUTCOME-003632",
+      "JOR-OUTCOME-003633"
+    ],
+    "lessonIds": [
+      "JOR-G05-التربيةا-U03-L03",
+      "JOR-G06-التربيةا-U03-L03",
+      "JOR-G07-التربيةا-U03-L03"
+    ],
+    "belongsTo": "JOR-OUTCOME-002511"
+  },
+  "createdAt": "2026-07-31T17:56:56.845Z",
+  "updatedAt": "2026-07-31T17:56:56.981Z"
+}

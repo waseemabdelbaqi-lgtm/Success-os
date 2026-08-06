@@ -1,0 +1,17 @@
+{
+  "globalId": "JOR-IMAGE-000228",
+  "kind": "educationalImage",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "مخطط تعليمي لوحدة العقيدة الميسرة",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G01-ISL-U01-L04",
+  "relationships": {
+    "lessonId": "JOR-G01-ISL-U01-L04",
+    "belongsTo": "JOR-G01-ISL-U01-L04"
+  },
+  "createdAt": "2026-07-31T17:56:56.715Z",
+  "updatedAt": "2026-07-31T17:56:56.715Z",
+  "src": null
+}

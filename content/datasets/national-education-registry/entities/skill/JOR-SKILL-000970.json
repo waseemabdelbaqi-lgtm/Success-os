@@ -1,0 +1,51 @@
+{
+  "globalId": "JOR-SKILL-000970",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يتعرف المتعلم مفهومًا محوريًا في السفر والسياحة ضمن معايير السلامة والجودة بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 11.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-006473",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-006473",
+      "JOR-OUTCOME-006474",
+      "JOR-OUTCOME-006475",
+      "JOR-OUTCOME-006476",
+      "JOR-OUTCOME-006477",
+      "JOR-OUTCOME-006478",
+      "JOR-OUTCOME-006479",
+      "JOR-OUTCOME-006480",
+      "JOR-OUTCOME-006481",
+      "JOR-OUTCOME-006482",
+      "JOR-OUTCOME-006483",
+      "JOR-OUTCOME-006484",
+      "JOR-OUTCOME-006825",
+      "JOR-OUTCOME-006826",
+      "JOR-OUTCOME-006827",
+      "JOR-OUTCOME-006828",
+      "JOR-OUTCOME-006829",
+      "JOR-OUTCOME-006830",
+      "JOR-OUTCOME-006831",
+      "JOR-OUTCOME-006832",
+      "JOR-OUTCOME-006833",
+      "JOR-OUTCOME-006834",
+      "JOR-OUTCOME-006835",
+      "JOR-OUTCOME-006836"
+    ],
+    "lessonIds": [
+      "JOR-G11-السفروال-U03-L01",
+      "JOR-G11-السفروال-U03-L02",
+      "JOR-G11-السفروال-U03-L03",
+      "JOR-G11-السفروال-U03-L04",
+      "JOR-G12-السفروال-U03-L01",
+      "JOR-G12-السفروال-U03-L02",
+      "JOR-G12-السفروال-U03-L03",
+      "JOR-G12-السفروال-U03-L04"
+    ],
+    "belongsTo": "JOR-OUTCOME-006473"
+  },
+  "createdAt": "2026-07-31T17:56:57.423Z",
+  "updatedAt": "2026-07-31T17:56:57.507Z"
+}

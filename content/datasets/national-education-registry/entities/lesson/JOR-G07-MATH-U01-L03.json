@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-G07-MATH-U01-L03",
+  "kind": "lesson",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "الكسور والعمليات — تطبيق ومثال",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G07-MATH-U01",
+  "relationships": {
+    "unitId": "JOR-G07-MATH-U01",
+    "bookId": "JOR-BOOK-000077",
+    "subjectId": "JOR-G07-MATH",
+    "gradeId": "JOR-G07",
+    "belongsTo": "JOR-G07-MATH-U01"
+  },
+  "createdAt": "2026-07-31T17:56:57.002Z",
+  "updatedAt": "2026-07-31T17:56:57.002Z",
+  "lessonCode": "L03",
+  "sequence": 3,
+  "legacyLessonId": "L1.3",
+  "keywords": [
+    "عدد",
+    "عملية",
+    "نمط"
+  ]
+}

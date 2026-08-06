@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SUCCESS OS — سارة وعلي</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@600;800&family=Space+Grotesk:wght@700&display=swap" rel="stylesheet" />
+  <style>
+    body{margin:0;font-family:Cairo,sans-serif;color:#1e2a3a;background:linear-gradient(165deg,#6ec8ff,#b8f0d0 55%,#7ed9a0);min-height:100vh}
+    .wrap{max-width:980px;margin:0 auto;padding:28px 18px 50px}
+    header{background:rgba(255,255,255,.93);border-radius:28px;padding:22px 24px;margin-bottom:22px}
+    .brand{font-family:"Space Grotesk",sans-serif;color:#0f766e;font-weight:700;letter-spacing:.04em}
+    h1{margin:8px 0;font-size:clamp(1.5rem,3vw,2.1rem)}
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px}
+    .card{background:rgba(255,255,255,.93);border-radius:24px;overflow:hidden}
+    img{width:100%;display:block;object-fit:cover}
+    .portrait{aspect-ratio:1}
+    .pose{aspect-ratio:3/4}
+    .body{padding:14px 16px 18px}
+    .badge{display:inline-block;background:#ffd84a;border-radius:999px;padding:4px 10px;font-weight:800;font-size:.8rem}
+    .badge.m{background:#9ad7ff}
+    a.cta{display:inline-block;margin-top:10px;background:#ff5a6a;color:#fff;text-decoration:none;font-weight:800;padding:10px 16px;border-radius:14px}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="brand">SUCCESS OS</div>
+      <h1>معلمان فقط: سارة وعلي</h1>
+      <p>هويات احترافية بالذكاء الاصطناعي · صف تفاعلي حي</p>
+      <a class="cta" href="/ai-teacher/classroom">افتح الصف التفاعلي الحي</a>
+    </header>
+    <div class="grid">
+      <article class="card">
+        <img class="portrait" src="./sara/portrait.png" alt="سارة" />
+        <div class="body">
+          <span class="badge">أنثى</span>
+          <h2>المعلمة سارة</h2>
+          <p>ابتدائي · صوت ar-JO-SanaNeural</p>
+          <img class="pose" src="./sara/flagship/mouth-open.png" alt="سارة تتكلم" />
+        </div>
+      </article>
+      <article class="card">
+        <img class="portrait" src="./ali/portrait.png" alt="علي" />
+        <div class="body">
+          <span class="badge m">ذكر</span>
+          <h2>المعلم علي</h2>
+          <p>ابتدائي/علوم · صوت ar-JO-TaimNeural</p>
+          <img class="pose" src="./ali/flagship/mouth-open.png" alt="علي يتكلم" />
+        </div>
+      </article>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,21 @@
+{
+  "globalId": "JOR-G10-SCI-U03",
+  "kind": "unit",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "التفاعلات الكيميائية",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-BOOK-000009",
+  "relationships": {
+    "bookId": "JOR-BOOK-000009",
+    "subjectId": "JOR-G10-SCI",
+    "gradeId": "JOR-G10",
+    "belongsTo": "JOR-BOOK-000009"
+  },
+  "createdAt": "2026-07-31T17:56:56.703Z",
+  "updatedAt": "2026-07-31T17:56:56.703Z",
+  "unitCode": "U03",
+  "sequence": 3,
+  "legacyUnitId": "U3"
+}

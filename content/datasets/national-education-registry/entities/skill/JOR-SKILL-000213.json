@@ -1,0 +1,31 @@
+{
+  "globalId": "JOR-SKILL-000213",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«الموجات والطاقة — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-000435",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-000435",
+      "JOR-OUTCOME-000436",
+      "JOR-OUTCOME-000437",
+      "JOR-OUTCOME-004499",
+      "JOR-OUTCOME-004500",
+      "JOR-OUTCOME-004501",
+      "JOR-OUTCOME-005155",
+      "JOR-OUTCOME-005156",
+      "JOR-OUTCOME-005157"
+    ],
+    "lessonIds": [
+      "JOR-G10-SCI-U02-L03",
+      "JOR-G08-SCI-U02-L03",
+      "JOR-G09-SCI-U02-L03"
+    ],
+    "belongsTo": "JOR-OUTCOME-000435"
+  },
+  "createdAt": "2026-07-31T17:56:56.702Z",
+  "updatedAt": "2026-07-31T17:56:57.199Z"
+}

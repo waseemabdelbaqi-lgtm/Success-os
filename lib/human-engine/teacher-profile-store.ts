@@ -1,0 +1,100 @@
+/**
+ * Server-only editable teacher profile store.
+ * Behaviour overlays only — identity/voice always from Sara.ts / Ali.ts.
+ */
+import "server-only";
+import fs from "node:fs";
+import path from "node:path";
+import type { TeacherMindProfile, TeacherProfileId } from "@/types/teacher-mind";
+import {
+  applyConfigLayer,
+  getDefaultTeacherProfile,
+  listDefaultTeacherProfiles,
+} from "./teacher-profiles-defaults";
+
+const CONTENT_DIR = path.join(process.cwd(), "content/ai-teachers/profiles");
+const OVERRIDE_DIR = path.join(process.cwd(), ".data/ai-teachers/profiles");
+
+function readJson(file: string): TeacherMindProfile | null {
+  try {
+    if (!fs.existsSync(file)) return null;
+    return JSON.parse(fs.readFileSync(file, "utf8")) as TeacherMindProfile;
+  } catch {
+    return null;
+  }
+}
+
+function ensureDir(dir: string) {
+  fs.mkdirSync(dir, { recursive: true });
+}
+
+/** Strip immutable identity fields before persisting behaviour overlays. */
+function behaviourOverlayOnly(profile: TeacherMindProfile): TeacherMindProfile {
+  return {
+    ...profile,
+    // Identity fields are restored on read via applyConfigLayer
+    schema: "success-os.teacher-mind.v1",
+    updatedAt: new Date().toISOString(),
+  };
+}
+
+export function listTeacherProfileIds(): TeacherProfileId[] {
+  ensureDir(CONTENT_DIR);
+  const fromContent = fs
+    .readdirSync(CONTENT_DIR)
+    .filter((f) => f.endsWith(".json"))
+    .map((f) => f.replace(/\.json$/, ""));
+  let fromOverride: string[] = [];
+  if (fs.existsSync(OVERRIDE_DIR)) {
+    fromOverride = fs
+      .readdirSync(OVERRIDE_DIR)
+      .filter((f) => f.endsWith(".json"))
+      .map((f) => f.replace(/\.json$/, ""));
+  }
+  const fromDefaults = listDefaultTeacherProfiles().map((p) => p.id);
+  return [...new Set([...fromDefaults, ...fromContent, ...fromOverride])].sort();
+}
+
+export function getTeacherProfile(id: TeacherProfileId): TeacherMindProfile {
+  const override = readJson(path.join(OVERRIDE_DIR, `${id}.json`));
+  if (override) return applyConfigLayer(override);
+  const base = readJson(path.join(CONTENT_DIR, `${id}.json`));
+  if (base) return applyConfigLayer(base);
+  return getDefaultTeacherProfile(id);
+}
+
+export function listTeacherProfiles(): TeacherMindProfile[] {
+  return listTeacherProfileIds()
+    .map((id) => {
+      try {
+        return getTeacherProfile(id);
+      } catch {
+        return null;
+      }
+    })
+    .filter((p): p is TeacherMindProfile => Boolean(p && p.enabled !== false));
+}
+
+export function saveTeacherProfile(profile: TeacherMindProfile): TeacherMindProfile {
+  if (!profile.id) throw new Error("profile.id required");
+  const next = behaviourOverlayOnly(profile);
+  ensureDir(OVERRIDE_DIR);
+  const file = path.join(OVERRIDE_DIR, `${next.id}.json`);
+  fs.writeFileSync(file, JSON.stringify(next, null, 2), "utf8");
+  const contentFile = path.join(CONTENT_DIR, `${next.id}.json`);
+  if (fs.existsSync(CONTENT_DIR)) {
+    try {
+      fs.writeFileSync(contentFile, JSON.stringify(next, null, 2), "utf8");
+    } catch {
+      // override dir is enough when content is read-only
+    }
+  }
+  // Always return identity-locked view
+  return applyConfigLayer(next);
+}
+
+export function resetTeacherProfile(id: TeacherProfileId): TeacherMindProfile {
+  const override = path.join(OVERRIDE_DIR, `${id}.json`);
+  if (fs.existsSync(override)) fs.unlinkSync(override);
+  return getTeacherProfile(id);
+}

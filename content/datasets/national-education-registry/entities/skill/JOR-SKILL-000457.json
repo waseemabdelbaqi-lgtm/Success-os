@@ -1,0 +1,35 @@
+{
+  "globalId": "JOR-SKILL-000457",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«القراءة والفهم — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-001002",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-001002",
+      "JOR-OUTCOME-001003",
+      "JOR-OUTCOME-001004",
+      "JOR-OUTCOME-001434",
+      "JOR-OUTCOME-001435",
+      "JOR-OUTCOME-001436",
+      "JOR-OUTCOME-001866",
+      "JOR-OUTCOME-001867",
+      "JOR-OUTCOME-001868",
+      "JOR-OUTCOME-002298",
+      "JOR-OUTCOME-002299",
+      "JOR-OUTCOME-002300"
+    ],
+    "lessonIds": [
+      "JOR-G01-ARAB-U01-L04",
+      "JOR-G02-ARAB-U01-L04",
+      "JOR-G03-ARAB-U01-L04",
+      "JOR-G04-ARAB-U01-L04"
+    ],
+    "belongsTo": "JOR-OUTCOME-001002"
+  },
+  "createdAt": "2026-07-31T17:56:56.734Z",
+  "updatedAt": "2026-07-31T17:56:56.825Z"
+}

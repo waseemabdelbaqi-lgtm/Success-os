@@ -1,0 +1,20 @@
+{
+  "globalId": "JOR-G12-الفيزياء",
+  "kind": "subject",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "الفيزياء",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G12",
+  "relationships": {
+    "gradeId": "JOR-G12",
+    "educationalSystemId": "JOR-SYS-000001",
+    "countryId": "JOR",
+    "belongsTo": "JOR-G12"
+  },
+  "createdAt": "2026-07-31T17:56:57.339Z",
+  "updatedAt": "2026-07-31T17:56:57.339Z",
+  "subjectCode": "الفيزياء",
+  "gradeCode": "G12"
+}

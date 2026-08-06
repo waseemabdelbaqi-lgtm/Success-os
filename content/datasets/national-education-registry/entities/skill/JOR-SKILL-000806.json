@@ -1,0 +1,51 @@
+{
+  "globalId": "JOR-SKILL-000806",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يتعرف المتعلم مفهومًا محوريًا في الفيزياء ضمن الطاقة والحرارة بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 11.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-005557",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-005557",
+      "JOR-OUTCOME-005558",
+      "JOR-OUTCOME-005559",
+      "JOR-OUTCOME-005560",
+      "JOR-OUTCOME-005561",
+      "JOR-OUTCOME-005562",
+      "JOR-OUTCOME-005563",
+      "JOR-OUTCOME-005564",
+      "JOR-OUTCOME-005565",
+      "JOR-OUTCOME-005566",
+      "JOR-OUTCOME-005567",
+      "JOR-OUTCOME-005568",
+      "JOR-OUTCOME-006021",
+      "JOR-OUTCOME-006022",
+      "JOR-OUTCOME-006023",
+      "JOR-OUTCOME-006024",
+      "JOR-OUTCOME-006025",
+      "JOR-OUTCOME-006026",
+      "JOR-OUTCOME-006027",
+      "JOR-OUTCOME-006028",
+      "JOR-OUTCOME-006029",
+      "JOR-OUTCOME-006030",
+      "JOR-OUTCOME-006031",
+      "JOR-OUTCOME-006032"
+    ],
+    "lessonIds": [
+      "JOR-G11-الفيزياء-U04-L01",
+      "JOR-G11-الفيزياء-U04-L02",
+      "JOR-G11-الفيزياء-U04-L03",
+      "JOR-G11-الفيزياء-U04-L04",
+      "JOR-G12-الفيزياء-U04-L01",
+      "JOR-G12-الفيزياء-U04-L02",
+      "JOR-G12-الفيزياء-U04-L03",
+      "JOR-G12-الفيزياء-U04-L04"
+    ],
+    "belongsTo": "JOR-OUTCOME-005557"
+  },
+  "createdAt": "2026-07-31T17:56:57.266Z",
+  "updatedAt": "2026-07-31T17:56:57.345Z"
+}

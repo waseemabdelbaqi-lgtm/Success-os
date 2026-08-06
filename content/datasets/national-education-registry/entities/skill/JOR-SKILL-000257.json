@@ -1,0 +1,31 @@
+{
+  "globalId": "JOR-SKILL-000257",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«Grammar in Use — مقدمة ومفاهيم» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-000525",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-000525",
+      "JOR-OUTCOME-000526",
+      "JOR-OUTCOME-000527",
+      "JOR-OUTCOME-004589",
+      "JOR-OUTCOME-004590",
+      "JOR-OUTCOME-004591",
+      "JOR-OUTCOME-005245",
+      "JOR-OUTCOME-005246",
+      "JOR-OUTCOME-005247"
+    ],
+    "lessonIds": [
+      "JOR-G10-ENG-U02-L01",
+      "JOR-G08-ENG-U02-L01",
+      "JOR-G09-ENG-U02-L01"
+    ],
+    "belongsTo": "JOR-OUTCOME-000525"
+  },
+  "createdAt": "2026-07-31T17:56:56.706Z",
+  "updatedAt": "2026-07-31T17:56:57.214Z"
+}

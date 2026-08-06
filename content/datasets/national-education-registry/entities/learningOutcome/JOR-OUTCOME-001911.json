@@ -1,0 +1,18 @@
+{
+  "globalId": "JOR-OUTCOME-001911",
+  "kind": "learningOutcome",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يتعرف المتعلم مفهومًا محوريًا في المهارات الرقمية ضمن أساسيات الحاسوب بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 3.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G03-ICT-U01-L03",
+  "relationships": {
+    "lessonId": "JOR-G03-ICT-U01-L03",
+    "belongsTo": "JOR-G03-ICT-U01-L03"
+  },
+  "createdAt": "2026-07-31T17:56:56.794Z",
+  "updatedAt": "2026-07-31T17:56:56.794Z",
+  "text": "أن يتعرف المتعلم مفهومًا محوريًا في المهارات الرقمية ضمن أساسيات الحاسوب بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 3.",
+  "sequence": 1
+}

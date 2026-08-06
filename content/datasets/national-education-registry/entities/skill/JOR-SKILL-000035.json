@@ -1,0 +1,31 @@
+{
+  "globalId": "JOR-SKILL-000035",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«التلاوة والتفسير — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-000067",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-000067",
+      "JOR-OUTCOME-000068",
+      "JOR-OUTCOME-000069",
+      "JOR-OUTCOME-004131",
+      "JOR-OUTCOME-004132",
+      "JOR-OUTCOME-004133",
+      "JOR-OUTCOME-004787",
+      "JOR-OUTCOME-004788",
+      "JOR-OUTCOME-004789"
+    ],
+    "lessonIds": [
+      "JOR-G10-ISL-U02-L03",
+      "JOR-G08-ISL-U02-L03",
+      "JOR-G09-ISL-U02-L03"
+    ],
+    "belongsTo": "JOR-OUTCOME-000067"
+  },
+  "createdAt": "2026-07-31T17:56:56.685Z",
+  "updatedAt": "2026-07-31T17:56:57.142Z"
+}

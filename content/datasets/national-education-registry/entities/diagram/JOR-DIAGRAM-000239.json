@@ -1,0 +1,16 @@
+{
+  "globalId": "JOR-DIAGRAM-000239",
+  "kind": "diagram",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "مخطط تعليمي لوحدة قصص قرآنية ونبوية",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G01-ISL-U04-L03",
+  "relationships": {
+    "lessonId": "JOR-G01-ISL-U04-L03",
+    "belongsTo": "JOR-G01-ISL-U04-L03"
+  },
+  "createdAt": "2026-07-31T17:56:56.716Z",
+  "updatedAt": "2026-07-31T17:56:56.716Z"
+}

@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-SKILL-000876",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«برمجة وتطبيقات — بناء المهارة» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-005716",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-005716",
+      "JOR-OUTCOME-005717",
+      "JOR-OUTCOME-005718",
+      "JOR-OUTCOME-006180",
+      "JOR-OUTCOME-006181",
+      "JOR-OUTCOME-006182"
+    ],
+    "lessonIds": [
+      "JOR-G11-ICT-U01-L02",
+      "JOR-G12-ICT-U01-L02"
+    ],
+    "belongsTo": "JOR-OUTCOME-005716"
+  },
+  "createdAt": "2026-07-31T17:56:57.291Z",
+  "updatedAt": "2026-07-31T17:56:57.371Z"
+}

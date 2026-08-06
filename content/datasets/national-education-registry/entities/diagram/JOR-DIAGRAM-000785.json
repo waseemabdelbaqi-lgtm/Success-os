@@ -1,0 +1,16 @@
+{
+  "globalId": "JOR-DIAGRAM-000785",
+  "kind": "diagram",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "مخطط تعليمي لوحدة أساسيات الحاسوب",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G04-ICT-U01-L01",
+  "relationships": {
+    "lessonId": "JOR-G04-ICT-U01-L01",
+    "belongsTo": "JOR-G04-ICT-U01-L01"
+  },
+  "createdAt": "2026-07-31T17:56:56.828Z",
+  "updatedAt": "2026-07-31T17:56:56.828Z"
+}

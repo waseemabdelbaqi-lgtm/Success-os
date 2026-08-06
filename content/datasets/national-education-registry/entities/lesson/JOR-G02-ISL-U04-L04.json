@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-G02-ISL-U04-L04",
+  "kind": "lesson",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "قصص قرآنية ونبوية — تقويم وتعزيز",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G02-ISL-U04",
+  "relationships": {
+    "unitId": "JOR-G02-ISL-U04",
+    "bookId": "JOR-BOOK-000023",
+    "subjectId": "JOR-G02-ISL",
+    "gradeId": "JOR-G02",
+    "belongsTo": "JOR-G02-ISL-U04"
+  },
+  "createdAt": "2026-07-31T17:56:56.743Z",
+  "updatedAt": "2026-07-31T17:56:56.743Z",
+  "lessonCode": "L04",
+  "sequence": 4,
+  "legacyLessonId": "L4.4",
+  "keywords": [
+    "عقيدة",
+    "عبادة",
+    "خلق"
+  ]
+}

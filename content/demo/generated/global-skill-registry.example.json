@@ -1,0 +1,313 @@
+{
+  "schema": "success-os.global-skill-registry.v1",
+  "rule": "Skills are global (SKL-XXXXX). Lessons reference skill ids; countries do not fork skill identity.",
+  "pathPattern": [
+    "Skill",
+    "depends on",
+    "Skill",
+    "depends on",
+    "Skill"
+  ],
+  "mathPathway": {
+    "id": "pathway_math_fractions_to_functions",
+    "labels": [
+      "Fractions",
+      "Decimals",
+      "Percentages",
+      "Algebra",
+      "Functions"
+    ],
+    "path": [
+      "SKL-00002",
+      "SKL-00009",
+      "SKL-00010",
+      "SKL-00011",
+      "SKL-00012"
+    ],
+    "displayPath": [
+      "Functions",
+      "depends on",
+      "Algebra",
+      "depends on",
+      "Percentages",
+      "depends on",
+      "Decimals",
+      "depends on",
+      "Fractions"
+    ]
+  },
+  "skills": [
+    {
+      "id": "SKL-00001",
+      "code": "ARITHMETIC",
+      "name": {
+        "en": "Arithmetic",
+        "ar": "الحساب"
+      },
+      "subjectIds": [
+        "SUB-00001"
+      ],
+      "dependsOn": [],
+      "family": "math",
+      "order": 1,
+      "active": true
+    },
+    {
+      "id": "SKL-00002",
+      "code": "FRACTIONS",
+      "name": {
+        "en": "Fractions",
+        "ar": "الكسور"
+      },
+      "subjectIds": [
+        "SUB-00001"
+      ],
+      "dependsOn": [
+        "SKL-00001"
+      ],
+      "family": "math",
+      "order": 2,
+      "active": true
+    },
+    {
+      "id": "SKL-00003",
+      "code": "VECTORS",
+      "name": {
+        "en": "Vectors",
+        "ar": "المتجهات"
+      },
+      "subjectIds": [
+        "SUB-00003"
+      ],
+      "dependsOn": [],
+      "family": "physics",
+      "order": 3,
+      "active": true
+    },
+    {
+      "id": "SKL-00004",
+      "code": "NEWTON_LAWS",
+      "name": {
+        "en": "Newton Laws",
+        "ar": "قوانين نيوتن"
+      },
+      "subjectIds": [
+        "SUB-00003"
+      ],
+      "dependsOn": [
+        "SKL-00003"
+      ],
+      "family": "physics",
+      "order": 4,
+      "active": true
+    },
+    {
+      "id": "SKL-00005",
+      "code": "ACIDS",
+      "name": {
+        "en": "Acids",
+        "ar": "الأحماض"
+      },
+      "subjectIds": [
+        "SUB-00004"
+      ],
+      "dependsOn": [],
+      "family": "chemistry",
+      "order": 5,
+      "active": true
+    },
+    {
+      "id": "SKL-00006",
+      "code": "READING",
+      "name": {
+        "en": "Reading",
+        "ar": "القراءة"
+      },
+      "subjectIds": [
+        "SUB-00006",
+        "SUB-00007"
+      ],
+      "dependsOn": [],
+      "family": "language",
+      "order": 6,
+      "active": true
+    },
+    {
+      "id": "SKL-00007",
+      "code": "WRITING",
+      "name": {
+        "en": "Writing",
+        "ar": "الكتابة"
+      },
+      "subjectIds": [
+        "SUB-00006",
+        "SUB-00007"
+      ],
+      "dependsOn": [
+        "SKL-00006"
+      ],
+      "family": "language",
+      "order": 7,
+      "active": true
+    },
+    {
+      "id": "SKL-00008",
+      "code": "CRITICAL_THINKING",
+      "name": {
+        "en": "Critical Thinking",
+        "ar": "التفكير النقدي"
+      },
+      "subjectIds": [],
+      "dependsOn": [],
+      "family": "thinking",
+      "order": 8,
+      "active": true
+    },
+    {
+      "id": "SKL-00009",
+      "code": "DECIMALS",
+      "name": {
+        "en": "Decimals",
+        "ar": "الأعداد العشرية"
+      },
+      "subjectIds": [
+        "SUB-00001"
+      ],
+      "dependsOn": [
+        "SKL-00002"
+      ],
+      "family": "math",
+      "order": 9,
+      "active": true
+    },
+    {
+      "id": "SKL-00010",
+      "code": "PERCENTAGES",
+      "name": {
+        "en": "Percentages",
+        "ar": "النسب المئوية"
+      },
+      "subjectIds": [
+        "SUB-00001"
+      ],
+      "dependsOn": [
+        "SKL-00009"
+      ],
+      "family": "math",
+      "order": 10,
+      "active": true
+    },
+    {
+      "id": "SKL-00011",
+      "code": "ALGEBRA",
+      "name": {
+        "en": "Algebra",
+        "ar": "الجبر"
+      },
+      "subjectIds": [
+        "SUB-00001"
+      ],
+      "dependsOn": [
+        "SKL-00010"
+      ],
+      "family": "math",
+      "order": 11,
+      "active": true
+    },
+    {
+      "id": "SKL-00012",
+      "code": "FUNCTIONS",
+      "name": {
+        "en": "Functions",
+        "ar": "الدوال"
+      },
+      "subjectIds": [
+        "SUB-00001"
+      ],
+      "dependsOn": [
+        "SKL-00011"
+      ],
+      "family": "math",
+      "order": 12,
+      "active": true
+    },
+    {
+      "id": "SKL-00013",
+      "code": "COUNTING",
+      "name": {
+        "en": "Counting",
+        "ar": "العدّ"
+      },
+      "subjectIds": [
+        "SUB-00001"
+      ],
+      "dependsOn": [],
+      "family": "math",
+      "order": 13,
+      "active": true
+    },
+    {
+      "id": "SKL-00014",
+      "code": "ADDITION",
+      "name": {
+        "en": "Addition",
+        "ar": "الجمع"
+      },
+      "subjectIds": [
+        "SUB-00001"
+      ],
+      "dependsOn": [
+        "SKL-00013"
+      ],
+      "family": "math",
+      "order": 14,
+      "active": true
+    },
+    {
+      "id": "SKL-00015",
+      "code": "OBSERVATION",
+      "name": {
+        "en": "Observation",
+        "ar": "الملاحظة"
+      },
+      "subjectIds": [
+        "SUB-00002"
+      ],
+      "dependsOn": [],
+      "family": "other",
+      "order": 15,
+      "active": true
+    },
+    {
+      "id": "SKL-00016",
+      "code": "SCIENTIFIC_THINKING",
+      "name": {
+        "en": "Scientific Thinking",
+        "ar": "التفكير العلمي"
+      },
+      "subjectIds": [
+        "SUB-00002"
+      ],
+      "dependsOn": [
+        "SKL-00015"
+      ],
+      "family": "thinking",
+      "order": 16,
+      "active": true
+    }
+  ],
+  "counts": {
+    "skills": 16,
+    "active": 16,
+    "byFamily": {
+      "math": 8,
+      "physics": 2,
+      "chemistry": 1,
+      "language": 2,
+      "thinking": 2,
+      "other": 1
+    },
+    "pathwayEdges": 9
+  },
+  "notes": "Append-only SKL-XXXXX registry. Math pathway: Fractions → Decimals → Percentages → Algebra → Functions."
+}

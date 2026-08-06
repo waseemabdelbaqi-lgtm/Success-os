@@ -1,0 +1,18 @@
+{
+  "globalId": "JOR-OUTCOME-003491",
+  "kind": "learningOutcome",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«البحث الآمن — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G06-ICT-U03-L04",
+  "relationships": {
+    "lessonId": "JOR-G06-ICT-U03-L04",
+    "belongsTo": "JOR-G06-ICT-U03-L04"
+  },
+  "createdAt": "2026-07-31T17:56:56.965Z",
+  "updatedAt": "2026-07-31T17:56:56.965Z",
+  "text": "أن يطبّق مهارة مرتبطة بـ«البحث الآمن — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+  "sequence": 2
+}

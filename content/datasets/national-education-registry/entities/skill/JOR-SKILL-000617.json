@@ -1,0 +1,31 @@
+{
+  "globalId": "JOR-SKILL-000617",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«الأعداد العشرية والنسب — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-002675",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-002675",
+      "JOR-OUTCOME-002676",
+      "JOR-OUTCOME-002677",
+      "JOR-OUTCOME-003235",
+      "JOR-OUTCOME-003236",
+      "JOR-OUTCOME-003237",
+      "JOR-OUTCOME-003795",
+      "JOR-OUTCOME-003796",
+      "JOR-OUTCOME-003797"
+    ],
+    "lessonIds": [
+      "JOR-G05-MATH-U02-L03",
+      "JOR-G06-MATH-U02-L03",
+      "JOR-G07-MATH-U02-L03"
+    ],
+    "belongsTo": "JOR-OUTCOME-002675"
+  },
+  "createdAt": "2026-07-31T17:56:56.861Z",
+  "updatedAt": "2026-07-31T17:56:57.003Z"
+}

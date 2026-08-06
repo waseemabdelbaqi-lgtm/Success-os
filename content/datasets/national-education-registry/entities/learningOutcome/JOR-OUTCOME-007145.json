@@ -1,0 +1,18 @@
+{
+  "globalId": "JOR-OUTCOME-007145",
+  "kind": "learningOutcome",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«التعبير الشفوي — بناء المهارة» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-GKG-اللغةوال-U04-L02",
+  "relationships": {
+    "lessonId": "JOR-GKG-اللغةوال-U04-L02",
+    "belongsTo": "JOR-GKG-اللغةوال-U04-L02"
+  },
+  "createdAt": "2026-07-31T17:56:57.588Z",
+  "updatedAt": "2026-07-31T17:56:57.588Z",
+  "text": "أن يطبّق مهارة مرتبطة بـ«التعبير الشفوي — بناء المهارة» بخطوات واضحة قابلة للتحقق.",
+  "sequence": 2
+}

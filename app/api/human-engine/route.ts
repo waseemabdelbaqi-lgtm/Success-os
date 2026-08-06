@@ -1,0 +1,212 @@
+import { NextResponse } from "next/server";
+import {
+  adaptLiveTeacher,
+  bridgeInteractiveLessonToHuman,
+  buildDemoPlans,
+  buildPreviewPlan,
+  buildProofLessonInput,
+  buildShowcasePlan,
+  buildShowcasePlans,
+  directLesson,
+  getTeacherPersona,
+  listHumanCharacters,
+  listProofLessons,
+  listTeachableCatalog,
+  listTeacherPersonas,
+  resolveAdapterMeta,
+  resolveTeachablePackage,
+} from "@/lib/human-engine";
+import type { HumanLessonInput } from "@/types/human-engine";
+
+export const runtime = "nodejs";
+
+/**
+ * GET ?action=status|demo|preview|showcase|proof|lessons|personas&teacher=sara|ali&lesson=
+ * POST { action: "plan"|"adapt", ... }
+ */
+export async function GET(req: Request) {
+  const url = new URL(req.url);
+  const action = url.searchParams.get("action") || "status";
+  const teacher = url.searchParams.get("teacher") === "ali" ? "ali" : "sara";
+  const lesson = url.searchParams.get("lesson") || "forces_law_lab";
+
+  if (action === "status") {
+    return NextResponse.json({
+      schema: "success-os.human-engine.v1",
+      version: "1.3.0",
+      platformTeachers: ["sara", "ali"],
+      modules: [
+        "character-generator",
+        "teacher-persona",
+        "teacher-mind",
+        "universal-lesson-bridge",
+        "performance-variety",
+        "skeleton-animation",
+        "facial-rig",
+        "blend-shapes",
+        "lip-sync",
+        "eye-tracking",
+        "head-tracking",
+        "emotion-system",
+        "gesture-engine",
+        "ai-behaviour-engine",
+        "camera-director",
+        "lighting-director",
+        "animation-timeline",
+        "lesson-director",
+        "semantic-sentence",
+        "content-screen",
+        "adapt-live",
+        "proof-lessons",
+      ],
+      characters: listHumanCharacters().map((c) => c.id),
+      personas: listTeacherPersonas().map((p) => ({
+        id: p.id,
+        voiceId: p.voiceId,
+        style: p.style,
+        reexplainStrategy: p.interaction.reexplainStrategy,
+      })),
+      adapters: [
+        resolveAdapterMeta({ id: "local_photoreal_preview" }),
+        resolveAdapterMeta({ id: "metahuman" }),
+        resolveAdapterMeta({ id: "heygen" }),
+      ],
+      paths: {
+        platform: "/ai-teacher",
+        adminProfiles: "/admin/ai-teachers",
+      },
+      honesty: {
+        works: [
+          "Sara & Ali only — platform teachers",
+          "any ILE lesson → HE performance (board/draw/3D/lab/Q&A)",
+          "anti-repeat gestures/cameras/phrases in-session",
+          "skinned GLB + face morphs + Teacher Mind BT",
+        ],
+        structure_only: [
+          "Unreal MetaHuman Pixel Streaming (needs UE server)",
+          "HeyGen twin video (needs HEYGEN_* credentials)",
+        ],
+      },
+      note: "No new teachers until Sara & Ali are world-class. Product path: /ai-teacher",
+    });
+  }
+
+  if (action === "catalog") {
+    return NextResponse.json(listTeachableCatalog(80));
+  }
+
+  if (action === "teach") {
+    const packageId = url.searchParams.get("packageId");
+    const bookId = url.searchParams.get("bookId");
+    const unitId = url.searchParams.get("unitId");
+    const lessonId = url.searchParams.get("lessonId");
+    const level = url.searchParams.get("level");
+    const pkg = resolveTeachablePackage({ packageId, bookId, unitId, lessonId });
+    const input = bridgeInteractiveLessonToHuman({
+      pkg,
+      teacherId: teacher,
+      studentLevel:
+        level === "below" || level === "above" ? level : "on",
+    });
+    const plan = directLesson({
+      input,
+      maxDurationMs: Math.max(65_000, input.durationMs || 65_000),
+    });
+    return NextResponse.json({
+      teacher: getTeacherPersona(teacher),
+      package: {
+        id: pkg.id,
+        title: pkg.title,
+        subject: pkg.filters?.subject,
+        grade: pkg.filters?.grade,
+      },
+      input,
+      plan,
+    });
+  }
+
+  if (action === "lessons") {
+    return NextResponse.json(listProofLessons());
+  }
+
+  if (action === "personas") {
+    return NextResponse.json(listTeacherPersonas());
+  }
+
+  if (action === "demo") {
+    return NextResponse.json(buildDemoPlans());
+  }
+
+  if (action === "preview") {
+    return NextResponse.json(buildPreviewPlan(teacher));
+  }
+
+  if (action === "showcase") {
+    if (url.searchParams.get("both") === "1") {
+      return NextResponse.json(buildShowcasePlans());
+    }
+    return NextResponse.json(buildShowcasePlan(teacher));
+  }
+
+  if (action === "proof") {
+    const input = buildProofLessonInput(lesson, teacher);
+    const plan = directLesson({
+      input,
+      maxDurationMs: Math.max(65000, input.durationMs || 65000),
+    });
+    return NextResponse.json({
+      persona: getTeacherPersona(teacher),
+      lesson: listProofLessons().find((l) => l.id === lesson),
+      plan,
+    });
+  }
+
+  return NextResponse.json({ error: "unknown action" }, { status: 400 });
+}
+
+export async function POST(req: Request) {
+  const body = (await req.json()) as {
+    action?: string;
+    input?: HumanLessonInput;
+    adapterId?: string;
+    maxDurationMs?: number;
+    teacherId?: string;
+    lessonTitle?: string;
+    currentLine?: string;
+    event?: { type: string; text?: string };
+  };
+
+  if (body.action === "adapt") {
+    const teacherId = body.teacherId === "ali" ? "ali" : "sara";
+    const eventType = body.event?.type || "ask_text";
+    const event =
+      eventType === "explain_simpler"
+        ? ({ type: "explain_simpler" } as const)
+        : eventType === "explain_again"
+          ? ({ type: "explain_again" } as const)
+          : eventType === "example"
+            ? ({ type: "example" } as const)
+            : ({ type: "ask_text", text: body.event?.text || "" } as const);
+    const result = adaptLiveTeacher({
+      teacherId,
+      lessonTitle: body.lessonTitle || "الدرس",
+      currentLine: body.currentLine,
+      event,
+    });
+    return NextResponse.json(result);
+  }
+
+  if (body.action !== "plan" || !body.input) {
+    return NextResponse.json(
+      { error: "POST requires action=plan|adapt" },
+      { status: 400 },
+    );
+  }
+
+  const plan = directLesson({
+    input: body.input,
+    adapterId: body.adapterId || "local_photoreal_preview",
+    maxDurationMs: body.maxDurationMs,
+  });
+  return NextResponse.json(plan);
+}

@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-G10-ISL-U01-L04",
+  "kind": "lesson",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "الفقه المبسط — تقويم وتعزيز",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G10-ISL-U01",
+  "relationships": {
+    "unitId": "JOR-G10-ISL-U01",
+    "bookId": "JOR-BOOK-000002",
+    "subjectId": "JOR-G10-ISL",
+    "gradeId": "JOR-G10",
+    "belongsTo": "JOR-G10-ISL-U01"
+  },
+  "createdAt": "2026-07-31T17:56:56.685Z",
+  "updatedAt": "2026-07-31T17:56:56.685Z",
+  "lessonCode": "L04",
+  "sequence": 4,
+  "legacyLessonId": "L1.4",
+  "keywords": [
+    "عقيدة",
+    "عبادة",
+    "خلق"
+  ]
+}

@@ -1,0 +1,809 @@
+/**
+ * Proof lessons — multi-subject acceptance suite for Sara & Ali.
+ * Gate subjects: math, physics, chemistry, biology, languages, programming.
+ * Same Human Engine — content swaps only (world-class doctrine).
+ */
+import type { HumanCharacterId, HumanLessonInput } from "@/types/human-engine";
+import type { PlatformAcceptanceSubject } from "@/types/platform-teachers";
+import { PLATFORM_ACCEPTANCE_SUBJECTS } from "@/types/platform-teachers";
+import { getTeacherPersona } from "./teacher-persona";
+
+export type ProofLessonId =
+  | "g1_count_three"
+  | "forces_law_lab"
+  | "fractions_half"
+  | "voice_endurance_10m"
+  | "chem_water_molecule"
+  | "bio_cell_model"
+  | "lang_ar_sentence"
+  | "prog_loop_trace";
+
+export type ProofLessonMeta = {
+  id: ProofLessonId;
+  title: string;
+  titleAr: string;
+  /** Acceptance-gate subject family */
+  subject: PlatformAcceptanceSubject | string;
+  grade: string;
+  minDurationMs: number;
+  descriptionAr: string;
+};
+
+export const PROOF_LESSONS: ProofLessonMeta[] = [
+  {
+    id: "voice_endurance_10m",
+    title: "10-Minute Voice Endurance",
+    titleAr: "اختبار صوت 10 دقائق — قانون القوة",
+    subject: "physics",
+    grade: "g7",
+    minDurationMs: 600_000,
+    descriptionAr:
+      "جلسة متواصلة ~10 دقائق: شرح، سبورة، رسم، 3D، تجربة، أسئلة — لاختبار الصوت الحي",
+  },
+  {
+    id: "fractions_half",
+    title: "Half of a Whole",
+    titleAr: "رياضيات — النصف من الكل",
+    subject: "math",
+    grade: "g2",
+    minDurationMs: 65000,
+    descriptionAr: "قبول رياضيات: كتابة، رسم، نموذج، تحقق فهم",
+  },
+  {
+    id: "g1_count_three",
+    title: "Count to Three",
+    titleAr: "رياضيات — العد حتى ثلاثة",
+    subject: "math",
+    grade: "g1",
+    minDurationMs: 65000,
+    descriptionAr: "قبول رياضيات مبكر: كتابة، عدّ، رسم، سؤال",
+  },
+  {
+    id: "forces_law_lab",
+    title: "Force Law + Lab",
+    titleAr: "فيزياء — قانون القوة وتجربة",
+    subject: "physics",
+    grade: "g7",
+    minDurationMs: 70000,
+    descriptionAr: "قبول فيزياء: F=ma، رسم، نموذج 3D، تجربة، سؤال",
+  },
+  {
+    id: "chem_water_molecule",
+    title: "Water Molecule",
+    titleAr: "كيمياء — جزيء الماء",
+    subject: "chemistry",
+    grade: "g8",
+    minDurationMs: 70000,
+    descriptionAr: "قبول كيمياء: معادلة، رسم، نموذج 3D، ملاحظة، سؤال",
+  },
+  {
+    id: "bio_cell_model",
+    title: "Cell Structure",
+    titleAr: "أحياء — تركيب الخلية",
+    subject: "biology",
+    grade: "g8",
+    minDurationMs: 70000,
+    descriptionAr: "قبول أحياء: سبورة، رسم عضيات، نموذج 3D، سؤال",
+  },
+  {
+    id: "lang_ar_sentence",
+    title: "Arabic Sentence Parts",
+    titleAr: "لغات — أجزاء الجملة",
+    subject: "languages",
+    grade: "g4",
+    minDurationMs: 65000,
+    descriptionAr: "قبول لغات: كتابة على السبورة، أمثلة، تحقق فهم",
+  },
+  {
+    id: "prog_loop_trace",
+    title: "Programming Loop Trace",
+    titleAr: "برمجة — تتبّع الحلقة",
+    subject: "programming",
+    grade: "g9",
+    minDurationMs: 70000,
+    descriptionAr: "قبول برمجة: كتابة كود، تتبّع خطوة، نموذج تدفق، سؤال",
+  },
+];
+
+export function listProofLessons(): ProofLessonMeta[] {
+  return PROOF_LESSONS;
+}
+
+export function listProofSubjects(): string[] {
+  const set = new Set(PROOF_LESSONS.map((l) => l.subject));
+  return PLATFORM_ACCEPTANCE_SUBJECTS.filter((s) => set.has(s)).concat(
+    [...set].filter((s) => !(PLATFORM_ACCEPTANCE_SUBJECTS as readonly string[]).includes(s)),
+  );
+}
+
+export function proofLessonsForSubject(subject: string): ProofLessonMeta[] {
+  if (!subject || subject === "all") return PROOF_LESSONS;
+  return PROOF_LESSONS.filter((l) => l.subject === subject);
+}
+
+export function getProofLessonMeta(id: string): ProofLessonMeta {
+  return PROOF_LESSONS.find((l) => l.id === id) || PROOF_LESSONS[0]!;
+}
+
+export function buildProofLessonInput(
+  lessonId: ProofLessonId | string,
+  teacherId: HumanCharacterId,
+): HumanLessonInput {
+  const meta = getProofLessonMeta(lessonId);
+  const p = getTeacherPersona(teacherId);
+  const isAli = p.id === "ali";
+
+  if (meta.id === "voice_endurance_10m") {
+    const sara = !isAli;
+    const blocks: HumanLessonInput["blocks"] = [
+        {
+          id: "hook",
+          kind: "hook",
+          text: sara
+            ? `مرحبا ${p.addressStudent}. أنا ${p.displayName.ar}. هذي حصة متواصلة حوالي عشر دقائق عن قانون القوة. خلينا نمشي بهدوء: تعريف، كتابة، رسم، نموذج ثلاثي، تجربة، وأسئلة.`
+            : `أهلاً ${p.addressStudent}. أنا ${p.displayName.ar}. سنبقي عشر دقائق تقريباً على قانون القوة. ترتيب واضح: تعريف، سبورة، مخطط، نموذج ثلاثي الأبعاد، مختبر، ثم تحقق فهم. كل جزء سيُشرح بجمل كاملة دون اختصار مخل.`,
+        },
+        {
+          id: "why",
+          kind: "explain",
+          text: sara
+            ? "ليش القانون مهم؟ لأنه يربط بين ثلاث أفكار يومية: قوة الدفع أو السحب، وكتلة الجسم، والتسارع أو كيف تتغير السرعة. إذا فهمنا الرابط، منقدر نفسّر حركة السيارة والكرة وحتى المشي."
+            : "أهمية القانون عملية: القوة والكتلة والتسارع ثلاثة مقادير مترابطة. بضبط العلاقة نتنبأ كيف يتحرك الجسم إذا تغيّرت القوة أو الكتلة.",
+        },
+        {
+          id: "law1",
+          kind: "explain",
+          text: sara
+            ? "اكتبوا معي على السبورة بلطف: القوة تساوي الكتلة في التسارع. F = m × a. القوة بالنيوتن، الكتلة بالكيلوغرام، والتسارع بالمتر لكل ثانية مربعة."
+            : "اكتبوا القانون بدقة على السبورة: القوة تساوي الكتلة في التسارع. F = m × a. كل رمز له وحدة: نيوتن، كيلوغرام، متر لكل ثانية مربعة.",
+        },
+        {
+          id: "law2",
+          kind: "explain",
+          text: sara
+            ? "خلينا نفسّر كل حرف بهدوء. F هي محصلة القوى اللي بتأثر على الجسم. m هي قدّيش الجسم ثقيل أو كتلته. a هي قدّيش السرعة بتتغير مع الزمن."
+            : "نعرّف الرموز: F محصلة القوى المؤثرة، m كتلة الجسم الثابتة في هذه المرحلة، a التسارع الناتج عن تلك المحصلة.",
+        },
+        {
+          id: "example_num",
+          kind: "example",
+          text: sara
+            ? "مثال بسيط: جسم كتلته كيلوغرامان، نطبق عليه قوة أربعة نيوتن. التسارع يصير اثنين متر لكل ثانية مربعة، لأن أربعة على اثنين تساوي اثنين. اكتبوا الناتج على السبورة."
+            : "مثال رقمي: كتلة مقدرها اثنان كيلوغرام وقوة أربعة نيوتن. التسارع يساوي القوة على الكتلة، أي أربعة مقسومة على اثنين، فيساوي اثنين. ثبّتوا الحساب على السبورة.",
+        },
+        {
+          id: "draw1",
+          kind: "example",
+          text: sara
+            ? "الآن برسم مخطط القوة: نقطة للجسم في الوسط، وسهم طويل باتجاه الحركة يمثل القوة. خلينا نرسم ببطء ونشوف اتجاه السهم."
+            : "الآن أرسم مخطط الجسم الحر: نقطة للجسم وسهم للقوة باتجاه الحركة. لاحظوا طول السهم يتناسب تقريباً مع مقدار القوة.",
+        },
+        {
+          id: "draw2",
+          kind: "example",
+          text: sara
+            ? "بضيف سهم أصغر للوزن للأسفل إذا لزم، وسهم رد فعل للأعلى. الفكرة مش التعقيد، الفكرة نشوف مين الغالب من الأسهم عشان نعرف اتجاه التسارع."
+            : "نضيف قوى أخرى عند الحاجة: الوزن للأسفل ورد الفعل للأعلى. المحصلة هي اللي تحدد اتجاه التسارع وفق القانون.",
+        },
+        {
+          id: "model1",
+          kind: "example",
+          text: sara
+            ? "وهذا نموذج ثلاثي الأبعاد للجسم. أمسكه بهدوء، أديره عشان نشوفه من زاوية ثانية، وبعدين أكبّره شوي لنتأمل التفاصيل."
+            : "هذا نموذج ثلاثي الأبعاد. أمسكه، أديره تسعين درجة تقريباً، ثم أكبّره لمراجعة الشكل قبل ما نرجع للسبورة.",
+        },
+        {
+          id: "model2",
+          kind: "example",
+          text: sara
+            ? "هلأ بصغّر النموذج شوي ونرجع نربطه بالقانون: إذا زادت القوة والسهم طال، التسارع بيزيد إذا الكتلة ثابتة."
+            : "أصغّر النموذج وأعيد الربط: عند ثبات الكتلة، زيادة القوة تزيد التسارع طردياً حسب F تساوي m في a.",
+        },
+        {
+          id: "lab1",
+          kind: "practice",
+          text: sara
+            ? "نجرب معاً في المختبر الافتراضي: نثبت الكتلة ونزيد القوة خطوة خطوة. لاحظوا التغير على مؤشر التسارع كل ما زدنا القوة."
+            : "في المختبر: نثبت الكتلة ونرفع القوة على مراحل. راقبوا قراءة التسارع مع كل زيادة للقوة.",
+        },
+        {
+          id: "lab2",
+          kind: "practice",
+          text: sara
+            ? "هلأ نعكس التجربة: نثبت القوة ونكبر الكتلة. بتلاحظوا التسارع بيصغر. هيك منحس القانون مو بس كلمات، منحسّه كنتيجة."
+            : "نعكس الشرط: قوة ثابتة وكتلة أكبر. النتيجة تسارع أصغر. هذا يؤكد العلاقة العكسية بين الكتلة والتسارع عند ثبات القوة.",
+        },
+        {
+          id: "misconception",
+          kind: "explain",
+          text: sara
+            ? "غلط شائع: بعض الطلاب بظنوا إن القوة دائماً بنفس اتجاه السرعة. لا. القوة باتجاه تغيّر السرعة، يعني باتجاه التسارع. السرعة ممكن تكون بعكس القوة إذا الجسم كان بيبطئ."
+            : "خطأ شائع: مطابقة اتجاه القوة مع اتجاه السرعة دائماً. الصحيح أن القوة باتجاه التسارع، أي تغيّر السرعة، لا اتجاه السرعة نفسها بالضرورة.",
+        },
+        {
+          id: "check1",
+          kind: "check",
+          text: sara
+            ? `${p.checkPhrase}: إذا زادت الكتلة وثبتت القوة، ماذا يحدث للتسارع؟ فكروا بجملة واحدة قبل ما تجاوبوا.`
+            : `${p.checkPhrase}: إذا زادت الكتلة وثبتت القوة، ماذا يحدث للتسارع؟ عرّفوا العلاقة ثم أجيبوا.`,
+        },
+        {
+          id: "deep1",
+          kind: "explain",
+          text: sara
+            ? "منكمّل بهدوء. القوة المحصلة هي مجموع القوى مع الانتباه للاتجاه. إذا قوتين بنفس الاتجاه بنجمع، وإذا متعاكستين بطرح الأصغر من الأكبر ونحدد الاتجاه الغالب."
+            : "نوسّع: المحصلة متجهياً. قوى بنفس الاتجاه تُجمع، وقوى متعاكسة تُطرح. اتجاه المحصلة هو اتجاه التسارع.",
+        },
+        {
+          id: "deep2",
+          kind: "example",
+          text: sara
+            ? "مثال من الحياة: تدفعون عربة للأمام بقوة، وفي احتكاك للخلف. المحصلة هي الفرق. كل ما قلّ الاحتكاك، المحصلة بتكبر والتسارع بصير أوضح."
+            : "مثال تطبيقي: قوة دفع للأمام واحتكاك للخلف. المحصلة فرق المقدارين. نقص الاحتكاك يزيد المحصلة وبالتالي التسارع.",
+        },
+        {
+          id: "board_summary",
+          kind: "explain",
+          text: sara
+            ? "نلخّص على السبورة بثلاث جمل: واحد، F تساوي m في a. اثنين، الاتجاه يتبع المحصلة. ثلاثة، كتلة أكبر تعني تسارع أقل إذا القوة نفسها."
+            : "خلاصة السبورة: أولاً F تساوي m في a. ثانياً اتجاه التسارع مع المحصلة. ثالثاً العلاقة عكسية بين الكتلة والتسارع عند ثبات القوة.",
+        },
+        {
+          id: "check2",
+          kind: "check",
+          text: sara
+            ? "سؤال ثاني للتأكد: جسم كتلته ثلاثة كيلوغرام، تسارعه اثنان. شو مقدار القوة؟ اكتبوا القانون ثم عوّضوا."
+            : "تحقق: كتلة ثلاثة كيلوغرام وتسارع اثنان. احسبوا القوة باستخدام القانون مباشرة.",
+        },
+        {
+          id: "encourage",
+          kind: "encourage",
+          text: sara
+            ? `${p.celebrate} إذا وصلتوا لهون، معناها ثبتّوا الأساس. منكمّل بهدوء لآخر الحصة.`
+            : `${p.celebrate} الضبط إلى هنا جيد. نكمل تثبيت الفكرة بأمثلة إضافية قبل الإغلاق.`,
+        },
+        {
+          id: "story1",
+          kind: "explain",
+          text: sara
+            ? "قصة قصيرة من الصف: طالب يدفع كتابين معاً بنفس القوة تقريباً. الكتاب الأثقل يتحرك أبطأ. هيك بتشوفوا الكتلة كيف بتقلل التسارع إذا القوة نفسها."
+            : "سيناريو صفّي: دفع جسمين بقوة متقاربة. الأكبر كتلة يكتسب تسارعاً أصغر. هذا تطبيق مباشر لـ F تساوي m في a.",
+        },
+        {
+          id: "story2",
+          kind: "example",
+          text: sara
+            ? "نفس الفكرة بالسيارة: محرك بقوة معيّنة، كلما زادت الحمولة صار التسارع أصعب. مش لأن القانون تغيّر، لأن الكتلة زادت."
+            : "في المركبة: نفس قوة الدفع مع زيادة الحمولة تعني تسارعاً أقل. القانون ثابت والعامل المتغير هو الكتلة.",
+        },
+        {
+          id: "units",
+          kind: "explain",
+          text: sara
+            ? "خلينا نثبت الوحدات بصوت عالي: النيوتن يعني كيلوغرام متر لكل ثانية مربعة. إذا حبينا نتأكد من جواب، منراجع الوحدات قبل الرقم."
+            : "ضبط الوحدات: النيوتن يكافئ كيلوغرام متر لكل ثانية مربعة. راجعوا اتساق الوحدات قبل اعتماد الناتج الرقمي.",
+        },
+        {
+          id: "solve1",
+          kind: "practice",
+          text: sara
+            ? "نحل على السبورة خطوة خطوة: كتلة خمسة كيلوغرام، تسارع ثلاثة. القوة تصير خمسة في ثلاثة يعني خمسة عشر نيوتن. اكتبوا الخطوات لا تحفظوا الناتج فقط."
+            : "حل موجّه: m تساوي خمسة، a تساوي ثلاثة. إذن F تساوي خمسة عشر نيوتن. سجّلوا التعويض قبل الناتج.",
+        },
+        {
+          id: "solve2",
+          kind: "practice",
+          text: sara
+            ? "مسألة عكسية: قوة اثني عشر نيوتن، كتلة أربعة. التسارع يصير ثلاثة. شوفوا كيف قلبنا القانون: a تساوي F على m."
+            : "عكس القانون: F اثنا عشر و m أربعة، فـ a تساوي ثلاثة. الصيغة a تساوي F على m بعد إعادة الترتيب.",
+        },
+        {
+          id: "draw3",
+          kind: "example",
+          text: sara
+            ? "برجع أرسم على السبورة سهمين متعاكسين: دفع لليمين واحتكاك لليسار. المحصلة لليمين إذا الدفع أكبر، والتسارع بنفس الاتجاه."
+            : "مخطط إضافي: قوتان متعاكستان. المحصلة باتجاه الأكبر، والتسارع يتبع المحصلة لا السرعة السابقة بالضرورة.",
+        },
+        {
+          id: "model3",
+          kind: "example",
+          text: sara
+            ? "منرجع للنموذج الثلاثي: أديره ببطء، أكبّر منطقة السطح، وبعدين أصغّر. الهدف نربط الشكل بالحركة مش نتفرج بس."
+            : "عودة للنموذج: تدوير ثم تكبير ثم تصغير مع تعليق قصير يربط الشكل باتجاه القوة المتخيلة.",
+        },
+        {
+          id: "lab3",
+          kind: "practice",
+          text: sara
+            ? "آخر ملاحظة مختبر: لو زِدنا القوة والكتلة بنفس النسبة، التسارع يبقى تقريباً ثابت. جربوا تتخيّلوا الرقمين يتضاعفوا مع بعض."
+            : "ملاحظة مختبرية: مضاعفة القوة والكتلة معاً تُبقي التسارع ثابتاً تقريباً لأن النسبة F على m لا تتغير.",
+        },
+        {
+          id: "check3",
+          kind: "check",
+          text: sara
+            ? "سؤال قبل الختام: ليش ممكن جسم يتحرك بسرعة ثابتة والقوة المحصلة صفر؟ فكروا بالقانون قبل ما تجاوبوا."
+            : "سؤال قبل الختام: لماذا تكون المحصلة صفراً عند سرعة ثابتة؟ اربطوا الجواب بانعدام التسارع.",
+        },
+        {
+          id: "review1",
+          kind: "explain",
+          text: sara
+            ? "مراجعة هادئة لكل الحصة: بدأنا بالتعريف، كتبنا F تساوي m في a، رسمنا الأسهم، شغّلنا نموذجاً ثلاثي الأبعاد، وجربنا تغيير القوة والكتلة. كل جزء كان يخدم نفس الفكرة."
+            : "مراجعة منظمة: التعريف، القانون على السبورة، مخطط القوى، النموذج ثلاثي الأبعاد، ثم المختبر. المسار واحد والهدف تثبيت العلاقة لا تكديس معلومات.",
+        },
+        {
+          id: "review2",
+          kind: "example",
+          text: sara
+            ? "لو رجعنا لمثال العربة: دفع للأمام، احتكاك للخلف، محصلة صغيرة، تسارع صغير. لو زدنا الدفع مع نفس الكتلة، المحصلة بتزيد والتسارع أوضح. هيك بنربط الرسم بالقانون بالحياة."
+            : "نعيد مثال العربة باختصار: دفع واحتكاك ومحصلة. زيادة الدفع مع ثبات الكتلة ترفع المحصلة والتسارع. هذا جسر بين المخطط والصيغة والتطبيق.",
+        },
+        {
+          id: "review3",
+          kind: "explain",
+          text: sara
+            ? "جملة أخيرة للتثبيت: القوة بتغيّر الحركة، الكتلة تقاوم التغيّر، والتسارع هو مقدار هالتغيّر. احفظوا المعنى مو بس الرموز."
+            : "عبارة ضبط ختامية: القوة سبب تغيّر الحركة، الكتلة مقاومة التغيّر، والتسارع مقياس التغيّر. المعنى قبل الرمز.",
+        },
+        {
+          id: "review4",
+          kind: "explain",
+          text: sara
+            ? "قبل ما نسكّر: لو سألكم حدا برّا الصف شو قانون القوة، جاوبوا بجملة واضحة: القوة المحصلة تساوي الكتلة في التسارع، والاتجاه مع المحصلة. كرّروها بهدوء مرة."
+            : "قبل الإغلاق: صيغة جاهزة للجواب الشفهي: المحصلة تساوي الكتلة في التسارع، واتجاه التسارع مع المحصلة. أعيدوا الصياغة بدقة مرة واحدة.",
+        },
+        {
+          id: "close",
+          kind: "close",
+          text: sara
+            ? `خلصنا حصة صوت متواصلة حوالي عشر دقائق: قانون، أمثلة، رسم، نموذج، وتجارب وأسئلة. ${p.celebrate} إلى اللقاء يا أحلى صف.`
+            : `أتممنا الحصة المتواصلة نحو عشر دقائق حول قانون القوة مع سبورة ونموذج ومختبر. ${p.celebrate} إلى اللقاء.`,
+        },
+    ];
+
+    // Ali's phrasing is denser/faster — pad with full paragraphs so wall-clock ≥ 10 minutes.
+    if (isAli) {
+      const close = blocks.pop()!;
+      blocks.push(
+        {
+          id: "ali_pad1",
+          kind: "explain",
+          text: "تثبيت إضافي بصياغة مختلفة: المحصلة ليست أي قوة منفردة، بل ناتج جمع متجهي لكل القوى. إذا أتقن الطالب هذا التمييز، يقلّ الخلط بين قوة واحدة والتسارع النهائي.",
+        },
+        {
+          id: "ali_pad2",
+          kind: "example",
+          text: "مثال صفّي موسّع: جسم على طاولة أفقية، قوة أفقية معروفة، واحتكاك معلوم. نكتب المعطيات، نحسب المحصلة، ثم نستخرج التسارع. لا نقفز إلى الناتج دون ترتيب الخطوات على السبورة.",
+        },
+        {
+          id: "ali_pad3",
+          kind: "explain",
+          text: "نقطة منهجية: عند مراجعة الحل، ابدأوا بالوحدات، ثم بالاتجاه، ثم بالرقم. كثير من الأخطاء لا تأتي من القانون نفسه، بل من إهمال إشارة الاتجاه أو وحدة التسارع.",
+        },
+        {
+          id: "ali_pad4",
+          kind: "practice",
+          text: "تمرين شفهي أخير: إذا بقيت القوة ثابتة وتضاعفت الكتلة، ماذا يحدث للتسارع؟ الجواب: ينخفض إلى النصف. اذكروا السبب بجملة تربط F و m و a دون لفّ.",
+        },
+        {
+          id: "ali_pad5",
+          kind: "explain",
+          text: "نختم ضبطاً: القانون أداة تنبؤ. نعطي شرطين من الثلاثة، ونحسب الثالث. هذا هو معنى الإتقان هنا، لا حفظ العبارة فقط. راجعوا مثالاً ذهنياً واحداً قبل الإغلاق.",
+        },
+        {
+          id: "ali_pad6",
+          kind: "example",
+          text: "ملحق أخير بنفس الأسلوب الدقيق: جسم كتلته ستة كيلوغرام يتسارع بمقدار واحد ونصف. القوة تساوي تسعة نيوتن. اكتبوا القانون، عوّضوا، ثم تحققوا من الوحدة. بعد ذلك أغلقوا الدفتر على هذه الخطوة الصحيحة.",
+        },
+        close,
+      );
+    }
+
+    return {
+      lessonId: `proof_${meta.id}_${p.id}`,
+      title: meta.title,
+      titleAr: meta.titleAr,
+      subject: meta.subject,
+      grade: meta.grade,
+      language: "ar",
+      preferredCharacterId: p.id,
+      durationMs: meta.minDurationMs,
+      blocks,
+    };
+  }
+
+  if (meta.id === "forces_law_lab") {
+    return {
+      lessonId: `proof_${meta.id}_${p.id}`,
+      title: meta.title,
+      titleAr: meta.titleAr,
+      subject: meta.subject,
+      grade: meta.grade,
+      language: "ar",
+      preferredCharacterId: p.id,
+      durationMs: meta.minDurationMs,
+      blocks: [
+        {
+          id: "hook",
+          kind: "hook",
+          text: isAli
+            ? `أهلاً ${p.addressStudent}. أنا ${p.displayName.ar}. اليوم ${p.explainVerb}: قانون القوة، رسم، نموذج ثلاثي الأبعاد، وتجربة.`
+            : `مرحبا ${p.addressStudent}. أنا ${p.displayName.ar}. هيا ${p.explainVerb}: قانون القوة، رسم، نموذج، وتجربة بسيطة.`,
+        },
+        {
+          id: "law",
+          kind: "explain",
+          text: isAli
+            ? "اكتبوا القانون بدقة على السبورة: القوة تساوي الكتلة في التسارع. F = m × a. كل رمز له معنى."
+            : "اكتبوا معي على السبورة بلطف: القوة تساوي الكتلة في التسارع. F = m × a. شوفوا كل حرف.",
+        },
+        {
+          id: "draw",
+          kind: "example",
+          text: isAli
+            ? "الآن أرسم مخطط القوة: سهم للاتجاه ونقطة للجسم. لاحظوا ميل السهم."
+            : "الآن برسم سهم القوة على السبورة. خلينا نرسم ببطء ونشوف الاتجاه.",
+        },
+        {
+          id: "model",
+          kind: "example",
+          text: isAli
+            ? "هذا نموذج ثلاثي الأبعاد للجسم. أمسكه، أديره، ثم أكبّره لنشوف التفاصيل، وبعدها أصغّره."
+            : "وهذا نموذج ثلاثي الأبعاد. أمسكه بهدوء، أديره، أكبّره شوي، وبعدين أصغّره.",
+        },
+        {
+          id: "experiment",
+          kind: "practice",
+          text: isAli
+            ? "نجرب في المختبر: نزيد القوة ونلاحظ التسارع. ركّزوا على التغير أثناء التجربة."
+            : "نجرب معاً: نزيد القوة ونشوف التسارع. لاحظوا التغير على الشاشة.",
+        },
+        {
+          id: "check",
+          kind: "check",
+          text: isAli
+            ? `${p.checkPhrase}: إذا زادت الكتلة وثبتت القوة، ماذا يحدث للتسارع؟`
+            : `${p.checkPhrase}: إذا صارت الكتلة أكبر والقوة ثابتة، شو بصير للتسارع؟`,
+        },
+        {
+          id: "close",
+          kind: "close",
+          text: isAli
+            ? `${p.celebrate}. القانون والرسم والتجربة والنموذج اشتغلوا معاً. إلى اللقاء.`
+            : `${p.celebrate}. كتبنا ورسمنا وجربنا وفهمنا. إلى اللقاء.`,
+        },
+      ],
+    };
+  }
+
+  if (meta.id === "fractions_half") {
+    return {
+      lessonId: `proof_${meta.id}_${p.id}`,
+      title: meta.title,
+      titleAr: meta.titleAr,
+      subject: meta.subject,
+      grade: meta.grade,
+      language: "ar",
+      preferredCharacterId: p.id,
+      durationMs: meta.minDurationMs,
+      blocks: [
+        {
+          id: "hook",
+          kind: "hook",
+          text: `مرحبا ${p.addressStudent}. أنا ${p.displayName.ar}. اليوم نتعلم النصف من الكل.`,
+        },
+        {
+          id: "write",
+          kind: "explain",
+          text: isAli
+            ? "اكتبوا على السبورة: النصف يعني قسمة الكل إلى قسمين متساويين. 1/2."
+            : "اكتبوا معي: النصف يعني نقسم الشيء لنصفين متساويين. 1/2.",
+        },
+        {
+          id: "draw",
+          kind: "example",
+          text: "أرسم دائرة وأقسمها بخط في المنتصف. شوفوا كيف النصفين متساويين.",
+        },
+        {
+          id: "model",
+          kind: "example",
+          text: "هذا نموذج ثلاثي الأبعاد لتفاحة. أمسكه، أديره، ثم أكبّره لنشوف خط النصف.",
+        },
+        {
+          id: "check",
+          kind: "check",
+          text: `${p.checkPhrase}: إذا قسمنا مستطيلاً لنصفين متساويين، كم نصفاً لدينا؟`,
+        },
+        {
+          id: "close",
+          kind: "encourage",
+          text: `${p.celebrate}. النصف صار واضحاً. إلى اللقاء.`,
+        },
+      ],
+    };
+  }
+
+  if (meta.id === "chem_water_molecule") {
+    return {
+      lessonId: `proof_${meta.id}_${p.id}`,
+      title: meta.title,
+      titleAr: meta.titleAr,
+      subject: meta.subject,
+      grade: meta.grade,
+      language: "ar",
+      preferredCharacterId: p.id,
+      durationMs: meta.minDurationMs,
+      blocks: [
+        {
+          id: "hook",
+          kind: "hook",
+          text: isAli
+            ? `أهلاً ${p.addressStudent}. أنا ${p.displayName.ar}. موضوعنا تحليلي: جزيء الماء H₂O. نعرّف ثم نكتب المعادلة ثم نطبّق.`
+            : `مرحبا ${p.addressStudent}. أنا ${p.displayName.ar}. اليوم بهدوء نفهم جزيء الماء. نرتّب الفكرة خطوة خطوة قبل أي رمز.`,
+        },
+        {
+          id: "mastery",
+          kind: "explain",
+          text: isAli
+            ? "قبل الرموز: الماء مركّب من عنصرين مرتبطين بنسب ثابتة. المشكلة العملية: كيف نمثّل ذلك بدقة؟"
+            : "قبل ما نكتب الرموز، خلينا نفهم: الماء مش عنصر واحد، هو اتحاد منظّم لذرتين من الهيدروجين وذرة أكسجين.",
+        },
+        {
+          id: "write",
+          kind: "explain",
+          text: isAli
+            ? "اكتبوا على السبورة المعادلة: اثنان هيدروجين + أكسجين يعطي ماء. H₂ + ½O₂ → H₂O أو بصيغة الجزيء H₂O."
+            : "اكتبوا معي على السبورة بهدوء: جزيء الماء H₂O. اثنين هيدروجين مع أكسجين واحد.",
+        },
+        {
+          id: "draw",
+          kind: "example",
+          text: "أرسم مخططاً على السبورة: ذرة أكسجين في الوسط وذرتا هيدروجين على الجانبين بزاوية واضحة.",
+        },
+        {
+          id: "model",
+          kind: "example",
+          text: "هذا نموذج ثلاثي الأبعاد لجزيء الماء. أمسكه وأديره ثم أكبّره لنشوف شكل الرابطة.",
+        },
+        {
+          id: "lab",
+          kind: "practice",
+          text: isAli
+            ? "نجرب في المختبر ذهنياً: إذا نقص هيدروجين واحد لا نحصل على ماء. لاحظوا شرط النسبة."
+            : "تخيّلوا تجربة بسيطة: إذا تغيّرت النسبة بين الهيدروجين والأكسجين، الناتج يتغيّر. لاحظوا الفكرة بهدوء.",
+        },
+        {
+          id: "check",
+          kind: "check",
+          text: `${p.checkPhrase}: كم ذرة هيدروجين في جزيء ماء واحد؟`,
+        },
+        {
+          id: "close",
+          kind: "close",
+          text: `${p.celebrate}. فهمنا وكتبنا ورسمنا وشوفنا النموذج. إلى اللقاء.`,
+        },
+      ],
+    };
+  }
+
+  if (meta.id === "bio_cell_model") {
+    return {
+      lessonId: `proof_${meta.id}_${p.id}`,
+      title: meta.title,
+      titleAr: meta.titleAr,
+      subject: meta.subject,
+      grade: meta.grade,
+      language: "ar",
+      preferredCharacterId: p.id,
+      durationMs: meta.minDurationMs,
+      blocks: [
+        {
+          id: "hook",
+          kind: "hook",
+          text: isAli
+            ? `أهلاً ${p.addressStudent}. أنا ${p.displayName.ar}. الخلية وحدة البناء. نعرّف الأجزاء ثم نحلّل وظيفة كل جزء.`
+            : `مرحبا ${p.addressStudent}. أنا ${p.displayName.ar}. اليوم بهدوء نتعرّف على الخلية كبيت منظّم فيه غرف لكل وظيفة.`,
+        },
+        {
+          id: "write",
+          kind: "explain",
+          text: isAli
+            ? "اكتبوا على السبورة: الخلية = غشاء + سيتوبلازم + نواة (في الخلايا حقيقية النواة). ثلاث طبقات تحليلية."
+            : "اكتبوا معي: الخلية فيها غشاء يحميها، ومحتوى داخلي، ونواة تنظّم العمل. نرتّبها بهدوء.",
+        },
+        {
+          id: "draw",
+          kind: "example",
+          text: "أرسم مخطط الخلية على السبورة: الغشاء الخارجي، النواة في الوسط، وعضيات بسيطة حولها.",
+        },
+        {
+          id: "model",
+          kind: "example",
+          text: "هذا نموذج ثلاثي الأبعاد للخلية. أمسكه وأديره ثم أكبّره لنشوف النواة بوضوح.",
+        },
+        {
+          id: "function",
+          kind: "explain",
+          text: isAli
+            ? "حل المشكلة: إذا تعطّلت النواة تتعطل التعليمات. الغشاء يضبط الدخول والخروج — وظيفة عملية."
+            : "بهديء: النواة مثل مركز التنظيم، والغشاء مثل باب البيت. كل جزء له سبب تعليمي واضح.",
+        },
+        {
+          id: "check",
+          kind: "check",
+          text: `${p.checkPhrase}: أين تُخزَّن المعلومات الأساسية داخل الخلية الحقيقية النواة؟`,
+        },
+        {
+          id: "close",
+          kind: "close",
+          text: `${p.celebrate}. رسمنا وفهمنا النموذج. إلى اللقاء.`,
+        },
+      ],
+    };
+  }
+
+  if (meta.id === "lang_ar_sentence") {
+    return {
+      lessonId: `proof_${meta.id}_${p.id}`,
+      title: meta.title,
+      titleAr: meta.titleAr,
+      subject: meta.subject,
+      grade: meta.grade,
+      language: "ar",
+      preferredCharacterId: p.id,
+      durationMs: meta.minDurationMs,
+      blocks: [
+        {
+          id: "hook",
+          kind: "hook",
+          text: isAli
+            ? `أهلاً ${p.addressStudent}. أنا ${p.displayName.ar}. الجملة مشكلة لغوية قابلة للتحليل: ركنان أساسيان.`
+            : `مرحبا ${p.addressStudent}. أنا ${p.displayName.ar}. اليوم بهدوء نرتّب الجملة العربية قطعة قطعة.`,
+        },
+        {
+          id: "write",
+          kind: "explain",
+          text: isAli
+            ? "اكتبوا على السبورة: الجملة الاسمية = مبتدأ + خبر. مثال: السماءُ صافيةٌ."
+            : "اكتبوا معي بهدوء: المبتدأ ثم الخبر. مثال لطيف: السماءُ صافيةٌ.",
+        },
+        {
+          id: "example",
+          kind: "example",
+          text: isAli
+            ? "نحلل: السماءُ = مبتدأ، صافيةٌ = خبر. حدّدوا الوظيفة قبل الإعراب الكامل."
+            : "خلينا نشوف المثال مرة ثانية بهدوء: مين اللي نحكي عنه؟ السماء. وش وصفها؟ صافية.",
+        },
+        {
+          id: "draw",
+          kind: "example",
+          text: "أرسم على السبورة صندوقين: مبتدأ | خبر، وأضع الكلمات داخلها.",
+        },
+        {
+          id: "check",
+          kind: "check",
+          text: `${p.checkPhrase}: في جملة «الكتابُ مفيدٌ» ما المبتدأ؟`,
+        },
+        {
+          id: "close",
+          kind: "close",
+          text: `${p.celebrate}. رتّبنا الجملة بوضوح. إلى اللقاء.`,
+        },
+      ],
+    };
+  }
+
+  if (meta.id === "prog_loop_trace") {
+    return {
+      lessonId: `proof_${meta.id}_${p.id}`,
+      title: meta.title,
+      titleAr: meta.titleAr,
+      subject: meta.subject,
+      grade: meta.grade,
+      language: "ar",
+      preferredCharacterId: p.id,
+      durationMs: meta.minDurationMs,
+      blocks: [
+        {
+          id: "hook",
+          kind: "hook",
+          text: isAli
+            ? `أهلاً ${p.addressStudent}. أنا ${p.displayName.ar}. الحلقة أداة لحل التكرار. نعرّف ثم نتتبّع التنفيذ سطرًا سطرًا.`
+            : `مرحبا ${p.addressStudent}. أنا ${p.displayName.ar}. اليوم بهدوء نفهم الحلقة: ليش نكرّر أوامر بدون نسخها؟`,
+        },
+        {
+          id: "write",
+          kind: "explain",
+          text: isAli
+            ? "اكتبوا على السبورة كودًا واضحًا: for i from 1 to 3: print(i). ثلاثة أجزاء: بداية، شرط، خطوة."
+            : "اكتبوا معي بهدوء: fore من واحد لثلاثة اطبع الرقم. نرتّب البداية والشرط والخطوة.",
+        },
+        {
+          id: "trace",
+          kind: "practice",
+          text: isAli
+            ? "نتتبّع تحليلياً: i=1 اطبع 1، ثم i=2 اطبع 2، ثم i=3 اطبع 3، ثم يتوقف الشرط."
+            : "نمشي التنفيذ خطوة خطوة بهدوء: واحد… اثنين… ثلاثة… وبعدين توقف.",
+        },
+        {
+          id: "draw",
+          kind: "example",
+          text: "أرسم مخطط تدفق على السبورة: ابدأ → فحص الشرط → جسم الحلقة → رجوع أو خروج.",
+        },
+        {
+          id: "model",
+          kind: "example",
+          text: "هذا نموذج ثلاثي الأبعاد لمسار التنفيذ. أديره ثم أكبّره لنشوف نقطة القرار.",
+        },
+        {
+          id: "check",
+          kind: "check",
+          text: `${p.checkPhrase}: كم مرة تُطبع القيمة إذا كانت الحلقة من 1 إلى 3؟`,
+        },
+        {
+          id: "close",
+          kind: "close",
+          text: `${p.celebrate}. تتبّعنا الحلقة وحللنا التكرار. إلى اللقاء.`,
+        },
+      ],
+    };
+  }
+
+  // g1_count_three default
+  return {
+    lessonId: `proof_${meta.id}_${p.id}`,
+    title: meta.title,
+    titleAr: meta.titleAr,
+    subject: meta.subject,
+    grade: meta.grade,
+    language: "ar",
+    preferredCharacterId: p.id,
+    durationMs: meta.minDurationMs,
+    blocks: [
+      {
+        id: "hook",
+        kind: "hook",
+        text: isAli
+          ? `أهلاً ${p.addressStudent}. أنا ${p.displayName.ar}. اليوم نعدّ بوضوح حتى ثلاثة.`
+          : `مرحبا ${p.addressStudent}. أنا ${p.displayName.ar}. هيا نعدّ معاً حتى ثلاثة.`,
+      },
+      {
+        id: "one",
+        kind: "explain",
+        text: isAli
+          ? "شوف السبورة. بكتب الرقم واحد. واحد يعني كمية واحدة فقط. عدّوا: واحد."
+          : "شوفوا السبورة معي. برسم الرقم واحد. واحد يعني شيء واحد. عدّوا وراي: واحد.",
+      },
+      {
+        id: "two",
+        kind: "example",
+        text: isAli
+          ? "الآن اثنان. أكتب ٢ وأشير إلى تفاحتين. لاحظوا الترتيب: بعد الواحد يأتي اثنان."
+          : "هلا اثنين. بكتب ٢ وبرسم تفاحتين. شوفوا كيف صارت أكثر من واحدة.",
+      },
+      {
+        id: "three",
+        kind: "example",
+        text: isAli
+          ? "ثلاثة. أكتب ٣ على السبورة. هذا نموذج ثلاثي الأبعاد لثلاث كرات. أمسكه وأديره ثم أكبّره."
+          : "ثلاثة. بكتب ٣. وهذا نموذج ثلاثي الأبعاد لثلاث نجمات. أمسكه، أديره، وأكبّره شوي.",
+      },
+      {
+        id: "draw",
+        kind: "practice",
+        text: "أرسم ثلاثة نجوم على السبورة واحداً بعد الآخر. عدّوا وأنتم تشوفون الرسم.",
+      },
+      {
+        id: "check",
+        kind: "check",
+        text: `${p.checkPhrase}: كم يصبح واحد زائد اثنين؟`,
+      },
+      {
+        id: "close",
+        kind: "close",
+        text: `${p.celebrate}. عدَدنا وكتبنا ورسمنا. إلى اللقاء.`,
+      },
+    ],
+  };
+}

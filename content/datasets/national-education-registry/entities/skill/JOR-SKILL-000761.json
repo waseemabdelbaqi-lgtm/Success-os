@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-SKILL-000761",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«الهندسة التحليلية — بناء المهارة» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-005452",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-005452",
+      "JOR-OUTCOME-005453",
+      "JOR-OUTCOME-005454",
+      "JOR-OUTCOME-005916",
+      "JOR-OUTCOME-005917",
+      "JOR-OUTCOME-005918"
+    ],
+    "lessonIds": [
+      "JOR-G11-MATH-U03-L02",
+      "JOR-G12-MATH-U03-L02"
+    ],
+    "belongsTo": "JOR-OUTCOME-005452"
+  },
+  "createdAt": "2026-07-31T17:56:57.249Z",
+  "updatedAt": "2026-07-31T17:56:57.326Z"
+}

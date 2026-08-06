@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-G10-ENG-U03-L04",
+  "kind": "lesson",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "Extended Reading — تقويم وتعزيز",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G10-ENG-U03",
+  "relationships": {
+    "unitId": "JOR-G10-ENG-U03",
+    "bookId": "JOR-BOOK-000011",
+    "subjectId": "JOR-G10-ENG",
+    "gradeId": "JOR-G10",
+    "belongsTo": "JOR-G10-ENG-U03"
+  },
+  "createdAt": "2026-07-31T17:56:56.709Z",
+  "updatedAt": "2026-07-31T17:56:56.709Z",
+  "lessonCode": "L04",
+  "sequence": 4,
+  "legacyLessonId": "L3.4",
+  "keywords": [
+    "vocabulary",
+    "structure",
+    "fluency"
+  ]
+}

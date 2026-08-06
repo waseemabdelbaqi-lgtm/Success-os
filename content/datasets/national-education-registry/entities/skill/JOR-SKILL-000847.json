@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-SKILL-000847",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«Literature & Media — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-005647",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-005647",
+      "JOR-OUTCOME-005648",
+      "JOR-OUTCOME-005649",
+      "JOR-OUTCOME-006111",
+      "JOR-OUTCOME-006112",
+      "JOR-OUTCOME-006113"
+    ],
+    "lessonIds": [
+      "JOR-G11-ENG-U03-L03",
+      "JOR-G12-ENG-U03-L03"
+    ],
+    "belongsTo": "JOR-OUTCOME-005647"
+  },
+  "createdAt": "2026-07-31T17:56:57.279Z",
+  "updatedAt": "2026-07-31T17:56:57.358Z"
+}

@@ -1,0 +1,19 @@
+{
+  "globalId": "JOR-BOOK-000012",
+  "kind": "book",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "Success OS — اللغة العربية",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G10-ARAB",
+  "relationships": {
+    "subjectId": "JOR-G10-ARAB",
+    "gradeId": "JOR-G10",
+    "belongsTo": "JOR-G10-ARAB"
+  },
+  "createdAt": "2026-07-31T17:56:56.710Z",
+  "updatedAt": "2026-07-31T17:56:56.710Z",
+  "legacyBookId": "jordan__التعليم-الأساسي__jordan-national-curriculum__الصف-10__اللغة-العربية__ar",
+  "officialSource": "https://www.nccd.gov.jo/ar/pages/TextBooksGrade/77"
+}

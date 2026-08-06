@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-SKILL-000982",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«تصميم وإنتاج — مقدمة ومفاهيم» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-006557",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-006557",
+      "JOR-OUTCOME-006558",
+      "JOR-OUTCOME-006559",
+      "JOR-OUTCOME-006909",
+      "JOR-OUTCOME-006910",
+      "JOR-OUTCOME-006911"
+    ],
+    "lessonIds": [
+      "JOR-G11-الفنونوا-U02-L01",
+      "JOR-G12-الفنونوا-U02-L01"
+    ],
+    "belongsTo": "JOR-OUTCOME-006557"
+  },
+  "createdAt": "2026-07-31T17:56:57.439Z",
+  "updatedAt": "2026-07-31T17:56:57.524Z"
+}

@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-SKILL-000740",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«الفكر الإسلامي — مقدمة ومفاهيم» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-005401",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-005401",
+      "JOR-OUTCOME-005402",
+      "JOR-OUTCOME-005403",
+      "JOR-OUTCOME-005865",
+      "JOR-OUTCOME-005866",
+      "JOR-OUTCOME-005867"
+    ],
+    "lessonIds": [
+      "JOR-G11-ISL-U03-L01",
+      "JOR-G12-ISL-U03-L01"
+    ],
+    "belongsTo": "JOR-OUTCOME-005401"
+  },
+  "createdAt": "2026-07-31T17:56:57.240Z",
+  "updatedAt": "2026-07-31T17:56:57.317Z"
+}

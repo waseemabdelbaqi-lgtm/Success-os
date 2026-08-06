@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-G10-التاريخ-U02-L04",
+  "kind": "lesson",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "الدولة الهاشمية — تقويم وتعزيز",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G10-التاريخ-U02",
+  "relationships": {
+    "unitId": "JOR-G10-التاريخ-U02",
+    "bookId": "JOR-BOOK-000001",
+    "subjectId": "JOR-G10-التاريخ",
+    "gradeId": "JOR-G10",
+    "belongsTo": "JOR-G10-التاريخ-U02"
+  },
+  "createdAt": "2026-07-31T17:56:56.683Z",
+  "updatedAt": "2026-07-31T17:56:56.683Z",
+  "lessonCode": "L04",
+  "sequence": 4,
+  "legacyLessonId": "L2.4",
+  "keywords": [
+    "حدث",
+    "مصدر",
+    "سبب"
+  ]
+}

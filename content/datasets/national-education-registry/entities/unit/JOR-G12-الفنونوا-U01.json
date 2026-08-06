@@ -1,0 +1,21 @@
+{
+  "globalId": "JOR-G12-الفنونوا-U01",
+  "kind": "unit",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "ممارسة فنية متقدمة",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-BOOK-000140",
+  "relationships": {
+    "bookId": "JOR-BOOK-000140",
+    "subjectId": "JOR-G12-الفنونوا",
+    "gradeId": "JOR-G12",
+    "belongsTo": "JOR-BOOK-000140"
+  },
+  "createdAt": "2026-07-31T17:56:57.521Z",
+  "updatedAt": "2026-07-31T17:56:57.521Z",
+  "unitCode": "U01",
+  "sequence": 1,
+  "legacyUnitId": "U1"
+}

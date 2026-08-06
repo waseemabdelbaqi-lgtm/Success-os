@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-SKILL-000804",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«الموجات والضوء — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-005551",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-005551",
+      "JOR-OUTCOME-005552",
+      "JOR-OUTCOME-005553",
+      "JOR-OUTCOME-006015",
+      "JOR-OUTCOME-006016",
+      "JOR-OUTCOME-006017"
+    ],
+    "lessonIds": [
+      "JOR-G11-الفيزياء-U03-L03",
+      "JOR-G12-الفيزياء-U03-L03"
+    ],
+    "belongsTo": "JOR-OUTCOME-005551"
+  },
+  "createdAt": "2026-07-31T17:56:57.265Z",
+  "updatedAt": "2026-07-31T17:56:57.343Z"
+}

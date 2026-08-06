@@ -1,0 +1,28 @@
+{
+  "id": "sara",
+  "schema": "success-os.teacher-humanoid.v1",
+  "glb": "/media/ai-teachers/sara/humanoid/teacher.glb",
+  "skeleton": "mixamo",
+  "morphTargets": [
+    "jawOpen",
+    "mouthClose",
+    "mouthFunnel",
+    "mouthPucker",
+    "mouthSmileLeft",
+    "mouthSmileRight",
+    "mouthFrownLeft",
+    "mouthFrownRight",
+    "eyeBlinkLeft",
+    "eyeBlinkRight",
+    "browInnerUp",
+    "browDownLeft",
+    "browDownRight",
+    "cheekSquintLeft",
+    "cheekSquintRight"
+  ],
+  "hasFullBody": true,
+  "hasFingers": true,
+  "hasEyeBones": true,
+  "drivenBy": "human-engine",
+  "updatedAt": "2026-08-02T14:22:20.225Z"
+}

@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-G07-ISL-U03-L01",
+  "kind": "lesson",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "السيرة النبوية — مقدمة ومفاهيم",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G07-ISL-U03",
+  "relationships": {
+    "unitId": "JOR-G07-ISL-U03",
+    "bookId": "JOR-BOOK-000072",
+    "subjectId": "JOR-G07-ISL",
+    "gradeId": "JOR-G07",
+    "belongsTo": "JOR-G07-ISL-U03"
+  },
+  "createdAt": "2026-07-31T17:56:56.969Z",
+  "updatedAt": "2026-07-31T17:56:56.969Z",
+  "lessonCode": "L01",
+  "sequence": 1,
+  "legacyLessonId": "L3.1",
+  "keywords": [
+    "عقيدة",
+    "عبادة",
+    "خلق"
+  ]
+}

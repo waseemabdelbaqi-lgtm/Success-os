@@ -1,0 +1,28 @@
+{
+  "globalId": "JOR-G07-التربيةا-U01-L01",
+  "kind": "lesson",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "الدستور مبسطاً — مقدمة ومفاهيم",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G07-التربيةا-U01",
+  "relationships": {
+    "unitId": "JOR-G07-التربيةا-U01",
+    "bookId": "JOR-BOOK-000074",
+    "subjectId": "JOR-G07-التربيةا",
+    "gradeId": "JOR-G07",
+    "belongsTo": "JOR-G07-التربيةا-U01"
+  },
+  "createdAt": "2026-07-31T17:56:56.978Z",
+  "updatedAt": "2026-07-31T17:56:56.983Z",
+  "lessonCode": "L01",
+  "sequence": 1,
+  "legacyLessonId": "L1.1",
+  "keywords": [
+    "مواطنة",
+    "حق",
+    "واجب"
+  ],
+  "_deduped": true
+}

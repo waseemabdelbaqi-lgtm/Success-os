@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-SKILL-000758",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«التفاضل أو المتتاليات — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-005446",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-005446",
+      "JOR-OUTCOME-005447",
+      "JOR-OUTCOME-005448",
+      "JOR-OUTCOME-005910",
+      "JOR-OUTCOME-005911",
+      "JOR-OUTCOME-005912"
+    ],
+    "lessonIds": [
+      "JOR-G11-MATH-U02-L04",
+      "JOR-G12-MATH-U02-L04"
+    ],
+    "belongsTo": "JOR-OUTCOME-005446"
+  },
+  "createdAt": "2026-07-31T17:56:57.247Z",
+  "updatedAt": "2026-07-31T17:56:57.325Z"
+}

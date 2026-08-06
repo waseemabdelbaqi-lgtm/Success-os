@@ -1,0 +1,17 @@
+{
+  "globalId": "JOR-IMAGE-002270",
+  "kind": "educationalImage",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "مخطط تعليمي لوحدة مشروع تطبيقي",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G12-الأعمال-U04-L02",
+  "relationships": {
+    "lessonId": "JOR-G12-الأعمال-U04-L02",
+    "belongsTo": "JOR-G12-الأعمال-U04-L02"
+  },
+  "createdAt": "2026-07-31T17:56:57.477Z",
+  "updatedAt": "2026-07-31T17:56:57.477Z",
+  "src": null
+}

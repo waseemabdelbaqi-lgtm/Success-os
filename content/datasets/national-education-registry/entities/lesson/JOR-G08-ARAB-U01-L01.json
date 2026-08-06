@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-G08-ARAB-U01-L01",
+  "kind": "lesson",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "تحليل النصوص — مقدمة ومفاهيم",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G08-ARAB-U01",
+  "relationships": {
+    "unitId": "JOR-G08-ARAB-U01",
+    "bookId": "JOR-BOOK-000094",
+    "subjectId": "JOR-G08-ARAB",
+    "gradeId": "JOR-G08",
+    "belongsTo": "JOR-G08-ARAB-U01"
+  },
+  "createdAt": "2026-07-31T17:56:57.117Z",
+  "updatedAt": "2026-07-31T17:56:57.117Z",
+  "lessonCode": "L01",
+  "sequence": 1,
+  "legacyLessonId": "L1.1",
+  "keywords": [
+    "نص",
+    "معنى",
+    "أسلوب"
+  ]
+}

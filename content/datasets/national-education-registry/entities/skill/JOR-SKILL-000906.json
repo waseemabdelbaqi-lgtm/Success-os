@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-SKILL-000906",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«التحليل التاريخي — بناء المهارة» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-005788",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-005788",
+      "JOR-OUTCOME-005789",
+      "JOR-OUTCOME-005790",
+      "JOR-OUTCOME-006252",
+      "JOR-OUTCOME-006253",
+      "JOR-OUTCOME-006254"
+    ],
+    "lessonIds": [
+      "JOR-G11-تاريخالأ-U03-L02",
+      "JOR-G12-تاريخالأ-U03-L02"
+    ],
+    "belongsTo": "JOR-OUTCOME-005788"
+  },
+  "createdAt": "2026-07-31T17:56:57.303Z",
+  "updatedAt": "2026-07-31T17:56:57.383Z"
+}

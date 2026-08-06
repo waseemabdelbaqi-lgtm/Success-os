@@ -1,0 +1,16 @@
+{
+  "globalId": "JOR-DIAGRAM-001562",
+  "kind": "diagram",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "مخطط تعليمي لوحدة Extended Reading",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G08-ENG-U03-L02",
+  "relationships": {
+    "lessonId": "JOR-G08-ENG-U03-L02",
+    "belongsTo": "JOR-G08-ENG-U03-L02"
+  },
+  "createdAt": "2026-07-31T17:56:57.114Z",
+  "updatedAt": "2026-07-31T17:56:57.114Z"
+}

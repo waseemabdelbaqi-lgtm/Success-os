@@ -1,0 +1,17 @@
+{
+  "globalId": "JOR-IMAGE-000957",
+  "kind": "educationalImage",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "مخطط تعليمي لوحدة Guided Writing",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G05-ENG-U04-L01",
+  "relationships": {
+    "lessonId": "JOR-G05-ENG-U04-L01",
+    "belongsTo": "JOR-G05-ENG-U04-L01"
+  },
+  "createdAt": "2026-07-31T17:56:56.878Z",
+  "updatedAt": "2026-07-31T17:56:56.878Z",
+  "src": null
+}

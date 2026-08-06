@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-G06-PE-U02-L04",
+  "kind": "lesson",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "اللياقة البدنية — تقويم وتعزيز",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G06-PE-U02",
+  "relationships": {
+    "unitId": "JOR-G06-PE-U02",
+    "bookId": "JOR-BOOK-000062",
+    "subjectId": "JOR-G06-PE",
+    "gradeId": "JOR-G06",
+    "belongsTo": "JOR-G06-PE-U02"
+  },
+  "createdAt": "2026-07-31T17:56:56.897Z",
+  "updatedAt": "2026-07-31T17:56:56.897Z",
+  "lessonCode": "L04",
+  "sequence": 4,
+  "legacyLessonId": "L2.4",
+  "keywords": [
+    "مهارة حركية",
+    "لياقة",
+    "تعاون"
+  ]
+}

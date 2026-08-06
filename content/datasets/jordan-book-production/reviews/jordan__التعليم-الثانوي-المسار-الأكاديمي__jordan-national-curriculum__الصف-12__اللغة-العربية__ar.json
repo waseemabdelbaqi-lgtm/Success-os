@@ -1,0 +1,31 @@
+{
+  "schema": "success-os.jordan-book-admin-review.v1",
+  "phase": "JO-02_JORDAN_BOOK_PRODUCTION",
+  "bookId": "jordan__التعليم-الثانوي-المسار-الأكاديمي__jordan-national-curriculum__الصف-12__اللغة-العربية__ar",
+  "identity": {
+    "country": "Jordan",
+    "educationalSystem": "التعليم الثانوي — المسار الأكاديمي",
+    "curriculumType": "national",
+    "curriculum": "Jordan National Curriculum",
+    "authority": "Jordan Ministry of Education / NCCD",
+    "stage": "التعليم الثانوي — المسار الأكاديمي",
+    "grade": "الصف 12",
+    "subject": "اللغة العربية",
+    "language": "ar"
+  },
+  "researchProgress": 100,
+  "contentProgress": 100,
+  "unitsCompleted": 4,
+  "unitsExpected": 4,
+  "lessonsCompleted": 16,
+  "lessonsExpected": 16,
+  "lessonsMissing": 0,
+  "qualityScore": 100,
+  "missingLessons": [],
+  "verificationStatus": "produced-pending-jo03",
+  "publishStatus": "PENDING_JO03_VERIFICATION",
+  "contentWarnings": [],
+  "internalLinksOk": true,
+  "bookOpensCorrectly": true,
+  "lastUpdate": "2026-07-31T17:55:42.608Z"
+}

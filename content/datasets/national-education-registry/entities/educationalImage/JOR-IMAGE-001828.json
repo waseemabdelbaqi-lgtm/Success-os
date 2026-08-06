@@ -1,0 +1,17 @@
+{
+  "globalId": "JOR-IMAGE-001828",
+  "kind": "educationalImage",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "مخطط تعليمي لوحدة أصول الدين",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G11-ISL-U01-L04",
+  "relationships": {
+    "lessonId": "JOR-G11-ISL-U01-L04",
+    "belongsTo": "JOR-G11-ISL-U01-L04"
+  },
+  "createdAt": "2026-07-31T17:56:57.237Z",
+  "updatedAt": "2026-07-31T17:56:57.237Z",
+  "src": null
+}

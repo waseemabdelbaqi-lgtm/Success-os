@@ -1,0 +1,18 @@
+{
+  "globalId": "JOR-OUTCOME-004481",
+  "kind": "learningOutcome",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يتعرف المتعلم مفهومًا محوريًا في العلوم ضمن الخلية والتنوع بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 8.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G08-SCI-U01-L01",
+  "relationships": {
+    "lessonId": "JOR-G08-SCI-U01-L01",
+    "belongsTo": "JOR-G08-SCI-U01-L01"
+  },
+  "createdAt": "2026-07-31T17:56:57.095Z",
+  "updatedAt": "2026-07-31T17:56:57.095Z",
+  "text": "أن يتعرف المتعلم مفهومًا محوريًا في العلوم ضمن الخلية والتنوع بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 8.",
+  "sequence": 1
+}

@@ -35,7 +35,15 @@ function rootDir() {
 }
 
 export function referenceLibraryRoot() {
-  return path.join(rootDir(), 'library', 'jordan-educational-reference-library');
+  if (process.env.JO_REFERENCE_LIBRARY_ROOT) {
+    return path.resolve(process.env.JO_REFERENCE_LIBRARY_ROOT);
+  }
+  return path.join(
+    rootDir(),
+    'content',
+    'datasets',
+    'jordan-educational-reference-library',
+  );
 }
 
 function ensureDirs() {

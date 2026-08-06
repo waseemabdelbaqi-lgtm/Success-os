@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-G10-التاريخ-U04-L01",
+  "kind": "lesson",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "وثائق ومصادر — مقدمة ومفاهيم",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G10-التاريخ-U04",
+  "relationships": {
+    "unitId": "JOR-G10-التاريخ-U04",
+    "bookId": "JOR-BOOK-000001",
+    "subjectId": "JOR-G10-التاريخ",
+    "gradeId": "JOR-G10",
+    "belongsTo": "JOR-G10-التاريخ-U04"
+  },
+  "createdAt": "2026-07-31T17:56:56.684Z",
+  "updatedAt": "2026-07-31T17:56:56.684Z",
+  "lessonCode": "L01",
+  "sequence": 1,
+  "legacyLessonId": "L4.1",
+  "keywords": [
+    "حدث",
+    "مصدر",
+    "سبب"
+  ]
+}

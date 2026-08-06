@@ -1,0 +1,3 @@
+# Python deps for Sara/Ali live neural TTS (edge-tts) used by /api/ai-teachers/tts
+edge-tts>=7.0.0
+mutagen>=1.47.0

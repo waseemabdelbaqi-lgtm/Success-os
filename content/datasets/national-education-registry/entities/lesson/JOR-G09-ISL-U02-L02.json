@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-G09-ISL-U02-L02",
+  "kind": "lesson",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "التلاوة والتفسير — بناء المهارة",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G09-ISL-U02",
+  "relationships": {
+    "unitId": "JOR-G09-ISL-U02",
+    "bookId": "JOR-BOOK-000097",
+    "subjectId": "JOR-G09-ISL",
+    "gradeId": "JOR-G09",
+    "belongsTo": "JOR-G09-ISL-U02"
+  },
+  "createdAt": "2026-07-31T17:56:57.141Z",
+  "updatedAt": "2026-07-31T17:56:57.141Z",
+  "lessonCode": "L02",
+  "sequence": 2,
+  "legacyLessonId": "L2.2",
+  "keywords": [
+    "عقيدة",
+    "عبادة",
+    "خلق"
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "globalId": "JOR-SKILL-000531",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«الصحة — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-002478",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-002478",
+      "JOR-OUTCOME-002479",
+      "JOR-OUTCOME-002480",
+      "JOR-OUTCOME-003038",
+      "JOR-OUTCOME-003039",
+      "JOR-OUTCOME-003040",
+      "JOR-OUTCOME-003598",
+      "JOR-OUTCOME-003599",
+      "JOR-OUTCOME-003600"
+    ],
+    "lessonIds": [
+      "JOR-G05-PE-U04-L04",
+      "JOR-G06-PE-U04-L04",
+      "JOR-G07-PE-U04-L04"
+    ],
+    "belongsTo": "JOR-OUTCOME-002478"
+  },
+  "createdAt": "2026-07-31T17:56:56.843Z",
+  "updatedAt": "2026-07-31T17:56:56.978Z"
+}

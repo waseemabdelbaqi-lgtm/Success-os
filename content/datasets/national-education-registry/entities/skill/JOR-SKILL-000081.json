@@ -1,0 +1,31 @@
+{
+  "globalId": "JOR-SKILL-000081",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«مهارات مهنية مبكرة — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-000163",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-000163",
+      "JOR-OUTCOME-000164",
+      "JOR-OUTCOME-000165",
+      "JOR-OUTCOME-004227",
+      "JOR-OUTCOME-004228",
+      "JOR-OUTCOME-004229",
+      "JOR-OUTCOME-004883",
+      "JOR-OUTCOME-004884",
+      "JOR-OUTCOME-004885"
+    ],
+    "lessonIds": [
+      "JOR-G10-التربيةا-U02-L03",
+      "JOR-G08-التربيةا-U02-L03",
+      "JOR-G09-التربيةا-U02-L03"
+    ],
+    "belongsTo": "JOR-OUTCOME-000163"
+  },
+  "createdAt": "2026-07-31T17:56:56.689Z",
+  "updatedAt": "2026-07-31T17:56:57.156Z"
+}

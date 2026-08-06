@@ -1,0 +1,21 @@
+{
+  "globalId": "JOR-G01-SOC-U04",
+  "kind": "unit",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "التاريخ المحلي المبسط",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-BOOK-000017",
+  "relationships": {
+    "bookId": "JOR-BOOK-000017",
+    "subjectId": "JOR-G01-SOC",
+    "gradeId": "JOR-G01",
+    "belongsTo": "JOR-BOOK-000017"
+  },
+  "createdAt": "2026-07-31T17:56:56.724Z",
+  "updatedAt": "2026-07-31T17:56:56.724Z",
+  "unitCode": "U04",
+  "sequence": 4,
+  "legacyUnitId": "U4"
+}

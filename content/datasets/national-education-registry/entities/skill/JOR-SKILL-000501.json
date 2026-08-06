@@ -1,0 +1,31 @@
+{
+  "globalId": "JOR-SKILL-000501",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«أحكام العبادات — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-002403",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-002403",
+      "JOR-OUTCOME-002404",
+      "JOR-OUTCOME-002405",
+      "JOR-OUTCOME-002963",
+      "JOR-OUTCOME-002964",
+      "JOR-OUTCOME-002965",
+      "JOR-OUTCOME-003523",
+      "JOR-OUTCOME-003524",
+      "JOR-OUTCOME-003525"
+    ],
+    "lessonIds": [
+      "JOR-G05-ISL-U02-L03",
+      "JOR-G06-ISL-U02-L03",
+      "JOR-G07-ISL-U02-L03"
+    ],
+    "belongsTo": "JOR-OUTCOME-002403"
+  },
+  "createdAt": "2026-07-31T17:56:56.835Z",
+  "updatedAt": "2026-07-31T17:56:56.969Z"
+}

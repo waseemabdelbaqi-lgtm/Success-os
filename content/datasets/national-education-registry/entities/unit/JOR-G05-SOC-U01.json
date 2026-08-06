@@ -1,0 +1,21 @@
+{
+  "globalId": "JOR-G05-SOC-U01",
+  "kind": "unit",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "المجتمع الأردني",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-BOOK-000054",
+  "relationships": {
+    "bookId": "JOR-BOOK-000054",
+    "subjectId": "JOR-G05-SOC",
+    "gradeId": "JOR-G05",
+    "belongsTo": "JOR-BOOK-000054"
+  },
+  "createdAt": "2026-07-31T17:56:56.854Z",
+  "updatedAt": "2026-07-31T17:56:56.854Z",
+  "unitCode": "U01",
+  "sequence": 1,
+  "legacyUnitId": "U1"
+}

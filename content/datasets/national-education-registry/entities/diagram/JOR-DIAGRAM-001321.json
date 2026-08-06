@@ -1,0 +1,16 @@
+{
+  "globalId": "JOR-DIAGRAM-001321",
+  "kind": "diagram",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "مخطط تعليمي لوحدة الأداء المسرحي",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G07-الفنون-U03-L01",
+  "relationships": {
+    "lessonId": "JOR-G07-الفنون-U03-L01",
+    "belongsTo": "JOR-G07-الفنون-U03-L01"
+  },
+  "createdAt": "2026-07-31T17:56:57.016Z",
+  "updatedAt": "2026-07-31T17:56:57.016Z"
+}

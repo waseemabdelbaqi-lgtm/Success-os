@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-G09-MATH-U03-L04",
+  "kind": "lesson",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "الهندسة الإقليدية — تقويم وتعزيز",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G09-MATH-U03",
+  "relationships": {
+    "unitId": "JOR-G09-MATH-U03",
+    "bookId": "JOR-BOOK-000103",
+    "subjectId": "JOR-G09-MATH",
+    "gradeId": "JOR-G09",
+    "belongsTo": "JOR-G09-MATH-U03"
+  },
+  "createdAt": "2026-07-31T17:56:57.194Z",
+  "updatedAt": "2026-07-31T17:56:57.194Z",
+  "lessonCode": "L04",
+  "sequence": 4,
+  "legacyLessonId": "L3.4",
+  "keywords": [
+    "عدد",
+    "عملية",
+    "نمط"
+  ]
+}

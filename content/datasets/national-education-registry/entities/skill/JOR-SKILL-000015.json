@@ -1,0 +1,31 @@
+{
+  "globalId": "JOR-SKILL-000015",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«العلاقات الإقليمية — مقدمة ومفاهيم» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-000025",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-000025",
+      "JOR-OUTCOME-000026",
+      "JOR-OUTCOME-000027",
+      "JOR-OUTCOME-004089",
+      "JOR-OUTCOME-004090",
+      "JOR-OUTCOME-004091",
+      "JOR-OUTCOME-004745",
+      "JOR-OUTCOME-004746",
+      "JOR-OUTCOME-004747"
+    ],
+    "lessonIds": [
+      "JOR-G10-التاريخ-U03-L01",
+      "JOR-G08-التاريخ-U03-L01",
+      "JOR-G09-التاريخ-U03-L01"
+    ],
+    "belongsTo": "JOR-OUTCOME-000025"
+  },
+  "createdAt": "2026-07-31T17:56:56.683Z",
+  "updatedAt": "2026-07-31T17:56:57.136Z"
+}

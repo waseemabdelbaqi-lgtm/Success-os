@@ -1,0 +1,339 @@
+{
+  "schema": "success-os.global-subject-registry.v1",
+  "rule": "Subjects are global (SUB-XXXXX). Countries map local labels; never fork subject identity.",
+  "subjects": [
+    {
+      "id": "SUB-00001",
+      "code": "MATH",
+      "name": {
+        "en": "Mathematics",
+        "ar": "الرياضيات"
+      },
+      "family": "stem",
+      "order": 1,
+      "active": true
+    },
+    {
+      "id": "SUB-00002",
+      "code": "SCI",
+      "name": {
+        "en": "Science",
+        "ar": "العلوم"
+      },
+      "family": "stem",
+      "order": 2,
+      "active": true
+    },
+    {
+      "id": "SUB-00003",
+      "code": "PHYSICS",
+      "name": {
+        "en": "Physics",
+        "ar": "الفيزياء"
+      },
+      "family": "stem",
+      "order": 3,
+      "active": true
+    },
+    {
+      "id": "SUB-00004",
+      "code": "CHEMISTRY",
+      "name": {
+        "en": "Chemistry",
+        "ar": "الكيمياء"
+      },
+      "family": "stem",
+      "order": 4,
+      "active": true
+    },
+    {
+      "id": "SUB-00005",
+      "code": "BIOLOGY",
+      "name": {
+        "en": "Biology",
+        "ar": "الأحياء"
+      },
+      "family": "stem",
+      "order": 5,
+      "active": true
+    },
+    {
+      "id": "SUB-00006",
+      "code": "AR",
+      "name": {
+        "en": "Arabic",
+        "ar": "اللغة العربية"
+      },
+      "family": "language",
+      "order": 6,
+      "active": true
+    },
+    {
+      "id": "SUB-00007",
+      "code": "EN",
+      "name": {
+        "en": "English",
+        "ar": "اللغة الإنجليزية"
+      },
+      "family": "language",
+      "order": 7,
+      "active": true
+    },
+    {
+      "id": "SUB-00008",
+      "code": "ISL",
+      "name": {
+        "en": "Islamic Education",
+        "ar": "التربية الإسلامية"
+      },
+      "family": "religious",
+      "order": 8,
+      "active": true
+    },
+    {
+      "id": "SUB-00009",
+      "code": "SOC",
+      "name": {
+        "en": "Social Studies",
+        "ar": "التربية الاجتماعية"
+      },
+      "family": "humanities",
+      "order": 9,
+      "active": true
+    },
+    {
+      "id": "SUB-00010",
+      "code": "ART",
+      "name": {
+        "en": "Art",
+        "ar": "التربية الفنية"
+      },
+      "family": "arts",
+      "order": 10,
+      "active": true
+    },
+    {
+      "id": "SUB-00011",
+      "code": "PE",
+      "name": {
+        "en": "Physical Education",
+        "ar": "التربية الرياضية"
+      },
+      "family": "other",
+      "order": 11,
+      "active": true
+    }
+  ],
+  "countryAliases": [
+    {
+      "countryId": "JO",
+      "countryName": {
+        "en": "Jordan",
+        "ar": "الأردن"
+      },
+      "localLabel": "رياضيات",
+      "language": "ar",
+      "globalSubjectId": "SUB-00001",
+      "hierarchicalSubjectId": "JO-NATIONAL-G01-MATH"
+    },
+    {
+      "countryId": "US",
+      "countryName": {
+        "en": "USA",
+        "ar": "الولايات المتحدة"
+      },
+      "localLabel": "Mathematics",
+      "language": "en",
+      "globalSubjectId": "SUB-00001"
+    },
+    {
+      "countryId": "EG",
+      "countryName": {
+        "en": "Egypt",
+        "ar": "مصر"
+      },
+      "localLabel": "رياضيات",
+      "language": "ar",
+      "globalSubjectId": "SUB-00001"
+    },
+    {
+      "countryId": "JO",
+      "countryName": {
+        "en": "Jordan",
+        "ar": "الأردن"
+      },
+      "localLabel": "لغة عربية",
+      "language": "ar",
+      "globalSubjectId": "SUB-00006",
+      "hierarchicalSubjectId": "JO-NATIONAL-G01-AR"
+    },
+    {
+      "countryId": "JO",
+      "countryName": {
+        "en": "Jordan",
+        "ar": "الأردن"
+      },
+      "localLabel": "English",
+      "language": "en",
+      "globalSubjectId": "SUB-00007",
+      "hierarchicalSubjectId": "JO-NATIONAL-G01-EN"
+    },
+    {
+      "countryId": "JO",
+      "countryName": {
+        "en": "Jordan",
+        "ar": "الأردن"
+      },
+      "localLabel": "علوم",
+      "language": "ar",
+      "globalSubjectId": "SUB-00002",
+      "hierarchicalSubjectId": "JO-NATIONAL-G01-SCI"
+    },
+    {
+      "countryId": "JO",
+      "countryName": {
+        "en": "Jordan",
+        "ar": "الأردن"
+      },
+      "localLabel": "تربية إسلامية",
+      "language": "ar",
+      "globalSubjectId": "SUB-00008",
+      "hierarchicalSubjectId": "JO-NATIONAL-G01-ISL"
+    },
+    {
+      "countryId": "JO",
+      "countryName": {
+        "en": "Jordan",
+        "ar": "الأردن"
+      },
+      "localLabel": "تربية اجتماعية",
+      "language": "ar",
+      "globalSubjectId": "SUB-00009",
+      "hierarchicalSubjectId": "JO-NATIONAL-G01-SOC"
+    },
+    {
+      "countryId": "JO",
+      "countryName": {
+        "en": "Jordan",
+        "ar": "الأردن"
+      },
+      "localLabel": "تربية فنية",
+      "language": "ar",
+      "globalSubjectId": "SUB-00010",
+      "hierarchicalSubjectId": "JO-NATIONAL-G01-ART"
+    },
+    {
+      "countryId": "JO",
+      "countryName": {
+        "en": "Jordan",
+        "ar": "الأردن"
+      },
+      "localLabel": "تربية رياضية",
+      "language": "ar",
+      "globalSubjectId": "SUB-00011",
+      "hierarchicalSubjectId": "JO-NATIONAL-G01-PE"
+    },
+    {
+      "countryId": "JO",
+      "countryName": {
+        "en": "Jordan",
+        "ar": "الأردن"
+      },
+      "localLabel": "فيزياء",
+      "language": "ar",
+      "globalSubjectId": "SUB-00003"
+    },
+    {
+      "countryId": "JO",
+      "countryName": {
+        "en": "Jordan",
+        "ar": "الأردن"
+      },
+      "localLabel": "كيمياء",
+      "language": "ar",
+      "globalSubjectId": "SUB-00004"
+    },
+    {
+      "countryId": "JO",
+      "countryName": {
+        "en": "Jordan",
+        "ar": "الأردن"
+      },
+      "localLabel": "أحياء",
+      "language": "ar",
+      "globalSubjectId": "SUB-00005"
+    }
+  ],
+  "crossCountryExamples": [
+    {
+      "countryId": "JO",
+      "localLabel": "رياضيات",
+      "globalSubjectId": "SUB-00001",
+      "subject": {
+        "id": "SUB-00001",
+        "code": "MATH",
+        "name": {
+          "en": "Mathematics",
+          "ar": "الرياضيات"
+        },
+        "family": "stem",
+        "order": 1,
+        "active": true
+      },
+      "path": [
+        "Jordan",
+        "رياضيات",
+        "SUB-00001"
+      ]
+    },
+    {
+      "countryId": "US",
+      "localLabel": "Mathematics",
+      "globalSubjectId": "SUB-00001",
+      "subject": {
+        "id": "SUB-00001",
+        "code": "MATH",
+        "name": {
+          "en": "Mathematics",
+          "ar": "الرياضيات"
+        },
+        "family": "stem",
+        "order": 1,
+        "active": true
+      },
+      "path": [
+        "USA",
+        "Mathematics",
+        "SUB-00001"
+      ]
+    },
+    {
+      "countryId": "EG",
+      "localLabel": "رياضيات",
+      "globalSubjectId": "SUB-00001",
+      "subject": {
+        "id": "SUB-00001",
+        "code": "MATH",
+        "name": {
+          "en": "Mathematics",
+          "ar": "الرياضيات"
+        },
+        "family": "stem",
+        "order": 1,
+        "active": true
+      },
+      "path": [
+        "Egypt",
+        "رياضيات",
+        "SUB-00001"
+      ]
+    }
+  ],
+  "counts": {
+    "subjects": 11,
+    "active": 11,
+    "stem": 5,
+    "countryAliases": 13
+  },
+  "notes": "Permanent foundation (PR #50.3): SUB-00001 Mathematics … SUB-00011 Physical Education. Append-only."
+}

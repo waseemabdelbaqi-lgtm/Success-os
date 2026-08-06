@@ -1,0 +1,31 @@
+{
+  "globalId": "JOR-SKILL-000655",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«الإيقاع واللحن — مقدمة ومفاهيم» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-002765",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-002765",
+      "JOR-OUTCOME-002766",
+      "JOR-OUTCOME-002767",
+      "JOR-OUTCOME-003325",
+      "JOR-OUTCOME-003326",
+      "JOR-OUTCOME-003327",
+      "JOR-OUTCOME-003885",
+      "JOR-OUTCOME-003886",
+      "JOR-OUTCOME-003887"
+    ],
+    "lessonIds": [
+      "JOR-G05-الفنون-U02-L01",
+      "JOR-G06-الفنون-U02-L01",
+      "JOR-G07-الفنون-U02-L01"
+    ],
+    "belongsTo": "JOR-OUTCOME-002765"
+  },
+  "createdAt": "2026-07-31T17:56:56.870Z",
+  "updatedAt": "2026-07-31T17:56:57.015Z"
+}

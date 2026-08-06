@@ -1,0 +1,17 @@
+{
+  "globalId": "JOR-IMAGE-000140",
+  "kind": "educationalImage",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "مخطط تعليمي لوحدة الهندسة الإقليدية",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G10-MATH-U03-L04",
+  "relationships": {
+    "lessonId": "JOR-G10-MATH-U03-L04",
+    "belongsTo": "JOR-G10-MATH-U03-L04"
+  },
+  "createdAt": "2026-07-31T17:56:56.701Z",
+  "updatedAt": "2026-07-31T17:56:56.701Z",
+  "src": null
+}

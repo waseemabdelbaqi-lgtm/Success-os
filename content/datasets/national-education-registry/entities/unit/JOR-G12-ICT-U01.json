@@ -1,0 +1,21 @@
+{
+  "globalId": "JOR-G12-ICT-U01",
+  "kind": "unit",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "برمجة وتطبيقات",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-BOOK-000125",
+  "relationships": {
+    "bookId": "JOR-BOOK-000125",
+    "subjectId": "JOR-G12-ICT",
+    "gradeId": "JOR-G12",
+    "belongsTo": "JOR-BOOK-000125"
+  },
+  "createdAt": "2026-07-31T17:56:57.370Z",
+  "updatedAt": "2026-07-31T17:56:57.370Z",
+  "unitCode": "U01",
+  "sequence": 1,
+  "legacyUnitId": "U1"
+}

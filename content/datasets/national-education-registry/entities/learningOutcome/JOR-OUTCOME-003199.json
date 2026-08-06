@@ -1,0 +1,18 @@
+{
+  "globalId": "JOR-OUTCOME-003199",
+  "kind": "learningOutcome",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يتعرف المتعلم مفهومًا محوريًا في الدراسات الاجتماعية ضمن حقوق وواجبات بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 6.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G06-SOC-U03-L03",
+  "relationships": {
+    "lessonId": "JOR-G06-SOC-U03-L03",
+    "belongsTo": "JOR-G06-SOC-U03-L03"
+  },
+  "createdAt": "2026-07-31T17:56:56.918Z",
+  "updatedAt": "2026-07-31T17:56:56.918Z",
+  "text": "أن يتعرف المتعلم مفهومًا محوريًا في الدراسات الاجتماعية ضمن حقوق وواجبات بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 6.",
+  "sequence": 1
+}

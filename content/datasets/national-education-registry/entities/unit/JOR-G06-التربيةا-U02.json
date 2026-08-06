@@ -1,0 +1,22 @@
+{
+  "globalId": "JOR-G06-التربيةا-U02",
+  "kind": "unit",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "المؤسسات",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-BOOK-000063",
+  "relationships": {
+    "bookId": "JOR-BOOK-000063",
+    "subjectId": "JOR-G06-التربيةا",
+    "gradeId": "JOR-G06",
+    "belongsTo": "JOR-BOOK-000063"
+  },
+  "createdAt": "2026-07-31T17:56:56.901Z",
+  "updatedAt": "2026-07-31T17:56:56.907Z",
+  "unitCode": "U02",
+  "sequence": 2,
+  "legacyUnitId": "U2",
+  "_deduped": true
+}

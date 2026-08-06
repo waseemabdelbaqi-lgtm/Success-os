@@ -1,0 +1,18 @@
+{
+  "globalId": "JOR-OUTCOME-007029",
+  "kind": "learningOutcome",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-GKG-EMATH-U02-L03",
+  "relationships": {
+    "lessonId": "JOR-GKG-EMATH-U02-L03",
+    "belongsTo": "JOR-GKG-EMATH-U02-L03"
+  },
+  "createdAt": "2026-07-31T17:56:57.560Z",
+  "updatedAt": "2026-07-31T17:56:57.560Z",
+  "text": "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة.",
+  "sequence": 3
+}

@@ -1,0 +1,17 @@
+{
+  "globalId": "JOR-IMAGE-002399",
+  "kind": "educationalImage",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "مخطط تعليمي لوحدة العناية بالبيئة",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-GKG-SCI-U04-L03",
+  "relationships": {
+    "lessonId": "JOR-GKG-SCI-U04-L03",
+    "belongsTo": "JOR-GKG-SCI-U04-L03"
+  },
+  "createdAt": "2026-07-31T17:56:57.577Z",
+  "updatedAt": "2026-07-31T17:56:57.577Z",
+  "src": null
+}

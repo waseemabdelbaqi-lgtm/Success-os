@@ -1,0 +1,16 @@
+{
+  "globalId": "JOR-DIAGRAM-002212",
+  "kind": "diagram",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "مخطط تعليمي لوحدة أساسيات المسار",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G11-الضيافة-U01-L04",
+  "relationships": {
+    "lessonId": "JOR-G11-الضيافة-U01-L04",
+    "belongsTo": "JOR-G11-الضيافة-U01-L04"
+  },
+  "createdAt": "2026-07-31T17:56:57.429Z",
+  "updatedAt": "2026-07-31T17:56:57.429Z"
+}

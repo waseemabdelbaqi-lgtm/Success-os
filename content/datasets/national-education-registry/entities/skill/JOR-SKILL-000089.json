@@ -1,0 +1,43 @@
+{
+  "globalId": "JOR-SKILL-000089",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«ريادة مصغرة — مقدمة ومفاهيم» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-000181",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-000181",
+      "JOR-OUTCOME-000182",
+      "JOR-OUTCOME-000183",
+      "JOR-OUTCOME-000249",
+      "JOR-OUTCOME-000250",
+      "JOR-OUTCOME-000251",
+      "JOR-OUTCOME-004245",
+      "JOR-OUTCOME-004246",
+      "JOR-OUTCOME-004247",
+      "JOR-OUTCOME-004313",
+      "JOR-OUTCOME-004314",
+      "JOR-OUTCOME-004315",
+      "JOR-OUTCOME-004901",
+      "JOR-OUTCOME-004902",
+      "JOR-OUTCOME-004903",
+      "JOR-OUTCOME-004969",
+      "JOR-OUTCOME-004970",
+      "JOR-OUTCOME-004971"
+    ],
+    "lessonIds": [
+      "JOR-G10-التربيةا-U04-L01",
+      "JOR-G10-الثقافةا-U03-L01",
+      "JOR-G08-التربيةا-U04-L01",
+      "JOR-G08-الثقافةا-U03-L01",
+      "JOR-G09-التربيةا-U04-L01",
+      "JOR-G09-الثقافةا-U03-L01"
+    ],
+    "belongsTo": "JOR-OUTCOME-000181"
+  },
+  "createdAt": "2026-07-31T17:56:56.690Z",
+  "updatedAt": "2026-07-31T17:56:57.171Z"
+}

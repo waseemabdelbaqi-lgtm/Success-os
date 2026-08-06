@@ -1,0 +1,34 @@
+{
+  "schema": "success-os.sara-10s-demo-verdict.v1",
+  "artifact": "/media/ai-teachers/sara/demo/sara-10s.mp4",
+  "status": "REJECTED",
+  "passed": false,
+  "reason": "Rebuilt from scratch as continuous 30fps speech-synced frames (audio RMS → mouth ROI closed/open/wide + enter/look/smile/walk). Replaces Ken-Burns collage. Still REJECTED for Final Acceptance: owner live Demo + photorealism/lipsync gates not passed; Canva Connect unavailable (no OAuth).",
+  "forbiddenAsEvidence": true,
+  "cannotUnlockAcceptance": true,
+  "method": "frame-blend-lipsync-v2 (mouth-ROI composite + body beats)",
+  "replacedCollage": true,
+  "speechLine": "Welcome to Success OS. I'm Sara, and I'll be your teacher.",
+  "speechStartSec": 2.6,
+  "fps": 30,
+  "durationSec": 10,
+  "canva": {
+    "requested": true,
+    "available": false,
+    "reason": "No CANVA_ACCESS_TOKEN / Canva MCP in this environment",
+    "site": "https://www.canva.com/",
+    "brief": "/media/ai-teachers/sara/demo/canva-pack/CANVA_BRIEF.md"
+  },
+  "requiredNext": [
+    "Owner watch of continuous speech-synced MP4",
+    "Optional Canva Pro re-export via canva-pack brief",
+    "Photorealism ≥95 and lipsync ≥95 before Final Acceptance",
+    "Public direct MP4 URL for dual acceptance"
+  ],
+  "updatedAt": "2026-08-06T18:57:00.000Z",
+  "publicUrls": {
+    "jsdelivr": "https://cdn.jsdelivr.net/gh/waseemabdelbaqi-lgtm/Success-os@a009a4b3/public/media/ai-teachers/sara/demo/sara-10s.mp4",
+    "githubRaw": "https://raw.githubusercontent.com/waseemabdelbaqi-lgtm/Success-os/cursor/ai-teachers-catalog-bca1/public/media/ai-teachers/sara/demo/sara-10s.mp4",
+    "repoPath": "/media/ai-teachers/sara/demo/sara-10s.mp4"
+  }
+}

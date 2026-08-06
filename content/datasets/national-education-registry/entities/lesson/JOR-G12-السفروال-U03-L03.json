@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-G12-السفروال-U03-L03",
+  "kind": "lesson",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "معايير السلامة والجودة — تطبيق ومثال",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G12-السفروال-U03",
+  "relationships": {
+    "unitId": "JOR-G12-السفروال-U03",
+    "bookId": "JOR-BOOK-000138",
+    "subjectId": "JOR-G12-السفروال",
+    "gradeId": "JOR-G12",
+    "belongsTo": "JOR-G12-السفروال-U03"
+  },
+  "createdAt": "2026-07-31T17:56:57.506Z",
+  "updatedAt": "2026-07-31T17:56:57.506Z",
+  "lessonCode": "L03",
+  "sequence": 3,
+  "legacyLessonId": "L3.3",
+  "keywords": [
+    "معيار",
+    "أداة",
+    "عملية"
+  ]
+}

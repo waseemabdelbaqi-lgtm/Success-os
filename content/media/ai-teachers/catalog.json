@@ -1,0 +1,89 @@
+{
+  "schema": "success-os.ai-teachers.v1",
+  "version": "3.0.0",
+  "role": "platform_official_primary",
+  "doctrine": "docs/cursor/platform-teachers-doctrine.md",
+  "note": "Sara and Ali are the only official primary teachers. Any subject/curriculum/book/course must be teachable by them without creating a new teacher.",
+  "teachers": [
+    {
+      "id": "sara",
+      "role": "platform_official_primary",
+      "displayName": {
+        "en": "Teacher Sara",
+        "ar": "المعلمة سارة"
+      },
+      "gender": "female",
+      "countryCode": "JO",
+      "stages": [
+        "early_childhood",
+        "elementary",
+        "middle_school",
+        "high_school"
+      ],
+      "subjects": [
+        "math",
+        "science",
+        "physics",
+        "chemistry",
+        "biology",
+        "arabic",
+        "english",
+        "islamic",
+        "social",
+        "general"
+      ],
+      "voice": {
+        "edgeTts": "ar-JO-SanaNeural"
+      },
+      "portrait": "/media/ai-teachers/sara/portrait.png",
+      "poses": {
+        "idle": "/media/ai-teachers/sara/poses/idle.png",
+        "point": "/media/ai-teachers/sara/poses/point.png",
+        "talk": "/media/ai-teachers/sara/poses/talk.png",
+        "write": "/media/ai-teachers/sara/poses/write.png"
+      },
+      "flagship": "/media/ai-teachers/sara/flagship/",
+      "alive": "/media/ai-teachers/sara/alive/"
+    },
+    {
+      "id": "ali",
+      "role": "platform_official_primary",
+      "displayName": {
+        "en": "Teacher Ali",
+        "ar": "المعلم علي"
+      },
+      "gender": "male",
+      "countryCode": "JO",
+      "stages": [
+        "early_childhood",
+        "elementary",
+        "middle_school",
+        "high_school"
+      ],
+      "subjects": [
+        "math",
+        "science",
+        "physics",
+        "chemistry",
+        "biology",
+        "arabic",
+        "english",
+        "islamic",
+        "social",
+        "general"
+      ],
+      "voice": {
+        "edgeTts": "ar-JO-TaimNeural"
+      },
+      "portrait": "/media/ai-teachers/ali/portrait.png",
+      "poses": {
+        "idle": "/media/ai-teachers/ali/poses/idle.png",
+        "point": "/media/ai-teachers/ali/poses/point.png",
+        "talk": "/media/ai-teachers/ali/poses/talk.png",
+        "write": "/media/ai-teachers/ali/poses/write.png"
+      },
+      "flagship": "/media/ai-teachers/ali/flagship/",
+      "alive": "/media/ai-teachers/ali/alive/"
+    }
+  ]
+}

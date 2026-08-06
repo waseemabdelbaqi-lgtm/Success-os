@@ -1,0 +1,16 @@
+{
+  "globalId": "JOR-DIAGRAM-000415",
+  "kind": "diagram",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "مخطط تعليمي لوحدة المشاريع الإبداعية",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G02-ARTS-U04-L03",
+  "relationships": {
+    "lessonId": "JOR-G02-ARTS-U04-L03",
+    "belongsTo": "JOR-G02-ARTS-U04-L03"
+  },
+  "createdAt": "2026-07-31T17:56:56.749Z",
+  "updatedAt": "2026-07-31T17:56:56.749Z"
+}

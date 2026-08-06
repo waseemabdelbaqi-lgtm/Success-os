@@ -1,0 +1,21 @@
+{
+  "globalId": "JOR-G10-التاريخ-U03",
+  "kind": "unit",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "العلاقات الإقليمية",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-BOOK-000001",
+  "relationships": {
+    "bookId": "JOR-BOOK-000001",
+    "subjectId": "JOR-G10-التاريخ",
+    "gradeId": "JOR-G10",
+    "belongsTo": "JOR-BOOK-000001"
+  },
+  "createdAt": "2026-07-31T17:56:56.683Z",
+  "updatedAt": "2026-07-31T17:56:56.683Z",
+  "unitCode": "U03",
+  "sequence": 3,
+  "legacyUnitId": "U3"
+}

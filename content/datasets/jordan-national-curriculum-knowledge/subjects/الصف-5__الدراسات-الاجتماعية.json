@@ -1,0 +1,1993 @@
+{
+  "schema": "success-os.jordan-national-subject-knowledge.v1",
+  "phase": "JO-01",
+  "key": "التعليم الأساسي::الصف 5::الدراسات الاجتماعية",
+  "stage": "التعليم الأساسي",
+  "grade": "الصف 5",
+  "subject": "الدراسات الاجتماعية",
+  "subjectFamily": "social",
+  "gradeBand": "mid-basic",
+  "officialCatalogUrl": "https://www.nccd.gov.jo/ar/pages/TextBooksGrade/72",
+  "catalogueStatus": "official-nccd-url-national-profile-aligned",
+  "curriculumFramework": {
+    "name": "Jordan National Curriculum",
+    "nameAr": "المنهاج الوطني الأردني",
+    "stage": "التعليم الأساسي",
+    "grade": "الصف 5",
+    "subject": "الدراسات الاجتماعية",
+    "semesters": [
+      "الفصل الأول",
+      "الفصل الثاني"
+    ]
+  },
+  "gradeStructure": {
+    "grade": "الصف 5",
+    "band": "mid-basic",
+    "stage": "التعليم الأساسي"
+  },
+  "subjectStructure": {
+    "subject": "الدراسات الاجتماعية",
+    "family": "social",
+    "unitCount": 4
+  },
+  "units": [
+    {
+      "unitId": "U1",
+      "titleAr": "المجتمع الأردني",
+      "lessons": [
+        {
+          "lessonId": "L1.1",
+          "titleAr": "المجتمع الأردني — مقدمة ومفاهيم",
+          "learningOutcomes": [
+            "أن يتعرف المتعلم مفهومًا محوريًا في الدراسات الاجتماعية ضمن المجتمع الأردني بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 5.",
+            "أن يطبّق مهارة مرتبطة بـ«المجتمع الأردني — مقدمة ومفاهيم» بخطوات واضحة قابلة للتحقق.",
+            "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+          ],
+          "requiredSkills": [
+            "التحليل المجتمعي",
+            "قراءة المصادر",
+            "المناقشة"
+          ],
+          "scientificConcepts": [
+            "مجتمع",
+            "مؤسسة",
+            "موارد"
+          ],
+          "definitions": [
+            {
+              "term": "مجتمع",
+              "definitionAr": "تعريف تعليمي أصلي لمفهوم «مجتمع» ضمن إطار المنهاج الوطني الأردني، يُبنى لأغراض التدريس في Success OS دون اقتباس نص الكتاب المدرسي."
+            },
+            {
+              "term": "مؤسسة",
+              "definitionAr": "تعريف تعليمي أصلي لمفهوم «مؤسسة» ضمن إطار المنهاج الوطني الأردني، يُبنى لأغراض التدريس في Success OS دون اقتباس نص الكتاب المدرسي."
+            }
+          ],
+          "examples": [
+            {
+              "title": "مثال صفّي",
+              "text": "موقف تعليمي أصلي لـالصف 5 في الدراسات الاجتماعية يوضح تطبيق فكرة درس «المجتمع الأردني — مقدمة ومفاهيم» بخطوات قابلة للمتابعة."
+            },
+            {
+              "title": "مثال حياتي أردني",
+              "text": "ربط الدرس بسياق يومي مناسب للمتعلم في الأردن (مدرسة، منزل، مجتمع محلي) دون الاعتماد على نص كتابي محمي."
+            }
+          ],
+          "educationalDiagrams": [
+            {
+              "id": "community-map",
+              "title": "مخطط تعليمي لوحدة المجتمع الأردني",
+              "purpose": "توضيح العلاقات المفاهيمية للمتعلم",
+              "generateOriginal": true,
+              "neverCopyTextbookFigure": true
+            }
+          ],
+          "officialCurriculumReference": {
+            "curriculum": "Jordan National Curriculum",
+            "curriculumAr": "المنهاج الوطني الأردني",
+            "stage": "التعليم الأساسي",
+            "grade": "الصف 5",
+            "subject": "الدراسات الاجتماعية",
+            "catalogUrl": "https://www.nccd.gov.jo/ar/pages/TextBooksGrade/72",
+            "authorities": [
+              {
+                "name": "Jordan Ministry of Education",
+                "url": "https://moe.gov.jo/",
+                "type": "ministry-education",
+                "priority": 1
+              },
+              {
+                "name": "National Center for Curriculum Development (NCCD)",
+                "url": "https://www.nccd.gov.jo/Ar/Pages/textbooks",
+                "type": "curriculum-authority",
+                "priority": 1
+              },
+              {
+                "name": "NCCD Official Portal",
+                "url": "https://www.nccd.gov.jo/",
+                "type": "curriculum-authority",
+                "priority": 1
+              },
+              {
+                "name": "Darsak Platform",
+                "url": "https://darsak.gov.jo/",
+                "type": "digital-learning-platform",
+                "priority": 1
+              },
+              {
+                "name": "MoE Curricula and School Textbooks Administration",
+                "url": "https://moe.gov.jo/ar/%D8%A5%D8%AF%D8%A7%D8%B1%D8%A9-%D8%A7%D9%84%D9%85%D9%86%D8%A7%D9%87%D8%AC-%D9%88%D8%A7%D9%84%D9%83%D8%AA%D8%A8-%D8%A7%D9%84%D9%85%D8%AF%D8%B1%D8%B3%D9%8A%D8%A9",
+                "type": "ministry",
+                "priority": 1
+              },
+              {
+                "name": "MoE Approved Textbook Editions 2025–2026",
+                "url": "https://moe.gov.jo/ar/node/79818",
+                "type": "ministry",
+                "priority": 1
+              }
+            ],
+            "note": "Lesson authored only after referencing official Jordanian curriculum structure for this grade/subject."
+          },
+          "contentOrigin": "success-os-original-curriculum-aligned",
+          "rights": {
+            "copyBookText": false,
+            "generateOriginalOnly": true
+          }
+        },
+        {
+          "lessonId": "L1.2",
+          "titleAr": "المجتمع الأردني — بناء المهارة",
+          "learningOutcomes": [
+            "أن يتعرف المتعلم مفهومًا محوريًا في الدراسات الاجتماعية ضمن المجتمع الأردني بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 5.",
+            "أن يطبّق مهارة مرتبطة بـ«المجتمع الأردني — بناء المهارة» بخطوات واضحة قابلة للتحقق.",
+            "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+          ],
+          "requiredSkills": [
+            "التحليل المجتمعي",
+            "قراءة المصادر",
+            "المناقشة"
+          ],
+          "scientificConcepts": [
+            "مجتمع",
+            "مؤسسة",
+            "موارد"
+          ],
+          "definitions": [
+            {
+              "term": "مجتمع",
+              "definitionAr": "تعريف تعليمي أصلي لمفهوم «مجتمع» ضمن إطار المنهاج الوطني الأردني، يُبنى لأغراض التدريس في Success OS دون اقتباس نص الكتاب المدرسي."
+            },
+            {
+              "term": "مؤسسة",
+              "definitionAr": "تعريف تعليمي أصلي لمفهوم «مؤسسة» ضمن إطار المنهاج الوطني الأردني، يُبنى لأغراض التدريس في Success OS دون اقتباس نص الكتاب المدرسي."
+            }
+          ],
+          "examples": [
+            {
+              "title": "مثال صفّي",
+              "text": "موقف تعليمي أصلي لـالصف 5 في الدراسات الاجتماعية يوضح تطبيق فكرة درس «المجتمع الأردني — بناء المهارة» بخطوات قابلة للمتابعة."
+            },
+            {
+              "title": "مثال حياتي أردني",
+              "text": "ربط الدرس بسياق يومي مناسب للمتعلم في الأردن (مدرسة، منزل، مجتمع محلي) دون الاعتماد على نص كتابي محمي."
+            }
+          ],
+          "educationalDiagrams": [
+            {
+              "id": "community-map",
+              "title": "مخطط تعليمي لوحدة المجتمع الأردني",
+              "purpose": "توضيح العلاقات المفاهيمية للمتعلم",
+              "generateOriginal": true,
+              "neverCopyTextbookFigure": true
+            }
+          ],
+          "officialCurriculumReference": {
+            "curriculum": "Jordan National Curriculum",
+            "curriculumAr": "المنهاج الوطني الأردني",
+            "stage": "التعليم الأساسي",
+            "grade": "الصف 5",
+            "subject": "الدراسات الاجتماعية",
+            "catalogUrl": "https://www.nccd.gov.jo/ar/pages/TextBooksGrade/72",
+            "authorities": [
+              {
+                "name": "Jordan Ministry of Education",
+                "url": "https://moe.gov.jo/",
+                "type": "ministry-education",
+                "priority": 1
+              },
+              {
+                "name": "National Center for Curriculum Development (NCCD)",
+                "url": "https://www.nccd.gov.jo/Ar/Pages/textbooks",
+                "type": "curriculum-authority",
+                "priority": 1
+              },
+              {
+                "name": "NCCD Official Portal",
+                "url": "https://www.nccd.gov.jo/",
+                "type": "curriculum-authority",
+                "priority": 1
+              },
+              {
+                "name": "Darsak Platform",
+                "url": "https://darsak.gov.jo/",
+                "type": "digital-learning-platform",
+                "priority": 1
+              },
+              {
+                "name": "MoE Curricula and School Textbooks Administration",
+                "url": "https://moe.gov.jo/ar/%D8%A5%D8%AF%D8%A7%D8%B1%D8%A9-%D8%A7%D9%84%D9%85%D9%86%D8%A7%D9%87%D8%AC-%D9%88%D8%A7%D9%84%D9%83%D8%AA%D8%A8-%D8%A7%D9%84%D9%85%D8%AF%D8%B1%D8%B3%D9%8A%D8%A9",
+                "type": "ministry",
+                "priority": 1
+              },
+              {
+                "name": "MoE Approved Textbook Editions 2025–2026",
+                "url": "https://moe.gov.jo/ar/node/79818",
+                "type": "ministry",
+                "priority": 1
+              }
+            ],
+            "note": "Lesson authored only after referencing official Jordanian curriculum structure for this grade/subject."
+          },
+          "contentOrigin": "success-os-original-curriculum-aligned",
+          "rights": {
+            "copyBookText": false,
+            "generateOriginalOnly": true
+          }
+        },
+        {
+          "lessonId": "L1.3",
+          "titleAr": "المجتمع الأردني — تطبيق ومثال",
+          "learningOutcomes": [
+            "أن يتعرف المتعلم مفهومًا محوريًا في الدراسات الاجتماعية ضمن المجتمع الأردني بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 5.",
+            "أن يطبّق مهارة مرتبطة بـ«المجتمع الأردني — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+            "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+          ],
+          "requiredSkills": [
+            "التحليل المجتمعي",
+            "قراءة المصادر",
+            "المناقشة"
+          ],
+          "scientificConcepts": [
+            "مجتمع",
+            "مؤسسة",
+            "موارد"
+          ],
+          "definitions": [
+            {
+              "term": "مجتمع",
+              "definitionAr": "تعريف تعليمي أصلي لمفهوم «مجتمع» ضمن إطار المنهاج الوطني الأردني، يُبنى لأغراض التدريس في Success OS دون اقتباس نص الكتاب المدرسي."
+            },
+            {
+              "term": "مؤسسة",
+              "definitionAr": "تعريف تعليمي أصلي لمفهوم «مؤسسة» ضمن إطار المنهاج الوطني الأردني، يُبنى لأغراض التدريس في Success OS دون اقتباس نص الكتاب المدرسي."
+            }
+          ],
+          "examples": [
+            {
+              "title": "مثال صفّي",
+              "text": "موقف تعليمي أصلي لـالصف 5 في الدراسات الاجتماعية يوضح تطبيق فكرة درس «المجتمع الأردني — تطبيق ومثال» بخطوات قابلة للمتابعة."
+            },
+            {
+              "title": "مثال حياتي أردني",
+              "text": "ربط الدرس بسياق يومي مناسب للمتعلم في الأردن (مدرسة، منزل، مجتمع محلي) دون الاعتماد على نص كتابي محمي."
+            }
+          ],
+          "educationalDiagrams": [
+            {
+              "id": "community-map",
+              "title": "مخطط تعليمي لوحدة المجتمع الأردني",
+              "purpose": "توضيح العلاقات المفاهيمية للمتعلم",
+              "generateOriginal": true,
+              "neverCopyTextbookFigure": true
+            }
+          ],
+          "officialCurriculumReference": {
+            "curriculum": "Jordan National Curriculum",
+            "curriculumAr": "المنهاج الوطني الأردني",
+            "stage": "التعليم الأساسي",
+            "grade": "الصف 5",
+            "subject": "الدراسات الاجتماعية",
+            "catalogUrl": "https://www.nccd.gov.jo/ar/pages/TextBooksGrade/72",
+            "authorities": [
+              {
+                "name": "Jordan Ministry of Education",
+                "url": "https://moe.gov.jo/",
+                "type": "ministry-education",
+                "priority": 1
+              },
+              {
+                "name": "National Center for Curriculum Development (NCCD)",
+                "url": "https://www.nccd.gov.jo/Ar/Pages/textbooks",
+                "type": "curriculum-authority",
+                "priority": 1
+              },
+              {
+                "name": "NCCD Official Portal",
+                "url": "https://www.nccd.gov.jo/",
+                "type": "curriculum-authority",
+                "priority": 1
+              },
+              {
+                "name": "Darsak Platform",
+                "url": "https://darsak.gov.jo/",
+                "type": "digital-learning-platform",
+                "priority": 1
+              },
+              {
+                "name": "MoE Curricula and School Textbooks Administration",
+                "url": "https://moe.gov.jo/ar/%D8%A5%D8%AF%D8%A7%D8%B1%D8%A9-%D8%A7%D9%84%D9%85%D9%86%D8%A7%D9%87%D8%AC-%D9%88%D8%A7%D9%84%D9%83%D8%AA%D8%A8-%D8%A7%D9%84%D9%85%D8%AF%D8%B1%D8%B3%D9%8A%D8%A9",
+                "type": "ministry",
+                "priority": 1
+              },
+              {
+                "name": "MoE Approved Textbook Editions 2025–2026",
+                "url": "https://moe.gov.jo/ar/node/79818",
+                "type": "ministry",
+                "priority": 1
+              }
+            ],
+            "note": "Lesson authored only after referencing official Jordanian curriculum structure for this grade/subject."
+          },
+          "contentOrigin": "success-os-original-curriculum-aligned",
+          "rights": {
+            "copyBookText": false,
+            "generateOriginalOnly": true
+          }
+        },
+        {
+          "lessonId": "L1.4",
+          "titleAr": "المجتمع الأردني — تقويم وتعزيز",
+          "learningOutcomes": [
+            "أن يتعرف المتعلم مفهومًا محوريًا في الدراسات الاجتماعية ضمن المجتمع الأردني بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 5.",
+            "أن يطبّق مهارة مرتبطة بـ«المجتمع الأردني — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+            "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+          ],
+          "requiredSkills": [
+            "التحليل المجتمعي",
+            "قراءة المصادر",
+            "المناقشة"
+          ],
+          "scientificConcepts": [
+            "مجتمع",
+            "مؤسسة",
+            "موارد"
+          ],
+          "definitions": [
+            {
+              "term": "مجتمع",
+              "definitionAr": "تعريف تعليمي أصلي لمفهوم «مجتمع» ضمن إطار المنهاج الوطني الأردني، يُبنى لأغراض التدريس في Success OS دون اقتباس نص الكتاب المدرسي."
+            },
+            {
+              "term": "مؤسسة",
+              "definitionAr": "تعريف تعليمي أصلي لمفهوم «مؤسسة» ضمن إطار المنهاج الوطني الأردني، يُبنى لأغراض التدريس في Success OS دون اقتباس نص الكتاب المدرسي."
+            }
+          ],
+          "examples": [
+            {
+              "title": "مثال صفّي",
+              "text": "موقف تعليمي أصلي لـالصف 5 في الدراسات الاجتماعية يوضح تطبيق فكرة درس «المجتمع الأردني — تقويم وتعزيز» بخطوات قابلة للمتابعة."
+            },
+            {
+              "title": "مثال حياتي أردني",
+              "text": "ربط الدرس بسياق يومي مناسب للمتعلم في الأردن (مدرسة، منزل، مجتمع محلي) دون الاعتماد على نص كتابي محمي."
+            }
+          ],
+          "educationalDiagrams": [
+            {
+              "id": "community-map",
+              "title": "مخطط تعليمي لوحدة المجتمع الأردني",
+              "purpose": "توضيح العلاقات المفاهيمية للمتعلم",
+              "generateOriginal": true,
+              "neverCopyTextbookFigure": true
+            }
+          ],
+          "officialCurriculumReference": {
+            "curriculum": "Jordan National Curriculum",
+            "curriculumAr": "المنهاج الوطني الأردني",
+            "stage": "التعليم الأساسي",
+            "grade": "الصف 5",
+            "subject": "الدراسات الاجتماعية",
+            "catalogUrl": "https://www.nccd.gov.jo/ar/pages/TextBooksGrade/72",
+            "authorities": [
+              {
+                "name": "Jordan Ministry of Education",
+                "url": "https://moe.gov.jo/",
+                "type": "ministry-education",
+                "priority": 1
+              },
+              {
+                "name": "National Center for Curriculum Development (NCCD)",
+                "url": "https://www.nccd.gov.jo/Ar/Pages/textbooks",
+                "type": "curriculum-authority",
+                "priority": 1
+              },
+              {
+                "name": "NCCD Official Portal",
+                "url": "https://www.nccd.gov.jo/",
+                "type": "curriculum-authority",
+                "priority": 1
+              },
+              {
+                "name": "Darsak Platform",
+                "url": "https://darsak.gov.jo/",
+                "type": "digital-learning-platform",
+                "priority": 1
+              },
+              {
+                "name": "MoE Curricula and School Textbooks Administration",
+                "url": "https://moe.gov.jo/ar/%D8%A5%D8%AF%D8%A7%D8%B1%D8%A9-%D8%A7%D9%84%D9%85%D9%86%D8%A7%D9%87%D8%AC-%D9%88%D8%A7%D9%84%D9%83%D8%AA%D8%A8-%D8%A7%D9%84%D9%85%D8%AF%D8%B1%D8%B3%D9%8A%D8%A9",
+                "type": "ministry",
+                "priority": 1
+              },
+              {
+                "name": "MoE Approved Textbook Editions 2025–2026",
+                "url": "https://moe.gov.jo/ar/node/79818",
+                "type": "ministry",
+                "priority": 1
+              }
+            ],
+            "note": "Lesson authored only after referencing official Jordanian curriculum structure for this grade/subject."
+          },
+          "contentOrigin": "success-os-original-curriculum-aligned",
+          "rights": {
+            "copyBookText": false,
+            "generateOriginalOnly": true
+          }
+        }
+      ]
+    },
+    {
+      "unitId": "U2",
+      "titleAr": "الموارد والاقتصاد",
+      "lessons": [
+        {
+          "lessonId": "L2.1",
+          "titleAr": "الموارد والاقتصاد — مقدمة ومفاهيم",
+          "learningOutcomes": [
+            "أن يتعرف المتعلم مفهومًا محوريًا في الدراسات الاجتماعية ضمن الموارد والاقتصاد بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 5.",
+            "أن يطبّق مهارة مرتبطة بـ«الموارد والاقتصاد — مقدمة ومفاهيم» بخطوات واضحة قابلة للتحقق.",
+            "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+          ],
+          "requiredSkills": [
+            "التحليل المجتمعي",
+            "قراءة المصادر",
+            "المناقشة"
+          ],
+          "scientificConcepts": [
+            "مجتمع",
+            "مؤسسة",
+            "موارد"
+          ],
+          "definitions": [
+            {
+              "term": "مجتمع",
+              "definitionAr": "تعريف تعليمي أصلي لمفهوم «مجتمع» ضمن إطار المنهاج الوطني الأردني، يُبنى لأغراض التدريس في Success OS دون اقتباس نص الكتاب المدرسي."
+            },
+            {
+              "term": "مؤسسة",
+              "definitionAr": "تعريف تعليمي أصلي لمفهوم «مؤسسة» ضمن إطار المنهاج الوطني الأردني، يُبنى لأغراض التدريس في Success OS دون اقتباس نص الكتاب المدرسي."
+            }
+          ],
+          "examples": [
+            {
+              "title": "مثال صفّي",
+              "text": "موقف تعليمي أصلي لـالصف 5 في الدراسات الاجتماعية يوضح تطبيق فكرة درس «الموارد والاقتصاد — مقدمة ومفاهيم» بخطوات قابلة للمتابعة."
+            },
+            {
+              "title": "مثال حياتي أردني",
+              "text": "ربط الدرس بسياق يومي مناسب للمتعلم في الأردن (مدرسة، منزل، مجتمع محلي) دون الاعتماد على نص كتابي محمي."
+            }
+          ],
+          "educationalDiagrams": [
+            {
+              "id": "community-map",
+              "title": "مخطط تعليمي لوحدة الموارد والاقتصاد",
+              "purpose": "توضيح العلاقات المفاهيمية للمتعلم",
+              "generateOriginal": true,
+              "neverCopyTextbookFigure": true
+            }
+          ],
+          "officialCurriculumReference": {
+            "curriculum": "Jordan National Curriculum",
+            "curriculumAr": "المنهاج الوطني الأردني",
+            "stage": "التعليم الأساسي",
+            "grade": "الصف 5",
+            "subject": "الدراسات الاجتماعية",
+            "catalogUrl": "https://www.nccd.gov.jo/ar/pages/TextBooksGrade/72",
+            "authorities": [
+              {
+                "name": "Jordan Ministry of Education",
+                "url": "https://moe.gov.jo/",
+                "type": "ministry-education",
+                "priority": 1
+              },
+              {
+                "name": "National Center for Curriculum Development (NCCD)",
+                "url": "https://www.nccd.gov.jo/Ar/Pages/textbooks",
+                "type": "curriculum-authority",
+                "priority": 1
+              },
+              {
+                "name": "NCCD Official Portal",
+                "url": "https://www.nccd.gov.jo/",
+                "type": "curriculum-authority",
+                "priority": 1
+              },
+              {
+                "name": "Darsak Platform",
+                "url": "https://darsak.gov.jo/",
+                "type": "digital-learning-platform",
+                "priority": 1
+              },
+              {
+                "name": "MoE Curricula and School Textbooks Administration",
+                "url": "https://moe.gov.jo/ar/%D8%A5%D8%AF%D8%A7%D8%B1%D8%A9-%D8%A7%D9%84%D9%85%D9%86%D8%A7%D9%87%D8%AC-%D9%88%D8%A7%D9%84%D9%83%D8%AA%D8%A8-%D8%A7%D9%84%D9%85%D8%AF%D8%B1%D8%B3%D9%8A%D8%A9",
+                "type": "ministry",
+                "priority": 1
+              },
+              {
+                "name": "MoE Approved Textbook Editions 2025–2026",
+                "url": "https://moe.gov.jo/ar/node/79818",
+                "type": "ministry",
+                "priority": 1
+              }
+            ],
+            "note": "Lesson authored only after referencing official Jordanian curriculum structure for this grade/subject."
+          },
+          "contentOrigin": "success-os-original-curriculum-aligned",
+          "rights": {
+            "copyBookText": false,
+            "generateOriginalOnly": true
+          }
+        },
+        {
+          "lessonId": "L2.2",
+          "titleAr": "الموارد والاقتصاد — بناء المهارة",
+          "learningOutcomes": [
+            "أن يتعرف المتعلم مفهومًا محوريًا في الدراسات الاجتماعية ضمن الموارد والاقتصاد بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 5.",
+            "أن يطبّق مهارة مرتبطة بـ«الموارد والاقتصاد — بناء المهارة» بخطوات واضحة قابلة للتحقق.",
+            "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+          ],
+          "requiredSkills": [
+            "التحليل المجتمعي",
+            "قراءة المصادر",
+            "المناقشة"
+          ],
+          "scientificConcepts": [
+            "مجتمع",
+            "مؤسسة",
+            "موارد"
+          ],
+          "definitions": [
+            {
+              "term": "مجتمع",
+              "definitionAr": "تعريف تعليمي أصلي لمفهوم «مجتمع» ضمن إطار المنهاج الوطني الأردني، يُبنى لأغراض التدريس في Success OS دون اقتباس نص الكتاب المدرسي."
+            },
+            {
+              "term": "مؤسسة",
+              "definitionAr": "تعريف تعليمي أصلي لمفهوم «مؤسسة» ضمن إطار المنهاج الوطني الأردني، يُبنى لأغراض التدريس في Success OS دون اقتباس نص الكتاب المدرسي."
+            }
+          ],
+          "examples": [
+            {
+              "title": "مثال صفّي",
+              "text": "موقف تعليمي أصلي لـالصف 5 في الدراسات الاجتماعية يوضح تطبيق فكرة درس «الموارد والاقتصاد — بناء المهارة» بخطوات قابلة للمتابعة."
+            },
+            {
+              "title": "مثال حياتي أردني",
+              "text": "ربط الدرس بسياق يومي مناسب للمتعلم في الأردن (مدرسة، منزل، مجتمع محلي) دون الاعتماد على نص كتابي محمي."
+            }
+          ],
+          "educationalDiagrams": [
+            {
+              "id": "community-map",
+              "title": "مخطط تعليمي لوحدة الموارد والاقتصاد",
+              "purpose": "توضيح العلاقات المفاهيمية للمتعلم",
+              "generateOriginal": true,
+              "neverCopyTextbookFigure": true
+            }
+          ],
+          "officialCurriculumReference": {
+            "curriculum": "Jordan National Curriculum",
+            "curriculumAr": "المنهاج الوطني الأردني",
+            "stage": "التعليم الأساسي",
+            "grade": "الصف 5",
+            "subject": "الدراسات الاجتماعية",
+            "catalogUrl": "https://www.nccd.gov.jo/ar/pages/TextBooksGrade/72",
+            "authorities": [
+              {
+                "name": "Jordan Ministry of Education",
+                "url": "https://moe.gov.jo/",
+                "type": "ministry-education",
+                "priority": 1
+              },
+              {
+                "name": "National Center for Curriculum Development (NCCD)",
+                "url": "https://www.nccd.gov.jo/Ar/Pages/textbooks",
+                "type": "curriculum-authority",
+                "priority": 1
+              },
+              {
+                "name": "NCCD Official Portal",
+                "url": "https://www.nccd.gov.jo/",
+                "type": "curriculum-authority",
+                "priority": 1
+              },
+              {
+                "name": "Darsak Platform",
+                "url": "https://darsak.gov.jo/",
+                "type": "digital-learning-platform",
+                "priority": 1
+              },
+              {
+                "name": "MoE Curricula and School Textbooks Administration",
+                "url": "https://moe.gov.jo/ar/%D8%A5%D8%AF%D8%A7%D8%B1%D8%A9-%D8%A7%D9%84%D9%85%D9%86%D8%A7%D9%87%D8%AC-%D9%88%D8%A7%D9%84%D9%83%D8%AA%D8%A8-%D8%A7%D9%84%D9%85%D8%AF%D8%B1%D8%B3%D9%8A%D8%A9",
+                "type": "ministry",
+                "priority": 1
+              },
+              {
+                "name": "MoE Approved Textbook Editions 2025–2026",
+                "url": "https://moe.gov.jo/ar/node/79818",
+                "type": "ministry",
+                "priority": 1
+              }
+            ],
+            "note": "Lesson authored only after referencing official Jordanian curriculum structure for this grade/subject."
+          },
+          "contentOrigin": "success-os-original-curriculum-aligned",
+          "rights": {
+            "copyBookText": false,
+            "generateOriginalOnly": true
+          }
+        },
+        {
+          "lessonId": "L2.3",
+          "titleAr": "الموارد والاقتصاد — تطبيق ومثال",
+          "learningOutcomes": [
+            "أن يتعرف المتعلم مفهومًا محوريًا في الدراسات الاجتماعية ضمن الموارد والاقتصاد بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 5.",
+            "أن يطبّق مهارة مرتبطة بـ«الموارد والاقتصاد — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+            "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+          ],
+          "requiredSkills": [
+            "التحليل المجتمعي",
+            "قراءة المصادر",
+            "المناقشة"
+          ],
+          "scientificConcepts": [
+            "مجتمع",
+            "مؤسسة",
+            "موارد"
+          ],
+          "definitions": [
+            {
+              "term": "مجتمع",
+              "definitionAr": "تعريف تعليمي أصلي لمفهوم «مجتمع» ضمن إطار المنهاج الوطني الأردني، يُبنى لأغراض التدريس في Success OS دون اقتباس نص الكتاب المدرسي."
+            },
+            {
+              "term": "مؤسسة",
+              "definitionAr": "تعريف تعليمي أصلي لمفهوم «مؤسسة» ضمن إطار المنهاج الوطني الأردني، يُبنى لأغراض التدريس في Success OS دون اقتباس نص الكتاب المدرسي."
+            }
+          ],
+          "examples": [
+            {
+              "title": "مثال صفّي",
+              "text": "موقف تعليمي أصلي لـالصف 5 في الدراسات الاجتماعية يوضح تطبيق فكرة درس «الموارد والاقتصاد — تطبيق ومثال» بخطوات قابلة للمتابعة."
+            },
+            {
+              "title": "مثال حياتي أردني",
+              "text": "ربط الدرس بسياق يومي مناسب للمتعلم في الأردن (مدرسة، منزل، مجتمع محلي) دون الاعتماد على نص كتابي محمي."
+            }
+          ],
+          "educationalDiagrams": [
+            {
+              "id": "community-map",
+              "title": "مخطط تعليمي لوحدة الموارد والاقتصاد",
+              "purpose": "توضيح العلاقات المفاهيمية للمتعلم",
+              "generateOriginal": true,
+              "neverCopyTextbookFigure": true
+            }
+          ],
+          "officialCurriculumReference": {
+            "curriculum": "Jordan National Curriculum",
+            "curriculumAr": "المنهاج الوطني الأردني",
+            "stage": "التعليم الأساسي",
+            "grade": "الصف 5",
+            "subject": "الدراسات الاجتماعية",
+            "catalogUrl": "https://www.nccd.gov.jo/ar/pages/TextBooksGrade/72",
+            "authorities": [
+              {
+                "name": "Jordan Ministry of Education",
+                "url": "https://moe.gov.jo/",
+                "type": "ministry-education",
+                "priority": 1
+              },
+              {
+                "name": "National Center for Curriculum Development (NCCD)",
+                "url": "https://www.nccd.gov.jo/Ar/Pages/textbooks",
+                "type": "curriculum-authority",
+                "priority": 1
+              },
+              {
+                "name": "NCCD Official Portal",
+                "url": "https://www.nccd.gov.jo/",
+                "type": "curriculum-authority",
+                "priority": 1
+              },
+              {
+                "name": "Darsak Platform",
+                "url": "https://darsak.gov.jo/",
+                "type": "digital-learning-platform",
+                "priority": 1
+              },
+              {
+                "name": "MoE Curricula and School Textbooks Administration",
+                "url": "https://moe.gov.jo/ar/%D8%A5%D8%AF%D8%A7%D8%B1%D8%A9-%D8%A7%D9%84%D9%85%D9%86%D8%A7%D9%87%D8%AC-%D9%88%D8%A7%D9%84%D9%83%D8%AA%D8%A8-%D8%A7%D9%84%D9%85%D8%AF%D8%B1%D8%B3%D9%8A%D8%A9",
+                "type": "ministry",
+                "priority": 1
+              },
+              {
+                "name": "MoE Approved Textbook Editions 2025–2026",
+                "url": "https://moe.gov.jo/ar/node/79818",
+                "type": "ministry",
+                "priority": 1
+              }
+            ],
+            "note": "Lesson authored only after referencing official Jordanian curriculum structure for this grade/subject."
+          },
+          "contentOrigin": "success-os-original-curriculum-aligned",
+          "rights": {
+            "copyBookText": false,
+            "generateOriginalOnly": true
+          }
+        },
+        {
+          "lessonId": "L2.4",
+          "titleAr": "الموارد والاقتصاد — تقويم وتعزيز",
+          "learningOutcomes": [
+            "أن يتعرف المتعلم مفهومًا محوريًا في الدراسات الاجتماعية ضمن الموارد والاقتصاد بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 5.",
+            "أن يطبّق مهارة مرتبطة بـ«الموارد والاقتصاد — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+            "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+          ],
+          "requiredSkills": [
+            "التحليل المجتمعي",
+            "قراءة المصادر",
+            "المناقشة"
+          ],
+          "scientificConcepts": [
+            "مجتمع",
+            "مؤسسة",
+            "موارد"
+          ],
+          "definitions": [
+            {
+              "term": "مجتمع",
+              "definitionAr": "تعريف تعليمي أصلي لمفهوم «مجتمع» ضمن إطار المنهاج الوطني الأردني، يُبنى لأغراض التدريس في Success OS دون اقتباس نص الكتاب المدرسي."
+            },
+            {
+              "term": "مؤسسة",
+              "definitionAr": "تعريف تعليمي أصلي لمفهوم «مؤسسة» ضمن إطار المنهاج الوطني الأردني، يُبنى لأغراض التدريس في Success OS دون اقتباس نص الكتاب المدرسي."
+            }
+          ],
+          "examples": [
+            {
+              "title": "مثال صفّي",
+              "text": "موقف تعليمي أصلي لـالصف 5 في الدراسات الاجتماعية يوضح تطبيق فكرة درس «الموارد والاقتصاد — تقويم وتعزيز» بخطوات قابلة للمتابعة."
+            },
+            {
+              "title": "مثال حياتي أردني",
+              "text": "ربط الدرس بسياق يومي مناسب للمتعلم في الأردن (مدرسة، منزل، مجتمع محلي) دون الاعتماد على نص كتابي محمي."
+            }
+          ],
+          "educationalDiagrams": [
+            {
+              "id": "community-map",
+              "title": "مخطط تعليمي لوحدة الموارد والاقتصاد",
+              "purpose": "توضيح العلاقات المفاهيمية للمتعلم",
+              "generateOriginal": true,
+              "neverCopyTextbookFigure": true
+            }
+          ],
+          "officialCurriculumReference": {
+            "curriculum": "Jordan National Curriculum",
+            "curriculumAr": "المنهاج الوطني الأردني",
+            "stage": "التعليم الأساسي",
+            "grade": "الصف 5",
+            "subject": "الدراسات الاجتماعية",
+            "catalogUrl": "https://www.nccd.gov.jo/ar/pages/TextBooksGrade/72",
+            "authorities": [
+              {
+                "name": "Jordan Ministry of Education",
+                "url": "https://moe.gov.jo/",
+                "type": "ministry-education",
+                "priority": 1
+              },
+              {
+                "name": "National Center for Curriculum Development (NCCD)",
+                "url": "https://www.nccd.gov.jo/Ar/Pages/textbooks",
+                "type": "curriculum-authority",
+                "priority": 1
+              },
+              {
+                "name": "NCCD Official Portal",
+                "url": "https://www.nccd.gov.jo/",
+                "type": "curriculum-authority",
+                "priority": 1
+              },
+              {
+                "name": "Darsak Platform",
+                "url": "https://darsak.gov.jo/",
+                "type": "digital-learning-platform",
+                "priority": 1
+              },
+              {
+                "name": "MoE Curricula and School Textbooks Administration",
+                "url": "https://moe.gov.jo/ar/%D8%A5%D8%AF%D8%A7%D8%B1%D8%A9-%D8%A7%D9%84%D9%85%D9%86%D8%A7%D9%87%D8%AC-%D9%88%D8%A7%D9%84%D9%83%D8%AA%D8%A8-%D8%A7%D9%84%D9%85%D8%AF%D8%B1%D8%B3%D9%8A%D8%A9",
+                "type": "ministry",
+                "priority": 1
+              },
+              {
+                "name": "MoE Approved Textbook Editions 2025–2026",
+                "url": "https://moe.gov.jo/ar/node/79818",
+                "type": "ministry",
+                "priority": 1
+              }
+            ],
+            "note": "Lesson authored only after referencing official Jordanian curriculum structure for this grade/subject."
+          },
+          "contentOrigin": "success-os-original-curriculum-aligned",
+          "rights": {
+            "copyBookText": false,
+            "generateOriginalOnly": true
+          }
+        }
+      ]
+    },
+    {
+      "unitId": "U3",
+      "titleAr": "حقوق وواجبات",
+      "lessons": [
+        {
+          "lessonId": "L3.1",
+          "titleAr": "حقوق وواجبات — مقدمة ومفاهيم",
+          "learningOutcomes": [
+            "أن يتعرف المتعلم مفهومًا محوريًا في الدراسات الاجتماعية ضمن حقوق وواجبات بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 5.",
+            "أن يطبّق مهارة مرتبطة بـ«حقوق وواجبات — مقدمة ومفاهيم» بخطوات واضحة قابلة للتحقق.",
+            "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+          ],
+          "requiredSkills": [
+            "التحليل المجتمعي",
+            "قراءة المصادر",
+            "المناقشة"
+          ],
+          "scientificConcepts": [
+            "مجتمع",
+            "مؤسسة",
+            "موارد"
+          ],
+          "definitions": [
+            {
+              "term": "مجتمع",
+              "definitionAr": "تعريف تعليمي أصلي لمفهوم «مجتمع» ضمن إطار المنهاج الوطني الأردني، يُبنى لأغراض التدريس في Success OS دون اقتباس نص الكتاب المدرسي."
+            },
+            {
+              "term": "مؤسسة",
+              "definitionAr": "تعريف تعليمي أصلي لمفهوم «مؤسسة» ضمن إطار المنهاج الوطني الأردني، يُبنى لأغراض التدريس في Success OS دون اقتباس نص الكتاب المدرسي."
+            }
+          ],
+          "examples": [
+            {
+              "title": "مثال صفّي",
+              "text": "موقف تعليمي أصلي لـالصف 5 في الدراسات الاجتماعية يوضح تطبيق فكرة درس «حقوق وواجبات — مقدمة ومفاهيم» بخطوات قابلة للمتابعة."
+            },
+            {
+              "title": "مثال حياتي أردني",
+              "text": "ربط الدرس بسياق يومي مناسب للمتعلم في الأردن (مدرسة، منزل، مجتمع محلي) دون الاعتماد على نص كتابي محمي."
+            }
+          ],
+          "educationalDiagrams": [
+            {
+              "id": "community-map",
+              "title": "مخطط تعليمي لوحدة حقوق وواجبات",
+              "purpose": "توضيح العلاقات المفاهيمية للمتعلم",
+              "generateOriginal": true,
+              "neverCopyTextbookFigure": true
+            }
+          ],
+          "officialCurriculumReference": {
+            "curriculum": "Jordan National Curriculum",
+            "curriculumAr": "المنهاج الوطني الأردني",
+            "stage": "التعليم الأساسي",
+            "grade": "الصف 5",
+            "subject": "الدراسات الاجتماعية",
+            "catalogUrl": "https://www.nccd.gov.jo/ar/pages/TextBooksGrade/72",
+            "authorities": [
+              {
+                "name": "Jordan Ministry of Education",
+                "url": "https://moe.gov.jo/",
+                "type": "ministry-education",
+                "priority": 1
+              },
+              {
+                "name": "National Center for Curriculum Development (NCCD)",
+                "url": "https://www.nccd.gov.jo/Ar/Pages/textbooks",
+                "type": "curriculum-authority",
+                "priority": 1
+              },
+              {
+                "name": "NCCD Official Portal",
+                "url": "https://www.nccd.gov.jo/",
+                "type": "curriculum-authority",
+                "priority": 1
+              },
+              {
+                "name": "Darsak Platform",
+                "url": "https://darsak.gov.jo/",
+                "type": "digital-learning-platform",
+                "priority": 1
+              },
+              {
+                "name": "MoE Curricula and School Textbooks Administration",
+                "url": "https://moe.gov.jo/ar/%D8%A5%D8%AF%D8%A7%D8%B1%D8%A9-%D8%A7%D9%84%D9%85%D9%86%D8%A7%D9%87%D8%AC-%D9%88%D8%A7%D9%84%D9%83%D8%AA%D8%A8-%D8%A7%D9%84%D9%85%D8%AF%D8%B1%D8%B3%D9%8A%D8%A9",
+                "type": "ministry",
+                "priority": 1
+              },
+              {
+                "name": "MoE Approved Textbook Editions 2025–2026",
+                "url": "https://moe.gov.jo/ar/node/79818",
+                "type": "ministry",
+                "priority": 1
+              }
+            ],
+            "note": "Lesson authored only after referencing official Jordanian curriculum structure for this grade/subject."
+          },
+          "contentOrigin": "success-os-original-curriculum-aligned",
+          "rights": {
+            "copyBookText": false,
+            "generateOriginalOnly": true
+          }
+        },
+        {
+          "lessonId": "L3.2",
+          "titleAr": "حقوق وواجبات — بناء المهارة",
+          "learningOutcomes": [
+            "أن يتعرف المتعلم مفهومًا محوريًا في الدراسات الاجتماعية ضمن حقوق وواجبات بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 5.",
+            "أن يطبّق مهارة مرتبطة بـ«حقوق وواجبات — بناء المهارة» بخطوات واضحة قابلة للتحقق.",
+            "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+          ],
+          "requiredSkills": [
+            "التحليل المجتمعي",
+            "قراءة المصادر",
+            "المناقشة"
+          ],
+          "scientificConcepts": [
+            "مجتمع",
+            "مؤسسة",
+            "موارد"
+          ],
+          "definitions": [
+            {
+              "term": "مجتمع",
+              "definitionAr": "تعريف تعليمي أصلي لمفهوم «مجتمع» ضمن إطار المنهاج الوطني الأردني، يُبنى لأغراض التدريس في Success OS دون اقتباس نص الكتاب المدرسي."
+            },
+            {
+              "term": "مؤسسة",
+              "definitionAr": "تعريف تعليمي أصلي لمفهوم «مؤسسة» ضمن إطار المنهاج الوطني الأردني، يُبنى لأغراض التدريس في Success OS دون اقتباس نص الكتاب المدرسي."
+            }
+          ],
+          "examples": [
+            {
+              "title": "مثال صفّي",
+              "text": "موقف تعليمي أصلي لـالصف 5 في الدراسات الاجتماعية يوضح تطبيق فكرة درس «حقوق وواجبات — بناء المهارة» بخطوات قابلة للمتابعة."
+            },
+            {
+              "title": "مثال حياتي أردني",
+              "text": "ربط الدرس بسياق يومي مناسب للمتعلم في الأردن (مدرسة، منزل، مجتمع محلي) دون الاعتماد على نص كتابي محمي."
+            }
+          ],
+          "educationalDiagrams": [
+            {
+              "id": "community-map",
+              "title": "مخطط تعليمي لوحدة حقوق وواجبات",
+              "purpose": "توضيح العلاقات المفاهيمية للمتعلم",
+              "generateOriginal": true,
+              "neverCopyTextbookFigure": true
+            }
+          ],
+          "officialCurriculumReference": {
+            "curriculum": "Jordan National Curriculum",
+            "curriculumAr": "المنهاج الوطني الأردني",
+            "stage": "التعليم الأساسي",
+            "grade": "الصف 5",
+            "subject": "الدراسات الاجتماعية",
+            "catalogUrl": "https://www.nccd.gov.jo/ar/pages/TextBooksGrade/72",
+            "authorities": [
+              {
+                "name": "Jordan Ministry of Education",
+                "url": "https://moe.gov.jo/",
+                "type": "ministry-education",
+                "priority": 1
+              },
+              {
+                "name": "National Center for Curriculum Development (NCCD)",
+                "url": "https://www.nccd.gov.jo/Ar/Pages/textbooks",
+                "type": "curriculum-authority",
+                "priority": 1
+              },
+              {
+                "name": "NCCD Official Portal",
+                "url": "https://www.nccd.gov.jo/",
+                "type": "curriculum-authority",
+                "priority": 1
+              },
+              {
+                "name": "Darsak Platform",
+                "url": "https://darsak.gov.jo/",
+                "type": "digital-learning-platform",
+                "priority": 1
+              },
+              {
+                "name": "MoE Curricula and School Textbooks Administration",
+                "url": "https://moe.gov.jo/ar/%D8%A5%D8%AF%D8%A7%D8%B1%D8%A9-%D8%A7%D9%84%D9%85%D9%86%D8%A7%D9%87%D8%AC-%D9%88%D8%A7%D9%84%D9%83%D8%AA%D8%A8-%D8%A7%D9%84%D9%85%D8%AF%D8%B1%D8%B3%D9%8A%D8%A9",
+                "type": "ministry",
+                "priority": 1
+              },
+              {
+                "name": "MoE Approved Textbook Editions 2025–2026",
+                "url": "https://moe.gov.jo/ar/node/79818",
+                "type": "ministry",
+                "priority": 1
+              }
+            ],
+            "note": "Lesson authored only after referencing official Jordanian curriculum structure for this grade/subject."
+          },
+          "contentOrigin": "success-os-original-curriculum-aligned",
+          "rights": {
+            "copyBookText": false,
+            "generateOriginalOnly": true
+          }
+        },
+        {
+          "lessonId": "L3.3",
+          "titleAr": "حقوق وواجبات — تطبيق ومثال",
+          "learningOutcomes": [
+            "أن يتعرف المتعلم مفهومًا محوريًا في الدراسات الاجتماعية ضمن حقوق وواجبات بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 5.",
+            "أن يطبّق مهارة مرتبطة بـ«حقوق وواجبات — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+            "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+          ],
+          "requiredSkills": [
+            "التحليل المجتمعي",
+            "قراءة المصادر",
+            "المناقشة"
+          ],
+          "scientificConcepts": [
+            "مجتمع",
+            "مؤسسة",
+            "موارد"
+          ],
+          "definitions": [
+            {
+              "term": "مجتمع",
+              "definitionAr": "تعريف تعليمي أصلي لمفهوم «مجتمع» ضمن إطار المنهاج الوطني الأردني، يُبنى لأغراض التدريس في Success OS دون اقتباس نص الكتاب المدرسي."
+            },
+            {
+              "term": "مؤسسة",
+              "definitionAr": "تعريف تعليمي أصلي لمفهوم «مؤسسة» ضمن إطار المنهاج الوطني الأردني، يُبنى لأغراض التدريس في Success OS دون اقتباس نص الكتاب المدرسي."
+            }
+          ],
+          "examples": [
+            {
+              "title": "مثال صفّي",
+              "text": "موقف تعليمي أصلي لـالصف 5 في الدراسات الاجتماعية يوضح تطبيق فكرة درس «حقوق وواجبات — تطبيق ومثال» بخطوات قابلة للمتابعة."
+            },
+            {
+              "title": "مثال حياتي أردني",
+              "text": "ربط الدرس بسياق يومي مناسب للمتعلم في الأردن (مدرسة، منزل، مجتمع محلي) دون الاعتماد على نص كتابي محمي."
+            }
+          ],
+          "educationalDiagrams": [
+            {
+              "id": "community-map",
+              "title": "مخطط تعليمي لوحدة حقوق وواجبات",
+              "purpose": "توضيح العلاقات المفاهيمية للمتعلم",
+              "generateOriginal": true,
+              "neverCopyTextbookFigure": true
+            }
+          ],
+          "officialCurriculumReference": {
+            "curriculum": "Jordan National Curriculum",
+            "curriculumAr": "المنهاج الوطني الأردني",
+            "stage": "التعليم الأساسي",
+            "grade": "الصف 5",
+            "subject": "الدراسات الاجتماعية",
+            "catalogUrl": "https://www.nccd.gov.jo/ar/pages/TextBooksGrade/72",
+            "authorities": [
+              {
+                "name": "Jordan Ministry of Education",
+                "url": "https://moe.gov.jo/",
+                "type": "ministry-education",
+                "priority": 1
+              },
+              {
+                "name": "National Center for Curriculum Development (NCCD)",
+                "url": "https://www.nccd.gov.jo/Ar/Pages/textbooks",
+                "type": "curriculum-authority",
+                "priority": 1
+              },
+              {
+                "name": "NCCD Official Portal",
+                "url": "https://www.nccd.gov.jo/",
+                "type": "curriculum-authority",
+                "priority": 1
+              },
+              {
+                "name": "Darsak Platform",
+                "url": "https://darsak.gov.jo/",
+                "type": "digital-learning-platform",
+                "priority": 1
+              },
+              {
+                "name": "MoE Curricula and School Textbooks Administration",
+                "url": "https://moe.gov.jo/ar/%D8%A5%D8%AF%D8%A7%D8%B1%D8%A9-%D8%A7%D9%84%D9%85%D9%86%D8%A7%D9%87%D8%AC-%D9%88%D8%A7%D9%84%D9%83%D8%AA%D8%A8-%D8%A7%D9%84%D9%85%D8%AF%D8%B1%D8%B3%D9%8A%D8%A9",
+                "type": "ministry",
+                "priority": 1
+              },
+              {
+                "name": "MoE Approved Textbook Editions 2025–2026",
+                "url": "https://moe.gov.jo/ar/node/79818",
+                "type": "ministry",
+                "priority": 1
+              }
+            ],
+            "note": "Lesson authored only after referencing official Jordanian curriculum structure for this grade/subject."
+          },
+          "contentOrigin": "success-os-original-curriculum-aligned",
+          "rights": {
+            "copyBookText": false,
+            "generateOriginalOnly": true
+          }
+        },
+        {
+          "lessonId": "L3.4",
+          "titleAr": "حقوق وواجبات — تقويم وتعزيز",
+          "learningOutcomes": [
+            "أن يتعرف المتعلم مفهومًا محوريًا في الدراسات الاجتماعية ضمن حقوق وواجبات بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 5.",
+            "أن يطبّق مهارة مرتبطة بـ«حقوق وواجبات — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+            "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+          ],
+          "requiredSkills": [
+            "التحليل المجتمعي",
+            "قراءة المصادر",
+            "المناقشة"
+          ],
+          "scientificConcepts": [
+            "مجتمع",
+            "مؤسسة",
+            "موارد"
+          ],
+          "definitions": [
+            {
+              "term": "مجتمع",
+              "definitionAr": "تعريف تعليمي أصلي لمفهوم «مجتمع» ضمن إطار المنهاج الوطني الأردني، يُبنى لأغراض التدريس في Success OS دون اقتباس نص الكتاب المدرسي."
+            },
+            {
+              "term": "مؤسسة",
+              "definitionAr": "تعريف تعليمي أصلي لمفهوم «مؤسسة» ضمن إطار المنهاج الوطني الأردني، يُبنى لأغراض التدريس في Success OS دون اقتباس نص الكتاب المدرسي."
+            }
+          ],
+          "examples": [
+            {
+              "title": "مثال صفّي",
+              "text": "موقف تعليمي أصلي لـالصف 5 في الدراسات الاجتماعية يوضح تطبيق فكرة درس «حقوق وواجبات — تقويم وتعزيز» بخطوات قابلة للمتابعة."
+            },
+            {
+              "title": "مثال حياتي أردني",
+              "text": "ربط الدرس بسياق يومي مناسب للمتعلم في الأردن (مدرسة، منزل، مجتمع محلي) دون الاعتماد على نص كتابي محمي."
+            }
+          ],
+          "educationalDiagrams": [
+            {
+              "id": "community-map",
+              "title": "مخطط تعليمي لوحدة حقوق وواجبات",
+              "purpose": "توضيح العلاقات المفاهيمية للمتعلم",
+              "generateOriginal": true,
+              "neverCopyTextbookFigure": true
+            }
+          ],
+          "officialCurriculumReference": {
+            "curriculum": "Jordan National Curriculum",
+            "curriculumAr": "المنهاج الوطني الأردني",
+            "stage": "التعليم الأساسي",
+            "grade": "الصف 5",
+            "subject": "الدراسات الاجتماعية",
+            "catalogUrl": "https://www.nccd.gov.jo/ar/pages/TextBooksGrade/72",
+            "authorities": [
+              {
+                "name": "Jordan Ministry of Education",
+                "url": "https://moe.gov.jo/",
+                "type": "ministry-education",
+                "priority": 1
+              },
+              {
+                "name": "National Center for Curriculum Development (NCCD)",
+                "url": "https://www.nccd.gov.jo/Ar/Pages/textbooks",
+                "type": "curriculum-authority",
+                "priority": 1
+              },
+              {
+                "name": "NCCD Official Portal",
+                "url": "https://www.nccd.gov.jo/",
+                "type": "curriculum-authority",
+                "priority": 1
+              },
+              {
+                "name": "Darsak Platform",
+                "url": "https://darsak.gov.jo/",
+                "type": "digital-learning-platform",
+                "priority": 1
+              },
+              {
+                "name": "MoE Curricula and School Textbooks Administration",
+                "url": "https://moe.gov.jo/ar/%D8%A5%D8%AF%D8%A7%D8%B1%D8%A9-%D8%A7%D9%84%D9%85%D9%86%D8%A7%D9%87%D8%AC-%D9%88%D8%A7%D9%84%D9%83%D8%AA%D8%A8-%D8%A7%D9%84%D9%85%D8%AF%D8%B1%D8%B3%D9%8A%D8%A9",
+                "type": "ministry",
+                "priority": 1
+              },
+              {
+                "name": "MoE Approved Textbook Editions 2025–2026",
+                "url": "https://moe.gov.jo/ar/node/79818",
+                "type": "ministry",
+                "priority": 1
+              }
+            ],
+            "note": "Lesson authored only after referencing official Jordanian curriculum structure for this grade/subject."
+          },
+          "contentOrigin": "success-os-original-curriculum-aligned",
+          "rights": {
+            "copyBookText": false,
+            "generateOriginalOnly": true
+          }
+        }
+      ]
+    },
+    {
+      "unitId": "U4",
+      "titleAr": "التراث",
+      "lessons": [
+        {
+          "lessonId": "L4.1",
+          "titleAr": "التراث — مقدمة ومفاهيم",
+          "learningOutcomes": [
+            "أن يتعرف المتعلم مفهومًا محوريًا في الدراسات الاجتماعية ضمن التراث بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 5.",
+            "أن يطبّق مهارة مرتبطة بـ«التراث — مقدمة ومفاهيم» بخطوات واضحة قابلة للتحقق.",
+            "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+          ],
+          "requiredSkills": [
+            "التحليل المجتمعي",
+            "قراءة المصادر",
+            "المناقشة"
+          ],
+          "scientificConcepts": [
+            "مجتمع",
+            "مؤسسة",
+            "موارد"
+          ],
+          "definitions": [
+            {
+              "term": "مجتمع",
+              "definitionAr": "تعريف تعليمي أصلي لمفهوم «مجتمع» ضمن إطار المنهاج الوطني الأردني، يُبنى لأغراض التدريس في Success OS دون اقتباس نص الكتاب المدرسي."
+            },
+            {
+              "term": "مؤسسة",
+              "definitionAr": "تعريف تعليمي أصلي لمفهوم «مؤسسة» ضمن إطار المنهاج الوطني الأردني، يُبنى لأغراض التدريس في Success OS دون اقتباس نص الكتاب المدرسي."
+            }
+          ],
+          "examples": [
+            {
+              "title": "مثال صفّي",
+              "text": "موقف تعليمي أصلي لـالصف 5 في الدراسات الاجتماعية يوضح تطبيق فكرة درس «التراث — مقدمة ومفاهيم» بخطوات قابلة للمتابعة."
+            },
+            {
+              "title": "مثال حياتي أردني",
+              "text": "ربط الدرس بسياق يومي مناسب للمتعلم في الأردن (مدرسة، منزل، مجتمع محلي) دون الاعتماد على نص كتابي محمي."
+            }
+          ],
+          "educationalDiagrams": [
+            {
+              "id": "community-map",
+              "title": "مخطط تعليمي لوحدة التراث",
+              "purpose": "توضيح العلاقات المفاهيمية للمتعلم",
+              "generateOriginal": true,
+              "neverCopyTextbookFigure": true
+            }
+          ],
+          "officialCurriculumReference": {
+            "curriculum": "Jordan National Curriculum",
+            "curriculumAr": "المنهاج الوطني الأردني",
+            "stage": "التعليم الأساسي",
+            "grade": "الصف 5",
+            "subject": "الدراسات الاجتماعية",
+            "catalogUrl": "https://www.nccd.gov.jo/ar/pages/TextBooksGrade/72",
+            "authorities": [
+              {
+                "name": "Jordan Ministry of Education",
+                "url": "https://moe.gov.jo/",
+                "type": "ministry-education",
+                "priority": 1
+              },
+              {
+                "name": "National Center for Curriculum Development (NCCD)",
+                "url": "https://www.nccd.gov.jo/Ar/Pages/textbooks",
+                "type": "curriculum-authority",
+                "priority": 1
+              },
+              {
+                "name": "NCCD Official Portal",
+                "url": "https://www.nccd.gov.jo/",
+                "type": "curriculum-authority",
+                "priority": 1
+              },
+              {
+                "name": "Darsak Platform",
+                "url": "https://darsak.gov.jo/",
+                "type": "digital-learning-platform",
+                "priority": 1
+              },
+              {
+                "name": "MoE Curricula and School Textbooks Administration",
+                "url": "https://moe.gov.jo/ar/%D8%A5%D8%AF%D8%A7%D8%B1%D8%A9-%D8%A7%D9%84%D9%85%D9%86%D8%A7%D9%87%D8%AC-%D9%88%D8%A7%D9%84%D9%83%D8%AA%D8%A8-%D8%A7%D9%84%D9%85%D8%AF%D8%B1%D8%B3%D9%8A%D8%A9",
+                "type": "ministry",
+                "priority": 1
+              },
+              {
+                "name": "MoE Approved Textbook Editions 2025–2026",
+                "url": "https://moe.gov.jo/ar/node/79818",
+                "type": "ministry",
+                "priority": 1
+              }
+            ],
+            "note": "Lesson authored only after referencing official Jordanian curriculum structure for this grade/subject."
+          },
+          "contentOrigin": "success-os-original-curriculum-aligned",
+          "rights": {
+            "copyBookText": false,
+            "generateOriginalOnly": true
+          }
+        },
+        {
+          "lessonId": "L4.2",
+          "titleAr": "التراث — بناء المهارة",
+          "learningOutcomes": [
+            "أن يتعرف المتعلم مفهومًا محوريًا في الدراسات الاجتماعية ضمن التراث بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 5.",
+            "أن يطبّق مهارة مرتبطة بـ«التراث — بناء المهارة» بخطوات واضحة قابلة للتحقق.",
+            "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+          ],
+          "requiredSkills": [
+            "التحليل المجتمعي",
+            "قراءة المصادر",
+            "المناقشة"
+          ],
+          "scientificConcepts": [
+            "مجتمع",
+            "مؤسسة",
+            "موارد"
+          ],
+          "definitions": [
+            {
+              "term": "مجتمع",
+              "definitionAr": "تعريف تعليمي أصلي لمفهوم «مجتمع» ضمن إطار المنهاج الوطني الأردني، يُبنى لأغراض التدريس في Success OS دون اقتباس نص الكتاب المدرسي."
+            },
+            {
+              "term": "مؤسسة",
+              "definitionAr": "تعريف تعليمي أصلي لمفهوم «مؤسسة» ضمن إطار المنهاج الوطني الأردني، يُبنى لأغراض التدريس في Success OS دون اقتباس نص الكتاب المدرسي."
+            }
+          ],
+          "examples": [
+            {
+              "title": "مثال صفّي",
+              "text": "موقف تعليمي أصلي لـالصف 5 في الدراسات الاجتماعية يوضح تطبيق فكرة درس «التراث — بناء المهارة» بخطوات قابلة للمتابعة."
+            },
+            {
+              "title": "مثال حياتي أردني",
+              "text": "ربط الدرس بسياق يومي مناسب للمتعلم في الأردن (مدرسة، منزل، مجتمع محلي) دون الاعتماد على نص كتابي محمي."
+            }
+          ],
+          "educationalDiagrams": [
+            {
+              "id": "community-map",
+              "title": "مخطط تعليمي لوحدة التراث",
+              "purpose": "توضيح العلاقات المفاهيمية للمتعلم",
+              "generateOriginal": true,
+              "neverCopyTextbookFigure": true
+            }
+          ],
+          "officialCurriculumReference": {
+            "curriculum": "Jordan National Curriculum",
+            "curriculumAr": "المنهاج الوطني الأردني",
+            "stage": "التعليم الأساسي",
+            "grade": "الصف 5",
+            "subject": "الدراسات الاجتماعية",
+            "catalogUrl": "https://www.nccd.gov.jo/ar/pages/TextBooksGrade/72",
+            "authorities": [
+              {
+                "name": "Jordan Ministry of Education",
+                "url": "https://moe.gov.jo/",
+                "type": "ministry-education",
+                "priority": 1
+              },
+              {
+                "name": "National Center for Curriculum Development (NCCD)",
+                "url": "https://www.nccd.gov.jo/Ar/Pages/textbooks",
+                "type": "curriculum-authority",
+                "priority": 1
+              },
+              {
+                "name": "NCCD Official Portal",
+                "url": "https://www.nccd.gov.jo/",
+                "type": "curriculum-authority",
+                "priority": 1
+              },
+              {
+                "name": "Darsak Platform",
+                "url": "https://darsak.gov.jo/",
+                "type": "digital-learning-platform",
+                "priority": 1
+              },
+              {
+                "name": "MoE Curricula and School Textbooks Administration",
+                "url": "https://moe.gov.jo/ar/%D8%A5%D8%AF%D8%A7%D8%B1%D8%A9-%D8%A7%D9%84%D9%85%D9%86%D8%A7%D9%87%D8%AC-%D9%88%D8%A7%D9%84%D9%83%D8%AA%D8%A8-%D8%A7%D9%84%D9%85%D8%AF%D8%B1%D8%B3%D9%8A%D8%A9",
+                "type": "ministry",
+                "priority": 1
+              },
+              {
+                "name": "MoE Approved Textbook Editions 2025–2026",
+                "url": "https://moe.gov.jo/ar/node/79818",
+                "type": "ministry",
+                "priority": 1
+              }
+            ],
+            "note": "Lesson authored only after referencing official Jordanian curriculum structure for this grade/subject."
+          },
+          "contentOrigin": "success-os-original-curriculum-aligned",
+          "rights": {
+            "copyBookText": false,
+            "generateOriginalOnly": true
+          }
+        },
+        {
+          "lessonId": "L4.3",
+          "titleAr": "التراث — تطبيق ومثال",
+          "learningOutcomes": [
+            "أن يتعرف المتعلم مفهومًا محوريًا في الدراسات الاجتماعية ضمن التراث بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 5.",
+            "أن يطبّق مهارة مرتبطة بـ«التراث — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+            "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+          ],
+          "requiredSkills": [
+            "التحليل المجتمعي",
+            "قراءة المصادر",
+            "المناقشة"
+          ],
+          "scientificConcepts": [
+            "مجتمع",
+            "مؤسسة",
+            "موارد"
+          ],
+          "definitions": [
+            {
+              "term": "مجتمع",
+              "definitionAr": "تعريف تعليمي أصلي لمفهوم «مجتمع» ضمن إطار المنهاج الوطني الأردني، يُبنى لأغراض التدريس في Success OS دون اقتباس نص الكتاب المدرسي."
+            },
+            {
+              "term": "مؤسسة",
+              "definitionAr": "تعريف تعليمي أصلي لمفهوم «مؤسسة» ضمن إطار المنهاج الوطني الأردني، يُبنى لأغراض التدريس في Success OS دون اقتباس نص الكتاب المدرسي."
+            }
+          ],
+          "examples": [
+            {
+              "title": "مثال صفّي",
+              "text": "موقف تعليمي أصلي لـالصف 5 في الدراسات الاجتماعية يوضح تطبيق فكرة درس «التراث — تطبيق ومثال» بخطوات قابلة للمتابعة."
+            },
+            {
+              "title": "مثال حياتي أردني",
+              "text": "ربط الدرس بسياق يومي مناسب للمتعلم في الأردن (مدرسة، منزل، مجتمع محلي) دون الاعتماد على نص كتابي محمي."
+            }
+          ],
+          "educationalDiagrams": [
+            {
+              "id": "community-map",
+              "title": "مخطط تعليمي لوحدة التراث",
+              "purpose": "توضيح العلاقات المفاهيمية للمتعلم",
+              "generateOriginal": true,
+              "neverCopyTextbookFigure": true
+            }
+          ],
+          "officialCurriculumReference": {
+            "curriculum": "Jordan National Curriculum",
+            "curriculumAr": "المنهاج الوطني الأردني",
+            "stage": "التعليم الأساسي",
+            "grade": "الصف 5",
+            "subject": "الدراسات الاجتماعية",
+            "catalogUrl": "https://www.nccd.gov.jo/ar/pages/TextBooksGrade/72",
+            "authorities": [
+              {
+                "name": "Jordan Ministry of Education",
+                "url": "https://moe.gov.jo/",
+                "type": "ministry-education",
+                "priority": 1
+              },
+              {
+                "name": "National Center for Curriculum Development (NCCD)",
+                "url": "https://www.nccd.gov.jo/Ar/Pages/textbooks",
+                "type": "curriculum-authority",
+                "priority": 1
+              },
+              {
+                "name": "NCCD Official Portal",
+                "url": "https://www.nccd.gov.jo/",
+                "type": "curriculum-authority",
+                "priority": 1
+              },
+              {
+                "name": "Darsak Platform",
+                "url": "https://darsak.gov.jo/",
+                "type": "digital-learning-platform",
+                "priority": 1
+              },
+              {
+                "name": "MoE Curricula and School Textbooks Administration",
+                "url": "https://moe.gov.jo/ar/%D8%A5%D8%AF%D8%A7%D8%B1%D8%A9-%D8%A7%D9%84%D9%85%D9%86%D8%A7%D9%87%D8%AC-%D9%88%D8%A7%D9%84%D9%83%D8%AA%D8%A8-%D8%A7%D9%84%D9%85%D8%AF%D8%B1%D8%B3%D9%8A%D8%A9",
+                "type": "ministry",
+                "priority": 1
+              },
+              {
+                "name": "MoE Approved Textbook Editions 2025–2026",
+                "url": "https://moe.gov.jo/ar/node/79818",
+                "type": "ministry",
+                "priority": 1
+              }
+            ],
+            "note": "Lesson authored only after referencing official Jordanian curriculum structure for this grade/subject."
+          },
+          "contentOrigin": "success-os-original-curriculum-aligned",
+          "rights": {
+            "copyBookText": false,
+            "generateOriginalOnly": true
+          }
+        },
+        {
+          "lessonId": "L4.4",
+          "titleAr": "التراث — تقويم وتعزيز",
+          "learningOutcomes": [
+            "أن يتعرف المتعلم مفهومًا محوريًا في الدراسات الاجتماعية ضمن التراث بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 5.",
+            "أن يطبّق مهارة مرتبطة بـ«التراث — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+            "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+          ],
+          "requiredSkills": [
+            "التحليل المجتمعي",
+            "قراءة المصادر",
+            "المناقشة"
+          ],
+          "scientificConcepts": [
+            "مجتمع",
+            "مؤسسة",
+            "موارد"
+          ],
+          "definitions": [
+            {
+              "term": "مجتمع",
+              "definitionAr": "تعريف تعليمي أصلي لمفهوم «مجتمع» ضمن إطار المنهاج الوطني الأردني، يُبنى لأغراض التدريس في Success OS دون اقتباس نص الكتاب المدرسي."
+            },
+            {
+              "term": "مؤسسة",
+              "definitionAr": "تعريف تعليمي أصلي لمفهوم «مؤسسة» ضمن إطار المنهاج الوطني الأردني، يُبنى لأغراض التدريس في Success OS دون اقتباس نص الكتاب المدرسي."
+            }
+          ],
+          "examples": [
+            {
+              "title": "مثال صفّي",
+              "text": "موقف تعليمي أصلي لـالصف 5 في الدراسات الاجتماعية يوضح تطبيق فكرة درس «التراث — تقويم وتعزيز» بخطوات قابلة للمتابعة."
+            },
+            {
+              "title": "مثال حياتي أردني",
+              "text": "ربط الدرس بسياق يومي مناسب للمتعلم في الأردن (مدرسة، منزل، مجتمع محلي) دون الاعتماد على نص كتابي محمي."
+            }
+          ],
+          "educationalDiagrams": [
+            {
+              "id": "community-map",
+              "title": "مخطط تعليمي لوحدة التراث",
+              "purpose": "توضيح العلاقات المفاهيمية للمتعلم",
+              "generateOriginal": true,
+              "neverCopyTextbookFigure": true
+            }
+          ],
+          "officialCurriculumReference": {
+            "curriculum": "Jordan National Curriculum",
+            "curriculumAr": "المنهاج الوطني الأردني",
+            "stage": "التعليم الأساسي",
+            "grade": "الصف 5",
+            "subject": "الدراسات الاجتماعية",
+            "catalogUrl": "https://www.nccd.gov.jo/ar/pages/TextBooksGrade/72",
+            "authorities": [
+              {
+                "name": "Jordan Ministry of Education",
+                "url": "https://moe.gov.jo/",
+                "type": "ministry-education",
+                "priority": 1
+              },
+              {
+                "name": "National Center for Curriculum Development (NCCD)",
+                "url": "https://www.nccd.gov.jo/Ar/Pages/textbooks",
+                "type": "curriculum-authority",
+                "priority": 1
+              },
+              {
+                "name": "NCCD Official Portal",
+                "url": "https://www.nccd.gov.jo/",
+                "type": "curriculum-authority",
+                "priority": 1
+              },
+              {
+                "name": "Darsak Platform",
+                "url": "https://darsak.gov.jo/",
+                "type": "digital-learning-platform",
+                "priority": 1
+              },
+              {
+                "name": "MoE Curricula and School Textbooks Administration",
+                "url": "https://moe.gov.jo/ar/%D8%A5%D8%AF%D8%A7%D8%B1%D8%A9-%D8%A7%D9%84%D9%85%D9%86%D8%A7%D9%87%D8%AC-%D9%88%D8%A7%D9%84%D9%83%D8%AA%D8%A8-%D8%A7%D9%84%D9%85%D8%AF%D8%B1%D8%B3%D9%8A%D8%A9",
+                "type": "ministry",
+                "priority": 1
+              },
+              {
+                "name": "MoE Approved Textbook Editions 2025–2026",
+                "url": "https://moe.gov.jo/ar/node/79818",
+                "type": "ministry",
+                "priority": 1
+              }
+            ],
+            "note": "Lesson authored only after referencing official Jordanian curriculum structure for this grade/subject."
+          },
+          "contentOrigin": "success-os-original-curriculum-aligned",
+          "rights": {
+            "copyBookText": false,
+            "generateOriginalOnly": true
+          }
+        }
+      ]
+    }
+  ],
+  "learningOutcomes": [
+    "أن يتعرف المتعلم مفهومًا محوريًا في الدراسات الاجتماعية ضمن المجتمع الأردني بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 5.",
+    "أن يطبّق مهارة مرتبطة بـ«المجتمع الأردني — مقدمة ومفاهيم» بخطوات واضحة قابلة للتحقق.",
+    "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة.",
+    "أن يتعرف المتعلم مفهومًا محوريًا في الدراسات الاجتماعية ضمن المجتمع الأردني بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 5.",
+    "أن يطبّق مهارة مرتبطة بـ«المجتمع الأردني — بناء المهارة» بخطوات واضحة قابلة للتحقق.",
+    "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة.",
+    "أن يتعرف المتعلم مفهومًا محوريًا في الدراسات الاجتماعية ضمن المجتمع الأردني بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 5.",
+    "أن يطبّق مهارة مرتبطة بـ«المجتمع الأردني — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+    "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة.",
+    "أن يتعرف المتعلم مفهومًا محوريًا في الدراسات الاجتماعية ضمن المجتمع الأردني بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 5.",
+    "أن يطبّق مهارة مرتبطة بـ«المجتمع الأردني — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+    "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة.",
+    "أن يتعرف المتعلم مفهومًا محوريًا في الدراسات الاجتماعية ضمن الموارد والاقتصاد بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 5.",
+    "أن يطبّق مهارة مرتبطة بـ«الموارد والاقتصاد — مقدمة ومفاهيم» بخطوات واضحة قابلة للتحقق.",
+    "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة.",
+    "أن يتعرف المتعلم مفهومًا محوريًا في الدراسات الاجتماعية ضمن الموارد والاقتصاد بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 5.",
+    "أن يطبّق مهارة مرتبطة بـ«الموارد والاقتصاد — بناء المهارة» بخطوات واضحة قابلة للتحقق.",
+    "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة.",
+    "أن يتعرف المتعلم مفهومًا محوريًا في الدراسات الاجتماعية ضمن الموارد والاقتصاد بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 5.",
+    "أن يطبّق مهارة مرتبطة بـ«الموارد والاقتصاد — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+    "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة.",
+    "أن يتعرف المتعلم مفهومًا محوريًا في الدراسات الاجتماعية ضمن الموارد والاقتصاد بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 5.",
+    "أن يطبّق مهارة مرتبطة بـ«الموارد والاقتصاد — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+    "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة.",
+    "أن يتعرف المتعلم مفهومًا محوريًا في الدراسات الاجتماعية ضمن حقوق وواجبات بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 5.",
+    "أن يطبّق مهارة مرتبطة بـ«حقوق وواجبات — مقدمة ومفاهيم» بخطوات واضحة قابلة للتحقق.",
+    "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة.",
+    "أن يتعرف المتعلم مفهومًا محوريًا في الدراسات الاجتماعية ضمن حقوق وواجبات بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 5.",
+    "أن يطبّق مهارة مرتبطة بـ«حقوق وواجبات — بناء المهارة» بخطوات واضحة قابلة للتحقق.",
+    "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة.",
+    "أن يتعرف المتعلم مفهومًا محوريًا في الدراسات الاجتماعية ضمن حقوق وواجبات بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 5.",
+    "أن يطبّق مهارة مرتبطة بـ«حقوق وواجبات — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+    "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة.",
+    "أن يتعرف المتعلم مفهومًا محوريًا في الدراسات الاجتماعية ضمن حقوق وواجبات بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 5.",
+    "أن يطبّق مهارة مرتبطة بـ«حقوق وواجبات — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+    "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة.",
+    "أن يتعرف المتعلم مفهومًا محوريًا في الدراسات الاجتماعية ضمن التراث بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 5.",
+    "أن يطبّق مهارة مرتبطة بـ«التراث — مقدمة ومفاهيم» بخطوات واضحة قابلة للتحقق.",
+    "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة.",
+    "أن يتعرف المتعلم مفهومًا محوريًا في الدراسات الاجتماعية ضمن التراث بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 5.",
+    "أن يطبّق مهارة مرتبطة بـ«التراث — بناء المهارة» بخطوات واضحة قابلة للتحقق.",
+    "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة.",
+    "أن يتعرف المتعلم مفهومًا محوريًا في الدراسات الاجتماعية ضمن التراث بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 5.",
+    "أن يطبّق مهارة مرتبطة بـ«التراث — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+    "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة.",
+    "أن يتعرف المتعلم مفهومًا محوريًا في الدراسات الاجتماعية ضمن التراث بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 5.",
+    "أن يطبّق مهارة مرتبطة بـ«التراث — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+    "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+  ],
+  "requiredSkills": [
+    "التحليل المجتمعي",
+    "قراءة المصادر",
+    "المناقشة",
+    "المشروع"
+  ],
+  "scientificConcepts": [
+    {
+      "term": "مجتمع",
+      "subject": "الدراسات الاجتماعية",
+      "note": "مفهوم إطار منهاجي — محتوى أصلي Success OS غير منسوخ من كتاب مدرسي"
+    },
+    {
+      "term": "مؤسسة",
+      "subject": "الدراسات الاجتماعية",
+      "note": "مفهوم إطار منهاجي — محتوى أصلي Success OS غير منسوخ من كتاب مدرسي"
+    },
+    {
+      "term": "موارد",
+      "subject": "الدراسات الاجتماعية",
+      "note": "مفهوم إطار منهاجي — محتوى أصلي Success OS غير منسوخ من كتاب مدرسي"
+    },
+    {
+      "term": "هوية",
+      "subject": "الدراسات الاجتماعية",
+      "note": "مفهوم إطار منهاجي — محتوى أصلي Success OS غير منسوخ من كتاب مدرسي"
+    },
+    {
+      "term": "تنمية",
+      "subject": "الدراسات الاجتماعية",
+      "note": "مفهوم إطار منهاجي — محتوى أصلي Success OS غير منسوخ من كتاب مدرسي"
+    }
+  ],
+  "definitions": [
+    {
+      "term": "مجتمع",
+      "definitionAr": "تعريف تعليمي أصلي لمفهوم «مجتمع» ضمن إطار المنهاج الوطني الأردني، يُبنى لأغراض التدريس في Success OS دون اقتباس نص الكتاب المدرسي."
+    },
+    {
+      "term": "مؤسسة",
+      "definitionAr": "تعريف تعليمي أصلي لمفهوم «مؤسسة» ضمن إطار المنهاج الوطني الأردني، يُبنى لأغراض التدريس في Success OS دون اقتباس نص الكتاب المدرسي."
+    },
+    {
+      "term": "موارد",
+      "definitionAr": "تعريف تعليمي أصلي لمفهوم «موارد» ضمن إطار المنهاج الوطني الأردني، يُبنى لأغراض التدريس في Success OS دون اقتباس نص الكتاب المدرسي."
+    },
+    {
+      "term": "هوية",
+      "definitionAr": "تعريف تعليمي أصلي لمفهوم «هوية» ضمن إطار المنهاج الوطني الأردني، يُبنى لأغراض التدريس في Success OS دون اقتباس نص الكتاب المدرسي."
+    }
+  ],
+  "examples": [
+    {
+      "title": "مثال صفّي",
+      "text": "موقف تعليمي أصلي لـالصف 5 في الدراسات الاجتماعية يوضح تطبيق فكرة درس «المجتمع الأردني — مقدمة ومفاهيم» بخطوات قابلة للمتابعة."
+    },
+    {
+      "title": "مثال حياتي أردني",
+      "text": "ربط الدرس بسياق يومي مناسب للمتعلم في الأردن (مدرسة، منزل، مجتمع محلي) دون الاعتماد على نص كتابي محمي."
+    },
+    {
+      "title": "مثال صفّي",
+      "text": "موقف تعليمي أصلي لـالصف 5 في الدراسات الاجتماعية يوضح تطبيق فكرة درس «المجتمع الأردني — بناء المهارة» بخطوات قابلة للمتابعة."
+    },
+    {
+      "title": "مثال حياتي أردني",
+      "text": "ربط الدرس بسياق يومي مناسب للمتعلم في الأردن (مدرسة، منزل، مجتمع محلي) دون الاعتماد على نص كتابي محمي."
+    },
+    {
+      "title": "مثال صفّي",
+      "text": "موقف تعليمي أصلي لـالصف 5 في الدراسات الاجتماعية يوضح تطبيق فكرة درس «المجتمع الأردني — تطبيق ومثال» بخطوات قابلة للمتابعة."
+    },
+    {
+      "title": "مثال حياتي أردني",
+      "text": "ربط الدرس بسياق يومي مناسب للمتعلم في الأردن (مدرسة، منزل، مجتمع محلي) دون الاعتماد على نص كتابي محمي."
+    },
+    {
+      "title": "مثال صفّي",
+      "text": "موقف تعليمي أصلي لـالصف 5 في الدراسات الاجتماعية يوضح تطبيق فكرة درس «المجتمع الأردني — تقويم وتعزيز» بخطوات قابلة للمتابعة."
+    },
+    {
+      "title": "مثال حياتي أردني",
+      "text": "ربط الدرس بسياق يومي مناسب للمتعلم في الأردن (مدرسة، منزل، مجتمع محلي) دون الاعتماد على نص كتابي محمي."
+    }
+  ],
+  "educationalDiagrams": [
+    {
+      "id": "community-map",
+      "title": "مخطط تعليمي لوحدة المجتمع الأردني",
+      "purpose": "توضيح العلاقات المفاهيمية للمتعلم",
+      "generateOriginal": true,
+      "neverCopyTextbookFigure": true
+    },
+    {
+      "id": "community-map",
+      "title": "مخطط تعليمي لوحدة المجتمع الأردني",
+      "purpose": "توضيح العلاقات المفاهيمية للمتعلم",
+      "generateOriginal": true,
+      "neverCopyTextbookFigure": true
+    },
+    {
+      "id": "community-map",
+      "title": "مخطط تعليمي لوحدة المجتمع الأردني",
+      "purpose": "توضيح العلاقات المفاهيمية للمتعلم",
+      "generateOriginal": true,
+      "neverCopyTextbookFigure": true
+    },
+    {
+      "id": "community-map",
+      "title": "مخطط تعليمي لوحدة المجتمع الأردني",
+      "purpose": "توضيح العلاقات المفاهيمية للمتعلم",
+      "generateOriginal": true,
+      "neverCopyTextbookFigure": true
+    },
+    {
+      "id": "community-map",
+      "title": "مخطط تعليمي لوحدة الموارد والاقتصاد",
+      "purpose": "توضيح العلاقات المفاهيمية للمتعلم",
+      "generateOriginal": true,
+      "neverCopyTextbookFigure": true
+    },
+    {
+      "id": "community-map",
+      "title": "مخطط تعليمي لوحدة الموارد والاقتصاد",
+      "purpose": "توضيح العلاقات المفاهيمية للمتعلم",
+      "generateOriginal": true,
+      "neverCopyTextbookFigure": true
+    },
+    {
+      "id": "community-map",
+      "title": "مخطط تعليمي لوحدة الموارد والاقتصاد",
+      "purpose": "توضيح العلاقات المفاهيمية للمتعلم",
+      "generateOriginal": true,
+      "neverCopyTextbookFigure": true
+    },
+    {
+      "id": "community-map",
+      "title": "مخطط تعليمي لوحدة الموارد والاقتصاد",
+      "purpose": "توضيح العلاقات المفاهيمية للمتعلم",
+      "generateOriginal": true,
+      "neverCopyTextbookFigure": true
+    },
+    {
+      "id": "community-map",
+      "title": "مخطط تعليمي لوحدة حقوق وواجبات",
+      "purpose": "توضيح العلاقات المفاهيمية للمتعلم",
+      "generateOriginal": true,
+      "neverCopyTextbookFigure": true
+    },
+    {
+      "id": "community-map",
+      "title": "مخطط تعليمي لوحدة حقوق وواجبات",
+      "purpose": "توضيح العلاقات المفاهيمية للمتعلم",
+      "generateOriginal": true,
+      "neverCopyTextbookFigure": true
+    },
+    {
+      "id": "community-map",
+      "title": "مخطط تعليمي لوحدة حقوق وواجبات",
+      "purpose": "توضيح العلاقات المفاهيمية للمتعلم",
+      "generateOriginal": true,
+      "neverCopyTextbookFigure": true
+    },
+    {
+      "id": "community-map",
+      "title": "مخطط تعليمي لوحدة حقوق وواجبات",
+      "purpose": "توضيح العلاقات المفاهيمية للمتعلم",
+      "generateOriginal": true,
+      "neverCopyTextbookFigure": true
+    },
+    {
+      "id": "community-map",
+      "title": "مخطط تعليمي لوحدة التراث",
+      "purpose": "توضيح العلاقات المفاهيمية للمتعلم",
+      "generateOriginal": true,
+      "neverCopyTextbookFigure": true
+    },
+    {
+      "id": "community-map",
+      "title": "مخطط تعليمي لوحدة التراث",
+      "purpose": "توضيح العلاقات المفاهيمية للمتعلم",
+      "generateOriginal": true,
+      "neverCopyTextbookFigure": true
+    },
+    {
+      "id": "community-map",
+      "title": "مخطط تعليمي لوحدة التراث",
+      "purpose": "توضيح العلاقات المفاهيمية للمتعلم",
+      "generateOriginal": true,
+      "neverCopyTextbookFigure": true
+    },
+    {
+      "id": "community-map",
+      "title": "مخطط تعليمي لوحدة التراث",
+      "purpose": "توضيح العلاقات المفاهيمية للمتعلم",
+      "generateOriginal": true,
+      "neverCopyTextbookFigure": true
+    }
+  ],
+  "references": [
+    {
+      "name": "Jordan Ministry of Education",
+      "url": "https://moe.gov.jo/",
+      "type": "ministry-education",
+      "priority": 1
+    },
+    {
+      "name": "National Center for Curriculum Development (NCCD)",
+      "url": "https://www.nccd.gov.jo/Ar/Pages/textbooks",
+      "type": "curriculum-authority",
+      "priority": 1
+    },
+    {
+      "name": "NCCD Official Portal",
+      "url": "https://www.nccd.gov.jo/",
+      "type": "curriculum-authority",
+      "priority": 1
+    },
+    {
+      "name": "Darsak Platform",
+      "url": "https://darsak.gov.jo/",
+      "type": "digital-learning-platform",
+      "priority": 1
+    },
+    {
+      "name": "MoE Curricula and School Textbooks Administration",
+      "url": "https://moe.gov.jo/ar/%D8%A5%D8%AF%D8%A7%D8%B1%D8%A9-%D8%A7%D9%84%D9%85%D9%86%D8%A7%D9%87%D8%AC-%D9%88%D8%A7%D9%84%D9%83%D8%AA%D8%A8-%D8%A7%D9%84%D9%85%D8%AF%D8%B1%D8%B3%D9%8A%D8%A9",
+      "type": "ministry",
+      "priority": 1
+    },
+    {
+      "name": "MoE Approved Textbook Editions 2025–2026",
+      "url": "https://moe.gov.jo/ar/node/79818",
+      "type": "ministry",
+      "priority": 1
+    },
+    {
+      "name": "NCCD catalogue — الصف 5",
+      "url": "https://www.nccd.gov.jo/ar/pages/TextBooksGrade/72",
+      "type": "official-grade-catalogue"
+    },
+    {
+      "name": "Darsak Platform",
+      "url": "https://darsak.gov.jo/",
+      "type": "official-digital-platform"
+    },
+    {
+      "name": "MoE Jordan",
+      "url": "https://moe.gov.jo/",
+      "type": "ministry-education"
+    }
+  ],
+  "contentOrigin": "success-os-original-curriculum-aligned",
+  "rights": {
+    "copyBookText": false,
+    "copyTeacherGuideProse": false,
+    "generateOriginalSuccessOsContentOnly": true
+  },
+  "verification": {
+    "checks": {
+      "framework": true,
+      "gradeStructure": true,
+      "subjectStructure": true,
+      "units": true,
+      "lessons": true,
+      "learningOutcomes": true,
+      "requiredSkills": true,
+      "scientificConcepts": true,
+      "definitions": true,
+      "examples": true,
+      "educationalDiagrams": true,
+      "references": true,
+      "catalogueLinked": true,
+      "originalOnly": true,
+      "noInternational": true
+    },
+    "structurePercent": 100,
+    "cataloguePercent": 96,
+    "provenancePercent": 94,
+    "percent": 97.9,
+    "passed": 15,
+    "total": 15
+  },
+  "builtAt": "2026-07-31T17:55:35.495Z"
+}

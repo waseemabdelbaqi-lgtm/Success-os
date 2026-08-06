@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-G12-الهندسة-U02-L03",
+  "kind": "lesson",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "مهارات عملية — تطبيق ومثال",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G12-الهندسة-U02",
+  "relationships": {
+    "unitId": "JOR-G12-الهندسة-U02",
+    "bookId": "JOR-BOOK-000141",
+    "subjectId": "JOR-G12-الهندسة",
+    "gradeId": "JOR-G12",
+    "belongsTo": "JOR-G12-الهندسة-U02"
+  },
+  "createdAt": "2026-07-31T17:56:57.537Z",
+  "updatedAt": "2026-07-31T17:56:57.537Z",
+  "lessonCode": "L03",
+  "sequence": 3,
+  "legacyLessonId": "L2.3",
+  "keywords": [
+    "معيار",
+    "أداة",
+    "عملية"
+  ]
+}

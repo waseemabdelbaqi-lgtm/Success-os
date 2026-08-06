@@ -1,0 +1,23 @@
+{
+  "id": "ali",
+  "displayName": {
+    "en": "Teacher Ali",
+    "ar": "المعلم علي"
+  },
+  "gender": "male",
+  "generatedBy": "cursor-image-gen",
+  "files": [
+    "portrait.png",
+    "poses/idle.png",
+    "poses/point.png",
+    "poses/talk.png",
+    "poses/write.png",
+    "flagship/gesture.png",
+    "flagship/mouth-closed.png",
+    "flagship/mouth-open.png",
+    "flagship/mouth-wide.png",
+    "alive/blink.png",
+    "alive/half.png",
+    "alive/listen.png"
+  ]
+}

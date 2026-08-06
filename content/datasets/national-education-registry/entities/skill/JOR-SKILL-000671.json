@@ -1,0 +1,31 @@
+{
+  "globalId": "JOR-SKILL-000671",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«Communication — بناء المهارة» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-002804",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-002804",
+      "JOR-OUTCOME-002805",
+      "JOR-OUTCOME-002806",
+      "JOR-OUTCOME-003364",
+      "JOR-OUTCOME-003365",
+      "JOR-OUTCOME-003366",
+      "JOR-OUTCOME-003924",
+      "JOR-OUTCOME-003925",
+      "JOR-OUTCOME-003926"
+    ],
+    "lessonIds": [
+      "JOR-G05-ENG-U01-L02",
+      "JOR-G06-ENG-U01-L02",
+      "JOR-G07-ENG-U01-L02"
+    ],
+    "belongsTo": "JOR-OUTCOME-002804"
+  },
+  "createdAt": "2026-07-31T17:56:56.874Z",
+  "updatedAt": "2026-07-31T17:56:57.020Z"
+}

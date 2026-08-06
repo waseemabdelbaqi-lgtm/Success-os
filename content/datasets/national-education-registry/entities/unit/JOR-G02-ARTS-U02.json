@@ -1,0 +1,21 @@
+{
+  "globalId": "JOR-G02-ARTS-U02",
+  "kind": "unit",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "الموسيقى المدرسية",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-BOOK-000025",
+  "relationships": {
+    "bookId": "JOR-BOOK-000025",
+    "subjectId": "JOR-G02-ARTS",
+    "gradeId": "JOR-G02",
+    "belongsTo": "JOR-BOOK-000025"
+  },
+  "createdAt": "2026-07-31T17:56:56.747Z",
+  "updatedAt": "2026-07-31T17:56:56.747Z",
+  "unitCode": "U02",
+  "sequence": 2,
+  "legacyUnitId": "U2"
+}

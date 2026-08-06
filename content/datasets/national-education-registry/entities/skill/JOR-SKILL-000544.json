@@ -1,0 +1,31 @@
+{
+  "globalId": "JOR-SKILL-000544",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«السلامة المنزلية — بناء المهارة» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-002508",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-002508",
+      "JOR-OUTCOME-002509",
+      "JOR-OUTCOME-002510",
+      "JOR-OUTCOME-003068",
+      "JOR-OUTCOME-003069",
+      "JOR-OUTCOME-003070",
+      "JOR-OUTCOME-003628",
+      "JOR-OUTCOME-003629",
+      "JOR-OUTCOME-003630"
+    ],
+    "lessonIds": [
+      "JOR-G05-التربيةا-U03-L02",
+      "JOR-G06-التربيةا-U03-L02",
+      "JOR-G07-التربيةا-U03-L02"
+    ],
+    "belongsTo": "JOR-OUTCOME-002508"
+  },
+  "createdAt": "2026-07-31T17:56:56.845Z",
+  "updatedAt": "2026-07-31T17:56:56.981Z"
+}

@@ -1,0 +1,23 @@
+{
+  "globalId": "JOR-SKILL-001038",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«المواد من حولنا — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-007090",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-007090",
+      "JOR-OUTCOME-007091",
+      "JOR-OUTCOME-007092"
+    ],
+    "lessonIds": [
+      "JOR-GKG-SCI-U03-L04"
+    ],
+    "belongsTo": "JOR-OUTCOME-007090"
+  },
+  "createdAt": "2026-07-31T17:56:57.575Z",
+  "updatedAt": "2026-07-31T17:56:57.575Z"
+}

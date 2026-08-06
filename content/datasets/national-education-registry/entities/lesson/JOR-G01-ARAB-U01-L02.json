@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-G01-ARAB-U01-L02",
+  "kind": "lesson",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "القراءة والفهم — بناء المهارة",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G01-ARAB-U01",
+  "relationships": {
+    "unitId": "JOR-G01-ARAB-U01",
+    "bookId": "JOR-BOOK-000021",
+    "subjectId": "JOR-G01-ARAB",
+    "gradeId": "JOR-G01",
+    "belongsTo": "JOR-G01-ARAB-U01"
+  },
+  "createdAt": "2026-07-31T17:56:56.734Z",
+  "updatedAt": "2026-07-31T17:56:56.734Z",
+  "lessonCode": "L02",
+  "sequence": 2,
+  "legacyLessonId": "L1.2",
+  "keywords": [
+    "نص",
+    "معنى",
+    "أسلوب"
+  ]
+}

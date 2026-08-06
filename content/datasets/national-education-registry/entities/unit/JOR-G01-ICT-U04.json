@@ -1,0 +1,21 @@
+{
+  "globalId": "JOR-G01-ICT-U04",
+  "kind": "unit",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "حل المشكلات البسيط",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-BOOK-000022",
+  "relationships": {
+    "bookId": "JOR-BOOK-000022",
+    "subjectId": "JOR-G01-ICT",
+    "gradeId": "JOR-G01",
+    "belongsTo": "JOR-BOOK-000022"
+  },
+  "createdAt": "2026-07-31T17:56:56.739Z",
+  "updatedAt": "2026-07-31T17:56:56.739Z",
+  "unitCode": "U04",
+  "sequence": 4,
+  "legacyUnitId": "U4"
+}

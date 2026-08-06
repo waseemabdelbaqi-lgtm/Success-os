@@ -1,0 +1,31 @@
+{
+  "globalId": "JOR-SKILL-000223",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«الأرض والموارد — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-000459",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-000459",
+      "JOR-OUTCOME-000460",
+      "JOR-OUTCOME-000461",
+      "JOR-OUTCOME-004523",
+      "JOR-OUTCOME-004524",
+      "JOR-OUTCOME-004525",
+      "JOR-OUTCOME-005179",
+      "JOR-OUTCOME-005180",
+      "JOR-OUTCOME-005181"
+    ],
+    "lessonIds": [
+      "JOR-G10-SCI-U04-L03",
+      "JOR-G08-SCI-U04-L03",
+      "JOR-G09-SCI-U04-L03"
+    ],
+    "belongsTo": "JOR-OUTCOME-000459"
+  },
+  "createdAt": "2026-07-31T17:56:56.703Z",
+  "updatedAt": "2026-07-31T17:56:57.203Z"
+}

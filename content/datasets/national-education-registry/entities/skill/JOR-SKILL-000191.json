@@ -1,0 +1,31 @@
+{
+  "globalId": "JOR-SKILL-000191",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«النسب والتناسب — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-000390",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-000390",
+      "JOR-OUTCOME-000391",
+      "JOR-OUTCOME-000392",
+      "JOR-OUTCOME-004454",
+      "JOR-OUTCOME-004455",
+      "JOR-OUTCOME-004456",
+      "JOR-OUTCOME-005110",
+      "JOR-OUTCOME-005111",
+      "JOR-OUTCOME-005112"
+    ],
+    "lessonIds": [
+      "JOR-G10-MATH-U02-L04",
+      "JOR-G08-MATH-U02-L04",
+      "JOR-G09-MATH-U02-L04"
+    ],
+    "belongsTo": "JOR-OUTCOME-000390"
+  },
+  "createdAt": "2026-07-31T17:56:56.701Z",
+  "updatedAt": "2026-07-31T17:56:57.192Z"
+}

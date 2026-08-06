@@ -1,0 +1,31 @@
+{
+  "globalId": "JOR-SKILL-000287",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«الإعلام واللغة — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-000591",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-000591",
+      "JOR-OUTCOME-000592",
+      "JOR-OUTCOME-000593",
+      "JOR-OUTCOME-004655",
+      "JOR-OUTCOME-004656",
+      "JOR-OUTCOME-004657",
+      "JOR-OUTCOME-005311",
+      "JOR-OUTCOME-005312",
+      "JOR-OUTCOME-005313"
+    ],
+    "lessonIds": [
+      "JOR-G10-ARAB-U03-L03",
+      "JOR-G08-ARAB-U03-L03",
+      "JOR-G09-ARAB-U03-L03"
+    ],
+    "belongsTo": "JOR-OUTCOME-000591"
+  },
+  "createdAt": "2026-07-31T17:56:56.711Z",
+  "updatedAt": "2026-07-31T17:56:57.224Z"
+}

@@ -1,0 +1,19 @@
+{
+  "globalId": "JOR-BOOK-000121",
+  "kind": "book",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "Success OS — الفيزياء",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G12-الفيزياء",
+  "relationships": {
+    "subjectId": "JOR-G12-الفيزياء",
+    "gradeId": "JOR-G12",
+    "belongsTo": "JOR-G12-الفيزياء"
+  },
+  "createdAt": "2026-07-31T17:56:57.339Z",
+  "updatedAt": "2026-07-31T17:56:57.339Z",
+  "legacyBookId": "jordan__التعليم-الثانوي-المسار-الأكاديمي__jordan-national-curriculum__الصف-12__الفيزياء__ar",
+  "officialSource": "https://www.nccd.gov.jo/ar/pages/TextBooksGrade/83"
+}

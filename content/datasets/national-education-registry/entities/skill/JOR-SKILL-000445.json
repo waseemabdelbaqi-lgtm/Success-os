@@ -1,0 +1,35 @@
+{
+  "globalId": "JOR-SKILL-000445",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«Reading Basics — بناء المهارة» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-000972",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-000972",
+      "JOR-OUTCOME-000973",
+      "JOR-OUTCOME-000974",
+      "JOR-OUTCOME-001404",
+      "JOR-OUTCOME-001405",
+      "JOR-OUTCOME-001406",
+      "JOR-OUTCOME-001836",
+      "JOR-OUTCOME-001837",
+      "JOR-OUTCOME-001838",
+      "JOR-OUTCOME-002268",
+      "JOR-OUTCOME-002269",
+      "JOR-OUTCOME-002270"
+    ],
+    "lessonIds": [
+      "JOR-G01-ENG-U03-L02",
+      "JOR-G02-ENG-U03-L02",
+      "JOR-G03-ENG-U03-L02",
+      "JOR-G04-ENG-U03-L02"
+    ],
+    "belongsTo": "JOR-OUTCOME-000972"
+  },
+  "createdAt": "2026-07-31T17:56:56.730Z",
+  "updatedAt": "2026-07-31T17:56:56.822Z"
+}

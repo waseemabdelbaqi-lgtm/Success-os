@@ -1,0 +1,19 @@
+{
+  "globalId": "JOR",
+  "kind": "country",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "Jordan",
+  "language": "ar",
+  "status": "active",
+  "parentId": null,
+  "relationships": {
+    "childrenKinds": [
+      "educationalSystem"
+    ]
+  },
+  "createdAt": "2026-07-31T17:56:56.679Z",
+  "updatedAt": "2026-07-31T17:56:56.679Z",
+  "nameAr": "الأردن",
+  "isoCode": "JO"
+}

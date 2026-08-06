@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-SKILL-000802",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«الموجات والضوء — مقدمة ومفاهيم» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-005545",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-005545",
+      "JOR-OUTCOME-005546",
+      "JOR-OUTCOME-005547",
+      "JOR-OUTCOME-006009",
+      "JOR-OUTCOME-006010",
+      "JOR-OUTCOME-006011"
+    ],
+    "lessonIds": [
+      "JOR-G11-الفيزياء-U03-L01",
+      "JOR-G12-الفيزياء-U03-L01"
+    ],
+    "belongsTo": "JOR-OUTCOME-005545"
+  },
+  "createdAt": "2026-07-31T17:56:57.264Z",
+  "updatedAt": "2026-07-31T17:56:57.342Z"
+}

@@ -1,0 +1,17 @@
+{
+  "globalId": "JOR-IMAGE-000789",
+  "kind": "educationalImage",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "مخطط تعليمي لوحدة السلامة الرقمية",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G04-ICT-U02-L01",
+  "relationships": {
+    "lessonId": "JOR-G04-ICT-U02-L01",
+    "belongsTo": "JOR-G04-ICT-U02-L01"
+  },
+  "createdAt": "2026-07-31T17:56:56.829Z",
+  "updatedAt": "2026-07-31T17:56:56.829Z",
+  "src": null
+}

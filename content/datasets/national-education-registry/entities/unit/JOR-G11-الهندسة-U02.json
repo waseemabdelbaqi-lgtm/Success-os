@@ -1,0 +1,21 @@
+{
+  "globalId": "JOR-G11-الهندسة-U02",
+  "kind": "unit",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "مهارات عملية",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-BOOK-000133",
+  "relationships": {
+    "bookId": "JOR-BOOK-000133",
+    "subjectId": "JOR-G11-الهندسة",
+    "gradeId": "JOR-G11",
+    "belongsTo": "JOR-BOOK-000133"
+  },
+  "createdAt": "2026-07-31T17:56:57.450Z",
+  "updatedAt": "2026-07-31T17:56:57.450Z",
+  "unitCode": "U02",
+  "sequence": 2,
+  "legacyUnitId": "U2"
+}

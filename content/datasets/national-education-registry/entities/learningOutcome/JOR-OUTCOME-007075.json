@@ -1,0 +1,18 @@
+{
+  "globalId": "JOR-OUTCOME-007075",
+  "kind": "learningOutcome",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يتعرف المتعلم مفهومًا محوريًا في العلوم والاستكشاف ضمن الحواس والملاحظة بما يتوافق مع إطار المنهاج الوطني الأردني لـرياض الأطفال.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-GKG-SCI-U02-L03",
+  "relationships": {
+    "lessonId": "JOR-GKG-SCI-U02-L03",
+    "belongsTo": "JOR-GKG-SCI-U02-L03"
+  },
+  "createdAt": "2026-07-31T17:56:57.572Z",
+  "updatedAt": "2026-07-31T17:56:57.572Z",
+  "text": "أن يتعرف المتعلم مفهومًا محوريًا في العلوم والاستكشاف ضمن الحواس والملاحظة بما يتوافق مع إطار المنهاج الوطني الأردني لـرياض الأطفال.",
+  "sequence": 1
+}

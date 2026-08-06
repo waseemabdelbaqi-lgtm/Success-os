@@ -67,3 +67,11 @@ Desktop.ini
 
 # Generated / local curriculum & ERP stores (too large for git)
 /library/
+scripts/__pycache__/
+
+# Runtime admin overrides (Teacher Mind profiles, local stores)
+/.data/
+
+# Sara demo render temp
+public/media/ai-teachers/**/demo/_render_work/
+public/media/ai-teachers/**/demo/_ffmpeg/

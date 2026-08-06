@@ -1,0 +1,18 @@
+{
+  "globalId": "JOR-OUTCOME-007042",
+  "kind": "learningOutcome",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يتعرف المتعلم مفهومًا محوريًا في الرياضيات المبكرة ضمن المقارنة والقياس المبكر بما يتوافق مع إطار المنهاج الوطني الأردني لـرياض الأطفال.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-GKG-EMATH-U03-L04",
+  "relationships": {
+    "lessonId": "JOR-GKG-EMATH-U03-L04",
+    "belongsTo": "JOR-GKG-EMATH-U03-L04"
+  },
+  "createdAt": "2026-07-31T17:56:57.563Z",
+  "updatedAt": "2026-07-31T17:56:57.563Z",
+  "text": "أن يتعرف المتعلم مفهومًا محوريًا في الرياضيات المبكرة ضمن المقارنة والقياس المبكر بما يتوافق مع إطار المنهاج الوطني الأردني لـرياض الأطفال.",
+  "sequence": 1
+}

@@ -1,0 +1,21 @@
+{
+  "globalId": "JOR-G07-الفنون-U03",
+  "kind": "unit",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "الأداء المسرحي",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-BOOK-000079",
+  "relationships": {
+    "bookId": "JOR-BOOK-000079",
+    "subjectId": "JOR-G07-الفنون",
+    "gradeId": "JOR-G07",
+    "belongsTo": "JOR-BOOK-000079"
+  },
+  "createdAt": "2026-07-31T17:56:57.016Z",
+  "updatedAt": "2026-07-31T17:56:57.016Z",
+  "unitCode": "U03",
+  "sequence": 3,
+  "legacyUnitId": "U3"
+}

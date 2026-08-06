@@ -1,0 +1,35 @@
+{
+  "globalId": "JOR-SKILL-000343",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«الألعاب المنظمة — بناء المهارة» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-000720",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-000720",
+      "JOR-OUTCOME-000721",
+      "JOR-OUTCOME-000722",
+      "JOR-OUTCOME-001152",
+      "JOR-OUTCOME-001153",
+      "JOR-OUTCOME-001154",
+      "JOR-OUTCOME-001584",
+      "JOR-OUTCOME-001585",
+      "JOR-OUTCOME-001586",
+      "JOR-OUTCOME-002016",
+      "JOR-OUTCOME-002017",
+      "JOR-OUTCOME-002018"
+    ],
+    "lessonIds": [
+      "JOR-G01-PE-U02-L02",
+      "JOR-G02-PE-U02-L02",
+      "JOR-G03-PE-U02-L02",
+      "JOR-G04-PE-U02-L02"
+    ],
+    "belongsTo": "JOR-OUTCOME-000720"
+  },
+  "createdAt": "2026-07-31T17:56:56.717Z",
+  "updatedAt": "2026-07-31T17:56:56.802Z"
+}

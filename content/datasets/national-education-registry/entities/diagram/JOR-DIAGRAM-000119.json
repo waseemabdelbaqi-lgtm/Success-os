@@ -1,0 +1,16 @@
+{
+  "globalId": "JOR-DIAGRAM-000119",
+  "kind": "diagram",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "مخطط تعليمي لوحدة القضايا الاجتماعية",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G10-SOC-U02-L03",
+  "relationships": {
+    "lessonId": "JOR-G10-SOC-U02-L03",
+    "belongsTo": "JOR-G10-SOC-U02-L03"
+  },
+  "createdAt": "2026-07-31T17:56:56.699Z",
+  "updatedAt": "2026-07-31T17:56:56.699Z"
+}

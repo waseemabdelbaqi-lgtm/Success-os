@@ -1,0 +1,19 @@
+{
+  "globalId": "JOR-BOOK-000143",
+  "kind": "book",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "Success OS — الرياضيات المبكرة",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-GKG-EMATH",
+  "relationships": {
+    "subjectId": "JOR-GKG-EMATH",
+    "gradeId": "JOR-GKG",
+    "belongsTo": "JOR-GKG-EMATH"
+  },
+  "createdAt": "2026-07-31T17:56:57.555Z",
+  "updatedAt": "2026-07-31T17:56:57.555Z",
+  "legacyBookId": "jordan__رياض-الأطفال__jordan-national-curriculum__رياض-الأطفال__الرياضيات-المبكرة__ar",
+  "officialSource": "jo-ref-moe-home"
+}

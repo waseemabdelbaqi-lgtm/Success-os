@@ -1,0 +1,18 @@
+{
+  "globalId": "JOR-OUTCOME-003317",
+  "kind": "learningOutcome",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«تقنيات فنية — بناء المهارة» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G06-الفنون-U01-L02",
+  "relationships": {
+    "lessonId": "JOR-G06-الفنون-U01-L02",
+    "belongsTo": "JOR-G06-الفنون-U01-L02"
+  },
+  "createdAt": "2026-07-31T17:56:56.936Z",
+  "updatedAt": "2026-07-31T17:56:56.936Z",
+  "text": "أن يطبّق مهارة مرتبطة بـ«تقنيات فنية — بناء المهارة» بخطوات واضحة قابلة للتحقق.",
+  "sequence": 2
+}

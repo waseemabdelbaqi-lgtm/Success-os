@@ -1,0 +1,51 @@
+{
+  "globalId": "JOR-SKILL-000796",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يتعرف المتعلم مفهومًا محوريًا في الفيزياء ضمن الكهرباء والمغناطيسية بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 11.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-005533",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-005533",
+      "JOR-OUTCOME-005534",
+      "JOR-OUTCOME-005535",
+      "JOR-OUTCOME-005536",
+      "JOR-OUTCOME-005537",
+      "JOR-OUTCOME-005538",
+      "JOR-OUTCOME-005539",
+      "JOR-OUTCOME-005540",
+      "JOR-OUTCOME-005541",
+      "JOR-OUTCOME-005542",
+      "JOR-OUTCOME-005543",
+      "JOR-OUTCOME-005544",
+      "JOR-OUTCOME-005997",
+      "JOR-OUTCOME-005998",
+      "JOR-OUTCOME-005999",
+      "JOR-OUTCOME-006000",
+      "JOR-OUTCOME-006001",
+      "JOR-OUTCOME-006002",
+      "JOR-OUTCOME-006003",
+      "JOR-OUTCOME-006004",
+      "JOR-OUTCOME-006005",
+      "JOR-OUTCOME-006006",
+      "JOR-OUTCOME-006007",
+      "JOR-OUTCOME-006008"
+    ],
+    "lessonIds": [
+      "JOR-G11-الفيزياء-U02-L01",
+      "JOR-G11-الفيزياء-U02-L02",
+      "JOR-G11-الفيزياء-U02-L03",
+      "JOR-G11-الفيزياء-U02-L04",
+      "JOR-G12-الفيزياء-U02-L01",
+      "JOR-G12-الفيزياء-U02-L02",
+      "JOR-G12-الفيزياء-U02-L03",
+      "JOR-G12-الفيزياء-U02-L04"
+    ],
+    "belongsTo": "JOR-OUTCOME-005533"
+  },
+  "createdAt": "2026-07-31T17:56:57.263Z",
+  "updatedAt": "2026-07-31T17:56:57.342Z"
+}

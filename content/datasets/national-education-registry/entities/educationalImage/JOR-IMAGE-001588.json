@@ -1,0 +1,17 @@
+{
+  "globalId": "JOR-IMAGE-001588",
+  "kind": "educationalImage",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "مخطط تعليمي لوحدة خوارزميات مبسطة",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G08-ICT-U01-L04",
+  "relationships": {
+    "lessonId": "JOR-G08-ICT-U01-L04",
+    "belongsTo": "JOR-G08-ICT-U01-L04"
+  },
+  "createdAt": "2026-07-31T17:56:57.125Z",
+  "updatedAt": "2026-07-31T17:56:57.125Z",
+  "src": null
+}

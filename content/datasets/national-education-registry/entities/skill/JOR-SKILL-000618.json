@@ -1,0 +1,31 @@
+{
+  "globalId": "JOR-SKILL-000618",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«الأعداد العشرية والنسب — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-002678",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-002678",
+      "JOR-OUTCOME-002679",
+      "JOR-OUTCOME-002680",
+      "JOR-OUTCOME-003238",
+      "JOR-OUTCOME-003239",
+      "JOR-OUTCOME-003240",
+      "JOR-OUTCOME-003798",
+      "JOR-OUTCOME-003799",
+      "JOR-OUTCOME-003800"
+    ],
+    "lessonIds": [
+      "JOR-G05-MATH-U02-L04",
+      "JOR-G06-MATH-U02-L04",
+      "JOR-G07-MATH-U02-L04"
+    ],
+    "belongsTo": "JOR-OUTCOME-002678"
+  },
+  "createdAt": "2026-07-31T17:56:56.861Z",
+  "updatedAt": "2026-07-31T17:56:57.004Z"
+}

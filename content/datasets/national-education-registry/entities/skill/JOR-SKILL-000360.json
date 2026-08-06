@@ -1,0 +1,35 @@
+{
+  "globalId": "JOR-SKILL-000360",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«عناصر الفن — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-000762",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-000762",
+      "JOR-OUTCOME-000763",
+      "JOR-OUTCOME-000764",
+      "JOR-OUTCOME-001194",
+      "JOR-OUTCOME-001195",
+      "JOR-OUTCOME-001196",
+      "JOR-OUTCOME-001626",
+      "JOR-OUTCOME-001627",
+      "JOR-OUTCOME-001628",
+      "JOR-OUTCOME-002058",
+      "JOR-OUTCOME-002059",
+      "JOR-OUTCOME-002060"
+    ],
+    "lessonIds": [
+      "JOR-G01-ARTS-U01-L04",
+      "JOR-G02-ARTS-U01-L04",
+      "JOR-G03-ARTS-U01-L04",
+      "JOR-G04-ARTS-U01-L04"
+    ],
+    "belongsTo": "JOR-OUTCOME-000762"
+  },
+  "createdAt": "2026-07-31T17:56:56.719Z",
+  "updatedAt": "2026-07-31T17:56:56.805Z"
+}

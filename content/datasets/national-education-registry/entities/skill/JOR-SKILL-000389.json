@@ -1,0 +1,35 @@
+{
+  "globalId": "JOR-SKILL-000389",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«التاريخ المحلي المبسط — مقدمة ومفاهيم» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-000837",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-000837",
+      "JOR-OUTCOME-000838",
+      "JOR-OUTCOME-000839",
+      "JOR-OUTCOME-001269",
+      "JOR-OUTCOME-001270",
+      "JOR-OUTCOME-001271",
+      "JOR-OUTCOME-001701",
+      "JOR-OUTCOME-001702",
+      "JOR-OUTCOME-001703",
+      "JOR-OUTCOME-002133",
+      "JOR-OUTCOME-002134",
+      "JOR-OUTCOME-002135"
+    ],
+    "lessonIds": [
+      "JOR-G01-SOC-U04-L01",
+      "JOR-G02-SOC-U04-L01",
+      "JOR-G03-SOC-U04-L01",
+      "JOR-G04-SOC-U04-L01"
+    ],
+    "belongsTo": "JOR-OUTCOME-000837"
+  },
+  "createdAt": "2026-07-31T17:56:56.724Z",
+  "updatedAt": "2026-07-31T17:56:56.811Z"
+}

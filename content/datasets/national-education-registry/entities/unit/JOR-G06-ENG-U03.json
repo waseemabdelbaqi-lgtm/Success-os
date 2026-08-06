@@ -1,0 +1,21 @@
+{
+  "globalId": "JOR-G06-ENG-U03",
+  "kind": "unit",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "Reading Comprehension",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-BOOK-000069",
+  "relationships": {
+    "bookId": "JOR-BOOK-000069",
+    "subjectId": "JOR-G06-ENG",
+    "gradeId": "JOR-G06",
+    "belongsTo": "JOR-BOOK-000069"
+  },
+  "createdAt": "2026-07-31T17:56:56.949Z",
+  "updatedAt": "2026-07-31T17:56:56.949Z",
+  "unitCode": "U03",
+  "sequence": 3,
+  "legacyUnitId": "U3"
+}

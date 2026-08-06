@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-G10-SCI-U02-L01",
+  "kind": "lesson",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "الموجات والطاقة — مقدمة ومفاهيم",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G10-SCI-U02",
+  "relationships": {
+    "unitId": "JOR-G10-SCI-U02",
+    "bookId": "JOR-BOOK-000009",
+    "subjectId": "JOR-G10-SCI",
+    "gradeId": "JOR-G10",
+    "belongsTo": "JOR-G10-SCI-U02"
+  },
+  "createdAt": "2026-07-31T17:56:56.702Z",
+  "updatedAt": "2026-07-31T17:56:56.702Z",
+  "lessonCode": "L01",
+  "sequence": 1,
+  "legacyLessonId": "L2.1",
+  "keywords": [
+    "مادة",
+    "طاقة",
+    "نظام"
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "globalId": "JOR-IMAGE-000033",
+  "kind": "educationalImage",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "مخطط تعليمي لوحدة مهارات متقدمة",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G10-PE-U01-L01",
+  "relationships": {
+    "lessonId": "JOR-G10-PE-U01-L01",
+    "belongsTo": "JOR-G10-PE-U01-L01"
+  },
+  "createdAt": "2026-07-31T17:56:56.686Z",
+  "updatedAt": "2026-07-31T17:56:56.686Z",
+  "src": null
+}

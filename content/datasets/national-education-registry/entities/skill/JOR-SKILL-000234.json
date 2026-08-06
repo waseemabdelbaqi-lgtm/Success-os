@@ -1,0 +1,31 @@
+{
+  "globalId": "JOR-SKILL-000234",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«الأداء — مقدمة ومفاهيم» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-000477",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-000477",
+      "JOR-OUTCOME-000478",
+      "JOR-OUTCOME-000479",
+      "JOR-OUTCOME-004541",
+      "JOR-OUTCOME-004542",
+      "JOR-OUTCOME-004543",
+      "JOR-OUTCOME-005197",
+      "JOR-OUTCOME-005198",
+      "JOR-OUTCOME-005199"
+    ],
+    "lessonIds": [
+      "JOR-G10-الفنون-U02-L01",
+      "JOR-G08-الفنون-U02-L01",
+      "JOR-G09-الفنون-U02-L01"
+    ],
+    "belongsTo": "JOR-OUTCOME-000477"
+  },
+  "createdAt": "2026-07-31T17:56:56.704Z",
+  "updatedAt": "2026-07-31T17:56:57.206Z"
+}

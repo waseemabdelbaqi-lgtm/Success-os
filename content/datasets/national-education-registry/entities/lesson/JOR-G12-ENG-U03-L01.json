@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-G12-ENG-U03-L01",
+  "kind": "lesson",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "Literature & Media — مقدمة ومفاهيم",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G12-ENG-U03",
+  "relationships": {
+    "unitId": "JOR-G12-ENG-U03",
+    "bookId": "JOR-BOOK-000123",
+    "subjectId": "JOR-G12-ENG",
+    "gradeId": "JOR-G12",
+    "belongsTo": "JOR-G12-ENG-U03"
+  },
+  "createdAt": "2026-07-31T17:56:57.356Z",
+  "updatedAt": "2026-07-31T17:56:57.356Z",
+  "lessonCode": "L01",
+  "sequence": 1,
+  "legacyLessonId": "L3.1",
+  "keywords": [
+    "vocabulary",
+    "structure",
+    "fluency"
+  ]
+}

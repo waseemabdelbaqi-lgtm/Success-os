@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-G12-MATH-U02-L02",
+  "kind": "lesson",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "التفاضل أو المتتاليات — بناء المهارة",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G12-MATH-U02",
+  "relationships": {
+    "unitId": "JOR-G12-MATH-U02",
+    "bookId": "JOR-BOOK-000119",
+    "subjectId": "JOR-G12-MATH",
+    "gradeId": "JOR-G12",
+    "belongsTo": "JOR-G12-MATH-U02"
+  },
+  "createdAt": "2026-07-31T17:56:57.324Z",
+  "updatedAt": "2026-07-31T17:56:57.324Z",
+  "lessonCode": "L02",
+  "sequence": 2,
+  "legacyLessonId": "L2.2",
+  "keywords": [
+    "عدد",
+    "عملية",
+    "نمط"
+  ]
+}

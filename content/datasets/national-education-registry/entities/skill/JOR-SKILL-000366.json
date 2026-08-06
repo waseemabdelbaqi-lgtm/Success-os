@@ -1,0 +1,35 @@
+{
+  "globalId": "JOR-SKILL-000366",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«المسرح المدرسي — بناء المهارة» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-000780",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-000780",
+      "JOR-OUTCOME-000781",
+      "JOR-OUTCOME-000782",
+      "JOR-OUTCOME-001212",
+      "JOR-OUTCOME-001213",
+      "JOR-OUTCOME-001214",
+      "JOR-OUTCOME-001644",
+      "JOR-OUTCOME-001645",
+      "JOR-OUTCOME-001646",
+      "JOR-OUTCOME-002076",
+      "JOR-OUTCOME-002077",
+      "JOR-OUTCOME-002078"
+    ],
+    "lessonIds": [
+      "JOR-G01-ARTS-U03-L02",
+      "JOR-G02-ARTS-U03-L02",
+      "JOR-G03-ARTS-U03-L02",
+      "JOR-G04-ARTS-U03-L02"
+    ],
+    "belongsTo": "JOR-OUTCOME-000780"
+  },
+  "createdAt": "2026-07-31T17:56:56.720Z",
+  "updatedAt": "2026-07-31T17:56:56.807Z"
+}

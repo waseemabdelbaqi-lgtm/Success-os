@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-G10-الفنون-U04-L02",
+  "kind": "lesson",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "معارض ومشاريع — بناء المهارة",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G10-الفنون-U04",
+  "relationships": {
+    "unitId": "JOR-G10-الفنون-U04",
+    "bookId": "JOR-BOOK-000010",
+    "subjectId": "JOR-G10-الفنون",
+    "gradeId": "JOR-G10",
+    "belongsTo": "JOR-G10-الفنون-U04"
+  },
+  "createdAt": "2026-07-31T17:56:56.705Z",
+  "updatedAt": "2026-07-31T17:56:56.705Z",
+  "lessonCode": "L02",
+  "sequence": 2,
+  "legacyLessonId": "L4.2",
+  "keywords": [
+    "خط",
+    "لون",
+    "إيقاع"
+  ]
+}

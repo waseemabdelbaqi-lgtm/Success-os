@@ -1,0 +1,17 @@
+{
+  "globalId": "JOR-IMAGE-001086",
+  "kind": "educationalImage",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "مخطط تعليمي لوحدة التراث",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G06-SOC-U04-L02",
+  "relationships": {
+    "lessonId": "JOR-G06-SOC-U04-L02",
+    "belongsTo": "JOR-G06-SOC-U04-L02"
+  },
+  "createdAt": "2026-07-31T17:56:56.920Z",
+  "updatedAt": "2026-07-31T17:56:56.920Z",
+  "src": null
+}

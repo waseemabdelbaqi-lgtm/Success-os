@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-G09-الفنون-U04-L01",
+  "kind": "lesson",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "معارض ومشاريع — مقدمة ومفاهيم",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G09-الفنون-U04",
+  "relationships": {
+    "unitId": "JOR-G09-الفنون-U04",
+    "bookId": "JOR-BOOK-000105",
+    "subjectId": "JOR-G09-الفنون",
+    "gradeId": "JOR-G09",
+    "belongsTo": "JOR-G09-الفنون-U04"
+  },
+  "createdAt": "2026-07-31T17:56:57.210Z",
+  "updatedAt": "2026-07-31T17:56:57.210Z",
+  "lessonCode": "L01",
+  "sequence": 1,
+  "legacyLessonId": "L4.1",
+  "keywords": [
+    "خط",
+    "لون",
+    "إيقاع"
+  ]
+}

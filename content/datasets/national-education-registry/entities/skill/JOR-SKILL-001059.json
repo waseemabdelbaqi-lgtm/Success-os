@@ -1,0 +1,35 @@
+{
+  "globalId": "JOR-SKILL-001059",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يتعرف المتعلم مفهومًا محوريًا في اللغة والتواصل ضمن التعبير الشفوي بما يتوافق مع إطار المنهاج الوطني الأردني لـرياض الأطفال.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-007141",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-007141",
+      "JOR-OUTCOME-007142",
+      "JOR-OUTCOME-007143",
+      "JOR-OUTCOME-007144",
+      "JOR-OUTCOME-007145",
+      "JOR-OUTCOME-007146",
+      "JOR-OUTCOME-007147",
+      "JOR-OUTCOME-007148",
+      "JOR-OUTCOME-007149",
+      "JOR-OUTCOME-007150",
+      "JOR-OUTCOME-007151",
+      "JOR-OUTCOME-007152"
+    ],
+    "lessonIds": [
+      "JOR-GKG-اللغةوال-U04-L01",
+      "JOR-GKG-اللغةوال-U04-L02",
+      "JOR-GKG-اللغةوال-U04-L03",
+      "JOR-GKG-اللغةوال-U04-L04"
+    ],
+    "belongsTo": "JOR-OUTCOME-007141"
+  },
+  "createdAt": "2026-07-31T17:56:57.587Z",
+  "updatedAt": "2026-07-31T17:56:57.589Z"
+}

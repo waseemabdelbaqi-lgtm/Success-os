@@ -1,0 +1,19 @@
+{
+  "globalId": "JOR-BOOK-000130",
+  "kind": "book",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "Success OS — السفر والسياحة",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G11-السفروال",
+  "relationships": {
+    "subjectId": "JOR-G11-السفروال",
+    "gradeId": "JOR-G11",
+    "belongsTo": "JOR-G11-السفروال"
+  },
+  "createdAt": "2026-07-31T17:56:57.418Z",
+  "updatedAt": "2026-07-31T17:56:57.418Z",
+  "legacyBookId": "jordan__التعليم-الثانوي-المسار-المهني-btec__jordan-national-curriculum__الصف-11__السفر-والسياحة__ar",
+  "officialSource": "https://www.nccd.gov.jo/ar/pages/TextBooksGrade/117"
+}

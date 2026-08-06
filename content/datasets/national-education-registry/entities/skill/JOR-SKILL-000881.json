@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-SKILL-000881",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«قواعد البيانات — بناء المهارة» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-005728",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-005728",
+      "JOR-OUTCOME-005729",
+      "JOR-OUTCOME-005730",
+      "JOR-OUTCOME-006192",
+      "JOR-OUTCOME-006193",
+      "JOR-OUTCOME-006194"
+    ],
+    "lessonIds": [
+      "JOR-G11-ICT-U02-L02",
+      "JOR-G12-ICT-U02-L02"
+    ],
+    "belongsTo": "JOR-OUTCOME-005728"
+  },
+  "createdAt": "2026-07-31T17:56:57.293Z",
+  "updatedAt": "2026-07-31T17:56:57.373Z"
+}

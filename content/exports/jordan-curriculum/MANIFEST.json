@@ -1,0 +1,109 @@
+{
+  "schema": "success-os.jordan-curriculum-export-manifest.v2",
+  "country": "JO",
+  "grades": "1-12",
+  "exportedAt": "2026-07-31T17:56:59.468Z",
+  "branchHint": "cursor/jordan-all-grades-export-bca1",
+  "files": [
+    {
+      "name": "README.md",
+      "bytes": 2094,
+      "sha256": "3460375cee92b7c447f8222b7d9a57811830f3e8b2f8656e879b5279f8b5b1d5"
+    },
+    {
+      "name": "grades/grade-01-tree.json",
+      "bytes": 152652,
+      "sha256": "d8cafb38ef801a0b60f4bc686970d8f5449dc00045f648b2f7016249e1b6fede"
+    },
+    {
+      "name": "grades/grade-02-tree.json",
+      "bytes": 152787,
+      "sha256": "1a83ee66e262f9f8c07d8a8610bdf1c6c8366f61ba87ed1c5418432d91eb7fe2"
+    },
+    {
+      "name": "grades/grade-03-tree.json",
+      "bytes": 152787,
+      "sha256": "a8eb395c441c92c1821512cfb92de3094bb63d11594bd8794025cfad291dfb30"
+    },
+    {
+      "name": "grades/grade-04-tree.json",
+      "bytes": 152787,
+      "sha256": "4a5dab9bc1dbb3bbc471f6492bdb213228175685ceafeaf657f5904e4b5c8fd6"
+    },
+    {
+      "name": "grades/grade-05-tree.json",
+      "bytes": 201077,
+      "sha256": "797555045353026e2881424b6acaf64e81566e475718e2ca740ea3bff22a467c"
+    },
+    {
+      "name": "grades/grade-06-tree.json",
+      "bytes": 201077,
+      "sha256": "fb7e3303b64e7eb315e1fa682ffe05f2e265ada24d7fd60ca18a819ff270c572"
+    },
+    {
+      "name": "grades/grade-07-tree.json",
+      "bytes": 201077,
+      "sha256": "de4bb16c1aa7e7fd70147117b989211d5734aeabcac1b999dca952ed59bc6b02"
+    },
+    {
+      "name": "grades/grade-08-tree.json",
+      "bytes": 235360,
+      "sha256": "d0c248957aec0d601978149a38d03638f7d624b2dbcc882124b24784d81288c6"
+    },
+    {
+      "name": "grades/grade-09-tree.json",
+      "bytes": 235360,
+      "sha256": "17f9e60a24f87a3fc873f57cb7105a18243ce25025028f4ff2d2254204082899"
+    },
+    {
+      "name": "grades/grade-10-tree.json",
+      "bytes": 235600,
+      "sha256": "bb5797b206c96aa0b35dbd61b32e1eab67ea8442cd9aa25bc95b79285a83e5d6"
+    },
+    {
+      "name": "grades/grade-11-tree.json",
+      "bytes": 169704,
+      "sha256": "f62c79d5a7036a2489e2805001a453691f6ca29d3b3eda026b0a78a060de701d"
+    },
+    {
+      "name": "grades/grade-12-tree.json",
+      "bytes": 169831,
+      "sha256": "fafa6993ec50a5032a153c7157bd71ea52418b5c5926639f88e18173e74f7e30"
+    },
+    {
+      "name": "jordan-all-grades-index.json",
+      "bytes": 12041,
+      "sha256": "8933b60079825f3a231f74d1099298824e8a301dc58ab6aff16fa12f55e743f5"
+    },
+    {
+      "name": "jordan-g1-math-ile-package.json",
+      "bytes": 3204,
+      "sha256": "6f06bcae31f8cc0b89636b90f3fbac66b6db413344e05d06c58fa9854c9252ca"
+    },
+    {
+      "name": "jordan-national-curriculum.bundle.json",
+      "bytes": 98152,
+      "sha256": "803becf8bb761044dab42e55fbe92627afef5b3cfdc43d2b31234923579f2320"
+    },
+    {
+      "name": "jordan-reference-ile-package.json",
+      "bytes": 15187,
+      "sha256": "8189d77d4034a49e61f29b2c298cabb680c3165a29ab63f5bb16ebfefda7bca4"
+    },
+    {
+      "name": "jordan-reference-lesson-metadata.json",
+      "bytes": 2553,
+      "sha256": "b69868c564e55ef149221f078cda839840de4172c12d8f329fc956960b4688bb"
+    },
+    {
+      "name": "jordan-reference-tree.json",
+      "bytes": 8874,
+      "sha256": "ceb9fee4ca7457175b1e3b8a756faa041c833cf0958ae08e6be36f006737033c"
+    },
+    {
+      "name": "jordan-reference-validation-report.json",
+      "bytes": 1472,
+      "sha256": "8080d46e67ca1e9ee6c1c624730249b08b93a3bfb0bff83d774fb2e6deded300"
+    }
+  ]
+}

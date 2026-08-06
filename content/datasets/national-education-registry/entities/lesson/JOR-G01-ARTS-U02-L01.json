@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-G01-ARTS-U02-L01",
+  "kind": "lesson",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "الموسيقى المدرسية — مقدمة ومفاهيم",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G01-ARTS-U02",
+  "relationships": {
+    "unitId": "JOR-G01-ARTS-U02",
+    "bookId": "JOR-BOOK-000016",
+    "subjectId": "JOR-G01-ARTS",
+    "gradeId": "JOR-G01",
+    "belongsTo": "JOR-G01-ARTS-U02"
+  },
+  "createdAt": "2026-07-31T17:56:56.719Z",
+  "updatedAt": "2026-07-31T17:56:56.719Z",
+  "lessonCode": "L01",
+  "sequence": 1,
+  "legacyLessonId": "L2.1",
+  "keywords": [
+    "خط",
+    "لون",
+    "إيقاع"
+  ]
+}

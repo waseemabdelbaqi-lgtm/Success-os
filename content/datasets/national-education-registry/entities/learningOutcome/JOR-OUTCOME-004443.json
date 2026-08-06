@@ -1,0 +1,18 @@
+{
+  "globalId": "JOR-OUTCOME-004443",
+  "kind": "learningOutcome",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«الجبر والمعادلات — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G08-MATH-U01-L04",
+  "relationships": {
+    "lessonId": "JOR-G08-MATH-U01-L04",
+    "belongsTo": "JOR-G08-MATH-U01-L04"
+  },
+  "createdAt": "2026-07-31T17:56:57.089Z",
+  "updatedAt": "2026-07-31T17:56:57.089Z",
+  "text": "أن يطبّق مهارة مرتبطة بـ«الجبر والمعادلات — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+  "sequence": 2
+}

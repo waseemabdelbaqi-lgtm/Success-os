@@ -1,0 +1,17 @@
+{
+  "globalId": "JOR-DIAGRAM-002028",
+  "kind": "diagram",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "مخطط تعليمي لوحدة التطبيقات الحياتية",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G12-SCI-U03-L04",
+  "relationships": {
+    "lessonId": "JOR-G12-SCI-U03-L04",
+    "belongsTo": "JOR-G12-SCI-U03-L04"
+  },
+  "createdAt": "2026-07-31T17:56:57.336Z",
+  "updatedAt": "2026-07-31T17:56:57.552Z",
+  "_deduped": true
+}

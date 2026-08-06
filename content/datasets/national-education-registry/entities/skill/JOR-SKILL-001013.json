@@ -1,0 +1,23 @@
+{
+  "globalId": "JOR-SKILL-001013",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«الأشكال في محيطي — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-007030",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-007030",
+      "JOR-OUTCOME-007031",
+      "JOR-OUTCOME-007032"
+    ],
+    "lessonIds": [
+      "JOR-GKG-EMATH-U02-L04"
+    ],
+    "belongsTo": "JOR-OUTCOME-007030"
+  },
+  "createdAt": "2026-07-31T17:56:57.561Z",
+  "updatedAt": "2026-07-31T17:56:57.561Z"
+}

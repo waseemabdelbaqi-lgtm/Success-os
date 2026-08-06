@@ -1,0 +1,1993 @@
+{
+  "schema": "success-os.jordan-national-subject-knowledge.v1",
+  "phase": "JO-01",
+  "key": "التعليم الثانوي — المسار الأكاديمي::الصف 12::المهارات الرقمية",
+  "stage": "التعليم الثانوي — المسار الأكاديمي",
+  "grade": "الصف 12",
+  "subject": "المهارات الرقمية",
+  "subjectFamily": "digital",
+  "gradeBand": "secondary",
+  "officialCatalogUrl": "https://www.nccd.gov.jo/ar/pages/TextBooksGrade/83",
+  "catalogueStatus": "official-nccd-url-national-profile-aligned",
+  "curriculumFramework": {
+    "name": "Jordan National Curriculum",
+    "nameAr": "المنهاج الوطني الأردني",
+    "stage": "التعليم الثانوي — المسار الأكاديمي",
+    "grade": "الصف 12",
+    "subject": "المهارات الرقمية",
+    "semesters": [
+      "الفصل الأول",
+      "الفصل الثاني"
+    ]
+  },
+  "gradeStructure": {
+    "grade": "الصف 12",
+    "band": "secondary",
+    "stage": "التعليم الثانوي — المسار الأكاديمي"
+  },
+  "subjectStructure": {
+    "subject": "المهارات الرقمية",
+    "family": "digital",
+    "unitCount": 4
+  },
+  "units": [
+    {
+      "unitId": "U1",
+      "titleAr": "برمجة وتطبيقات",
+      "lessons": [
+        {
+          "lessonId": "L1.1",
+          "titleAr": "برمجة وتطبيقات — مقدمة ومفاهيم",
+          "learningOutcomes": [
+            "أن يتعرف المتعلم مفهومًا محوريًا في المهارات الرقمية ضمن برمجة وتطبيقات بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 12.",
+            "أن يطبّق مهارة مرتبطة بـ«برمجة وتطبيقات — مقدمة ومفاهيم» بخطوات واضحة قابلة للتحقق.",
+            "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+          ],
+          "requiredSkills": [
+            "التشغيل الآمن",
+            "حل المشكلات",
+            "الإنتاج الرقمي"
+          ],
+          "scientificConcepts": [
+            "بيانات",
+            "خوارزمية",
+            "شبكة"
+          ],
+          "definitions": [
+            {
+              "term": "بيانات",
+              "definitionAr": "تعريف تعليمي أصلي لمفهوم «بيانات» ضمن إطار المنهاج الوطني الأردني، يُبنى لأغراض التدريس في Success OS دون اقتباس نص الكتاب المدرسي."
+            },
+            {
+              "term": "خوارزمية",
+              "definitionAr": "تعريف تعليمي أصلي لمفهوم «خوارزمية» ضمن إطار المنهاج الوطني الأردني، يُبنى لأغراض التدريس في Success OS دون اقتباس نص الكتاب المدرسي."
+            }
+          ],
+          "examples": [
+            {
+              "title": "مثال صفّي",
+              "text": "موقف تعليمي أصلي لـالصف 12 في المهارات الرقمية يوضح تطبيق فكرة درس «برمجة وتطبيقات — مقدمة ومفاهيم» بخطوات قابلة للمتابعة."
+            },
+            {
+              "title": "مثال حياتي أردني",
+              "text": "ربط الدرس بسياق يومي مناسب للمتعلم في الأردن (مدرسة، منزل، مجتمع محلي) دون الاعتماد على نص كتابي محمي."
+            }
+          ],
+          "educationalDiagrams": [
+            {
+              "id": "flowchart",
+              "title": "مخطط تعليمي لوحدة برمجة وتطبيقات",
+              "purpose": "توضيح العلاقات المفاهيمية للمتعلم",
+              "generateOriginal": true,
+              "neverCopyTextbookFigure": true
+            }
+          ],
+          "officialCurriculumReference": {
+            "curriculum": "Jordan National Curriculum",
+            "curriculumAr": "المنهاج الوطني الأردني",
+            "stage": "التعليم الثانوي — المسار الأكاديمي",
+            "grade": "الصف 12",
+            "subject": "المهارات الرقمية",
+            "catalogUrl": "https://www.nccd.gov.jo/ar/pages/TextBooksGrade/83",
+            "authorities": [
+              {
+                "name": "Jordan Ministry of Education",
+                "url": "https://moe.gov.jo/",
+                "type": "ministry-education",
+                "priority": 1
+              },
+              {
+                "name": "National Center for Curriculum Development (NCCD)",
+                "url": "https://www.nccd.gov.jo/Ar/Pages/textbooks",
+                "type": "curriculum-authority",
+                "priority": 1
+              },
+              {
+                "name": "NCCD Official Portal",
+                "url": "https://www.nccd.gov.jo/",
+                "type": "curriculum-authority",
+                "priority": 1
+              },
+              {
+                "name": "Darsak Platform",
+                "url": "https://darsak.gov.jo/",
+                "type": "digital-learning-platform",
+                "priority": 1
+              },
+              {
+                "name": "MoE Curricula and School Textbooks Administration",
+                "url": "https://moe.gov.jo/ar/%D8%A5%D8%AF%D8%A7%D8%B1%D8%A9-%D8%A7%D9%84%D9%85%D9%86%D8%A7%D9%87%D8%AC-%D9%88%D8%A7%D9%84%D9%83%D8%AA%D8%A8-%D8%A7%D9%84%D9%85%D8%AF%D8%B1%D8%B3%D9%8A%D8%A9",
+                "type": "ministry",
+                "priority": 1
+              },
+              {
+                "name": "MoE Approved Textbook Editions 2025–2026",
+                "url": "https://moe.gov.jo/ar/node/79818",
+                "type": "ministry",
+                "priority": 1
+              }
+            ],
+            "note": "Lesson authored only after referencing official Jordanian curriculum structure for this grade/subject."
+          },
+          "contentOrigin": "success-os-original-curriculum-aligned",
+          "rights": {
+            "copyBookText": false,
+            "generateOriginalOnly": true
+          }
+        },
+        {
+          "lessonId": "L1.2",
+          "titleAr": "برمجة وتطبيقات — بناء المهارة",
+          "learningOutcomes": [
+            "أن يتعرف المتعلم مفهومًا محوريًا في المهارات الرقمية ضمن برمجة وتطبيقات بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 12.",
+            "أن يطبّق مهارة مرتبطة بـ«برمجة وتطبيقات — بناء المهارة» بخطوات واضحة قابلة للتحقق.",
+            "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+          ],
+          "requiredSkills": [
+            "التشغيل الآمن",
+            "حل المشكلات",
+            "الإنتاج الرقمي"
+          ],
+          "scientificConcepts": [
+            "بيانات",
+            "خوارزمية",
+            "شبكة"
+          ],
+          "definitions": [
+            {
+              "term": "بيانات",
+              "definitionAr": "تعريف تعليمي أصلي لمفهوم «بيانات» ضمن إطار المنهاج الوطني الأردني، يُبنى لأغراض التدريس في Success OS دون اقتباس نص الكتاب المدرسي."
+            },
+            {
+              "term": "خوارزمية",
+              "definitionAr": "تعريف تعليمي أصلي لمفهوم «خوارزمية» ضمن إطار المنهاج الوطني الأردني، يُبنى لأغراض التدريس في Success OS دون اقتباس نص الكتاب المدرسي."
+            }
+          ],
+          "examples": [
+            {
+              "title": "مثال صفّي",
+              "text": "موقف تعليمي أصلي لـالصف 12 في المهارات الرقمية يوضح تطبيق فكرة درس «برمجة وتطبيقات — بناء المهارة» بخطوات قابلة للمتابعة."
+            },
+            {
+              "title": "مثال حياتي أردني",
+              "text": "ربط الدرس بسياق يومي مناسب للمتعلم في الأردن (مدرسة، منزل، مجتمع محلي) دون الاعتماد على نص كتابي محمي."
+            }
+          ],
+          "educationalDiagrams": [
+            {
+              "id": "flowchart",
+              "title": "مخطط تعليمي لوحدة برمجة وتطبيقات",
+              "purpose": "توضيح العلاقات المفاهيمية للمتعلم",
+              "generateOriginal": true,
+              "neverCopyTextbookFigure": true
+            }
+          ],
+          "officialCurriculumReference": {
+            "curriculum": "Jordan National Curriculum",
+            "curriculumAr": "المنهاج الوطني الأردني",
+            "stage": "التعليم الثانوي — المسار الأكاديمي",
+            "grade": "الصف 12",
+            "subject": "المهارات الرقمية",
+            "catalogUrl": "https://www.nccd.gov.jo/ar/pages/TextBooksGrade/83",
+            "authorities": [
+              {
+                "name": "Jordan Ministry of Education",
+                "url": "https://moe.gov.jo/",
+                "type": "ministry-education",
+                "priority": 1
+              },
+              {
+                "name": "National Center for Curriculum Development (NCCD)",
+                "url": "https://www.nccd.gov.jo/Ar/Pages/textbooks",
+                "type": "curriculum-authority",
+                "priority": 1
+              },
+              {
+                "name": "NCCD Official Portal",
+                "url": "https://www.nccd.gov.jo/",
+                "type": "curriculum-authority",
+                "priority": 1
+              },
+              {
+                "name": "Darsak Platform",
+                "url": "https://darsak.gov.jo/",
+                "type": "digital-learning-platform",
+                "priority": 1
+              },
+              {
+                "name": "MoE Curricula and School Textbooks Administration",
+                "url": "https://moe.gov.jo/ar/%D8%A5%D8%AF%D8%A7%D8%B1%D8%A9-%D8%A7%D9%84%D9%85%D9%86%D8%A7%D9%87%D8%AC-%D9%88%D8%A7%D9%84%D9%83%D8%AA%D8%A8-%D8%A7%D9%84%D9%85%D8%AF%D8%B1%D8%B3%D9%8A%D8%A9",
+                "type": "ministry",
+                "priority": 1
+              },
+              {
+                "name": "MoE Approved Textbook Editions 2025–2026",
+                "url": "https://moe.gov.jo/ar/node/79818",
+                "type": "ministry",
+                "priority": 1
+              }
+            ],
+            "note": "Lesson authored only after referencing official Jordanian curriculum structure for this grade/subject."
+          },
+          "contentOrigin": "success-os-original-curriculum-aligned",
+          "rights": {
+            "copyBookText": false,
+            "generateOriginalOnly": true
+          }
+        },
+        {
+          "lessonId": "L1.3",
+          "titleAr": "برمجة وتطبيقات — تطبيق ومثال",
+          "learningOutcomes": [
+            "أن يتعرف المتعلم مفهومًا محوريًا في المهارات الرقمية ضمن برمجة وتطبيقات بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 12.",
+            "أن يطبّق مهارة مرتبطة بـ«برمجة وتطبيقات — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+            "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+          ],
+          "requiredSkills": [
+            "التشغيل الآمن",
+            "حل المشكلات",
+            "الإنتاج الرقمي"
+          ],
+          "scientificConcepts": [
+            "بيانات",
+            "خوارزمية",
+            "شبكة"
+          ],
+          "definitions": [
+            {
+              "term": "بيانات",
+              "definitionAr": "تعريف تعليمي أصلي لمفهوم «بيانات» ضمن إطار المنهاج الوطني الأردني، يُبنى لأغراض التدريس في Success OS دون اقتباس نص الكتاب المدرسي."
+            },
+            {
+              "term": "خوارزمية",
+              "definitionAr": "تعريف تعليمي أصلي لمفهوم «خوارزمية» ضمن إطار المنهاج الوطني الأردني، يُبنى لأغراض التدريس في Success OS دون اقتباس نص الكتاب المدرسي."
+            }
+          ],
+          "examples": [
+            {
+              "title": "مثال صفّي",
+              "text": "موقف تعليمي أصلي لـالصف 12 في المهارات الرقمية يوضح تطبيق فكرة درس «برمجة وتطبيقات — تطبيق ومثال» بخطوات قابلة للمتابعة."
+            },
+            {
+              "title": "مثال حياتي أردني",
+              "text": "ربط الدرس بسياق يومي مناسب للمتعلم في الأردن (مدرسة، منزل، مجتمع محلي) دون الاعتماد على نص كتابي محمي."
+            }
+          ],
+          "educationalDiagrams": [
+            {
+              "id": "flowchart",
+              "title": "مخطط تعليمي لوحدة برمجة وتطبيقات",
+              "purpose": "توضيح العلاقات المفاهيمية للمتعلم",
+              "generateOriginal": true,
+              "neverCopyTextbookFigure": true
+            }
+          ],
+          "officialCurriculumReference": {
+            "curriculum": "Jordan National Curriculum",
+            "curriculumAr": "المنهاج الوطني الأردني",
+            "stage": "التعليم الثانوي — المسار الأكاديمي",
+            "grade": "الصف 12",
+            "subject": "المهارات الرقمية",
+            "catalogUrl": "https://www.nccd.gov.jo/ar/pages/TextBooksGrade/83",
+            "authorities": [
+              {
+                "name": "Jordan Ministry of Education",
+                "url": "https://moe.gov.jo/",
+                "type": "ministry-education",
+                "priority": 1
+              },
+              {
+                "name": "National Center for Curriculum Development (NCCD)",
+                "url": "https://www.nccd.gov.jo/Ar/Pages/textbooks",
+                "type": "curriculum-authority",
+                "priority": 1
+              },
+              {
+                "name": "NCCD Official Portal",
+                "url": "https://www.nccd.gov.jo/",
+                "type": "curriculum-authority",
+                "priority": 1
+              },
+              {
+                "name": "Darsak Platform",
+                "url": "https://darsak.gov.jo/",
+                "type": "digital-learning-platform",
+                "priority": 1
+              },
+              {
+                "name": "MoE Curricula and School Textbooks Administration",
+                "url": "https://moe.gov.jo/ar/%D8%A5%D8%AF%D8%A7%D8%B1%D8%A9-%D8%A7%D9%84%D9%85%D9%86%D8%A7%D9%87%D8%AC-%D9%88%D8%A7%D9%84%D9%83%D8%AA%D8%A8-%D8%A7%D9%84%D9%85%D8%AF%D8%B1%D8%B3%D9%8A%D8%A9",
+                "type": "ministry",
+                "priority": 1
+              },
+              {
+                "name": "MoE Approved Textbook Editions 2025–2026",
+                "url": "https://moe.gov.jo/ar/node/79818",
+                "type": "ministry",
+                "priority": 1
+              }
+            ],
+            "note": "Lesson authored only after referencing official Jordanian curriculum structure for this grade/subject."
+          },
+          "contentOrigin": "success-os-original-curriculum-aligned",
+          "rights": {
+            "copyBookText": false,
+            "generateOriginalOnly": true
+          }
+        },
+        {
+          "lessonId": "L1.4",
+          "titleAr": "برمجة وتطبيقات — تقويم وتعزيز",
+          "learningOutcomes": [
+            "أن يتعرف المتعلم مفهومًا محوريًا في المهارات الرقمية ضمن برمجة وتطبيقات بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 12.",
+            "أن يطبّق مهارة مرتبطة بـ«برمجة وتطبيقات — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+            "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+          ],
+          "requiredSkills": [
+            "التشغيل الآمن",
+            "حل المشكلات",
+            "الإنتاج الرقمي"
+          ],
+          "scientificConcepts": [
+            "بيانات",
+            "خوارزمية",
+            "شبكة"
+          ],
+          "definitions": [
+            {
+              "term": "بيانات",
+              "definitionAr": "تعريف تعليمي أصلي لمفهوم «بيانات» ضمن إطار المنهاج الوطني الأردني، يُبنى لأغراض التدريس في Success OS دون اقتباس نص الكتاب المدرسي."
+            },
+            {
+              "term": "خوارزمية",
+              "definitionAr": "تعريف تعليمي أصلي لمفهوم «خوارزمية» ضمن إطار المنهاج الوطني الأردني، يُبنى لأغراض التدريس في Success OS دون اقتباس نص الكتاب المدرسي."
+            }
+          ],
+          "examples": [
+            {
+              "title": "مثال صفّي",
+              "text": "موقف تعليمي أصلي لـالصف 12 في المهارات الرقمية يوضح تطبيق فكرة درس «برمجة وتطبيقات — تقويم وتعزيز» بخطوات قابلة للمتابعة."
+            },
+            {
+              "title": "مثال حياتي أردني",
+              "text": "ربط الدرس بسياق يومي مناسب للمتعلم في الأردن (مدرسة، منزل، مجتمع محلي) دون الاعتماد على نص كتابي محمي."
+            }
+          ],
+          "educationalDiagrams": [
+            {
+              "id": "flowchart",
+              "title": "مخطط تعليمي لوحدة برمجة وتطبيقات",
+              "purpose": "توضيح العلاقات المفاهيمية للمتعلم",
+              "generateOriginal": true,
+              "neverCopyTextbookFigure": true
+            }
+          ],
+          "officialCurriculumReference": {
+            "curriculum": "Jordan National Curriculum",
+            "curriculumAr": "المنهاج الوطني الأردني",
+            "stage": "التعليم الثانوي — المسار الأكاديمي",
+            "grade": "الصف 12",
+            "subject": "المهارات الرقمية",
+            "catalogUrl": "https://www.nccd.gov.jo/ar/pages/TextBooksGrade/83",
+            "authorities": [
+              {
+                "name": "Jordan Ministry of Education",
+                "url": "https://moe.gov.jo/",
+                "type": "ministry-education",
+                "priority": 1
+              },
+              {
+                "name": "National Center for Curriculum Development (NCCD)",
+                "url": "https://www.nccd.gov.jo/Ar/Pages/textbooks",
+                "type": "curriculum-authority",
+                "priority": 1
+              },
+              {
+                "name": "NCCD Official Portal",
+                "url": "https://www.nccd.gov.jo/",
+                "type": "curriculum-authority",
+                "priority": 1
+              },
+              {
+                "name": "Darsak Platform",
+                "url": "https://darsak.gov.jo/",
+                "type": "digital-learning-platform",
+                "priority": 1
+              },
+              {
+                "name": "MoE Curricula and School Textbooks Administration",
+                "url": "https://moe.gov.jo/ar/%D8%A5%D8%AF%D8%A7%D8%B1%D8%A9-%D8%A7%D9%84%D9%85%D9%86%D8%A7%D9%87%D8%AC-%D9%88%D8%A7%D9%84%D9%83%D8%AA%D8%A8-%D8%A7%D9%84%D9%85%D8%AF%D8%B1%D8%B3%D9%8A%D8%A9",
+                "type": "ministry",
+                "priority": 1
+              },
+              {
+                "name": "MoE Approved Textbook Editions 2025–2026",
+                "url": "https://moe.gov.jo/ar/node/79818",
+                "type": "ministry",
+                "priority": 1
+              }
+            ],
+            "note": "Lesson authored only after referencing official Jordanian curriculum structure for this grade/subject."
+          },
+          "contentOrigin": "success-os-original-curriculum-aligned",
+          "rights": {
+            "copyBookText": false,
+            "generateOriginalOnly": true
+          }
+        }
+      ]
+    },
+    {
+      "unitId": "U2",
+      "titleAr": "قواعد البيانات",
+      "lessons": [
+        {
+          "lessonId": "L2.1",
+          "titleAr": "قواعد البيانات — مقدمة ومفاهيم",
+          "learningOutcomes": [
+            "أن يتعرف المتعلم مفهومًا محوريًا في المهارات الرقمية ضمن قواعد البيانات بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 12.",
+            "أن يطبّق مهارة مرتبطة بـ«قواعد البيانات — مقدمة ومفاهيم» بخطوات واضحة قابلة للتحقق.",
+            "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+          ],
+          "requiredSkills": [
+            "التشغيل الآمن",
+            "حل المشكلات",
+            "الإنتاج الرقمي"
+          ],
+          "scientificConcepts": [
+            "بيانات",
+            "خوارزمية",
+            "شبكة"
+          ],
+          "definitions": [
+            {
+              "term": "بيانات",
+              "definitionAr": "تعريف تعليمي أصلي لمفهوم «بيانات» ضمن إطار المنهاج الوطني الأردني، يُبنى لأغراض التدريس في Success OS دون اقتباس نص الكتاب المدرسي."
+            },
+            {
+              "term": "خوارزمية",
+              "definitionAr": "تعريف تعليمي أصلي لمفهوم «خوارزمية» ضمن إطار المنهاج الوطني الأردني، يُبنى لأغراض التدريس في Success OS دون اقتباس نص الكتاب المدرسي."
+            }
+          ],
+          "examples": [
+            {
+              "title": "مثال صفّي",
+              "text": "موقف تعليمي أصلي لـالصف 12 في المهارات الرقمية يوضح تطبيق فكرة درس «قواعد البيانات — مقدمة ومفاهيم» بخطوات قابلة للمتابعة."
+            },
+            {
+              "title": "مثال حياتي أردني",
+              "text": "ربط الدرس بسياق يومي مناسب للمتعلم في الأردن (مدرسة، منزل، مجتمع محلي) دون الاعتماد على نص كتابي محمي."
+            }
+          ],
+          "educationalDiagrams": [
+            {
+              "id": "flowchart",
+              "title": "مخطط تعليمي لوحدة قواعد البيانات",
+              "purpose": "توضيح العلاقات المفاهيمية للمتعلم",
+              "generateOriginal": true,
+              "neverCopyTextbookFigure": true
+            }
+          ],
+          "officialCurriculumReference": {
+            "curriculum": "Jordan National Curriculum",
+            "curriculumAr": "المنهاج الوطني الأردني",
+            "stage": "التعليم الثانوي — المسار الأكاديمي",
+            "grade": "الصف 12",
+            "subject": "المهارات الرقمية",
+            "catalogUrl": "https://www.nccd.gov.jo/ar/pages/TextBooksGrade/83",
+            "authorities": [
+              {
+                "name": "Jordan Ministry of Education",
+                "url": "https://moe.gov.jo/",
+                "type": "ministry-education",
+                "priority": 1
+              },
+              {
+                "name": "National Center for Curriculum Development (NCCD)",
+                "url": "https://www.nccd.gov.jo/Ar/Pages/textbooks",
+                "type": "curriculum-authority",
+                "priority": 1
+              },
+              {
+                "name": "NCCD Official Portal",
+                "url": "https://www.nccd.gov.jo/",
+                "type": "curriculum-authority",
+                "priority": 1
+              },
+              {
+                "name": "Darsak Platform",
+                "url": "https://darsak.gov.jo/",
+                "type": "digital-learning-platform",
+                "priority": 1
+              },
+              {
+                "name": "MoE Curricula and School Textbooks Administration",
+                "url": "https://moe.gov.jo/ar/%D8%A5%D8%AF%D8%A7%D8%B1%D8%A9-%D8%A7%D9%84%D9%85%D9%86%D8%A7%D9%87%D8%AC-%D9%88%D8%A7%D9%84%D9%83%D8%AA%D8%A8-%D8%A7%D9%84%D9%85%D8%AF%D8%B1%D8%B3%D9%8A%D8%A9",
+                "type": "ministry",
+                "priority": 1
+              },
+              {
+                "name": "MoE Approved Textbook Editions 2025–2026",
+                "url": "https://moe.gov.jo/ar/node/79818",
+                "type": "ministry",
+                "priority": 1
+              }
+            ],
+            "note": "Lesson authored only after referencing official Jordanian curriculum structure for this grade/subject."
+          },
+          "contentOrigin": "success-os-original-curriculum-aligned",
+          "rights": {
+            "copyBookText": false,
+            "generateOriginalOnly": true
+          }
+        },
+        {
+          "lessonId": "L2.2",
+          "titleAr": "قواعد البيانات — بناء المهارة",
+          "learningOutcomes": [
+            "أن يتعرف المتعلم مفهومًا محوريًا في المهارات الرقمية ضمن قواعد البيانات بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 12.",
+            "أن يطبّق مهارة مرتبطة بـ«قواعد البيانات — بناء المهارة» بخطوات واضحة قابلة للتحقق.",
+            "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+          ],
+          "requiredSkills": [
+            "التشغيل الآمن",
+            "حل المشكلات",
+            "الإنتاج الرقمي"
+          ],
+          "scientificConcepts": [
+            "بيانات",
+            "خوارزمية",
+            "شبكة"
+          ],
+          "definitions": [
+            {
+              "term": "بيانات",
+              "definitionAr": "تعريف تعليمي أصلي لمفهوم «بيانات» ضمن إطار المنهاج الوطني الأردني، يُبنى لأغراض التدريس في Success OS دون اقتباس نص الكتاب المدرسي."
+            },
+            {
+              "term": "خوارزمية",
+              "definitionAr": "تعريف تعليمي أصلي لمفهوم «خوارزمية» ضمن إطار المنهاج الوطني الأردني، يُبنى لأغراض التدريس في Success OS دون اقتباس نص الكتاب المدرسي."
+            }
+          ],
+          "examples": [
+            {
+              "title": "مثال صفّي",
+              "text": "موقف تعليمي أصلي لـالصف 12 في المهارات الرقمية يوضح تطبيق فكرة درس «قواعد البيانات — بناء المهارة» بخطوات قابلة للمتابعة."
+            },
+            {
+              "title": "مثال حياتي أردني",
+              "text": "ربط الدرس بسياق يومي مناسب للمتعلم في الأردن (مدرسة، منزل، مجتمع محلي) دون الاعتماد على نص كتابي محمي."
+            }
+          ],
+          "educationalDiagrams": [
+            {
+              "id": "flowchart",
+              "title": "مخطط تعليمي لوحدة قواعد البيانات",
+              "purpose": "توضيح العلاقات المفاهيمية للمتعلم",
+              "generateOriginal": true,
+              "neverCopyTextbookFigure": true
+            }
+          ],
+          "officialCurriculumReference": {
+            "curriculum": "Jordan National Curriculum",
+            "curriculumAr": "المنهاج الوطني الأردني",
+            "stage": "التعليم الثانوي — المسار الأكاديمي",
+            "grade": "الصف 12",
+            "subject": "المهارات الرقمية",
+            "catalogUrl": "https://www.nccd.gov.jo/ar/pages/TextBooksGrade/83",
+            "authorities": [
+              {
+                "name": "Jordan Ministry of Education",
+                "url": "https://moe.gov.jo/",
+                "type": "ministry-education",
+                "priority": 1
+              },
+              {
+                "name": "National Center for Curriculum Development (NCCD)",
+                "url": "https://www.nccd.gov.jo/Ar/Pages/textbooks",
+                "type": "curriculum-authority",
+                "priority": 1
+              },
+              {
+                "name": "NCCD Official Portal",
+                "url": "https://www.nccd.gov.jo/",
+                "type": "curriculum-authority",
+                "priority": 1
+              },
+              {
+                "name": "Darsak Platform",
+                "url": "https://darsak.gov.jo/",
+                "type": "digital-learning-platform",
+                "priority": 1
+              },
+              {
+                "name": "MoE Curricula and School Textbooks Administration",
+                "url": "https://moe.gov.jo/ar/%D8%A5%D8%AF%D8%A7%D8%B1%D8%A9-%D8%A7%D9%84%D9%85%D9%86%D8%A7%D9%87%D8%AC-%D9%88%D8%A7%D9%84%D9%83%D8%AA%D8%A8-%D8%A7%D9%84%D9%85%D8%AF%D8%B1%D8%B3%D9%8A%D8%A9",
+                "type": "ministry",
+                "priority": 1
+              },
+              {
+                "name": "MoE Approved Textbook Editions 2025–2026",
+                "url": "https://moe.gov.jo/ar/node/79818",
+                "type": "ministry",
+                "priority": 1
+              }
+            ],
+            "note": "Lesson authored only after referencing official Jordanian curriculum structure for this grade/subject."
+          },
+          "contentOrigin": "success-os-original-curriculum-aligned",
+          "rights": {
+            "copyBookText": false,
+            "generateOriginalOnly": true
+          }
+        },
+        {
+          "lessonId": "L2.3",
+          "titleAr": "قواعد البيانات — تطبيق ومثال",
+          "learningOutcomes": [
+            "أن يتعرف المتعلم مفهومًا محوريًا في المهارات الرقمية ضمن قواعد البيانات بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 12.",
+            "أن يطبّق مهارة مرتبطة بـ«قواعد البيانات — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+            "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+          ],
+          "requiredSkills": [
+            "التشغيل الآمن",
+            "حل المشكلات",
+            "الإنتاج الرقمي"
+          ],
+          "scientificConcepts": [
+            "بيانات",
+            "خوارزمية",
+            "شبكة"
+          ],
+          "definitions": [
+            {
+              "term": "بيانات",
+              "definitionAr": "تعريف تعليمي أصلي لمفهوم «بيانات» ضمن إطار المنهاج الوطني الأردني، يُبنى لأغراض التدريس في Success OS دون اقتباس نص الكتاب المدرسي."
+            },
+            {
+              "term": "خوارزمية",
+              "definitionAr": "تعريف تعليمي أصلي لمفهوم «خوارزمية» ضمن إطار المنهاج الوطني الأردني، يُبنى لأغراض التدريس في Success OS دون اقتباس نص الكتاب المدرسي."
+            }
+          ],
+          "examples": [
+            {
+              "title": "مثال صفّي",
+              "text": "موقف تعليمي أصلي لـالصف 12 في المهارات الرقمية يوضح تطبيق فكرة درس «قواعد البيانات — تطبيق ومثال» بخطوات قابلة للمتابعة."
+            },
+            {
+              "title": "مثال حياتي أردني",
+              "text": "ربط الدرس بسياق يومي مناسب للمتعلم في الأردن (مدرسة، منزل، مجتمع محلي) دون الاعتماد على نص كتابي محمي."
+            }
+          ],
+          "educationalDiagrams": [
+            {
+              "id": "flowchart",
+              "title": "مخطط تعليمي لوحدة قواعد البيانات",
+              "purpose": "توضيح العلاقات المفاهيمية للمتعلم",
+              "generateOriginal": true,
+              "neverCopyTextbookFigure": true
+            }
+          ],
+          "officialCurriculumReference": {
+            "curriculum": "Jordan National Curriculum",
+            "curriculumAr": "المنهاج الوطني الأردني",
+            "stage": "التعليم الثانوي — المسار الأكاديمي",
+            "grade": "الصف 12",
+            "subject": "المهارات الرقمية",
+            "catalogUrl": "https://www.nccd.gov.jo/ar/pages/TextBooksGrade/83",
+            "authorities": [
+              {
+                "name": "Jordan Ministry of Education",
+                "url": "https://moe.gov.jo/",
+                "type": "ministry-education",
+                "priority": 1
+              },
+              {
+                "name": "National Center for Curriculum Development (NCCD)",
+                "url": "https://www.nccd.gov.jo/Ar/Pages/textbooks",
+                "type": "curriculum-authority",
+                "priority": 1
+              },
+              {
+                "name": "NCCD Official Portal",
+                "url": "https://www.nccd.gov.jo/",
+                "type": "curriculum-authority",
+                "priority": 1
+              },
+              {
+                "name": "Darsak Platform",
+                "url": "https://darsak.gov.jo/",
+                "type": "digital-learning-platform",
+                "priority": 1
+              },
+              {
+                "name": "MoE Curricula and School Textbooks Administration",
+                "url": "https://moe.gov.jo/ar/%D8%A5%D8%AF%D8%A7%D8%B1%D8%A9-%D8%A7%D9%84%D9%85%D9%86%D8%A7%D9%87%D8%AC-%D9%88%D8%A7%D9%84%D9%83%D8%AA%D8%A8-%D8%A7%D9%84%D9%85%D8%AF%D8%B1%D8%B3%D9%8A%D8%A9",
+                "type": "ministry",
+                "priority": 1
+              },
+              {
+                "name": "MoE Approved Textbook Editions 2025–2026",
+                "url": "https://moe.gov.jo/ar/node/79818",
+                "type": "ministry",
+                "priority": 1
+              }
+            ],
+            "note": "Lesson authored only after referencing official Jordanian curriculum structure for this grade/subject."
+          },
+          "contentOrigin": "success-os-original-curriculum-aligned",
+          "rights": {
+            "copyBookText": false,
+            "generateOriginalOnly": true
+          }
+        },
+        {
+          "lessonId": "L2.4",
+          "titleAr": "قواعد البيانات — تقويم وتعزيز",
+          "learningOutcomes": [
+            "أن يتعرف المتعلم مفهومًا محوريًا في المهارات الرقمية ضمن قواعد البيانات بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 12.",
+            "أن يطبّق مهارة مرتبطة بـ«قواعد البيانات — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+            "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+          ],
+          "requiredSkills": [
+            "التشغيل الآمن",
+            "حل المشكلات",
+            "الإنتاج الرقمي"
+          ],
+          "scientificConcepts": [
+            "بيانات",
+            "خوارزمية",
+            "شبكة"
+          ],
+          "definitions": [
+            {
+              "term": "بيانات",
+              "definitionAr": "تعريف تعليمي أصلي لمفهوم «بيانات» ضمن إطار المنهاج الوطني الأردني، يُبنى لأغراض التدريس في Success OS دون اقتباس نص الكتاب المدرسي."
+            },
+            {
+              "term": "خوارزمية",
+              "definitionAr": "تعريف تعليمي أصلي لمفهوم «خوارزمية» ضمن إطار المنهاج الوطني الأردني، يُبنى لأغراض التدريس في Success OS دون اقتباس نص الكتاب المدرسي."
+            }
+          ],
+          "examples": [
+            {
+              "title": "مثال صفّي",
+              "text": "موقف تعليمي أصلي لـالصف 12 في المهارات الرقمية يوضح تطبيق فكرة درس «قواعد البيانات — تقويم وتعزيز» بخطوات قابلة للمتابعة."
+            },
+            {
+              "title": "مثال حياتي أردني",
+              "text": "ربط الدرس بسياق يومي مناسب للمتعلم في الأردن (مدرسة، منزل، مجتمع محلي) دون الاعتماد على نص كتابي محمي."
+            }
+          ],
+          "educationalDiagrams": [
+            {
+              "id": "flowchart",
+              "title": "مخطط تعليمي لوحدة قواعد البيانات",
+              "purpose": "توضيح العلاقات المفاهيمية للمتعلم",
+              "generateOriginal": true,
+              "neverCopyTextbookFigure": true
+            }
+          ],
+          "officialCurriculumReference": {
+            "curriculum": "Jordan National Curriculum",
+            "curriculumAr": "المنهاج الوطني الأردني",
+            "stage": "التعليم الثانوي — المسار الأكاديمي",
+            "grade": "الصف 12",
+            "subject": "المهارات الرقمية",
+            "catalogUrl": "https://www.nccd.gov.jo/ar/pages/TextBooksGrade/83",
+            "authorities": [
+              {
+                "name": "Jordan Ministry of Education",
+                "url": "https://moe.gov.jo/",
+                "type": "ministry-education",
+                "priority": 1
+              },
+              {
+                "name": "National Center for Curriculum Development (NCCD)",
+                "url": "https://www.nccd.gov.jo/Ar/Pages/textbooks",
+                "type": "curriculum-authority",
+                "priority": 1
+              },
+              {
+                "name": "NCCD Official Portal",
+                "url": "https://www.nccd.gov.jo/",
+                "type": "curriculum-authority",
+                "priority": 1
+              },
+              {
+                "name": "Darsak Platform",
+                "url": "https://darsak.gov.jo/",
+                "type": "digital-learning-platform",
+                "priority": 1
+              },
+              {
+                "name": "MoE Curricula and School Textbooks Administration",
+                "url": "https://moe.gov.jo/ar/%D8%A5%D8%AF%D8%A7%D8%B1%D8%A9-%D8%A7%D9%84%D9%85%D9%86%D8%A7%D9%87%D8%AC-%D9%88%D8%A7%D9%84%D9%83%D8%AA%D8%A8-%D8%A7%D9%84%D9%85%D8%AF%D8%B1%D8%B3%D9%8A%D8%A9",
+                "type": "ministry",
+                "priority": 1
+              },
+              {
+                "name": "MoE Approved Textbook Editions 2025–2026",
+                "url": "https://moe.gov.jo/ar/node/79818",
+                "type": "ministry",
+                "priority": 1
+              }
+            ],
+            "note": "Lesson authored only after referencing official Jordanian curriculum structure for this grade/subject."
+          },
+          "contentOrigin": "success-os-original-curriculum-aligned",
+          "rights": {
+            "copyBookText": false,
+            "generateOriginalOnly": true
+          }
+        }
+      ]
+    },
+    {
+      "unitId": "U3",
+      "titleAr": "أمن معلومات",
+      "lessons": [
+        {
+          "lessonId": "L3.1",
+          "titleAr": "أمن معلومات — مقدمة ومفاهيم",
+          "learningOutcomes": [
+            "أن يتعرف المتعلم مفهومًا محوريًا في المهارات الرقمية ضمن أمن معلومات بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 12.",
+            "أن يطبّق مهارة مرتبطة بـ«أمن معلومات — مقدمة ومفاهيم» بخطوات واضحة قابلة للتحقق.",
+            "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+          ],
+          "requiredSkills": [
+            "التشغيل الآمن",
+            "حل المشكلات",
+            "الإنتاج الرقمي"
+          ],
+          "scientificConcepts": [
+            "بيانات",
+            "خوارزمية",
+            "شبكة"
+          ],
+          "definitions": [
+            {
+              "term": "بيانات",
+              "definitionAr": "تعريف تعليمي أصلي لمفهوم «بيانات» ضمن إطار المنهاج الوطني الأردني، يُبنى لأغراض التدريس في Success OS دون اقتباس نص الكتاب المدرسي."
+            },
+            {
+              "term": "خوارزمية",
+              "definitionAr": "تعريف تعليمي أصلي لمفهوم «خوارزمية» ضمن إطار المنهاج الوطني الأردني، يُبنى لأغراض التدريس في Success OS دون اقتباس نص الكتاب المدرسي."
+            }
+          ],
+          "examples": [
+            {
+              "title": "مثال صفّي",
+              "text": "موقف تعليمي أصلي لـالصف 12 في المهارات الرقمية يوضح تطبيق فكرة درس «أمن معلومات — مقدمة ومفاهيم» بخطوات قابلة للمتابعة."
+            },
+            {
+              "title": "مثال حياتي أردني",
+              "text": "ربط الدرس بسياق يومي مناسب للمتعلم في الأردن (مدرسة، منزل، مجتمع محلي) دون الاعتماد على نص كتابي محمي."
+            }
+          ],
+          "educationalDiagrams": [
+            {
+              "id": "flowchart",
+              "title": "مخطط تعليمي لوحدة أمن معلومات",
+              "purpose": "توضيح العلاقات المفاهيمية للمتعلم",
+              "generateOriginal": true,
+              "neverCopyTextbookFigure": true
+            }
+          ],
+          "officialCurriculumReference": {
+            "curriculum": "Jordan National Curriculum",
+            "curriculumAr": "المنهاج الوطني الأردني",
+            "stage": "التعليم الثانوي — المسار الأكاديمي",
+            "grade": "الصف 12",
+            "subject": "المهارات الرقمية",
+            "catalogUrl": "https://www.nccd.gov.jo/ar/pages/TextBooksGrade/83",
+            "authorities": [
+              {
+                "name": "Jordan Ministry of Education",
+                "url": "https://moe.gov.jo/",
+                "type": "ministry-education",
+                "priority": 1
+              },
+              {
+                "name": "National Center for Curriculum Development (NCCD)",
+                "url": "https://www.nccd.gov.jo/Ar/Pages/textbooks",
+                "type": "curriculum-authority",
+                "priority": 1
+              },
+              {
+                "name": "NCCD Official Portal",
+                "url": "https://www.nccd.gov.jo/",
+                "type": "curriculum-authority",
+                "priority": 1
+              },
+              {
+                "name": "Darsak Platform",
+                "url": "https://darsak.gov.jo/",
+                "type": "digital-learning-platform",
+                "priority": 1
+              },
+              {
+                "name": "MoE Curricula and School Textbooks Administration",
+                "url": "https://moe.gov.jo/ar/%D8%A5%D8%AF%D8%A7%D8%B1%D8%A9-%D8%A7%D9%84%D9%85%D9%86%D8%A7%D9%87%D8%AC-%D9%88%D8%A7%D9%84%D9%83%D8%AA%D8%A8-%D8%A7%D9%84%D9%85%D8%AF%D8%B1%D8%B3%D9%8A%D8%A9",
+                "type": "ministry",
+                "priority": 1
+              },
+              {
+                "name": "MoE Approved Textbook Editions 2025–2026",
+                "url": "https://moe.gov.jo/ar/node/79818",
+                "type": "ministry",
+                "priority": 1
+              }
+            ],
+            "note": "Lesson authored only after referencing official Jordanian curriculum structure for this grade/subject."
+          },
+          "contentOrigin": "success-os-original-curriculum-aligned",
+          "rights": {
+            "copyBookText": false,
+            "generateOriginalOnly": true
+          }
+        },
+        {
+          "lessonId": "L3.2",
+          "titleAr": "أمن معلومات — بناء المهارة",
+          "learningOutcomes": [
+            "أن يتعرف المتعلم مفهومًا محوريًا في المهارات الرقمية ضمن أمن معلومات بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 12.",
+            "أن يطبّق مهارة مرتبطة بـ«أمن معلومات — بناء المهارة» بخطوات واضحة قابلة للتحقق.",
+            "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+          ],
+          "requiredSkills": [
+            "التشغيل الآمن",
+            "حل المشكلات",
+            "الإنتاج الرقمي"
+          ],
+          "scientificConcepts": [
+            "بيانات",
+            "خوارزمية",
+            "شبكة"
+          ],
+          "definitions": [
+            {
+              "term": "بيانات",
+              "definitionAr": "تعريف تعليمي أصلي لمفهوم «بيانات» ضمن إطار المنهاج الوطني الأردني، يُبنى لأغراض التدريس في Success OS دون اقتباس نص الكتاب المدرسي."
+            },
+            {
+              "term": "خوارزمية",
+              "definitionAr": "تعريف تعليمي أصلي لمفهوم «خوارزمية» ضمن إطار المنهاج الوطني الأردني، يُبنى لأغراض التدريس في Success OS دون اقتباس نص الكتاب المدرسي."
+            }
+          ],
+          "examples": [
+            {
+              "title": "مثال صفّي",
+              "text": "موقف تعليمي أصلي لـالصف 12 في المهارات الرقمية يوضح تطبيق فكرة درس «أمن معلومات — بناء المهارة» بخطوات قابلة للمتابعة."
+            },
+            {
+              "title": "مثال حياتي أردني",
+              "text": "ربط الدرس بسياق يومي مناسب للمتعلم في الأردن (مدرسة، منزل، مجتمع محلي) دون الاعتماد على نص كتابي محمي."
+            }
+          ],
+          "educationalDiagrams": [
+            {
+              "id": "flowchart",
+              "title": "مخطط تعليمي لوحدة أمن معلومات",
+              "purpose": "توضيح العلاقات المفاهيمية للمتعلم",
+              "generateOriginal": true,
+              "neverCopyTextbookFigure": true
+            }
+          ],
+          "officialCurriculumReference": {
+            "curriculum": "Jordan National Curriculum",
+            "curriculumAr": "المنهاج الوطني الأردني",
+            "stage": "التعليم الثانوي — المسار الأكاديمي",
+            "grade": "الصف 12",
+            "subject": "المهارات الرقمية",
+            "catalogUrl": "https://www.nccd.gov.jo/ar/pages/TextBooksGrade/83",
+            "authorities": [
+              {
+                "name": "Jordan Ministry of Education",
+                "url": "https://moe.gov.jo/",
+                "type": "ministry-education",
+                "priority": 1
+              },
+              {
+                "name": "National Center for Curriculum Development (NCCD)",
+                "url": "https://www.nccd.gov.jo/Ar/Pages/textbooks",
+                "type": "curriculum-authority",
+                "priority": 1
+              },
+              {
+                "name": "NCCD Official Portal",
+                "url": "https://www.nccd.gov.jo/",
+                "type": "curriculum-authority",
+                "priority": 1
+              },
+              {
+                "name": "Darsak Platform",
+                "url": "https://darsak.gov.jo/",
+                "type": "digital-learning-platform",
+                "priority": 1
+              },
+              {
+                "name": "MoE Curricula and School Textbooks Administration",
+                "url": "https://moe.gov.jo/ar/%D8%A5%D8%AF%D8%A7%D8%B1%D8%A9-%D8%A7%D9%84%D9%85%D9%86%D8%A7%D9%87%D8%AC-%D9%88%D8%A7%D9%84%D9%83%D8%AA%D8%A8-%D8%A7%D9%84%D9%85%D8%AF%D8%B1%D8%B3%D9%8A%D8%A9",
+                "type": "ministry",
+                "priority": 1
+              },
+              {
+                "name": "MoE Approved Textbook Editions 2025–2026",
+                "url": "https://moe.gov.jo/ar/node/79818",
+                "type": "ministry",
+                "priority": 1
+              }
+            ],
+            "note": "Lesson authored only after referencing official Jordanian curriculum structure for this grade/subject."
+          },
+          "contentOrigin": "success-os-original-curriculum-aligned",
+          "rights": {
+            "copyBookText": false,
+            "generateOriginalOnly": true
+          }
+        },
+        {
+          "lessonId": "L3.3",
+          "titleAr": "أمن معلومات — تطبيق ومثال",
+          "learningOutcomes": [
+            "أن يتعرف المتعلم مفهومًا محوريًا في المهارات الرقمية ضمن أمن معلومات بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 12.",
+            "أن يطبّق مهارة مرتبطة بـ«أمن معلومات — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+            "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+          ],
+          "requiredSkills": [
+            "التشغيل الآمن",
+            "حل المشكلات",
+            "الإنتاج الرقمي"
+          ],
+          "scientificConcepts": [
+            "بيانات",
+            "خوارزمية",
+            "شبكة"
+          ],
+          "definitions": [
+            {
+              "term": "بيانات",
+              "definitionAr": "تعريف تعليمي أصلي لمفهوم «بيانات» ضمن إطار المنهاج الوطني الأردني، يُبنى لأغراض التدريس في Success OS دون اقتباس نص الكتاب المدرسي."
+            },
+            {
+              "term": "خوارزمية",
+              "definitionAr": "تعريف تعليمي أصلي لمفهوم «خوارزمية» ضمن إطار المنهاج الوطني الأردني، يُبنى لأغراض التدريس في Success OS دون اقتباس نص الكتاب المدرسي."
+            }
+          ],
+          "examples": [
+            {
+              "title": "مثال صفّي",
+              "text": "موقف تعليمي أصلي لـالصف 12 في المهارات الرقمية يوضح تطبيق فكرة درس «أمن معلومات — تطبيق ومثال» بخطوات قابلة للمتابعة."
+            },
+            {
+              "title": "مثال حياتي أردني",
+              "text": "ربط الدرس بسياق يومي مناسب للمتعلم في الأردن (مدرسة، منزل، مجتمع محلي) دون الاعتماد على نص كتابي محمي."
+            }
+          ],
+          "educationalDiagrams": [
+            {
+              "id": "flowchart",
+              "title": "مخطط تعليمي لوحدة أمن معلومات",
+              "purpose": "توضيح العلاقات المفاهيمية للمتعلم",
+              "generateOriginal": true,
+              "neverCopyTextbookFigure": true
+            }
+          ],
+          "officialCurriculumReference": {
+            "curriculum": "Jordan National Curriculum",
+            "curriculumAr": "المنهاج الوطني الأردني",
+            "stage": "التعليم الثانوي — المسار الأكاديمي",
+            "grade": "الصف 12",
+            "subject": "المهارات الرقمية",
+            "catalogUrl": "https://www.nccd.gov.jo/ar/pages/TextBooksGrade/83",
+            "authorities": [
+              {
+                "name": "Jordan Ministry of Education",
+                "url": "https://moe.gov.jo/",
+                "type": "ministry-education",
+                "priority": 1
+              },
+              {
+                "name": "National Center for Curriculum Development (NCCD)",
+                "url": "https://www.nccd.gov.jo/Ar/Pages/textbooks",
+                "type": "curriculum-authority",
+                "priority": 1
+              },
+              {
+                "name": "NCCD Official Portal",
+                "url": "https://www.nccd.gov.jo/",
+                "type": "curriculum-authority",
+                "priority": 1
+              },
+              {
+                "name": "Darsak Platform",
+                "url": "https://darsak.gov.jo/",
+                "type": "digital-learning-platform",
+                "priority": 1
+              },
+              {
+                "name": "MoE Curricula and School Textbooks Administration",
+                "url": "https://moe.gov.jo/ar/%D8%A5%D8%AF%D8%A7%D8%B1%D8%A9-%D8%A7%D9%84%D9%85%D9%86%D8%A7%D9%87%D8%AC-%D9%88%D8%A7%D9%84%D9%83%D8%AA%D8%A8-%D8%A7%D9%84%D9%85%D8%AF%D8%B1%D8%B3%D9%8A%D8%A9",
+                "type": "ministry",
+                "priority": 1
+              },
+              {
+                "name": "MoE Approved Textbook Editions 2025–2026",
+                "url": "https://moe.gov.jo/ar/node/79818",
+                "type": "ministry",
+                "priority": 1
+              }
+            ],
+            "note": "Lesson authored only after referencing official Jordanian curriculum structure for this grade/subject."
+          },
+          "contentOrigin": "success-os-original-curriculum-aligned",
+          "rights": {
+            "copyBookText": false,
+            "generateOriginalOnly": true
+          }
+        },
+        {
+          "lessonId": "L3.4",
+          "titleAr": "أمن معلومات — تقويم وتعزيز",
+          "learningOutcomes": [
+            "أن يتعرف المتعلم مفهومًا محوريًا في المهارات الرقمية ضمن أمن معلومات بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 12.",
+            "أن يطبّق مهارة مرتبطة بـ«أمن معلومات — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+            "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+          ],
+          "requiredSkills": [
+            "التشغيل الآمن",
+            "حل المشكلات",
+            "الإنتاج الرقمي"
+          ],
+          "scientificConcepts": [
+            "بيانات",
+            "خوارزمية",
+            "شبكة"
+          ],
+          "definitions": [
+            {
+              "term": "بيانات",
+              "definitionAr": "تعريف تعليمي أصلي لمفهوم «بيانات» ضمن إطار المنهاج الوطني الأردني، يُبنى لأغراض التدريس في Success OS دون اقتباس نص الكتاب المدرسي."
+            },
+            {
+              "term": "خوارزمية",
+              "definitionAr": "تعريف تعليمي أصلي لمفهوم «خوارزمية» ضمن إطار المنهاج الوطني الأردني، يُبنى لأغراض التدريس في Success OS دون اقتباس نص الكتاب المدرسي."
+            }
+          ],
+          "examples": [
+            {
+              "title": "مثال صفّي",
+              "text": "موقف تعليمي أصلي لـالصف 12 في المهارات الرقمية يوضح تطبيق فكرة درس «أمن معلومات — تقويم وتعزيز» بخطوات قابلة للمتابعة."
+            },
+            {
+              "title": "مثال حياتي أردني",
+              "text": "ربط الدرس بسياق يومي مناسب للمتعلم في الأردن (مدرسة، منزل، مجتمع محلي) دون الاعتماد على نص كتابي محمي."
+            }
+          ],
+          "educationalDiagrams": [
+            {
+              "id": "flowchart",
+              "title": "مخطط تعليمي لوحدة أمن معلومات",
+              "purpose": "توضيح العلاقات المفاهيمية للمتعلم",
+              "generateOriginal": true,
+              "neverCopyTextbookFigure": true
+            }
+          ],
+          "officialCurriculumReference": {
+            "curriculum": "Jordan National Curriculum",
+            "curriculumAr": "المنهاج الوطني الأردني",
+            "stage": "التعليم الثانوي — المسار الأكاديمي",
+            "grade": "الصف 12",
+            "subject": "المهارات الرقمية",
+            "catalogUrl": "https://www.nccd.gov.jo/ar/pages/TextBooksGrade/83",
+            "authorities": [
+              {
+                "name": "Jordan Ministry of Education",
+                "url": "https://moe.gov.jo/",
+                "type": "ministry-education",
+                "priority": 1
+              },
+              {
+                "name": "National Center for Curriculum Development (NCCD)",
+                "url": "https://www.nccd.gov.jo/Ar/Pages/textbooks",
+                "type": "curriculum-authority",
+                "priority": 1
+              },
+              {
+                "name": "NCCD Official Portal",
+                "url": "https://www.nccd.gov.jo/",
+                "type": "curriculum-authority",
+                "priority": 1
+              },
+              {
+                "name": "Darsak Platform",
+                "url": "https://darsak.gov.jo/",
+                "type": "digital-learning-platform",
+                "priority": 1
+              },
+              {
+                "name": "MoE Curricula and School Textbooks Administration",
+                "url": "https://moe.gov.jo/ar/%D8%A5%D8%AF%D8%A7%D8%B1%D8%A9-%D8%A7%D9%84%D9%85%D9%86%D8%A7%D9%87%D8%AC-%D9%88%D8%A7%D9%84%D9%83%D8%AA%D8%A8-%D8%A7%D9%84%D9%85%D8%AF%D8%B1%D8%B3%D9%8A%D8%A9",
+                "type": "ministry",
+                "priority": 1
+              },
+              {
+                "name": "MoE Approved Textbook Editions 2025–2026",
+                "url": "https://moe.gov.jo/ar/node/79818",
+                "type": "ministry",
+                "priority": 1
+              }
+            ],
+            "note": "Lesson authored only after referencing official Jordanian curriculum structure for this grade/subject."
+          },
+          "contentOrigin": "success-os-original-curriculum-aligned",
+          "rights": {
+            "copyBookText": false,
+            "generateOriginalOnly": true
+          }
+        }
+      ]
+    },
+    {
+      "unitId": "U4",
+      "titleAr": "مشاريع تقنية",
+      "lessons": [
+        {
+          "lessonId": "L4.1",
+          "titleAr": "مشاريع تقنية — مقدمة ومفاهيم",
+          "learningOutcomes": [
+            "أن يتعرف المتعلم مفهومًا محوريًا في المهارات الرقمية ضمن مشاريع تقنية بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 12.",
+            "أن يطبّق مهارة مرتبطة بـ«مشاريع تقنية — مقدمة ومفاهيم» بخطوات واضحة قابلة للتحقق.",
+            "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+          ],
+          "requiredSkills": [
+            "التشغيل الآمن",
+            "حل المشكلات",
+            "الإنتاج الرقمي"
+          ],
+          "scientificConcepts": [
+            "بيانات",
+            "خوارزمية",
+            "شبكة"
+          ],
+          "definitions": [
+            {
+              "term": "بيانات",
+              "definitionAr": "تعريف تعليمي أصلي لمفهوم «بيانات» ضمن إطار المنهاج الوطني الأردني، يُبنى لأغراض التدريس في Success OS دون اقتباس نص الكتاب المدرسي."
+            },
+            {
+              "term": "خوارزمية",
+              "definitionAr": "تعريف تعليمي أصلي لمفهوم «خوارزمية» ضمن إطار المنهاج الوطني الأردني، يُبنى لأغراض التدريس في Success OS دون اقتباس نص الكتاب المدرسي."
+            }
+          ],
+          "examples": [
+            {
+              "title": "مثال صفّي",
+              "text": "موقف تعليمي أصلي لـالصف 12 في المهارات الرقمية يوضح تطبيق فكرة درس «مشاريع تقنية — مقدمة ومفاهيم» بخطوات قابلة للمتابعة."
+            },
+            {
+              "title": "مثال حياتي أردني",
+              "text": "ربط الدرس بسياق يومي مناسب للمتعلم في الأردن (مدرسة، منزل، مجتمع محلي) دون الاعتماد على نص كتابي محمي."
+            }
+          ],
+          "educationalDiagrams": [
+            {
+              "id": "flowchart",
+              "title": "مخطط تعليمي لوحدة مشاريع تقنية",
+              "purpose": "توضيح العلاقات المفاهيمية للمتعلم",
+              "generateOriginal": true,
+              "neverCopyTextbookFigure": true
+            }
+          ],
+          "officialCurriculumReference": {
+            "curriculum": "Jordan National Curriculum",
+            "curriculumAr": "المنهاج الوطني الأردني",
+            "stage": "التعليم الثانوي — المسار الأكاديمي",
+            "grade": "الصف 12",
+            "subject": "المهارات الرقمية",
+            "catalogUrl": "https://www.nccd.gov.jo/ar/pages/TextBooksGrade/83",
+            "authorities": [
+              {
+                "name": "Jordan Ministry of Education",
+                "url": "https://moe.gov.jo/",
+                "type": "ministry-education",
+                "priority": 1
+              },
+              {
+                "name": "National Center for Curriculum Development (NCCD)",
+                "url": "https://www.nccd.gov.jo/Ar/Pages/textbooks",
+                "type": "curriculum-authority",
+                "priority": 1
+              },
+              {
+                "name": "NCCD Official Portal",
+                "url": "https://www.nccd.gov.jo/",
+                "type": "curriculum-authority",
+                "priority": 1
+              },
+              {
+                "name": "Darsak Platform",
+                "url": "https://darsak.gov.jo/",
+                "type": "digital-learning-platform",
+                "priority": 1
+              },
+              {
+                "name": "MoE Curricula and School Textbooks Administration",
+                "url": "https://moe.gov.jo/ar/%D8%A5%D8%AF%D8%A7%D8%B1%D8%A9-%D8%A7%D9%84%D9%85%D9%86%D8%A7%D9%87%D8%AC-%D9%88%D8%A7%D9%84%D9%83%D8%AA%D8%A8-%D8%A7%D9%84%D9%85%D8%AF%D8%B1%D8%B3%D9%8A%D8%A9",
+                "type": "ministry",
+                "priority": 1
+              },
+              {
+                "name": "MoE Approved Textbook Editions 2025–2026",
+                "url": "https://moe.gov.jo/ar/node/79818",
+                "type": "ministry",
+                "priority": 1
+              }
+            ],
+            "note": "Lesson authored only after referencing official Jordanian curriculum structure for this grade/subject."
+          },
+          "contentOrigin": "success-os-original-curriculum-aligned",
+          "rights": {
+            "copyBookText": false,
+            "generateOriginalOnly": true
+          }
+        },
+        {
+          "lessonId": "L4.2",
+          "titleAr": "مشاريع تقنية — بناء المهارة",
+          "learningOutcomes": [
+            "أن يتعرف المتعلم مفهومًا محوريًا في المهارات الرقمية ضمن مشاريع تقنية بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 12.",
+            "أن يطبّق مهارة مرتبطة بـ«مشاريع تقنية — بناء المهارة» بخطوات واضحة قابلة للتحقق.",
+            "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+          ],
+          "requiredSkills": [
+            "التشغيل الآمن",
+            "حل المشكلات",
+            "الإنتاج الرقمي"
+          ],
+          "scientificConcepts": [
+            "بيانات",
+            "خوارزمية",
+            "شبكة"
+          ],
+          "definitions": [
+            {
+              "term": "بيانات",
+              "definitionAr": "تعريف تعليمي أصلي لمفهوم «بيانات» ضمن إطار المنهاج الوطني الأردني، يُبنى لأغراض التدريس في Success OS دون اقتباس نص الكتاب المدرسي."
+            },
+            {
+              "term": "خوارزمية",
+              "definitionAr": "تعريف تعليمي أصلي لمفهوم «خوارزمية» ضمن إطار المنهاج الوطني الأردني، يُبنى لأغراض التدريس في Success OS دون اقتباس نص الكتاب المدرسي."
+            }
+          ],
+          "examples": [
+            {
+              "title": "مثال صفّي",
+              "text": "موقف تعليمي أصلي لـالصف 12 في المهارات الرقمية يوضح تطبيق فكرة درس «مشاريع تقنية — بناء المهارة» بخطوات قابلة للمتابعة."
+            },
+            {
+              "title": "مثال حياتي أردني",
+              "text": "ربط الدرس بسياق يومي مناسب للمتعلم في الأردن (مدرسة، منزل، مجتمع محلي) دون الاعتماد على نص كتابي محمي."
+            }
+          ],
+          "educationalDiagrams": [
+            {
+              "id": "flowchart",
+              "title": "مخطط تعليمي لوحدة مشاريع تقنية",
+              "purpose": "توضيح العلاقات المفاهيمية للمتعلم",
+              "generateOriginal": true,
+              "neverCopyTextbookFigure": true
+            }
+          ],
+          "officialCurriculumReference": {
+            "curriculum": "Jordan National Curriculum",
+            "curriculumAr": "المنهاج الوطني الأردني",
+            "stage": "التعليم الثانوي — المسار الأكاديمي",
+            "grade": "الصف 12",
+            "subject": "المهارات الرقمية",
+            "catalogUrl": "https://www.nccd.gov.jo/ar/pages/TextBooksGrade/83",
+            "authorities": [
+              {
+                "name": "Jordan Ministry of Education",
+                "url": "https://moe.gov.jo/",
+                "type": "ministry-education",
+                "priority": 1
+              },
+              {
+                "name": "National Center for Curriculum Development (NCCD)",
+                "url": "https://www.nccd.gov.jo/Ar/Pages/textbooks",
+                "type": "curriculum-authority",
+                "priority": 1
+              },
+              {
+                "name": "NCCD Official Portal",
+                "url": "https://www.nccd.gov.jo/",
+                "type": "curriculum-authority",
+                "priority": 1
+              },
+              {
+                "name": "Darsak Platform",
+                "url": "https://darsak.gov.jo/",
+                "type": "digital-learning-platform",
+                "priority": 1
+              },
+              {
+                "name": "MoE Curricula and School Textbooks Administration",
+                "url": "https://moe.gov.jo/ar/%D8%A5%D8%AF%D8%A7%D8%B1%D8%A9-%D8%A7%D9%84%D9%85%D9%86%D8%A7%D9%87%D8%AC-%D9%88%D8%A7%D9%84%D9%83%D8%AA%D8%A8-%D8%A7%D9%84%D9%85%D8%AF%D8%B1%D8%B3%D9%8A%D8%A9",
+                "type": "ministry",
+                "priority": 1
+              },
+              {
+                "name": "MoE Approved Textbook Editions 2025–2026",
+                "url": "https://moe.gov.jo/ar/node/79818",
+                "type": "ministry",
+                "priority": 1
+              }
+            ],
+            "note": "Lesson authored only after referencing official Jordanian curriculum structure for this grade/subject."
+          },
+          "contentOrigin": "success-os-original-curriculum-aligned",
+          "rights": {
+            "copyBookText": false,
+            "generateOriginalOnly": true
+          }
+        },
+        {
+          "lessonId": "L4.3",
+          "titleAr": "مشاريع تقنية — تطبيق ومثال",
+          "learningOutcomes": [
+            "أن يتعرف المتعلم مفهومًا محوريًا في المهارات الرقمية ضمن مشاريع تقنية بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 12.",
+            "أن يطبّق مهارة مرتبطة بـ«مشاريع تقنية — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+            "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+          ],
+          "requiredSkills": [
+            "التشغيل الآمن",
+            "حل المشكلات",
+            "الإنتاج الرقمي"
+          ],
+          "scientificConcepts": [
+            "بيانات",
+            "خوارزمية",
+            "شبكة"
+          ],
+          "definitions": [
+            {
+              "term": "بيانات",
+              "definitionAr": "تعريف تعليمي أصلي لمفهوم «بيانات» ضمن إطار المنهاج الوطني الأردني، يُبنى لأغراض التدريس في Success OS دون اقتباس نص الكتاب المدرسي."
+            },
+            {
+              "term": "خوارزمية",
+              "definitionAr": "تعريف تعليمي أصلي لمفهوم «خوارزمية» ضمن إطار المنهاج الوطني الأردني، يُبنى لأغراض التدريس في Success OS دون اقتباس نص الكتاب المدرسي."
+            }
+          ],
+          "examples": [
+            {
+              "title": "مثال صفّي",
+              "text": "موقف تعليمي أصلي لـالصف 12 في المهارات الرقمية يوضح تطبيق فكرة درس «مشاريع تقنية — تطبيق ومثال» بخطوات قابلة للمتابعة."
+            },
+            {
+              "title": "مثال حياتي أردني",
+              "text": "ربط الدرس بسياق يومي مناسب للمتعلم في الأردن (مدرسة، منزل، مجتمع محلي) دون الاعتماد على نص كتابي محمي."
+            }
+          ],
+          "educationalDiagrams": [
+            {
+              "id": "flowchart",
+              "title": "مخطط تعليمي لوحدة مشاريع تقنية",
+              "purpose": "توضيح العلاقات المفاهيمية للمتعلم",
+              "generateOriginal": true,
+              "neverCopyTextbookFigure": true
+            }
+          ],
+          "officialCurriculumReference": {
+            "curriculum": "Jordan National Curriculum",
+            "curriculumAr": "المنهاج الوطني الأردني",
+            "stage": "التعليم الثانوي — المسار الأكاديمي",
+            "grade": "الصف 12",
+            "subject": "المهارات الرقمية",
+            "catalogUrl": "https://www.nccd.gov.jo/ar/pages/TextBooksGrade/83",
+            "authorities": [
+              {
+                "name": "Jordan Ministry of Education",
+                "url": "https://moe.gov.jo/",
+                "type": "ministry-education",
+                "priority": 1
+              },
+              {
+                "name": "National Center for Curriculum Development (NCCD)",
+                "url": "https://www.nccd.gov.jo/Ar/Pages/textbooks",
+                "type": "curriculum-authority",
+                "priority": 1
+              },
+              {
+                "name": "NCCD Official Portal",
+                "url": "https://www.nccd.gov.jo/",
+                "type": "curriculum-authority",
+                "priority": 1
+              },
+              {
+                "name": "Darsak Platform",
+                "url": "https://darsak.gov.jo/",
+                "type": "digital-learning-platform",
+                "priority": 1
+              },
+              {
+                "name": "MoE Curricula and School Textbooks Administration",
+                "url": "https://moe.gov.jo/ar/%D8%A5%D8%AF%D8%A7%D8%B1%D8%A9-%D8%A7%D9%84%D9%85%D9%86%D8%A7%D9%87%D8%AC-%D9%88%D8%A7%D9%84%D9%83%D8%AA%D8%A8-%D8%A7%D9%84%D9%85%D8%AF%D8%B1%D8%B3%D9%8A%D8%A9",
+                "type": "ministry",
+                "priority": 1
+              },
+              {
+                "name": "MoE Approved Textbook Editions 2025–2026",
+                "url": "https://moe.gov.jo/ar/node/79818",
+                "type": "ministry",
+                "priority": 1
+              }
+            ],
+            "note": "Lesson authored only after referencing official Jordanian curriculum structure for this grade/subject."
+          },
+          "contentOrigin": "success-os-original-curriculum-aligned",
+          "rights": {
+            "copyBookText": false,
+            "generateOriginalOnly": true
+          }
+        },
+        {
+          "lessonId": "L4.4",
+          "titleAr": "مشاريع تقنية — تقويم وتعزيز",
+          "learningOutcomes": [
+            "أن يتعرف المتعلم مفهومًا محوريًا في المهارات الرقمية ضمن مشاريع تقنية بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 12.",
+            "أن يطبّق مهارة مرتبطة بـ«مشاريع تقنية — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+            "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+          ],
+          "requiredSkills": [
+            "التشغيل الآمن",
+            "حل المشكلات",
+            "الإنتاج الرقمي"
+          ],
+          "scientificConcepts": [
+            "بيانات",
+            "خوارزمية",
+            "شبكة"
+          ],
+          "definitions": [
+            {
+              "term": "بيانات",
+              "definitionAr": "تعريف تعليمي أصلي لمفهوم «بيانات» ضمن إطار المنهاج الوطني الأردني، يُبنى لأغراض التدريس في Success OS دون اقتباس نص الكتاب المدرسي."
+            },
+            {
+              "term": "خوارزمية",
+              "definitionAr": "تعريف تعليمي أصلي لمفهوم «خوارزمية» ضمن إطار المنهاج الوطني الأردني، يُبنى لأغراض التدريس في Success OS دون اقتباس نص الكتاب المدرسي."
+            }
+          ],
+          "examples": [
+            {
+              "title": "مثال صفّي",
+              "text": "موقف تعليمي أصلي لـالصف 12 في المهارات الرقمية يوضح تطبيق فكرة درس «مشاريع تقنية — تقويم وتعزيز» بخطوات قابلة للمتابعة."
+            },
+            {
+              "title": "مثال حياتي أردني",
+              "text": "ربط الدرس بسياق يومي مناسب للمتعلم في الأردن (مدرسة، منزل، مجتمع محلي) دون الاعتماد على نص كتابي محمي."
+            }
+          ],
+          "educationalDiagrams": [
+            {
+              "id": "flowchart",
+              "title": "مخطط تعليمي لوحدة مشاريع تقنية",
+              "purpose": "توضيح العلاقات المفاهيمية للمتعلم",
+              "generateOriginal": true,
+              "neverCopyTextbookFigure": true
+            }
+          ],
+          "officialCurriculumReference": {
+            "curriculum": "Jordan National Curriculum",
+            "curriculumAr": "المنهاج الوطني الأردني",
+            "stage": "التعليم الثانوي — المسار الأكاديمي",
+            "grade": "الصف 12",
+            "subject": "المهارات الرقمية",
+            "catalogUrl": "https://www.nccd.gov.jo/ar/pages/TextBooksGrade/83",
+            "authorities": [
+              {
+                "name": "Jordan Ministry of Education",
+                "url": "https://moe.gov.jo/",
+                "type": "ministry-education",
+                "priority": 1
+              },
+              {
+                "name": "National Center for Curriculum Development (NCCD)",
+                "url": "https://www.nccd.gov.jo/Ar/Pages/textbooks",
+                "type": "curriculum-authority",
+                "priority": 1
+              },
+              {
+                "name": "NCCD Official Portal",
+                "url": "https://www.nccd.gov.jo/",
+                "type": "curriculum-authority",
+                "priority": 1
+              },
+              {
+                "name": "Darsak Platform",
+                "url": "https://darsak.gov.jo/",
+                "type": "digital-learning-platform",
+                "priority": 1
+              },
+              {
+                "name": "MoE Curricula and School Textbooks Administration",
+                "url": "https://moe.gov.jo/ar/%D8%A5%D8%AF%D8%A7%D8%B1%D8%A9-%D8%A7%D9%84%D9%85%D9%86%D8%A7%D9%87%D8%AC-%D9%88%D8%A7%D9%84%D9%83%D8%AA%D8%A8-%D8%A7%D9%84%D9%85%D8%AF%D8%B1%D8%B3%D9%8A%D8%A9",
+                "type": "ministry",
+                "priority": 1
+              },
+              {
+                "name": "MoE Approved Textbook Editions 2025–2026",
+                "url": "https://moe.gov.jo/ar/node/79818",
+                "type": "ministry",
+                "priority": 1
+              }
+            ],
+            "note": "Lesson authored only after referencing official Jordanian curriculum structure for this grade/subject."
+          },
+          "contentOrigin": "success-os-original-curriculum-aligned",
+          "rights": {
+            "copyBookText": false,
+            "generateOriginalOnly": true
+          }
+        }
+      ]
+    }
+  ],
+  "learningOutcomes": [
+    "أن يتعرف المتعلم مفهومًا محوريًا في المهارات الرقمية ضمن برمجة وتطبيقات بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 12.",
+    "أن يطبّق مهارة مرتبطة بـ«برمجة وتطبيقات — مقدمة ومفاهيم» بخطوات واضحة قابلة للتحقق.",
+    "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة.",
+    "أن يتعرف المتعلم مفهومًا محوريًا في المهارات الرقمية ضمن برمجة وتطبيقات بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 12.",
+    "أن يطبّق مهارة مرتبطة بـ«برمجة وتطبيقات — بناء المهارة» بخطوات واضحة قابلة للتحقق.",
+    "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة.",
+    "أن يتعرف المتعلم مفهومًا محوريًا في المهارات الرقمية ضمن برمجة وتطبيقات بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 12.",
+    "أن يطبّق مهارة مرتبطة بـ«برمجة وتطبيقات — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+    "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة.",
+    "أن يتعرف المتعلم مفهومًا محوريًا في المهارات الرقمية ضمن برمجة وتطبيقات بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 12.",
+    "أن يطبّق مهارة مرتبطة بـ«برمجة وتطبيقات — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+    "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة.",
+    "أن يتعرف المتعلم مفهومًا محوريًا في المهارات الرقمية ضمن قواعد البيانات بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 12.",
+    "أن يطبّق مهارة مرتبطة بـ«قواعد البيانات — مقدمة ومفاهيم» بخطوات واضحة قابلة للتحقق.",
+    "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة.",
+    "أن يتعرف المتعلم مفهومًا محوريًا في المهارات الرقمية ضمن قواعد البيانات بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 12.",
+    "أن يطبّق مهارة مرتبطة بـ«قواعد البيانات — بناء المهارة» بخطوات واضحة قابلة للتحقق.",
+    "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة.",
+    "أن يتعرف المتعلم مفهومًا محوريًا في المهارات الرقمية ضمن قواعد البيانات بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 12.",
+    "أن يطبّق مهارة مرتبطة بـ«قواعد البيانات — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+    "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة.",
+    "أن يتعرف المتعلم مفهومًا محوريًا في المهارات الرقمية ضمن قواعد البيانات بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 12.",
+    "أن يطبّق مهارة مرتبطة بـ«قواعد البيانات — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+    "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة.",
+    "أن يتعرف المتعلم مفهومًا محوريًا في المهارات الرقمية ضمن أمن معلومات بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 12.",
+    "أن يطبّق مهارة مرتبطة بـ«أمن معلومات — مقدمة ومفاهيم» بخطوات واضحة قابلة للتحقق.",
+    "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة.",
+    "أن يتعرف المتعلم مفهومًا محوريًا في المهارات الرقمية ضمن أمن معلومات بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 12.",
+    "أن يطبّق مهارة مرتبطة بـ«أمن معلومات — بناء المهارة» بخطوات واضحة قابلة للتحقق.",
+    "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة.",
+    "أن يتعرف المتعلم مفهومًا محوريًا في المهارات الرقمية ضمن أمن معلومات بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 12.",
+    "أن يطبّق مهارة مرتبطة بـ«أمن معلومات — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+    "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة.",
+    "أن يتعرف المتعلم مفهومًا محوريًا في المهارات الرقمية ضمن أمن معلومات بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 12.",
+    "أن يطبّق مهارة مرتبطة بـ«أمن معلومات — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+    "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة.",
+    "أن يتعرف المتعلم مفهومًا محوريًا في المهارات الرقمية ضمن مشاريع تقنية بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 12.",
+    "أن يطبّق مهارة مرتبطة بـ«مشاريع تقنية — مقدمة ومفاهيم» بخطوات واضحة قابلة للتحقق.",
+    "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة.",
+    "أن يتعرف المتعلم مفهومًا محوريًا في المهارات الرقمية ضمن مشاريع تقنية بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 12.",
+    "أن يطبّق مهارة مرتبطة بـ«مشاريع تقنية — بناء المهارة» بخطوات واضحة قابلة للتحقق.",
+    "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة.",
+    "أن يتعرف المتعلم مفهومًا محوريًا في المهارات الرقمية ضمن مشاريع تقنية بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 12.",
+    "أن يطبّق مهارة مرتبطة بـ«مشاريع تقنية — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+    "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة.",
+    "أن يتعرف المتعلم مفهومًا محوريًا في المهارات الرقمية ضمن مشاريع تقنية بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 12.",
+    "أن يطبّق مهارة مرتبطة بـ«مشاريع تقنية — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+    "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+  ],
+  "requiredSkills": [
+    "التشغيل الآمن",
+    "حل المشكلات",
+    "الإنتاج الرقمي",
+    "التعاون"
+  ],
+  "scientificConcepts": [
+    {
+      "term": "بيانات",
+      "subject": "المهارات الرقمية",
+      "note": "مفهوم إطار منهاجي — محتوى أصلي Success OS غير منسوخ من كتاب مدرسي"
+    },
+    {
+      "term": "خوارزمية",
+      "subject": "المهارات الرقمية",
+      "note": "مفهوم إطار منهاجي — محتوى أصلي Success OS غير منسوخ من كتاب مدرسي"
+    },
+    {
+      "term": "شبكة",
+      "subject": "المهارات الرقمية",
+      "note": "مفهوم إطار منهاجي — محتوى أصلي Success OS غير منسوخ من كتاب مدرسي"
+    },
+    {
+      "term": "خصوصية",
+      "subject": "المهارات الرقمية",
+      "note": "مفهوم إطار منهاجي — محتوى أصلي Success OS غير منسوخ من كتاب مدرسي"
+    },
+    {
+      "term": "وسائط",
+      "subject": "المهارات الرقمية",
+      "note": "مفهوم إطار منهاجي — محتوى أصلي Success OS غير منسوخ من كتاب مدرسي"
+    }
+  ],
+  "definitions": [
+    {
+      "term": "بيانات",
+      "definitionAr": "تعريف تعليمي أصلي لمفهوم «بيانات» ضمن إطار المنهاج الوطني الأردني، يُبنى لأغراض التدريس في Success OS دون اقتباس نص الكتاب المدرسي."
+    },
+    {
+      "term": "خوارزمية",
+      "definitionAr": "تعريف تعليمي أصلي لمفهوم «خوارزمية» ضمن إطار المنهاج الوطني الأردني، يُبنى لأغراض التدريس في Success OS دون اقتباس نص الكتاب المدرسي."
+    },
+    {
+      "term": "شبكة",
+      "definitionAr": "تعريف تعليمي أصلي لمفهوم «شبكة» ضمن إطار المنهاج الوطني الأردني، يُبنى لأغراض التدريس في Success OS دون اقتباس نص الكتاب المدرسي."
+    },
+    {
+      "term": "خصوصية",
+      "definitionAr": "تعريف تعليمي أصلي لمفهوم «خصوصية» ضمن إطار المنهاج الوطني الأردني، يُبنى لأغراض التدريس في Success OS دون اقتباس نص الكتاب المدرسي."
+    }
+  ],
+  "examples": [
+    {
+      "title": "مثال صفّي",
+      "text": "موقف تعليمي أصلي لـالصف 12 في المهارات الرقمية يوضح تطبيق فكرة درس «برمجة وتطبيقات — مقدمة ومفاهيم» بخطوات قابلة للمتابعة."
+    },
+    {
+      "title": "مثال حياتي أردني",
+      "text": "ربط الدرس بسياق يومي مناسب للمتعلم في الأردن (مدرسة، منزل، مجتمع محلي) دون الاعتماد على نص كتابي محمي."
+    },
+    {
+      "title": "مثال صفّي",
+      "text": "موقف تعليمي أصلي لـالصف 12 في المهارات الرقمية يوضح تطبيق فكرة درس «برمجة وتطبيقات — بناء المهارة» بخطوات قابلة للمتابعة."
+    },
+    {
+      "title": "مثال حياتي أردني",
+      "text": "ربط الدرس بسياق يومي مناسب للمتعلم في الأردن (مدرسة، منزل، مجتمع محلي) دون الاعتماد على نص كتابي محمي."
+    },
+    {
+      "title": "مثال صفّي",
+      "text": "موقف تعليمي أصلي لـالصف 12 في المهارات الرقمية يوضح تطبيق فكرة درس «برمجة وتطبيقات — تطبيق ومثال» بخطوات قابلة للمتابعة."
+    },
+    {
+      "title": "مثال حياتي أردني",
+      "text": "ربط الدرس بسياق يومي مناسب للمتعلم في الأردن (مدرسة، منزل، مجتمع محلي) دون الاعتماد على نص كتابي محمي."
+    },
+    {
+      "title": "مثال صفّي",
+      "text": "موقف تعليمي أصلي لـالصف 12 في المهارات الرقمية يوضح تطبيق فكرة درس «برمجة وتطبيقات — تقويم وتعزيز» بخطوات قابلة للمتابعة."
+    },
+    {
+      "title": "مثال حياتي أردني",
+      "text": "ربط الدرس بسياق يومي مناسب للمتعلم في الأردن (مدرسة، منزل، مجتمع محلي) دون الاعتماد على نص كتابي محمي."
+    }
+  ],
+  "educationalDiagrams": [
+    {
+      "id": "flowchart",
+      "title": "مخطط تعليمي لوحدة برمجة وتطبيقات",
+      "purpose": "توضيح العلاقات المفاهيمية للمتعلم",
+      "generateOriginal": true,
+      "neverCopyTextbookFigure": true
+    },
+    {
+      "id": "flowchart",
+      "title": "مخطط تعليمي لوحدة برمجة وتطبيقات",
+      "purpose": "توضيح العلاقات المفاهيمية للمتعلم",
+      "generateOriginal": true,
+      "neverCopyTextbookFigure": true
+    },
+    {
+      "id": "flowchart",
+      "title": "مخطط تعليمي لوحدة برمجة وتطبيقات",
+      "purpose": "توضيح العلاقات المفاهيمية للمتعلم",
+      "generateOriginal": true,
+      "neverCopyTextbookFigure": true
+    },
+    {
+      "id": "flowchart",
+      "title": "مخطط تعليمي لوحدة برمجة وتطبيقات",
+      "purpose": "توضيح العلاقات المفاهيمية للمتعلم",
+      "generateOriginal": true,
+      "neverCopyTextbookFigure": true
+    },
+    {
+      "id": "flowchart",
+      "title": "مخطط تعليمي لوحدة قواعد البيانات",
+      "purpose": "توضيح العلاقات المفاهيمية للمتعلم",
+      "generateOriginal": true,
+      "neverCopyTextbookFigure": true
+    },
+    {
+      "id": "flowchart",
+      "title": "مخطط تعليمي لوحدة قواعد البيانات",
+      "purpose": "توضيح العلاقات المفاهيمية للمتعلم",
+      "generateOriginal": true,
+      "neverCopyTextbookFigure": true
+    },
+    {
+      "id": "flowchart",
+      "title": "مخطط تعليمي لوحدة قواعد البيانات",
+      "purpose": "توضيح العلاقات المفاهيمية للمتعلم",
+      "generateOriginal": true,
+      "neverCopyTextbookFigure": true
+    },
+    {
+      "id": "flowchart",
+      "title": "مخطط تعليمي لوحدة قواعد البيانات",
+      "purpose": "توضيح العلاقات المفاهيمية للمتعلم",
+      "generateOriginal": true,
+      "neverCopyTextbookFigure": true
+    },
+    {
+      "id": "flowchart",
+      "title": "مخطط تعليمي لوحدة أمن معلومات",
+      "purpose": "توضيح العلاقات المفاهيمية للمتعلم",
+      "generateOriginal": true,
+      "neverCopyTextbookFigure": true
+    },
+    {
+      "id": "flowchart",
+      "title": "مخطط تعليمي لوحدة أمن معلومات",
+      "purpose": "توضيح العلاقات المفاهيمية للمتعلم",
+      "generateOriginal": true,
+      "neverCopyTextbookFigure": true
+    },
+    {
+      "id": "flowchart",
+      "title": "مخطط تعليمي لوحدة أمن معلومات",
+      "purpose": "توضيح العلاقات المفاهيمية للمتعلم",
+      "generateOriginal": true,
+      "neverCopyTextbookFigure": true
+    },
+    {
+      "id": "flowchart",
+      "title": "مخطط تعليمي لوحدة أمن معلومات",
+      "purpose": "توضيح العلاقات المفاهيمية للمتعلم",
+      "generateOriginal": true,
+      "neverCopyTextbookFigure": true
+    },
+    {
+      "id": "flowchart",
+      "title": "مخطط تعليمي لوحدة مشاريع تقنية",
+      "purpose": "توضيح العلاقات المفاهيمية للمتعلم",
+      "generateOriginal": true,
+      "neverCopyTextbookFigure": true
+    },
+    {
+      "id": "flowchart",
+      "title": "مخطط تعليمي لوحدة مشاريع تقنية",
+      "purpose": "توضيح العلاقات المفاهيمية للمتعلم",
+      "generateOriginal": true,
+      "neverCopyTextbookFigure": true
+    },
+    {
+      "id": "flowchart",
+      "title": "مخطط تعليمي لوحدة مشاريع تقنية",
+      "purpose": "توضيح العلاقات المفاهيمية للمتعلم",
+      "generateOriginal": true,
+      "neverCopyTextbookFigure": true
+    },
+    {
+      "id": "flowchart",
+      "title": "مخطط تعليمي لوحدة مشاريع تقنية",
+      "purpose": "توضيح العلاقات المفاهيمية للمتعلم",
+      "generateOriginal": true,
+      "neverCopyTextbookFigure": true
+    }
+  ],
+  "references": [
+    {
+      "name": "Jordan Ministry of Education",
+      "url": "https://moe.gov.jo/",
+      "type": "ministry-education",
+      "priority": 1
+    },
+    {
+      "name": "National Center for Curriculum Development (NCCD)",
+      "url": "https://www.nccd.gov.jo/Ar/Pages/textbooks",
+      "type": "curriculum-authority",
+      "priority": 1
+    },
+    {
+      "name": "NCCD Official Portal",
+      "url": "https://www.nccd.gov.jo/",
+      "type": "curriculum-authority",
+      "priority": 1
+    },
+    {
+      "name": "Darsak Platform",
+      "url": "https://darsak.gov.jo/",
+      "type": "digital-learning-platform",
+      "priority": 1
+    },
+    {
+      "name": "MoE Curricula and School Textbooks Administration",
+      "url": "https://moe.gov.jo/ar/%D8%A5%D8%AF%D8%A7%D8%B1%D8%A9-%D8%A7%D9%84%D9%85%D9%86%D8%A7%D9%87%D8%AC-%D9%88%D8%A7%D9%84%D9%83%D8%AA%D8%A8-%D8%A7%D9%84%D9%85%D8%AF%D8%B1%D8%B3%D9%8A%D8%A9",
+      "type": "ministry",
+      "priority": 1
+    },
+    {
+      "name": "MoE Approved Textbook Editions 2025–2026",
+      "url": "https://moe.gov.jo/ar/node/79818",
+      "type": "ministry",
+      "priority": 1
+    },
+    {
+      "name": "NCCD catalogue — الصف 12",
+      "url": "https://www.nccd.gov.jo/ar/pages/TextBooksGrade/83",
+      "type": "official-grade-catalogue"
+    },
+    {
+      "name": "Darsak Platform",
+      "url": "https://darsak.gov.jo/",
+      "type": "official-digital-platform"
+    },
+    {
+      "name": "MoE Jordan",
+      "url": "https://moe.gov.jo/",
+      "type": "ministry-education"
+    }
+  ],
+  "contentOrigin": "success-os-original-curriculum-aligned",
+  "rights": {
+    "copyBookText": false,
+    "copyTeacherGuideProse": false,
+    "generateOriginalSuccessOsContentOnly": true
+  },
+  "verification": {
+    "checks": {
+      "framework": true,
+      "gradeStructure": true,
+      "subjectStructure": true,
+      "units": true,
+      "lessons": true,
+      "learningOutcomes": true,
+      "requiredSkills": true,
+      "scientificConcepts": true,
+      "definitions": true,
+      "examples": true,
+      "educationalDiagrams": true,
+      "references": true,
+      "catalogueLinked": true,
+      "originalOnly": true,
+      "noInternational": true
+    },
+    "structurePercent": 100,
+    "cataloguePercent": 96,
+    "provenancePercent": 94,
+    "percent": 97.9,
+    "passed": 15,
+    "total": 15
+  },
+  "builtAt": "2026-07-31T17:55:35.495Z"
+}

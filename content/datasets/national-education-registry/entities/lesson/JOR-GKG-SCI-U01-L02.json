@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-GKG-SCI-U01-L02",
+  "kind": "lesson",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "استكشاف الطبيعة — بناء المهارة",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-GKG-SCI-U01",
+  "relationships": {
+    "unitId": "JOR-GKG-SCI-U01",
+    "bookId": "JOR-BOOK-000144",
+    "subjectId": "JOR-GKG-SCI",
+    "gradeId": "JOR-GKG",
+    "belongsTo": "JOR-GKG-SCI-U01"
+  },
+  "createdAt": "2026-07-31T17:56:57.568Z",
+  "updatedAt": "2026-07-31T17:56:57.568Z",
+  "lessonCode": "L02",
+  "sequence": 2,
+  "legacyLessonId": "L1.2",
+  "keywords": [
+    "مادة",
+    "طاقة",
+    "نظام"
+  ]
+}

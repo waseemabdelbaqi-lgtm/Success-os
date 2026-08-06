@@ -1,0 +1,16 @@
+{
+  "globalId": "JOR-DIAGRAM-001795",
+  "kind": "diagram",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "مخطط تعليمي لوحدة تحليل النصوص",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G09-ARAB-U01-L03",
+  "relationships": {
+    "lessonId": "JOR-G09-ARAB-U01-L03",
+    "belongsTo": "JOR-G09-ARAB-U01-L03"
+  },
+  "createdAt": "2026-07-31T17:56:57.221Z",
+  "updatedAt": "2026-07-31T17:56:57.221Z"
+}

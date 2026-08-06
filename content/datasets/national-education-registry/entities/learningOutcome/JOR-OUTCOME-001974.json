@@ -1,0 +1,18 @@
+{
+  "globalId": "JOR-OUTCOME-001974",
+  "kind": "learningOutcome",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يتعرف المتعلم مفهومًا محوريًا في التربية الإسلامية ضمن العبادات الأساسية بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 4.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G04-ISL-U02-L04",
+  "relationships": {
+    "lessonId": "JOR-G04-ISL-U02-L04",
+    "belongsTo": "JOR-G04-ISL-U02-L04"
+  },
+  "createdAt": "2026-07-31T17:56:56.799Z",
+  "updatedAt": "2026-07-31T17:56:56.799Z",
+  "text": "أن يتعرف المتعلم مفهومًا محوريًا في التربية الإسلامية ضمن العبادات الأساسية بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 4.",
+  "sequence": 1
+}

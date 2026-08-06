@@ -1,0 +1,17 @@
+{
+  "globalId": "JOR-IMAGE-000247",
+  "kind": "educationalImage",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "مخطط تعليمي لوحدة الألعاب المنظمة",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G01-PE-U02-L03",
+  "relationships": {
+    "lessonId": "JOR-G01-PE-U02-L03",
+    "belongsTo": "JOR-G01-PE-U02-L03"
+  },
+  "createdAt": "2026-07-31T17:56:56.717Z",
+  "updatedAt": "2026-07-31T17:56:56.717Z",
+  "src": null
+}

@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-GKG-EMATH-U02-L03",
+  "kind": "lesson",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "الأشكال في محيطي — تطبيق ومثال",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-GKG-EMATH-U02",
+  "relationships": {
+    "unitId": "JOR-GKG-EMATH-U02",
+    "bookId": "JOR-BOOK-000143",
+    "subjectId": "JOR-GKG-EMATH",
+    "gradeId": "JOR-GKG",
+    "belongsTo": "JOR-GKG-EMATH-U02"
+  },
+  "createdAt": "2026-07-31T17:56:57.560Z",
+  "updatedAt": "2026-07-31T17:56:57.560Z",
+  "lessonCode": "L03",
+  "sequence": 3,
+  "legacyLessonId": "L2.3",
+  "keywords": [
+    "عدد",
+    "عملية",
+    "نمط"
+  ]
+}

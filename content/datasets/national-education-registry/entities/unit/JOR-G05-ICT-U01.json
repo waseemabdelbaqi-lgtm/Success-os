@@ -1,0 +1,21 @@
+{
+  "globalId": "JOR-G05-ICT-U01",
+  "kind": "unit",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "معالجة النصوص",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-BOOK-000060",
+  "relationships": {
+    "bookId": "JOR-BOOK-000060",
+    "subjectId": "JOR-G05-ICT",
+    "gradeId": "JOR-G05",
+    "belongsTo": "JOR-BOOK-000060"
+  },
+  "createdAt": "2026-07-31T17:56:56.885Z",
+  "updatedAt": "2026-07-31T17:56:56.885Z",
+  "unitCode": "U01",
+  "sequence": 1,
+  "legacyUnitId": "U1"
+}

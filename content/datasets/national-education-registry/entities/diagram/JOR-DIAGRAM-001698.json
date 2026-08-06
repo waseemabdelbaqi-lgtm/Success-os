@@ -1,0 +1,16 @@
+{
+  "globalId": "JOR-DIAGRAM-001698",
+  "kind": "diagram",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "مخطط تعليمي لوحدة الجغرافيا الاقتصادية",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G09-الجغرافي-U01-L02",
+  "relationships": {
+    "lessonId": "JOR-G09-الجغرافي-U01-L02",
+    "belongsTo": "JOR-G09-الجغرافي-U01-L02"
+  },
+  "createdAt": "2026-07-31T17:56:57.175Z",
+  "updatedAt": "2026-07-31T17:56:57.175Z"
+}

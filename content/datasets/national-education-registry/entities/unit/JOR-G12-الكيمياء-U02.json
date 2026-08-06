@@ -1,0 +1,21 @@
+{
+  "globalId": "JOR-G12-الكيمياء-U02",
+  "kind": "unit",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "الروابط والتفاعلات",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-BOOK-000122",
+  "relationships": {
+    "bookId": "JOR-BOOK-000122",
+    "subjectId": "JOR-G12-الكيمياء",
+    "gradeId": "JOR-G12",
+    "belongsTo": "JOR-BOOK-000122"
+  },
+  "createdAt": "2026-07-31T17:56:57.347Z",
+  "updatedAt": "2026-07-31T17:56:57.347Z",
+  "unitCode": "U02",
+  "sequence": 2,
+  "legacyUnitId": "U2"
+}

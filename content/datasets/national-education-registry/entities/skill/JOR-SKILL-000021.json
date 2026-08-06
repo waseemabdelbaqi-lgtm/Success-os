@@ -1,0 +1,31 @@
+{
+  "globalId": "JOR-SKILL-000021",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«وثائق ومصادر — بناء المهارة» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-000040",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-000040",
+      "JOR-OUTCOME-000041",
+      "JOR-OUTCOME-000042",
+      "JOR-OUTCOME-004104",
+      "JOR-OUTCOME-004105",
+      "JOR-OUTCOME-004106",
+      "JOR-OUTCOME-004760",
+      "JOR-OUTCOME-004761",
+      "JOR-OUTCOME-004762"
+    ],
+    "lessonIds": [
+      "JOR-G10-التاريخ-U04-L02",
+      "JOR-G08-التاريخ-U04-L02",
+      "JOR-G09-التاريخ-U04-L02"
+    ],
+    "belongsTo": "JOR-OUTCOME-000040"
+  },
+  "createdAt": "2026-07-31T17:56:56.684Z",
+  "updatedAt": "2026-07-31T17:56:57.138Z"
+}

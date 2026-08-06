@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-G01-ARAB-U04-L01",
+  "kind": "lesson",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "التعبير الكتابي — مقدمة ومفاهيم",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G01-ARAB-U04",
+  "relationships": {
+    "unitId": "JOR-G01-ARAB-U04",
+    "bookId": "JOR-BOOK-000021",
+    "subjectId": "JOR-G01-ARAB",
+    "gradeId": "JOR-G01",
+    "belongsTo": "JOR-G01-ARAB-U04"
+  },
+  "createdAt": "2026-07-31T17:56:56.737Z",
+  "updatedAt": "2026-07-31T17:56:56.737Z",
+  "lessonCode": "L01",
+  "sequence": 1,
+  "legacyLessonId": "L4.1",
+  "keywords": [
+    "نص",
+    "معنى",
+    "أسلوب"
+  ]
+}

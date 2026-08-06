@@ -1,0 +1,21 @@
+{
+  "globalId": "JOR-G03-ARTS-U01",
+  "kind": "unit",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "عناصر الفن",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-BOOK-000034",
+  "relationships": {
+    "bookId": "JOR-BOOK-000034",
+    "subjectId": "JOR-G03-ARTS",
+    "gradeId": "JOR-G03",
+    "belongsTo": "JOR-BOOK-000034"
+  },
+  "createdAt": "2026-07-31T17:56:56.774Z",
+  "updatedAt": "2026-07-31T17:56:56.774Z",
+  "unitCode": "U01",
+  "sequence": 1,
+  "legacyUnitId": "U1"
+}

@@ -1,0 +1,21 @@
+{
+  "globalId": "JOR-G08-SOC-U03",
+  "kind": "unit",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "التنمية",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-BOOK-000089",
+  "relationships": {
+    "bookId": "JOR-BOOK-000089",
+    "subjectId": "JOR-G08-SOC",
+    "gradeId": "JOR-G08",
+    "belongsTo": "JOR-BOOK-000089"
+  },
+  "createdAt": "2026-07-31T17:56:57.085Z",
+  "updatedAt": "2026-07-31T17:56:57.085Z",
+  "unitCode": "U03",
+  "sequence": 3,
+  "legacyUnitId": "U3"
+}

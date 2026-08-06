@@ -1,0 +1,21 @@
+{
+  "globalId": "JOR-GKG-المهارات-U02",
+  "kind": "unit",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "وحدة استكشافية 2",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-BOOK-000146",
+  "relationships": {
+    "bookId": "JOR-BOOK-000146",
+    "subjectId": "JOR-GKG-المهارات",
+    "gradeId": "JOR-GKG",
+    "belongsTo": "JOR-BOOK-000146"
+  },
+  "createdAt": "2026-07-31T17:56:57.592Z",
+  "updatedAt": "2026-07-31T17:56:57.592Z",
+  "unitCode": "U02",
+  "sequence": 2,
+  "legacyUnitId": "U2"
+}

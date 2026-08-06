@@ -50,6 +50,14 @@ function extractionRoot() {
 }
 
 function booksDir() {
+  const committed = path.join(
+    rootDir(),
+    'content',
+    'datasets',
+    'global-knowledge',
+    'books',
+  );
+  if (fs.existsSync(committed)) return committed;
   return path.join(rootDir(), 'library', 'global-knowledge', 'books');
 }
 

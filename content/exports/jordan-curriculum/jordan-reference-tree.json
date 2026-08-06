@@ -1,0 +1,302 @@
+{
+  "schema": "success-os.jordan-reference-dataset.v1/tree",
+  "country": "Jordan",
+  "curriculum": "Jordan National Curriculum",
+  "grade": "Grade 1",
+  "semester": "Semester 1",
+  "idConvention": {
+    "country": "JO",
+    "curriculum": "JO-NATIONAL",
+    "grade": "JO-NATIONAL-G01",
+    "subject": "JO-NATIONAL-G01-MATH",
+    "book": "JO-NATIONAL-G01-MATH-B01",
+    "unit": "JO-NATIONAL-G01-MATH-B01-U01",
+    "lesson": "JO-NATIONAL-G01-MATH-B01-U01-L01"
+  },
+  "subjects": [
+    {
+      "id": "JO-NATIONAL-G01-MATH",
+      "globalSubjectId": "SUB-00001",
+      "code": "MATH",
+      "name": "Mathematics",
+      "books": [
+        {
+          "id": "JO-NATIONAL-G01-MATH-B01",
+          "part": "Book 1",
+          "units": [
+            {
+              "id": "JO-NATIONAL-G01-MATH-B01-U01",
+              "title": "Unit 1 — Numbers around us",
+              "lessons": [
+                {
+                  "id": "JO-NATIONAL-G01-MATH-B01-U01-L01",
+                  "order": 1,
+                  "title": "Lesson 1 — Count to three",
+                  "verificationStatus": "verified",
+                  "rightsStatus": "verified"
+                },
+                {
+                  "id": "JO-NATIONAL-G01-MATH-B01-U01-L02",
+                  "order": 2,
+                  "title": "Lesson 2 — Count to five",
+                  "verificationStatus": "verified",
+                  "rightsStatus": "verified"
+                },
+                {
+                  "id": "JO-NATIONAL-G01-MATH-B01-U01-L03",
+                  "order": 3,
+                  "title": "Lesson 3 — Compare small sets",
+                  "verificationStatus": "verified",
+                  "rightsStatus": "verified"
+                }
+              ]
+            },
+            {
+              "id": "JO-NATIONAL-G01-MATH-B01-U02",
+              "title": "Unit 2 — Shapes",
+              "lessons": [
+                {
+                  "id": "JO-NATIONAL-G01-MATH-B01-U02-L01",
+                  "order": 1,
+                  "title": "Lesson 1 — Circles and squares",
+                  "verificationStatus": "verified",
+                  "rightsStatus": "verified"
+                },
+                {
+                  "id": "JO-NATIONAL-G01-MATH-B01-U02-L02",
+                  "order": 2,
+                  "title": "Lesson 2 — Triangles",
+                  "verificationStatus": "pending",
+                  "rightsStatus": "verified"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "JO-NATIONAL-G01-MATH-B02",
+          "part": "Book 2",
+          "units": [
+            {
+              "id": "JO-NATIONAL-G01-MATH-B02-U01",
+              "title": "Unit 1 — Addition readiness",
+              "lessons": [
+                {
+                  "id": "JO-NATIONAL-G01-MATH-B02-U01-L01",
+                  "order": 1,
+                  "title": "Lesson 1 — Putting together",
+                  "verificationStatus": "pending",
+                  "rightsStatus": "restricted"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "JO-NATIONAL-G01-AR",
+      "globalSubjectId": "SUB-00006",
+      "code": "AR",
+      "name": "Arabic",
+      "books": [
+        {
+          "id": "JO-NATIONAL-G01-AR-B01",
+          "part": "Book 1",
+          "units": [
+            {
+              "id": "JO-NATIONAL-G01-AR-B01-U01",
+              "title": "Unit 1 — Letters",
+              "lessons": [
+                {
+                  "id": "JO-NATIONAL-G01-AR-B01-U01-L01",
+                  "order": 1,
+                  "title": "Lesson 1 — Letter Alif",
+                  "verificationStatus": "verified",
+                  "rightsStatus": "verified"
+                },
+                {
+                  "id": "JO-NATIONAL-G01-AR-B01-U01-L02",
+                  "order": 2,
+                  "title": "Lesson 2 — Letter Ba",
+                  "verificationStatus": "verified",
+                  "rightsStatus": "verified"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "JO-NATIONAL-G01-EN",
+      "globalSubjectId": "SUB-00007",
+      "code": "EN",
+      "name": "English",
+      "books": [
+        {
+          "id": "JO-NATIONAL-G01-EN-B01",
+          "part": "Book 1",
+          "units": [
+            {
+              "id": "JO-NATIONAL-G01-EN-B01-U01",
+              "title": "Unit 1 — Hello",
+              "lessons": [
+                {
+                  "id": "JO-NATIONAL-G01-EN-B01-U01-L01",
+                  "order": 1,
+                  "title": "Lesson 1 — Greetings",
+                  "verificationStatus": "verified",
+                  "rightsStatus": "verified"
+                },
+                {
+                  "id": "JO-NATIONAL-G01-EN-B01-U01-L02",
+                  "order": 2,
+                  "title": "Lesson 2 — My name",
+                  "verificationStatus": "rejected",
+                  "rightsStatus": "rejected"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "JO-NATIONAL-G01-SCI",
+      "globalSubjectId": "SUB-00002",
+      "code": "SCI",
+      "name": "Science",
+      "books": [
+        {
+          "id": "JO-NATIONAL-G01-SCI-B01",
+          "part": "Book 1",
+          "units": [
+            {
+              "id": "JO-NATIONAL-G01-SCI-B01-U01",
+              "title": "Unit 1 — Living things",
+              "lessons": [
+                {
+                  "id": "JO-NATIONAL-G01-SCI-B01-U01-L01",
+                  "order": 1,
+                  "title": "Lesson 1 — Plants and animals",
+                  "verificationStatus": "verified",
+                  "rightsStatus": "verified"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "JO-NATIONAL-G01-ISL",
+      "globalSubjectId": "SUB-00008",
+      "code": "ISL",
+      "name": "Islamic Education",
+      "books": [
+        {
+          "id": "JO-NATIONAL-G01-ISL-B01",
+          "part": "Book 1",
+          "units": [
+            {
+              "id": "JO-NATIONAL-G01-ISL-B01-U01",
+              "title": "Unit 1 — Good manners",
+              "lessons": [
+                {
+                  "id": "JO-NATIONAL-G01-ISL-B01-U01-L01",
+                  "order": 1,
+                  "title": "Lesson 1 — Saying salaam",
+                  "verificationStatus": "verified",
+                  "rightsStatus": "verified"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "JO-NATIONAL-G01-SOC",
+      "globalSubjectId": "SUB-00009",
+      "code": "SOC",
+      "name": "Social Studies",
+      "books": [
+        {
+          "id": "JO-NATIONAL-G01-SOC-B01",
+          "part": "Book 1",
+          "units": [
+            {
+              "id": "JO-NATIONAL-G01-SOC-B01-U01",
+              "title": "Unit 1 — My family",
+              "lessons": [
+                {
+                  "id": "JO-NATIONAL-G01-SOC-B01-U01-L01",
+                  "order": 1,
+                  "title": "Lesson 1 — Family members",
+                  "verificationStatus": "verified",
+                  "rightsStatus": "verified"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "JO-NATIONAL-G01-ART",
+      "globalSubjectId": "SUB-00010",
+      "code": "ART",
+      "name": "Art",
+      "books": [
+        {
+          "id": "JO-NATIONAL-G01-ART-B01",
+          "part": "Book 1",
+          "units": [
+            {
+              "id": "JO-NATIONAL-G01-ART-B01-U01",
+              "title": "Unit 1 — Colors",
+              "lessons": [
+                {
+                  "id": "JO-NATIONAL-G01-ART-B01-U01-L01",
+                  "order": 1,
+                  "title": "Lesson 1 — Primary colors",
+                  "verificationStatus": "verified",
+                  "rightsStatus": "verified"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "JO-NATIONAL-G01-PE",
+      "globalSubjectId": "SUB-00011",
+      "code": "PE",
+      "name": "Physical Education",
+      "books": [
+        {
+          "id": "JO-NATIONAL-G01-PE-B01",
+          "part": "Book 1",
+          "units": [
+            {
+              "id": "JO-NATIONAL-G01-PE-B01-U01",
+              "title": "Unit 1 — Movement",
+              "lessons": [
+                {
+                  "id": "JO-NATIONAL-G01-PE-B01-U01-L01",
+                  "order": 1,
+                  "title": "Lesson 1 — Warm-up games",
+                  "verificationStatus": "verified",
+                  "rightsStatus": "verified"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "note": "Subjects discovered from official Grade 1 source — Physics/Chemistry/Biology absent."
+}

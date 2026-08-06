@@ -1,0 +1,21 @@
+{
+  "globalId": "JOR-REFERENCE-000028",
+  "kind": "reference",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "NCCD Grade Textbook Catalogue — الصف 1",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-SYS-000001",
+  "relationships": {
+    "educationalSystemId": "JOR-SYS-000001",
+    "lessonIds": [],
+    "belongsTo": "JOR-SYS-000001"
+  },
+  "createdAt": "2026-07-31T17:56:57.599Z",
+  "updatedAt": "2026-07-31T17:56:57.599Z",
+  "url": "https://www.nccd.gov.jo/ar/pages/TextBooksGrade/68",
+  "publisher": "NCCD",
+  "category": "Official Textbooks",
+  "legacySourceId": "jo-ref-nccd-grade-68"
+}

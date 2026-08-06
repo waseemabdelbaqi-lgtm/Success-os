@@ -1,0 +1,18 @@
+{
+  "globalId": "JOR-OUTCOME-002532",
+  "kind": "learningOutcome",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«الدستور مبسطاً — بناء المهارة» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G05-التربيةا-U01-L02",
+  "relationships": {
+    "lessonId": "JOR-G05-التربيةا-U01-L02",
+    "belongsTo": "JOR-G05-التربيةا-U01-L02"
+  },
+  "createdAt": "2026-07-31T17:56:56.847Z",
+  "updatedAt": "2026-07-31T17:56:56.847Z",
+  "text": "أن يطبّق مهارة مرتبطة بـ«الدستور مبسطاً — بناء المهارة» بخطوات واضحة قابلة للتحقق.",
+  "sequence": 2
+}

@@ -1,0 +1,31 @@
+{
+  "globalId": "JOR-SKILL-000076",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«التخطيط الشخصي — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-000151",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-000151",
+      "JOR-OUTCOME-000152",
+      "JOR-OUTCOME-000153",
+      "JOR-OUTCOME-004215",
+      "JOR-OUTCOME-004216",
+      "JOR-OUTCOME-004217",
+      "JOR-OUTCOME-004871",
+      "JOR-OUTCOME-004872",
+      "JOR-OUTCOME-004873"
+    ],
+    "lessonIds": [
+      "JOR-G10-التربيةا-U01-L03",
+      "JOR-G08-التربيةا-U01-L03",
+      "JOR-G09-التربيةا-U01-L03"
+    ],
+    "belongsTo": "JOR-OUTCOME-000151"
+  },
+  "createdAt": "2026-07-31T17:56:56.689Z",
+  "updatedAt": "2026-07-31T17:56:57.155Z"
+}

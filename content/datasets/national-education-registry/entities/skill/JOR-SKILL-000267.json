@@ -1,0 +1,31 @@
+{
+  "globalId": "JOR-SKILL-000267",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«Paragraph Writing — مقدمة ومفاهيم» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-000549",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-000549",
+      "JOR-OUTCOME-000550",
+      "JOR-OUTCOME-000551",
+      "JOR-OUTCOME-004613",
+      "JOR-OUTCOME-004614",
+      "JOR-OUTCOME-004615",
+      "JOR-OUTCOME-005269",
+      "JOR-OUTCOME-005270",
+      "JOR-OUTCOME-005271"
+    ],
+    "lessonIds": [
+      "JOR-G10-ENG-U04-L01",
+      "JOR-G08-ENG-U04-L01",
+      "JOR-G09-ENG-U04-L01"
+    ],
+    "belongsTo": "JOR-OUTCOME-000549"
+  },
+  "createdAt": "2026-07-31T17:56:56.709Z",
+  "updatedAt": "2026-07-31T17:56:57.218Z"
+}

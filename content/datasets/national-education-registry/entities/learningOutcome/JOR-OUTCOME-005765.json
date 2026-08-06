@@ -1,0 +1,18 @@
+{
+  "globalId": "JOR-OUTCOME-005765",
+  "kind": "learningOutcome",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«تاريخ الأردن المعاصر — بناء المهارة» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G11-تاريخالأ-U01-L02",
+  "relationships": {
+    "lessonId": "JOR-G11-تاريخالأ-U01-L02",
+    "belongsTo": "JOR-G11-تاريخالأ-U01-L02"
+  },
+  "createdAt": "2026-07-31T17:56:57.299Z",
+  "updatedAt": "2026-07-31T17:56:57.299Z",
+  "text": "أن يطبّق مهارة مرتبطة بـ«تاريخ الأردن المعاصر — بناء المهارة» بخطوات واضحة قابلة للتحقق.",
+  "sequence": 2
+}

@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-SKILL-000988",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«تاريخ الفن — بناء المهارة» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-006572",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-006572",
+      "JOR-OUTCOME-006573",
+      "JOR-OUTCOME-006574",
+      "JOR-OUTCOME-006924",
+      "JOR-OUTCOME-006925",
+      "JOR-OUTCOME-006926"
+    ],
+    "lessonIds": [
+      "JOR-G11-الفنونوا-U03-L02",
+      "JOR-G12-الفنونوا-U03-L02"
+    ],
+    "belongsTo": "JOR-OUTCOME-006572"
+  },
+  "createdAt": "2026-07-31T17:56:57.443Z",
+  "updatedAt": "2026-07-31T17:56:57.528Z"
+}

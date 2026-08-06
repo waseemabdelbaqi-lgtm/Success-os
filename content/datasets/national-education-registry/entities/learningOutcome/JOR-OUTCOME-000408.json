@@ -1,0 +1,18 @@
+{
+  "globalId": "JOR-OUTCOME-000408",
+  "kind": "learningOutcome",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يتعرف المتعلم مفهومًا محوريًا في الرياضيات ضمن الإحصاء التطبيقي بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 10.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G10-MATH-U04-L02",
+  "relationships": {
+    "lessonId": "JOR-G10-MATH-U04-L02",
+    "belongsTo": "JOR-G10-MATH-U04-L02"
+  },
+  "createdAt": "2026-07-31T17:56:56.701Z",
+  "updatedAt": "2026-07-31T17:56:56.701Z",
+  "text": "أن يتعرف المتعلم مفهومًا محوريًا في الرياضيات ضمن الإحصاء التطبيقي بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 10.",
+  "sequence": 1
+}

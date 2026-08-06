@@ -1,0 +1,35 @@
+{
+  "globalId": "JOR-SKILL-000325",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«العبادات الأساسية — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-000675",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-000675",
+      "JOR-OUTCOME-000676",
+      "JOR-OUTCOME-000677",
+      "JOR-OUTCOME-001107",
+      "JOR-OUTCOME-001108",
+      "JOR-OUTCOME-001109",
+      "JOR-OUTCOME-001539",
+      "JOR-OUTCOME-001540",
+      "JOR-OUTCOME-001541",
+      "JOR-OUTCOME-001971",
+      "JOR-OUTCOME-001972",
+      "JOR-OUTCOME-001973"
+    ],
+    "lessonIds": [
+      "JOR-G01-ISL-U02-L03",
+      "JOR-G02-ISL-U02-L03",
+      "JOR-G03-ISL-U02-L03",
+      "JOR-G04-ISL-U02-L03"
+    ],
+    "belongsTo": "JOR-OUTCOME-000675"
+  },
+  "createdAt": "2026-07-31T17:56:56.715Z",
+  "updatedAt": "2026-07-31T17:56:56.799Z"
+}

@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-SKILL-000994",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«محفظة أعمال — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-006587",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-006587",
+      "JOR-OUTCOME-006588",
+      "JOR-OUTCOME-006589",
+      "JOR-OUTCOME-006939",
+      "JOR-OUTCOME-006940",
+      "JOR-OUTCOME-006941"
+    ],
+    "lessonIds": [
+      "JOR-G11-الفنونوا-U04-L03",
+      "JOR-G12-الفنونوا-U04-L03"
+    ],
+    "belongsTo": "JOR-OUTCOME-006587"
+  },
+  "createdAt": "2026-07-31T17:56:57.446Z",
+  "updatedAt": "2026-07-31T17:56:57.531Z"
+}

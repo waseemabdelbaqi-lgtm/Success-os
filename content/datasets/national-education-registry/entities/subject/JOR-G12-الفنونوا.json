@@ -1,0 +1,20 @@
+{
+  "globalId": "JOR-G12-الفنونوا",
+  "kind": "subject",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "الفنون والتصميم",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G12",
+  "relationships": {
+    "gradeId": "JOR-G12",
+    "educationalSystemId": "JOR-SYS-000001",
+    "countryId": "JOR",
+    "belongsTo": "JOR-G12"
+  },
+  "createdAt": "2026-07-31T17:56:57.521Z",
+  "updatedAt": "2026-07-31T17:56:57.521Z",
+  "subjectCode": "الفنونوا",
+  "gradeCode": "G12"
+}

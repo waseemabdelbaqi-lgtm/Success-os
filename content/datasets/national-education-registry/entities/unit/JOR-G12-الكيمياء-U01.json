@@ -1,0 +1,21 @@
+{
+  "globalId": "JOR-G12-الكيمياء-U01",
+  "kind": "unit",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "بنية الذرة والجدول الدوري",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-BOOK-000122",
+  "relationships": {
+    "bookId": "JOR-BOOK-000122",
+    "subjectId": "JOR-G12-الكيمياء",
+    "gradeId": "JOR-G12",
+    "belongsTo": "JOR-BOOK-000122"
+  },
+  "createdAt": "2026-07-31T17:56:57.346Z",
+  "updatedAt": "2026-07-31T17:56:57.346Z",
+  "unitCode": "U01",
+  "sequence": 1,
+  "legacyUnitId": "U1"
+}

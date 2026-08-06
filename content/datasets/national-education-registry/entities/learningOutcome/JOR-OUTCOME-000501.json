@@ -1,0 +1,18 @@
+{
+  "globalId": "JOR-OUTCOME-000501",
+  "kind": "learningOutcome",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يتعرف المتعلم مفهومًا محوريًا في الفنون ضمن معارض ومشاريع بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 10.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G10-الفنون-U04-L01",
+  "relationships": {
+    "lessonId": "JOR-G10-الفنون-U04-L01",
+    "belongsTo": "JOR-G10-الفنون-U04-L01"
+  },
+  "createdAt": "2026-07-31T17:56:56.705Z",
+  "updatedAt": "2026-07-31T17:56:56.705Z",
+  "text": "أن يتعرف المتعلم مفهومًا محوريًا في الفنون ضمن معارض ومشاريع بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 10.",
+  "sequence": 1
+}

@@ -1,0 +1,19 @@
+{
+  "globalId": "JOR-BOOK-000018",
+  "kind": "book",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "Success OS — الرياضيات",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G01-MATH",
+  "relationships": {
+    "subjectId": "JOR-G01-MATH",
+    "gradeId": "JOR-G01",
+    "belongsTo": "JOR-G01-MATH"
+  },
+  "createdAt": "2026-07-31T17:56:56.724Z",
+  "updatedAt": "2026-07-31T17:56:56.724Z",
+  "legacyBookId": "jordan__التعليم-الأساسي__jordan-national-curriculum__الصف-1__الرياضيات__ar",
+  "officialSource": "https://www.nccd.gov.jo/ar/pages/TextBooksGrade/68"
+}

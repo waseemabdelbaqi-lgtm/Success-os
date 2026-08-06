@@ -1,0 +1,51 @@
+{
+  "globalId": "JOR-SKILL-000999",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يتعرف المتعلم مفهومًا محوريًا في الهندسة ضمن مشروع تطبيقي بما يتوافق مع إطار المنهاج الوطني الأردني لـالصف 11.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-006629",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-006629",
+      "JOR-OUTCOME-006630",
+      "JOR-OUTCOME-006631",
+      "JOR-OUTCOME-006632",
+      "JOR-OUTCOME-006633",
+      "JOR-OUTCOME-006634",
+      "JOR-OUTCOME-006635",
+      "JOR-OUTCOME-006636",
+      "JOR-OUTCOME-006637",
+      "JOR-OUTCOME-006638",
+      "JOR-OUTCOME-006639",
+      "JOR-OUTCOME-006640",
+      "JOR-OUTCOME-006981",
+      "JOR-OUTCOME-006982",
+      "JOR-OUTCOME-006983",
+      "JOR-OUTCOME-006984",
+      "JOR-OUTCOME-006985",
+      "JOR-OUTCOME-006986",
+      "JOR-OUTCOME-006987",
+      "JOR-OUTCOME-006988",
+      "JOR-OUTCOME-006989",
+      "JOR-OUTCOME-006990",
+      "JOR-OUTCOME-006991",
+      "JOR-OUTCOME-006992"
+    ],
+    "lessonIds": [
+      "JOR-G11-الهندسة-U04-L01",
+      "JOR-G11-الهندسة-U04-L02",
+      "JOR-G11-الهندسة-U04-L03",
+      "JOR-G11-الهندسة-U04-L04",
+      "JOR-G12-الهندسة-U04-L01",
+      "JOR-G12-الهندسة-U04-L02",
+      "JOR-G12-الهندسة-U04-L03",
+      "JOR-G12-الهندسة-U04-L04"
+    ],
+    "belongsTo": "JOR-OUTCOME-006629"
+  },
+  "createdAt": "2026-07-31T17:56:57.455Z",
+  "updatedAt": "2026-07-31T17:56:57.543Z"
+}

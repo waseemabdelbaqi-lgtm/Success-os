@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-SKILL-000980",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«ممارسة فنية متقدمة — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-006554",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-006554",
+      "JOR-OUTCOME-006555",
+      "JOR-OUTCOME-006556",
+      "JOR-OUTCOME-006906",
+      "JOR-OUTCOME-006907",
+      "JOR-OUTCOME-006908"
+    ],
+    "lessonIds": [
+      "JOR-G11-الفنونوا-U01-L04",
+      "JOR-G12-الفنونوا-U01-L04"
+    ],
+    "belongsTo": "JOR-OUTCOME-006554"
+  },
+  "createdAt": "2026-07-31T17:56:57.439Z",
+  "updatedAt": "2026-07-31T17:56:57.523Z"
+}

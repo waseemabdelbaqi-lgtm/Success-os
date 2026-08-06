@@ -1,0 +1,27 @@
+{
+  "globalId": "JOR-G11-الأعمال-U03-L04",
+  "kind": "lesson",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "معايير السلامة والجودة — تقويم وتعزيز",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-G11-الأعمال-U03",
+  "relationships": {
+    "unitId": "JOR-G11-الأعمال-U03",
+    "bookId": "JOR-BOOK-000127",
+    "subjectId": "JOR-G11-الأعمال",
+    "gradeId": "JOR-G11",
+    "belongsTo": "JOR-G11-الأعمال-U03"
+  },
+  "createdAt": "2026-07-31T17:56:57.399Z",
+  "updatedAt": "2026-07-31T17:56:57.399Z",
+  "lessonCode": "L04",
+  "sequence": 4,
+  "legacyLessonId": "L3.4",
+  "keywords": [
+    "معيار",
+    "أداة",
+    "عملية"
+  ]
+}

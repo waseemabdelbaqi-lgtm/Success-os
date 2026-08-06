@@ -1,0 +1,35 @@
+{
+  "globalId": "JOR-SKILL-000482",
+  "kind": "skill",
+  "countryCode": "JOR",
+  "country": "Jordan",
+  "label": "أن يطبّق مهارة مرتبطة بـ«السلامة الرقمية — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+  "language": "ar",
+  "status": "active",
+  "parentId": "JOR-OUTCOME-001062",
+  "relationships": {
+    "learningOutcomeIds": [
+      "JOR-OUTCOME-001062",
+      "JOR-OUTCOME-001063",
+      "JOR-OUTCOME-001064",
+      "JOR-OUTCOME-001494",
+      "JOR-OUTCOME-001495",
+      "JOR-OUTCOME-001496",
+      "JOR-OUTCOME-001926",
+      "JOR-OUTCOME-001927",
+      "JOR-OUTCOME-001928",
+      "JOR-OUTCOME-002358",
+      "JOR-OUTCOME-002359",
+      "JOR-OUTCOME-002360"
+    ],
+    "lessonIds": [
+      "JOR-G01-ICT-U02-L04",
+      "JOR-G02-ICT-U02-L04",
+      "JOR-G03-ICT-U02-L04",
+      "JOR-G04-ICT-U02-L04"
+    ],
+    "belongsTo": "JOR-OUTCOME-001062"
+  },
+  "createdAt": "2026-07-31T17:56:56.739Z",
+  "updatedAt": "2026-07-31T17:56:56.830Z"
+}

@@ -1,0 +1,1988 @@
+{
+  "schema": "success-os.jordan-national-subject-knowledge.v1",
+  "phase": "JO-01",
+  "key": "رياض الأطفال::رياض الأطفال::اللغة والتواصل",
+  "stage": "رياض الأطفال",
+  "grade": "رياض الأطفال",
+  "subject": "اللغة والتواصل",
+  "subjectFamily": "arabic",
+  "gradeBand": "kg",
+  "officialCatalogUrl": null,
+  "catalogueStatus": "verified-structure-national-profile",
+  "curriculumFramework": {
+    "name": "Jordan National Curriculum",
+    "nameAr": "المنهاج الوطني الأردني",
+    "stage": "رياض الأطفال",
+    "grade": "رياض الأطفال",
+    "subject": "اللغة والتواصل",
+    "semesters": [
+      "الفصل الأول",
+      "الفصل الثاني"
+    ]
+  },
+  "gradeStructure": {
+    "grade": "رياض الأطفال",
+    "band": "kg",
+    "stage": "رياض الأطفال"
+  },
+  "subjectStructure": {
+    "subject": "اللغة والتواصل",
+    "family": "arabic",
+    "unitCount": 4
+  },
+  "units": [
+    {
+      "unitId": "U1",
+      "titleAr": "الاستماع والتحدث",
+      "lessons": [
+        {
+          "lessonId": "L1.1",
+          "titleAr": "الاستماع والتحدث — مقدمة ومفاهيم",
+          "learningOutcomes": [
+            "أن يتعرف المتعلم مفهومًا محوريًا في اللغة والتواصل ضمن الاستماع والتحدث بما يتوافق مع إطار المنهاج الوطني الأردني لـرياض الأطفال.",
+            "أن يطبّق مهارة مرتبطة بـ«الاستماع والتحدث — مقدمة ومفاهيم» بخطوات واضحة قابلة للتحقق.",
+            "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+          ],
+          "requiredSkills": [
+            "القراءة الناقدة",
+            "الكتابة المنظمة",
+            "الاستماع"
+          ],
+          "scientificConcepts": [
+            "نص",
+            "معنى",
+            "أسلوب"
+          ],
+          "definitions": [
+            {
+              "term": "نص",
+              "definitionAr": "تعريف تعليمي أصلي لمفهوم «نص» ضمن إطار المنهاج الوطني الأردني، يُبنى لأغراض التدريس في Success OS دون اقتباس نص الكتاب المدرسي."
+            },
+            {
+              "term": "معنى",
+              "definitionAr": "تعريف تعليمي أصلي لمفهوم «معنى» ضمن إطار المنهاج الوطني الأردني، يُبنى لأغراض التدريس في Success OS دون اقتباس نص الكتاب المدرسي."
+            }
+          ],
+          "examples": [
+            {
+              "title": "مثال صفّي",
+              "text": "موقف تعليمي أصلي لـرياض الأطفال في اللغة والتواصل يوضح تطبيق فكرة درس «الاستماع والتحدث — مقدمة ومفاهيم» بخطوات قابلة للمتابعة."
+            },
+            {
+              "title": "مثال حياتي أردني",
+              "text": "ربط الدرس بسياق يومي مناسب للمتعلم في الأردن (مدرسة، منزل، مجتمع محلي) دون الاعتماد على نص كتابي محمي."
+            }
+          ],
+          "educationalDiagrams": [
+            {
+              "id": "text-structure-map",
+              "title": "مخطط تعليمي لوحدة الاستماع والتحدث",
+              "purpose": "توضيح العلاقات المفاهيمية للمتعلم",
+              "generateOriginal": true,
+              "neverCopyTextbookFigure": true
+            }
+          ],
+          "officialCurriculumReference": {
+            "curriculum": "Jordan National Curriculum",
+            "curriculumAr": "المنهاج الوطني الأردني",
+            "stage": "رياض الأطفال",
+            "grade": "رياض الأطفال",
+            "subject": "اللغة والتواصل",
+            "catalogUrl": null,
+            "authorities": [
+              {
+                "name": "Jordan Ministry of Education",
+                "url": "https://moe.gov.jo/",
+                "type": "ministry-education",
+                "priority": 1
+              },
+              {
+                "name": "National Center for Curriculum Development (NCCD)",
+                "url": "https://www.nccd.gov.jo/Ar/Pages/textbooks",
+                "type": "curriculum-authority",
+                "priority": 1
+              },
+              {
+                "name": "NCCD Official Portal",
+                "url": "https://www.nccd.gov.jo/",
+                "type": "curriculum-authority",
+                "priority": 1
+              },
+              {
+                "name": "Darsak Platform",
+                "url": "https://darsak.gov.jo/",
+                "type": "digital-learning-platform",
+                "priority": 1
+              },
+              {
+                "name": "MoE Curricula and School Textbooks Administration",
+                "url": "https://moe.gov.jo/ar/%D8%A5%D8%AF%D8%A7%D8%B1%D8%A9-%D8%A7%D9%84%D9%85%D9%86%D8%A7%D9%87%D8%AC-%D9%88%D8%A7%D9%84%D9%83%D8%AA%D8%A8-%D8%A7%D9%84%D9%85%D8%AF%D8%B1%D8%B3%D9%8A%D8%A9",
+                "type": "ministry",
+                "priority": 1
+              },
+              {
+                "name": "MoE Approved Textbook Editions 2025–2026",
+                "url": "https://moe.gov.jo/ar/node/79818",
+                "type": "ministry",
+                "priority": 1
+              }
+            ],
+            "note": "Lesson authored only after referencing official Jordanian curriculum structure for this grade/subject."
+          },
+          "contentOrigin": "success-os-original-curriculum-aligned",
+          "rights": {
+            "copyBookText": false,
+            "generateOriginalOnly": true
+          }
+        },
+        {
+          "lessonId": "L1.2",
+          "titleAr": "الاستماع والتحدث — بناء المهارة",
+          "learningOutcomes": [
+            "أن يتعرف المتعلم مفهومًا محوريًا في اللغة والتواصل ضمن الاستماع والتحدث بما يتوافق مع إطار المنهاج الوطني الأردني لـرياض الأطفال.",
+            "أن يطبّق مهارة مرتبطة بـ«الاستماع والتحدث — بناء المهارة» بخطوات واضحة قابلة للتحقق.",
+            "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+          ],
+          "requiredSkills": [
+            "القراءة الناقدة",
+            "الكتابة المنظمة",
+            "الاستماع"
+          ],
+          "scientificConcepts": [
+            "نص",
+            "معنى",
+            "أسلوب"
+          ],
+          "definitions": [
+            {
+              "term": "نص",
+              "definitionAr": "تعريف تعليمي أصلي لمفهوم «نص» ضمن إطار المنهاج الوطني الأردني، يُبنى لأغراض التدريس في Success OS دون اقتباس نص الكتاب المدرسي."
+            },
+            {
+              "term": "معنى",
+              "definitionAr": "تعريف تعليمي أصلي لمفهوم «معنى» ضمن إطار المنهاج الوطني الأردني، يُبنى لأغراض التدريس في Success OS دون اقتباس نص الكتاب المدرسي."
+            }
+          ],
+          "examples": [
+            {
+              "title": "مثال صفّي",
+              "text": "موقف تعليمي أصلي لـرياض الأطفال في اللغة والتواصل يوضح تطبيق فكرة درس «الاستماع والتحدث — بناء المهارة» بخطوات قابلة للمتابعة."
+            },
+            {
+              "title": "مثال حياتي أردني",
+              "text": "ربط الدرس بسياق يومي مناسب للمتعلم في الأردن (مدرسة، منزل، مجتمع محلي) دون الاعتماد على نص كتابي محمي."
+            }
+          ],
+          "educationalDiagrams": [
+            {
+              "id": "text-structure-map",
+              "title": "مخطط تعليمي لوحدة الاستماع والتحدث",
+              "purpose": "توضيح العلاقات المفاهيمية للمتعلم",
+              "generateOriginal": true,
+              "neverCopyTextbookFigure": true
+            }
+          ],
+          "officialCurriculumReference": {
+            "curriculum": "Jordan National Curriculum",
+            "curriculumAr": "المنهاج الوطني الأردني",
+            "stage": "رياض الأطفال",
+            "grade": "رياض الأطفال",
+            "subject": "اللغة والتواصل",
+            "catalogUrl": null,
+            "authorities": [
+              {
+                "name": "Jordan Ministry of Education",
+                "url": "https://moe.gov.jo/",
+                "type": "ministry-education",
+                "priority": 1
+              },
+              {
+                "name": "National Center for Curriculum Development (NCCD)",
+                "url": "https://www.nccd.gov.jo/Ar/Pages/textbooks",
+                "type": "curriculum-authority",
+                "priority": 1
+              },
+              {
+                "name": "NCCD Official Portal",
+                "url": "https://www.nccd.gov.jo/",
+                "type": "curriculum-authority",
+                "priority": 1
+              },
+              {
+                "name": "Darsak Platform",
+                "url": "https://darsak.gov.jo/",
+                "type": "digital-learning-platform",
+                "priority": 1
+              },
+              {
+                "name": "MoE Curricula and School Textbooks Administration",
+                "url": "https://moe.gov.jo/ar/%D8%A5%D8%AF%D8%A7%D8%B1%D8%A9-%D8%A7%D9%84%D9%85%D9%86%D8%A7%D9%87%D8%AC-%D9%88%D8%A7%D9%84%D9%83%D8%AA%D8%A8-%D8%A7%D9%84%D9%85%D8%AF%D8%B1%D8%B3%D9%8A%D8%A9",
+                "type": "ministry",
+                "priority": 1
+              },
+              {
+                "name": "MoE Approved Textbook Editions 2025–2026",
+                "url": "https://moe.gov.jo/ar/node/79818",
+                "type": "ministry",
+                "priority": 1
+              }
+            ],
+            "note": "Lesson authored only after referencing official Jordanian curriculum structure for this grade/subject."
+          },
+          "contentOrigin": "success-os-original-curriculum-aligned",
+          "rights": {
+            "copyBookText": false,
+            "generateOriginalOnly": true
+          }
+        },
+        {
+          "lessonId": "L1.3",
+          "titleAr": "الاستماع والتحدث — تطبيق ومثال",
+          "learningOutcomes": [
+            "أن يتعرف المتعلم مفهومًا محوريًا في اللغة والتواصل ضمن الاستماع والتحدث بما يتوافق مع إطار المنهاج الوطني الأردني لـرياض الأطفال.",
+            "أن يطبّق مهارة مرتبطة بـ«الاستماع والتحدث — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+            "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+          ],
+          "requiredSkills": [
+            "القراءة الناقدة",
+            "الكتابة المنظمة",
+            "الاستماع"
+          ],
+          "scientificConcepts": [
+            "نص",
+            "معنى",
+            "أسلوب"
+          ],
+          "definitions": [
+            {
+              "term": "نص",
+              "definitionAr": "تعريف تعليمي أصلي لمفهوم «نص» ضمن إطار المنهاج الوطني الأردني، يُبنى لأغراض التدريس في Success OS دون اقتباس نص الكتاب المدرسي."
+            },
+            {
+              "term": "معنى",
+              "definitionAr": "تعريف تعليمي أصلي لمفهوم «معنى» ضمن إطار المنهاج الوطني الأردني، يُبنى لأغراض التدريس في Success OS دون اقتباس نص الكتاب المدرسي."
+            }
+          ],
+          "examples": [
+            {
+              "title": "مثال صفّي",
+              "text": "موقف تعليمي أصلي لـرياض الأطفال في اللغة والتواصل يوضح تطبيق فكرة درس «الاستماع والتحدث — تطبيق ومثال» بخطوات قابلة للمتابعة."
+            },
+            {
+              "title": "مثال حياتي أردني",
+              "text": "ربط الدرس بسياق يومي مناسب للمتعلم في الأردن (مدرسة، منزل، مجتمع محلي) دون الاعتماد على نص كتابي محمي."
+            }
+          ],
+          "educationalDiagrams": [
+            {
+              "id": "text-structure-map",
+              "title": "مخطط تعليمي لوحدة الاستماع والتحدث",
+              "purpose": "توضيح العلاقات المفاهيمية للمتعلم",
+              "generateOriginal": true,
+              "neverCopyTextbookFigure": true
+            }
+          ],
+          "officialCurriculumReference": {
+            "curriculum": "Jordan National Curriculum",
+            "curriculumAr": "المنهاج الوطني الأردني",
+            "stage": "رياض الأطفال",
+            "grade": "رياض الأطفال",
+            "subject": "اللغة والتواصل",
+            "catalogUrl": null,
+            "authorities": [
+              {
+                "name": "Jordan Ministry of Education",
+                "url": "https://moe.gov.jo/",
+                "type": "ministry-education",
+                "priority": 1
+              },
+              {
+                "name": "National Center for Curriculum Development (NCCD)",
+                "url": "https://www.nccd.gov.jo/Ar/Pages/textbooks",
+                "type": "curriculum-authority",
+                "priority": 1
+              },
+              {
+                "name": "NCCD Official Portal",
+                "url": "https://www.nccd.gov.jo/",
+                "type": "curriculum-authority",
+                "priority": 1
+              },
+              {
+                "name": "Darsak Platform",
+                "url": "https://darsak.gov.jo/",
+                "type": "digital-learning-platform",
+                "priority": 1
+              },
+              {
+                "name": "MoE Curricula and School Textbooks Administration",
+                "url": "https://moe.gov.jo/ar/%D8%A5%D8%AF%D8%A7%D8%B1%D8%A9-%D8%A7%D9%84%D9%85%D9%86%D8%A7%D9%87%D8%AC-%D9%88%D8%A7%D9%84%D9%83%D8%AA%D8%A8-%D8%A7%D9%84%D9%85%D8%AF%D8%B1%D8%B3%D9%8A%D8%A9",
+                "type": "ministry",
+                "priority": 1
+              },
+              {
+                "name": "MoE Approved Textbook Editions 2025–2026",
+                "url": "https://moe.gov.jo/ar/node/79818",
+                "type": "ministry",
+                "priority": 1
+              }
+            ],
+            "note": "Lesson authored only after referencing official Jordanian curriculum structure for this grade/subject."
+          },
+          "contentOrigin": "success-os-original-curriculum-aligned",
+          "rights": {
+            "copyBookText": false,
+            "generateOriginalOnly": true
+          }
+        },
+        {
+          "lessonId": "L1.4",
+          "titleAr": "الاستماع والتحدث — تقويم وتعزيز",
+          "learningOutcomes": [
+            "أن يتعرف المتعلم مفهومًا محوريًا في اللغة والتواصل ضمن الاستماع والتحدث بما يتوافق مع إطار المنهاج الوطني الأردني لـرياض الأطفال.",
+            "أن يطبّق مهارة مرتبطة بـ«الاستماع والتحدث — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+            "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+          ],
+          "requiredSkills": [
+            "القراءة الناقدة",
+            "الكتابة المنظمة",
+            "الاستماع"
+          ],
+          "scientificConcepts": [
+            "نص",
+            "معنى",
+            "أسلوب"
+          ],
+          "definitions": [
+            {
+              "term": "نص",
+              "definitionAr": "تعريف تعليمي أصلي لمفهوم «نص» ضمن إطار المنهاج الوطني الأردني، يُبنى لأغراض التدريس في Success OS دون اقتباس نص الكتاب المدرسي."
+            },
+            {
+              "term": "معنى",
+              "definitionAr": "تعريف تعليمي أصلي لمفهوم «معنى» ضمن إطار المنهاج الوطني الأردني، يُبنى لأغراض التدريس في Success OS دون اقتباس نص الكتاب المدرسي."
+            }
+          ],
+          "examples": [
+            {
+              "title": "مثال صفّي",
+              "text": "موقف تعليمي أصلي لـرياض الأطفال في اللغة والتواصل يوضح تطبيق فكرة درس «الاستماع والتحدث — تقويم وتعزيز» بخطوات قابلة للمتابعة."
+            },
+            {
+              "title": "مثال حياتي أردني",
+              "text": "ربط الدرس بسياق يومي مناسب للمتعلم في الأردن (مدرسة، منزل، مجتمع محلي) دون الاعتماد على نص كتابي محمي."
+            }
+          ],
+          "educationalDiagrams": [
+            {
+              "id": "text-structure-map",
+              "title": "مخطط تعليمي لوحدة الاستماع والتحدث",
+              "purpose": "توضيح العلاقات المفاهيمية للمتعلم",
+              "generateOriginal": true,
+              "neverCopyTextbookFigure": true
+            }
+          ],
+          "officialCurriculumReference": {
+            "curriculum": "Jordan National Curriculum",
+            "curriculumAr": "المنهاج الوطني الأردني",
+            "stage": "رياض الأطفال",
+            "grade": "رياض الأطفال",
+            "subject": "اللغة والتواصل",
+            "catalogUrl": null,
+            "authorities": [
+              {
+                "name": "Jordan Ministry of Education",
+                "url": "https://moe.gov.jo/",
+                "type": "ministry-education",
+                "priority": 1
+              },
+              {
+                "name": "National Center for Curriculum Development (NCCD)",
+                "url": "https://www.nccd.gov.jo/Ar/Pages/textbooks",
+                "type": "curriculum-authority",
+                "priority": 1
+              },
+              {
+                "name": "NCCD Official Portal",
+                "url": "https://www.nccd.gov.jo/",
+                "type": "curriculum-authority",
+                "priority": 1
+              },
+              {
+                "name": "Darsak Platform",
+                "url": "https://darsak.gov.jo/",
+                "type": "digital-learning-platform",
+                "priority": 1
+              },
+              {
+                "name": "MoE Curricula and School Textbooks Administration",
+                "url": "https://moe.gov.jo/ar/%D8%A5%D8%AF%D8%A7%D8%B1%D8%A9-%D8%A7%D9%84%D9%85%D9%86%D8%A7%D9%87%D8%AC-%D9%88%D8%A7%D9%84%D9%83%D8%AA%D8%A8-%D8%A7%D9%84%D9%85%D8%AF%D8%B1%D8%B3%D9%8A%D8%A9",
+                "type": "ministry",
+                "priority": 1
+              },
+              {
+                "name": "MoE Approved Textbook Editions 2025–2026",
+                "url": "https://moe.gov.jo/ar/node/79818",
+                "type": "ministry",
+                "priority": 1
+              }
+            ],
+            "note": "Lesson authored only after referencing official Jordanian curriculum structure for this grade/subject."
+          },
+          "contentOrigin": "success-os-original-curriculum-aligned",
+          "rights": {
+            "copyBookText": false,
+            "generateOriginalOnly": true
+          }
+        }
+      ]
+    },
+    {
+      "unitId": "U2",
+      "titleAr": "الحروف والأصوات",
+      "lessons": [
+        {
+          "lessonId": "L2.1",
+          "titleAr": "الحروف والأصوات — مقدمة ومفاهيم",
+          "learningOutcomes": [
+            "أن يتعرف المتعلم مفهومًا محوريًا في اللغة والتواصل ضمن الحروف والأصوات بما يتوافق مع إطار المنهاج الوطني الأردني لـرياض الأطفال.",
+            "أن يطبّق مهارة مرتبطة بـ«الحروف والأصوات — مقدمة ومفاهيم» بخطوات واضحة قابلة للتحقق.",
+            "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+          ],
+          "requiredSkills": [
+            "القراءة الناقدة",
+            "الكتابة المنظمة",
+            "الاستماع"
+          ],
+          "scientificConcepts": [
+            "نص",
+            "معنى",
+            "أسلوب"
+          ],
+          "definitions": [
+            {
+              "term": "نص",
+              "definitionAr": "تعريف تعليمي أصلي لمفهوم «نص» ضمن إطار المنهاج الوطني الأردني، يُبنى لأغراض التدريس في Success OS دون اقتباس نص الكتاب المدرسي."
+            },
+            {
+              "term": "معنى",
+              "definitionAr": "تعريف تعليمي أصلي لمفهوم «معنى» ضمن إطار المنهاج الوطني الأردني، يُبنى لأغراض التدريس في Success OS دون اقتباس نص الكتاب المدرسي."
+            }
+          ],
+          "examples": [
+            {
+              "title": "مثال صفّي",
+              "text": "موقف تعليمي أصلي لـرياض الأطفال في اللغة والتواصل يوضح تطبيق فكرة درس «الحروف والأصوات — مقدمة ومفاهيم» بخطوات قابلة للمتابعة."
+            },
+            {
+              "title": "مثال حياتي أردني",
+              "text": "ربط الدرس بسياق يومي مناسب للمتعلم في الأردن (مدرسة، منزل، مجتمع محلي) دون الاعتماد على نص كتابي محمي."
+            }
+          ],
+          "educationalDiagrams": [
+            {
+              "id": "text-structure-map",
+              "title": "مخطط تعليمي لوحدة الحروف والأصوات",
+              "purpose": "توضيح العلاقات المفاهيمية للمتعلم",
+              "generateOriginal": true,
+              "neverCopyTextbookFigure": true
+            }
+          ],
+          "officialCurriculumReference": {
+            "curriculum": "Jordan National Curriculum",
+            "curriculumAr": "المنهاج الوطني الأردني",
+            "stage": "رياض الأطفال",
+            "grade": "رياض الأطفال",
+            "subject": "اللغة والتواصل",
+            "catalogUrl": null,
+            "authorities": [
+              {
+                "name": "Jordan Ministry of Education",
+                "url": "https://moe.gov.jo/",
+                "type": "ministry-education",
+                "priority": 1
+              },
+              {
+                "name": "National Center for Curriculum Development (NCCD)",
+                "url": "https://www.nccd.gov.jo/Ar/Pages/textbooks",
+                "type": "curriculum-authority",
+                "priority": 1
+              },
+              {
+                "name": "NCCD Official Portal",
+                "url": "https://www.nccd.gov.jo/",
+                "type": "curriculum-authority",
+                "priority": 1
+              },
+              {
+                "name": "Darsak Platform",
+                "url": "https://darsak.gov.jo/",
+                "type": "digital-learning-platform",
+                "priority": 1
+              },
+              {
+                "name": "MoE Curricula and School Textbooks Administration",
+                "url": "https://moe.gov.jo/ar/%D8%A5%D8%AF%D8%A7%D8%B1%D8%A9-%D8%A7%D9%84%D9%85%D9%86%D8%A7%D9%87%D8%AC-%D9%88%D8%A7%D9%84%D9%83%D8%AA%D8%A8-%D8%A7%D9%84%D9%85%D8%AF%D8%B1%D8%B3%D9%8A%D8%A9",
+                "type": "ministry",
+                "priority": 1
+              },
+              {
+                "name": "MoE Approved Textbook Editions 2025–2026",
+                "url": "https://moe.gov.jo/ar/node/79818",
+                "type": "ministry",
+                "priority": 1
+              }
+            ],
+            "note": "Lesson authored only after referencing official Jordanian curriculum structure for this grade/subject."
+          },
+          "contentOrigin": "success-os-original-curriculum-aligned",
+          "rights": {
+            "copyBookText": false,
+            "generateOriginalOnly": true
+          }
+        },
+        {
+          "lessonId": "L2.2",
+          "titleAr": "الحروف والأصوات — بناء المهارة",
+          "learningOutcomes": [
+            "أن يتعرف المتعلم مفهومًا محوريًا في اللغة والتواصل ضمن الحروف والأصوات بما يتوافق مع إطار المنهاج الوطني الأردني لـرياض الأطفال.",
+            "أن يطبّق مهارة مرتبطة بـ«الحروف والأصوات — بناء المهارة» بخطوات واضحة قابلة للتحقق.",
+            "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+          ],
+          "requiredSkills": [
+            "القراءة الناقدة",
+            "الكتابة المنظمة",
+            "الاستماع"
+          ],
+          "scientificConcepts": [
+            "نص",
+            "معنى",
+            "أسلوب"
+          ],
+          "definitions": [
+            {
+              "term": "نص",
+              "definitionAr": "تعريف تعليمي أصلي لمفهوم «نص» ضمن إطار المنهاج الوطني الأردني، يُبنى لأغراض التدريس في Success OS دون اقتباس نص الكتاب المدرسي."
+            },
+            {
+              "term": "معنى",
+              "definitionAr": "تعريف تعليمي أصلي لمفهوم «معنى» ضمن إطار المنهاج الوطني الأردني، يُبنى لأغراض التدريس في Success OS دون اقتباس نص الكتاب المدرسي."
+            }
+          ],
+          "examples": [
+            {
+              "title": "مثال صفّي",
+              "text": "موقف تعليمي أصلي لـرياض الأطفال في اللغة والتواصل يوضح تطبيق فكرة درس «الحروف والأصوات — بناء المهارة» بخطوات قابلة للمتابعة."
+            },
+            {
+              "title": "مثال حياتي أردني",
+              "text": "ربط الدرس بسياق يومي مناسب للمتعلم في الأردن (مدرسة، منزل، مجتمع محلي) دون الاعتماد على نص كتابي محمي."
+            }
+          ],
+          "educationalDiagrams": [
+            {
+              "id": "text-structure-map",
+              "title": "مخطط تعليمي لوحدة الحروف والأصوات",
+              "purpose": "توضيح العلاقات المفاهيمية للمتعلم",
+              "generateOriginal": true,
+              "neverCopyTextbookFigure": true
+            }
+          ],
+          "officialCurriculumReference": {
+            "curriculum": "Jordan National Curriculum",
+            "curriculumAr": "المنهاج الوطني الأردني",
+            "stage": "رياض الأطفال",
+            "grade": "رياض الأطفال",
+            "subject": "اللغة والتواصل",
+            "catalogUrl": null,
+            "authorities": [
+              {
+                "name": "Jordan Ministry of Education",
+                "url": "https://moe.gov.jo/",
+                "type": "ministry-education",
+                "priority": 1
+              },
+              {
+                "name": "National Center for Curriculum Development (NCCD)",
+                "url": "https://www.nccd.gov.jo/Ar/Pages/textbooks",
+                "type": "curriculum-authority",
+                "priority": 1
+              },
+              {
+                "name": "NCCD Official Portal",
+                "url": "https://www.nccd.gov.jo/",
+                "type": "curriculum-authority",
+                "priority": 1
+              },
+              {
+                "name": "Darsak Platform",
+                "url": "https://darsak.gov.jo/",
+                "type": "digital-learning-platform",
+                "priority": 1
+              },
+              {
+                "name": "MoE Curricula and School Textbooks Administration",
+                "url": "https://moe.gov.jo/ar/%D8%A5%D8%AF%D8%A7%D8%B1%D8%A9-%D8%A7%D9%84%D9%85%D9%86%D8%A7%D9%87%D8%AC-%D9%88%D8%A7%D9%84%D9%83%D8%AA%D8%A8-%D8%A7%D9%84%D9%85%D8%AF%D8%B1%D8%B3%D9%8A%D8%A9",
+                "type": "ministry",
+                "priority": 1
+              },
+              {
+                "name": "MoE Approved Textbook Editions 2025–2026",
+                "url": "https://moe.gov.jo/ar/node/79818",
+                "type": "ministry",
+                "priority": 1
+              }
+            ],
+            "note": "Lesson authored only after referencing official Jordanian curriculum structure for this grade/subject."
+          },
+          "contentOrigin": "success-os-original-curriculum-aligned",
+          "rights": {
+            "copyBookText": false,
+            "generateOriginalOnly": true
+          }
+        },
+        {
+          "lessonId": "L2.3",
+          "titleAr": "الحروف والأصوات — تطبيق ومثال",
+          "learningOutcomes": [
+            "أن يتعرف المتعلم مفهومًا محوريًا في اللغة والتواصل ضمن الحروف والأصوات بما يتوافق مع إطار المنهاج الوطني الأردني لـرياض الأطفال.",
+            "أن يطبّق مهارة مرتبطة بـ«الحروف والأصوات — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+            "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+          ],
+          "requiredSkills": [
+            "القراءة الناقدة",
+            "الكتابة المنظمة",
+            "الاستماع"
+          ],
+          "scientificConcepts": [
+            "نص",
+            "معنى",
+            "أسلوب"
+          ],
+          "definitions": [
+            {
+              "term": "نص",
+              "definitionAr": "تعريف تعليمي أصلي لمفهوم «نص» ضمن إطار المنهاج الوطني الأردني، يُبنى لأغراض التدريس في Success OS دون اقتباس نص الكتاب المدرسي."
+            },
+            {
+              "term": "معنى",
+              "definitionAr": "تعريف تعليمي أصلي لمفهوم «معنى» ضمن إطار المنهاج الوطني الأردني، يُبنى لأغراض التدريس في Success OS دون اقتباس نص الكتاب المدرسي."
+            }
+          ],
+          "examples": [
+            {
+              "title": "مثال صفّي",
+              "text": "موقف تعليمي أصلي لـرياض الأطفال في اللغة والتواصل يوضح تطبيق فكرة درس «الحروف والأصوات — تطبيق ومثال» بخطوات قابلة للمتابعة."
+            },
+            {
+              "title": "مثال حياتي أردني",
+              "text": "ربط الدرس بسياق يومي مناسب للمتعلم في الأردن (مدرسة، منزل، مجتمع محلي) دون الاعتماد على نص كتابي محمي."
+            }
+          ],
+          "educationalDiagrams": [
+            {
+              "id": "text-structure-map",
+              "title": "مخطط تعليمي لوحدة الحروف والأصوات",
+              "purpose": "توضيح العلاقات المفاهيمية للمتعلم",
+              "generateOriginal": true,
+              "neverCopyTextbookFigure": true
+            }
+          ],
+          "officialCurriculumReference": {
+            "curriculum": "Jordan National Curriculum",
+            "curriculumAr": "المنهاج الوطني الأردني",
+            "stage": "رياض الأطفال",
+            "grade": "رياض الأطفال",
+            "subject": "اللغة والتواصل",
+            "catalogUrl": null,
+            "authorities": [
+              {
+                "name": "Jordan Ministry of Education",
+                "url": "https://moe.gov.jo/",
+                "type": "ministry-education",
+                "priority": 1
+              },
+              {
+                "name": "National Center for Curriculum Development (NCCD)",
+                "url": "https://www.nccd.gov.jo/Ar/Pages/textbooks",
+                "type": "curriculum-authority",
+                "priority": 1
+              },
+              {
+                "name": "NCCD Official Portal",
+                "url": "https://www.nccd.gov.jo/",
+                "type": "curriculum-authority",
+                "priority": 1
+              },
+              {
+                "name": "Darsak Platform",
+                "url": "https://darsak.gov.jo/",
+                "type": "digital-learning-platform",
+                "priority": 1
+              },
+              {
+                "name": "MoE Curricula and School Textbooks Administration",
+                "url": "https://moe.gov.jo/ar/%D8%A5%D8%AF%D8%A7%D8%B1%D8%A9-%D8%A7%D9%84%D9%85%D9%86%D8%A7%D9%87%D8%AC-%D9%88%D8%A7%D9%84%D9%83%D8%AA%D8%A8-%D8%A7%D9%84%D9%85%D8%AF%D8%B1%D8%B3%D9%8A%D8%A9",
+                "type": "ministry",
+                "priority": 1
+              },
+              {
+                "name": "MoE Approved Textbook Editions 2025–2026",
+                "url": "https://moe.gov.jo/ar/node/79818",
+                "type": "ministry",
+                "priority": 1
+              }
+            ],
+            "note": "Lesson authored only after referencing official Jordanian curriculum structure for this grade/subject."
+          },
+          "contentOrigin": "success-os-original-curriculum-aligned",
+          "rights": {
+            "copyBookText": false,
+            "generateOriginalOnly": true
+          }
+        },
+        {
+          "lessonId": "L2.4",
+          "titleAr": "الحروف والأصوات — تقويم وتعزيز",
+          "learningOutcomes": [
+            "أن يتعرف المتعلم مفهومًا محوريًا في اللغة والتواصل ضمن الحروف والأصوات بما يتوافق مع إطار المنهاج الوطني الأردني لـرياض الأطفال.",
+            "أن يطبّق مهارة مرتبطة بـ«الحروف والأصوات — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+            "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+          ],
+          "requiredSkills": [
+            "القراءة الناقدة",
+            "الكتابة المنظمة",
+            "الاستماع"
+          ],
+          "scientificConcepts": [
+            "نص",
+            "معنى",
+            "أسلوب"
+          ],
+          "definitions": [
+            {
+              "term": "نص",
+              "definitionAr": "تعريف تعليمي أصلي لمفهوم «نص» ضمن إطار المنهاج الوطني الأردني، يُبنى لأغراض التدريس في Success OS دون اقتباس نص الكتاب المدرسي."
+            },
+            {
+              "term": "معنى",
+              "definitionAr": "تعريف تعليمي أصلي لمفهوم «معنى» ضمن إطار المنهاج الوطني الأردني، يُبنى لأغراض التدريس في Success OS دون اقتباس نص الكتاب المدرسي."
+            }
+          ],
+          "examples": [
+            {
+              "title": "مثال صفّي",
+              "text": "موقف تعليمي أصلي لـرياض الأطفال في اللغة والتواصل يوضح تطبيق فكرة درس «الحروف والأصوات — تقويم وتعزيز» بخطوات قابلة للمتابعة."
+            },
+            {
+              "title": "مثال حياتي أردني",
+              "text": "ربط الدرس بسياق يومي مناسب للمتعلم في الأردن (مدرسة، منزل، مجتمع محلي) دون الاعتماد على نص كتابي محمي."
+            }
+          ],
+          "educationalDiagrams": [
+            {
+              "id": "text-structure-map",
+              "title": "مخطط تعليمي لوحدة الحروف والأصوات",
+              "purpose": "توضيح العلاقات المفاهيمية للمتعلم",
+              "generateOriginal": true,
+              "neverCopyTextbookFigure": true
+            }
+          ],
+          "officialCurriculumReference": {
+            "curriculum": "Jordan National Curriculum",
+            "curriculumAr": "المنهاج الوطني الأردني",
+            "stage": "رياض الأطفال",
+            "grade": "رياض الأطفال",
+            "subject": "اللغة والتواصل",
+            "catalogUrl": null,
+            "authorities": [
+              {
+                "name": "Jordan Ministry of Education",
+                "url": "https://moe.gov.jo/",
+                "type": "ministry-education",
+                "priority": 1
+              },
+              {
+                "name": "National Center for Curriculum Development (NCCD)",
+                "url": "https://www.nccd.gov.jo/Ar/Pages/textbooks",
+                "type": "curriculum-authority",
+                "priority": 1
+              },
+              {
+                "name": "NCCD Official Portal",
+                "url": "https://www.nccd.gov.jo/",
+                "type": "curriculum-authority",
+                "priority": 1
+              },
+              {
+                "name": "Darsak Platform",
+                "url": "https://darsak.gov.jo/",
+                "type": "digital-learning-platform",
+                "priority": 1
+              },
+              {
+                "name": "MoE Curricula and School Textbooks Administration",
+                "url": "https://moe.gov.jo/ar/%D8%A5%D8%AF%D8%A7%D8%B1%D8%A9-%D8%A7%D9%84%D9%85%D9%86%D8%A7%D9%87%D8%AC-%D9%88%D8%A7%D9%84%D9%83%D8%AA%D8%A8-%D8%A7%D9%84%D9%85%D8%AF%D8%B1%D8%B3%D9%8A%D8%A9",
+                "type": "ministry",
+                "priority": 1
+              },
+              {
+                "name": "MoE Approved Textbook Editions 2025–2026",
+                "url": "https://moe.gov.jo/ar/node/79818",
+                "type": "ministry",
+                "priority": 1
+              }
+            ],
+            "note": "Lesson authored only after referencing official Jordanian curriculum structure for this grade/subject."
+          },
+          "contentOrigin": "success-os-original-curriculum-aligned",
+          "rights": {
+            "copyBookText": false,
+            "generateOriginalOnly": true
+          }
+        }
+      ]
+    },
+    {
+      "unitId": "U3",
+      "titleAr": "قصص قصيرة",
+      "lessons": [
+        {
+          "lessonId": "L3.1",
+          "titleAr": "قصص قصيرة — مقدمة ومفاهيم",
+          "learningOutcomes": [
+            "أن يتعرف المتعلم مفهومًا محوريًا في اللغة والتواصل ضمن قصص قصيرة بما يتوافق مع إطار المنهاج الوطني الأردني لـرياض الأطفال.",
+            "أن يطبّق مهارة مرتبطة بـ«قصص قصيرة — مقدمة ومفاهيم» بخطوات واضحة قابلة للتحقق.",
+            "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+          ],
+          "requiredSkills": [
+            "القراءة الناقدة",
+            "الكتابة المنظمة",
+            "الاستماع"
+          ],
+          "scientificConcepts": [
+            "نص",
+            "معنى",
+            "أسلوب"
+          ],
+          "definitions": [
+            {
+              "term": "نص",
+              "definitionAr": "تعريف تعليمي أصلي لمفهوم «نص» ضمن إطار المنهاج الوطني الأردني، يُبنى لأغراض التدريس في Success OS دون اقتباس نص الكتاب المدرسي."
+            },
+            {
+              "term": "معنى",
+              "definitionAr": "تعريف تعليمي أصلي لمفهوم «معنى» ضمن إطار المنهاج الوطني الأردني، يُبنى لأغراض التدريس في Success OS دون اقتباس نص الكتاب المدرسي."
+            }
+          ],
+          "examples": [
+            {
+              "title": "مثال صفّي",
+              "text": "موقف تعليمي أصلي لـرياض الأطفال في اللغة والتواصل يوضح تطبيق فكرة درس «قصص قصيرة — مقدمة ومفاهيم» بخطوات قابلة للمتابعة."
+            },
+            {
+              "title": "مثال حياتي أردني",
+              "text": "ربط الدرس بسياق يومي مناسب للمتعلم في الأردن (مدرسة، منزل، مجتمع محلي) دون الاعتماد على نص كتابي محمي."
+            }
+          ],
+          "educationalDiagrams": [
+            {
+              "id": "text-structure-map",
+              "title": "مخطط تعليمي لوحدة قصص قصيرة",
+              "purpose": "توضيح العلاقات المفاهيمية للمتعلم",
+              "generateOriginal": true,
+              "neverCopyTextbookFigure": true
+            }
+          ],
+          "officialCurriculumReference": {
+            "curriculum": "Jordan National Curriculum",
+            "curriculumAr": "المنهاج الوطني الأردني",
+            "stage": "رياض الأطفال",
+            "grade": "رياض الأطفال",
+            "subject": "اللغة والتواصل",
+            "catalogUrl": null,
+            "authorities": [
+              {
+                "name": "Jordan Ministry of Education",
+                "url": "https://moe.gov.jo/",
+                "type": "ministry-education",
+                "priority": 1
+              },
+              {
+                "name": "National Center for Curriculum Development (NCCD)",
+                "url": "https://www.nccd.gov.jo/Ar/Pages/textbooks",
+                "type": "curriculum-authority",
+                "priority": 1
+              },
+              {
+                "name": "NCCD Official Portal",
+                "url": "https://www.nccd.gov.jo/",
+                "type": "curriculum-authority",
+                "priority": 1
+              },
+              {
+                "name": "Darsak Platform",
+                "url": "https://darsak.gov.jo/",
+                "type": "digital-learning-platform",
+                "priority": 1
+              },
+              {
+                "name": "MoE Curricula and School Textbooks Administration",
+                "url": "https://moe.gov.jo/ar/%D8%A5%D8%AF%D8%A7%D8%B1%D8%A9-%D8%A7%D9%84%D9%85%D9%86%D8%A7%D9%87%D8%AC-%D9%88%D8%A7%D9%84%D9%83%D8%AA%D8%A8-%D8%A7%D9%84%D9%85%D8%AF%D8%B1%D8%B3%D9%8A%D8%A9",
+                "type": "ministry",
+                "priority": 1
+              },
+              {
+                "name": "MoE Approved Textbook Editions 2025–2026",
+                "url": "https://moe.gov.jo/ar/node/79818",
+                "type": "ministry",
+                "priority": 1
+              }
+            ],
+            "note": "Lesson authored only after referencing official Jordanian curriculum structure for this grade/subject."
+          },
+          "contentOrigin": "success-os-original-curriculum-aligned",
+          "rights": {
+            "copyBookText": false,
+            "generateOriginalOnly": true
+          }
+        },
+        {
+          "lessonId": "L3.2",
+          "titleAr": "قصص قصيرة — بناء المهارة",
+          "learningOutcomes": [
+            "أن يتعرف المتعلم مفهومًا محوريًا في اللغة والتواصل ضمن قصص قصيرة بما يتوافق مع إطار المنهاج الوطني الأردني لـرياض الأطفال.",
+            "أن يطبّق مهارة مرتبطة بـ«قصص قصيرة — بناء المهارة» بخطوات واضحة قابلة للتحقق.",
+            "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+          ],
+          "requiredSkills": [
+            "القراءة الناقدة",
+            "الكتابة المنظمة",
+            "الاستماع"
+          ],
+          "scientificConcepts": [
+            "نص",
+            "معنى",
+            "أسلوب"
+          ],
+          "definitions": [
+            {
+              "term": "نص",
+              "definitionAr": "تعريف تعليمي أصلي لمفهوم «نص» ضمن إطار المنهاج الوطني الأردني، يُبنى لأغراض التدريس في Success OS دون اقتباس نص الكتاب المدرسي."
+            },
+            {
+              "term": "معنى",
+              "definitionAr": "تعريف تعليمي أصلي لمفهوم «معنى» ضمن إطار المنهاج الوطني الأردني، يُبنى لأغراض التدريس في Success OS دون اقتباس نص الكتاب المدرسي."
+            }
+          ],
+          "examples": [
+            {
+              "title": "مثال صفّي",
+              "text": "موقف تعليمي أصلي لـرياض الأطفال في اللغة والتواصل يوضح تطبيق فكرة درس «قصص قصيرة — بناء المهارة» بخطوات قابلة للمتابعة."
+            },
+            {
+              "title": "مثال حياتي أردني",
+              "text": "ربط الدرس بسياق يومي مناسب للمتعلم في الأردن (مدرسة، منزل، مجتمع محلي) دون الاعتماد على نص كتابي محمي."
+            }
+          ],
+          "educationalDiagrams": [
+            {
+              "id": "text-structure-map",
+              "title": "مخطط تعليمي لوحدة قصص قصيرة",
+              "purpose": "توضيح العلاقات المفاهيمية للمتعلم",
+              "generateOriginal": true,
+              "neverCopyTextbookFigure": true
+            }
+          ],
+          "officialCurriculumReference": {
+            "curriculum": "Jordan National Curriculum",
+            "curriculumAr": "المنهاج الوطني الأردني",
+            "stage": "رياض الأطفال",
+            "grade": "رياض الأطفال",
+            "subject": "اللغة والتواصل",
+            "catalogUrl": null,
+            "authorities": [
+              {
+                "name": "Jordan Ministry of Education",
+                "url": "https://moe.gov.jo/",
+                "type": "ministry-education",
+                "priority": 1
+              },
+              {
+                "name": "National Center for Curriculum Development (NCCD)",
+                "url": "https://www.nccd.gov.jo/Ar/Pages/textbooks",
+                "type": "curriculum-authority",
+                "priority": 1
+              },
+              {
+                "name": "NCCD Official Portal",
+                "url": "https://www.nccd.gov.jo/",
+                "type": "curriculum-authority",
+                "priority": 1
+              },
+              {
+                "name": "Darsak Platform",
+                "url": "https://darsak.gov.jo/",
+                "type": "digital-learning-platform",
+                "priority": 1
+              },
+              {
+                "name": "MoE Curricula and School Textbooks Administration",
+                "url": "https://moe.gov.jo/ar/%D8%A5%D8%AF%D8%A7%D8%B1%D8%A9-%D8%A7%D9%84%D9%85%D9%86%D8%A7%D9%87%D8%AC-%D9%88%D8%A7%D9%84%D9%83%D8%AA%D8%A8-%D8%A7%D9%84%D9%85%D8%AF%D8%B1%D8%B3%D9%8A%D8%A9",
+                "type": "ministry",
+                "priority": 1
+              },
+              {
+                "name": "MoE Approved Textbook Editions 2025–2026",
+                "url": "https://moe.gov.jo/ar/node/79818",
+                "type": "ministry",
+                "priority": 1
+              }
+            ],
+            "note": "Lesson authored only after referencing official Jordanian curriculum structure for this grade/subject."
+          },
+          "contentOrigin": "success-os-original-curriculum-aligned",
+          "rights": {
+            "copyBookText": false,
+            "generateOriginalOnly": true
+          }
+        },
+        {
+          "lessonId": "L3.3",
+          "titleAr": "قصص قصيرة — تطبيق ومثال",
+          "learningOutcomes": [
+            "أن يتعرف المتعلم مفهومًا محوريًا في اللغة والتواصل ضمن قصص قصيرة بما يتوافق مع إطار المنهاج الوطني الأردني لـرياض الأطفال.",
+            "أن يطبّق مهارة مرتبطة بـ«قصص قصيرة — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+            "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+          ],
+          "requiredSkills": [
+            "القراءة الناقدة",
+            "الكتابة المنظمة",
+            "الاستماع"
+          ],
+          "scientificConcepts": [
+            "نص",
+            "معنى",
+            "أسلوب"
+          ],
+          "definitions": [
+            {
+              "term": "نص",
+              "definitionAr": "تعريف تعليمي أصلي لمفهوم «نص» ضمن إطار المنهاج الوطني الأردني، يُبنى لأغراض التدريس في Success OS دون اقتباس نص الكتاب المدرسي."
+            },
+            {
+              "term": "معنى",
+              "definitionAr": "تعريف تعليمي أصلي لمفهوم «معنى» ضمن إطار المنهاج الوطني الأردني، يُبنى لأغراض التدريس في Success OS دون اقتباس نص الكتاب المدرسي."
+            }
+          ],
+          "examples": [
+            {
+              "title": "مثال صفّي",
+              "text": "موقف تعليمي أصلي لـرياض الأطفال في اللغة والتواصل يوضح تطبيق فكرة درس «قصص قصيرة — تطبيق ومثال» بخطوات قابلة للمتابعة."
+            },
+            {
+              "title": "مثال حياتي أردني",
+              "text": "ربط الدرس بسياق يومي مناسب للمتعلم في الأردن (مدرسة، منزل، مجتمع محلي) دون الاعتماد على نص كتابي محمي."
+            }
+          ],
+          "educationalDiagrams": [
+            {
+              "id": "text-structure-map",
+              "title": "مخطط تعليمي لوحدة قصص قصيرة",
+              "purpose": "توضيح العلاقات المفاهيمية للمتعلم",
+              "generateOriginal": true,
+              "neverCopyTextbookFigure": true
+            }
+          ],
+          "officialCurriculumReference": {
+            "curriculum": "Jordan National Curriculum",
+            "curriculumAr": "المنهاج الوطني الأردني",
+            "stage": "رياض الأطفال",
+            "grade": "رياض الأطفال",
+            "subject": "اللغة والتواصل",
+            "catalogUrl": null,
+            "authorities": [
+              {
+                "name": "Jordan Ministry of Education",
+                "url": "https://moe.gov.jo/",
+                "type": "ministry-education",
+                "priority": 1
+              },
+              {
+                "name": "National Center for Curriculum Development (NCCD)",
+                "url": "https://www.nccd.gov.jo/Ar/Pages/textbooks",
+                "type": "curriculum-authority",
+                "priority": 1
+              },
+              {
+                "name": "NCCD Official Portal",
+                "url": "https://www.nccd.gov.jo/",
+                "type": "curriculum-authority",
+                "priority": 1
+              },
+              {
+                "name": "Darsak Platform",
+                "url": "https://darsak.gov.jo/",
+                "type": "digital-learning-platform",
+                "priority": 1
+              },
+              {
+                "name": "MoE Curricula and School Textbooks Administration",
+                "url": "https://moe.gov.jo/ar/%D8%A5%D8%AF%D8%A7%D8%B1%D8%A9-%D8%A7%D9%84%D9%85%D9%86%D8%A7%D9%87%D8%AC-%D9%88%D8%A7%D9%84%D9%83%D8%AA%D8%A8-%D8%A7%D9%84%D9%85%D8%AF%D8%B1%D8%B3%D9%8A%D8%A9",
+                "type": "ministry",
+                "priority": 1
+              },
+              {
+                "name": "MoE Approved Textbook Editions 2025–2026",
+                "url": "https://moe.gov.jo/ar/node/79818",
+                "type": "ministry",
+                "priority": 1
+              }
+            ],
+            "note": "Lesson authored only after referencing official Jordanian curriculum structure for this grade/subject."
+          },
+          "contentOrigin": "success-os-original-curriculum-aligned",
+          "rights": {
+            "copyBookText": false,
+            "generateOriginalOnly": true
+          }
+        },
+        {
+          "lessonId": "L3.4",
+          "titleAr": "قصص قصيرة — تقويم وتعزيز",
+          "learningOutcomes": [
+            "أن يتعرف المتعلم مفهومًا محوريًا في اللغة والتواصل ضمن قصص قصيرة بما يتوافق مع إطار المنهاج الوطني الأردني لـرياض الأطفال.",
+            "أن يطبّق مهارة مرتبطة بـ«قصص قصيرة — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+            "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+          ],
+          "requiredSkills": [
+            "القراءة الناقدة",
+            "الكتابة المنظمة",
+            "الاستماع"
+          ],
+          "scientificConcepts": [
+            "نص",
+            "معنى",
+            "أسلوب"
+          ],
+          "definitions": [
+            {
+              "term": "نص",
+              "definitionAr": "تعريف تعليمي أصلي لمفهوم «نص» ضمن إطار المنهاج الوطني الأردني، يُبنى لأغراض التدريس في Success OS دون اقتباس نص الكتاب المدرسي."
+            },
+            {
+              "term": "معنى",
+              "definitionAr": "تعريف تعليمي أصلي لمفهوم «معنى» ضمن إطار المنهاج الوطني الأردني، يُبنى لأغراض التدريس في Success OS دون اقتباس نص الكتاب المدرسي."
+            }
+          ],
+          "examples": [
+            {
+              "title": "مثال صفّي",
+              "text": "موقف تعليمي أصلي لـرياض الأطفال في اللغة والتواصل يوضح تطبيق فكرة درس «قصص قصيرة — تقويم وتعزيز» بخطوات قابلة للمتابعة."
+            },
+            {
+              "title": "مثال حياتي أردني",
+              "text": "ربط الدرس بسياق يومي مناسب للمتعلم في الأردن (مدرسة، منزل، مجتمع محلي) دون الاعتماد على نص كتابي محمي."
+            }
+          ],
+          "educationalDiagrams": [
+            {
+              "id": "text-structure-map",
+              "title": "مخطط تعليمي لوحدة قصص قصيرة",
+              "purpose": "توضيح العلاقات المفاهيمية للمتعلم",
+              "generateOriginal": true,
+              "neverCopyTextbookFigure": true
+            }
+          ],
+          "officialCurriculumReference": {
+            "curriculum": "Jordan National Curriculum",
+            "curriculumAr": "المنهاج الوطني الأردني",
+            "stage": "رياض الأطفال",
+            "grade": "رياض الأطفال",
+            "subject": "اللغة والتواصل",
+            "catalogUrl": null,
+            "authorities": [
+              {
+                "name": "Jordan Ministry of Education",
+                "url": "https://moe.gov.jo/",
+                "type": "ministry-education",
+                "priority": 1
+              },
+              {
+                "name": "National Center for Curriculum Development (NCCD)",
+                "url": "https://www.nccd.gov.jo/Ar/Pages/textbooks",
+                "type": "curriculum-authority",
+                "priority": 1
+              },
+              {
+                "name": "NCCD Official Portal",
+                "url": "https://www.nccd.gov.jo/",
+                "type": "curriculum-authority",
+                "priority": 1
+              },
+              {
+                "name": "Darsak Platform",
+                "url": "https://darsak.gov.jo/",
+                "type": "digital-learning-platform",
+                "priority": 1
+              },
+              {
+                "name": "MoE Curricula and School Textbooks Administration",
+                "url": "https://moe.gov.jo/ar/%D8%A5%D8%AF%D8%A7%D8%B1%D8%A9-%D8%A7%D9%84%D9%85%D9%86%D8%A7%D9%87%D8%AC-%D9%88%D8%A7%D9%84%D9%83%D8%AA%D8%A8-%D8%A7%D9%84%D9%85%D8%AF%D8%B1%D8%B3%D9%8A%D8%A9",
+                "type": "ministry",
+                "priority": 1
+              },
+              {
+                "name": "MoE Approved Textbook Editions 2025–2026",
+                "url": "https://moe.gov.jo/ar/node/79818",
+                "type": "ministry",
+                "priority": 1
+              }
+            ],
+            "note": "Lesson authored only after referencing official Jordanian curriculum structure for this grade/subject."
+          },
+          "contentOrigin": "success-os-original-curriculum-aligned",
+          "rights": {
+            "copyBookText": false,
+            "generateOriginalOnly": true
+          }
+        }
+      ]
+    },
+    {
+      "unitId": "U4",
+      "titleAr": "التعبير الشفوي",
+      "lessons": [
+        {
+          "lessonId": "L4.1",
+          "titleAr": "التعبير الشفوي — مقدمة ومفاهيم",
+          "learningOutcomes": [
+            "أن يتعرف المتعلم مفهومًا محوريًا في اللغة والتواصل ضمن التعبير الشفوي بما يتوافق مع إطار المنهاج الوطني الأردني لـرياض الأطفال.",
+            "أن يطبّق مهارة مرتبطة بـ«التعبير الشفوي — مقدمة ومفاهيم» بخطوات واضحة قابلة للتحقق.",
+            "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+          ],
+          "requiredSkills": [
+            "القراءة الناقدة",
+            "الكتابة المنظمة",
+            "الاستماع"
+          ],
+          "scientificConcepts": [
+            "نص",
+            "معنى",
+            "أسلوب"
+          ],
+          "definitions": [
+            {
+              "term": "نص",
+              "definitionAr": "تعريف تعليمي أصلي لمفهوم «نص» ضمن إطار المنهاج الوطني الأردني، يُبنى لأغراض التدريس في Success OS دون اقتباس نص الكتاب المدرسي."
+            },
+            {
+              "term": "معنى",
+              "definitionAr": "تعريف تعليمي أصلي لمفهوم «معنى» ضمن إطار المنهاج الوطني الأردني، يُبنى لأغراض التدريس في Success OS دون اقتباس نص الكتاب المدرسي."
+            }
+          ],
+          "examples": [
+            {
+              "title": "مثال صفّي",
+              "text": "موقف تعليمي أصلي لـرياض الأطفال في اللغة والتواصل يوضح تطبيق فكرة درس «التعبير الشفوي — مقدمة ومفاهيم» بخطوات قابلة للمتابعة."
+            },
+            {
+              "title": "مثال حياتي أردني",
+              "text": "ربط الدرس بسياق يومي مناسب للمتعلم في الأردن (مدرسة، منزل، مجتمع محلي) دون الاعتماد على نص كتابي محمي."
+            }
+          ],
+          "educationalDiagrams": [
+            {
+              "id": "text-structure-map",
+              "title": "مخطط تعليمي لوحدة التعبير الشفوي",
+              "purpose": "توضيح العلاقات المفاهيمية للمتعلم",
+              "generateOriginal": true,
+              "neverCopyTextbookFigure": true
+            }
+          ],
+          "officialCurriculumReference": {
+            "curriculum": "Jordan National Curriculum",
+            "curriculumAr": "المنهاج الوطني الأردني",
+            "stage": "رياض الأطفال",
+            "grade": "رياض الأطفال",
+            "subject": "اللغة والتواصل",
+            "catalogUrl": null,
+            "authorities": [
+              {
+                "name": "Jordan Ministry of Education",
+                "url": "https://moe.gov.jo/",
+                "type": "ministry-education",
+                "priority": 1
+              },
+              {
+                "name": "National Center for Curriculum Development (NCCD)",
+                "url": "https://www.nccd.gov.jo/Ar/Pages/textbooks",
+                "type": "curriculum-authority",
+                "priority": 1
+              },
+              {
+                "name": "NCCD Official Portal",
+                "url": "https://www.nccd.gov.jo/",
+                "type": "curriculum-authority",
+                "priority": 1
+              },
+              {
+                "name": "Darsak Platform",
+                "url": "https://darsak.gov.jo/",
+                "type": "digital-learning-platform",
+                "priority": 1
+              },
+              {
+                "name": "MoE Curricula and School Textbooks Administration",
+                "url": "https://moe.gov.jo/ar/%D8%A5%D8%AF%D8%A7%D8%B1%D8%A9-%D8%A7%D9%84%D9%85%D9%86%D8%A7%D9%87%D8%AC-%D9%88%D8%A7%D9%84%D9%83%D8%AA%D8%A8-%D8%A7%D9%84%D9%85%D8%AF%D8%B1%D8%B3%D9%8A%D8%A9",
+                "type": "ministry",
+                "priority": 1
+              },
+              {
+                "name": "MoE Approved Textbook Editions 2025–2026",
+                "url": "https://moe.gov.jo/ar/node/79818",
+                "type": "ministry",
+                "priority": 1
+              }
+            ],
+            "note": "Lesson authored only after referencing official Jordanian curriculum structure for this grade/subject."
+          },
+          "contentOrigin": "success-os-original-curriculum-aligned",
+          "rights": {
+            "copyBookText": false,
+            "generateOriginalOnly": true
+          }
+        },
+        {
+          "lessonId": "L4.2",
+          "titleAr": "التعبير الشفوي — بناء المهارة",
+          "learningOutcomes": [
+            "أن يتعرف المتعلم مفهومًا محوريًا في اللغة والتواصل ضمن التعبير الشفوي بما يتوافق مع إطار المنهاج الوطني الأردني لـرياض الأطفال.",
+            "أن يطبّق مهارة مرتبطة بـ«التعبير الشفوي — بناء المهارة» بخطوات واضحة قابلة للتحقق.",
+            "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+          ],
+          "requiredSkills": [
+            "القراءة الناقدة",
+            "الكتابة المنظمة",
+            "الاستماع"
+          ],
+          "scientificConcepts": [
+            "نص",
+            "معنى",
+            "أسلوب"
+          ],
+          "definitions": [
+            {
+              "term": "نص",
+              "definitionAr": "تعريف تعليمي أصلي لمفهوم «نص» ضمن إطار المنهاج الوطني الأردني، يُبنى لأغراض التدريس في Success OS دون اقتباس نص الكتاب المدرسي."
+            },
+            {
+              "term": "معنى",
+              "definitionAr": "تعريف تعليمي أصلي لمفهوم «معنى» ضمن إطار المنهاج الوطني الأردني، يُبنى لأغراض التدريس في Success OS دون اقتباس نص الكتاب المدرسي."
+            }
+          ],
+          "examples": [
+            {
+              "title": "مثال صفّي",
+              "text": "موقف تعليمي أصلي لـرياض الأطفال في اللغة والتواصل يوضح تطبيق فكرة درس «التعبير الشفوي — بناء المهارة» بخطوات قابلة للمتابعة."
+            },
+            {
+              "title": "مثال حياتي أردني",
+              "text": "ربط الدرس بسياق يومي مناسب للمتعلم في الأردن (مدرسة، منزل، مجتمع محلي) دون الاعتماد على نص كتابي محمي."
+            }
+          ],
+          "educationalDiagrams": [
+            {
+              "id": "text-structure-map",
+              "title": "مخطط تعليمي لوحدة التعبير الشفوي",
+              "purpose": "توضيح العلاقات المفاهيمية للمتعلم",
+              "generateOriginal": true,
+              "neverCopyTextbookFigure": true
+            }
+          ],
+          "officialCurriculumReference": {
+            "curriculum": "Jordan National Curriculum",
+            "curriculumAr": "المنهاج الوطني الأردني",
+            "stage": "رياض الأطفال",
+            "grade": "رياض الأطفال",
+            "subject": "اللغة والتواصل",
+            "catalogUrl": null,
+            "authorities": [
+              {
+                "name": "Jordan Ministry of Education",
+                "url": "https://moe.gov.jo/",
+                "type": "ministry-education",
+                "priority": 1
+              },
+              {
+                "name": "National Center for Curriculum Development (NCCD)",
+                "url": "https://www.nccd.gov.jo/Ar/Pages/textbooks",
+                "type": "curriculum-authority",
+                "priority": 1
+              },
+              {
+                "name": "NCCD Official Portal",
+                "url": "https://www.nccd.gov.jo/",
+                "type": "curriculum-authority",
+                "priority": 1
+              },
+              {
+                "name": "Darsak Platform",
+                "url": "https://darsak.gov.jo/",
+                "type": "digital-learning-platform",
+                "priority": 1
+              },
+              {
+                "name": "MoE Curricula and School Textbooks Administration",
+                "url": "https://moe.gov.jo/ar/%D8%A5%D8%AF%D8%A7%D8%B1%D8%A9-%D8%A7%D9%84%D9%85%D9%86%D8%A7%D9%87%D8%AC-%D9%88%D8%A7%D9%84%D9%83%D8%AA%D8%A8-%D8%A7%D9%84%D9%85%D8%AF%D8%B1%D8%B3%D9%8A%D8%A9",
+                "type": "ministry",
+                "priority": 1
+              },
+              {
+                "name": "MoE Approved Textbook Editions 2025–2026",
+                "url": "https://moe.gov.jo/ar/node/79818",
+                "type": "ministry",
+                "priority": 1
+              }
+            ],
+            "note": "Lesson authored only after referencing official Jordanian curriculum structure for this grade/subject."
+          },
+          "contentOrigin": "success-os-original-curriculum-aligned",
+          "rights": {
+            "copyBookText": false,
+            "generateOriginalOnly": true
+          }
+        },
+        {
+          "lessonId": "L4.3",
+          "titleAr": "التعبير الشفوي — تطبيق ومثال",
+          "learningOutcomes": [
+            "أن يتعرف المتعلم مفهومًا محوريًا في اللغة والتواصل ضمن التعبير الشفوي بما يتوافق مع إطار المنهاج الوطني الأردني لـرياض الأطفال.",
+            "أن يطبّق مهارة مرتبطة بـ«التعبير الشفوي — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+            "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+          ],
+          "requiredSkills": [
+            "القراءة الناقدة",
+            "الكتابة المنظمة",
+            "الاستماع"
+          ],
+          "scientificConcepts": [
+            "نص",
+            "معنى",
+            "أسلوب"
+          ],
+          "definitions": [
+            {
+              "term": "نص",
+              "definitionAr": "تعريف تعليمي أصلي لمفهوم «نص» ضمن إطار المنهاج الوطني الأردني، يُبنى لأغراض التدريس في Success OS دون اقتباس نص الكتاب المدرسي."
+            },
+            {
+              "term": "معنى",
+              "definitionAr": "تعريف تعليمي أصلي لمفهوم «معنى» ضمن إطار المنهاج الوطني الأردني، يُبنى لأغراض التدريس في Success OS دون اقتباس نص الكتاب المدرسي."
+            }
+          ],
+          "examples": [
+            {
+              "title": "مثال صفّي",
+              "text": "موقف تعليمي أصلي لـرياض الأطفال في اللغة والتواصل يوضح تطبيق فكرة درس «التعبير الشفوي — تطبيق ومثال» بخطوات قابلة للمتابعة."
+            },
+            {
+              "title": "مثال حياتي أردني",
+              "text": "ربط الدرس بسياق يومي مناسب للمتعلم في الأردن (مدرسة، منزل، مجتمع محلي) دون الاعتماد على نص كتابي محمي."
+            }
+          ],
+          "educationalDiagrams": [
+            {
+              "id": "text-structure-map",
+              "title": "مخطط تعليمي لوحدة التعبير الشفوي",
+              "purpose": "توضيح العلاقات المفاهيمية للمتعلم",
+              "generateOriginal": true,
+              "neverCopyTextbookFigure": true
+            }
+          ],
+          "officialCurriculumReference": {
+            "curriculum": "Jordan National Curriculum",
+            "curriculumAr": "المنهاج الوطني الأردني",
+            "stage": "رياض الأطفال",
+            "grade": "رياض الأطفال",
+            "subject": "اللغة والتواصل",
+            "catalogUrl": null,
+            "authorities": [
+              {
+                "name": "Jordan Ministry of Education",
+                "url": "https://moe.gov.jo/",
+                "type": "ministry-education",
+                "priority": 1
+              },
+              {
+                "name": "National Center for Curriculum Development (NCCD)",
+                "url": "https://www.nccd.gov.jo/Ar/Pages/textbooks",
+                "type": "curriculum-authority",
+                "priority": 1
+              },
+              {
+                "name": "NCCD Official Portal",
+                "url": "https://www.nccd.gov.jo/",
+                "type": "curriculum-authority",
+                "priority": 1
+              },
+              {
+                "name": "Darsak Platform",
+                "url": "https://darsak.gov.jo/",
+                "type": "digital-learning-platform",
+                "priority": 1
+              },
+              {
+                "name": "MoE Curricula and School Textbooks Administration",
+                "url": "https://moe.gov.jo/ar/%D8%A5%D8%AF%D8%A7%D8%B1%D8%A9-%D8%A7%D9%84%D9%85%D9%86%D8%A7%D9%87%D8%AC-%D9%88%D8%A7%D9%84%D9%83%D8%AA%D8%A8-%D8%A7%D9%84%D9%85%D8%AF%D8%B1%D8%B3%D9%8A%D8%A9",
+                "type": "ministry",
+                "priority": 1
+              },
+              {
+                "name": "MoE Approved Textbook Editions 2025–2026",
+                "url": "https://moe.gov.jo/ar/node/79818",
+                "type": "ministry",
+                "priority": 1
+              }
+            ],
+            "note": "Lesson authored only after referencing official Jordanian curriculum structure for this grade/subject."
+          },
+          "contentOrigin": "success-os-original-curriculum-aligned",
+          "rights": {
+            "copyBookText": false,
+            "generateOriginalOnly": true
+          }
+        },
+        {
+          "lessonId": "L4.4",
+          "titleAr": "التعبير الشفوي — تقويم وتعزيز",
+          "learningOutcomes": [
+            "أن يتعرف المتعلم مفهومًا محوريًا في اللغة والتواصل ضمن التعبير الشفوي بما يتوافق مع إطار المنهاج الوطني الأردني لـرياض الأطفال.",
+            "أن يطبّق مهارة مرتبطة بـ«التعبير الشفوي — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+            "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+          ],
+          "requiredSkills": [
+            "القراءة الناقدة",
+            "الكتابة المنظمة",
+            "الاستماع"
+          ],
+          "scientificConcepts": [
+            "نص",
+            "معنى",
+            "أسلوب"
+          ],
+          "definitions": [
+            {
+              "term": "نص",
+              "definitionAr": "تعريف تعليمي أصلي لمفهوم «نص» ضمن إطار المنهاج الوطني الأردني، يُبنى لأغراض التدريس في Success OS دون اقتباس نص الكتاب المدرسي."
+            },
+            {
+              "term": "معنى",
+              "definitionAr": "تعريف تعليمي أصلي لمفهوم «معنى» ضمن إطار المنهاج الوطني الأردني، يُبنى لأغراض التدريس في Success OS دون اقتباس نص الكتاب المدرسي."
+            }
+          ],
+          "examples": [
+            {
+              "title": "مثال صفّي",
+              "text": "موقف تعليمي أصلي لـرياض الأطفال في اللغة والتواصل يوضح تطبيق فكرة درس «التعبير الشفوي — تقويم وتعزيز» بخطوات قابلة للمتابعة."
+            },
+            {
+              "title": "مثال حياتي أردني",
+              "text": "ربط الدرس بسياق يومي مناسب للمتعلم في الأردن (مدرسة، منزل، مجتمع محلي) دون الاعتماد على نص كتابي محمي."
+            }
+          ],
+          "educationalDiagrams": [
+            {
+              "id": "text-structure-map",
+              "title": "مخطط تعليمي لوحدة التعبير الشفوي",
+              "purpose": "توضيح العلاقات المفاهيمية للمتعلم",
+              "generateOriginal": true,
+              "neverCopyTextbookFigure": true
+            }
+          ],
+          "officialCurriculumReference": {
+            "curriculum": "Jordan National Curriculum",
+            "curriculumAr": "المنهاج الوطني الأردني",
+            "stage": "رياض الأطفال",
+            "grade": "رياض الأطفال",
+            "subject": "اللغة والتواصل",
+            "catalogUrl": null,
+            "authorities": [
+              {
+                "name": "Jordan Ministry of Education",
+                "url": "https://moe.gov.jo/",
+                "type": "ministry-education",
+                "priority": 1
+              },
+              {
+                "name": "National Center for Curriculum Development (NCCD)",
+                "url": "https://www.nccd.gov.jo/Ar/Pages/textbooks",
+                "type": "curriculum-authority",
+                "priority": 1
+              },
+              {
+                "name": "NCCD Official Portal",
+                "url": "https://www.nccd.gov.jo/",
+                "type": "curriculum-authority",
+                "priority": 1
+              },
+              {
+                "name": "Darsak Platform",
+                "url": "https://darsak.gov.jo/",
+                "type": "digital-learning-platform",
+                "priority": 1
+              },
+              {
+                "name": "MoE Curricula and School Textbooks Administration",
+                "url": "https://moe.gov.jo/ar/%D8%A5%D8%AF%D8%A7%D8%B1%D8%A9-%D8%A7%D9%84%D9%85%D9%86%D8%A7%D9%87%D8%AC-%D9%88%D8%A7%D9%84%D9%83%D8%AA%D8%A8-%D8%A7%D9%84%D9%85%D8%AF%D8%B1%D8%B3%D9%8A%D8%A9",
+                "type": "ministry",
+                "priority": 1
+              },
+              {
+                "name": "MoE Approved Textbook Editions 2025–2026",
+                "url": "https://moe.gov.jo/ar/node/79818",
+                "type": "ministry",
+                "priority": 1
+              }
+            ],
+            "note": "Lesson authored only after referencing official Jordanian curriculum structure for this grade/subject."
+          },
+          "contentOrigin": "success-os-original-curriculum-aligned",
+          "rights": {
+            "copyBookText": false,
+            "generateOriginalOnly": true
+          }
+        }
+      ]
+    }
+  ],
+  "learningOutcomes": [
+    "أن يتعرف المتعلم مفهومًا محوريًا في اللغة والتواصل ضمن الاستماع والتحدث بما يتوافق مع إطار المنهاج الوطني الأردني لـرياض الأطفال.",
+    "أن يطبّق مهارة مرتبطة بـ«الاستماع والتحدث — مقدمة ومفاهيم» بخطوات واضحة قابلة للتحقق.",
+    "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة.",
+    "أن يتعرف المتعلم مفهومًا محوريًا في اللغة والتواصل ضمن الاستماع والتحدث بما يتوافق مع إطار المنهاج الوطني الأردني لـرياض الأطفال.",
+    "أن يطبّق مهارة مرتبطة بـ«الاستماع والتحدث — بناء المهارة» بخطوات واضحة قابلة للتحقق.",
+    "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة.",
+    "أن يتعرف المتعلم مفهومًا محوريًا في اللغة والتواصل ضمن الاستماع والتحدث بما يتوافق مع إطار المنهاج الوطني الأردني لـرياض الأطفال.",
+    "أن يطبّق مهارة مرتبطة بـ«الاستماع والتحدث — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+    "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة.",
+    "أن يتعرف المتعلم مفهومًا محوريًا في اللغة والتواصل ضمن الاستماع والتحدث بما يتوافق مع إطار المنهاج الوطني الأردني لـرياض الأطفال.",
+    "أن يطبّق مهارة مرتبطة بـ«الاستماع والتحدث — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+    "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة.",
+    "أن يتعرف المتعلم مفهومًا محوريًا في اللغة والتواصل ضمن الحروف والأصوات بما يتوافق مع إطار المنهاج الوطني الأردني لـرياض الأطفال.",
+    "أن يطبّق مهارة مرتبطة بـ«الحروف والأصوات — مقدمة ومفاهيم» بخطوات واضحة قابلة للتحقق.",
+    "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة.",
+    "أن يتعرف المتعلم مفهومًا محوريًا في اللغة والتواصل ضمن الحروف والأصوات بما يتوافق مع إطار المنهاج الوطني الأردني لـرياض الأطفال.",
+    "أن يطبّق مهارة مرتبطة بـ«الحروف والأصوات — بناء المهارة» بخطوات واضحة قابلة للتحقق.",
+    "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة.",
+    "أن يتعرف المتعلم مفهومًا محوريًا في اللغة والتواصل ضمن الحروف والأصوات بما يتوافق مع إطار المنهاج الوطني الأردني لـرياض الأطفال.",
+    "أن يطبّق مهارة مرتبطة بـ«الحروف والأصوات — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+    "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة.",
+    "أن يتعرف المتعلم مفهومًا محوريًا في اللغة والتواصل ضمن الحروف والأصوات بما يتوافق مع إطار المنهاج الوطني الأردني لـرياض الأطفال.",
+    "أن يطبّق مهارة مرتبطة بـ«الحروف والأصوات — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+    "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة.",
+    "أن يتعرف المتعلم مفهومًا محوريًا في اللغة والتواصل ضمن قصص قصيرة بما يتوافق مع إطار المنهاج الوطني الأردني لـرياض الأطفال.",
+    "أن يطبّق مهارة مرتبطة بـ«قصص قصيرة — مقدمة ومفاهيم» بخطوات واضحة قابلة للتحقق.",
+    "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة.",
+    "أن يتعرف المتعلم مفهومًا محوريًا في اللغة والتواصل ضمن قصص قصيرة بما يتوافق مع إطار المنهاج الوطني الأردني لـرياض الأطفال.",
+    "أن يطبّق مهارة مرتبطة بـ«قصص قصيرة — بناء المهارة» بخطوات واضحة قابلة للتحقق.",
+    "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة.",
+    "أن يتعرف المتعلم مفهومًا محوريًا في اللغة والتواصل ضمن قصص قصيرة بما يتوافق مع إطار المنهاج الوطني الأردني لـرياض الأطفال.",
+    "أن يطبّق مهارة مرتبطة بـ«قصص قصيرة — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+    "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة.",
+    "أن يتعرف المتعلم مفهومًا محوريًا في اللغة والتواصل ضمن قصص قصيرة بما يتوافق مع إطار المنهاج الوطني الأردني لـرياض الأطفال.",
+    "أن يطبّق مهارة مرتبطة بـ«قصص قصيرة — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+    "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة.",
+    "أن يتعرف المتعلم مفهومًا محوريًا في اللغة والتواصل ضمن التعبير الشفوي بما يتوافق مع إطار المنهاج الوطني الأردني لـرياض الأطفال.",
+    "أن يطبّق مهارة مرتبطة بـ«التعبير الشفوي — مقدمة ومفاهيم» بخطوات واضحة قابلة للتحقق.",
+    "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة.",
+    "أن يتعرف المتعلم مفهومًا محوريًا في اللغة والتواصل ضمن التعبير الشفوي بما يتوافق مع إطار المنهاج الوطني الأردني لـرياض الأطفال.",
+    "أن يطبّق مهارة مرتبطة بـ«التعبير الشفوي — بناء المهارة» بخطوات واضحة قابلة للتحقق.",
+    "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة.",
+    "أن يتعرف المتعلم مفهومًا محوريًا في اللغة والتواصل ضمن التعبير الشفوي بما يتوافق مع إطار المنهاج الوطني الأردني لـرياض الأطفال.",
+    "أن يطبّق مهارة مرتبطة بـ«التعبير الشفوي — تطبيق ومثال» بخطوات واضحة قابلة للتحقق.",
+    "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة.",
+    "أن يتعرف المتعلم مفهومًا محوريًا في اللغة والتواصل ضمن التعبير الشفوي بما يتوافق مع إطار المنهاج الوطني الأردني لـرياض الأطفال.",
+    "أن يطبّق مهارة مرتبطة بـ«التعبير الشفوي — تقويم وتعزيز» بخطوات واضحة قابلة للتحقق.",
+    "أن يربط التعلم بموقف حياتي أو مدرسي أردني مناسب للمرحلة."
+  ],
+  "requiredSkills": [
+    "القراءة الناقدة",
+    "الكتابة المنظمة",
+    "الاستماع",
+    "التحدث"
+  ],
+  "scientificConcepts": [
+    {
+      "term": "نص",
+      "subject": "اللغة والتواصل",
+      "note": "مفهوم إطار منهاجي — محتوى أصلي Success OS غير منسوخ من كتاب مدرسي"
+    },
+    {
+      "term": "معنى",
+      "subject": "اللغة والتواصل",
+      "note": "مفهوم إطار منهاجي — محتوى أصلي Success OS غير منسوخ من كتاب مدرسي"
+    },
+    {
+      "term": "أسلوب",
+      "subject": "اللغة والتواصل",
+      "note": "مفهوم إطار منهاجي — محتوى أصلي Success OS غير منسوخ من كتاب مدرسي"
+    },
+    {
+      "term": "قاعدة",
+      "subject": "اللغة والتواصل",
+      "note": "مفهوم إطار منهاجي — محتوى أصلي Success OS غير منسوخ من كتاب مدرسي"
+    },
+    {
+      "term": "سياق",
+      "subject": "اللغة والتواصل",
+      "note": "مفهوم إطار منهاجي — محتوى أصلي Success OS غير منسوخ من كتاب مدرسي"
+    }
+  ],
+  "definitions": [
+    {
+      "term": "نص",
+      "definitionAr": "تعريف تعليمي أصلي لمفهوم «نص» ضمن إطار المنهاج الوطني الأردني، يُبنى لأغراض التدريس في Success OS دون اقتباس نص الكتاب المدرسي."
+    },
+    {
+      "term": "معنى",
+      "definitionAr": "تعريف تعليمي أصلي لمفهوم «معنى» ضمن إطار المنهاج الوطني الأردني، يُبنى لأغراض التدريس في Success OS دون اقتباس نص الكتاب المدرسي."
+    },
+    {
+      "term": "أسلوب",
+      "definitionAr": "تعريف تعليمي أصلي لمفهوم «أسلوب» ضمن إطار المنهاج الوطني الأردني، يُبنى لأغراض التدريس في Success OS دون اقتباس نص الكتاب المدرسي."
+    },
+    {
+      "term": "قاعدة",
+      "definitionAr": "تعريف تعليمي أصلي لمفهوم «قاعدة» ضمن إطار المنهاج الوطني الأردني، يُبنى لأغراض التدريس في Success OS دون اقتباس نص الكتاب المدرسي."
+    }
+  ],
+  "examples": [
+    {
+      "title": "مثال صفّي",
+      "text": "موقف تعليمي أصلي لـرياض الأطفال في اللغة والتواصل يوضح تطبيق فكرة درس «الاستماع والتحدث — مقدمة ومفاهيم» بخطوات قابلة للمتابعة."
+    },
+    {
+      "title": "مثال حياتي أردني",
+      "text": "ربط الدرس بسياق يومي مناسب للمتعلم في الأردن (مدرسة، منزل، مجتمع محلي) دون الاعتماد على نص كتابي محمي."
+    },
+    {
+      "title": "مثال صفّي",
+      "text": "موقف تعليمي أصلي لـرياض الأطفال في اللغة والتواصل يوضح تطبيق فكرة درس «الاستماع والتحدث — بناء المهارة» بخطوات قابلة للمتابعة."
+    },
+    {
+      "title": "مثال حياتي أردني",
+      "text": "ربط الدرس بسياق يومي مناسب للمتعلم في الأردن (مدرسة، منزل، مجتمع محلي) دون الاعتماد على نص كتابي محمي."
+    },
+    {
+      "title": "مثال صفّي",
+      "text": "موقف تعليمي أصلي لـرياض الأطفال في اللغة والتواصل يوضح تطبيق فكرة درس «الاستماع والتحدث — تطبيق ومثال» بخطوات قابلة للمتابعة."
+    },
+    {
+      "title": "مثال حياتي أردني",
+      "text": "ربط الدرس بسياق يومي مناسب للمتعلم في الأردن (مدرسة، منزل، مجتمع محلي) دون الاعتماد على نص كتابي محمي."
+    },
+    {
+      "title": "مثال صفّي",
+      "text": "موقف تعليمي أصلي لـرياض الأطفال في اللغة والتواصل يوضح تطبيق فكرة درس «الاستماع والتحدث — تقويم وتعزيز» بخطوات قابلة للمتابعة."
+    },
+    {
+      "title": "مثال حياتي أردني",
+      "text": "ربط الدرس بسياق يومي مناسب للمتعلم في الأردن (مدرسة، منزل، مجتمع محلي) دون الاعتماد على نص كتابي محمي."
+    }
+  ],
+  "educationalDiagrams": [
+    {
+      "id": "text-structure-map",
+      "title": "مخطط تعليمي لوحدة الاستماع والتحدث",
+      "purpose": "توضيح العلاقات المفاهيمية للمتعلم",
+      "generateOriginal": true,
+      "neverCopyTextbookFigure": true
+    },
+    {
+      "id": "text-structure-map",
+      "title": "مخطط تعليمي لوحدة الاستماع والتحدث",
+      "purpose": "توضيح العلاقات المفاهيمية للمتعلم",
+      "generateOriginal": true,
+      "neverCopyTextbookFigure": true
+    },
+    {
+      "id": "text-structure-map",
+      "title": "مخطط تعليمي لوحدة الاستماع والتحدث",
+      "purpose": "توضيح العلاقات المفاهيمية للمتعلم",
+      "generateOriginal": true,
+      "neverCopyTextbookFigure": true
+    },
+    {
+      "id": "text-structure-map",
+      "title": "مخطط تعليمي لوحدة الاستماع والتحدث",
+      "purpose": "توضيح العلاقات المفاهيمية للمتعلم",
+      "generateOriginal": true,
+      "neverCopyTextbookFigure": true
+    },
+    {
+      "id": "text-structure-map",
+      "title": "مخطط تعليمي لوحدة الحروف والأصوات",
+      "purpose": "توضيح العلاقات المفاهيمية للمتعلم",
+      "generateOriginal": true,
+      "neverCopyTextbookFigure": true
+    },
+    {
+      "id": "text-structure-map",
+      "title": "مخطط تعليمي لوحدة الحروف والأصوات",
+      "purpose": "توضيح العلاقات المفاهيمية للمتعلم",
+      "generateOriginal": true,
+      "neverCopyTextbookFigure": true
+    },
+    {
+      "id": "text-structure-map",
+      "title": "مخطط تعليمي لوحدة الحروف والأصوات",
+      "purpose": "توضيح العلاقات المفاهيمية للمتعلم",
+      "generateOriginal": true,
+      "neverCopyTextbookFigure": true
+    },
+    {
+      "id": "text-structure-map",
+      "title": "مخطط تعليمي لوحدة الحروف والأصوات",
+      "purpose": "توضيح العلاقات المفاهيمية للمتعلم",
+      "generateOriginal": true,
+      "neverCopyTextbookFigure": true
+    },
+    {
+      "id": "text-structure-map",
+      "title": "مخطط تعليمي لوحدة قصص قصيرة",
+      "purpose": "توضيح العلاقات المفاهيمية للمتعلم",
+      "generateOriginal": true,
+      "neverCopyTextbookFigure": true
+    },
+    {
+      "id": "text-structure-map",
+      "title": "مخطط تعليمي لوحدة قصص قصيرة",
+      "purpose": "توضيح العلاقات المفاهيمية للمتعلم",
+      "generateOriginal": true,
+      "neverCopyTextbookFigure": true
+    },
+    {
+      "id": "text-structure-map",
+      "title": "مخطط تعليمي لوحدة قصص قصيرة",
+      "purpose": "توضيح العلاقات المفاهيمية للمتعلم",
+      "generateOriginal": true,
+      "neverCopyTextbookFigure": true
+    },
+    {
+      "id": "text-structure-map",
+      "title": "مخطط تعليمي لوحدة قصص قصيرة",
+      "purpose": "توضيح العلاقات المفاهيمية للمتعلم",
+      "generateOriginal": true,
+      "neverCopyTextbookFigure": true
+    },
+    {
+      "id": "text-structure-map",
+      "title": "مخطط تعليمي لوحدة التعبير الشفوي",
+      "purpose": "توضيح العلاقات المفاهيمية للمتعلم",
+      "generateOriginal": true,
+      "neverCopyTextbookFigure": true
+    },
+    {
+      "id": "text-structure-map",
+      "title": "مخطط تعليمي لوحدة التعبير الشفوي",
+      "purpose": "توضيح العلاقات المفاهيمية للمتعلم",
+      "generateOriginal": true,
+      "neverCopyTextbookFigure": true
+    },
+    {
+      "id": "text-structure-map",
+      "title": "مخطط تعليمي لوحدة التعبير الشفوي",
+      "purpose": "توضيح العلاقات المفاهيمية للمتعلم",
+      "generateOriginal": true,
+      "neverCopyTextbookFigure": true
+    },
+    {
+      "id": "text-structure-map",
+      "title": "مخطط تعليمي لوحدة التعبير الشفوي",
+      "purpose": "توضيح العلاقات المفاهيمية للمتعلم",
+      "generateOriginal": true,
+      "neverCopyTextbookFigure": true
+    }
+  ],
+  "references": [
+    {
+      "name": "Jordan Ministry of Education",
+      "url": "https://moe.gov.jo/",
+      "type": "ministry-education",
+      "priority": 1
+    },
+    {
+      "name": "National Center for Curriculum Development (NCCD)",
+      "url": "https://www.nccd.gov.jo/Ar/Pages/textbooks",
+      "type": "curriculum-authority",
+      "priority": 1
+    },
+    {
+      "name": "NCCD Official Portal",
+      "url": "https://www.nccd.gov.jo/",
+      "type": "curriculum-authority",
+      "priority": 1
+    },
+    {
+      "name": "Darsak Platform",
+      "url": "https://darsak.gov.jo/",
+      "type": "digital-learning-platform",
+      "priority": 1
+    },
+    {
+      "name": "MoE Curricula and School Textbooks Administration",
+      "url": "https://moe.gov.jo/ar/%D8%A5%D8%AF%D8%A7%D8%B1%D8%A9-%D8%A7%D9%84%D9%85%D9%86%D8%A7%D9%87%D8%AC-%D9%88%D8%A7%D9%84%D9%83%D8%AA%D8%A8-%D8%A7%D9%84%D9%85%D8%AF%D8%B1%D8%B3%D9%8A%D8%A9",
+      "type": "ministry",
+      "priority": 1
+    },
+    {
+      "name": "MoE Approved Textbook Editions 2025–2026",
+      "url": "https://moe.gov.jo/ar/node/79818",
+      "type": "ministry",
+      "priority": 1
+    },
+    {
+      "name": "Darsak Platform",
+      "url": "https://darsak.gov.jo/",
+      "type": "official-digital-platform"
+    },
+    {
+      "name": "MoE Jordan",
+      "url": "https://moe.gov.jo/",
+      "type": "ministry-education"
+    }
+  ],
+  "contentOrigin": "success-os-original-curriculum-aligned",
+  "rights": {
+    "copyBookText": false,
+    "copyTeacherGuideProse": false,
+    "generateOriginalSuccessOsContentOnly": true
+  },
+  "verification": {
+    "checks": {
+      "framework": true,
+      "gradeStructure": true,
+      "subjectStructure": true,
+      "units": true,
+      "lessons": true,
+      "learningOutcomes": true,
+      "requiredSkills": true,
+      "scientificConcepts": true,
+      "definitions": true,
+      "examples": true,
+      "educationalDiagrams": true,
+      "references": true,
+      "catalogueLinked": true,
+      "originalOnly": true,
+      "noInternational": true
+    },
+    "structurePercent": 100,
+    "cataloguePercent": 94,
+    "provenancePercent": 94,
+    "percent": 97.3,
+    "passed": 15,
+    "total": 15
+  },
+  "builtAt": "2026-07-31T17:55:35.495Z"
+}
