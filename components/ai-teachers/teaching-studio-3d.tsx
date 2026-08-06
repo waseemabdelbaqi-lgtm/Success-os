@@ -66,8 +66,13 @@ type Props = {
   lookPitch?: number;
   gaze?: string;
   screenElement?: ScreenElement | null;
-  /** Full HE frame — drives skinned skeleton + face morphs */
+  /** Full HE frame — drives motion on the photoreal teacher (and skinned lab mode) */
   frame?: HumanFrameSample | null;
+  /**
+   * Default is photoreal classroom presence (PNG). Mixamo GLB stays lab-only —
+   * doll-body look fails the owner quality bar.
+   */
+  preferSkinned?: boolean;
 };
 
 const CAM: Record<string, { pos: [number, number, number]; look: [number, number, number] }> = {
@@ -203,7 +208,7 @@ function StudioRoom({
   );
 }
 
-/** Photoreal classroom teacher — full human presence inside the 3D studio. */
+/** Photoreal classroom teacher — preferred live presence (not Mixamo doll body). */
 function PhotorealTeacher({
   teacherId,
   pose,
@@ -212,6 +217,7 @@ function PhotorealTeacher({
   walkOffset = 0,
   lookYaw = 0,
   lookPitch = 0,
+  camera = "medium_teacher",
 }: {
   teacherId: "sara" | "ali";
   pose: Studio3DPose;
@@ -220,6 +226,7 @@ function PhotorealTeacher({
   walkOffset?: number;
   lookYaw?: number;
   lookPitch?: number;
+  camera?: string;
 }) {
   // Asset paths follow Configuration Layer appearance.assetRoot convention
   const root = `/media/ai-teachers/${teacherId}`;
@@ -229,11 +236,23 @@ function PhotorealTeacher({
   const mouthClosed = useTexture(`${root}/flagship/mouth-closed.png`);
   const mouthOpen = useTexture(`${root}/flagship/mouth-open.png`);
   const mouthWide = useTexture(`${root}/flagship/mouth-wide.png`);
+  const blink = useTexture(`${root}/alive/blink.png`);
+  const listen = useTexture(`${root}/alive/listen.png`);
   const group = useRef<THREE.Group>(null);
   const mat = useRef<THREE.MeshStandardMaterial>(null);
   const mouthMat = useRef<THREE.MeshBasicMaterial>(null);
+  const faceMat = useRef<THREE.MeshBasicMaterial>(null);
 
-  for (const t of [stand, point, write, mouthClosed, mouthOpen, mouthWide]) {
+  for (const t of [
+    stand,
+    point,
+    write,
+    mouthClosed,
+    mouthOpen,
+    mouthWide,
+    blink,
+    listen,
+  ]) {
     t.colorSpace = THREE.SRGBColorSpace;
     t.anisotropy = 8;
   }
@@ -249,15 +268,16 @@ function PhotorealTeacher({
       : energy > 0.55
         ? mouthWide
         : mouthOpen;
-  const mouthOpacity = speaking ? 0.22 + energy * 0.55 : 0.08;
+  const mouthOpacity = speaking ? 0.18 + energy * 0.48 : 0.05;
+  const closeFace = camera === "close_face";
 
   useFrame((state) => {
     if (!group.current) return;
     const t = state.clock.elapsedTime;
-    const breath = Math.sin(t * (speaking ? 2.4 : 1.15)) * (speaking ? 0.012 : 0.007);
-    const sway = Math.sin(t * 1.1) * (speaking ? 0.025 : 0.012);
-    const headYaw = THREE.MathUtils.degToRad(lookYaw || 0) * 0.35;
-    const headPitch = THREE.MathUtils.degToRad(lookPitch || 0) * 0.2;
+    const breath = Math.sin(t * (speaking ? 2.15 : 1.05)) * (speaking ? 0.01 : 0.006);
+    const sway = Math.sin(t * 0.85) * (speaking ? 0.018 : 0.01);
+    const headYaw = THREE.MathUtils.degToRad(lookYaw || 0) * 0.28;
+    const headPitch = THREE.MathUtils.degToRad(lookPitch || 0) * 0.16;
     const baseX = teacherId === "ali" ? -1.25 : -1.45;
     group.current.position.x = THREE.MathUtils.lerp(
       group.current.position.x,
@@ -268,7 +288,7 @@ function PhotorealTeacher({
     group.current.rotation.y = sway + headYaw;
     group.current.rotation.x = headPitch;
     if (mat.current) {
-      mat.current.emissiveIntensity = speaking ? 0.06 + energy * 0.1 : 0.03;
+      mat.current.emissiveIntensity = speaking ? 0.05 + energy * 0.08 : 0.025;
     }
     if (mouthMat.current) {
       mouthMat.current.opacity = THREE.MathUtils.lerp(
@@ -276,6 +296,14 @@ function PhotorealTeacher({
         mouthOpacity,
         0.22,
       );
+    }
+    // Natural blink pulse on face insert (close shots)
+    if (faceMat.current) {
+      const blinkPulse = Math.max(0, Math.sin(t * 0.62) - 0.96) * 18;
+      const target = closeFace ? 0.55 + blinkPulse * 0.35 : 0;
+      faceMat.current.opacity = THREE.MathUtils.lerp(faceMat.current.opacity, target, 0.15);
+      faceMat.current.map = blinkPulse > 0.35 ? blink : listen;
+      faceMat.current.needsUpdate = true;
     }
   });
 
@@ -288,15 +316,15 @@ function PhotorealTeacher({
           map={map}
           transparent
           alphaTest={0.15}
-          roughness={0.72}
+          roughness={0.55}
           metalness={0.02}
-          emissive="#22180f"
-          emissiveIntensity={0.04}
+          emissive="#1a120c"
+          emissiveIntensity={0.03}
           side={THREE.DoubleSide}
         />
       </mesh>
       {/* Soft lip-sync overlay — photoreal mouth stills driven by jaw energy */}
-      <mesh position={[0, height * 0.18, 0.012]} scale={[0.42, 0.22, 1]}>
+      <mesh position={[0, height * 0.18, 0.012]} scale={[0.38, 0.2, 1]}>
         <planeGeometry args={[width, height]} />
         <meshBasicMaterial
           ref={mouthMat}
@@ -305,6 +333,19 @@ function PhotorealTeacher({
           opacity={mouthOpacity}
           depthWrite={false}
           alphaTest={0.08}
+          side={THREE.DoubleSide}
+        />
+      </mesh>
+      {/* Subtle alive face cue on close_face — blink / listen stills */}
+      <mesh position={[0, height * 0.32, 0.014]} scale={[0.28, 0.28, 1]}>
+        <planeGeometry args={[width, height]} />
+        <meshBasicMaterial
+          ref={faceMat}
+          map={listen}
+          transparent
+          opacity={0}
+          depthWrite={false}
+          alphaTest={0.1}
           side={THREE.DoubleSide}
         />
       </mesh>
@@ -569,9 +610,9 @@ function PropMesh({
 
 function SceneBody(props: Props) {
   const frame = props.frame ?? legacyFrame(props);
-  // Live Human Engine path: drive the skinned GLB (bones + ARKit morphs).
-  // Legacy callers without a real frame keep the PNG billboard fallback.
-  const useSkinnedHuman = !!props.frame;
+  // Product default: photoreal classroom teacher (owner-quality path).
+  // Mixamo skinned GLB is opt-in lab only — doll-body look fails acceptance.
+  const useSkinnedHuman = !!props.preferSkinned && !!props.frame;
   return (
     <>
       <CameraRig camera={props.camera} />
@@ -592,6 +633,7 @@ function SceneBody(props: Props) {
           walkOffset={props.walkOffset}
           lookYaw={props.lookYaw ?? frame.head?.yaw ?? 0}
           lookPitch={props.lookPitch ?? frame.head?.pitch ?? 0}
+          camera={props.camera}
         />
       )}
       <LessonProps

@@ -8,10 +8,12 @@
   "cannotUnlockAcceptance": true,
   "requiredNext": [
     "Do not ship PNG collage / Ken-Burns stills as Demo evidence",
-    "Capture continuous motion from live skinned Human Engine studio (or higher-fidelity render)",
+    "Do not use Mixamo doll-body as owner Demo — product path is photoreal classroom presence",
+    "Capture continuous motion from live /ai-teacher photoreal studio (not slideshow, not game NPC)",
     "Natural enter, eye contact, smile, walk, breath, blink in one continuous take",
     "Pass Original Human Teachers Policy quality bar before claiming Demo complete"
   ],
   "photorealismGate": "still pending (~62/95)",
-  "updatedAt": "2026-08-06T06:45:00.000Z"
+  "liveProductPath": "photoreal classroom billboard driven by Human Engine (preferSkinned=false)",
+  "updatedAt": "2026-08-06T09:15:00.000Z"
 }

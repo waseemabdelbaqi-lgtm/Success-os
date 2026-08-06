@@ -443,7 +443,15 @@ const studio3dSrc = fs.readFileSync(
 );
 assert(
   studio3dSrc.includes("SkinnedDigitalHuman"),
-  "TeachingStudio3D must mount SkinnedDigitalHuman on live HE frames",
+  "TeachingStudio3D must keep SkinnedDigitalHuman available for lab mode",
+);
+assert(
+  studio3dSrc.includes("preferSkinned"),
+  "TeachingStudio3D must gate Mixamo skinned mode behind preferSkinned",
+);
+assert(
+  studio3dSrc.includes("PhotorealTeacher"),
+  "TeachingStudio3D must keep photoreal classroom teacher as product default",
 );
 assert(
   fs.existsSync(path.join(root, "lib/human-engine/teacher-skin.ts")),
@@ -462,10 +470,7 @@ const skinnedSrc = fs.readFileSync(
 );
 assert(skinnedSrc.includes("buildSkinMaterial"), "skinned human must use skin materials");
 assert(skinnedSrc.includes("catchlights"), "skinned human must render corneal catchlights");
-assert(
-  studio3dSrc.includes("useSkinnedHuman"),
-  "TeachingStudio3D must prefer skinned GLB over PNG billboard when frame exists",
-);
+
 const adaptersSrc = fs.readFileSync(
   path.join(root, "lib/human-engine/adapters/index.ts"),
   "utf8",
