@@ -69,13 +69,13 @@ Generate a **direct public URL to a VIDEO file** (MP4) — not localhost, not an
 
 ## Current verdict (honest)
 
-**REJECTED.** The present `sara-10s.mp4` is a PNG collage / stills slideshow with delayed TTS.
+**REJECTED** for Final Acceptance — but the collage is gone.
 
-- It looks obviously synthetic.  
-- It **must not** be used as dual-acceptance evidence.  
-- It **does not** unlock Final Acceptance / production ship.  
+`sara-10s.mp4` was **rebuilt from scratch** as a continuous 30fps speech-synced render (audio RMS → mouth ROI plates + enter/look/smile/walk beats). It is **not** a Ken-Burns PNG slideshow.
 
-Required replacement: a continuous take from the live skinned Human Engine studio (or higher-fidelity render) with natural enter, gaze, smile, walk, breath, and blink — not Ken-Burns stills.
+- Still **must not** unlock dual-acceptance until the owner live Demo passes and photorealism/lipsync gates hit target.  
+- Canva Connect was requested (`https://www.canva.com/`) but **no OAuth token / MCP** exists in the agent environment — see `public/media/ai-teachers/sara/demo/canva-pack/CANVA_BRIEF.md`.  
+- Render entrypoints: `scripts/render-sara-10s-demo.mjs` → `scripts/render_sara_10s_synced.py`.
 
 ## Quality bar
 
