@@ -42,6 +42,7 @@
     "validate:human-teacher-quality": "node scripts/human-teacher-quality.test.mjs",
     "gate:human-teacher-quality": "npx --yes tsx scripts/_human_teacher_quality_runner.ts",
     "gate:final-acceptance": "npx --yes tsx scripts/_human_teacher_quality_runner.ts",
+    "ai-teachers:setup-tts": "python3 -m pip install --user -r requirements-ai-teachers.txt",
     "ai-teachers:factory": "python3 scripts/build-ai-teacher-factory.py",
     "ai-teachers:bake-audio": "python3 scripts/bake-ai-teacher-lesson-audio.py",
     "ai-teachers:humanoids": "node scripts/build-teacher-humanoids.mjs",

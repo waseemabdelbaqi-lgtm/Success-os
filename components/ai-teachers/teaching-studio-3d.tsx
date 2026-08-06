@@ -651,30 +651,60 @@ function SceneBody(props: Props) {
 }
 
 export function TeachingStudio3D(props: Props) {
+  const poseFile =
+    props.pose === "point" ? "point" : props.pose === "write" ? "write" : "stand";
+  const fallbackSrc = `/media/ai-teachers/${props.teacherId}/classroom/${poseFile}.png`;
+
   return (
     <div
       style={{
+        position: "relative",
         width: "100%",
         height: "100%",
         minHeight: "100%",
         background: "radial-gradient(circle at 50% 20%, #152033 0%, #070b14 65%)",
       }}
     >
-      <Canvas
-        shadows
-        dpr={[1, 1.75]}
-        camera={{ position: [0, 2.05, 5.6], fov: 40, near: 0.1, far: 40 }}
-        gl={{
-          antialias: true,
-          powerPreference: "high-performance",
-          toneMapping: THREE.ACESFilmicToneMapping,
-          toneMappingExposure: 1.05,
+      {/* Always-visible teacher — never leave the stage empty if WebGL stalls */}
+      <img
+        src={fallbackSrc}
+        alt={props.teacherId === "ali" ? "علي" : "سارة"}
+        style={{
+          position: "absolute",
+          left: props.teacherId === "ali" ? "18%" : "12%",
+          bottom: "6%",
+          height: "78%",
+          width: "auto",
+          maxWidth: "46%",
+          objectFit: "contain",
+          objectPosition: "bottom center",
+          zIndex: 0,
+          pointerEvents: "none",
+          filter: "drop-shadow(0 18px 40px rgba(0,0,0,0.55))",
         }}
-      >
-        <Suspense fallback={null}>
-          <SceneBody {...props} />
-        </Suspense>
-      </Canvas>
+      />
+      <div style={{ position: "absolute", inset: 0, zIndex: 1 }}>
+        <Canvas
+          shadows
+          dpr={[1, 1.75]}
+          camera={{ position: [0, 2.05, 5.6], fov: 40, near: 0.1, far: 40 }}
+          style={{ width: "100%", height: "100%", background: "transparent" }}
+          gl={{
+            antialias: true,
+            alpha: true,
+            powerPreference: "high-performance",
+            toneMapping: THREE.ACESFilmicToneMapping,
+            toneMappingExposure: 1.05,
+          }}
+          onCreated={({ gl }) => {
+            gl.setClearColor(0x000000, 0);
+          }}
+        >
+          <Suspense fallback={null}>
+            <SceneBody {...props} />
+          </Suspense>
+        </Canvas>
+      </div>
     </div>
   );
 }

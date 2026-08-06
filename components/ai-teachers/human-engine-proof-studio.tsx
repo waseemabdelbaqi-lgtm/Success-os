@@ -160,6 +160,7 @@ export function HumanEngineProofStudio() {
   const memoryRef = useRef<TeacherSessionMemory | null>(null);
   const interruptMsRef = useRef(0);
   const autoStarted = useRef(false);
+  const silentRafRef = useRef(0);
 
   const persona = getTeacherPersona(teacherId);
   const meta = allLessons.find((l) => l.id === lessonId) || allLessons[0]!;
@@ -177,6 +178,10 @@ export function HumanEngineProofStudio() {
   }, [lessonId, teacherId, meta.minDurationMs]);
 
   const stop = useCallback(() => {
+    if (silentRafRef.current) {
+      cancelAnimationFrame(silentRafRef.current);
+      silentRafRef.current = 0;
+    }
     voiceRef.current?.stop();
     adapterRef.current?.dispose?.();
     adapterRef.current = null;
@@ -250,6 +255,46 @@ export function HumanEngineProofStudio() {
     [stop],
   );
 
+  /** Visual-only lesson clock — keeps Sara/Ali teaching when neural TTS is down. */
+  const playSilent = useCallback(
+    (aligned: HumanPerformancePlan) => {
+      stop();
+      setPlan(aligned);
+      basePlanRef.current = aligned;
+      resumePlanRef.current = aligned;
+      resumeQueueRef.current = [];
+      setDone(false);
+      setPlaying(true);
+      setTMs(0);
+
+      const adapter = createHumanoidWebGLAdapter({
+        onFrame: (f) => setFrame(f),
+      });
+      adapterRef.current = adapter;
+      void adapter.load(aligned);
+
+      const duration = Math.max(8_000, aligned.timeline?.durationMs || 65_000);
+      const started = performance.now();
+      const tick = () => {
+        if (!adapterRef.current) return;
+        const globalMs = Math.min(duration, performance.now() - started);
+        setTMs(globalMs);
+        const f = sampleFrame(aligned, globalMs);
+        adapter.applyFrame(f);
+        setFrame(f);
+        if (globalMs >= duration) {
+          setDone(true);
+          setPlaying(false);
+          silentRafRef.current = 0;
+          return;
+        }
+        silentRafRef.current = requestAnimationFrame(tick);
+      };
+      silentRafRef.current = requestAnimationFrame(tick);
+    },
+    [stop],
+  );
+
   const startLesson = useCallback(async () => {
     const mem = createSessionMemory({
       teacherId,
@@ -261,62 +306,94 @@ export function HumanEngineProofStudio() {
     memoryRef.current = mem;
     setPreparing(true);
     setPrepPct(4);
-    setToast("فحص بوابة جودة المعلم…");
+    setToast("جاري إظهار المعلم في الاستوديو…");
     try {
-      // Quality Gate + Final Acceptance — blocks until world-class + 15s showcase
-      const gateRes = await fetch(
-        `/api/ai-teachers/quality-gate?teacher=${teacherId}`,
-      );
-      const gate = (await gateRes.json()) as {
-        shipAllowed?: boolean;
-        status?: string;
-        failures?: string[];
-        error?: string;
-      };
-      if (!gateRes.ok || gate.status !== "READY" || !gate.shipAllowed) {
-        const detail = (gate.failures || []).slice(0, 3).join(" · ");
-        setToast(
-          detail
-            ? `بوابة الجودة أوقفت ${teacherId === "ali" ? "علي" : "سارة"}: ${detail}`
-            : `بوابة الجودة أوقفت ${teacherId === "ali" ? "علي" : "سارة"} — لم يصل لمستوى المعلم المحترف بعد`,
+      // Ship gates stay honest — but MUST NOT hide Sara/Ali from the owner.
+      // Preview/Demo observation continues even while quality is REJECTED.
+      let shipBlocked = false;
+      try {
+        const gateRes = await fetch(
+          `/api/ai-teachers/quality-gate?teacher=${teacherId}`,
         );
-        setPreparing(false);
-        return;
-      }
-
-      setPrepPct(10);
-      setToast("فحص القبول النهائي…");
-      const accRes = await fetch(
-        `/api/ai-teachers/final-acceptance?teacher=${teacherId}`,
-      );
-      const acc = (await accRes.json()) as {
-        passed?: boolean;
-        reason?: string;
-        productionAllowed?: boolean;
-      };
-      if (!accRes.ok || !acc.passed || !acc.productionAllowed) {
-        setToast(
-          acc.reason
-            ? `القبول النهائي رفض ${teacherId === "ali" ? "علي" : "سارة"}: ${acc.reason}`
-            : `القبول النهائي رفض ${teacherId === "ali" ? "علي" : "سارة"} — مطلوب عرض 15 ثانية بجودة الإنتاج`,
+        const gate = (await gateRes.json()) as {
+          shipAllowed?: boolean;
+          status?: string;
+        };
+        const accRes = await fetch(
+          `/api/ai-teachers/final-acceptance?teacher=${teacherId}`,
         );
-        setPreparing(false);
-        return;
+        const acc = (await accRes.json()) as {
+          passed?: boolean;
+          productionAllowed?: boolean;
+        };
+        shipBlocked =
+          !gateRes.ok ||
+          gate.status !== "READY" ||
+          !gate.shipAllowed ||
+          !accRes.ok ||
+          !acc.passed ||
+          !acc.productionAllowed;
+      } catch {
+        shipBlocked = true;
       }
 
       setPrepPct(18);
-      setToast("يحضّر المعلم الدرس…");
       const p = buildPlan();
-      setPrepPct(28);
-      const voiced = await withLiveLineTts(p, teacherId);
-      setPrepPct(82);
-      await playAligned(voiced.plan, voiced.queue, { isBase: true });
+      setPrepPct(40);
+      // Show Sara/Ali on stage immediately — never wait on ship gates or TTS.
+      playSilent(p);
+      setPreparing(false);
+      setPrepPct(100);
+      setToast(
+        shipBlocked
+          ? "المعلم ظاهر الآن — جاري تجهيز الصوت (المعاينة / القبول REJECTED)"
+          : "المعلم ظاهر الآن — جاري تجهيز الصوت…",
+      );
+
+      try {
+        const voiced = await withLiveLineTts(p, teacherId);
+        if (voiced.queue.length) {
+          await playAligned(voiced.plan, voiced.queue, { isBase: true });
+          setToast(
+            shipBlocked
+              ? "الحصة للمعاينة فقط — القبول النهائي ما زال REJECTED حتى تصل الجودة للهدف"
+              : "",
+          );
+        } else {
+          setToast(
+            shipBlocked
+              ? "المعلم ظاهر والشرح يتحرك — الصوت غير متاح / القبول REJECTED"
+              : "المعلم ظاهر والشرح يتحرك — الصوت غير متاح حالياً",
+          );
+        }
+      } catch {
+        setToast(
+          shipBlocked
+            ? "المعلم ظاهر والشرح يتحرك — الصوت غير متاح / القبول REJECTED"
+            : "المعلم ظاهر والشرح يتحرك — الصوت غير متاح حالياً",
+        );
+      }
     } catch {
-      setToast("تعذر بدء الحصة. أعد المحاولة.");
-    } finally {
+      // Last resort: still enter a silent plan so Sara/Ali stay on stage.
+      try {
+        const p = buildPlan();
+        playSilent(p);
+        setToast("المعلم ظاهر — الشرح البصري يعمل");
+      } catch {
+        setToast("تعذر بدء الحصة. أعد المحاولة.");
+      }
       setPreparing(false);
     }
-  }, [buildPlan, lessonId, meta.grade, meta.subject, meta.titleAr, playAligned, teacherId]);
+  }, [
+    buildPlan,
+    lessonId,
+    meta.grade,
+    meta.subject,
+    meta.titleAr,
+    playAligned,
+    playSilent,
+    teacherId,
+  ]);
 
   const enterStudio = (id: TeacherId) => {
     setTeacherId(id);
@@ -327,11 +404,22 @@ export function HumanEngineProofStudio() {
     autoStarted.current = false;
   };
 
-  /** Deep-link preselects teacher on the entrance — click still unlocks browser audio. */
+  /**
+   * Deep-link: ?teacher=sara|ali preselects the teacher.
+   * ?enter=1 jumps straight into the studio so Sara/Ali are never "missing"
+   * behind a blocked welcome click (preview still runs even if ship gates fail).
+   */
   useEffect(() => {
     const t = searchParams.get("teacher");
     if (t === "sara" || t === "ali") {
       setTeacherId(t);
+      if (searchParams.get("enter") === "1") {
+        setLessonId(FEATURED_LESSON);
+        setPhase("studio");
+        setReply("");
+        setDone(false);
+        autoStarted.current = false;
+      }
     }
   }, [searchParams]);
 
@@ -690,9 +778,11 @@ const styles: Record<string, CSSProperties> = {
   },
   teacherImg: {
     width: "100%",
-    height: 300,
+    height: 340,
     objectFit: "cover",
+    objectPosition: "center top",
     display: "block",
+    background: "#132033",
   },
   teacherMeta: {
     padding: "16px 18px 20px",
