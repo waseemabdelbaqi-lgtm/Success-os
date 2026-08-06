@@ -1,9 +1,9 @@
 <!doctype html>
-<html lang="en">
+<html lang="ar" dir="rtl">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Sara · 10s Success OS Video Demo</title>
+    <title>Sara 10s Demo — REJECTED</title>
     <style>
       :root { color-scheme: dark; }
       body {
@@ -11,46 +11,50 @@
         min-height: 100vh;
         display: grid;
         place-items: center;
-        background: #070b14;
+        background: #12080a;
         color: #f4efe6;
         font-family: "IBM Plex Sans Arabic", system-ui, sans-serif;
       }
       main {
         width: min(960px, 94vw);
         display: grid;
-        gap: 16px;
+        gap: 14px;
       }
-      h1 {
-        margin: 0;
-        font-weight: 600;
-        font-size: clamp(1.4rem, 3vw, 2rem);
+      .badge {
+        display: inline-block;
+        padding: 8px 14px;
+        background: #5a1218;
+        border: 1px solid #c23b45;
+        color: #ffd0d4;
+        font-weight: 700;
+        letter-spacing: 0.04em;
       }
-      p { margin: 0; color: #c9c0b0; line-height: 1.5; }
-      video {
-        width: 100%;
-        background: #000;
-        aspect-ratio: 16 / 9;
-      }
-      a { color: #d4a574; }
+      h1 { margin: 0; font-size: clamp(1.35rem, 3vw, 1.9rem); }
+      p { margin: 0; color: #d2c7b8; line-height: 1.6; }
+      video { width: 100%; aspect-ratio: 16/9; background: #000; opacity: 0.85; }
+      a { color: #e7b07a; }
+      code { color: #f0d2a8; }
     </style>
   </head>
   <body>
     <main>
-      <h1>Sara · 10-second studio video</h1>
+      <div class="badge">REJECTED · لا يُستخدم كدليل قبول</div>
+      <h1>عرض سارة 10 ثوانٍ — مرفوض</h1>
       <p>
-        Direct MP4 (not localhost). Original digital teacher — technique-only
-        reference from Success4SureCenter; not a likeness of any real person.
+        الفيديو الحالي مجرّد صور ثابتة مقطّعة + صوت. يبدو واضحاً أنه اصطناعي وغير مقبول.
+        حسب سياسة المعلّمين الأصليين: إذا قال المشاهد «هذا AI واضح» فالنتيجة
+        <strong>FAIL</strong> تلقائياً.
       </p>
-      <video
-        controls
-        autoplay
-        playsinline
-        src="../../media/ai-teachers/sara/demo/sara-10s.mp4"
-      ></video>
       <p>
-        File:
-        <a href="../../media/ai-teachers/sara/demo/sara-10s.mp4">sara-10s.mp4</a>
-        · “Welcome to Success OS. I'm Sara, and I'll be your teacher.”
+        هذا الملف محفوظ فقط كدليل فشل / حالة راهنة — <strong>لا يفتح بوابة القبول</strong>
+        ولا يُعرض كـ Demo نهائي.
+      </p>
+      <video controls playsinline src="../../media/ai-teachers/sara/demo/sara-10s.mp4"></video>
+      <p>
+        الحكم:
+        <a href="../../media/ai-teachers/sara/demo/QUALITY_VERDICT.json">QUALITY_VERDICT.json</a>
+        · الحالة التالية المطلوبة: تصوير مستمر من استوديو Human Engine الحي (مشهد متحرك حقيقي)،
+        وليس slideshow.
       </p>
     </main>
   </body>

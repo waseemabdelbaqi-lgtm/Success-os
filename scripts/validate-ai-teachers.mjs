@@ -53,6 +53,19 @@ assert(
   fs.existsSync(path.join(root, "scripts/render-sara-10s-demo.mjs")),
   "Missing render-sara-10s-demo.mjs",
 );
+const verdictPath = path.join(
+  root,
+  "public/media/ai-teachers/sara/demo/QUALITY_VERDICT.json",
+);
+assert(fs.existsSync(verdictPath), "Missing Sara 10s QUALITY_VERDICT.json");
+const verdict = JSON.parse(fs.readFileSync(verdictPath, "utf8"));
+assert(verdict.status === "REJECTED", "Current collage demo must stay REJECTED until replaced");
+assert(verdict.forbiddenAsEvidence === true, "Rejected demo must be forbidden as evidence");
+const demoPage = fs.readFileSync(
+  path.join(root, "public/demo/sara-10s/index.html"),
+  "utf8",
+);
+assert(/REJECTED|مرفوض/.test(demoPage), "Public demo page must show REJECTED");
 const demoHtml = fs.readFileSync(
   path.join(root, "public/demo/sara-10s/index.html"),
   "utf8",

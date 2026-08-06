@@ -65,10 +65,23 @@ Generate a **direct public URL to a VIDEO file** (MP4) — not localhost, not an
 | Closing line | “Welcome to Success OS. I'm Sara, and I'll be your teacher.” |
 | Asset path | `public/media/ai-teachers/sara/demo/sara-10s.mp4` |
 | Render script | `scripts/render-sara-10s-demo.mjs` |
+| Verdict file | `public/media/ai-teachers/sara/demo/QUALITY_VERDICT.json` |
+
+## Current verdict (honest)
+
+**REJECTED.** The present `sara-10s.mp4` is a PNG collage / stills slideshow with delayed TTS.
+
+- It looks obviously synthetic.  
+- It **must not** be used as dual-acceptance evidence.  
+- It **does not** unlock Final Acceptance / production ship.  
+
+Required replacement: a continuous take from the live skinned Human Engine studio (or higher-fidelity render) with natural enter, gaze, smile, walk, breath, and blink — not Ken-Burns stills.
 
 ## Quality bar
 
 If a viewer thinks “This is obviously AI,” the implementation **FAILS**.
+
+If a viewer finds the Demo repulsive or cheap, the implementation **FAILS**.
 
 Continue improving until the experience feels like watching an **original** professional teacher recorded in a premium educational studio.
 
