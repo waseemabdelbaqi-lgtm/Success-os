@@ -25,5 +25,10 @@
     "Photorealism ≥95 and lipsync ≥95 before Final Acceptance",
     "Public direct MP4 URL for dual acceptance"
   ],
-  "updatedAt": "2026-08-06T18:57:00.000Z"
+  "updatedAt": "2026-08-06T18:57:00.000Z",
+  "publicUrls": {
+    "jsdelivr": "https://cdn.jsdelivr.net/gh/waseemabdelbaqi-lgtm/Success-os@ecf08127/public/media/ai-teachers/sara/demo/sara-10s.mp4",
+    "githubRaw": "https://raw.githubusercontent.com/waseemabdelbaqi-lgtm/Success-os/cursor/ai-teachers-catalog-bca1/public/media/ai-teachers/sara/demo/sara-10s.mp4",
+    "repoPath": "/media/ai-teachers/sara/demo/sara-10s.mp4"
+  }
 }
