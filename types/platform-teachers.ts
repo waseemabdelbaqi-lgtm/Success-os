@@ -190,6 +190,7 @@ export type OriginalHumanTeachersPolicy = {
   aliMustBeOriginal: true;
   mandatorySara10sPublicDemo: true;
   publicDemoPath: "/demo/sara-10s/";
+  publicDemoVideoPath: "/media/ai-teachers/sara/demo/sara-10s.mp4";
   appDemoPath: "/ai-teacher/sara-10s";
   closingLineEn: "Welcome to Success OS. I'm Sara, and I'll be your teacher.";
   obviousAiFails: true;
@@ -226,6 +227,7 @@ export const ORIGINAL_HUMAN_TEACHERS_POLICY: OriginalHumanTeachersPolicy = {
   aliMustBeOriginal: true,
   mandatorySara10sPublicDemo: true,
   publicDemoPath: "/demo/sara-10s/",
+  publicDemoVideoPath: "/media/ai-teachers/sara/demo/sara-10s.mp4",
   appDemoPath: "/ai-teacher/sara-10s",
   closingLineEn: "Welcome to Success OS. I'm Sara, and I'll be your teacher.",
   obviousAiFails: true,

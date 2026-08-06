@@ -41,6 +41,18 @@ assert(
   ),
   "Missing Sara welcome-success-os.mp3",
 );
+assert(
+  fs.existsSync(path.join(root, "public/media/ai-teachers/sara/demo/sara-10s.mp4")),
+  "Missing Sara 10s MP4 demo video",
+);
+assert(
+  fs.statSync(path.join(root, "public/media/ai-teachers/sara/demo/sara-10s.mp4")).size > 50_000,
+  "Sara 10s MP4 too small",
+);
+assert(
+  fs.existsSync(path.join(root, "scripts/render-sara-10s-demo.mjs")),
+  "Missing render-sara-10s-demo.mjs",
+);
 const demoHtml = fs.readFileSync(
   path.join(root, "public/demo/sara-10s/index.html"),
   "utf8",

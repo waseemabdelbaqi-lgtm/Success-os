@@ -52,16 +52,19 @@ Create a completely **ORIGINAL** digital teacher:
 
 ## Mandatory public Demo test (10s — Sara)
 
-Generate a **direct public URL** (not localhost, not internal-only demo, not developer-only preview) that anyone can open.
+Generate a **direct public URL to a VIDEO file** (MP4) — not localhost, not an HTML-only mock, not an internal developer preview.
 
 | Requirement | Spec |
 |-------------|------|
+| Format | MP4 video (direct link anyone can open/play) |
 | Duration | 10 seconds |
 | Teacher | Sara (original identity only) |
 | Scene | Premium educational studio |
 | Beats | Enter → look at camera → smile → greet → introduce → walk → natural breath/blink/expression/body |
 | Lighting / camera | Professional educational studio |
 | Closing line | “Welcome to Success OS. I'm Sara, and I'll be your teacher.” |
+| Asset path | `public/media/ai-teachers/sara/demo/sara-10s.mp4` |
+| Render script | `scripts/render-sara-10s-demo.mjs` |
 
 ## Quality bar
 
