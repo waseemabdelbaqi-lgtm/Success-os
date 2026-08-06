@@ -59,6 +59,9 @@ function mapCamera(shot: string): string {
   return shot || "medium_teacher";
 }
 
+/** Cap live TTS so Sara/Ali appear with voice quickly (full bake is offline). */
+const LIVE_TTS_LINE_CAP = 10;
+
 async function withLiveLineTts(
   plan: HumanPerformancePlan,
   teacherId: TeacherId,
@@ -69,15 +72,17 @@ async function withLiveLineTts(
   totalMs: number;
   queue: VoiceQueueItem[];
 }> {
-  const lines = (plan.speech?.lines || []).map((l, i) => ({
+  const allLines = (plan.speech?.lines || []).map((l, i) => ({
     id: `L${i}_${l.startMs}`,
     text: l.text,
     contentAct: l.contentAct || plan.sentences?.[i]?.contentAct,
     style: styleHint,
   }));
-  if (!lines.length) {
+  if (!allLines.length) {
     return { plan, lineCount: 0, totalMs: 0, queue: [] };
   }
+  // Voice the opening segment first — never block the whole studio on 20+ lines.
+  const lines = allLines.slice(0, LIVE_TTS_LINE_CAP);
   const res = await fetch("/api/ai-teachers/tts", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
@@ -103,7 +108,16 @@ async function withLiveLineTts(
     pauseAfterMs: it.pauseAfterMs,
     style: it.style,
   }));
-  const aligned = alignPlanToTts(plan, timings);
+  // Align only the voiced prefix; keep the rest of the plan for silent/visual continuation.
+  const prefixPlan: HumanPerformancePlan = {
+    ...plan,
+    speech: {
+      ...plan.speech,
+      lines: (plan.speech?.lines || []).slice(0, timings.length),
+    },
+    sentences: plan.sentences?.slice(0, timings.length),
+  };
+  const aligned = alignPlanToTts(prefixPlan, timings);
   const lipSynced = rebuildLipPerformance(
     aligned,
     aligned.speech.lines.map((l) => ({
