@@ -1,0 +1,50 @@
+name: AI Teacher Quality
+
+on:
+  pull_request:
+    paths:
+      - "app/ai-teacher/**"
+      - "app/admin/ai-teachers/**"
+      - "app/api/ai-teacher/**"
+      - "app/api/ai-teachers/**"
+      - "lib/ai-teacher/**"
+      - "lib/physics/**"
+      - ".github/workflows/ai-teacher-quality.yml"
+  push:
+    branches:
+      - merge-success-os
+    paths:
+      - "app/ai-teacher/**"
+      - "app/admin/ai-teachers/**"
+      - "app/api/ai-teacher/**"
+      - "app/api/ai-teachers/**"
+      - "lib/ai-teacher/**"
+      - "lib/physics/**"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ai-teacher-quality-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  engine-tests:
+    name: AI Teacher and Physics Engines
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Use Node.js 24
+        uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+
+      - name: Test AI Teacher Engine
+        run: node --test lib/ai-teacher/__tests__/*.test.ts
+
+      - name: Test Physics Engine
+        run: node --test lib/physics/__tests__/*.test.ts
