@@ -236,6 +236,7 @@ export default function AITeacherPage() {
               >
                 START ALI DEMO
               </button>
+              <a href="/ai-teacher/live-lesson" className="col-span-2 rounded-2xl border-2 border-cyan-700 bg-cyan-950 p-4 text-center font-bold text-cyan-200 hover:border-cyan-400">START A VERIFIED LIVE LESSON →</a>
             </div>
           )}
         </div>
