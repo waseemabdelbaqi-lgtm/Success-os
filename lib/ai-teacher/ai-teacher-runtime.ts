@@ -13,13 +13,12 @@ import { advance, type SessionState, type StudentInput } from "./teaching-orches
 import { getOrCreateMemory, type SessionMemory } from "./session-memory.ts";
 import type { TeacherTurn } from "./teacher-turn.ts";
 import { registerPhysicsSubjectTool } from "./physics-subject-tool.ts";
+import { sessionStore } from "./session-store.ts";
 
 // Register every subject tool the runtime knows about. Sara/Ali reach these
 // only through the subject tool router (subject-tool-router.ts) — this is
 // the one place a subject engine is wired in.
 registerPhysicsSubjectTool();
-
-const sessions = new Map<string, SessionState>();
 
 function generateSessionId(): string {
   return `session_${Date.now()}_${Math.random().toString(36).slice(2, 10)}`;
@@ -36,35 +35,35 @@ export function createTeacherSession(input: CreateSessionInput): SessionState {
   const teacherId: TeacherId = requireTeacherId(input.teacherId);
   const sessionId = generateSessionId();
   const session: SessionState = { sessionId, teacherId, subject: input.subject, lesson: input.lesson, stage: "INITIALIZE" };
-  sessions.set(sessionId, session);
+  sessionStore.put(session, "created");
   getOrCreateMemory(sessionId);
   return session;
 }
 
 export function getSession(sessionId: string): SessionState {
-  const session = sessions.get(sessionId);
+  const session = sessionStore.get(sessionId);
   if (!session) throw new Error(`AI Teacher runtime error: unknown session "${sessionId}". Create one with createTeacherSession() first.`);
   return session;
 }
 
 /** Admin/introspection only: lists all sessions currently held in memory. */
 export function listSessions(): SessionState[] {
-  return [...sessions.values()];
+  return sessionStore.list();
 }
 
 export function sessionCount(): number {
-  return sessions.size;
+  return sessionStore.count();
 }
 
 /** Advances the given session by one turn, persisting the resulting stage. */
 export function runTurn(sessionId: string, studentInput?: StudentInput): { turn: TeacherTurn; memory: SessionMemory } {
   const session = getSession(sessionId);
   const { turn, memory, nextSession } = advance(session, studentInput);
-  sessions.set(sessionId, nextSession);
+  sessionStore.put(nextSession, "advanced");
   return { turn, memory };
 }
 
 /** Test-only: clears all in-memory sessions between test files. */
 export function _clearSessionsForTests(): void {
-  sessions.clear();
+  sessionStore.clear();
 }

@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { listSessions } from "@/lib/ai-teacher";
+import { listSessions, sessionStore } from "@/lib/ai-teacher";
 
 export const runtime = "nodejs";
 
@@ -11,5 +11,5 @@ export async function GET() {
     lesson: s.lesson,
     stage: s.stage,
   }));
-  return NextResponse.json({ sessions });
+  return NextResponse.json({ sessions, audit: sessionStore.audit().slice(-100) });
 }
