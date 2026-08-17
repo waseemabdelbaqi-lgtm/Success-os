@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { TEACHER_IDS, isSubjectRegistered, sessionCount } from "@/lib/ai-teacher";
+import { TEACHER_IDS, buildRecoveryPlan, evaluateConfiguredAcceptance, isSubjectRegistered, sessionCount } from "@/lib/ai-teacher";
 import { LiveAvatarProvider, ElevenLabsVoiceProvider, checkMappingCompleteness, validateConfiguration } from "@/lib/ai-teacher/providers";
 
 export const runtime = "nodejs";
@@ -24,6 +24,9 @@ export async function GET() {
   const mapping = checkMappingCompleteness();
   const config = validateConfiguration();
 
+  const acceptance = Object.fromEntries(TEACHER_IDS.map((id) => [id, evaluateConfiguredAcceptance(id)]));
+  const recovery = Object.fromEntries(TEACHER_IDS.map((id) => [id, buildRecoveryPlan(id, acceptance[id])]));
+
   return NextResponse.json({
     runtime: "online",
     teachers: TEACHER_IDS.map((id) => ({
@@ -32,19 +35,20 @@ export async function GET() {
       liveAvatarMapped: mapping[id].liveAvatarAvatarId,
       liveAvatarVoiceAgentMapped: mapping[id].liveAvatarVoiceAgentId,
       elevenLabsMapped: mapping[id].elevenLabsVoiceId, // optional, informational only
-      ready: config[id].ready,
+      ready: config[id].ready && acceptance[id].accepted,
       missingVariables: config[id].missingVariables,
       // Honest: no independently-scored photorealism/lipsync/animation/teaching/showcase pipeline exists.
-      qualityGates: "not_evaluated",
-      acceptanceStatus: "not_applicable — no human-quality gate/scoring system exists in this project",
+      qualityGates: acceptance[id].scores,
+      acceptanceStatus: acceptance[id].status,
+      acceptanceFailures: acceptance[id].failures,
     })),
     sessions: { activeCount: sessionCount() },
     providers: {
       liveAvatar: { state: liveAvatarStatus.state, detail: liveAvatarStatus.detail },
       elevenLabs: { state: elevenLabsStatus.state, detail: elevenLabsStatus.detail },
     },
-    quality: "not_implemented — no independent photorealism/lipsync/animation scoring pipeline exists in this project",
-    recovery: "not_implemented — no recovery-engine exists in this project",
+    quality: acceptance,
+    recovery,
     tests: LAST_VERIFIED_TEST_RESULTS,
     subjectTools: {
       physics: isSubjectRegistered("physics"),
