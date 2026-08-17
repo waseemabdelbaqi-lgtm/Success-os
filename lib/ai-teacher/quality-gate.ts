@@ -68,3 +68,10 @@ export function evaluateConfiguredAcceptance(teacherId: TeacherId): AcceptanceDe
   return evaluateFinalAcceptance(teacherId, parseEvidence(teacherId === "sara" ? "SARA" : "ALI"));
 }
 
+export function requireProductionAcceptance(teacherId: TeacherId): AcceptanceDecision {
+  const decision = evaluateConfiguredAcceptance(teacherId);
+  if (!decision.accepted) {
+    throw new Error(`AI Teacher acceptance gate: ${teacherId} is REJECTED. ${decision.failures.join(" | ")}`);
+  }
+  return decision;
+}
