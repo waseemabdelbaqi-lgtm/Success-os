@@ -91,7 +91,9 @@
     "dev:vinext": "vinext dev --port 3001",
     "build:vinext": "vinext build && node scripts/copy-hosting.mjs",
     "start:vinext": "wrangler dev --config dist/server/wrangler.json",
-    "deploy:vinext": "vinext-cloudflare deploy --config dist/server/wrangler.json"
+    "deploy:vinext": "vinext-cloudflare deploy --config dist/server/wrangler.json",
+    "validate:ai-teacher-engine": "node --test lib/ai-teacher/__tests__/*.test.ts",
+    "test:physics-engine": "node --test lib/physics/__tests__/*.test.ts"
   },
   "dependencies": {
     "clsx": "^2.1.1",
@@ -102,7 +104,8 @@
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "tailwind-merge": "^3.2.0",
-    "zod": "^3.24.2"
+    "zod": "^3.24.2",
+    "@heygen/liveavatar-web-sdk": "^0.0.18"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3.3.1",
@@ -125,5 +128,6 @@
     "vite": "latest",
     "@cloudflare/vite-plugin": "^1.44.0",
     "wrangler": "^4.110.0"
-  }
+  },
+  "type": "module"
 }
