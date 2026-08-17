@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
-import { createTeacherSession, runTurn, getSession, requireTeacherId, requireProductionAcceptance } from "@/lib/ai-teacher";
+import { createTeacherSession, runTurn, getSession, requireTeacherId, requireProductionAcceptance, restoreTeacherSession } from "@/lib/ai-teacher";
+import { loadTeacherSession, persistTeacherSession, sessionPersistenceMode } from "@/lib/ai-teacher/firebase-session-repository";
 import type { StudentInput } from "@/lib/ai-teacher";
 
 export const runtime = "nodejs"; // in-memory session store needs a persistent process, not a stateless edge isolate per request
@@ -11,8 +12,13 @@ export async function POST(request: Request) {
 
     let activeSessionId: string;
     if (typeof sessionId === "string" && sessionId) {
-      // Validate the session actually exists before trying to advance it.
-      getSession(sessionId);
+      try {
+        getSession(sessionId);
+      } catch {
+        const persisted = await loadTeacherSession(sessionId);
+        if (!persisted) throw new Error(`AI Teacher runtime error: unknown session "${sessionId}".`);
+        restoreTeacherSession(persisted);
+      }
       activeSessionId = sessionId;
     } else {
       if (typeof teacherId !== "string" || typeof subject !== "string" || typeof lesson !== "string") {
@@ -21,11 +27,13 @@ export async function POST(request: Request) {
       const canonicalTeacherId = requireTeacherId(teacherId);
       requireProductionAcceptance(canonicalTeacherId);
       const session = createTeacherSession({ teacherId: canonicalTeacherId, subject, lesson });
+      await persistTeacherSession(session, "created");
       activeSessionId = session.sessionId;
     }
 
     const { turn, memory } = runTurn(activeSessionId, studentInput as StudentInput | undefined);
-    return NextResponse.json({ sessionId: activeSessionId, turn, memory });
+    await persistTeacherSession(getSession(activeSessionId), "advanced");
+    return NextResponse.json({ sessionId: activeSessionId, turn, memory, persistence: sessionPersistenceMode() });
   } catch (error) {
     const message = error instanceof Error ? error.message : "AI Teacher runtime error.";
     // Teacher-identity rejections and unknown-session errors are client errors (400); anything else is a server error.

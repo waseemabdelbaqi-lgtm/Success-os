@@ -46,6 +46,15 @@ export function getSession(sessionId: string): SessionState {
   return session;
 }
 
+/** Restores a validated session loaded from the configured durable repository after a cold start. */
+export function restoreTeacherSession(session: SessionState): SessionState {
+  const teacherId = requireTeacherId(session.teacherId);
+  const restored: SessionState = { ...session, teacherId };
+  sessionStore.put(restored, "created");
+  getOrCreateMemory(restored.sessionId);
+  return restored;
+}
+
 /** Admin/introspection only: lists all sessions currently held in memory. */
 export function listSessions(): SessionState[] {
   return sessionStore.list();
