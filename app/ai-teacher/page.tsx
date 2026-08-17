@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { DigitalHumanBridge, type DigitalHumanStatus, type DebugEvent } from "./digital-human-bridge";
 import { buildNumbersDemoScript, PRAISE_AR, PRAISE_EN, RETRY_AR, RETRY_EN, type DemoStep } from "./numbers-demo-script";
+import { DigitalStudio } from "./digital-studio";
 
 type TeacherId = "sara" | "ali";
 type Screen = "gate" | "classroom";
@@ -260,15 +261,15 @@ export default function AITeacherPage() {
       <div className="flex-1 grid md:grid-cols-[1fr_320px] gap-4 p-6">
         <div className="space-y-4">
           <section className="bg-slate-900 rounded-2xl p-4">
-            <div className="relative bg-black rounded-xl overflow-hidden aspect-video flex items-center justify-center">
-              <video ref={videoRef} autoPlay playsInline className="w-full h-full object-cover" />
+            <DigitalStudio teacherName={teacherId === "sara" ? "Sara" : "Ali"} subjectLabel="Numbers 1–5" statusLabel={videoState}>
+              <video ref={videoRef} autoPlay playsInline className="h-full w-full object-cover" />
               {videoState !== "PLAYING" && (
                 <div className="absolute inset-0 flex flex-col items-center justify-center bg-slate-950/90 text-center p-4">
                   <div className="w-16 h-16 rounded-full bg-cyan-500 flex items-center justify-center font-bold text-2xl text-slate-950 mb-3">{teacherId === "sara" ? "S" : "A"}</div>
                   <p className="text-sm text-slate-400">{sessionState === "ERROR" ? "Could not connect to LiveAvatar — see debug log." : "Connecting…"}</p>
                 </div>
               )}
-            </div>
+            </DigitalStudio>
           </section>
 
           <section className="bg-slate-900 rounded-2xl p-6">
